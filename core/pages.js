@@ -102,7 +102,9 @@ MFHFB.ui = {
         else if (e.medianResult === 'T') t.ties++;
       });
     }
-    return Object.values(totals).sort((a, b) => (b.wins - a.wins) || (b.pf - a.pf));
+    // Sortierung nach Win% (Unentschieden = halber Sieg, wie ESPN/Sleeper),
+    // Tiebreak Punkte. Ohne Unentschieden identisch zu "nach Siegen".
+    return Object.values(totals).sort((a, b) => ((b.wins + b.ties / 2) - (a.wins + a.ties / 2)) || (b.pf - a.pf));
   },
 
   hasMedian(weekly, season) {
