@@ -20,6 +20,13 @@
 //               der bisherigen Seite (deren Actions synchronisieren weiter),
 //               nach dem Umzug der Sync-Scripts ./leagues/<liga>/data/.
 //  notes:       liga-spezifische Hinweistexte für einzelne Tools.
+//  lineupSlots: Starter-Slots (Sleeper-Keys: QB, RB, WR, TE, FLEX, DEF, K,
+//               SUPER_FLEX …). Fehlt das Feld, nehmen die Tools die Slots
+//               aus den synchronisierten Liga-Settings (LEAGUE_INFO bei
+//               Sleeper) bzw. den NFL-Standard.
+//  legacyStoragePrefix: localStorage-Präfix der bisherigen Seite ('bwp',
+//               'dpe'), damit z.B. dort gesicherte Matchup-Snapshots
+//               weiter gefunden werden (nur lesend).
 //
 //  accent / accent2: Liga-Farben aus den jeweiligen Legacy-Stylesheets
 //  (Dark-Mode-Werte), damit jede Liga ihren Look behält.
@@ -80,6 +87,8 @@ const LEAGUES = [
     mode: 'legacy',
     nativePreview: true,
     dataBase: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/data/',
+    lineupSlots: ['QB', 'RB', 'RB', 'WR', 'WR', 'TE', 'FLEX', 'DEF', 'K'],
+    legacyStoragePrefix: 'bwp',
     notes: {
       standings: 'W1 & W2 stammen aus dem Archiv (ESPN-Draft-Reset am 23.09.) und zählen voll für Standings, Playoffs und Draft-Reihenfolge.',
     },
@@ -101,6 +110,7 @@ const LEAGUES = [
     mode: 'legacy',
     nativePreview: true,
     dataBase: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/data/',
+    legacyStoragePrefix: 'dpe',
     legacyUrl: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/',
     repo: 'Dynasty-Of-Pretend-Experts',
   },

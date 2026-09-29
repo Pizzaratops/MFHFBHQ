@@ -186,6 +186,11 @@
          ${page && p.id === page.id ? 'aria-current="page"' : ''}>
         <span class="nav-icon" aria-hidden="true">${p.icon || s.icon}</span><span>${esc(p.label)}</span>
       </a>`).join('')).join('');
+    // Mobil ist die Navigation eine horizontale Leiste → aktive Seite ins Bild holen
+    const act = el.nativeNav.querySelector('.nav-item.active');
+    if (act && el.nativeNav.scrollWidth > el.nativeNav.clientWidth) {
+      el.nativeNav.scrollLeft = act.offsetLeft - (el.nativeNav.clientWidth - act.offsetWidth) / 2;
+    }
 
     if (!page) {
       el.nativeMain.innerHTML = MFHFB.ui.empty('Noch keine Seiten', 'Für diese Liga ist noch kein Tool freigeschaltet.', '🚧');
@@ -194,24 +199,48 @@
 
     const seq = ++renderSeq;
     el.nativeMain.innerHTML = `<div class="native-loading"><div class="spinner"></div>Lade ${esc(page.label)} …</div>`;
+    // Liga-bezogener Speicher für Tool-Einstellungen (mfhfb:<liga>:<key>)
+    const leagueStore = {
+      get: k => store.get(l.key + ':' + k),
+      set: (k, v) => store.set(l.key + ':' + k, v),
+      getJSON(k, fallback) { try { const v = store.get(l.key + ':' + k); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } },
+      setJSON(k, v) { store.set(l.key + ':' + k, JSON.stringify(v)); },
+    };
+    let firstPaint = true;
     MFHFB.data.load(l, page.data)
       .then(data => {
-        const ctx = { league: l, data, params, href, ui: MFHFB.ui };
-        return Promise.resolve(page.render(ctx)).then(html => ({ html, ctx }));
+        const ctx = { league: l, data, params, href, ui: MFHFB.ui, store: leagueStore };
+        // Neu zeichnen ohne Routenwechsel (z.B. nach Klick auf einen
+        // Modus-Umschalter). Daten sind gecacht, daher sofort.
+        ctx.refresh = () => {
+          if (seq !== renderSeq) return;
+          const y = el.native.scrollTop, my = el.nativeMain.scrollTop;
+          paint(ctx).then(() => { el.native.scrollTop = y; el.nativeMain.scrollTop = my; })
+            .catch(err => { console.error(err); el.nativeMain.innerHTML = MFHFB.ui.empty('Fehler beim Anzeigen', err.message, '⚠️'); });
+        };
+        return ctx;
       })
-      .then(({ html, ctx }) => {
-        if (seq !== renderSeq) return;
-        el.nativeMain.innerHTML = html;
-        const t = page.title ? page.title(ctx) : page.label;
-        document.title = `${t} · ${l.short} · MFHFB HQ`;
-        el.nativeMain.focus({ preventScroll: true });
-        el.native.scrollTop = 0;
-      })
+      .then(ctx => (seq === renderSeq ? paint(ctx) : null))
       .catch(err => {
         if (seq !== renderSeq) return;
         console.error(err);
         el.nativeMain.innerHTML = MFHFB.ui.empty('Daten konnten nicht geladen werden', err.message, '⚠️');
       });
+
+    function paint(ctx) {
+      return Promise.resolve().then(() => page.render(ctx)).then(html => {
+        if (seq !== renderSeq) return;
+        el.nativeMain.innerHTML = html;
+        if (page.mount) page.mount(el.nativeMain, ctx);
+        const t = page.title ? page.title(ctx) : page.label;
+        document.title = `${t} · ${l.short} · MFHFB HQ`;
+        if (firstPaint) {
+          firstPaint = false;
+          el.nativeMain.focus({ preventScroll: true });
+          el.native.scrollTop = 0; el.nativeMain.scrollTop = 0;
+        }
+      });
+    }
   }
 
   el.versionBtn.addEventListener('click', () => {

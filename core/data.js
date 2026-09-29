@@ -49,8 +49,15 @@ MFHFB.data = (function () {
 
   // Mehrere Dateien laden und zu einem Objekt zusammenführen:
   // load(league, ['teams','weekly-scores']) -> { LEAGUE_TEAMS, WEEKLY_SCORES }
+  // Ein "?" vor dem Namen macht die Datei optional ('?league-info'): fehlt
+  // sie bei einer Liga, wird sie still übersprungen statt die Seite
+  // scheitern zu lassen.
   async function load(league, files) {
-    const parts = await Promise.all((files || []).map(f => loadFile(league, f)));
+    const parts = await Promise.all((files || []).map(f => {
+      const optional = f.startsWith('?');
+      const name = optional ? f.slice(1) : f;
+      return optional ? loadFile(league, name).catch(() => ({})) : loadFile(league, name);
+    }));
     return Object.assign({}, ...parts);
   }
 

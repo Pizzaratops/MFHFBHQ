@@ -180,3 +180,72 @@ span.pos {
 .median-W { background: #2e9d6222; color: #2e9d62; }
 .median-L { background: var(--surface2); color: var(--muted); }
 .median-T { background: var(--surface2); color: var(--text); }
+
+/* ---------- Matchups ---------- */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.seg { display: inline-flex; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 2px; }
+.seg-btn {
+  border: 0; background: none; cursor: pointer; font-weight: 700; font-size: 13px; color: var(--muted);
+  padding: 6px 11px; border-radius: 8px;
+}
+.seg-btn:hover { color: var(--text); }
+.seg-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.mdt-actions .seg-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+.mdt-actions .seg-btn:hover { border-color: var(--league-accent); }
+
+.mu-card {
+  display: flex; flex-direction: column; text-decoration: none; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden;
+  transition: border-color .15s;
+}
+.mu-card:hover { border-color: var(--league-accent); }
+.mu-side { display: flex; align-items: center; gap: 10px; padding: 11px 14px; color: var(--muted); }
+.mu-side + .mu-side { border-top: 1px solid var(--border); }
+.mu-side.win { color: var(--text); background: color-mix(in srgb, var(--league-accent) 8%, transparent); }
+.mu-side.win .game-pts { color: var(--league-accent); }
+.mu-side .team-name { color: var(--text); }
+.mu-bar { height: 6px; margin: 10px 14px 0; border-radius: 99px; background: color-mix(in srgb, var(--league-accent2) 45%, var(--surface2)); overflow: hidden; }
+.mu-bar span { display: block; height: 100%; background: var(--league-accent); border-radius: 99px 0 0 99px; }
+.mu-pcts { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 6px 14px 0; font-size: 13px; color: var(--muted); }
+.mu-pcts b { font-variant-numeric: tabular-nums; }
+.mu-pcts b.lead { color: var(--text); }
+.mu-pcts span { font-size: 12px; text-align: center; }
+.mu-hint { font-size: 12px; font-weight: 700; color: var(--league-accent); padding: 8px 14px 10px; text-align: right; }
+
+/* Slot-Vergleich */
+.mdt-head { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; margin: 4px 0 8px; }
+.mdt-team { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; box-shadow: var(--shadow); min-width: 0; }
+.mdt-team.win { border-color: var(--league-accent); }
+.mdt-team-name { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mdt-total { font-size: 40px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.mdt-team.win .mdt-total { color: var(--league-accent); }
+.mdt-pct { font-size: 13px; font-weight: 800; color: var(--muted); }
+.mdt-mid { text-align: center; }
+.mdt-week { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.mdt-vs { font-weight: 800; font-size: 18px; color: var(--muted); }
+.mdt-sub { text-align: center; margin-bottom: 12px; }
+.mdt-actions { text-align: center; margin: -4px 0 14px; }
+.mdt-rows { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+.mdt-row { display: grid; grid-template-columns: 1fr 64px 1fr; align-items: center; }
+.mdt-row + .mdt-row { border-top: 1px solid var(--border); }
+.mdt-cell { padding: 10px 14px; min-width: 0; }
+.mdt-cell.r { text-align: right; }
+.mdt-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mdt-meta { font-size: 12px; color: var(--muted); }
+.mdt-val { font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.mdt-val small, .mdt-val2 small { color: var(--muted); font-weight: 600; }
+.mdt-val2 { font-size: 13px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.mdt-slot {
+  align-self: stretch; display: grid; place-items: center; font-size: 11px; font-weight: 800; letter-spacing: .06em;
+  color: var(--muted); background: var(--surface2);
+}
+.mdt-slot.edge-l { box-shadow: inset 3px 0 0 var(--league-accent); color: var(--text); }
+.mdt-slot.edge-r { box-shadow: inset -3px 0 0 var(--league-accent); color: var(--text); }
+
+@media (max-width: 760px) {
+  .mdt-total { font-size: 30px; }
+  .mdt-row { grid-template-columns: 1fr 48px 1fr; }
+  .mdt-cell { padding: 9px 10px; font-size: 13px; }
+  .mdt-val2 { font-size: 12px; }
+  .seg-btn { padding: 6px 9px; font-size: 12px; }
+}

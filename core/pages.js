@@ -83,7 +83,11 @@ MFHFB.ui = {
   },
 
   // Tabelle nach W-L (Punkte als Tiebreak) — identisch zur Logik der
-  // bisherigen Seiten (renderStandings in Bear-Witch-Project-HQ/js/app.js).
+  // bisherigen Seiten (renderStandings in BWP/DOPE js/app.js).
+  // Median-Spiel: Ligen mit Sleeper "league_average_match" (DOPE) haben pro
+  // Woche zusätzlich ein Ergebnis gegen den Liga-Median (e.medianResult
+  // 'W'/'L'/'T'), das in die Bilanz zählt — genau wie in Sleeper. Ligen ohne
+  // das Feld (BWP) sind davon nicht betroffen.
   standings(weekly, season, uptoWeek) {
     const totals = {};
     for (let w = 1; w <= uptoWeek; w++) {
@@ -93,9 +97,16 @@ MFHFB.ui = {
         if (e.points > e.opponentPoints) t.wins++;
         else if (e.points < e.opponentPoints) t.losses++;
         else t.ties++;
+        if (e.medianResult === 'W') t.wins++;
+        else if (e.medianResult === 'L') t.losses++;
+        else if (e.medianResult === 'T') t.ties++;
       });
     }
     return Object.values(totals).sort((a, b) => (b.wins - a.wins) || (b.pf - a.pf));
+  },
+
+  hasMedian(weekly, season) {
+    return Object.values((weekly || {})[season] || {}).some(list => (list || []).some(e => e.medianResult));
   },
 
   record(r) { return `${r.wins}-${r.losses}${r.ties ? '-' + r.ties : ''}`; },

@@ -44,7 +44,7 @@ MFHFB.pages.register({
           </tbody></table>
         </section>
         <section class="card">
-          <div class="card-head"><h2>Woche ${lastWeek}</h2><a href="${href('scores', lastWeek)}">Details →</a></div>
+          <div class="card-head"><h2>Woche ${lastWeek}</h2><a href="${href('matchups', lastWeek)}">Details →</a></div>
           <div class="mini-games">
             ${games.map(g => { const a = team(g.a), b = team(g.b); return `<div class="mini-game">
               <span class="${g.ap > g.bp ? 'strong' : 'muted'}">${e(a.emoji || '')} ${e(a.name)}</span><span class="num ${g.ap > g.bp ? 'strong' : 'muted'}">${ui.num(g.ap)}</span>
