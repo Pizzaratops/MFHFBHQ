@@ -180,17 +180,42 @@
     const href = (id, ...p) => '#/' + [l.key, id, ...p.map(x => encodeURIComponent(x))].join('/');
 
     // Navigation
+    //  Desktop: Seitenleiste nach Bereichen gruppiert; Bereiche mit mehreren
+    //  Seiten sind auf-/zuklappbar (standardmäßig zu, aufgeklappte gemerkt pro
+    //  Liga; der Bereich der aktiven Seite ist immer offen). Mobil: oben die Bereiche als Chips, darunter
+    //  die Seiten des aktiven Bereichs. Ein Bereich-Chip öffnet die zuletzt
+    //  besuchte Seite dieses Bereichs.
     const sections = MFHFB.pages.forLeague(l);
-    el.nativeNav.innerHTML = sections.map(s => s.pages.map(p => `
-      <a class="nav-item${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}"
+    const curSec = page ? sections.find(s => s.pages.some(p => p.id === page.id)) : null;
+    if (curSec && page) store.set(l.key + ':navlast:' + curSec.key, page.id);
+    let opened = [];
+    try { opened = JSON.parse(store.get(l.key + ':navopen') || '[]'); } catch (e) { opened = []; }
+    const item = (p, s, cls) => `
+      <a class="nav-item${cls || ''}${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}"
          ${page && p.id === page.id ? 'aria-current="page"' : ''}>
         <span class="nav-icon" aria-hidden="true">${p.icon || s.icon}</span><span>${esc(p.label)}</span>
-      </a>`).join('')).join('');
-    // Mobil ist die Navigation eine horizontale Leiste → aktive Seite ins Bild holen
-    const act = el.nativeNav.querySelector('.nav-item.active');
-    if (act && el.nativeNav.scrollWidth > el.nativeNav.clientWidth) {
-      el.nativeNav.scrollLeft = act.offsetLeft - (el.nativeNav.clientWidth - act.offsetWidth) / 2;
-    }
+      </a>`;
+    const desk = sections.map(s => {
+      if (s.pages.length === 1 || s.key === 'home') return s.pages.map(p => item(p, s)).join('');
+      const open = s === curSec || opened.includes(s.key);
+      return `<div class="nav-group${open ? ' open' : ''}${s === curSec ? ' current' : ''}">
+        <button type="button" class="nav-head" data-navsec="${s.key}" aria-expanded="${open}">
+          <span class="nav-icon" aria-hidden="true">${s.icon}</span><span>${esc(s.label)}</span><span class="nav-count">${s.pages.length}</span><span class="nav-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="nav-pages">${s.pages.map(p => item(p, s, ' sub')).join('')}</div>
+      </div>`;
+    }).join('');
+    const secHref = s => href(s.pages.some(p => p.id === store.get(l.key + ':navlast:' + s.key)) ? store.get(l.key + ':navlast:' + s.key) : s.pages[0].id);
+    const mob = `<div class="nav-secs">${sections.map(s => `<a class="nav-sec${s === curSec ? ' active' : ''}" href="${secHref(s)}"${s === curSec ? ' aria-current="true"' : ''}>
+        <span aria-hidden="true">${s.pages.length === 1 ? (s.pages[0].icon || s.icon) : s.icon}</span><span>${esc(s.pages.length === 1 ? s.pages[0].label : s.label)}</span></a>`).join('')}</div>
+      ${curSec && curSec.pages.length > 1 ? `<div class="nav-sub">${curSec.pages.map(p => `<a class="nav-subitem${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}">${esc(p.label)}</a>`).join('')}</div>` : ''}`;
+    el.nativeNav.innerHTML = `<div class="nav-desk">${desk}</div><div class="nav-mob">${mob}</div>`;
+    // Mobil: aktiven Bereich und aktive Seite ins Bild holen
+    el.nativeNav.querySelectorAll('.nav-secs, .nav-sub').forEach(row => {
+      const act = row.querySelector('.active');
+      if (act && row.scrollWidth > row.clientWidth) row.scrollLeft = act.offsetLeft - (row.clientWidth - act.offsetWidth) / 2;
+    });
+    el.nativeNav.dataset.league = l.key;
 
     if (!page) {
       el.nativeMain.innerHTML = MFHFB.ui.empty('Noch keine Seiten', 'Für diese Liga ist noch kein Tool freigeschaltet.', '🚧');
@@ -234,6 +259,7 @@
         if (page.mount) page.mount(el.nativeMain, ctx);
         const t = page.title ? page.title(ctx) : page.label;
         document.title = `${t} · ${l.short} · MFHFB HQ`;
+        if (MFHFB.share) MFHFB.share.decorate(el.nativeMain, l);
         if (firstPaint) {
           firstPaint = false;
           el.nativeMain.focus({ preventScroll: true });
@@ -242,6 +268,21 @@
       });
     }
   }
+
+  // Bereiche in der Seitenleiste auf-/zuklappen (einmal delegiert)
+  el.nativeNav.addEventListener('click', e => {
+    const b = e.target.closest('[data-navsec]');
+    if (!b) return;
+    const key = el.nativeNav.dataset.league, sec = b.dataset.navsec;
+    let opened = [];
+    try { opened = JSON.parse(store.get(key + ':navopen') || '[]'); } catch (err) { opened = []; }
+    const g = b.closest('.nav-group');
+    const open = !g.classList.contains('open');
+    g.classList.toggle('open', open);
+    b.setAttribute('aria-expanded', String(open));
+    opened = open ? [...new Set([...opened, sec])] : opened.filter(x => x !== sec);
+    store.set(key + ':navopen', JSON.stringify(opened));
+  });
 
   el.versionBtn.addEventListener('click', () => {
     const l = byKey(parseRoute().league?.key);
@@ -362,5 +403,11 @@
   // ---------------- Start ----------------
   renderLanding();
   window.addEventListener('hashchange', route);
+  // Als App installiert (manifest start_url ?app=1): direkt die zuletzt
+  // genutzte Liga öffnen statt der Übersicht.
+  if (/[?&]app=1/.test(location.search) && (!location.hash || location.hash === '#/' || location.hash === '#')) {
+    const last = byKey(store.get('lastLeague'));
+    if (last) history.replaceState(null, '', '#/' + last.key);
+  }
   route();
 })();

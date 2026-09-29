@@ -6,12 +6,18 @@
 <title>MFHFB HQ</title>
 <meta name="description" content="MFHFB HQ — Hauptquartier für Taco Tuesday, Funkytown, Foodball und DOPE.">
 <meta name="theme-color" content="#13294b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MFHFB HQ">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313294b'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial Narrow,Arial' font-weight='700' font-size='30' fill='%23e84a0c'%3EHQ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/hub.css">
 <link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/nfl.css">
+<link rel="stylesheet" href="css/nba.css">
 <script>
   // Theme vor dem ersten Paint setzen (kein Aufblitzen). Ohne gespeicherte
   // Wahl folgt die Seite der System-Einstellung.
@@ -67,6 +73,7 @@
 <script src="core/pages.js"></script>
 <script src="core/charts.js"></script>
 <script src="core/espn.js"></script>
+<script src="core/share.js"></script>
 <!-- Sport-Module (reine Rechenlogik, ohne globale Daten) -->
 <script src="sports/nfl/teams.js"></script>
 <script src="sports/nfl/matchup-engine.js"></script>
@@ -78,21 +85,21 @@
 <script src="sports/nba/nba.js"></script>
 <!-- Tools: registrieren sich selbst in MFHFB.pages (Reihenfolge = Reihenfolge in der Navigation) -->
 <script src="tools/home.js"></script>
-<script src="tools/standings.js"></script>
-<script src="tools/rolling.js"></script>
-<script src="tools/weekly.js"></script>
-<script src="tools/matchups.js"></script>
-<script src="tools/rosters.js"></script>
-<script src="tools/draft.js"></script>
-<script src="tools/trades.js"></script>
-<script src="tools/dynasty.js"></script>
-<script src="tools/players.js"></script>
-<script src="tools/playerdna.js"></script>
-<script src="tools/collegescouting.js"></script>
-<script src="tools/nfl.js"></script>
-<script src="tools/nflmatchup.js"></script>
-<script src="tools/league.js"></script>
-<script src="tools/statusreport.js"></script>
+<script src="tools/nfl-standings.js"></script>
+<script src="tools/nfl-rolling.js"></script>
+<script src="tools/nfl-weekly.js"></script>
+<script src="tools/nfl-matchups.js"></script>
+<script src="tools/nfl-rosters.js"></script>
+<script src="tools/nfl-draft.js"></script>
+<script src="tools/nfl-trades.js"></script>
+<script src="tools/nfl-dynasty.js"></script>
+<script src="tools/nfl-players.js"></script>
+<script src="tools/nfl-playerdna.js"></script>
+<script src="tools/nfl-collegescouting.js"></script>
+<script src="tools/nfl-teams.js"></script>
+<script src="tools/nfl-matchup-advantage.js"></script>
+<script src="tools/nfl-league.js"></script>
+<script src="tools/nfl-statusreport.js"></script>
 <script src="tools/nba-teams.js"></script>
 <script src="tools/nba-livescores.js"></script>
 <script src="tools/nba-waiver.js"></script>

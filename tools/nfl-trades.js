@@ -257,8 +257,10 @@
         <h1 class="page-title display">⚖️ Trade Analyzer</h1>
         <div class="page-sub">Werte = Schnitt aus KeepTradeCut und Dynasty Daddy · Picks nach Runde und Jahr</div>
       </div>
+      <div data-share="Trade">
       <div class="tr-cols">${column('A')}${column('B')}</div>
       <div class="note tr-verdict">${verdict}</div>
+      </div>
       ${(st.A.length || st.B.length || st.teamA || st.teamB) ? '<div class="tr-actions"><button type="button" class="seg-btn" data-reset>↺ Neuer Trade</button></div>' : ''}
       ${impact}
       <div class="page-sub" style="margin-top:18px">Verbindliche Werte: <a href="https://dynasty-daddy.com/trade-calculator" target="_blank" rel="noopener">Dynasty Daddy</a> · <a href="https://keeptradecut.com/trade-calculator" target="_blank" rel="noopener">KeepTradeCut</a></div>`;

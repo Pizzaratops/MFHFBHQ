@@ -1,35 +1,52 @@
 # MFHFB HQ
 
-Ein Hauptquartier für alle MFHFB-Ligen: Taco Tuesday, Citizens of Funkytown, Foodball (Bear Witch Project) und Dynasty of Pretend Experts.
+Ein Hauptquartier für alle MFHFB-Ligen: Taco Tuesday (TTHQ), Citizens of Funkytown, Foodball (Bear Witch Project) und Dynasty of Pretend Experts (DOPE).
 
-Live: https://pizzaratops.github.io/MFHFBHQ/
+Live: https://pizzaratops.github.io/MFHFBHQ/ · als App installierbar (Manifest; öffnet dann direkt die zuletzt genutzte Liga).
 
 ## Aufbau
 
-| Datei | Zweck |
-|---|---|
-| `index.html` | Shell: Landing + Liga-Ansicht |
-| `js/leagues.js` | **Liga-Registry** – einzige Stelle, an der die Ligen definiert sind (Name, Sport, Plattform, Farben, Modus, alte URL) |
-| `js/hub.js` | Routing (`#/`, `#/<liga>`, `#/<liga>/<unterseite>`), Landing, Switch-Leagues-Menü, Theme |
-| `css/hub.css` | Styles Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel) |
-| `css/app.css` | Styles der nativen Liga-Ansicht (Tabellen, Karten, Navigation) |
-| `core/data.js` | Daten-Loader pro Liga (ohne globale Variablen, Ligen kollidieren nicht) |
-| `core/pages.js` | Seiten-Registry + UI-Helfer; Tools deklarieren, für welche Ligen sie gelten |
-| `tools/*.js` | Die Tools/Seiten (Übersicht, Standings, Matchups, Teams & Roster, …) |
+```
+index.html            Shell: Landing + Liga-Ansicht. Script-Reihenfolge: leagues → core → sports → tools → hub
+manifest.webmanifest  PWA (Icons in icons/)
+js/leagues.js         Liga-Registry: einzige Stelle, an der die Ligen definiert sind
+js/hub.js             Routing (#/<liga>/<seite>/<params…>), Landing, Switch Leagues, Theme,
+                      gruppierte Navigation (Desktop: klappbare Bereiche · Mobil: Bereich-Chips + Unterseiten),
+                      iframe für Ligen im Legacy-Modus
+core/data.js          Daten-Loader (const-Datendateien per fetch, ohne Globals; "?name" optional,
+                      "sport:name" = sportweite Daten aus SPORT_DATA[sport].dataBase)
+core/pages.js         Seiten-Registry (applies / when / data) + UI-Helfer
+core/charts.js        SVG-Radar, Bump-Chart, Modal
+core/espn.js          ESPN-Abruf im Browser über den eigenen Cloudflare-Worker (+ Fallback-Proxies)
+core/share.js         „📸 Teilen“: Bereiche mit data-share (+ Standard-Karten) als PNG teilen/speichern
+vendor/               html2canvas 1.4.1 (MIT), nur beim Teilen nachgeladen
+sports/nfl/           NFL-weit: Teams, Matchup-Engine, Matchup Advantage, Fantasy Units … + scripts/ + data/
+sports/nba/           NBA-weit: nba.js (Kategorien, Score-Modi, Namen) + scripts/ + data/  (siehe README dort)
+leagues/<liga>/       Liga-Daten + Sync-Scripts (Layout der alten Repos gespiegelt)
+tools/nfl-*.js        NFL-Seiten (BWP, DOPE)
+tools/nba-*.js        NBA-Seiten (TTHQ, Funkytown)
+tools/home.js         Übersicht (alle Ligen)
+css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
+css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
+css/nfl.css, nba.css  sportspezifische Styles
+.github/workflows/    Sync-Workflows (nfl-*, bwp-*, dope-*, nba-*, tthq-*, funkytown-*)
+```
 
 ### Neues Tool hinzufügen
-1. Datei `tools/<name>.js` anlegen, darin `MFHFB.pages.register({ id, section, label, icon, applies, data, render })`.
+1. Datei `tools/<sport>-<name>.js` anlegen, darin `MFHFB.pages.register({ id, section, label, icon, applies, data, render, mount })`.
 2. In `index.html` vor `js/hub.js` einbinden.
-3. `applies` bestimmt automatisch, in welchen Ligen es erscheint (z.B. `{ sport: ['nfl'] }`, `{ format: ['dynasty'] }`).
+3. `applies` bestimmt, in welchen Ligen es erscheint (z. B. `{ sport: ['nba'], keepers: [true] }`); `when: league => …` für Sonderfälle (z. B. nur Ligen mit Saison-Archiv).
+4. Teilbare Bereiche mit `data-share="Titel"` markieren — der Hub hängt den „📸 Teilen“-Knopf automatisch an.
 
-Modi pro Liga (`js/leagues.js`): `legacy` bettet die bisherige Seite ein. Mit `nativePreview: true` gibt es in der Kopfzeile den Button „✨ Neue Version“, über den man die neu gebaute Version schon testen kann (wird pro Liga im Browser gemerkt). Ist die neue Version vollständig, wird `mode` auf `native` gestellt und gilt für alle.
+Modi pro Liga (`js/leagues.js`): `legacy` bettet die bisherige Seite ein; mit `nativePreview: true` gibt es den Button „✨ Neue Version“ (pro Liga im Browser gemerkt). `native` = neue Version für alle.
 
-Daten: Übergangsweise liest die neue Version die Datendateien direkt aus den bisherigen Repos (`dataBase`), deren GitHub Actions synchronisieren weiter. Nach dem Umzug der Sync-Scripts zeigt `dataBase` auf `./leagues/<liga>/data/`.
+Stand: BWP + DOPE `native` mit Daten im Hub. TTHQ + Funkytown noch `legacy` + Vorschau, Daten noch aus den alten Repos — die Hub-Syncs laufen parallel (Cutover-Schritte: `sports/nba/README.md`).
 
-Migrationsplan: Projekt-Doc `claude/mfhfb-hq-migration-plan.md`.
+Migrationsplan: Projekt-Docs `claude/mfhfb-hq-migration-plan.md` und `claude/mfhfb-nba-phase2-status.md`.
 
 ## Konventionen
 
-- localStorage-Keys immer mit Präfix `mfhfb:` (alle GitHub-Pages-Seiten unter `pizzaratops.github.io` teilen sich die Origin).
-- Keine npm-Abhängigkeiten in GitHub Actions.
+- localStorage-Keys immer mit Präfix `mfhfb:` bzw. `mfhfb:<liga>:` (alle GitHub-Pages-Seiten unter `pizzaratops.github.io` teilen sich die Origin).
+- Keine npm-Abhängigkeiten in GitHub Actions; Secrets nur als GitHub-Secrets, nie in Dateien.
+- Sync-Workflows: `continue-on-error` je Schritt, ein Commit am Ende, Push mit Retry, `concurrency` je Datenbereich.
 - UI auf Deutsch.

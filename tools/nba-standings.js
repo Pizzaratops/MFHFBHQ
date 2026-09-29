@@ -181,4 +181,85 @@
     data: l => ['teams'].concat(archiveFiles(l)),
     title: ctx => 'Saison-Archiv' + (ctx.params[0] ? ' ' + ctx.params[0].replace('-', '/') : ''), render: archive,
   });
+
+  // ---------- Tabellenverlauf (SEASON_MATCHUPS, Funkytown) ----------
+  //  Port von renderRollingStandings() (Funkytown js/standings.js): Tabelle
+  //  nach jeder Woche der regulären Saison, wertbar nach Kategorien oder
+  //  Matchups (Standard = Wertungsart der Saison).
+  const rsSeasons = d => (d.SEASON_MATCHUPS || []).filter(s => s && s.weeks && Object.keys(s.weeks).some(w => (s.weeks[w] || []).some(x => !x.playoff))).sort((a, b) => b.espnSeason - a.espnSeason);
+  const rsWeeks = s => Object.keys(s.weeks).map(Number).filter(w => (s.weeks[w] || []).some(x => !x.playoff)).sort((a, b) => a - b);
+  function rsThrough(s, upto, mode) {
+    const tot = {};
+    rsWeeks(s).filter(w => w <= upto).forEach(w => s.weeks[w].forEach(x => {
+      if (x.playoff) return;
+      const t = tot[x.team] = tot[x.team] || { team: x.team, cw: 0, cl: 0, ct: 0, mw: 0, ml: 0, mt: 0 };
+      t.cw += x.w; t.cl += x.l; t.ct += x.t;
+      if (x.res === 'W') t.mw++; else if (x.res === 'L') t.ml++; else t.mt++;
+    }));
+    const p = (w, l, t) => ((w + l + t) ? (w + t / 2) / (w + l + t) : 0);
+    const list = Object.values(tot).map(t => ({ ...t, catPct: p(t.cw, t.cl, t.ct), mPct: p(t.mw, t.ml, t.mt) }));
+    list.sort(mode === 'matchups' ? (a, b) => (b.mPct - a.mPct) || (b.catPct - a.catPct) || (b.cw - a.cw) : (a, b) => (b.catPct - a.catPct) || (b.cw - a.cw) || (b.mPct - a.mPct));
+    list.forEach((r, i) => { r.rank = i + 1; });
+    return list;
+  }
+  function rsModel(ctx) {
+    const S = rsSeasons(ctx.data);
+    if (!S.length) return null;
+    const st = ctx.store.getJSON('rs', {}) || {};
+    const s = S.find(x => String(x.espnSeason) === ctx.params[0]) || S[0];
+    const mode = st.mode || (s.scoringType === 'H2H_MOST_CATEGORIES' ? 'matchups' : 'cats');
+    const weeks = rsWeeks(s), byWeek = {};
+    weeks.forEach(w => { byWeek[w] = rsThrough(s, w, mode); });
+    return { S, s, mode, weeks, byWeek, sel: (st.sel || []).slice(0, MAX_SEL) };
+  }
+  function rsChart(ctx, M, width) {
+    const nba = N(), tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
+    const final = M.byWeek[M.weeks[M.weeks.length - 1]];
+    const name = id => { const i = M.s.teams && M.s.teams[id]; return (i && i.name) || (i && tmap.get(i.teamId) || {}).name || 'Team ' + id; };
+    const rows = final.map(r => ({ id: String(r.team), name: name(r.team), ranks: M.weeks.map(w => (M.byWeek[w].find(x => x.team === r.team) || {}).rank ?? null), tips: M.weeks.map(w => { const x = M.byWeek[w].find(y => y.team === r.team); return x ? `${name(r.team)} · W${w}: Platz ${x.rank} · Kat. ${x.cw}-${x.cl}-${x.ct} · Matchups ${x.mw}-${x.ml}-${x.mt}` : ''; }) }));
+    return MFHFB.charts.bump({ cols: M.weeks.map(w => 'W' + w), rows, sel: M.sel, width, maxRank: final.length, label: 'Tabellenverlauf' });
+  }
+  function rsRender(ctx) {
+    const { ui } = ctx, e = ui.esc, nba = N();
+    nba.init(ctx.data);
+    const M = rsModel(ctx);
+    const head = `<div class="page-head"><h1 class="page-title display">📊 Tabellenverlauf</h1><div class="page-sub">Tabellenplatz nach jeder Woche der regulären Saison</div></div>`;
+    if (!M) return `${head}${ui.empty('Noch keine Wochenergebnisse', 'Die laufende Saison füllt sich automatisch, sobald die erste Woche entschieden ist (täglicher ESPN-Sync). Vorjahre über Actions → „Saison-Standings abrufen“.', '📊')}`;
+    const tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
+    const lastW = M.weeks[M.weeks.length - 1], prevW = M.weeks.length > 1 ? M.weeks[M.weeks.length - 2] : null;
+    const final = M.byWeek[lastW];
+    const info = id => { const i = (M.s.teams && M.s.teams[id]) || {}; const t = tmap.get(i.teamId); return { name: i.name || (t && t.name) || 'Team ' + id, t }; };
+    return `${head}
+      <div class="controls">
+        <select class="tr-select" data-season aria-label="Saison">${M.S.map(s => `<option value="${s.espnSeason}"${s === M.s ? ' selected' : ''}>${e(s.label)}${s.current ? ' (laufend)' : ''}</option>`).join('')}</select>
+        <div class="seg" role="group">${[['cats', 'Kategorien'], ['matchups', 'Matchups']].map(([k, l]) => `<button type="button" class="seg-btn${M.mode === k ? ' active' : ''}" data-rsmode="${k}">${l}</button>`).join('')}</div>
+        <span class="muted small">${M.weeks.length} Woche${M.weeks.length === 1 ? '' : 'n'} · Liga wertet nach ${M.s.scoringType === 'H2H_MOST_CATEGORIES' ? 'Matchups' : 'Kategorien'}</span></div>
+      <div class="pick-row">${final.map(r => { const id = String(r.team), k = M.sel.indexOf(id); return `<button type="button" class="pick${k > -1 ? ' on ' + SEL_CLASSES[k] : ''}" data-rspick="${id}"><span>${e(info(r.team).name)}</span></button>`; }).join('')}</div>
+      <div class="card bump-card"><div class="bump-wrap" data-bump>${rsChart(ctx, M, 900)}</div><div class="bump-tip" hidden></div></div>
+      <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th>Team</th><th class="num">±</th><th class="num">Kategorien</th><th class="num">Matchups</th></tr></thead>
+        <tbody>${final.map(r => { const inf = info(r.team); const pv = prevW ? (M.byWeek[prevW].find(x => x.team === r.team) || {}).rank : null; const d = pv != null ? pv - r.rank : 0; return `<tr><td class="num rank">${r.rank}</td>
+          <td>${inf.t ? `<a class="nba-tlink mp-tc" style="${nba.tcStyle(inf.t)}" href="${ctx.href('teams', inf.t.id)}"><span class="nba-tdot"></span>${e(inf.name)}</a>` : e(inf.name)}</td>
+          <td class="num ${d > 0 ? 'up' : d < 0 ? 'down' : 'muted'}">${d > 0 ? '▲' + d : d < 0 ? '▼' + -d : '–'}</td><td class="num${M.mode === 'cats' ? ' strong' : ''}">${r.cw}-${r.cl}-${r.ct}</td><td class="num${M.mode === 'matchups' ? ' strong' : ''}">${r.mw}-${r.ml}-${r.mt}</td></tr>`; }).join('')}</tbody></table></div>`;
+  }
+  function rsMount(root, ctx) {
+    const save = patch => { ctx.store.setJSON('rs', { ...(ctx.store.getJSON('rs', {}) || {}), ...patch }); ctx.refresh(); };
+    const se = root.querySelector('[data-season]');
+    if (se) se.addEventListener('change', () => { ctx.store.setJSON('rs', { sel: [] }); location.hash = ctx.href('stverlauf', se.value); });
+    root.querySelectorAll('[data-rsmode]').forEach(b => b.addEventListener('click', () => save({ mode: b.dataset.rsmode })));
+    root.querySelectorAll('[data-rspick]').forEach(b => b.addEventListener('click', () => {
+      const cur = (ctx.store.getJSON('rs', {}) || {}).sel || [], id = b.dataset.rspick;
+      let sel = cur.filter(x => x !== id);
+      if (sel.length === cur.length) sel = [...cur, id].slice(-MAX_SEL);
+      save({ sel });
+    }));
+    const wrap = root.querySelector('[data-bump]');
+    if (!wrap) return;
+    const M = rsModel(ctx);
+    MFHFB.charts.responsive(wrap, w => rsChart(ctx, M, w));
+    MFHFB.charts.bumpInteract(wrap, root.querySelector('.bump-tip'), id => { const b = root.querySelector(`[data-rspick="${CSS.escape(id)}"]`); if (b) b.click(); });
+  }
+  MFHFB.pages.register({
+    id: 'stverlauf', section: 'standings', label: 'Tabellenverlauf', icon: '📊', applies: { sport: ['nba'] }, when: l => !!l.seasonMatchups,
+    data: ['teams', 'season-matchups'], title: () => 'Tabellenverlauf', render: rsRender, mount: rsMount,
+  });
 })();
