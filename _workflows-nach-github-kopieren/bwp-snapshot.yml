@@ -1,0 +1,56 @@
+name: BWP Matchup-Snapshots
+
+# Sichert jeden Mittwoch die Vorab-Projektion der nächsten, noch nicht
+# gespielten Woche (leagues/bwp/data/matchup-snapshots.js) -- mit der
+# gemeinsamen Engine sports/nfl/matchup-engine.js. Einmal gesetzte
+# Snapshots werden nie überschrieben. Keine Secrets nötig.
+
+on:
+  schedule:
+    - cron: "0 8 * * 3"   # Mittwoch 10:00 Berlin (Sommerzeit)
+    - cron: "0 9 * * 3"   # Mittwoch 10:00 Berlin (Winterzeit)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bwp-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: leagues/bwp
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Snapshot
+        run: node scripts/snapshot-projections.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/matchup-snapshots.js
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: bwp matchup snapshot"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1

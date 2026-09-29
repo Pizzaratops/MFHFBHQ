@@ -16,9 +16,9 @@
 //               während für alle anderen noch die bisherige Seite läuft.
 //  scoring:     'points' | 'categories' — steuert, welche Tools gelten
 //               (siehe applies in core/pages.js).
-//  dataBase:    Ordner der Datendateien. Übergangsweise der data/-Ordner
-//               der bisherigen Seite (deren Actions synchronisieren weiter),
-//               nach dem Umzug der Sync-Scripts ./leagues/<liga>/data/.
+//  dataBase:    Ordner der Datendateien. Migrierte Ligen: leagues/<liga>/data/
+//               (Syncs: leagues/<liga>/scripts/ + .github/workflows/<liga>-*.yml).
+//               Noch nicht migrierte: der data/-Ordner der bisherigen Seite.
 //  notes:       liga-spezifische Hinweistexte für einzelne Tools.
 //  dues:        Beitragsregeln (siehe tools/league.js).
 //  announcements: Aushänge auf der Seite "Regeln & Erklärung".
@@ -99,9 +99,8 @@ const LEAGUES = [
     platformLeagueId: '91260355',
     accent: '#e0794a',
     accent2: '#4d7bb0',
-    mode: 'legacy',
-    nativePreview: true,
-    dataBase: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/data/',
+    mode: 'native',           // Cutover 29.09.2026 — Daten + Syncs unter leagues/bwp/
+    dataBase: 'leagues/bwp/data/',
     lineupSlots: ['QB', 'RB', 'RB', 'WR', 'WR', 'TE', 'FLEX', 'DEF', 'K'],
     legacyStoragePrefix: 'bwp',
     files: { draft: 'draft2026' },
