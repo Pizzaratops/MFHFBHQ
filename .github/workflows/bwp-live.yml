@@ -1,0 +1,91 @@
+name: BWP Live (Kader + Status Report)
+
+# Bear Witch Project (ESPN 91260355) -- Kader live + Status Report.
+# Scripts/Daten unter leagues/bwp/ (umgezogen aus Bear-Witch-Project-HQ,
+# unverändert). Alle 2 Stunden + manuell startbar.
+#
+# Secrets (Settings -> Secrets and variables -> Actions):
+#   ESPN_S2, SWID                 -> Liga-Zugriff + eigenes Team im Status Report
+#   ESPN_S2_FELIX, SWID_FELIX     -> Felix im Status Report (optional; fehlen
+#                                    sie, scheitert nur dieser Schritt)
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"   # alle 2 Stunden (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bwp-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: leagues/bwp
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: ESPN Kader
+        id: rosters
+        continue-on-error: true
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          SWID: ${{ secrets.SWID }}
+        run: node scripts/sync-espn-rosters.js
+
+      - name: Cache-Key (täglich)
+        id: cachekey
+        run: echo "date=$(date -u +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+      - name: Sleeper players.nfl cachen (~5 MB, 1x/Tag)
+        uses: actions/cache@v4
+        with:
+          path: /tmp/sleeper-players.json
+          key: sleeper-players-${{ steps.cachekey.outputs.date }}
+
+      - name: Status Report
+        id: status
+        continue-on-error: true
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          SWID: ${{ secrets.SWID }}
+          ESPN_S2_FELIX: ${{ secrets.ESPN_S2_FELIX }}
+          SWID_FELIX: ${{ secrets.SWID_FELIX }}
+          SLEEPER_PLAYERS_CACHE_PATH: /tmp/sleeper-players.json
+        run: node scripts/sync-status-report.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/rosters-live.js data/status-report.js
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: bwp live sync"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
+
+      - name: Fehlgeschlagene Schritte melden
+        if: steps.rosters.outcome == 'failure' || steps.status.outcome == 'failure'
+        run: |
+          echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
+          exit 1
