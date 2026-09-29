@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-09-29T10:12:52.626Z",
+  "generatedAt": "2026-09-29T11:56:37.994Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -867,7 +867,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 10.4,
-          "projPoints": 17.2
+          "projPoints": 17
         },
         {
           "name": "David Montgomery",
@@ -2005,7 +2005,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 10.4,
-          "projPoints": 17.2
+          "projPoints": 17
         },
         {
           "name": "Devin Singletary",
@@ -2425,7 +2425,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 18.3,
           "last3AvgPoints": 9.7,
-          "projPoints": 8.3
+          "projPoints": 8.2
         },
         {
           "name": "Mike Evans",
@@ -2726,7 +2726,8 @@ const STATUS_REPORT_DATA = {
           "projPoints": 7.5
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 0,
+      "stale": true
     },
     {
       "id": "felix-espn-320102468",
@@ -2925,7 +2926,8 @@ const STATUS_REPORT_DATA = {
           "projPoints": 8.5
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 0,
+      "stale": true
     },
     {
       "id": "felix-espn-783491558",
@@ -3058,7 +3060,8 @@ const STATUS_REPORT_DATA = {
           "projPoints": 20.4
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 0,
+      "stale": true
     },
     {
       "id": "felix-espn-1340233816",
@@ -3180,7 +3183,8 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 0,
+      "stale": true
     },
     {
       "id": "felix-espn-519920608",
@@ -3379,7 +3383,8 @@ const STATUS_REPORT_DATA = {
           "projPoints": 10.6
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 1,
+      "stale": true
     },
     {
       "id": "felix-sleeper-1402417765519781888",
@@ -3753,7 +3758,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.3,
           "last3AvgPoints": 14.8,
-          "projPoints": 11.4
+          "projPoints": 11.2
         },
         {
           "name": "Derrick Henry",
