@@ -36,7 +36,12 @@
     switchBtn: document.getElementById('switchBtn'),
     switchMenu: document.getElementById('switchMenu'),
     frame: document.getElementById('leagueFrame'),
+    frameWrap: document.getElementById('frameWrap'),
     loading: document.getElementById('frameLoading'),
+    versionBtn: document.getElementById('versionBtn'),
+    native: document.getElementById('nativeView'),
+    nativeNav: document.getElementById('nativeNav'),
+    nativeMain: document.getElementById('nativeMain'),
   };
 
   let activeKey = null;      // Liga, die gerade im iframe geladen ist
@@ -125,10 +130,20 @@
     store.set('lastLeague', l.key);
     renderMenu(l.key);
 
-    if (l.mode === 'native') {
-      // Ab Phase 1: hier rendert die Shell die migrierte Liga selbst.
-      // Bis dahin fällt eine versehentlich auf 'native' gestellte Liga auf
-      // die Legacy-Seite zurück, statt leer zu bleiben.
+    const native = useNative(l);
+    el.versionBtn.hidden = !(l.nativePreview && l.mode !== 'native');
+    el.versionBtn.setAttribute('aria-pressed', String(native));
+    el.versionBtn.innerHTML = native ? '↩ <span class="hide-sm">Bisherige Seite</span>' : '✨ <span class="hide-sm">Neue Version</span>';
+    el.openTab.hidden = native;
+    el.frameWrap.hidden = native;
+    el.native.hidden = !native;
+
+    if (native) {
+      // Eingebettete Seite abräumen (spart Speicher, und beim Zurückwechseln
+      // wird sie frisch geladen statt einen alten Stand zu zeigen).
+      if (activeKey) { loadFrame('about:blank', ''); activeKey = null; }
+      renderNative(l, sub);
+      return;
     }
 
     if (activeKey === l.key) {
@@ -144,6 +159,69 @@
     el.loading.hidden = false;
     loadFrame(frameUrl(l, sub), l.name);
   }
+
+  // ---------------- Native Liga-Ansicht ----------------
+  // 'native' für alle, oder Vorschau per Button (pro Liga gemerkt).
+  function useNative(l) {
+    if (l.mode === 'native') return true;
+    return !!l.nativePreview && store.get(l.key + ':native') === '1';
+  }
+
+  let renderSeq = 0; // verwirft verspätete Antworten, wenn man schnell weiterklickt
+
+  function renderNative(l, sub) {
+    const parts = sub.split('/').filter(Boolean).map(decodeURIComponent);
+    let page = MFHFB.pages.find(l, parts[0] || 'home');
+    if (!page) {
+      page = MFHFB.pages.find(l, 'home') || MFHFB.pages.forLeague(l)[0]?.pages[0];
+      if (sub) history.replaceState(null, '', '#/' + l.key);
+    }
+    const params = page && page.id === parts[0] ? parts.slice(1) : [];
+    const href = (id, ...p) => '#/' + [l.key, id, ...p.map(x => encodeURIComponent(x))].join('/');
+
+    // Navigation
+    const sections = MFHFB.pages.forLeague(l);
+    el.nativeNav.innerHTML = sections.map(s => s.pages.map(p => `
+      <a class="nav-item${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}"
+         ${page && p.id === page.id ? 'aria-current="page"' : ''}>
+        <span class="nav-icon" aria-hidden="true">${p.icon || s.icon}</span><span>${esc(p.label)}</span>
+      </a>`).join('')).join('');
+
+    if (!page) {
+      el.nativeMain.innerHTML = MFHFB.ui.empty('Noch keine Seiten', 'Für diese Liga ist noch kein Tool freigeschaltet.', '🚧');
+      return;
+    }
+
+    const seq = ++renderSeq;
+    el.nativeMain.innerHTML = `<div class="native-loading"><div class="spinner"></div>Lade ${esc(page.label)} …</div>`;
+    MFHFB.data.load(l, page.data)
+      .then(data => {
+        const ctx = { league: l, data, params, href, ui: MFHFB.ui };
+        return Promise.resolve(page.render(ctx)).then(html => ({ html, ctx }));
+      })
+      .then(({ html, ctx }) => {
+        if (seq !== renderSeq) return;
+        el.nativeMain.innerHTML = html;
+        const t = page.title ? page.title(ctx) : page.label;
+        document.title = `${t} · ${l.short} · MFHFB HQ`;
+        el.nativeMain.focus({ preventScroll: true });
+        el.native.scrollTop = 0;
+      })
+      .catch(err => {
+        if (seq !== renderSeq) return;
+        console.error(err);
+        el.nativeMain.innerHTML = MFHFB.ui.empty('Daten konnten nicht geladen werden', err.message, '⚠️');
+      });
+  }
+
+  el.versionBtn.addEventListener('click', () => {
+    const l = byKey(parseRoute().league?.key);
+    if (!l) return;
+    store.set(l.key + ':native', useNative(l) ? '0' : '1');
+    // Unterseiten-Namen der alten und neuen Version passen nicht zusammen →
+    // beim Umschalten auf der Startseite der Liga landen.
+    if (location.hash === '#/' + l.key) route(); else location.hash = '#/' + l.key;
+  });
 
   // Bei jedem Liga-Wechsel ein FRISCHES iframe statt nur src zu ändern:
   // eine src-Änderung an einem bestehenden iframe legt einen eigenen

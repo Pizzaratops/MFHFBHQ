@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/hub.css">
+<link rel="stylesheet" href="css/app.css">
 <script>
   // Theme vor dem ersten Paint setzen (kein Aufblitzen). Ohne gespeicherte
   // Wahl folgt die Seite der System-Einstellung.
@@ -43,6 +44,7 @@
     <span class="bar-sep"></span>
     <div class="current-league" id="currentLeague"></div>
     <span class="bar-spacer"></span>
+    <button class="icon-btn version-btn" id="versionBtn" type="button" aria-pressed="false" hidden title="Zwischen bisheriger Seite und neuer Version wechseln"></button>
     <a class="icon-btn hide-sm" id="openTab" href="#" target="_blank" rel="noopener" title="Liga in neuem Tab öffnen">↗<span>Neuer Tab</span></a>
     <div class="switch-wrap">
       <button class="icon-btn switch-btn" id="switchBtn" type="button" aria-haspopup="menu" aria-expanded="false">⇄ <span class="hide-sm">Switch Leagues</span></button>
@@ -50,13 +52,24 @@
     </div>
     <button class="icon-btn" type="button" data-theme-toggle aria-label="Hell/Dunkel umschalten">◐</button>
   </nav>
-  <div class="frame-wrap">
+  <div class="native-view" id="nativeView" hidden>
+    <nav class="native-nav" id="nativeNav" aria-label="Seiten"></nav>
+    <main class="native-main" id="nativeMain" tabindex="-1"></main>
+  </div>
+  <div class="frame-wrap" id="frameWrap">
     <div class="frame-loading" id="frameLoading" hidden><div><div class="spinner"></div>Lade Liga …</div></div>
     <iframe id="leagueFrame" title="Liga" referrerpolicy="same-origin"></iframe>
   </div>
 </div>
 
 <script src="js/leagues.js"></script>
+<script src="core/data.js"></script>
+<script src="core/pages.js"></script>
+<!-- Tools: registrieren sich selbst in MFHFB.pages (Reihenfolge = Reihenfolge in der Navigation) -->
+<script src="tools/home.js"></script>
+<script src="tools/standings.js"></script>
+<script src="tools/scores.js"></script>
+<script src="tools/rosters.js"></script>
 <script src="js/hub.js"></script>
 </body>
 </html>
