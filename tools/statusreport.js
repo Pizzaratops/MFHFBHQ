@@ -6,10 +6,13 @@
 //                                   ihren ESPN- & Sleeper-Ligen
 //
 //  Neu gebaut nach renderStatusReport & Co. (BWP/DOPE js/app.js).
-//  Unterschied zur alten Seite: Die Daten ALLER NFL-Ligen im Hub werden
-//  zusammengeführt (BWP synct "Bear Down" + "TeamBeermode", DOPE synct
-//  "Milchreis") — die Seite ist also in jeder NFL-Liga gleich und zeigt
-//  alle Personen. Neu außerdem: Matchup-Badge der nächsten Woche je Spieler.
+//  Unterschied zur alten Seite: Die Status-Report-Dateien ALLER NFL-Ligen im
+//  Hub werden zusammengeführt (leagues/<liga>/data/status-report.js) — die
+//  Seite ist also in jeder NFL-Liga gleich und zeigt alle Personen. Aktuell
+//  synct nur BWP ("Bear Down"; Felix/TeamBeermode pausiert). Der frühere
+//  DOPE-Eintrag "Milchreis" war dieselbe Person mit denselben Ligen und
+//  entfällt seit dem DOPE-Cutover (29.09.2026).
+//  Neu außerdem: Matchup-Badge der nächsten Woche je Spieler.
 //
 //  Passwort-Vorhang: rein clientseitig, KEIN echter Schutz (Code ist
 //  öffentlich) — nur gegen zufälliges Reinstolpern, wie bisher. Die
@@ -23,7 +26,6 @@
   const GATE = {
     'Bear Down': { password: '2428', emoji: '🐻' },
     'TeamBeermode': { password: 'Dolpins', emoji: '🍺' },
-    'Milchreis': { password: '2428', emoji: '🥛' },
   };
   const key = owner => 'mfhfb:sr-unlock:' + owner;
   function isUnlocked(owner) {

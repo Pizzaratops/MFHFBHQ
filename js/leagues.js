@@ -22,6 +22,7 @@
 //  notes:       liga-spezifische Hinweistexte für einzelne Tools.
 //  dues:        Beitragsregeln (siehe tools/league.js).
 //  announcements: Aushänge auf der Seite "Regeln & Erklärung".
+//  countdowns:  zusätzliche Termine für die Übersicht [{ label, iso }].
 //  lineupSlots: Starter-Slots (Sleeper-Keys: QB, RB, WR, TE, FLEX, DEF, K,
 //               SUPER_FLEX …). Fehlt das Feld, nehmen die Tools die Slots
 //               aus den synchronisierten Liga-Settings (LEAGUE_INFO bei
@@ -47,6 +48,9 @@
 // Scripts aus sports/<sport>/scripts/.
 const SPORT_DATA = {
   nfl: { dataBase: 'sports/nfl/data/' },
+  // NBA: übergangsweise der data/-Ordner von TTHQ (dort laufen die Syncs;
+  // die sportweiten Dateien sind in beiden NBA-Repos identisch)
+  nba: { dataBase: 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/' },
 };
 
 const SPORTS = {
@@ -68,6 +72,15 @@ const LEAGUES = [
     accent: '#6c63ff',
     accent2: '#f2b84f',
     mode: 'legacy',
+    nativePreview: true,       // Phase 2: neue Version zum Testen (Button „✨ Neue Version“)
+    dataBase: 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
+    files: { teams: 'teams-rosters' },
+    keepers: true,
+    // ESPN-Team-ID → interne Team-ID (TEAMS in teams-rosters.js); 12 + 13 = Taxi Squads
+    espn: { season: 2027, toTeam: { 1: 1, 2: 2, 4: 3, 7: 4, 5: 5, 11: 6, 8: 7, 10: 8, 6: 9, 14: 10, 3: 11, 9: 12 } },
+    // Saison-Archiv (data/season-XXXX-YY.js: Endstand + Kader) — Liga-Historie
+    seasonArchive: ['2021-22', '2022-23', '2023-24', '2024-25', '2025-26'],
+    legacyStoragePrefix: 'tthq',
     legacyUrl: 'https://pizzaratops.github.io/Taco-Tuesday-HQ/',
     repo: 'Taco-Tuesday-HQ',
   },
@@ -84,6 +97,13 @@ const LEAGUES = [
     accent: '#ff6584',
     accent2: '#6c63ff',
     mode: 'legacy',
+    nativePreview: true,       // Phase 2: neue Version zum Testen
+    dataBase: 'https://pizzaratops.github.io/Citizens-of-Funkytown/data/',
+    files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active' },
+    countdowns: [{ label: '📋 Draft Day', iso: '2026-10-11T20:30:00+02:00' }],
+    // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)
+    espn: { season: 2027, toTeam: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
+    legacyStoragePrefix: 'cof',
     legacyUrl: 'https://pizzaratops.github.io/Citizens-of-Funkytown/',
     repo: 'Citizens-of-Funkytown',
   },
@@ -119,7 +139,7 @@ const LEAGUES = [
       { title: '📈 Wie es weitergeht', html: '<p>Ab jetzt läuft der automatische Sync mit ESPN wieder normal, aber mit einer wichtigen Ausnahme: Woche 1 und 2 bleiben stehen, und alles, was ESPN ab jetzt an neuen Wochen liefert, wird einfach oben draufaddiert.</p><p>Damit stimmen auf dieser Seite Standings, PF/PA, Playoff-Seeding und die Draft-Reihenfolge fürs nächste Jahr über die komplette Saison, auch wenn ESPN selbst nur ab der neuen Startwoche zählt.</p>' },
       { title: '⚠️ Wichtig für alle Owner', highlight: true, html: '<p><b>Maßgeblich ist ab jetzt diese Website, nicht die ESPN-App.</b> ESPN selbst zeigt intern eine falsche bzw. unvollständige Bilanz und ein falsches Playoff-Bild, weil ESPN Woche 1 und 2 nicht mehr kennt.</p>' },
     ],
-    legacyUrl: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/',
+    legacyUrl: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/?legacy=1',
     repo: 'Bear-Witch-Project-HQ',
   },
   {
@@ -134,14 +154,15 @@ const LEAGUES = [
     platformLeagueId: '1312799736218017792',
     accent: '#20d3c2',
     accent2: '#f25c8a',
-    mode: 'legacy',
-    nativePreview: true,
-    dataBase: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/data/',
+    mode: 'native',           // Cutover 29.09.2026 — Daten + Syncs unter leagues/dope/
+    dataBase: 'leagues/dope/data/',
+    // Zusätzliche Countdowns auf der Übersicht (aus LEAGUE_COUNTDOWNS, js/league-config.js)
+    countdowns: [{ label: '🏆 Playoffs (Woche 15)', iso: '2026-12-18T02:15:00+01:00' }],
     legacyStoragePrefix: 'dpe',
     notes: {
       dues: '2026 ist von allen bezahlt.',
     },
-    legacyUrl: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/',
+    legacyUrl: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/?legacy=1',
     repo: 'Dynasty-Of-Pretend-Experts',
   },
 ];

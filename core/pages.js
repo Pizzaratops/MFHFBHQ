@@ -8,7 +8,8 @@
 //      section: 'standings',       // Gruppe in der Navigation (SECTIONS)
 //      label: 'Standings', icon: '📈',
 //      applies: { sport: ['nfl'], scoring: ['points'] },  // optional
-//      data: ['teams', 'weekly-scores'],                  // Datendateien
+//      data: ['teams', 'weekly-scores'],                  // Datendateien (oder league => [...])
+//      when: league => !!league.x,                        // optional, Zusatzbedingung
 //      title: ctx => '…',          // optional, dynamischer Seitentitel
 //      render(ctx) { return '<html>'; }                   // oder Promise
 //    });
@@ -34,7 +35,9 @@ MFHFB.pages = (function () {
     { key: 'dynasty', label: 'Dynasty', icon: '🏆' },
     { key: 'players', label: 'Spieler', icon: '🧮' },
     { key: 'nfl', label: 'NFL', icon: '🏈' },
+    { key: 'nba', label: 'NBA', icon: '🏀' },
     { key: 'league', label: 'Liga', icon: '📜' },
+    { key: 'extra', label: 'Extras', icon: '🧰' },
   ];
   const list = [];
 
@@ -45,6 +48,7 @@ MFHFB.pages = (function () {
 
   function applies(page, league) {
     const a = page.applies || {};
+    if (page.when && !page.when(league)) return false;   // optionale Zusatzbedingung (z.B. Liga hat ein Saison-Archiv)
     return Object.keys(a).every(k => !a[k] || a[k].includes(league[k]));
   }
 

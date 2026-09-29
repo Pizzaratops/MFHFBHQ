@@ -249,15 +249,15 @@
   }
 
   MFHFB.pages.register({
-    id: 'erklaerung', section: 'league', label: 'Regeln & Erklärung', icon: '📜',
+    id: 'erklaerung', section: 'league', label: 'Regeln & Erklärung', icon: '📜', applies: { sport: ['nfl'] },
     data: ['teams', '?league-info', '?draft'], render: erklaerung,
   });
   MFHFB.pages.register({
-    id: 'dues', section: 'league', label: 'Liga-Beiträge', icon: '💰',
+    id: 'dues', section: 'league', label: 'Liga-Beiträge', icon: '💰', applies: { sport: ['nfl'] },
     data: ['teams', '?league-dues', '?draft', '?trades'], render: dues,
   });
   MFHFB.pages.register({
-    id: 'leaguehistory', section: 'league', label: 'League History', icon: '🏛️',
+    id: 'leaguehistory', section: 'league', label: 'League History', icon: '🏛️', applies: { sport: ['nfl'] },
     data: ['teams', '?league-history', '?season-history-standings'], render: history, mount: mountHistory,
   });
 })();

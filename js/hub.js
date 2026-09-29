@@ -207,7 +207,7 @@
       setJSON(k, v) { store.set(l.key + ':' + k, JSON.stringify(v)); },
     };
     let firstPaint = true;
-    MFHFB.data.load(l, page.data)
+    MFHFB.data.load(l, typeof page.data === 'function' ? page.data(l) : page.data)
       .then(data => {
         const ctx = { league: l, data, params, href, ui: MFHFB.ui, store: leagueStore };
         // Neu zeichnen ohne Routenwechsel (z.B. nach Klick auf einen
