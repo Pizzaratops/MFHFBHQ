@@ -1,0 +1,109 @@
+name: TTHQ Sync (Taco Tuesday)
+
+# Taco Tuesday HQ (ESPN 44361109, Dynasty) -- liga-eigene Kette nach
+# leagues/tthq/data/. Wird von nba-sync.yml nach der sportweiten Pipeline
+# aufgerufen (halbstündlich 06-22 Uhr Berlin) und ist zusätzlich manuell
+# startbar. Scripts unverändert aus Taco-Tuesday-HQ, nur sportweite
+# Eingaben (aliases, Roh-CSVs, Aggregate, Off-Season, Rolling, Post-Draft)
+# kommen jetzt aus sports/nba/.
+#
+#   1. sync-espn-rosters.js          -> rosters-live.js (+ Trade-Erkennung -> trade-history.js)
+#   2. sync-espn-picks.js            -> picks-live.js (nur anstehender Draft, nicht fatal)
+#   3. build-live-projections.js     -> live-projections.js (Baseline/Consensus + Saison-CSVs)
+#   4. build-team-analytics.js       -> team-analytics.js (braucht 1 + 3)
+#   5. build-best-available-board.js -> best-available-board.js
+#   6. build-dynasty-live.js         -> dynasty-live.js (nur Anzeige)
+#
+# Keine Secrets nötig (ESPN öffentlich).
+
+on:
+  workflow_call: {}
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: tthq-data
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: leagues/tthq
+    steps:
+      # Branch-Spitze statt Trigger-Commit: beim Aufruf aus nba-sync.yml
+      # enthält sie bereits den frischen Sport-Commit desselben Laufs.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Merge-Konflikt-Marker Check
+        working-directory: .
+        run: |
+          if grep -rlnE '^(<{7} |={7}$|>{7} )' --include='*.js' leagues/tthq sports/nba/data; then
+            echo "::error::Unaufgelöster Git-Merge-Konflikt in den oben gelisteten Dateien -- bitte manuell auflösen und neu pushen."
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: ESPN Kader (+ automatische Trade-Erkennung)
+        id: rosters
+        continue-on-error: true
+        run: node scripts/sync-espn-rosters.js
+
+      - name: ESPN Draft-Picks
+        id: picks
+        continue-on-error: true
+        run: node scripts/sync-espn-picks.js
+
+      - name: Live Projections
+        id: liveproj
+        continue-on-error: true
+        run: node scripts/build-live-projections.js --league=nba
+
+      - name: Team Analytics
+        id: analytics
+        continue-on-error: true
+        run: node scripts/build-team-analytics.js
+
+      - name: Best Available Board
+        id: bestavail
+        continue-on-error: true
+        run: node scripts/build-best-available-board.js
+
+      - name: Dynasty Live Nudge
+        id: dynlive
+        continue-on-error: true
+        run: node scripts/build-dynasty-live.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: tthq sync"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
+
+      - name: Fehlgeschlagene Schritte melden
+        if: steps.rosters.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure' || steps.dynlive.outcome == 'failure'
+        run: |
+          echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
+          exit 1

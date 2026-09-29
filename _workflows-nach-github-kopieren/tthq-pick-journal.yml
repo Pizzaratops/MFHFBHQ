@@ -1,0 +1,55 @@
+name: TTHQ Pick-Journal anwenden (manuell)
+
+# Taco Tuesday: manuell gepflegte Pick-Trades aus
+# leagues/tthq/scripts/data/pick-trades-manual.txt (Pick-Tausche, die ESPN
+# nicht als Trade liefert) in leagues/tthq/data/picks-live.js übernehmen.
+# Automatische Einträge aus sync-espn-picks.js bleiben unangetastet.
+# Script unverändert aus Taco-Tuesday-HQ (apply-pick-journal.yml).
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: tthq-data
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: leagues/tthq
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Journal anwenden
+        run: node scripts/apply-pick-journal.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/picks-live.js
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: tthq pick-journal"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1

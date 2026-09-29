@@ -1,0 +1,300 @@
+name: NBA Sync (sportweit + TTHQ + Funkytown)
+
+# EIN Workflow für alle NBA-Daten im Hub, in fester Reihenfolge:
+#
+#   1. gate       Zeitfenster 06-22 Uhr Berlin prüfen (Sommer-/Winterzeit-
+#                 Dopplung der Crons), 22-Uhr-Korrekturdatum, Power-Lauf ja/nein
+#   2. sport      sportweite Pipeline EINMAL für beide Ligen -> sports/nba/
+#                   daily-9cat.js (ESPN, Auto-Modus: gestern+heute, Juli =
+#                   Summer League, Preseason -> eigene Liga "nba-preseason")
+#                   -> convert-to-livescores.js  -> livescores-daily.js
+#                   -> convert-to-boxscores.js   -> livescores-boxscores.js
+#                   -> prune-raw-data.js         (CSV 400 Tage, games.json 120)
+#                   -> update-all-aggregates.js  -> livescores-aggregate.js
+#                   -> build-offseason-rankings.js -> offseason-rankings.js
+#                   -> build-postdraft-board.js  -> postdraft-board.js
+#                   -> build-rolling-archive.js  -> rolling-rankings-2026-27.js
+#                   (+ 09/21 Uhr: build-nba-power-rankings/-score.js)
+#   3. tthq       ruft tthq-sync.yml auf       (liest die frischen Sportdaten)
+#      funkytown  ruft funkytown-sync.yml auf  (parallel zu tthq)
+#
+# Warum ein Workflow mit wiederverwendbaren Liga-Workflows statt drei
+# Workflows mit eigenem Zeitplan / workflow_run:
+#   - Die Liga-Ketten brauchen die Sportdaten desselben Laufs (Aggregate,
+#     Off-Season, Roh-CSVs). "needs: sport" garantiert die Reihenfolge; die
+#     Liga-Jobs checken den Branch-Stand NACH dem Sport-Commit aus.
+#   - Das Zeitfenster wird genau einmal geprüft (workflow_run würde auch nach
+#     jedem übersprungenen Lauf feuern, 35x am Tag).
+#   - concurrency "nba-data" hält den ganzen Lauf zusammen: zwei NBA-Läufe
+#     überlappen nie, niemand schreibt gleichzeitig in dieselben Dateien.
+#   - Jeder Job committet nur seinen eigenen Ordner (sports/nba,
+#     leagues/tthq, leagues/funkytown) -> Rebase beim Push ist immer
+#     konfliktfrei (auch gegenüber den NFL-Workflows).
+#   - tthq-sync.yml / funkytown-sync.yml bleiben einzeln manuell startbar.
+#   - Die Liga-Jobs laufen auch, wenn der Sport-Job fehlschlägt (Kader/Trades
+#     sollen nicht an einem ESPN-Scoreboard-Fehler hängen).
+#
+# Zeiten: halbstündlich 06-22 Uhr Berlin (Minute :07/:37, wie bisher in
+# Taco-Tuesday-HQ). Jede Berlin-Zeit steht zweimal im Plan (Sommer-/Winter-
+# UTC-Offset), das Gate lässt nur die passende laufen. Der 22-Uhr-Lauf holt
+# gezielt den GESTRIGEN US-Spieltag nach (ESPN korrigiert Boxscores spät).
+# Keine Secrets nötig (ESPN öffentlich). Keine npm-Abhängigkeiten.
+# Kein bump-data-version mehr: der Hub lädt Daten mit stündlichem Cache-Busting.
+
+on:
+  schedule:
+    - cron: '7 4 * * *'    # 06:07 Berlin (Sommer)
+    - cron: '7 5 * * *'    # 06:07 Berlin (Winter) / 07:07 Berlin (Sommer)
+    - cron: '37 4 * * *'   # 06:37 Berlin (Sommer)
+    - cron: '37 5 * * *'   # 06:37 Berlin (Winter) / 07:37 Berlin (Sommer)
+    - cron: '7 6 * * *'    # 07:07 Berlin (Winter) / 08:07 Berlin (Sommer)
+    - cron: '37 6 * * *'   # 07:37 Berlin (Winter) / 08:37 Berlin (Sommer)
+    - cron: '7 7 * * *'    # 08:07 Berlin (Winter) / 09:07 Berlin (Sommer)
+    - cron: '37 7 * * *'   # 08:37 Berlin (Winter) / 09:37 Berlin (Sommer)
+    - cron: '7 8 * * *'    # 09:07 Berlin (Winter) / 10:07 Berlin (Sommer)
+    - cron: '37 8 * * *'   # 09:37 Berlin (Winter) / 10:37 Berlin (Sommer)
+    - cron: '7 9 * * *'    # 10:07 Berlin (Winter) / 11:07 Berlin (Sommer)
+    - cron: '37 9 * * *'   # 10:37 Berlin (Winter) / 11:37 Berlin (Sommer)
+    - cron: '7 10 * * *'   # 11:07 Berlin (Winter) / 12:07 Berlin (Sommer)
+    - cron: '37 10 * * *'  # 11:37 Berlin (Winter) / 12:37 Berlin (Sommer)
+    - cron: '7 11 * * *'   # 12:07 Berlin (Winter) / 13:07 Berlin (Sommer)
+    - cron: '37 11 * * *'  # 12:37 Berlin (Winter) / 13:37 Berlin (Sommer)
+    - cron: '7 12 * * *'   # 13:07 Berlin (Winter) / 14:07 Berlin (Sommer)
+    - cron: '37 12 * * *'  # 13:37 Berlin (Winter) / 14:37 Berlin (Sommer)
+    - cron: '7 13 * * *'   # 14:07 Berlin (Winter) / 15:07 Berlin (Sommer)
+    - cron: '37 13 * * *'  # 14:37 Berlin (Winter) / 15:37 Berlin (Sommer)
+    - cron: '7 14 * * *'   # 15:07 Berlin (Winter) / 16:07 Berlin (Sommer)
+    - cron: '37 14 * * *'  # 15:37 Berlin (Winter) / 16:37 Berlin (Sommer)
+    - cron: '7 15 * * *'   # 16:07 Berlin (Winter) / 17:07 Berlin (Sommer)
+    - cron: '37 15 * * *'  # 16:37 Berlin (Winter) / 17:37 Berlin (Sommer)
+    - cron: '7 16 * * *'   # 17:07 Berlin (Winter) / 18:07 Berlin (Sommer)
+    - cron: '37 16 * * *'  # 17:37 Berlin (Winter) / 18:37 Berlin (Sommer)
+    - cron: '7 17 * * *'   # 18:07 Berlin (Winter) / 19:07 Berlin (Sommer)
+    - cron: '37 17 * * *'  # 18:37 Berlin (Winter) / 19:37 Berlin (Sommer)
+    - cron: '7 18 * * *'   # 19:07 Berlin (Winter) / 20:07 Berlin (Sommer)
+    - cron: '37 18 * * *'  # 19:37 Berlin (Winter) / 20:37 Berlin (Sommer)
+    - cron: '7 19 * * *'   # 20:07 Berlin (Winter) / 21:07 Berlin (Sommer)
+    - cron: '37 19 * * *'  # 20:37 Berlin (Winter) / 21:37 Berlin (Sommer)
+    - cron: '7 20 * * *'   # 21:07 Berlin (Winter) / 22:07 Berlin (Sommer)
+    - cron: '37 20 * * *'  # 21:37 Berlin (Winter) / 22:37 Berlin (Sommer)
+    - cron: '7 21 * * *'   # 22:07 Berlin (Winter)
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Datum (YYYY-MM-DD), leer = gestern + heute (US-Ostküste)'
+        required: false
+        default: ''
+      league:
+        description: 'ESPN-Slug (auto = Juli Summer League, sonst nba inkl. Preseason)'
+        required: false
+        default: 'auto'
+      power:
+        description: 'NBA Power Rankings + Power Score mitbauen (sonst nur 09/21 Uhr)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-data
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+      date: ${{ steps.check.outputs.date }}
+      end: ${{ steps.check.outputs.end }}
+      league: ${{ steps.check.outputs.league }}
+      power: ${{ steps.check.outputs.power }}
+    steps:
+      - name: Zeitfenster 06-22 Uhr Berlin, Korrekturdatum, Power-Lauf
+        id: check
+        env:
+          EVENT: ${{ github.event_name }}
+          IN_DATE: ${{ github.event.inputs.date }}
+          IN_LEAGUE: ${{ github.event.inputs.league }}
+          IN_POWER: ${{ github.event.inputs.power }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            echo "Manueller Start, Zeit-Check wird übersprungen."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "date=${IN_DATE}" >> "$GITHUB_OUTPUT"
+            echo "end=${IN_DATE}" >> "$GITHUB_OUTPUT"
+            echo "league=${IN_LEAGUE:-auto}" >> "$GITHUB_OUTPUT"
+            echo "power=${IN_POWER:-false}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          HOUR=$(TZ=Europe/Berlin date +%H)
+          echo "league=auto" >> "$GITHUB_OUTPUT"
+          echo "end=" >> "$GITHUB_OUTPUT"
+          if [ "$HOUR" -ge 6 ] && [ "$HOUR" -le 22 ]; then
+            echo "Berlin-Zeit ist ${HOUR} Uhr, Lauf startet."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Berlin-Zeit ist ${HOUR} Uhr, Duplikat des anderen UTC-Offsets -- übersprungen."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+          # 22-Uhr-Lauf = nachträglicher Korrektur-Check des GESTRIGEN
+          # US-Spieltags (ESPN aktualisiert Boxscores teils Stunden später).
+          if [ "$HOUR" = "22" ]; then
+            DATE=$(TZ=America/New_York date -d "yesterday" +%F)
+            echo "22-Uhr-Korrekturlauf: ${DATE}"
+            echo "date=${DATE}" >> "$GITHUB_OUTPUT"
+          else
+            echo "date=" >> "$GITHUB_OUTPUT"
+          fi
+          # NBA Power Rankings / Power Score wie bisher 09 und 21 Uhr Berlin
+          # (vorher eigene Workflows in Taco-Tuesday-HQ).
+          if [ "$HOUR" = "09" ] || [ "$HOUR" = "21" ]; then
+            echo "power=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "power=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  sport:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: sports/nba
+    env:
+      DATE_ARG: ${{ needs.gate.outputs.date }}
+      END_ARG: ${{ needs.gate.outputs.end }}
+      LEAGUE_ARG: ${{ needs.gate.outputs.league }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      # Sicherheitsnetz aus Taco-Tuesday-HQ (22.09.2026): liegen gebliebene
+      # Merge-Konfliktmarker würden sonst von den vm-Ladern als kryptischer
+      # SyntaxError enden oder Historie überschreiben.
+      - name: Merge-Konflikt-Marker Check
+        working-directory: .
+        run: |
+          if grep -rlnE '^(<{7} |={7}$|>{7} )' --include='*.js' sports/nba leagues/tthq leagues/funkytown; then
+            echo "::error::Unaufgelöster Git-Merge-Konflikt in den oben gelisteten Dateien -- bitte manuell auflösen und neu pushen."
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Tagesdaten von ESPN holen (daily-9cat)
+        id: daily
+        continue-on-error: true
+        run: node scripts/daily-9cat.js ${DATE_ARG} --league=${LEAGUE_ARG}
+
+      - name: livescores-daily.js
+        id: livescores
+        continue-on-error: true
+        run: |
+          if [ -n "$DATE_ARG" ]; then
+            node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=120
+          else
+            node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --keep-days=120
+          fi
+
+      - name: livescores-boxscores.js (Box Scores)
+        id: boxscores
+        continue-on-error: true
+        run: |
+          if [ -n "$DATE_ARG" ]; then
+            node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=120
+          else
+            node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --keep-days=120
+          fi
+
+      # CSV/Meta 400 Tage (Saison-Summen + Off-Season brauchen sie; die
+      # Saison-Grenze ziehen build-live-projections.js / build-offseason-
+      # rankings.js selbst), die großen games.json nur 120 Tage.
+      - name: Alte Roh-Tagesdateien aufräumen
+        id: prune
+        continue-on-error: true
+        run: node scripts/prune-raw-data.js --keep-days=400 --keep-days-games=120
+
+      - name: Weekly/Monthly (livescores-aggregate.js)
+        id: aggregate
+        continue-on-error: true
+        run: |
+          if [ -n "$END_ARG" ]; then
+            node scripts/update-all-aggregates.js --end="$END_ARG" --keep=180
+          else
+            node scripts/update-all-aggregates.js --keep=180
+          fi
+
+      - name: Off-Season-Rankings (Summer League + Preseason)
+        id: offseason
+        continue-on-error: true
+        run: node scripts/build-offseason-rankings.js
+
+      - name: Post-Draft Board (Big Board + Draft Capital + Off-Season + Sticky Score)
+        id: postdraft
+        continue-on-error: true
+        run: node scripts/build-postdraft-board.js
+
+      - name: Rolling-Rankings-Archiv 2026/27
+        id: rolling
+        continue-on-error: true
+        run: |
+          if [ -n "$END_ARG" ]; then
+            node scripts/build-rolling-archive.js --date="$END_ARG" --league=nba
+          else
+            node scripts/build-rolling-archive.js --league=nba
+          fi
+
+      - name: NBA Power Rankings (09/21 Uhr)
+        id: powerrank
+        if: needs.gate.outputs.power == 'true'
+        continue-on-error: true
+        run: node scripts/build-nba-power-rankings.js
+
+      - name: NBA Bootleg Power Score (09/21 Uhr)
+        id: powerscore
+        if: needs.gate.outputs.power == 'true'
+        continue-on-error: true
+        run: node scripts/build-nba-power-score.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/ scripts/data/
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: nba sync (sportweit)"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
+
+      - name: Fehlgeschlagene Schritte melden
+        if: steps.daily.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure'
+        run: |
+          echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
+          exit 1
+
+  # Liga-Ketten: laufen nach dem Sport-Job (auch wenn der rot ist), parallel
+  # zueinander; jede committet nur leagues/<liga>/data/.
+  tthq:
+    needs: [gate, sport]
+    if: always() && needs.gate.outputs.run == 'true'
+    uses: ./.github/workflows/tthq-sync.yml
+
+  funkytown:
+    needs: [gate, sport]
+    if: always() && needs.gate.outputs.run == 'true'
+    uses: ./.github/workflows/funkytown-sync.yml
