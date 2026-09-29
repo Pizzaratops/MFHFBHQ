@@ -522,7 +522,7 @@
 
   MFHFB.pages.register({
     id: 'planner', section: 'matchups', label: 'Matchup-Planer', icon: '⚔️', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?live-projections', '?sport:livescores-aggregate', '?sport:last-season-stats-2025-26', '?sport:offseason-rankings'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?live-projections', '?sport:livescores-aggregate', '?last-season-stats-2025-26', '?sport:offseason-rankings'],
     title: () => 'Matchup-Planer', render, mount,
   });
 })();

@@ -237,6 +237,10 @@
     root.querySelector('[data-freset]').addEventListener('click', () => save({ filters: {} }, true));
   }
 
+  // Für andere Seiten (Cat Web): Gesamtrang exakt wie auf dieser Seite,
+  // inkl. der gespeicherten Gewichte/Pool-Größe (früher cpGetComputed()).
+  MFHFB.nbaProjections = { rows: ctx => (ctx.data.PROJECTIONS_CONSENSUS ? computed(ctx, getState(ctx)) : []) };
+
   MFHFB.pages.register({
     id: 'projections', section: 'players', label: 'Projections', icon: '🔮', applies: { sport: ['nba'] },
     data: ['teams', '?rosters-live', '?sport:aliases', 'projections-consensus'],
