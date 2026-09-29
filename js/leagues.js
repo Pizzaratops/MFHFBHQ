@@ -39,6 +39,14 @@
 //  Siehe Projekt-Doc claude/mfhfb-hq-migration-plan.md.
 // ============================================================
 
+// Sportweite Datenquellen: Dateien, die für alle Ligen eines Sports gleich
+// sind (per "sport:<datei>" in einem Tool angefordert). Übergangsweise der
+// data/-Ordner von BWP (dort laufen die nflverse-/CFBD-Syncs); nach dem
+// Umzug der Sync-Scripts ./sports/nfl/data/.
+const SPORT_DATA = {
+  nfl: { dataBase: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/data/' },
+};
+
 const SPORTS = {
   nba: { label: 'Basketball', emoji: '🏀' },
   nfl: { label: 'Football', emoji: '🏈' },

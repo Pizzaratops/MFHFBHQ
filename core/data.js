@@ -31,12 +31,23 @@ MFHFB.data = (function () {
   }
 
   function loadFile(league, logical) {
-    // Liga-spezifische Dateinamen (z.B. BWP "draft2026" statt "draft")
-    const file = (league.files && league.files[logical]) || logical;
-    const key = league.key + '|' + file;
+    // "sport:<datei>" = sportweite Daten (für alle Ligen des Sports gleich,
+    // z.B. Player DNA, College Scouting) → Quelle SPORT_DATA[sport].dataBase,
+    // Cache pro Sport statt pro Liga (wird beim Liga-Wechsel nicht neu geladen).
+    let base = league.dataBase, file = logical, scope = league.key;
+    if (logical.startsWith('sport:')) {
+      const sd = (typeof SPORT_DATA !== 'undefined' && SPORT_DATA[league.sport]) || {};
+      base = sd.dataBase || league.dataBase;
+      file = logical.slice(6);
+      scope = 'sport-' + league.sport;
+    } else {
+      // Liga-spezifische Dateinamen (z.B. BWP "draft2026" statt "draft")
+      file = (league.files && league.files[logical]) || logical;
+    }
+    const key = scope + '|' + file;
     if (!cache.has(key)) {
       const v = Math.floor(Date.now() / 3600000); // stündlich frisch, sonst Browser-Cache
-      const url = `${league.dataBase}${file}.js?v=${v}`;
+      const url = `${base}${file}.js?v=${v}`;
       const p = fetch(url, { cache: 'no-cache' })
         .then(r => {
           if (!r.ok) throw new Error(`${file}.js nicht ladbar (HTTP ${r.status})`);

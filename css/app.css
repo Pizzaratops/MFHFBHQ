@@ -454,3 +454,185 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .val-bar span { display: block; height: 100%; background: var(--league-accent); }
 .val-num { font-weight: 700; font-variant-numeric: tabular-nums; margin-left: 6px; }
 .dr-card .bump-dot { color: var(--sel); }
+
+/* ============================================================
+   Player DNA
+   ============================================================ */
+/* Übernommene Panel-Styles (Air Yards, Spielstil, Glossar) nutzen --accent/--accent2 */
+.native-main, .dna-modal { --accent: var(--league-accent); --accent2: var(--league-accent2); --accent-light: color-mix(in srgb, var(--league-accent) 12%, transparent); --green: #2e9d62; --red: #d9534f; }
+
+/* Perzentil-Töne: divergierend um den Schnitt (50) — oben Liga-Akzent, unten Zweitfarbe, Mitte neutral */
+.q5 { --q: var(--league-accent); } .q4 { --q: color-mix(in srgb, var(--league-accent) 60%, var(--muted)); }
+.q3 { --q: var(--muted); } .q2 { --q: color-mix(in srgb, var(--league-accent2) 60%, var(--muted)); } .q1 { --q: var(--league-accent2); }
+.q0 { --q: color-mix(in srgb, var(--muted) 55%, transparent); }
+
+.dna-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 16px; align-items: start; }
+.dna-side { display: flex; flex-direction: column; max-height: calc(100vh - 200px); position: sticky; top: 0; padding: 10px; gap: 6px; }
+.dna-side .search { max-width: none; min-width: 0; }
+.dna-list-head { display: flex; justify-content: space-between; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 4px 8px 2px; }
+.dna-list { overflow-y: auto; margin: 0 -4px; }
+.dna-row { display: grid; grid-template-columns: 28px 1fr auto; gap: 8px; align-items: center; width: 100%; padding: 7px 8px; border-radius: 8px; text-decoration: none; font-size: 13px; background: none; border: 0; cursor: pointer; text-align: left; }
+.dna-row:hover { background: var(--surface2); }
+.dna-row.active { background: color-mix(in srgb, var(--league-accent) 14%, transparent); box-shadow: inset 3px 0 0 var(--league-accent); }
+.dna-idx { font-size: 11px; color: var(--muted); font-weight: 700; }
+.dna-nm { font-weight: 700; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dna-nm small { color: var(--muted); font-weight: 600; }
+.dna-avg { font-weight: 800; font-variant-numeric: tabular-nums; color: var(--q, var(--text)); }
+.dna-early-head { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 12px 8px 4px; border-top: 1px solid var(--border); margin-top: 6px; }
+.dna-early-head span { font-weight: 600; letter-spacing: 0; text-transform: none; }
+.dna-season { width: auto; padding: 7px 10px; }
+.dna-check { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; }
+.dna-check input { accent-color: var(--league-accent); }
+.dna-helpbtn { border: 1px solid var(--league-accent); color: var(--text); background: color-mix(in srgb, var(--league-accent) 12%, var(--surface)); }
+a.seg-btn { text-decoration: none; display: inline-block; }
+
+.dna-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.dna-title { font-size: 34px; font-weight: 800; line-height: 1.05; }
+.dna-head .page-sub a { color: inherit; font-weight: 700; }
+.dna-badge { min-width: 76px; text-align: center; border: 2px solid var(--q, var(--border)); border-radius: 14px; padding: 6px 10px; background: var(--surface); }
+.dna-badge b { display: block; font-size: 28px; line-height: 1.1; color: var(--q, var(--text)); font-variant-numeric: tabular-nums; }
+.dna-badge small { font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.dna-badge.early { --q: var(--league-accent); }
+.dna-tags { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.dna-tags b { color: var(--text); }
+.dna-stabtag { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 5px; background: var(--surface2); color: var(--text); }
+.dna-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 14px; align-items: start; }
+.dna-radar-card { padding: 8px; overflow: visible; }
+.rd { width: 100%; height: auto; display: block; overflow: visible; }
+.rd-ring { fill: none; stroke: var(--border); }
+.rd-axis { stroke: var(--border); }
+.rd-label { fill: var(--text); font-size: 12.5px; font-weight: 700; }
+.rd-label.style { fill: var(--muted); }
+.rd-series polygon { fill: var(--sel); fill-opacity: .22; stroke: var(--sel); stroke-width: 2.5; stroke-linejoin: round; }
+.rd-series.multi polygon { fill-opacity: .1; }
+.rd-series .rd-pt { fill: var(--sel); stroke: var(--surface); stroke-width: 1.5; }
+.rd-series .rd-pt.style { fill: var(--surface); stroke: var(--sel); stroke-width: 2; }
+.dna-legend { text-align: center; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.dna-chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.dna-chip { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--sel); border-radius: 99px; padding: 3px 10px; font-size: 12px; font-weight: 700; }
+.dna-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--sel); }
+.dna-chip button { border: 0; background: none; cursor: pointer; color: var(--muted); }
+.dna-table td { vertical-align: middle; }
+.dna-table td small { display: block; font-weight: 600; font-size: 11px; }
+.dna-table td.num small { font-size: 10px; }
+.dna-style-row td:first-child b { color: var(--muted); }
+.dna-sep td { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--surface2); padding: 5px 12px; }
+.dna-barcell { width: 42%; }
+.dna-bar { position: relative; display: inline-block; vertical-align: middle; width: calc(100% - 44px); height: 8px; border-radius: 99px; background: var(--surface2); overflow: hidden; }
+.dna-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--q); border-radius: 99px; }
+.dna-mid { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--muted); }
+.dna-bv { display: inline-block; width: 40px; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 13px; }
+.dna-info { border: 0; background: none; cursor: pointer; color: var(--league-accent); font-size: 12px; padding: 0 2px; }
+.dna-matches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.dna-mbox .card-head { gap: 8px; flex-wrap: wrap; }
+.dna-match { display: grid; grid-template-columns: 48px 1fr 20px; gap: 8px; align-items: center; width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 8px 14px; font-size: 13px; }
+.dna-match + .dna-match { border-top: 1px solid var(--border); }
+.dna-match:hover { background: var(--surface2); }
+.dna-mscore { font-weight: 800; color: var(--league-accent); font-variant-numeric: tabular-nums; }
+.dna-plus { color: var(--muted); font-weight: 800; }
+.dna-tip { position: relative; cursor: help; outline: none; }
+.dna-tip[data-tip=""]::after { display: none; }
+.dna-tip:hover::after, .dna-tip:focus::after {
+  content: attr(data-tip); position: absolute; left: 0; bottom: calc(100% + 6px); z-index: 30;
+  width: 260px; background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: 10px;
+  padding: 9px 11px; font-size: 12px; font-weight: 500; line-height: 1.45; box-shadow: var(--shadow); white-space: normal; text-transform: none; letter-spacing: 0;
+}
+@media (max-width: 1100px) { .dna-grid { grid-template-columns: 1fr; } .dna-radar-card { max-width: 480px; } }
+@media (max-width: 900px) {
+  .dna-layout { grid-template-columns: 1fr; }
+  .dna-side { position: static; max-height: 360px; }
+  .dna-matches { grid-template-columns: 1fr; }
+  .dna-title { font-size: 28px; }
+}
+
+/* ---------- Glossar-Dialog (aus der alten Seite) ---------- */
+.dna-modal { display: none; position: fixed; inset: 0; background: rgba(5,10,18,.72); z-index: 200; padding: 30px 16px; overflow-y: auto; }
+.dna-modal.open { display: block; }
+.dna-modal-box { max-width: 900px; margin: 0 auto; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 16px; padding: 22px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+.dna-modal-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.dna-modal-x { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 14px; flex-shrink: 0; }
+.dna-help-basics details { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 6px; background: var(--surface2); }
+.dna-help-basics summary { cursor: pointer; padding: 10px 12px; font-weight: 800; font-size: 14px; }
+.dna-help-basics details > div { padding: 0 14px 12px; font-size: 13.5px; line-height: 1.6; }
+.dna-help-basics ul { margin: 8px 0 4px 18px; }
+.dna-help-title { font-weight: 800; font-size: 15px; margin: 18px 0 8px; }
+.dna-help-title span { font-weight: 500; font-size: 12px; color: var(--muted); margin-left: 6px; }
+.dna-help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dna-help-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--surface2); font-size: 13px; line-height: 1.55; }
+.dna-help-card.focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-light); }
+.dna-help-card p { margin-top: 6px; }
+.dna-help-card-head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+.dna-help-card-head b { font-size: 14px; }
+.dna-help-card-head span { font-size: 11px; color: var(--muted); }
+.dna-help-ex { background: var(--accent-light); border-radius: 8px; padding: 6px 9px; }
+.dna-help-no { border-style: dashed; }
+@media (max-width: 700px) { .dna-help-grid { grid-template-columns: 1fr; } .dna-modal-box { padding: 16px; } }
+
+/* ---------- Air Yards + Spielstil (aus der alten Seite übernommen) ---------- */
+.ay-card {background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-top: 16px;}
+.ay-head {display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;}
+.ay-title {font-size: 13px; font-weight: 800; letter-spacing: .3px;}
+.ay-meta {font-size: 12px; color: var(--muted);}
+.ay-meta b {color: var(--text); font-size: 15px;}
+.ay-body {display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 18px; align-items: center;}
+.ay-svg {width: 100%; height: auto; display: block;}
+.ay-svg .ay-grid {stroke: var(--border); stroke-width: 1;}
+.ay-svg .ay-los {stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 3; opacity: .6;}
+.ay-svg .ay-tick {fill: var(--muted); font-size: 10px; font-family: 'DM Sans', sans-serif;}
+.ay-svg .ay-avg {fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 3 3;}
+.ay-svg .ay-me {fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round;}
+.ay-svg .ay-band {fill: var(--accent); opacity: .14;}
+.ay-legend {display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 11px; color: var(--muted); margin-top: 4px;}
+.ay-legend .ay-lg-me, .ay-legend .ay-lg-avg {display: inline-block; width: 16px; height: 0; border-top: 2.5px solid var(--accent); vertical-align: middle;}
+.ay-legend .ay-lg-avg {border-top: 2px dashed var(--muted);}
+.ay-legend .ay-lg-x {margin-left: auto;}
+.ay-zones {display: flex; flex-direction: column; gap: 8px;}
+.ay-zone {display: grid; grid-template-columns: 86px 1fr 62px; gap: 8px; align-items: center;}
+.ay-zone-l {font-size: 12px; font-weight: 700;}
+.ay-zone-l small {display: block; font-size: 10px; color: var(--muted); font-weight: 600;}
+.ay-zone-bars {display: flex; flex-direction: column; gap: 3px;}
+.ay-zbar {height: 7px; border-radius: 4px; min-width: 2px;}
+.ay-zbar-me {background: var(--accent);}
+.ay-zbar-avg {background: var(--surface2); box-shadow: inset 0 0 0 1px var(--border);}
+.ay-zone-v {font-size: 12.5px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums;}
+.ay-zone-v small {display: block; font-size: 10px; color: var(--muted); font-weight: 600;}
+.ay-up {color: var(--green);}
+.ay-down {color: var(--red);}
+.ay-note {font-size: 11.5px; color: var(--muted); margin-top: 10px;}
+.ay-svg .ay-tick {font-size: 17px;}
+.ay-svg .ay-me {stroke-width: 4;}
+.ay-svg .ay-avg {stroke-width: 3; stroke-dasharray: 5 5;}
+.ps-card {background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-top: 16px;}
+.ps-head {display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;}
+.ps-title {font-size: 13px; font-weight: 800; letter-spacing: .3px;}
+.ps-meta {font-size: 12px; color: var(--muted);}
+.ps-grid {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;}
+.ps-tile {background: var(--surface2); border-radius: 10px; padding: 10px 12px; min-width: 0;}
+.ps-tile.ps-style {background: transparent; border: 1px dashed var(--border);}
+.ps-label {font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .3px;}
+.ps-val {font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; margin: 2px 0; display: flex; align-items: center; gap: 8px;}
+.ps-val.ps-thin {opacity: .55;}
+.ps-pct {font-size: 11px; font-weight: 800; padding: 1px 6px; border-radius: 6px; background: var(--surface); color: var(--muted);}
+.ps-pct.ps-good {background: rgba(76,175,129,.18); color: var(--green);}
+.ps-pct.ps-bad {background: rgba(217,105,95,.16); color: var(--red);}
+.ps-avg {font-size: 11px; color: var(--muted);}
+.ps-sub {font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.35;}
+.ps-foot {font-size: 11px; color: var(--muted); margin-top: 10px;}
+@media (max-width: 760px) { .ay-body { grid-template-columns: 1fr; } .ps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---------- College Scouting ---------- */
+.cs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.cs-box { overflow: visible; }
+.cs-box-sub { font-size: 12px; color: var(--muted); padding: 10px 14px 0; line-height: 1.45; }
+.cs-box-sub b { color: var(--text); }
+.cs-radar { padding: 6px 10px 4px; }
+.cs-rd { max-width: 380px; margin: 0 auto; }
+.cs-rtable { margin-top: 10px; }
+.cs-rtable td, .cs-rtable th { padding-top: 5px; padding-bottom: 5px; }
+.cs-sw { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--sel); margin-right: 5px; vertical-align: middle; }
+.cs-list-head { font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 12px 14px 4px; border-top: 1px solid var(--border); margin-top: 8px; }
+.cs-match.on { background: color-mix(in srgb, var(--sel-2) 12%, transparent); box-shadow: inset 3px 0 0 var(--sel-2); }
+.cs-match.on .dna-plus { color: var(--sel-2); }
+.cs-pad { padding: 10px 14px; font-size: 13px; }
+.cs-foot { font-size: 11px; color: var(--muted); padding: 8px 14px 12px; border-top: 1px solid var(--border); line-height: 1.45; }
+@media (max-width: 1250px) { .cs-grid { grid-template-columns: 1fr; } }

@@ -32,6 +32,7 @@ MFHFB.pages = (function () {
     { key: 'draft', label: 'Draft & Picks', icon: '📋' },
     { key: 'trade', label: 'Trade', icon: '⚖️' },
     { key: 'dynasty', label: 'Dynasty', icon: '🏆' },
+    { key: 'players', label: 'Spieler', icon: '🧮' },
   ];
   const list = [];
 
