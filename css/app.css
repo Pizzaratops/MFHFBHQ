@@ -174,3 +174,9 @@ span.pos {
 .table.roster th:nth-child(3), .table.roster td:nth-child(3) { width: 80px; }
 .table.roster th:nth-child(4), .table.roster td:nth-child(4) { width: 90px; }
 .table.roster td:nth-child(2) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Median-Spiel (Sleeper league_average_match) */
+.median-tag { font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 6px; border-radius: 5px; white-space: nowrap; }
+.median-W { background: #2e9d6222; color: #2e9d62; }
+.median-L { background: var(--surface2); color: var(--muted); }
+.median-T { background: var(--surface2); color: var(--text); }
