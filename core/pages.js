@@ -34,6 +34,7 @@ MFHFB.pages = (function () {
     { key: 'dynasty', label: 'Dynasty', icon: '🏆' },
     { key: 'players', label: 'Spieler', icon: '🧮' },
     { key: 'nfl', label: 'NFL', icon: '🏈' },
+    { key: 'league', label: 'Liga', icon: '📜' },
   ];
   const list = [];
 

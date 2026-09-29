@@ -1,6 +1,7 @@
 // ============================================================
 //  MFHFB HQ — gemeinsame SVG-Diagramme
 // ============================================================
+//  bump(): Rangverlauf (Rolling Rankings, Liga-Historie) mit Hover/Auswahl.
 //  radar(): Spinnennetz für 1–3 Profile auf einer 0..1-Skala je Achse
 //  (Perzentile, umgerechnete Ränge …). Farben über die CVD-sichere
 //  Auswahl-Palette (.sel-1/.sel-2/.sel-3 in app.css), Stil = .rd-*
@@ -59,7 +60,101 @@ MFHFB.charts = (function () {
     return `<div class="dna-chips">${names.map((nm, i) => `<span class="dna-chip ${SEL[i]}"><i></i>${e(nm)}</span>`).join('')}</div>`;
   }
 
-  return { radar, chips, SEL };
+  // ---------- Bump-Chart (Rangverlauf) ----------
+  //  bump({ cols: ['W1', …], rows: [{ id, name, emoji, ranks: [r|null …], tips: ['…' …] }],
+  //         sel: [id …] (max. 3, farbig), width, maxRank, label })
+  //  Lücken (null) unterbrechen die Linie. Beschriftung am ersten und
+  //  letzten vorhandenen Punkt; schmal (<640px) links nur Ränge.
+  function bump({ cols, rows, sel = [], width = 900, maxRank, label = 'Rangverlauf' }) {
+    const e = MFHFB.ui.esc;
+    const n = maxRank || Math.max(1, ...rows.flatMap(r => r.ranks.filter(x => x != null)));
+    const W = cols.length;
+    const narrow = width < 640;
+    const rowH = narrow ? 28 : 30;
+    const padL = narrow ? 34 : 232, padR = narrow ? 150 : 232, top = 30, bottom = 8;
+    const height = top + n * rowH + bottom;
+    const innerW = Math.max(40, width - padL - padR);
+    const x = i => (W === 1 ? padL + innerW / 2 : padL + (i * innerW) / (W - 1));
+    const y = r => top + (r - 1) * rowH + rowH / 2;
+    const maxLen = narrow ? 13 : 21;
+    const short = name => (name.length > maxLen ? name.slice(0, maxLen - 1).trimEnd() + '…' : name);
+    const selIdx = id => sel.indexOf(id);
+    const f1 = v => v.toFixed(1);
+
+    const path = r => {
+      let d = '', prev = null;
+      r.ranks.forEach((rk, i) => {
+        if (rk == null) { prev = null; return; }
+        const p = [x(i), y(rk)];
+        if (!prev) d += `M${f1(p[0])},${f1(p[1])}`;
+        else { const mx = (prev[0] + p[0]) / 2; d += ` C${f1(mx)},${f1(prev[1])} ${f1(mx)},${f1(p[1])} ${f1(p[0])},${f1(p[1])}`; }
+        prev = p;
+      });
+      return d;
+    };
+    const ordered = rows.slice().sort((a, b) => (selIdx(a.id) > -1) - (selIdx(b.id) > -1)); // Ausgewählte zuletzt = oben
+    const lines = ordered.map(r => {
+      const k = selIdx(r.id);
+      const pts = r.ranks.map((rk, i) => rk == null ? '' : `<circle class="bump-pt" cx="${f1(x(i))}" cy="${f1(y(rk))}" r="${k > -1 ? 5 : 3.5}"/>
+          <circle class="bump-hit" cx="${f1(x(i))}" cy="${f1(y(rk))}" r="12" data-team="${e(r.id)}" data-tip="${e((r.tips && r.tips[i]) || '')}"/>`).join('');
+      return `<g class="bump-line${k > -1 ? ' ' + SEL[k] : ''}" data-team="${e(r.id)}"><path d="${path(r)}"/>${pts}</g>`;
+    }).join('');
+    const lbl = (r, side) => {
+      const idxs = r.ranks.map((rk, i) => (rk == null ? -1 : i)).filter(i => i >= 0);
+      if (!idxs.length) return '';
+      const i = side === 'l' ? idxs[0] : idxs[idxs.length - 1];
+      const rk = r.ranks[i], k = selIdx(r.id);
+      // Nur an den Rändern beschriften; Linien, die mittendrin enden, bekommen ein kurzes Label am Punkt
+      const edge = side === 'l' ? i === 0 : i === W - 1;
+      if (!edge && side === 'l') return '';
+      const tx = edge ? (side === 'l' ? padL - 14 : x(W - 1) + 14) : x(i) + 9;
+      const dot = k > -1 ? `<tspan class="bump-dot ${SEL[k]}">● </tspan>` : '';
+      if (!edge) return `<text class="bump-label end${k > -1 ? ' on' : ''}" x="${f1(tx)}" y="${y(rk) + 4}" text-anchor="start" data-team="${e(r.id)}">${e(r.emoji || '')}${narrow ? '' : ' ' + e(short(r.name))}</text>`;
+      if (side === 'l' && narrow) return `<text class="bump-label${k > -1 ? ' on' : ''}" x="${tx}" y="${y(rk) + 4}" text-anchor="end" data-team="${e(r.id)}">${rk}</text>`;
+      return `<text class="bump-label${k > -1 ? ' on' : ''}" x="${f1(tx)}" y="${y(rk) + 4}" text-anchor="${side === 'l' ? 'end' : 'start'}" data-team="${e(r.id)}">${side === 'l' ? `${rk}. ` : dot}${r.emoji ? e(r.emoji) + ' ' : ''}${e(short(r.name))}${side === 'l' && k > -1 ? ` <tspan class="bump-dot ${SEL[k]}">●</tspan>` : ''}</text>`;
+    };
+    const tight = W > 1 && innerW / (W - 1) < 38; // eng: Jahreszahlen kürzen (2019 → '19)
+    const colLabel = c => (tight && /^\d{4}$/.test(c) ? "'" + c.slice(2) : c);
+    const grid = cols.map((c, i) => `<line class="bump-grid" x1="${x(i)}" x2="${x(i)}" y1="${top - 6}" y2="${height - bottom}"/>
+      <text class="bump-week" x="${x(i)}" y="${top - 12}" text-anchor="middle">${e(colLabel(c))}</text>`).join('');
+    return `<svg class="bump" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${e(label)}">
+      ${grid}${lines}${rows.map(r => lbl(r, 'l')).join('')}${rows.map(r => lbl(r, 'r')).join('')}</svg>`;
+  }
+
+  // Hover-Tooltip + Hervorheben + Klick (onPick(id)) für ein gezeichnetes Bump-Chart
+  function bumpInteract(wrap, tip, onPick) {
+    wrap.addEventListener('mouseover', ev => {
+      const hit = ev.target.closest('[data-team]');
+      const svg = wrap.querySelector('svg');
+      if (!svg) return;
+      svg.classList.toggle('hovering', !!hit);
+      svg.querySelectorAll('.bump-line').forEach(g => g.classList.toggle('hot', !!hit && g.dataset.team === hit.dataset.team));
+      if (hit && hit.dataset.tip && tip) {
+        tip.textContent = hit.dataset.tip;
+        const r = wrap.getBoundingClientRect(), p = hit.getBoundingClientRect();
+        tip.style.left = Math.min(r.width - 10, Math.max(10, p.left - r.left + p.width / 2)) + 'px';
+        tip.style.top = (p.top - r.top - 8) + 'px';
+        tip.hidden = false;
+      } else if (tip) tip.hidden = true;
+    });
+    wrap.addEventListener('mouseleave', () => {
+      if (tip) tip.hidden = true;
+      const svg = wrap.querySelector('svg');
+      if (svg) { svg.classList.remove('hovering'); svg.querySelectorAll('.hot').forEach(g => g.classList.remove('hot')); }
+    });
+    wrap.addEventListener('click', ev => { const hit = ev.target.closest('[data-team]'); if (hit && onPick) onPick(hit.dataset.team); });
+  }
+
+  // Zeichnet in echter Containerbreite und bei Größenänderung neu
+  function responsive(wrap, draw) {
+    const run = () => { if (wrap.isConnected) wrap.innerHTML = draw(Math.max(320, wrap.clientWidth)); };
+    run();
+    let t;
+    const onResize = () => { if (!wrap.isConnected) { window.removeEventListener('resize', onResize); return; } clearTimeout(t); t = setTimeout(run, 120); };
+    window.addEventListener('resize', onResize);
+  }
+
+  return { radar, chips, bump, bumpInteract, responsive, SEL };
 })();
 
 // ---------- Modal (Erklär-Fenster, wie der Player-DNA-Glossar) ----------

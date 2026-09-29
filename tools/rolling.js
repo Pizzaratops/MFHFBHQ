@@ -30,74 +30,18 @@
 
   const settings = ctx => ({ mode: 'standings', sel: [], ...ctx.store.getJSON('rolling', {}) });
 
-  // ---------- Bump-Chart als SVG, in echten Pixeln (Breite = Container) ----------
+  // ---------- Bump-Chart (core/charts.js) ----------
   function chartSvg(ctx, model, sel, width) {
     const { ui } = ctx;
-    const e = ui.esc;
     const team = ui.teamIndex(ctx.data.LEAGUE_TEAMS);
-    const teams = (ctx.data.LEAGUE_TEAMS || []).map(t => t.id).filter(id => model.byTeam[id]);
-    const n = teams.length, W = model.weeks.length;
-    // Schmal (Handy): links nur Ränge, Namen nur rechts. Breit: Namen an beiden Enden.
-    const narrow = width < 640;
-    const rowH = narrow ? 28 : 30;
-    const padL = narrow ? 34 : 232, padR = narrow ? 150 : 232, top = 30, bottom = 8;
-    const height = top + n * rowH + bottom;
-    const innerW = Math.max(40, width - padL - padR);
-    const x = i => (W === 1 ? padL + innerW / 2 : padL + (i * innerW) / (W - 1));
-    const y = r => top + (r - 1) * rowH + rowH / 2;
-    const maxLen = narrow ? 13 : 21;
-    const short = name => (name.length > maxLen ? name.slice(0, maxLen - 1).trimEnd() + '…' : name);
-    const selIdx = id => sel.indexOf(id);
-
-    const path = id => {
-      const pts = model.weeks.map((w, i) => (model.byTeam[id][w] ? [x(i), y(model.byTeam[id][w].rank)] : null)).filter(Boolean);
-      if (!pts.length) return '';
-      let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
-      for (let i = 1; i < pts.length; i++) {
-        const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2;
-        d += ` C${mx.toFixed(1)},${y0.toFixed(1)} ${mx.toFixed(1)},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
-      }
-      return d;
-    };
-
-    const first = model.weeks[0], last = model.weeks[W - 1];
-    const ordered = teams.slice().sort((a, b) => (selIdx(a) > -1) - (selIdx(b) > -1)); // Ausgewählte zuletzt = oben
     const recStr = c => `${c.wins}-${c.losses}${c.ties ? '-' + c.ties : ''}`;
-
-    const lines = ordered.map(id => {
-      const k = selIdx(id);
-      const cls = k > -1 ? `bump-line ${SEL_CLASSES[k]}` : 'bump-line';
-      const pts = model.weeks.map((w, i) => {
-        const c = model.byTeam[id][w];
-        if (!c) return '';
-        const tip = `${team(id).name} · W${w}: Platz ${c.rank} · ${recStr(c)} · ${ui.num(c.pf)} PF`;
-        return `<circle class="bump-pt" cx="${x(i).toFixed(1)}" cy="${y(c.rank).toFixed(1)}" r="${k > -1 ? 5 : 3.5}"/>
-          <circle class="bump-hit" cx="${x(i).toFixed(1)}" cy="${y(c.rank).toFixed(1)}" r="12" data-team="${e(id)}" data-tip="${e(tip)}"/>`;
-      }).join('');
-      return `<g class="${cls}" data-team="${e(id)}"><path d="${path(id)}"/>${pts}</g>`;
-    }).join('');
-
-    const label = (id, w, side) => {
-      const c = model.byTeam[id][w];
-      if (!c) return '';
-      const t = team(id), k = selIdx(id);
-      const tx = side === 'l' ? padL - 14 : x(W - 1) + 14;
-      const dot = k > -1 ? `<tspan class="bump-dot ${SEL_CLASSES[k]}">● </tspan>` : '';
-      if (side === 'l' && narrow) {
-        return `<text class="bump-label${k > -1 ? ' on' : ''}" x="${tx}" y="${y(c.rank) + 4}" text-anchor="end" data-team="${e(id)}">${c.rank}</text>`;
-      }
-      return `<text class="bump-label${k > -1 ? ' on' : ''}" x="${tx}" y="${y(c.rank) + 4}" text-anchor="${side === 'l' ? 'end' : 'start'}" data-team="${e(id)}">${side === 'l' ? `${c.rank}. ` : dot}${e(t.emoji || '')} ${e(short(t.name))}${side === 'l' ? (k > -1 ? ` <tspan class="bump-dot ${SEL_CLASSES[k]}">●</tspan>` : '') : ''}</text>`;
-    };
-
-    const grid = model.weeks.map((w, i) => `<line class="bump-grid" x1="${x(i)}" x2="${x(i)}" y1="${top - 6}" y2="${height - bottom}"/>
-      <text class="bump-week" x="${x(i)}" y="${top - 12}" text-anchor="middle">W${w}</text>`).join('');
-
-    return `<svg class="bump" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img"
-      aria-label="Rangverlauf aller Teams über ${W} Woche${W === 1 ? '' : 'n'}">
-      ${grid}${lines}
-      ${teams.map(id => label(id, first, 'l')).join('')}
-      ${teams.map(id => label(id, last, 'r')).join('')}
-    </svg>`;
+    const rows = (ctx.data.LEAGUE_TEAMS || []).map(t => t.id).filter(id => model.byTeam[id]).map(id => ({
+      id, name: team(id).name, emoji: team(id).emoji,
+      ranks: model.weeks.map(w => (model.byTeam[id][w] ? model.byTeam[id][w].rank : null)),
+      tips: model.weeks.map(w => { const c = model.byTeam[id][w]; return c ? `${team(id).name} · W${w}: Platz ${c.rank} · ${recStr(c)} · ${ui.num(c.pf)} PF` : ''; }),
+    }));
+    return MFHFB.charts.bump({ cols: model.weeks.map(w => 'W' + w), rows, sel, width, maxRank: rows.length,
+      label: `Rangverlauf aller Teams über ${model.weeks.length} Woche${model.weeks.length === 1 ? '' : 'n'}` });
   }
 
   function render(ctx) {
@@ -173,40 +117,13 @@
 
       // Chart in echter Containerbreite neu zeichnen (lesbare Schrift auch mobil)
       const wrap = root.querySelector('[data-bump]');
-      const tip = root.querySelector('.bump-tip');
       if (!wrap) return;
       const model = ranksByWeek(ctx, set.mode);
       const sel = set.sel.filter(id => model.byTeam[id]).slice(0, MAX_SEL);
-      const draw = () => { if (wrap.isConnected) wrap.innerHTML = chartSvg(ctx, model, sel, Math.max(320, wrap.clientWidth)); };
-      draw();
-      let t;
-      const onResize = () => { if (!wrap.isConnected) { window.removeEventListener('resize', onResize); return; } clearTimeout(t); t = setTimeout(draw, 120); };
-      window.addEventListener('resize', onResize);
-
+      MFHFB.charts.responsive(wrap, w => chartSvg(ctx, model, sel, w));
       // Hover: Team hervorheben + Tooltip; Klick: Team (ab)wählen
-      wrap.addEventListener('mouseover', ev => {
-        const hit = ev.target.closest('[data-team]');
-        const svg = wrap.querySelector('svg');
-        if (!svg) return;
-        svg.classList.toggle('hovering', !!hit);
-        svg.querySelectorAll('.bump-line').forEach(g => g.classList.toggle('hot', !!hit && g.dataset.team === hit.dataset.team));
-        if (hit && hit.dataset.tip) {
-          tip.textContent = hit.dataset.tip;
-          const r = wrap.getBoundingClientRect(), p = hit.getBoundingClientRect();
-          tip.style.left = Math.min(r.width - 10, Math.max(10, p.left - r.left + p.width / 2)) + 'px';
-          tip.style.top = (p.top - r.top - 8) + 'px';
-          tip.hidden = false;
-        } else tip.hidden = true;
-      });
-      wrap.addEventListener('mouseleave', () => {
-        tip.hidden = true;
-        const svg = wrap.querySelector('svg');
-        if (svg) { svg.classList.remove('hovering'); svg.querySelectorAll('.hot').forEach(g => g.classList.remove('hot')); }
-      });
-      wrap.addEventListener('click', ev => {
-        const hit = ev.target.closest('[data-team]');
-        if (!hit) return;
-        const btn = root.querySelector(`[data-pick="${CSS.escape(hit.dataset.team)}"]`);
+      MFHFB.charts.bumpInteract(wrap, root.querySelector('.bump-tip'), id => {
+        const btn = root.querySelector(`[data-pick="${CSS.escape(id)}"]`);
         if (btn) btn.click();
       });
     },
