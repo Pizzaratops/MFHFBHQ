@@ -294,3 +294,12 @@ span.pos {
 tr.row-sel-1 td:first-child { box-shadow: inset 3px 0 0 var(--sel-1); }
 tr.row-sel-2 td:first-child { box-shadow: inset 3px 0 0 var(--sel-2); }
 tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
+
+/* ---------- Weekly Scores ---------- */
+.res { display: inline-block; min-width: 22px; text-align: center; font-size: 11px; font-weight: 800; padding: 2px 6px; border-radius: 5px; }
+.res-W { background: #2e9d6222; color: #2e9d62; }
+.res-L { background: var(--surface2); color: var(--muted); }
+.res-T { background: var(--surface2); color: var(--text); }
+.table td.week-top { font-weight: 800; color: var(--league-accent); }
+.table th a { color: inherit; text-decoration: none; }
+.table th a:hover { color: var(--text); }
