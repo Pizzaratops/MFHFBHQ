@@ -33,6 +33,7 @@ MFHFB.pages = (function () {
     { key: 'trade', label: 'Trade', icon: '⚖️' },
     { key: 'dynasty', label: 'Dynasty', icon: '🏆' },
     { key: 'players', label: 'Spieler', icon: '🧮' },
+    { key: 'nfl', label: 'NFL', icon: '🏈' },
   ];
   const list = [];
 

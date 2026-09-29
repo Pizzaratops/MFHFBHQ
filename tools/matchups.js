@@ -186,6 +186,14 @@
       <div class="games">${cards.join('')}</div>`;
   }
 
+  // ---------- Unit-Vergleich (sports/nfl/fantasy-units.js) ----------
+  function unitCompare(ctx, season, week, home, away, hp, ap, played) {
+    const { data } = ctx;
+    if (!MFHFB.nfl.fu || !(data.POSITION_POINTS || data.FANTASY_POWER_SCORE)) return '';
+    MFHFB.nfl.fu.use({ POSITION_POINTS: data.POSITION_POINTS, FANTASY_POWER_SCORE: data.FANTASY_POWER_SCORE });
+    return MFHFB.nfl.fu.compareHtml({ season, week, homeId: home.id, awayId: away.id, homeName: home.name, awayName: away.name, homeStarters: hp.starters, awayStarters: ap.starters, played });
+  }
+
   // ---------- Slot-für-Slot-Vergleich ----------
   function detailView(ctx) {
     const { data, params, href, ui } = ctx;
@@ -236,7 +244,8 @@
 
     const cell = (p, align) => {
       if (!p) return `<div class="mdt-cell ${align} muted">—</div>`;
-      const meta = `${e(p.pos || '')}${nflOf[p.name] ? ' · ' + e(nflOf[p.name]) : ''}`;
+      const nfl = p.nfl || nflOf[p.name];
+      const meta = `${e(p.pos || '')}${nfl ? ' · ' + e(nfl) : ''}${nfl && data.MATCHUP_ADVANTAGE ? MFHFB.nfl.ma.badgeFor(data.MATCHUP_ADVANTAGE, p.pos, nfl, week) : ''}`;
       let val;
       if (!played) {
         val = `<div class="mdt-val">${ui.num(p.mean)} <small>proj.</small></div>`;
@@ -276,6 +285,7 @@
       </div>
       <div class="page-sub mdt-sub">${sub}</div>
       ${!played ? toggles(set) + `<div class="mdt-actions"><button type="button" class="seg-btn" data-snapshot>📸 Eigenen Snapshot sichern (überschreibt den Server-Wert)</button></div>` : ''}
+      ${unitCompare(ctx, season, week, home, away, hp, ap, played)}
       <div class="mdt-rows">${rows.join('')}</div>`;
   }
 
@@ -285,7 +295,7 @@
     label: 'Matchups',
     icon: '⚔️',
     applies: { sport: ['nfl'], scoring: ['points'] },
-    data: ['teams', 'weekly-scores', 'schedule', 'rosters-live', '?projections', '?player-stats', '?matchup-snapshots', '?league-info'],
+    data: ['teams', 'weekly-scores', 'schedule', 'rosters-live', '?projections', '?player-stats', '?matchup-snapshots', '?league-info', '?position-points', '?fantasy-power-score', '?sport:matchup-advantage'],
     title: ({ params, data, ui }) => {
       if (params[2]) { const t = ui.teamIndex(data.LEAGUE_TEAMS); return `${t(params[1]).name} vs ${t(params[2]).name}`; }
       return params[0] ? `Matchups Woche ${params[0]}` : 'Matchups';
