@@ -1,0 +1,104 @@
+name: NFL Sync (sportweit)
+
+# Alle NFL-Daten, die für JEDE NFL-Liga im Hub gleich sind, in EINEM Lauf
+# nach sports/nfl/data/ (vorher doppelt in Bear-Witch-Project-HQ und
+# Dynasty-Of-Pretend-Experts gesynct). Quelle nflverse/ffverse -- keine
+# Secrets nötig.
+#
+#   sync-espn-nfl-standings.js  -> nfl-power-rankings.js (Power Rankings)
+#   sync-nfl-power-score.js     -> nfl-power-score.js    (Bootleg Power Score)
+#   sync-matchup-advantage.js   -> matchup-advantage.js  (Matchup Advantage + Badges)
+#   sync-player-dna.js          -> player-dna.js         (Player DNA)
+#   sync-air-yards.js           -> air-yards.js          (Player DNA: Air Yards)
+#   sync-player-style.js        -> player-style.js       (Player DNA: Spielstil)
+#
+# Jeder Schritt läuft auch weiter, wenn ein anderer scheitert
+# (continue-on-error); am Ende wird alles Geänderte in EINEM Commit
+# gepusht. Der Job-Status wird rot, wenn mindestens ein Schritt
+# fehlgeschlagen ist (letzter Schritt), damit man es im Actions-Tab sieht.
+#
+# Zeiten: 09:00 und 21:00 Berlin (je Sommer-/Winterzeit-Cron) + Dienstag
+# früh nach Monday Night Football + manuell startbar.
+
+on:
+  schedule:
+    - cron: "0 7 * * *"    # 09:00 Berlin (Sommerzeit)
+    - cron: "0 8 * * *"    # 09:00 Berlin (Winterzeit)
+    - cron: "0 19 * * *"   # 21:00 Berlin (Sommerzeit)
+    - cron: "0 20 * * *"   # 21:00 Berlin (Winterzeit)
+    - cron: "30 5 * * 2"   # Dienstag früh nach MNF
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nfl-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: NFL Power Rankings (Standings + EPA)
+        id: standings
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-espn-nfl-standings.js
+
+      - name: Bootleg Power Score
+        id: powerscore
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-nfl-power-score.js
+
+      - name: Matchup Advantage
+        id: matchup
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-matchup-advantage.js
+
+      - name: Player DNA
+        id: dna
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-player-dna.js
+
+      - name: Air Yards
+        id: airyards
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-air-yards.js
+
+      - name: Player Style
+        id: style
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-player-style.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sports/nfl/data/nfl-power-rankings.js sports/nfl/data/nfl-power-score.js sports/nfl/data/matchup-advantage.js sports/nfl/data/player-dna.js sports/nfl/data/air-yards.js sports/nfl/data/player-style.js
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: nfl sync"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
+
+      - name: Fehlgeschlagene Schritte melden
+        if: steps.standings.outcome == 'failure' || steps.powerscore.outcome == 'failure' || steps.matchup.outcome == 'failure' || steps.dna.outcome == 'failure' || steps.airyards.outcome == 'failure' || steps.style.outcome == 'failure'
+        run: |
+          echo "Mindestens ein Sync-Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
+          exit 1

@@ -891,3 +891,14 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .sr-most:last-child { border-bottom: 0; }
 @media (max-width: 1250px) { .sr-cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .sr-cols aside { grid-column: 1 / -1; } }
 @media (max-width: 900px) { .sr-cols { grid-template-columns: 1fr; } }
+
+/* ---------- Countdowns (tools/home.js) ---------- */
+.cd-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.cd-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--league-accent); border-radius: 12px; padding: 10px 14px 12px; }
+.cd-label { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.cd-label span { text-transform: none; letter-spacing: 0; color: var(--text); }
+.cd-timer { display: flex; gap: 12px; margin: 6px 0 2px; }
+.cd-seg { display: flex; flex-direction: column; align-items: center; min-width: 34px; }
+.cd-seg b { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: 30px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.cd-seg small { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
+.cd-date { font-size: 12px; color: var(--muted); }

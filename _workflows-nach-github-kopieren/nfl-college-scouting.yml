@@ -1,0 +1,87 @@
+name: NFL College Scouting Sync
+
+# College Scouting (College Production Comp + NFL Profile Comp) nach
+# sports/nfl/data/ -- für alle NFL-Ligen im Hub gleich.
+#   1. sync-college-scouting.js           -> college-scouting.js
+#      (CollegeFootballData.com, braucht das Secret CFBD_API_KEY)
+#   2. build-nfl-draft-athletic-profiles.js -> nfl-draft-athletic-profiles.js
+#      (nflverse, kein Key)
+#   3. build-nfl-profile-comp.js          -> nfl-profile-comp.js
+#      (offline aus 1 + 2)
+#
+# WICHTIG: Repository-Secret CFBD_API_KEY anlegen (Settings -> Secrets and
+# variables -> Actions -> New repository secret, Name GENAU "CFBD_API_KEY").
+# Den Wert NIE in eine Datei schreiben. Ohne Secret bricht Schritt 1 ab,
+# Schritt 2 und 3 laufen trotzdem (mit den bestehenden Scouting-Daten).
+#
+# Täglich 10 Uhr Berlin + manuell startbar. Voll-Neuaufbau: manuell mit
+# COLLEGE_REBUILD (siehe Eingabe beim manuellen Start).
+
+on:
+  schedule:
+    - cron: "0 8 * * *"    # 10:00 Berlin (Sommerzeit)
+    - cron: "0 9 * * *"    # 10:00 Berlin (Winterzeit)
+  workflow_dispatch:
+    inputs:
+      rebuild:
+        description: "Alle College-Jahrgänge neu laden (COLLEGE_REBUILD=1)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nfl-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: College Scouting Sync (CFBD)
+        id: cfbd
+        continue-on-error: true
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          COLLEGE_REBUILD: ${{ github.event.inputs.rebuild == 'true' && '1' || '' }}
+        run: node sports/nfl/scripts/sync-college-scouting.js
+
+      - name: NFL Draft Athletic Profiles (nflverse)
+        run: node sports/nfl/scripts/build-nfl-draft-athletic-profiles.js
+
+      - name: NFL Profile Comp (offline)
+        run: node sports/nfl/scripts/build-nfl-profile-comp.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sports/nfl/data/college-scouting.js sports/nfl/data/nfl-draft-athletic-profiles.js sports/nfl/data/nfl-profile-comp.js
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: college scouting sync"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
+
+      - name: CFBD-Schritt fehlgeschlagen?
+        if: steps.cfbd.outcome == 'failure'
+        run: |
+          echo "Der CFBD-Sync ist fehlgeschlagen (fehlt das Secret CFBD_API_KEY?). Profile/Comps wurden mit den bestehenden Daten gebaut."
+          exit 1
