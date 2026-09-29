@@ -24,6 +24,11 @@
 //               SUPER_FLEX …). Fehlt das Feld, nehmen die Tools die Slots
 //               aus den synchronisierten Liga-Settings (LEAGUE_INFO bei
 //               Sleeper) bzw. den NFL-Standard.
+//  files:       abweichende Datendatei-Namen je Liga ({ logischerName: 'datei' }),
+//               z.B. BWP { draft: 'draft2026' }.
+//  keepers:     true = Keeper-Liga (Keeper-Übersicht, Keeper im Draft Board).
+//  futureRounds: wie viele Runden die Future Draft Boards zeigen (Standard:
+//               alle Draft-Runden).
 //  legacyStoragePrefix: localStorage-Präfix der bisherigen Seite ('bwp',
 //               'dpe'), damit z.B. dort gesicherte Matchup-Snapshots
 //               weiter gefunden werden (nur lesend).
@@ -89,6 +94,9 @@ const LEAGUES = [
     dataBase: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/data/',
     lineupSlots: ['QB', 'RB', 'RB', 'WR', 'WR', 'TE', 'FLEX', 'DEF', 'K'],
     legacyStoragePrefix: 'bwp',
+    files: { draft: 'draft2026' },
+    keepers: true,
+    futureRounds: 5,
     notes: {
       standings: 'W1 & W2 stammen aus dem Archiv (ESPN-Draft-Reset am 23.09.) und zählen voll für Standings, Playoffs und Draft-Reihenfolge.',
     },

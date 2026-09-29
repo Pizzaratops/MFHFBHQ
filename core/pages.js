@@ -29,6 +29,9 @@ MFHFB.pages = (function () {
     { key: 'standings', label: 'Standings', icon: '📈' },
     { key: 'matchups', label: 'Matchups', icon: '⚔️' },
     { key: 'teams', label: 'Teams', icon: '🧍' },
+    { key: 'draft', label: 'Draft & Picks', icon: '📋' },
+    { key: 'trade', label: 'Trade', icon: '⚖️' },
+    { key: 'dynasty', label: 'Dynasty', icon: '🏆' },
   ];
   const list = [];
 

@@ -30,7 +30,9 @@ MFHFB.data = (function () {
     return new Function(`${src}\n;return {${[...new Set(names)].join(',')}};`)();
   }
 
-  function loadFile(league, file) {
+  function loadFile(league, logical) {
+    // Liga-spezifische Dateinamen (z.B. BWP "draft2026" statt "draft")
+    const file = (league.files && league.files[logical]) || logical;
     const key = league.key + '|' + file;
     if (!cache.has(key)) {
       const v = Math.floor(Date.now() / 3600000); // stündlich frisch, sonst Browser-Cache
