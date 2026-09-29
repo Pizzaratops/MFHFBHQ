@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MFHFB HQ</title>
+<meta name="description" content="MFHFB HQ — Hauptquartier für Taco Tuesday, Funkytown, Foodball und DOPE.">
+<meta name="theme-color" content="#13294b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313294b'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial Narrow,Arial' font-weight='700' font-size='30' fill='%23e84a0c'%3EHQ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hub.css">
+<script>
+  // Theme vor dem ersten Paint setzen (kein Aufblitzen). Ohne gespeicherte
+  // Wahl folgt die Seite der System-Einstellung.
+  try { var t = localStorage.getItem('mfhfb:theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<main class="view landing" id="viewLanding">
+  <div class="landing-top">
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Hell/Dunkel umschalten">◐</button>
+  </div>
+  <header class="hero">
+    <div class="hero-kicker">Fantasy Hauptquartier</div>
+    <h1 class="display">MFHFB <span>HQ</span></h1>
+    <p>Vier Ligen. Ein Hauptquartier.</p>
+  </header>
+  <div class="resume" id="resume" hidden></div>
+  <div id="leagueGroups"></div>
+  <footer class="landing-foot">
+    Die Ligen laufen vorerst noch über ihre bisherigen Seiten und werden Schritt für Schritt hierher umgezogen.
+  </footer>
+</main>
+
+<!-- ============ LIGA-ANSICHT ============ -->
+<div class="view league-view" id="viewLeague" hidden>
+  <nav class="topbar" aria-label="Liga-Navigation">
+    <a class="brand display" href="#/" title="Zur MFHFB-HQ-Übersicht">MFHFB <span>HQ</span></a>
+    <span class="bar-sep"></span>
+    <div class="current-league" id="currentLeague"></div>
+    <span class="bar-spacer"></span>
+    <a class="icon-btn hide-sm" id="openTab" href="#" target="_blank" rel="noopener" title="Liga in neuem Tab öffnen">↗<span>Neuer Tab</span></a>
+    <div class="switch-wrap">
+      <button class="icon-btn switch-btn" id="switchBtn" type="button" aria-haspopup="menu" aria-expanded="false">⇄ <span class="hide-sm">Switch Leagues</span></button>
+      <div class="switch-menu" id="switchMenu" role="menu" hidden></div>
+    </div>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Hell/Dunkel umschalten">◐</button>
+  </nav>
+  <div class="frame-wrap">
+    <div class="frame-loading" id="frameLoading" hidden><div><div class="spinner"></div>Lade Liga …</div></div>
+    <iframe id="leagueFrame" title="Liga" referrerpolicy="same-origin"></iframe>
+  </div>
+</div>
+
+<script src="js/leagues.js"></script>
+<script src="js/hub.js"></script>
+</body>
+</html>
