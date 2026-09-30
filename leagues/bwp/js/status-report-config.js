@@ -67,33 +67,29 @@ const STATUS_REPORT_PEOPLE = [
     sleeperSeason: "2026",
   },
 
-  // Felix (TeamBeermode) -- im Hub vorerst PAUSIERT (29.09.2026): Die Secrets
-  // ESPN_S2_FELIX / SWID_FELIX sind hier noch nicht hinterlegt. Felix nutzt bis
-  // dahin die alte BWP-Seite (deren Status-Report-Workflow läuft weiter).
-  // Reaktivieren: Secrets im MFHFBHQ-Repo anlegen, Block unten wieder
-  // einkommentieren und in .github/workflows/bwp-live.yml die beiden
-  // FELIX-Zeilen im env-Block wieder einfügen.
-  // {
-  //   id: "felix",
-  //   label: "TeamBeermode",
-  //   // Gilt als Default fuer alle seine Ligen unten: das Team wird ueber
-  //   // die SWID_FELIX-Secret erkannt (Owner-Match), auch wenn die Liga mit
-  //   // jemand anderes Login abgerufen wird (siehe espnLeagues unten).
-  //   identityCredentialKey: "FELIX",
-  //   espnLeagues: [
-  //     // Gemeinsame Ligen mit dir -- werden mit DEINEN Cookies abgerufen
-  //     // (kein credentialKey hier = Standard-Secrets ESPN_S2/SWID), aber
-  //     // Felix' Team wird über SWID_FELIX (s.o.) darin gefunden.
-  //     { id: 91260355,   season: 2026, name: "Foodball",               emoji: "🐻" },
-  //     { id: 320102468,  season: 2026, name: "Blood, Sweat and Bears", emoji: "🩸" },
-  //     { id: 783491558,  season: 2026, name: "Wild Hunt",              emoji: "🏹" },
-  //     { id: 1340233816, season: 2026, name: "I Broke My Back",        emoji: "🦴" },
-  //     // Seine eigene Liga -- braucht seine vollen Cookies zum Abrufen.
-  //     { id: 519920608,  season: 2026, name: "Felix' Liga",            emoji: "🏈", credentialKey: "FELIX" },
-  //   ],
-  //   sleeperUsername: "TeamBeermode",
-  //   sleeperSeason: "2026",
-  // },
+  // Felix (TeamBeermode) -- im Hub aktiv seit 30.09.2026 (Secrets
+  // ESPN_S2_FELIX / SWID_FELIX im MFHFBHQ-Repo hinterlegt).
+  {
+    id: "felix",
+    label: "TeamBeermode",
+    // Gilt als Default fuer alle seine Ligen unten: das Team wird ueber
+    // die SWID_FELIX-Secret erkannt (Owner-Match), auch wenn die Liga mit
+    // jemand anderes Login abgerufen wird (siehe espnLeagues unten).
+    identityCredentialKey: "FELIX",
+    espnLeagues: [
+      // Gemeinsame Ligen mit dir -- werden mit DEINEN Cookies abgerufen
+      // (kein credentialKey hier = Standard-Secrets ESPN_S2/SWID), aber
+      // Felix' Team wird über SWID_FELIX (s.o.) darin gefunden.
+      { id: 91260355,   season: 2026, name: "Foodball",               emoji: "🐻" },
+      { id: 320102468,  season: 2026, name: "Blood, Sweat and Bears", emoji: "🩸" },
+      { id: 783491558,  season: 2026, name: "Wild Hunt",              emoji: "🏹" },
+      { id: 1340233816, season: 2026, name: "I Broke My Back",        emoji: "🦴" },
+      // Seine eigene Liga -- braucht seine vollen Cookies zum Abrufen.
+      { id: 519920608,  season: 2026, name: "Felix' Liga",            emoji: "🏈", credentialKey: "FELIX" },
+    ],
+    sleeperUsername: "TeamBeermode",
+    sleeperSeason: "2026",
+  },
 
   // Weitere Freunde hier nach demselben Muster ergänzen.
 ];
