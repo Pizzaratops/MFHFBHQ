@@ -43,6 +43,9 @@ MFHFB.data = (function () {
     } else {
       // Liga-spezifische Dateinamen (z.B. BWP "draft2026" statt "draft")
       file = (league.files && league.files[logical]) || logical;
+      // "./pfad/datei" = immer aus dem Hub selbst, unabhängig von dataBase
+      // (z. B. Live-Draft-Datei, die schon vor dem NBA-Cutover hier liegt)
+      if (file.startsWith('./')) base = '';
     }
     const key = scope + '|' + file;
     if (!cache.has(key)) {

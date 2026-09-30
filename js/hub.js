@@ -432,11 +432,48 @@
   // ---------------- Start ----------------
   renderLanding();
   window.addEventListener('hashchange', route);
+  // ---------------- „📲 Installieren“ ----------------
+  //  Chrome/Edge/Android: eigener Installations-Dialog (beforeinstallprompt).
+  //  iPhone/iPad (Safari kann das nicht per Knopf): Anleitung „Teilen →
+  //  Zum Home-Bildschirm“. Als App geöffnet → Knopf bleibt versteckt.
+  (function install() {
+    const btns = [...document.querySelectorAll('[data-install]')];
+    const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+    if (standalone || !btns.length) return;
+    let deferred = null;
+    const show = on => btns.forEach(b => { b.hidden = !on; });
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; show(true); });
+    window.addEventListener('appinstalled', () => { deferred = null; show(false); });
+    if (ios) show(true);
+    btns.forEach(b => b.addEventListener('click', async () => {
+      if (deferred) {
+        deferred.prompt();
+        try { await deferred.userChoice; } catch (e) { /* egal */ }
+        deferred = null; show(false);
+        return;
+      }
+      MFHFB.ui.modal('installHelp', `<div class="dna-modal-box" style="max-width:460px">
+        <div class="dna-modal-head"><h2 style="margin:0">📲 MFHFB HQ installieren</h2><button type="button" class="dna-modal-x" data-close aria-label="Schließen">✕</button></div>
+        ${ios
+          ? '<ol style="line-height:1.8;padding-left:20px;margin:0"><li>In Safari unten auf <b>Teilen</b> <span aria-hidden="true">⬆️</span> tippen</li><li><b>„Zum Home-Bildschirm“</b> wählen</li><li>Oben rechts <b>Hinzufügen</b></li></ol><p class="muted small">Danach startet MFHFB HQ wie eine App — direkt in Deiner zuletzt genutzten Liga.</p>'
+          : '<p style="margin:0;line-height:1.6">Im Browser-Menü <b>„App installieren“</b> bzw. <b>„Zum Startbildschirm hinzufügen“</b> wählen (Chrome/Edge: Symbol rechts in der Adressleiste).</p>'}
+      </div>`);
+    }));
+  })();
+
   // Als App installiert (manifest start_url ?app=1): direkt die zuletzt
   // genutzte Liga öffnen statt der Übersicht.
   if (/[?&]app=1/.test(location.search) && (!location.hash || location.hash === '#/' || location.hash === '#')) {
     const last = byKey(store.get('lastLeague'));
     if (last) history.replaceState(null, '', '#/' + last.key);
+  }
+  // Link von einer alten Liga-Seite (?neu=1#/tthq/livedraft): für diese Liga
+  // direkt die neue Version zeigen (wie Klick auf „✨ Neue Version“).
+  if (/[?&]neu=1/.test(location.search)) {
+    const l = byKey((location.hash.match(/^#\/([^/?]+)/) || [])[1]);
+    if (l && l.nativePreview) store.set(l.key + ':native', '1');
+    history.replaceState(null, '', location.pathname + location.hash);
   }
   route();
 })();

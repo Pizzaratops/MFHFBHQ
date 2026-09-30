@@ -84,8 +84,11 @@ const LEAGUES = [
     mode: NBA_CUTOVER ? 'native' : 'legacy',
     nativePreview: !NBA_CUTOVER, // bis zum Cutover: neue Version zum Testen (Button „✨ Neue Version“)
     dataBase: NBA_CUTOVER ? 'leagues/tthq/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
-    files: { teams: 'teams-rosters' },
+    files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026' },
     keepers: true,
+    // Live-Draft-Seite (#/tthq/livedraft): Jahr des laufenden Drafts. Nach dem
+    // Draft entfernen oder auf das nächste Jahr setzen.
+    liveDraft: 2026,
     // ESPN-Team-ID → interne Team-ID (TEAMS in teams-rosters.js); 12 + 13 = Taxi Squads
     espn: { season: 2027, toTeam: { 1: 1, 2: 2, 4: 3, 7: 4, 5: 5, 11: 6, 8: 7, 10: 8, 6: 9, 14: 10, 3: 11, 9: 12 } },
     // Saison-Archiv (data/season-XXXX-YY.js: Endstand + Kader) — Liga-Historie
