@@ -131,9 +131,16 @@
     renderMenu(l.key);
 
     const native = useNative(l);
-    el.versionBtn.hidden = !(l.nativePreview && l.mode !== 'native');
+    // Umschalter alte/neue Seite: bei Vorschau-Ligen (neu testen) und bei
+    // umgestellten Ligen, solange die alte Seite noch erreichbar ist (legacyUrl).
+    el.versionBtn.hidden = !(l.legacyUrl && (l.nativePreview || l.mode === 'native'));
+    el.versionBtn.title = l.mode === 'native'
+      ? 'Zur alten Seite wechseln (Archiv — Daten dort werden nicht mehr aktualisiert)'
+      : 'Zwischen bisheriger Seite und neuer Version wechseln';
     el.versionBtn.setAttribute('aria-pressed', String(native));
-    el.versionBtn.innerHTML = native ? '↩ <span class="hide-sm">Bisherige Seite</span>' : '✨ <span class="hide-sm">Neue Version</span>';
+    el.versionBtn.innerHTML = native
+      ? (l.mode === 'native' ? '↩ <span class="hide-sm">Alte Seite</span>' : '↩ <span class="hide-sm">Bisherige Seite</span>')
+      : '✨ <span class="hide-sm">Neue Version</span>';
     el.openTab.hidden = native;
     el.frameWrap.hidden = native;
     el.native.hidden = !native;
@@ -163,7 +170,8 @@
   // ---------------- Native Liga-Ansicht ----------------
   // 'native' für alle, oder Vorschau per Button (pro Liga gemerkt).
   function useNative(l) {
-    if (l.mode === 'native') return true;
+    // Umgestellte Ligen: neu, außer man hat bewusst auf die alte Seite gewechselt
+    if (l.mode === 'native') return !l.legacyUrl || store.get(l.key + ':native') !== '0';
     return !!l.nativePreview && store.get(l.key + ':native') === '1';
   }
 
@@ -191,7 +199,7 @@
     let opened = [];
     try { opened = JSON.parse(store.get(l.key + ':navopen') || '[]'); } catch (e) { opened = []; }
     const item = (p, s, cls) => `
-      <a class="nav-item${cls || ''}${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}"
+      <a class="nav-item${cls || ''}${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}" title="${esc(p.label)}"
          ${page && p.id === page.id ? 'aria-current="page"' : ''}>
         <span class="nav-icon" aria-hidden="true">${p.icon || s.icon}</span><span>${esc(p.label)}</span>
       </a>`;
@@ -199,7 +207,7 @@
       if (s.pages.length === 1 || s.key === 'home') return s.pages.map(p => item(p, s)).join('');
       const open = s === curSec || opened.includes(s.key);
       return `<div class="nav-group${open ? ' open' : ''}${s === curSec ? ' current' : ''}">
-        <button type="button" class="nav-head" data-navsec="${s.key}" aria-expanded="${open}">
+        <button type="button" class="nav-head" data-navsec="${s.key}" aria-expanded="${open}" title="${esc(s.label)}">
           <span class="nav-icon" aria-hidden="true">${s.icon}</span><span>${esc(s.label)}</span><span class="nav-count">${s.pages.length}</span><span class="nav-caret" aria-hidden="true">▾</span>
         </button>
         <div class="nav-pages">${s.pages.map(p => item(p, s, ' sub')).join('')}</div>
@@ -209,7 +217,10 @@
     const mob = `<div class="nav-secs">${sections.map(s => `<a class="nav-sec${s === curSec ? ' active' : ''}" href="${secHref(s)}"${s === curSec ? ' aria-current="true"' : ''}>
         <span aria-hidden="true">${s.pages.length === 1 ? (s.pages[0].icon || s.icon) : s.icon}</span><span>${esc(s.pages.length === 1 ? s.pages[0].label : s.label)}</span></a>`).join('')}</div>
       ${curSec && curSec.pages.length > 1 ? `<div class="nav-sub">${curSec.pages.map(p => `<a class="nav-subitem${page && p.id === page.id ? ' active' : ''}" href="${href(p.id)}">${esc(p.label)}</a>`).join('')}</div>` : ''}`;
-    el.nativeNav.innerHTML = `<div class="nav-desk">${desk}</div><div class="nav-mob">${mob}</div>`;
+    const mini = store.get('navmini') === '1';
+    el.native.classList.toggle('nav-mini', mini);
+    const toggle = `<button type="button" class="nav-toggle" data-navmini aria-pressed="${mini}" title="${mini ? 'Seitenleiste ausklappen' : 'Seitenleiste einklappen'}">${mini ? '»' : '«'}<span>Einklappen</span></button>`;
+    el.nativeNav.innerHTML = `<div class="nav-desk">${toggle}${desk}</div><div class="nav-mob">${mob}</div>`;
     // Mobil: aktiven Bereich und aktive Seite ins Bild holen
     el.nativeNav.querySelectorAll('.nav-secs, .nav-sub').forEach(row => {
       const act = row.querySelector('.active');
@@ -271,8 +282,26 @@
 
   // Bereiche in der Seitenleiste auf-/zuklappen (einmal delegiert)
   el.nativeNav.addEventListener('click', e => {
+    // Seitenleiste ein-/ausklappen (Desktop, gilt für alle Ligen)
+    const t = e.target.closest('[data-navmini]');
+    if (t) {
+      const mini = !el.native.classList.contains('nav-mini');
+      store.set('navmini', mini ? '1' : '0');
+      el.native.classList.toggle('nav-mini', mini);
+      t.setAttribute('aria-pressed', String(mini));
+      t.title = mini ? 'Seitenleiste ausklappen' : 'Seitenleiste einklappen';
+      t.firstChild.textContent = mini ? '»' : '«';
+      return;
+    }
     const b = e.target.closest('[data-navsec]');
     if (!b) return;
+    // Eingeklappt: Klick auf einen Bereich klappt die Leiste wieder aus
+    if (el.native.classList.contains('nav-mini')) {
+      store.set('navmini', '0'); el.native.classList.remove('nav-mini');
+      const tg = el.nativeNav.querySelector('[data-navmini]');
+      if (tg) { tg.setAttribute('aria-pressed', 'false'); tg.title = 'Seitenleiste einklappen'; tg.firstChild.textContent = '«'; }
+      if (b.closest('.nav-group').classList.contains('open')) return;
+    }
     const key = el.nativeNav.dataset.league, sec = b.dataset.navsec;
     let opened = [];
     try { opened = JSON.parse(store.get(key + ':navopen') || '[]'); } catch (err) { opened = []; }

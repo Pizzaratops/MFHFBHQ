@@ -26,6 +26,9 @@ const LEAGUE_DUES_PAID = [
   { team: "milchreis", year: 2027 },
   { team: "milchreis", year: 2028 },
   { team: "milchreis", year: 2029 },
+  // UnicornsRuegen (Georg): bis einschl. 2029 (2028 + 2029 bezahlt, gemeldet 30.09.2026)
+  { team: "unicornsruegen", year: 2028 },
+  { team: "unicornsruegen", year: 2029 },
   // San José Salamancas: bis einschl. 2028
   { team: "lovethecheesehead", year: 2027 },
   { team: "lovethecheesehead", year: 2028 },
