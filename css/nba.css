@@ -781,3 +781,5 @@ th.punted, td.punted { opacity: .35; }
 .ld-list.drafted { list-style: none; padding-left: 0; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed var(--border); }
 .ld-pk { font-size: 10px; font-weight: 800; color: var(--tcx); background: color-mix(in srgb, var(--tcx) 14%, transparent); padding: 0 5px; border-radius: 5px; }
 @media (max-width: 760px) { .ld-matrix { min-width: 820px; } .ld-bascroll { max-height: 70vh; } }
+.ld-plink { color: inherit; text-decoration: none; }
+.ld-plink:hover { color: var(--league-accent); text-decoration: underline; }

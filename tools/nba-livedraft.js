@@ -16,8 +16,9 @@
   const N = () => MFHFB.nba;
   const EXP = { rookie: ['R', 'Rookie'], sophomore: ['S', 'Sophomore'], veteran: ['V', 'Veteran'] };
   const POS = ['PG', 'SG', 'SF', 'PF', 'C'];
-  const defaults = { exp: 'all', pos: '', q: '', sort: null, dir: 1 };
-  const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('livedraft', {}) });
+  // Standard-Sortierung: MFHFB Dynasty-Rang (Spieler ohne Rang ans Ende, dort nach Gesamtscore)
+  const defaults = { exp: 'all', pos: '', q: '', sort: 'dynastyRank', dir: 1 };
+  const getState = ctx => { const st = { ...defaults, ...ctx.store.getJSON('livedraft2', {}) }; if (!st.sort) st.sort = defaults.sort; return st; };
 
   // ---------- Modell ----------
   function model(ctx) {
@@ -26,7 +27,16 @@
     const year = LD.jahr || ctx.league.liveDraft;
     const teams = nba.leagueTeams(data, true);
     const byId = {}; teams.forEach(t => { byId[t.id] = t; });
-    const board = data.BEST_AVAILABLE_BOARD || [];
+    // Rookies = ganze Draft-Klasse 2026, Sophomores = Draft-Klasse 2025 (das Board
+    // verpasst einzelne, z. B. Ebuka Okorie, Hugo González)
+    const rk = new Set((data.DRAFT_CLASS_2026 || []).map(p => nba.key(p.name)));
+    const so = new Set((data.DRAFT_CLASS_2025 || []).map(p => nba.key(typeof p === 'string' ? p : p.name)));
+    const board = (data.BEST_AVAILABLE_BOARD || []).map(p => {
+      const k = nba.key(p.name);
+      if (p.experience !== 'rookie' && rk.has(k)) return { ...p, experience: 'rookie', isRookie: true };
+      if (p.experience === 'veteran' && so.has(k)) return { ...p, experience: 'sophomore' };
+      return p;
+    });
     const info = new Map(); board.forEach(p => { if (!info.has(nba.key(p.name))) info.set(nba.key(p.name), p); });
 
     // Slot-Reihenfolge (jede Runde gleich), Besitzer aus PICKS + PICKS_LIVE
@@ -63,6 +73,8 @@
   }
 
   const short = t => (t ? t.name.split(' ')[0] : '?');
+  // Spielername → Cat Web des Spielers
+  const cw = (ctx, name, inner) => `<a class="ld-plink" href="${ctx.href('catweb', name)}" title="Cat Web: ${ctx.ui.esc(name)}">${inner || ctx.ui.esc(name)}</a>`;
   const expTag = (exp, cls) => (exp === 'rookie' || exp === 'sophomore' ? `<span class="ld-exp ${exp}${cls ? ' ' + cls : ''}" title="${EXP[exp][1]}">${EXP[exp][0]}</span>` : '');
   const fmtDate = iso => { try { return new Date(iso).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }); } catch (e) { return ''; } };
 
@@ -76,7 +88,7 @@
       if (!o.made) return `<td><div class="${cls}" style="${nba.tcStyle(t)}" title="${e(t ? t.name : '')}${traded ? ' (via ' + e((M.byId[o.orig] || {}).name || '?') + ')' : ''}"><small>${o.id}</small>${who}${isNext ? '<span class="ld-clock">⏱ am Zug</span>' : ''}</div></td>`;
       const p = o.player;
       return `<td><div class="${cls}" style="${nba.tcStyle(t)}" title="${e(t ? t.name : '')}${o.made.notiz ? ' · ' + e(o.made.notiz) : ''}"><small>${o.id} ${who}</small>
-        <b class="ld-pname">${e(p.name)}</b><span class="ld-pmeta">${e(p.pos || '')}${p.nbaTeam ? ' · ' + e(p.nbaTeam) : ''} ${expTag(p.experience)}</span></div></td>`;
+        <b class="ld-pname">${cw(ctx, p.name)}</b><span class="ld-pmeta">${e(p.pos || '')}${p.nbaTeam ? ' · ' + e(p.nbaTeam) : ''} ${expTag(p.experience)}</span></div></td>`;
     };
     return `<div class="card ld-board" data-share="Live ${M.year} Draft">
       <div class="card-head"><h2>📋 Full Draft Board ${M.year}</h2><span class="muted small">${M.order.filter(o => o.made).length}/${M.order.length} Picks</span></div>
@@ -115,8 +127,8 @@
       return `<div class="card nba-kcard ld-team" style="${nba.tcStyle(t)}">
         <div class="ld-thead"><span class="nba-kteam">${e(t.name)}</span><span class="ld-count${n > max ? ' over' : ''}" title="Keeper + Draft / Kadergröße">${n}/${max}</span></div>
         <div class="ld-tsub">${kept.length} Keeper · ${drafted.length} gedraftet${open.length ? ` · noch ${open.length} Pick${open.length === 1 ? '' : 's'} (${open.map(o => o.id).join(', ')})` : ''}</div>
-        ${drafted.length ? `<ol class="ld-list drafted">${drafted.map(o => `<li><span class="ld-pk">${o.id}</span> <b>${e(o.made.spieler)}</b> ${expTag(o.player && o.player.experience)}</li>`).join('')}</ol>` : ''}
-        <ol class="ld-list">${kept.map(k => { const p = M.info.get(nba.key(k)) || {}; return `<li>${e(k)} ${expTag(p.experience)}</li>`; }).join('')}</ol>
+        ${drafted.length ? `<ol class="ld-list drafted">${drafted.map(o => `<li><span class="ld-pk">${o.id}</span> <b>${cw(ctx, o.made.spieler)}</b> ${expTag(o.player && o.player.experience)}</li>`).join('')}</ol>` : ''}
+        <ol class="ld-list">${kept.map(k => { const p = M.info.get(nba.key(k)) || {}; return `<li>${cw(ctx, k)} ${expTag(p.experience)}</li>`; }).join('')}</ol>
       </div>`;
     }).join('');
     const K = ctx.data.KEEPERS;
@@ -127,7 +139,7 @@
   // ---------- Best Available ----------
   function baColumns(nba) {
     return [
-      { k: 'rank', l: '#', t: 'Gesamtrang über alle Signale (= Empfehlung)', v: p => p.rank },
+      { k: 'rank', l: '#', t: 'Sortieren nach Gesamtscore über alle Signale', v: p => p.rank },
       { k: 'name', l: 'Spieler', v: p => String(p.name).toLowerCase() },
       { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null },
       { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFB Dynasty-Rang', v: p => p.dynastyRank ?? null },
@@ -152,8 +164,8 @@
     return list.slice(0, 250).map((p, i) => {
       const a = nba.age(p.dob) ?? p.age;
       return `<tr>
-        <td class="num rank" title="Gesamtrang ${p.rank}">${st.sort ? p.rank : i + 1}</td>
-        <td><div class="ld-baname"><b>${e(p.name)}</b> ${expTag(p.experience)}</div><div class="ld-pmeta">${e(p.pos || '')}${p.nbaTeam ? ' · ' + e(p.nbaTeam) : ''}${p.bestCat30 ? ` · <span class="up">${e(p.bestCat30)}</span>` : ''}</div></td>
+        <td class="num rank" title="Gesamtrang ${p.rank}">${i + 1}</td>
+        <td><div class="ld-baname"><b>${cw(ctx, p.name)}</b> ${expTag(p.experience)}</div><div class="ld-pmeta">${e(p.pos || '')}${p.nbaTeam ? ' · ' + e(p.nbaTeam) : ''}${p.bestCat30 ? ` · <span class="up">${e(p.bestCat30)}</span>` : ''}</div></td>
         <td class="num">${a != null ? a : '—'}</td>
         <td class="num">${nba.rankBadge(p.dynastyRank ?? null)}</td>
         <td class="num">${p.stickyScore == null ? '<span class="muted">—</span>' : `<span class="nba-sticky ${p.stickyScore >= 5 ? 'hi' : p.stickyScore >= 0 ? 'mid' : 'lo'}">${p.stickyScore.toFixed(1)}</span>`}</td>
@@ -171,12 +183,12 @@
         <div class="ld-barow">
           <select class="tr-select" data-pos aria-label="Position"><option value="">Alle Pos.</option>${POS.map(p => `<option${st.pos === p ? ' selected' : ''}>${p}</option>`).join('')}</select>
           <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q)}" data-q aria-label="Suchen">
-          ${st.sort ? '<button type="button" class="seg-btn" data-unsort title="Zurück zur Empfehlung">↺</button>' : ''}
+          ${st.sort !== defaults.sort || st.dir !== 1 ? '<button type="button" class="seg-btn" data-unsort title="Zurück zur MFHFB-Sortierung">↺</button>' : ''}
         </div>
       </div>
       <div class="table-wrap ld-bascroll"><table class="table compact ld-batable"><thead><tr>${baColumns(M.nba).map(th).join('')}</tr></thead>
         <tbody data-ba>${baBody(ctx, M, st)}</tbody></table></div>
-      <div class="ld-foot muted small">Reihenfolge = Gesamtscore (MFHFB Dynasty, Rankings, Sticky Score …), täglich neu. Ohne Keeper und bereits gedraftete Spieler. <span class="ld-exp rookie">R</span> Rookie · <span class="ld-exp sophomore">S</span> Sophomore</div>
+      <div class="ld-foot muted small">Sortiert nach MFHFB Dynasty-Rang (Spalten anklicken zum Umsortieren, # = Gesamtscore). Spieler anklicken → Cat Web. Ohne Keeper und bereits gedraftete Spieler. <span class="ld-exp rookie">R</span> Rookie · <span class="ld-exp sophomore">S</span> Sophomore</div>
     </div>`;
   }
 
@@ -202,7 +214,7 @@
   function mount(root, ctx) {
     const M = ctx._ld || model(ctx);
     const save = (patch, full) => {
-      ctx.store.setJSON('livedraft', { ...getState(ctx), ...patch });
+      ctx.store.setJSON('livedraft2', { ...getState(ctx), ...patch });
       if (full) ctx.refresh(); else root.querySelector('[data-ba]').innerHTML = baBody(ctx, M, getState(ctx));
     };
     root.querySelectorAll('[data-exp]').forEach(b => b.addEventListener('click', () => save({ exp: b.dataset.exp }, true)));
@@ -216,13 +228,13 @@
       save(st.sort === k ? { dir: -st.dir } : { sort: k, dir: col && col.desc ? -1 : 1 }, true);
     }));
     const un = root.querySelector('[data-unsort]');
-    if (un) un.addEventListener('click', () => save({ sort: null, dir: 1 }, true));
+    if (un) un.addEventListener('click', () => save({ sort: defaults.sort, dir: 1 }, true));
   }
 
   MFHFB.pages.register({
     id: 'livedraft', section: 'draft', label: 'Live Draft', icon: '🔴', applies: { sport: ['nba'] },
     when: league => !!league.liveDraft,
-    data: ['teams', '?rosters-live', '?sport:aliases', 'picks', '?picks-live', 'best-available-board', 'live-draft'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft'],
     title: () => 'Live Draft', render, mount,
   });
 })();
