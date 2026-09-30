@@ -145,19 +145,34 @@ import-dynasty-rolling-snapshot (TTHQ); `convert-bbm-last-season.py` (sportweit)
    (`chore: nba sync (sportweit)`, `chore: tthq sync`, `chore: funkytown sync`).
 3. Ein paar Tage parallel laufen lassen (alte Repos laufen weiter, der Hub liest noch
    von dort). Stichprobe: `sports/nba/data/livescores-daily.js` vs. alte Repos.
-4. Unmittelbar vor dem Umschalten manuell gepflegte Dateien aus den alten Repos
-   nochmal herüberkopieren, falls dort seit 29.09. geändert: TTHQ `rankings.js`,
-   `hashtag.js`, `projections-baseline.js`/`-consensus.js`, `picks.js`,
-   `scripts/data/pick-trades-manual.txt`, `trade-history.js` (manuelle Einträge);
-   Funkytown `league-dues.js`, `players.js`, `projections-*`; sportweit `aliases.js`,
-   `draft2026/2027.js`.
-5. `js/leagues.js` umstellen: `SPORT_DATA.nba.dataBase = 'sports/nba/data/'`,
-   tthq `dataBase: 'leagues/tthq/data/'`, funkytown `dataBase: 'leagues/funkytown/data/'`.
-6. Alte Workflows abschalten — TTHQ: daily-9cat, workflow-nba-power-rankings,
-   workflow-nba-power-score, backfill-9cat, fetch-draft-results, apply-pick-journal,
-   probe-espn-picks (projections-* nur, wenn das Fantrax/ADP-Toolkit nicht mehr gebraucht
-   wird); Funkytown: alle 4. Den externen cron-job.org-Trigger für TTHQ `daily-9cat`
-   deaktivieren (nba-sync läuft nativ halbstündlich).
+
+### Umstelltag (Checkliste)
+
+Erledigt: Schritte 1–3 (Workflows laufen seit 29.09. parallel).
+
+4. **Handgepflegte Dateien holen:** Actions → „NBA Umstelltag — handgepflegte
+   Dateien …“ (`nba-import-manual.yml`, liegt in `_workflows-nach-github-kopieren/`)
+   erst mit *dry_run* ✔ starten und im Log prüfen, dann ohne dry_run. Holt u. a.
+   TTHQ `rankings.js`, `hashtag.js`, `projections-*`, `picks.js`, `trade-history.js`,
+   `teams-rosters.js`, `pick-trades-manual.txt`; Funkytown `league-dues.js`,
+   `players.js`, `projections-*`, `teams-rosters.js`; sportweit `aliases.js`,
+   `draft2027.js` und das `DRAFT_2026`-Array (Hub-`draft2026.js` bleibt ohne UI-Code).
+5. **Umschalten:** in `js/leagues.js` `const NBA_CUTOVER = false;` → `true`.
+   Das stellt `SPORT_DATA.nba` auf `sports/nba/data/`, TTHQ/Funkytown auf
+   `leagues/<liga>/data/` und beide Ligen auf `mode: 'native'` (Button
+   „✨ Neue Version“ verschwindet). Pushen, Seite prüfen.
+6. **Weiterleitungen:** `_fuer-alte-repos/Taco-Tuesday-HQ/index.html` bzw.
+   `…/Citizens-of-Funkytown/index.html` ins jeweilige alte Repo kopieren und pushen.
+   Alte Links (`#matchup`, `#rankings`, `#beitraege` …) landen auf der passenden
+   Hub-Seite; `?legacy=1` öffnet die alte Seite weiterhin.
+   ⚠️ Vorher dort `bump-data-version` abschalten (schreibt sonst `index.html` um).
+7. **Alte Workflows abschalten** — TTHQ: daily-9cat, bump-data-version,
+   workflow-nba-power-rankings, workflow-nba-power-score, backfill-9cat,
+   fetch-draft-results, apply-pick-journal, probe-espn-picks (projections-* nur,
+   wenn das Fantrax/ADP-Toolkit nicht mehr gebraucht wird); Funkytown: alle.
+   Den externen cron-job.org-Trigger für TTHQ `daily-9cat` deaktivieren.
+8. Danach (Claude): iframe/Legacy-Code aus `js/hub.js` entfernen, sobald keine
+   Liga mehr `legacy` ist.
 
 ## Bekannte Daten-Bugs (Stand 29.09.2026)
 

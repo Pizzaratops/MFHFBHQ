@@ -187,7 +187,8 @@ th.punted, td.punted { opacity: .35; }
 .nba-arch-place { font-weight: 900; min-width: 28px; font-size: 16px; }
 .nba-arch-name { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .nba-arch-name small { font-size: 11.5px; color: var(--muted); }
-.nba-arch-rec { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--muted); }
+.nba-arch-rec { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--muted); text-align: right; }
+.nba-arch-rec small { display: block; font-size: 11px; font-weight: 600; }
 .nba-arch[open] summary { border-bottom: 1px solid var(--border); }
 .nba-tlink { color: var(--text); text-decoration: none; font-weight: 700; white-space: nowrap; }
 .nba-tlink:hover { color: var(--tcx); }

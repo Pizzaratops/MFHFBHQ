@@ -20,7 +20,7 @@
 //               (Syncs: leagues/<liga>/scripts/ + .github/workflows/<liga>-*.yml).
 //               Noch nicht migrierte: der data/-Ordner der bisherigen Seite.
 //  notes:       liga-spezifische Hinweistexte für einzelne Tools.
-//  dues:        Beitragsregeln (siehe tools/league.js).
+//  dues:        Beitragsregeln (siehe tools/nfl-league.js).
 //  announcements: Aushänge auf der Seite "Regeln & Erklärung".
 //  countdowns:  zusätzliche Termine für die Übersicht [{ label, iso }].
 //  lineupSlots: Starter-Slots (Sleeper-Keys: QB, RB, WR, TE, FLEX, DEF, K,
@@ -46,11 +46,21 @@
 // sind (per "sport:<datei>" in einem Tool angefordert). Liegen im Hub selbst
 // (sports/<sport>/data/), gesynct von .github/workflows/nfl-*.yml mit den
 // Scripts aus sports/<sport>/scripts/.
+// ------------------------------------------------------------
+//  NBA-CUTOVER-SCHALTER
+//  false = TTHQ + Funkytown zeigen standardmäßig die alte Seite (iframe),
+//          die neue Version per „✨ Neue Version“; Daten aus den alten Repos.
+//  true  = beide Ligen nativ für alle, Daten aus sports/nba/data +
+//          leagues/<liga>/data (Hub-Syncs). Vorher: Checkliste in
+//          sports/nba/README.md („Umstelltag“).
+// ------------------------------------------------------------
+const NBA_CUTOVER = false;
+
 const SPORT_DATA = {
   nfl: { dataBase: 'sports/nfl/data/' },
   // NBA: übergangsweise der data/-Ordner von TTHQ (dort laufen die Syncs;
   // die sportweiten Dateien sind in beiden NBA-Repos identisch)
-  nba: { dataBase: 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/' },
+  nba: { dataBase: NBA_CUTOVER ? 'sports/nba/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/' },
 };
 
 const SPORTS = {
@@ -71,15 +81,34 @@ const LEAGUES = [
     platformLeagueId: '44361109',
     accent: '#6c63ff',
     accent2: '#f2b84f',
-    mode: 'legacy',
-    nativePreview: true,       // Phase 2: neue Version zum Testen (Button „✨ Neue Version“)
-    dataBase: 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
+    mode: NBA_CUTOVER ? 'native' : 'legacy',
+    nativePreview: !NBA_CUTOVER, // bis zum Cutover: neue Version zum Testen (Button „✨ Neue Version“)
+    dataBase: NBA_CUTOVER ? 'leagues/tthq/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
     files: { teams: 'teams-rosters' },
     keepers: true,
     // ESPN-Team-ID → interne Team-ID (TEAMS in teams-rosters.js); 12 + 13 = Taxi Squads
     espn: { season: 2027, toTeam: { 1: 1, 2: 2, 4: 3, 7: 4, 5: 5, 11: 6, 8: 7, 10: 8, 6: 9, 14: 10, 3: 11, 9: 12 } },
     // Saison-Archiv (data/season-XXXX-YY.js: Endstand + Kader) — Liga-Historie
     seasonArchive: ['2021-22', '2022-23', '2023-24', '2024-25', '2025-26'],
+    // Endplatzierungen (nach Playoffs) je Saison wie oben, pro HEUTIGER Team-ID —
+    // aus dem alten Standings-Chart (js/standings.js), von Beyaz bestätigt
+    // (29.09.2026). Ordnet auch Vorgänger-Franchises zu (z. B. Seagulls ←
+    // Angry Ducks). Die Archivdateien liefern nur Bilanz/Kader der regulären
+    // Saison. null = in der Saison nicht dabei.
+    finalPlaces: {
+      1: [1, 3, 2, 1, 1],       // Fighting Illini
+      2: [9, 8, 6, 2, 2],       // Seagulls
+      3: [10, 11, 4, 4, 3],     // Neukoelln Hustlers
+      4: [5, 6, 8, 7, 8],       // Leaveland Cavaliers
+      5: [8, 7, 5, 3, 4],       // Anadolu Ballers
+      6: [7, 5, 12, 11, 5],     // 3-POINT MAFIA
+      7: [6, 10, 7, 6, 7],      // Always Money In The BananaStand
+      8: [4, 4, 3, 12, 6],      // Kawhi So Serious
+      9: [2, 2, 11, 8, 10],     // Cooking Show
+      10: [null, 9, 9, 9, 9],   // S-Town Grizzlies
+      11: [null, 12, 10, 10, 12], // Double Dribble Trouble
+      12: [3, 1, 1, 5, 11],     // Vancouver Curry-Wurst
+    },
     legacyStoragePrefix: 'tthq',
     legacyUrl: 'https://pizzaratops.github.io/Taco-Tuesday-HQ/',
     repo: 'Taco-Tuesday-HQ',
@@ -96,9 +125,9 @@ const LEAGUES = [
     platformLeagueId: '15679',
     accent: '#ff6584',
     accent2: '#6c63ff',
-    mode: 'legacy',
-    nativePreview: true,       // Phase 2: neue Version zum Testen
-    dataBase: 'https://pizzaratops.github.io/Citizens-of-Funkytown/data/',
+    mode: NBA_CUTOVER ? 'native' : 'legacy',
+    nativePreview: !NBA_CUTOVER,
+    dataBase: NBA_CUTOVER ? 'leagues/funkytown/data/' : 'https://pizzaratops.github.io/Citizens-of-Funkytown/data/',
     files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active' },
     countdowns: [{ label: '📋 Draft Day', iso: '2026-10-11T20:30:00+02:00' }],
     // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)

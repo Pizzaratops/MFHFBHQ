@@ -1,4 +1,7 @@
 // ============================================================
+// MFHFB HQ: auf reine Daten gekürzt (UI-Funktionen + globaler Escape-Handler
+// der alten Seite entfernt — die Prospect-/Big-Board-Seiten stecken jetzt in
+// tools/nba-labs.js).
 //  2026 DRAFT BOARD DATA (from Fanspo mock, 03/29/2026)
 // ============================================================
 const DRAFT_2026 = [
@@ -378,30 +381,7 @@ const DRAFT_2026 = [
 ];
 
 // position color helper — reuse same palette
-function posColor(pos) {
-  const p = pos.split('/')[0];
-  const dark = {PG:'rgba(108,99,255,0.25)','#a89bff':1, SG:'rgba(255,101,132,0.2)', SF:'rgba(76,175,129,0.2)', PF:'rgba(245,200,66,0.2)', C:'rgba(41,182,246,0.2)'};
-  const darkTxt = {PG:'#a89bff', SG:'#ff8fa3', SF:'#6dddaa', PF:'#f5c842', C:'#4fc3f7'};
-  const lightBg = {PG:'rgba(192,98,47,0.12)', SG:'rgba(180,60,100,0.1)', SF:'rgba(61,138,92,0.12)', PF:'rgba(180,130,30,0.12)', C:'rgba(50,130,200,0.1)'};
-  const lightTxt = {PG:'#a84520', SG:'#b43c64', SF:'#2d7a50', PF:'#9a6e10', C:'#2a7ab8'};
-  const isLight = document.body.classList.contains('light');
-  const bg = isLight ? (lightBg[p]||lightBg.SG) : (dark[p]||dark.SG);
-  const txt = isLight ? (lightTxt[p]||lightTxt.SG) : (darkTxt[p]||darkTxt.SG);
-  return {bg,txt};
-}
-
-function pickNumClass(n, tier) {
-  if(tier==='Tier 1')   return 'pick-lottery';
-  if(tier==='Tier 1.5') return 'pick-t15';
-  if(tier==='Tier 2')   return 'pick-mid';
-  if(tier==='Tier 3')   return 'pick-t3';
-  if(tier==='Tier 4')   return 'pick-t4';
-  if(tier==='Mystery')  return 'pick-mystery';
-  return 'pick-late';
-}
-
-let d26CurrentData = [...DRAFT_2026];
-
+// ---------- Tier-Reihenfolge + Farben (für tools/nba-labs.js) ----------
 const TIER_ORDER = ['Tier 1','Tier 1.5','Tier 2','Tier 3','Tier 4','Tier 5','Tier 6','Mystery'];
 
 const TIER_STYLE_DARK = {
@@ -424,134 +404,3 @@ const TIER_STYLE_LIGHT = {
   'Tier 6':   {dot:'#9a7560', label:'#7a5040'},
   'Mystery':  {dot:'#7b3fa8', label:'#5a1580'},
 };
-
-function renderDraft26(data) {
-  const grid = document.getElementById('draft26Grid');
-  const noR  = document.getElementById('draft26NoResults');
-  if(!data.length){ grid.innerHTML=''; noR.style.display='block'; return; }
-  noR.style.display='none';
-
-  const isFiltering = document.getElementById('draft26Search').value.trim() !== '';
-  const isLight = document.body.classList.contains('light');
-  const ts = isLight ? TIER_STYLE_LIGHT : TIER_STYLE_DARK;
-
-  let html = '<div class="draft26-grid">';
-  if(isFiltering) {
-    data.forEach(p => { html += draft26Card(p); });
-  } else {
-    TIER_ORDER.forEach(tier => {
-      const picks = data.filter(p => p.tier === tier);
-      if(!picks.length) return;
-      const s = ts[tier] || ts['Tier 6'];
-      html += `<div class="draft26-tier-label" style="color:${s.label};border-color:${s.dot}22;">
-        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${s.dot};margin-right:8px;vertical-align:middle;"></span>${tier}
-      </div>`;
-      picks.forEach(p => { html += draft26Card(p); });
-    });
-  }
-  html += '</div>';
-  grid.innerHTML = html;
-}
-
-function draft26Card(p) {
-  const c   = posColor(p.pos);
-  const idx = DRAFT_2026.indexOf(p);
-  const iid = 'intel_' + p.pick;
-  const fp  = p.fantasy ? p.fantasy.split(' \u00b7 ')[0] : '';
-  const statsLine = (p.stats && p.stats !== '\u2014')
-    ? '<div class="draft26-scout-preview" style="color:var(--muted);font-size:10px;margin-top:3px;">' + p.stats + '</div>' : '';
-  const fpLine = fp
-    ? '<div class="draft26-scout-preview" style="color:var(--accent);font-size:10px;margin-top:2px;font-weight:600;">' + fp + '</div>' : '';
-
-  const intelBar = (p.scouting || p.fantasy) ? (
-    '<div style="border-top:1px solid var(--border);padding:6px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:var(--surface2);" '
-    + 'onclick="toggleDraftIntel(\''+ iid +'\')" '
-    + 'onmouseenter="this.style.background=\'var(--accent-light)\'" '
-    + 'onmouseleave="this.style.background=\'var(--surface2)\'">'
-    + '<span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">&#128269; Scout Intel</span>'
-    + '<span id="' + iid + '_arrow" style="font-size:11px;color:var(--muted);transition:transform .2s;">&#9662;</span>'
-    + '</div>'
-    + '<div id="' + iid + '" style="display:none;padding:12px 16px;border-top:1px solid var(--border);background:var(--surface);">'
-    + (p.fantasy ? '<div style="background:var(--accent-light);border:1px solid rgba(108,99,255,.25);border-radius:10px;padding:10px 12px;margin-bottom:10px;"><div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">&#127942; Fantasy 9cat</div><div style="font-size:12px;font-weight:600;color:var(--accent);line-height:1.6;">' + p.fantasy + '</div></div>' : '')
-    + (p.scouting ? '<div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Scouting Report</div><div style="font-size:13px;line-height:1.7;color:var(--text);">' + p.scouting + '</div>' : '')
-    + '</div>'
-  ) : '';
-
-  return '<div class="draft26-card-wrap">'
-    + '<div class="draft26-card" style="flex-direction:column;align-items:stretch;padding:0;overflow:hidden;">'
-    + '<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;" onclick="openScoutModal(' + idx + ')" '
-    + 'onmouseenter="this.parentElement.style.borderColor=\'var(--accent)\';this.parentElement.style.transform=\'translateY(-2px)\';this.parentElement.style.boxShadow=\'0 6px 20px rgba(108,99,255,.15)\'" '
-    + 'onmouseleave="this.parentElement.style.borderColor=\'var(--border)\';this.parentElement.style.transform=\'\';this.parentElement.style.boxShadow=\'\';">'
-    + '<div class="draft26-pick-num ' + pickNumClass(p.pick, p.tier) + '">' + p.pick + '</div>'
-    + '<div class="draft26-info">'
-      + '<div class="draft26-name">' + p.name + '</div>'
-      + '<div class="draft26-meta">'
-        + '<span class="draft26-pos" style="background:' + c.bg + ';color:' + c.txt + ';font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px;">' + p.pos + '</span>'
-        + (p.school ? '<span class="draft26-school">' + p.school + '</span>' : '')
-      + '</div>'
-      + statsLine
-      + fpLine
-    + '</div>'
-    + '<div class="draft26-open-hint">&#128269; &#246;ffnen</div>'
-    + '</div>'
-    + intelBar
-    + '</div></div>';
-}
-
-function toggleDraftIntel(id) {
-  const panel = document.getElementById(id);
-  const arrow = document.getElementById(id + '_arrow');
-  if (!panel) return;
-  const open = panel.style.display === 'none';
-  panel.style.display = open ? 'block' : 'none';
-  if (arrow) arrow.style.transform = open ? 'rotate(180deg)' : '';
-}
-
-function openScoutModal(idx) {
-  const p = DRAFT_2026[idx];
-  const c = posColor(p.pos);
-  const isLight = document.body.classList.contains('light');
-  const ts = isLight ? TIER_STYLE_LIGHT : TIER_STYLE_DARK;
-  const s = ts[p.tier] || ts['Tier 6'];
-  document.getElementById('modalPick').textContent = `Pick #${p.pick} · ${p.tier}`;
-  document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalMeta').innerHTML = `
-    <span class="draft26-pos" style="background:${c.bg};color:${c.txt};font-size:12px;font-weight:800;padding:3px 9px;border-radius:6px;">${p.pos}</span>
-    ${p.school ? `<span class="scout-modal-tier">${p.school}</span>` : ''}
-    <span class="scout-modal-tier" style="color:${s.label};border-color:${s.dot}44;">${p.tier}</span>
-  `;
-  const statsHtml = p.stats && p.stats !== '—'
-    ? `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px;"><div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">📊 Statistiken (Per-36 / Col.)</div><div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.6;">${p.stats}</div></div>`
-    : '';
-  const fantasyHtml = p.fantasy
-    ? `<div style="background:${isLight ? 'rgba(192,98,47,0.07)' : 'rgba(108,99,255,0.08)'};border:1px solid ${isLight ? 'rgba(192,98,47,0.25)' : 'rgba(108,99,255,0.25)'};border-radius:10px;padding:10px 14px;margin-bottom:14px;"><div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">🏆 Fantasy 9cat Profil</div><div style="font-size:12px;font-weight:600;color:var(--accent);line-height:1.6;">${p.fantasy}</div></div>`
-    : '';
-  document.getElementById('modalScouting').innerHTML = `${statsHtml}${fantasyHtml}<div style="font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">🔍 Scouting Report</div><div style="font-size:14px;line-height:1.7;color:var(--text);">${p.scouting || 'Kein Scouting Report verfügbar.'}</div>`;
-  document.getElementById('scoutModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeScoutModal(e) {
-  if (e && e.target !== document.getElementById('scoutModal')) return;
-  document.getElementById('scoutModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { document.getElementById('scoutModal').classList.remove('open'); document.body.style.overflow = ''; }
-});
-
-function filterDraft26() {
-  const q = document.getElementById('draft26Search').value.toLowerCase().trim();
-  d26CurrentData = q
-    ? DRAFT_2026.filter(p =>
-        p.name.toLowerCase().includes(q) ||
-        p.pos.toLowerCase().includes(q) ||
-        p.school.toLowerCase().includes(q))
-    : [...DRAFT_2026];
-  renderDraft26(d26CurrentData);
-}
-
-function showDraft26() {
-  renderDraft26(d26CurrentData);
-  navigate('draft26Page');
-}

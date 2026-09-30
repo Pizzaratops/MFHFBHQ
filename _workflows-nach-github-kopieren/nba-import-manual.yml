@@ -1,0 +1,80 @@
+name: NBA Umstelltag — handgepflegte Dateien aus alten Repos holen (manuell)
+
+# Einmal direkt vor dem NBA-Cutover starten (NBA_CUTOVER in js/leagues.js).
+# Holt die von Hand gepflegten Dateien aus Taco-Tuesday-HQ und
+# Citizens-of-Funkytown in den Hub, damit nichts verloren geht, was seit dem
+# 29.09. dort noch geändert wurde. Automatisch gesyncte Dateien werden NICHT
+# angefasst (die kommen aus nba-sync). draft2026.js wird bewusst nicht
+# übernommen (im Hub auf reine Daten gekürzt; nur DRAFT_2026 wird gemischt).
+#
+# Öffentliche Repos → keine Secrets nötig.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Nur anzeigen, was sich ändern würde (nichts committen)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-data
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Alte Repos holen
+        run: |
+          git clone --depth 1 https://github.com/Pizzaratops/Taco-Tuesday-HQ /tmp/tthq
+          git clone --depth 1 https://github.com/Pizzaratops/Citizens-of-Funkytown /tmp/ftown
+      - name: Dateien kopieren
+        run: |
+          set -e
+          copy() { if [ -f "$1" ]; then mkdir -p "$(dirname "$2")"; cp "$1" "$2"; echo "✓ $2"; else echo "– fehlt: $1"; fi; }
+          # TTHQ (liga-eigen, von Hand gepflegt)
+          for f in rankings.js hashtag.js projections-baseline.js projections-consensus.js picks.js trade-history.js teams-rosters.js dynasty-rolling.js; do
+            copy /tmp/tthq/data/$f leagues/tthq/data/$f
+          done
+          copy /tmp/tthq/scripts/data/pick-trades-manual.txt leagues/tthq/scripts/data/pick-trades-manual.txt
+          copy /tmp/tthq/scripts/data/consensus-keep-list.txt leagues/tthq/scripts/data/consensus-keep-list.txt
+          # Funkytown
+          for f in league-dues.js players.js projections-baseline.js projections-consensus.js teams-rosters.js; do
+            copy /tmp/ftown/data/$f leagues/funkytown/data/$f
+          done
+          copy /tmp/ftown/scripts/data/consensus-keep-list.txt leagues/funkytown/scripts/data/consensus-keep-list.txt
+          # Sportweit
+          copy /tmp/tthq/data/aliases.js sports/nba/data/aliases.js
+          copy /tmp/tthq/data/draft2027.js sports/nba/data/draft2027.js
+          # draft2026.js: nur das DRAFT_2026-Array übernehmen, Hub-Datei bleibt ohne UI-Code
+          node -e "
+            const fs=require('fs');
+            const src=fs.readFileSync('/tmp/tthq/data/draft2026.js','utf8');
+            const m=src.match(/const DRAFT_2026 = \[[\s\S]*?\n\];/);
+            if(!m){console.log('– DRAFT_2026 nicht gefunden');process.exit(0);}
+            const p='sports/nba/data/draft2026.js'; const hub=fs.readFileSync(p,'utf8');
+            fs.writeFileSync(p, hub.replace(/const DRAFT_2026 = \[[\s\S]*?\n\];/, m[0]));
+            console.log('✓ sports/nba/data/draft2026.js (DRAFT_2026)');"
+      - name: Änderungen
+        run: git status --short && git diff --stat
+      - name: Commit + Push
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "mfhfb-hq-bot@users.noreply.github.com"
+          git add leagues/tthq leagues/funkytown sports/nba/data
+          if git diff --cached --quiet; then echo "Keine Änderungen."; exit 0; fi
+          git commit -m "chore: nba cutover — handgepflegte Dateien aus alten Repos"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; sleep $((RANDOM % 8 + 3))
+          done
+          exit 1

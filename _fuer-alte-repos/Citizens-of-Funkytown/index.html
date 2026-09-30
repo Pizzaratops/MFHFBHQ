@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+// ============================================================
+//  MFHFB HQ — Weiterleitung (NBA-Cutover)
+// ============================================================
+//  Diese Seite ist in den Hub umgezogen: https://pizzaratops.github.io/MFHFBHQ/#/funkytown
+//  Alte Links (#livescores, #matchup, #trade, …) landen auf der passenden Hub-Seite.
+//  Ausnahmen (bleiben hier):
+//    - ?legacy=1              (alte Seite bewusst öffnen; gilt für die ganze Sitzung)
+//    - Einbettung im iframe   (Hub-Legacy-Ansicht)
+// ============================================================
+(function () {
+  var hash = location.hash.slice(1);
+  var stay = window.self !== window.top;
+  try {
+    if (/(^|[?&])legacy=1/.test(location.search)) sessionStorage.setItem('cof-legacy', '1');
+    if (sessionStorage.getItem('cof-legacy') === '1') stay = true;
+  } catch (e) { if (/(^|[?&])legacy=1/.test(location.search)) stay = true; }
+  if (stay) return;
+  var MAP = {"home": "", "tabellenverlauf": "stverlauf", "historie": "standings", "analytics": "analytics", "draftboard": "draftresults", "beitraege": "nbadues", "regeln": "", "rankings": "players", "projections": "projections", "spielerverlauf": "rolling", "livescores": "livescores", "catweb": "catweb", "matchup": "planner", "waiver": "waiver", "team": "teams", "nbateam": "nbateams"};
+  var sub = MAP[hash] != null ? MAP[hash] : '';
+  location.replace('https://pizzaratops.github.io/MFHFBHQ/#/funkytown' + (sub ? '/' + sub : ''));
+})();
+</script>
+  <title>Citizens of Funkytown 🕺</title>
+  <link rel="manifest" href="manifest.json?v=7">
+  <!-- iOS Safari nutzt manifest.json kaum -- fuer "Zum Home-Bildschirm" (Teilen-Menü,
+       immer vorhanden, aber ohne diese Tags nur ein Screenshot-Lesezeichen statt
+       eines echten App-Icons im Vollbild) braucht es diese Apple-eigenen Tags. -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Citizens of Funkytown">
+  <link rel="apple-touch-icon" href="icon-192.png?v=2">
+  <meta name="theme-color" content="#fff5ee">
+  <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/projections.css?v=1">
+  <link rel="stylesheet" href="css/flow.css?v=1">
+  <link rel="stylesheet" href="css/countdown.css?v=1">
+  <link rel="stylesheet" href="css/league.css?v=3">
+  <link rel="stylesheet" href="css/catweb.css?v=1">
+  <link rel="stylesheet" href="css/matchup.css?v=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+  <button class="back-btn" id="backBtn" onclick="goHome()">← Back</button>
+  <div class="logo">🕺 Citizens of <span>Funkytown</span></div>
+  <div class="header-right">
+    <!-- App-Installieren-Button (nur Android/Chrome/Edge -- iOS hat keinen
+         programmatischen Install-Trigger, dort bleibt nur "Teilen > Zum
+         Home-Bildschirm", siehe apple-mobile-web-app-* Tags im <head>).
+         Standardmaessig versteckt, erscheint nur wenn der Browser das
+         beforeinstallprompt-Event feuert (js/init.js). -->
+    <button id="pwaInstallBtn" onclick="pwaInstallApp()" style="display:none;background:rgba(108,99,255,0.12);border:1.5px solid rgba(108,99,255,0.35);color:var(--accent);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s;white-space:nowrap;margin-right:6px;">⬇️ App installieren</button>
+    <!-- iOS-Pendant: beforeinstallprompt feuert dort nie, deshalb eigener
+         Button mit den 3 manuellen Schritten (Teilen > Zum Home-Bildschirm).
+         Sichtbarkeit wird rein per JS gesteuert (pwaShowIosHint in init.js). -->
+    <button id="pwaIosHintBtn" onclick="pwaShowIosSteps()" style="display:none;background:rgba(108,99,255,0.12);border:1.5px solid rgba(108,99,255,0.35);color:var(--accent);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s;white-space:nowrap;margin-right:6px;">📲 Zum Home-Bildschirm</button>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">&#9728;&#65039; Light</button>
+  </div>
+</div>
+
+<!-- SUB-NAV BAR -->
+<div class="subnav" id="subNav">
+
+  <!-- Navigation, neu geordnet am 2026-09-23:
+       Liga    = alles rund um Teams und Tabelle
+       Spieler = alles rund um einzelne NBA-Spieler
+       Dazu die zwei Werkzeuge fuer den Wochenalltag direkt sichtbar. -->
+  <!-- Desktop: grouped dropdowns, one row -->
+  <div class="subnav-desktop">
+    <div class="subnav-inner">
+
+      <button class="snav-single" data-page="home" onclick="goHome()">🏠 Home</button>
+      <div class="snav-divider"></div>
+
+      <div class="snav-group">
+        <button class="snav-group-btn" id="snavLiga">🏆 Liga <span class="snav-arrow">▾</span></button>
+        <div class="snav-dropdown">
+          <div class="snav-dropdown-label">Tabelle</div>
+          <button class="snav-dropdown-item" data-page="tabellenverlauf" onclick="showRollingStandings()">📈 Tabellenverlauf</button>
+          <button class="snav-dropdown-item" data-page="historie" onclick="showStandings()">🏛️ Historie</button>
+          <button class="snav-dropdown-item" data-page="analytics" onclick="showAnalytics()">📊 Team Analytics</button>
+          <div class="snav-dropdown-label">Organisation</div>
+          <button class="snav-dropdown-item" data-page="draftboard" onclick="showDraftResults()">📋 Draft Board</button>
+          <button class="snav-dropdown-item" data-page="beitraege" onclick="showDues()">💰 Beiträge</button>
+          <button class="snav-dropdown-item" data-page="regeln" onclick="showRules()">📜 Regeln</button>
+        </div>
+      </div>
+
+      <div class="snav-group">
+        <button class="snav-group-btn" id="snavSpieler">🧍 Spieler <span class="snav-arrow">▾</span></button>
+        <div class="snav-dropdown">
+          <div class="snav-dropdown-label">Saison 2026/27</div>
+          <button class="snav-dropdown-item" data-page="rankings" onclick="showPlayerRankings()">🏅 Rankings</button>
+          <button class="snav-dropdown-item" data-page="projections" onclick="showPlayerProjections()">🔮 Projections</button>
+          <div class="snav-dropdown-label">Form &amp; Profil</div>
+          <button class="snav-dropdown-item" data-page="livescores" onclick="showLiveScores()">🔴 Live Scores</button>
+          <button class="snav-dropdown-item" data-page="spielerverlauf" onclick="showRollingRankings()">📉 Spielerverlauf</button>
+          <button class="snav-dropdown-item" data-page="catweb" onclick="showPlayerShape()">🕸️ Cat Web</button>
+        </div>
+      </div>
+
+      <div class="snav-divider"></div>
+      <button class="snav-single" data-page="matchup" onclick="showMatchupPlanner()">⚔️ Matchup Planer</button>
+      <button class="snav-single" data-page="waiver" onclick="showBestAvail()">🆓 Waiver</button>
+    </div>
+  </div>
+
+  <!-- Mobile: hamburger -->
+  <div class="subnav-mobile">
+    <button class="subnav-hamburger" onclick="toggleMobileNav()">
+      <span id="mobileNavLabel">🕺 Menü</span>
+      <span id="mobileNavArrow" style="transition:transform 0.2s;font-size:11px;">▾</span>
+    </button>
+    <div class="subnav-mobile-dropdown" id="mobileNavDropdown">
+      <div class="subnav-mobile-group">
+        <div class="subnav-mobile-label">Diese Woche</div>
+        <button class="subnav-mobile-btn" data-page="home" onclick="goHome();closeMobileNav()">🏠 Home</button>
+        <button class="subnav-mobile-btn" data-page="matchup" onclick="showMatchupPlanner();closeMobileNav()">⚔️ Matchup Planer</button>
+        <button class="subnav-mobile-btn" data-page="waiver" onclick="showBestAvail();closeMobileNav()">🆓 Waiver</button>
+      </div>
+      <div class="subnav-mobile-group">
+        <div class="subnav-mobile-label">Liga</div>
+        <button class="subnav-mobile-btn" data-page="tabellenverlauf" onclick="showRollingStandings();closeMobileNav()">📈 Tabellenverlauf</button>
+        <button class="subnav-mobile-btn" data-page="historie" onclick="showStandings();closeMobileNav()">🏛️ Historie</button>
+        <button class="subnav-mobile-btn" data-page="analytics" onclick="showAnalytics();closeMobileNav()">📊 Team Analytics</button>
+        <button class="subnav-mobile-btn" data-page="draftboard" onclick="showDraftResults();closeMobileNav()">📋 Draft Board</button>
+        <button class="subnav-mobile-btn" data-page="beitraege" onclick="showDues();closeMobileNav()">💰 Beiträge</button>
+        <button class="subnav-mobile-btn" data-page="regeln" onclick="showRules();closeMobileNav()">📜 Regeln</button>
+      </div>
+      <div class="subnav-mobile-group">
+        <div class="subnav-mobile-label">Spieler</div>
+        <button class="subnav-mobile-btn" data-page="rankings" onclick="showPlayerRankings();closeMobileNav()">🏅 Rankings 2026/27</button>
+        <button class="subnav-mobile-btn" data-page="projections" onclick="showPlayerProjections();closeMobileNav()">🔮 Projections 2026/27</button>
+        <button class="subnav-mobile-btn" data-page="livescores" onclick="showLiveScores();closeMobileNav()">🔴 Live Scores</button>
+        <button class="subnav-mobile-btn" data-page="spielerverlauf" onclick="showRollingRankings();closeMobileNav()">📉 Spielerverlauf</button>
+        <button class="subnav-mobile-btn" data-page="catweb" onclick="showPlayerShape();closeMobileNav()">🕸️ Cat Web</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- HOME -->
+<div class="page active page-wide" id="homePage">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+      <div class="home-title">Citizens of Funkytown</div>
+      <!-- Saison-Dropdown: baut sich aus SEASON_REGISTRY in js/navigation.js,
+           neue archivierte Saison = neuer Registry-Eintrag + Datendatei,
+           kein weiterer Code hier noetig. -->
+      <div id="seasonPicker" style="display:none;"></div>
+    </div>
+    <!-- DRAFT COUNTDOWN. Logik: js/draft-countdown.js (Datum dort in
+         DRAFT_START), Styling: css/countdown.css. Blendet sich nach
+         dem Draft von selbst aus. -->
+    <section class="dc-card" id="draftCountdown" hidden aria-label="Countdown bis zum Draft">
+      <div class="dc-info">
+        <div class="dc-eyebrow">Draft Day 2026/27</div>
+        <div class="dc-title">Countdown zum Draft</div>
+        <div class="dc-date"></div>
+      </div>
+      <div class="dc-clock" role="timer" aria-live="off">
+        <div class="dc-unit"><span class="dc-num" data-unit="d">–</span><span class="dc-label" data-label="d">Tage</span></div>
+        <div class="dc-unit"><span class="dc-num" data-unit="h">–</span><span class="dc-label">Std</span></div>
+        <div class="dc-unit"><span class="dc-num" data-unit="m">–</span><span class="dc-label">Min</span></div>
+        <div class="dc-unit"><span class="dc-num" data-unit="s">–</span><span class="dc-label">Sek</span></div>
+      </div>
+    </section>
+    <div class="home-sub">Klick auf Dein Team für Deinen Kader</div>
+    <div class="team-grid" id="teamGrid"></div>
+
+    <!-- Datenfluss-Visualisierung. Markup ist bewusst leer, der Inhalt
+         steht als Datenstruktur in js/flow-diagram.js (FLOW_STAGES) und
+         wird von initFlowDiagram() aus js/init.js gerendert. -->
+    <div class="flow-section" id="flowSection">
+      <div class="flow-head">
+        <div class="flow-eyebrow">Unter der Haube</div>
+        <div class="flow-title">Wo die Zahlen herkommen</div>
+        <div class="flow-sub">
+          Jede Zahl auf dieser Seite läuft denselben Weg: von den ESPN Boxscores über die tägliche
+          Aggregation und die Z-Score Normierung bis in die Rankings, Projections und Werkzeuge.
+          Von Hand kommt nur, was vor der Saison einmal festgelegt wird: die Preseason Baseline und der Consensus der drei Projection-Quellen.
+        </div>
+        <div class="flow-toggle">
+          <button class="flow-toggle-btn active" data-mode="compact"   onclick="flowSetMode('compact')">Kompakt</button>
+          <button class="flow-toggle-btn"        data-mode="detailed" onclick="flowSetMode('detailed')">Ausführlich</button>
+          <button class="flow-toggle-btn"        data-mode="flowchart" onclick="flowSetMode('flowchart')">Flow-Chart</button>
+        </div>
+      </div>
+
+      <div id="flowDiagram"></div>
+      <div id="flowChartDiagram" style="display:none;"></div>
+
+      <div class="flow-foot">
+        <strong>Warum Z-Scores?</strong> In einer 9-Cat Liga zählt jede Kategorie gleich viel, aber die Rohzahlen
+        sind völlig unterschiedlich groß. Zehn Punkte mehr sind Alltag, ein Block mehr pro Spiel ist eine
+        Ausnahmeerscheinung. Der Z-Score rechnet jede Kategorie auf dieselbe Skala um, indem er misst, wie weit
+        ein Spieler vom Ligadurchschnitt entfernt liegt. Erst dadurch lässt sich ein Center mit Blocks
+        überhaupt sinnvoll gegen einen Guard mit Dreiern stellen.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM PAGE -->
+<div class="page" id="teamPage">
+  <div class="team-page-header" id="teamHeader"></div>
+  <div style="display:flex;gap:8px;align-items:center;margin-bottom:24px;">
+    <div class="tabs" style="flex:1;margin-bottom:0;">
+      <div class="tab active">🏀 Roster</div>
+    </div>
+  </div>
+  <div id="tabContent"></div>
+</div>
+
+<!-- DRAFT RESULTS -->
+<!-- Wer hat wen gepickt, fuer bereits abgeschlossene Drafts. Anders als
+     Full Draft Board (Pick-BESITZ ueber alle Jahre) zeigt diese Seite
+     Pick-INHALT fuer EINEN konkreten, vergangenen Draft.
+     Daten: data/draft-results-<saison>.js, geholt von
+     scripts/fetch-draft-results-espn.js (manuell ausgeloest, kein
+     taeglicher Job -- ein abgeschlossener Draft aendert sich nicht mehr).
+     Logik: js/navigation.js (showDraftResults). -->
+<div class="page page-wide" id="draftResultsPage">
+  <h2 style="margin-bottom:6px;">📋 Draft Board</h2>
+  <p id="draftResultsSub" style="color:var(--muted);font-size:13px;margin-bottom:20px;">Wer hat wen gepickt</p>
+  <div id="draftResultsContent"></div>
+</div>
+
+<!-- MATCHUP PLANER -->
+<!-- Logik: js/matchup-planner.js · Styling: css/matchup.css
+     Der ESPN-Knopf holt zwei Dinge: den Liga-Spielplan (welches Team
+     spielt in Woche N gegen welches, und welche Spieltage zu Woche N
+     gehoeren) und den NBA-Spielplan aller Pro-Teams. Daraus baut
+     js/matchup-planner.js das anklickbare Wochenraster. -->
+<div class="page page-wide" id="matchupPage">
+  <div class="mp-eyebrow">Head to Head</div>
+  <h2 style="margin-bottom:6px;">⚔️ Matchup Planer</h2>
+  <div class="mp-sub">
+    Stell Deinen Kader dem Gegner gegenüber und sieh, wie das Duell über alle neun Kategorien ausgeht.
+    Grundlage sind die real angesetzten NBA Spiele der Woche, jedes einzeln an- und abwählbar.
+  </div>
+
+  <div class="mp-panel">
+    <div class="mp-panel-title">Teams</div>
+    <div class="mp-teams">
+      <div class="mp-field">
+        <div class="mp-label">Dein Team</div>
+        <select class="mp-select" id="mpTeamA" onchange="mpSetTeam('a')"></select>
+      </div>
+      <div class="mp-vs">vs</div>
+      <div class="mp-field">
+        <div class="mp-label">Gegner</div>
+        <select class="mp-select" id="mpTeamB" onchange="mpSetTeam('b')"></select>
+      </div>
+    </div>
+
+    <div class="mp-row" style="margin-top:16px;">
+      <button class="mp-btn mp-btn-primary" id="mpSchedBtn" onclick="mpFetchSchedule()">↻ ESPN Spielplan laden</button>
+      <select class="mp-select" id="mpWeekSelect" style="width:auto;min-width:250px;" onchange="mpPickWeek()" disabled>
+        <option value="">— Spielplan noch nicht geladen —</option>
+      </select>
+    </div>
+    <div class="mp-status" id="mpSchedStatus" style="margin-top:9px;">
+      Holt den Liga-Spielplan und den NBA Spielplan. Danach lässt sich jede Woche der Saison durchrechnen, nicht nur die laufende.
+    </div>
+  </div>
+
+  <div class="mp-panel">
+    <div class="mp-panel-title">Berechnungsgrundlage</div>
+    <div class="mp-basis">
+      <button class="mp-basis-btn" data-pct="0"   onclick="mpSetBasis(0)">Nur Rankings</button>
+      <button class="mp-basis-btn" data-pct="25"  onclick="mpSetBasis(25)">75 / 25</button>
+      <button class="mp-basis-btn" data-pct="50"  onclick="mpSetBasis(50)">50 / 50</button>
+      <button class="mp-basis-btn" data-pct="75"  onclick="mpSetBasis(75)">25 / 75</button>
+      <button class="mp-basis-btn" data-pct="100" onclick="mpSetBasis(100)">Nur Projections</button>
+    </div>
+    <div class="mp-hint">
+      Rankings sind tatsächlich gespielte Stats, Projections sind die Erwartung aus Baseline und Live Blend.
+      Gemischt wird auf Ebene der Rohwerte, nicht der Ränge.
+    </div>
+
+    <div class="mp-opts">
+      <div>
+        <div class="mp-label">Quelle für Rankings</div>
+        <select class="mp-select" id="mpRankSource" onchange="mpSetRankSource(this.value)"></select>
+        <div class="mp-hint">
+          Die Prozentzahl sagt, wie viele der gerosterten Spieler in dieser Quelle überhaupt vorkommen.
+          In der Summer League tauchen kaum etablierte Spieler auf, deshalb sind die Preseason-Stats in der Off Season meist die brauchbarere Grundlage.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mpResult"></div>
+</div>
+
+<!-- STANDINGS HISTORY. Logik: js/standings.js, Daten: data/season-history.js -->
+<div class="page page-wide" id="standingsPage">
+  <h2 style="margin-bottom:6px;">🏛️ Historie</h2>
+  <p class="lg-sub">Endplatzierung jeder Funkytown-Saison, direkt von ESPN · Klick auf ein Team in der Legende blendet es aus</p>
+  <div id="standingsHistoryContent"></div>
+</div>
+
+<!-- TEAM ROLLING RANKINGS. Logik: js/standings.js, Daten: data/season-matchups.js -->
+<div class="page page-wide" id="rollingStandingsPage">
+  <h2 style="margin-bottom:6px;">📈 Tabellenverlauf</h2>
+  <p class="lg-sub">Tabellenplatz nach jeder Woche, Verlauf aller Teams und Wochen-Tabelle</p>
+  <div id="rollingStandingsContent"></div>
+</div>
+
+<!-- LIGA-BEITRÄGE. Logik: js/league-dues.js, Daten: data/league-dues.js -->
+<div class="page page-wide" id="duesPage">
+  <h2 style="margin-bottom:6px;">💰 Beiträge</h2>
+  <p class="lg-sub">Wer hat für welche Saison bezahlt</p>
+  <div id="duesContent"></div>
+</div>
+
+<!-- CAT WEB. Logik: js/player-shape.js, Styling: css/catweb.css (aus TTHQ) -->
+<div class="page page-wide" id="playerShapePage">
+  <h2 style="margin-bottom:6px;">🕸️ Cat Web</h2>
+  <p class="lg-sub">9-Cat-Perzentil-Radar für jeden Spieler, mit Shape Match und Vergleich</p>
+
+  <div class="panel ps-controls" id="psControlsPanel">
+    <button type="button" class="ps-controls-toggle" id="psControlsToggle" onclick="psToggleControls()" aria-expanded="true" aria-controls="psControlsBody">
+      <span id="psControlsToggleLabel">Auswahl ausblenden</span>
+      <span class="ps-controls-toggle-icon" id="psControlsToggleIcon">▾</span>
+    </button>
+    <div class="ps-controls-body" id="psControlsBody">
+      <div class="ps-field">
+        <label for="psSeasonSelect">Saison</label>
+        <select id="psSeasonSelect"></select>
+      </div>
+      <div class="ps-field">
+        <label for="psTeamFilter">Team-Filter</label>
+        <select id="psTeamFilter"></select>
+      </div>
+      <div class="ps-field">
+        <label for="psExperienceFilter">Erfahrung</label>
+        <select id="psExperienceFilter"></select>
+      </div>
+      <div class="ps-field">
+        <label for="psSearch">Suche</label>
+        <input type="text" id="psSearch" placeholder="Name, Team, Position…" autocomplete="off"/>
+      </div>
+      <div class="ps-field ps-field-grow">
+        <label for="psPlayerSelect">Spieler</label>
+        <select id="psPlayerSelect"></select>
+      </div>
+      <div class="ps-field ps-field-auto" title="Wirkt auf die angezeigten Gesamtränge. Der Radar selbst ist immer perzentil-basiert.">
+        <label>Rang-Bewertung</label>
+        <div data-score-mode-host></div>
+      </div>
+      <div class="ps-field ps-field-auto">
+        <label>Ansicht</label>
+        <div class="ps-seg" id="psModeSeg" role="group" aria-label="Ansicht wählen">
+          <button type="button" data-mode="solo" aria-pressed="true" onclick="psSetMode('solo')">Solo Shape</button>
+          <button type="button" data-mode="match" aria-pressed="false" onclick="psSetMode('match')">Shape Match</button>
+          <button type="button" data-mode="compare" aria-pressed="false" onclick="psSetMode('compare')">Vergleich</button>
+        </div>
+      </div>
+      <div class="ps-field ps-field-auto">
+        <label for="psSamePosOnly" title="Gilt für Shape Match &amp; Historic Match. Spieler mit mehreren eligiblen Positionen (zB PG/SG/SF/PF) zählen bei jeder ihrer Positionen als Treffer. Findet sich niemand, wird automatisch wieder über alle Positionen gesucht.">Nur gleiche Position</label>
+        <label class="ps-checkbox-wrap">
+          <input type="checkbox" id="psSamePosOnly" onchange="psToggleSamePosition(this.checked)">
+        </label>
+      </div>
+      <button class="ps-export-btn" id="psExportBtn" onclick="psDownloadShape()">📸 Als Bild exportieren</button>
+    </div>
+  </div>
+
+  <div class="panel" id="psCard"></div>
+
+  <footer id="psPoolNote" class="lg-foot"></footer>
+</div>
+
+
+<!-- PLAYER RANKINGS -->
+<div class="page page-wide" id="playerRankingsPage">
+  <h2 style="margin-bottom:6px;">🏅 Rankings 2026/27</h2>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">9-Cat Rankings · automatisch aus Live Score Stats · Bewertung umschaltbar: Z roh, Z ±3 (gekappt) oder Perzentil</p>
+
+  <div class="ls-subtabs">
+    <div class="ls-subtab" id="prSubtabOffSeason" onclick="prSwitchTab('offseason')">☀️ Off Season</div>
+    <div class="ls-subtab active" id="prSubtabRegSeason" onclick="prSwitchTab('regseason')">🏆 Reg Season</div>
+  </div>
+
+  <div class="score-mode-row" data-score-mode-host></div>
+
+  <div class="rankings-search">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="prSearch" placeholder="Search player or team…" oninput="prFilter()"/>
+  </div>
+
+  <div id="prMeta" style="color:var(--muted);font-size:12px;margin-bottom:14px;"></div>
+  <div id="prContent"></div>
+</div>
+
+<!-- PLAYER PROJECTIONS — bewusst leer. War bis 2026-07-31 der Iframe-Host fuer
+     den MFHFBs-Toolkit, der jetzt unter "Live Projections (Test)" laeuft
+     (siehe unten). Kuenftig vorgesehen fuer die native App-Baseline+Blend-
+     Berechnung (scripts/build-live-projections.js + data/live-projections.js
+     existieren bereits, sind aber unangebunden) — siehe README
+     "Season-Start-Plan: Projections-Flow". -->
+<!-- Consensus Projections: Mittelwert aus Beyaz' eigenen Projections und
+     denen von Josh Lloyd (Basketball Monster). Erzeugt von
+     scripts/build-consensus-projections.js -> data/projections-consensus.js.
+     Daten werden erst beim ersten Aufruf nachgeladen (~360 KB), siehe
+     js/consensus-projections.js. -->
+<div class="page page-wide" id="playerProjectionsPage">
+  <h2 style="margin-bottom:6px;">🔮 Projections 2026/27</h2>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:4px;">
+    Mittelwert aus <b>Beyaz' eigenen Projections</b> und <b>Josh Lloyd</b> (Basketball Monster, August-Stand).
+    Zählstats werden gemittelt, FG%/FT% über die Wurfversuche gewichtet zurückgerechnet.
+  </p>
+  <div class="score-mode-row" data-score-mode-host></div>
+  <p id="cpInfo" style="color:var(--muted);font-size:12px;font-family:'DM Mono',monospace;margin-bottom:16px;"></p>
+
+  <div class="cp-controls">
+    <input type="text" id="cpSearch" class="cp-input" placeholder="Spieler, Team oder Position suchen…" oninput="cpSetQuery(this.value)">
+    <select class="cp-select" id="cpPos" onchange="cpSetPos(this.value)" title="Nach Position filtern">
+      <option value="">Alle Positionen</option>
+      <option value="PG">PG</option><option value="SG">SG</option><option value="G">G</option>
+      <option value="SF">SF</option><option value="PF">PF</option><option value="F">F</option>
+      <option value="C">C</option>
+    </select>
+    <select class="cp-select" id="cpPool" onchange="cpSetPool(this.value)" title="Vergleichsgruppe für Z-Score bzw. Perzentil">
+      <option value="100">Pool: Top 100</option>
+      <option value="150">Pool: Top 150</option>
+      <option value="200">Pool: Top 200</option>
+      <option value="250">Pool: Top 250</option>
+      <option value="300">Pool: Top 300</option>
+      <option value="350">Pool: Top 350</option>
+      <option value="400">Pool: Top 400</option>
+      <option value="all">Pool: alle Spieler</option>
+    </select>
+    <select class="cp-select" id="cpSource" onchange="cpSetSource(this.value)" title="Nach Datengrundlage filtern">
+      <option value="twoplus">Mind. 2 von 3 Quellen (Standard)</option>
+      <option value="">Alle Spieler</option>
+      <option value="three">Nur voller Konsens (alle 3 Quellen)</option>
+      <option value="two">Nur exakt 2 von 3 Quellen</option>
+      <option value="one">Nur 1 Quelle</option>
+      <option value="warn">Nur auffällige Werte</option>
+    </select>
+    <button class="cp-btn" onclick="cpTogglePanel('cpWeightPanel')">⚖️ Gewichtung</button>
+    <button class="cp-btn" onclick="cpTogglePanel('cpFilterPanel')">🔎 Stat-Filter</button>
+    <button class="cp-btn" onclick="cpExportCsv()" title="Aktuell angezeigte Spieler als CSV exportieren">⬇️ CSV</button>
+  </div>
+
+  <!-- Kategorie-Gewichte als Eingabefelder (Standard 1). Wirken direkt
+       auf den Z-Score, siehe cpComputeZ in js/consensus-projections.js. -->
+  <div class="cp-panel" id="cpWeightPanel">
+    <div class="cp-panel-head">
+      <span>Kategorie-Gewichtung · Standard nach Konsistenz gewichtet (Josh Lloyd)</span>
+      <button class="cp-btn cp-btn-sm" onclick="cpResetWeights()">↺ Zurücksetzen</button>
+    </div>
+    <div class="cp-wgrid" id="cpWeights"></div>
+    <div class="cp-panel-note">
+      0 blendet eine Kategorie komplett aus (Punt-Strategie), 2 verdoppelt ihr Gewicht.
+      Wirkt sofort auf Z-Score, Sortierung und die Rangdifferenz.
+    </div>
+  </div>
+
+  <!-- Stat-Filter nach Barttorvik-Art: Min/Max je Kategorie. Filtert die
+       Anzeige, verändert aber NICHT den Z-Score — der bleibt relativ zur
+       oben gewählten Pool-Größe, sonst würde jeder Filter die Bewertungs-
+       grundlage unter den Füßen wegziehen. -->
+  <div class="cp-panel" id="cpFilterPanel">
+    <div class="cp-panel-head">
+      <span>Stat-Filter · leer lassen heißt keine Grenze</span>
+      <button class="cp-btn cp-btn-sm" onclick="cpResetFilters()">↺ Zurücksetzen</button>
+    </div>
+    <div class="cp-fgrid" id="cpFilters"></div>
+    <div class="cp-panel-note">
+      Filtert nur die angezeigten Zeilen. Der Z-Score bleibt unverändert, damit die Bewertung
+      vergleichbar bleibt — sonst würde z.B. „nur Center“ die Center gegeneinander neu bewerten.
+    </div>
+  </div>
+
+  <div class="cp-legend">
+    <span><span class="cp-src cp-src-full">✓✓✓</span> alle 3 Quellen</span>
+    <span><span class="cp-src cp-src-two">✓✓</span> 2 von 3</span>
+    <span><span class="cp-src cp-src-one">✓</span> nur 1 Quelle</span>
+    <span><span class="cp-src cp-src-warn">⚠</span> Beyaz-Wert unplausibel, ausgeschlossen</span>
+    <span><b>Δ Rang</b> = Streuung zwischen den drei Quellen · niedrig heißt einig, hoch heißt uneinig</span>
+  </div>
+  <div id="cpTableWrap"></div>
+</div>
+
+<!-- LIVE SCORES -->
+<div class="page page-wide" id="liveScoresPage">
+  <h2 style="margin-bottom:6px;">🔴 Live Scores</h2>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">9-Cat Z-Score Rankings · Summer League → Pre-Season → 2026/27 Season</p>
+
+  <div class="ls-subtabs">
+    <div class="ls-subtab active" id="lsSubtabDaily" onclick="lsSwitchPeriod('daily')">📅 Daily</div>
+    <div class="ls-subtab" id="lsSubtabWeekly" onclick="lsSwitchPeriod('week')">📈 Weekly</div>
+    <div class="ls-subtab" id="lsSubtabMonthly" onclick="lsSwitchPeriod('month')">🗓️ Monthly</div>
+  </div>
+
+  <div class="ls-toolbar">
+    <div class="ls-datepicker">
+      <button onclick="lsShiftDate(-1)" title="Vorheriger Tag">‹</button>
+      <input type="date" id="lsDateInput" onchange="lsLoadDate(this.value)"/>
+      <button onclick="lsShiftDate(1)" title="Nächster Tag">›</button>
+    </div>
+    <select class="ls-league-select" id="lsLeagueSelect" onchange="lsLoadDate(document.getElementById('lsDateInput').value)">
+      <option value="nba-summer-california">☀️ Summer League – California Classic</option>
+      <option value="nba-summer-utah">🏔️ Summer League – Salt Lake City</option>
+      <option value="nba-summer-las-vegas">🏖️ Summer League – Las Vegas</option>
+      <option value="nba-preseason">🏀 NBA Pre-Season</option>
+      <option value="nba">🏆 NBA 2026/27</option>
+    </select>
+    <div class="ls-meta" id="lsMeta"></div>
+  </div>
+  <div class="ls-hint" id="lsScheduleHint">Kalifornien: 3.–6. Juli · Salt Lake City: 4.–7. Juli · Las Vegas: 9.–19. Juli</div>
+
+  <div id="lsMinGamesPanel" style="display:none;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:var(--surface2,rgba(255,255,255,.04));border-radius:10px;">
+    <span style="font-size:13px;color:var(--muted);white-space:nowrap;">🎚️ Min. Spiele im Fenster:</span>
+    <input type="range" id="lsMinGamesSlider" min="1" max="5" step="1" value="1" oninput="lsSetMinGames(this.value)" style="flex:1;max-width:200px;"/>
+    <span style="font-size:13px;font-weight:700;min-width:16px;" id="lsMinGamesValue">1</span>
+    <span style="font-size:11px;color:var(--muted);">(1 = alle, auch Spieler mit nur einem Spiel im Fenster)</span>
+    <button id="lsExportCsvBtn" onclick="lsExportCsv()" style="margin-left:auto;white-space:nowrap;padding:7px 14px;border-radius:8px;background:rgba(76,175,129,0.12);border:1px solid rgba(76,175,129,0.3);color:#4caf81;font-size:12px;font-weight:700;cursor:pointer;">⬇️ CSV exportieren</button>
+  </div>
+
+  <div class="ls-punt-panel collapsed" id="lsPuntPanel">
+    <div class="ls-punt-header" onclick="lsTogglePuntPanel()">
+      <span>⚖️ Punt-Gewichtung — Kategorien von 0 bis 2 gewichten · 1 = normal, 0 = geputtet · nichts wird gespeichert</span>
+      <div class="ls-punt-header-right">
+        <button class="ls-punt-reset" onclick="event.stopPropagation(); lsResetPuntWeights()">↺ Zurücksetzen</button>
+        <span class="ls-punt-chevron">▾</span>
+      </div>
+    </div>
+    <div class="ls-punt-body">
+      <div class="ls-punt-grid" id="lsPuntGrid"></div>
+    </div>
+  </div>
+
+  <div id="lsGamesLine" class="ls-games-line"></div>
+  <div id="lsContent"></div>
+</div>
+
+<!-- RULES -->
+<div class="page" id="rulesPage">
+  <h2 style="margin-bottom:6px;">📜 Regeln</h2>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">Citizens of Funkytown League Rules & Regulations</p>
+  <div id="rulesContent">
+    <div class="rule-section">
+      <div class="rule-section-header" onclick="toggleRule(this)"><span>🏆 General League Rules</span><span class="rule-chevron">▾</span></div>
+      <div class="rule-section-body">
+        <div class="rule-item"><div class="rule-number">1</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+        <div class="rule-item"><div class="rule-number">2</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+        <div class="rule-item"><div class="rule-number">3</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+      </div>
+    </div>
+    <div class="rule-section">
+      <div class="rule-section-header" onclick="toggleRule(this)"><span>📅 Draft Rules</span><span class="rule-chevron">▾</span></div>
+      <div class="rule-section-body">
+        <div class="rule-item"><div class="rule-number">1</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+        <div class="rule-item"><div class="rule-number">2</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+      </div>
+    </div>
+    <div class="rule-section">
+      <div class="rule-section-header" onclick="toggleRule(this)"><span>💰 Scoring & Waivers</span><span class="rule-chevron">▾</span></div>
+      <div class="rule-section-body">
+        <div class="rule-item"><div class="rule-number">1</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+        <div class="rule-item"><div class="rule-number">2</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+      </div>
+    </div>
+    <div class="rule-section">
+      <div class="rule-section-header" onclick="toggleRule(this)"><span>🕺 Funkytown Traditions</span><span class="rule-chevron">▾</span></div>
+      <div class="rule-section-body">
+        <div class="rule-item"><div class="rule-number">1</div><div class="rule-text">Rule goes here — edit this text to add your actual rule.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NBA TEAM PAGE -->
+<div class="page" id="nbaTeamPage">
+  <div id="nbaTeamHeader" style="margin-bottom:24px;"></div>
+  <div id="nbaTeamContent"></div>
+</div>
+	
+<!-- BEST AVAILABLE -->
+<div class="page page-wide" id="bestAvailPage">
+  <h2 style="margin-bottom:6px;">🆓 Waiver</h2>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Spieler die in keinem Roster stehen — sortiert nach einem gewichteten Gesamtscore aus BBM-Rang, letzter Saison, Off-Season/Preseason und laufender Saison (sobald verfügbar). MIN, Beste/Schwächste Kategorie und 2026/27 Rankings/Projections fehlen bei Spielern, für die noch keine Daten vorliegen.</p>
+  <div class="rankings-search" style="display:flex;align-items:center;gap:10px;">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="baSearch" placeholder="Search player, team, or position…" oninput="filterBestAvail()" style="flex:1;"/>
+    <select id="baExperienceSelect" onchange="baSetExperienceFilter(this.value)" style="padding:8px 12px;border-radius:8px;background:var(--surface2,rgba(255,255,255,.04));border:1px solid var(--border);color:var(--text);font-size:13px;">
+      <option value="all">Every Player</option>
+      <option value="rookie">Rookies</option>
+      <option value="sophomore">Sophomores</option>
+    </select>
+  </div>
+  <div class="rankings-table-wrap">
+    <table class="rankings-table">
+      <thead>
+        <tr>
+          <th style="width:56px;text-align:center;">#</th>
+          <th onclick="baSortBy('name')" style="cursor:pointer;">Name<span class="r-sort-arrow" id="baArrow-name">↕</span></th>
+          <th onclick="baSortBy('nbaTeam')" style="cursor:pointer;">NBA Team<span class="r-sort-arrow" id="baArrow-nbaTeam">↕</span></th>
+          <th onclick="baSortBy('pos')" style="cursor:pointer;">Position<span class="r-sort-arrow" id="baArrow-pos">↕</span></th>
+          <th onclick="baSortBy('age')" style="text-align:center;cursor:pointer;">Alter<span class="r-sort-arrow" id="baArrow-age">↕</span></th>
+          <th onclick="baSortBy('minutesAvg')" style="text-align:center;cursor:pointer;">MIN<span class="r-sort-arrow" id="baArrow-minutesAvg">↕</span></th>
+          <th onclick="baSortBy('bestCat30')" style="text-align:center;cursor:pointer;">Beste Kat.<span class="r-sort-arrow" id="baArrow-bestCat30">↕</span></th>
+          <th onclick="baSortBy('worstCat30')" style="text-align:center;cursor:pointer;">Schwächste Kat.<span class="r-sort-arrow" id="baArrow-worstCat30">↕</span></th>
+          <th onclick="baSortBy('season2627Rank')" style="text-align:center;cursor:pointer;">2026/27 Rankings<span class="r-sort-arrow" id="baArrow-season2627Rank">↕</span></th>
+          <th style="text-align:center;">2026/27 Projections</th>
+        </tr>
+      </thead>
+      <tbody id="baBody"></tbody>
+    </table>
+    <div class="r-no-results" id="baNoResults" style="display:none;">Keine Spieler gefunden.</div>
+  </div>
+</div>
+
+<!-- ANALYTICS PAGE -->
+<div class="page page-wide" id="analyticsPage">
+  <div style="margin-bottom:16px;">
+    <h2 style="margin-bottom:4px;">📊 Team Analytics</h2>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <p style="color:var(--muted);font-size:13px;">Cat-Stärken & -Schwächen aller Teams · Quelle: BBM Z-Scores · <strong style="color:var(--accent);">Saison 2025–26</strong></p>
+      <button onclick="document.getElementById('anInfoModal').style.display='flex'"
+        style="width:20px;height:20px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);
+               color:var(--muted);font-size:11px;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;
+               display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;"
+        onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">?</button>
+    </div>
+  </div>
+
+  <!-- Info Modal -->
+  <div id="anInfoModal" onclick="if(event.target===this)this.style.display='none'"
+    style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.7);
+           backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;
+                width:100%;max-width:480px;padding:24px;position:relative;
+                box-shadow:0 20px 60px rgba(0,0,0,0.4);animation:modalIn 0.2s ease;max-height:90vh;overflow-y:auto;">
+      <button onclick="document.getElementById('anInfoModal').style.display='none'"
+        style="position:absolute;top:14px;right:14px;background:var(--surface2);border:1px solid var(--border);
+               color:var(--muted);border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;
+               display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">✕</button>
+
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--text);margin-bottom:16px;">Wie funktioniert das?</div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;font-size:13px;line-height:1.6;color:var(--muted);">
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">📥 Datenquelle: BBM Z-Scores</div>
+          Die Rohdaten kommen von <strong style="color:var(--text);">Basketball Monster (BBM)</strong> und enthalten für jeden Spieler einen Z-Score pro Kategorie — also wie weit er vom Liga-Durchschnitt aller ~580 relevanten NBA-Spieler entfernt ist. Ein Wert von +2.0 bedeutet zwei Standardabweichungen über dem Schnitt, 0.0 ist Durchschnitt, negative Werte liegen darunter.
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">🔢 Berechnung: Roster → Team-Score</div>
+          Für jedes Team werden die Z-Scores der <strong style="color:var(--text);">Top N Spieler</strong> (Slider) pro Kategorie summiert. Diese Rohdaten werden dann <strong style="color:var(--text);">relativ zur Liga normalisiert</strong>: Das beste Team bekommt +1,0, das schlechteste −1,0. So sieht man sofort wer in welcher Cat dominiert — unabhängig vom absoluten Wert.
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">🎚️ Slider: Warum Top N?</div>
+          In einer H2H Liga mit ~45–55 Spielen/Woche spielt nicht das gesamte Roster. Bei ~3,5 Spielen/Spieler pro Woche kommen realistisch <strong style="color:var(--text);">13–15 Spieler</strong> zum Einsatz. Der Rest sitzt auf der Bank oder ist injured. Der Slider simuliert diese aktiven Slots — je niedriger, desto mehr zählt die Starpower, je höher, desto mehr zählt die Tiefe.
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">⚡ Per Game vs 🏥 Durability</div>
+          <strong style="color:var(--text);">Per Game</strong> sortiert Spieler nach reiner Qualität pro Spiel — Kawhi Leonard steht hoch, auch wenn er wenig spielt.<br><br>
+          <strong style="color:var(--text);">Durability</strong> nutzt den BBM <em>BZ-Score</em>, der Spielhäufigkeit einrechnet. Kawhi fällt, zuverlässige Spieler wie Cooper Flagg steigen. Für H2H ist das oft die realistischere Einschätzung.
+        </div>
+
+        <div style="background:var(--surface2);border-radius:12px;padding:14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">⚠️ TO-Kategorie</div>
+          Turnovers sind invertiert: <strong style="color:var(--text);">weniger ist besser</strong>. Ein positiver Wert in TO bedeutet also, dass das Team weniger Ballverluste hat als der Liga-Schnitt — grün ist hier gut.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls row: View + Method + Cutoff slider -->
+  <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
+    <!-- View toggle -->
+    <div style="display:flex;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;">
+      <button id="anViewHeatmap" onclick="setAnView('heatmap')" style="padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:var(--accent);color:white;transition:all 0.15s;">🗺️ Heatmap</button>
+      <button id="anViewRadar"   onclick="setAnView('radar')"   style="padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all 0.15s;">📊 Bars</button>
+    </div>
+    <!-- Method toggle -->
+    <div style="display:flex;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;">
+      <button id="anMethodValue" onclick="setAnMethod('value')" style="padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:var(--accent);color:white;transition:all 0.15s;" title="Reine per-game Qualität — wer ist am stärksten wenn er spielt?">⚡ Per Game</button>
+      <button id="anMethodBz"    onclick="setAnMethod('bz')"    style="padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all 0.15s;" title="Durability-adjusted — berücksichtigt Spielhäufigkeit & Verletzungsrisiko">🏥 Durability</button>
+    </div>
+    <!-- Cutoff slider -->
+    <div style="display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 14px;">
+      <span style="font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap;">Starter:</span>
+      <input type="range" min="10" max="18" value="13" step="1"
+        oninput="setAnCutoff(this.value)"
+        style="width:90px;accent-color:var(--accent);cursor:pointer;">
+      <span id="anCutoffLabel" style="font-size:13px;font-weight:800;color:var(--accent);min-width:44px;">Top 13</span>
+    </div>
+    <span style="font-size:11px;color:var(--muted);">Relativ zur Liga · grün = Stärke · rot = Schwäche</span>
+  </div>
+
+  <!-- HEATMAP VIEW -->
+  <div id="anHeatmapView">
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);">
+      <table style="width:100%;border-collapse:collapse;min-width:680px;">
+        <thead>
+          <tr style="background:var(--surface2);border-bottom:2px solid var(--border);">
+            <th style="padding:10px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border:none;white-space:nowrap;">Team</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">PTS</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">3PM</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">REB</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">AST</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">STL</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">BLK</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">FG%</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">FT%</th>
+            <th style="padding:10px 8px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;">TO</th>
+            <th style="padding:10px 14px;text-align:center;font-size:10px;font-weight:700;color:var(--muted);border:none;white-space:nowrap;">Ø Score</th>
+          </tr>
+        </thead>
+        <tbody id="anHeatmapBody"></tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:11px;text-align:center;margin-top:10px;">Klick auf ein Team für Details</p>
+  </div>
+
+  <!-- RADAR VIEW -->
+  <div id="anRadarView" style="display:none;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;" id="anRadarGrid"></div>
+  </div>
+</div>
+
+<!-- ANALYTICS DETAIL MODAL -->
+<div id="anModal" onclick="if(event.target===this)closeAnModal()" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;width:100%;max-width:460px;padding:24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.4);animation:modalIn 0.2s ease;max-height:90vh;overflow-y:auto;">
+    <button onclick="closeAnModal()" style="position:absolute;top:14px;right:14px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">✕</button>
+    <div id="anModalContent"></div>
+  </div>
+</div>
+
+<!-- Share-Modal- und Rolling-Rankings-Styles (vorher beim Trade Analyzer, 2026-09-23 hierher verschoben) -->
+<style>
+  #shareModalOverlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 600;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+	.nav-menu-item {
+    width:100%;background:none;border:none;border-bottom:1px solid var(--border);
+    color:var(--text);padding:14px 20px;font-size:14px;font-weight:600;
+    font-family:'DM Sans',sans-serif;cursor:pointer;text-align:left;
+    transition:background 0.15s;display:block;
+  }
+  .nav-menu-item:last-child { border-bottom:none; }
+  .nav-menu-item:hover { background:var(--accent-light); color:var(--accent); }
+  @media (min-width: 500px) {
+    #shareModalOverlay { align-items: center; padding: 20px; }
+  }
+  #shareModalBox {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px 24px 0 0;
+    width: 100%;
+    max-width: 480px;
+    padding: 20px 20px 32px;
+    position: relative;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+    animation: slideUp 0.26s cubic-bezier(.22,.61,.36,1);
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  @media (min-width: 500px) {
+    #shareModalBox {
+      border-radius: 24px;
+      animation: modalIn 0.22s ease;
+      max-height: 85vh;
+    }
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  #shareModalBox .drag-handle {
+    width: 40px; height: 4px; border-radius: 2px;
+    background: var(--border); margin: 0 auto 16px;
+  }
+  @media (min-width: 500px) { #shareModalBox .drag-handle { display: none; } }
+  .share-modal-title {
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 800;
+    color: var(--text); text-align: center; margin-bottom: 16px;
+  }
+  #shareCardContent {
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .share-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .share-action-btn {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+    padding: 13px 10px; border-radius: 14px; font-size: 14px; font-weight: 700;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.18s;
+    text-align: center;
+  }
+  .share-action-btn:hover { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+  .share-action-btn.primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-color: transparent; color: white;
+    box-shadow: 0 4px 14px rgba(108,99,255,0.3);
+  }
+  .share-action-btn.primary:hover { opacity: 0.88; }
+  .share-close-btn {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--muted); border-radius: 50%; width: 32px; height: 32px;
+    font-size: 16px; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+  }
+  .share-close-btn:hover { border-color: var(--accent); color: var(--text); }
+  /* ── Rolling Rankings ───────────────────────── */
+  #rollingRankingsPage { padding: 0; overflow: hidden; }
+  #rollingRankingsPage.active { display: flex; flex-direction: column; height: calc(100vh - 120px); }
+  .rr-layout { display: grid; grid-template-columns: 340px 1fr; flex: 1; overflow: hidden; }
+  .rr-sidebar { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+  .rr-sidebar-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--surface); }
+  .rr-search { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 9px; color: var(--text); font-family: DM Sans, sans-serif; font-size: 12px; padding: 7px 10px 7px 30px; width: 160px; outline: none; transition: border-color .2s; }
+  .rr-search:focus { border-color: var(--accent); }
+  .rr-toolbar { display: flex; gap: 8px; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .rr-tb-group { display: flex; gap: 4px; background: var(--surface2); border: 1px solid var(--border); border-radius: 9px; padding: 3px; }
+  .rr-tb-btn { background: transparent; border: none; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: all .15s; white-space: nowrap; }
+  .rr-tb-btn:hover { color: var(--text); }
+  .rr-tb-btn.rr-tb-active { background: var(--accent); color: var(--bg, #0f0f13); }
+  .rr-list-scroll { flex: 1; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; min-width: 0; }
+  .rr-list-cols { display: grid; grid-template-columns: 32px 1fr repeat(6, 30px); gap: 3px; padding: 7px 14px; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); position: sticky; top: 0; z-index: 5; }
+  .rr-list-cols span { text-align: center; }
+  .rr-list-cols span:nth-child(2) { text-align: left; }
+  .rr-col-h { cursor: pointer; user-select: none; transition: color .12s; }
+  .rr-col-h:hover { color: var(--text); }
+  .rr-col-active { color: var(--accent) !important; }
+  #rrListBody { /* removed overflow — handled by parent .rr-list-scroll */ }
+  .rr-row { display: grid; grid-template-columns: 32px 1fr repeat(6, 30px); gap: 3px; padding: 6px 14px; border-bottom: 1px solid var(--border); align-items: center; cursor: pointer; transition: background .1s; }
+  .rr-row:hover { background: var(--surface2); }
+  .rr-row.rr-active { background: rgba(245,200,66,.08); border-left: 3px solid var(--accent); padding-left: 11px; }
+  .rr-idx { font-size: 10px; font-weight: 700; color: var(--muted); text-align: center; }
+  .rr-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rr-rank-cell { font-size: 10px; font-weight: 800; text-align: center; border-radius: 4px; padding: 2px 0; }
+  .rr-main { padding: 28px 36px; overflow-y: auto; display: flex; flex-direction: column; }
+  .rr-player-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .rr-player-name { font-size: 28px; font-weight: 800; color: var(--text); font-family: 'Playfair Display', serif; line-height: 1.1; }
+  .rr-player-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .rr-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+  .rr-pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; text-align: center; display: flex; flex-direction: column; gap: 2px; }
+  .rr-pill-val { font-size: 18px; font-weight: 800; line-height: 1; }
+  .rr-pill-label { font-size: 10px; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+  .rr-chart-box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .rr-badges { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+  .rr-month-badge { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 68px; }
+  .rr-badge-label { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+  .rr-badge-rank { font-size: 20px; font-weight: 800; }
+  .rr-compare-cards { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  .rr-compare-card { flex: 1; min-width: 200px; background: var(--surface); border: 2px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+  .rr-share-row { margin-top: 18px; display: flex; justify-content: flex-end; }
+  .rr-share-btn { background: var(--accent); border: none; color: var(--bg, #0f0f13); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 800; padding: 10px 18px; border-radius: 10px; cursor: pointer; transition: opacity .15s; }
+  .rr-share-btn:hover { opacity: .85; }
+  .rr-share-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 1000; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+  .rr-share-box { background: var(--surface); border-radius: 16px; padding: 22px; max-width: 540px; width: 100%; position: relative; max-height: 92vh; overflow-y: auto; }
+  .rr-style-toggle { display: flex; gap: 6px; background: var(--surface2); border: 1px solid var(--border); border-radius: 9px; padding: 3px; margin: 0 auto 16px; width: fit-content; }
+  .rr-style-btn { background: transparent; border: none; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all .15s; }
+  .rr-style-btn.rr-style-active { background: var(--accent); color: var(--bg, #0f0f13); }
+  #rrShareCardContent { display: flex; justify-content: center; margin-bottom: 14px; }
+  @media (max-width: 768px) {
+    .rr-layout { grid-template-columns: 1fr; }
+    #rollingRankingsPage.active { height: auto; }
+    .rr-sidebar { height: 50vh; border-right: none; border-bottom: 1px solid var(--border); }
+    .rr-main { padding: 16px; }
+    .rr-toolbar { padding: 8px 12px; }
+    .rr-tb-btn { font-size: 10px; padding: 5px 8px; }
+    #rrShareCardContent { transform: scale(0.7); transform-origin: top center; height: 600px; margin-bottom: 0; }
+  }
+
+</style>
+
+<div class="page page-wide" id="rollingRankingsPage">
+  <div class="rr-layout">
+    <div class="rr-sidebar">
+      <div class="rr-sidebar-header">
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:800;color:var(--text);">📉 Spielerverlauf</div>
+          <div id="rrSeasonSubtitle" style="font-size:11px;color:var(--muted);margin-top:2px;">Saison 2025/26</div>
+        </div>
+        <div style="position:relative;">
+          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;pointer-events:none;">🔍</span>
+          <input id="rrSearch" class="rr-search" placeholder="Suchen…" oninput="rrFilter()">
+        </div>
+      </div>
+      <div id="rrToolbar" class="rr-toolbar"></div>
+      <div class="rr-list-scroll">
+        <div id="rrListCols" class="rr-list-cols"></div>
+        <div id="rrListBody"></div>
+      </div>
+    </div>
+    <div class="rr-main" id="rrChartPanel">
+      <div style="margin:auto;text-align:center;color:var(--muted);">
+        <div style="font-size:40px;margin-bottom:12px;">📈</div>
+        <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;">Spieler auswählen</div>
+        <div style="font-size:13px;">Klicke links auf einen Spieler um seinen Ranking-Verlauf zu sehen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROLLING RANKINGS SHARE MODAL -->
+<div id="rrShareModalOverlay" class="rr-share-overlay">
+  <div class="rr-share-box">
+    <button class="share-close-btn" onclick="rrCloseShareModal()">✕</button>
+    <div class="share-modal-title">📸 Rolling Rankings Share</div>
+    <div class="rr-style-toggle">
+      <button class="rr-style-btn rr-style-active" data-style="warm" onclick="rrSetShareStyle('warm')">☀️ Warm</button>
+      <button class="rr-style-btn" data-style="dark" onclick="rrSetShareStyle('dark')">🌙 Dark</button>
+    </div>
+    <div id="rrShareCardContent"></div>
+    <div class="share-btn-row">
+      <button class="share-action-btn primary" id="rrDownloadBtn" onclick="rrDownloadShareImage()">💾 Save Image</button>
+    </div>
+  </div>
+</div>
+
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Data (load first — other scripts depend on these constants) -->
+<script src="data/players.js?v=6b810b7f"></script>
+<script src="data/teams-rosters.js?v=69f5b375"></script>
+<script src="data/season-history.js?v=24924011"></script>
+<script src="data/season-matchups.js?v=18899c05"></script>
+<script src="data/league-dues.js?v=abe1c904"></script>
+<script src="data/season-rankings.js?v=51f908be"></script>
+<script src="data/rosters-live.js?v=9cdcf7c7"></script>
+<!-- Wer wen gepickt hat, fuer einen abgeschlossenen Draft. Manuell aktualisiert, siehe scripts/fetch-draft-results-espn.js. NUR diese "active"-Datei einbinden, nicht zusaetzlich data/draft-results-<jahr>.js -- beide deklarieren dieselbe Konstante. --><script src="data/draft-results-active.js?v=85ec1c76"></script>
+<script src="data/projections-baseline.js?v=c194f5ad"></script>
+<script src="data/live-projections.js?v=5d9ddcb2"></script>
+<script src="data/aliases.js?v=2cbadcff"></script>
+<script src="data/best-available-board.js?v=d5d9286f"></script>
+<script src="data/stats.js?v=ce55f807"></script>
+
+<!-- App logic -->
+<script src="js/theme.js?v=5"></script>
+<script src="js/navigation.js?v=5"></script>
+<script src="js/score-mode.js?v=1"></script>
+<!-- Gemeinsame Fantasy-Besitz-Logik fuer Projections, NBA Teams und Best Available -->
+<script src="js/fantasy-owner.js?v=1"></script>
+<script src="js/consensus-projections.js?v=2"></script>
+<script src="js/flow-diagram.js?v=1"></script>
+<script src="js/draft-countdown.js?v=1"></script>
+<script src="js/nba-teams.js?v=5"></script>
+<script src="js/standings.js?v=6"></script>
+<script src="js/league-dues.js?v=1"></script>
+<script src="js/player-shape.js?v=2"></script>
+<script src="js/best-available.js?v=5"></script>
+<script src="data/team-analytics.js?v=f12aed2c"></script>
+<script src="js/analytics.js?v=6"></script>
+<script src="js/rosters.js?v=1"></script>
+<script src="js/espn-sync.js?v=5"></script>
+<script src="js/espn-live-sync.js?v=7"></script>
+<!-- Muss nach espn-live-sync.js stehen: nutzt dessen _fetchEspnViaProxy() -->
+<script src="js/matchup-planner.js?v=1"></script>
+
+<!-- Init runs last, after all scripts are loaded -->
+<script src="data/rolling-rankings.js?v=58090396"></script>
+<script src="data/rolling-rankings-2026-27.js?v=ac2c885a"></script>
+  <script src="js/rolling-rankings.js?v=5"></script>
+<script src="data/livescores-daily.js?v=ac7826b0"></script>
+<script src="data/livescores-aggregate.js?v=69091e1d"></script>
+<script src="js/livescores.js?v=6"></script>
+<script src="data/offseason-rankings.js?v=c53883eb"></script>
+<script src="js/player-rankings.js?v=2"></script>
+  <script src="js/init.js?v=5"></script>
+
+<script>
+  // Service Worker existierte im Repo, war aber nie registriert. Er cached
+  // bewusst NICHTS (siehe service-worker.js) -- passt zur No-Cache-Philosophie
+  // der App (siehe Meta-Tags oben) -- erfuellt aber das Installierbarkeits-
+  // Kriterium fuer Android/Chrome (Adressleisten-Icon bzw. Mini-Infobar) und
+  // raeumt beim ersten Aktivieren alte Caches aus fruaheren SW-Versionen auf.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js?v=1').catch(() => {
+        // Kein Beinbruch -- die Seite funktioniert auch ohne SW einwandfrei,
+        // er ist nur fuer die "Installierbar"-Erkennung von Android/Chrome da.
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

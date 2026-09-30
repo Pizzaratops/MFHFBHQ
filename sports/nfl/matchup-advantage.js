@@ -4,7 +4,7 @@
 //  Port von js/matchup-advantage.js (BWP/DOPE, dort identisch). Rechen-
 //  logik, Schwellen und Texte UNVERÄNDERT; geändert nur die Anbindung:
 //  keine Globals/onclick mehr, stattdessen data-Attribute, die
-//  tools/nflmatchup.js verdrahtet (data-magame, data-maweek, data-mahelp).
+//  tools/nfl-matchup-advantage.js verdrahtet (data-magame, data-maweek, data-mahelp).
 //
 //  Daten: sport:matchup-advantage (MATCHUP_ADVANTAGE), erzeugt von
 //  scripts/sync-matchup-advantage.js (nflverse, GitHub Action).

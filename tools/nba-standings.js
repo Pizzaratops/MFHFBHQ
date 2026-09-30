@@ -23,13 +23,35 @@
   function seasons(ctx) {
     const d = ctx.data, L = ctx.league;
     if (L.seasonArchive) {
-      return L.seasonArchive.map(k => {
+      return L.seasonArchive.map((k, i) => {
         const S = d[varName(k)];
-        return S && S.standings ? { key: k, label: k.replace('-', '/'), standings: S.standings, rosters: S.rosters || null } : null;
+        if (!S || !S.standings) return null;
+        return { key: k, label: k.replace('-', '/'), standings: L.finalPlaces ? mergeFinal(ctx, S.standings, i) : S.standings, rosters: S.rosters || null, final: !!L.finalPlaces };
       }).filter(Boolean);
     }
     return (d.SEASON_HISTORY || []).slice().sort((a, b) => a.espnSeason - b.espnSeason)
       .map(s => ({ key: String(s.espnSeason), label: String(s.label || s.espnSeason).replace('Saison ', ''), standings: s.standings || [], rosters: null }));
+  }
+
+  // Endplatzierung (league.finalPlaces, nach Playoffs) + Archiv (Bilanz/Kader
+  // der regulären Saison) zusammenführen. Eintrag mit eigener Team-ID →
+  // direkt; sonst Vorgänger-Franchise = Archiv-Eintrag ohne Team-ID auf
+  // demselben Platz (so sind die Vorgänger im alten Chart zugeordnet).
+  function mergeFinal(ctx, arch, idx) {
+    const FP = ctx.league.finalPlaces, nba = N();
+    const tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
+    const used = new Set(), out = [];
+    Object.keys(FP).map(Number).forEach(id => {
+      const p = FP[id][idx];
+      if (p == null) return;
+      let src = arch.find(r => r.teamId === id);
+      if (!src) src = arch.find(r => r.teamId == null && r.place === p && !used.has(r));
+      if (src) used.add(src);
+      const t = tmap.get(id);
+      out.push({ place: p, teamId: id, name: src ? src.name : (t ? t.name : 'Team ' + id), record: src ? src.record : null, rosterKey: src ? src.rosterKey : null, regPlace: src ? src.place : null });
+    });
+    arch.filter(r => !used.has(r)).forEach(r => out.push({ ...r, place: null, regPlace: r.place, teamId: null }));
+    return out.sort((a, b) => (a.place ?? 99) - (b.place ?? 99));
   }
 
   const parseRec = r => { const m = /^(\d+)-(\d+)(?:-(\d+))?$/.exec(String(r || '')); return m ? { w: +m[1], l: +m[2], t: +(m[3] || 0) } : null; };
@@ -78,7 +100,7 @@
       const got = places.filter(p => p != null);
       return { t, places, n: got.length, avg: got.length ? got.reduce((a, b) => a + b, 0) / got.length : null, titles: got.filter(p => p === 1).length, podium: got.filter(p => p <= 3).length, best: got.length ? Math.min(...got) : null };
     }).filter(x => x.n);
-    return { S, stats, maxRank: Math.max(1, ...S.map(s => s.standings.length)) };
+    return { S, stats, maxRank: Math.max(1, ...S.flatMap(s => s.standings.map(r => r.place || 0))) };
   }
 
   function chartSvg(model, sel, width) {
@@ -113,7 +135,7 @@
         <div class="table-wrap"><table class="table compact"><thead><tr><th>Saison</th><th>🥇 Champion</th><th>🥈 Zweiter</th><th>🥉 Dritter</th><th class="num">Teams</th></tr></thead>
           <tbody>${model.S.slice().reverse().map(s => { const at = p => s.standings.find(r => r.place === p); return `<tr>
             <td class="strong">${league.seasonArchive ? `<a href="${ctx.href('archive', s.key)}">${e(s.label)}</a>` : e(s.label)}</td>
-            <td>${cell(at(1))}</td><td>${cell(at(2))}</td><td>${cell(at(3))}</td><td class="num">${s.standings.length}</td></tr>`; }).join('')}</tbody></table></div>
+            <td>${cell(at(1))}</td><td>${cell(at(2))}</td><td>${cell(at(3))}</td><td class="num">${s.standings.filter(r => r.place != null).length || s.standings.length}</td></tr>`; }).join('')}</tbody></table></div>
         <h2 class="group-title">Ewige Tabelle</h2>
         <div class="table-wrap"><table class="table compact"><thead><tr><th>Team</th><th class="num">Saisons</th><th class="num">Titel</th><th class="num">Podium</th><th class="num">Bestes</th><th class="num">Ø Platz</th></tr></thead>
           <tbody>${byAvg.map(x => `<tr><td><a class="nba-tlink mp-tc" style="${nba.tcStyle(x.t)}" href="${ctx.href('teams', x.t.id)}"><span class="nba-tdot"></span>${e(x.t.name)}</a></td>
@@ -159,20 +181,20 @@
     if (!s) return ui.empty('Kein Archiv', 'Für diese Liga ist kein Saison-Archiv hinterlegt.', '📜');
     const tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
     const tabs = `<div class="seg" role="tablist">${S.slice().reverse().map(x => `<a class="seg-btn${x.key === s.key ? ' active' : ''}" href="${ctx.href('archive', x.key)}">${e(x.label)}</a>`).join('')}</div>`;
-    const cards = s.standings.slice().sort((a, b) => a.place - b.place).map(r => {
+    const cards = s.standings.slice().sort((a, b) => (a.place ?? 99) - (b.place ?? 99)).map(r => {
       const t = tmap.get(r.teamId);
       const roster = (s.rosters && s.rosters[r.rosterKey]) || [];
-      const medal = r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`;
+      const medal = r.place == null ? '–' : r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`;
       return `<details class="card nba-arch mp-tc"${t ? ` style="${nba.tcStyle(t)}"` : ''}>
         <summary><span class="nba-arch-place">${medal}</span><span class="nba-arch-name"><strong>${e(r.name)}</strong>${t && t.name.toLowerCase() !== r.name.toLowerCase() ? `<small>heute ${e(t.name)}</small>` : !t ? '<small>existiert nicht mehr</small>' : ''}</span>
-          <span class="nba-arch-rec">${e(r.record || '')}</span></summary>
+          <span class="nba-arch-rec"${s.final ? ' title="Bilanz der regulären Saison"' : ''}>${e(r.record || '')}${s.final && r.regPlace != null && r.regPlace !== r.place ? `<small>Reg. Saison: ${r.regPlace}.</small>` : ''}</span></summary>
         ${roster.length ? `<div class="table-wrap"><table class="table compact"><thead><tr><th>Slot</th><th>Spieler</th><th>NBA</th><th>Pos</th><th>Zugang</th></tr></thead><tbody>
           ${roster.map(p => `<tr><td class="muted">${e(p.slot || '')}</td><td class="strong">${e(p.name)}${p.inj ? ` <span class="nba-inj ${p.injStatus === 'DTD' ? 'dtd' : 'out'}">${e(p.injStatus || 'O')}</span>` : ''}</td><td>${e(String(p.team || '').toUpperCase())}</td><td class="muted">${e(p.pos || '')}</td><td class="muted">${e(p.acq || '')}</td></tr>`).join('')}
         </tbody></table></div>` : '<p class="muted small" style="padding:0 14px 12px">Kein Kader überliefert.</p>'}
       </details>`;
     }).join('');
     return `<div class="page-head"><h1 class="page-title display">📜 Saison ${e(s.label)}</h1>
-        <div class="page-sub">Endstand und Kader zum Saisonende (aus dem ESPN-Export) · Teamnamen wie damals</div></div>
+        <div class="page-sub">${s.final ? 'Endplatzierung nach Playoffs · Bilanz und Kader der regulären Saison (ESPN-Export)' : 'Endstand und Kader zum Saisonende (aus dem ESPN-Export)'} · Teamnamen wie damals</div></div>
       <div class="controls">${tabs}</div><div class="nba-arch-list">${cards}</div>`;
   }
 
