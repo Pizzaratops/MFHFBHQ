@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="MFHFB HQ">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313294b'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial Narrow,Arial' font-weight='700' font-size='30' fill='%23e84a0c'%3EHQ%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="icons/favicon-48.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -29,6 +29,7 @@
 <!-- ============ LANDING ============ -->
 <main class="view landing" id="viewLanding">
   <div class="landing-top">
+    <button class="icon-btn install-btn" type="button" data-install hidden title="MFHFB HQ als App installieren">📲 <span class="hide-sm">Installieren</span></button>
     <button class="icon-btn" type="button" data-theme-toggle aria-label="Hell/Dunkel umschalten">◐</button>
   </div>
   <header class="hero">
@@ -56,6 +57,7 @@
       <button class="icon-btn switch-btn" id="switchBtn" type="button" aria-haspopup="menu" aria-expanded="false">⇄ <span class="hide-sm">Switch Leagues</span></button>
       <div class="switch-menu" id="switchMenu" role="menu" hidden></div>
     </div>
+    <button class="icon-btn install-btn" type="button" data-install hidden title="MFHFB HQ als App installieren">📲 <span class="hide-sm">Installieren</span></button>
     <button class="icon-btn" type="button" data-theme-toggle aria-label="Hell/Dunkel umschalten">◐</button>
   </nav>
   <div class="native-view" id="nativeView" hidden>
