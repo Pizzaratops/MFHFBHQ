@@ -1,0 +1,122 @@
+/* ============================================================
+   MFHFB HQ — College Basketball (NIL-Auktion)
+   Baut auf hub.css/app.css auf; Liga-Farbe über --league-accent.
+   ============================================================ */
+
+.cbb-page .small { font-size: 12.5px; }
+.cbb-page .show-sm { display: none; }
+.cbb-page .table-wrap.flat { border: 0; border-radius: 0; box-shadow: none; margin: 0; }
+.cbb-pad { padding: 0 14px 12px; margin: 8px 0 0; }
+
+.cbb-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cbb-kpis .stat-value { font-size: 28px; }
+
+/* ---------- Filter ---------- */
+.cbb-controls { align-items: center; }
+.cbb-input {
+  font: inherit; font-size: 14px; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 10px; padding: 7px 10px; min-width: 0;
+}
+.cbb-input:focus-visible { outline: 2px solid var(--league-accent); outline-offset: 1px; }
+.cbb-controls input[type="search"] { flex: 1 1 200px; }
+.cbb-price { width: 72px; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- Board ---------- */
+.cbb-board { max-height: calc(100vh - 300px); overflow: auto; }
+.cbb-board thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.cbb-board th[data-sort] { cursor: pointer; user-select: none; }
+.cbb-board th[data-sort]:hover, .cbb-board th.sorted { color: var(--text); }
+.cbb-board th.sorted { box-shadow: inset 0 -2px 0 var(--league-accent); }
+.cbb-tier-row td {
+  background: color-mix(in srgb, var(--league-accent) 10%, var(--surface2)) !important;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .03em;
+  text-transform: uppercase; padding: 6px 12px;
+}
+.cbb-tier-row small { font-family: 'DM Sans', sans-serif; text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--muted); font-size: 12px; }
+.cbb-name { font-weight: 700; white-space: nowrap; }
+.cbb-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; font-size: 12px; }
+.cbb-tag {
+  display: inline-block; font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 5px; white-space: nowrap;
+  background: var(--surface2); color: var(--muted); border: 1px solid var(--border);
+}
+.cbb-tag.dp { color: var(--text); border-color: color-mix(in srgb, var(--league-accent) 50%, var(--border)); background: color-mix(in srgb, var(--league-accent) 12%, var(--surface)); }
+.cbb-tag.warn { color: #9a6a00; border-color: #e8c66a; background: #fff6d8; }
+:root[data-theme="dark"] .cbb-tag.warn { color: #f2cf6b; border-color: #6b5a22; background: #2b2612; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cbb-tag.warn { color: #f2cf6b; border-color: #6b5a22; background: #2b2612; } }
+.cbb-was { text-decoration: line-through; }
+.cbb-star { width: 34px; padding-right: 0 !important; }
+.cbb-starbtn { border: 0; background: none; font-size: 19px; line-height: 1; cursor: pointer; color: var(--muted); padding: 2px 4px; }
+.cbb-starbtn[aria-pressed="true"] { color: var(--league-accent2); }
+.cbb-target td { background: color-mix(in srgb, var(--league-accent2) 9%, transparent); }
+.cbb-sold td { opacity: .55; }
+.cbb-sold.cbb-mine td { opacity: 1; background: color-mix(in srgb, #2e9d62 12%, transparent); }
+.cbb-mine td { background: color-mix(in srgb, var(--league-accent) 8%, transparent); }
+.cbb-status { white-space: nowrap; }
+.cbb-btn {
+  font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 5px 9px;
+}
+.cbb-btn:hover { border-color: var(--league-accent); }
+.cbb-linkbtn { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 13px; padding: 2px 4px; }
+.cbb-linkbtn:hover { color: var(--text); }
+.cbb-soldtag { font-size: 12px; font-weight: 700; }
+.cbb-sellform { display: flex; gap: 4px; align-items: center; }
+.cbb-sellform select { max-width: 120px; padding: 4px 6px; font-size: 12px; }
+.cbb-sellform .cbb-price { width: 58px; padding: 4px 6px; font-size: 12px; }
+.cbb-foot { margin-top: -6px; }
+.cbb-page .table-wrap[data-share] { padding-bottom: 32px; }
+
+/* ---------- Plan ---------- */
+.cbb-plan { margin-bottom: 14px; align-items: start; }
+.cbb-check { padding: 12px 14px 4px; }
+.cbb-line { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
+.cbb-line.total { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 8px; font-weight: 700; }
+.cbb-line strong { font-variant-numeric: tabular-nums; }
+.cbb-meter { height: 8px; border-radius: 99px; background: var(--surface2); overflow: hidden; margin: 8px 0; }
+.cbb-meter span { display: block; height: 100%; border-radius: 99px; background: var(--league-accent); }
+.cbb-tips { margin-bottom: 14px; }
+.cbb-tips ul, .cbb-tips ol { margin: 0; padding: 12px 18px 12px 34px; display: grid; gap: 8px; font-size: 14px; line-height: 1.45; }
+
+/* ---------- Budgets ---------- */
+.cbb-barcell { position: relative; min-width: 130px; display: flex; align-items: center; gap: 8px; }
+.cbb-bar { display: block; height: 10px; border-radius: 0 4px 4px 0; background: var(--league-accent); flex: none; max-width: 70%; }
+.cbb-barcell b { font-variant-numeric: tabular-nums; }
+.cbb-log { margin-top: 4px; }
+
+/* ---------- Preise 2025 ---------- */
+.cbb-chartcard { margin-bottom: 14px; overflow: visible; }
+.cbb-chartwrap { position: relative; padding: 10px 10px 0; }
+.cbb-curve { width: 100%; height: auto; display: block; touch-action: pan-y; }
+.cbb-grid { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 4; }
+.cbb-ax { fill: var(--muted); font-size: 11px; font-weight: 600; }
+.cbb-line { fill: none; stroke: var(--league-accent); stroke-width: 2; stroke-linejoin: round; }
+.cbb-area { fill: color-mix(in srgb, var(--league-accent) 14%, transparent); }
+.cbb-cross { stroke: var(--muted); stroke-width: 1; }
+.cbb-dot { fill: var(--league-accent); stroke: var(--surface); stroke-width: 2; }
+.cbb-tip {
+  position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--border);
+  box-shadow: var(--shadow); border-radius: 10px; padding: 7px 10px; font-size: 12.5px; line-height: 1.35; min-width: 140px;
+}
+.cbb-buckets { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; padding: 10px 14px 14px; }
+.cbb-buckets div { background: var(--surface2); border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; min-width: 0; }
+.cbb-buckets small { font-size: 11px; font-weight: 800; color: var(--muted); }
+.cbb-buckets strong { font-size: 20px; font-variant-numeric: tabular-nums; }
+.cbb-buckets span { font-size: 11px; color: var(--muted); }
+.cbb-scroll { max-height: 460px; overflow: auto; }
+
+@media (max-width: 900px) {
+  .cbb-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cbb-buckets { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .cbb-page .show-sm { display: block; width: 100%; }
+  .cbb-kpis .stat-value { font-size: 22px; }
+  .cbb-kpis > .stat { grid-column: auto !important; }
+  .cbb-kpis .stat-sub { white-space: normal; }
+  .cbb-board .table td, .cbb-board .table th { padding-left: 6px; padding-right: 6px; }
+  .cbb-btn { padding: 4px 7px; }
+  .cbb-board { max-height: none; }
+  .cbb-name { white-space: normal; }
+  .cbb-sellform { flex-wrap: wrap; }
+  .cbb-buckets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

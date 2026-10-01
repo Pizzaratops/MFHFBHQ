@@ -1,6 +1,6 @@
 # MFHFB HQ
 
-Ein Hauptquartier für alle MFHFB-Ligen: Taco Tuesday (TTHQ), Citizens of Funkytown, Foodball (Bear Witch Project) und Dynasty of Pretend Experts (DOPE).
+Ein Hauptquartier für alle MFHFB-Ligen: Taco Tuesday (TTHQ), Citizens of Funkytown, Foodball (Bear Witch Project), Dynasty of Pretend Experts (DOPE) und Dizzle CBB (College Basketball, NIL-Auktion).
 
 Live: https://pizzaratops.github.io/MFHFBHQ/ · als App installierbar (Manifest; öffnet dann direkt die zuletzt genutzte Liga).
 
@@ -25,10 +25,11 @@ sports/nba/           NBA-weit: nba.js (Kategorien, Score-Modi, Namen) + scripts
 leagues/<liga>/       Liga-Daten + Sync-Scripts (Layout der alten Repos gespiegelt)
 tools/nfl-*.js        NFL-Seiten (BWP, DOPE)
 tools/nba-*.js        NBA-Seiten (TTHQ, Funkytown)
+tools/cbb-auction.js  CBB: NIL-Auktion (Board, Mein Plan, Budgets, Preise 2025) — Daten leagues/cbb/data/nil-auction.js
 tools/home.js         Übersicht (alle Ligen)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
-css/nfl.css, nba.css  sportspezifische Styles
+css/nfl.css, nba.css, cbb.css  sportspezifische Styles
 .github/workflows/    Sync-Workflows (nfl-*, bwp-*, dope-*, nba-*, tthq-*, funkytown-*)
 ```
 

@@ -1,7 +1,7 @@
 // ============================================================
 //  MFHFB HQ — Liga-Registry
 // ============================================================
-//  EINZIGE Stelle, an der die vier Ligen definiert sind. Landing,
+//  EINZIGE Stelle, an der die Ligen definiert sind. Landing,
 //  Switch-Leagues-Menü und Liga-Ansicht lesen alles von hier.
 //
 //  mode:
@@ -66,6 +66,7 @@ const SPORT_DATA = {
 const SPORTS = {
   nba: { label: 'Basketball', emoji: '🏀' },
   nfl: { label: 'Football', emoji: '🏈' },
+  cbb: { label: 'College Basketball', emoji: '🎓' },
 };
 
 const LEAGUES = [
@@ -200,5 +201,22 @@ const LEAGUES = [
     },
     legacyUrl: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/?legacy=1',
     repo: 'Dynasty-Of-Pretend-Experts',
+  },
+  {
+    // College Basketball (Dizzles Liga) — vorerst nur die NIL-Auktion 2026
+    // (tools/cbb-auction.js). Daten: leagues/cbb/data/nil-auction.js, von Hand
+    // aus Dizzle_CBB_Off-season.xlsx erzeugt; Budgets dort in CBB_TEAMS pflegen.
+    key: 'cbb',
+    name: 'Dizzle CBB',
+    short: 'CBB',
+    emoji: '🎓',
+    sport: 'cbb',
+    platform: 'Fantrax',
+    format: 'Dynasty',
+    scoring: 'categories',
+    accent: '#3b82f6',
+    accent2: '#f2b84f',
+    mode: 'native',
+    dataBase: 'leagues/cbb/data/',
   },
 ];
