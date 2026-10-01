@@ -24,15 +24,15 @@
   function model(ctx) {
     const data = ctx.data, nba = N().init(data);
     const LD0 = data.LIVE_DRAFT || { picks: [] };
-    // ESPN (Offline Draft, vom LM eingetragen, per TTHQ-Sync) + Handeinträge;
-    // Handeinträge haben Vorrang (Korrekturen). Reihenfolge = Pick-Reihenfolge.
+    // ESPN (Offline Draft, vom LM eingetragen, per TTHQ-Sync). ACHTUNG: ESPN
+    // legt beim Eintragen "pro Team" jeden Spieler auf den EIGENEN Original-Slot
+    // des Teams in Runde 1, 2, 3 … (Trades ignoriert) -- die ESPN-Pick-Nummer ist
+    // also wertlos. Verlässlich sind nur Team + Reihenfolge innerhalb des Teams:
+    // der n-te ESPN-Pick eines Teams = sein n-ter Pick im Board (unten).
+    // Handeinträge (live-draft-2026.js) haben Vorrang und stehen fest auf ihrem Pick.
     const ESPN = data.LIVE_DRAFT_ESPN || { picks: [] };
-    const byPick = new Map();
-    (ESPN.picks || []).forEach(p => byPick.set(String(p.pick), { ...p, spieler: p.spieler || `ESPN #${p.playerId}`, quelle: 'espn' }));
-    (LD0.picks || []).forEach(p => byPick.set(String(p.pick), { ...(byPick.get(String(p.pick)) || {}), ...p, quelle: 'hand' }));
-    const allPicks = [...byPick.values()].sort((a, b) => { const [ar, as] = String(a.pick).split('.').map(Number), [br, bs] = String(b.pick).split('.').map(Number); return ar - br || as - bs; });
     const stamps = [LD0.aktualisiert, ESPN.picks && ESPN.picks.length ? ESPN.aktualisiert : null].filter(Boolean).sort();
-    const LD = { ...LD0, picks: allPicks, aktualisiert: stamps[stamps.length - 1] || LD0.aktualisiert };
+    const LD = { ...LD0, aktualisiert: stamps[stamps.length - 1] || LD0.aktualisiert };
     const year = LD.jahr || ctx.league.liveDraft;
     const teams = nba.leagueTeams(data, true);
     const byId = {}; teams.forEach(t => { byId[t.id] = t; });
@@ -53,20 +53,35 @@
     if (!slots.length) slots = teams.filter(t => !t.inactive).map((t, i) => ({ slot: i + 1, orig: t.id }));
     const picks = nba.picks(data).filter(p => p.year === year);
     const rounds = LD.runden || Math.max(1, ...picks.map(p => p.round));
-    const made = new Map((LD.picks || []).map(p => [String(p.pick), p]));
-
+    const made = new Map((LD0.picks || []).map(p => [String(p.pick), { ...p, quelle: 'hand' }]));
     const order = [];
     for (let r = 1; r <= rounds; r++) slots.forEach(s => {
       const id = `${r}.${s.slot}`;
       const base = picks.find(p => p.round === r && p.originalOwner === s.orig);
-      const m = made.get(id) || null;
-      const owner = (m && m.team) || (base ? base.currentOwner : s.orig);
-      const pl = m ? { ...(info.get(nba.key(m.spieler)) || {}), name: m.spieler } : null;
-      if (pl && m.nba) pl.nbaTeam = m.nba;
-      if (pl && m.pos) pl.pos = m.pos;
-      if (pl && m.exp) pl.experience = m.exp;
-      order.push({ id, round: r, slot: s.slot, overall: (r - 1) * slots.length + s.slot, orig: s.orig, owner, made: m, player: pl });
+      const m = made.get(id);
+      order.push({ id, round: r, slot: s.slot, overall: (r - 1) * slots.length + s.slot, orig: s.orig, owner: (m && m.team) || (base ? base.currentOwner : s.orig), made: m || null });
     });
+    // ESPN-Picks je Team der Reihe nach auf die freien Picks dieses Teams legen
+    const handKeys = new Set([...made.values()].map(p => nba.key(p.spieler)));
+    const espnByTeam = new Map();
+    (ESPN.picks || []).slice().sort((a, b) => (a.overall || 0) - (b.overall || 0)).forEach(p => {
+      if (p.team == null || (p.spieler && handKeys.has(nba.key(p.spieler)))) return;
+      if (!espnByTeam.has(p.team)) espnByTeam.set(p.team, []);
+      espnByTeam.get(p.team).push(p);
+    });
+    espnByTeam.forEach((list, tid) => {
+      const free = order.filter(o => o.owner === tid && !o.made);
+      list.forEach((p, i) => { if (free[i]) free[i].made = { ...p, pick: free[i].id, spieler: p.spieler || `ESPN #${p.playerId}`, quelle: 'espn' }; });
+    });
+    order.forEach(o => {
+      const m = o.made; if (!m) { o.player = null; return; }
+      const pl = { ...(info.get(nba.key(m.spieler)) || {}), name: m.spieler };
+      if (m.nba) pl.nbaTeam = m.nba;
+      if (m.pos) pl.pos = m.pos;
+      if (m.exp) pl.experience = m.exp;
+      o.player = pl;
+    });
+    LD.picks = order.filter(o => o.made).map(o => o.made);
     const next = LD.amZug ? order.find(o => o.id === String(LD.amZug)) : order.find(o => !o.made);
 
     // Keeper + gedraftete Spieler = vergeben
