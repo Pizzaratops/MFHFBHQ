@@ -22,7 +22,9 @@ const { parseCsv, CATEGORIES, FIELD_MAP, mean, stdDev, OFFSEASON_LEAGUES } = req
 // Spielplan NFL + NBA für #/<liga>/schedule mitlaufen lassen (eigener Prozess,
 // nicht fatal, eigene Logausgabe) -- hier eingehängt, damit es ohne Workflow-
 // Änderung bei jedem NBA-Sync läuft. Siehe scripts/sync-schedule.js.
-try {
+// PAUSIERT (01.10.2026) mit der Spielplan-Seite -- zum Reaktivieren SCHEDULE_SYNC auf true setzen.
+const SCHEDULE_SYNC = false;
+if (SCHEDULE_SYNC) try {
   require('child_process').spawnSync(process.execPath, [path.join(__dirname, 'sync-schedule.js')], { stdio: 'inherit', timeout: 60000 });
 } catch (e) { console.warn('Spielplan-Sync übersprungen:', e.message); }
 

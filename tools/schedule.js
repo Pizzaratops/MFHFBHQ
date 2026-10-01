@@ -115,6 +115,10 @@
 
   MFHFB.pages.register({
     id: 'schedule', section: 'home', label: 'Spielplan', icon: '📅', applies: {},
+    // PAUSIERT (01.10.2026): ESPN lieferte über GitHub Actions 0 Spiele. Zum
+    // Reaktivieren diese Zeile entfernen und den Aufruf in
+    // sports/nba/scripts/build-offseason-rankings.js wieder einschalten.
+    when: () => false,
     data: [], title: () => 'Spielplan', render, mount,
   });
 })();
