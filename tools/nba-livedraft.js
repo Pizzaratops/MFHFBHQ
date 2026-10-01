@@ -46,6 +46,8 @@
       if (p.experience === 'veteran' && so.has(k)) return { ...p, experience: 'sophomore' };
       return p;
     });
+    const npk = new Map((data.NBA_DRAFT_2026 || []).map(d => [nba.key(d.name), d.pick]));
+    if (npk.size) board.forEach((p, i) => { const n = npk.get(nba.key(p.name)); if (n) board[i] = { ...p, nbaPick: n, experience: 'rookie', isRookie: true }; });
     const info = new Map(); board.forEach(p => { if (!info.has(nba.key(p.name))) info.set(nba.key(p.name), p); });
 
     // Slot-Reihenfolge (jede Runde gleich), Besitzer aus PICKS + PICKS_LIVE
@@ -166,8 +168,9 @@
       { k: 'rank', l: '#', t: 'Sortieren nach Gesamtscore über alle Signale', v: p => p.rank },
       { k: 'name', l: 'Spieler', v: p => String(p.name).toLowerCase() },
       { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null },
-      { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFB Dynasty-Rang', v: p => p.dynastyRank ?? null },
-      { k: 'stickyScore', l: 'Sticky', t: 'Sticky Score (Summer-League-Modell), höher = besser', v: p => p.stickyScore ?? null, desc: true },
+      { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFBs Dynastyranking', v: p => p.dynastyRank ?? null },
+      { k: 'stickyScore', l: 'Sticky', t: 'Score für Summer League Stats', v: p => p.stickyScore ?? null, desc: true },
+      { k: 'nbaPick', l: 'Draft', t: 'Pick im NBA Draft 2026', v: p => p.nbaPick ?? null },
     ];
   }
   function baRows(ctx, M, st) {
@@ -184,7 +187,7 @@
   function baBody(ctx, M, st) {
     const e = ctx.ui.esc, nba = M.nba;
     const list = baRows(ctx, M, st);
-    if (!list.length) return `<tr><td colspan="5">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    if (!list.length) return `<tr><td colspan="6">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
     return list.slice(0, 250).map((p, i) => {
       const a = nba.age(p.dob) ?? p.age;
       return `<tr>
@@ -193,6 +196,7 @@
         <td class="num">${a != null ? a : '—'}</td>
         <td class="num">${nba.rankBadge(p.dynastyRank ?? null)}</td>
         <td class="num">${p.stickyScore == null ? '<span class="muted">—</span>' : `<span class="nba-sticky ${p.stickyScore >= 5 ? 'hi' : p.stickyScore >= 0 ? 'mid' : 'lo'}">${p.stickyScore.toFixed(1)}</span>`}</td>
+        <td class="num">${p.nbaPick ? `<span class="ld-npick${p.nbaPick <= 30 ? ' r1' : ''}" title="Pick ${p.nbaPick} im NBA Draft 2026">${p.nbaPick}</span>` : '<span class="muted">—</span>'}</td>
       </tr>`;
     }).join('');
   }
@@ -258,7 +262,7 @@
   MFHFB.pages.register({
     id: 'livedraft', section: 'draft', label: 'Live Draft', icon: '🔴', applies: { sport: ['nba'] },
     when: league => !!league.liveDraft,
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn', '?nba-draft'],
     title: () => 'Live Draft', render, mount,
   });
 })();

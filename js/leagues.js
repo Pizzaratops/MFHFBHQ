@@ -84,7 +84,7 @@ const LEAGUES = [
     mode: NBA_CUTOVER ? 'native' : 'legacy',
     nativePreview: !NBA_CUTOVER, // bis zum Cutover: neue Version zum Testen (Button „✨ Neue Version“)
     dataBase: NBA_CUTOVER ? 'leagues/tthq/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
-    files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026', 'live-draft-espn': './leagues/tthq/data/live-draft-espn' },
+    files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026', 'live-draft-espn': './leagues/tthq/data/live-draft-espn', 'nba-draft': './sports/nba/data/nba-draft-2026' },
     keepers: true,
     // Live-Draft-Seite (#/tthq/livedraft): Jahr des laufenden Drafts. Nach dem
     // Draft entfernen oder auf das nächste Jahr setzen.

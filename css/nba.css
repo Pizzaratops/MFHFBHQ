@@ -725,7 +725,7 @@ th.punted, td.punted { opacity: .35; }
 
 /* ---------- Live Draft (tools/nba-livedraft.js) ---------- */
 .native-main > .ld-wrap { max-width: 1680px; }
-.ld-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; grid-template-areas: "main side" "keep side"; gap: 16px; align-items: start; }
+.ld-grid { display: grid; grid-template-columns: minmax(0, 1fr) 430px; grid-template-areas: "main side" "keep side"; gap: 16px; align-items: start; }
 .ld-main { grid-area: main; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
 .ld-side { grid-area: side; position: sticky; top: 12px; min-width: 0; }
 .ld-keep { grid-area: keep; min-width: 0; }
@@ -768,7 +768,8 @@ th.punted, td.punted { opacity: .35; }
 .ld-barow .search { flex: 1 1 auto; min-width: 0; width: auto; }
 .ld-bascroll { max-height: calc(100vh - 230px); overflow: auto; }
 .ld-batable thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
-.ld-batable th, .ld-batable td { padding: 6px 6px; }
+.ld-batable th, .ld-batable td { padding: 6px 4px; }
+.ld-batable th { font-size: 10.5px; }
 .ld-batable th:first-child, .ld-batable td:first-child { padding-left: 12px; }
 .ld-baname { line-height: 1.25; }
 .ld-foot { padding: 8px 12px 10px; border-top: 1px solid var(--border); line-height: 1.6; }
@@ -783,3 +784,5 @@ th.punted, td.punted { opacity: .35; }
 @media (max-width: 760px) { .ld-matrix { min-width: 820px; } .ld-bascroll { max-height: 70vh; } }
 .ld-plink { color: inherit; text-decoration: none; }
 .ld-plink:hover { color: var(--league-accent); text-decoration: underline; }
+.ld-npick { display: inline-block; min-width: 26px; text-align: center; font-size: 11px; font-weight: 800; padding: 1px 5px; border-radius: 6px; background: var(--surface2); color: var(--muted); font-variant-numeric: tabular-nums; }
+.ld-npick.r1 { background: rgba(46,157,98,.16); color: #2e9d62; }
