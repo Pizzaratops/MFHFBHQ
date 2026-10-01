@@ -1,0 +1,53 @@
+name: CBB Live-Gebote
+
+# Holt stündlich die Tabelle „ACTIVE BIDS“ / „SIGNED PLAYERS“ aus dem
+# Google Sheet der Dizzle-CBB-NIL-Auktion nach leagues/cbb/data/live-bids.js.
+# Die Seite (#/cbb/bids) holt zusätzlich direkt im Browser, wenn sie offen ist.
+# Nach der Auktion: Workflow in GitHub deaktivieren oder sheet aus js/leagues.js nehmen.
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # stündlich (GitHub startet oft ein paar Minuten später)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cbb-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Gebote holen
+        continue-on-error: true
+        run: node leagues/cbb/scripts/sync-bids.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add leagues/cbb/data/live-bids.js 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: cbb live bids"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- hole aktuellen Stand und versuche erneut..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
