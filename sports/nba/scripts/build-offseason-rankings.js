@@ -19,6 +19,13 @@ const fs = require('fs');
 const path = require('path');
 const { parseCsv, CATEGORIES, FIELD_MAP, mean, stdDev, OFFSEASON_LEAGUES } = require('./aggregate-core');
 
+// Spielplan NFL + NBA für #/<liga>/schedule mitlaufen lassen (eigener Prozess,
+// nicht fatal, eigene Logausgabe) -- hier eingehängt, damit es ohne Workflow-
+// Änderung bei jedem NBA-Sync läuft. Siehe scripts/sync-schedule.js.
+try {
+  require('child_process').spawnSync(process.execPath, [path.join(__dirname, 'sync-schedule.js')], { stdio: 'inherit', timeout: 60000 });
+} catch (e) { console.warn('Spielplan-Sync übersprungen:', e.message); }
+
 const args = process.argv.slice(2);
 const arg = (name, fallback) => {
   const found = args.find(a => a.startsWith(`--${name}=`));

@@ -5,8 +5,7 @@
 //
 //  Zwei Spalten: NFL | NBA (inkl. Preseason), je Woche Montag–Sonntag,
 //  Uhrzeiten in Europe/Berlin. Daten live aus der öffentlichen ESPN-
-//  Scoreboard-API (site.api.espn.com), erst direkt, sonst über den
-//  ESPN-Proxy (core/espn.js). Ein NBA-Spiel um 19:30 Uhr US-Ostküste ist
+//  Scoreboard-API, serverseitig geholt (sports/nba/scripts/sync-schedule.js). Ein NBA-Spiel um 19:30 Uhr US-Ostküste ist
 //  bei uns 01:30 Uhr am Folgetag — es steht deshalb unter dem deutschen Tag.
 // ============================================================
 
@@ -17,7 +16,6 @@
     { key: 'nba', label: '🏀 NBA', path: 'basketball/nba' },
   ];
   const DAY = 864e5;
-  const cache = new Map(); // "<sport>|<range>" -> Promise<events[]>
 
   // ---------- Datum (immer in Berliner Zeit gedacht) ----------
   const berlinYMD = d => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
@@ -30,37 +28,22 @@
   }
   const compact = ymd => ymd.replace(/-/g, '');
 
-  // ---------- ESPN ----------
-  async function getJson(url) {
-    try {
-      const r = await fetch(url, { credentials: 'omit' });
-      if (r.ok) return await r.json();
-    } catch (e) { /* CORS o.ä. → Proxy */ }
-    return MFHFB.espn.fetchViaProxy(url);
+  // ---------- Daten: sports/nba/data/schedule.js (serverseitig von ESPN) ----------
+  //  Der Browser darf die ESPN-API nicht direkt lesen (CORS, Proxies blocken),
+  //  daher holt sports/nba/scripts/sync-schedule.js den Spielplan bei jedem
+  //  NBA-Sync (7 Tage zurück bis 28 Tage voraus). Pfad mit „./“ = immer aus dem Hub.
+  let SCH = null;
+  function loadAll(ctx) {
+    if (!SCH) SCH = MFHFB.data.load({ key: 'hub', dataBase: '', files: {} }, ['./sports/nba/data/schedule']).then(d => d.SCHEDULE).catch(err => { SCH = null; throw err; });
+    return SCH;
   }
-  function load(sport, monday) {
-    // US-Datum = Berliner Datum − 1 bis Berliner Sonntag (späte US-Spiele landen bei uns am Folgetag)
-    const from = addDays(monday, -1), to = addDays(monday, 6);
-    const key = sport.key + '|' + from;
-    if (!cache.has(key)) {
-      const url = `https://site.api.espn.com/apis/site/v2/sports/${sport.path}/scoreboard?dates=${compact(from)}-${compact(to)}&limit=400`;
-      cache.set(key, getJson(url).then(d => (d.events || []).map(ev => parse(sport, ev))).catch(err => { cache.delete(key); throw err; }));
-    }
-    return cache.get(key);
-  }
-  function parse(sport, ev) {
-    const c = (ev.competitions || [])[0] || {};
-    const side = ha => (c.competitors || []).find(x => x.homeAway === ha) || {};
-    const team = x => ({ abbr: (x.team || {}).abbreviation || '?', name: (x.team || {}).shortDisplayName || (x.team || {}).displayName || '?', logo: (x.team || {}).logo || null, score: x.score, winner: !!x.winner });
-    const st = (ev.status || c.status || {}).type || {};
-    const tv = [...new Set((c.broadcasts || []).flatMap(b => b.names || []))].slice(0, 2);
-    const seasonType = (ev.season || {}).type;
-    return {
-      id: ev.id, date: new Date(ev.date), away: team(side('away')), home: team(side('home')),
-      state: st.state || 'pre', detail: st.shortDetail || '', tbd: !!(ev.timeValid === false || st.name === 'STATUS_TBD'),
-      tv, pre: seasonType === 1, post: seasonType === 3, week: (ev.week || {}).number || null,
-      note: ((c.notes || [])[0] || {}).headline || '', neutral: !!c.neutralSite, venue: ((c.venue || {}).address || {}).city || '',
-    };
+  function games(S, key) {
+    return (S[key] || []).map(g => ({
+      id: g.id, date: new Date(g.d), state: g.st, detail: g.det, tbd: g.tbd, tv: g.tv || [],
+      pre: g.t === 1, post: g.t === 3, week: g.wk, note: g.note || '', neutral: g.ns, venue: g.city || '',
+      away: { abbr: g.away.a, name: g.away.n, logo: g.away.l, score: g.away.s, winner: g.away.w },
+      home: { abbr: g.home.a, name: g.home.n, logo: g.home.l, score: g.home.s, winner: g.home.w },
+    }));
   }
 
   // ---------- Darstellung ----------
@@ -80,7 +63,7 @@
       <div class="sch-meta">${tags}${g.tv.length ? `<span class="sch-tv">📺 ${e(g.tv.join(' · '))}</span>` : ''}${g.neutral && g.venue ? `<span class="sch-tv">📍 ${e(g.venue)}</span>` : ''}</div>
     </div>`;
   }
-  function column(sport, monday, games, err) {
+  function column(sport, monday, games, err, S) {
     const e = MFHFB.ui.esc;
     const head = `<div class="card-head"><h2>${sport.label}</h2><span class="muted small">${games ? games.length + ' Spiel' + (games.length === 1 ? '' : 'e') : ''}</span></div>`;
     if (err) return `<div class="card sch-col">${head}<div class="cs-pad muted">Spielplan nicht ladbar: ${e(err)}</div></div>`;
@@ -92,7 +75,8 @@
       if (!list.length) return '';
       return `<div class="sch-day${d === today ? ' today' : ''}"><div class="sch-dhead">${e(fmtDayHead(d))}${d === today ? ' <span class="sch-tag today">Heute</span>' : ''}</div>${list.map(gameRow).join('')}</div>`;
     }).join('');
-    return `<div class="card sch-col">${head}${body || '<div class="cs-pad muted">Keine Spiele in dieser Woche.</div>'}</div>`;
+    const outOfRange = S && (addDays(monday, 6) < S.from || monday > S.to);
+    return `<div class="card sch-col">${head}${body || `<div class="cs-pad muted">${outOfRange ? `Für diese Woche liegt noch kein Spielplan vor (Daten vom ${e(S.from)} bis ${e(S.to)}, täglich erweitert).` : 'Keine Spiele in dieser Woche.'}</div>`}</div>`;
   }
 
   function weekOf(ctx) {
@@ -107,7 +91,7 @@
     const fmt = ymd => new Intl.DateTimeFormat('de-DE', { timeZone: 'UTC', day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(ymd + 'T12:00:00Z'));
     return `
       <div class="page-head"><h1 class="page-title display">📅 Spielplan</h1>
-        <div class="page-sub">${e(fmt(monday))} – ${e(fmt(sunday))}<span class="explain"> · Alle Uhrzeiten in deutscher Zeit (Europe/Berlin). NBA-Abendspiele aus den USA liegen bei uns in der Nacht und stehen deshalb unter dem Folgetag. Daten live von ESPN, Ergebnisse und Live-Stand inklusive. NBA inklusive Preseason.</span></div></div>
+        <div class="page-sub">${e(fmt(monday))} – ${e(fmt(sunday))}<span data-stand></span><span class="explain"> · Alle Uhrzeiten in deutscher Zeit (Europe/Berlin). NBA-Abendspiele aus den USA liegen bei uns in der Nacht und stehen deshalb unter dem Folgetag. Daten von ESPN, bei jedem NBA-Sync (tagsüber alle 30 Minuten) aktualisiert, inklusive Ergebnissen. NBA inklusive Preseason.</span></div></div>
       <div class="controls">
         <div class="seg" role="group" aria-label="Woche">
           <a class="seg-btn" href="${ctx.href('schedule', addDays(monday, -7))}">◀ Vorwoche</a>
@@ -120,12 +104,13 @@
 
   function mount(root, ctx) {
     const monday = weekOf(ctx);
-    SPORTS.forEach(s => {
-      load(s, monday)
-        .then(games => column(s, monday, games))
-        .catch(err => column(s, monday, null, err.message))
-        .then(html => { const host = root.querySelector(`[data-sport="${s.key}"]`); if (host && host.isConnected) host.innerHTML = html; });
-    });
+    loadAll(ctx)
+      .then(S => {
+        SPORTS.forEach(sp => { const host = root.querySelector(`[data-sport="${sp.key}"]`); if (host && host.isConnected) host.innerHTML = column(sp, monday, games(S, sp.key), null, S); });
+        const st = root.querySelector('[data-stand]');
+        if (st && S.updatedAt) st.textContent = ' · Stand ' + new Intl.DateTimeFormat('de-DE', { timeZone: TZ, day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(S.updatedAt)) + ' Uhr';
+      })
+      .catch(err => SPORTS.forEach(sp => { const host = root.querySelector(`[data-sport="${sp.key}"]`); if (host && host.isConnected) host.innerHTML = column(sp, monday, null, 'Spielplan-Datei fehlt noch (' + err.message + '). Sie entsteht beim nächsten NBA-Sync.'); }));
   }
 
   MFHFB.pages.register({
