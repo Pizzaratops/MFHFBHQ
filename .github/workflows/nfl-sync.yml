@@ -77,11 +77,16 @@ jobs:
         continue-on-error: true
         run: node sports/nfl/scripts/sync-player-style.js
 
+      - name: Opportunity Radar (Usage + Injury Report)
+        id: opportunity
+        continue-on-error: true
+        run: node sports/nfl/scripts/build-opportunity.js
+
       - name: Commit & Push falls geändert
         run: |
           git config user.name "mfhfb-hq-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add sports/nfl/data/nfl-power-rankings.js sports/nfl/data/nfl-power-score.js sports/nfl/data/matchup-advantage.js sports/nfl/data/player-dna.js sports/nfl/data/air-yards.js sports/nfl/data/player-style.js
+          git add sports/nfl/data/nfl-power-rankings.js sports/nfl/data/nfl-power-score.js sports/nfl/data/matchup-advantage.js sports/nfl/data/player-dna.js sports/nfl/data/air-yards.js sports/nfl/data/player-style.js sports/nfl/data/opportunity.js
           if git diff --cached --quiet; then
             echo "Keine Änderungen -- nichts zu committen."
             exit 0
@@ -98,7 +103,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.standings.outcome == 'failure' || steps.powerscore.outcome == 'failure' || steps.matchup.outcome == 'failure' || steps.dna.outcome == 'failure' || steps.airyards.outcome == 'failure' || steps.style.outcome == 'failure'
+        if: steps.standings.outcome == 'failure' || steps.powerscore.outcome == 'failure' || steps.matchup.outcome == 'failure' || steps.dna.outcome == 'failure' || steps.airyards.outcome == 'failure' || steps.style.outcome == 'failure' || steps.opportunity.outcome == 'failure'
         run: |
           echo "Mindestens ein Sync-Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1
