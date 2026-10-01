@@ -48,19 +48,23 @@ async function main() {
   const from = new Date(now - 7 * DAY), to = new Date(now + 28 * DAY);
   const out = { from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) };
   for (const [k, p] of Object.entries(SPORTS)) {
-    try {
-      const d = await get(`https://site.api.espn.com/apis/site/v2/sports/${p}/scoreboard?dates=${ymd(from)}-${ymd(to)}&limit=1000`);
-      out[k] = (d.events || []).map(parse).sort((a, b) => a.d.localeCompare(b.d));
-      console.log(`Spielplan ${k}: ${out[k].length} Spiele`);
-    } catch (e) {
-      console.warn(`Spielplan ${k} nicht ladbar (nicht kritisch): ${e.message}`);
-      out[k] = null;
+    // Tag für Tag abfragen (ein Datumsbereich lieferte bei ESPN 0 Spiele, 01.10.2026)
+    const seen = new Map(); let errors = 0;
+    for (let t = from.getTime(); t <= to.getTime(); t += DAY) {
+      const day = ymd(new Date(t));
+      try {
+        const d = await get(`https://site.api.espn.com/apis/site/v2/sports/${p}/scoreboard?dates=${day}&limit=200`);
+        (d.events || []).forEach(ev => seen.set(ev.id, parse(ev)));
+      } catch (e) { errors++; if (errors <= 3) console.warn(`  ${k} ${day}: ${e.message}`); }
     }
+    if (errors > 20 && !seen.size) { console.warn(`Spielplan ${k} nicht ladbar (nicht kritisch).`); out[k] = null; continue; }
+    out[k] = [...seen.values()].sort((a, b) => a.d.localeCompare(b.d));
+    console.log(`Spielplan ${k}: ${out[k].length} Spiele (${errors} Tage mit Fehler)`);
   }
   // Fehlt ein Sport, den alten Stand behalten
   let old = null;
   if (fs.existsSync(OUT)) { try { old = new Function(fs.readFileSync(OUT, 'utf8') + ';return SCHEDULE')(); } catch (e) { /* neu schreiben */ } }
-  for (const k of Object.keys(SPORTS)) if (!out[k]) out[k] = (old && old[k]) || [];
+  for (const k of Object.keys(SPORTS)) if (!out[k] || (!out[k].length && old && (old[k] || []).length)) out[k] = (old && old[k]) || [];
   const body = JSON.stringify({ from: out.from, to: out.to, nfl: out.nfl, nba: out.nba });
   if (old && JSON.stringify({ from: old.from, to: old.to, nfl: old.nfl, nba: old.nba }) === body) { console.log('Spielplan unverändert.'); return; }
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
