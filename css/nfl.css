@@ -472,3 +472,34 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-rmeta { justify-content: space-between; }
 .cs-rmeta > span { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .cs-fmt .seg-btn { padding: 4px 10px; font-size: 12px; }
+
+/* ---------- 🔎 Opportunity Radar (tools/nfl-opportunity.js) ---------- */
+.op-abs-wrap { margin-bottom: 16px; }
+.op-abs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; padding: 12px 14px 14px; }
+.op-abs { padding: 10px 12px; box-shadow: none; }
+.op-abs-head { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; align-items: baseline; font-size: 14px; }
+.op-vac { font-size: 12px; color: var(--muted); }
+.op-vac b { color: var(--text); }
+.op-ben { margin: 8px 0 4px; padding-left: 20px; font-size: 12.5px; line-height: 1.5; }
+.op-ben li { margin-bottom: 3px; }
+.op-gain { display: block; font-size: 11.5px; color: var(--muted); }
+.op-gain b { color: var(--text); }
+.op-pos { font-size: 10px; font-weight: 800; padding: 1px 5px; border-radius: 5px; background: var(--surface2); color: var(--muted); }
+.op-free { font-size: 10.5px; font-weight: 800; padding: 1px 7px; border-radius: 20px; background: rgba(46,157,98,.16); color: #2e9d62; }
+.op-own { font-size: 11px; color: var(--muted); }
+.op-st { font-size: 10px; font-weight: 800; padding: 1px 6px; border-radius: 6px; margin-left: 4px; }
+.op-st.bad { background: rgba(217,83,79,.15); color: #d9534f; }
+.op-st.warn { background: rgba(245,200,66,.18); color: #b98300; }
+.op-sig { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 20px; margin: 1px 0; white-space: nowrap; }
+.op-sig.role { background: rgba(46,157,98,.16); color: #2e9d62; }
+.op-sig.up { background: rgba(41,146,214,.16); color: #2a7ab8; }
+.op-sig.eff { background: rgba(245,200,66,.18); color: #b98300; }
+.op-bar { display: inline-block; width: 60px; height: 6px; border-radius: 4px; background: var(--surface2); overflow: hidden; vertical-align: middle; }
+.op-bar i { display: block; height: 100%; background: var(--league-accent); }
+.op-table td { vertical-align: middle; }
+.op-low { margin-top: 16px; }
+.op-low summary { cursor: pointer; list-style: none; }
+.op-mode { font-size: 11px; color: var(--muted); border-top: 1px dashed var(--border); padding-top: 6px; }
+.op-more { padding: 0 14px 12px; }
+.op-more summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--league-accent); }
+.op-more .op-abs-grid { padding: 10px 0 0; }
