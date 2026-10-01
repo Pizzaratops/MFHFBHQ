@@ -110,6 +110,62 @@ function httpsGetJson(url) {
   });
 }
 
+// ============================================================
+//  LIVE DRAFT (01.10.2026): gemachte Picks aus ESPN (Offline Draft,
+//  vom LM eingetragen) -> data/live-draft-espn.js. Die Seite
+//  #/tthq/livedraft legt das unter die handgepflegte
+//  data/live-draft-2026.js (Handeinträge haben Vorrang).
+//  Keeper (keeper:true) und leere Picks (playerId <= 0) werden
+//  ignoriert. Namen über view=mRoster wie fetch-draft-results-espn.js.
+// ============================================================
+async function writeLiveDraft(cfg, picks) {
+  const LIVE_OUT = path.join(ROOT, 'data', 'live-draft-espn.js');
+  const made = picks.filter(p => p.playerId > 0 && !p.keeper);
+  const nameById = new Map();
+  if (made.length) {
+    const base = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${cfg.ESPN_SEASON}/segments/0/leagues/${cfg.ESPN_LEAGUE_ID}`;
+    const rosterData = await httpsGetJson(`${base}?view=mRoster&view=mTeam`);
+    (rosterData.teams || []).forEach(t => (t.roster?.entries || []).forEach(en => {
+      const pl = (en.playerPoolEntry || {}).player || {};
+      if (pl.id && pl.fullName) nameById.set(pl.id, pl.fullName);
+    }));
+  }
+  const teamsPerRound = Math.max(...picks.map(p => p.roundPickNumber || 0), 12);
+  const rows = made.map(p => {
+    const round = p.roundId;
+    const slot = p.roundPickNumber || (p.overallPickNumber - (round - 1) * teamsPerRound);
+    return {
+      pick: `${round}.${slot}`,
+      overall: p.overallPickNumber,
+      team: cfg.ESPN_TO_TT_TEAM[p.teamId] ?? null,
+      playerId: p.playerId,
+      spieler: nameById.get(p.playerId) || null,
+    };
+  }).sort((a, b) => a.overall - b.overall);
+  // Unveraendert? Dann nicht neu schreiben (sonst Commit bei jedem Lauf).
+  const body = JSON.stringify(rows);
+  if (fs.existsSync(LIVE_OUT) && fs.readFileSync(LIVE_OUT, 'utf8').includes(`picks: ${body},`)) {
+    console.log(`  Live Draft: ${rows.length} Picks, unverändert.`);
+    return;
+  }
+  const now = new Date().toISOString();
+  fs.writeFileSync(LIVE_OUT, `// ============================================================
+//  AUTO-GENERIERT von scripts/sync-espn-picks.js (TTHQ-Sync).
+//  Gemachte Picks des laufenden ESPN-Drafts (Saison ${cfg.ESPN_SEASON}) für
+//  die Seite #/tthq/livedraft. Nicht von Hand editieren -- Korrekturen
+//  gehören in data/live-draft-2026.js (hat Vorrang).
+//  Zuletzt geändert: ${now}
+// ============================================================
+
+const LIVE_DRAFT_ESPN = {
+  espnSeason: ${cfg.ESPN_SEASON},
+  aktualisiert: "${now}",
+  picks: ${body},
+};
+`, 'utf8');
+  console.log(`  Live Draft: ${rows.length} Picks nach ${path.relative(ROOT, LIVE_OUT)} geschrieben.`);
+}
+
 async function main() {
   const cfg = loadConfig();
   const ttYear = cfg.ESPN_SEASON - 1;
@@ -119,6 +175,11 @@ async function main() {
   const data = await httpsGetJson(url);
   const picks = (data.draftDetail && data.draftDetail.picks) || [];
   if (!picks.length) throw new Error('draftDetail.picks ist leer -- ESPN liefert für diese Saison keine Picks');
+
+  // Live Draft: bereits gemachte Picks (Spieler) mitschreiben, für
+  // #/tthq/livedraft. Fehler hier dürfen den Pick-Besitz-Sync nicht stoppen.
+  try { await writeLiveDraft(cfg, picks); }
+  catch (e) { console.warn('  Live-Draft-Datei nicht geschrieben (nicht kritisch):', e.message); }
 
   const updates = [];
   const uebersprungen = [];

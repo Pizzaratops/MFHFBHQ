@@ -23,7 +23,16 @@
   // ---------- Modell ----------
   function model(ctx) {
     const data = ctx.data, nba = N().init(data);
-    const LD = data.LIVE_DRAFT || { picks: [] };
+    const LD0 = data.LIVE_DRAFT || { picks: [] };
+    // ESPN (Offline Draft, vom LM eingetragen, per TTHQ-Sync) + Handeinträge;
+    // Handeinträge haben Vorrang (Korrekturen). Reihenfolge = Pick-Reihenfolge.
+    const ESPN = data.LIVE_DRAFT_ESPN || { picks: [] };
+    const byPick = new Map();
+    (ESPN.picks || []).forEach(p => byPick.set(String(p.pick), { ...p, spieler: p.spieler || `ESPN #${p.playerId}`, quelle: 'espn' }));
+    (LD0.picks || []).forEach(p => byPick.set(String(p.pick), { ...(byPick.get(String(p.pick)) || {}), ...p, quelle: 'hand' }));
+    const allPicks = [...byPick.values()].sort((a, b) => { const [ar, as] = String(a.pick).split('.').map(Number), [br, bs] = String(b.pick).split('.').map(Number); return ar - br || as - bs; });
+    const stamps = [LD0.aktualisiert, ESPN.picks && ESPN.picks.length ? ESPN.aktualisiert : null].filter(Boolean).sort();
+    const LD = { ...LD0, picks: allPicks, aktualisiert: stamps[stamps.length - 1] || LD0.aktualisiert };
     const year = LD.jahr || ctx.league.liveDraft;
     const teams = nba.leagueTeams(data, true);
     const byId = {}; teams.forEach(t => { byId[t.id] = t; });
@@ -234,7 +243,7 @@
   MFHFB.pages.register({
     id: 'livedraft', section: 'draft', label: 'Live Draft', icon: '🔴', applies: { sport: ['nba'] },
     when: league => !!league.liveDraft,
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn'],
     title: () => 'Live Draft', render, mount,
   });
 })();
