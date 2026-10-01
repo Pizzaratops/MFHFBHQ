@@ -64,7 +64,7 @@
 .native-main {
   flex: 1; min-width: 0; overflow-y: auto; padding: 24px 28px 48px; outline: none;
 }
-.native-main > * { max-width: 1100px; }
+.native-main > * { max-width: 1440px; } /* 01.10.: breiter, große Bildschirme blieben halb leer */
 
 .native-loading { padding: 60px 0; text-align: center; color: var(--muted); font-size: 14px; }
 
@@ -527,3 +527,17 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 [data-share]:hover > .share-btn, .share-btn:focus-visible { opacity: 1; }
 .share-btn:disabled { cursor: wait; }
 @media (max-width: 760px) { .share-btn { opacity: .85; } .share-btn span { display: none; } }
+
+/* ---------- Info-Tooltip (ⓘ): Erklärtexte erst beim Hovern / Antippen ---------- */
+.info-tip { position: relative; cursor: help; outline: none; }
+.info-tip i { font-style: normal; font-size: .72em; opacity: .55; vertical-align: .15em; margin-left: 2px; }
+.info-tip:hover i, .info-tip:focus i { opacity: 1; }
+.info-tip::after {
+  content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 8px); z-index: 50;
+  width: max-content; max-width: min(420px, 80vw); white-space: normal;
+  font: 500 12.5px/1.5 'DM Sans', sans-serif; letter-spacing: 0; text-transform: none; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25); opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity .12s, transform .12s; pointer-events: none;
+}
+.info-tip:hover::after, .info-tip:focus::after { opacity: 1; visibility: visible; transform: none; }

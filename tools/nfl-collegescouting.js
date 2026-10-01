@@ -148,24 +148,28 @@
     return { estimate, pickFmt, nflRound, collegeYear };
   })();
 
+  // Erklärtexte nur noch beim Hovern/Antippen der Überschrift (ⓘ)
+  const tipText = html => String(html || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  const tip = (label, text) => `<span class="info-tip" tabindex="0" data-tip="${MFHFB.ui.esc(tipText(text))}">${label} <i aria-hidden="true">ⓘ</i></span>`;
+
   function rookieCfg(ctx) { return ctx.league.rookieDraft || { teams: 12, rounds: 4 }; }
 
   function rangeBox(ctx, st, me, env) {
     const e = MFHFB.ui.esc;
-    const head = '<div class="card-head"><h2>📈 Draft Range</h2><span class="muted small">grobe Erwartung · keine Prognose</span></div>';
+    const why = env && env.curve ? `Grobe Erwartung, keine Prognose. Gerechnet aus dieser College-Saison „als wäre es die letzte“: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB). ${(() => { const b = (env.M.backtest || {})[st.pos]; return b ? `Backtest ${st.pos} (Saisons ${b.test}): Draft ja/nein AUC ${String(b.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(b.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : ''; })()} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze (FCS-Transfers, Redshirt- und Saisons mit wenig Einsatz fehlen).` : 'Grobe Erwartung, keine Prognose.';
+    const head = `<div class="card-head"><h2>${tip('📈 Draft Range', why)}</h2></div>`;
     if (!env) return `<div class="card cs-range">${head}<div class="muted cs-pad">Lade Modell …</div></div>`;
     if (env.error) return `<div class="card cs-range">${head}<div class="muted cs-pad">${e(env.error)}</div></div>`;
     const r = DR.estimate(env, st.pos, me);
     const cfg = rookieCfg(ctx), T = cfg.teams, maxPick = T * (cfg.rounds || 4);
     const season = me.year, nextDraft = season + 1;
-    const cy = r.cyear != null ? `≥ ${r.cyear}. College-Jahr (Saison ${season})` : 'College-Jahr unbekannt';
+    const cy = r.cyear != null ? `mind. ${r.cyear}. College-Jahr laut FBS-Daten (Saison ${season})` : 'College-Jahr unbekannt';
     const elig = r.cyear == null ? '' : r.eligible
       ? `<span class="cs-tag ok">draftberechtigt ${nextDraft}</span>`
-      : `<span class="cs-tag">frühestens Draft ${nextDraft + (3 - r.cyear)}</span>`;
+      : `<span class="cs-tag" title="Erst ${r.cyear} FBS-Saison(s) in der Historie. Transfers aus der FCS, Saisons unter dem Mindest-Volumen und Redshirt-Jahre fehlen -- dann ist er älter und evtl. schon ${nextDraft} berechtigt.">Draft-Berechtigung unsicher</span>`;
     if (!r.rank) return `<div class="card cs-range">${head}<div class="cs-rmeta">${e(cy)} ${elig}</div><div class="muted cs-pad">Für ${st.pos} gibt es noch kein Modell.</div></div>`;
     const rk = x => (x > maxPick ? 'nach R' + (cfg.rounds || 4) : DR.pickFmt(x, T));
     const ch = Math.round(r.chance * 100);
-    const bt = r.bt ? `Backtest ${st.pos} (Saisons ${r.bt.test}): Draft-ja/nein AUC ${String(r.bt.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(r.bt.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : '';
     return `<div class="card cs-range">${head}
       <div class="cs-rmeta">${e(cy)} ${elig}</div>
       <div class="cs-rgrid">
@@ -173,7 +177,6 @@
         <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird überhaupt gedraftet</span></div>
         <div class="cs-rcell"><small>Erw. NFL-Draft</small><b>${DR.nflRound(r.nfl.lo)}${DR.nflRound(r.nfl.hi) !== DR.nflRound(r.nfl.lo) ? '–' + DR.nflRound(r.nfl.hi) : ''}</b><span>Pick ${r.nfl.lo}–${r.nfl.hi} (Mitte ${r.nfl.mid})</span></div>
       </div>
-      <div class="cs-foot">Gerechnet aus dieser College-Saison „als wäre es die letzte“: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB). ${bt} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze.</div>
     </div>`;
   }
 
@@ -217,8 +220,7 @@
     const compObj = comps.find(c => c.id === pickedId);
     const meVals = feats[me.id];
     return `<div class="card cs-box" data-box="${kind}">
-      <div class="card-head"><h2>${title}</h2></div>
-      <div class="cs-box-sub">${sub}</div>
+      <div class="card-head"><h2>${tip(title, sub + (foot ? ' ' + foot : ''))}</h2></div>
       ${meVals && axes.length >= 3
         ? `<div class="cs-radar">${radar(axes, meVals, compObj ? feats[compObj.id] : null, me.name, compObj ? compObj.name : null)}</div>`
         : `<div class="muted cs-pad">Keine Perzentil-Daten für diesen Prospect (zu wenige vollständige Feature-Werte).</div>`}
@@ -227,7 +229,6 @@
           <span class="dna-nm">${e(m.name)} <small>${e(m.team || '')} · ${e(m.year)}${extra ? ' · ' + extra(m) : ''}</small></span>
           <span class="dna-plus">${m.id === pickedId ? '●' : '＋'}</span></button>`).join('')}`
         : `<div class="muted cs-pad">${emptyText}</div>`}
-      ${foot ? `<div class="cs-foot">${foot}</div>` : ''}
     </div>`;
   }
 
@@ -292,11 +293,11 @@
         <div class="dna-badge" title="${PRIMARY_LABEL[st.pos]} in der letzten erfassten College-Saison"><b>${me[stat] != null ? Math.round(me[stat]).toLocaleString('de-DE') : '—'}</b><small>${PRIMARY_LABEL[st.pos]}</small></div>
       </div>
       ${line ? `<div class="dna-tags">${line}</div>` : ''}
-      <div data-range>${rangeBox(ctx, st, me, null)}</div>
       <div class="cs-grid">
         <div data-prod>${prodBox(ctx, st, me)}</div>
         <div data-nfl>${nflBox(ctx, st, me, N)}</div>
-      </div>`;
+      </div>
+      <div data-range>${rangeBox(ctx, st, me, null)}</div>`;
   }
 
   MFHFB.pages.register({
@@ -323,7 +324,7 @@
       const years = C.meta.years.filter(y => y > cur - st.win);
       return `
         <div class="page-head">
-          <h1 class="page-title display">🎓 College Scouting</h1>
+          <h1 class="page-title display">${tip('🎓 College Scouting', 'Bekannte Grenzen: CFBD erfasst keine Slot/Outside-Alignment- oder Route-Tree-Daten — zwei Receiver mit gleicher Target Share können völlig unterschiedliche NFL-Rollen bekommen. Beide Comps sind Ähnlichkeits-, keine Erfolgs- oder Talentvergleiche. Quellen: CollegeFootballData, nflverse, FantasyPros (über DynastyProcess).')}</h1>
           <div class="page-sub">Aktuelle College-Spieler (keine Draftees/UDFAs) · ${all.length} ${st.pos}-Prospects mit Mindest-Volumen · Jahrgänge ${years.join('/')}</div>
         </div>
         <div class="controls">
@@ -335,14 +336,14 @@
             <input type="search" class="search" placeholder="Prospect suchen …" value="${e(st.q)}" data-q aria-label="Prospect suchen">
             <div class="cs-lctl">
               <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range)">Draft Range</button></div>
-              <label class="cs-chk" title="Geschätzt: mindestens 3. College-Jahr (Untergrenze aus der CFBD-Historie)"><input type="checkbox" data-elig${st.elig ? ' checked' : ''}> nur draftberechtigt ${C.meta.currentSeason + 1}</label>
+              <label class="cs-chk" title="Geschätzt: mindestens 3. College-Jahr (Untergrenze aus der CFBD-Historie)"><input type="checkbox" data-elig${st.elig ? ' checked' : ''}> nur sicher draftberechtigt ${C.meta.currentSeason + 1}</label>
             </div>
             <div class="dna-list-head"><span>Prospect</span><span data-lhead title="${st.sort === 'range' ? 'Mitte der Draft Range (Rookie Draft)' : PRIMARY_LABEL[st.pos] + ' in der letzten erfassten College-Saison'}">${st.sort === 'range' ? 'Rookie-Pick' : PRIMARY_LABEL[st.pos]}</span></div>
             <div class="dna-list" data-list>${listHtml(ctx, st)}</div>
           </aside>
           <div class="dna-main" data-main>${mainHtml(ctx, st, null)}</div>
         </div>
-        <div class="page-sub" style="margin-top:14px;font-size:12px">Bekannte Grenzen: CFBD erfasst keine Slot/Outside-Alignment- oder Route-Tree-Daten — zwei Receiver mit gleicher Target Share können völlig unterschiedliche NFL-Rollen bekommen. Beide Comps sind Ähnlichkeits-, keine Erfolgs- oder Talentvergleiche. Quellen: CollegeFootballData, nflverse.</div>`;
+`;
     },
     mount(root, ctx) {
       const st = ctx._cs || resolve(ctx);
