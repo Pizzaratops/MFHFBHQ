@@ -450,3 +450,18 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
   .ro-stats .stat-value { font-size: 22px; }
   .ro-stats .stat-label { font-size: 9.5px; }
 }
+
+/* ---------- College Scouting: 📈 Draft Range ---------- */
+.cs-range { margin: 12px 0 14px; }
+.cs-rmeta { padding: 10px 14px 0; font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.cs-tag { font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 20px; background: var(--surface2); color: var(--muted); }
+.cs-tag.ok { background: rgba(46,157,98,.15); color: #2e9d62; }
+.cs-rgrid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 10px; padding: 12px 14px; }
+.cs-rcell { background: var(--surface2); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cs-rcell small { font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.cs-rcell b { font-size: 18px; font-variant-numeric: tabular-nums; }
+.cs-rcell.big b { font-size: 24px; color: var(--league-accent); }
+.cs-rcell span { font-size: 11.5px; color: var(--muted); }
+.cs-ev.hoch { color: #2e9d62; } .cs-ev.mittel { color: #b98300; } .cs-ev.niedrig { color: #d9534f; }
+@media (max-width: 760px) { .cs-rgrid { grid-template-columns: 1fr 1fr; } .cs-rcell.big { grid-column: 1 / -1; } }
+.cs-range .card-head span { font-size: 12px; }

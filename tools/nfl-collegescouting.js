@@ -44,7 +44,8 @@
 
   const normKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z0-9]/g, '');
-  const defaults = { pos: 'WR', win: 2, q: '', sel: null };
+  const defaults = { pos: 'WR', win: 2, q: '', sel: null, elig: false, sort: 'stat' };
+  let RENV = null; // Draft-Range-Daten (einmal geladen, für Liste + Box)
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('cs', {}) });
   // Welcher Comp gerade im Radar liegt — flüchtig, pro Prospect
   const picked = { prod: null, nfl: null, for: null };
@@ -69,6 +70,111 @@
       else st.sel = (all.slice().sort((a, b) => (b[PRIMARY[st.pos]] || 0) - (a[PRIMARY[st.pos]] || 0))[0] || {}).id || null;
     }
     return st;
+  }
+
+  // ============================================================
+  //  📈 DRAFT RANGE (v1, 01.10.2026) — grobe Erwartung, KEINE Prognose
+  // ============================================================
+  //  Modell: sports/nfl/data/prospect-draft-model.js (trainiert mit
+  //  sports/nfl/scripts/build-prospect-draft-model.py auf der eigenen
+  //  CFBD-Historie + echten NFL-Drafts):
+  //   1. Draft-Chance  = logistische Regression
+  //   2. NFL-Pick       = Ridge-Regression auf ln(Pick), Band = ±0,674·sd
+  //   3. Rookie-Rang    = NFL-Pick → Dynasty-Rookie-Rang über
+  //      ROOKIE_DRAFT_CURVE (FantasyPros-Rookie-Rankings nach dem NFL-Draft)
+  //  Features werden hier exakt wie im Trainings-Script gebaut (z je Saison
+  //  + Position, College-Jahr ≤ 5, Power-Conference, Produktion × Jugend).
+  //  College-Jahr = Untergrenze (erste Saison mit Mindest-Volumen in der
+  //  CFBD-Historie). Draftberechtigt ab dem 3. Jahr nach der High School.
+  const DR = (() => {
+    let firstYear = null, zs = null;
+    function first(C) {
+      if (firstYear) return firstYear;
+      firstYear = new Map();
+      Object.keys(C.seasons || {}).forEach(y => Object.values(C.seasons[y] || {}).forEach(list => (list || []).forEach(r => {
+        const k = String(r.rawId); if (!firstYear.has(k) || firstYear.get(k) > +y) firstYear.set(k, +y);
+      })));
+      return firstYear;
+    }
+    // Mittelwert/Std (n−1) je Saison + Position + Feature, wie pandas
+    function zstat(C, M, pos, year) {
+      zs = zs || {};
+      const key = pos + '|' + year;
+      if (zs[key]) return zs[key];
+      const rows = ((C.seasons || {})[year] || {})[pos] || [];
+      const out = {};
+      M.pos[pos].base.forEach(f => {
+        const v = rows.map(r => r[f]).filter(x => x != null && !isNaN(x));
+        const m = v.reduce((t, x) => t + x, 0) / (v.length || 1);
+        const sd = Math.sqrt(v.reduce((t, x) => t + (x - m) ** 2, 0) / Math.max(1, v.length - 1));
+        out[f] = [m, sd];
+      });
+      return (zs[key] = out);
+    }
+    function collegeYear(C, me) {
+      const f = first(C).get(String(me.rawId));
+      return f ? me.year - f + 1 : null;
+    }
+    function estimate(env, pos, me) {
+      const { C, M, curve } = env, P = M.pos[pos], cv = curve.pos[pos];
+      const cyear = collegeYear(C, me);
+      const out = { cyear, eligible: cyear != null && cyear >= 3 };
+      if (!P || !cv) return out;
+      const st = zstat(C, M, pos, me.year);
+      const z = {};
+      P.base.forEach(f => { const [m, sd] = st[f] || [0, 1]; z[f] = me[f] == null || isNaN(me[f]) || !sd ? 0 : (me[f] - m) / (sd + 1e-9); });
+      const cy = Math.min(5, cyear || 1);
+      const prodYoung = P.prod.reduce((t, f) => t + z[f], 0) / P.prod.length * (4 - Math.max(1, Math.min(4, cy)));
+      const x = P.features.map(f => (f.endsWith('_z') ? z[f.slice(0, -2)] : f === 'cyear' ? cy : f === 'p5' ? (M.P5.includes(me.conf) ? 1 : 0) : f === 'prodYoung' ? prodYoung : 0));
+      const dot = (c, b) => c.reduce((t, k, i) => t + k * x[i], b);
+      out.chance = 1 / (1 + Math.exp(-dot(P.logit.coef, P.logit.b)));
+      // Ridge-Vorhersage → kalibriert (Quantil-Mapping auf die echte Pick-Verteilung)
+      const interp = (v, xs, ys) => { if (v <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (v <= xs[i]) { const t = (v - xs[i - 1]) / ((xs[i] - xs[i - 1]) || 1); return ys[i - 1] + t * (ys[i] - ys[i - 1]); } return ys[ys.length - 1]; };
+      const raw = dot(P.pick.coef, P.pick.b);
+      const lp = P.pick.cal ? interp(raw, P.pick.cal[0], P.pick.cal[1]) : raw, sd = P.pick.sd;
+      const clampPick = v => Math.max(1, Math.min(260, Math.round(v)));
+      out.nfl = { lo: clampPick(Math.exp(lp - 0.674 * sd)), mid: clampPick(Math.exp(lp)), hi: clampPick(Math.exp(lp + 0.674 * sd)) };
+      // Rookie-Rang: ln r = a + b·lnPick + e  →  Streuung aus Pick-Unsicherheit + Kurven-Residuen
+      const sdc = (cv.q75 - cv.q25) / 1.349, off = (cv.q75 + cv.q25) / 2;
+      const lr = cv.a + cv.b * Math.min(lp, Math.log(260)) + off, sdr = Math.sqrt((cv.b * sd) ** 2 + sdc ** 2);
+      const r = v => Math.max(1, Math.round(Math.exp(v)));
+      out.rank = { lo: r(lr - 0.674 * sdr), mid: r(lr), hi: r(lr + 0.674 * sdr) };
+      out.expRank = out.chance * out.rank.mid + (1 - out.chance) * Math.exp(cv.a + cv.b * Math.log(260));
+      out.bt = (M.backtest || {})[pos];
+      return out;
+    }
+    const pickFmt = (r, T) => `${Math.ceil(r / T)}.${String(((r - 1) % T) + 1).padStart(2, '0')}`;
+    const nflRound = p => (p <= 32 ? 'R1' : p <= 64 ? 'R2' : p <= 100 ? 'R3' : p <= 140 ? 'R4' : p <= 180 ? 'R5' : p <= 220 ? 'R6' : 'R7');
+    return { estimate, pickFmt, nflRound, collegeYear };
+  })();
+
+  function rookieCfg(ctx) { return ctx.league.rookieDraft || { teams: 12, rounds: 4 }; }
+
+  function rangeBox(ctx, st, me, env) {
+    const e = MFHFB.ui.esc;
+    const head = '<div class="card-head"><h2>📈 Draft Range</h2><span class="muted small">grobe Erwartung · keine Prognose</span></div>';
+    if (!env) return `<div class="card cs-range">${head}<div class="muted cs-pad">Lade Modell …</div></div>`;
+    if (env.error) return `<div class="card cs-range">${head}<div class="muted cs-pad">${e(env.error)}</div></div>`;
+    const r = DR.estimate(env, st.pos, me);
+    const cfg = rookieCfg(ctx), T = cfg.teams, maxPick = T * (cfg.rounds || 4);
+    const season = me.year, nextDraft = season + 1;
+    const cy = r.cyear != null ? `≥ ${r.cyear}. College-Jahr (Saison ${season})` : 'College-Jahr unbekannt';
+    const elig = r.cyear == null ? '' : r.eligible
+      ? `<span class="cs-tag ok">draftberechtigt ${nextDraft}</span>`
+      : `<span class="cs-tag">frühestens Draft ${nextDraft + (3 - r.cyear)}</span>`;
+    if (!r.rank) return `<div class="card cs-range">${head}<div class="cs-rmeta">${e(cy)} ${elig}</div><div class="muted cs-pad">Für ${st.pos} gibt es noch kein Modell.</div></div>`;
+    const rk = x => (x > maxPick ? 'nach R' + (cfg.rounds || 4) : DR.pickFmt(x, T));
+    const ch = Math.round(r.chance * 100);
+    const bt = r.bt ? `Backtest ${st.pos} (Saisons ${r.bt.test}): Draft-ja/nein AUC ${String(r.bt.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(r.bt.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : '';
+    return `<div class="card cs-range">${head}
+      <div class="cs-rmeta">${e(cy)} ${elig}</div>
+      <div class="cs-rgrid">
+        <div class="cs-rcell big"><small>Rookie Draft (${T} Teams)</small><b>${rk(r.rank.lo)} – ${rk(r.rank.hi)}</b><span>Mitte ${rk(r.rank.mid)} · Rookie-Rang #${r.rank.lo}–#${r.rank.hi} · falls gedraftet</span></div>
+        <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird überhaupt gedraftet</span></div>
+        <div class="cs-rcell"><small>Erw. NFL-Draft</small><b>${DR.nflRound(r.nfl.lo)}${DR.nflRound(r.nfl.hi) !== DR.nflRound(r.nfl.lo) ? '–' + DR.nflRound(r.nfl.hi) : ''}</b><span>Pick ${r.nfl.lo}–${r.nfl.hi} (Mitte ${r.nfl.mid})</span></div>
+      </div>
+      <div class="cs-foot">Gerechnet aus dieser College-Saison „als wäre es die letzte“: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB). ${bt} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze.</div>
+    </div>`;
   }
 
   // ---------- Radar (SVG): Prospect (sel-1) vs. gewählter Comp (sel-2) ----------
@@ -155,13 +261,19 @@
     const e = ctx.ui.esc;
     const C = ctx.data.COLLEGE_SCOUTING;
     const cur = C.meta.currentSeason, stat = PRIMARY[st.pos], q = normKey(st.q);
-    const list = (C.recent[st.pos] || [])
+    const byRange = st.sort === 'range' && RENV && !RENV.error;
+    const T = rookieCfg(ctx).teams;
+    let list = (C.recent[st.pos] || [])
       .filter(p => inWindow(p, st, cur) && (!q || normKey(p.name).includes(q)))
-      .sort((a, b) => (b[stat] || 0) - (a[stat] || 0));
+      .filter(p => !st.elig || (DR.collegeYear(C, p) || 0) >= 3);
+    if (byRange) {
+      list = list.map(p => ({ p, r: DR.estimate(RENV, st.pos, p) }))
+        .sort((a, b) => (a.r.expRank || 999) - (b.r.expRank || 999)).map(x => Object.assign({}, x.p, { _r: x.r }));
+    } else list = list.sort((a, b) => (b[stat] || 0) - (a[stat] || 0));
     return list.length ? list.map((p, i) => `<a class="dna-row${p.id === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, p.id)}">
         <span class="dna-idx">${i + 1}</span>
         <span class="dna-nm">${e(p.name)} <small>${e(p.team)} · ${e(p.year)}</small></span>
-        <span class="dna-avg">${p[stat] != null ? Math.round(p[stat]).toLocaleString('de-DE') : '—'}</span></a>`).join('')
+        <span class="dna-avg">${byRange ? (p._r && p._r.rank ? `${DR.pickFmt(p._r.rank.mid, T)} <small>${Math.round(p._r.chance * 100)}%</small>` : '—') : (p[stat] != null ? Math.round(p[stat]).toLocaleString('de-DE') : '—')}</span></a>`).join('')
       : '<div class="muted" style="padding:12px">Keine Treffer.</div>';
   }
 
@@ -180,6 +292,7 @@
         <div class="dna-badge" title="${PRIMARY_LABEL[st.pos]} in der letzten erfassten College-Saison"><b>${me[stat] != null ? Math.round(me[stat]).toLocaleString('de-DE') : '—'}</b><small>${PRIMARY_LABEL[st.pos]}</small></div>
       </div>
       ${line ? `<div class="dna-tags">${line}</div>` : ''}
+      <div data-range>${rangeBox(ctx, st, me, null)}</div>
       <div class="cs-grid">
         <div data-prod>${prodBox(ctx, st, me)}</div>
         <div data-nfl>${nflBox(ctx, st, me, N)}</div>
@@ -220,7 +333,11 @@
         <div class="dna-layout">
           <aside class="card dna-side">
             <input type="search" class="search" placeholder="Prospect suchen …" value="${e(st.q)}" data-q aria-label="Prospect suchen">
-            <div class="dna-list-head"><span>Prospect</span><span title="${PRIMARY_LABEL[st.pos]} in der letzten erfassten College-Saison">${PRIMARY_LABEL[st.pos]}</span></div>
+            <div class="cs-lctl">
+              <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range)">Draft Range</button></div>
+              <label class="cs-chk" title="Geschätzt: mindestens 3. College-Jahr (Untergrenze aus der CFBD-Historie)"><input type="checkbox" data-elig${st.elig ? ' checked' : ''}> nur draftberechtigt ${C.meta.currentSeason + 1}</label>
+            </div>
+            <div class="dna-list-head"><span>Prospect</span><span data-lhead title="${st.sort === 'range' ? 'Mitte der Draft Range (Rookie Draft)' : PRIMARY_LABEL[st.pos] + ' in der letzten erfassten College-Saison'}">${st.sort === 'range' ? 'Rookie-Pick' : PRIMARY_LABEL[st.pos]}</span></div>
             <div class="dna-list" data-list>${listHtml(ctx, st)}</div>
           </aside>
           <div class="dna-main" data-main>${mainHtml(ctx, st, null)}</div>
@@ -229,7 +346,7 @@
     },
     mount(root, ctx) {
       const st = ctx._cs || resolve(ctx);
-      ctx.store.setJSON('cs', { pos: st.pos, win: st.win, q: st.q, sel: st.sel });
+      ctx.store.setJSON('cs', { pos: st.pos, win: st.win, q: st.q, sel: st.sel, elig: st.elig, sort: st.sort });
       const C = ctx.data.COLLEGE_SCOUTING;
       if (!C || !C.recent) return;
       const me = (C.recent[st.pos] || []).find(p => p.id === st.sel);
@@ -240,6 +357,9 @@
         // Auswahl-ID aus der URL entfernen, sonst würde sie das Fenster wieder aufziehen
         if (ctx.params[1]) location.hash = ctx.href('collegescouting', st.pos); else ctx.refresh();
       }));
+      root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => { ctx.store.setJSON('cs', { ...getState(ctx), sort: b.dataset.sort }); ctx.refresh(); }));
+      const el = root.querySelector('[data-elig]');
+      if (el) el.addEventListener('change', () => { ctx.store.setJSON('cs', { ...getState(ctx), elig: el.checked }); ctx.refresh(); });
       const q = root.querySelector('[data-q]');
       if (q) q.addEventListener('input', () => {
         const s = { ...getState(ctx), q: q.value };
@@ -258,6 +378,16 @@
       // (nur die Liste scrollen, nicht die Seite)
       const list = root.querySelector('[data-list]'), act = root.querySelector('.dna-row.active');
       if (list && act) list.scrollTop = Math.max(0, act.offsetTop - list.offsetTop - list.clientHeight / 2);
+
+      MFHFB.data.load(ctx.league, ['sport:prospect-draft-model', 'sport:rookie-draft-curve'])
+        .then(d => (d.PROSPECT_DRAFT_MODEL && d.ROOKIE_DRAFT_CURVE ? { C, M: d.PROSPECT_DRAFT_MODEL, curve: d.ROOKIE_DRAFT_CURVE } : { error: 'Draft-Range-Modell fehlt.' }))
+        .catch(err => ({ error: 'Draft Range nicht verfügbar: ' + err.message }))
+        .then(env => {
+          RENV = env;
+          if (st.sort === 'range') { const l = root.querySelector('[data-list]'); if (l && l.isConnected) l.innerHTML = listHtml(ctx, { ...st, q: (getState(ctx).q || '') }); }
+          const host = root.querySelector('[data-range]');
+          if (host && host.isConnected && me) host.innerHTML = rangeBox(ctx, st, me, env);
+        });
 
       if (!me) return;
       MFHFB.data.load(ctx.league, ['sport:nfl-profile-comp'])

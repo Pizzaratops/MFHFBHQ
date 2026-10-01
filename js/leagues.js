@@ -158,6 +158,7 @@ const LEAGUES = [
     lineupSlots: ['QB', 'RB', 'RB', 'WR', 'WR', 'TE', 'FLEX', 'DEF', 'K'],
     legacyStoragePrefix: 'bwp',
     files: { draft: 'draft2026' },
+    rookieDraft: { teams: 12, rounds: 4 }, // für 📈 Draft Range (College Scouting)
     keepers: true,
     futureRounds: 5,
     notes: {
@@ -190,6 +191,7 @@ const LEAGUES = [
     accent2: '#f25c8a',
     mode: 'native',           // Cutover 29.09.2026 — Daten + Syncs unter leagues/dope/
     dataBase: 'leagues/dope/data/',
+    rookieDraft: { teams: 14, rounds: 4 }, // für 📈 Draft Range (College Scouting)
     // Zusätzliche Countdowns auf der Übersicht (aus LEAGUE_COUNTDOWNS, js/league-config.js)
     countdowns: [{ label: '🏆 Playoffs (Woche 15)', iso: '2026-12-18T02:15:00+01:00' }],
     legacyStoragePrefix: 'dpe',
