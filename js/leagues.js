@@ -218,5 +218,10 @@ const LEAGUES = [
     accent2: '#f2b84f',
     mode: 'native',
     dataBase: 'leagues/cbb/data/',
+    // Google Sheet der NIL-Auktion (öffentlich lesbar): Tabelle „ACTIVE BIDS“ +
+    // „SIGNED PLAYERS“ → Seite „Live-Gebote“. Zeiten im Sheet sind UTC
+    // (tzOffsetMin 0; geprüft 01.10.2026 über die NOW()-Zelle oben im Sheet).
+    // hours = so lange hat man Zeit, ein Gebot zu überbieten.
+    sheet: { id: '18Mv6nb029xyrk9W5tM8e0tYCbVqfMNANIUDnY1xyT-A', gid: 0, tzOffsetMin: 0, hours: 24 },
   },
 ];

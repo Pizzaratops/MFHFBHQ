@@ -104,6 +104,34 @@
 .cbb-buckets span { font-size: 11px; color: var(--muted); }
 .cbb-scroll { max-height: 460px; overflow: auto; }
 
+/* ---------- Live-Gebote ---------- */
+.cbb-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.cbb-actions .cbb-btn { text-decoration: none; display: inline-flex; align-items: center; }
+.cbb-fail { margin-top: 10px; }
+.cbb-paste { display: grid; gap: 8px; margin-top: 10px; max-width: 760px; }
+.cbb-paste textarea { width: 100%; font-family: ui-monospace, monospace; font-size: 12.5px; resize: vertical; }
+.cbb-paste .cbb-btn { justify-self: start; }
+.cbb-bidtag { display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--text); background: var(--surface2); border-radius: 6px; padding: 2px 7px; margin-right: 4px; white-space: nowrap; }
+.cbb-bidtag.soon { background: color-mix(in srgb, #d9534f 16%, var(--surface)); }
+.cbb-rate { display: inline-block; font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 6px; white-space: nowrap; border: 1px solid transparent; }
+.cbb-rate.deal2 { color: #1f7a4a; background: color-mix(in srgb, #2e9d62 20%, var(--surface)); }
+.cbb-rate.deal { color: #1f7a4a; background: color-mix(in srgb, #2e9d62 10%, var(--surface)); }
+.cbb-rate.fair { color: var(--muted); background: var(--surface2); }
+.cbb-rate.over { color: #b23b37; background: color-mix(in srgb, #d9534f 10%, var(--surface)); }
+.cbb-rate.over2 { color: #b23b37; background: color-mix(in srgb, #d9534f 20%, var(--surface)); }
+:root[data-theme="dark"] .cbb-rate.deal, :root[data-theme="dark"] .cbb-rate.deal2 { color: #6fd39b; }
+:root[data-theme="dark"] .cbb-rate.over, :root[data-theme="dark"] .cbb-rate.over2 { color: #f08a86; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cbb-rate.deal, :root:not([data-theme="light"]) .cbb-rate.deal2 { color: #6fd39b; }
+  :root:not([data-theme="light"]) .cbb-rate.over, :root:not([data-theme="light"]) .cbb-rate.over2 { color: #f08a86; }
+}
+.cbb-left { min-width: 150px; white-space: nowrap; }
+.cbb-timebar { height: 5px; border-radius: 99px; background: var(--surface2); overflow: hidden; margin-top: 5px; }
+.cbb-timebar span { display: block; height: 100%; border-radius: 99px; background: var(--league-accent); }
+.cbb-timebar.soon span { background: #d9534f; }
+.cbb-exp td { opacity: .5; }
+.cbb-startxt { color: var(--league-accent2); }
+
 @media (max-width: 900px) {
   .cbb-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cbb-buckets { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -119,4 +147,7 @@
   .cbb-name { white-space: normal; }
   .cbb-sellform { flex-wrap: wrap; }
   .cbb-buckets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cbb-left { min-width: 0; white-space: normal; }
+  .cbb-left small { display: block; }
+  .cbb-bids .cbb-tags .cbb-tag { display: none; }
 }

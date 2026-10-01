@@ -25,7 +25,8 @@ sports/nba/           NBA-weit: nba.js (Kategorien, Score-Modi, Namen) + scripts
 leagues/<liga>/       Liga-Daten + Sync-Scripts (Layout der alten Repos gespiegelt)
 tools/nfl-*.js        NFL-Seiten (BWP, DOPE)
 tools/nba-*.js        NBA-Seiten (TTHQ, Funkytown)
-tools/cbb-auction.js  CBB: NIL-Auktion (Board, Mein Plan, Budgets, Preise 2025) — Daten leagues/cbb/data/nil-auction.js
+tools/cbb-auction.js  CBB: NIL-Auktion (Board, Live-Gebote, Mein Plan, Budgets, Preise 2025) — Daten leagues/cbb/data/nil-auction.js
+                      + live-bids.js (stündlich aus dem Liga-Sheet, .github/workflows/cbb-bids.yml)
 tools/home.js         Übersicht (alle Ligen)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
