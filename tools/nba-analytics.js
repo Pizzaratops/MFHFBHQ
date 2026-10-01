@@ -105,9 +105,9 @@
           ${radarFor([t], M)}</button>`).join('')}</div>`;
     }
     return `<div class="page-head"><h1 class="page-title display">📐 Team Analytics</h1>
-        <div class="page-sub">Kategorie-Profil je Kader aus den Live-Projections · Top ${st.cutoff} je Team · ligaweit auf −1 … +1 normiert (TO: weniger = besser)</div></div>
+        <div class="page-sub"><span class="explain">Kategorie-Profil je Kader aus den Live-Projections, ligaweit auf −1 … +1 normiert (TO: weniger = besser).</span> Top ${st.cutoff} je Team</div></div>
       ${controls}${body}
-      <p class="muted small">Klick auf ein Team zeigt Stärken, Schwächen und die einbezogenen Spieler. Datenbasis wird täglich neu gebaut (Spieler ohne Projection fehlen bewusst).</p>`;
+      <p class="muted small explain">Klick auf ein Team zeigt Stärken, Schwächen und die einbezogenen Spieler. Datenbasis wird täglich neu gebaut (Spieler ohne Projection fehlen bewusst).</p>`;
   }
 
   function detail(ctx, tid) {

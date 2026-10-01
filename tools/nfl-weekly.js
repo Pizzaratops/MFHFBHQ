@@ -90,7 +90,7 @@
     }).sort((a, b) => b.avg - a.avg);
 
     return `
-      <div class="note">Sortiert nach Punkteschnitt. <b>All-Play</b> = Bilanz, wenn man jede Woche gegen alle anderen Teams gespielt hätte. <b>Glück</b> = tatsächliche Siege minus erwartete Siege aus der All-Play-Quote (positiv = günstiger Spielplan).</div>
+      <div class="note explain">Sortiert nach Punkteschnitt. <b>All-Play</b> = Bilanz, wenn man jede Woche gegen alle anderen Teams gespielt hätte. <b>Glück</b> = tatsächliche Siege minus erwartete Siege aus der All-Play-Quote (positiv = günstiger Spielplan).</div>
       <div class="table-wrap">
         <table class="table compact">
           <thead><tr>

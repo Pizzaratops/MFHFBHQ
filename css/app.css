@@ -529,15 +529,13 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 @media (max-width: 760px) { .share-btn { opacity: .85; } .share-btn span { display: none; } }
 
 /* ---------- Info-Tooltip (ⓘ): Erklärtexte erst beim Hovern / Antippen ---------- */
-.info-tip { position: relative; cursor: help; outline: none; }
-.info-tip i { font-style: normal; font-size: .72em; opacity: .55; vertical-align: .15em; margin-left: 2px; }
-.info-tip:hover i, .info-tip:focus i { opacity: 1; }
-.info-tip::after {
-  content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 8px); z-index: 50;
-  width: max-content; max-width: min(420px, 80vw); white-space: normal;
-  font: 500 12.5px/1.5 'DM Sans', sans-serif; letter-spacing: 0; text-transform: none; color: var(--text);
+/* Kasten selbst: .tip-float (ein Element, position: fixed, core/pages.js) */
+.info-tip { cursor: help; outline: none; }
+.info-tip .tip-i { font-style: normal; font-size: .62em; font-weight: 600; opacity: .5; vertical-align: .25em; margin-left: .35em; letter-spacing: 0; }
+.info-tip:hover .tip-i, .info-tip:focus .tip-i { opacity: 1; color: var(--league-accent); }
+.tip-float {
+  position: fixed; z-index: 1000; width: max-content; white-space: pre-line;
+  font: 500 12.5px/1.5 'DM Sans', sans-serif; color: var(--text); text-align: left;
   background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.25); opacity: 0; visibility: hidden; transform: translateY(-4px);
-  transition: opacity .12s, transform .12s; pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,.28); pointer-events: none;
 }
-.info-tip:hover::after, .info-tip:focus::after { opacity: 1; visibility: visible; transform: none; }

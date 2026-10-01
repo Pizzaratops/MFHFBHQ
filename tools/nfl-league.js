@@ -62,7 +62,7 @@
     const waiver = st.waiverType === 2 ? `FAAB ($${st.waiverBudget} Budget)` : st.waiverType === 1 ? 'Rolling Waivers' : 'Reverse Standings';
     const draftType = ctx.data.DRAFT_TYPE;
     return `
-      <div class="note">Alles in diesem Block kommt direkt aus den <b>${e(ctx.league.platform)}-Settings</b> der Liga (automatisch synchronisiert${L.syncedAt ? `, Stand ${new Date(L.syncedAt).toLocaleString('de-DE')}` : ''}).</div>
+      <div class="note explain">Alles in diesem Block kommt direkt aus den <b>${e(ctx.league.platform)}-Settings</b> der Liga (automatisch synchronisiert${L.syncedAt ? `, Stand ${new Date(L.syncedAt).toLocaleString('de-DE')}` : ''}).</div>
       <div class="lg-grid">
         ${card('🧾 Liga', kv([
           ['Name', e(L.name)], ['Saison', e(L.season)], ['Format', st.type === 2 ? 'Dynasty' : st.type === 1 ? 'Keeper' : 'Redraft'],
@@ -108,7 +108,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">📜 Regeln & Erklärung</h1>
-        <div class="page-sub">${ann.length ? 'Aushänge der Liga · ' : ''}${settings ? 'Liga-Settings · ' : ''}So funktionieren die Tools</div>
+        <div class="page-sub">${ann.length ? 'Aushänge der Liga · ' : ''}${settings ? 'Liga-Settings · ' : ''}<span class="explain">So funktionieren die Tools</span></div>
       </div>
       ${ann.map(a => card(a.title, a.html, a.highlight ? 'lg-highlight' : '')).join('')}
       ${settings}
@@ -145,7 +145,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">💰 Liga-Beiträge</h1>
-        <div class="page-sub">Laufende Beitrags-Saison ${e(data.CURRENT_DUES_YEAR)} · von Hand gepflegt in data/league-dues.js</div>
+        <div class="page-sub">Laufende Beitrags-Saison ${e(data.CURRENT_DUES_YEAR)}<span class="explain"> · von Hand gepflegt in data/league-dues.js</span></div>
       </div>
       ${league.notes && league.notes.dues ? `<div class="note">${e(league.notes.dues)}</div>` : ''}
       <div class="dues-sum">${years.map(y => { const n = teams.filter(t => st[t.id][y] === 'paid').length; return `<div class="dues-tile${y === data.CURRENT_DUES_YEAR ? ' cur' : ''}"><small>${y}</small><b>${n}<span>/${teams.length}</span></b><i style="--p:${Math.round(n / Math.max(1, teams.length) * 100)}%"></i></div>`; }).join('')}</div>
@@ -153,7 +153,7 @@
         <thead><tr><th>Team</th>${years.map(y => `<th class="num">${y}</th>`).join('')}</tr></thead>
         <tbody>${teams.map(t => `<tr><td><span class="team-cell"><span class="team-emoji">${e(t.emoji || '')}</span><span class="team-name">${e(t.name)}</span></span></td>${years.map(y => `<td class="num">${badge(st[t.id][y])}</td>`).join('')}</tr>`).join('')}</tbody>
       </table></div>
-      <div class="page-sub" style="margin-top:10px;font-size:12px">${legend}</div>`;
+      <div class="page-sub explain" style="margin-top:10px;font-size:12px">${legend}</div>`;
   }
 
   // ---------- League History ----------
@@ -205,13 +205,13 @@
       </table></div>` : ''}
       ${m.list.length ? `
         <h2 class="group-title">📈 Regular-Season-Finish über die Jahre</h2>
-        <div class="page-sub" style="margin:-4px 0 10px">Platzierung nach der Regular Season (nicht Playoff-Ergebnis). Umbenannte Franchises sind zu einer Zeile zusammengeführt (Zuordnung vom Liga-Owner bestätigt); Lücken = Team in dem Jahr nicht in der Liga.</div>
+        <div class="page-sub explain" style="margin:-4px 0 10px">Platzierung nach der Regular Season (nicht Playoff-Ergebnis). Umbenannte Franchises sind zu einer Zeile zusammengeführt (Zuordnung vom Liga-Owner bestätigt); Lücken = Team in dem Jahr nicht in der Liga.</div>
         <div class="pick-row" aria-label="Franchises hervorheben (bis zu 3)">
           ${sorted.map(f => { const k = sel.indexOf(f.id); return `<button type="button" class="pick${k > -1 ? ' on ' + MFHFB.charts.SEL[k] : ''}" data-pick="${e(f.id)}" aria-pressed="${k > -1}" title="${e(f.name)}">${e(f.emoji || '🏈')}<span>${e(f.name)}</span></button>`; }).join('')}
           ${sel.length ? '<button type="button" class="pick clear" data-clear>✕ Auswahl leeren</button>' : ''}
         </div>
         <div class="card bump-card"><div class="bump-wrap" data-bump></div><div class="bump-tip" hidden></div>
-          <div class="bump-hint">${sel.length ? '' : 'Tipp: bis zu drei Franchises oben antippen, um ihren Verlauf hervorzuheben. '}Hovern zeigt Details.</div></div>
+          <div class="bump-hint explain">${sel.length ? '' : 'Tipp: bis zu drei Franchises oben antippen, um ihren Verlauf hervorzuheben. '}Hovern zeigt Details.</div></div>
         <div class="table-wrap"><table class="table compact">
           <thead><tr><th>Franchise</th>${m.years.map(y => `<th class="num">${y}</th>`).join('')}<th class="num">Ø Platz</th><th class="num">🏆</th></tr></thead>
           <tbody>${sorted.map(f => { const k = sel.indexOf(f.id); return `<tr${k > -1 ? ` class="row-${MFHFB.charts.SEL[k]}"` : ''}>

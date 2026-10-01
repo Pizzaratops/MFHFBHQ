@@ -64,7 +64,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">📊 Rolling Rankings</h1>
-        <div class="page-sub">${set.mode === 'standings' ? 'Tabellenplatz nach jeder Woche (Siege, Tiebreak: Punkte)' : 'Rang nach kumulierten Punkten nach jeder Woche'} · Saison ${e(model.season)}</div>
+        <div class="page-sub"><span class="explain">${set.mode === 'standings' ? 'Tabellenplatz nach jeder Woche (Siege, Tiebreak: Punkte)' : 'Rang nach kumulierten Punkten nach jeder Woche'}</span> · Saison ${e(model.season)}</div>
       </div>
       <div class="controls"><div class="seg" role="group">${seg}</div></div>
       <div class="pick-row" aria-label="Teams hervorheben (bis zu ${MAX_SEL})">
@@ -74,7 +74,7 @@
       <div class="card bump-card">
         <div class="bump-wrap" data-bump>${chartSvg(ctx, model, sel, 900)}</div>
         <div class="bump-tip" hidden></div>
-        <div class="bump-hint">${sel.length ? '' : 'Tipp: bis zu drei Teams oben antippen, um ihren Verlauf hervorzuheben. '}Hovern zeigt Details.</div>
+        <div class="bump-hint explain">${sel.length ? '' : 'Tipp: bis zu drei Teams oben antippen, um ihren Verlauf hervorzuheben. '}Hovern zeigt Details.</div>
       </div>
       <h2 class="group-title">Als Tabelle</h2>
       <div class="table-wrap">

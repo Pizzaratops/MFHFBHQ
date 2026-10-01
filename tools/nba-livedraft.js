@@ -216,7 +216,7 @@
       </div>
       <div class="table-wrap ld-bascroll"><table class="table compact ld-batable"><thead><tr>${baColumns(M.nba).map(th).join('')}</tr></thead>
         <tbody data-ba>${baBody(ctx, M, st)}</tbody></table></div>
-      <div class="ld-foot muted small">Sortiert nach MFHFB Dynasty-Rang (Spalten anklicken zum Umsortieren, # = Gesamtscore). Spieler anklicken → Cat Web. Ohne Keeper und bereits gedraftete Spieler. <span class="ld-exp rookie">R</span> Rookie · <span class="ld-exp sophomore">S</span> Sophomore</div>
+      <div class="ld-foot muted small explain">Sortiert nach MFHFB Dynasty-Rang (Spalten anklicken zum Umsortieren, # = Gesamtscore). Spieler anklicken → Cat Web. Ohne Keeper und bereits gedraftete Spieler. <span class="ld-exp rookie">R</span> Rookie · <span class="ld-exp sophomore">S</span> Sophomore</div>
     </div>`;
   }
 
@@ -229,7 +229,7 @@
     return `
       <div class="ld-wrap">
         <div class="page-head"><h1 class="page-title display">🔴 Live ${M.year} Draft</h1>
-          <div class="page-sub">${M.order.filter(o => o.made).length} von ${M.order.length} Picks · Stand ${fmtDate(LD.aktualisiert)} Uhr · ${M.rounds} Runden, gleiche Reihenfolge in jeder Runde</div></div>
+          <div class="page-sub">${M.order.filter(o => o.made).length} von ${M.order.length} Picks · Stand ${fmtDate(LD.aktualisiert)} Uhr<span class="explain"> · ${M.rounds} Runden, gleiche Reihenfolge in jeder Runde</span></div></div>
         ${M.unknownKeepers.length ? `<div class="note small">ℹ️ Nicht im Spieler-Board (bleiben trotzdem als Keeper vergeben): ${ui.esc(M.unknownKeepers.join(', '))}</div>` : ''}
         <div class="ld-grid">
           <div class="ld-main">${statusHtml(ctx, M)}${boardHtml(ctx, M)}</div>

@@ -38,7 +38,7 @@
       return `
         <div class="page-head">
           <h1 class="page-title display">⚔️ Matchup Advantage</h1>
-          <div class="page-sub">NFL-Offense gegen gegnerische Defense, in beide Richtungen · Quelle nflverse${D && D.scheme ? ' + FTN-Charting' : ''}</div>
+          <div class="page-sub explain">NFL-Offense gegen gegnerische Defense, in beide Richtungen · Quelle nflverse${D && D.scheme ? ' + FTN-Charting' : ''}</div>
         </div>
         ${MA().pageHtml(week, game)}`;
     },

@@ -54,7 +54,7 @@
     const W = prWeeks(data);
     const st = getState(ctx);
     const head = `<div class="page-head"><h1 class="page-title display">🏀 NBA Power Rankings</h1>
-      <div class="page-sub">Bilanz, Offensive und Defensive Rating je Matchup-Woche · automatisch aus den NBA-Boxscores</div></div>`;
+      <div class="page-sub explain">Bilanz, Offensive und Defensive Rating je Matchup-Woche · automatisch aus den NBA-Boxscores</div></div>`;
     const grid = `<h2 class="group-title">Alle Teams</h2><div class="nba-abbr-grid">${nba.NBA_ABBRS.map(a => `<a class="nba-abbr" href="${ctx.href('nbateams', a)}"><strong>${a}</strong><small>${e(full(a))}</small></a>`).join('')}</div>`;
     if (!W.length) return `${head}${ui.empty('Noch keine Power Rankings', 'Die Tabelle füllt sich nach der ersten abgeschlossenen Matchup-Woche der neuen Saison.', '🏀')}${grid}`;
     const wi = st.week != null && st.week < W.length ? st.week : W.length - 1;

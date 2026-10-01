@@ -169,7 +169,7 @@
     const banner = played
       ? `Ergebnisse für Woche ${week}.`
       : project
-        ? `Woche ${week} noch nicht gespielt — Win% aus der Projektion der ${eng.starterCount} Starter (${set.lineup === 'optimal' ? 'Optimal-Lineup' : 'aktuelles Lineup'}, Datenmodus: ${MODE_LONG[set.mode]}).`
+        ? `Woche ${week} noch nicht gespielt<span class="explain"> — Win% aus der Projektion der ${eng.starterCount} Starter (${set.lineup === 'optimal' ? 'Optimal-Lineup' : 'aktuelles Lineup'}, Datenmodus: ${MODE_LONG[set.mode]}).</span>`
         : `Woche ${week} noch nicht gespielt — Projektionsdaten fehlen, daher nur Paarungen.`;
 
     return `

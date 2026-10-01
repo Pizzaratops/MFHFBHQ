@@ -162,7 +162,7 @@
       const mine = picks.filter(p => p.year === year && p.currentOwner === tid);
       const rounds = [...new Set(picks.filter(p => p.year === year).map(p => p.round))].sort((a, b) => a - b);
       body = `<div class="nba-kwrap">${keeperCard(ctx, t, year, picks)}</div>
-        <div class="page-sub" style="margin:8px 0 12px">Kadergröße ${data.MAX_ROSTER_SIZE || 26} = Picks + Keeper. Alle Teams: <a href="${href('picks')}">Pick-Übersicht</a>.</div>
+        <div class="page-sub" style="margin:8px 0 12px"><span class="explain">Kadergröße ${data.MAX_ROSTER_SIZE || 26} = Picks + Keeper.</span> Alle Teams: <a href="${href('picks')}">Pick-Übersicht</a>.</div>
         ${mine.length ? pickBlock(ctx, year, mine, rounds) : ui.empty(`Keine Picks im ${year} Draft`, '', '🎟️')}`;
     }
     const teams = nba.leagueTeams(data, true);
@@ -210,9 +210,9 @@
     const fmt = iso => new Date(iso).toLocaleString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' });
     return `
       <div class="page-head"><h1 class="page-title display">🎟️ Pick-Übersicht</h1>
-        <div class="page-sub">Pick-Besitz je Jahr · ${data.PICKS_LIVE && data.PICKS_LIVE.aktualisiert ? `${draftYear} täglich aus ESPN (Stand ${new Date(data.PICKS_LIVE.aktualisiert).toLocaleDateString('de-DE')})` : 'manuell gepflegt'}</div></div>
+        <div class="page-sub"><span class="explain">Pick-Besitz je Jahr</span> · ${data.PICKS_LIVE && data.PICKS_LIVE.aktualisiert ? `${draftYear} täglich aus ESPN (Stand ${new Date(data.PICKS_LIVE.aktualisiert).toLocaleDateString('de-DE')})` : 'manuell gepflegt'}</div></div>
       ${data.MAX_ROSTER_SIZE ? `<div class="card nba-keepers"><div class="card-head"><h2>🔑 Picks & Keeper ${draftYear}</h2>${lock ? `<span class="muted" style="font-size:12px">🔒 Keeper Lock: ${fmt(lock)} Uhr</span>` : ''}</div>
-        <div class="page-sub" style="padding:10px 14px 0">Kadergröße ${data.MAX_ROSTER_SIZE} = Picks + Keeper. Weniger Picks = mehr mögliche Keeper.${data.KEEPERS ? ` Keeper-Stand ${new Date(data.KEEPERS.stand).toLocaleDateString('de-DE')} (${e(data.KEEPERS.quelle)}).` : ''}</div>
+        <div class="page-sub" style="padding:10px 14px 0"><span class="explain">Kadergröße ${data.MAX_ROSTER_SIZE} = Picks + Keeper. Weniger Picks = mehr mögliche Keeper.</span>${data.KEEPERS ? ` Keeper-Stand ${new Date(data.KEEPERS.stand).toLocaleDateString('de-DE')} (${e(data.KEEPERS.quelle)}).` : ''}</div>
         <div class="nba-kgrid">${teams.filter(t => !t.inactive).map(t => keeperCard(ctx, t, draftYear, picks)).join('')}</div></div>` : ''}
       ${slots.length ? `<div class="card nba-lottery"><div class="card-head"><h2>🎰 2026 Lottery-Reihenfolge (R1)</h2></div><div class="table-wrap"><table class="table compact"><thead><tr><th class="num">Slot</th><th>NBA-Team</th><th>Herkunft</th><th>Besitzer</th><th>Notiz</th></tr></thead><tbody>
         ${slots.map(s => `<tr><td class="num strong">#${s.slot}</td><td>${e(s.nbaTeam || '')}</td><td>${e((byId[s.originalOwner] || {}).name || '?')}</td><td class="${s.currentOwner !== s.originalOwner ? 'strong' : ''}">${e((byId[s.currentOwner] || {}).name || '?')}</td><td class="muted">${e(s.note || '—')}</td></tr>`).join('')}

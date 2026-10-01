@@ -435,7 +435,7 @@
     const needed = st.mode === 'match' ? SEASONS.map(s => s.key) : [st.season];
     const missing = needed.filter(k => !isLoaded(ctx.league, k));
     const head = `<div class="page-head"><h1 class="page-title display">🕸️ Cat Web</h1>
-      <div class="page-sub">9-Cat-Perzentil-Radar für jeden Spieler · Shape Match im selben Pool und über alle Saisons seit 2003/04</div></div>`;
+      <div class="page-sub explain">9-Cat-Perzentil-Radar für jeden Spieler · Shape Match im selben Pool und über alle Saisons seit 2003/04</div></div>`;
     const controlsTop = `<div class="controls cw-controls">
       <div class="seg" role="group" aria-label="Ansicht">${MODES.map(([k, l]) => `<button type="button" class="seg-btn${st.mode === k ? ' active' : ''}" data-mode="${k}" aria-pressed="${st.mode === k}">${l}</button>`).join('')}</div>
       <div class="seg" role="group" aria-label="Statistik-Basis">${BASES.map(([k, l, t]) => `<button type="button" class="seg-btn${st.basis === k ? ' active' : ''}" data-basis="${k}" title="${t}" aria-pressed="${st.basis === k}">${l}</button>`).join('')}</div>
@@ -466,7 +466,7 @@
       <select class="tr-select cw-player" data-player aria-label="Spieler">${optionsHTML(env, filtered, p ? p.key : null)}</select>
     </div>`;
 
-    const note = `<p class="muted small cw-note">${pool.matchedCount} von ${pool.rosteredCount} gerosterten Spielern haben Stats für ${e(seasonLabel(season))}${pool.freeAgentCount ? ` (+ ${pool.freeAgentCount} Free Agents/Rookies)` : ''} · ${basis === 'p36' ? `Basis: Per 36 (Perzentil-Referenz: Spieler ab ${PER36_MIN_MPG} Min/Spiel)` : 'Basis: Per Game'}. Perzentile relativ zu allen Spielern mit Stats dieser Saison (TO CTRL: weniger Ballverluste = höher).</p>`;
+    const note = `<p class="muted small cw-note explain">${pool.matchedCount} von ${pool.rosteredCount} gerosterten Spielern haben Stats für ${e(seasonLabel(season))}${pool.freeAgentCount ? ` (+ ${pool.freeAgentCount} Free Agents/Rookies)` : ''} · ${basis === 'p36' ? `Basis: Per 36 (Perzentil-Referenz: Spieler ab ${PER36_MIN_MPG} Min/Spiel)` : 'Basis: Per Game'}. Perzentile relativ zu allen Spielern mit Stats dieser Saison (TO CTRL: weniger Ballverluste = höher).</p>`;
 
     if (!p) {
       return `${head}${controlsTop}${controlsPick}<div class="card cw-card">${ui.empty('Keine Spieler gefunden', 'Für diese Saison/Filter gibt es keine Spieler mit Stats.', '🕸️')}</div>${note}`;

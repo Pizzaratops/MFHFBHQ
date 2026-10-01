@@ -200,7 +200,7 @@
       <div class="table-wrap"><table class="table dna-table"><thead><tr><th>Kategorie</th><th class="num">Wert</th></tr></thead><tbody>
       ${cats.map((c, i) => `<tr><td><span class="dna-tip" tabindex="0" data-tip="${attr((gloss(st.pos, c.k) || {}).short)}"><b>◇ ${e(c.label)}</b></span> <button type="button" class="dna-info" data-help="${c.k}" aria-label="${e(c.label)} erklärt">ⓘ</button><small class="muted"> ${e(c.unit)}</small></td><td class="num">${fmt(p.stab[i])}</td></tr>`).join('')}
       </tbody></table></div>
-      <div class="page-sub">Sobald genug Volumen da ist, taucht ${e(p.n)} automatisch mit vollem DNA-Profil im ${st.pos}-Pool auf.</div>`;
+      <div class="page-sub explain">Sobald genug Volumen da ist, taucht ${e(p.n)} automatisch mit vollem DNA-Profil im ${st.pos}-Pool auf.</div>`;
   }
 
   function mainHtml(ctx, a, st, owner) {
@@ -251,7 +251,7 @@
       <div class="dna-grid">
         <div class="card dna-radar-card">
           ${radar(entries, cats, st, a)}
-          <div class="dna-legend">● Rolle & Produktion · ◇ Stil (kein besser/schlechter)</div>
+          <div class="dna-legend explain">● Rolle & Produktion · ◇ Stil (kein besser/schlechter)</div>
           ${entries.length > 1 ? `<div class="dna-chips">${entries.map((en, i) => `<span class="dna-chip ${SEL[i]}"><i></i>${e(en.p.n)} ${e(en.season)}${i ? ` <button type="button" data-uncmp="${i - 1}" aria-label="Entfernen">✕</button>` : ''}</span>`).join('')}</div>` : ''}
         </div>
         <div class="table-wrap"><table class="table dna-table">
@@ -266,7 +266,7 @@
         ${matchBox(`🧬 DNA-Match ${e(st.season)}`, cur, false)}
         ${matchBox('🏛️ Historisches Match', hist, true, me.e ? `<label class="dna-check"><input type="checkbox" data-sameyear ${st.sameYear ? 'checked' : ''}> nur ${me.e === 1 ? 'Rookie-Jahre' : 'NFL-Jahr ' + me.e}</label>` : '')}
       </div>
-      <div class="page-sub" style="margin-top:10px;font-size:12px">Klick auf ein Match legt es zum Vergleich ins Radar (max. 3 Profile). Match-Score = 100 − Ø Abstand über alle Achsen. Stabilität r = gemessene Jahr-zu-Jahr-Korrelation 2016–2025. Quellen: nflverse, ffverse.</div>`;
+      <div class="page-sub explain" style="margin-top:10px;font-size:12px">Klick auf ein Match legt es zum Vergleich ins Radar (max. 3 Profile). Match-Score = 100 − Ø Abstand über alle Achsen. Stabilität r = gemessene Jahr-zu-Jahr-Korrelation 2016–2025. Quellen: nflverse, ffverse.</div>`;
   }
 
   MFHFB.pages.register({
@@ -298,7 +298,7 @@
       return `
         <div class="page-head">
           <h1 class="page-title display">🧬 Player DNA</h1>
-          <div class="page-sub">Perzentil-Profil gegen die ganze NFL · Pool ${e(st.season)}: ${all.length} ${st.pos}s mit Mindest-Volumen (${D.seasons[st.season].weeks} Wochen)</div>
+          <div class="page-sub"><span class="explain">Perzentil-Profil gegen die ganze NFL</span> · Pool ${e(st.season)}: ${all.length} ${st.pos}s mit Mindest-Volumen (${D.seasons[st.season].weeks} Wochen)</div>
         </div>
         <div class="controls">
           <div class="seg" role="group">${POS.map(p => `<a class="seg-btn${p === st.pos ? ' active' : ''}" href="${ctx.href('playerdna', p, st.season)}">${p}</a>`).join('')}</div>

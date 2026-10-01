@@ -469,3 +469,6 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-lctl .seg { align-self: flex-start; }
 .cs-chk { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); cursor: pointer; }
 .cs-chk input { margin: 0; }
+.cs-rmeta { justify-content: space-between; }
+.cs-rmeta > span { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.cs-fmt .seg-btn { padding: 4px 10px; font-size: 12px; }

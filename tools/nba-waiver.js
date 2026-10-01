@@ -77,7 +77,7 @@
     const th = (k, l, t, cls) => `<th class="${cls || ''}${st.sort === k ? ' sorted' : ''}"${t ? ` title="${t}"` : ''}><button type="button" class="th-sort" data-sort="${k}">${l}${st.sort === k ? (st.dir === 1 ? ' ▲' : ' ▼') : ''}</button></th>`;
     return `
       <div class="page-head"><h1 class="page-title display">🆓 Waiver</h1>
-        <div class="page-sub">${all.length} freie Spieler, sortiert nach Gesamtscore über alle Signale (täglich neu) · Reihenfolge = Empfehlung</div></div>
+        <div class="page-sub">${all.length} freie Spieler<span class="explain"> · sortiert nach Gesamtscore über alle Signale (täglich neu) · Reihenfolge = Empfehlung</span></div></div>
       <div class="controls">
         <div class="seg" role="group">${[['all', 'Alle'], ['rookie', 'Rookies'], ['sophomore', 'Sophomores']].map(([v, l]) => `<button type="button" class="seg-btn${st.exp === v ? ' active' : ''}" data-exp="${v}">${l}</button>`).join('')}</div>
         <select class="tr-select" data-nba aria-label="NBA-Team"><option value="">Alle NBA-Teams (${all.length})</option>${teams.map(t => `<option value="${t}"${st.nba === t ? ' selected' : ''}>${t} (${all.filter(p => p.nbaTeam === t).length})</option>`).join('')}</select>

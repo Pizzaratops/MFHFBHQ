@@ -117,7 +117,7 @@
     const model = historyModel(ctx);
     const sel = (ctx.store.getJSON('st-sel', []) || []).filter(id => model.stats.some(x => String(x.t.id) === id)).slice(0, MAX_SEL);
     const head = `<div class="page-head"><h1 class="page-title display">🏆 Tabelle & Historie</h1>
-      <div class="page-sub">Laufende Saison und Endplatzierungen aller bisherigen Saisons</div></div>`;
+      <div class="page-sub explain">Laufende Saison und Endplatzierungen aller bisherigen Saisons</div></div>`;
     let hist;
     if (!model.S.length) {
       hist = ui.empty('Noch keine Historie geladen', league.seasonArchive ? 'Saison-Archiv fehlt.' : 'In GitHub unter Actions → „Saison-Standings abrufen“ → Run workflow starten (alle Felder leer lassen). Danach erscheint hier der Verlauf.', '📜');
@@ -130,7 +130,7 @@
           ${sel.length ? '<button type="button" class="pick clear" data-clear>✕ Auswahl leeren</button>' : ''}
         </div>
         <div class="card bump-card"><div class="bump-wrap" data-bump>${chartSvg(model, sel, 900)}</div><div class="bump-tip" hidden></div>
-          <div class="bump-hint">Nur Teams, die es heute noch gibt · Lücke = in dieser Saison nicht dabei. Hovern zeigt den damaligen Teamnamen.</div></div>
+          <div class="bump-hint explain">Nur Teams, die es heute noch gibt · Lücke = in dieser Saison nicht dabei. Hovern zeigt den damaligen Teamnamen.</div></div>
         <h2 class="group-title">🏆 Podium je Saison</h2>
         <div class="table-wrap"><table class="table compact"><thead><tr><th>Saison</th><th>🥇 Champion</th><th>🥈 Zweiter</th><th>🥉 Dritter</th><th class="num">Teams</th></tr></thead>
           <tbody>${model.S.slice().reverse().map(s => { const at = p => s.standings.find(r => r.place === p); return `<tr>
@@ -140,7 +140,7 @@
         <div class="table-wrap"><table class="table compact"><thead><tr><th>Team</th><th class="num">Saisons</th><th class="num">Titel</th><th class="num">Podium</th><th class="num">Bestes</th><th class="num">Ø Platz</th></tr></thead>
           <tbody>${byAvg.map(x => `<tr><td><a class="nba-tlink mp-tc" style="${nba.tcStyle(x.t)}" href="${ctx.href('teams', x.t.id)}"><span class="nba-tdot"></span>${e(x.t.name)}</a></td>
             <td class="num">${x.n}</td><td class="num strong">${x.titles ? '🏆'.repeat(Math.min(x.titles, 3)) + (x.titles > 3 ? '×' + x.titles : '') : '–'}</td><td class="num">${x.podium}</td><td class="num">${x.best}.</td><td class="num strong">${x.avg.toFixed(1)}</td></tr>`).join('')}</tbody></table></div>
-        ${model.S.some(s => s.standings.some(r => r.estimated)) ? '<p class="muted small">* Platzierung geschätzt (ESPN lieferte keine offizielle Endplatzierung)</p>' : ''}`;
+        ${model.S.some(s => s.standings.some(r => r.estimated)) ? '<p class="muted small explain">* Platzierung geschätzt (ESPN lieferte keine offizielle Endplatzierung)</p>' : ''}`;
     }
     return `${head}${currentTable(ctx)}${hist}`;
   }
@@ -194,7 +194,7 @@
       </details>`;
     }).join('');
     return `<div class="page-head"><h1 class="page-title display">📜 Saison ${e(s.label)}</h1>
-        <div class="page-sub">${s.final ? 'Endplatzierung nach Playoffs · Bilanz und Kader der regulären Saison (ESPN-Export)' : 'Endstand und Kader zum Saisonende (aus dem ESPN-Export)'} · Teamnamen wie damals</div></div>
+        <div class="page-sub explain">${s.final ? 'Endplatzierung nach Playoffs · Bilanz und Kader der regulären Saison (ESPN-Export)' : 'Endstand und Kader zum Saisonende (aus dem ESPN-Export)'} · Teamnamen wie damals</div></div>
       <div class="controls">${tabs}</div><div class="nba-arch-list">${cards}</div>`;
   }
 
@@ -245,7 +245,7 @@
     const { ui } = ctx, e = ui.esc, nba = N();
     nba.init(ctx.data);
     const M = rsModel(ctx);
-    const head = `<div class="page-head"><h1 class="page-title display">📊 Tabellenverlauf</h1><div class="page-sub">Tabellenplatz nach jeder Woche der regulären Saison</div></div>`;
+    const head = `<div class="page-head"><h1 class="page-title display">📊 Tabellenverlauf</h1><div class="page-sub explain">Tabellenplatz nach jeder Woche der regulären Saison</div></div>`;
     if (!M) return `${head}${ui.empty('Noch keine Wochenergebnisse', 'Die laufende Saison füllt sich automatisch, sobald die erste Woche entschieden ist (täglicher ESPN-Sync). Vorjahre über Actions → „Saison-Standings abrufen“.', '📊')}`;
     const tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
     const lastW = M.weeks[M.weeks.length - 1], prevW = M.weeks.length > 1 ? M.weeks[M.weeks.length - 2] : null;

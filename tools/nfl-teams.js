@@ -121,7 +121,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">🏟️ NFL Power Rankings</h1>
-        <div class="page-sub">Saison ${e(season)} · Stand nach Woche ${week} · Team anklicken für Power Score & Verlauf · Quelle nflverse</div>
+        <div class="page-sub">Saison ${e(season)} · Stand nach Woche ${week}<span class="explain"> · Team anklicken für Power Score & Verlauf · Quelle nflverse</span></div>
       </div>
       <div class="controls">
         ${seg('scope', [['nfl', 'NFL'], ['conference', 'Conference'], ['division', 'Division']])}
@@ -129,7 +129,7 @@
         <select class="tr-select nfl-week" data-week aria-label="Woche">${weeks.map(w => `<option value="${w}"${w === week ? ' selected' : ''}>Woche ${w}</option>`).join('')}</select>
       </div>
       ${body}
-      <div class="page-sub" style="margin-top:10px;font-size:12px">Win-Loss: Sieg-Quote, Tiebreak Punktedifferenz. Offense/Defense: EPA/Play (Expected Points Added pro Spielzug), bei der Defense zugelassen (niedrig = gut). ▲/▼ = Plätze gegenüber der Vorwoche. Power Ø = Ø-Rang im Bootleg Power Score (kumulativ).</div>`;
+      <div class="page-sub explain" style="margin-top:10px;font-size:12px">Win-Loss: Sieg-Quote, Tiebreak Punktedifferenz. Offense/Defense: EPA/Play (Expected Points Added pro Spielzug), bei der Defense zugelassen (niedrig = gut). ▲/▼ = Plätze gegenüber der Vorwoche. Power Ø = Ø-Rang im Bootleg Power Score (kumulativ).</div>`;
   }
 
   MFHFB.pages.register({
@@ -182,7 +182,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">🏈 NFL Teams</h1>
-        <div class="page-sub">Nach Division, sortiert nach Bilanz${season ? ` (Saison ${e(season)}, Woche ${weeks[weeks.length - 1]})` : ''} · Team anklicken für Power Score, Verlauf und Fantasy-Spieler</div>
+        <div class="page-sub">Nach Division, sortiert nach Bilanz${season ? ` (Saison ${e(season)}, Woche ${weeks[weeks.length - 1]})` : ''}<span class="explain"> · Team anklicken für Power Score, Verlauf und Fantasy-Spieler</span></div>
       </div>
       <div class="nfl-confs">${grouped}</div>`;
   }
@@ -229,7 +229,7 @@
           <tbody>${tableRows}<tr class="nfl-avg"><td><b>Ø Rang</b></td>${entries.map(en => { const a = avgRank(en); return `<td class="num strong">${a != null ? a.toFixed(1).replace('.', ',') : '—'}</td>`; }).join('')}</tr></tbody>
         </table></div>
       </div>
-      <div class="cs-foot">Rang 1 = außen im Netz, unabhängig davon, ob ein hoher oder niedriger Rohwert besser ist. 6 Kategorien, datengestützt ausgewählt (Korrelation mit echten Saison-Siegen 2021–2025). Quelle nflverse.</div>
+      <div class="cs-foot explain">Rang 1 = außen im Netz, unabhängig davon, ob ein hoher oder niedriger Rohwert besser ist. 6 Kategorien, datengestützt ausgewählt (Korrelation mit echten Saison-Siegen 2021–2025). Quelle nflverse.</div>
     </div>`;
   }
 
@@ -252,7 +252,7 @@
       <div class="table-wrap"><table class="table compact">
         <thead><tr><th>Woche</th><th class="num">W-L</th><th class="num">NFL #</th><th class="num">Conf #</th><th class="num">Div #</th><th class="num" title="Offense-Rang nach EPA/Play">OR #</th><th class="num" title="Defense-Rang nach zugelassener EPA/Play">DR #</th></tr></thead>
         <tbody>${rows}</tbody></table></div>
-      <div class="cs-foot">NFL/Conf/Div = Rang nach Sieg-Quote. OR/DR = Offense-/Defense-Rang nach EPA/Play (Wert in Klammern).</div></div>`;
+      <div class="cs-foot explain">NFL/Conf/Div = Rang nach Sieg-Quote. OR/DR = Offense-/Defense-Rang nach EPA/Play (Wert in Klammern).</div></div>`;
   }
 
   function playersBlock(ctx, abbr) {
@@ -278,7 +278,7 @@
           <td><span class="pos pos-${e(p.pos)}">${e(p.pos)}${posRank.get(p)}</span></td>
           <td>${o ? `<a class="team-cell" href="${href('teams', o.id)}"><span class="team-emoji">${e(o.emoji || '')}</span><span>${e(o.name)}</span></a>` : '<span class="avail">verfügbar</span>'}</td></tr>`; }).join('')}</tbody>
       </table></div>` : `<div class="muted cs-pad">Keine Dynasty-Board-Einträge für dieses Team.</div>`}
-      ${D ? `<div class="cs-foot">Badge = Matchup Woche ${bw}: Rang des Gegners bei zugelassenen Fantasy-Punkten an diese Position (Details: Matchup Advantage).</div>` : ''}</div>`;
+      ${D ? `<div class="cs-foot explain">Badge = Matchup Woche ${bw}: Rang des Gegners bei zugelassenen Fantasy-Punkten an diese Position (Details: Matchup Advantage).</div>` : ''}</div>`;
   }
 
   function nextGame(ctx, abbr) {

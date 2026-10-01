@@ -122,7 +122,7 @@
     const tabs = `<div class="seg" role="tablist">${[['liste', '🏆 MFHFB-Rangliste'], ['verlauf', '📉 Verlauf'], ['hashtag', '#️⃣ Hashtag']].map(([k, l]) => `<a class="seg-btn${view === k ? ' active' : ''}" href="${ctx.href('dynrank', ...(k === 'liste' ? [] : [k]))}">${l}</a>`).join('')}</div>`;
     const snaps = data.DYNASTY_ROLLING || [];
     return `<div class="page-head"><h1 class="page-title display">🏆 Dynasty Rankings</h1>
-        <div class="page-sub">${data.DYNASTY_PLAYERS.length} Spieler · ${snaps.length ? 'letztes Update ' + ui.esc(snaps[snaps.length - 1].label) : ''} · Vergleich mit Matt und Hashtag Basketball</div></div>
+        <div class="page-sub">${data.DYNASTY_PLAYERS.length} Spieler · ${snaps.length ? 'letztes Update ' + ui.esc(snaps[snaps.length - 1].label) : ''}<span class="explain"> · Vergleich mit Matt und Hashtag Basketball</span></div></div>
       <div class="controls">${tabs}</div>
       ${view === 'verlauf' ? historyView(ctx, st) : view === 'hashtag' ? hashtagView(ctx, st) : rankingsView(ctx, st)}`;
   }

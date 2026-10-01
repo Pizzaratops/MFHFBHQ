@@ -122,8 +122,8 @@
     }
 
     const info = d.hasResults
-      ? `Draft ${d.season} abgeschlossen${d.date ? ` (${fmtDay(d.date)})` : ''} · ${d.rounds} Runden · ${n} Teams · ${d.type === 'snake' ? 'Snake' : 'Linear'}. Spalten = ursprünglicher Slot, getradete Picks zeigen das tatsächlich pickende Team.`
-      : `Draft ${d.season} noch nicht gelaufen · ${d.rounds} Runden · ${n} Teams. „Own“ = Team hält den Pick selbst${league.keepers ? ', Keeper füllen die letzten Runden' : ''}.`;
+      ? `Draft ${d.season} abgeschlossen${d.date ? ` (${fmtDay(d.date)})` : ''} · ${d.rounds} Runden · ${n} Teams · ${d.type === 'snake' ? 'Snake' : 'Linear'}<span class="explain">Spalten = ursprünglicher Slot, getradete Picks zeigen das tatsächlich pickende Team.</span>`
+      : `Draft ${d.season} noch nicht gelaufen · ${d.rounds} Runden · ${n} Teams<span class="explain">„Own“ = Team hält den Pick selbst${league.keepers ? ', Keeper füllen die letzten Runden' : ''}.</span>`;
 
     return `
       <div class="page-head">
@@ -147,7 +147,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">🔒 Keeper-Übersicht</h1>
-        <div class="page-sub">Draft ${e(d.season || '')}${d.maxKeepers ? ` · max. ${d.maxKeepers} Keeper pro Team` : ''}${d.keeperLock ? ` · Keeper Lock: ${fmtDay(d.keeperLock)}` : ''} · Keeper belegen die letzten Runden</div>
+        <div class="page-sub">Draft ${e(d.season || '')}${d.maxKeepers ? ` · max. ${d.maxKeepers} Keeper pro Team` : ''}${d.keeperLock ? ` · Keeper Lock: ${fmtDay(d.keeperLock)}` : ''}<span class="explain"> · Keeper belegen die letzten Runden</span></div>
       </div>
       <div class="team-grid keeper-grid">
         ${d.teams.map(dt => {
@@ -200,7 +200,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">🔮 Future Draft Boards</h1>
-        <div class="page-sub">Wer hält welche Picks künftiger Drafts · Runden ${rounds[0]}–${rounds[rounds.length - 1]}</div>
+        <div class="page-sub"><span class="explain">Wer hält welche Picks künftiger Drafts</span> · Runden ${rounds[0]}–${rounds[rounds.length - 1]}</div>
       </div>
       <h2 class="group-title">Picks pro Team <span>Baseline ${rounds.length} pro Jahr</span></h2>
       <div class="table-wrap"><table class="table compact">

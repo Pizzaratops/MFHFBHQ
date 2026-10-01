@@ -268,6 +268,7 @@
         if (seq !== renderSeq) return;
         el.nativeMain.innerHTML = html;
         if (page.mount) page.mount(el.nativeMain, ctx);
+        MFHFB.ui.explainify(el.nativeMain); // class="explain" → Tooltip an der Überschrift
         const t = page.title ? page.title(ctx) : page.label;
         document.title = `${t} · ${l.short} · MFHFB HQ`;
         if (MFHFB.share) MFHFB.share.decorate(el.nativeMain, l);
@@ -279,6 +280,11 @@
       });
     }
   }
+
+  // Später nachgeladene Teile (mount, Teil-Updates) ebenfalls „entschlacken“
+  new MutationObserver(muts => {
+    if (muts.some(m => [...m.addedNodes].some(n => n.nodeType === 1 && (n.classList.contains('explain') || n.querySelector('.explain'))))) MFHFB.ui.explainify(el.nativeMain);
+  }).observe(el.nativeMain, { childList: true, subtree: true });
 
   // Bereiche in der Seitenleiste auf-/zuklappen (einmal delegiert)
   el.nativeNav.addEventListener('click', e => {

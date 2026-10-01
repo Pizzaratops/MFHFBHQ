@@ -398,7 +398,7 @@
     const st = tState(ctx);
     return `<div class="tr-nba" data-trnba>
       <div class="page-head"><h1 class="page-title display">⚖️ Trade Analyzer</h1>
-        <div class="page-sub">Schwierig, einen Dynasty-Calc zu bauen, der alles berücksichtigt. Nehmt dies hier als Anlaufpunkt. Siehe auch <a href="${ctx.href('tradefinder')}">Trade Finder</a> und <a href="${ctx.href('tradehistory')}">Trade-Historie</a>.</div></div>
+        <div class="page-sub"><span class="explain">Schwierig, einen Dynasty-Calc zu bauen, der alles berücksichtigt. Nehmt dies hier als Anlaufpunkt.</span> Siehe auch <a href="${ctx.href('tradefinder')}">Trade Finder</a> und <a href="${ctx.href('tradehistory')}">Trade-Historie</a>.</div></div>
       <div class="controls tr-nba-modebar">${modeSeg(st.mode, 'data-mode')}<div class="tr-nba-desc">${modeDesc(st.mode)}</div></div>
       <div class="tr-cols">${sideCard(ctx, m, st, 'A')}${sideCard(ctx, m, st, 'B')}</div>
       ${resultBox(ctx, m, st)}
@@ -770,7 +770,7 @@
     }
     return `<div class="tr-nba" data-trfind>
       <div class="page-head"><h1 class="page-title display">🔍 Trade Finder</h1>
-        <div class="page-sub">Gib an, was du abgeben willst, der Finder sucht faire Gegenleistungen (±13 %). Feinschliff dann im <a href="${ctx.href('trade')}">Trade Analyzer</a>.</div></div>
+        <div class="page-sub"><span class="explain">Gib an, was du abgeben willst, der Finder sucht faire Gegenleistungen (±13 %).</span> Feinschliff dann im <a href="${ctx.href('trade')}">Trade Analyzer</a>.</div></div>
       <div class="card tr-nba-cfg">
         <div class="tr-nba-cfgrow">
           <div class="tr-nba-field"><div class="tr-pool-label">Bewertung</div>${modeSeg(st.mode, 'data-fmode')}</div>
@@ -870,7 +870,7 @@
     const trades = data.TRADE_HISTORY_BASE || [];
     const mode = modeOk((ctx.store.getJSON(HKEY, {}) || {}).mode);
     const head = `<div class="page-head"><h1 class="page-title display">📜 Trade-Historie</h1>
-      <div class="page-sub">${trades.length} Trades · Werte eingefroren zum Zeitpunkt des Trades · neu bewerten im <a href="${ctx.href('trade')}">Trade Analyzer</a></div></div>`;
+      <div class="page-sub">${trades.length} Trades<span class="explain"> · Werte eingefroren zum Zeitpunkt des Trades</span> · neu bewerten im <a href="${ctx.href('trade')}">Trade Analyzer</a></div></div>`;
     if (!trades.length) return head + ui.empty('Noch keine Trades', 'data/trade-history.js ist leer oder fehlt für diese Liga.', '📋');
     const savedLbl = { dynasty: '🏗️ Dynasty', raw: '📊 Raw', winnow: '🏆 Win-Now' };
     const pctFmt = x => String(x).replace('.', ',');
@@ -896,7 +896,7 @@
     }).join('');
     return `<div class="tr-nba" data-trhist>${head}
       <div class="controls">${modeSeg(mode, 'data-hmode')}</div>
-      <div class="note">ℹ️ Nur zum Nachlesen: Die Historie wird in <code>data/trade-history.js</code> im Repo gepflegt (täglicher ESPN-Sync bzw. von Hand). Speichern, Löschen und Export im Browser gibt es hier nicht mehr.</div>
+      <div class="note explain">ℹ️ Nur zum Nachlesen: Die Historie wird in <code>data/trade-history.js</code> im Repo gepflegt (täglicher ESPN-Sync bzw. von Hand). Speichern, Löschen und Export im Browser gibt es hier nicht mehr.</div>
       ${cards}</div>`;
   }
 

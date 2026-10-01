@@ -438,7 +438,7 @@
       }
     }
     return `<div class="page-head"><h1 class="page-title display">⚔️ Matchup-Planer</h1>
-        <div class="page-sub">H2H-Prognose über alle 9 Kategorien — mit echtem ESPN-Spielplan und automatischer Aufstellung</div></div>
+        <div class="page-sub explain">H2H-Prognose über alle 9 Kategorien — mit echtem ESPN-Spielplan und automatischer Aufstellung</div></div>
       ${controls}<div class="mp-result">${body}</div>`;
   }
 

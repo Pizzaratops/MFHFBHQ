@@ -137,3 +137,75 @@ MFHFB.ui = {
     return out;
   },
 };
+
+// ============================================================
+//  Erklärtexte als Tooltip (ⓘ) — 01.10.2026
+// ============================================================
+//  Seiten markieren erklärende Texte mit class="explain" (ganzes Element
+//  oder <span class="explain"> innerhalb einer Zeile). explainify() nimmt
+//  sie aus dem Fluss und hängt ihren Text als Tooltip an die nächste
+//  Überschrift: Karten-Überschrift (.card-head h2/h3), sonst der Seitentitel.
+//  Direkt nutzbar auch: MFHFB.ui.tip('Label', 'Text') → <span class="info-tip">.
+//  Anzeige über einen einzigen schwebenden Kasten (position: fixed), damit
+//  Karten mit overflow:hidden nichts abschneiden. Hover am Desktop,
+//  Antippen am Handy (Fokus).
+// ============================================================
+MFHFB.ui.tipText = html => String(html || '').replace(/<[^>]+>/g, '').replace(/[ \t\r\n]+/g, ' ').trim();
+MFHFB.ui.tip = (label, text) => `<span class="info-tip" tabindex="0" data-tip="${MFHFB.ui.esc(MFHFB.ui.tipText(text))}">${label}<i class="tip-i no-share" aria-hidden="true">ⓘ</i></span>`;
+MFHFB.ui.addTip = function (h, text) {
+  if (!h || !text) return;
+  const cur = h.getAttribute('data-tip');
+  if (cur && cur.split('\n\n').includes(text)) return;
+  h.setAttribute('data-tip', cur ? cur + '\n\n' + text : text);
+  if (!h.classList.contains('info-tip')) {
+    h.classList.add('info-tip');
+    if (!h.hasAttribute('tabindex')) h.tabIndex = 0;
+    h.insertAdjacentHTML('beforeend', '<i class="tip-i no-share" aria-hidden="true">ⓘ</i>');
+  }
+};
+MFHFB.ui.explainify = function (root) {
+  if (!root) return;
+  root.querySelectorAll('.explain').forEach(node => {
+    // Legenden aus mehreren <span>s: Teile mit „ · “ trennen statt zusammenkleben
+    const kids = [...node.childNodes];
+    const raw = node.children.length > 1 && kids.every(c => c.nodeType === 1 || !c.textContent.trim())
+      ? [...node.children].map(c => c.textContent.trim()).filter(Boolean).join(' · ')
+      : node.textContent;
+    const text = raw.replace(/[ \t\r\n]+/g, ' ').replace(/^[\s·:–—,]+|[\s·:–—,]+$/g, '').trim();
+    const card = node.closest('.card');
+    let h = card && card.querySelector('.card-head h2, .card-head h3, .card-head .card-title');
+    if (!h) h = root.querySelector('.page-head .page-title, .page-title');
+    if (text) MFHFB.ui.addTip(h, text);
+    const parent = node.parentNode;
+    node.remove();
+    // Trenner aufräumen, leere Zeilen entfernen
+    if (parent && parent.nodeType === 1 && !parent.classList.contains('explain')) {
+      const html = parent.innerHTML;
+      const clean = html.replace(/(\s*·\s*){2,}/g, ' · ').replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, '');
+      if (clean !== html) parent.innerHTML = clean;
+      if (!parent.textContent.trim() && !parent.querySelector('a,button,input,select,img,svg')) parent.remove();
+    }
+  });
+};
+(function tipFloater() {
+  let box = null, cur = null;
+  const hide = () => { if (box) box.hidden = true; cur = null; };
+  function show(el) {
+    const text = el.getAttribute('data-tip'); if (!text) return;
+    if (!box) { box = document.createElement('div'); box.className = 'tip-float'; box.setAttribute('role', 'tooltip'); document.body.appendChild(box); }
+    box.textContent = text; box.hidden = false; cur = el;
+    const r = el.getBoundingClientRect(), bw = Math.min(420, window.innerWidth - 24);
+    box.style.maxWidth = bw + 'px';
+    const left = Math.max(12, Math.min(r.left, window.innerWidth - box.offsetWidth - 12));
+    let top = r.bottom + 8;
+    if (top + box.offsetHeight > window.innerHeight - 8) top = Math.max(8, r.top - box.offsetHeight - 8);
+    box.style.left = left + 'px'; box.style.top = top + 'px';
+  }
+  document.addEventListener('mouseover', e => { const t = e.target.closest && e.target.closest('.info-tip[data-tip]'); if (t && t !== cur) show(t); });
+  document.addEventListener('mouseout', e => { const t = e.target.closest && e.target.closest('.info-tip[data-tip]'); if (t && !t.contains(e.relatedTarget) && document.activeElement !== t) hide(); });
+  document.addEventListener('focusin', e => { const t = e.target.closest && e.target.closest('.info-tip[data-tip]'); if (t) show(t); });
+  document.addEventListener('focusout', e => { if (e.target === cur) hide(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+  window.addEventListener('scroll', hide, true);
+  window.addEventListener('resize', hide);
+})();

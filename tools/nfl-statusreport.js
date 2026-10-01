@@ -124,7 +124,7 @@
         ${col('💤 Sleeper', leagues.filter(l => l.platform === 'sleeper'))}
         <aside class="sr-col"><h2 class="group-title">⭐ Most Owned</h2><div class="card">${most.length ? most.map(p => `<div class="sr-most" title="${e(p.in.join(', '))}"><span><b>${e(p.name)}</b><small class="muted"> ${e(p.pos || '?')} · ${e(p.nfl || 'FA')}</small></span><span class="strong">×${p.n}</span></div>`).join('') : '<div class="muted cs-pad">Kein Spieler steht in mehr als einer Liga.</div>'}</div></aside>
       </div>
-      ${wk ? `<div class="page-sub" style="margin-top:10px;font-size:12px">⚡ = Starter mit Status (Q/D/O/IR …). Badge = Matchup Woche ${wk} (Details: NFL → Matchup Advantage).</div>` : ''}`;
+      ${wk ? `<div class="page-sub explain" style="margin-top:10px;font-size:12px">⚡ = Starter mit Status (Q/D/O/IR …). Badge = Matchup Woche ${wk} (Details: NFL → Matchup Advantage).</div>` : ''}`;
   }
 
   MFHFB.pages.register({
@@ -140,7 +140,7 @@
       const D = await loadAll(ctx);
       ctx._sr = D;
       const head = `<div class="page-head"><h1 class="page-title display">📡 Status Report</h1>
-        <div class="page-sub">Eigene Teams in allen ESPN- & Sleeper-Football-Ligen${D.generatedAt ? ` · Letzter Sync: ${new Date(D.generatedAt).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}</div></div>`;
+        <div class="page-sub"><span class="explain">Eigene Teams in allen ESPN- & Sleeper-Football-Ligen</span>${D.generatedAt ? ` · Letzter Sync: ${new Date(D.generatedAt).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}</div></div>`;
       if (!D.leagues.length) return head + ui.empty('Noch keine Daten', 'Der Status Report wurde noch nicht synchronisiert. Der erste Lauf der GitHub Action füllt diese Seite automatisch.', '📡');
       const owner = ctx.params[0];
       if (!owner || !D.leagues.some(l => l.owner === owner)) return head + ownersView(ctx, D);

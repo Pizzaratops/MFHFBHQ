@@ -21,7 +21,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">🧍 Teams</h1>
-        <div class="page-sub">${teams.length} Teams · Kader live von der Plattform synchronisiert</div>
+        <div class="page-sub">${teams.length} Teams<span class="explain"> · Kader live von der Plattform synchronisiert</span></div>
       </div>
       <div class="team-grid">
         ${teams.map(t => `<a class="team-card" href="${href('teams', t.id)}">
@@ -96,7 +96,7 @@
             <tr class="nfl-avg"><td><b>Ø Rang</b></td>${entries.map(en => { const a = avgRank(en); return `<td class="num strong">${a != null ? a.toFixed(1).replace('.', ',') : '—'}</td>`; }).join('')}</tr></tbody>
         </table></div>
       </div>
-      <div class="cs-foot">Rang 1 = außen im Netz (bei „Points Allowed“ = am wenigsten zugelassen). Points by QB/RB/WR/TE = Starter-Punkte der Position, FLEX zählt zur echten Position.</div>
+      <div class="cs-foot explain">Rang 1 = außen im Netz (bei „Points Allowed“ = am wenigsten zugelassen). Points by QB/RB/WR/TE = Starter-Punkte der Position, FLEX zählt zur echten Position.</div>
     </div>`;
   }
 

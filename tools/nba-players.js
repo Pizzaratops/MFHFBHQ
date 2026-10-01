@@ -83,7 +83,7 @@
     const st = getState(ctx);
     const tabs = `<div class="seg" role="tablist">${[['reg', '🏆 Reg Season'], ['off', '☀️ Off Season']].map(([k, l]) => `<a class="seg-btn${tab === k ? ' active' : ''}" href="${ctx.href('players', k)}">${l}</a>`).join('')}</div>`;
     const head = `<div class="page-head"><h1 class="page-title display">🏅 Player Rankings 2026/27</h1>
-      <div class="page-sub">9-Cat-Rankings automatisch aus den Live-Score-Stats · Bewertung umschaltbar</div></div>`;
+      <div class="page-sub explain">9-Cat-Rankings automatisch aus den Live-Score-Stats · Bewertung umschaltbar</div></div>`;
     if (!entry) {
       return `${head}<div class="controls">${tabs}</div>${ui.empty(tab === 'off' ? 'Noch keine Off-Season-Daten' : 'Noch keine Reg-Season-Daten', tab === 'off' ? 'Summer League / Pre-Season fehlen noch.' : 'Kommt automatisch, sobald die Saison läuft (rollierender 30-Tage-Monat).', '🏅')}`;
     }

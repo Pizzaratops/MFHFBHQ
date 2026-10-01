@@ -80,7 +80,7 @@
     const tabs = `<div class="seg" role="tablist">${['2026', '2025'].map(k => `<a class="seg-btn${sk === k ? ' active' : ''}" href="${ctx.href('rolling', k, view)}">${season(ctx, k).label}</a>`).join('')}</div>
       <div class="seg" role="tablist">${[['monthly', 'Monatlich'], ['weekly', 'Wöchentlich']].map(([k, l]) => `<a class="seg-btn${view === k ? ' active' : ''}" href="${ctx.href('rolling', sk, k)}">${l}</a>`).join('')}</div>`;
     const head = `<div class="page-head"><h1 class="page-title display">📈 Rolling Rankings</h1>
-      <div class="page-sub">9-Cat-Rang je ${view === 'weekly' ? 'Woche' : 'Monat'} · Saison ${S.label} · bis zu ${MAX_SEL} Spieler antippen für den Verlauf</div></div>`;
+      <div class="page-sub"><span class="explain">9-Cat-Rang je ${view === 'weekly' ? 'Woche' : 'Monat'}, bis zu ${MAX_SEL} Spieler antippen für den Verlauf.</span> Saison ${S.label}</div></div>`;
     if (!S.players.length) return `${head}<div class="controls">${tabs}</div>${ui.empty('Noch keine Daten für ' + S.label, 'Das Archiv füllt sich automatisch, sobald die reguläre Saison läuft (erster abgeschlossener Monat bzw. erste Woche).', '📈')}`;
     const P = periods(S, view);
     const th = (k, l, cls, t) => `<th class="${cls || ''}${st.sort === k ? ' sorted' : ''}"${t ? ` title="${t}"` : ''}><button type="button" class="th-sort" data-sort="${e(k)}">${l}${st.sort === k ? (st.dir === 1 ? ' ▲' : ' ▼') : ''}</button></th>`;

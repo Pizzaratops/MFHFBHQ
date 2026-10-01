@@ -145,10 +145,10 @@
     const tabs = Array.isArray(data.DRAFT_2027) ? `<div class="seg" role="tablist">${[[2026, href('prospects')], [2027, href('prospects', '2027')]].map(([y, h]) => `<a class="seg-btn${set.year === y ? ' active' : ''}" href="${h}" role="tab" aria-selected="${set.year === y}">${y} Draft</a>`).join('')}</div>` : '';
     const head = set.year === 2027
       ? `<div class="page-head"><h1 class="page-title display">📋 MFHFBs Big Board · 2027</h1>
-          <div class="page-sub">Fantasy-gewichtetes Top-${set.list.length} Board · sortiert nach Dynasty-9-Cat-Wert, NICHT nach NBA-Draft-Slot (abgeglichen mit Dizzle Dynasty, Game Theory Rankings, Ben Pfeifers Archetyp-Board u.a.). Volle Reports &amp; Tape bei <a href="https://grindingtape.com/board" target="_blank" rel="noopener">Grinding Tape</a>.</div></div>
-        <div class="lab-legend"><span><b>Tier</b> = Fantasy-Archetyp-Qualität (MFHFBs Einschätzung)</span><span><b>Große Zahl</b> = Fantasy-Skillset-Rang (MFHFBs)</span><span><b>Kons.</b> = Aggregat-/Konsens-Rang (Tankathon u.a.)</span></div>`
+          <div class="page-sub"><span class="explain">Fantasy-gewichtetes Top-${set.list.length} Board, sortiert nach Dynasty-9-Cat-Wert, NICHT nach NBA-Draft-Slot (abgeglichen mit Dizzle Dynasty, Game Theory Rankings, Ben Pfeifers Archetyp-Board u.a.).</span> Volle Reports &amp; Tape bei <a href="https://grindingtape.com/board" target="_blank" rel="noopener">Grinding Tape</a>.</div></div>
+        <div class="lab-legend explain"><span><b>Tier</b> = Fantasy-Archetyp-Qualität (MFHFBs Einschätzung)</span><span><b>Große Zahl</b> = Fantasy-Skillset-Rang (MFHFBs)</span><span><b>Kons.</b> = Aggregat-/Konsens-Rang (Tankathon u.a.)</span></div>`
       : `<div class="page-head"><h1 class="page-title display">🔎 Prospect Database · 2026</h1>
-          <div class="page-sub">Scouting Reports &amp; Fantasy-Insights · Tier-Struktur fest · Karte antippen für den vollen Report. Eigene Rangliste → <a href="${href('bigboard')}">🗂️ Big Board</a>${data.POSTDRAFT_BOARD ? ' · Badge = tatsächlicher NBA-Draft-Pick' : ''}.</div></div>`;
+          <div class="page-sub"><span class="explain">Scouting Reports &amp; Fantasy-Insights · Tier-Struktur fest · Karte antippen für den vollen Report.</span> Eigene Rangliste → <a href="${href('bigboard')}">🗂️ Big Board</a>${data.POSTDRAFT_BOARD ? ' · Badge = tatsächlicher NBA-Draft-Pick' : ''}.</div></div>`;
     return `${head}
       <div class="controls">${tabs}<input type="search" class="search" placeholder="Prospect, School oder Position …" data-pq aria-label="Prospects durchsuchen"><span class="muted lab-count">${set.list.length} Prospects</span></div>
       <div data-pgrid>${set.list.length ? prospectGrid(ctx, set, '', prospectExtras(ctx)) : ui.empty('Keine Prospect-Daten', `DRAFT_${set.year} fehlt.`, '🔎')}</div>`;
@@ -540,7 +540,7 @@
       <div class="lab-llegend"><span class="lab-h5">hohe Chance</span><span class="lab-h3">mittel</span><span class="lab-h1">niedrig</span><span class="muted">Werte in %</span></div>
       <div class="table-wrap"><table class="table compact lab-ltable"><thead><tr><th class="lab-lsticky lab-lnbacol">NBA-Team</th><th class="lab-ltt">TT-Team</th>${cols.map(c => `<th class="num">#${c}</th>`).join('')}<th class="num">Ø Pick</th></tr></thead>
         <tbody>${rows}</tbody></table></div>
-      <p class="muted lab-foot">Zeile antippen für die detaillierte Odds-Ansicht.</p>`;
+      <p class="muted lab-foot explain">Zeile antippen für die detaillierte Odds-Ansicht.</p>`;
   }
 
   function lotteryModal(ctx, idx) {
@@ -592,7 +592,7 @@
     const F = data.FANTASY_POWER_SCORE;
     const teams = (F && F.teams) || [], cats = (F && F.categories) || [];
     const head = `<div class="page-head"><h1 class="page-title display">🕸️ Fantasy Power Score</h1>
-      <div class="page-sub">9-Cat-Spinnennetz je Fantasy-Team · Rang 1 = außen${F && F.generatedAt ? ` · Stand ${new Date(F.generatedAt).toLocaleDateString('de-DE')}` : ''}</div></div>`;
+      <div class="page-sub"><span class="explain">9-Cat-Spinnennetz je Fantasy-Team · Rang 1 = außen</span>${F && F.generatedAt ? ` · Stand ${new Date(F.generatedAt).toLocaleDateString('de-DE')}` : ''}</div></div>`;
     if (!teams.length || !cats.length) return head + ui.empty('Noch keine Daten', 'fantasy-power-score.js ist leer — scripts/build-fantasy-power-score.js einmal laufen lassen.', '🕸️');
     const n = teams.length;
     const byId = {}; nba.leagueTeams(data, true).forEach(t => { byId[t.id] = t; });
@@ -610,15 +610,15 @@
           <div><h1 class="page-title display">${e(t.name)}</h1><div class="page-sub">${e(t.owner || '')} · ${e(t.includedCount)} Spieler im Kader berücksichtigt · Ø-Rang ${fpsAvg(t, n, cats).toFixed(1)}</div></div></div>
         <div class="chip-row" aria-label="Team wechseln">${teams.slice().sort((a, b) => a.name.localeCompare(b.name)).map(x => `<a class="chip-link${x.id === t.id ? ' active' : ''}" href="${href('powerscore', x.id)}" title="${e(x.name)}" style="${style(x)}"><span class="nba-chipav">${e(nba.initials(x.name))}</span></a>`).join('')}</div>
         <div class="card lab-fps-detail mp-tc" style="${style(t)}"><div class="lab-fps-radar">${fpsRadar(t, n, cats, 300)}</div><div class="lab-fps-grid">${boxes}</div></div>
-        ${t.skippedCount ? `<div class="note">${e(t.skippedCount)} Spieler ohne 2025/26-Saisonstatzeile ausgeschlossen (Rookie oder saisonlange Verletzung): ${e((t.skippedPlayers || []).join(', '))}</div>` : ''}
-        ${F.sourceSeason ? `<p class="muted lab-foot">Quelle: ${e(F.sourceSeason)}</p>` : ''}`;
+        ${t.skippedCount ? `<div class="note explain">${e(t.skippedCount)} Spieler ohne 2025/26-Saisonstatzeile ausgeschlossen (Rookie oder saisonlange Verletzung): ${e((t.skippedPlayers || []).join(', '))}</div>` : ''}
+        ${F.sourceSeason ? `<p class="muted lab-foot explain">Quelle: ${e(F.sourceSeason)}</p>` : ''}`;
     }
 
     const sort = ctx.store.get('fpssort') === 'avg' ? 'avg' : 'name';
     const list = teams.slice().sort(sort === 'avg' ? (a, b) => fpsAvg(a, n, cats) - fpsAvg(b, n, cats) || a.name.localeCompare(b.name) : (a, b) => a.name.localeCompare(b.name));
     return `${head}
       <div class="controls"><div class="seg" role="group" aria-label="Sortierung">${[['name', 'Nach Name'], ['avg', 'Nach Ø-Rang']].map(([k, l]) => `<button type="button" class="seg-btn${sort === k ? ' active' : ''}" data-fpssort="${k}" aria-pressed="${sort === k}">${l}</button>`).join('')}</div></div>
-      <div class="page-sub lab-fps-note">Basis: aktueller Kader × echte Saison-2025/26-Boxscores (Summe je Kategorie, FG%/FT% spielegewichtet) · Ø = mittlerer Kategorie-Rang (1 = bester) · Team antippen für Details</div>
+      <div class="page-sub lab-fps-note explain">Basis: aktueller Kader × echte Saison-2025/26-Boxscores (Summe je Kategorie, FG%/FT% spielegewichtet) · Ø = mittlerer Kategorie-Rang (1 = bester) · Team antippen für Details</div>
       <div class="nba-an-grid">${list.map(t => `<a class="card nba-an-card mp-tc lab-fps-card" style="${style(t)}" href="${href('powerscore', t.id)}">
         <div class="nba-an-head"><span><strong>${e(t.name)}</strong><small>${e(t.owner || '')}</small></span><span class="nba-an-avgv">Ø${fpsAvg(t, n, cats).toFixed(1)}</span></div>
         ${fpsRadar(t, n, cats, 240)}</a>`).join('')}</div>`;

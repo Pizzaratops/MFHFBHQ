@@ -27,9 +27,9 @@ MFHFB.pages.register({
     return `
       <div class="page-head">
         <h1 class="page-title display">📈 Standings</h1>
-        <div class="page-sub">Stand nach Woche ${lastWeek} · Saison ${e(season)} · sortiert nach Siegen, bei Gleichstand nach erzielten Punkten</div>
+        <div class="page-sub">Stand nach Woche ${lastWeek} · Saison ${e(season)}<span class="explain"> · sortiert nach Siegen, bei Gleichstand nach erzielten Punkten</span></div>
       </div>
-      ${ui.hasMedian(data.WEEKLY_SCORES, season) ? `<div class="note">Bilanz <b>inkl. Median-Spiel</b>: jede Woche zusätzlich ein Sieg oder eine Niederlage gegen den Liga-Median, wie in Sleeper.</div>` : ''}
+      ${ui.hasMedian(data.WEEKLY_SCORES, season) ? `<div class="note explain">Bilanz <b>inkl. Median-Spiel</b>: jede Woche zusätzlich ein Sieg oder eine Niederlage gegen den Liga-Median, wie in Sleeper.</div>` : ''}
       ${note ? `<div class="note">${e(note)}</div>` : ''}
       <div class="table-wrap">
         <table class="table">

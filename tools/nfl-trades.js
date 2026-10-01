@@ -133,7 +133,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">📜 Trade History</h1>
-        <div class="page-sub">${all.length} Trades · „Wert heute“ = aktueller KTC/Dynasty-Daddy-Schnitt der abgegebenen Spieler und Picks (* = nicht alle Assets bewertbar)</div>
+        <div class="page-sub">${all.length} Trades<span class="explain"> · „Wert heute“ = aktueller KTC/Dynasty-Daddy-Schnitt der abgegebenen Spieler und Picks (* = nicht alle Assets bewertbar)</span></div>
       </div>
       ${seasons.length > 1 ? `<div class="week-picker">
         <a class="week-btn done${sel === 'all' ? ' active' : ''}" href="${href('tradehistory')}">Alle</a>
@@ -255,7 +255,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">⚖️ Trade Analyzer</h1>
-        <div class="page-sub">Werte = Schnitt aus KeepTradeCut und Dynasty Daddy · Picks nach Runde und Jahr</div>
+        <div class="page-sub explain">Werte = Schnitt aus KeepTradeCut und Dynasty Daddy · Picks nach Runde und Jahr</div>
       </div>
       <div data-share="Trade">
       <div class="tr-cols">${column('A')}${column('B')}</div>

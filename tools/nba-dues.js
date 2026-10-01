@@ -37,7 +37,7 @@
       <div class="table-wrap"><table class="table compact"><thead><tr><th>Team</th>${S.map(s => `<th class="num">${e(s)}</th>`).join('')}</tr></thead>
         <tbody>${teams.map(t => `<tr><td><a class="nba-tlink mp-tc" style="${nba.tcStyle(t)}" href="${ctx.href('teams', t.id)}"><span class="nba-tdot"></span>${e(t.name)}</a> <small class="muted">${e(t.owner || '')}</small></td>
           ${S.map(s => `<td class="num">${badge(status(data, t.id, s))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
-      <p class="muted small">Gepflegt in data/league-dues.js: Zahlung als { teamId, season } in LEAGUE_DUES_PAID eintragen.</p>`;
+      <p class="muted small explain">Gepflegt in data/league-dues.js: Zahlung als { teamId, season } in LEAGUE_DUES_PAID eintragen.</p>`;
   }
 
   MFHFB.pages.register({

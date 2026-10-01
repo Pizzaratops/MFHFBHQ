@@ -44,7 +44,7 @@
 
   const normKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z0-9]/g, '');
-  const defaults = { pos: 'WR', win: 2, q: '', sel: null, elig: false, sort: 'stat' };
+  const defaults = { pos: 'WR', win: 2, q: '', sel: null, elig: false, sort: 'stat', fmt: null };
   let RENV = null; // Draft-Range-Daten (einmal geladen, für Liste + Box)
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('cs', {}) });
   // Welcher Comp gerade im Radar liegt — flüchtig, pro Prospect
@@ -115,8 +115,8 @@
       const f = first(C).get(String(me.rawId));
       return f ? me.year - f + 1 : null;
     }
-    function estimate(env, pos, me) {
-      const { C, M, curve } = env, P = M.pos[pos], cv = curve.pos[pos];
+    function estimate(env, pos, me, sf) {
+      const { C, M, curve } = env, P = M.pos[pos], cv = ((sf && curve.posSF) || curve.pos)[pos];
       const cyear = collegeYear(C, me);
       const out = { cyear, eligible: cyear != null && cyear >= 3 };
       if (!P || !cv) return out;
@@ -150,17 +150,21 @@
 
   // Erklärtexte nur noch beim Hovern/Antippen der Überschrift (ⓘ)
   const tipText = html => String(html || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
-  const tip = (label, text) => `<span class="info-tip" tabindex="0" data-tip="${MFHFB.ui.esc(tipText(text))}">${label} <i aria-hidden="true">ⓘ</i></span>`;
+  const tip = (label, text) => MFHFB.ui.tip(label, text);
+
+  // Format: Standard 1QB; Superflex, wenn die Liga superflex: true hat oder man umschaltet (je Liga gemerkt)
+  const isSF = (ctx, st) => (st.fmt ? st.fmt === 'sf' : !!ctx.league.superflex);
 
   function rookieCfg(ctx) { return ctx.league.rookieDraft || { teams: 12, rounds: 4 }; }
 
   function rangeBox(ctx, st, me, env) {
     const e = MFHFB.ui.esc;
-    const why = env && env.curve ? `Grobe Erwartung, keine Prognose. Gerechnet aus dieser College-Saison „als wäre es die letzte“: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB). ${(() => { const b = (env.M.backtest || {})[st.pos]; return b ? `Backtest ${st.pos} (Saisons ${b.test}): Draft ja/nein AUC ${String(b.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(b.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : ''; })()} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze (FCS-Transfers, Redshirt- und Saisons mit wenig Einsatz fehlen).` : 'Grobe Erwartung, keine Prognose.';
+    const why = env && env.curve ? `Grobe Erwartung, keine Prognose. Gerechnet aus dieser College-Saison „als wäre es die letzte“: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (${isSF(ctx, st) && env.curve.posSF ? `FantasyPros-Dynasty-Superflex-Rankings ${env.curve.yearsSF[0]}–${env.curve.yearsSF[env.curve.yearsSF.length - 1]}, nur Rookies` : `FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB`}). Format oben rechts umschaltbar (Standard: 1QB${ctx.league.superflex ? ', diese Liga: Superflex' : ''}). ${(() => { const b = (env.M.backtest || {})[st.pos]; return b ? `Backtest ${st.pos} (Saisons ${b.test}): Draft ja/nein AUC ${String(b.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(b.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : ''; })()} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze (FCS-Transfers, Redshirt- und Saisons mit wenig Einsatz fehlen).` : 'Grobe Erwartung, keine Prognose.';
     const head = `<div class="card-head"><h2>${tip('📈 Draft Range', why)}</h2></div>`;
     if (!env) return `<div class="card cs-range">${head}<div class="muted cs-pad">Lade Modell …</div></div>`;
     if (env.error) return `<div class="card cs-range">${head}<div class="muted cs-pad">${e(env.error)}</div></div>`;
-    const r = DR.estimate(env, st.pos, me);
+    const sf = isSF(ctx, st);
+    const r = DR.estimate(env, st.pos, me, sf);
     const cfg = rookieCfg(ctx), T = cfg.teams, maxPick = T * (cfg.rounds || 4);
     const season = me.year, nextDraft = season + 1;
     const cy = r.cyear != null ? `mind. ${r.cyear}. College-Jahr laut FBS-Daten (Saison ${season})` : 'College-Jahr unbekannt';
@@ -171,7 +175,7 @@
     const rk = x => (x > maxPick ? 'nach R' + (cfg.rounds || 4) : DR.pickFmt(x, T));
     const ch = Math.round(r.chance * 100);
     return `<div class="card cs-range">${head}
-      <div class="cs-rmeta">${e(cy)} ${elig}</div>
+      <div class="cs-rmeta"><span>${e(cy)} ${elig}</span><div class="seg cs-fmt" role="group" aria-label="Liga-Format">${[['1qb', '1QB'], ['sf', 'Superflex']].map(([v, l]) => `<button type="button" class="seg-btn${(v === 'sf') === sf ? ' active' : ''}" data-fmt="${v}">${l}</button>`).join('')}</div></div>
       <div class="cs-rgrid">
         <div class="cs-rcell big"><small>Rookie Draft (${T} Teams)</small><b>${rk(r.rank.lo)} – ${rk(r.rank.hi)}</b><span>Mitte ${rk(r.rank.mid)} · Rookie-Rang #${r.rank.lo}–#${r.rank.hi} · falls gedraftet</span></div>
         <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird überhaupt gedraftet</span></div>
@@ -268,7 +272,7 @@
       .filter(p => inWindow(p, st, cur) && (!q || normKey(p.name).includes(q)))
       .filter(p => !st.elig || (DR.collegeYear(C, p) || 0) >= 3);
     if (byRange) {
-      list = list.map(p => ({ p, r: DR.estimate(RENV, st.pos, p) }))
+      list = list.map(p => ({ p, r: DR.estimate(RENV, st.pos, p, isSF(ctx, st)) }))
         .sort((a, b) => (a.r.expRank || 999) - (b.r.expRank || 999)).map(x => Object.assign({}, x.p, { _r: x.r }));
     } else list = list.sort((a, b) => (b[stat] || 0) - (a[stat] || 0));
     return list.length ? list.map((p, i) => `<a class="dna-row${p.id === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, p.id)}">
@@ -347,7 +351,7 @@
     },
     mount(root, ctx) {
       const st = ctx._cs || resolve(ctx);
-      ctx.store.setJSON('cs', { pos: st.pos, win: st.win, q: st.q, sel: st.sel, elig: st.elig, sort: st.sort });
+      ctx.store.setJSON('cs', { pos: st.pos, win: st.win, q: st.q, sel: st.sel, elig: st.elig, sort: st.sort, fmt: st.fmt });
       const C = ctx.data.COLLEGE_SCOUTING;
       if (!C || !C.recent) return;
       const me = (C.recent[st.pos] || []).find(p => p.id === st.sel);
@@ -368,6 +372,8 @@
         root.querySelector('[data-list]').innerHTML = listHtml(ctx, { ...st, q: q.value });
       });
       root.addEventListener('click', ev => {
+        const fb = ev.target.closest('[data-fmt]');
+        if (fb) { ctx.store.setJSON('cs', { ...getState(ctx), fmt: fb.dataset.fmt }); ctx.refresh(); return; }
         const b = ev.target.closest('[data-pick]');
         if (!b || !me) return;
         const [kind, id] = b.dataset.pick.split('|');

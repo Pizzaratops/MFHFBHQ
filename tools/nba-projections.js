@@ -165,7 +165,7 @@
     const f = st.filters;
     const frow = (k, l) => `<label class="cp-f"><span>${l}</span><input type="number" step="any" placeholder="min" value="${f[k] && f[k].min != null ? f[k].min : ''}" data-filter="${k}|min"><input type="number" step="any" placeholder="max" value="${f[k] && f[k].max != null ? f[k].max : ''}" data-filter="${k}|max"></label>`;
     return `<div class="page-head"><h1 class="page-title display">🔮 Projections 2026/27</h1>
-        <div class="page-sub">Consensus aus Beyaz, Josh Lloyd (BBM) und Hashtag Basketball · Z-Scores live im Browser, Gewichte einstellbar</div></div>
+        <div class="page-sub explain">Consensus aus Beyaz, Josh Lloyd (BBM) und Hashtag Basketball · Z-Scores live im Browser, Gewichte einstellbar</div></div>
       <div class="controls">${nba.modeControl()}
         <input type="search" class="search" placeholder="Spieler, Team, Position, Fantasy-Team …" value="${e(st.q)}" data-q aria-label="Suchen">
         <select class="tr-select" data-pos aria-label="Position"><option value="">Alle Positionen</option>${['PG', 'SG', 'G', 'SF', 'PF', 'F', 'C'].map(p => `<option${st.pos === p ? ' selected' : ''}>${p}</option>`).join('')}</select>

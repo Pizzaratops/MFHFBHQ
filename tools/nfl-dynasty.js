@@ -82,7 +82,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">🏆 Dynasty Board</h1>
-        <div class="page-sub">Ø-Rang aus FantasyPros, KeepTradeCut, Fantasy Navigator und Dynasty Daddy — niedriger = wertvoller · ${data.DYNASTY_BOARD.length} Spieler</div>
+        <div class="page-sub"><span class="explain">Ø-Rang aus FantasyPros, KeepTradeCut, Fantasy Navigator und Dynasty Daddy — niedriger = wertvoller</span> · ${data.DYNASTY_BOARD.length} Spieler</div>
       </div>
       <div class="controls">
         <div class="seg" role="group">${POS.map(p => `<button type="button" class="seg-btn${st.pos === p ? ' active' : ''}" data-pos="${p}" aria-pressed="${st.pos === p}">${p === 'ALL' ? 'Alle' : p}</button>`).join('')}</div>
@@ -214,7 +214,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">📈 Dynasty-Verlauf</h1>
-        <div class="page-sub">Dynasty-Rang von Spielern über ${model.snaps.length} Snapshots (${e(model.snaps[0].label)} bis ${e(model.snaps[model.snaps.length - 1].label)}) · bis zu 3 vergleichen</div>
+        <div class="page-sub">Dynasty-Rang von Spielern über ${model.snaps.length} Snapshots (${e(model.snaps[0].label)} bis ${e(model.snaps[model.snaps.length - 1].label)})<span class="explain"> · bis zu 3 vergleichen</span></div>
       </div>
       <div class="dr-layout">
         <aside class="card dr-side">
@@ -285,7 +285,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">📐 Team-Schnitt</h1>
-        <div class="page-sub">Ø Dynasty-Rang des Kaders (ohne K/DST, niedriger = besser) und Kaderwert (Summe der KTC/Dynasty-Daddy-Werte)</div>
+        <div class="page-sub explain">Ø Dynasty-Rang des Kaders (ohne K/DST, niedriger = besser) und Kaderwert (Summe der KTC/Dynasty-Daddy-Werte)</div>
       </div>
       <div class="controls"><div class="seg" role="group">
         <button type="button" class="seg-btn${sortBy === 'rank' ? ' active' : ''}" data-sort="rank">Nach Ø Rang</button>

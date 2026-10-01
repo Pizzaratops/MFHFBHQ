@@ -82,7 +82,7 @@
       return `
         <div class="page-head">
           <h1 class="page-title display">📊 Spieler</h1>
-          <div class="page-sub">${mode === 'proj' ? 'Projizierte Saisonpunkte' : 'Tatsächlich erzielte Punkte'} · „vs. Proj.“ = Ø Punkte minus projizierte Punkte pro Spiel (Saisonprojektion / 17)</div>
+          <div class="page-sub">${mode === 'proj' ? 'Projizierte Saisonpunkte' : 'Tatsächlich erzielte Punkte'}<span class="explain"> · „vs. Proj.“ = Ø Punkte minus projizierte Punkte pro Spiel (Saisonprojektion / 17)</span></div>
         </div>
         <div class="week-picker">
           <a class="week-btn done${mode === 'season' ? ' active' : ''}" href="${href('players')}"${hasStats ? '' : ' aria-disabled="true"'}>Saison-Punkte</a>
