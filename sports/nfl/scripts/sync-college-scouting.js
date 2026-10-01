@@ -244,7 +244,19 @@ const round = (x, d = 2) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** 
 // siehe scripts/build-nfl-profile-comp.js) -- optional, faellt bei Bedarf
 // auf ein leeres Array zurueck (aeltere Cache-Eintraege ohne Groesse/Gewicht
 // bleiben dadurch abwaertskompatibel funktionsfaehig).
+// Mindest-Volumen für die LAUFENDE Saison anteilig zur gespielten Zeit
+// (01.10.2026): Die Schwellen oben gelten für eine ganze Saison (~13 Spiele).
+// Früh in der Saison erreicht sonst kaum jemand die Schwelle ("Nur 2026"
+// war bei QB leer). Anteil = Wochen seit Saisonstart (~24.08.) / 13,
+// mindestens 25 %, höchstens 100 %. Abgeschlossene Jahrgänge: volle Schwelle.
+function volumeFactor(year) {
+  if (year !== currentSeason()) return 1;
+  const weeks = (Date.now() - Date.UTC(year, 7, 24)) / (7 * 864e5);
+  return Math.max(0.25, Math.min(1, weeks / 13));
+}
+
 function buildYearRecords(year, passingRaw, rushingRaw, receivingRaw, usageRaw, ppaRaw, rosterRaw = []) {
+  const vf = volumeFactor(year);
   const teamRush = {}; // team -> { CAR, YDS, TD, ... } ueber ALLE Positionen
   rushingRaw.forEach(r => {
     if (!FBS_CONFERENCES.has(r.conference)) return;
@@ -286,7 +298,7 @@ function buildYearRecords(year, passingRaw, rushingRaw, receivingRaw, usageRaw, 
       p[r.statType] = num(r.stat);
     });
     return Object.values(byPlayer)
-      .filter(p => (p.YDS || 0) >= MIN_VOLUME[position].val)
+      .filter(p => (p.YDS || 0) >= MIN_VOLUME[position].val * vf)
       .map(p => {
         const t = teamRec[p.team] || { REC: 1, YDS: 1, TD: 1 };
         const usage = usageById[p.rawId];
@@ -327,7 +339,7 @@ function buildYearRecords(year, passingRaw, rushingRaw, receivingRaw, usageRaw, 
     p[`rec_${r.statType}`] = num(r.stat);
   });
   const rb = Object.values(rbByPlayer)
-    .filter(p => (p.rush_YDS || 0) >= MIN_VOLUME.RB.val)
+    .filter(p => (p.rush_YDS || 0) >= MIN_VOLUME.RB.val * vf)
     .map(p => {
       const tRush = teamRush[p.team] || {};
       const tRec = teamRec[p.team] || { YDS: 1 };
@@ -367,7 +379,7 @@ function buildYearRecords(year, passingRaw, rushingRaw, receivingRaw, usageRaw, 
     p[`rush_${r.statType}`] = num(r.stat);
   });
   const qb = Object.values(qbByPlayer)
-    .filter(p => (p.pass_YDS || 0) >= MIN_VOLUME.QB.val)
+    .filter(p => (p.pass_YDS || 0) >= MIN_VOLUME.QB.val * vf)
     .map(p => {
       const usage = usageById[p.rawId];
       const ppa = ppaById[p.rawId];

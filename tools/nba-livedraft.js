@@ -134,6 +134,7 @@
       : M.next ? `⏱ Am Zug: ${lbl(M.next)}` : '🏁 Draft abgeschlossen';
     return `<div class="card ld-status">
       <div class="ld-clockline">${clock}</div>
+      ${M.next && M.auto ? `<div class="ld-auto info-tip" tabindex="0" data-tip="Falls das Team am Zug die Zeit ablaufen lässt: oberster Spieler in Best Available (Sortierung MFHFB Dynasty-Rang). ESPNs echter Autodraft richtet sich nach der ESPN-Rangliste bzw. der Queue des Teams und kann abweichen.">🤖 Autodraft ➜ <b>${cw(ctx, M.auto.name)}</b> <span class="muted">${e(M.auto.pos || '')}${M.auto.nbaTeam ? ' · ' + e(M.auto.nbaTeam) : ''}${M.auto.dynastyRank ? ' · MFHFB #' + M.auto.dynastyRank : ''}</span><i class="tip-i no-share" aria-hidden="true">ⓘ</i></div>` : ''}
       ${M.next && upcoming.length ? `<div class="ld-upnext">Danach: ${upcoming.map(lbl).join(' · ')}</div>` : ''}
       ${recent.length ? `<div class="ld-recent"><span class="muted">Zuletzt:</span> ${recent.map(o => `<span class="ld-rchip" style="${M.nba.tcStyle(M.byId[o.owner])}"><b>${o.id}</b> ${e(o.made.spieler)} <small>→ ${e(short(M.byId[o.owner]))}</small></span>`).join('')}</div>` : ''}
     </div>`;
@@ -173,6 +174,13 @@
       { k: 'nbaPick', l: 'Draft', t: 'Pick im NBA Draft 2026', v: p => p.nbaPick ?? null },
     ];
   }
+  // 🤖 Autodraft-Kandidat: oberster Spieler in Best Available mit der Standard-
+  // Ansicht (Alle, alle Positionen, MFHFB-Rang) -- für alle Betrachter gleich.
+  // ESPNs echter Autodraft nimmt die ESPN-Rangliste bzw. die Queue des Teams;
+  // das hier ist die MFHFB-Annahme.
+  function autodraft(ctx, M) {
+    return baRows(ctx, M, { ...defaults })[0] || null;
+  }
   function baRows(ctx, M, st) {
     const nba = M.nba, q = String(st.q || '').toLowerCase().trim();
     let list = M.available.filter(p => (st.exp === 'all' || p.experience === st.exp)
@@ -190,8 +198,9 @@
     if (!list.length) return `<tr><td colspan="6">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
     return list.slice(0, 250).map((p, i) => {
       const a = nba.age(p.dob) ?? p.age;
-      return `<tr>
-        <td class="num rank" title="Gesamtrang ${p.rank}">${i + 1}</td>
+      const isAuto = M.auto && p.name === M.auto.name;
+      return `<tr${isAuto ? ' class="ld-autorow"' : ''}>
+        <td class="num rank" title="${isAuto ? 'Autodraft-Kandidat · ' : ''}Gesamtrang ${p.rank}">${isAuto ? '<span class="ld-autoarrow">➜</span>' : i + 1}</td>
         <td><div class="ld-baname"><b>${cw(ctx, p.name)}</b> ${expTag(p.experience)}</div><div class="ld-pmeta">${e(p.pos || '')}${p.nbaTeam ? ' · ' + e(p.nbaTeam) : ''}${p.bestCat30 ? ` · <span class="up">${e(p.bestCat30)}</span>` : ''}</div></td>
         <td class="num">${a != null ? a : '—'}</td>
         <td class="num">${nba.rankBadge(p.dynastyRank ?? null)}</td>
@@ -224,6 +233,7 @@
     const { data, ui } = ctx;
     if (!data.LIVE_DRAFT) return ui.empty('Kein Live Draft', 'live-draft-Datei fehlt für diese Liga.', '📋');
     const M = model(ctx);
+    M.auto = autodraft(ctx, M);
     ctx._ld = M;
     const LD = M.LD;
     return `
@@ -240,7 +250,8 @@
   }
 
   function mount(root, ctx) {
-    const M = ctx._ld || model(ctx);
+    const M = ctx._ld || Object.assign(model(ctx), {});
+    if (M.auto === undefined) M.auto = autodraft(ctx, M);
     const save = (patch, full) => {
       ctx.store.setJSON('livedraft2', { ...getState(ctx), ...patch });
       if (full) ctx.refresh(); else root.querySelector('[data-ba]').innerHTML = baBody(ctx, M, getState(ctx));
