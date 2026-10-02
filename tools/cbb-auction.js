@@ -247,15 +247,26 @@
         <select class="cbb-input" data-f="pos" aria-label="Position"><option value="">Alle Positionen</option>${['G', 'G/F', 'F/C', 'G/F/C'].map(p => `<option${f.pos === p ? ' selected' : ''}>${p}</option>`).join('')}</select>
         <select class="cbb-input" data-f="cls" aria-label="Jahrgang"><option value="">Alle Jahrgänge</option>${['Fr', 'So', 'Jr', 'Sr', 'Grad'].map(c => `<option${f.cls === c ? ' selected' : ''}>${c}</option>`).join('')}</select>
         <div class="seg" role="group" aria-label="Ansicht">
-          ${[['all', 'Alle'], ['open', 'Verfügbar'], ['targets', '★ Ziele'], ['dp', '🎓 Draft'], ['sold', 'Vergeben']].map(([k, l]) => `<button type="button" class="seg-btn${(f.view || 'open') === k ? ' active' : ''}" data-view="${k}">${l}</button>`).join('')}
+          ${[['all', 'Alle'], ['open', 'Verfügbar'], ['bids', '💬 Mit Gebot'], ['targets', '★ Ziele'], ['dp', '🎓 Draft'], ['sold', 'Vergeben']].map(([k, l]) => `<button type="button" class="seg-btn${(f.view || 'open') === k ? ' active' : ''}" data-view="${k}">${l}</button>`).join('')}
         </div>
       </div>
+      <div class="controls cbb-sortbar">
+        <span class="muted small">Sortieren:</span>
+        <div class="seg" role="group" aria-label="Sortierung">
+          ${[['rank', 'Ranking'], ['bid', '💬 Höchstes Gebot'], ['left', '⏱ Läuft zuerst ab'], ['value', 'Wert']].map(([k, l]) => `<button type="button" class="seg-btn${(f.sort || 'rank') === k ? ' active' : ''}" data-qsort="${k}">${l}</button>`).join('')}
+        </div>
+      </div>
+      ${(() => {
+        const soon = m.bids.filter(b => b.ends != null && b.ends > Date.now() && b.ends - Date.now() < 3 * 3600000).sort((a, b) => a.ends - b.ends);
+        return soon.length ? `<button type="button" class="note cbb-soon" data-qsort="left">⏱ <b>${soon.length} ${soon.length === 1 ? 'Gebot läuft' : 'Gebote laufen'} in &lt; 3 h ab:</b> ${soon.slice(0, 4).map(b => `${e(b.p ? b.p.name : b.name)} (${money(b.bid)} ${e(b.team)}, <span data-left="${b.ends}" data-short>${fmtLeft(b.ends - Date.now(), true)}</span>)`).join(', ')}${soon.length > 4 ? ' …' : ''} <span class="muted">→ nach Restzeit sortieren</span></button>` : '';
+      })()}
       <div class="table-wrap cbb-board" data-share="NIL-Auktion 2026">
         <table class="table compact"><thead><tr>
           <th class="cbb-star" aria-label="Ziel"></th><th class="num hide-sm" data-sort="rank">#</th><th data-sort="name">Spieler</th><th class="hide-sm" data-sort="school">Schule</th>
-          <th class="hide-sm" data-sort="cls">Kl.</th><th class="hide-sm" data-sort="pos">Pos</th>
+          <th class="hide-sm hide-md" data-sort="cls">Kl.</th><th class="hide-sm hide-md" data-sort="pos">Pos</th>
           <th class="num hide-sm" data-sort="last" title="Fantasy-Rang der Saison 2025-26">Rang 25/26</th><th class="num" data-sort="value">Wert</th>
-          <th class="num hide-sm" data-sort="limit" title="Bis hierhin mitgehen, wenn du den Spieler willst">Limit</th><th class="num hide-sm" data-sort="nil25" title="Zuschlag in der NIL-Auktion 2025">2025</th><th>Status</th>
+          <th class="num hide-sm" data-sort="limit" title="Bis hierhin mitgehen, wenn du den Spieler willst">Limit</th><th class="num hide-sm hide-md" data-sort="nil25" title="Zuschlag in der NIL-Auktion 2025">2025</th>
+          <th class="num" data-sort="bid" title="Aktuelles Höchstgebot laut Sheet">Gebot</th><th class="hide-sm" data-sort="left" title="Zeit bis das Höchstgebot gewinnt (24 h ab Gebot)">Restzeit</th><th>Status</th>
         </tr></thead><tbody data-rows></tbody></table>
       </div>
       <p class="muted small cbb-foot">Zuschläge und Ziele werden nur in diesem Browser gespeichert. „Zuschlag“ eintragen, sobald ein Spieler auf Discord vergeben ist — dann rechnen Budgets, Max-Gebote und Live-Werte automatisch mit.</p>`;
@@ -281,33 +292,40 @@
         if (view === 'sold' && !sold) return false;
         if (view === 'targets' && !(p.name in st.targets)) return false;
         if (view === 'dp' && !p.dp) return false;
+        if (view === 'bids' && !m.bidOf[p.name]) return false;
         return true;
       });
-      const key = p => sort === 'limit' ? limit(m.live(p), m.me) : sort === 'value' ? m.live(p) : sort === 'last' ? (p.last || 9999) : sort === 'nil25' ? (p.nil25 || 0) : p[sort];
+      const now = Date.now();
+      const key = p => sort === 'bid' ? (m.bidOf[p.name] ? m.bidOf[p.name].bid : null) : sort === 'left' ? (m.bidOf[p.name] && m.bidOf[p.name].ends != null ? m.bidOf[p.name].ends - now : null) : sort === 'limit' ? limit(m.live(p), m.me) : sort === 'value' ? m.live(p) : sort === 'last' ? (p.last || 9999) : sort === 'nil25' ? (p.nil25 || 0) : p[sort];
       list = list.slice().sort((a, b) => {
         const x = key(a), y = key(b);
+        if (x == null || y == null) { if (x == null && y == null) return a.rank - b.rank; return x == null ? 1 : -1; }   // ohne Gebot immer ans Ende
         const c = typeof x === 'string' ? x.localeCompare(y) : x - y;
         return (c || a.rank - b.rank) * dir;
       });
       root.querySelectorAll('th[data-sort]').forEach(th => th.classList.toggle('sorted', th.dataset.sort === sort));
+      root.querySelectorAll('.cbb-sortbar [data-qsort]').forEach(b => b.classList.toggle('active', b.dataset.qsort === sort && (sort !== 'rank' || dir === 1)));
+      const H = (sheetCfg(ctx.league).hours || 24) * 3600000;
       let lastTier = -1;
       const showDividers = sort === 'rank' && dir === 1;
       tbody.innerHTML = list.length ? list.map(p => {
         const s = m.sold[p.name], tgt = p.name in st.targets, live = m.live(p), bid = m.bidOf[p.name];
-        const div = showDividers && p.tier !== lastTier ? `<tr class="cbb-tier-row"><td colspan="11">${e(d.CBB_TIERS[p.tier].label)} <small>· Dizzle: ${d.CBB_TIERS[p.tier].min === d.CBB_TIERS[p.tier].max ? '$' + d.CBB_TIERS[p.tier].min : '$' + d.CBB_TIERS[p.tier].min + '–' + d.CBB_TIERS[p.tier].max}</small></td></tr>` : '';
+        const div = showDividers && p.tier !== lastTier ? `<tr class="cbb-tier-row"><td colspan="13">${e(d.CBB_TIERS[p.tier].label)} <small>· Dizzle: ${d.CBB_TIERS[p.tier].min === d.CBB_TIERS[p.tier].max ? '$' + d.CBB_TIERS[p.tier].min : '$' + d.CBB_TIERS[p.tier].min + '–' + d.CBB_TIERS[p.tier].max}</small></td></tr>` : '';
         lastTier = p.tier;
         return `${div}<tr class="${s ? 'cbb-sold' : ''}${tgt ? ' cbb-target' : ''}${s && s.team === d.CBB_MY_TEAM ? ' cbb-mine' : ''}" data-name="${e(p.name)}">
           <td class="cbb-star"><button type="button" class="cbb-starbtn" data-star aria-pressed="${tgt}" title="${tgt ? 'Ziel entfernen' : 'Als Ziel merken'}">${tgt ? '★' : '☆'}</button></td>
           <td class="num muted hide-sm">${p.rank}</td>
-          <td><div class="cbb-name">${e(p.name)}</div><div class="cbb-tags">${tags(p, e)}<span class="show-sm muted">${e(p.school)} · ${e(p.cls)} · ${e(p.pos)}${p.last ? ' · Rang ' + p.last : ''}${s ? '' : ' · Limit ' + money(limit(live, m.me))}</span></div></td>
-          <td class="hide-sm">${e(p.school)}</td><td class="hide-sm">${e(p.cls)}</td><td class="hide-sm">${e(p.pos)}</td>
+          <td><div class="cbb-name">${e(p.name)}</div><div class="cbb-tags">${tags(p, e)}<span class="show-sm muted">${e(p.school)} · ${e(p.cls)} · ${e(p.pos)}${p.last ? ' · Rang ' + p.last : ''}${s ? '' : ' · Limit ' + money(limit(live, m.me))}</span><span class="show-md muted">${e(p.cls)} · ${e(p.pos)}${p.nil25 ? ' · 2025: ' + money(p.nil25) : ''}</span></div></td>
+          <td class="hide-sm">${e(p.school)}</td><td class="hide-sm hide-md">${e(p.cls)}</td><td class="hide-sm hide-md">${e(p.pos)}</td>
           <td class="num hide-sm">${p.last ? p.last : '<span class="muted">–</span>'}</td>
           <td class="num strong">${money(live)}${m.factor !== 1 && live !== p.value ? `<small class="muted cbb-was"> ${money(p.value)}</small>` : ''}</td>
           <td class="num hide-sm">${s ? '<span class="muted">–</span>' : money(limit(live, m.me))}</td>
-          <td class="num hide-sm">${p.nil25 ? `<span title="2025 an ${e(p.nil25team)}">${money(p.nil25)}</span>` : '<span class="muted">–</span>'}</td>
-          <td class="cbb-status">${s ? `<span class="cbb-soldtag">${e(s.team)} · ${money(s.price)}</span>${s.sheet ? ' <small class="muted" title="aus dem Sheet (SIGNED PLAYERS)">📄</small>' : ' <button type="button" class="cbb-linkbtn" data-unsell title="Zuschlag löschen">✕</button>'}` : `${bid ? bidChip(bid, e) + ' ' : ''}<button type="button" class="cbb-btn" data-sell>Zuschlag</button>`}</td>
+          <td class="num hide-sm hide-md">${p.nil25 ? `<span title="2025 an ${e(p.nil25team)}">${money(p.nil25)}</span>` : '<span class="muted">–</span>'}</td>
+          <td class="num">${bid ? (() => { const r = rate(bid.bid, live); return `<b class="cbb-bidval ${r.k}" title="${e(r.l)} (Wert ${money(live)})">${money(bid.bid)}</b><div class="muted small">${e(bid.team)}${bid.team === d.CBB_MY_TEAM ? ' (du)' : ''}</div><div class="show-sm small${bid.ends && bid.ends - now < 3 * 3600000 ? ' down' : ' muted'}">⏱ <span data-left="${bid.ends || ''}" data-short>${fmtLeft(bid.ends != null ? bid.ends - now : null, true)}</span></div>`; })() : '<span class="muted">–</span>'}</td>
+          <td class="hide-sm cbb-left">${bid && bid.ends != null ? `<div><b data-left="${bid.ends}">${fmtLeft(bid.ends - now)}</b></div><div class="cbb-timebar${bid.ends - now < 3 * 3600000 ? ' soon' : ''}" title="bis ${fmtClock(bid.ends)}"><span data-bar="${bid.ends}" style="width:${Math.max(0, Math.min(100, (bid.ends - now) / H * 100)).toFixed(1)}%"></span></div>` : '<span class="muted">–</span>'}</td>
+          <td class="cbb-status">${s ? `<span class="cbb-soldtag">${e(s.team)} · ${money(s.price)}</span>${s.sheet ? ' <small class="muted" title="aus dem Sheet (SIGNED PLAYERS)">📄</small>' : ' <button type="button" class="cbb-linkbtn" data-unsell title="Zuschlag löschen">✕</button>'}` : `<button type="button" class="cbb-btn" data-sell>Zuschlag</button>`}</td>
         </tr>`;
-      }).join('') : `<tr><td colspan="11">${ctx.ui.empty('Keine Spieler', 'Filter anpassen.', '🔍')}</td></tr>`;
+      }).join('') : `<tr><td colspan="13">${ctx.ui.empty('Keine Spieler', 'Filter anpassen.', '🔍')}</td></tr>`;
     }
 
     root.addEventListener('input', ev => {
@@ -317,8 +335,10 @@
     root.addEventListener('click', ev => {
       const v = ev.target.closest('[data-view]');
       if (v) { f.view = v.dataset.view; root.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b === v)); persist(); rows(); return; }
+      const qs = ev.target.closest('[data-qsort]');
+      if (qs) { sort = qs.dataset.qsort; dir = ['value', 'bid'].includes(sort) ? -1 : 1; persist(); rows(); if (qs.classList.contains('cbb-soon')) root.querySelector('.cbb-board').scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
       const th = ev.target.closest('th[data-sort]');
-      if (th) { const k = th.dataset.sort; dir = sort === k ? -dir : (['value', 'limit', 'nil25'].includes(k) ? -1 : 1); sort = k; persist(); rows(); return; }
+      if (th) { const k = th.dataset.sort; dir = sort === k ? -dir : (['value', 'limit', 'nil25', 'bid'].includes(k) ? -1 : 1); sort = k; persist(); rows(); return; }
       const tr = ev.target.closest('tr[data-name]'); if (!tr) return;
       const name = tr.dataset.name, st = load(ctx);
       if (ev.target.closest('[data-star]')) {
@@ -432,7 +452,7 @@
       </div>
       ${!live ? ui.empty('Noch keine Gebote geladen', hasSheet ? 'Auf „Jetzt prüfen“ tippen oder die Tabelle aus dem Sheet einfügen.' : 'Tabelle aus dem Sheet einfügen.', '⏱') : `
       <div class="table-wrap" data-share="Live-Gebote"><table class="table compact cbb-bids"><thead><tr>
-        <th>Spieler</th><th class="num">Gebot</th><th class="num hide-sm">Wert</th><th class="hide-sm">Einordnung</th><th class="num hide-sm">Dein Limit</th><th>Restzeit</th>
+        <th>Spieler</th><th class="num${sort === 'bid' ? ' sorted' : ''}" data-bs="bid">Gebot</th><th class="num hide-sm${sort === 'value' ? ' sorted' : ''}" data-bs="value">Wert</th><th class="hide-sm${sort === 'gap' ? ' sorted' : ''}" data-bs="gap">Einordnung</th><th class="num hide-sm">Dein Limit</th><th class="${sort === 'left' ? 'sorted' : ''}" data-bs="left">Restzeit</th>
       </tr></thead><tbody>
       ${list.length ? list.map(b => {
         const p = b.p, dlt = b.bid - b.val, exp = b.left != null && b.left <= 0;
@@ -465,6 +485,10 @@
         return;
       }
       if (ev.target.closest('[data-pastetoggle]')) { const fm = root.querySelector('[data-pasteform]'); fm.hidden = !fm.hidden; if (!fm.hidden) fm.t.focus(); }
+    });
+    root.addEventListener('click', ev => {
+      const th = ev.target.closest('th[data-bs]'); if (!th) return;
+      const f = ctx.store.getJSON('bidsFilter', {}) || {}; f.sort = th.dataset.bs; ctx.store.setJSON('bidsFilter', f); ctx.refresh();
     });
     root.addEventListener('change', ev => {
       if (!ev.target.closest('[data-bsort]')) return;

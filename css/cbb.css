@@ -104,6 +104,26 @@
 .cbb-buckets span { font-size: 11px; color: var(--muted); }
 .cbb-scroll { max-height: 460px; overflow: auto; }
 
+/* ---------- Board: Gebot + Restzeit ---------- */
+.cbb-sortbar { margin-top: -4px; align-items: center; }
+.cbb-soon {
+  display: block; width: 100%; text-align: left; cursor: pointer; font: inherit; font-size: 13.5px; margin: 0 0 12px;
+  border: 1px solid color-mix(in srgb, #d9534f 45%, var(--border)); background: color-mix(in srgb, #d9534f 9%, var(--surface));
+  color: var(--text); border-radius: 12px; padding: 9px 12px;
+}
+.cbb-soon:hover { border-color: #d9534f; }
+.cbb-bidval.deal, .cbb-bidval.deal2 { color: #2e9d62; }
+.cbb-bidval.over, .cbb-bidval.over2 { color: #d9534f; }
+.cbb-bids th[data-bs] { cursor: pointer; user-select: none; }
+.cbb-bids th[data-bs]:hover, .cbb-bids th.sorted { color: var(--text); }
+.cbb-bids th.sorted { box-shadow: inset 0 -2px 0 var(--league-accent); }
+
+.cbb-page .show-md { display: none; }
+@media (min-width: 641px) and (max-width: 1500px) {
+  .cbb-page .hide-md { display: none; }
+  .cbb-page .show-md { display: inline; }
+}
+
 /* ---------- Live-Gebote ---------- */
 .cbb-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .cbb-actions .cbb-btn { text-decoration: none; display: inline-flex; align-items: center; }
