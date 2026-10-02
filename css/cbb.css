@@ -104,6 +104,17 @@
 .cbb-buckets span { font-size: 11px; color: var(--muted); }
 .cbb-scroll { max-height: 460px; overflow: auto; }
 
+/* ---------- Projektion / Recherche ---------- */
+.cbb-proj { font-size: 12px; margin-top: 4px; white-space: nowrap; }
+.cbb-proj b { font-weight: 800; }
+.cbb-last { font-size: 11.5px; margin-top: 1px; }
+.cbb-note { font-size: 12px; margin-top: 3px; max-width: 520px; white-space: normal; line-height: 1.35; color: var(--text); }
+.cbb-note a { color: var(--muted); font-size: 11px; }
+.cbb-mv { font-size: 10.5px; font-weight: 800; padding: 0 5px; border-radius: 4px; background: var(--surface2); }
+.cbb-mv.up { color: #b23b37; } .cbb-mv.down { color: #1f7a4a; }
+.cbb-dz { font-size: 10.5px; font-weight: 700; }
+.cbb-dz.up { color: #2e9d62; } .cbb-dz.down { color: #d9534f; }
+
 /* ---------- Board: Gebot + Restzeit ---------- */
 .cbb-sortbar { margin-top: -4px; align-items: center; }
 .cbb-soon {
@@ -165,6 +176,7 @@
   .cbb-btn { padding: 4px 7px; }
   .cbb-board { max-height: none; }
   .cbb-name { white-space: normal; }
+  .cbb-proj { white-space: normal; }
   .cbb-sellform { flex-wrap: wrap; }
   .cbb-buckets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cbb-left { min-width: 0; white-space: normal; }

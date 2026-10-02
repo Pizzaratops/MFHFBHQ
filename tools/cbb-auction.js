@@ -61,7 +61,13 @@
       if (sameSchool) sc += .15;
       if (sc > bestScore) { bestScore = sc; best = p; }
     });
-    return bestScore >= .85 ? best : null;
+    if (bestScore >= .85) return best;
+    // Fallback: Spieler außerhalb von Dizzles Liste (CBB_EXTRA, Projektion beim bisherigen Team)
+    const ex = d.CBB_EXTRA || [];
+    let ei = poolIndex.get(ex);
+    if (!ei) { ei = new Map(ex.map(p => [norm(p.name), p])); poolIndex.set(ex, ei); }
+    const hit = ei.get(n);
+    return hit ? { ...hit, extra: true, tier: hit.value >= 51 ? 0 : hit.value >= 36 ? 1 : hit.value >= 21 ? 2 : hit.value >= 11 ? 3 : hit.value >= 2 ? 4 : 5, cls: '', pos: '', flags: ['nicht in Dizzles Liste'] } : null;
   }
   // "M/D/YYYY H:MM:SS" in der Zeitzone des Sheets (Offset in Minuten) → ms
   function parseSheetTime(t, offMin) {
@@ -195,6 +201,22 @@
     (p.flags || []).forEach(f => t.push(`<span class="cbb-tag warn" title="${e(f)}">⚠ ${e(f.replace(/ \(.*\)$/, ''))}</span>`));
     return t.join('');
   }
+  // Projektion 2026-27 (Statistik-Modell) + Vorjahr + Recherche-Notiz
+  const f1 = x => (Math.round(x * 10) / 10).toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  function projLine(p, e) {
+    const out = [];
+    if (p.proj) {
+      const P = p.proj, L = p.prev;
+      const mv = p.move > 3 ? ' <span class="cbb-mv up" title="Wechsel zu stärkeren Gegnern: Produktion pro Minute sinkt im Schnitt">⬆ Level</span>' : p.move < -3 ? ' <span class="cbb-mv down" title="Wechsel zu schwächeren Gegnern: Produktion pro Minute steigt im Schnitt">⬇ Level</span>' : '';
+      out.push(`<div class="cbb-proj" title="Projektion 2026-27 pro Spiel (Statistik-Modell)">📈 <b>${f1(P.min)} Min</b> · ${f1(P.pts)} P · ${f1(P.reb)} R · ${f1(P.ast)} A · ${f1(P.tpm)} 3P · ${f1(P.stl)} St · ${f1(P.blk)} Bl${mv}</div>`);
+      if (L) out.push(`<div class="cbb-last muted">25/26 ${e(L.team)}: ${f1(L.min)} Min · ${f1(L.pts)}/${f1(L.reb)}/${f1(L.ast)} (${L.gp} Sp.)</div>`);
+    } else if ((p.cls || '').startsWith('Fr')) out.push('<div class="cbb-last muted">Freshman — Wert aus Recruiting-Rang + Rolle</div>');
+    if (p.note) out.push(`<div class="cbb-note">🔎 ${e(p.note)}${p.src ? ` <a href="${e(p.src)}" target="_blank" rel="noopener">Quelle</a>` : ''}</div>`);
+    return out.join('');
+  }
+  const dzTip = p => p.dz != null && p.dz !== p.value ? ` title="Dizzles ursprünglicher Wert: $${p.dz}"` : '';
+  const dzBadge = p => p.dz != null && Math.abs(p.dz - p.value) >= 5 ? `<small class="cbb-dz ${p.value > p.dz ? 'up' : 'down'}" title="Dizzles ursprünglicher Wert">${p.value > p.dz ? '▲' : '▼'} $${p.dz}</small>` : '';
+
   // Gebot vs. Wert → Einordnung
   function rate(bid, val) {
     const diff = bid - val, ratio = bid / Math.max(1, val);
@@ -239,7 +261,7 @@
     const f = ctx.store.getJSON('auctionFilter', {}) || {};
     return `<div class="page-head"><h1 class="page-title display">💰 NIL-Auktion 2026</h1>
         <div class="page-sub">${d.CBB_POOL.length} verfügbare Spieler · ${d.CBB_TEAMS.reduce((a, t) => a + t.spots, 0)} Plätze · ${money(d.CBB_TEAMS.reduce((a, t) => a + t.budget, 0))} NIL in der Liga
-          <span class="explain">Reihenfolge = Dizzles Tiers, innerhalb eines Tiers nach Rang der letzten Saison, Draft-Prospect-Status und Transfers. „Wert“ = geschätzter Zuschlagspreis (Mischung aus den echten Preisen 2025 und Dizzles Tier-Spannen, auf das Geld 2026 hochgerechnet). „Limit“ = bis dahin mitgehen, wenn du den Spieler wirklich willst.</span></div></div>
+          <span class="explain">Reihenfolge = neuer Wert. Für Spieler mit College-Statistik kommt er aus einer Projektion 2026-27 (Minuten × Produktion 2025-26, umgerechnet auf das neue Team/Level, 9-Kat-z-Score), für Freshmen aus Recruiting-Rang + recherchierter Rolle. ▲/▼ $X = Dizzles ursprünglicher Wert. 📈 = Projektion pro Spiel, 🔎 = Recherche-Notiz. „Limit“ = bis dahin mitgehen, wenn du den Spieler wirklich willst.</span></div></div>
       ${kpis(d, m)}
       <div class="controls cbb-controls">
         <input type="search" class="cbb-input" data-f="q" placeholder="Spieler oder Schule …" value="${e(f.q || '')}" aria-label="Suche">
@@ -264,7 +286,7 @@
         <table class="table compact"><thead><tr>
           <th class="cbb-star" aria-label="Ziel"></th><th class="num hide-sm" data-sort="rank">#</th><th data-sort="name">Spieler</th><th class="hide-sm" data-sort="school">Schule</th>
           <th class="hide-sm hide-md" data-sort="cls">Kl.</th><th class="hide-sm hide-md" data-sort="pos">Pos</th>
-          <th class="num hide-sm" data-sort="last" title="Fantasy-Rang der Saison 2025-26">Rang 25/26</th><th class="num" data-sort="value">Wert</th>
+          <th class="num hide-sm" data-sort="last" title="Fantasy-Rang der Saison 2025-26">Rang 25/26</th><th class="num hide-sm" data-sort="pmin" title="Projizierte Minuten pro Spiel 2026-27">Min</th><th class="num" data-sort="value">Wert</th>
           <th class="num hide-sm" data-sort="limit" title="Bis hierhin mitgehen, wenn du den Spieler willst">Limit</th><th class="num hide-sm hide-md" data-sort="nil25" title="Zuschlag in der NIL-Auktion 2025">2025</th>
           <th class="num" data-sort="bid" title="Aktuelles Höchstgebot laut Sheet">Gebot</th><th class="hide-sm" data-sort="left" title="Zeit bis das Höchstgebot gewinnt (24 h ab Gebot)">Restzeit</th><th>Status</th>
         </tr></thead><tbody data-rows></tbody></table>
@@ -296,7 +318,7 @@
         return true;
       });
       const now = Date.now();
-      const key = p => sort === 'bid' ? (m.bidOf[p.name] ? m.bidOf[p.name].bid : null) : sort === 'left' ? (m.bidOf[p.name] && m.bidOf[p.name].ends != null ? m.bidOf[p.name].ends - now : null) : sort === 'limit' ? limit(m.live(p), m.me) : sort === 'value' ? m.live(p) : sort === 'last' ? (p.last || 9999) : sort === 'nil25' ? (p.nil25 || 0) : p[sort];
+      const key = p => sort === 'pmin' ? (p.proj ? p.proj.min : null) : sort === 'bid' ? (m.bidOf[p.name] ? m.bidOf[p.name].bid : null) : sort === 'left' ? (m.bidOf[p.name] && m.bidOf[p.name].ends != null ? m.bidOf[p.name].ends - now : null) : sort === 'limit' ? limit(m.live(p), m.me) : sort === 'value' ? m.live(p) : sort === 'last' ? (p.last || 9999) : sort === 'nil25' ? (p.nil25 || 0) : p[sort];
       list = list.slice().sort((a, b) => {
         const x = key(a), y = key(b);
         if (x == null || y == null) { if (x == null && y == null) return a.rank - b.rank; return x == null ? 1 : -1; }   // ohne Gebot immer ans Ende
@@ -310,22 +332,23 @@
       const showDividers = sort === 'rank' && dir === 1;
       tbody.innerHTML = list.length ? list.map(p => {
         const s = m.sold[p.name], tgt = p.name in st.targets, live = m.live(p), bid = m.bidOf[p.name];
-        const div = showDividers && p.tier !== lastTier ? `<tr class="cbb-tier-row"><td colspan="13">${e(d.CBB_TIERS[p.tier].label)} <small>· Dizzle: ${d.CBB_TIERS[p.tier].min === d.CBB_TIERS[p.tier].max ? '$' + d.CBB_TIERS[p.tier].min : '$' + d.CBB_TIERS[p.tier].min + '–' + d.CBB_TIERS[p.tier].max}</small></td></tr>` : '';
+        const div = showDividers && p.tier !== lastTier ? `<tr class="cbb-tier-row"><td colspan="14">${e(d.CBB_TIERS[p.tier].label)} <small>· ${d.CBB_TIERS[p.tier].min === d.CBB_TIERS[p.tier].max ? '$' + d.CBB_TIERS[p.tier].min : '$' + d.CBB_TIERS[p.tier].min + '–' + d.CBB_TIERS[p.tier].max}</small></td></tr>` : '';
         lastTier = p.tier;
         return `${div}<tr class="${s ? 'cbb-sold' : ''}${tgt ? ' cbb-target' : ''}${s && s.team === d.CBB_MY_TEAM ? ' cbb-mine' : ''}" data-name="${e(p.name)}">
           <td class="cbb-star"><button type="button" class="cbb-starbtn" data-star aria-pressed="${tgt}" title="${tgt ? 'Ziel entfernen' : 'Als Ziel merken'}">${tgt ? '★' : '☆'}</button></td>
           <td class="num muted hide-sm">${p.rank}</td>
-          <td><div class="cbb-name">${e(p.name)}</div><div class="cbb-tags">${tags(p, e)}<span class="show-sm muted">${e(p.school)} · ${e(p.cls)} · ${e(p.pos)}${p.last ? ' · Rang ' + p.last : ''}${s ? '' : ' · Limit ' + money(limit(live, m.me))}</span><span class="show-md muted">${e(p.cls)} · ${e(p.pos)}${p.nil25 ? ' · 2025: ' + money(p.nil25) : ''}</span></div></td>
+          <td><div class="cbb-name">${e(p.name)}</div><div class="cbb-tags">${tags(p, e)}<span class="show-sm muted">${e(p.school)} · ${e(p.cls)} · ${e(p.pos)}${p.last ? ' · Rang ' + p.last : ''}${s ? '' : ' · Limit ' + money(limit(live, m.me))}</span><span class="show-md muted">${e(p.cls)} · ${e(p.pos)}${p.nil25 ? ' · 2025: ' + money(p.nil25) : ''}</span></div>${projLine(p, e)}</td>
           <td class="hide-sm">${e(p.school)}</td><td class="hide-sm hide-md">${e(p.cls)}</td><td class="hide-sm hide-md">${e(p.pos)}</td>
           <td class="num hide-sm">${p.last ? p.last : '<span class="muted">–</span>'}</td>
-          <td class="num strong">${money(live)}${m.factor !== 1 && live !== p.value ? `<small class="muted cbb-was"> ${money(p.value)}</small>` : ''}</td>
+          <td class="num hide-sm">${p.proj ? f1(p.proj.min) : '<span class="muted">–</span>'}</td>
+          <td class="num strong"${dzTip(p)}>${money(live)}${m.factor !== 1 && live !== p.value ? `<small class="muted cbb-was"> ${money(p.value)}</small>` : ''}<div>${dzBadge(p)}</div></td>
           <td class="num hide-sm">${s ? '<span class="muted">–</span>' : money(limit(live, m.me))}</td>
           <td class="num hide-sm hide-md">${p.nil25 ? `<span title="2025 an ${e(p.nil25team)}">${money(p.nil25)}</span>` : '<span class="muted">–</span>'}</td>
           <td class="num">${bid ? (() => { const r = rate(bid.bid, live); return `<b class="cbb-bidval ${r.k}" title="${e(r.l)} (Wert ${money(live)})">${money(bid.bid)}</b><div class="muted small">${e(bid.team)}${bid.team === d.CBB_MY_TEAM ? ' (du)' : ''}</div><div class="show-sm small${bid.ends && bid.ends - now < 3 * 3600000 ? ' down' : ' muted'}">⏱ <span data-left="${bid.ends || ''}" data-short>${fmtLeft(bid.ends != null ? bid.ends - now : null, true)}</span></div>`; })() : '<span class="muted">–</span>'}</td>
           <td class="hide-sm cbb-left">${bid && bid.ends != null ? `<div><b data-left="${bid.ends}">${fmtLeft(bid.ends - now)}</b></div><div class="cbb-timebar${bid.ends - now < 3 * 3600000 ? ' soon' : ''}" title="bis ${fmtClock(bid.ends)}"><span data-bar="${bid.ends}" style="width:${Math.max(0, Math.min(100, (bid.ends - now) / H * 100)).toFixed(1)}%"></span></div>` : '<span class="muted">–</span>'}</td>
           <td class="cbb-status">${s ? `<span class="cbb-soldtag">${e(s.team)} · ${money(s.price)}</span>${s.sheet ? ' <small class="muted" title="aus dem Sheet (SIGNED PLAYERS)">📄</small>' : ' <button type="button" class="cbb-linkbtn" data-unsell title="Zuschlag löschen">✕</button>'}` : `<button type="button" class="cbb-btn" data-sell>Zuschlag</button>`}</td>
         </tr>`;
-      }).join('') : `<tr><td colspan="13">${ctx.ui.empty('Keine Spieler', 'Filter anpassen.', '🔍')}</td></tr>`;
+      }).join('') : `<tr><td colspan="14">${ctx.ui.empty('Keine Spieler', 'Filter anpassen.', '🔍')}</td></tr>`;
     }
 
     root.addEventListener('input', ev => {
@@ -338,7 +361,7 @@
       const qs = ev.target.closest('[data-qsort]');
       if (qs) { sort = qs.dataset.qsort; dir = ['value', 'bid'].includes(sort) ? -1 : 1; persist(); rows(); if (qs.classList.contains('cbb-soon')) root.querySelector('.cbb-board').scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
       const th = ev.target.closest('th[data-sort]');
-      if (th) { const k = th.dataset.sort; dir = sort === k ? -dir : (['value', 'limit', 'nil25', 'bid'].includes(k) ? -1 : 1); sort = k; persist(); rows(); return; }
+      if (th) { const k = th.dataset.sort; dir = sort === k ? -dir : (['value', 'limit', 'nil25', 'bid', 'pmin', 'last'].includes(k) && k !== 'last' ? -1 : 1); sort = k; persist(); rows(); return; }
       const tr = ev.target.closest('tr[data-name]'); if (!tr) return;
       const name = tr.dataset.name, st = load(ctx);
       if (ev.target.closest('[data-star]')) {
@@ -458,7 +481,7 @@
         const p = b.p, dlt = b.bid - b.val, exp = b.left != null && b.left <= 0;
         return `<tr class="${b.mine ? 'cbb-mine' : ''}${b.tgt ? ' cbb-target' : ''}${exp ? ' cbb-exp' : ''}">
           <td><div class="cbb-name">${b.tgt ? '<span class="cbb-startxt">★</span> ' : ''}${e(p ? p.name : b.name)}</div>
-            <div class="cbb-tags">${p ? tags(p, e) : '<span class="cbb-tag warn" title="Spieler nicht in Dizzles Liste gefunden — Wert $1 angenommen">⚠ nicht in der Liste</span>'}<span class="muted">${e(b.school)}${b.cls ? ' · ' + e(b.cls) : ''}${b.pos ? '/' + e(b.pos) : ''}${p ? ' · ' + e(d.CBB_TIERS[p.tier].label.replace(/ \(.*\)$/, '')) : ''}</span><span class="show-sm"><span class="cbb-rate ${b.r.k}">${b.r.l}</span></span></div></td>
+            <div class="cbb-tags">${p ? tags(p, e) : '<span class="cbb-tag warn" title="Spieler nicht in Dizzles Liste gefunden — Wert $1 angenommen">⚠ nicht in der Liste</span>'}<span class="muted">${e(b.school)}${b.cls ? ' · ' + e(b.cls) : ''}${b.pos ? '/' + e(b.pos) : ''}${p ? ' · ' + e(d.CBB_TIERS[p.tier].label.replace(/ \(.*\)$/, '')) : ''}</span><span class="show-sm"><span class="cbb-rate ${b.r.k}">${b.r.l}</span></span></div>${p ? projLine(p, e) : ''}</td>
           <td class="num"><b>${money(b.bid)}</b><div class="muted small">${e(b.team)}${b.mine ? ' (du)' : ''}</div><div class="show-sm muted small">Wert ${money(b.val)}</div></td>
           <td class="num hide-sm">${money(b.val)}</td>
           <td class="hide-sm"><span class="cbb-rate ${b.r.k}">${b.r.l}</span> <small class="muted">${dlt ? (dlt > 0 ? '+' : '−') + money(Math.abs(dlt)) : '±$0'}</small></td>
@@ -688,7 +711,9 @@
     return `<div class="page-head"><h1 class="page-title display">📜 Regeln & Rechnung</h1></div>
       <section class="card cbb-tips"><div class="card-head"><h2>NIL-Regeln</h2></div><ul>${d.CBB_RULES.map(r => `<li>${e(r)}</li>`).join('')}</ul></section>
       <section class="card cbb-tips"><div class="card-head"><h2>So entsteht der „Wert“</h2></div><ol>
-        <li><b>Reihenfolge:</b> Dizzles Tiers aus dem Reiter „2026“ (Franchise Star → Bench). Innerhalb eines Tiers: Fantasy-Rang 2025-26 (Reiter „2025-26 Player Rankings“), Bonus für Draft-Prospects (fett), leichter Bonus für Transfers; Freshmen ohne Rang landen je nach Draft-Status in der Mitte. Warnhinweise (verletzt, Spielberechtigung unklar, Wechsel nicht bestätigt) drücken den Wert um 30–60 %.</li>
+        <li><b>Update 02.10.2026 — Statistik-Projektion:</b> Für jeden Spieler mit College-Einsätzen 2025-26 (ESPN-Boxscores aller D1-Spiele über sportsdataverse/hoopR) rechnet die Seite Minuten und Produktion für 2026-27 hoch. Wechselt ein Spieler zu stärkeren Gegnern, sinkt die Produktion pro Minute — kalibriert an 854 echten Transfers 2025→2026: bei deutlich stärkerer Conference im Schnitt −14 % pro Minute und ~6 Minuten weniger. Daraus ein 9-Kategorien-z-Score (FG%, FT%, 3PM, PTS, REB, AST, ST, BLK, TO) und der Rang unter allen Veteranen → Wert (85 % Modell, 15 % Dizzle).</li>
+        <li><b>Freshmen & Recherche:</b> Ohne College-Statistik zählt Dizzles Einschätzung, angepasst nach recherchierter Rolle (Starter? Minuten-Erwartung? verletzt? spielberechtigt?). Quellen stehen am Spieler (🔎).</li>
+        <li><b>Reihenfolge (ursprünglich):</b> Dizzles Tiers aus dem Reiter „2026“ (Franchise Star → Bench). Innerhalb eines Tiers: Fantasy-Rang 2025-26 (Reiter „2025-26 Player Rankings“), Bonus für Draft-Prospects (fett), leichter Bonus für Transfers; Freshmen ohne Rang landen je nach Draft-Status in der Mitte. Warnhinweise (verletzt, Spielberechtigung unklar, Wechsel nicht bestätigt) drücken den Wert um 30–60 %.</li>
         <li><b>Marktkurve 2025:</b> Die echten Zuschläge 2025 (${n25} Spieler, ${money(c25)}) nach Preis sortiert. Spieler Nr. 1 im Board 2026 bekommt den Preis von Zuschlag Nr. 1 aus 2025 usw.</li>
         <li><b>Hochrechnung aufs Geld 2026:</b> Es zählt nur Geld über $1 (jeder Platz kostet mindestens $1). 2025: ${money(c25 - n25)} „freies“ Geld, 2026: ${money(cash - spots)} → Faktor ${ui.num((cash - spots) / (c25 - n25), 2)}.</li>
         <li><b>Mischung:</b> Wert = ½ Marktkurve + ½ Position in Dizzles Tier-Spanne, danach so skaliert, dass die besten ${spots} Spieler zusammen genau das Geld der Liga (${money(cash)}) kosten. Alle anderen: $1.</li>
