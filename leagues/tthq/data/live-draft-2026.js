@@ -24,10 +24,11 @@ const LIVE_DRAFT = {
   jahr: 2026,
   runden: 4,
   start: "2026-10-01T02:00:00+02:00",
-  aktualisiert: "2026-10-02T12:00:00+02:00",
+  aktualisiert: "2026-10-02T13:00:00+02:00",
   picks: [
     { pick: "1.7", spieler: "Mikel Brown Jr.", datum: "2026-10-02" },
     { pick: "1.8", spieler: "Yaxel Lendeborg", datum: "2026-10-02" },
     { pick: "1.9", spieler: "Hannes Steinbach", datum: "2026-10-02" },
+    { pick: "1.10", spieler: "Morez Johnson Jr.", datum: "2026-10-02" },
   ],
 };
