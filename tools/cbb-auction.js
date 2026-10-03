@@ -5,6 +5,8 @@
 //  #/cbb/bids          Live-Gebote aus dem Google Sheet (über/unter Wert, Restzeit)
 //  #/cbb/auctionplan   Mein Plan (Ziele, Max-Gebote, Budget-Check)
 //  #/cbb/auctionteams  Budgets aller Teams (Kaufkraft, Max-Gebot)
+//  #/cbb/auctionsigned Zuschläge mit Differenz Wert − Preis (sortierbar)
+//  #/cbb/auctionledger Team-Bilanz: wie viel Wert jedes Team eingekauft hat
 //  #/cbb/nil2025       Preise der NIL-Auktion 2025 (Marktkurve)
 //  #/cbb/auctionhelp   Regeln + wie die Werte entstehen
 //
@@ -217,7 +219,7 @@
     };
     (live && live.signed || []).forEach(s => {
       const p = matchPlayer(d, s.name, s.school);
-      sold[p ? p.name : s.name] = { team: team(s.manager), price: s.price, sheet: true };
+      sold[p ? p.name : s.name] = { team: team(s.manager), price: s.price, sheet: true, p, school: s.school };
     });
     const bids = ctx && live ? bidsView(ctx, d, live).filter(b => !sold[b.p ? b.p.name : b.name]) : [];
     const bidOf = {};
@@ -735,6 +737,113 @@
   }
 
   // ============================================================
+  //  3b) Zuschläge — Differenzrechner (Wert − Preis) + Team-Bilanz
+  //  Wert = Board-Wert des Spielers (ohne Live-Inflation). Gewinn > 0 = billiger gekauft als wert.
+  // ============================================================
+  function deals(d, ctx) {
+    const st = load(ctx), m = market(d, st, getLive(ctx), ctx);
+    const rows = Object.entries(m.sold).map(([n, s]) => {
+      const p = s.p || d.CBB_POOL.find(x => x.name === n) || null;
+      const val = p ? p.value : 1;
+      return { name: n, p, school: s.school || (p && p.school) || '', team: s.team, price: s.price, val, gain: val - s.price,
+        pct: s.price ? (val - s.price) / s.price : 0, known: !!p };
+    });
+    return { m, rows };
+  }
+  const sgn = x => x > 0 ? '+' + money(x) : x < 0 ? '−' + money(-x) : '±$0';
+  const gcls = x => x > 0 ? 'up' : x < 0 ? 'down' : '';
+  function sortRows(rows, key, dir, get) {
+    return rows.slice().sort((a, b) => { const x = get(a, key), y = get(b, key); return (typeof x === 'string' ? x.localeCompare(y, 'de') : x - y) * dir || a.name.localeCompare(b.name, 'de'); });
+  }
+  const th = (k, l, cur, cls = '', tip = '') => `<th class="${cls}${cur.key === k ? ' sorted' : ''}" data-ss="${k}"${tip ? ` title="${tip}"` : ''}>${l}${cur.key === k ? (cur.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
+  function renderSigned(ctx) {
+    const { data: d, ui } = ctx, e = ui.esc;
+    const { rows } = deals(d, ctx);
+    const cur = Object.assign({ key: 'gain', dir: -1, team: '' }, ctx.store.getJSON('signedSort', {}) || {});
+    const teams = [...new Set(rows.map(r => r.team))].sort((a, b) => a.localeCompare(b, 'de'));
+    const shown = cur.team ? rows.filter(r => r.team === cur.team) : rows;
+    const list = sortRows(shown, cur.key, cur.dir, (r, k) => k === 'name' || k === 'team' || k === 'school' ? r[k] : r[k]);
+    const spent = shown.reduce((a, r) => a + r.price, 0), worth = shown.reduce((a, r) => a + r.val, 0);
+    const best = shown.slice().sort((a, b) => b.gain - a.gain)[0], worst = shown.slice().sort((a, b) => a.gain - b.gain)[0];
+    return `<div class="page-head"><h1 class="page-title display">🧾 Zuschläge</h1>
+        <div class="page-sub">${rows.length} unterschriebene Spieler laut Sheet
+        <span class="explain">Differenz = Wert laut Board minus gezahlter Preis. <b class="up">+</b> = Schnäppchen (billiger als wert), <b class="down">−</b> = überzahlt. Spaltenköpfe antippen zum Sortieren.</span></div></div>
+      ${!rows.length ? ui.empty('Noch keine Zuschläge', 'Sobald im Sheet „SIGNED PLAYERS“ stehen, erscheinen sie hier.', '🧾') : `
+      <div class="stat-row cbb-kpis">
+        <div class="stat"><div class="stat-label">Ausgegeben</div><div class="stat-value">${money(spent)}</div><div class="stat-sub">${shown.length} Spieler</div></div>
+        <div class="stat"><div class="stat-label">Differenz</div><div class="stat-value ${gcls(worth - spent)}">${sgn(worth - spent)}</div><div class="stat-sub">Wert erkauft ${money(worth)}${spent ? ' · ' + MFHFB.ui.signed((worth - spent) / spent * 100, 0) + ' %' : ''}</div></div>
+        <div class="stat"><div class="stat-label">Bester Deal</div><div class="stat-value up">${best ? sgn(best.gain) : '–'}</div><div class="stat-sub">${best ? e(best.name) + ' · ' + e(best.team) : ''}</div></div>
+        <div class="stat"><div class="stat-label">Größter Fehlgriff</div><div class="stat-value ${worst && worst.gain < 0 ? 'down' : ''}">${worst ? sgn(worst.gain) : '–'}</div><div class="stat-sub">${worst ? e(worst.name) + ' · ' + e(worst.team) : ''}</div></div>
+      </div>
+      <div class="controls">
+        <select class="cbb-input" data-steam aria-label="Team filtern"><option value="">Alle Teams</option>${teams.map(t => `<option${cur.team === t ? ' selected' : ''}>${e(t)}</option>`).join('')}</select>
+        <select class="cbb-input" data-ssel aria-label="Sortierung">${[['gain:-1', 'Größter Gewinn'], ['gain:1', 'Größter Verlust'], ['pct:-1', 'Gewinn in %'], ['price:-1', 'Teuerster Preis'], ['val:-1', 'Höchster Wert'], ['team:1', 'Team A–Z'], ['name:1', 'Spieler A–Z']].map(([k, l]) => `<option value="${k}"${k === cur.key + ':' + cur.dir ? ' selected' : ''}>${l}</option>`).join('')}</select>
+      </div>
+      <div class="table-wrap" data-share="Zuschläge NIL-Auktion"><table class="table compact cbb-deals"><thead><tr>
+        ${th('name', 'Spieler', cur)}${th('team', 'Team', cur, 'hide-sm')}${th('price', 'Preis', cur, 'num')}${th('val', 'Wert', cur, 'num')}${th('gain', 'Diff.', cur, 'num', 'Wert minus Preis')}${th('pct', '%', cur, 'num hide-sm', 'Differenz im Verhältnis zum Preis')}
+      </tr></thead><tbody>
+      ${list.map(r => `<tr class="${r.team === d.CBB_MY_TEAM ? 'cbb-mine' : ''}">
+        <td><div class="cbb-name">${e(r.name)}</div><div class="show-sm small"><b>${e(r.team)}</b>${r.team === d.CBB_MY_TEAM ? ' (du)' : ''}</div><div class="cbb-tags"><span class="muted">${e(r.school)}${r.p && r.p.cls ? ' · ' + e(r.p.cls) : ''}${r.p && r.p.pos ? '/' + e(r.p.pos) : ''}</span>${r.known ? (r.p.extra ? ' <span class="cbb-tag warn" title="Nicht in Dizzles Liste — Wert aus dem Statistik-Modell">nicht in Dizzles Liste</span>' : '') : ' <span class="cbb-tag warn" title="Kein Wert bekannt — $1 angenommen">⚠ kein Wert</span>'}</div></td>
+        <td class="hide-sm">${e(r.team)}${r.team === d.CBB_MY_TEAM ? ' <small class="muted">(du)</small>' : ''}</td>
+        <td class="num">${money(r.price)}</td>
+        <td class="num muted">${money(r.val)}</td>
+        <td class="num strong ${gcls(r.gain)}">${sgn(r.gain)}</td>
+        <td class="num hide-sm ${gcls(r.gain)}">${MFHFB.ui.signed(r.pct * 100, 0)} %</td></tr>`).join('')}
+      </tbody></table></div>`}`;
+  }
+  function renderLedger(ctx) {
+    const { data: d, ui } = ctx, e = ui.esc;
+    const { m, rows } = deals(d, ctx);
+    const cur = Object.assign({ key: 'gain', dir: -1 }, ctx.store.getJSON('ledgerSort', {}) || {});
+    const T = m.teams.map(t => {
+      const r = rows.filter(x => x.team === t.name).sort((a, b) => b.gain - a.gain);
+      const spent = r.reduce((a, x) => a + x.price, 0), val = r.reduce((a, x) => a + x.val, 0);
+      return { name: t.name, rows: r, n: r.length, spent, val, gain: val - spent, avg: r.length ? (val - spent) / r.length : 0, pct: spent ? (val - spent) / spent : 0, left: t.left };
+    });
+    const list = sortRows(T, cur.key, cur.dir, (t, k) => t[k]);
+    const maxAbs = Math.max(1, ...T.map(t => Math.abs(t.gain)));
+    return `<div class="page-head"><h1 class="page-title display">⚖️ Team-Bilanz</h1>
+        <div class="page-sub">Wie viel Wert hat jedes Team bisher eingekauft?
+        <span class="explain">Gewinn = Summe (Wert laut Board − Preis) aller Zuschläge. Beispiel: Spieler für $9 gekauft, Wert $22 → +$13. Team antippen für die Einzelkäufe.</span></div></div>
+      ${!rows.length ? ui.empty('Noch keine Zuschläge', '', '⚖️') : `
+      <div class="table-wrap" data-share="Team-Bilanz NIL-Auktion"><table class="table compact cbb-ledger"><thead><tr>
+        ${th('name', 'Team', cur)}${th('n', 'Spieler', cur, 'num')}${th('spent', 'Bezahlt', cur, 'num')}${th('val', 'Wert erkauft', cur, 'num hide-sm')}${th('gain', 'Gewinn', cur)}${th('avg', 'Ø / Spieler', cur, 'num hide-sm')}${th('pct', '%', cur, 'num hide-sm', 'Gewinn im Verhältnis zum ausgegebenen Geld')}
+      </tr></thead><tbody>
+      ${list.map(t => `<tr class="${t.name === d.CBB_MY_TEAM ? 'cbb-mine' : ''}${t.n ? ' cbb-open' : ''}" data-ltoggle="${e(t.name)}">
+          <td class="strong">${t.n ? '<span class="cbb-caret">▸</span> ' : ''}${e(t.name)}${t.name === d.CBB_MY_TEAM ? ' <small class="muted">(du)</small>' : ''}</td>
+          <td class="num">${t.n || '<span class="muted">–</span>'}</td>
+          <td class="num">${money(t.spent)}</td>
+          <td class="num muted hide-sm">${money(t.val)}</td>
+          <td><div class="cbb-gainbar"><span class="${gcls(t.gain)}" style="width:${(Math.abs(t.gain) / maxAbs * 100).toFixed(1)}%"></span><b class="${gcls(t.gain)}">${sgn(t.gain)}</b></div></td>
+          <td class="num hide-sm ${gcls(t.avg)}">${t.n ? (t.avg > 0 ? '+' : t.avg < 0 ? '−' : '±') + '$' + ui.num(Math.abs(t.avg), 1) : '–'}</td>
+          <td class="num hide-sm ${gcls(t.gain)}">${t.spent ? MFHFB.ui.signed(t.pct * 100, 0) + ' %' : '–'}</td></tr>
+        <tr class="cbb-ldetail" data-ldetail="${e(t.name)}" hidden><td colspan="7"><div class="cbb-ldlist">${t.rows.map(r => `<span class="cbb-ld ${gcls(r.gain)}"><b>${e(r.name)}</b> ${money(r.price)} → Wert ${money(r.val)} <b>${sgn(r.gain)}</b></span>`).join('')}</div></td></tr>`).join('')}
+      </tbody></table></div>`}`;
+  }
+  function mountSort(key, extra) {
+    return (root, ctx) => {
+      root.addEventListener('click', ev => {
+        const h = ev.target.closest('th[data-ss]');
+        if (h) { const c = Object.assign({ key: 'gain', dir: -1 }, ctx.store.getJSON(key, {}) || {}); const k = h.dataset.ss;
+          c.dir = c.key === k ? -c.dir : (['name', 'team', 'school'].includes(k) ? 1 : -1); c.key = k; ctx.store.setJSON(key, c); ctx.refresh(); return; }
+        if (extra) extra(ev, root);
+      });
+      root.addEventListener('change', ev => {
+        const c = Object.assign({ key: 'gain', dir: -1 }, ctx.store.getJSON(key, {}) || {});
+        if (ev.target.closest('[data-ssel]')) { const [k, dr] = ev.target.value.split(':'); c.key = k; c.dir = +dr; }
+        else if (ev.target.closest('[data-steam]')) c.team = ev.target.value;
+        else return;
+        ctx.store.setJSON(key, c); ctx.refresh();
+      });
+    };
+  }
+  const ledgerToggle = (ev, root) => {
+    const r = ev.target.closest('[data-ltoggle]'); if (!r) return;
+    const det = [...root.querySelectorAll('[data-ldetail]')].find(x => x.dataset.ldetail === r.dataset.ltoggle);
+    if (det && det.querySelector('.cbb-ld')) { det.hidden = !det.hidden; r.classList.toggle('expanded', !det.hidden); }
+  };
+
+  // ============================================================
   //  4) Preise 2025
   // ============================================================
   function curveSvg(prices) {
@@ -844,6 +953,9 @@
   MFHFB.pages.register({ ...base, data: ['nil-auction', '?nil-extra', '?live-bids'], id: 'bids', section: 'home', label: 'Live-Gebote', icon: '⏱', title: () => 'Live-Gebote', render: wrap(renderBids), mount: inner(mountBids) });
   MFHFB.pages.register({ ...base, id: 'auctionplan', section: 'home', label: 'Mein Plan', icon: '🎯', title: () => 'Mein Plan', render: wrap(renderPlan), mount: inner(mountPlan) });
   MFHFB.pages.register({ ...base, id: 'auctionteams', section: 'teams', label: 'Budgets', icon: '🏦', title: () => 'Budgets', render: wrap(renderTeams) });
+  const withExtra = { ...base, data: ['nil-auction', '?nil-extra', '?live-bids'] };
+  MFHFB.pages.register({ ...withExtra, id: 'auctionsigned', section: 'home', label: 'Zuschläge', icon: '🧾', title: () => 'Zuschläge', render: wrap(renderSigned), mount: inner(mountSort('signedSort')) });
+  MFHFB.pages.register({ ...withExtra, id: 'auctionledger', section: 'teams', label: 'Team-Bilanz', icon: '⚖️', title: () => 'Team-Bilanz', render: wrap(renderLedger), mount: inner(mountSort('ledgerSort', ledgerToggle)) });
   MFHFB.pages.register({ ...base, id: 'nil2025', section: 'draft', label: 'Preise 2025', icon: '📊', title: () => 'NIL-Preise 2025', render: wrap(renderNil), mount: inner(mountNil) });
   MFHFB.pages.register({ ...base, id: 'auctionhelp', section: 'league', label: 'Regeln & Rechnung', icon: '📜', title: () => 'Regeln & Rechnung', render: wrap(renderHelp) });
 })();
