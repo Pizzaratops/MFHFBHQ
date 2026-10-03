@@ -69,13 +69,15 @@
     d.CBB_POOL.forEach(p => {
       const pn = norm(p.name), pp = pn.split(' '), sameSchool = sk && schoolKey(p.school) === sk;
       let sc = dice(n, pn);
+      // Nachnamen müssen ähnlich sein — sonst matcht „Marcus Allen“ auf „Marcus Adams“ (gleicher Vorname)
+      if (dice(last, pp[pp.length - 1]) < .6 || (pp[0] || '').slice(0, 2) !== first.slice(0, 2)) sc = Math.min(sc, .5);
       if (pp[pp.length - 1] === last && pp[0].slice(0, 3) === first.slice(0, 3)) sc = Math.max(sc, .9);
       if (sameSchool) sc += .15;
       if (sc > bestScore) { bestScore = sc; best = p; }
     });
     if (bestScore >= .85) return best;
     // gleicher Nachname + gleiche Schule (Spitznamen: „Naz“ = Nasir, „Baba“ = Babatunde)
-    if (sk) { const same = d.CBB_POOL.filter(p => schoolKey(p.school) === sk && norm(p.name).split(' ').pop() === last); if (same.length === 1) return same[0]; }
+    if (sk) { const same = d.CBB_POOL.filter(p => { const q = norm(p.name).split(' '); return schoolKey(p.school) === sk && q[q.length - 1] === last && (q[0] || '').slice(0, 2) === first.slice(0, 2); }); if (same.length === 1) return same[0]; }
     // Fallback: Spieler außerhalb von Dizzles Liste (nil-extra.js, Projektion beim bisherigen Team)
     const ex = extras(d);
     let ei = poolIndex.get(ex);
