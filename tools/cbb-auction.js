@@ -47,18 +47,52 @@
     return 2 * hit / (A.length + B.length || 1);
   }
   const poolIndex = new WeakMap();
-  // kompakte Extras (CBB_EXTRA_C) einmalig zu Objekten auspacken
+  // ---------- Transfermodell im Browser (für Spieler außerhalb von Dizzles Liste) ----------
+  //  Gleiche Formeln wie das Build-Script (kalibriert an 854 Transfers 2025→26):
+  //  Produktion/Minute × e^(lr), Minuten aus Gegner- und Teamstärke des NEUEN Teams.
+  function teamFor(M, school) {
+    let k = norm(String(school || '').split('?')[0]); k = (M.alias || {})[k] || k;
+    if (M.teams[k]) return M.teams[k];
+    const hit = Object.keys(M.teams).find(t => t.startsWith(k + ' ') || k.startsWith(t + ' '));
+    return hit ? M.teams[hit] : null;
+  }
+  function projectExtra(M, mod, school) {
+    const [oldKey, mpg, rt, opp, rates] = mod;
+    const nt = (school && teamFor(M, school)) || M.teams[oldKey] || [rt, opp];
+    const moved = !!school && teamFor(M, school) && teamFor(M, school) !== M.teams[oldKey];
+    const dopp = nt[1] - opp, dteam = nt[0] - rt;
+    let lr, mp;
+    if (moved) { lr = 0.060 - 0.0152 * dopp - 0.0033 * dteam; mp = 14.38 + 0.084 * dopp - 0.409 * dteam + 0.439 * mpg; }
+    else { lr = 0.076 - 0.0042 * dopp + 0.0013 * dteam; mp = 12.65 + 0.429 * dopp - 0.249 * dteam + 0.594 * mpg; }
+    mp = Math.min(34, Math.max(4, mp)); const mult = Math.exp(Math.min(.3, Math.max(-.4, lr)));
+    const L = {}; M.rate.forEach((c, i) => { L[c] = rates[i] * (c === 'to' ? 1 : mult) * mp; });
+    const R = M.ref, z = ['pts', 'reb', 'ast', 'stl', 'blk', 'tpm'].reduce((a, c) => a + (L[c] - R.m[c]) / R.s[c], 0)
+      - (L.to - R.m.to) / R.s.to + ((L.fgm - R.lfg * L.fga) - R.m.fgi) / R.s.fgi + ((L.ftm - R.lft * L.fta) - R.m.fti) / R.s.fti;
+    // z → $ wie bei den Veteranen in Dizzles Liste (erster Pool-Spieler mit z ≤ diesem z)
+    const hit = M.zv.find(r => r[0] <= z); const value = hit ? hit[1] : 1;
+    const r1 = x => Math.round(x * 10) / 10;
+    return { moved, move: moved ? Math.round(dopp * 10) / 10 : undefined, value,
+      proj: { min: r1(mp), pts: r1(L.pts), reb: r1(L.reb), ast: r1(L.ast), tpm: r1(L.tpm), stl: r1(L.stl), blk: r1(L.blk), z: Math.round(z * 100) / 100 } };
+  }
+  // kompakte Extras (CBB_EXTRA_C) einmalig zu Objekten auspacken (Projektion beim bisherigen Team)
   let extraCache = null;
   function extras(d) {
-    if (d.CBB_EXTRA) return d.CBB_EXTRA;
-    if (!d.CBB_EXTRA_C) return [];
+    if (!d.CBB_EXTRA_C || !d.CBB_MODEL) return [];
     if (extraCache && extraCache.src === d.CBB_EXTRA_C) return extraCache.list;
-    const K = ['min', 'pts', 'reb', 'ast', 'tpm', 'stl', 'blk'];
-    const list = d.CBB_EXTRA_C.map(r => ({ name: r[0], school: r[1], value: r[2], proj: Object.fromEntries(K.map((k, i) => [k, r[3][i]])),
-      prev: { team: r[4][0], gp: r[4][1], min: r[4][2], pts: r[4][3], reb: r[4][4], ast: r[4][5] }, prevSeason: r[5] || undefined }));
+    const list = d.CBB_EXTRA_C.map(r => {
+      const base = { name: r[0], school: r[1], prev: { team: r[1], gp: r[2][0], min: r[2][1], pts: r[2][2], reb: r[2][3], ast: r[2][4] }, prevSeason: r[3] || undefined, mod: r[4] };
+      return r[4] ? Object.assign(base, projectExtra(d.CBB_MODEL, r[4], null)) : Object.assign(base, { value: 1 });
+    });
     extraCache = { src: d.CBB_EXTRA_C, list };
     return list;
   }
+  // Extra-Spieler fürs neue Team (Schule laut Sheet) neu projizieren
+  function forSchool(d, x, school) {
+    if (!x.mod || !school || !d.CBB_MODEL) return x;
+    const p = projectExtra(d.CBB_MODEL, x.mod, school);
+    return p.moved ? Object.assign({}, x, p, { school, note: `Wechsel ${x.prev.team} → ${school}: neu projiziert mit dem Transfermodell (stärkere Gegner = weniger Produktion/Minute).` }) : x;
+  }
+
   // Sheet-Name ("Jason Crowe, Jr.", "Baba Oladotun", "Na'jai Hines") → Spieler aus CBB_POOL
   function matchPlayer(d, name, school) {
     let idx = poolIndex.get(d.CBB_POOL);
@@ -84,6 +118,7 @@
     if (!ei) { ei = new Map(ex.map(p => [norm(p.name), p])); poolIndex.set(ex, ei); }
     let hit = ei.get(n);
     if (!hit && last) hit = ex.find(p => { const pn = norm(p.name).split(' '); return pn[pn.length - 1] === last && (pn[0] || '').slice(0, 3) === first.slice(0, 3); });
+    if (hit) hit = forSchool(d, hit, school);
     return hit ? { ...hit, extra: true, tier: hit.value >= 51 ? 0 : hit.value >= 36 ? 1 : hit.value >= 21 ? 2 : hit.value >= 11 ? 3 : hit.value >= 2 ? 4 : 5, cls: '', pos: '', flags: ['nicht in Dizzles Liste'] } : null;
   }
   // "M/D/YYYY H:MM:SS" in der Zeitzone des Sheets (Offset in Minuten) → ms
@@ -255,7 +290,7 @@
       const P = p.proj, L = p.prev;
       const mv = p.move > 3 ? ' <span class="cbb-mv up" title="Wechsel zu stärkeren Gegnern: Produktion pro Minute sinkt im Schnitt">⬆ Level</span>' : p.move < -3 ? ' <span class="cbb-mv down" title="Wechsel zu schwächeren Gegnern: Produktion pro Minute steigt im Schnitt">⬇ Level</span>' : '';
       out.push(`<div class="cbb-proj" title="Projektion 2026-27 pro Spiel (Statistik-Modell)">📈 <b>${f1(P.min)} Min</b> · ${f1(P.pts)} P · ${f1(P.reb)} R · ${f1(P.ast)} A · ${f1(P.tpm)} 3P · ${f1(P.stl)} St · ${f1(P.blk)} Bl${mv}</div>`);
-      if (L) out.push(`<div class="cbb-last muted">${p.prevSeason || '25/26'} ${e(L.team)}${p.extra ? ' (Projektion beim bisherigen Team)' : ''}: ${f1(L.min)} Min · ${f1(L.pts)}/${f1(L.reb)}/${f1(L.ast)} (${L.gp} Sp.)${p.prevSeason ? ' — 25/26 verletzt/kaum gespielt' : ''}</div>`);
+      if (L) out.push(`<div class="cbb-last muted">${p.prevSeason || '25/26'} ${e(L.team)}${p.extra && !p.moved ? ' (Projektion beim bisherigen Team)' : ''}: ${f1(L.min)} Min · ${f1(L.pts)}/${f1(L.reb)}/${f1(L.ast)} (${L.gp} Sp.)${p.prevSeason ? ' — 25/26 verletzt/kaum gespielt' : ''}</div>`);
     } else if ((p.cls || '').startsWith('Fr')) out.push('<div class="cbb-last muted">Freshman — Wert aus Recruiting-Rang + Rolle</div>');
     if (p.note) out.push(`<div class="cbb-note">🔎 ${e(p.note)}${p.src ? ` <a href="${e(p.src)}" target="_blank" rel="noopener">Quelle</a>` : ''}</div>`);
     return out.join('');
@@ -804,9 +839,9 @@
     // für den Auktions-Wächter (leagues/cbb/scripts/watch-auction.js): Markt ohne Browser-Speicher
     market: (d, live, sheet) => market(d, { targets: {}, sold: {} }, live, { league: { sheet: sheet || { hours: 24, tzOffsetMin: 0 } } }) };
 
-  const base = { applies: { sport: ['cbb'] }, data: ['nil-auction', '?nil-extra', '?live-bids'] };
+  const base = { applies: { sport: ['cbb'] }, data: ['nil-auction', '?live-bids'] };
   MFHFB.pages.register({ ...base, id: 'home', section: 'home', label: 'NIL-Auktion', icon: '💰', title: () => 'NIL-Auktion', render: wrap(renderBoard), mount: inner(mountBoard) });
-  MFHFB.pages.register({ ...base, id: 'bids', section: 'home', label: 'Live-Gebote', icon: '⏱', title: () => 'Live-Gebote', render: wrap(renderBids), mount: inner(mountBids) });
+  MFHFB.pages.register({ ...base, data: ['nil-auction', '?nil-extra', '?live-bids'], id: 'bids', section: 'home', label: 'Live-Gebote', icon: '⏱', title: () => 'Live-Gebote', render: wrap(renderBids), mount: inner(mountBids) });
   MFHFB.pages.register({ ...base, id: 'auctionplan', section: 'home', label: 'Mein Plan', icon: '🎯', title: () => 'Mein Plan', render: wrap(renderPlan), mount: inner(mountPlan) });
   MFHFB.pages.register({ ...base, id: 'auctionteams', section: 'teams', label: 'Budgets', icon: '🏦', title: () => 'Budgets', render: wrap(renderTeams) });
   MFHFB.pages.register({ ...base, id: 'nil2025', section: 'draft', label: 'Preise 2025', icon: '📊', title: () => 'NIL-Preise 2025', render: wrap(renderNil), mount: inner(mountNil) });
