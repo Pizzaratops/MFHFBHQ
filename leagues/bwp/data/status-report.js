@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-03T16:02:22.548Z",
+  "generatedAt": "2026-10-03T20:52:45.854Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -856,7 +856,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 10.4,
-          "projPoints": 17.1
+          "projPoints": 16.7
         },
         {
           "name": "David Montgomery",
@@ -1983,7 +1983,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 10.4,
-          "projPoints": 17.1
+          "projPoints": 16.7
         },
         {
           "name": "Devin Singletary",
@@ -3753,7 +3753,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.3,
           "last3AvgPoints": 14.8,
-          "projPoints": 11.9
+          "projPoints": 13.6
         },
         {
           "name": "Derrick Henry",
