@@ -217,6 +217,13 @@
   const dzTip = p => p.dz != null && p.dz !== p.value ? ` title="Dizzles ursprünglicher Wert: $${p.dz}"` : '';
   const dzBadge = p => p.dz != null && Math.abs(p.dz - p.value) >= 5 ? `<small class="cbb-dz ${p.value > p.dz ? 'up' : 'down'}" title="Dizzles ursprünglicher Wert">${p.value > p.dz ? '▲' : '▼'} $${p.dz}</small>` : '';
 
+  // Direktlink zum Bieten (Google Sheet der Liga)
+  function bidButton(ctx, big) {
+    const c = sheetCfg(ctx.league); if (!c.id) return '';
+    const url = `https://docs.google.com/spreadsheets/d/${encodeURIComponent(c.id)}/edit#gid=${encodeURIComponent(c.gid || 0)}`;
+    return `<a class="cbb-bidlink${big ? ' big' : ''}" href="${url}" target="_blank" rel="noopener" title="Auktions-Sheet öffnen (Gebot abgeben)">📝 Jetzt bieten <span>im Google Sheet ↗</span></a>`;
+  }
+
   // Gebot vs. Wert → Einordnung
   function rate(bid, val) {
     const diff = bid - val, ratio = bid / Math.max(1, val);
@@ -262,6 +269,7 @@
     return `<div class="page-head"><h1 class="page-title display">💰 NIL-Auktion 2026</h1>
         <div class="page-sub">${d.CBB_POOL.length} verfügbare Spieler · ${d.CBB_TEAMS.reduce((a, t) => a + t.spots, 0)} Plätze · ${money(d.CBB_TEAMS.reduce((a, t) => a + t.budget, 0))} NIL in der Liga
           <span class="explain">Reihenfolge = neuer Wert. Für Spieler mit College-Statistik kommt er aus einer Projektion 2026-27 (Minuten × Produktion 2025-26, umgerechnet auf das neue Team/Level, 9-Kat-z-Score), für Freshmen aus Recruiting-Rang + recherchierter Rolle. ▲/▼ $X = Dizzles ursprünglicher Wert. 📈 = Projektion pro Spiel, 🔎 = Recherche-Notiz. „Limit“ = bis dahin mitgehen, wenn du den Spieler wirklich willst.</span></div></div>
+      ${bidButton(ctx, true)}
       ${kpis(d, m)}
       <div class="controls cbb-controls">
         <input type="search" class="cbb-input" data-f="q" placeholder="Spieler oder Schule …" value="${e(f.q || '')}" aria-label="Suche">
@@ -452,7 +460,7 @@
         <div class="cbb-actions">
           ${hasSheet ? '<button type="button" class="cbb-btn" data-livenow>🔄 Jetzt prüfen</button>' : ''}
           <button type="button" class="cbb-btn" data-pastetoggle>📋 Tabelle einfügen</button>
-          ${hasSheet ? `<a class="cbb-btn" href="https://docs.google.com/spreadsheets/d/${e(sheetCfg(ctx.league).id)}/edit#gid=${e(sheetCfg(ctx.league).gid || 0)}" target="_blank" rel="noopener">↗ Sheet</a>` : ''}
+          ${bidButton(ctx)}
         </div>
         <p class="note cbb-fail" data-livefail ${failMsg ? '' : 'hidden'}>${failMsg ? '⚠️ Direkter Abruf nicht möglich (' + e(failMsg) + ') — es gilt der letzte stündliche Abgleich.' : ''}</p>
         <form class="cbb-paste" data-pasteform hidden>
@@ -553,6 +561,7 @@
     const share = me.left / Math.max(1, m.money);
     return `<div class="page-head"><h1 class="page-title display">🎯 Mein Plan</h1>
         <div class="page-sub">${e(me.name)} · ${money(me.left)} für ${me.spotsLeft} Plätze${mine.length ? ` · schon ${mine.length} Zuschläge für ${money(me.spent)}` : ''}</div></div>
+      ${bidButton(ctx, true)}
       ${kpis(d, m)}
       <div class="two-col cbb-plan">
         <section class="card">

@@ -104,6 +104,16 @@
 .cbb-buckets span { font-size: 11px; color: var(--muted); }
 .cbb-scroll { max-height: 460px; overflow: auto; }
 
+/* ---------- Bieten-Link ---------- */
+.cbb-bidlink {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 800; font-size: 13px;
+  color: #fff; background: #1e8e4e; border-radius: 10px; padding: 6px 12px; box-shadow: var(--shadow);
+}
+.cbb-bidlink span { font-weight: 600; opacity: .9; }
+.cbb-bidlink:hover { background: #18773f; }
+.cbb-bidlink:focus-visible { outline: 2px solid var(--league-accent); outline-offset: 2px; }
+.cbb-bidlink.big { font-size: 16px; padding: 11px 18px; margin: -4px 0 16px; border-radius: 12px; }
+
 /* ---------- Projektion / Recherche ---------- */
 .cbb-proj { font-size: 12px; margin-top: 4px; white-space: nowrap; }
 .cbb-proj b { font-weight: 800; }
