@@ -24,7 +24,7 @@ const LIVE_DRAFT = {
   jahr: 2026,
   runden: 4,
   start: "2026-10-01T02:00:00+02:00",
-  aktualisiert: "2026-10-03T13:00:00+02:00",
+  aktualisiert: "2026-10-03T13:30:00+02:00",
   picks: [
     { pick: "1.7", spieler: "Mikel Brown Jr.", datum: "2026-10-02" },
     { pick: "1.8", spieler: "Yaxel Lendeborg", datum: "2026-10-02" },
@@ -35,5 +35,6 @@ const LIVE_DRAFT = {
     { pick: "2.1", spieler: "Yanic Konan Niederhäuser", datum: "2026-10-02" },
     { pick: "2.2", spieler: "Allen Graves", datum: "2026-10-03", notiz: "via Cooking Show (Trade)" },
     { pick: "2.3", spieler: "Aday Mara", datum: "2026-10-03" },
+    { pick: "2.4", spieler: "Nikola Jović", datum: "2026-10-03" },
   ],
 };
