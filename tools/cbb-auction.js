@@ -211,7 +211,29 @@
     return { teams, tIdx, money, spots, factor, me, sold, bids, bidOf, live: p => Math.max(1, Math.round(1 + (p.value - 1) * factor)) };
   }
   // Schmerzgrenze: was man für einen echten Wunschspieler maximal bieten sollte
-  const limit = (v, me) => Math.min(me.maxBid, v <= 2 ? v + 1 : Math.round(v * 1.15));
+  // Risiko-Klasse: wie sicher ist der Wert? Bestimmt Spanne und Limit-Faktor.
+  //  niedrig = gesetzter Starter am selben Ort · mittel = Transfer/Rolle offen ·
+  //  hoch = Freshman / Daten aus 24/25 · sehr hoch = Verletzung, Spielberechtigung (TRO), Wechsel offen
+  const RISK = {
+    l: { k: 'l', l: 'niedrig', r: .15, lim: 1.15 },
+    m: { k: 'm', l: 'mittel', r: .25, lim: 1.05 },
+    h: { k: 'h', l: 'hoch', r: .40, lim: .90 },
+    v: { k: 'v', l: 'sehr hoch', r: .55, lim: .75 },
+  };
+  function risk(p) {
+    if (!p) return RISK.h;
+    const f = (p.flags || []).join(' '), n = p.note || '';
+    if (/verletzt|Spielberechtigung|nicht bestätigt/.test(f) || /Verfügung|TRO|Redshirt|Saison-Aus|Gerichtsverfahren|Kreuzband/.test(n)) return RISK.v;
+    if (!p.proj) return p.extra ? RISK.m : RISK.h;
+    if (p.prevSeason) return RISK.h;
+    if (p.move > 5) return RISK.m;
+    if (p.proj.min >= 25 && !(p.move > 0)) return RISK.l;
+    return RISK.m;
+  }
+  const span = (v, p) => { const r = risk(p).r; return [Math.max(1, Math.round(v * (1 - r))), Math.max(1, Math.round(v * (1 + r)))]; };
+  // Limit = was man für einen echten Wunschspieler maximal bieten sollte (risikobereinigt)
+  const limit = (v, me, p) => Math.min(me.maxBid, v <= 2 ? v + 1 : Math.round(v * risk(p).lim));
+  const riskBadge = (v, p) => { const R = risk(p), [lo, hi] = span(v, p); return `<span class="cbb-risk r-${R.k}" title="Risiko ${R.l}: realistische Spanne $${lo}–$${hi}; Limit = Wert × ${String(R.lim).replace('.', ',')}">${R.l === 'sehr hoch' ? '⚠ ' : ''}$${lo}–${hi}</span>`; };
 
   // ---------- kleine Bausteine ----------
   const money = x => '$' + Math.round(x);
@@ -317,7 +339,7 @@
           <th class="cbb-star" aria-label="Ziel"></th><th class="num hide-sm" data-sort="rank">#</th><th data-sort="name">Spieler</th><th class="hide-sm" data-sort="school">Schule</th>
           <th class="hide-sm hide-md" data-sort="cls">Kl.</th><th class="hide-sm hide-md" data-sort="pos">Pos</th>
           <th class="num hide-sm" data-sort="last" title="Fantasy-Rang der Saison 2025-26">Rang 25/26</th><th class="num hide-sm" data-sort="pmin" title="Projizierte Minuten pro Spiel 2026-27">Min</th><th class="num" data-sort="value">Wert</th>
-          <th class="num hide-sm" data-sort="limit" title="Bis hierhin mitgehen, wenn du den Spieler willst">Limit</th><th class="num hide-sm hide-md" data-sort="nil25" title="Zuschlag in der NIL-Auktion 2025">2025</th>
+          <th class="num hide-sm" data-sort="limit" title="Bis hierhin mitgehen, wenn du den Spieler willst — risikobereinigt (sichere Starter bis +15 %, Freshmen/Risikofälle darunter)">Limit</th><th class="num hide-sm hide-md" data-sort="nil25" title="Zuschlag in der NIL-Auktion 2025">2025</th>
           <th class="num" data-sort="bid" title="Aktuelles Höchstgebot laut Sheet">Gebot</th><th class="hide-sm" data-sort="left" title="Zeit bis das Höchstgebot gewinnt (24 h ab Gebot)">Restzeit</th><th>Status</th>
         </tr></thead><tbody data-rows></tbody></table>
       </div>
@@ -348,7 +370,7 @@
         return true;
       });
       const now = Date.now();
-      const key = p => sort === 'pmin' ? (p.proj ? p.proj.min : null) : sort === 'bid' ? (m.bidOf[p.name] ? m.bidOf[p.name].bid : null) : sort === 'left' ? (m.bidOf[p.name] && m.bidOf[p.name].ends != null ? m.bidOf[p.name].ends - now : null) : sort === 'limit' ? limit(m.live(p), m.me) : sort === 'value' ? m.live(p) : sort === 'last' ? (p.last || 9999) : sort === 'nil25' ? (p.nil25 || 0) : p[sort];
+      const key = p => sort === 'pmin' ? (p.proj ? p.proj.min : null) : sort === 'bid' ? (m.bidOf[p.name] ? m.bidOf[p.name].bid : null) : sort === 'left' ? (m.bidOf[p.name] && m.bidOf[p.name].ends != null ? m.bidOf[p.name].ends - now : null) : sort === 'limit' ? limit(m.live(p), m.me, p) : sort === 'value' ? m.live(p) : sort === 'last' ? (p.last || 9999) : sort === 'nil25' ? (p.nil25 || 0) : p[sort];
       list = list.slice().sort((a, b) => {
         const x = key(a), y = key(b);
         if (x == null || y == null) { if (x == null && y == null) return a.rank - b.rank; return x == null ? 1 : -1; }   // ohne Gebot immer ans Ende
@@ -367,12 +389,12 @@
         return `${div}<tr class="${s ? 'cbb-sold' : ''}${tgt ? ' cbb-target' : ''}${s && s.team === d.CBB_MY_TEAM ? ' cbb-mine' : ''}" data-name="${e(p.name)}">
           <td class="cbb-star"><button type="button" class="cbb-starbtn" data-star aria-pressed="${tgt}" title="${tgt ? 'Ziel entfernen' : 'Als Ziel merken'}">${tgt ? '★' : '☆'}</button></td>
           <td class="num muted hide-sm">${p.rank}</td>
-          <td><div class="cbb-name">${e(p.name)}</div><div class="cbb-tags">${tags(p, e)}<span class="show-sm muted">${e(p.school)} · ${e(p.cls)} · ${e(p.pos)}${p.last ? ' · Rang ' + p.last : ''}${s ? '' : ' · Limit ' + money(limit(live, m.me))}</span><span class="show-md muted">${e(p.cls)} · ${e(p.pos)}${p.nil25 ? ' · 2025: ' + money(p.nil25) : ''}</span></div>${projLine(p, e)}</td>
+          <td><div class="cbb-name">${e(p.name)}</div><div class="cbb-tags">${tags(p, e)}<span class="show-sm muted">${e(p.school)} · ${e(p.cls)} · ${e(p.pos)}${p.last ? ' · Rang ' + p.last : ''}${s ? '' : ' · Limit ' + money(limit(live, m.me, p))}</span><span class="show-md muted">${e(p.cls)} · ${e(p.pos)}${p.nil25 ? ' · 2025: ' + money(p.nil25) : ''}</span></div>${projLine(p, e)}</td>
           <td class="hide-sm">${e(p.school)}</td><td class="hide-sm hide-md">${e(p.cls)}</td><td class="hide-sm hide-md">${e(p.pos)}</td>
           <td class="num hide-sm">${p.last ? p.last : '<span class="muted">–</span>'}</td>
           <td class="num hide-sm">${p.proj ? f1(p.proj.min) : '<span class="muted">–</span>'}</td>
-          <td class="num strong"${dzTip(p)}>${money(live)}${m.factor !== 1 && live !== p.value ? `<small class="muted cbb-was"> ${money(p.value)}</small>` : ''}<div>${dzBadge(p)}</div></td>
-          <td class="num hide-sm">${s ? '<span class="muted">–</span>' : money(limit(live, m.me))}</td>
+          <td class="num strong"${dzTip(p)}>${money(live)}${m.factor !== 1 && live !== p.value ? `<small class="muted cbb-was"> ${money(p.value)}</small>` : ''}<div>${dzBadge(p)}</div><div>${riskBadge(live, p)}</div></td>
+          <td class="num hide-sm">${s ? '<span class="muted">–</span>' : money(limit(live, m.me, p))}</td>
           <td class="num hide-sm hide-md">${p.nil25 ? `<span title="2025 an ${e(p.nil25team)}">${money(p.nil25)}</span>` : '<span class="muted">–</span>'}</td>
           <td class="num">${bid ? (() => { const r = rate(bid.bid, live); return `<b class="cbb-bidval ${r.k}" title="${e(r.l)} (Wert ${money(live)})">${money(bid.bid)}</b><div class="muted small">${e(bid.team)}${bid.team === d.CBB_MY_TEAM ? ' (du)' : ''}</div><div class="show-sm small${bid.ends && bid.ends - now < 3 * 3600000 ? ' down' : ' muted'}">⏱ <span data-left="${bid.ends || ''}" data-short>${fmtLeft(bid.ends != null ? bid.ends - now : null, true)}</span></div>`; })() : '<span class="muted">–</span>'}</td>
           <td class="hide-sm cbb-left">${bid && bid.ends != null ? `<div><b data-left="${bid.ends}">${fmtLeft(bid.ends - now)}</b></div><div class="cbb-timebar${bid.ends - now < 3 * 3600000 ? ' soon' : ''}" title="bis ${fmtClock(bid.ends)}"><span data-bar="${bid.ends}" style="width:${Math.max(0, Math.min(100, (bid.ends - now) / H * 100)).toFixed(1)}%"></span></div>` : '<span class="muted">–</span>'}</td>
@@ -449,6 +471,14 @@
     }, 30000);
   }
 
+  // „Wer kann kontern?“ — wie viele Teams könnten das Gebot noch überbieten
+  function counterInfo(b, me, e) {
+    const n = b.can.length, names = b.can.map(t => `${t.name} (frei $${t.freeBid})`).join(', ');
+    const meCan = b.can.some(t => t.name === me.name);
+    if (!n) return `<div class="cbb-counter none" title="Kein anderes Team hat noch genug freies Geld, um zu überbieten">🔒 keiner kann kontern</div>`;
+    return `<div class="cbb-counter${n <= 3 ? ' few' : ''}" title="Können noch überbieten: ${e(names)}">🔓 ${n} ${n === 1 ? 'Team kann' : 'Teams können'} kontern${b.mine ? '' : meCan ? '' : ' · <b>du nicht</b>'}</div>`;
+  }
+
   function renderBids(ctx) {
     const { data: d, ui } = ctx, e = ui.esc;
     const st = load(ctx), live = getLive(ctx), m = market(d, st, live, ctx), me = m.me;
@@ -460,7 +490,9 @@
       const under = r.k === 'deal' || r.k === 'deal2', hot = under && left != null && left > 0 && left < 6 * 3600000;
       // Früh in den 24 h ist fast alles „unter Wert“ — echte Schnäppchen sind es erst kurz vor Ablauf
       if (under) r.l = hot ? '⚡ ' + r.l : 'noch ' + (r.k === 'deal2' ? 'weit unter Wert' : 'unter Wert');
-      return { ...b, val, r, hot, lim: b.p ? limit(val, me) : 2, left, mine: b.team === me.name, tgt: b.p && b.p.name in st.targets };
+      // Wer kann noch kontern? Teams (außer dem Führenden), deren freies Geld > aktuelles Gebot
+      const can = m.teams.filter(t => t.name !== b.team && t.freeBid >= b.bid + 1).sort((x, y) => y.freeBid - x.freeBid);
+      return { ...b, can, val, r, hot, lim: b.p ? limit(val, me, b.p) : 2, left, mine: b.team === me.name, tgt: b.p && b.p.name in st.targets };
     });
     const all = list;
     const view = f.view || 'all';
@@ -478,7 +510,7 @@
     const stand = live ? `Stand ${fmtStand(live.fetchedAt)} Uhr · ${SRC[live.source] || live.source}` : 'noch keine Daten';
     return `<div class="page-head"><h1 class="page-title display">⏱ Live-Gebote</h1>
         <div class="page-sub">${e(stand)}${hasSheet ? ` · nächster Check in <span data-next>60 min</span>` : ''}
-        <span class="explain">Holt die Tabelle „ACTIVE BIDS“ aus dem Google Sheet der Liga: beim Öffnen (wenn der letzte Stand älter als 60 Minuten ist), danach stündlich, solange die Seite offen ist — zusätzlich gleicht GitHub jede Stunde ab. Restzeit = Zeit des Höchstgebots + 24 Stunden (jedes neue Gebot setzt die Uhr neu). Einordnung = Höchstgebot im Vergleich zum Live-Wert des Spielers. Früh in den 24 Stunden ist fast alles „noch unter Wert“ — spannend wird es, wenn die Restzeit knapp wird (⚡ = unter Wert und weniger als 6 Stunden übrig).</span></div>
+        <span class="explain">Holt die Tabelle „ACTIVE BIDS“ aus dem Google Sheet der Liga: beim Öffnen (wenn der letzte Stand älter als 60 Minuten ist), danach stündlich, solange die Seite offen ist — zusätzlich gleicht GitHub jede Stunde ab. Restzeit = Zeit des Höchstgebots + 24 Stunden (jedes neue Gebot setzt die Uhr neu). Einordnung = Höchstgebot im Vergleich zum Live-Wert des Spielers. Früh in den 24 Stunden ist fast alles „noch unter Wert“ — spannend wird es, wenn die Restzeit knapp wird (⚡ = unter Wert und weniger als 6 Stunden übrig). 🔓/🔒 = wie viele andere Teams nach ihrem freien Geld (Budget minus laufende Höchstgebote, $1 je restlichem Platz) noch überbieten könnten. $x–y = realistische Spanne je nach Risiko (Freshman, Transfer, Verletzung, Spielberechtigung).</span></div>
         <div class="cbb-actions">
           ${hasSheet ? '<button type="button" class="cbb-btn" data-livenow>🔄 Jetzt prüfen</button>' : ''}
           <button type="button" class="cbb-btn" data-pastetoggle>📋 Tabelle einfügen</button>
@@ -512,8 +544,8 @@
         return `<tr class="${b.mine ? 'cbb-mine' : ''}${b.tgt ? ' cbb-target' : ''}${exp ? ' cbb-exp' : ''}">
           <td><div class="cbb-name">${b.tgt ? '<span class="cbb-startxt">★</span> ' : ''}${e(p ? p.name : b.name)}</div>
             <div class="cbb-tags">${p ? tags(p, e) : '<span class="cbb-tag warn" title="Spieler nicht in Dizzles Liste gefunden — Wert $1 angenommen">⚠ nicht in der Liste</span>'}<span class="muted">${e(b.school)}${b.cls ? ' · ' + e(b.cls) : ''}${b.pos ? '/' + e(b.pos) : ''}${p ? ' · ' + e(d.CBB_TIERS[p.tier].label.replace(/ \(.*\)$/, '')) : ''}</span><span class="show-sm"><span class="cbb-rate ${b.r.k}">${b.r.l}</span></span></div>${p ? projLine(p, e) : ''}</td>
-          <td class="num"><b>${money(b.bid)}</b><div class="muted small">${e(b.team)}${b.mine ? ' (du)' : ''}</div><div class="show-sm muted small">Wert ${money(b.val)}</div></td>
-          <td class="num hide-sm">${money(b.val)}</td>
+          <td class="num"><b>${money(b.bid)}</b><div class="muted small">${e(b.team)}${b.mine ? ' (du)' : ''}</div><div class="show-sm muted small">Wert ${money(b.val)}</div>${counterInfo(b, me, e)}</td>
+          <td class="num hide-sm">${money(b.val)}<div>${b.p ? riskBadge(b.val, b.p) : ''}</div></td>
           <td class="hide-sm"><span class="cbb-rate ${b.r.k}">${b.r.l}</span> <small class="muted">${dlt ? (dlt > 0 ? '+' : '−') + money(Math.abs(dlt)) : '±$0'}</small></td>
           <td class="num hide-sm">${b.mine ? '<span class="muted">du führst</span>' : b.bid >= b.lim ? '<span class="muted">überschritten</span>' : `bis ${money(Math.min(b.lim, me.freeBid))}`}</td>
           <td class="cbb-left"><div><b data-left="${b.ends || ''}">${fmtLeft(b.left)}</b>${b.ends ? `<small class="muted"> · bis ${fmtClock(b.ends)}</small>` : ''}</div>
@@ -567,7 +599,7 @@
     const st = load(ctx), m = market(d, st, getLive(ctx), ctx), me = m.me;
     const mine = Object.entries(m.sold).filter(([, s]) => s.team === me.name);
     const targets = d.CBB_POOL.filter(p => p.name in st.targets && !m.sold[p.name]);
-    const planned = t => st.targets[t.name] != null ? st.targets[t.name] : limit(m.live(t), me);
+    const planned = t => st.targets[t.name] != null ? st.targets[t.name] : limit(m.live(t), me, t);
     const sum = targets.reduce((a, t) => a + planned(t), 0);
     const restSpots = me.spotsLeft - targets.length, restMoney = me.left - sum;
     const ok = restSpots < 0 ? false : restMoney >= restSpots;
@@ -748,7 +780,8 @@
         <li><b>Marktkurve 2025:</b> Die echten Zuschläge 2025 (${n25} Spieler, ${money(c25)}) nach Preis sortiert. Spieler Nr. 1 im Board 2026 bekommt den Preis von Zuschlag Nr. 1 aus 2025 usw.</li>
         <li><b>Hochrechnung aufs Geld 2026:</b> Es zählt nur Geld über $1 (jeder Platz kostet mindestens $1). 2025: ${money(c25 - n25)} „freies“ Geld, 2026: ${money(cash - spots)} → Faktor ${ui.num((cash - spots) / (c25 - n25), 2)}.</li>
         <li><b>Mischung:</b> Wert = ½ Marktkurve + ½ Position in Dizzles Tier-Spanne, danach so skaliert, dass die besten ${spots} Spieler zusammen genau das Geld der Liga (${money(cash)}) kosten. Alle anderen: $1.</li>
-        <li><b>Limit</b> = Wert + 15 % (höchstens dein Max-Gebot). Bis dahin mitgehen, wenn du den Spieler wirklich willst; darüber zahlt man drauf.</li>
+        <li><b>Limit (risikobereinigt)</b> = Wert × Risikofaktor, höchstens dein Max-Gebot: sicherer Starter am selben Ort ×1,15 · Transfer/Rolle offen ×1,05 · Freshman oder Daten nur aus 24/25 ×0,90 · Verletzung/Spielberechtigung/TRO ×0,75. Die Spanne $x–y zeigt, wie weit der echte Wert realistisch streut (±15 % bis ±55 %).</li>
+        <li><b>🔓/🔒 Konter:</b> Auf „Live-Gebote“ steht pro Spieler, wie viele andere Teams nach ihrem freien Geld noch überbieten könnten. 🔒 = keiner mehr → das Gebot gewinnt sicher, wenn die Uhr abläuft.</li>
         <li><b>Live-Wert:</b> Sobald Zuschläge eingetragen sind, vergleicht die Seite Restgeld und Restwert. Gehen Spieler billig weg, bleibt mehr Geld für den Rest → alle übrigen Werte steigen (und umgekehrt).</li>
       </ol>
       <p class="small muted cbb-pad">Das ist eine Schätzung, kein Orakel: Die Liga hat 2026 mehr Teams (${d.CBB_TEAMS.length}) und neue Manager — die ersten Zuschläge zeigen schnell, ob sie teurer oder billiger bieten. Dafür ist der Live-Wert da.</p></section>
@@ -765,7 +798,9 @@
   const wrap = r => ctx => `<div class="cbb-page" data-cbb>${r(ctx)}</div>`;
   const inner = mt => (root, ctx) => mt(root.querySelector('[data-cbb]') || root, ctx);
   // Für Tests/Konsole
-  MFHFB.cbb = { matchPlayer, parseCsv, parseRows, parsePaste, parseSheetTime, rate };
+  MFHFB.cbb = { matchPlayer, parseCsv, parseRows, parsePaste, parseSheetTime, rate, risk, span, limit,
+    // für den Auktions-Wächter (leagues/cbb/scripts/watch-auction.js): Markt ohne Browser-Speicher
+    market: (d, live, sheet) => market(d, { targets: {}, sold: {} }, live, { league: { sheet: sheet || { hours: 24, tzOffsetMin: 0 } } }) };
 
   const base = { applies: { sport: ['cbb'] }, data: ['nil-auction', '?nil-extra', '?live-bids'] };
   MFHFB.pages.register({ ...base, id: 'home', section: 'home', label: 'NIL-Auktion', icon: '💰', title: () => 'NIL-Auktion', render: wrap(renderBoard), mount: inner(mountBoard) });

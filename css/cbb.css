@@ -104,6 +104,16 @@
 .cbb-buckets span { font-size: 11px; color: var(--muted); }
 .cbb-scroll { max-height: 460px; overflow: auto; }
 
+/* ---------- Risiko + Konter ---------- */
+.cbb-risk { display: inline-block; font-size: 10.5px; font-weight: 700; padding: 0 5px; border-radius: 4px; margin-top: 2px; background: var(--surface2); color: var(--muted); white-space: nowrap; }
+.cbb-risk.r-l { color: #1f7a4a; }
+.cbb-risk.r-h { color: #9a6a00; }
+.cbb-risk.r-v { color: #b23b37; background: color-mix(in srgb, #d9534f 12%, var(--surface)); }
+.cbb-counter { font-size: 11px; color: var(--muted); margin-top: 3px; white-space: nowrap; }
+.cbb-counter.few { color: #9a6a00; font-weight: 700; }
+.cbb-counter.none { color: #1f7a4a; font-weight: 700; }
+.cbb-counter b { color: #b23b37; }
+
 /* ---------- Bieten-Link ---------- */
 .cbb-bidlink {
   display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 800; font-size: 13px;
@@ -187,6 +197,7 @@
   .cbb-board { max-height: none; }
   .cbb-name { white-space: normal; }
   .cbb-proj { white-space: normal; }
+  .cbb-counter { white-space: normal; font-size: 10.5px; }
   .cbb-sellform { flex-wrap: wrap; }
   .cbb-buckets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cbb-left { min-width: 0; white-space: normal; }
