@@ -9,8 +9,8 @@
 //  gebaut — je Liga eigener Signal-Mix). Hier wird nur gegen die aktuellen
 //  Kader dieser Liga gefiltert (+ Rookie/Sophomore, NBA-Team, Suche).
 //
-//  Spalten erscheinen nur, wenn das Board sie liefert (TTHQ: Dynasty-Rang
-//  + Sticky Score, Funkytown: nicht). „Proj. 26/27“ = Rang in den
+//  Spalten erscheinen nur, wenn das Board sie liefert (TTHQ: Dynasty-Rang,
+//  Funkytown: nicht). Sticky Score seit 03.10.2026 raus (Saison-Projections statt Summer League). „Proj. 26/27“ = Rang in den
 //  Saison-Projektionen dieser Liga (nur wenn die echte z-Werte haben).
 // ============================================================
 
@@ -35,7 +35,6 @@
       { k: 'bestCat30', l: 'Beste Kat.', t: 'Stärkste Kategorie im jüngsten Fenster (laufende Saison > Off-Season)', v: p => { const i = CAT_ORDER.indexOf(p.bestCat30); return i < 0 ? null : i; }, f: (v, p) => (p.bestCat30 ? `<span class="up strong">${p.bestCat30}</span>` : '—') },
       { k: 'worstCat30', l: 'Schwächste', v: p => { const i = CAT_ORDER.indexOf(p.worstCat30); return i < 0 ? null : i; }, f: (v, p) => (p.worstCat30 ? `<span class="down strong">${p.worstCat30}</span>` : '—') },
       has('dynastyRank') && { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFB Dynasty-Rang', v: p => p.dynastyRank ?? null, f: v => nba.rankBadge(v) },
-      has('stickyScore') && { k: 'stickyScore', l: 'Sticky', t: 'Sticky Score (Summer-League-Modell), höher = besser', v: p => p.stickyScore ?? null, desc: true, f: v => (v == null ? '—' : `<span class="nba-sticky ${v >= 5 ? 'hi' : v >= 0 ? 'mid' : 'lo'}">${v.toFixed(1)}</span>`) },
       { k: 'season2627Rank', l: 'Rang 26/27', t: 'Rang in der laufenden Saison (Rolling-Rankings-Archiv, füllt sich ab Saisonstart)', v: p => p.season2627Rank ?? null, f: v => nba.rankBadge(v) },
       proj && { k: 'proj', l: 'Proj. 26/27', t: 'Rang in den Saison-Projektionen dieser Liga', v: p => proj(p.name), f: v => nba.rankBadge(v) },
     ].filter(Boolean);
@@ -97,7 +96,7 @@
     if (q) q.addEventListener('input', () => save({ q: q.value }));
     root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => {
       const st = getState(ctx), k = b.dataset.sort;
-      const desc = k === 'stickyScore';
+      const desc = false;
       save(st.sort === k ? { dir: -st.dir } : { sort: k, dir: desc ? -1 : 1 }, true);
     }));
     const un = root.querySelector('[data-unsort]');

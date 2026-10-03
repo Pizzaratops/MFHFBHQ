@@ -21,8 +21,12 @@
   const getState = ctx => { const st = { ...defaults, ...ctx.store.getJSON('livedraft2', {}) }; if (!st.sort) st.sort = defaults.sort; return st; };
 
   // ---------- Modell ----------
+  // Projections-Rang 2026/27 (LIVE_PROJECTIONS nach 9-Cat-z, Basis = Beyaz' Projections)
+  let PROJ = null;
+  const projOf = p => (PROJ ? PROJ(p.name) : null);
   function model(ctx) {
     const data = ctx.data, nba = N().init(data);
+    PROJ = nba.projRanks(data);
     const LD0 = data.LIVE_DRAFT || { picks: [] };
     // ESPN (Offline Draft, vom LM eingetragen, per TTHQ-Sync). ACHTUNG: ESPN
     // legt beim Eintragen "pro Team" jeden Spieler auf den EIGENEN Original-Slot
@@ -170,7 +174,7 @@
       { k: 'name', l: 'Spieler', v: p => String(p.name).toLowerCase() },
       { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null },
       { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFBs Dynastyranking', v: p => p.dynastyRank ?? null },
-      { k: 'stickyScore', l: 'Sticky', t: 'Score für Summer League Stats', v: p => p.stickyScore ?? null, desc: true },
+      { k: 'proj', l: 'Proj.', t: 'Rang in Beyaz’ Projections 2026/27 (9-Cat z-Score)', v: projOf },
       { k: 'nbaPick', l: 'Draft', t: 'Pick im NBA Draft 2026', v: p => p.nbaPick ?? null },
     ];
   }
@@ -204,7 +208,7 @@
         <td><div class="ld-baname"><b>${cw(ctx, p.name)}</b> ${expTag(p.experience)}</div><div class="ld-pmeta">${e(p.pos || '')}${p.nbaTeam ? ' · ' + e(p.nbaTeam) : ''}${p.bestCat30 ? ` · <span class="up">${e(p.bestCat30)}</span>` : ''}</div></td>
         <td class="num">${a != null ? a : '—'}</td>
         <td class="num">${nba.rankBadge(p.dynastyRank ?? null)}</td>
-        <td class="num">${p.stickyScore == null ? '<span class="muted">—</span>' : `<span class="nba-sticky ${p.stickyScore >= 5 ? 'hi' : p.stickyScore >= 0 ? 'mid' : 'lo'}">${p.stickyScore.toFixed(1)}</span>`}</td>
+        <td class="num">${nba.rankBadge(projOf(p))}</td>
         <td class="num">${p.nbaPick ? `<span class="ld-npick${p.nbaPick <= 30 ? ' r1' : ''}" title="Pick ${p.nbaPick} im NBA Draft 2026">${p.nbaPick}</span>` : '<span class="muted">—</span>'}</td>
       </tr>`;
     }).join('');
@@ -273,7 +277,7 @@
   MFHFB.pages.register({
     id: 'livedraft', section: 'draft', label: 'Live Draft', icon: '🔴', applies: { sport: ['nba'] },
     when: league => !!league.liveDraft,
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn', '?nba-draft'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn', '?nba-draft', '?live-projections'],
     title: () => 'Live Draft', render, mount,
   });
 })();
