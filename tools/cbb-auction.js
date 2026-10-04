@@ -83,16 +83,24 @@
     if (extraCache && extraCache.src === d.CBB_EXTRA_C) return extraCache.list;
     const list = d.CBB_EXTRA_C.map(r => {
       const base = { name: r[0], school: r[1], prev: { team: r[1], gp: r[2][0], min: r[2][1], pts: r[2][2], reb: r[2][3], ast: r[2][4] }, prevSeason: r[3] || undefined, mod: r[4] };
-      return r[4] ? Object.assign(base, projectExtra(d.CBB_MODEL, r[4], null)) : Object.assign(base, { value: 1 });
+      return applyOver(d, r[4] ? Object.assign(base, projectExtra(d.CBB_MODEL, r[4], null)) : Object.assign(base, { value: 1 }));
     });
     extraCache = { src: d.CBB_EXTRA_C, list };
     return list;
+  }
+  // Recherche-Hinweise für Spieler außerhalb der Liste (Spielberechtigung, Rolle): [Faktor, Hinweis, Quelle]
+  function applyOver(d, x) {
+    const o = ((d.CBB_MODEL || {}).over || {})[norm(x.name)];
+    if (!o) return x;
+    x.value = Math.max(1, Math.round(x.value * o[0]));
+    x.note = (x.note ? x.note + ' ' : '') + o[1]; x.src = o[2];
+    return x;
   }
   // Extra-Spieler fürs neue Team (Schule laut Sheet) neu projizieren
   function forSchool(d, x, school) {
     if (!x.mod || !school || !d.CBB_MODEL) return x;
     const p = projectExtra(d.CBB_MODEL, x.mod, school);
-    return p.moved ? Object.assign({}, x, p, { school, note: `Wechsel ${x.prev.team} → ${school}: neu projiziert mit dem Transfermodell (stärkere Gegner = weniger Produktion/Minute).` }) : x;
+    return p.moved ? applyOver(d, Object.assign({}, x, p, { school, note: `Wechsel ${x.prev.team} → ${school}: neu projiziert mit dem Transfermodell (stärkere Gegner = weniger Produktion/Minute).` })) : x;
   }
 
   // Sheet-Name ("Jason Crowe, Jr.", "Baba Oladotun", "Na'jai Hines") → Spieler aus CBB_POOL
