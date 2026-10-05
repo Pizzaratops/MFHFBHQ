@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-05T14:12:34.975Z",
+  "generatedAt": "2026-10-05T22:26:56.748Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -78,7 +78,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "ARI",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 21.9,
           "last3AvgPoints": 21.9,
@@ -889,7 +889,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11,
           "last3AvgPoints": 7.6,
-          "projPoints": 4.3
+          "projPoints": 4.8
         },
         {
           "name": "Breece Hall",
@@ -1310,7 +1310,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.4,
           "last3AvgPoints": 10.2,
-          "projPoints": 8.4
+          "projPoints": 8.2
         },
         {
           "name": "Omarion Hampton",
@@ -1994,7 +1994,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11,
           "last3AvgPoints": 7.6,
-          "projPoints": 4.3
+          "projPoints": 4.8
         },
         {
           "name": "Breece Hall",
@@ -3532,7 +3532,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 24.8,
           "last3AvgPoints": 24.1,
-          "projPoints": 18.5
+          "projPoints": 17.7
         },
         {
           "name": "Omar Cooper",
@@ -3620,7 +3620,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.7,
           "last3AvgPoints": 23.5,
-          "projPoints": 19.1
+          "projPoints": 18.7
         },
         {
           "name": "Jameson Williams",
@@ -3786,7 +3786,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.1,
           "last3AvgPoints": 6.2,
-          "projPoints": 9.9
+          "projPoints": 9.7
         },
         {
           "name": "Mike Gesicki",
@@ -3874,7 +3874,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.7,
           "last3AvgPoints": 23.5,
-          "projPoints": 19.1
+          "projPoints": 18.7
         },
         {
           "name": "Malik Willis",
