@@ -69,6 +69,8 @@
     });
     // ESPN-Picks je Team der Reihe nach auf die freien Picks dieses Teams legen
     const handKeys = new Set([...made.values()].map(p => nba.key(p.spieler)));
+    // „ignorieren“ (live-draft-2026.js): ESPN-Einträge, die nicht gezogen wurden (Eintragsfehler im Offline Draft) -- werden übersprungen
+    (LD0.ignorieren || []).forEach(n => handKeys.add(nba.key(n)));
     const espnByTeam = new Map();
     (ESPN.picks || []).slice().sort((a, b) => (a.overall || 0) - (b.overall || 0)).forEach(p => {
       if (p.team == null || (p.spieler && handKeys.has(nba.key(p.spieler)))) return;
