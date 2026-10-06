@@ -126,7 +126,10 @@
   function tbody(ctx, st) {
     const e = ctx.ui.esc;
     const list = filtered(ctx, st);
-    if (!list.length) return `<tr><td colspan="${COLS}">${ctx.ui.empty('Keine Treffer', st.waiver ? 'Gerade keine Waiver-Kandidaten. Filter „Waiver-Kandidaten“ ausschalten?' : 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    const noneRanked = st.ranked && !(ctx.data.PRESEASON_SCORE.players || []).some(p => p.ranked);
+    if (!list.length) return `<tr><td colspan="${COLS}">${noneRanked
+      ? ctx.ui.empty('Noch niemand mit Rang', 'Bisher hat kein Spieler 40 Preseason-Minuten. Häkchen „nur mit Rang“ entfernen, um alle Spieler zu sehen.', '⏳')
+      : ctx.ui.empty('Keine Treffer', st.waiver ? 'Gerade keine Waiver-Kandidaten. Filter „Waiver-Kandidaten“ ausschalten?' : 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
     return list.slice(0, 500).map(({ p, s }) => {
       const open = st.open === p.athleteId;
       const dm = p.roleDeltaMPG;
