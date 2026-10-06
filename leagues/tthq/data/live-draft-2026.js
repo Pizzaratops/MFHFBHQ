@@ -24,7 +24,7 @@ const LIVE_DRAFT = {
   jahr: 2026,
   runden: 4,
   start: "2026-10-01T02:00:00+02:00",
-  aktualisiert: "2026-10-03T15:00:00+02:00",
+  aktualisiert: "2026-10-05T21:30:00+02:00",
   picks: [
     { pick: "1.7", spieler: "Mikel Brown Jr.", datum: "2026-10-02" },
     { pick: "1.8", spieler: "Yaxel Lendeborg", datum: "2026-10-02" },
@@ -38,5 +38,10 @@ const LIVE_DRAFT = {
     { pick: "2.4", spieler: "Nikola Jović", datum: "2026-10-03" },
     { pick: "2.5", spieler: "Cameron Carr", datum: "2026-10-03" },
     { pick: "2.6", spieler: "Labaron Philon Jr.", datum: "2026-10-03" },
+    { pick: "3.1", spieler: "Sergio de Larrea", datum: "2026-10-05" },
+    { pick: "3.2", spieler: "Ebuka Okorie", datum: "2026-10-05" },
+    { pick: "3.3", spieler: "Mario Hezonja", datum: "2026-10-05" },
+    { pick: "3.4", spieler: "Sam Merrill", datum: "2026-10-05" },
+    { pick: "3.5", spieler: "Dailyn Swain", datum: "2026-10-05" },
   ],
 };
