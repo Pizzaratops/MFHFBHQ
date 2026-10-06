@@ -139,7 +139,7 @@
         <td>${r.owner ? `<a class="nba-tlink mp-tc" style="${nba.tcStyle(r.owner)}" href="${ctx.href('teams', r.owner.id)}"><span class="nba-tdot"></span>${e(r.owner.name)}</a>` : '<span class="nba-tag fa">frei</span>'}</td>
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}" title="Z roh ${r.zRaw.toFixed(2)}">${nba.fmtScore(r.z)}</span></td>
         <td class="num">${(r.min || 0).toFixed(1)}</td>
-        ${CATS.map(c => { const v = c.pct ? (r[c.pct] || 0) : (r[c.key] || 0); const zc = r.cats[c.key] || 0, zr = r.rawCats[c.key] || 0; const md = N().getMode(); const tip = md === 'pctl' ? `Perzentil ${zc.toFixed(0)} · Z ${zr.toFixed(2)}` : md === 'durant' ? `Z ${zr.toFixed(2)} → DURANT ${zc.toFixed(2)}` : zc !== zr ? `Z ${zr.toFixed(2)} → gekappt ${zc.toFixed(2)}` : `Z ${zc.toFixed(2)}`; return `<td class="num" style="${heat(zc)}" title="${tip}">${v.toFixed(c.dec)}</td>`; }).join('')}
+        ${CATS.map(c => { const v = c.pct ? (r[c.pct] || 0) : (r[c.key] || 0); const zc = r.cats[c.key] || 0, zr = r.rawCats[c.key] || 0; const md = N().getMode(); const tip = md === 'pctl' ? `Perzentil ${zc.toFixed(0)} · Z ${zr.toFixed(2)}` : md === 'durant' ? `Z ${zr.toFixed(2)} → Rose ${zc.toFixed(2)}` : zc !== zr ? `Z ${zr.toFixed(2)} → gekappt ${zc.toFixed(2)}` : `Z ${zc.toFixed(2)}`; return `<td class="num" style="${heat(zc)}" title="${tip}">${v.toFixed(c.dec)}</td>`; }).join('')}
         <td class="num muted">${(r.fgm || 0).toFixed(1)}-${(r.fga || 0).toFixed(1)}</td>
         <td class="num muted">${(r.ftm || 0).toFixed(1)}-${(r.fta || 0).toFixed(1)}</td>
         <td class="num ${dCls}" title="${dTip}">${d === null ? '—' : d}</td>
@@ -164,8 +164,7 @@
     const th = (k, l, cls, t) => `<th class="${cls || ''}${st.sort === k ? ' sorted' : ''}"${t ? ` title="${t}"` : ''}><button type="button" class="th-sort" data-sort="${k}">${l}${arrow(k)}</button></th>`;
     const f = st.filters;
     const frow = (k, l) => `<label class="cp-f"><span>${l}</span><input type="number" step="any" placeholder="min" value="${f[k] && f[k].min != null ? f[k].min : ''}" data-filter="${k}|min"><input type="number" step="any" placeholder="max" value="${f[k] && f[k].max != null ? f[k].max : ''}" data-filter="${k}|max"></label>`;
-    return `<div class="page-head"><h1 class="page-title display">🔮 Projections 2026/27</h1>
-        <div class="page-sub explain">Consensus aus Beyaz, Josh Lloyd (BBM) und Hashtag Basketball · Z-Scores live im Browser, Gewichte einstellbar</div></div>
+    return `<div class="page-head"><h1 class="page-title display">🔮 Projections 2026/27</h1></div>
       <div class="controls">${nba.modeControl()}
         <input type="search" class="search" placeholder="Spieler, Team, Position, Fantasy-Team …" value="${e(st.q)}" data-q aria-label="Suchen">
         <select class="tr-select" data-pos aria-label="Position"><option value="">Alle Positionen</option>${['PG', 'SG', 'G', 'SF', 'PF', 'F', 'C'].map(p => `<option${st.pos === p ? ' selected' : ''}>${p}</option>`).join('')}</select>

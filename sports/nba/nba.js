@@ -100,26 +100,29 @@ MFHFB.nba = (function () {
   //  Score-Modi (score-mode.js, unverändert)
   // ============================================================
   const Z_CAP = 3;
+  // 06.10.2026: Reihenfolge Rose-Metric (Standard) · Z-Score · Perzentil.
+  // „Z roh“ entfällt: rankte praktisch identisch zu „Z ±3“ (Ø 0,6 Ränge
+  // Unterschied in den Top 150) → nur noch „Z-Score“ (= gekappte Fassung).
   const MODES = [
-    { key: 'z', label: 'Z roh', title: 'Summe der Kategorie-Z-Scores ohne Transformation' },
-    { key: 'zcap', label: 'Z ±3', title: `Kategorie-Z-Scores vor dem Summieren auf ±${Z_CAP} gekappt, dämpft Spezialisten-Ausreißer (v.a. Blocks)` },
-    { key: 'pctl', label: 'Perzentil', title: 'Je Kategorie der Perzentil-Rang im Pool (0–100), gemittelt. Unempfindlich gegen Ausreißer' },
-    { key: 'durant', label: 'DURANT H2H', title: 'Standard. Nach Josh Lloyd (BBM): jede Kategorie per Yeo-Johnson annähernd normalverteilt, feste H2H-Gewichte (PTS 1 · REB 0,94 · AST 0,75 · Rest 0,6), ohne TO, schlechteste Kategorie gestrichen (Minus 1). Gewicht 0 = Punt: dann fällt diese Kategorie statt der schlechtesten weg' },
+    { key: 'durant', label: 'Rose-Metric', title: 'Rose-Metric (Standard, nach Josh Lloyds DURANT H2H)\n\n1. Je Kategorie den Z-Score bilden: (Wert − Pool-Schnitt) ÷ Standardabweichung. FG% und FT% als Impact (Abweichung vom Pool-Schnitt × Versuche).\n2. Jede Kategorie per Yeo-Johnson-Transformation annähernd normalverteilen. Blocks und Steals sind sonst stark schief: wenige Spezialisten bekommen riesige Werte.\n3. Feste H2H-Gewichte: PTS 1 · REB 0,94 · AST 0,75 · STL, BLK, 3PM, FG%, FT% je 0,6 · TO zählt nicht.\n4. Summe bilden und die schlechteste gewichtete Kategorie abziehen (Minus 1, wie beim Punten).\n\nGewicht 0 = Punt: dann fällt diese Kategorie weg statt der schlechtesten.' },
+    { key: 'zcap', label: 'Z-Score', title: 'Klassischer Z-Score\n\n1. Je Kategorie (Wert − Pool-Schnitt) ÷ Standardabweichung. FG% und FT% als Impact (Abweichung × Versuche), TO umgedreht.\n2. Jeden Kategorie-Wert auf ±3 kappen, damit einzelne Ausreißer (v. a. Blocks) nicht alles dominieren.\n3. Mit den eingestellten Gewichten summieren (Standard: PTS 0,9 · REB/AST/FG% 1 · STL/BLK 0,75 · 3PM 0,8 · FT% 0,9 · TO 0,25).\n\nGrundlage der ESPN- und Yahoo-Player-Rater.' },
+    { key: 'pctl', label: 'Perzentil', title: 'Perzentil\n\n1. Je Kategorie den Rang im Pool als Perzentil (0–100): 80 = besser als 80 % der Spieler.\n2. Mit den eingestellten Gewichten mitteln.\n\nAbstände zählen nicht mehr, nur die Reihenfolge. Völlig unempfindlich gegen Ausreißer, bestraft dafür Spezialisten am stärksten (z. B. Shotblocker mit schwachen Quoten).' },
   ];
-  // DURANT H2H (06.10.2026): feste Gewichte nach Josh Lloyd, TO zählt nicht.
+  // Rose-Metric (06.10.2026, = Josh Lloyds DURANT H2H): feste Gewichte, TO zählt nicht.
   // Schlüssel beider Benennungen (Live Scores/Rankings: tpm/to, Projections: tpm/tov).
   const DURANT_W = { pts: 1, reb: 0.94, ast: 0.75, stl: 0.6, blk: 0.6, tpm: 0.6, fgImpact: 0.6, ftImpact: 0.6, to: 0, tov: 0 };
   // Gilt hub-weit für alle NBA-Ligen (wie früher seitenübergreifend)
   // v2 seit 06.10.2026: neuer Standard DURANT H2H für alle (alte Auswahl wird nicht übernommen)
   const MODE_KEY = 'mfhfb:nba:scoremode:v2';
   function getMode() {
-    try { const m = localStorage.getItem(MODE_KEY); if (MODES.some(x => x.key === m)) return m; } catch (e) { /* ignore */ }
+    try { let m = localStorage.getItem(MODE_KEY); if (m === 'z') m = 'zcap'; if (MODES.some(x => x.key === m)) return m; } catch (e) { /* ignore */ }
     return 'durant';
   }
   function setMode(m) { try { localStorage.setItem(MODE_KEY, m); } catch (e) { /* ignore */ } }
   function modeControl() {
     const cur = getMode();
-    return `<div class="seg" role="group" aria-label="Bewertung">${MODES.map(m => `<button type="button" class="seg-btn${m.key === cur ? ' active' : ''}" data-scoremode="${m.key}" title="${m.title}" aria-pressed="${m.key === cur}">${m.label}</button>`).join('')}</div>`;
+    const esc = t => String(t).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    return `<div class="seg" role="group" aria-label="Bewertung">${MODES.map(m => `<button type="button" class="seg-btn info-tip score-mode-btn${m.key === cur ? ' active' : ''}" data-scoremode="${m.key}" data-tip="${esc(m.title)}" aria-label="${esc(m.label)}" aria-pressed="${m.key === cur}">${m.label}</button>`).join('')}</div>`;
   }
   // Seiten binden das mit ctx.refresh
   function bindModeControl(root, refresh) {
@@ -205,7 +208,7 @@ MFHFB.nba = (function () {
     return mode === 'pctl' ? score.toFixed(1) : (score >= 0 ? '+' : '') + score.toFixed(2);
   }
   const scorePositive = (score, mode) => ((mode || getMode()) === 'pctl' ? score >= 50 : score >= 0);
-  const scoreLabel = mode => { const m = mode || getMode(); return m === 'pctl' ? 'Ø Pctl' : m === 'zcap' ? 'Z ±3' : m === 'durant' ? 'DURANT' : 'Z-Score'; };
+  const scoreLabel = mode => { const m = mode || getMode(); return m === 'pctl' ? 'Ø Pctl' : m === 'zcap' ? 'Z-Score' : m === 'durant' ? 'Rose' : 'Z-Score'; };
 
   // Farbton für einen Z-Wert (Heatmap-Zellen): grün/rot, Intensität nach |z|
   function heat(z) {

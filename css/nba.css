@@ -849,3 +849,4 @@ th.punted, td.punted { opacity: .35; }
   .ps-groups { grid-template-columns: 1fr; }
   .ps-detail > td { position: sticky; left: 0; }
 }
+.score-mode-btn.info-tip { cursor: pointer; }
