@@ -214,3 +214,22 @@ Konstanten in `scripts/preseason-score.js` nicht ändern** (Ausnahme:
   sports/nba, braucht pandas + pyarrow) → `data/preseason-baseline-2026-27.json`
   committen. Das Script wählt automatisch die Baseline der Vorsaison.
 
+
+## Score-Modus DURANT H2H (Standard seit 06.10.2026)
+
+`sports/nba/nba.js` → `fromCatZ(..., 'durant')`, gilt hub-weit (Rankings, Projections,
+Rolling, Waiver, Cat Web). Nach Josh Lloyd (BBM): je Kategorie Yeo-Johnson (λ per
+Maximum Likelihood über den Pool der Seite), neu standardisiert, feste Gewichte
+PTS 1 · REB 0,94 · AST 0,75 · STL/BLK/3PM/FG%/FT% 0,6 · TO 0, schlechteste
+Kategorie gestrichen (Minus 1). Seiten-Gewicht 0 = Punt: diese Kategorie fällt statt
+der schlechtesten weg. Nachbau gegen Joshs DUR-H2H-Spalte: Spearman 0,99 (alle),
+0,91 (Top 150). Gespeicherte Auswahl unter `mfhfb:nba:scoremode:v2` (alte Auswahl
+bewusst nicht übernommen, damit DURANT für alle Standard wird).
+
+## Consensus-Projections: eine Quelle austauschen
+
+`node sports/nba/scripts/replace-consensus-source.js <a|b|c> neu.json leagues/<liga>/data/projections-consensus.js "Bezeichnung"`
+ersetzt eine Quelle und rechnet den Mittelwert neu (Logik wie
+build-consensus-projections.js). Vor dem Cutover die erzeugten Dateien zusätzlich in
+die alten Repos (TTHQ/Funkytown `data/`) kopieren. Zuletzt: Quelle b = Josh Lloyd
+(BBM), Stand 06.10.2026.

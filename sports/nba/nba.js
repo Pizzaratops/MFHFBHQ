@@ -104,12 +104,17 @@ MFHFB.nba = (function () {
     { key: 'z', label: 'Z roh', title: 'Summe der Kategorie-Z-Scores ohne Transformation' },
     { key: 'zcap', label: 'Z ±3', title: `Kategorie-Z-Scores vor dem Summieren auf ±${Z_CAP} gekappt, dämpft Spezialisten-Ausreißer (v.a. Blocks)` },
     { key: 'pctl', label: 'Perzentil', title: 'Je Kategorie der Perzentil-Rang im Pool (0–100), gemittelt. Unempfindlich gegen Ausreißer' },
+    { key: 'durant', label: 'DURANT H2H', title: 'Standard. Nach Josh Lloyd (BBM): jede Kategorie per Yeo-Johnson annähernd normalverteilt, feste H2H-Gewichte (PTS 1 · REB 0,94 · AST 0,75 · Rest 0,6), ohne TO, schlechteste Kategorie gestrichen (Minus 1). Gewicht 0 = Punt: dann fällt diese Kategorie statt der schlechtesten weg' },
   ];
+  // DURANT H2H (06.10.2026): feste Gewichte nach Josh Lloyd, TO zählt nicht.
+  // Schlüssel beider Benennungen (Live Scores/Rankings: tpm/to, Projections: tpm/tov).
+  const DURANT_W = { pts: 1, reb: 0.94, ast: 0.75, stl: 0.6, blk: 0.6, tpm: 0.6, fgImpact: 0.6, ftImpact: 0.6, to: 0, tov: 0 };
   // Gilt hub-weit für alle NBA-Ligen (wie früher seitenübergreifend)
-  const MODE_KEY = 'mfhfb:nba:scoremode';
+  // v2 seit 06.10.2026: neuer Standard DURANT H2H für alle (alte Auswahl wird nicht übernommen)
+  const MODE_KEY = 'mfhfb:nba:scoremode:v2';
   function getMode() {
-    try { const m = localStorage.getItem(MODE_KEY) || localStorage.getItem('tthq_score_mode_v1') || localStorage.getItem('cof_score_mode_v1'); if (MODES.some(x => x.key === m)) return m; } catch (e) { /* ignore */ }
-    return 'zcap';
+    try { const m = localStorage.getItem(MODE_KEY); if (MODES.some(x => x.key === m)) return m; } catch (e) { /* ignore */ }
+    return 'durant';
   }
   function setMode(m) { try { localStorage.setItem(MODE_KEY, m); } catch (e) { /* ignore */ } }
   function modeControl() {
@@ -140,16 +145,67 @@ MFHFB.nba = (function () {
       const wSum = keys.reduce((s, k) => s + w(k), 0) || 1;
       return catZs.map(z => { const cats = {}; let s = 0; keys.forEach(k => { cats[k] = percentileOf(sorted[k], z[k] || 0); s += cats[k] * w(k); }); return { score: s / wSum, cats }; });
     }
+    if (mode === 'durant') return durant(catZs, keys, weights, poolIdx);
     const cap = mode === 'zcap' ? Z_CAP : Infinity;
     return catZs.map(z => { const cats = {}; let s = 0; keys.forEach(k => { const v = Math.max(-cap, Math.min(cap, z[k] || 0)); cats[k] = v; s += v * w(k); }); return { score: s, cats }; });
   }
+  // ---------- DURANT H2H ----------
+  //  Yeo-Johnson je Kategorie (λ per Maximum Likelihood über den Pool, wie
+  //  scipy.stats.yeojohnson), danach neu standardisiert. Angewendet auf die
+  //  Kategorie-Z-Werte der Seite: Ranking gegen den Nachbau auf Rohwerten
+  //  geprüft (Spearman 0,999, Josh-Projections 06.10.2026).
+  function yj(x, l) {
+    if (x >= 0) return Math.abs(l) < 1e-9 ? Math.log1p(x) : (Math.pow(x + 1, l) - 1) / l;
+    return Math.abs(l - 2) < 1e-9 ? -Math.log1p(-x) : -(Math.pow(1 - x, 2 - l) - 1) / (2 - l);
+  }
+  function yjLambda(xs) {
+    const n = xs.length; if (n < 3) return 1;
+    const logTerm = xs.reduce((a, x) => a + Math.sign(x) * Math.log1p(Math.abs(x)), 0);
+    const ll = l => {
+      let m = 0; const t = xs.map(x => { const v = yj(x, l); m += v; return v; }); m /= n;
+      const v = t.reduce((a, y) => a + (y - m) ** 2, 0) / n;
+      return v > 0 ? -n / 2 * Math.log(v) + (l - 1) * logTerm : -Infinity;
+    };
+    let lo = -3, hi = 5; const g = (Math.sqrt(5) - 1) / 2;
+    let a = hi - g * (hi - lo), b = lo + g * (hi - lo), fa = ll(a), fb = ll(b);
+    for (let i = 0; i < 60; i++) {
+      if (fa < fb) { lo = a; a = b; fa = fb; b = lo + g * (hi - lo); fb = ll(b); }
+      else { hi = b; b = a; fb = fa; a = hi - g * (hi - lo); fa = ll(a); }
+    }
+    return (lo + hi) / 2;
+  }
+  function durant(catZs, keys, weights, poolIdx) {
+    const idx = poolIdx && poolIdx.length ? poolIdx : catZs.map((_, i) => i);
+    // Punt: Seiten-Gewicht 0 → Kategorie fällt raus, dann kein zusätzliches Minus 1
+    const punted = keys.filter(k => DURANT_W[k] > 0 && weights && weights[k] === 0);
+    const use = keys.filter(k => DURANT_W[k] > 0 && !punted.includes(k));
+    const tf = {};
+    use.forEach(k => {
+      const xs = idx.map(i => catZs[i][k] || 0);
+      const l = yjLambda(xs);
+      const t = xs.map(x => yj(x, l)), m = t.reduce((a, b) => a + b, 0) / t.length;
+      const sd = Math.sqrt(t.reduce((a, b) => a + (b - m) ** 2, 0) / t.length) || 1;
+      tf[k] = { l, m, sd };
+    });
+    return catZs.map(z => {
+      const cats = {}; let s = 0, worst = Infinity;
+      keys.forEach(k => {
+        if (!tf[k]) { cats[k] = z[k] || 0; return; }
+        const v = (yj(z[k] || 0, tf[k].l) - tf[k].m) / tf[k].sd;
+        cats[k] = v; const wv = v * DURANT_W[k]; s += wv; if (wv < worst) worst = wv;
+      });
+      if (!punted.length && use.length > 1) s -= worst;
+      return { score: s, cats };
+    });
+  }
+
   function fmtScore(score, mode) {
     mode = mode || getMode();
     if (!Number.isFinite(score)) return '–';
     return mode === 'pctl' ? score.toFixed(1) : (score >= 0 ? '+' : '') + score.toFixed(2);
   }
   const scorePositive = (score, mode) => ((mode || getMode()) === 'pctl' ? score >= 50 : score >= 0);
-  const scoreLabel = mode => { const m = mode || getMode(); return m === 'pctl' ? 'Ø Pctl' : m === 'zcap' ? 'Z ±3' : 'Z-Score'; };
+  const scoreLabel = mode => { const m = mode || getMode(); return m === 'pctl' ? 'Ø Pctl' : m === 'zcap' ? 'Z ±3' : m === 'durant' ? 'DURANT' : 'Z-Score'; };
 
   // Farbton für einen Z-Wert (Heatmap-Zellen): grün/rot, Intensität nach |z|
   function heat(z) {

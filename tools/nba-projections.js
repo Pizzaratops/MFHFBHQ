@@ -139,7 +139,7 @@
         <td>${r.owner ? `<a class="nba-tlink mp-tc" style="${nba.tcStyle(r.owner)}" href="${ctx.href('teams', r.owner.id)}"><span class="nba-tdot"></span>${e(r.owner.name)}</a>` : '<span class="nba-tag fa">frei</span>'}</td>
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}" title="Z roh ${r.zRaw.toFixed(2)}">${nba.fmtScore(r.z)}</span></td>
         <td class="num">${(r.min || 0).toFixed(1)}</td>
-        ${CATS.map(c => { const v = c.pct ? (r[c.pct] || 0) : (r[c.key] || 0); const zc = r.cats[c.key] || 0, zr = r.rawCats[c.key] || 0; const tip = N().getMode() === 'pctl' ? `Perzentil ${zc.toFixed(0)} · Z ${zr.toFixed(2)}` : zc !== zr ? `Z ${zr.toFixed(2)} → gekappt ${zc.toFixed(2)}` : `Z ${zc.toFixed(2)}`; return `<td class="num" style="${heat(zc)}" title="${tip}">${v.toFixed(c.dec)}</td>`; }).join('')}
+        ${CATS.map(c => { const v = c.pct ? (r[c.pct] || 0) : (r[c.key] || 0); const zc = r.cats[c.key] || 0, zr = r.rawCats[c.key] || 0; const md = N().getMode(); const tip = md === 'pctl' ? `Perzentil ${zc.toFixed(0)} · Z ${zr.toFixed(2)}` : md === 'durant' ? `Z ${zr.toFixed(2)} → DURANT ${zc.toFixed(2)}` : zc !== zr ? `Z ${zr.toFixed(2)} → gekappt ${zc.toFixed(2)}` : `Z ${zc.toFixed(2)}`; return `<td class="num" style="${heat(zc)}" title="${tip}">${v.toFixed(c.dec)}</td>`; }).join('')}
         <td class="num muted">${(r.fgm || 0).toFixed(1)}-${(r.fga || 0).toFixed(1)}</td>
         <td class="num muted">${(r.ftm || 0).toFixed(1)}-${(r.fta || 0).toFixed(1)}</td>
         <td class="num ${dCls}" title="${dTip}">${d === null ? '—' : d}</td>
