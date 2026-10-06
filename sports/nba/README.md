@@ -34,6 +34,8 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | rolling-rankings-2026-27.js | build-rolling-archive.js | laufende Saison |
 | postdraft-board.js | build-postdraft-board.js | Big Board + Draft Capital + Off-Season + Sticky Score (GitHub-CSV) |
 | nba-power-rankings.js, nba-power-score.js | build-nba-power-rankings.js / -score.js | Matchup-Wochen aus der TTHQ-Liga (`leagues/tthq/js/espn-sync.js`) |
+| preseason-score.js (+ preseason/<Saison>/games/*.json Cache) | update-preseason-score.js (Logik: preseason-score.js) | Preseason Score, Seite „🌱 Preseason“; lädt schon vor dem Cutover aus dem Hub (`./`-Pfad in `files`) |
+| preseason-baseline-2025-26.json | build-baseline.py (jährlich) | Vorsaison-Werte je ESPN-Athlete-ID + Positions-Referenz |
 | aliases.js, rolling-rankings.js, season-rankings.js, last-season-stats-2003-04 … 2024-25, draft-class-2025/2026, draft2026/2027, draft-capital-2026 | statisch / manuell | in beiden Repos identisch (aliases: TTHQ-Fassung = Obermenge) |
 
 ### Liga-eigen (`leagues/<liga>/data/`)
@@ -81,6 +83,7 @@ Die Liga-Scripts lesen sportweite Eingaben über `SPORT_DATA`
 | nba-backfill.yml | manuell | sports/nba | nba-data |
 | nba-draft-results.yml | manuell, Liga wählbar | leagues/<liga>/data/draft-results-*.js | <liga>-data |
 | tthq-pick-journal.yml | manuell | leagues/tthq/data/picks-live.js | tthq-data |
+| nba-preseason.yml | täglich 10:00 UTC + manuell (force) | sports/nba/data/preseason-score.js, data/preseason/ | nba-preseason |
 
 **Warum so:** Die Liga-Ketten brauchen die Sportdaten desselben Laufs. Ein
 einziger geplanter Workflow mit `needs: sport` garantiert die Reihenfolge, das
@@ -187,3 +190,27 @@ Erledigt: Schritte 1–3 (Workflows laufen seit 29.09. parallel).
 - **Funkytown `stats.js` SEASON_STATS = TTHQ-Werte** — weiterhin vorhanden (Seed-Kopie). Der
   Hub nutzt SEASON_STATS nicht (`tools/nba-analytics.js` lässt sie weg); echte
   Funkytown-Werte bräuchten die Saison-Totals 2025/26 je Team.
+
+## Preseason Score (seit 06.10.2026)
+
+Skill-Profil für die neue Saison aus Preseason + Vorsaison (Shrinkage je Stat,
+Preseason-Korrektur, Tiers A–E, Rolle über Preseason-Minuten, „echte
+Veränderungen“ als Badges). Statistik extern validiert (2014–2026), **Formeln und
+Konstanten in `scripts/preseason-score.js` nicht ändern** (Ausnahme:
+`parseEspnSummary()`, falls ESPN das Boxscore-Format ändert).
+
+- Workflow `nba-preseason.yml` → `scripts/update-preseason-score.js` (im Ordner
+  sports/nba): ESPN-Scoreboard `seasontype=1` ab 25.09. → neue Spiele per Summary
+  laden → Cache `data/preseason/<Saison>/games/<id>.json` (nie neu geladen) →
+  `data/preseason-score.js`. Außerhalb von 25.09. + 40 Tagen sofort Ende; manuell
+  mit `force=true`. Schreibt nur bei inhaltlicher Änderung.
+- Eigener ESPN-Abruf statt der daily-9cat-Rohdateien: dort fehlen OREB/DREB, PF,
+  Starter, Athlete-IDs und Team-Summen, die der Score braucht.
+- Seite `tools/nba-preseason.js` (#/<liga>/preseason), eine Datei für beide Ligen.
+  Liga-Status (Mein Team / FA / Fantasy-Team) über die Kader per Namen (die
+  Kader-Dateien haben keine ESPN-IDs); „Mein Team“ wird je Liga im Browser gemerkt.
+  Redraft-Ligen starten mit „Waiver-Kandidaten“ (FA + Rolle ⬆️ oder ↑-Badge).
+- **Jedes Jahr im September:** `python3 scripts/build-baseline.py 2027` (im Ordner
+  sports/nba, braucht pandas + pyarrow) → `data/preseason-baseline-2026-27.json`
+  committen. Das Script wählt automatisch die Baseline der Vorsaison.
+

@@ -85,7 +85,7 @@ const LEAGUES = [
     mode: NBA_CUTOVER ? 'native' : 'legacy',
     nativePreview: !NBA_CUTOVER, // bis zum Cutover: neue Version zum Testen (Button „✨ Neue Version“)
     dataBase: NBA_CUTOVER ? 'leagues/tthq/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
-    files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026', 'live-draft-espn': './leagues/tthq/data/live-draft-espn', 'nba-draft': './sports/nba/data/nba-draft-2026' },
+    files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026', 'live-draft-espn': './leagues/tthq/data/live-draft-espn', 'nba-draft': './sports/nba/data/nba-draft-2026', 'preseason-score': './sports/nba/data/preseason-score' },
     keepers: true,
     // Live-Draft-Seite (#/tthq/livedraft): Jahr des laufenden Drafts. Nach dem
     // Draft entfernen oder auf das nächste Jahr setzen.
@@ -132,7 +132,7 @@ const LEAGUES = [
     mode: NBA_CUTOVER ? 'native' : 'legacy',
     nativePreview: !NBA_CUTOVER,
     dataBase: NBA_CUTOVER ? 'leagues/funkytown/data/' : 'https://pizzaratops.github.io/Citizens-of-Funkytown/data/',
-    files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active' },
+    files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active', 'preseason-score': './sports/nba/data/preseason-score' },
     countdowns: [{ label: '📋 Draft Day', iso: '2026-10-11T20:30:00+02:00' }],
     // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)
     espn: { season: 2027, toTeam: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
