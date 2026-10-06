@@ -26,7 +26,7 @@ const LIVE_DRAFT = {
   jahr: 2026,
   runden: 4,
   start: "2026-10-01T02:00:00+02:00",
-  aktualisiert: "2026-10-06T14:00:00+02:00",
+  aktualisiert: "2026-10-06T15:00:00+02:00",
   // ESPN-Einträge, die NICHT gezogen wurden (Eintragsfehler im Offline Draft) -- Board überspringt sie:
   ignorieren: ["Kobi Simmons"],
   picks: [
@@ -50,5 +50,6 @@ const LIVE_DRAFT = {
     { pick: "3.6", spieler: "Joshua Jefferson", datum: "2026-10-06" },
     { pick: "3.7", spieler: "Karim Lopez", datum: "2026-10-06" },
     { pick: "3.8", spieler: "Grayson Allen", datum: "2026-10-06" },
+    { pick: "3.9", spieler: "Bennett Stirtz", datum: "2026-10-06" },
   ],
 };
