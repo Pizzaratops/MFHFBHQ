@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-06T23:41:55.226Z",
+  "generatedAt": "2026-10-07T05:23:50.699Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -845,7 +845,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 10.1,
-          "projPoints": 13.5
+          "projPoints": 13.4
         },
         {
           "name": "David Montgomery",
@@ -1133,7 +1133,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.2,
           "last3AvgPoints": 3.1,
-          "projPoints": 3.3
+          "projPoints": 3.2
         },
         {
           "name": "Jared Goff",
@@ -1387,7 +1387,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.3
+          "projPoints": 9.4
         },
         {
           "name": "Amon-Ra St. Brown",
@@ -1487,7 +1487,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.1,
           "last3AvgPoints": 13.1,
-          "projPoints": 11.8
+          "projPoints": 11.9
         },
         {
           "name": "Quinn Ewers",
@@ -1553,7 +1553,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.2,
           "last3AvgPoints": 3.3,
-          "projPoints": 4.3
+          "projPoints": 4.2
         },
         {
           "name": "Sam Roush",
@@ -1972,7 +1972,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 10.1,
-          "projPoints": 13.5
+          "projPoints": 13.4
         },
         {
           "name": "Devin Singletary",
@@ -2160,7 +2160,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.1,
           "last3AvgPoints": 4.3,
-          "projPoints": 3.5
+          "projPoints": 3.4
         },
         {
           "name": "Carnell Tate",
@@ -2281,7 +2281,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.5,
           "last3AvgPoints": 8.8,
-          "projPoints": 9.7
+          "projPoints": 9.6
         },
         {
           "name": "Michael Mayer",
@@ -2381,7 +2381,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.4,
           "last3AvgPoints": 7.5,
-          "projPoints": 9.9
+          "projPoints": 9.8
         },
         {
           "name": "Keenan Allen",
@@ -2392,7 +2392,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 9.9,
-          "projPoints": 8.5
+          "projPoints": 8.4
         },
         {
           "name": "Mike Evans",
@@ -3709,7 +3709,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.1,
           "last3AvgPoints": 4.3,
-          "projPoints": 3.5
+          "projPoints": 3.4
         },
         {
           "name": "Jalon Daniels",
@@ -3841,7 +3841,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.5,
           "last3AvgPoints": 15.1,
-          "projPoints": 16.4
+          "projPoints": 16.3
         },
         {
           "name": "Jauan Jennings",
