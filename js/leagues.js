@@ -146,7 +146,7 @@ const LEAGUES = [
     // Auction Draft (#/funkytown/auction): Budget + Kaderplätze als Vorgabe;
     // ESPN-Werte aus LEAGUE_DRAFT_INFO (rosters-live.js) haben Vorrang,
     // jeder kann sie auf der Seite für sich überschreiben.
-    auctionDraft: { budget: 200, rosterSize: 13 },
+    auctionDraft: { budget: 200, rosterSize: 14 },
     // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)
     espn: { season: 2027, toTeam: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
     nbaDues: true,             // data/league-dues.js (LEAGUE_DUES_PAID) → Seite „Liga-Beiträge“
