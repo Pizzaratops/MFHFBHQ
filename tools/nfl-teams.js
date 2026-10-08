@@ -229,7 +229,7 @@
           <tbody>${tableRows}<tr class="nfl-avg"><td><b>Ø Rang</b></td>${entries.map(en => { const a = avgRank(en); return `<td class="num strong">${a != null ? a.toFixed(1).replace('.', ',') : '—'}</td>`; }).join('')}</tr></tbody>
         </table></div>
       </div>
-      <div class="cs-foot explain">Rang 1 = außen im Netz, unabhängig davon, ob ein hoher oder niedriger Rohwert besser ist. 6 Kategorien, datengestützt ausgewählt (Korrelation mit echten Saison-Siegen 2021–2025). Quelle nflverse.</div>
+      <div class="cs-foot explain">Rang 1 = außen im Netz, unabhängig davon, ob ein hoher oder niedriger Rohwert besser ist. 6 Kategorien, datengestützt ausgewählt (Siege 2021–2025 + Abgleich mit externen Defense-Rankings). Defense pro Play (EPA/Dropback, EPA/Carry). Quelle nflverse.</div>
     </div>`;
   }
 
