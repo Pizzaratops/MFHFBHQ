@@ -242,7 +242,7 @@ const LEAGUES = [
       conferences: [
         { name: 'West', id: 'nq58zcxtmutve46g' },
         { name: 'East', id: 'lj2bhz01mutvdfnh' },
-        { name: 'North', id: null },
+        { name: 'North', id: 'dyu5jrbomu4q4es3' },
         { name: 'South', id: null },
       ],
     },
