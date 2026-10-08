@@ -921,3 +921,39 @@ th.punted, td.punted { opacity: .35; }
 .au-import { display: inline-flex; align-items: center; }
 .au-setnote { padding: 6px 14px 12px; }
 @media (max-width: 1100px) { .au-bascroll { max-height: 520px; } }
+
+/* ---------- World Cup Draft (tools/nba-worldcup.js), nutzt au-* vom Auction Draft ---------- */
+.wc-status { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; border-left: 4px solid var(--league-accent); margin-bottom: 12px; }
+.wc-statusline { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; font-size: 14px; }
+.wc-next b { font-variant-numeric: tabular-nums; }
+.wc-next.now { font-weight: 800; color: var(--league-accent); animation: ldpulse 1.8s ease-in-out infinite; }
+.wc-refresh { margin-left: auto; display: inline-flex; gap: 10px; align-items: center; }
+.wc-set { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin-bottom: 14px; }
+.wc-set .au-f { min-width: 240px; }
+.wc-matrix { table-layout: fixed; width: 100%; min-width: 980px; }
+.wc-matrix th { text-transform: none; letter-spacing: 0; text-align: center; font-size: 11.5px; padding: 6px 2px; white-space: normal; vertical-align: bottom; }
+.wc-matrix th small { display: block; font-size: 9.5px; color: var(--muted); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wc-matrix th.me { color: var(--league-accent); }
+.wc-matrix th.me small { color: var(--league-accent); }
+.wc-matrix tbody th { width: 36px; font-size: 11px; color: var(--muted); vertical-align: middle; }
+.wc-matrix td { padding: 2px; vertical-align: top; }
+.wc-cell { min-height: 52px; box-sizing: border-box; padding: 4px 3px; border-radius: 8px; border: 1px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 1px; font-size: 11px; line-height: 1.2; overflow-wrap: anywhere; }
+.wc-cell small { font-size: 9.5px; color: var(--muted); font-weight: 700; }
+.wc-cell.made { border-style: solid; background: var(--surface2); }
+.wc-cell.me { border-color: var(--league-accent); background: color-mix(in srgb, var(--league-accent) 12%, var(--surface)); }
+.wc-cell.now { border: 2px solid var(--league-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--league-accent) 25%, transparent); animation: ldpulse 1.8s ease-in-out infinite; }
+.wc-pm { font-size: 9.5px; color: var(--muted); }
+.wc-clock { font-size: 10px; font-weight: 800; color: var(--league-accent); }
+.wc-ch { font-size: 11px; font-weight: 800; padding: 2px 6px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.wc-ch.hi { background: #2e9d6222; color: #2e9d62; }
+.wc-ch.mid { background: #d9a10022; color: #b98300; }
+.wc-ch.lo { background: #d6454522; color: #d64545; }
+.wc-adp summary, .wc-prog summary { cursor: pointer; list-style: none; }
+.wc-adp summary::-webkit-details-marker, .wc-prog summary::-webkit-details-marker { display: none; }
+.wc-progbody { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.wc-conf { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; }
+.wc-conf > b { min-width: 52px; }
+.wc-dchip { cursor: pointer; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); font-size: 12px; font-weight: 600; }
+.wc-dchip small { color: var(--muted); }
+.wc-dchip:hover { border-color: var(--league-accent); }
+.wc-dchip.me { border-color: var(--league-accent); background: color-mix(in srgb, var(--league-accent) 14%, var(--surface)); }

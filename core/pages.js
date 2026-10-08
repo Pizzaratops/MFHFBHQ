@@ -49,6 +49,7 @@ MFHFB.pages = (function () {
   function applies(page, league) {
     const a = page.applies || {};
     if (page.when && !page.when(league)) return false;   // optionale Zusatzbedingung (z.B. Liga hat ein Saison-Archiv)
+    if (league.pages && !league.pages.includes(page.id)) return false; // Liga mit fester Seitenliste (z. B. Fantrax World Cup)
     return Object.keys(a).every(k => !a[k] || a[k].includes(league[k]));
   }
 

@@ -216,6 +216,38 @@ const LEAGUES = [
     repo: 'Dynasty-Of-Pretend-Experts',
   },
   {
+    // Fantrax NBA World Cup (Draft-Only-Turnier): 4 Conferences à 12
+    // Divisionen à 12 Teams, je 14 Runden. Keine eigenen Datendateien —
+    // die Seite „World Cup Draft“ (tools/nba-worldcup.js) holt die Picks
+    // live im Browser über Fantrax' fxea-API (getDraftResults/getPlayerIds;
+    // die Draft-Results-Webseite ist für Außenstehende gesperrt, die API nicht).
+    key: 'worldcup',
+    name: 'Fantrax World Cup',
+    short: 'World Cup',
+    emoji: '🌍',
+    sport: 'nba',
+    platform: 'Fantrax',
+    format: 'Draft Only',
+    scoring: 'categories',
+    accent: '#16a34a',
+    accent2: '#f2b84f',
+    mode: 'native',
+    dataBase: 'leagues/tthq/data/',
+    sportDataBase: 'sports/nba/data/',
+    pages: ['wcdraft'],
+    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus' },
+    worldCup: {
+      rounds: 14, teamsPerDivision: 12,
+      my: { conference: 'West', division: 'Seattle' },
+      conferences: [
+        { name: 'West', id: 'nq58zcxtmutve46g' },
+        { name: 'East', id: 'lj2bhz01mutvdfnh' },
+        { name: 'North', id: null },
+        { name: 'South', id: null },
+      ],
+    },
+  },
+  {
     // College Basketball (Dizzles Liga) — vorerst nur die NIL-Auktion 2026
     // (tools/cbb-auction.js). Daten: leagues/cbb/data/nil-auction.js, von Hand
     // aus Dizzle_CBB_Off-season.xlsx erzeugt; Budgets dort in CBB_TEAMS pflegen.
