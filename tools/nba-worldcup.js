@@ -162,7 +162,10 @@
     if (!M.slots.length) return `<div class="card">${ctx.ui.empty('Division nicht gefunden', `Keine Picks für ${M.myDiv} (${M.myConf}) — Fantrax-Antwort noch leer oder Division falsch.`, '🌍')}</div>`;
     const rounds = Math.max(M.cfg.rounds, ...M.mine.map(p => p.round));
     const cell = {};
-    M.mine.forEach(p => { cell[p.round + ':' + p.pickInRound] = p; });
+    // Spalte = Team (Slot aus Runde 1), nicht Position in der Runde — so
+    // stimmt das Board bei jeder Pick-Reihenfolge (Snake, 5th Round Reversal …)
+    const slotOf = {}; M.slots.forEach(s => { slotOf[M.slotTeam[s]] = s; });
+    M.mine.forEach(p => { cell[p.round + ':' + (slotOf[p.teamId] || p.pickInRound)] = p; });
     const head = M.slots.map(s => { const id = M.slotTeam[s]; return `<th class="${id === M.myTeam ? 'me' : ''}" title="${e(M.teamLabel(id))}">${s}<small>${e(M.teamLabel(id))}</small></th>`; }).join('');
     const body = Array.from({ length: rounds }, (_, i) => i + 1).map(r => `<tr><th>R${r}</th>${M.slots.map(s => {
       const p = cell[r + ':' + s]; if (!p) return '<td></td>';
