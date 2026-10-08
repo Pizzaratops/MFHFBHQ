@@ -129,9 +129,15 @@ const LEAGUES = [
     platformLeagueId: '15679',
     accent: '#ff6584',
     accent2: '#6c63ff',
-    mode: NBA_CUTOVER ? 'native' : 'legacy',
-    nativePreview: !NBA_CUTOVER,
-    dataBase: NBA_CUTOVER ? 'leagues/funkytown/data/' : 'https://pizzaratops.github.io/Citizens-of-Funkytown/data/',
+    // Seit 08.10.2026 vorgezogen (Beyaz: Funkytown soll wie TTHQ aussehen,
+    // Draft Day 11.10.): native Hub-Version für alle, Daten aus den
+    // Hub-Syncs (leagues/funkytown/data/, handgepflegte Dateien dort sind
+    // identisch mit dem alten Repo). Die alte Seite bleibt über „✨“ /
+    // ?legacy erreichbar. Projections = TTHQ-Dateien (funkytown-sync.yml
+    // übernimmt vor jedem Lauf projections-baseline/-consensus aus leagues/tthq,
+    // ergänzt um Funkytown-Veteranen, s. leagues/funkytown/scripts/adopt-tthq-projections.js).
+    mode: 'native',
+    dataBase: 'leagues/funkytown/data/',
     files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active', 'preseason-score': './sports/nba/data/preseason-score' },
     countdowns: [{ label: '📋 Draft Day', iso: '2026-10-11T20:30:00+02:00' }],
     // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)
