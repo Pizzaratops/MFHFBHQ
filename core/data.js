@@ -37,9 +37,12 @@ MFHFB.data = (function () {
     let base = league.dataBase, file = logical, scope = league.key;
     if (logical.startsWith('sport:')) {
       const sd = (typeof SPORT_DATA !== 'undefined' && SPORT_DATA[league.sport]) || {};
-      base = sd.dataBase || league.dataBase;
+      // league.sportDataBase: Liga lädt die sportweiten Dateien von woanders
+      // (Funkytown seit 08.10.2026 aus dem Hub, TTHQ bis zum Cutover noch
+      // aus dem alten Repo) → eigener Cache-Scope.
+      base = league.sportDataBase || sd.dataBase || league.dataBase;
       file = logical.slice(6);
-      scope = 'sport-' + league.sport;
+      scope = 'sport-' + league.sport + (league.sportDataBase ? '@' + league.sportDataBase : '');
     } else {
       // Liga-spezifische Dateinamen (z.B. BWP "draft2026" statt "draft")
       file = (league.files && league.files[logical]) || logical;

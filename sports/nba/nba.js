@@ -81,6 +81,15 @@ MFHFB.nba = (function () {
     leagueTeams(data, true).forEach(t => roster(data, t.id).forEach(p => m.set(key(p.name), t)));
     return name => m.get(key(name)) || null;
   }
+  // Vor dem Draft? (Redraft: ESPN-Kader leer bis zum Draft). Quelle:
+  // LEAGUE_DRAFT_INFO aus rosters-live.js, sonst „alle Kader leer“.
+  function preDraft(data) {
+    const D = data.LEAGUE_DRAFT_INFO;
+    if (D && typeof D.drafted === 'boolean') return !D.drafted;
+    if (!data.ROSTERS_LIVE) return false;
+    const ts = leagueTeams(data, true);
+    return ts.length > 0 && ts.every(t => roster(data, t.id).length === 0);
+  }
   function record(data, t) {
     const R = data.TEAM_RECORDS_LIVE;
     if (R && R.records && R.records[t.id]) return R.records[t.id];
@@ -283,7 +292,7 @@ MFHFB.nba = (function () {
   };
 
   const api = {
-    ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, record, initials, teamColor, injury,
+    ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, preDraft, record, initials, teamColor, injury,
     tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, rankTier, rankBadge,
     MODES, getMode, setMode, modeControl, bindModeControl, fromCatZ, fmtScore, scorePositive, scoreLabel, percentileOf, heat,
   };

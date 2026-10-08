@@ -70,6 +70,7 @@
     const { data, ui, params } = ctx, e = ui.esc, nba = N();
     nba.init(data);
     if (!data.TEAM_ANALYTICS_LIVE) return ui.empty('Keine Analytics-Daten', 'TEAM_ANALYTICS_LIVE fehlt für diese Liga.', '📐');
+    if (nba.preDraft(data) || !Object.keys(data.TEAM_ANALYTICS_LIVE).length) return `<div class="page-head"><h1 class="page-title display">📐 Team Analytics</h1></div>` + ui.empty('Noch keine Kader', 'Team Analytics füllt sich nach dem Draft. Während des Drafts: Teams & Radar auf der Seite „Auction Draft“.', '📐');
     const st = getState(ctx);
     const view = params[0] === 'heatmap' ? 'heatmap' : 'radar';
     const M = compute(ctx, st.cutoff, st.method);

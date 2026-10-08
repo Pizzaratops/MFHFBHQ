@@ -113,6 +113,23 @@ Object.keys(ROSTERS_LIVE).forEach(tid => {
     pool.push({ teamId: tid, name: p.name, s, vol: shootingVolumes(s) });
   });
 });
+// Vor dem Draft (alle Kader leer, s. sync-espn-rosters.js) leere Analytics
+// schreiben statt abzubrechen -- sonst bliebe der Vorsaison-Stand stehen.
+const rostered = Object.values(ROSTERS_LIVE).reduce((a, r) => a + (r || []).length, 0);
+if (rostered === 0) {
+  fs.writeFileSync(OUT, `// ============================================================
+//  TEAM ANALYTICS — automatisch aus den Projections gebaut
+// ============================================================
+//  AUTO-GENERIERT von scripts/build-team-analytics.js. Nicht von Hand editieren.
+//  Zuletzt gebaut: ${new Date().toISOString()}
+//  Vor dem Draft: alle Kader leer -> keine Team-Werte.
+// ============================================================
+
+const TEAM_ANALYTICS_LIVE = {};
+`, 'utf8');
+  console.log(`${OUT} geschrieben: vor dem Draft, alle Kader leer.`);
+  process.exit(0);
+}
 if (pool.length < 100) {
   console.error(`Nur ${pool.length} Spieler mit Projection im Pool — sieht nach Datenproblem aus, breche ab ohne zu schreiben.`);
   process.exit(1);

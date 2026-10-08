@@ -69,6 +69,7 @@
     const e = ui.esc;
     N().init(data);
     if (!data.BEST_AVAILABLE_BOARD) return ui.empty('Kein Waiver-Board', 'BEST_AVAILABLE_BOARD fehlt für diese Liga.', '🆓');
+    if (N().preDraft(data)) return `<div class="page-head"><h1 class="page-title display">🆓 Waiver</h1></div>` + ui.empty('Waiver startet nach dem Draft', 'Vor dem Draft sind alle Spieler frei. Für den Draft selbst: Seite „Auction Draft“ im Bereich Draft.', '🆓');
     const st = getState(ctx);
     const all = pool(ctx, { ...st });
     const teams = [...new Set(all.map(p => p.nbaTeam).filter(Boolean))].sort();

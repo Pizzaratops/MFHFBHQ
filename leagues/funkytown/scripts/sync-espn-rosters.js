@@ -66,7 +66,7 @@ function httpsGetJson(url) {
 
 async function main() {
   const cfg = loadConfig();
-  const espnUrl = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${cfg.ESPN_SEASON}/segments/0/leagues/${cfg.ESPN_LEAGUE_ID}?view=mRoster&view=mTeam`;
+  const espnUrl = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${cfg.ESPN_SEASON}/segments/0/leagues/${cfg.ESPN_LEAGUE_ID}?view=mRoster&view=mTeam&view=mDraftDetail&view=mSettings`;
 
   const data = await httpsGetJson(espnUrl);
   const teams = (data.teams || []).filter(t => cfg.ESPN_TO_TT_TEAM[t.id] !== undefined);
@@ -106,7 +106,27 @@ async function main() {
   });
 
   const totalPlayers = Object.values(rosters).reduce((s, r) => s + r.length, 0);
-  if (totalPlayers < 100) {
+
+  // Draft-Status + Draft-Einstellungen (seit 08.10.2026). Vor dem Draft sind
+  // die Kader bei ESPN leer -- das ist dann KEINE Fehlantwort, sondern der
+  // richtige Stand (sonst bliebe der alte Kader der Vorsaison stehen).
+  const dd = data.draftDetail || {};
+  const ds = (data.settings && data.settings.draftSettings) || {};
+  const slots = (data.settings && data.settings.rosterSettings && data.settings.rosterSettings.lineupSlotCounts) || {};
+  // Slot 13 = IR (zählt nicht zur Kadergröße fürs Draften)
+  const rosterSize = Object.entries(slots).reduce((s, [id, n]) => s + (id === '13' ? 0 : Number(n) || 0), 0) || null;
+  const draftInfo = {
+    drafted: dd.drafted === true,
+    inProgress: dd.inProgress === true,
+    type: ds.type || null,
+    budget: ds.auctionBudget || null,
+    date: ds.date ? new Date(ds.date).toISOString() : null,
+    rosterSize,
+  };
+  const preDraft = dd.drafted === false;
+  if (preDraft) teams.forEach(t => { rosters[cfg.ESPN_TO_TT_TEAM[t.id]] = []; });
+
+  if (!preDraft && totalPlayers < 100) {
     // Sanity check — a 12-team league should have well over 100 rostered
     // players. If ESPN returned something malformed/partial, don't overwrite
     // the last good snapshot with garbage.
@@ -136,6 +156,11 @@ const ROSTERS_LIVE = {
 ${rosterLines.join(',\n')}
 };
 
+// Draft-Status/-Einstellungen aus ESPN (mDraftDetail + mSettings). drafted:false
+// = Liga ist noch vor dem Draft, alle Kader leer. Genutzt von der Hub-Seite
+// "Auction Draft" (Budget, Kadergröße) und als Pre-Draft-Erkennung.
+const LEAGUE_DRAFT_INFO = ${JSON.stringify(draftInfo)};
+
 // W-L-T Bilanzen je Team aus derselben ESPN-Antwort (mTeam).
 // "season" ist die ESPN-Saisonkennung (2027 = Saison 2026/27). Das UI
 // (js/navigation.js, _displayRecord) zeigt diese Bilanzen nur, wenn
@@ -150,7 +175,7 @@ const TEAM_RECORDS_LIVE = {
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, out, 'utf8');
-  console.log(`${OUT} aktualisiert: ${totalPlayers} Spieler über ${Object.keys(rosters).length} Teams.`);
+  console.log(`${OUT} aktualisiert: ${preDraft ? 0 : totalPlayers} Spieler über ${Object.keys(rosters).length} Teams${preDraft ? ' (vor dem Draft, Kader leer)' : ''}. Draft: ${JSON.stringify(draftInfo)}`);
 
 }
 
