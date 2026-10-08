@@ -957,3 +957,11 @@ th.punted, td.punted { opacity: .35; }
 .wc-dchip small { color: var(--muted); }
 .wc-dchip:hover { border-color: var(--league-accent); }
 .wc-dchip.me { border-color: var(--league-accent); background: color-mix(in srgb, var(--league-accent) 14%, var(--surface)); }
+.wc-board summary { cursor: pointer; list-style: none; }
+.wc-board summary::-webkit-details-marker { display: none; }
+details.card > summary h2::before { content: '▸ '; color: var(--muted); }
+details.card[open] > summary h2::before { content: '▾ '; }
+.wc-gone { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.wc-gone.me { color: var(--league-accent); font-weight: 800; }
+.wc-takenrow td { opacity: .62; }
+.wc-takenrow td:last-child { opacity: 1; }

@@ -174,8 +174,8 @@
       const proj = x ? M.byKey.get(nba.key(x.name)) : null;
       return `<td><div class="${cls}" title="Pick ${p.pick}${x ? ' · ' + e(x.name) + (proj ? ' · Proj.-Rang ' + proj._wcRank : '') : ''}"><small>${p.pick}</small>${x ? `<b>${e(short(x.name))}</b><span class="wc-pm">${e(x.pos || '')} · ${e(x.team || '')}</span>` : (p.pick === M.current ? '<span class="wc-clock">am Zug</span>' : '')}</div></td>`;
     }).join('')}</tr>`).join('');
-    return `<div class="card wc-board"><div class="card-head"><h2>📋 ${e(M.myDiv)} · ${e(M.myConf)}</h2><span class="muted small">${M.mine.filter(p => p.playerId).length}/${M.mine.length} Picks</span></div>
-      <div class="table-wrap"><table class="table wc-matrix"><thead><tr><th></th>${head}</tr></thead><tbody>${body}</tbody></table></div></div>`;
+    return `<details class="card wc-board" data-sec="board"${isOpen(M, 'board', false) ? ' open' : ''}><summary class="card-head"><h2>📋 Draft Board ${e(M.myDiv)} · ${e(M.myConf)}</h2><span class="muted small">${M.mine.filter(p => p.playerId).length}/${M.mine.length} Picks</span></summary>
+      <div class="table-wrap"><table class="table wc-matrix"><thead><tr><th></th>${head}</tr></thead><tbody>${body}</tbody></table></div></details>`;
   }
 
   function baBody(ctx, M) {
@@ -223,20 +223,33 @@
       <div class="au-tdetail wc-mebody"><div class="au-tlist">${list}</div><div class="au-tradar"><div class="au-radar">${radar}</div></div></div></div>`;
   }
 
+  // Wo ging der Spieler in der eigenen Division weg?
+  function divTaken(M) {
+    const m = new Map();
+    M.mine.forEach(p => { const x = M.pl(p.playerId); if (x) m.set(M.nba.key(x.name), p); });
+    return m;
+  }
+  const isOpen = (M, k, def) => (M.store.open && k in M.store.open ? M.store.open[k] : def);
+
   function adpHtml(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
-    const list = [...M.adp.values()].filter(a => a.n >= 2).sort((a, b) => a.mean - b.mean).slice(0, 150);
-    if (!list.length) return '';
-    return `<details class="card wc-adp"><summary class="card-head"><h2>📊 World-Cup-ADP</h2><span class="muted small">${M.adp.size} Spieler · ${M.divs.reduce((s, d) => s + d.made, 0)} Picks</span></summary>
-      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num">ADP</th><th class="num hide-sm">Min–Max</th><th class="num">×</th><th class="num" title="Rang in unseren Projections">Proj.</th><th class="num" title="ADP-Rang minus Proj.-Rang: positiv = geht später als er sollte (Steal)">Δ</th></tr></thead><tbody>
-      ${list.map((a, i) => { const r = M.byKey.get(nba.key(a.name)); const d = r ? (i + 1) - r._wcRank : null; return `<tr><td class="num rank">${i + 1}</td><td class="strong">${e(a.name)}</td><td class="num">${a.mean.toFixed(1)}</td><td class="num hide-sm muted">${a.min}–${a.max}</td><td class="num muted">${a.n}</td><td class="num">${r ? r._wcRank : '—'}</td><td class="num ${d == null ? '' : d >= 10 ? 'up' : d <= -10 ? 'down' : ''}">${d == null ? '—' : (d > 0 ? '+' : '') + d}</td></tr>`; }).join('')}
+    const list = [...M.adp.values()].sort((a, b) => a.mean - b.mean || b.n - a.n).slice(0, 200);
+    const taken = divTaken(M);
+    const body = list.length ? list.map((a, i) => {
+      const k = nba.key(a.name), r = M.byKey.get(k), d = r ? (i + 1) - r._wcRank : null, t = taken.get(k);
+      const here = t ? `<span class="wc-gone${t.teamId === M.myTeam ? ' me' : ''}" title="${e(M.teamLabel(t.teamId))}">Pick ${t.pick} · ${e(M.teamLabel(t.teamId))}</span>` : '<span class="avail">frei</span>';
+      return `<tr${t ? ' class="wc-takenrow"' : ''}><td class="num rank">${i + 1}</td><td class="strong">${e(a.name)}</td><td class="num">${a.mean.toFixed(1)}</td><td class="num hide-sm muted">${a.min}–${a.max}</td><td class="num muted">${a.n}</td><td class="num">${r ? r._wcRank : '—'}</td><td class="num ${d == null ? '' : d >= 10 ? 'up' : d <= -10 ? 'down' : ''}">${d == null ? '—' : (d > 0 ? '+' : '') + d}</td><td>${here}</td></tr>`;
+    }).join('') : `<tr><td colspan="8">${ctx.ui.empty('Noch keine Picks', 'Sobald in einer Division gedraftet wird, füllt sich die ADP.', '📊')}</td></tr>`;
+    return `<details class="card wc-adp" data-sec="adp"${isOpen(M, 'adp', true) ? ' open' : ''}><summary class="card-head"><h2>📊 World-Cup-ADP</h2><span class="muted small">${M.adp.size} Spieler · ${M.divs.reduce((s, x) => s + x.made, 0)} Picks</span></summary>
+      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num">ADP</th><th class="num hide-sm">Min–Max</th><th class="num" title="So oft gedraftet">×</th><th class="num" title="Rang in unseren Projections">Proj.</th><th class="num" title="ADP-Rang minus Proj.-Rang: positiv = geht später als er sollte (Steal)">Δ</th><th>${e(M.myDiv)}</th></tr></thead><tbody>
+      ${body}
       </tbody></table></div></details>`;
   }
 
   function progressHtml(ctx, M) {
     const e = ctx.ui.esc;
     const confs = M.cfg.conferences;
-    return `<details class="card wc-prog"><summary class="card-head"><h2>🌍 Fortschritt</h2><span class="muted small">${confs.filter(c => c.id).length}/${confs.length} Conferences verbunden</span></summary>
+    return `<details class="card wc-prog" data-sec="prog"${isOpen(M, 'prog', false) ? ' open' : ''}><summary class="card-head"><h2>🌍 Fortschritt</h2><span class="muted small">${confs.filter(c => c.id).length}/${confs.length} Conferences verbunden</span></summary>
       <div class="wc-progbody">${confs.map(c => {
         if (!c.id) return `<div class="wc-conf"><b>${e(c.name)}</b> <span class="muted small">Liga-ID fehlt noch</span></div>`;
         const ds = M.divs.filter(d => d.conf === c.name).sort((a, b) => a.div.localeCompare(b.div));
@@ -263,7 +276,7 @@
         ${statusHtml(ctx, M)}
         ${settingsHtml(ctx, M)}
         <div class="au-grid">
-          <div class="au-main">${boardHtml(ctx, M)}${myTeamHtml(ctx, M)}${adpHtml(ctx, M)}${progressHtml(ctx, M)}</div>
+          <div class="au-main">${adpHtml(ctx, M)}${myTeamHtml(ctx, M)}${boardHtml(ctx, M)}${progressHtml(ctx, M)}</div>
           <aside class="au-side">${baHtml(ctx, M)}</aside>
         </div>
       </div>`;
@@ -281,6 +294,8 @@
     const hm = root.querySelector('[data-home]');
     if (hm) hm.addEventListener('click', () => { save({ conf: null, div: null }); ctx.refresh(); });
     root.querySelectorAll('[data-div]').forEach(el => el.addEventListener('click', () => { const [conf, div] = el.dataset.div.split('|'); save({ conf, div }); ctx.refresh(); }));
+    // Auf-/Zuklappen merken (überlebt den Auto-Refresh)
+    root.querySelectorAll('details[data-sec]').forEach(d => d.addEventListener('toggle', () => { const o = { ...(ctx.store.getJSON('wc', {}).open || {}) }; o[d.dataset.sec] = d.open; save({ open: o }); }));
     root.querySelectorAll('[data-pos]').forEach(b => b.addEventListener('click', () => { save({ pos: b.dataset.pos }); ctx.refresh(); }));
     const q = root.querySelector('[data-q]'), tb = root.querySelector('[data-ba]');
     if (q && tb) q.addEventListener('input', () => { save({ q: q.value }); M.store.q = q.value; tb.innerHTML = baBody(ctx, M); });
