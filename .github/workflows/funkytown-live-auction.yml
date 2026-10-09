@@ -1,0 +1,56 @@
+name: Funkytown Live-Auktion (ESPN)
+
+# Schreibt während der Funkytown-Auktion jeden neuen ESPN-Stand nach
+# leagues/funkytown/data/live-auction.js (Auction-Seite: „ESPN live“).
+# Startet automatisch am Draft-Tag (11.10., 19:47 MESZ) und läuft bis der
+# Draft fertig ist bzw. 'minutes' abgelaufen sind. Manuell: Run workflow
+# (zum Testen z. B. season 2026 = letzte Auktion, minutes 2).
+
+on:
+  schedule:
+    - cron: '47 17 11 10 *'
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "Laufzeit in Minuten"
+        required: false
+        default: "210"
+      interval:
+        description: "Abfrage-Intervall in Sekunden"
+        required: false
+        default: "20"
+      season:
+        description: "ESPN-Saison (leer = aktuelle, 2027)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: funkytown-live-auction
+  cancel-in-progress: true
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    defaults:
+      run:
+        working-directory: leagues/funkytown
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: ESPN-Auktion mitschreiben
+        env:
+          MINUTES: ${{ github.event.inputs.minutes || '210' }}
+          INTERVAL: ${{ github.event.inputs.interval || '20' }}
+          SEASON: ${{ github.event.inputs.season }}
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          ARGS="--minutes $MINUTES --interval $INTERVAL"
+          if [ -n "$SEASON" ]; then ARGS="$ARGS --season $SEASON"; fi
+          node scripts/live-auction-espn.js $ARGS

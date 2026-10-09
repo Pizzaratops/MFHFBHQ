@@ -53,7 +53,7 @@
       size: st.size || info.rosterSize || cfg.rosterSize || 13,
       pos: st.pos || '', q: st.q || '', open: st.open != null ? st.open : null,
       lastTeam: st.lastTeam != null ? st.lastTeam : null,
-      uni: !!st.uni, tgt: !!st.tgt, gopen: st.gopen != null ? !!st.gopen : true,
+      uni: !!st.uni, tgt: !!st.tgt, live: !!st.live, gopen: st.gopen != null ? !!st.gopen : true,
       // Liga ohne eigene Team-Datei (z. B. Auction-Liga unter „World Cup“): Teams selbst benennen
       nTeams: st.nTeams || cfg.teams || 10,
       teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
@@ -385,7 +385,7 @@
     if (!M.picks.length) return '';
     const list = M.picks.map((p, i) => ({ p, i })).reverse().map(({ p, i }) => {
       const t = M.byId[p.team]; const r = M.byKey.get(nba.key(p.player)); const v = r && !M.basic ? M.value.get(r) || 0 : null;
-      return `<li style="${nba.tcStyle(t)}"><span class="au-lnum">${i + 1}</span><span class="nba-tdot"></span><b>${e(p.player)}</b> <span class="muted small">→ ${e(t ? t.name : '?')}</span><span class="au-rp"><b>${money(p.price)}</b>${v != null ? ` <small class="${v - p.price >= 0 ? 'up' : 'down'}">Wert ${money(v)}</small>` : ''}</span><button type="button" class="au-del" data-del="${i}" title="Zuschlag löschen" aria-label="Zuschlag ${e(p.player)} löschen">✕</button></li>`;
+      return `<li style="${nba.tcStyle(t)}"><span class="au-lnum">${i + 1}</span><span class="nba-tdot"></span><b>${e(p.player)}</b>${p.espn ? ' <span class="au-espn" title="von ESPN übernommen">ESPN</span>' : ''} <span class="muted small">→ ${e(t ? t.name : '?')}</span><span class="au-rp"><b>${money(p.price)}</b>${v != null ? ` <small class="${v - p.price >= 0 ? 'up' : 'down'}">Wert ${money(v)}</small>` : ''}</span><button type="button" class="au-del" data-del="${i}" title="Zuschlag löschen" aria-label="Zuschlag ${e(p.player)} löschen">✕</button></li>`;
     }).join('');
     return `<div class="card au-log"><div class="card-head"><h2>📜 Zuschläge</h2><span class="muted small">${M.picks.length} · neueste oben</span></div><ol class="au-loglist">${list}</ol></div>`;
   }
@@ -408,6 +408,90 @@
       </div>
       <div class="muted small au-setnote">Gespeichert wird nur in diesem Browser. Export = Datei mit allen Zuschlägen, z. B. vom Handy auf den Laptop mitnehmen.</div>
     </details>`;
+  }
+
+  // ---------- ESPN live ----------
+  // Zwei Wege, beide optional:
+  //  1) GitHub: Workflow funkytown-live-auction.yml schreibt
+  //     leagues/funkytown/data/live-auction.js, die Seite holt sie alle 20 s
+  //     (Verzögerung ≈ 1–2 min durch den Pages-Build).
+  //  2) Bookmarklet im ESPN-Draftroom: liest dort die ESPN-API (gleiche
+  //     Domain, eingeloggt) und schickt den Stand per postMessage an diese
+  //     Seite — praktisch ohne Verzögerung, nur am Desktop.
+  // ESPN-Zuschläge ersetzen eigene Einträge desselben Spielers; eigene
+  // Einträge ohne ESPN-Gegenstück bleiben stehen.
+  const LIVE = { ctx: null, timer: null, fileUpdated: null, last: null, src: '', err: '', count: 0, season: null };
+  window.addEventListener('message', ev => {
+    let host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
+    if (!/(^|\.)espn\.com$/.test(host)) return;
+    const d = ev.data; if (!d || d.type !== 'mfhfb-espn-draft' || !d.data || !LIVE.ctx) return;
+    const cfg = (LIVE.ctx.league.auctionDraft || {}).espnLive; if (!cfg) return;
+    applyLive(LIVE.ctx, parseRaw(d.data, cfg), 'Bookmarklet');
+  });
+  function parseRaw(data, cfg) {
+    const names = new Map();
+    (data.teams || []).forEach(t => ((t.roster && t.roster.entries) || []).forEach(en => {
+      const p = en.playerPoolEntry && en.playerPoolEntry.player; if (p && p.fullName) names.set(en.playerId || p.id, p.fullName);
+    }));
+    const dd = data.draftDetail || {};
+    return {
+      season: data.seasonId || cfg.season, inProgress: dd.inProgress === true, drafted: dd.drafted === true,
+      picks: (dd.picks || []).filter(p => p.playerId > 0).map((p, i) => ({ n: p.overallPickNumber || i + 1, player: names.get(p.playerId) || `ESPN #${p.playerId}`, team: cfg.teamMap[p.teamId] != null ? cfg.teamMap[p.teamId] : null, price: p.bidAmount || 0 })),
+    };
+  }
+  function applyLive(ctx, live, src) {
+    const nba = N();
+    LIVE.last = Date.now(); LIVE.src = src; LIVE.err = ''; LIVE.count = live.picks.length; LIVE.season = live.season;
+    const espn = live.picks.filter(p => p.team != null).map(p => ({ player: p.player, team: p.team, price: p.price, espn: true, n: p.n }));
+    const keys = new Set(espn.map(p => nba.key(p.player)));
+    const cur = state(ctx).picks;
+    const merged = espn.concat(cur.filter(p => !p.espn && !keys.has(nba.key(p.player))));
+    const strip = a => JSON.stringify(a.map(p => [nba.key(p.player), p.team, p.price]));
+    if (strip(merged) !== strip(cur)) {
+      save(ctx, { picks: merged });
+      const busy = document.activeElement && /INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName) && document.activeElement.value;
+      if (busy) LIVE.pending = true; else ctx.refresh();
+    } else paintLive();
+  }
+  function paintLive() {
+    const el = document.querySelector('[data-livestat]'); if (!el) return;
+    el.innerHTML = liveStatText();
+  }
+  function liveStatText() {
+    if (LIVE.err) return `<span class="down">⚠️ ${LIVE.err}</span>`;
+    if (!LIVE.last) return 'wartet auf ersten Stand …';
+    const t = new Date(LIVE.last).toLocaleTimeString('de-DE');
+    return `Stand ${t} · ${LIVE.count} Zuschläge · via ${LIVE.src}${LIVE.season && LIVE.ctx && (LIVE.ctx.league.auctionDraft.espnLive || {}).season !== LIVE.season ? ` · <b>Test-Daten Saison ${LIVE.season}</b>` : ''}`;
+  }
+  async function pollLive() {
+    const ctx = LIVE.ctx; if (!ctx) return;
+    const cfg = (ctx.league.auctionDraft || {}).espnLive;
+    if (!cfg || !state(ctx).live || !/\/auction/.test(location.hash)) { clearInterval(LIVE.timer); LIVE.timer = null; return; }
+    if (LIVE.src === 'Bookmarklet' && Date.now() - LIVE.last < 30000) return; // Bookmarklet ist schneller
+    try {
+      const r = await fetch(cfg.file.replace(/^\.\//, '') + '.js?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const o = MFHFB.data._evaluate(await r.text(), 'live-auction.js').LIVE_AUCTION;
+      if (!o || !o.updated) { LIVE.err = ''; LIVE.src = 'GitHub'; paintLive(); return; }
+      if (o.updated === LIVE.fileUpdated) { paintLive(); return; }
+      LIVE.fileUpdated = o.updated;
+      applyLive(ctx, o, 'GitHub');
+    } catch (e) { LIVE.err = 'live-auction.js nicht ladbar (' + e.message + ')'; paintLive(); }
+  }
+  function bookmarklet(ctx) {
+    const cfg = ctx.league.auctionDraft.espnLive;
+    const hub = location.origin + location.pathname + '#/' + ctx.league.key + '/auction';
+    const code = `(()=>{const H=${JSON.stringify(hub)},U='https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${cfg.season}/segments/0/leagues/${cfg.leagueId}?view=mDraftDetail&view=mRoster&view=mTeam';let w=window.open('','mfhfb-auction');try{if(!w||w.location.href==='about:blank')w=window.open(H,'mfhfb-auction')}catch(e){}const go=()=>fetch(U,{credentials:'include'}).then(r=>r.json()).then(d=>{try{w.postMessage({type:'mfhfb-espn-draft',data:d},'*')}catch(e){}}).catch(()=>{});go();clearInterval(window.__mfhfb);window.__mfhfb=setInterval(go,4000);document.title='📡 '+document.title.replace(/^📡 /,'')})()`;
+    return 'javascript:' + encodeURIComponent(code);
+  }
+  function liveHtml(ctx, M) {
+    const cfg = M.cfg.espnLive; if (!cfg) return '';
+    const on = M.st.live;
+    return `<div class="au-live${on ? ' on' : ''}">
+      <button type="button" class="seg-btn wc-hide${on ? ' on' : ''}" data-live aria-pressed="${on}">📡 ESPN live ${on ? 'an' : 'aus'}</button>
+      <span class="muted small" data-livestat>${on ? liveStatText() : 'Zuschläge automatisch von ESPN übernehmen (Liga ' + cfg.leagueId + ')'}</span>
+      ${on ? `<details class="au-bm"><summary class="small">⚡ Ohne Verzögerung (Desktop)</summary><div class="small">Diesen Link in die Lesezeichenleiste ziehen: <a class="au-bml" href="${bookmarklet(ctx)}" onclick="return false">📡 MFHFB Live</a>. Im ESPN-Draftroom (eingeloggt) einmal anklicken, dann schickt er alle 4 s den Stand an diese Seite. Popups für espn.com erlauben.</div></details>` : ''}
+    </div>`;
   }
 
   // ---------- PIN-Sperre ----------
@@ -447,6 +531,7 @@
       <div class="page-head"><h1 class="page-title display">💰 Auction Draft</h1>
         <div class="page-sub">${M.T.length} Teams · ${money(M.st.budget)} · ${M.st.size} Plätze · ${filled} von ${M.slots} vergeben · ${money(M.moneyLeft)} übrig${M.basic ? '' : ` · Inflation ×${M.infl.toFixed(2)}`}<span class="explain"> · alles bleibt in deinem Browser</span></div></div>
       ${me ? `<div class="au-mebar" style="${M.nba.tcStyle(me.t)}"><span class="nba-tdot"></span><b>${ui.esc(me.t.name)}</b><span>Rest <b>${money(me.left)}</b></span><span>Max-Gebot <b>${money(me.maxBid)}</b></span><span>Offen <b>${me.open}</b></span><span>Ø je Platz <b>${me.open ? money(me.left / me.open) : '—'}</b></span>${!M.basic && M.PO ? (() => { const w = M.PO.rounds.map((_, i) => me.own.reduce((s, p) => { const po = M.poOf(M.byKey.get(M.nba.key(p.player))); return s + (po ? po.w[i] : 0); }, 0)); return `<span>PO-Spiele <b>${w.join(' · ')}</b></span>`; })() : ''}</div>` : ''}
+      ${liveHtml(ctx, M)}
       ${overviewHtml(ctx, M)}
       <div class="au-grid${M.basic ? ' au-basic' : ''}">
         <div class="au-main">${!M.basic && M.cfg.guide ? guideHtml(ctx, M) : ''}${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
@@ -530,6 +615,14 @@
     num('[data-nteams]', 'nTeams', 2, 20);
     const nm = root.querySelector('[data-names]');
     if (nm) nm.addEventListener('change', () => { save(ctx, { teamNames: nm.value.split('\n').map(x => x.trim()) }); ctx.refresh(); });
+    // ESPN live
+    LIVE.ctx = ctx; try { window.name = 'mfhfb-auction'; } catch (e) { /* egal */ }
+    if (LIVE.pending) { LIVE.pending = false; }
+    const lv = root.querySelector('[data-live]');
+    if (lv) lv.addEventListener('click', () => { const on = !state(ctx).live; save(ctx, { live: on }); if (!on) { clearInterval(LIVE.timer); LIVE.timer = null; } ctx.refresh(); });
+    if (M.cfg.espnLive && M.st.live && !LIVE.timer) { LIVE.timer = setInterval(pollLive, 20000); pollLive(); }
+    const flush = () => { if (LIVE.pending) { LIVE.pending = false; ctx.refresh(); } };
+    root.querySelectorAll('input,select').forEach(el => el.addEventListener('blur', () => setTimeout(() => { if (!document.activeElement || !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) flush(); }, 50)));
     const tg = root.querySelector('[data-tgt]');
     if (tg) tg.addEventListener('click', () => { save(ctx, { tgt: !state(ctx).tgt }); ctx.refresh(); });
     const un = root.querySelector('[data-uni]');

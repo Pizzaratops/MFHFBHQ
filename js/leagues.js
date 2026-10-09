@@ -147,7 +147,11 @@ const LEAGUES = [
     // ESPN-Werte aus LEAGUE_DRAFT_INFO (rosters-live.js) haben Vorrang,
     // jeder kann sie auf der Seite für sich überschreiben.
     // basic: öffentliche Liga-Seite → nur Geld/Kader, keine Projection-Werte
-    auctionDraft: { budget: 200, rosterSize: 14, basic: true },
+    auctionDraft: {
+      budget: 200, rosterSize: 14, basic: true,
+      // ESPN live: Workflow funkytown-live-auction.yml bzw. Bookmarklet (tools/nba-auction.js)
+      espnLive: { file: './leagues/funkytown/data/live-auction', leagueId: 15679, season: 2027, teamMap: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
+    },
     // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)
     espn: { season: 2027, toTeam: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
     nbaDues: true,             // data/league-dues.js (LEAGUE_DUES_PAID) → Seite „Liga-Beiträge“
@@ -242,6 +246,7 @@ const LEAGUES = [
     // TTHQ-Consensus-Projections. PIN-Sperre in tools/nba-auction.js.
     auctionDraft: {
       budget: 200, rosterSize: 14, shareWith: 'funkytown', pin: true, guide: true,
+      espnLive: { file: './leagues/funkytown/data/live-auction', leagueId: 15679, season: 2027, teamMap: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
       // Funkytown-Playoffs: 4 von 10 Teams, je 2 Wochen. NBA-Spiele je Team
       // in Runde 1 (01.–14.03.2027) und Runde 2 (15.–28.03.2027) — aus Beyaz'
       // Schedule-Screenshot vom 09.10.2026, Summe je Team gegengeprüft.
