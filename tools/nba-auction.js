@@ -53,7 +53,7 @@
       size: st.size || info.rosterSize || cfg.rosterSize || 13,
       pos: st.pos || '', q: st.q || '', open: st.open != null ? st.open : null,
       lastTeam: st.lastTeam != null ? st.lastTeam : null,
-      uni: !!st.uni, gopen: st.gopen != null ? !!st.gopen : true,
+      uni: !!st.uni, tgt: !!st.tgt, gopen: st.gopen != null ? !!st.gopen : true,
       // Liga ohne eigene Team-Datei (z. B. Auction-Liga unter „World Cup“): Teams selbst benennen
       nTeams: st.nTeams || cfg.teams || 10,
       teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
@@ -114,7 +114,11 @@
     // Playoff-Spiele (auctionDraft.playoffs)
     const PO = (ctx.league.auctionDraft || {}).playoffs || null;
     const poOf = r => { if (!PO || !r) return null; const t = nba.canonTeam(r.team || ''); const w = PO.games[t]; return w ? { team: t, w, sum: w.reduce((a, b) => a + b, 0) } : null; };
-    return { cfg: ctx.league.auctionDraft || {}, MK, mkt, PO, poOf, basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
+    // Zielliste (AUCTION_PLAN) — nur Vollversion
+    const PLAN = data.AUCTION_PLAN || null;
+    const target = new Map();
+    if (PLAN) [['stars', 'Star'], ['mids', 'Mittelbau'], ['fills', '$1–5']].forEach(([k, lab]) => (PLAN[k] || []).forEach((t, i) => target.set(nba.key(t.name), { ...t, tier: lab, kind: k, prio: i + 1 })));
+    return { PLAN, target, cfg: ctx.league.auctionDraft || {}, MK, mkt, PO, poOf, basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
   }
 
   // ---------- Team-Werte (Radar + Summen) ----------
@@ -248,7 +252,7 @@
 
   function baRows(M) {
     const st = M.st, q = String(st.q || '').toLowerCase().trim();
-    return M.available.filter(r => (!st.uni || M.nba.unicornBadge(r)) && (!st.pos || String(r.pos || '').split('/').includes(st.pos))
+    return M.available.filter(r => (!st.tgt || M.target.has(M.nba.key(r.name))) && (!st.uni || M.nba.unicornBadge(r)) && (!st.pos || String(r.pos || '').split('/').includes(st.pos))
       && (!q || [r.name, r.team, r.pos].some(v => String(v || '').toLowerCase().includes(q))));
   }
   function baBody(ctx, M) {
@@ -259,7 +263,7 @@
       const best = CATS.map(c => ({ c, z: (r.rawCats || {})[c.key] || 0 })).sort((a, b) => b.z - a.z).slice(0, 2).filter(o => o.z > 0.5).map(o => o.c.label).join(' ');
       return `<tr class="au-barow" data-pick="${e(r.name)}" title="In das Eintragsfeld übernehmen">
         <td class="num rank${M.MK && r._auRank <= 5 ? ' au-rk-star' : M.MK && r._auRank >= 21 && r._auRank <= 40 ? ' au-rk-sweet' : M.MK && r._auRank <= 10 ? ' au-rk-pricey' : ''}"${M.MK ? ` title="${r._auRank <= 5 ? 'Top 5: lohnt laut Backtest' : r._auRank <= 10 ? 'Rang 6–10: historisch überbezahlt' : r._auRank >= 21 && r._auRank <= 40 ? 'Sweet Spot Rang 21–40' : ''}"` : ''}>${r._auRank}</td>
-        <td><div class="strong">${e(r.name)}${nba.unicornBadge(r)}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}${best ? ` · <span class="up">${best}</span>` : ''}</div></td>
+        <td><div class="strong">${e(r.name)}${nba.unicornBadge(r)}${!M.basic && M.target.has(nba.key(r.name)) ? (t => ` <span class="au-tgt au-tgt-${t.kind}" title="Zielliste: ${e(t.tier)} #${t.prio}, Limit ${money(t.limit)}${t.note ? ' · ' + e(t.note) : ''}">🎯 ≤${money(t.limit)}</span>`)(M.target.get(nba.key(r.name))) : ''}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}${best ? ` · <span class="up">${best}</span>` : ''}</div></td>
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span></td>
         <td class="num strong">${money(M.value.get(r) || 0)}</td>
         <td class="num au-adj">${money(M.adj(r))}</td>
@@ -274,6 +278,7 @@
       <div class="card-head"><h2>🆓 Best Available</h2><span class="muted small">${M.available.length} frei</span></div>
       <div class="au-bactl">
         <div class="seg" role="group" aria-label="Position"><button type="button" class="seg-btn${!st.pos ? ' active' : ''}" data-pos="">Alle</button>${POS.map(p => `<button type="button" class="seg-btn${st.pos === p ? ' active' : ''}" data-pos="${p}">${p}</button>`).join('')}</div>
+        ${M.PLAN ? `<button type="button" class="seg-btn wc-hide${st.tgt ? ' on' : ''}" data-tgt aria-pressed="${!!st.tgt}" title="Nur Spieler aus der Zielliste">🎯 Ziele</button>` : ''}
         <button type="button" class="seg-btn wc-hide${st.uni ? ' on' : ''}" data-uni aria-pressed="${st.uni}" title="Nur Spieler, die in zwei normalerweise gegenläufigen Kategorien positiv sind (Rotoballer-Unicorns)">🦄 Unicorns</button>
         <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q)}" data-q aria-label="Suchen">
       </div>
@@ -290,6 +295,23 @@
     const max = Math.max(...sums), min = Math.min(...sums);
     const cls = po.sum >= max ? 'hi' : po.sum <= min ? 'lo' : po.sum >= max - 1 ? 'midhi' : 'mid';
     return `<span class="wc-po ${cls}" title="${po.team} · ${M.PO.rounds.map((l, i) => `${l}: ${po.w[i]} Spiele`).join(' · ')}"><b>${po.sum}</b> <small>${po.w.join('·')}</small></span>`;
+  }
+
+  // Zielliste mit Live-Status (frei / meins / weg)
+  function targetsHtml(ctx, M) {
+    const e = ctx.ui.esc, P = M.PLAN; if (!P) return '';
+    const item = t => {
+      const d = M.drafted.get(M.nba.key(t.name));
+      const mine = d && d.team === M.st.my;
+      const cls = d ? (mine ? 'mine' : 'gone') : 'open';
+      const stt = d ? `${mine ? '✓' : '✗'} ${e((M.byId[d.team] || {}).name || '')} ${money(d.price)}` : `≤ ${money(t.limit)}`;
+      return `<li class="au-tl ${cls}" title="${e(t.note || '')}"><span>${e(t.name)}</span><b>${stt}</b></li>`;
+    };
+    const col = (lab, list) => `<div class="au-tcol"><div class="au-tlab">${lab}</div><ol>${list.map(item).join('')}</ol></div>`;
+    const m = P.model || {};
+    return `<h3>🎯 Zielliste (Reihenfolge = Priorität)</h3>
+      <div class="au-tgrid">${col('1 Star', P.stars)}${col('4 Mittelbau (max. 1 aus Rang 11–20)', P.mids)}${col('9 × $1–5', P.fills)}</div>
+      <div class="muted small">Optimiert auf ≥ 6 Kategorien je Woche, Ausfall eines Leistungsträgers und die Playoffs (R1/R2). Modell mit bestem Kader: Ø ${String(m.E).replace('.', ',')} Kategorien, Matchup-Sieg ${Math.round(m.p5 * 100)} %, ≥ 6 Kategorien ${Math.round(m.p6 * 100)} % der Wochen, Playoff-Sieg gegen Top-Teams ${Math.round(m.po5 * 100)} %. Limit überschritten → nächster Name.</div>`;
   }
 
   // ---------- Mini Draft Guide (Backtest Funkytown 2021–26) ----------
@@ -323,6 +345,7 @@
       <summary class="card-head"><h2>⭐ Mini Draft Guide: Ein Star + Mittelbau</h2><span class="muted small hide-sm">Backtest Funkytown 2021–26</span></summary>
       <div class="au-gbody">
         ${plan}
+        ${targetsHtml(ctx, M)}
         <h3>Was der Backtest sagt</h3>
         <ul>
           <li><b>Top 5 lohnen sich.</b> Die fünf teuersten Spieler je Draft landeten im Median auf Saisonrang 6, 88 % in den Top 50.</li>
@@ -507,6 +530,8 @@
     num('[data-nteams]', 'nTeams', 2, 20);
     const nm = root.querySelector('[data-names]');
     if (nm) nm.addEventListener('change', () => { save(ctx, { teamNames: nm.value.split('\n').map(x => x.trim()) }); ctx.refresh(); });
+    const tg = root.querySelector('[data-tgt]');
+    if (tg) tg.addEventListener('click', () => { save(ctx, { tgt: !state(ctx).tgt }); ctx.refresh(); });
     const un = root.querySelector('[data-uni]');
     if (un) un.addEventListener('click', () => { save(ctx, { uni: !state(ctx).uni }); ctx.refresh(); });
     const ex = root.querySelector('[data-export]');
@@ -536,7 +561,7 @@
   MFHFB.pages.register({
     id: 'auction', section: 'draft', label: 'Auction Draft', icon: '💰', applies: { sport: ['nba'] },
     when: league => !!league.auctionDraft,
-    data: ['?teams', '?rosters-live', '?sport:aliases', '?auction-history', 'projections-consensus'],
+    data: ['?teams', '?rosters-live', '?sport:aliases', '?auction-history', '?auction-plan', 'projections-consensus'],
     title: () => 'Auction Draft', render, mount,
   });
 })();

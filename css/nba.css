@@ -1019,3 +1019,15 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .au-ba td.au-rk-sweet { color: #2e9d62; font-weight: 800; box-shadow: inset 3px 0 0 #2e9d62; }
 .au-ba td.au-rk-pricey { color: #d64545; box-shadow: inset 3px 0 0 #d6454588; }
 .au-gtiers td, .au-gtiers th { padding-left: 6px !important; padding-right: 6px !important; }
+/* Auction: Zielliste */
+.au-tgt { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 1px 5px; border-radius: 5px; margin-left: 4px; vertical-align: 1px; white-space: nowrap; background: var(--surface2); border: 1px solid var(--border); }
+.au-tgt-stars { color: #b7791f; border-color: #f2b84f88; }
+.au-tgt-mids { color: #2e9d62; border-color: #2e9d6266; }
+.au-tgt-fills { color: var(--muted); }
+.au-tgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-bottom: 6px; }
+.au-tlab { font-size: 11px; font-weight: 800; color: var(--muted); margin-bottom: 4px; }
+.au-tcol ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 3px; }
+.au-tl { display: flex; justify-content: space-between; gap: 6px; font-size: 12.5px; padding: 3px 7px; border-radius: 6px; background: var(--surface2); }
+.au-tl b { font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 11.5px; }
+.au-tl.gone { opacity: .45; text-decoration: line-through; }
+.au-tl.mine { background: #2e9d6222; color: #2e9d62; }

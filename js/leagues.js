@@ -254,7 +254,7 @@ const LEAGUES = [
         },
       },
     },
-    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus', teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live', 'auction-history': './leagues/funkytown/data/auction-history' },
+    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus', teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live', 'auction-history': './leagues/funkytown/data/auction-history', 'auction-plan': './leagues/funkytown/data/auction-plan' },
     worldCup: {
       rounds: 14, teamsPerDivision: 12,
       // Fantasy-Playoffs: NBA-Spiele je Team in Runde 1 (11.–17.01.),
