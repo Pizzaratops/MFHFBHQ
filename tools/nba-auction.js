@@ -28,10 +28,24 @@
   const POS = ['G', 'F', 'C'];
 
   // ---------- Zustand (nur im Browser) ----------
+  // Speicher: mfhfb:<liga>:auction — oder mit auctionDraft.shareWith der
+  // Stand einer anderen Liga (World Cup → Funkytown: dieselbe Auktion,
+  // ein Board, egal über welchen Reiter man reinkommt).
+  function AS(ctx) {
+    const k = 'mfhfb:' + ((ctx.league.auctionDraft || {}).shareWith || ctx.league.key) + ':' + SKEY;
+    return {
+      get() { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : {}; } catch (e) { return {}; } },
+      set(v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* blockiert */ } },
+    };
+  }
+  // PIN-Sperre (nur Sichtschutz, kein echter Schutz — alles ist clientseitig)
+  const PIN_KEY = 'mfhfb:auction-pin';
+  const PIN = '1';
+  const unlocked = () => { try { return localStorage.getItem(PIN_KEY) === PIN; } catch (e) { return false; } };
   function state(ctx) {
     const cfg = ctx.league.auctionDraft || {};
     const info = ctx.data.LEAGUE_DRAFT_INFO || {};
-    const st = ctx.store.getJSON(SKEY, {});
+    const st = AS(ctx).get();
     return {
       picks: Array.isArray(st.picks) ? st.picks : [],
       my: st.my != null ? st.my : null,
@@ -45,7 +59,7 @@
       teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
     };
   }
-  const save = (ctx, patch) => ctx.store.setJSON(SKEY, { ...ctx.store.getJSON(SKEY, {}), ...patch });
+  const save = (ctx, patch) => AS(ctx).set({ ...AS(ctx).get(), ...patch });
   const money = v => '$' + Math.round(v);
 
   // ---------- Modell ----------
@@ -166,6 +180,7 @@
           <span class="num hide-sm" data-l="Ausgegeben">${money(x.spent)}</span>
           <span class="num strong" data-l="Rest">${money(x.left)}</span>
           <span class="num strong au-max" data-l="Max">${x.open ? money(x.maxBid) : '—'}</span>
+          <span class="num hide-sm" data-l="Ø/Platz">${x.open ? money(x.left / x.open) : '—'}</span>
           <span class="num hide-sm ${x.own.length ? (diff >= 0 ? 'up' : 'down') : 'muted'}" title="Projektionswert der gekauften Spieler minus bezahlter Preis">${x.own.length ? (diff >= 0 ? '+' : '−') + money(Math.abs(diff)) : '—'}</span>
         </div>
         ${isOpen ? `<div class="au-detail">${teamDetail(ctx, M, x)}</div>` : ''}
@@ -173,8 +188,44 @@
     }).join('');
     return `<div class="card au-budgets">
       <div class="card-head"><h2>💰 Budgets & Teams</h2><span class="muted small hide-sm">Team anklicken = Kader + Radar</span></div>
-      <div class="au-thead"><span>Team</span><span class="num">Kader</span><span class="num hide-sm">Ausgegeben</span><span class="num">Rest</span><span class="num" title="Restbudget − $1 je weiteren offenen Platz">Max-Gebot</span><span class="num hide-sm" title="Wert − Preis">± Wert</span></div>
+      <div class="au-thead"><span>Team</span><span class="num">Kader</span><span class="num hide-sm">Ausgegeben</span><span class="num">Rest</span><span class="num" title="Restbudget − $1 je weiteren offenen Platz">Max-Gebot</span><span class="num hide-sm" title="Restbudget ÷ offene Plätze">Ø/Platz</span><span class="num hide-sm" title="Wert − Preis">± Wert</span></div>
       <div class="au-teams">${rows}</div></div>`;
+  }
+
+  function overviewHtml(ctx, M) {
+    const e = ctx.ui.esc, st = M.st;
+    const spent = M.T.reduce((s, x) => s + x.spent, 0);
+    const filled = M.picks.length;
+    const free = Math.max(0, M.moneyLeft - M.openSlots);
+    const live = M.T.filter(x => x.open > 0);
+    const by = (arr, f, dir) => arr.slice().sort((a, b) => dir * (f(b) - f(a)))[0];
+    const hiMax = live.length ? by(live, x => x.maxBid, 1) : null;
+    const loMax = live.length ? by(live, x => x.maxBid, -1) : null;
+    const opp = live.filter(x => x.t.id !== st.my);
+    const hiOpp = st.my != null && opp.length ? by(opp, x => x.maxBid, 1) : null;
+    const rich = M.T.length ? by(M.T, x => x.left, 1) : null;
+    const top = filled ? M.picks.reduce((a, p) => (Number(p.price) > Number(a.price) ? p : a)) : null;
+    const tn = id => e((M.byId[id] || {}).name || '?');
+    // Gleichstand → „n Teams“ statt willkürlich eines zu nennen
+    const who = (arr, x, f) => { const n = arr.filter(y => f(y) === f(x)).length; return n > 1 ? `${n} Teams` : tn(x.t.id); };
+    const tile = (label, val, sub, title) => `<div class="au-stat"${title ? ` title="${e(title)}"` : ''}><span>${label}</span><b>${val}</b>${sub ? `<small>${sub}</small>` : ''}</div>`;
+    return `<div class="card au-over">
+      <div class="card-head"><h2>📊 Liga-Überblick</h2><span class="muted small">${M.T.length} Teams</span></div>
+      <div class="au-stats">
+        ${tile('Max-Budget je Team', money(st.budget), `Liga gesamt ${money(M.pot)}`)}
+        ${tile('Ausgegeben', money(spent), `${M.pot ? Math.round(spent / M.pot * 100) : 0} % vom Gesamtbudget`)}
+        ${tile('Übrig gesamt', money(M.moneyLeft), `davon frei ${money(free)}`, 'Frei = Übrig minus $1 Pflicht je offenem Kaderplatz')}
+        ${tile('Kaderplätze', `${filled}/${M.slots}`, `${M.openSlots} offen`)}
+        ${tile('Ø $ je offenem Platz', M.openSlots ? money(M.moneyLeft / M.openSlots) : '—', 'Liga gesamt')}
+        ${tile('Höchstes Max-Gebot', hiMax ? money(hiMax.maxBid) : '—', hiMax ? who(live, hiMax, x => x.maxBid) : '', 'Mehr kann kein Team mehr für einen Spieler bieten')}
+        ${hiOpp ? tile('Höchstes Max-Gebot Gegner', money(hiOpp.maxBid), who(opp, hiOpp, x => x.maxBid), 'Bietest du 1 $ mehr, kann dich niemand überbieten') : ''}
+        ${tile('Niedrigstes Max-Gebot', loMax ? money(loMax.maxBid) : '—', loMax ? who(live, loMax, x => x.maxBid) : '')}
+        ${tile('Meiste Kohle übrig', rich ? money(rich.left) : '—', rich ? who(M.T, rich, x => x.left) : '')}
+        ${tile('Teuerster Zuschlag', top ? money(top.price) : '—', top ? `${e(top.player)} · ${tn(top.team)}` : '')}
+        ${tile('Ø Zuschlag', filled ? money(spent / filled) : '—', filled ? `${filled} Spieler` : '')}
+        ${tile('Inflation', '×' + M.infl.toFixed(2), M.infl > 1.02 ? 'mehr Geld als Restwert' : M.infl < 0.98 ? 'weniger Geld als Restwert' : 'neutral', 'Freies Geld ÷ Restwert der besten noch freien Spieler')}
+      </div>
+    </div>`;
   }
 
   function teamDetail(ctx, M, x) {
@@ -251,9 +302,34 @@
     </details>`;
   }
 
+  // ---------- PIN-Sperre ----------
+  function gateHtml(ctx) {
+    return `<div class="au-gate card">
+      <div class="au-glock">🔒</div>
+      <h2>Auction Draft</h2>
+      <form data-gate autocomplete="off">
+        <label class="au-f"><span>4stellige Pin</span><input class="tr-select au-pin" type="password" inputmode="numeric" data-pin placeholder="••••" aria-label="4stellige Pin" autofocus></label>
+        <button type="submit" class="mp-btn primary">Öffnen</button>
+      </form>
+      <div class="au-err" data-gerr></div>
+    </div>`;
+  }
+  function mountGate(root, ctx) {
+    const f = root.querySelector('[data-gate]'), inp = root.querySelector('[data-pin]'), err = root.querySelector('[data-gerr]');
+    if (!f) return;
+    f.addEventListener('submit', ev => {
+      ev.preventDefault();
+      if (inp.value.trim() === PIN) { try { localStorage.setItem(PIN_KEY, PIN); } catch (e) { /* egal */ } ctx.refresh(); }
+      else { err.textContent = '⚠️ Falsche Pin.'; inp.value = ''; inp.focus(); }
+    });
+    inp.focus();
+  }
+
   // ---------- Seite ----------
   function render(ctx) {
     const { data, ui } = ctx;
+    if (!unlocked()) { ctx._auLocked = true; return gateHtml(ctx); }
+    ctx._auLocked = false;
     if (!data.PROJECTIONS_CONSENSUS) return ui.empty('Keine Projections', 'PROJECTIONS_CONSENSUS fehlt für diese Liga.', '💰');
     const M = model(ctx);
     ctx._au = M;
@@ -263,6 +339,7 @@
       <div class="page-head"><h1 class="page-title display">💰 Auction Draft</h1>
         <div class="page-sub">${M.T.length} Teams · ${money(M.st.budget)} · ${M.st.size} Plätze · ${filled} von ${M.slots} vergeben · ${money(M.moneyLeft)} übrig · Inflation ×${M.infl.toFixed(2)}<span class="explain"> · alles bleibt in deinem Browser</span></div></div>
       ${me ? `<div class="au-mebar" style="${M.nba.tcStyle(me.t)}"><span class="nba-tdot"></span><b>${ui.esc(me.t.name)}</b><span>Rest <b>${money(me.left)}</b></span><span>Max-Gebot <b>${money(me.maxBid)}</b></span><span>Offen <b>${me.open}</b></span><span>Ø je Platz <b>${me.open ? money(me.left / me.open) : '—'}</b></span></div>` : ''}
+      ${overviewHtml(ctx, M)}
       <div class="au-grid">
         <div class="au-main">${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
         <aside class="au-side">${baHtml(ctx, M)}</aside>
@@ -271,6 +348,7 @@
   }
 
   function mount(root, ctx) {
+    if (ctx._auLocked) return mountGate(root, ctx);
     const M = ctx._au || model(ctx);
     const nba = M.nba, e = ctx.ui.esc;
     const form = root.querySelector('[data-form]');
@@ -345,7 +423,7 @@
     if (un) un.addEventListener('click', () => { save(ctx, { uni: !state(ctx).uni }); ctx.refresh(); });
     const ex = root.querySelector('[data-export]');
     if (ex) ex.addEventListener('click', () => {
-      const blob = new Blob([JSON.stringify({ liga: ctx.league.key, exportiert: new Date().toISOString(), ...ctx.store.getJSON(SKEY, {}) }, null, 1)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify({ liga: ctx.league.key, exportiert: new Date().toISOString(), ...AS(ctx).get() }, null, 1)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `${ctx.league.key}-auction-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.json`; a.click();
       setTimeout(() => URL.revokeObjectURL(a.href), 2000);
     });
@@ -357,7 +435,7 @@
         if (!o || !Array.isArray(o.picks)) throw new Error('Keine Zuschläge in der Datei.');
         if (!window.confirm(`Import ersetzt den aktuellen Stand durch ${o.picks.length} Zuschläge. Fortfahren?`)) return;
         const { liga, exportiert, ...rest } = o; // eslint-disable-line no-unused-vars
-        ctx.store.setJSON(SKEY, rest); ctx.refresh();
+        AS(ctx).set(rest); ctx.refresh();
       }).catch(err => window.alert('Import fehlgeschlagen: ' + err.message));
     });
     const rs = root.querySelector('[data-reset]');

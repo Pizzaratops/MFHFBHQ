@@ -235,11 +235,12 @@ const LEAGUES = [
     dataBase: 'leagues/tthq/data/',
     sportDataBase: 'sports/nba/data/',
     pages: ['wcdraft', 'auction'],
-    // Zweiter Reiter „Auction Draft“ = eigene, vom World Cup unabhängige
-    // Auction-Liga (10 Teams, 9-Cat, $200). Teams auf der Seite benennen;
-    // Budget/Kader dort änderbar. Werte aus den TTHQ-Consensus-Projections.
-    auctionDraft: { budget: 200, rosterSize: 13, teams: 10 },
-    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus' },
+    // Zweiter Reiter „Auction Draft“ = die Funkytown-Auktion (ESPN 15679,
+    // $200, 14 Plätze, 10 aktive Teams). Teams + Draft-Info aus Funkytown,
+    // Stand geteilt mit #/funkytown/auction (shareWith). Werte aus den
+    // TTHQ-Consensus-Projections. PIN-Sperre in tools/nba-auction.js.
+    auctionDraft: { budget: 200, rosterSize: 14, shareWith: 'funkytown' },
+    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus', teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live' },
     worldCup: {
       rounds: 14, teamsPerDivision: 12,
       // Fantasy-Playoffs: NBA-Spiele je Team in Runde 1 (11.–17.01.),
