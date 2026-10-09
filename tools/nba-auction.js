@@ -53,7 +53,7 @@
       size: st.size || info.rosterSize || cfg.rosterSize || 13,
       pos: st.pos || '', q: st.q || '', open: st.open != null ? st.open : null,
       lastTeam: st.lastTeam != null ? st.lastTeam : null,
-      uni: !!st.uni,
+      uni: !!st.uni, gopen: st.gopen != null ? !!st.gopen : true,
       // Liga ohne eigene Team-Datei (z. B. Auction-Liga unter „World Cup“): Teams selbst benennen
       nTeams: st.nTeams || cfg.teams || 10,
       teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
@@ -108,7 +108,13 @@
     const infl = remVal > 0 && openSlots > 0 ? Math.max(0, moneyLeft - openSlots) / remVal : 1;
     const adj = r => { const v = value.get(r) || 0; return v <= 0 ? 0 : 1 + (v - 1) * infl; };
 
-    return { basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
+    // Liga-Markt (Funkytown-Historie): typischer Zuschlag nach Rang
+    const MK = (data.AUCTION_HISTORY || {}).market || null;
+    const mkt = r => (MK && r && r._auRank ? (MK[r._auRank - 1] || 1) : null);
+    // Playoff-Spiele (auctionDraft.playoffs)
+    const PO = (ctx.league.auctionDraft || {}).playoffs || null;
+    const poOf = r => { if (!PO || !r) return null; const t = nba.canonTeam(r.team || ''); const w = PO.games[t]; return w ? { team: t, w, sum: w.reduce((a, b) => a + b, 0) } : null; };
+    return { cfg: ctx.league.auctionDraft || {}, MK, mkt, PO, poOf, basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
   }
 
   // ---------- Team-Werte (Radar + Summen) ----------
@@ -248,7 +254,7 @@
   function baBody(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
     const list = baRows(M);
-    if (!list.length) return `<tr><td colspan="6">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    if (!list.length) return `<tr><td colspan="8">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
     return list.slice(0, 250).map(r => {
       const best = CATS.map(c => ({ c, z: (r.rawCats || {})[c.key] || 0 })).sort((a, b) => b.z - a.z).slice(0, 2).filter(o => o.z > 0.5).map(o => o.c.label).join(' ');
       return `<tr class="au-barow" data-pick="${e(r.name)}" title="In das Eintragsfeld übernehmen">
@@ -257,6 +263,8 @@
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span></td>
         <td class="num strong">${money(M.value.get(r) || 0)}</td>
         <td class="num au-adj">${money(M.adj(r))}</td>
+        ${M.MK ? `<td class="num au-mkt" title="Typischer Funkytown-Zuschlag für Rang ${r._auRank}">${money(M.mkt(r))}</td>` : ''}
+        ${M.PO ? `<td class="num">${poHtml(M, r)}</td>` : ''}
       </tr>`;
     }).join('');
   }
@@ -269,10 +277,82 @@
         <button type="button" class="seg-btn wc-hide${st.uni ? ' on' : ''}" data-uni aria-pressed="${st.uni}" title="Nur Spieler, die in zwei normalerweise gegenläufigen Kategorien positiv sind (Rotoballer-Unicorns)">🦄 Unicorns</button>
         <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q)}" data-q aria-label="Suchen">
       </div>
-      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num" title="${e(M.nba.scoreLabel())} aus den Projections">${e(M.nba.scoreLabel())}</th><th class="num" title="Auction-Wert vor dem Draft">Wert</th><th class="num" title="Inflationsbereinigter Wert beim aktuellen Stand">Jetzt</th></tr></thead>
+      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num" title="${e(M.nba.scoreLabel())} aus den Projections">${e(M.nba.scoreLabel())}</th><th class="num" title="Auction-Wert vor dem Draft">Wert</th><th class="num" title="Inflationsbereinigter Wert beim aktuellen Stand">Jetzt</th>${M.MK ? '<th class="num" title="Was Funkytown 2021–26 für diesen Rang typischerweise bezahlt hat (auf 10 Teams skaliert)">Markt</th>' : ''}${M.PO ? `<th class="num" title="NBA-Spiele in den Fantasy-Playoffs: ${M.PO.rounds.join(' · ')}">PO</th>` : ''}</tr></thead>
       <tbody data-ba>${baBody(ctx, M)}</tbody></table></div>
-      <div class="muted small au-foot">Zeile antippen = Spieler ins Eintragsfeld. „Wert“ = Auction-$ vor dem Draft (${M.T.length} Teams × ${M.st.size} Plätze × ${money(M.st.budget)}), „Jetzt“ = mit aktueller Inflation ×${M.infl.toFixed(2)}.</div>
+      <div class="muted small au-foot">Zeile antippen = Spieler ins Eintragsfeld. „Wert“ = Auction-$ vor dem Draft (${M.T.length} Teams × ${M.st.size} Plätze × ${money(M.st.budget)}), „Jetzt“ = mit aktueller Inflation ×${M.infl.toFixed(2)}.${M.MK ? ' „Markt“ = was die Liga für diesen Rang historisch zahlt.' : ''}${M.PO ? ` PO = Spiele in den Playoffs (${M.PO.rounds.join(', ')})` : ''}</div>
     </div>`;
+  }
+
+  function poHtml(M, r) {
+    const po = M.poOf(r);
+    if (!po) return '<span class="muted">—</span>';
+    const sums = Object.values(M.PO.games).map(w => w.reduce((a, b) => a + b, 0));
+    const max = Math.max(...sums), min = Math.min(...sums);
+    const cls = po.sum >= max ? 'hi' : po.sum <= min ? 'lo' : po.sum >= max - 1 ? 'midhi' : 'mid';
+    return `<span class="wc-po ${cls}" title="${po.team} · ${M.PO.rounds.map((l, i) => `${l}: ${po.w[i]} Spiele`).join(' · ')}"><b>${po.sum}</b> <small>${po.w.join('·')}</small></span>`;
+  }
+
+  // ---------- Mini Draft Guide: Stars & Scrubs (Funkytown) ----------
+  function guideHtml(ctx, M) {
+    const e = ctx.ui.esc, st = M.st;
+    const H = (ctx.data.AUCTION_HISTORY || {}).seasons || {};
+    const yrs = Object.keys(H).sort();
+    const last = H[yrs[yrs.length - 1]];
+    const mk = M.MK || [];
+    const band = (a, b) => mk.length ? `${money(mk[b - 1])}–${money(mk[a - 1])}` : '—';
+    // Plan-Check für mein Team
+    const me = st.my != null ? M.tById[st.my] : null;
+    let plan = '<div class="muted small">Unter Einstellungen „Mein Team“ wählen, dann rechnet der Plan-Check mit.</div>';
+    if (me) {
+      const stars = me.own.filter(p => p.price >= 40);
+      const starSum = stars.reduce((s, p) => s + p.price, 0);
+      const scrubsNeeded = Math.max(0, me.open - Math.max(0, 2 - stars.length));
+      const forStars = Math.max(0, me.left - scrubsNeeded);
+      const msg = stars.length >= 3 ? 'Drei Stars sind im Kader. Ab jetzt nur noch $1–2-Spieler, nach Kategorien-Fit und PO-Spielen.'
+        : stars.length === 2 ? `Zwei Stars sind gekauft. Für einen dritten (Rang 11–25, Markt ${band(11, 25)}) bleiben ${money(Math.max(0, me.left - (me.open - 1)))}, sonst nur noch Scrubs.`
+          : stars.length === 1 ? `Ein Star ist gekauft. Für Star 2 sind bis zu ${money(me.maxBid)} drin (Rest $1-Spieler). Top-10-Markt: ${band(1, 10)}.`
+            : `Noch kein Star. Für die ersten zwei Stars stehen ${money(forStars)} bereit, falls alle anderen Plätze $1 kosten.`;
+      plan = `<div class="au-plan"><b>${e(me.t.name)}:</b> ${stars.length} Star${stars.length === 1 ? '' : 's'} (≥ $40) für ${money(starSum)} · Rest ${money(me.left)} · ${me.open} offen<br>${msg}</div>`;
+    }
+    const tiers = last ? Object.entries(last.tiers).map(([k, v]) => `<tr><td>Rang ${k}</td>${yrs.map(y => `<td class="num">${money(H[y].tiers[k])}</td>`).join('')}</tr>`).join('') : '';
+    return `<details class="card au-guide" data-guide${st.gopen ? ' open' : ''}>
+      <summary class="card-head"><h2>⭐ Mini Draft Guide: Stars & Scrubs</h2><span class="muted small hide-sm">Funkytown 2021–26</span></summary>
+      <div class="au-gbody">
+        ${plan}
+        <h3>Warum Stars & Scrubs in Funkytown</h3>
+        <ul>
+          <li>Die Spitze ist teuer, die Breite fast gratis: ${last ? `2026 gingen ${last.cheap} von ${last.picks} Spielern für $1–2, die Top 10 kosteten im Schnitt ${money(last.tiers['1-10'])}` : 'viele Spieler gehen für $1–2'}. Ab Rang ~60 zahlt die Liga kaum noch etwas.</li>
+          <li>Jetzt 10 statt 12 Teams: Der Waiver ist tiefer. Ein $1-Spieler ist nach zwei Wochen ersetzbar, ein Top-10-Spieler nie.</li>
+          <li>9-Cat H2H: Ein Elite-Star trägt 5–7 Kategorien. 14 Kaderplätze werden ohnehin über den Waiver rotiert, die Stars bleiben.</li>
+          <li>„Wert“ ist linear aus den Projections und unterschätzt die Spitze. „Markt“ zeigt, was die Liga wirklich zahlt. Bei Stars gilt Markt, bei Scrubs Wert.</li>
+        </ul>
+        <h3>Budgetplan ($${st.budget}, ${st.size} Plätze)</h3>
+        <table class="table compact au-gplan"><tbody>
+          <tr><td>Star 1 (Top 5)</td><td class="num">${band(1, 5)}</td></tr>
+          <tr><td>Star 2 (Top 10)</td><td class="num">${band(6, 10)}</td></tr>
+          <tr><td>Star 3, optional (Rang 11–25)</td><td class="num">${band(11, 25)}</td></tr>
+          <tr><td>${st.size - 3} Scrubs</td><td class="num">$1–2 je</td></tr>
+        </tbody></table>
+        <h3>Ablauf</h3>
+        <ol>
+          <li><b>Früh:</b> Die Stars kommen zuerst auf den Tisch. Bei Wunsch-Stars bis zum Markt-Preis mitgehen. Wenn zwei Stars weg sind, nicht in Panik den vierten Plan-B-Star überbezahlen.</li>
+          <li><b>Selbst nominieren:</b> Teure Spieler, die du nicht willst, um den Gegnern Budget abzuziehen. Deine Scrub-Ziele nie früh nominieren.</li>
+          <li><b>Mitte:</b> Kaufen nur noch zu $1–2. Hier laufen die Rang-20–60-Spieler, für die die anderen ihr Geld ausgeben.</li>
+          <li><b>Ende:</b> Wenn alle Budgets leer sind, für $1 nominieren. Spezialisten nehmen, die zu deinen Stars passen (BLK, 3PM, STL), dazu 🦄 Unicorns und PO-Spiele als Tiebreaker.</li>
+          <li><b>Im Blick:</b> „Höchstes Max-Gebot Gegner“ im Liga-Überblick. Bietest du $1 darüber, bekommst du jeden Spieler.</li>
+        </ol>
+        <h3>Fallen</h3>
+        <ul>
+          <li>Star 3 so teuer, dass für die Scrubs kein $1 je Platz übrig bleibt (Max-Gebot beachten).</li>
+          <li>Klumpenrisiko: Fällt ein Star lange aus, fehlt ein großer Teil des Teams. Verletzungsakte prüfen, IR-Slot nutzen.</li>
+          <li>Zwei Stars mit gleichem Profil (z. B. zwei Big Men ohne FT%) verstärken nur wenige Kategorien. Im Radar gegenprüfen.</li>
+        </ul>
+        ${tiers ? `<h3>Was Funkytown bezahlt hat (Ø je Preisrang)</h3><div class="table-wrap"><table class="table compact au-gtiers"><thead><tr><th></th>${yrs.map(y => `<th class="num">${y}</th>`).join('')}</tr></thead><tbody>${tiers}
+          <tr><td>Spieler für $1–2</td>${yrs.map(y => `<td class="num">${H[y].cheap}/${H[y].picks}</td>`).join('')}</tr></tbody></table></div>
+          <div class="muted small">2021–24 mit 11–12 Teams × 13 Plätzen, 2025–26 mit 12 × 14; 2023 war Snake. Teuerste 2026: ${last.top5.map(([n, pr]) => `${e(n)} ${money(pr)}`).join(', ')}.</div>` : ''}
+        ${M.PO ? `<h3>Playoffs</h3><div class="muted small">4 von 10 Teams, zwei Runden à 2 Wochen (${M.PO.rounds.join(' · ')}). Spalte PO in Best Available = NBA-Spiele des Teams in R1·R2 (max ${Math.max(...Object.values(M.PO.games).map(w => w[0] + w[1]))}, min ${Math.min(...Object.values(M.PO.games).map(w => w[0] + w[1]))}).</div>` : ''}
+      </div>
+    </details>`;
   }
 
   function logHtml(ctx, M) {
@@ -341,10 +421,10 @@
     return `<div class="au-wrap${M.basic ? ' au-basicwrap' : ''}">
       <div class="page-head"><h1 class="page-title display">💰 Auction Draft</h1>
         <div class="page-sub">${M.T.length} Teams · ${money(M.st.budget)} · ${M.st.size} Plätze · ${filled} von ${M.slots} vergeben · ${money(M.moneyLeft)} übrig${M.basic ? '' : ` · Inflation ×${M.infl.toFixed(2)}`}<span class="explain"> · alles bleibt in deinem Browser</span></div></div>
-      ${me ? `<div class="au-mebar" style="${M.nba.tcStyle(me.t)}"><span class="nba-tdot"></span><b>${ui.esc(me.t.name)}</b><span>Rest <b>${money(me.left)}</b></span><span>Max-Gebot <b>${money(me.maxBid)}</b></span><span>Offen <b>${me.open}</b></span><span>Ø je Platz <b>${me.open ? money(me.left / me.open) : '—'}</b></span></div>` : ''}
+      ${me ? `<div class="au-mebar" style="${M.nba.tcStyle(me.t)}"><span class="nba-tdot"></span><b>${ui.esc(me.t.name)}</b><span>Rest <b>${money(me.left)}</b></span><span>Max-Gebot <b>${money(me.maxBid)}</b></span><span>Offen <b>${me.open}</b></span><span>Ø je Platz <b>${me.open ? money(me.left / me.open) : '—'}</b></span>${!M.basic && M.PO ? (() => { const w = M.PO.rounds.map((_, i) => me.own.reduce((s, p) => { const po = M.poOf(M.byKey.get(M.nba.key(p.player))); return s + (po ? po.w[i] : 0); }, 0)); return `<span>PO-Spiele <b>${w.join(' · ')}</b></span>`; })() : ''}</div>` : ''}
       ${overviewHtml(ctx, M)}
       <div class="au-grid${M.basic ? ' au-basic' : ''}">
-        <div class="au-main">${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
+        <div class="au-main">${!M.basic && M.cfg.guide ? guideHtml(ctx, M) : ''}${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
         ${M.basic ? '' : `<aside class="au-side">${baHtml(ctx, M)}</aside>`}
       </div>
     </div>`;
@@ -388,6 +468,9 @@
       ctx.refresh();
       requestAnimationFrame(() => { const p = document.querySelector('[data-player]'); if (p) p.focus(); });
     });
+
+    const gd = root.querySelector('[data-guide]');
+    if (gd) gd.addEventListener('toggle', () => save(ctx, { gopen: gd.open }));
 
     // Best Available
     const baTbody = root.querySelector('[data-ba]');
@@ -451,7 +534,7 @@
   MFHFB.pages.register({
     id: 'auction', section: 'draft', label: 'Auction Draft', icon: '💰', applies: { sport: ['nba'] },
     when: league => !!league.auctionDraft,
-    data: ['?teams', '?rosters-live', '?sport:aliases', 'projections-consensus'],
+    data: ['?teams', '?rosters-live', '?sport:aliases', '?auction-history', 'projections-consensus'],
     title: () => 'Auction Draft', render, mount,
   });
 })();

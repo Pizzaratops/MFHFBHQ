@@ -240,8 +240,21 @@ const LEAGUES = [
     // $200, 14 Plätze, 10 aktive Teams). Teams + Draft-Info aus Funkytown,
     // Stand geteilt mit #/funkytown/auction (shareWith). Werte aus den
     // TTHQ-Consensus-Projections. PIN-Sperre in tools/nba-auction.js.
-    auctionDraft: { budget: 200, rosterSize: 14, shareWith: 'funkytown', pin: true },
-    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus', teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live' },
+    auctionDraft: {
+      budget: 200, rosterSize: 14, shareWith: 'funkytown', pin: true, guide: true,
+      // Funkytown-Playoffs: 4 von 10 Teams, je 2 Wochen. NBA-Spiele je Team
+      // in Runde 1 (01.–14.03.2027) und Runde 2 (15.–28.03.2027) — aus Beyaz'
+      // Schedule-Screenshot vom 09.10.2026, Summe je Team gegengeprüft.
+      playoffs: {
+        rounds: ['R1 1.–14.3.', 'R2 15.–28.3.'],
+        games: {
+          GSW: [8, 7], PHI: [7, 8], PHO: [7, 8], MEM: [7, 8], NOR: [8, 7], ATL: [7, 7], LAC: [7, 7], TOR: [6, 8], ORL: [6, 8], BOS: [7, 7],
+          DEN: [7, 7], DAL: [6, 8], SAC: [7, 7], HOU: [7, 7], WAS: [7, 7], UTA: [7, 7], DET: [7, 7], POR: [7, 7], BKN: [7, 7], CHI: [7, 7],
+          LAL: [7, 7], OKC: [7, 7], NYK: [6, 7], MIN: [7, 6], CHA: [6, 7], MIL: [6, 7], MIA: [7, 6], SAS: [6, 7], IND: [6, 7], CLE: [7, 5],
+        },
+      },
+    },
+    files: { 'projections-consensus': './leagues/tthq/data/projections-consensus', teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live', 'auction-history': './leagues/funkytown/data/auction-history' },
     worldCup: {
       rounds: 14, teamsPerDivision: 12,
       // Fantasy-Playoffs: NBA-Spiele je Team in Runde 1 (11.–17.01.),

@@ -853,10 +853,10 @@ th.punted, td.punted { opacity: .35; }
 
 /* ---------- Auction Draft (tools/nba-auction.js) ---------- */
 .native-main > .au-wrap { max-width: 1600px; }
-.au-grid { display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 16px; align-items: start; }
+.au-grid { display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 16px; align-items: start; }
 .au-main { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
 .au-side { position: sticky; top: 12px; min-width: 0; }
-@media (max-width: 1100px) { .au-grid { grid-template-columns: minmax(0, 1fr); } .au-side { position: static; } }
+@media (max-width: 1250px) { .au-grid { grid-template-columns: minmax(0, 1fr); } .au-side { position: static; } }
 .au-wrap .mp-btn { font: inherit; font-size: 13px; font-weight: 700; padding: 9px 14px; border-radius: 10px; cursor: pointer; white-space: nowrap; }
 .au-wrap .mp-btn:hover { border-color: var(--league-accent); }
 .au-mebar { --tcx: var(--tc); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; padding: 10px 14px; margin-bottom: 14px; border-radius: 12px;
@@ -1002,3 +1002,14 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .au-grid.au-basic { grid-template-columns: minmax(0, 1fr); max-width: 980px; }
 @media (min-width: 641px) { .au-basic .au-thead, .au-basic .au-trow { grid-template-columns: minmax(0, 1fr) 64px 96px 80px 90px 76px; } }
 .au-basicwrap { max-width: 980px; }
+/* Auction: Mini Draft Guide */
+.au-guide { margin-bottom: 14px; }
+.au-guide summary { cursor: pointer; list-style: none; }
+.au-gbody { padding: 4px 16px 16px; font-size: 14px; line-height: 1.55; }
+.au-gbody h3 { font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+.au-gbody ul, .au-gbody ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.au-plan { padding: 10px 12px; border-radius: 10px; background: color-mix(in srgb, var(--league-accent) 10%, transparent); border: 1px solid color-mix(in srgb, var(--league-accent) 30%, transparent); }
+.au-gplan { max-width: 360px; }
+.au-gtiers td, .au-gtiers th { font-size: 12.5px; }
+.au-mkt { color: var(--muted); }
+.au-ba td, .au-ba th { padding-left: 6px; padding-right: 6px; }
