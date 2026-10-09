@@ -965,3 +965,9 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .wc-gone.me { color: var(--league-accent); font-weight: 800; }
 .wc-takenrow td { opacity: .62; }
 .wc-takenrow td:last-child { opacity: 1; }
+.wc-po { display: inline-flex; align-items: baseline; gap: 3px; padding: 2px 6px; border-radius: 6px; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 12px; }
+.wc-po small { font-size: 10.5px; letter-spacing: .06em; opacity: .85; }
+.wc-po.hi { background: #2e9d6224; color: #2e9d62; }
+.wc-po.midhi { background: #2e9d6212; color: var(--text); }
+.wc-po.mid { background: var(--surface2); color: var(--text); }
+.wc-po.lo { background: #d6454522; color: #d64545; }

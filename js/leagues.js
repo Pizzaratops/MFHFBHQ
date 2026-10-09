@@ -238,6 +238,15 @@ const LEAGUES = [
     files: { 'projections-consensus': './leagues/tthq/data/projections-consensus' },
     worldCup: {
       rounds: 14, teamsPerDivision: 12,
+      // Fantasy-Playoffs: NBA-Spiele je Team in Runde 1 (11.–17.01.),
+      // Runde 2 (18.–24.01.), Runde 3 (25.–31.01.) — aus Beyaz' Plan (09.10.2026)
+      playoffs: {
+        ATL: [3, 4, 3], BKN: [4, 3, 4], BOS: [3, 4, 4], CHA: [3, 3, 4], CHI: [3, 3, 4], CLE: [4, 3, 4],
+        DAL: [3, 4, 4], DEN: [5, 3, 4], DET: [3, 3, 4], GSW: [4, 4, 3], HOU: [4, 4, 4], IND: [4, 3, 3],
+        LAC: [3, 4, 3], LAL: [4, 4, 4], MEM: [3, 3, 3], MIA: [4, 3, 3], MIL: [4, 3, 3], MIN: [3, 4, 4],
+        NOR: [2, 2, 4], NYK: [4, 4, 3], OKC: [3, 4, 4], ORL: [4, 3, 4], PHI: [3, 4, 4], PHO: [2, 4, 4],
+        POR: [4, 4, 3], SAC: [4, 3, 4], SAS: [2, 3, 3], TOR: [4, 3, 4], UTA: [4, 4, 3], WAS: [4, 4, 3],
+      },
       my: { conference: 'West', division: 'Seattle' },
       conferences: [
         { name: 'West', id: 'nq58zcxtmutve46g' },
