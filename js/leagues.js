@@ -234,7 +234,11 @@ const LEAGUES = [
     mode: 'native',
     dataBase: 'leagues/tthq/data/',
     sportDataBase: 'sports/nba/data/',
-    pages: ['wcdraft'],
+    pages: ['wcdraft', 'auction'],
+    // Zweiter Reiter „Auction Draft“ = eigene, vom World Cup unabhängige
+    // Auction-Liga (10 Teams, 9-Cat, $200). Teams auf der Seite benennen;
+    // Budget/Kader dort änderbar. Werte aus den TTHQ-Consensus-Projections.
+    auctionDraft: { budget: 200, rosterSize: 13, teams: 10 },
     files: { 'projections-consensus': './leagues/tthq/data/projections-consensus' },
     worldCup: {
       rounds: 14, teamsPerDivision: 12,

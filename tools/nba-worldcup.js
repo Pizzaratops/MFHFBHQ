@@ -247,7 +247,7 @@
       const c1 = t ? null : M.chance(o.k, M.myNext), c2 = t ? null : M.chance(o.k, M.myAfter);
       return `<tr${t ? ' class="wc-takenrow"' : ''}>
         <td class="num rank">${i + 1}</td>
-        <td><div class="strong">${e(o.name)}</div><div class="au-pmeta">${e((r && r.pos) || '')}${(r && r.team) || o.team ? ' · ' + e((r && r.team) || o.team) : ''}</div></td>
+        <td><div class="strong">${e(o.name)}${r ? nba.unicornBadge(r) : ''}</div><div class="au-pmeta">${e((r && r.pos) || '')}${(r && r.team) || o.team ? ' · ' + e((r && r.team) || o.team) : ''}</div></td>
         <td class="num" title="${a ? `${a.n}× gedraftet` : 'Noch in keiner Division gedraftet'}">${a ? a.mean.toFixed(1) : '—'}</td>
         <td class="num hide-sm muted">${a ? `${a.min}–${a.max}` : ''}</td>
         <td class="num hide-sm muted">${a ? a.n : ''}</td>

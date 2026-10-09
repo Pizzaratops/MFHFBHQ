@@ -90,6 +90,32 @@ MFHFB.nba = (function () {
     const ts = leagueTeams(data, true);
     return ts.length > 0 && ts.every(t => roster(data, t.id).length === 0);
   }
+  // ---------- Unicorns (nach Rotoballer, „Fantasy Basketball Unicorns“ Part 1, 09.10.2026) ----------
+  //  Spieler, die in zwei normalerweise NEGATIV korrelierten Kategorien
+  //  gleichzeitig klar positiv sind (Z > 0,5 in beiden; der Artikel nimmt > 0,
+  //  das markiert in unseren Top 150 aber jeden zweiten — mit 0,5 bleiben ~30; TO-z ist umgedreht,
+  //  positiv = wenige Ballverluste). Kombinationen aus dem Artikel:
+  //  Passer-Unicorns AST+TO, AST+FG%, AST+BLK · Two-Way FG%+STL, STL+TO, BLK+TO.
+  //  Nur Spieler mit ≥ 20 Minuten (sonst sind Bankspieler „gratis“ TO-positiv).
+  const UNICORN_COMBOS = [
+    ['ast', 'tov', 'AST+TO'], ['ast', 'fgImpact', 'AST+FG%'], ['ast', 'blk', 'AST+BLK'],
+    ['fgImpact', 'stl', 'FG%+STL'], ['stl', 'tov', 'STL+TO'], ['blk', 'tov', 'BLK+TO'],
+  ];
+  // Rotoballers Schlussliste (League-Winner außerhalb der 1. Runde, Part 1)
+  const UNICORN_PICKS = ['Scottie Barnes', 'Jamal Murray', 'OG Anunoby', 'Ausar Thompson', 'Jaden McDaniels', 'Andrew Wiggins', 'Cason Wallace'];
+  function unicorn(row) {
+    const z = (row && row.rawCats) || {};
+    if (!row || (row.min || 0) < 20) return { combos: [], pick: false };
+    const combos = UNICORN_COMBOS.filter(([a, b]) => (z[a] || 0) > 0.5 && (z[b] || 0) > 0.5).map(c => c[2]);
+    const pick = UNICORN_PICKS.some(n => key(n) === key(row.name));
+    return { combos, pick };
+  }
+  function unicornBadge(row) {
+    const u = unicorn(row);
+    if (!u.combos.length && !u.pick) return '';
+    const tip = (u.combos.length ? `Unicorn: klar positiv (z > 0,5) in ${u.combos.join(', ')}` : '') + (u.pick ? `${u.combos.length ? ' · ' : ''}Rotoballer-League-Winner-Liste` : '');
+    return ` <span class="nba-uni${u.pick ? ' pick' : ''}" title="${tip}">🦄${u.combos.length > 1 ? u.combos.length : ''}</span>`;
+  }
   function record(data, t) {
     const R = data.TEAM_RECORDS_LIVE;
     if (R && R.records && R.records[t.id]) return R.records[t.id];
@@ -292,7 +318,7 @@ MFHFB.nba = (function () {
   };
 
   const api = {
-    ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, preDraft, record, initials, teamColor, injury,
+    ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, preDraft, unicorn, unicornBadge, record, initials, teamColor, injury,
     tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, rankTier, rankBadge,
     MODES, getMode, setMode, modeControl, bindModeControl, fromCatZ, fmtScore, scorePositive, scoreLabel, percentileOf, heat,
   };

@@ -39,6 +39,10 @@
       size: st.size || info.rosterSize || cfg.rosterSize || 13,
       pos: st.pos || '', q: st.q || '', open: st.open != null ? st.open : null,
       lastTeam: st.lastTeam != null ? st.lastTeam : null,
+      uni: !!st.uni,
+      // Liga ohne eigene Team-Datei (z. B. Auction-Liga unter „World Cup“): Teams selbst benennen
+      nTeams: st.nTeams || cfg.teams || 10,
+      teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
     };
   }
   const save = (ctx, patch) => ctx.store.setJSON(SKEY, { ...ctx.store.getJSON(SKEY, {}), ...patch });
@@ -49,7 +53,8 @@
     const data = ctx.data, nba = N();
     nba.init(data);
     const st = state(ctx);
-    const teams = nba.leagueTeams(data);
+    const PALETTE = ['#6c63ff', '#29b6f6', '#4caf81', '#f5c842', '#ef5350', '#26c6da', '#ff9800', '#e040fb', '#66bb6a', '#ff6584', '#ffa726', '#78909c', '#8d6e63', '#ab47bc'];
+    const teams = data.TEAMS ? nba.leagueTeams(data) : Array.from({ length: st.nTeams }, (_, i) => ({ id: i + 1, name: st.teamNames[i] || `Team ${i + 1}`, color: PALETTE[i % PALETTE.length] }));
     const byId = {}; teams.forEach(t => { byId[t.id] = t; });
     const rows = (MFHFB.nbaProjections && data.PROJECTIONS_CONSENSUS) ? MFHFB.nbaProjections.rows(ctx) : [];
     const byKey = new Map(); rows.forEach(r => { if (!byKey.has(nba.key(r.name))) byKey.set(nba.key(r.name), r); });
@@ -183,7 +188,7 @@
 
   function baRows(M) {
     const st = M.st, q = String(st.q || '').toLowerCase().trim();
-    return M.available.filter(r => (!st.pos || String(r.pos || '').split('/').includes(st.pos))
+    return M.available.filter(r => (!st.uni || M.nba.unicornBadge(r)) && (!st.pos || String(r.pos || '').split('/').includes(st.pos))
       && (!q || [r.name, r.team, r.pos].some(v => String(v || '').toLowerCase().includes(q))));
   }
   function baBody(ctx, M) {
@@ -194,7 +199,7 @@
       const best = CATS.map(c => ({ c, z: (r.rawCats || {})[c.key] || 0 })).sort((a, b) => b.z - a.z).slice(0, 2).filter(o => o.z > 0.5).map(o => o.c.label).join(' ');
       return `<tr class="au-barow" data-pick="${e(r.name)}" title="In das Eintragsfeld übernehmen">
         <td class="num rank">${r._auRank}</td>
-        <td><div class="strong">${e(r.name)}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}${best ? ` · <span class="up">${best}</span>` : ''}</div></td>
+        <td><div class="strong">${e(r.name)}${nba.unicornBadge(r)}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}${best ? ` · <span class="up">${best}</span>` : ''}</div></td>
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span></td>
         <td class="num strong">${money(M.value.get(r) || 0)}</td>
         <td class="num au-adj">${money(M.adj(r))}</td>
@@ -207,6 +212,7 @@
       <div class="card-head"><h2>🆓 Best Available</h2><span class="muted small">${M.available.length} frei</span></div>
       <div class="au-bactl">
         <div class="seg" role="group" aria-label="Position"><button type="button" class="seg-btn${!st.pos ? ' active' : ''}" data-pos="">Alle</button>${POS.map(p => `<button type="button" class="seg-btn${st.pos === p ? ' active' : ''}" data-pos="${p}">${p}</button>`).join('')}</div>
+        <button type="button" class="seg-btn wc-hide${st.uni ? ' on' : ''}" data-uni aria-pressed="${st.uni}" title="Nur Spieler, die in zwei normalerweise gegenläufigen Kategorien positiv sind (Rotoballer-Unicorns)">🦄 Unicorns</button>
         <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q)}" data-q aria-label="Suchen">
       </div>
       <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num" title="${e(M.nba.scoreLabel())} aus den Projections">${e(M.nba.scoreLabel())}</th><th class="num" title="Auction-Wert vor dem Draft">Wert</th><th class="num" title="Inflationsbereinigter Wert beim aktuellen Stand">Jetzt</th></tr></thead>
@@ -233,6 +239,8 @@
         <label class="au-f"><span>Mein Team</span><select class="tr-select" data-my><option value="">— wählen —</option>${M.T.map(x => `<option value="${x.t.id}"${st.my === x.t.id ? ' selected' : ''}>${e(x.t.name)}</option>`).join('')}</select></label>
         <label class="au-f au-fs"><span>Budget $</span><input class="tr-select" type="number" min="1" data-budget value="${st.budget}"></label>
         <label class="au-f au-fs"><span>Kaderplätze</span><input class="tr-select" type="number" min="1" max="30" data-size value="${st.size}"></label>
+        ${ctx.data.TEAMS ? '' : `<label class="au-f au-fs"><span>Teams</span><input class="tr-select" type="number" min="2" max="20" data-nteams value="${st.nTeams}"></label>
+        <label class="au-f au-fnames"><span>Teamnamen (eine Zeile je Team)</span><textarea class="tr-select" rows="4" data-names placeholder="Team 1&#10;Team 2 …">${e(M.T.map(x => x.t.name).join('\n'))}</textarea></label>`}
         <div class="au-setbtns">
           <button type="button" class="mp-btn" data-export>⬇️ Export</button>
           <label class="mp-btn au-import">⬆️ Import<input type="file" accept="application/json,.json" data-import hidden></label>
@@ -330,6 +338,11 @@
     const num = (sel, key, lo, hi) => { const el = root.querySelector(sel); if (el) el.addEventListener('change', () => { const v = Math.round(Number(el.value)); if (v >= lo && v <= hi) { save(ctx, { [key]: v }); ctx.refresh(); } }); };
     num('[data-budget]', 'budget', 1, 100000);
     num('[data-size]', 'size', 1, 30);
+    num('[data-nteams]', 'nTeams', 2, 20);
+    const nm = root.querySelector('[data-names]');
+    if (nm) nm.addEventListener('change', () => { save(ctx, { teamNames: nm.value.split('\n').map(x => x.trim()) }); ctx.refresh(); });
+    const un = root.querySelector('[data-uni]');
+    if (un) un.addEventListener('click', () => { save(ctx, { uni: !state(ctx).uni }); ctx.refresh(); });
     const ex = root.querySelector('[data-export]');
     if (ex) ex.addEventListener('click', () => {
       const blob = new Blob([JSON.stringify({ liga: ctx.league.key, exportiert: new Date().toISOString(), ...ctx.store.getJSON(SKEY, {}) }, null, 1)], { type: 'application/json' });
@@ -357,7 +370,7 @@
   MFHFB.pages.register({
     id: 'auction', section: 'draft', label: 'Auction Draft', icon: '💰', applies: { sport: ['nba'] },
     when: league => !!league.auctionDraft,
-    data: ['teams', '?rosters-live', '?sport:aliases', 'projections-consensus'],
+    data: ['?teams', '?rosters-live', '?sport:aliases', 'projections-consensus'],
     title: () => 'Auction Draft', render, mount,
   });
 })();
