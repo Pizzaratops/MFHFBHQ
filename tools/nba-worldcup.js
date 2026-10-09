@@ -195,40 +195,6 @@
       <div class="table-wrap"><table class="table wc-matrix"><thead><tr><th></th>${head}</tr></thead><tbody>${body}</tbody></table></div></details>`;
   }
 
-  function baBody(ctx, M) {
-    const e = ctx.ui.esc, nba = M.nba, st = M.store;
-    const q = String(st.q || '').toLowerCase().trim();
-    const list = M.available.filter(r => (!st.pos || String(r.pos || '').split('/').includes(st.pos)) && (!q || [r.name, r.team, r.pos].some(v => String(v || '').toLowerCase().includes(q))));
-    if (!list.length) return `<tr><td colspan="7">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
-    return list.slice(0, 200).map(r => {
-      const k = nba.key(r.name), a = M.adp.get(k);
-      const c1 = M.chance(k, M.myNext), c2 = M.chance(k, M.myAfter);
-      const badge = c => (c == null ? '<span class="muted">—</span>' : `<span class="wc-ch ${c >= 0.7 ? 'hi' : c >= 0.35 ? 'mid' : 'lo'}">${Math.round(c * 100)}%</span>`);
-      return `<tr>
-        <td class="num rank">${r._wcRank}</td>
-        <td><div class="strong">${e(r.name)}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}</div></td>
-        <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span></td>
-        <td class="num" title="${a ? `${a.n}× gedraftet, Pick ${a.min}–${a.max}` : 'Noch in keiner Division gedraftet'}">${a ? a.mean.toFixed(1) : '—'}</td>
-        <td class="num">${poHtml(M, r.name, r.team)}</td>
-        <td class="num">${badge(c1)}</td>
-        <td class="num hide-sm">${badge(c2)}</td>
-      </tr>`;
-    }).join('');
-  }
-  function baHtml(ctx, M) {
-    const e = ctx.ui.esc, st = M.store;
-    return `<div class="card au-ba">
-      <div class="card-head"><h2>🆓 Best Available · ${e(M.myDiv)}</h2><span class="muted small">${M.available.length} frei</span></div>
-      <div class="au-bactl">
-        <div class="seg" role="group" aria-label="Position"><button type="button" class="seg-btn${!st.pos ? ' active' : ''}" data-pos="">Alle</button>${['G', 'F', 'C'].map(p => `<button type="button" class="seg-btn${st.pos === p ? ' active' : ''}" data-pos="${p}">${p}</button>`).join('')}</div>
-        <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q || '')}" data-q aria-label="Suchen">
-      </div>
-      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num" title="Rang in unseren Projections">#</th><th>Spieler</th><th class="num">${e(M.nba.scoreLabel())}</th><th class="num" title="World-Cup-ADP: Ø Pick-Nummer über alle geladenen Divisionen">ADP</th><th class="num" title="Playoff-Spiele gesamt + je Runde (R1 R2 R3)">PO</th><th class="num" title="Chance, dass er bei deinem nächsten Pick noch da ist">${M.myNext != null ? `P${M.myNext}` : 'Nächster'}</th><th class="num hide-sm" title="… und beim übernächsten">${M.myAfter != null ? `P${M.myAfter}` : 'Danach'}</th></tr></thead>
-      <tbody data-ba>${baBody(ctx, M)}</tbody></table></div>
-      <div class="muted small au-foot">Sortiert nach unseren Projections (TTHQ-Consensus). Chance = Schätzung aus der World-Cup-ADP (ab 3 Drafts eines Spielers), bedingt darauf, dass er jetzt noch frei ist.</div>
-    </div>`;
-  }
-
   function myTeamHtml(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
     if (!M.myTeam) return '';
@@ -251,19 +217,74 @@
   }
   const isOpen = (M, k, def) => (M.store.open && k in M.store.open ? M.store.open[k] : def);
 
-  function adpHtml(ctx, M) {
+  // ---------- Haupttabelle: World-Cup-ADP + Best Available in einem ----------
+  function tableRows(M) {
+    const nba = M.nba, st = M.store, taken = divTaken(M);
+    const adpList = [...M.adp.values()].sort((x, y) => x.mean - y.mean || y.n - x.n);
+    const adpRank = new Map(adpList.map((a, i) => [nba.key(a.name), i + 1]));
+    const map = new Map();
+    adpList.forEach(a => { const k = nba.key(a.name); map.set(k, { k, name: a.name, team: a.team, a, r: M.byKey.get(k) }); });
+    M.rows.slice(0, 350).forEach(r => { const k = nba.key(r.name); if (!map.has(k)) map.set(k, { k, name: r.name, team: r.team, a: null, r }); else map.get(k).r = r; });
+    let list = [...map.values()].map(o => ({ ...o, t: taken.get(o.k) || null, ar: adpRank.get(o.k) || null }));
+    const q = String(st.q || '').toLowerCase().trim();
+    const posOf = o => String((o.r && o.r.pos) || '').split(/[\/, ]+/);
+    list = list.filter(o => (!st.hide || !o.t) && (!st.pos || posOf(o).includes(st.pos))
+      && (!q || [o.name, o.r && o.r.team, o.team].some(v => String(v || '').toLowerCase().includes(q))));
+    const projRank = o => (o.r ? o.r._wcRank : 99999);
+    if (st.sort === 'proj') list.sort((x, y) => projRank(x) - projRank(y));
+    else list.sort((x, y) => (x.a ? x.a.mean : 9999 + projRank(x)) - (y.a ? y.a.mean : 9999 + projRank(y)));
+    return list;
+  }
+  function tableBody(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
-    const list = [...M.adp.values()].sort((a, b) => a.mean - b.mean || b.n - a.n).slice(0, 200);
-    const taken = divTaken(M);
-    const body = list.length ? list.map((a, i) => {
-      const k = nba.key(a.name), r = M.byKey.get(k), d = r ? (i + 1) - r._wcRank : null, t = taken.get(k);
+    const list = tableRows(M);
+    if (!list.length) return `<tr><td colspan="12">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    const badge = c => (c == null ? '<span class="muted">—</span>' : `<span class="wc-ch ${c >= 0.7 ? 'hi' : c >= 0.35 ? 'mid' : 'lo'}">${Math.round(c * 100)}%</span>`);
+    return list.slice(0, 250).map((o, i) => {
+      const { a, r, t } = o;
+      const d = r && o.ar ? o.ar - r._wcRank : null;
       const here = t ? `<span class="wc-gone${t.teamId === M.myTeam ? ' me' : ''}" title="${e(M.teamLabel(t.teamId))}">Pick ${t.pick} · ${e(M.teamLabel(t.teamId))}</span>` : '<span class="avail">frei</span>';
-      return `<tr${t ? ' class="wc-takenrow"' : ''}><td class="num rank">${i + 1}</td><td class="strong">${e(a.name)}</td><td class="num">${a.mean.toFixed(1)}</td><td class="num hide-sm muted">${a.min}–${a.max}</td><td class="num muted">${a.n}</td><td class="num">${r ? r._wcRank : '—'}</td><td class="num ${d == null ? '' : d >= 10 ? 'up' : d <= -10 ? 'down' : ''}">${d == null ? '—' : (d > 0 ? '+' : '') + d}</td><td class="num">${poHtml(M, a.name, a.team)}</td><td>${here}</td></tr>`;
-    }).join('') : `<tr><td colspan="9">${ctx.ui.empty('Noch keine Picks', 'Sobald in einer Division gedraftet wird, füllt sich die ADP.', '📊')}</td></tr>`;
-    return `<details class="card wc-adp" data-sec="adp"${isOpen(M, 'adp', true) ? ' open' : ''}><summary class="card-head"><h2>📊 World-Cup-ADP</h2><span class="muted small">${M.adp.size} Spieler · ${M.divs.reduce((s, x) => s + x.made, 0)} Picks</span></summary>
-      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num">ADP</th><th class="num hide-sm">Min–Max</th><th class="num" title="So oft gedraftet">×</th><th class="num" title="Rang in unseren Projections">Proj.</th><th class="num" title="ADP-Rang minus Proj.-Rang: positiv = geht später als er sollte (Steal)">Δ</th><th class="num" title="Playoff-Spiele gesamt + je Runde (R1 R2 R3)">PO</th><th>${e(M.myDiv)}</th></tr></thead><tbody>
-      ${body}
-      </tbody></table></div></details>`;
+      const c1 = t ? null : M.chance(o.k, M.myNext), c2 = t ? null : M.chance(o.k, M.myAfter);
+      return `<tr${t ? ' class="wc-takenrow"' : ''}>
+        <td class="num rank">${i + 1}</td>
+        <td><div class="strong">${e(o.name)}</div><div class="au-pmeta">${e((r && r.pos) || '')}${(r && r.team) || o.team ? ' · ' + e((r && r.team) || o.team) : ''}</div></td>
+        <td class="num" title="${a ? `${a.n}× gedraftet` : 'Noch in keiner Division gedraftet'}">${a ? a.mean.toFixed(1) : '—'}</td>
+        <td class="num hide-sm muted">${a ? `${a.min}–${a.max}` : ''}</td>
+        <td class="num hide-sm muted">${a ? a.n : ''}</td>
+        <td class="num">${r ? r._wcRank : '—'}</td>
+        <td class="num ${d == null ? '' : d >= 10 ? 'up' : d <= -10 ? 'down' : ''}">${d == null ? '—' : (d > 0 ? '+' : '') + d}</td>
+        <td class="num">${r ? `<span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span>` : '—'}</td>
+        <td class="num">${poHtml(M, o.name, o.team)}</td>
+        <td class="num">${t ? '' : badge(c1)}</td>
+        <td class="num hide-sm">${t ? '' : badge(c2)}</td>
+        <td>${here}</td>
+      </tr>`;
+    }).join('');
+  }
+  function adpHtml(ctx, M) {
+    const e = ctx.ui.esc, st = M.store;
+    const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([v, l]) => `<button type="button" class="seg-btn${(st[key] || '') === v ? ' active' : ''}" data-set="${key}" data-val="${v}">${l}</button>`).join('')}</div>`;
+    return `<details class="card wc-adp" data-sec="adp"${isOpen(M, 'adp', true) ? ' open' : ''}><summary class="card-head"><h2>📊 World-Cup-ADP & Best Available</h2><span class="muted small">${M.adp.size} gedraftet · ${M.divs.reduce((s, x) => s + x.made, 0)} Picks</span></summary>
+      <div class="au-bactl wc-ctl">
+        ${seg('sort', [['', 'Nach ADP'], ['proj', 'Nach Proj.']])}
+        ${seg('pos', [['', 'Alle'], ['G', 'G'], ['F', 'F'], ['C', 'C']])}
+        <button type="button" class="seg-btn wc-hide${st.hide ? ' on' : ''}" data-hide aria-pressed="${!!st.hide}">${st.hide ? '☑' : '☐'} Gedraftete ausblenden</button>
+        <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q || '')}" data-q aria-label="Suchen">
+      </div>
+      <div class="table-wrap au-bascroll wc-tscroll"><table class="table compact wc-table"><thead><tr>
+        <th class="num">#</th><th>Spieler</th>
+        <th class="num" title="World-Cup-ADP: Ø Pick-Nummer über alle geladenen Divisionen">ADP</th>
+        <th class="num hide-sm">Min–Max</th><th class="num hide-sm" title="So oft gedraftet">×</th>
+        <th class="num" title="Rang in unseren Projections (TTHQ-Consensus)">Proj.</th>
+        <th class="num" title="ADP-Rang minus Proj.-Rang: positiv = geht später als er sollte (Steal)">Δ</th>
+        <th class="num">${e(M.nba.scoreLabel())}</th>
+        <th class="num" title="Playoff-Spiele gesamt + je Runde (R1 R2 R3)">PO</th>
+        <th class="num" title="Chance, dass er bei deinem nächsten Pick noch da ist">${M.myNext != null ? `P${M.myNext}` : 'Nächster'}</th>
+        <th class="num hide-sm" title="… und beim übernächsten">${M.myAfter != null ? `P${M.myAfter}` : 'Danach'}</th>
+        <th>${e(M.myDiv)}</th>
+      </tr></thead><tbody data-ba>${tableBody(ctx, M)}</tbody></table></div>
+      <div class="muted small au-foot">Nach ADP: gedraftete Spieler nach World-Cup-ADP, danach noch nie gedraftete nach unseren Projections. Chance = Schätzung aus der ADP (ab 3 Drafts), bedingt darauf, dass er jetzt noch frei ist.</div>
+    </details>`;
   }
 
   function progressHtml(ctx, M) {
@@ -295,10 +316,7 @@
           <div class="page-sub">${cfg.conferences.filter(c => c.id).map(c => c.name).join(' + ')} live von Fantrax · ${M.divs.length} Divisionen geladen<span class="explain"> · Aktualisiert sich alle ${Math.round(REFRESH_MS / 1000)} s, solange die Seite offen ist. Werte = TTHQ-Consensus-Projections.</span></div></div>
         ${statusHtml(ctx, M)}
         ${settingsHtml(ctx, M)}
-        <div class="au-grid">
-          <div class="au-main">${adpHtml(ctx, M)}${myTeamHtml(ctx, M)}${boardHtml(ctx, M)}${progressHtml(ctx, M)}</div>
-          <aside class="au-side">${baHtml(ctx, M)}</aside>
-        </div>
+        <div class="au-main">${adpHtml(ctx, M)}${myTeamHtml(ctx, M)}${boardHtml(ctx, M)}${progressHtml(ctx, M)}</div>
       </div>`;
     });
   }
@@ -316,9 +334,11 @@
     root.querySelectorAll('[data-div]').forEach(el => el.addEventListener('click', () => { const [conf, div] = el.dataset.div.split('|'); save({ conf, div }); ctx.refresh(); }));
     // Auf-/Zuklappen merken (überlebt den Auto-Refresh)
     root.querySelectorAll('details[data-sec]').forEach(d => d.addEventListener('toggle', () => { const o = { ...(ctx.store.getJSON('wc', {}).open || {}) }; o[d.dataset.sec] = d.open; save({ open: o }); }));
-    root.querySelectorAll('[data-pos]').forEach(b => b.addEventListener('click', () => { save({ pos: b.dataset.pos }); ctx.refresh(); }));
+    root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => { save({ [b.dataset.set]: b.dataset.val }); ctx.refresh(); }));
+    const hd = root.querySelector('[data-hide]');
+    if (hd) hd.addEventListener('click', () => { save({ hide: !ctx.store.getJSON('wc', {}).hide }); ctx.refresh(); });
     const q = root.querySelector('[data-q]'), tb = root.querySelector('[data-ba]');
-    if (q && tb) q.addEventListener('input', () => { save({ q: q.value }); M.store.q = q.value; tb.innerHTML = baBody(ctx, M); });
+    if (q && tb) q.addEventListener('input', () => { save({ q: q.value }); M.store.q = q.value; tb.innerHTML = tableBody(ctx, M); });
     // Auto-Refresh, solange die Seite angezeigt wird
     if (timer) clearInterval(timer);
     timer = setInterval(() => {

@@ -971,3 +971,10 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .wc-po.midhi { background: #2e9d6212; color: var(--text); }
 .wc-po.mid { background: var(--surface2); color: var(--text); }
 .wc-po.lo { background: #d6454522; color: #d64545; }
+.wc-wrap .au-main { gap: 14px; }
+.wc-ctl { align-items: center; }
+.wc-ctl .search { max-width: 260px; }
+.wc-hide { border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+.wc-hide.on { border-color: var(--league-accent); background: color-mix(in srgb, var(--league-accent) 12%, var(--surface)); }
+.wc-tscroll { max-height: calc(100vh - 200px); }
+.wc-table td, .wc-table th { white-space: nowrap; }
