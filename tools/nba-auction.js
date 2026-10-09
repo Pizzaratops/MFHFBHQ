@@ -420,7 +420,7 @@
   //     Seite — praktisch ohne Verzögerung, nur am Desktop.
   // ESPN-Zuschläge ersetzen eigene Einträge desselben Spielers; eigene
   // Einträge ohne ESPN-Gegenstück bleiben stehen.
-  const LIVE = { ctx: null, timer: null, fileUpdated: null, last: null, src: '', err: '', count: 0, season: null };
+  const LIVE = { ctx: null, timer: null, fileUpdated: undefined, last: null, src: '', err: '', count: 0, season: null };
   window.addEventListener('message', ev => {
     let host = ''; try { host = new URL(ev.origin).hostname; } catch (e) { return; }
     if (!/(^|\.)espn\.com$/.test(host)) return;
@@ -472,8 +472,8 @@
       const r = await fetch(cfg.file.replace(/^\.\//, '') + '.js?t=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const o = MFHFB.data._evaluate(await r.text(), 'live-auction.js').LIVE_AUCTION;
-      if (!o || !o.updated) { LIVE.err = ''; LIVE.src = 'GitHub'; paintLive(); return; }
-      if (o.updated === LIVE.fileUpdated) { paintLive(); return; }
+      if (!o) throw new Error('leer');
+      if (LIVE.fileUpdated !== undefined && o.updated === LIVE.fileUpdated) { paintLive(); return; }
       LIVE.fileUpdated = o.updated;
       applyLive(ctx, o, 'GitHub');
     } catch (e) { LIVE.err = 'live-auction.js nicht ladbar (' + e.message + ')'; paintLive(); }
