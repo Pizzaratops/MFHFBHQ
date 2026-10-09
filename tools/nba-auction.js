@@ -258,7 +258,7 @@
     return list.slice(0, 250).map(r => {
       const best = CATS.map(c => ({ c, z: (r.rawCats || {})[c.key] || 0 })).sort((a, b) => b.z - a.z).slice(0, 2).filter(o => o.z > 0.5).map(o => o.c.label).join(' ');
       return `<tr class="au-barow" data-pick="${e(r.name)}" title="In das Eintragsfeld übernehmen">
-        <td class="num rank">${r._auRank}</td>
+        <td class="num rank${M.MK && r._auRank <= 5 ? ' au-rk-star' : M.MK && r._auRank >= 21 && r._auRank <= 40 ? ' au-rk-sweet' : M.MK && r._auRank <= 10 ? ' au-rk-pricey' : ''}"${M.MK ? ` title="${r._auRank <= 5 ? 'Top 5: lohnt laut Backtest' : r._auRank <= 10 ? 'Rang 6–10: historisch überbezahlt' : r._auRank >= 21 && r._auRank <= 40 ? 'Sweet Spot Rang 21–40' : ''}"` : ''}>${r._auRank}</td>
         <td><div class="strong">${e(r.name)}${nba.unicornBadge(r)}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}${best ? ` · <span class="up">${best}</span>` : ''}</div></td>
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span></td>
         <td class="num strong">${money(M.value.get(r) || 0)}</td>
@@ -292,10 +292,14 @@
     return `<span class="wc-po ${cls}" title="${po.team} · ${M.PO.rounds.map((l, i) => `${l}: ${po.w[i]} Spiele`).join(' · ')}"><b>${po.sum}</b> <small>${po.w.join('·')}</small></span>`;
   }
 
-  // ---------- Mini Draft Guide: Stars & Scrubs (Funkytown) ----------
+  // ---------- Mini Draft Guide (Backtest Funkytown 2021–26) ----------
+  // Ergebnis 09.10.2026: reines Stars & Scrubs hat sich in Funkytown nicht
+  // ausgezahlt. Top-5 lohnen, Preisrang 6–10 ist überbezahlt, Preisrang
+  // 21–40 liefert fast so viel wie 11–20 für ~60 % des Preises.
   function guideHtml(ctx, M) {
     const e = ctx.ui.esc, st = M.st;
     const H = (ctx.data.AUCTION_HISTORY || {}).seasons || {};
+    const BT = ctx.data.AUCTION_BACKTEST || null;
     const yrs = Object.keys(H).sort();
     const last = H[yrs[yrs.length - 1]];
     const mk = M.MK || [];
@@ -304,49 +308,47 @@
     const me = st.my != null ? M.tById[st.my] : null;
     let plan = '<div class="muted small">Unter Einstellungen „Mein Team“ wählen, dann rechnet der Plan-Check mit.</div>';
     if (me) {
-      const stars = me.own.filter(p => p.price >= 40);
-      const starSum = stars.reduce((s, p) => s + p.price, 0);
-      const scrubsNeeded = Math.max(0, me.open - Math.max(0, 2 - stars.length));
-      const forStars = Math.max(0, me.left - scrubsNeeded);
-      const msg = stars.length >= 3 ? 'Drei Stars sind im Kader. Ab jetzt nur noch $1–2-Spieler, nach Kategorien-Fit und PO-Spielen.'
-        : stars.length === 2 ? `Zwei Stars sind gekauft. Für einen dritten (Rang 11–25, Markt ${band(11, 25)}) bleiben ${money(Math.max(0, me.left - (me.open - 1)))}, sonst nur noch Scrubs.`
-          : stars.length === 1 ? `Ein Star ist gekauft. Für Star 2 sind bis zu ${money(me.maxBid)} drin (Rest $1-Spieler). Top-10-Markt: ${band(1, 10)}.`
-            : `Noch kein Star. Für die ersten zwei Stars stehen ${money(forStars)} bereit, falls alle anderen Plätze $1 kosten.`;
-      plan = `<div class="au-plan"><b>${e(me.t.name)}:</b> ${stars.length} Star${stars.length === 1 ? '' : 's'} (≥ $40) für ${money(starSum)} · Rest ${money(me.left)} · ${me.open} offen<br>${msg}</div>`;
+      const star = me.own.filter(p => p.price >= 55), mid = me.own.filter(p => p.price >= 15 && p.price < 55);
+      const fill = Math.max(0, me.open - Math.max(0, 1 - star.length) - Math.max(0, 4 - mid.length));
+      const free = me.left - fill; // was für Star + Mittelbau übrig ist, wenn der Rest $1 kostet
+      let msg;
+      if (!star.length) msg = `Noch kein Elite-Star. Ziel: einer aus den Top 5 (Markt ${band(1, 5)}). Dafür und für den Mittelbau sind ${money(free)} frei, wenn der Rest $1 kostet.`;
+      else if (mid.length < 4) msg = `Star sitzt. Jetzt Mittelbau: noch ${4 - mid.length} Spieler aus Preisrang 21–40 (Markt ${band(21, 40)}). Im Schnitt ${money(Math.max(0, free) / Math.max(1, 4 - mid.length))} je Spieler drin.`;
+      else msg = 'Star und Mittelbau stehen. Rest für $1–3: Spezialisten passend zu deinen Kategorien, 🦄 Unicorns, PO-Spiele als Tiebreaker.';
+      plan = `<div class="au-plan"><b>${e(me.t.name)}:</b> ${star.length} Elite (≥ $55) · ${mid.length} Mittelbau ($15–54) · Rest ${money(me.left)} · ${me.open} offen<br>${msg}</div>`;
     }
-    const tiers = last ? Object.entries(last.tiers).map(([k, v]) => `<tr><td>Rang ${k}</td>${yrs.map(y => `<td class="num">${money(H[y].tiers[k])}</td>`).join('')}</tr>`).join('') : '';
+    const btRows = BT ? BT.tiers.map(t => `<tr class="${t.ranks === '1–5' || t.ranks === '21–40' ? 'au-good' : t.ranks === '6–10' ? 'au-bad' : ''}"><td>${t.ranks}</td><td class="num">${money(t.paid)}</td><td class="num">${e(t.market10)}</td><td class="num strong">${t.medRank}</td><td class="num">${t.top50} %</td><td class="num">${t.bust} %</td></tr>`).join('') : '';
+    const tiers = last ? Object.entries(last.tiers).map(([k]) => `<tr><td>Rang ${k}</td>${yrs.map(y => `<td class="num">${money(H[y].tiers[k])}</td>`).join('')}</tr>`).join('') : '';
     return `<details class="card au-guide" data-guide${st.gopen ? ' open' : ''}>
-      <summary class="card-head"><h2>⭐ Mini Draft Guide: Stars & Scrubs</h2><span class="muted small hide-sm">Funkytown 2021–26</span></summary>
+      <summary class="card-head"><h2>⭐ Mini Draft Guide: Ein Star + Mittelbau</h2><span class="muted small hide-sm">Backtest Funkytown 2021–26</span></summary>
       <div class="au-gbody">
         ${plan}
-        <h3>Warum Stars & Scrubs in Funkytown</h3>
+        <h3>Was der Backtest sagt</h3>
         <ul>
-          <li>Die Spitze ist teuer, die Breite fast gratis: ${last ? `2026 gingen ${last.cheap} von ${last.picks} Spielern für $1–2, die Top 10 kosteten im Schnitt ${money(last.tiers['1-10'])}` : 'viele Spieler gehen für $1–2'}. Ab Rang ~60 zahlt die Liga kaum noch etwas.</li>
-          <li>Jetzt 10 statt 12 Teams: Der Waiver ist tiefer. Ein $1-Spieler ist nach zwei Wochen ersetzbar, ein Top-10-Spieler nie.</li>
-          <li>9-Cat H2H: Ein Elite-Star trägt 5–7 Kategorien. 14 Kaderplätze werden ohnehin über den Waiver rotiert, die Stars bleiben.</li>
-          <li>„Wert“ ist linear aus den Projections und unterschätzt die Spitze. „Markt“ zeigt, was die Liga wirklich zahlt. Bei Stars gilt Markt, bei Scrubs Wert.</li>
+          <li><b>Top 5 lohnen sich.</b> Die fünf teuersten Spieler je Draft landeten im Median auf Saisonrang 6, 88 % in den Top 50.</li>
+          <li><b>Preisrang 6–10 ist überbezahlt.</b> Im Schnitt ${BT ? money(BT.tiers[1].paid) : '~$60'} für Median-Rang 20, jeder Fünfte ein Totalausfall (Rang 140+).</li>
+          <li><b>Sweet Spot Preisrang 21–40.</b> Für ~$28 Median-Rang 34. Fast so gut wie Preisrang 11–20 (Rang 29) für 60 % des Preises.</li>
+          <li><b>Reines Stars & Scrubs hat nicht gewonnen.</b> Teams mit viel Geld in den Top 3 und vielen $1-Spielern landeten 2024–26 eher weiter hinten (Korrelation 0,4 mit dem Endplatz, nur 35 Team-Saisons, also ein Trend und kein Gesetz).</li>
+          <li><b>Center werden überbezahlt:</b> 35 % Ausfälle ab $10 (Guards/Forwards 22 %).</li>
+          <li>$1–5-Spieler sind im Schnitt leicht positiv. Aber nur jeder Elfte landet in den Top 50, das sind Lotterielose und keine Bausteine.</li>
         </ul>
+        ${btRows ? `<div class="table-wrap"><table class="table compact au-gtiers"><thead><tr><th title="Preisrang im Draft">Preis­rang</th><th class="num" title="Ø bezahlt (11–12 Teams)">Ø $</th><th class="num" title="Markt auf 10 Teams skaliert">Markt</th><th class="num" title="Median des realen Saisonrangs">Rang</th><th class="num">Top 50</th><th class="num" title="Saisonrang schlechter als 140">Ausfall</th></tr></thead><tbody>${btRows}</tbody></table></div>
+        <div class="muted small">Rang = Median des realen Saisonrangs. Saisonrang = BBM-9-Cat-Wert × Spiele (Verletzungen zählen also mit). 791 Zuschläge aus 2021, 2022, 2024, 2025, 2026. Ausfall = schlechter als Rang 140.</div>` : ''}
         <h3>Budgetplan ($${st.budget}, ${st.size} Plätze)</h3>
         <table class="table compact au-gplan"><tbody>
-          <tr><td>Star 1 (Top 5)</td><td class="num">${band(1, 5)}</td></tr>
-          <tr><td>Star 2 (Top 10)</td><td class="num">${band(6, 10)}</td></tr>
-          <tr><td>Star 3, optional (Rang 11–25)</td><td class="num">${band(11, 25)}</td></tr>
-          <tr><td>${st.size - 3} Scrubs</td><td class="num">$1–2 je</td></tr>
+          <tr><td>1 Elite-Star (Top 5)</td><td class="num">${band(1, 5)}</td></tr>
+          <tr><td>Preisrang 6–10 meiden</td><td class="num muted">nur mit Rabatt</td></tr>
+          <tr><td>3–4 Mittelbau (Preisrang 21–40)</td><td class="num">${band(21, 40)} je</td></tr>
+          <tr><td>Rest (${st.size - 5} Plätze)</td><td class="num">$1–3 je</td></tr>
         </tbody></table>
         <h3>Ablauf</h3>
         <ol>
-          <li><b>Früh:</b> Die Stars kommen zuerst auf den Tisch. Bei Wunsch-Stars bis zum Markt-Preis mitgehen. Wenn zwei Stars weg sind, nicht in Panik den vierten Plan-B-Star überbezahlen.</li>
-          <li><b>Selbst nominieren:</b> Teure Spieler, die du nicht willst, um den Gegnern Budget abzuziehen. Deine Scrub-Ziele nie früh nominieren.</li>
-          <li><b>Mitte:</b> Kaufen nur noch zu $1–2. Hier laufen die Rang-20–60-Spieler, für die die anderen ihr Geld ausgeben.</li>
-          <li><b>Ende:</b> Wenn alle Budgets leer sind, für $1 nominieren. Spezialisten nehmen, die zu deinen Stars passen (BLK, 3PM, STL), dazu 🦄 Unicorns und PO-Spiele als Tiebreaker.</li>
+          <li><b>Früh:</b> Einen der Top 5 kaufen, bis Markt-Preis. Kein zweiter Superstar, außer er geht deutlich unter Markt weg.</li>
+          <li><b>Rang 6–20:</b> Die anderen zahlen lassen. Selbst Spieler nominieren, die du nicht willst, um Budget abzuziehen.</li>
+          <li><b>Mitte:</b> Jetzt zuschlagen. Preisrang 21–40 ist der Sweet Spot, hier sind die Budgets der anderen schon angeknabbert.</li>
+          <li><b>Ende:</b> $1–3-Spieler nach Kategorien-Fit, 🦄 Unicorns, PO-Spiele. Center nur mit Abschlag.</li>
           <li><b>Im Blick:</b> „Höchstes Max-Gebot Gegner“ im Liga-Überblick. Bietest du $1 darüber, bekommst du jeden Spieler.</li>
         </ol>
-        <h3>Fallen</h3>
-        <ul>
-          <li>Star 3 so teuer, dass für die Scrubs kein $1 je Platz übrig bleibt (Max-Gebot beachten).</li>
-          <li>Klumpenrisiko: Fällt ein Star lange aus, fehlt ein großer Teil des Teams. Verletzungsakte prüfen, IR-Slot nutzen.</li>
-          <li>Zwei Stars mit gleichem Profil (z. B. zwei Big Men ohne FT%) verstärken nur wenige Kategorien. Im Radar gegenprüfen.</li>
-        </ul>
         ${tiers ? `<h3>Was Funkytown bezahlt hat (Ø je Preisrang)</h3><div class="table-wrap"><table class="table compact au-gtiers"><thead><tr><th></th>${yrs.map(y => `<th class="num">${y}</th>`).join('')}</tr></thead><tbody>${tiers}
           <tr><td>Spieler für $1–2</td>${yrs.map(y => `<td class="num">${H[y].cheap}/${H[y].picks}</td>`).join('')}</tr></tbody></table></div>
           <div class="muted small">2021–24 mit 11–12 Teams × 13 Plätzen, 2025–26 mit 12 × 14; 2023 war Snake. Teuerste 2026: ${last.top5.map(([n, pr]) => `${e(n)} ${money(pr)}`).join(', ')}.</div>` : ''}

@@ -1013,3 +1013,9 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .au-gtiers td, .au-gtiers th { font-size: 12.5px; }
 .au-mkt { color: var(--muted); }
 .au-ba td, .au-ba th { padding-left: 6px; padding-right: 6px; }
+.au-gtiers tr.au-good td { background: #2e9d6214; }
+.au-gtiers tr.au-bad td { background: #d6454514; }
+.au-ba td.au-rk-star { color: #f2b84f; font-weight: 800; box-shadow: inset 3px 0 0 #f2b84f; }
+.au-ba td.au-rk-sweet { color: #2e9d62; font-weight: 800; box-shadow: inset 3px 0 0 #2e9d62; }
+.au-ba td.au-rk-pricey { color: #d64545; box-shadow: inset 3px 0 0 #d6454588; }
+.au-gtiers td, .au-gtiers th { padding-left: 6px !important; padding-right: 6px !important; }
