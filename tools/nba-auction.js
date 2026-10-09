@@ -62,6 +62,9 @@
   const save = (ctx, patch) => AS(ctx).set({ ...AS(ctx).get(), ...patch });
   const money = v => '$' + Math.round(v);
 
+  // basic: nur Geld/Kader (Funkytown, öffentlich) — keine Werte, Inflation, Radar, Best Available
+  const cfg_basic = ctx => (ctx.league.auctionDraft || {}).basic;
+
   // ---------- Modell ----------
   function model(ctx) {
     const data = ctx.data, nba = N();
@@ -105,7 +108,7 @@
     const infl = remVal > 0 && openSlots > 0 ? Math.max(0, moneyLeft - openSlots) / remVal : 1;
     const adj = r => { const v = value.get(r) || 0; return v <= 0 ? 0 : 1 + (v - 1) * infl; };
 
-    return { nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
+    return { basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
   }
 
   // ---------- Team-Werte (Radar + Summen) ----------
@@ -162,7 +165,7 @@
         <label class="au-f au-fs"><span>Preis $</span><input class="tr-select" data-price type="number" min="1" step="1" inputmode="numeric" placeholder="$" required></label>
         <button type="submit" class="mp-btn primary au-save">Eintragen</button>
       </form>
-      <datalist id="au-players">${M.available.slice(0, 700).map(r => `<option value="${e(r.name)}">${e(r.team || '')} · ${e(r.pos || '')} · Wert ${money(M.value.get(r) || 0)}</option>`).join('')}</datalist>
+      <datalist id="au-players">${M.available.slice(0, 700).map(r => `<option value="${e(r.name)}">${e(r.team || '')} · ${e(r.pos || '')}${M.basic ? '' : ' · Wert ' + money(M.value.get(r) || 0)}</option>`).join('')}</datalist>
       <div class="au-hint" data-hint></div>
     </div>`;
   }
@@ -181,14 +184,14 @@
           <span class="num strong" data-l="Rest">${money(x.left)}</span>
           <span class="num strong au-max" data-l="Max">${x.open ? money(x.maxBid) : '—'}</span>
           <span class="num hide-sm" data-l="Ø/Platz">${x.open ? money(x.left / x.open) : '—'}</span>
-          <span class="num hide-sm ${x.own.length ? (diff >= 0 ? 'up' : 'down') : 'muted'}" title="Projektionswert der gekauften Spieler minus bezahlter Preis">${x.own.length ? (diff >= 0 ? '+' : '−') + money(Math.abs(diff)) : '—'}</span>
+          ${M.basic ? '' : `<span class="num hide-sm ${x.own.length ? (diff >= 0 ? 'up' : 'down') : 'muted'}" title="Projektionswert der gekauften Spieler minus bezahlter Preis">${x.own.length ? (diff >= 0 ? '+' : '−') + money(Math.abs(diff)) : '—'}</span>`}
         </div>
         ${isOpen ? `<div class="au-detail">${teamDetail(ctx, M, x)}</div>` : ''}
       </div>`;
     }).join('');
     return `<div class="card au-budgets">
-      <div class="card-head"><h2>💰 Budgets & Teams</h2><span class="muted small hide-sm">Team anklicken = Kader + Radar</span></div>
-      <div class="au-thead"><span>Team</span><span class="num">Kader</span><span class="num hide-sm">Ausgegeben</span><span class="num">Rest</span><span class="num" title="Restbudget − $1 je weiteren offenen Platz">Max-Gebot</span><span class="num hide-sm" title="Restbudget ÷ offene Plätze">Ø/Platz</span><span class="num hide-sm" title="Wert − Preis">± Wert</span></div>
+      <div class="card-head"><h2>💰 Budgets & Teams</h2><span class="muted small hide-sm">Team anklicken = Kader${M.basic ? '' : ' + Radar'}</span></div>
+      <div class="au-thead"><span>Team</span><span class="num">Kader</span><span class="num hide-sm">Ausgegeben</span><span class="num">Rest</span><span class="num" title="Restbudget − $1 je weiteren offenen Platz">Max-Gebot</span><span class="num hide-sm" title="Restbudget ÷ offene Plätze">Ø/Platz</span>${M.basic ? '' : '<span class="num hide-sm" title="Wert − Preis">± Wert</span>'}</div>
       <div class="au-teams">${rows}</div></div>`;
   }
 
@@ -223,7 +226,7 @@
         ${tile('Meiste Kohle übrig', rich ? money(rich.left) : '—', rich ? who(M.T, rich, x => x.left) : '')}
         ${tile('Teuerster Zuschlag', top ? money(top.price) : '—', top ? `${e(top.player)} · ${tn(top.team)}` : '')}
         ${tile('Ø Zuschlag', filled ? money(spent / filled) : '—', filled ? `${filled} Spieler` : '')}
-        ${tile('Inflation', '×' + M.infl.toFixed(2), M.infl > 1.02 ? 'mehr Geld als Restwert' : M.infl < 0.98 ? 'weniger Geld als Restwert' : 'neutral', 'Freies Geld ÷ Restwert der besten noch freien Spieler')}
+        ${M.basic ? '' : tile('Inflation', '×' + M.infl.toFixed(2), M.infl > 1.02 ? 'mehr Geld als Restwert' : M.infl < 0.98 ? 'weniger Geld als Restwert' : 'neutral', 'Freies Geld ÷ Restwert der besten noch freien Spieler')}
       </div>
     </div>`;
   }
@@ -231,10 +234,10 @@
   function teamDetail(ctx, M, x) {
     const e = ctx.ui.esc, nba = M.nba;
     const list = x.own.length ? `<ol class="au-roster">${x.own.map(p => {
-      const r = M.byKey.get(nba.key(p.player)); const v = r ? M.value.get(r) || 0 : null; const d = v == null ? null : v - p.price;
-      return `<li><b>${e(p.player)}</b> <span class="muted small">${r ? e((r.team || '') + ' · ' + (r.pos || '')) : 'keine Projection'}</span><span class="au-rp"><b>${money(p.price)}</b>${v != null ? ` <small class="${d >= 0 ? 'up' : 'down'}">Wert ${money(v)}</small>` : ''}</span></li>`;
+      const r = M.byKey.get(nba.key(p.player)); const v = r && !M.basic ? M.value.get(r) || 0 : null; const d = v == null ? null : v - p.price;
+      return `<li><b>${e(p.player)}</b> <span class="muted small">${r ? e((r.team || '') + ' · ' + (r.pos || '')) : (M.basic ? '' : 'keine Projection')}</span><span class="au-rp"><b>${money(p.price)}</b>${v != null ? ` <small class="${d >= 0 ? 'up' : 'down'}">Wert ${money(v)}</small>` : ''}</span></li>`;
     }).join('')}</ol>` : '<div class="muted small">Noch keine Spieler.</div>';
-    return `<div class="au-tdetail"><div class="au-tlist">${list}</div><div class="au-tradar">${radarHtml(ctx, M, x)}</div></div>`;
+    return `<div class="au-tdetail"><div class="au-tlist">${list}</div>${M.basic ? '' : `<div class="au-tradar">${radarHtml(ctx, M, x)}</div>`}</div>`;
   }
 
   function baRows(M) {
@@ -276,7 +279,7 @@
     const e = ctx.ui.esc, nba = M.nba;
     if (!M.picks.length) return '';
     const list = M.picks.map((p, i) => ({ p, i })).reverse().map(({ p, i }) => {
-      const t = M.byId[p.team]; const r = M.byKey.get(nba.key(p.player)); const v = r ? M.value.get(r) || 0 : null;
+      const t = M.byId[p.team]; const r = M.byKey.get(nba.key(p.player)); const v = r && !M.basic ? M.value.get(r) || 0 : null;
       return `<li style="${nba.tcStyle(t)}"><span class="au-lnum">${i + 1}</span><span class="nba-tdot"></span><b>${e(p.player)}</b> <span class="muted small">→ ${e(t ? t.name : '?')}</span><span class="au-rp"><b>${money(p.price)}</b>${v != null ? ` <small class="${v - p.price >= 0 ? 'up' : 'down'}">Wert ${money(v)}</small>` : ''}</span><button type="button" class="au-del" data-del="${i}" title="Zuschlag löschen" aria-label="Zuschlag ${e(p.player)} löschen">✕</button></li>`;
     }).join('');
     return `<div class="card au-log"><div class="card-head"><h2>📜 Zuschläge</h2><span class="muted small">${M.picks.length} · neueste oben</span></div><ol class="au-loglist">${list}</ol></div>`;
@@ -328,21 +331,21 @@
   // ---------- Seite ----------
   function render(ctx) {
     const { data, ui } = ctx;
-    if (!unlocked()) { ctx._auLocked = true; return gateHtml(ctx); }
+    if ((ctx.league.auctionDraft || {}).pin && !unlocked()) { ctx._auLocked = true; return gateHtml(ctx); }
     ctx._auLocked = false;
     if (!data.PROJECTIONS_CONSENSUS) return ui.empty('Keine Projections', 'PROJECTIONS_CONSENSUS fehlt für diese Liga.', '💰');
     const M = model(ctx);
     ctx._au = M;
     const me = M.st.my != null ? M.tById[M.st.my] : null;
     const filled = M.picks.length;
-    return `<div class="au-wrap">
+    return `<div class="au-wrap${M.basic ? ' au-basicwrap' : ''}">
       <div class="page-head"><h1 class="page-title display">💰 Auction Draft</h1>
-        <div class="page-sub">${M.T.length} Teams · ${money(M.st.budget)} · ${M.st.size} Plätze · ${filled} von ${M.slots} vergeben · ${money(M.moneyLeft)} übrig · Inflation ×${M.infl.toFixed(2)}<span class="explain"> · alles bleibt in deinem Browser</span></div></div>
+        <div class="page-sub">${M.T.length} Teams · ${money(M.st.budget)} · ${M.st.size} Plätze · ${filled} von ${M.slots} vergeben · ${money(M.moneyLeft)} übrig${M.basic ? '' : ` · Inflation ×${M.infl.toFixed(2)}`}<span class="explain"> · alles bleibt in deinem Browser</span></div></div>
       ${me ? `<div class="au-mebar" style="${M.nba.tcStyle(me.t)}"><span class="nba-tdot"></span><b>${ui.esc(me.t.name)}</b><span>Rest <b>${money(me.left)}</b></span><span>Max-Gebot <b>${money(me.maxBid)}</b></span><span>Offen <b>${me.open}</b></span><span>Ø je Platz <b>${me.open ? money(me.left / me.open) : '—'}</b></span></div>` : ''}
       ${overviewHtml(ctx, M)}
-      <div class="au-grid">
+      <div class="au-grid${M.basic ? ' au-basic' : ''}">
         <div class="au-main">${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
-        <aside class="au-side">${baHtml(ctx, M)}</aside>
+        ${M.basic ? '' : `<aside class="au-side">${baHtml(ctx, M)}</aside>`}
       </div>
     </div>`;
   }
@@ -362,8 +365,8 @@
       const msgs = [];
       let err = null;
       if (name && M.drafted.has(nba.key(name))) { const d = M.drafted.get(nba.key(name)); err = `${name} ist schon vergeben (${(M.byId[d.team] || {}).name} für ${money(d.price)}).`; }
-      if (r) msgs.push(`<b>${e(r.name)}</b> · ${e(r.team || '')} ${e(r.pos || '')} · Wert <b>${money(M.value.get(r) || 0)}</b> · jetzt <b>${money(M.adj(r))}</b>`);
-      else if (name) msgs.push(`<span class="muted">„${e(name)}“ hat keine Projection — wird trotzdem eingetragen.</span>`);
+      if (r) msgs.push(`<b>${e(r.name)}</b> · ${e(r.team || '')} ${e(r.pos || '')}` + (M.basic ? '' : ` · Wert <b>${money(M.value.get(r) || 0)}</b> · jetzt <b>${money(M.adj(r))}</b>`));
+      else if (name && !M.basic) msgs.push(`<span class="muted">„${e(name)}“ hat keine Projection — wird trotzdem eingetragen.</span>`);
       if (x) {
         msgs.push(`${e(x.t.name)}: Rest ${money(x.left)} · Max-Gebot <b>${money(x.maxBid)}</b>`);
         if (!x.open) err = err || `${x.t.name} hat keinen freien Kaderplatz mehr.`;
@@ -388,7 +391,7 @@
 
     // Best Available
     const baTbody = root.querySelector('[data-ba]');
-    const bindBa = () => baTbody.querySelectorAll('[data-pick]').forEach(tr => tr.addEventListener('click', () => {
+    const bindBa = () => baTbody && baTbody.querySelectorAll('[data-pick]').forEach(tr => tr.addEventListener('click', () => {
       inP.value = tr.dataset.pick; check(); inPr.focus(); form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }));
     bindBa();

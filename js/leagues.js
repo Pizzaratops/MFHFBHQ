@@ -146,7 +146,8 @@ const LEAGUES = [
     // Auction Draft (#/funkytown/auction): Budget + Kaderplätze als Vorgabe;
     // ESPN-Werte aus LEAGUE_DRAFT_INFO (rosters-live.js) haben Vorrang,
     // jeder kann sie auf der Seite für sich überschreiben.
-    auctionDraft: { budget: 200, rosterSize: 14 },
+    // basic: öffentliche Liga-Seite → nur Geld/Kader, keine Projection-Werte
+    auctionDraft: { budget: 200, rosterSize: 14, basic: true },
     // ESPN-Team-ID → interne Team-ID (Stand 17.08.2026)
     espn: { season: 2027, toTeam: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
     nbaDues: true,             // data/league-dues.js (LEAGUE_DUES_PAID) → Seite „Liga-Beiträge“
@@ -239,7 +240,7 @@ const LEAGUES = [
     // $200, 14 Plätze, 10 aktive Teams). Teams + Draft-Info aus Funkytown,
     // Stand geteilt mit #/funkytown/auction (shareWith). Werte aus den
     // TTHQ-Consensus-Projections. PIN-Sperre in tools/nba-auction.js.
-    auctionDraft: { budget: 200, rosterSize: 14, shareWith: 'funkytown' },
+    auctionDraft: { budget: 200, rosterSize: 14, shareWith: 'funkytown', pin: true },
     files: { 'projections-consensus': './leagues/tthq/data/projections-consensus', teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live' },
     worldCup: {
       rounds: 14, teamsPerDivision: 12,

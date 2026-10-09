@@ -998,3 +998,7 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .au-pin { font-size: 20px; letter-spacing: .3em; text-align: center; }
 .au-gate .au-err { margin-top: 8px; min-height: 18px; }
 .au-gate .au-f span { text-transform: none; letter-spacing: 0; font-size: 13px; }
+/* Auction basic (Funkytown): ohne Best Available / ± Wert */
+.au-grid.au-basic { grid-template-columns: minmax(0, 1fr); max-width: 980px; }
+@media (min-width: 641px) { .au-basic .au-thead, .au-basic .au-trow { grid-template-columns: minmax(0, 1fr) 64px 96px 80px 90px 76px; } }
+.au-basicwrap { max-width: 980px; }
