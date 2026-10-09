@@ -2,7 +2,7 @@
 //  TEAM ANALYTICS — automatisch aus den Projections gebaut
 // ============================================================
 //  AUTO-GENERIERT von scripts/build-team-analytics.js. Nicht von Hand editieren.
-//  Zuletzt gebaut: 2026-10-09T17:10:05.663Z
+//  Zuletzt gebaut: 2026-10-09T17:25:22.164Z
 //  Vor dem Draft: alle Kader leer -> keine Team-Werte.
 // ============================================================
 
