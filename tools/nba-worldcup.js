@@ -235,6 +235,31 @@
     else list.sort((x, y) => (x.a ? x.a.mean : 9999 + projRank(x)) - (y.a ? y.a.mean : 9999 + projRank(y)));
     return list;
   }
+  // ---------- CSV-Export (ganze Liste, ohne Filter) ----------
+  // Semikolon + Dezimalkomma + BOM → öffnet in deutschem Excel/Numbers direkt richtig.
+  function csvExport(ctx, M) {
+    const st = M.store;
+    M.store = { ...st, hide: false, pos: '', q: '', sort: '' };
+    const list = tableRows(M);
+    M.store = st;
+    const num = (v, d = 1) => (v == null || !isFinite(v) ? '' : Number(v).toFixed(d).replace('.', ','));
+    const cell = v => { const x = String(v == null ? '' : v); return /[;"\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
+    const head = ['ADP-Rang', 'Spieler', 'Pos', 'NBA-Team', 'ADP', 'Std.-Abw.', 'Min', 'Max', 'Gedraftet', 'Proj.-Rang', 'Delta', M.nba.scoreLabel(), 'PO gesamt', 'PO R1', 'PO R2', 'PO R3', `Status ${M.myDiv}`, M.myNext != null ? `Chance P${M.myNext}` : 'Chance nächster', M.myAfter != null ? `Chance P${M.myAfter}` : 'Chance danach'];
+    const rows = list.map(o => {
+      const { a, r, t } = o; const po = poOf(M, o.name, o.team);
+      const c1 = t ? null : M.chance(o.k, M.myNext), c2 = t ? null : M.chance(o.k, M.myAfter);
+      return [o.ar || '', o.name, (r && r.pos) || '', (r && r.team) || o.team || '', a ? num(a.mean) : '', a && a.sd != null ? num(a.sd) : '', a ? a.min : '', a ? a.max : '', a ? a.n : 0,
+        r ? r._wcRank : '', r && o.ar ? o.ar - r._wcRank : '', r ? num(r.z, 2) : '', po ? po.sum : '', po ? po.w[0] : '', po ? po.w[1] : '', po ? po.w[2] : '',
+        t ? `Pick ${t.pick} · ${M.teamLabel(t.teamId)}` : 'frei', c1 == null ? '' : Math.round(c1 * 100) + ' %', c2 == null ? '' : Math.round(c2 * 100) + ' %'];
+    });
+    const csv = '\ufeff' + [head].concat(rows).map(rw => rw.map(cell).join(';')).join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = `worldcup-adp-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.csv`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
   function tableBody(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
     const list = tableRows(M);
@@ -270,6 +295,7 @@
         ${seg('pos', [['', 'Alle'], ['G', 'G'], ['F', 'F'], ['C', 'C']])}
         <button type="button" class="seg-btn wc-hide${st.hide ? ' on' : ''}" data-hide aria-pressed="${!!st.hide}">${st.hide ? '☑' : '☐'} Gedraftete ausblenden</button>
         <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q || '')}" data-q aria-label="Suchen">
+        <button type="button" class="seg-btn wc-hide" data-csv title="Komplette ADP-Liste als CSV (ohne Filter)">⬇️ CSV</button>
       </div>
       <div class="table-wrap au-bascroll wc-tscroll"><table class="table compact wc-table"><thead><tr>
         <th class="num">#</th><th>Spieler</th>
@@ -335,6 +361,8 @@
     // Auf-/Zuklappen merken (überlebt den Auto-Refresh)
     root.querySelectorAll('details[data-sec]').forEach(d => d.addEventListener('toggle', () => { const o = { ...(ctx.store.getJSON('wc', {}).open || {}) }; o[d.dataset.sec] = d.open; save({ open: o }); }));
     root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => { save({ [b.dataset.set]: b.dataset.val }); ctx.refresh(); }));
+    const cv = root.querySelector('[data-csv]');
+    if (cv) cv.addEventListener('click', () => csvExport(ctx, M));
     const hd = root.querySelector('[data-hide]');
     if (hd) hd.addEventListener('click', () => { save({ hide: !ctx.store.getJSON('wc', {}).hide }); ctx.refresh(); });
     const q = root.querySelector('[data-q]'), tb = root.querySelector('[data-ba]');
