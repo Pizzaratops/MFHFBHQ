@@ -232,7 +232,7 @@ const LEAGUES = [
     emoji: '🌍',
     sport: 'nba',
     platform: 'Fantrax',
-    format: 'Draft Only',
+    format: 'Waiver, keine Trades',
     scoring: 'categories',
     accent: '#16a34a',
     accent2: '#f2b84f',
