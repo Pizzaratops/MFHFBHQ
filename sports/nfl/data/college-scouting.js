@@ -24,7 +24,7 @@
 
 const COLLEGE_SCOUTING = {
   "meta": {
-    "lastSync": "2026-10-10T14:07:40.120Z",
+    "lastSync": "2026-10-10T15:12:32.491Z",
     "currentSeason": 2026,
     "years": [
       2013,
@@ -217674,24 +217674,6 @@ const COLLEGE_SCOUTING = {
         "weightLb": 176
       },
       {
-        "id": "2024_4569001",
-        "rawId": "4569001",
-        "name": "Cameron Ross",
-        "team": "James Madison",
-        "conf": "Sun Belt",
-        "year": 2024,
-        "rec": 37,
-        "yds": 443,
-        "td": 3,
-        "recShare": 16,
-        "ydShare": 15.8,
-        "tdShare": 10.7,
-        "usageOverall": 5.6,
-        "avgPPA": 0.811,
-        "heightIn": 70,
-        "weightLb": 186
-      },
-      {
         "id": "2024_4569452",
         "rawId": "4569452",
         "name": "Winston Wright",
@@ -222210,24 +222192,6 @@ const COLLEGE_SCOUTING = {
         "weightLb": 190
       },
       {
-        "id": "2025_4569001",
-        "rawId": "4569001",
-        "name": "Cameron Ross",
-        "team": "Virginia",
-        "conf": "ACC",
-        "year": 2025,
-        "rec": 53,
-        "yds": 543,
-        "td": 2,
-        "recShare": 16.8,
-        "ydShare": 16.2,
-        "tdShare": 11.1,
-        "usageOverall": 7.8,
-        "avgPPA": 0.481,
-        "heightIn": 70,
-        "weightLb": 186
-      },
-      {
         "id": "2025_4570132",
         "rawId": "4570132",
         "name": "Ryan Davis",
@@ -222964,24 +222928,6 @@ const COLLEGE_SCOUTING = {
         "avgPPA": 0.605,
         "heightIn": 68,
         "weightLb": 188
-      },
-      {
-        "id": "2025_4692796",
-        "rawId": "4692796",
-        "name": "Nick DeGennaro",
-        "team": "James Madison",
-        "conf": "Sun Belt",
-        "year": 2025,
-        "rec": 28,
-        "yds": 500,
-        "td": 5,
-        "recShare": 12.4,
-        "ydShare": 16.9,
-        "tdShare": 19.2,
-        "usageOverall": 5.1,
-        "avgPPA": 0.648,
-        "heightIn": 73,
-        "weightLb": 196
       },
       {
         "id": "2025_4693817",
@@ -243216,25 +243162,6 @@ const COLLEGE_SCOUTING = {
         "avgPpaPass": 0.066,
         "heightIn": 71,
         "weightLb": 190
-      },
-      {
-        "id": "2025_4427971",
-        "rawId": "4427971",
-        "name": "Dontae McMillan",
-        "team": "Eastern Michigan",
-        "conf": "Mid-American",
-        "year": 2025,
-        "rushYds": 1014,
-        "rushCar": 177,
-        "rushTd": 4,
-        "recYds": 375,
-        "rushCarShare": 46,
-        "recYdShare": 13.3,
-        "usageRush": 46.3,
-        "avgPpaRush": 0.152,
-        "avgPpaPass": 0.514,
-        "heightIn": 70,
-        "weightLb": 203
       },
       {
         "id": "2025_4429077",
@@ -282363,78 +282290,6 @@ const COLLEGE_SCOUTING = {
           "dist": 0.612
         }
       ],
-      "2024_4569001": [
-        {
-          "id": "2024_4880845",
-          "name": "Charles Montgomery",
-          "team": "Marshall",
-          "year": 2024,
-          "dist": 0.305
-        },
-        {
-          "id": "2024_5080703",
-          "name": "Isaiah Sategna",
-          "team": "Arkansas",
-          "year": 2024,
-          "dist": 0.429
-        },
-        {
-          "id": "2013_531886",
-          "name": "Carlos Harris",
-          "team": "North Texas",
-          "year": 2013,
-          "dist": 0.439
-        },
-        {
-          "id": "2016_3699902",
-          "name": "Stanley Morgan Jr.",
-          "team": "Nebraska",
-          "year": 2016,
-          "dist": 0.469
-        },
-        {
-          "id": "2022_4832806",
-          "name": "Jonathan Brady",
-          "team": "New Mexico State",
-          "year": 2022,
-          "dist": 0.475
-        },
-        {
-          "id": "2022_4429284",
-          "name": "DeMeer Blankumsee",
-          "team": "Toledo",
-          "year": 2022,
-          "dist": 0.476
-        },
-        {
-          "id": "2024_4923295",
-          "name": "Kenny Johnson",
-          "team": "Pittsburgh",
-          "year": 2024,
-          "dist": 0.494
-        },
-        {
-          "id": "2018_4259197",
-          "name": "Tarique Milton",
-          "team": "Iowa State",
-          "year": 2018,
-          "dist": 0.495
-        },
-        {
-          "id": "2023_4373662",
-          "name": "Billy Bowens",
-          "team": "Boise State",
-          "year": 2023,
-          "dist": 0.523
-        },
-        {
-          "id": "2021_4567044",
-          "name": "Taylor Morin",
-          "team": "Wake Forest",
-          "year": 2021,
-          "dist": 0.528
-        }
-      ],
       "2024_4569452": [
         {
           "id": "2023_4921154",
@@ -300435,78 +300290,6 @@ const COLLEGE_SCOUTING = {
           "dist": 0.639
         }
       ],
-      "2025_4569001": [
-        {
-          "id": "2014_3126244",
-          "name": "Teddy Veal",
-          "team": "Tulane",
-          "year": 2014,
-          "dist": 0.371
-        },
-        {
-          "id": "2021_4430656",
-          "name": "Myles Price",
-          "team": "Texas Tech",
-          "year": 2021,
-          "dist": 0.378
-        },
-        {
-          "id": "2016_3915987",
-          "name": "Flynn Nagel",
-          "team": "Northwestern",
-          "year": 2016,
-          "dist": 0.391
-        },
-        {
-          "id": "2017_4030390",
-          "name": "Ky'Jon Tyler",
-          "team": "Coastal Carolina",
-          "year": 2017,
-          "dist": 0.421
-        },
-        {
-          "id": "2018_4240661",
-          "name": "Dazz Newsome",
-          "team": "North Carolina",
-          "year": 2018,
-          "dist": 0.445
-        },
-        {
-          "id": "2023_4596539",
-          "name": "Yulkeith Brown",
-          "team": "Tulane",
-          "year": 2023,
-          "dist": 0.453
-        },
-        {
-          "id": "2018_4047648",
-          "name": "Tre Nixon",
-          "team": "UCF",
-          "year": 2018,
-          "dist": 0.457
-        },
-        {
-          "id": "2019_4240625",
-          "name": "Mike Harley",
-          "team": "Miami",
-          "year": 2019,
-          "dist": 0.463
-        },
-        {
-          "id": "2015_547720",
-          "name": "Temi Alaka",
-          "team": "Rice",
-          "year": 2015,
-          "dist": 0.467
-        },
-        {
-          "id": "2025_4870635",
-          "name": "Anthony Brown",
-          "team": "Tulane",
-          "year": 2025,
-          "dist": 0.47
-        }
-      ],
       "2025_4570132": [
         {
           "id": "2023_4608793",
@@ -303457,78 +303240,6 @@ const COLLEGE_SCOUTING = {
           "team": "Florida International",
           "year": 2016,
           "dist": 0.988
-        }
-      ],
-      "2025_4692796": [
-        {
-          "id": "2015_3122167",
-          "name": "Caleb Scott",
-          "team": "Vanderbilt",
-          "year": 2015,
-          "dist": 0.391
-        },
-        {
-          "id": "2022_4360575",
-          "name": "Malachi Carter",
-          "team": "Georgia Tech",
-          "year": 2022,
-          "dist": 0.442
-        },
-        {
-          "id": "2023_4247578",
-          "name": "Hamze Elzayat",
-          "team": "Eastern Michigan",
-          "year": 2023,
-          "dist": 0.525
-        },
-        {
-          "id": "2019_4361409",
-          "name": "Jahan Dotson",
-          "team": "Penn State",
-          "year": 2019,
-          "dist": 0.538
-        },
-        {
-          "id": "2016_531137",
-          "name": "Dondre Daley",
-          "team": "Iowa State",
-          "year": 2016,
-          "dist": 0.553
-        },
-        {
-          "id": "2025_5214557",
-          "name": "JJ Buchanan",
-          "team": "Utah",
-          "year": 2025,
-          "dist": 0.558
-        },
-        {
-          "id": "2013_511594",
-          "name": "Juwan Brescacin",
-          "team": "Northern Illinois",
-          "year": 2013,
-          "dist": 0.561
-        },
-        {
-          "id": "2018_4048659",
-          "name": "Elijah Lilly",
-          "team": "New Mexico",
-          "year": 2018,
-          "dist": 0.577
-        },
-        {
-          "id": "2018_4371941",
-          "name": "Dominic Stampley",
-          "team": "Illinois",
-          "year": 2018,
-          "dist": 0.58
-        },
-        {
-          "id": "2023_4426863",
-          "name": "Dequece Carter",
-          "team": "Indiana",
-          "year": 2023,
-          "dist": 0.588
         }
       ],
       "2025_4693817": [
@@ -382013,78 +381724,6 @@ const COLLEGE_SCOUTING = {
           "team": "North Carolina",
           "year": 2023,
           "dist": 0.521
-        }
-      ],
-      "2025_4427971": [
-        {
-          "id": "2018_4045702",
-          "name": "Benny LeMay",
-          "team": "Charlotte",
-          "year": 2018,
-          "dist": 0.363
-        },
-        {
-          "id": "2020_4430110",
-          "name": "Ty Jordan",
-          "team": "Utah",
-          "year": 2020,
-          "dist": 0.493
-        },
-        {
-          "id": "2015_545809",
-          "name": "Elijah McGuire",
-          "team": "Louisiana",
-          "year": 2015,
-          "dist": 0.504
-        },
-        {
-          "id": "2019_4243003",
-          "name": "Ronnie Rivers",
-          "team": "Fresno State",
-          "year": 2019,
-          "dist": 0.553
-        },
-        {
-          "id": "2021_4569609",
-          "name": "Evan Hull",
-          "team": "Northwestern",
-          "year": 2021,
-          "dist": 0.62
-        },
-        {
-          "id": "2016_545512",
-          "name": "Kyle Hicks",
-          "team": "TCU",
-          "year": 2016,
-          "dist": 0.637
-        },
-        {
-          "id": "2013_503422",
-          "name": "James White",
-          "team": "Wisconsin",
-          "year": 2013,
-          "dist": 0.647
-        },
-        {
-          "id": "2017_3123969",
-          "name": "Ito Smith",
-          "team": "Southern Miss",
-          "year": 2017,
-          "dist": 0.656
-        },
-        {
-          "id": "2023_4361604",
-          "name": "Blake Watson",
-          "team": "Memphis",
-          "year": 2023,
-          "dist": 0.664
-        },
-        {
-          "id": "2020_4243003",
-          "name": "Ronnie Rivers",
-          "team": "Fresno State",
-          "year": 2020,
-          "dist": 0.708
         }
       ],
       "2025_4429077": [
