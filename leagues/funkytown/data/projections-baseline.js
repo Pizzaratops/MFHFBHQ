@@ -1,7 +1,7 @@
 // ============================================================
 //  PROJECTIONS_BASELINE — Funkytown (AUTO-GENERIERT, nicht von Hand editieren)
 // ============================================================
-//  Erzeugt von scripts/adopt-tthq-projections.js am 2026-10-10T15:17:33.377Z
+//  Erzeugt von scripts/adopt-tthq-projections.js am 2026-10-10T15:33:02.666Z
 //  Quelle: leagues/tthq/data/projections-baseline.js (533 Spieler)
 //  + 537 Spieler nur aus projections-baseline-own.js (Funkytown-Stand 08.10.2026)
 // ============================================================
