@@ -53,7 +53,7 @@
       size: st.size || info.rosterSize || cfg.rosterSize || 13,
       pos: st.pos || '', q: st.q || '', open: st.open != null ? st.open : null,
       lastTeam: st.lastTeam != null ? st.lastTeam : null,
-      uni: !!st.uni, tgt: !!st.tgt, live: !!st.live, gopen: !!st.gopen, po13: !!st.po13, bsort: st.bsort || '', bdir: st.bdir || '', manual: !!st.manual,
+      uni: !!st.uni, tgt: !!st.tgt, live: !!st.live, pasteOpen: !!st.pasteOpen, oppOpen: st.oppOpen, gopen: !!st.gopen, po13: !!st.po13, bsort: st.bsort || '', bdir: st.bdir || '', manual: !!st.manual,
       // Liga ohne eigene Team-Datei (z. B. Auction-Liga unter „World Cup“): Teams selbst benennen
       nTeams: st.nTeams || cfg.teams || 10,
       teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
@@ -648,16 +648,18 @@
     const findTeam = i => { for (const o of teams) if (L[i].includes(' ' + o.n + ' ')) return o.t; return null; };
     const findPrice = i => { const m = lines[i].match(/\$\s?(\d{1,3})/); return m ? Number(m[1]) : null; };
     const out = [], miss = []; let cur = null;
+    // Strg+A kopiert den ganzen Draftroom inkl. Spielerpool (mit $-Werten) und
+    // eigener Queue. Deshalb: Spieler zählt nur, wenn ein Fantasy-Team direkt
+    // dabei steht (gleiche Zeile oder die nächsten 3). Team-Überschriften
+    // (Draft Summary) nur, wenn es keine einzige solche Zeile gibt.
+    const near = i => { let price = findPrice(i), team = findTeam(i); for (let j = i + 1; j < Math.min(lines.length, i + 4) && (price == null || !team); j++) { if (findPlayer(j)) break; if (price == null) price = findPrice(j); if (!team) team = findTeam(j); } return { price, team }; };
+    let direct = 0; for (let i = 0; i < lines.length; i++) if (findPlayer(i) && near(i).team) direct++;
+    const useHeader = direct < 3;
     for (let i = 0; i < lines.length; i++) {
       const pl = findPlayer(i);
       if (!pl) { const t = findTeam(i); if (t) cur = t; continue; }
-      let price = findPrice(i), team = findTeam(i);
-      for (let j = i + 1; j < Math.min(lines.length, i + 4) && (price == null || !team); j++) {
-        if (findPlayer(j)) break;
-        if (price == null) price = findPrice(j);
-        if (!team) team = findTeam(j);
-      }
-      team = team || cur;
+      let { price, team } = near(i);
+      if (!team && useHeader) team = cur;
       if (price != null && team) out.push({ player: pl.name, team: team.id, price });
       else miss.push(pl.name + (price == null ? ' (kein Preis)' : ' (kein Team)'));
     }
@@ -670,15 +672,16 @@
       <div class="au-gbody">
         <div class="small">Im ESPN-Draft <b>Pick History</b> oder <b>Draft Summary</b> öffnen, ganze Seite markieren (Strg+A), kopieren (Strg+C) und hier einfügen (Strg+V).</div>
         <textarea class="tr-select au-pastebox" rows="5" data-paste placeholder="Hier einfügen …"></textarea>
-        <div class="au-setbtns"><button type="button" class="mp-btn primary" data-pastego>Importieren</button><span class="small" data-pasteinfo></span></div>
+        <div class="au-setbtns"><button type="button" class="mp-btn primary" data-pastego>Importieren</button><button type="button" class="mp-btn" data-pasteclear title="Alle per Paste übernommenen Zuschläge entfernen">🗑️ Paste-Zuschläge löschen</button><span class="small" data-pasteinfo></span></div>
       </div>
     </details>`;
   }
   function applyPaste(ctx, picks) {
     const nba = N();
     const keys = new Set(picks.map(p => nba.key(p.player)));
-    const cur = state(ctx).picks.filter(p => !keys.has(nba.key(p.player)));
-    save(ctx, { picks: cur.concat(picks.map(p => ({ ...p, espn: true, src: 'paste', ts: Date.now() }))) });
+    // Paste = kompletter Stand → alte Paste-Einträge komplett ersetzen
+    const cur = state(ctx).picks.filter(p => p.src !== 'paste' && !keys.has(nba.key(p.player)));
+    save(ctx, { pasteOpen: true, picks: cur.concat(picks.map(p => ({ ...p, espn: true, src: 'paste', ts: Date.now() }))) });
   }
 
   // ---------- PIN-Sperre ----------
@@ -799,6 +802,8 @@
     if (od) od.addEventListener('toggle', () => save(ctx, { oppOpen: od.open }));
     const pb = root.querySelector('[data-pastebox]');
     if (pb) pb.addEventListener('toggle', () => save(ctx, { pasteOpen: pb.open }));
+    const pc = root.querySelector('[data-pasteclear]');
+    if (pc) pc.addEventListener('click', () => { const all = state(ctx).picks; const n = all.filter(p => p.src === 'paste').length; if (!window.confirm(`${n} Paste-Zuschläge löschen?`)) return; save(ctx, { picks: all.filter(p => p.src !== 'paste') }); ctx.refresh(); });
     const pg = root.querySelector('[data-pastego]');
     if (pg) pg.addEventListener('click', () => {
       const ta = root.querySelector('[data-paste]'), info = root.querySelector('[data-pasteinfo]');
@@ -806,7 +811,8 @@
       if (!res.picks.length) { info.innerHTML = `<span class="down">⚠️ Keine Zuschläge erkannt${res.miss.length ? ` (${res.miss.length} Spieler ohne Preis/Team)` : ''}.</span>`; return; }
       applyPaste(ctx, res.picks);
       LIVE.last = Date.now(); LIVE.src = 'Paste'; LIVE.count = res.picks.length;
-      window.alert(`${res.picks.length} Zuschläge übernommen.${res.miss.length ? `\nNicht erkannt: ${res.miss.slice(0, 8).join(', ')}${res.miss.length > 8 ? ' …' : ''}` : ''}`);
+      const per = {}; res.picks.forEach(p => { const n = (M.byId[p.team] || {}).name || '?'; per[n] = (per[n] || 0) + 1; });
+      window.alert(`${res.picks.length} Zuschläge übernommen (${Object.entries(per).map(([n, c]) => n + ' ' + c).join(', ')}).${res.miss.length ? `\nNicht erkannt: ${res.miss.slice(0, 8).join(', ')}${res.miss.length > 8 ? ' …' : ''}` : ''}`);
       ctx.refresh();
     });
     root.querySelectorAll('[data-pos]').forEach(b => b.addEventListener('click', () => { save(ctx, { pos: b.dataset.pos }); ctx.refresh(); }));
