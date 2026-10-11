@@ -228,18 +228,30 @@
     let list = [...map.values()].map(o => ({ ...o, t: taken.get(o.k) || null, ar: adpRank.get(o.k) || null }));
     const q = String(st.q || '').toLowerCase().trim();
     const posOf = o => String((o.r && o.r.pos) || '').split(/[\/, ]+/);
-    list = list.filter(o => (!st.hide || !o.t) && (!st.pos || posOf(o).includes(st.pos))
+    const poSum = o => { const po = poOf(M, o.name, o.team); return po ? po.sum : null; };
+    list = list.filter(o => (!st.hide || !o.t) && (!st.pos || posOf(o).includes(st.pos)) && (!st.po11 || (poSum(o) || 0) >= 11)
       && (!q || [o.name, o.r && o.r.team, o.team].some(v => String(v || '').toLowerCase().includes(q))));
     const projRank = o => (o.r ? o.r._wcRank : 99999);
-    if (st.sort === 'proj') list.sort((x, y) => projRank(x) - projRank(y));
-    else list.sort((x, y) => (x.a ? x.a.mean : 9999 + projRank(x)) - (y.a ? y.a.mean : 9999 + projRank(y)));
+    // Spaltensortierung (Klick auf Kopfzeile); Werte ohne Angabe immer ans Ende
+    const KEYS = {
+      adp: o => (o.a ? o.a.mean : null), min: o => (o.a ? o.a.min : null), n: o => (o.a ? o.a.n : null),
+      proj: o => (o.r ? o.r._wcRank : null), delta: o => (o.r && o.ar ? o.ar - o.r._wcRank : null),
+      score: o => (o.r ? o.r.z : null), po: poSum,
+      c1: o => (o.t ? null : M.chance(o.k, M.myNext)), c2: o => (o.t ? null : M.chance(o.k, M.myAfter)),
+    };
+    const f = KEYS[st.sort];
+    if (f) {
+      const dir = st.dir === 'desc' ? -1 : 1;
+      const tie = o => (o.a ? o.a.mean : 9999 + projRank(o));
+      list.sort((x, y) => { const a = f(x), b = f(y); if (a == null && b == null) return tie(x) - tie(y); if (a == null) return 1; if (b == null) return -1; return (a - b) * dir || tie(x) - tie(y); });
+    } else list.sort((x, y) => (x.a ? x.a.mean : 9999 + projRank(x)) - (y.a ? y.a.mean : 9999 + projRank(y)));
     return list;
   }
   // ---------- CSV-Export (ganze Liste, ohne Filter) ----------
   // Semikolon + Dezimalkomma + BOM → öffnet in deutschem Excel/Numbers direkt richtig.
   function csvExport(ctx, M) {
     const st = M.store;
-    M.store = { ...st, hide: false, pos: '', q: '', sort: '' };
+    M.store = { ...st, hide: false, pos: '', q: '', sort: '', po11: false };
     const list = tableRows(M);
     M.store = st;
     const num = (v, d = 1) => (v == null || !isFinite(v) ? '' : Number(v).toFixed(d).replace('.', ','));
@@ -288,25 +300,28 @@
   }
   function adpHtml(ctx, M) {
     const e = ctx.ui.esc, st = M.store;
+    // sortierbare Spaltenköpfe: 1. Klick = sinnvolle Richtung, 2. Klick = umgekehrt
+    const sth = (k, label, title, cls) => { const on = st.sort === k; const arrow = on ? (st.dir === 'desc' ? ' ▼' : ' ▲') : ''; return `<th class="num wc-sort${on ? ' on' : ''}${cls ? ' ' + cls : ''}" data-sortk="${k}"${title ? ` title="${title} · klicken zum Sortieren"` : ' title="klicken zum Sortieren"'}>${label}${arrow}</th>`; };
     const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([v, l]) => `<button type="button" class="seg-btn${(st[key] || '') === v ? ' active' : ''}" data-set="${key}" data-val="${v}">${l}</button>`).join('')}</div>`;
     return `<details class="card wc-adp" data-sec="adp"${isOpen(M, 'adp', true) ? ' open' : ''}><summary class="card-head"><h2>📊 World-Cup-ADP & Best Available</h2><span class="muted small">${M.adp.size} gedraftet · ${M.divs.reduce((s, x) => s + x.made, 0)} Picks</span></summary>
       <div class="au-bactl wc-ctl">
         ${seg('sort', [['', 'Nach ADP'], ['proj', 'Nach Proj.']])}
         ${seg('pos', [['', 'Alle'], ['G', 'G'], ['F', 'F'], ['C', 'C']])}
+        <button type="button" class="seg-btn wc-hide${st.po11 ? ' on' : ''}" data-po11 aria-pressed="${!!st.po11}" title="Nur Spieler, deren Team in den Playoffs 11 oder 12 Spiele hat">${st.po11 ? '☑' : '☐'} Filter 11/12</button>
         <button type="button" class="seg-btn wc-hide${st.hide ? ' on' : ''}" data-hide aria-pressed="${!!st.hide}">${st.hide ? '☑' : '☐'} Gedraftete ausblenden</button>
         <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q || '')}" data-q aria-label="Suchen">
         <button type="button" class="seg-btn wc-hide" data-csv title="Komplette ADP-Liste als CSV (ohne Filter)">⬇️ CSV</button>
       </div>
       <div class="table-wrap au-bascroll wc-tscroll"><table class="table compact wc-table"><thead><tr>
         <th class="num">#</th><th>Spieler</th>
-        <th class="num" title="World-Cup-ADP: Ø Pick-Nummer über alle geladenen Divisionen">ADP</th>
-        <th class="num hide-sm">Min–Max</th><th class="num hide-sm" title="So oft gedraftet">×</th>
-        <th class="num" title="Rang in unseren Projections (TTHQ-Consensus)">Proj.</th>
-        <th class="num" title="ADP-Rang minus Proj.-Rang: positiv = geht später als er sollte (Steal)">Δ</th>
-        <th class="num">${e(M.nba.scoreLabel())}</th>
-        <th class="num" title="Playoff-Spiele gesamt + je Runde (R1 R2 R3)">PO</th>
-        <th class="num" title="Chance, dass er bei deinem nächsten Pick noch da ist">${M.myNext != null ? `P${M.myNext}` : 'Nächster'}</th>
-        <th class="num hide-sm" title="… und beim übernächsten">${M.myAfter != null ? `P${M.myAfter}` : 'Danach'}</th>
+        ${sth('adp', 'ADP', 'World-Cup-ADP: Ø Pick-Nummer über alle geladenen Divisionen')}
+        ${sth('min', 'Min–Max', '', 'hide-sm')}${sth('n', '×', 'So oft gedraftet', 'hide-sm')}
+        ${sth('proj', 'Proj.', 'Rang in unseren Projections (TTHQ-Consensus)')}
+        ${sth('delta', 'Δ', 'ADP-Rang minus Proj.-Rang: positiv = geht später als er sollte (Steal)')}
+        ${sth('score', e(M.nba.scoreLabel()), '')}
+        ${sth('po', 'PO', 'Playoff-Spiele gesamt + je Runde (R1 R2 R3)')}
+        ${sth('c1', M.myNext != null ? `P${M.myNext}` : 'Nächster', 'Chance, dass er bei deinem nächsten Pick noch da ist')}
+        ${sth('c2', M.myAfter != null ? `P${M.myAfter}` : 'Danach', '… und beim übernächsten', 'hide-sm')}
         <th>${e(M.myDiv)}</th>
       </tr></thead><tbody data-ba>${tableBody(ctx, M)}</tbody></table></div>
       <div class="muted small au-foot">Nach ADP: gedraftete Spieler nach World-Cup-ADP, danach noch nie gedraftete nach unseren Projections. Chance = Schätzung aus der ADP (ab 3 Drafts), bedingt darauf, dass er jetzt noch frei ist.</div>
@@ -360,9 +375,17 @@
     root.querySelectorAll('[data-div]').forEach(el => el.addEventListener('click', () => { const [conf, div] = el.dataset.div.split('|'); save({ conf, div }); ctx.refresh(); }));
     // Auf-/Zuklappen merken (überlebt den Auto-Refresh)
     root.querySelectorAll('details[data-sec]').forEach(d => d.addEventListener('toggle', () => { const o = { ...(ctx.store.getJSON('wc', {}).open || {}) }; o[d.dataset.sec] = d.open; save({ open: o }); }));
-    root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => { save({ [b.dataset.set]: b.dataset.val }); ctx.refresh(); }));
+    root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => { save({ [b.dataset.set]: b.dataset.val, ...(b.dataset.set === 'sort' ? { dir: 'asc' } : {}) }); ctx.refresh(); }));
     const cv = root.querySelector('[data-csv]');
     if (cv) cv.addEventListener('click', () => csvExport(ctx, M));
+    const DESC = { n: 1, delta: 1, score: 1, po: 1, c1: 1, c2: 1 };
+    root.querySelectorAll('[data-sortk]').forEach(th => th.addEventListener('click', () => {
+      const k = th.dataset.sortk, cur = ctx.store.getJSON('wc', {});
+      const dir = cur.sort === k ? (cur.dir === 'desc' ? 'asc' : 'desc') : (DESC[k] ? 'desc' : 'asc');
+      save({ sort: k, dir }); ctx.refresh();
+    }));
+    const p11 = root.querySelector('[data-po11]');
+    if (p11) p11.addEventListener('click', () => { save({ po11: !ctx.store.getJSON('wc', {}).po11 }); ctx.refresh(); });
     const hd = root.querySelector('[data-hide]');
     if (hd) hd.addEventListener('click', () => { save({ hide: !ctx.store.getJSON('wc', {}).hide }); ctx.refresh(); });
     const q = root.querySelector('[data-q]'), tb = root.querySelector('[data-ba]');

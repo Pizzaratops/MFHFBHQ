@@ -1040,3 +1040,6 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .au-bm div { padding: 6px 0 2px; line-height: 1.6; }
 .au-bml { display: inline-block; padding: 2px 8px; border-radius: 6px; background: var(--league-accent); color: #fff !important; font-weight: 800; text-decoration: none; cursor: grab; }
 .au-espn { font-size: 9.5px; font-weight: 800; padding: 0 4px; border-radius: 4px; background: #d6454522; color: #d64545; vertical-align: 1px; }
+.wc-table th.wc-sort { cursor: pointer; user-select: none; white-space: nowrap; }
+.wc-table th.wc-sort:hover { color: var(--text); }
+.wc-table th.wc-sort.on { color: var(--league-accent); }
