@@ -979,7 +979,7 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .wc-tscroll { max-height: calc(100vh - 200px); }
 .wc-table td, .wc-table th { white-space: nowrap; }
 .nba-uni { font-size: 12px; cursor: help; white-space: nowrap; }
-.nba-uni.pick { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--league-accent) 70%, transparent)); }
+.nba-uni.pick sup { font-size: 8.5px; font-weight: 800; color: var(--league-accent); margin-left: 1px; letter-spacing: .02em; }
 .au-fnames { min-width: 260px; flex: 1 1 260px; }
 .au-fnames textarea { resize: vertical; font: inherit; font-size: 13px; }
 

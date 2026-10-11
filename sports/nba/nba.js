@@ -114,7 +114,7 @@ MFHFB.nba = (function () {
     const u = unicorn(row);
     if (!u.combos.length && !u.pick) return '';
     const tip = (u.combos.length ? `Unicorn: klar positiv (z > 0,5) in ${u.combos.join(', ')}` : '') + (u.pick ? `${u.combos.length ? ' · ' : ''}Rotoballer-League-Winner-Liste` : '');
-    return ` <span class="nba-uni${u.pick ? ' pick' : ''}" title="${tip}">🦄${u.combos.length > 1 ? u.combos.length : ''}</span>`;
+    return ` <span class="nba-uni${u.pick ? ' pick' : ''}" title="${tip}">🦄${u.combos.length > 1 ? u.combos.length : ''}${u.pick ? '<sup>RB</sup>' : ''}</span>`;
   }
   function record(data, t) {
     const R = data.TEAM_RECORDS_LIVE;
