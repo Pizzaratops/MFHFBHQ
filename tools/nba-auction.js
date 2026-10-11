@@ -256,7 +256,10 @@
       const r = M.byKey.get(nba.key(p.player)); const v = r && !M.basic ? M.value.get(r) || 0 : null; const d = v == null ? null : v - p.price;
       return `<li><b>${e(p.player)}</b> <span class="muted small">${r ? e((r.team || '') + ' · ' + (r.pos || '')) : (M.basic ? '' : 'keine Projection')}</span><span class="au-rp"><b>${money(p.price)}</b>${v != null ? ` <small class="${d >= 0 ? 'up' : 'down'}">Wert ${money(v)}</small>` : ''}</span></li>`;
     }).join('')}</ol>` : '<div class="muted small">Noch keine Spieler.</div>';
-    return `<div class="au-tdetail"><div class="au-tlist">${list}</div>${M.basic ? '' : `<div class="au-tradar">${radarHtml(ctx, M, x)}</div>`}</div>`;
+    const H = !M.basic && ctx.data.AUCTION_TEAMS;
+    const o = H ? oppRead(M, x, H) : null;
+    const hist = o ? `<div class="au-hist small"><b>Historie (${o.sm.style}):</b> ${H[x.t.id].seasons.map(s => `${s.y}: max ${money(s.max)} (${e(s.maxPlayer)}), ${s.n40}× ≥$40, ${s.nMid}× $10–39, ${s.nCheap}× ≤$2${s.as !== x.t.name ? ` <span class="muted">als ${e(s.as)}</span>` : ''}`).join(' · ')}<br><b>Live:</b> ${o.n40}× ≥$40, ${o.nMid}× $10–39 → ${e(o.why)}${x.open ? `, Gebote bis ~${money(o.cap)} erwartet` : ''}.</div>` : '';
+    return `<div class="au-tdetail">${hist}<div class="au-tlist">${list}</div>${M.basic ? '' : `<div class="au-tradar">${radarHtml(ctx, M, x)}</div>`}</div>`;
   }
 
   // ---------- Best Available (Mitte, sortierbar) ----------
@@ -415,6 +418,40 @@
         <details class="au-tdet"><summary class="small">🎯 Ganze Zielliste</summary>${targetsHtml(ctx, M)}</details>
       </div>
     </div>`;
+  }
+
+  // ---------- Gegner-Radar: Bietverhalten aus der Historie + Live-Stand ----------
+  // AUCTION_TEAMS (auction-history.js): je heutigem Team Max-Preis, Anzahl
+  // Käufe ≥ $40 / $10–39 / ≤ $2 pro Saison. Live: was hat das Team davon schon
+  // gekauft → was kommt wahrscheinlich noch, bis zu welchem Preis.
+  function oppRead(M, x, H) {
+    const h = H && H[x.t.id]; if (!h) return null;
+    const sm = h.summary;
+    const n40 = x.own.filter(p => p.price >= 40).length, nMid = x.own.filter(p => p.price >= 10 && p.price < 40).length;
+    const mids = h.seasons.flatMap(s => s.mids || []).sort((a, b) => a - b);
+    const midHi = mids.length ? mids[Math.floor(mids.length * 0.75)] : 25;
+    const curMax = x.own.reduce((m, p) => Math.max(m, p.price), 0);
+    let cap, why;
+    if (!x.open) { cap = 0; why = 'Kader voll'; }
+    else if (n40 < Math.round(sm.n40Avg)) { cap = Math.min(x.maxBid, Math.round(Math.max(sm.maxAvg, 45))); why = `sucht noch ${Math.round(sm.n40Avg) - n40}× ≥ $40 (hist. Ø ${String(sm.n40Avg).replace('.', ',')})`; }
+    else if (nMid < Math.round(sm.nMidAvg)) { cap = Math.min(x.maxBid, midHi); why = `noch ${Math.round(sm.nMidAvg) - nMid}× $10–39 typisch (bis ~${money(midHi)})`; }
+    else { cap = Math.min(x.maxBid, Math.max(3, Math.round(x.left / Math.max(1, x.open) * 1.5))); why = 'Muster erfüllt, eher nur noch günstig'; }
+    const over = curMax > sm.maxEver ? `schon ${money(curMax)} > hist. Max` : '';
+    return { sm, n40, nMid, cap, why, over };
+  }
+  function oppHtml(ctx, M) {
+    const e = ctx.ui.esc, H = ctx.data.AUCTION_TEAMS; if (!H) return '';
+    const list = M.T.filter(x => x.t.id !== M.st.my).map(x => ({ x, o: oppRead(M, x, H) })).filter(r => r.o).sort((a, b) => b.o.cap - a.o.cap);
+    const rows = list.map(({ x, o }) => `<li class="au-opp" style="${M.nba.tcStyle(x.t)}" title="${e(o.why)}">
+        <span class="au-oppn"><span class="au-dot"></span><b>${e(x.t.name)}</b><small class="muted">${e(o.sm.style)} · hist. Max ${money(o.sm.maxEver)} (Ø ${money(o.sm.maxAvg)}) · ${o.sm.seasons} Saison${o.sm.seasons > 1 ? 's' : ''}</small><small>${e(o.why)}${o.over ? ` · <span class="down">${e(o.over)}</span>` : ''}</small></span>
+        <span class="au-oppc">${x.open ? `bis ~<b>${money(o.cap)}</b>` : '—'}<small class="muted">max ${money(x.maxBid)}</small></span></li>`).join('');
+    const top = list[0], second = list[1];
+    const tip = top ? `Höchstes erwartetes Gebot: <b>${e(top.x.t.name)}</b> ~${money(top.o.cap)}${second ? `, danach ${e(second.x.t.name)} ~${money(second.o.cap)}` : ''}. Bei teuren Spielern über ~${money(second ? second.o.cap : top.o.cap)} bleibt meist nur einer übrig.` : '';
+    return `<details class="card au-oppcard" data-opp${M.st.oppOpen !== false ? ' open' : ''}>
+      <summary class="card-head"><h2>🕵️ Gegner-Radar</h2><span class="muted small">aus Funkytown 2021–26</span></summary>
+      <div class="au-gbody"><div class="small">${tip}</div><ol class="au-opplist">${rows}</ol>
+      <div class="muted small">„bis ~$“ = Schätzung aus dem Muster der Vorjahre (Anzahl teurer/mittlerer Käufe, typische Preise) und dem Live-Stand, gedeckelt durch das Max-Gebot. Kein Gesetz: Leute ändern ihre Strategie.</div></div>
+    </details>`;
   }
 
   // ---------- Mini Draft Guide (Backtest Funkytown 2021–26) ----------
@@ -691,7 +728,7 @@
       <div class="au-top">${pasteHtml(ctx, M)}${manual ? entryHtml(ctx, M) : ''}</div>
       <div class="au-grid3">
         <section class="au-center">${baHtml(ctx, M)}</section>
-        <aside class="au-right">${planHtml(ctx, M)}${M.cfg.guide ? guideHtml(ctx, M) : ''}</aside>
+        <aside class="au-right">${planHtml(ctx, M)}${oppHtml(ctx, M)}${M.cfg.guide ? guideHtml(ctx, M) : ''}</aside>
       </div>
       ${overviewHtml(ctx, M)}
       <div class="au-grid2">
@@ -758,6 +795,8 @@
     const p13 = root.querySelector('[data-po13]');
     if (p13) p13.addEventListener('click', () => { save(ctx, { po13: !state(ctx).po13 }); ctx.refresh(); });
     // Paste-Import
+    const od = root.querySelector('[data-opp]');
+    if (od) od.addEventListener('toggle', () => save(ctx, { oppOpen: od.open }));
     const pb = root.querySelector('[data-pastebox]');
     if (pb) pb.addEventListener('toggle', () => save(ctx, { pasteOpen: pb.open }));
     const pg = root.querySelector('[data-pastego]');
