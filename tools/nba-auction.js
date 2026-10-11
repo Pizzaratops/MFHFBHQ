@@ -53,7 +53,7 @@
       size: st.size || info.rosterSize || cfg.rosterSize || 13,
       pos: st.pos || '', q: st.q || '', open: st.open != null ? st.open : null,
       lastTeam: st.lastTeam != null ? st.lastTeam : null,
-      uni: !!st.uni, tgt: !!st.tgt, live: !!st.live, gopen: st.gopen != null ? !!st.gopen : true,
+      uni: !!st.uni, tgt: !!st.tgt, live: !!st.live, gopen: !!st.gopen, po13: !!st.po13, bsort: st.bsort || '', bdir: st.bdir || '', manual: !!st.manual,
       // Liga ohne eigene Team-Datei (z. B. Auction-Liga unter „World Cup“): Teams selbst benennen
       nTeams: st.nTeams || cfg.teams || 10,
       teamNames: Array.isArray(st.teamNames) ? st.teamNames : [],
@@ -86,6 +86,15 @@
     const value = new Map();
     sorted.forEach((r, i) => value.set(r, i < slots ? 1 + Math.max(0, r.z - repl) / surplus * (pot - slots) : (r.z >= repl - 0.5 ? 1 : 0)));
     sorted.forEach((r, i) => { r._auRank = i + 1; });
+    // Rose (Durant-Modus) immer zusätzlich, unabhängig vom eingestellten Score-Modus
+    const rose = new Map();
+    try {
+      if (sorted.length && nba.fromCatZ) {
+        const pool = sorted.slice(0, 200).map((_, i) => i);
+        const res = nba.fromCatZ(sorted.map(r => r.rawCats || {}), CATS.map(c => c.key), null, pool, 'durant');
+        sorted.forEach((r, i) => rose.set(r, res[i].score));
+      }
+    } catch (e) { /* ohne Rose */ }
 
     // Zuschläge
     const picks = st.picks.filter(p => byId[p.team]);
@@ -118,7 +127,7 @@
     const PLAN = data.AUCTION_PLAN || null;
     const target = new Map();
     if (PLAN) [['stars', 'Star'], ['mids', 'Mittelbau'], ['fills', '$1–5']].forEach(([k, lab]) => (PLAN[k] || []).forEach((t, i) => target.set(nba.key(t.name), { ...t, tier: lab, kind: k, prio: i + 1 })));
-    return { PLAN, target, cfg: ctx.league.auctionDraft || {}, MK, mkt, PO, poOf, basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
+    return { rose, PLAN, target, cfg: ctx.league.auctionDraft || {}, MK, mkt, PO, poOf, basic: !!cfg_basic(ctx), nba, st, teams, byId, rows: sorted, byKey, value, adj, picks, drafted, T, tById, available, openSlots, moneyLeft, infl, slots, pot, repl };
   }
 
   // ---------- Team-Werte (Radar + Summen) ----------
@@ -250,41 +259,79 @@
     return `<div class="au-tdetail"><div class="au-tlist">${list}</div>${M.basic ? '' : `<div class="au-tradar">${radarHtml(ctx, M, x)}</div>`}</div>`;
   }
 
+  // ---------- Best Available (Mitte, sortierbar) ----------
+  const STATS = [
+    { k: 'pts', l: 'PTS', z: 'pts', d: 1 }, { k: 'reb', l: 'REB', z: 'reb', d: 1 }, { k: 'ast', l: 'AST', z: 'ast', d: 1 },
+    { k: 'stl', l: 'STL', z: 'stl', d: 1 }, { k: 'blk', l: 'BLK', z: 'blk', d: 1 }, { k: 'tpm', l: '3PM', z: 'tpm', d: 1 },
+    { k: 'fg', l: 'FG%', z: 'fgImpact', d: 1 }, { k: 'ft', l: 'FT%', z: 'ftImpact', d: 1 }, { k: 'tov', l: 'TO', z: 'tov', d: 1 },
+  ];
+  const statVal = (r, c) => (c.k === 'fg' ? (r.fga ? r.fgm / r.fga * 100 : null) : c.k === 'ft' ? (r.fta ? r.ftm / r.fta * 100 : null) : (Number(r[c.k]) || 0));
+  function baKeys(M) {
+    const K = {
+      rank: r => r._auRank, score: r => r.z, rose: r => (M.rose.has(r) ? M.rose.get(r) : null), val: r => M.value.get(r) || 0, adj: r => M.adj(r),
+      mkt: r => M.mkt(r), po: r => { const p = M.poOf(r); return p ? p.sum : null; },
+    };
+    STATS.forEach(c => { K[c.k] = r => (r.rawCats || {})[c.z]; }); // nach Kategorie-Wert (TO invertiert: wenig TO = gut)
+    return K;
+  }
+  const BA_ASC = { rank: 1 };
   function baRows(M) {
     const st = M.st, q = String(st.q || '').toLowerCase().trim();
-    return M.available.filter(r => (!st.tgt || M.target.has(M.nba.key(r.name))) && (!st.uni || M.nba.unicornBadge(r)) && (!st.pos || String(r.pos || '').split('/').includes(st.pos))
+    let list = M.available.filter(r => (!st.tgt || M.target.has(M.nba.key(r.name))) && (!st.uni || M.nba.unicornBadge(r)) && (!st.pos || String(r.pos || '').split('/').includes(st.pos))
+      && (!st.po13 || ((M.poOf(r) || {}).sum || 0) >= 13)
       && (!q || [r.name, r.team, r.pos].some(v => String(v || '').toLowerCase().includes(q))));
+    const f = baKeys(M)[st.bsort];
+    if (f && st.bsort !== 'rank') {
+      const dir = st.bdir === 'asc' ? 1 : -1;
+      list = list.slice().sort((x, y) => { const a = f(x), b = f(y); if (a == null && b == null) return x._auRank - y._auRank; if (a == null) return 1; if (b == null) return -1; return (a - b) * dir || x._auRank - y._auRank; });
+    } else if (st.bsort === 'rank' && st.bdir === 'desc') list = list.slice().reverse();
+    return list;
   }
   function baBody(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
     const list = baRows(M);
-    if (!list.length) return `<tr><td colspan="8">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    const cols = 8 + STATS.length;
+    if (!list.length) return `<tr><td colspan="${cols}">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    const showRose = nba.getMode() !== 'durant';
     return list.slice(0, 250).map(r => {
-      const best = CATS.map(c => ({ c, z: (r.rawCats || {})[c.key] || 0 })).sort((a, b) => b.z - a.z).slice(0, 2).filter(o => o.z > 0.5).map(o => o.c.label).join(' ');
-      return `<tr class="au-barow" data-pick="${e(r.name)}" title="In das Eintragsfeld übernehmen">
+      const ro = M.rose.get(r);
+      return `<tr class="au-barow" data-pick="${e(r.name)}">
         <td class="num rank${M.MK && r._auRank <= 5 ? ' au-rk-star' : M.MK && r._auRank >= 21 && r._auRank <= 40 ? ' au-rk-sweet' : M.MK && r._auRank <= 10 ? ' au-rk-pricey' : ''}"${M.MK ? ` title="${r._auRank <= 5 ? 'Top 5: lohnt laut Backtest' : r._auRank <= 10 ? 'Rang 6–10: historisch überbezahlt' : r._auRank >= 21 && r._auRank <= 40 ? 'Sweet Spot Rang 21–40' : ''}"` : ''}>${r._auRank}</td>
-        <td><div class="strong">${e(r.name)}${nba.unicornBadge(r)}${!M.basic && M.target.has(nba.key(r.name)) ? (t => ` <span class="au-tgt au-tgt-${t.kind}" title="Zielliste: ${e(t.tier)} #${t.prio}, Limit ${money(t.limit)}${t.note ? ' · ' + e(t.note) : ''}">🎯 ≤${money(t.limit)}</span>`)(M.target.get(nba.key(r.name))) : ''}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}${best ? ` · <span class="up">${best}</span>` : ''}</div></td>
+        <td class="au-pcell"><div class="strong">${e(r.name)}${nba.unicornBadge(r)}${M.target.has(nba.key(r.name)) ? (t => ` <span class="au-tgt au-tgt-${t.kind}" title="Zielliste: ${e(t.tier)} #${t.prio}, Limit ${money(t.limit)}${t.note ? ' · ' + e(t.note) : ''}">🎯 ≤${money(t.limit)}</span>`)(M.target.get(nba.key(r.name))) : ''}</div><div class="au-pmeta">${e(r.pos || '')} · ${e(r.team || '')}</div></td>
         <td class="num"><span class="ls-comp ${nba.scorePositive(r.z) ? 'up' : 'down'}">${nba.fmtScore(r.z)}</span></td>
+        ${showRose ? `<td class="num">${ro == null ? '—' : `<span class="ls-comp ${ro >= 0 ? 'up' : 'down'}">${(ro >= 0 ? '+' : '') + ro.toFixed(2)}</span>`}</td>` : ''}
         <td class="num strong">${money(M.value.get(r) || 0)}</td>
         <td class="num au-adj">${money(M.adj(r))}</td>
         ${M.MK ? `<td class="num au-mkt" title="Typischer Funkytown-Zuschlag für Rang ${r._auRank}">${money(M.mkt(r))}</td>` : ''}
         ${M.PO ? `<td class="num">${poHtml(M, r)}</td>` : ''}
+        ${STATS.map(c => { const v = statVal(r, c); const z = (r.rawCats || {})[c.z]; return `<td class="num au-st" style="${nba.heat(z || 0)}" title="${c.l} · z ${(z || 0).toFixed(2)}">${v == null ? '—' : v.toFixed(c.d)}</td>`; }).join('')}
       </tr>`;
     }).join('');
   }
   function baHtml(ctx, M) {
-    const e = ctx.ui.esc, st = M.st;
+    const e = ctx.ui.esc, st = M.st, nba = M.nba;
+    const th = (k, label, title) => { const on = st.bsort === k || (!st.bsort && k === 'rank'); const arrow = on ? ((st.bdir || (BA_ASC[k] ? 'asc' : 'desc')) === 'desc' ? ' ▼' : ' ▲') : ''; return `<th class="num au-sort${on ? ' on' : ''}" data-bsort="${k}" title="${title ? e(title) + ' · ' : ''}klicken zum Sortieren">${label}${arrow}</th>`; };
+    const showRose = nba.getMode() !== 'durant';
     return `<div class="card au-ba">
       <div class="card-head"><h2>🆓 Best Available</h2><span class="muted small">${M.available.length} frei</span></div>
       <div class="au-bactl">
         <div class="seg" role="group" aria-label="Position"><button type="button" class="seg-btn${!st.pos ? ' active' : ''}" data-pos="">Alle</button>${POS.map(p => `<button type="button" class="seg-btn${st.pos === p ? ' active' : ''}" data-pos="${p}">${p}</button>`).join('')}</div>
+        ${M.PO ? `<button type="button" class="seg-btn wc-hide${st.po13 ? ' on' : ''}" data-po13 aria-pressed="${!!st.po13}" title="Nur Spieler, deren Team in den Playoffs 13–15 Spiele hat">${st.po13 ? '☑' : '☐'} PO 13+</button>` : ''}
         ${M.PLAN ? `<button type="button" class="seg-btn wc-hide${st.tgt ? ' on' : ''}" data-tgt aria-pressed="${!!st.tgt}" title="Nur Spieler aus der Zielliste">🎯 Ziele</button>` : ''}
-        <button type="button" class="seg-btn wc-hide${st.uni ? ' on' : ''}" data-uni aria-pressed="${st.uni}" title="Nur Spieler, die in zwei normalerweise gegenläufigen Kategorien positiv sind (Rotoballer-Unicorns)">🦄 Unicorns</button>
+        <button type="button" class="seg-btn wc-hide${st.uni ? ' on' : ''}" data-uni aria-pressed="${st.uni}" title="Unicorns">🦄 Unicorns</button>
         <input type="search" class="search" placeholder="Spieler, Team …" value="${e(st.q)}" data-q aria-label="Suchen">
       </div>
-      <div class="table-wrap au-bascroll"><table class="table compact"><thead><tr><th class="num">#</th><th>Spieler</th><th class="num" title="${e(M.nba.scoreLabel())} aus den Projections">${e(M.nba.scoreLabel())}</th><th class="num" title="Auction-Wert vor dem Draft">Wert</th><th class="num" title="Inflationsbereinigter Wert beim aktuellen Stand">Jetzt</th>${M.MK ? '<th class="num" title="Was Funkytown 2021–26 für diesen Rang typischerweise bezahlt hat (auf 10 Teams skaliert)">Markt</th>' : ''}${M.PO ? `<th class="num" title="NBA-Spiele in den Fantasy-Playoffs: ${M.PO.rounds.join(' · ')}">PO</th>` : ''}</tr></thead>
+      <div class="table-wrap au-bascroll"><table class="table compact au-batable"><thead><tr>
+        ${th('rank', '#', 'Rang nach Projections')}<th>Spieler</th>
+        ${th('score', e(nba.scoreLabel()), 'Score im eingestellten Modus')}
+        ${showRose ? th('rose', 'Rose', 'Rose-Score (H2H-Modell)') : ''}
+        ${th('val', 'Wert', 'Auction-$ vor dem Draft')}${th('adj', 'Jetzt', 'mit aktueller Inflation')}
+        ${M.MK ? th('mkt', 'Markt', 'Was Funkytown für diesen Rang typischerweise zahlt') : ''}
+        ${M.PO ? th('po', 'PO', 'Playoff-Spiele ' + M.PO.rounds.join(' · ')) : ''}
+        ${STATS.map(c => th(c.k, c.l, c.l + ' pro Spiel (Sortierung nach Kategorie-Wert)')).join('')}
+      </tr></thead>
       <tbody data-ba>${baBody(ctx, M)}</tbody></table></div>
-      <div class="muted small au-foot">Zeile antippen = Spieler ins Eintragsfeld. „Wert“ = Auction-$ vor dem Draft (${M.T.length} Teams × ${M.st.size} Plätze × ${money(M.st.budget)}), „Jetzt“ = mit aktueller Inflation ×${M.infl.toFixed(2)}.${M.MK ? ' „Markt“ = was die Liga für diesen Rang historisch zahlt.' : ''}${M.PO ? ` PO = Spiele in den Playoffs (${M.PO.rounds.join(', ')})` : ''}</div>
+      <div class="muted small au-foot">Spalte antippen = sortieren (nochmal = umdrehen). „Wert“ = Auction-$ vor dem Draft, „Jetzt“ = mit Inflation ×${M.infl.toFixed(2)}${M.MK ? ', „Markt“ = was die Liga für diesen Rang historisch zahlt' : ''}${M.PO ? `, PO = Playoff-Spiele (${M.PO.rounds.join(', ')})` : ''}. Stats pro Spiel, Farbe = Kategorie-Stärke.</div>
     </div>`;
   }
 
@@ -312,6 +359,62 @@
     return `<h3>🎯 Zielliste (Reihenfolge = Priorität)</h3>
       <div class="au-tgrid">${col('1 Star', P.stars)}${col('4 Mittelbau (max. 1 aus Rang 11–20)', P.mids)}${col('9 × $1–5', P.fills)}</div>
       <div class="muted small">Optimiert auf ≥ 6 Kategorien je Woche, Ausfall eines Leistungsträgers und die Playoffs (R1/R2). Modell mit bestem Kader: Ø ${String(m.E).replace('.', ',')} Kategorien, Matchup-Sieg ${Math.round(m.p5 * 100)} %, ≥ 6 Kategorien ${Math.round(m.p6 * 100)} % der Wochen, Playoff-Sieg gegen Top-Teams ${Math.round(m.po5 * 100)} %. Limit überschritten → nächster Name.</div>`;
+  }
+
+  // ---------- Interaktiver Plan (rechte Spalte) ----------
+  // Zählt automatisch aus den Zuschlägen meines Teams: Star (≥ $55),
+  // Mittelbau ($15–54), Rest. Zeigt den nächsten Schritt + passende freie
+  // Spieler mit Höchstgebot, gewichtet nach den schwächsten Kategorien.
+  function planHtml(ctx, M) {
+    const e = ctx.ui.esc, nba = M.nba, st = M.st;
+    const me = st.my != null ? M.tById[st.my] : null;
+    if (!me) return `<div class="card au-plancard"><div class="card-head"><h2>🧭 Mein Plan</h2></div><div class="au-gbody"><div class="muted">Unter ⚙️ Einstellungen „Mein Team“ wählen, dann führt dich der Plan durch den Draft.</div></div></div>`;
+    const stars = me.own.filter(p => p.price >= 55), mids = me.own.filter(p => p.price >= 15 && p.price < 55), fills = me.own.filter(p => p.price < 15);
+    const starNeed = Math.max(0, 1 - stars.length), midNeed = Math.max(0, 4 - mids.length);
+    const fillNeed = Math.max(0, me.open - starNeed - midNeed);
+    // Kategorien-Bedarf aus meinem Kader
+    const P = teamProfile(M, me);
+    const need = {}; CATS.forEach(c => { const z = P.z[c.key]; need[c.key] = P.n ? Math.max(0, 0.6 - (z || 0)) : 1; });
+    const weak = P.n ? CATS.slice().sort((a, b) => (P.z[a.key] || 0) - (P.z[b.key] || 0)).slice(0, 3) : [];
+    const fit = r => CATS.reduce((s, c) => s + need[c.key] * ((r.rawCats || {})[c.key] || 0), 0);
+    const mk = M.MK || [];
+    // Phase + Budget je Platz
+    let phase, cand, cap, kind;
+    const minMid = mk.length ? mk[39] : 17;
+    if (starNeed) {
+      kind = 'stars'; cap = Math.max(1, Math.min(me.maxBid, me.left - midNeed * minMid - fillNeed));
+      cand = M.available.filter(r => r._auRank <= 5);
+      phase = cand.length ? `<b>Schritt 1: Elite-Star.</b> Einer aus den Top 5, höchstens <b>${money(cap)}</b> (dann bleiben ${money(minMid)} je Mittelbau-Platz).` : '<b>Alle Top 5 sind weg.</b> Plan B: Star auslassen, dafür 5 Mittelbau-Spieler (Preisrang 11–40).';
+      if (!cand.length) { kind = 'mids'; cand = M.available.filter(r => r._auRank >= 11 && r._auRank <= 40); cap = Math.max(1, Math.min(me.maxBid, Math.floor((me.left - fillNeed) / Math.max(1, midNeed + 1)) + 8)); }
+    } else if (midNeed) {
+      kind = 'mids'; const per = (me.left - fillNeed) / midNeed; cap = Math.max(1, Math.min(me.maxBid, Math.round(per * 1.25)));
+      cand = M.available.filter(r => r._auRank >= 11 && r._auRank <= 45);
+      phase = `<b>Schritt 2: Mittelbau ${mids.length + 1}/4.</b> Ø ${money(per)} je Platz frei → bis <b>${money(cap)}</b> mitgehen. Preisrang 6–10 meiden, 21–40 ist der Sweet Spot.`;
+    } else if (me.open) {
+      kind = 'fills'; cap = Math.max(1, Math.min(me.maxBid, Math.round(me.left / me.open * 1.5)));
+      cand = M.available.filter(r => r._auRank > 40);
+      phase = `<b>Schritt 3: Rest auffüllen (${me.open} offen).</b> Je Platz ~${money(me.left / me.open)}, Spezialisten für deine schwachen Kategorien.`;
+    } else { kind = null; cand = []; phase = '<b>Kader voll.</b> 🎉'; }
+    // Kandidaten: Ziele zuerst, dann nach Kategorien-Fit; Markt/Limit
+    if (st.po13) cand = cand.filter(r => ((M.poOf(r) || {}).sum || 0) >= 13);
+    const scored = cand.map(r => {
+      const t = M.target.get(nba.key(r.name));
+      const lim = Math.min(cap, t ? t.limit : (M.mkt(r) || 1) + 3);
+      return { r, t, lim, f: fit(r) + (t && t.kind === kind ? 0.8 : 0) };
+    }).filter(o => o.lim >= 1).sort((a, b) => b.f - a.f).slice(0, 6);
+    const rowsHtml = scored.map(o => `<li class="au-nx" data-pick="${e(o.r.name)}"><span><b>${e(o.r.name)}</b>${o.t ? ' 🎯' : ''} <small class="muted">${e(o.r.pos || '')} · ${e(o.r.team || '')}${M.PO ? ' · PO ' + ((M.poOf(o.r) || {}).sum || '–') : ''}</small></span><span class="au-nxp">bis <b>${money(o.lim)}</b><small class="muted"> Markt ${money(M.mkt(o.r) || 1)}</small></span></li>`).join('');
+    const slot = (lab, list, n) => `<div class="au-slots"><span class="au-slab">${lab}</span>${Array.from({ length: n }, (_, i) => list[i] ? `<span class="au-slot done" title="${e(list[i].player)}">✓ ${e(list[i].player.split(' ').slice(-1)[0])} ${money(list[i].price)}</span>` : '<span class="au-slot">—</span>').join('')}</div>`;
+    return `<div class="card au-plancard">
+      <div class="card-head"><h2>🧭 Mein Plan</h2><span class="muted small">${money(me.left)} · ${me.open} offen · max ${money(me.maxBid)}</span></div>
+      <div class="au-gbody">
+        ${slot('⭐ Star', stars, 1)}${slot('Mittelbau', mids, 4)}
+        <div class="au-slots"><span class="au-slab">Rest</span><span class="au-slot${fills.length ? ' done' : ''}">${fills.length}/${Math.max(fills.length, st.size - 5)}${fills.length ? ' · ' + money(fills.reduce((a, p) => a + p.price, 0)) : ''}</span></div>
+        <div class="au-plan">${phase}</div>
+        ${weak.length ? `<div class="small au-need">Schwächste Kategorien: ${weak.map(c => `<b>${c.label}</b>`).join(', ')} → Vorschläge sind danach sortiert.</div>` : ''}
+        ${rowsHtml ? `<h3>Jetzt bieten auf</h3><ol class="au-nxlist">${rowsHtml}</ol>` : ''}
+        <details class="au-tdet"><summary class="small">🎯 Ganze Zielliste</summary>${targetsHtml(ctx, M)}</details>
+      </div>
+    </div>`;
   }
 
   // ---------- Mini Draft Guide (Backtest Funkytown 2021–26) ----------
@@ -342,10 +445,8 @@
     const btRows = BT ? BT.tiers.map(t => `<tr class="${t.ranks === '1–5' || t.ranks === '21–40' ? 'au-good' : t.ranks === '6–10' ? 'au-bad' : ''}"><td>${t.ranks}</td><td class="num">${money(t.paid)}</td><td class="num">${e(t.market10)}</td><td class="num strong">${t.medRank}</td><td class="num">${t.top50} %</td><td class="num">${t.bust} %</td></tr>`).join('') : '';
     const tiers = last ? Object.entries(last.tiers).map(([k]) => `<tr><td>Rang ${k}</td>${yrs.map(y => `<td class="num">${money(H[y].tiers[k])}</td>`).join('')}</tr>`).join('') : '';
     return `<details class="card au-guide" data-guide${st.gopen ? ' open' : ''}>
-      <summary class="card-head"><h2>⭐ Mini Draft Guide: Ein Star + Mittelbau</h2><span class="muted small hide-sm">Backtest Funkytown 2021–26</span></summary>
+      <summary class="card-head"><h2>📚 Hintergrund: Backtest & Budgetplan</h2><span class="muted small hide-sm">Backtest Funkytown 2021–26</span></summary>
       <div class="au-gbody">
-        ${plan}
-        ${targetsHtml(ctx, M)}
         <h3>Was der Backtest sagt</h3>
         <ul>
           <li><b>Top 5 lohnen sich.</b> Die fünf teuersten Spieler je Draft landeten im Median auf Saisonrang 6, 88 % in den Top 50.</li>
@@ -494,6 +595,55 @@
     </div>`;
   }
 
+  // ---------- Paste-Import (ESPN Pick History / Draft Summary) ----------
+  // Wie bei Basketball Monster: im ESPN-Draft „Pick History“ oder „Draft
+  // Summary“ öffnen, Strg+A, Strg+C, hier einfügen. Erkennt Spieler (aus den
+  // Projections), Preis ($xx) und Team (Teamname oder Owner) zeilenweise.
+  const pnorm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b\.?/g, ' ').replace(/[^a-z0-9$]+/g, ' ').trim();
+  function parsePaste(text, M) {
+    const names = M.rows.map(r => ({ r, n: pnorm(r.name) })).filter(o => o.n.includes(' ')).sort((a, b) => b.n.length - a.n.length);
+    const teams = [];
+    M.teams.forEach(t => { [t.name, t.owner].filter(Boolean).forEach(v => { const n = pnorm(v); if (n.length >= 4) teams.push({ t, n }); }); });
+    teams.sort((a, b) => b.n.length - a.n.length);
+    const lines = String(text).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const L = lines.map(l => ' ' + pnorm(l) + ' ');
+    const findPlayer = i => { for (const o of names) if (L[i].includes(' ' + o.n + ' ')) return o.r; return null; };
+    const findTeam = i => { for (const o of teams) if (L[i].includes(' ' + o.n + ' ')) return o.t; return null; };
+    const findPrice = i => { const m = lines[i].match(/\$\s?(\d{1,3})/); return m ? Number(m[1]) : null; };
+    const out = [], miss = []; let cur = null;
+    for (let i = 0; i < lines.length; i++) {
+      const pl = findPlayer(i);
+      if (!pl) { const t = findTeam(i); if (t) cur = t; continue; }
+      let price = findPrice(i), team = findTeam(i);
+      for (let j = i + 1; j < Math.min(lines.length, i + 4) && (price == null || !team); j++) {
+        if (findPlayer(j)) break;
+        if (price == null) price = findPrice(j);
+        if (!team) team = findTeam(j);
+      }
+      team = team || cur;
+      if (price != null && team) out.push({ player: pl.name, team: team.id, price });
+      else miss.push(pl.name + (price == null ? ' (kein Preis)' : ' (kein Team)'));
+    }
+    const seen = new Set();
+    return { picks: out.filter(p => { const k = M.nba.key(p.player); if (seen.has(k)) return false; seen.add(k); return true; }), miss };
+  }
+  function pasteHtml(ctx, M) {
+    return `<details class="card au-paste" data-pastebox${M.st.pasteOpen ? ' open' : ''}>
+      <summary class="card-head"><h2>📋 ESPN-Paste-Import</h2><span class="muted small hide-sm">Fallback zu ESPN live</span></summary>
+      <div class="au-gbody">
+        <div class="small">Im ESPN-Draft <b>Pick History</b> oder <b>Draft Summary</b> öffnen, ganze Seite markieren (Strg+A), kopieren (Strg+C) und hier einfügen (Strg+V).</div>
+        <textarea class="tr-select au-pastebox" rows="5" data-paste placeholder="Hier einfügen …"></textarea>
+        <div class="au-setbtns"><button type="button" class="mp-btn primary" data-pastego>Importieren</button><span class="small" data-pasteinfo></span></div>
+      </div>
+    </details>`;
+  }
+  function applyPaste(ctx, picks) {
+    const nba = N();
+    const keys = new Set(picks.map(p => nba.key(p.player)));
+    const cur = state(ctx).picks.filter(p => !keys.has(nba.key(p.player)));
+    save(ctx, { picks: cur.concat(picks.map(p => ({ ...p, espn: true, src: 'paste', ts: Date.now() }))) });
+  }
+
   // ---------- PIN-Sperre ----------
   function gateHtml(ctx) {
     return `<div class="au-gate card">
@@ -527,16 +677,27 @@
     ctx._au = M;
     const me = M.st.my != null ? M.tById[M.st.my] : null;
     const filled = M.picks.length;
+    // Manueller Eintrag: in der Vollversion aus (ESPN live/Paste), per Config oder ?manual aktivierbar
+    const manual = M.basic || M.cfg.manualEntry !== false || M.st.manual;
     return `<div class="au-wrap${M.basic ? ' au-basicwrap' : ''}">
       <div class="page-head"><h1 class="page-title display">💰 Auction Draft</h1>
         <div class="page-sub">${M.T.length} Teams · ${money(M.st.budget)} · ${M.st.size} Plätze · ${filled} von ${M.slots} vergeben · ${money(M.moneyLeft)} übrig${M.basic ? '' : ` · Inflation ×${M.infl.toFixed(2)}`}<span class="explain"> · alles bleibt in deinem Browser</span></div></div>
       ${me ? `<div class="au-mebar" style="${M.nba.tcStyle(me.t)}"><span class="nba-tdot"></span><b>${ui.esc(me.t.name)}</b><span>Rest <b>${money(me.left)}</b></span><span>Max-Gebot <b>${money(me.maxBid)}</b></span><span>Offen <b>${me.open}</b></span><span>Ø je Platz <b>${me.open ? money(me.left / me.open) : '—'}</b></span>${!M.basic && M.PO ? (() => { const w = M.PO.rounds.map((_, i) => me.own.reduce((s, p) => { const po = M.poOf(M.byKey.get(M.nba.key(p.player))); return s + (po ? po.w[i] : 0); }, 0)); return `<span>PO-Spiele <b>${w.join(' · ')}</b></span>`; })() : ''}</div>` : ''}
       ${liveHtml(ctx, M)}
-      ${overviewHtml(ctx, M)}
-      <div class="au-grid${M.basic ? ' au-basic' : ''}">
-        <div class="au-main">${!M.basic && M.cfg.guide ? guideHtml(ctx, M) : ''}${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
-        ${M.basic ? '' : `<aside class="au-side">${baHtml(ctx, M)}</aside>`}
+      ${M.basic ? `${overviewHtml(ctx, M)}
+      <div class="au-grid au-basic">
+        <div class="au-main">${entryHtml(ctx, M)}${budgetsHtml(ctx, M)}${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
+      </div>` : `
+      <div class="au-top">${pasteHtml(ctx, M)}${manual ? entryHtml(ctx, M) : ''}</div>
+      <div class="au-grid3">
+        <section class="au-center">${baHtml(ctx, M)}</section>
+        <aside class="au-right">${planHtml(ctx, M)}${M.cfg.guide ? guideHtml(ctx, M) : ''}</aside>
       </div>
+      ${overviewHtml(ctx, M)}
+      <div class="au-grid2">
+        <div>${budgetsHtml(ctx, M)}</div>
+        <div>${logHtml(ctx, M)}${settingsHtml(ctx, M)}</div>
+      </div>`}
     </div>`;
   }
 
@@ -566,8 +727,8 @@
       hint.innerHTML = (msgs.length ? `<div>${msgs.join('<br>')}</div>` : '') + (err ? `<div class="au-err">⚠️ ${e(err)}</div>` : '');
       return !err;
     }
-    [inP, inT, inPr].forEach(el => el.addEventListener('input', check));
-    form.addEventListener('submit', ev => {
+    if (form) [inP, inT, inPr].forEach(el => el.addEventListener('input', check));
+    if (form) form.addEventListener('submit', ev => {
       ev.preventDefault();
       if (!check()) return;
       const name = inP.value.trim(), tid = Number(inT.value), price = Number(inPr.value);
@@ -584,10 +745,31 @@
 
     // Best Available
     const baTbody = root.querySelector('[data-ba]');
-    const bindBa = () => baTbody && baTbody.querySelectorAll('[data-pick]').forEach(tr => tr.addEventListener('click', () => {
-      inP.value = tr.dataset.pick; check(); inPr.focus(); form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }));
+    const pickTo = name => { if (!form) return; inP.value = name; check(); inPr.focus(); form.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); };
+    const bindBa = () => baTbody && baTbody.querySelectorAll('[data-pick]').forEach(tr => tr.addEventListener('click', () => pickTo(tr.dataset.pick)));
     bindBa();
+    root.querySelectorAll('.au-nx[data-pick]').forEach(li => li.addEventListener('click', () => pickTo(li.dataset.pick)));
+    root.querySelectorAll('[data-bsort]').forEach(th => th.addEventListener('click', () => {
+      const k = th.dataset.bsort, cur = state(ctx);
+      const curK = cur.bsort || 'rank', curD = cur.bdir || (BA_ASC[curK] ? 'asc' : 'desc');
+      const dir = curK === k ? (curD === 'desc' ? 'asc' : 'desc') : (BA_ASC[k] ? 'asc' : 'desc');
+      save(ctx, { bsort: k, bdir: dir }); ctx.refresh();
+    }));
+    const p13 = root.querySelector('[data-po13]');
+    if (p13) p13.addEventListener('click', () => { save(ctx, { po13: !state(ctx).po13 }); ctx.refresh(); });
+    // Paste-Import
+    const pb = root.querySelector('[data-pastebox]');
+    if (pb) pb.addEventListener('toggle', () => save(ctx, { pasteOpen: pb.open }));
+    const pg = root.querySelector('[data-pastego]');
+    if (pg) pg.addEventListener('click', () => {
+      const ta = root.querySelector('[data-paste]'), info = root.querySelector('[data-pasteinfo]');
+      const res = parsePaste(ta.value, M);
+      if (!res.picks.length) { info.innerHTML = `<span class="down">⚠️ Keine Zuschläge erkannt${res.miss.length ? ` (${res.miss.length} Spieler ohne Preis/Team)` : ''}.</span>`; return; }
+      applyPaste(ctx, res.picks);
+      LIVE.last = Date.now(); LIVE.src = 'Paste'; LIVE.count = res.picks.length;
+      window.alert(`${res.picks.length} Zuschläge übernommen.${res.miss.length ? `\nNicht erkannt: ${res.miss.slice(0, 8).join(', ')}${res.miss.length > 8 ? ' …' : ''}` : ''}`);
+      ctx.refresh();
+    });
     root.querySelectorAll('[data-pos]').forEach(b => b.addEventListener('click', () => { save(ctx, { pos: b.dataset.pos }); ctx.refresh(); }));
     const q = root.querySelector('[data-q]');
     if (q) q.addEventListener('input', () => { save(ctx, { q: q.value }); M.st.q = q.value; baTbody.innerHTML = baBody(ctx, M); bindBa(); });

@@ -1043,3 +1043,32 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .wc-table th.wc-sort { cursor: pointer; user-select: none; white-space: nowrap; }
 .wc-table th.wc-sort:hover { color: var(--text); }
 .wc-table th.wc-sort.on { color: var(--league-accent); }
+/* Auction Vollversion: BA Mitte, Plan rechts (11.10.2026) */
+.au-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; margin-bottom: 14px; }
+.au-top:empty { display: none; }
+.au-grid3 { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 16px; align-items: start; margin-bottom: 14px; }
+.au-right { position: sticky; top: 12px; display: flex; flex-direction: column; gap: 14px; max-height: calc(100vh - 24px); overflow-y: auto; }
+.au-grid2 { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 1150px) { .au-grid3, .au-grid2 { grid-template-columns: minmax(0, 1fr); } .au-right { position: static; max-height: none; } }
+.au-center .au-bascroll { max-height: 78vh; }
+.au-batable th.au-sort { cursor: pointer; user-select: none; white-space: nowrap; }
+.au-batable th.au-sort:hover { color: var(--text); }
+.au-batable th.au-sort.on { color: var(--league-accent); }
+.au-batable td.au-st { font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.au-batable thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.au-pcell { min-width: 170px; }
+.au-plancard .au-gbody { display: flex; flex-direction: column; gap: 8px; }
+.au-slots { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.au-slab { font-size: 11px; font-weight: 800; color: var(--muted); width: 72px; }
+.au-slot { font-size: 12px; padding: 2px 7px; border-radius: 6px; background: var(--surface2); border: 1px dashed var(--border); }
+.au-slot.done { border-style: solid; background: #2e9d6222; color: #2e9d62; font-weight: 700; }
+.au-need { color: var(--muted); }
+.au-nxlist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.au-nx { display: flex; justify-content: space-between; gap: 8px; padding: 6px 8px; border-radius: 8px; background: var(--surface2); font-size: 13px; cursor: pointer; }
+.au-nx:hover { outline: 1px solid var(--league-accent); }
+.au-nxp { white-space: nowrap; text-align: right; }
+.au-nxp small { display: block; }
+.au-tdet summary { cursor: pointer; color: var(--muted); }
+.au-tdet .au-tgrid { grid-template-columns: 1fr; margin-top: 6px; }
+.au-pastebox { width: 100%; margin: 8px 0; font-family: inherit; font-size: 12px; min-height: 90px; }
+.au-paste summary, .au-guide summary { cursor: pointer; list-style: none; }

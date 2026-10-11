@@ -246,6 +246,8 @@ const LEAGUES = [
     // TTHQ-Consensus-Projections. PIN-Sperre in tools/nba-auction.js.
     auctionDraft: {
       budget: 200, rosterSize: 14, shareWith: 'funkytown', pin: true, guide: true,
+      // Manueller Zuschlag-Eintrag aus (ESPN live + Paste-Import); bei ESPN-Ausfall auf true setzen
+      manualEntry: false,
       espnLive: { file: './leagues/funkytown/data/live-auction', leagueId: 15679, season: 2027, teamMap: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
       // Funkytown-Playoffs: 4 von 10 Teams, je 2 Wochen. NBA-Spiele je Team
       // in Runde 1 (01.–14.03.2027) und Runde 2 (15.–28.03.2027) — aus Beyaz'
