@@ -30,6 +30,16 @@
   const defaults = () => ({ weights: { ...DEFAULT_W }, filters: {}, pool: '200', source: 'twoplus', sort: 'z', dir: -1, q: '', pos: '' });
   const getState = ctx => { const s = { ...defaults(), ...ctx.store.getJSON('cproj', {}) }; s.weights = { ...DEFAULT_W, ...s.weights }; return s; };
 
+  function auctionTaken(ctx) {
+    const set = new Set();
+    try {
+      const ad = ctx.league.auctionDraft; if (!ad) return set;
+      const o = JSON.parse(localStorage.getItem('mfhfb:' + (ad.shareWith || ctx.league.key) + ':auction') || '{}');
+      (o.picks || []).forEach(p => set.add(N().key(p.player)));
+    } catch (e) { /* egal */ }
+    return set;
+  }
+
   // ---------- Z-Kern ----------
   const meanSd = vals => { if (!vals.length) return { mean: 0, sd: 0 }; const m = vals.reduce((a, b) => a + b, 0) / vals.length; return { mean: m, sd: Math.sqrt(vals.reduce((a, b) => a + (b - m) ** 2, 0) / vals.length) }; };
   const vals = c => ({ min: c.min || 0, pts: c.pts || 0, reb: c.reb || 0, ast: c.ast || 0, stl: c.stl || 0, blk: c.blk || 0, tpm: c.tpm || 0, tov: c.tov || 0, fgm: c.fgm || 0, fga: c.fga || 0, ftm: c.ftm || 0, fta: c.fta || 0 });
@@ -103,6 +113,9 @@
     const q = String(st.q || '').toLowerCase().trim();
     if (q) rows = rows.filter(r => r.name.toLowerCase().includes(q) || String(r.team || '').toLowerCase().includes(q) || String(r.pos || '').toLowerCase().includes(q) || (r.owner && r.owner.name.toLowerCase().includes(q)));
     if (st.pos) rows = rows.filter(r => String(r.pos || '').split('/').includes(st.pos));
+    // Best Available: nur Spieler ohne Fantasy-Team (ESPN-Kader) und — bei
+    // Auction-Ligen — ohne Zuschlag auf der Auction-Seite (localStorage)
+    if (st.fa) { const taken = auctionTaken(ctx); rows = rows.filter(r => !r.owner && !taken.has(N().key(r.name))); }
     const sf = { three: r => r.sourceCount === 3, twoplus: r => r.sourceCount >= 2, two: r => r.sourceCount === 2, one: r => r.sourceCount === 1, warn: r => r.aImplausible }[st.source];
     if (sf) rows = rows.filter(sf);
     rows = rows.filter(r => Object.entries(st.filters).every(([cat, f]) => { const v = r[FILTER_FIELD[cat] || cat] ?? 0; return !(f.min != null && v < f.min) && !(f.max != null && v > f.max); }));
@@ -170,6 +183,7 @@
         <select class="tr-select" data-pos aria-label="Position"><option value="">Alle Positionen</option>${['PG', 'SG', 'G', 'SF', 'PF', 'F', 'C'].map(p => `<option${st.pos === p ? ' selected' : ''}>${p}</option>`).join('')}</select>
         <select class="tr-select" data-pool aria-label="Pool" title="Vergleichsgruppe für Z-Score bzw. Perzentil">${POOLS.map(p => `<option value="${p}"${st.pool === p ? ' selected' : ''}>Pool: ${p === 'all' ? 'alle' : 'Top ' + p}</option>`).join('')}</select>
         <select class="tr-select" data-source aria-label="Quellen">${SOURCES.map(([v, l]) => `<option value="${v}"${st.source === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+        <button type="button" class="seg-btn wc-hide${st.fa ? ' on' : ''}" data-fa aria-pressed="${!!st.fa}" title="Nur Spieler ohne Fantasy-Team">${st.fa ? '☑' : '☐'} Best Available</button>
         <button type="button" class="seg-btn mp-btn" data-csv title="Angezeigte Spieler als CSV">⬇️ CSV</button>
       </div>
       <div class="cp-panels">
@@ -216,6 +230,8 @@
     root.querySelector('[data-pool]').addEventListener('change', ev => save({ pool: ev.target.value }, true));
     root.querySelector('[data-source]').addEventListener('change', ev => save({ source: ev.target.value }));
     root.querySelector('[data-csv]').addEventListener('click', () => csv(ctx));
+    const fa = root.querySelector('[data-fa]');
+    if (fa) fa.addEventListener('click', () => save({ fa: !getState(ctx).fa }, true));
     root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => {
       const st = getState(ctx), k = b.dataset.sort;
       save(st.sort === k ? { dir: -st.dir } : { sort: k, dir: k === 'name' ? 1 : -1 }, true);
