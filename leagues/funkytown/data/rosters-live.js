@@ -3,7 +3,7 @@
 // ============================================================
 //  AUTO-GENERIERT von scripts/sync-espn-rosters.js über die
 //  "Daily 9cat Live Scores" GitHub Action. Nicht von Hand editieren.
-//  Zuletzt synchronisiert: 2026-10-11T16:45:01.946Z
+//  Zuletzt synchronisiert: 2026-10-11T17:39:54.666Z
 //
 //  Wird von js/admin.js beim Seitenstart als Basis für ROSTERS geladen
 //  (ersetzt die statischen Rosters aus data/teams-rosters.js), bevor
@@ -27,7 +27,7 @@ const ROSTERS_LIVE = {
 // Draft-Status/-Einstellungen aus ESPN (mDraftDetail + mSettings). drafted:false
 // = Liga ist noch vor dem Draft, alle Kader leer. Genutzt von der Hub-Seite
 // "Auction Draft" (Budget, Kadergröße) und als Pre-Draft-Erkennung.
-const LEAGUE_DRAFT_INFO = {"drafted":false,"inProgress":false,"type":"AUCTION","budget":200,"date":"2026-10-11T18:30:00.000Z","rosterSize":14};
+const LEAGUE_DRAFT_INFO = {"drafted":false,"inProgress":true,"type":"AUCTION","budget":200,"date":"2026-10-11T18:30:00.000Z","rosterSize":14};
 
 // W-L-T Bilanzen je Team aus derselben ESPN-Antwort (mTeam).
 // "season" ist die ESPN-Saisonkennung (2027 = Saison 2026/27). Das UI
