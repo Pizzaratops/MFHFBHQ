@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-12T15:01:41.750Z",
+  "generatedAt": "2026-10-12T22:50:04.736Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -56,7 +56,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "HOU",
           "isStarter": false,
-          "status": "Q",
+          "status": "D",
           "flag": false,
           "lastGamePoints": 4.3,
           "last3AvgPoints": 5.6,
@@ -188,7 +188,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "PIT",
           "isStarter": false,
-          "status": "D",
+          "status": "O",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -310,7 +310,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "HOU",
           "isStarter": false,
-          "status": "Q",
+          "status": "D",
           "flag": false,
           "lastGamePoints": 4.3,
           "last3AvgPoints": 5.2,
@@ -697,7 +697,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "SEA",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -911,7 +911,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 36.7,
           "last3AvgPoints": 24.7,
-          "projPoints": 18.9
+          "projPoints": 19.6
         },
         {
           "name": "Brian Robinson",
@@ -1321,7 +1321,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.6,
           "last3AvgPoints": 4.9,
-          "projPoints": 7
+          "projPoints": 6.9
         },
         {
           "name": "Marvin Harrison",
@@ -1420,7 +1420,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.2,
           "last3AvgPoints": 3.9,
-          "projPoints": 9.7
+          "projPoints": 9.5
         },
         {
           "name": "Rico Dowdle",
@@ -1564,7 +1564,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1.2,
           "last3AvgPoints": 6.7,
-          "projPoints": 1.6
+          "projPoints": 1.7
         },
         {
           "name": "Max Klare",
@@ -1862,7 +1862,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.1,
           "last3AvgPoints": 5.6,
-          "projPoints": 7.2
+          "projPoints": 7.1
         },
         {
           "name": "Brock Bowers",
@@ -2458,7 +2458,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.7,
           "last3AvgPoints": 5.1,
-          "projPoints": 11.3
+          "projPoints": 11.1
         },
         {
           "name": "David Montgomery",
@@ -2753,7 +2753,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "SEA",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 12.6,
           "last3AvgPoints": 30.2,
@@ -3018,8 +3018,8 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "SF",
           "isStarter": true,
-          "status": "Q",
-          "flag": false,
+          "status": "O",
+          "flag": true,
           "lastGamePoints": 18,
           "last3AvgPoints": 13.3,
           "projPoints": 11.1
@@ -3069,7 +3069,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 11.3
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 1
     },
     {
       "id": "felix-espn-1340233816",
@@ -3118,8 +3118,8 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "SF",
           "isStarter": true,
-          "status": "Q",
-          "flag": false,
+          "status": "O",
+          "flag": true,
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": null
@@ -3191,7 +3191,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 1
     },
     {
       "id": "felix-espn-519920608",
@@ -3499,7 +3499,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.1,
           "last3AvgPoints": 5.6,
-          "projPoints": 7.2
+          "projPoints": 7.1
         },
         {
           "name": "Ladd McConkey",
@@ -3775,7 +3775,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 22.5,
-          "projPoints": 15.6
+          "projPoints": 16.3
         },
         {
           "name": "Stefon Diggs",
