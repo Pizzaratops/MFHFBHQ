@@ -17,7 +17,55 @@
 (function () {
   const N = () => MFHFB.nba;
   const CAT_ORDER = ['PTS', '3PM', 'REB', 'AST', 'STL', 'BLK', 'FG%', 'FT%', 'TO'];
-  const defaults = { exp: 'all', nba: '', q: '', sort: null, dir: 1 };
+  const defaults = { exp: 'all', nba: '', q: '', sort: null, dir: 1, my: null };
+
+  // ---------- „Gain“ (seit 13.10.2026, Idee u/EdgiestOW) ----------
+  // Wie viele Kategorie-Siege pro Woche bringt mir ein freier Spieler,
+  // wenn ich dafür meinen entbehrlichsten Spieler droppe? Gegner = echte
+  // Kader aller anderen Teams. Pro Kategorie Siegchance (S-Kurve) gegen jedes
+  // Team, gemittelt. Basis: Kategorie-Z-Werte der Saison-Projections dieser
+  // Liga (MFHFB.nbaProjections, gleicher Modus wie die Projections-Seite).
+  const GCATS = ['pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'fgImpact', 'ftImpact', 'tov'];
+  const GLAB = { pts: 'PTS', reb: 'REB', ast: 'AST', stl: 'STL', blk: 'BLK', tpm: '3PM', fgImpact: 'FG%', ftImpact: 'FT%', tov: 'TO' };
+  const GSD = 2.5;
+  function phi(x) { const t = 1 / (1 + 0.2316419 * Math.abs(x)); const d = 0.3989423 * Math.exp(-x * x / 2); const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return x > 0 ? 1 - p : p; }
+  let gainCache = { key: null, G: null, data: null };
+  function gainModel(ctx, st) {
+    const nba = N(), data = ctx.data;
+    if (!st.my || !data.PROJECTIONS_CONSENSUS || !MFHFB.nbaProjections) return null;
+    const key = ctx.league.key + '|' + st.my + '|' + nba.getMode();
+    if (gainCache.key === key && gainCache.data === data) return gainCache.G;
+    const rows = MFHFB.nbaProjections.rows(ctx);
+    const byKey = new Map(); rows.forEach(r => { const k = nba.key(r.name); if (!byKey.has(k)) byKey.set(k, r); });
+    const ZERO = {};
+    const zOf = name => { const r = byKey.get(nba.key(name)); return (r && r.rawCats) || ZERO; };
+    const teams = nba.leagueTeams(data);
+    const sumOf = list => { const o = {}; GCATS.forEach(c => { o[c] = list.reduce((s, z) => s + (z[c] || 0), 0); }); return o; };
+    const rosterZ = {}; teams.forEach(t => { rosterZ[t.id] = nba.roster(data, t.id).map(p => ({ name: p.name, z: zOf(p.name) })); });
+    const me = rosterZ[st.my]; if (!me || !me.length) return null;
+    const opps = teams.filter(t => t.id !== st.my).map(t => sumOf(rosterZ[t.id].map(x => x.z)));
+    const mySum = sumOf(me.map(x => x.z));
+    const catP = m => { const o = {}; GCATS.forEach(c => { o[c] = opps.reduce((s, os) => s + phi((m[c] - os[c]) / GSD), 0) / opps.length; }); return o; };
+    const exp = P => GCATS.reduce((s, c) => s + P[c], 0);
+    const baseP = catP(mySum), base = exp(baseP);
+    const cache = new Map();
+    const gain = name => {
+      const k = nba.key(name); if (cache.has(k)) return cache.get(k);
+      const z = byKey.has(k) ? byKey.get(k).rawCats || ZERO : null;
+      if (!z) { cache.set(k, null); return null; }
+      let best = null;
+      me.forEach(d => {
+        const m = {}; GCATS.forEach(c => { m[c] = mySum[c] - (d.z[c] || 0) + (z[c] || 0); });
+        const P = catP(m), v = exp(P) - base;
+        if (!best || v > best.v) best = { v, drop: d.name, P };
+      });
+      best.cats = GCATS.map(c => ({ c, d: best.P[c] - baseP[c] }));
+      cache.set(k, best); return best;
+    };
+    const G = { gain, baseP, base };
+    gainCache = { key, G, data };
+    return G;
+  }
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('waiver', {}) });
 
   function pool(ctx, st) {
@@ -29,7 +77,11 @@
   function columns(ctx, board) {
     const nba = N(), proj = nba.projRanks(ctx.data);
     const has = k => board.some(p => p[k] != null);
+    const G = gainModel(ctx, getState(ctx));
+    const e = ctx.ui.esc;
     return [
+      G && { k: 'gain', l: 'Gain', desc: true, t: 'Zusätzliche erwartete Kategorie-Siege pro Woche gegen die Liga, wenn du ihn holst und dafür den entbehrlichsten Spieler droppst', v: p => { const g = G.gain(p.name); return g ? g.v : null; }, f: (v, p) => { const g = G.gain(p.name); if (!g) return '<span class="muted">—</span>'; const tip = g.cats.slice().sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).filter(x => Math.abs(x.d) >= 0.005).slice(0, 5).map(x => `${GLAB[x.c]} ${x.d >= 0 ? '+' : ''}${Math.round(x.d * 100)}`).join(' · '); return `<span class="wc-gain ${g.v >= 0.05 ? 'hi' : g.v >= 0 ? 'mid' : 'lo'}" title="${e('Siegchance-Änderung (Prozentpunkte): ' + tip)}">${g.v >= 0 ? '+' : ''}${g.v.toFixed(2)}</span>`; } },
+      G && { k: 'drop', l: 'für', t: 'Wen du dafür droppen würdest (bester Tausch)', v: p => { const g = G.gain(p.name); return g ? g.drop : null; }, f: (v) => (v ? `<span class="muted small">${e(v)}</span>` : '—') },
       { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null, f: v => (v != null ? v : '—') },
       { k: 'minutesAvg', l: 'MIN', t: 'Minuten pro Spiel im jüngsten Fenster', v: p => p.minutesAvg ?? null, f: v => (v != null ? v : '—') },
       { k: 'bestCat30', l: 'Beste Kat.', t: 'Stärkste Kategorie im jüngsten Fenster (laufende Saison > Off-Season)', v: p => { const i = CAT_ORDER.indexOf(p.bestCat30); return i < 0 ? null : i; }, f: (v, p) => (p.bestCat30 ? `<span class="up strong">${p.bestCat30}</span>` : '—') },
@@ -83,7 +135,9 @@
         <select class="tr-select" data-nba aria-label="NBA-Team"><option value="">Alle NBA-Teams (${all.length})</option>${teams.map(t => `<option value="${t}"${st.nba === t ? ' selected' : ''}>${t} (${all.filter(p => p.nbaTeam === t).length})</option>`).join('')}</select>
         <input type="search" class="search" placeholder="Spieler, Team, Position …" value="${e(st.q)}" data-q aria-label="Suchen">
         ${st.sort ? '<button type="button" class="seg-btn" data-unsort>↺ Empfehlung</button>' : ''}
+        ${data.PROJECTIONS_CONSENSUS ? `<select class="tr-select" data-my aria-label="Mein Team"><option value="">🎯 Mein Team für „Gain“ …</option>${N().leagueTeams(data).map(t => `<option value="${t.id}"${st.my === t.id ? ' selected' : ''}>${e(t.name)}</option>`).join('')}</select>` : ''}
       </div>
+      ${(G => G ? `<div class="small wc-gainnote">🎯 <b>Gain</b> für <b>${e((N().leagueTeams(data).find(t => t.id === st.my) || {}).name || '')}</b>: Im Schnitt gewinnst du gegen die Liga <b>${G.base.toFixed(1).replace('.', ',')}</b> Kategorien pro Woche. Stark: ${Object.entries(G.baseP).filter(([, v]) => v >= 0.65).map(([c]) => GLAB[c]).join(', ') || '–'} · knapp: ${Object.entries(G.baseP).filter(([, v]) => v > 0.35 && v < 0.65).map(([c]) => GLAB[c]).join(', ') || '–'} · schwach: ${Object.entries(G.baseP).filter(([, v]) => v <= 0.35).map(([c]) => GLAB[c]).join(', ') || '–'}. „Gain“ = Kategorie-Siege mehr, wenn du ihn für den Spieler unter „für“ holst. Spalte antippen = sortieren.${ctx.league.format && /dynasty/i.test(ctx.league.format) ? ' <b>Dynasty:</b> Gain zählt nur diese Saison, Alter und Zukunftswert stehen in „MFHFB“/„Alter“.' : ''}</div>` : '')(gainModel(ctx, st))}
       <div class="table-wrap"><table class="table compact nba-waiver"><thead><tr><th class="num">#</th>${th('name', 'Spieler')}${th('nbaTeam', 'NBA')}${th('pos', 'Pos')}${cols.map(c => th(c.k, c.l, c.t, 'num')).join('')}</tr></thead>
         <tbody data-body>${tbody(ctx, st)}</tbody></table></div>`;
   }
@@ -97,16 +151,19 @@
     if (q) q.addEventListener('input', () => save({ q: q.value }));
     root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => {
       const st = getState(ctx), k = b.dataset.sort;
-      const desc = false;
+      const col = columns(ctx, ctx.data.BEST_AVAILABLE_BOARD || []).find(c => c.k === k);
+      const desc = !!(col && col.desc);
       save(st.sort === k ? { dir: -st.dir } : { sort: k, dir: desc ? -1 : 1 }, true);
     }));
+    const my = root.querySelector('[data-my]');
+    if (my) my.addEventListener('change', () => save({ my: my.value ? Number(my.value) : null, ...(my.value ? { sort: 'gain', dir: -1 } : {}) }, true));
     const un = root.querySelector('[data-unsort]');
     if (un) un.addEventListener('click', () => save({ sort: null, dir: 1 }, true));
   }
 
   MFHFB.pages.register({
     id: 'waiver', section: 'teams', label: 'Waiver', icon: '🆓', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?live-projections'],
+    data: ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?live-projections', '?projections-consensus'],
     title: () => 'Waiver', render, mount,
   });
 })();
