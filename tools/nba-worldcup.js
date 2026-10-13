@@ -215,6 +215,61 @@
     M.mine.forEach(p => { const x = M.pl(p.playerId); if (x) m.set(M.nba.key(x.name), p); });
     return m;
   }
+  // ---------- „Gain“: Kategorie-Siege, die ein Spieler mir bringt ----------
+  // Idee wie u/EdgiestOW (r/fantasybball, 10/2026): Jedes Team der eigenen
+  // Division = echte Picks + „typischer Spieler“ an jedem noch offenen Pick
+  // (nächster freier nach World-Cup-ADP). Pro Kategorie Siegchance gegen jeden
+  // Gegner (S-Kurve, Normal-Approx. auf Summen der Kategorie-Z-Werte).
+  // Gain = erwartete Kategorie-Siege mit diesem Spieler an meinem nächsten
+  // Pick minus mit dem typischen Spieler dort. Sichere/aussichtslose
+  // Kategorien zählen wenig, knappe viel.
+  const GCATS = ['pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'fgImpact', 'ftImpact', 'tov'];
+  const GLAB = { pts: 'PTS', reb: 'REB', ast: 'AST', stl: 'STL', blk: 'BLK', tpm: '3PM', fgImpact: 'FG%', ftImpact: 'FT%', tov: 'TO' };
+  const GSD = 2.5;
+  function gainModel(M) {
+    if (M._gain !== undefined) return M._gain;
+    M._gain = null;
+    if (!M.myTeam || M.current == null) return null;
+    const nba = M.nba, ZERO = {};
+    const zOf = name => { const r = M.byKey.get(nba.key(name)); return (r && r.rawCats) || ZERO; };
+    const teams = M.slots.map(s => M.slotTeam[s]);
+    const sum = {}; teams.forEach(t => { sum[t] = {}; GCATS.forEach(c => { sum[t][c] = 0; }); });
+    const add = (t, z, f = 1) => { if (sum[t]) GCATS.forEach(c => { sum[t][c] += f * (z[c] || 0); }); };
+    M.mine.forEach(p => { if (p.playerId) { const x = M.pl(p.playerId); add(p.teamId, x ? zOf(x.name) : ZERO); } });
+    // typische Spieler für offene Picks: freie Spieler nach ADP (sonst Proj.-Rang)
+    const k = r => { const a = M.adp.get(nba.key(r.name)); return a ? a.mean : 400 + r._wcRank; };
+    const pool = M.available.slice().sort((a, b) => k(a) - k(b));
+    const open = M.mine.filter(p => !p.playerId);
+    let myFirst = null;
+    open.forEach((p, i) => { const r = pool[i]; const z = r ? (r.rawCats || ZERO) : ZERO; if (p.teamId === M.myTeam && !myFirst) myFirst = z; add(p.teamId, z); });
+    if (!myFirst) return null;
+    const opps = teams.filter(t => t !== M.myTeam);
+    const me = sum[M.myTeam];
+    const catP = (mine) => { const o = {}; GCATS.forEach(c => { o[c] = opps.reduce((s, t) => s + phi((mine[c] - sum[t][c]) / GSD), 0) / opps.length; }); return o; };
+    const baseP = catP(me);
+    const exp = P => GCATS.reduce((s, c) => s + P[c], 0);
+    const base = exp(baseP);
+    // Matchup-Sieg (≥ 5 von 9) gemittelt über Gegner
+    const pWin = mine => opps.reduce((acc, t) => { let d = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]; GCATS.forEach(c => { const p = phi((mine[c] - sum[t][c]) / GSD); d = d.map((v, j) => v * (1 - p) + (j ? d[j - 1] * p : 0)); }); return acc + d.slice(5).reduce((a, b) => a + b, 0); }, 0) / opps.length;
+    const cache = new Map();
+    const gain = r => {
+      if (cache.has(r)) return cache.get(r);
+      const z = r.rawCats || ZERO, mine = {};
+      GCATS.forEach(c => { mine[c] = me[c] - (myFirst[c] || 0) + (z[c] || 0); });
+      const P = catP(mine);
+      const g = { v: exp(P) - base, cats: GCATS.map(c => ({ c, d: P[c] - baseP[c] })) };
+      cache.set(r, g); return g;
+    };
+    M._gain = { gain, baseP, base, win: pWin(me) };
+    return M._gain;
+  }
+  function gainCell(G, r, e) {
+    if (!G || !r) return '<span class="muted">—</span>';
+    const g = G.gain(r);
+    const tip = g.cats.slice().sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).filter(x => Math.abs(x.d) >= 0.005).slice(0, 5).map(x => `${GLAB[x.c]} ${x.d >= 0 ? '+' : ''}${Math.round(x.d * 100)}`).join(' · ');
+    return `<span class="wc-gain ${g.v >= 0.05 ? 'hi' : g.v >= 0 ? 'mid' : 'lo'}" title="${e(tip ? 'Siegchance-Änderung (Prozentpunkte): ' + tip : 'Das ist der typische Spieler an deinem nächsten Pick (Vergleichsbasis)')}">${g.v >= 0 ? '+' : ''}${g.v.toFixed(2)}</span>`;
+  }
+
   const isOpen = (M, k, def) => (M.store.open && k in M.store.open ? M.store.open[k] : def);
 
   // ---------- Haupttabelle: World-Cup-ADP + Best Available in einem ----------
@@ -237,6 +292,7 @@
       adp: o => (o.a ? o.a.mean : null), min: o => (o.a ? o.a.min : null), n: o => (o.a ? o.a.n : null),
       proj: o => (o.r ? o.r._wcRank : null), delta: o => (o.r && o.ar ? o.ar - o.r._wcRank : null),
       score: o => (o.r ? o.r.z : null), po: poSum,
+      gain: o => { const G = gainModel(M); return o.t || !o.r || !G ? null : G.gain(o.r).v; },
       c1: o => (o.t ? null : M.chance(o.k, M.myNext)), c2: o => (o.t ? null : M.chance(o.k, M.myAfter)),
     };
     const f = KEYS[st.sort];
@@ -275,7 +331,8 @@
   function tableBody(ctx, M) {
     const e = ctx.ui.esc, nba = M.nba;
     const list = tableRows(M);
-    if (!list.length) return `<tr><td colspan="12">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
+    const G = gainModel(M);
+    if (!list.length) return `<tr><td colspan="13">${ctx.ui.empty('Keine Treffer', 'Filter oder Suche anpassen.', '🔎')}</td></tr>`;
     const badge = c => (c == null ? '<span class="muted">—</span>' : `<span class="wc-ch ${c >= 0.7 ? 'hi' : c >= 0.35 ? 'mid' : 'lo'}">${Math.round(c * 100)}%</span>`);
     return list.slice(0, 250).map((o, i) => {
       const { a, r, t } = o;
@@ -285,6 +342,7 @@
       return `<tr${t ? ' class="wc-takenrow"' : ''}>
         <td class="num rank">${i + 1}</td>
         <td><div class="strong">${e(o.name)}${r ? nba.unicornBadge(r) : ''}</div><div class="au-pmeta">${e((r && r.pos) || '')}${(r && r.team) || o.team ? ' · ' + e((r && r.team) || o.team) : ''}</div></td>
+        ${G ? `<td class="num">${t ? '' : gainCell(G, r, e)}</td>` : ''}
         <td class="num" title="${a ? `${a.n}× gedraftet` : 'Noch in keiner Division gedraftet'}">${a ? a.mean.toFixed(1) : '—'}</td>
         <td class="num hide-sm muted">${a ? `${a.min}–${a.max}` : ''}</td>
         <td class="num hide-sm muted">${a ? a.n : ''}</td>
@@ -314,6 +372,7 @@
       </div>
       <div class="table-wrap au-bascroll wc-tscroll"><table class="table compact wc-table"><thead><tr>
         <th class="num">#</th><th>Spieler</th>
+        ${gainModel(M) ? sth('gain', 'Gain', 'Zusätzliche erwartete Kategorie-Siege gegen deine Division, wenn du ihn an deinem nächsten Pick nimmst (statt des typischen Spielers dort). Tooltip = Kategorien') : ''}
         ${sth('adp', 'ADP', 'World-Cup-ADP: Ø Pick-Nummer über alle geladenen Divisionen')}
         ${sth('min', 'Min–Max', '', 'hide-sm')}${sth('n', '×', 'So oft gedraftet', 'hide-sm')}
         ${sth('proj', 'Proj.', 'Rang in unseren Projections (TTHQ-Consensus)')}
@@ -324,6 +383,7 @@
         ${sth('c2', M.myAfter != null ? `P${M.myAfter}` : 'Danach', '… und beim übernächsten', 'hide-sm')}
         <th>${e(M.myDiv)}</th>
       </tr></thead><tbody data-ba>${tableBody(ctx, M)}</tbody></table></div>
+      ${(G => G ? `<div class="small wc-gainnote">🎯 <b>Gain</b>: Mit deinem Kader + typischen Spielern an deinen offenen Picks gewinnst du im Schnitt <b>${G.base.toFixed(1).replace('.', ',')}</b> Kategorien, Matchups zu <b>${Math.round(G.win * 100)} %</b>. Stark: ${Object.entries(G.baseP).filter(([, v]) => v >= 0.65).map(([c]) => GLAB[c]).join(', ') || '–'} · knapp: ${Object.entries(G.baseP).filter(([, v]) => v > 0.35 && v < 0.65).map(([c]) => GLAB[c]).join(', ') || '–'} · schwach: ${Object.entries(G.baseP).filter(([, v]) => v <= 0.35).map(([c]) => GLAB[c]).join(', ') || '–'}. Spalte „Gain“ antippen = sortieren.</div>` : (M.myTeam ? '' : '<div class="small wc-gainnote">🎯 Slot unter „Mein Team“ wählen, dann erscheint die Spalte „Gain“ (Kategorie-Siege für deinen Kader).</div>'))(gainModel(M))}
       <div class="muted small au-foot">Nach ADP: gedraftete Spieler nach World-Cup-ADP, danach noch nie gedraftete nach unseren Projections. Chance = Schätzung aus der ADP (ab 3 Drafts), bedingt darauf, dass er jetzt noch frei ist.</div>
     </details>`;
   }
@@ -378,7 +438,7 @@
     root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => { save({ [b.dataset.set]: b.dataset.val, ...(b.dataset.set === 'sort' ? { dir: 'asc' } : {}) }); ctx.refresh(); }));
     const cv = root.querySelector('[data-csv]');
     if (cv) cv.addEventListener('click', () => csvExport(ctx, M));
-    const DESC = { n: 1, delta: 1, score: 1, po: 1, c1: 1, c2: 1 };
+    const DESC = { n: 1, delta: 1, score: 1, po: 1, c1: 1, c2: 1, gain: 1 };
     root.querySelectorAll('[data-sortk]').forEach(th => th.addEventListener('click', () => {
       const k = th.dataset.sortk, cur = ctx.store.getJSON('wc', {});
       const dir = cur.sort === k ? (cur.dir === 'desc' ? 'asc' : 'desc') : (DESC[k] ? 'desc' : 'asc');

@@ -1083,3 +1083,9 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .au-hist { flex-basis: 100%; padding: 8px 10px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); line-height: 1.5; }
 .au-right > * { flex-shrink: 0; }
 .au-right .card-head h2 { font-size: 13px; }
+/* World Cup: Gain */
+.wc-gain { display: inline-block; padding: 2px 6px; border-radius: 6px; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 12.5px; cursor: help; }
+.wc-gain.hi { background: #2e9d6226; color: #2e9d62; }
+.wc-gain.mid { background: var(--surface2); }
+.wc-gain.lo { color: #d64545; }
+.wc-gainnote { padding: 8px 14px; line-height: 1.5; }
