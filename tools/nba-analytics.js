@@ -22,6 +22,12 @@
   const LABELS = ['PTS', '3PM', 'REB', 'AST', 'STL', 'BLK', 'FG%', 'FT%', 'TO'];
   const EMOJI = ['🏀', '3️⃣', '💪', '🤝', '🫷', '🛡️', '🎯', '🆓', '⚠️'];
   const MAX_SEL = 3;
+  // Big- vs. Guard-Build (13.10.2026): Tabellen-Reihenfolge wie das Radar —
+  // links die Big-Kategorien, STL in der Mitte, rechts die Guard-Kategorien.
+  const BIG = ['rV', 'bV', 'fgV', 'toV'], GUARD = ['pV', 'aV', '3V', 'ftV'];
+  const ORDER = BIG.concat(['sV'], GUARD).map(c => CATS.indexOf(c));
+  const build = (M, tid) => { const a = l => l.reduce((s, c) => s + M.norm[tid][c], 0) / l.length; return a(BIG) - a(GUARD); };
+  const buildTag = d => (d >= 0.25 ? `<span class="nba-build big" title="Big-Kategorien (REB, BLK, FG%, TO) im Schnitt ${fmt(d)} besser als Guard-Kategorien (PTS, AST, 3PM, FT%)">🏋️ Big ${fmt(d)}</span>` : d <= -0.25 ? `<span class="nba-build guard" title="Guard-Kategorien (PTS, AST, 3PM, FT%) im Schnitt ${fmt(-d)} besser als Big-Kategorien (REB, BLK, FG%, TO)">🏃 Guard ${fmt(-d)}</span>` : '<span class="nba-build mix" title="Big- und Guard-Kategorien etwa gleich stark">⚖️ ausgeglichen</span>');
   const defaults = { cutoff: 13, method: 'value', sel: [] };
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('analytics', {}) });
 
@@ -86,11 +92,15 @@
 
     let body;
     if (view === 'heatmap') {
-      body = `<div class="table-wrap"><table class="table compact nba-an-heat"><thead><tr><th class="nba-sticky">Team</th>${LABELS.map(l => `<th class="num">${l}</th>`).join('')}<th class="num">Ø</th></tr></thead>
+      body = `<div class="table-wrap"><table class="table compact nba-an-heat"><thead>
+        <tr class="nba-an-grp"><th class="nba-sticky"></th><th colspan="4" class="big">🏋️ Big</th><th></th><th colspan="4" class="guard">🏃 Guard</th><th colspan="2"></th></tr>
+        <tr><th class="nba-sticky">Team</th>${ORDER.map((i, j) => `<th class="num${j === 4 || j === 5 ? ' nba-an-sep' : ''}">${LABELS[i]}</th>`).join('')}<th class="num">Build</th><th class="num">Ø</th></tr></thead>
         <tbody>${ranked.map(t => `<tr data-team="${t.id}" class="clickable">
           <td class="nba-sticky"><span class="nba-tlink mp-tc" style="${nba.tcStyle(t)}"><span class="nba-tdot"></span>${e(t.name)}</span><small class="muted nba-an-owner">${e(t.owner || '')}</small></td>
-          ${CATS.map(c => `<td class="num" style="${cellStyle(M.norm[t.id][c])}">${fmt(M.norm[t.id][c])}</td>`).join('')}
-          <td class="num strong ${tone(M.avg(t.id))}">${fmt(M.avg(t.id))}</td></tr>`).join('')}</tbody></table></div>`;
+          ${ORDER.map((i, j) => { const c = CATS[i]; return `<td class="num${j === 4 || j === 5 ? ' nba-an-sep' : ''}" style="${cellStyle(M.norm[t.id][c])}">${fmt(M.norm[t.id][c])}</td>`; }).join('')}
+          <td class="num">${buildTag(build(M, t.id))}</td>
+          <td class="num strong ${tone(M.avg(t.id))}">${fmt(M.avg(t.id))}</td></tr>`).join('')}</tbody></table></div>
+        <div class="muted small">Links Big-Kategorien (REB, BLK, FG%, TO), Mitte STL, rechts Guard-Kategorien (PTS, AST, 3PM, FT%) — wie im Radar. „Build“ = Ø Big minus Ø Guard.</div>`;
     } else {
       const selTeams = sel.map(id => teams.find(t => String(t.id) === id)).filter(Boolean);
       body = `<div class="pick-row" aria-label="Teams vergleichen (bis zu ${MAX_SEL})">
@@ -99,10 +109,11 @@
         </div>
         ${selTeams.length ? `<div class="card nba-an-compare"><div class="nba-an-cmpchart">${radarFor(selTeams, M)}${MFHFB.charts.chips(selTeams.map(t => t.name))}</div>
           <div class="table-wrap"><table class="table compact"><thead><tr><th>Kat.</th>${selTeams.map((t, k) => `<th class="num"><span class="dna-chip ${MFHFB.charts.SEL[k]}"><i></i></span>${e(t.name)}</th>`).join('')}</tr></thead>
-          <tbody>${CATS.map((c, i) => { const vals = selTeams.map(t => M.norm[t.id][c]); const best = Math.max(...vals); return `<tr><td class="strong">${EMOJI[i]} ${LABELS[i]}</td>${vals.map(v => `<td class="num${v === best && selTeams.length > 1 ? ' strong up' : ''}" style="${cellStyle(v)}">${fmt(v)}</td>`).join('')}</tr>`; }).join('')}
+          <tbody>${ORDER.map(i => { const c = CATS[i]; const vals = selTeams.map(t => M.norm[t.id][c]); const best = Math.max(...vals); return `<tr><td class="strong">${EMOJI[i]} ${LABELS[i]}</td>${vals.map(v => `<td class="num${v === best && selTeams.length > 1 ? ' strong up' : ''}" style="${cellStyle(v)}">${fmt(v)}</td>`).join('')}</tr>`; }).join('')}
           <tr class="nba-an-avg"><td class="strong">Ø</td>${selTeams.map(t => `<td class="num strong ${tone(M.avg(t.id))}">${fmt(M.avg(t.id))}</td>`).join('')}</tr></tbody></table></div></div>` : ''}
         <div class="nba-an-grid">${ranked.map((t, i) => `<button type="button" class="card nba-an-card mp-tc" style="${nba.tcStyle(t)}" data-team="${t.id}">
           <div class="nba-an-head"><span><span class="nba-an-rank">${i + 1}.</span> <strong>${e(t.name)}</strong><small>${e(t.owner || '')}</small></span><span class="nba-an-avgv ${tone(M.avg(t.id))}">${fmt(M.avg(t.id))}</span></div>
+          <div class="nba-an-build">${buildTag(build(M, t.id))}</div>
           ${radarFor([t], M)}</button>`).join('')}</div>`;
     }
     return `<div class="page-head"><h1 class="page-title display">📐 Team Analytics</h1>

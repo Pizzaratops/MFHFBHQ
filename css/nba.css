@@ -1089,3 +1089,13 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .wc-gain.mid { background: var(--surface2); }
 .wc-gain.lo { color: #d64545; }
 .wc-gainnote { padding: 8px 14px; line-height: 1.5; }
+/* Team Analytics: Big- vs. Guard-Build */
+.nba-build { display: inline-block; font-size: 11px; font-weight: 800; padding: 1px 7px; border-radius: 6px; white-space: nowrap; }
+.nba-build.big { background: #4f7bd626; color: #4f7bd6; }
+.nba-build.guard { background: #e0912b26; color: #c07818; }
+.nba-build.mix { background: var(--surface2); color: var(--muted); }
+.nba-an-build { margin: 2px 0 -4px; }
+.nba-an-grp th { font-size: 10.5px; text-align: center !important; letter-spacing: .06em; padding-bottom: 0 !important; border-bottom: 0 !important; }
+.nba-an-grp th.big { color: #4f7bd6; border-bottom: 2px solid #4f7bd655 !important; }
+.nba-an-grp th.guard { color: #c07818; border-bottom: 2px solid #e0912b55 !important; }
+.nba-an-heat .nba-an-sep { border-left: 1px dashed var(--border); border-right: 1px dashed var(--border); }
