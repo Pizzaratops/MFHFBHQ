@@ -27,7 +27,25 @@ MFHFB.charts = (function () {
     return [txt.slice(0, cut + (txt[cut] === ' ' ? 0 : 1)).trim(), txt.slice(cut + 1).trim()];
   }
 
-  function radar({ axes, series, size = 300, label = 'Radar' }) {
+  // NBA-9-Cat-Radare einheitlich anordnen (Beyaz, 13.10.2026), im Uhrzeigersinn ab oben:
+  // STL oben · rechts PTS, AST, 3PM · unten rechts FT% · unten links FG% · links REB, BLK, TO.
+  // Greift automatisch, wenn die Achsen die 9 Kategorien sind (Label-Anfang zählt,
+  // „TO CTRL“ = TO, „PTS 87“ = PTS); andere Radare (NFL usw.) bleiben unverändert.
+  const NBA_ORDER = ['STL', 'PTS', 'AST', '3PM', 'FT%', 'FG%', 'REB', 'BLK', 'TO'];
+  function nbaOrder(axes, series) {
+    const keyOf = l => { const t = String(l || '').toUpperCase().trim().split(/\s+/)[0]; return t === 'TOV' ? 'TO' : t; };
+    const ks = axes.map(a => keyOf(a.label));
+    if (ks.filter(k => NBA_ORDER.includes(k)).length < 8 || new Set(ks).size !== ks.length) return { axes, series };
+    const rank = k => { const i = NBA_ORDER.indexOf(k); return i < 0 ? 99 : i; };
+    const perm = ks.map((k, i) => i).sort((x, y) => rank(ks[x]) - rank(ks[y]) || x - y);
+    const re = arr => (Array.isArray(arr) ? perm.map(i => arr[i]) : arr);
+    return { axes: perm.map(i => axes[i]), series: series.map(sr => ({ ...sr, vals: re(sr.vals), tips: re(sr.tips) })) };
+  }
+
+  function radar(opts) {
+    const o = nbaOrder(opts.axes, opts.series);
+    const { size = 300, label = 'Radar' } = opts;
+    const axes = o.axes, series = o.series;
     const e = MFHFB.ui.esc;
     const n = axes.length, cx = size / 2, cy = size / 2, R = size * 0.375;
     const ang = i => -Math.PI / 2 + (i * 2 * Math.PI) / n;
