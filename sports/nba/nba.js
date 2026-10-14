@@ -97,23 +97,35 @@ MFHFB.nba = (function () {
   //  positiv = wenige Ballverluste). Kombinationen aus dem Artikel:
   //  Passer-Unicorns AST+TO, AST+FG%, AST+BLK · Two-Way FG%+STL, STL+TO, BLK+TO.
   //  Nur Spieler mit ≥ 20 Minuten (sonst sind Bankspieler „gratis“ TO-positiv).
+  // Rotoballer „Unicorns“ (Dan Palyo, 10/2026): Spieler, die in zwei normalerweise
+  // gegenläufigen Kategorien klar positiv sind (z > 0,5, ab 20 Min.).
+  // Part 1 (09.10.): Spielmacher & Verteidiger · Part 2 (14.10.): effiziente Scorer & vielseitige Bigs.
   const UNICORN_COMBOS = [
-    ['ast', 'tov', 'AST+TO'], ['ast', 'fgImpact', 'AST+FG%'], ['ast', 'blk', 'AST+BLK'],
-    ['fgImpact', 'stl', 'FG%+STL'], ['stl', 'tov', 'STL+TO'], ['blk', 'tov', 'BLK+TO'],
+    ['ast', 'tov', 'AST+TO', 'Spielmacher'], ['ast', 'fgImpact', 'AST+FG%', 'Spielmacher'], ['ast', 'blk', 'AST+BLK', 'Spielmacher'],
+    ['fgImpact', 'stl', 'FG%+STL', 'Verteidiger'], ['stl', 'tov', 'STL+TO', 'Verteidiger'], ['blk', 'tov', 'BLK+TO', 'Verteidiger'],
+    ['pts', 'tov', 'PTS+TO', 'Effizienter Scorer'], ['fgImpact', 'ftImpact', 'FG%+FT%', 'Effizienter Scorer'],
+    ['reb', 'ftImpact', 'REB+FT%', 'Vielseitiger Big'], ['blk', 'ftImpact', 'BLK+FT%', 'Vielseitiger Big'], ['reb', 'tov', 'REB+TO', 'Vielseitiger Big'],
   ];
-  // Rotoballers Schlussliste (League-Winner außerhalb der 1. Runde, Part 1)
-  const UNICORN_PICKS = ['Scottie Barnes', 'Jamal Murray', 'OG Anunoby', 'Ausar Thompson', 'Jaden McDaniels', 'Andrew Wiggins', 'Cason Wallace'];
+  // Rotoballers Schlusslisten (League-Winner außerhalb der 1. Runde)
+  const UNICORN_PICKS = {
+    'Scottie Barnes': 1, 'Jamal Murray': 1, 'OG Anunoby': 1, 'Ausar Thompson': 1, 'Jaden McDaniels': 1, 'Andrew Wiggins': 1, 'Cason Wallace': 1,
+    'Trey Murphy III': 2, 'Lauri Markkanen': 2, 'Donovan Clingan': 2, 'Franz Wagner': 2, 'Desmond Bane': 2, 'Michael Porter Jr.': 2, 'Zach Edey': 2, "Kel'el Ware": 2,
+  };
+  let PICK_KEYS = null;
   function unicorn(row) {
     const z = (row && row.rawCats) || {};
-    if (!row || (row.min || 0) < 20) return { combos: [], pick: false };
-    const combos = UNICORN_COMBOS.filter(([a, b]) => (z[a] || 0) > 0.5 && (z[b] || 0) > 0.5).map(c => c[2]);
-    const pick = UNICORN_PICKS.some(n => key(n) === key(row.name));
-    return { combos, pick };
+    if (!row) return { combos: [], pick: false, types: [] };
+    if (!PICK_KEYS) PICK_KEYS = new Map(Object.entries(UNICORN_PICKS).map(([n, p]) => [key(n), p]));
+    const part = PICK_KEYS.get(key(row.name)) || 0;
+    if ((row.min || 0) < 20) return { combos: [], pick: !!part, part, types: [] };
+    const hit = UNICORN_COMBOS.filter(([a, b]) => (z[a] || 0) > 0.5 && (z[b] || 0) > 0.5);
+    return { combos: hit.map(c => c[2]), types: [...new Set(hit.map(c => c[3]))], pick: !!part, part };
   }
   function unicornBadge(row) {
     const u = unicorn(row);
     if (!u.combos.length && !u.pick) return '';
-    const tip = (u.combos.length ? `Unicorn: klar positiv (z > 0,5) in ${u.combos.join(', ')}` : '') + (u.pick ? `${u.combos.length ? ' · ' : ''}Rotoballer-League-Winner-Liste` : '');
+    const byType = u.types.map(t => `${t}: ${UNICORN_COMBOS.filter(c => c[3] === t && u.combos.includes(c[2])).map(c => c[2]).join(', ')}`).join(' · ');
+    const tip = (u.combos.length ? `Unicorn (z > 0,5) — ${byType}` : '') + (u.pick ? `${u.combos.length ? ' · ' : ''}Rotoballer-Pick (Part ${u.part})` : '');
     return ` <span class="nba-uni${u.pick ? ' pick' : ''}" title="${tip}">🦄${u.combos.length > 1 ? u.combos.length : ''}${u.pick ? '<sup>RB</sup>' : ''}</span>`;
   }
   function record(data, t) {
