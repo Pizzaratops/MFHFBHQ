@@ -24,7 +24,7 @@
 
 const COLLEGE_SCOUTING = {
   "meta": {
-    "lastSync": "2026-10-13T16:52:14.395Z",
+    "lastSync": "2026-10-14T13:12:50.967Z",
     "currentSeason": 2026,
     "years": [
       2013,
