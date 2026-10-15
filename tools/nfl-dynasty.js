@@ -306,10 +306,10 @@
   }
 
   const A = { sport: ['nfl'], format: ['Dynasty'] };
-  MFHFB.pages.register({ id: 'dynastyboard', section: 'dynasty', label: 'Dynasty Board', icon: '🏆', applies: A, data: ['teams', 'rosters-live', 'dynasty-board'], render: boardPage, mount: boardMount });
-  MFHFB.pages.register({ id: 'dynrolling', section: 'dynasty', label: 'Dynasty-Verlauf', icon: '📈', applies: A, data: ['teams', 'rosters-live', 'dynasty-rolling'], render: rollingPage, mount: rollingMount });
+  MFHFB.pages.register({ id: 'dynastyboard', section: 'dynasty', label: 'Dynasty Board', icon: '🏆', applies: A, data: ['teams', 'rosters-live', 'sport:dynasty-board'], render: boardPage, mount: boardMount });
+  MFHFB.pages.register({ id: 'dynrolling', section: 'dynasty', label: 'Dynasty-Verlauf', icon: '📈', applies: A, data: ['teams', 'rosters-live', 'sport:dynasty-rolling'], render: rollingPage, mount: rollingMount });
   MFHFB.pages.register({
-    id: 'teamaverages', section: 'dynasty', label: 'Team-Schnitt', icon: '📐', applies: A, data: ['teams', 'rosters-live', 'dynasty-board', 'trade-values'],
+    id: 'teamaverages', section: 'dynasty', label: 'Team-Schnitt', icon: '📐', applies: A, data: ['teams', 'rosters-live', 'sport:dynasty-board', 'sport:trade-values'],
     render: averagesPage,
     mount(root, ctx) { root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => { ctx.store.set('teamavg:sort', b.dataset.sort); ctx.refresh(); })); },
   });

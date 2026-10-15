@@ -21,3 +21,15 @@ Sie schreiben nach `sports/nfl/data/` und nutzen nur Node-Bordmittel.
 Umgezogen aus Bear-Witch-Project-HQ am 29.09.2026 (Pfade unverändert relativ,
 einzige Änderung: `sync-player-dna.js` bestimmt die Saison selbst statt aus
 `js/espn-sync.js`; Override weiter per `DNA_SEASON`).
+
+## Eine Quelle pro Spieler (seit 15.10.2026)
+
+Wie bei der NBA liegt alles, was zu einem **Spieler** gehört und nicht vom Liga-Scoring
+abhängt, EINMAL unter `sports/nfl/data/`: Player DNA, Opportunity, Air Yards, Player Style,
+Matchup Advantage, NFL Power, College Scouting und jetzt auch **Dynasty-Board**,
+**Dynasty-Verlauf** und **Trade-Values** (vorher identische Kopien in BWP und DOPE;
+Snapshot-Script `sports/nfl/scripts/snapshot-dynasty-rolling.js`).
+
+Bewusst **pro Liga** bleiben: `player-stats.js` und `projections.js` (Punkte im Scoring
+der jeweiligen Liga, Quelle ESPN bzw. Sleeper), Kader, Teams, Weekly Scores, Spielplan,
+Snapshots, Picks, Trades, Beiträge, Fantasy Power Score.

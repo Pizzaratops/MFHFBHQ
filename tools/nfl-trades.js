@@ -312,7 +312,7 @@
     });
   }
 
-  const DATA = ['teams', 'rosters-live', 'trade-values', 'trades', '?trades-history', 'draft', '?projections'];
+  const DATA = ['teams', 'rosters-live', 'sport:trade-values', 'trades', '?trades-history', 'draft', '?projections'];
   MFHFB.pages.register({ id: 'trade', section: 'trade', label: 'Trade Analyzer', icon: '⚖️', applies: { sport: ['nfl'], format: ['Dynasty'] }, data: DATA, render: analyzerPage, mount: analyzerMount });
   MFHFB.pages.register({
     id: 'tradehistory', section: 'trade', label: 'Trade History', icon: '📜', applies: { sport: ['nfl'] }, data: DATA,

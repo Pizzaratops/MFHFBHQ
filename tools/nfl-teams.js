@@ -324,7 +324,7 @@
     label: 'NFL Teams',
     icon: '🏈',
     applies: { sport: ['nfl'] },
-    data: ['teams', 'rosters-live', '?dynasty-board', 'sport:nfl-power-rankings', '?sport:nfl-power-score', '?sport:matchup-advantage'],
+    data: ['teams', 'rosters-live', '?sport:dynasty-board', 'sport:nfl-power-rankings', '?sport:nfl-power-score', '?sport:matchup-advantage'],
     title: ({ params }) => params[0] ? `${MFHFB.nfl.teams.name(params[0])}` : 'NFL Teams',
     render(ctx) {
       const a = ctx.params[0] && T().canon(ctx.params[0]);

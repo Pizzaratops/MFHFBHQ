@@ -90,7 +90,9 @@ async function main() {
   const leagueId = process.env.SLEEPER_LEAGUE_ID || cfg.SLEEPER_LEAGUE_ID;
   if (!leagueId) throw new Error('SLEEPER_LEAGUE_ID fehlt in js/league-config.js');
 
-  const existing = loadModuleSandbox([D('teams.js'), D('dynasty-board.js'), D('trade-values.js')]);
+  // Dynasty-Board + Trade-Values sind seit 15.10.2026 sportweit (sports/nfl/data/)
+  const NFL_DATA = path.join(ROOT, '..', '..', 'sports', 'nfl', 'data');
+  const existing = loadModuleSandbox([D('teams.js'), path.join(NFL_DATA, 'dynasty-board.js'), path.join(NFL_DATA, 'trade-values.js')]);
   const canonNames = [
     ...((existing.DYNASTY_BOARD || []).map(p => p.name)),
     ...((existing.TRADE_VALUES || []).map(p => p.name)),

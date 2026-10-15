@@ -179,7 +179,7 @@
     label: 'Teams & Roster',
     icon: '🧍',
     applies: { sport: ['nfl'] },
-    data: ['teams', 'rosters-live', '?fantasy-power-score', '?sport:matchup-advantage', '?trade-values', '?draft', '?trades'],
+    data: ['teams', 'rosters-live', '?fantasy-power-score', '?sport:matchup-advantage', '?sport:trade-values', '?draft', '?trades'],
     title: ({ data, params, ui }) => params[0] ? ui.teamIndex(data.LEAGUE_TEAMS)(params[0]).name : 'Teams',
     render(ctx) { return ctx.params[0] ? roster(ctx) : overview(ctx); },
     mount(root, ctx) {

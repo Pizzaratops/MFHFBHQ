@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..'); // = sports/nfl (seit 15.10.2026 EINMAL für alle NFL-Ligen)
 const BOARD_PATH = path.join(ROOT, 'data', 'dynasty-board.js');
 const ROLLING_PATH = path.join(ROOT, 'data', 'dynasty-rolling.js');
 
