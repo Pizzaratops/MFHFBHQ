@@ -128,6 +128,12 @@ function _maOverallHtml(D, g, week) {
     head = `<span class="ma-ov-tag ${strength === 'klar' ? 'ma-ov-strong' : ''}" style="--tc:${_maColor(fav)}">${strength === 'klar' ? 'Klarer' : 'Leichter'} Vorteil</span> <b style="color:${_maColor(fav)}">${fav}</b> <span class="ma-ov-net">Netto +${Math.abs(net)} ${Math.abs(net) === 1 ? 'Kategorie' : 'Kategorien'}</span>`;
     body = c ? `Historisch lag das Tool mit einem <b>${strength === 'klar' ? 'klaren' : 'leichten'}</b> Vorteil in ${MA_PHASE_TXT[ph]} in <b>${fmtP(c.hit)}</b> der Spiele richtig (${c.n} Spiele 2021–2025)${cal.vegas ? `, der Vegas-Favorit in ${fmtP(cal.vegas)}` : ''}.${strength === 'leicht' && c.hit < 58 ? ' Das ist kaum besser als ein Münzwurf.' : ''}` : '';
   }
+  // Laufende Saison (walk-forward, seasonTrack aus dem Sync, 15.10.2026)
+  const ST = D.seasonTrack;
+  if (fav && ST && ST[strength] && ST[strength].n >= 5) {
+    const q = o => (o.n ? Math.round(100 * o.hit / o.n) + ' %' : '–');
+    body += ` <span class="ma-ov-season">Saison ${D.season} bisher: ${strength === 'klar' ? 'klarer' : 'leichter'} Vorteil ${q(ST[strength])} (${ST[strength].hit}/${ST[strength].n}), Vegas-Favorit ${q(ST.vegas)} (${ST.vegas.hit}/${ST.vegas.n}).</span>`;
+  }
   // Abgleich mit Vegas (spread > 0 = Heimteam favorisiert)
   let vegasHtml = '';
   const VV = D.verdictVsVegas;

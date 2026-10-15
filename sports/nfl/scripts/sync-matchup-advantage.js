@@ -41,6 +41,7 @@ const fs = require('fs');
 const path = require('path');
 const { httpsGetText, parseCsv, normTeam, NFL_TEAM_META, GAMES_CSV_URL } = require('./lib/nflverse');
 const { streamPbp } = require('./lib/pbp-stream');
+const { aggregate, trackSeason } = require('./lib/units');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'data', 'matchup-advantage.js');
@@ -110,48 +111,6 @@ async function main() {
     });
     return rows;
   }
-  function aggregate(rows) {
-    const acc = {};
-    const A = abbr => (acc[abbr] = acc[abbr] || {
-      off: { passN: 0, passEpa: 0, rushN: 0, rushEpa: 0, db: 0, sacks: 0, plays: 0, expl: 0, rzDrives: new Set(), rzTd: new Set() },
-      def: { passN: 0, passEpa: 0, rushN: 0, rushEpa: 0, db: 0, sacks: 0, plays: 0, expl: 0, rzDrives: new Set(), rzTd: new Set() },
-      games: new Set(),
-    });
-    for (const p of rows) {
-      if (!p.posteam || !p.defteam || p.posteam === 'NA' || p.defteam === 'NA') continue;
-      const off = normTeam(p.posteam), def = normTeam(p.defteam);
-      A(off).games.add(p.game_id); A(def).games.add(p.game_id);
-      const sides = [A(off).off, A(def).def];
-      // Red Zone: Drive-Ebene
-      if (p.drive_inside20 === '1' && p.fixed_drive) {
-        const dk = `${p.game_id}#${p.fixed_drive}`;
-        sides.forEach(s => s.rzDrives.add(dk));
-        if (p.fixed_drive_result === 'Touchdown') sides.forEach(s => s.rzTd.add(dk));
-      }
-      if (p.two_point_attempt === '1' || p.epa === '' || p.epa === 'NA') continue;
-      if (p.play_type !== 'pass' && p.play_type !== 'run') continue;
-      const epa = Number(p.epa), yds = Number(p.yards_gained) || 0;
-      const isPass = p.pass === '1', isRush = p.rush === '1';
-      if (!isPass && !isRush) continue;
-      sides.forEach(s => {
-        s.plays++;
-        if (isPass) { s.passN++; s.passEpa += epa; }
-        else { s.rushN++; s.rushEpa += epa; }
-        if (p.qb_dropback === '1') { s.db++; if (p.sack === '1') s.sacks++; }
-        if ((isPass && p.sack !== '1' && yds >= 20) || (isRush && yds >= 10)) s.expl++;
-      });
-    }
-    const finish = s => ({
-      passEpa: mean(s.passEpa, s.passN), rushEpa: mean(s.rushEpa, s.rushN), sackRate: mean(s.sacks, s.db),
-      explosive: mean(s.expl, s.plays), rzTd: s.rzDrives.size ? s.rzTd.size / s.rzDrives.size : null,
-    });
-    const out = {};
-    Object.entries(acc).forEach(([abbr, a]) => {
-      out[abbr] = { games: a.games.size, off: finish(a.off), def: finish(a.def), rzTrips: { off: a.off.rzDrives.size, def: a.def.rzDrives.size } };
-    });
-    return out;
-  }
-
   const curRows = played.length ? await loadPbpSlim(season) : [];
   const priorRows = await loadPbpSlim(season - 1);
   const curAgg = aggregate(curRows), priorAgg = aggregate(priorRows);
@@ -322,9 +281,14 @@ async function main() {
   const currentWeek = weeks.find(w => schedule[w].some(g => g.homeScore == null)) || weeks[weeks.length - 1];
   const throughWeek = statSeason === season ? Math.max(...pbp.map(p => Number(p.week))) : 0;
 
+  // ---------- Saison-Tracking des Gesamt-Fazits (15.10.2026) ----------
+  // Walk-forward wie im Backtest: je gespielter Woche nur Plays davor (+ Vorjahr, K=4).
+  // Zeigt auf der Seite, wie das Fazit in DIESER Saison bisher trifft (neben 2021-25).
+  const seasonTrack = played.length ? trackSeason(curRows, priorAgg, Object.entries(schedule).flatMap(([w, l]) => l.map(g => ({ ...g, week: Number(w) }))), UNIT_PRIOR_K, Object.keys(NFL_TEAM_META)) : null;
+
   const data = {
     season, statSeason, throughWeek, currentWeek, fpaPriorK: FPA_PRIOR_K, unitPriorK: UNIT_PRIOR_K, priorSeason: season - 1,
-    verdictCalibration: VERDICT_CALIBRATION, verdictVsVegas: VERDICT_VS_VEGAS, syncedAt: new Date().toISOString(),
+    verdictCalibration: VERDICT_CALIBRATION, verdictVsVegas: VERDICT_VS_VEGAS, seasonTrack, syncedAt: new Date().toISOString(),
     metrics: METRICS, fpaPositions: FPA_POS, scheme: schemeLeague,
     teams: Object.fromEntries(teams.map(t => [t.abbr, t])),
     schedule,

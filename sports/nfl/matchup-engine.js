@@ -8,7 +8,7 @@
 //  bereits gespeicherten Server-Snapshots (MATCHUP_SNAPSHOTS) vergleichbar
 //  bleiben:
 //    - Wochen-Baseline = Saison-Projection / 17
-//    - Streuung je Position (POSITION_SIGMA)
+//    - Streuung je Position (POSITION_SIGMA, seit 15.10.2026 kalibriert, s. u.)
 //    - Mix-Modus: Shrinkage Richtung echter Wochenwerte, Gewicht g/(g+3)
 //    - Team = Summe der Starter-Means, Sigma = Wurzel der Varianzsumme
 //    - Win% über Normalverteilung der Punktedifferenz
@@ -28,7 +28,16 @@
 
 (function (root) {
   const SEASON_GAMES_FOR_BASELINE = 17;
-  const POSITION_SIGMA = { QB: 7, RB: 7.5, WR: 8, TE: 5.5, K: 3.5, DST: 4, 'D/ST': 4 };
+  // Streuung je Position. 15.10.2026 neu kalibriert (Backtest: nflverse-Wochen 2025 + 2026 W1–5,
+  // ~7.500 Spieler-Wochen, plus 817 Snapshot-Starter aus BWP/DOPE): die alten festen Werte
+  // (QB 7, RB 7,5, WR 8, TE 5,5, K 3,5, DST 4) waren zu klein, Win% dadurch zu sicher.
+  // RB/WR/TE streuen mit der Projektion: WR mit 8 Pkt. Erwartung ±6, mit 20 Pkt. ±10.
+  const POSITION_SIGMA = { QB: 8.5, RB: 7.5, WR: 8, TE: 6.5, K: 5.5, DST: 5.3, 'D/ST': 5.3 };
+  const SIGMA_BY_MEAN = { RB: [4.5, 0.25, 6], WR: [3.5, 0.3, 6], TE: [5, 0.15, 5.5] }; // [a, b, min]: max(min, a + b·Mean)
+  const sigmaFor = (pos, mean) => { const f = SIGMA_BY_MEAN[pos]; return f && mean != null ? Math.max(f[2], f[0] + f[1] * mean) : (POSITION_SIGMA[pos] ?? 6); };
+  // Team-Streuung: Spieler eines Teams sind positiv korreliert (Stacks, Spielverlauf) →
+  // Wurzel der Varianzsumme ×1,1 (Snapshot-Backtest: Abweichung/Sigma vorher 1,17, jetzt ≈1,0).
+  const TEAM_SIGMA_FACTOR = 1.1;
   const DEFAULT_MEAN = 8;
 
   // Slot-Typen (Sleeper-Bezeichnungen; ESPN-Ligen nutzen dieselben Keys in der Config)
@@ -81,9 +90,9 @@
     // 'mix' = Shrinkage-Blend (Standard).
     function playerWeek(name, pos, mode) {
       const pk = (pos || '').split('/')[0].toUpperCase();
-      const sigmaBase = POSITION_SIGMA[pk] ?? POSITION_SIGMA[pos] ?? 6;
       const seasonProj = projByName.has(name) ? projByName.get(name) : null;
       const projMean = seasonProj != null ? seasonProj / SEASON_GAMES_FOR_BASELINE : null;
+      const sigmaBase = sigmaFor(pk === 'D' ? 'DST' : pk, projMean != null ? projMean : DEFAULT_MEAN);
       const hist = historical(name);
       if (mode === 'hist') {
         if (hist) return { mean: hist.mean, sigma: hist.sigma ?? sigmaBase, source: 'hist' };
@@ -138,7 +147,7 @@
       if (!starters) { starters = optimalLineup(players, mode); usedOptimal = true; }
       const mean = starters.reduce((s, p) => s + p.ms.mean, 0);
       const variance = starters.reduce((s, p) => s + p.ms.sigma * p.ms.sigma, 0);
-      return { mean, sigma: Math.sqrt(variance), starters, usedOptimal };
+      return { mean, sigma: Math.sqrt(variance) * TEAM_SIGMA_FACTOR, starters, usedOptimal };
     }
 
     function matchupWinPct(teamA, teamB, mode, lineupType) {
@@ -184,7 +193,7 @@
     };
   }
 
-  const api = { create, SEASON_GAMES_FOR_BASELINE, POSITION_SIGMA, DEFAULT_SLOTS, _normalCdf: normalCdf };
+  const api = { create, SEASON_GAMES_FOR_BASELINE, POSITION_SIGMA, sigmaFor, TEAM_SIGMA_FACTOR, DEFAULT_SLOTS, _normalCdf: normalCdf };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (root) { root.MFHFB = root.MFHFB || {}; root.MFHFB.nflMatchupEngine = api; }
 })(typeof window !== 'undefined' ? window : null);
