@@ -54,12 +54,11 @@
 //          leagues/<liga>/data (Hub-Syncs). Vorher: Checkliste in
 //          sports/nba/README.md („Umstelltag“).
 // ------------------------------------------------------------
-const NBA_CUTOVER = false;
+const NBA_CUTOVER = true; // umgestellt 15.10.2026 (nach dem Funkytown-Draft)
 
 const SPORT_DATA = {
   nfl: { dataBase: 'sports/nfl/data/' },
-  // NBA: übergangsweise der data/-Ordner von TTHQ (dort laufen die Syncs;
-  // die sportweiten Dateien sind in beiden NBA-Repos identisch)
+  // NBA: seit dem Cutover (15.10.2026) aus dem Hub; vorher aus dem alten TTHQ-Repo
   nba: { dataBase: NBA_CUTOVER ? 'sports/nba/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/' },
 };
 
@@ -85,11 +84,6 @@ const LEAGUES = [
     mode: NBA_CUTOVER ? 'native' : 'legacy',
     nativePreview: !NBA_CUTOVER, // bis zum Cutover: neue Version zum Testen (Button „✨ Neue Version“)
     dataBase: NBA_CUTOVER ? 'leagues/tthq/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
-    // Sportweite NBA-Daten (Live Scores, Rankings, Preseason …) schon vor dem Cutover aus dem Hub
-    // (15.10.2026): das alte Repo aktualisiert Live Scores nur 1×/Tag um ~22 Uhr, also vor den
-    // US-Spielen → hinkte eine Nacht hinterher; der Hub läuft ab 6 Uhr halbstündlich. Alle Dateien,
-    // die das alte Repo unter data/ hat, liegen auch unter sports/nba/data/.
-    sportDataBase: 'sports/nba/data/',
     files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026', 'live-draft-espn': './leagues/tthq/data/live-draft-espn', 'nba-draft': './sports/nba/data/nba-draft-2026', 'preseason-score': './sports/nba/data/preseason-score' },
     keepers: true,
     // Live-Draft-Seite (#/tthq/livedraft): Jahr des laufenden Drafts. Nach dem
@@ -143,9 +137,6 @@ const LEAGUES = [
     // ergänzt um Funkytown-Veteranen, s. leagues/funkytown/scripts/adopt-tthq-projections.js).
     mode: 'native',
     dataBase: 'leagues/funkytown/data/',
-    // Sportweite NBA-Daten aus dem Hub (dort ist Preseason sauber getrennt;
-    // das alte TTHQ-Repo speichert Preseason-Spiele als reguläre Saison)
-    sportDataBase: 'sports/nba/data/',
     files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active', 'preseason-score': './sports/nba/data/preseason-score' },
     countdowns: [{ label: '📋 Draft Day', iso: '2026-10-11T20:30:00+02:00' }],
     // Auction Draft (#/funkytown/auction): Budget + Kaderplätze als Vorgabe;
