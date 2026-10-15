@@ -12,7 +12,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-09-05T13:40:17.068Z",
+  "generatedAt": "2026-10-15T15:55:25.412Z",
   "sourceSeason": "2025-26 (letzte abgeschlossene Saison, BBM-Export — siehe data/last-season-stats-2025-26.js)",
   "categories": [
     {
@@ -67,88 +67,99 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 410,
-        "reb": 154.8,
-        "ast": 108.5,
-        "stl": 28.31,
-        "blk": 17.44,
-        "tpm": 31.7,
-        "to": 53,
-        "fgPct": 51,
-        "ftPct": 75.5
+        "pts": 348.6,
+        "reb": 117.1,
+        "ast": 85.5,
+        "stl": 21.52,
+        "blk": 14.75,
+        "tpm": 30.6,
+        "to": 41.8,
+        "fgPct": 49.8,
+        "ftPct": 78.3
       },
       "rank": {
-        "pts": 2,
-        "reb": 2,
-        "ast": 1,
-        "stl": 2,
-        "blk": 3,
-        "tpm": 11,
-        "fgPct": 1,
-        "ftPct": 10,
-        "to": 12
+        "pts": 3,
+        "reb": 7,
+        "ast": 2,
+        "stl": 5,
+        "blk": 5,
+        "tpm": 8,
+        "fgPct": 2,
+        "ftPct": 5,
+        "to": 10
       },
-      "includedCount": 25,
-      "skippedCount": 0,
-      "skippedPlayers": []
+      "includedCount": 19,
+      "skippedCount": 8,
+      "skippedPlayers": [
+        "Cameron Boozer",
+        "Caleb Wilson",
+        "AJ Dybantsa",
+        "Darryn Peterson",
+        "Keaton Wagler",
+        "Morez Johnson Jr.",
+        "Brayden Burries",
+        "Bruce Thornton"
+      ]
     },
     {
       "id": 2,
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 364.7,
-        "reb": 128.4,
-        "ast": 85.7,
-        "stl": 23.53,
-        "blk": 14.91,
-        "tpm": 43.3,
-        "to": 46,
-        "fgPct": 47,
-        "ftPct": 79.3
+        "pts": 337.1,
+        "reb": 120.7,
+        "ast": 75.4,
+        "stl": 21.25,
+        "blk": 15.06,
+        "tpm": 40.2,
+        "to": 41.7,
+        "fgPct": 47.9,
+        "ftPct": 78.8
       },
       "rank": {
-        "pts": 6,
-        "reb": 9,
-        "ast": 6,
-        "stl": 10,
-        "blk": 6,
-        "tpm": 4,
-        "fgPct": 9,
+        "pts": 5,
+        "reb": 3,
+        "ast": 5,
+        "stl": 6,
+        "blk": 4,
+        "tpm": 3,
+        "fgPct": 7,
         "ftPct": 3,
         "to": 9
       },
-      "includedCount": 30,
-      "skippedCount": 0,
-      "skippedPlayers": []
+      "includedCount": 27,
+      "skippedCount": 1,
+      "skippedPlayers": [
+        "Allen Graves"
+      ]
     },
     {
       "id": 3,
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 393.7,
-        "reb": 140.9,
-        "ast": 87.5,
-        "stl": 24.59,
-        "blk": 13.37,
-        "tpm": 46.8,
-        "to": 42.1,
-        "fgPct": 46.8,
-        "ftPct": 78.9
+        "pts": 352.8,
+        "reb": 119.9,
+        "ast": 78.4,
+        "stl": 22.3,
+        "blk": 11.89,
+        "tpm": 43,
+        "to": 36.6,
+        "fgPct": 46.9,
+        "ftPct": 78.1
       },
       "rank": {
-        "pts": 4,
+        "pts": 2,
         "reb": 4,
-        "ast": 5,
-        "stl": 5,
-        "blk": 9,
+        "ast": 4,
+        "stl": 2,
+        "blk": 8,
         "tpm": 2,
-        "fgPct": 11,
-        "ftPct": 4,
-        "to": 6
+        "fgPct": 10,
+        "ftPct": 6,
+        "to": 4
       },
-      "includedCount": 31,
+      "includedCount": 26,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -157,62 +168,64 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 414.4,
-        "reb": 137.1,
-        "ast": 89.8,
-        "stl": 22.56,
-        "blk": 14.01,
-        "tpm": 49.5,
-        "to": 46,
-        "fgPct": 47.5,
-        "ftPct": 77.9
+        "pts": 377,
+        "reb": 115.8,
+        "ast": 83.2,
+        "stl": 19.45,
+        "blk": 11.19,
+        "tpm": 46,
+        "to": 42.2,
+        "fgPct": 46.3,
+        "ftPct": 79.6
       },
       "rank": {
         "pts": 1,
-        "reb": 5,
+        "reb": 8,
         "ast": 3,
-        "stl": 11,
-        "blk": 7,
+        "stl": 10,
+        "blk": 10,
         "tpm": 1,
-        "fgPct": 5,
-        "ftPct": 5,
-        "to": 10
+        "fgPct": 12,
+        "ftPct": 2,
+        "to": 11
       },
-      "includedCount": 31,
-      "skippedCount": 0,
-      "skippedPlayers": []
+      "includedCount": 25,
+      "skippedCount": 1,
+      "skippedPlayers": [
+        "Meleek Thomas"
+      ]
     },
     {
       "id": 5,
       "name": "Anadolu Ballers",
       "owner": "Murat Oguz",
       "values": {
-        "pts": 340.6,
-        "reb": 130.2,
-        "ast": 82.7,
-        "stl": 23.7,
-        "blk": 12.85,
-        "tpm": 35.9,
-        "to": 40.5,
+        "pts": 333.7,
+        "reb": 114.9,
+        "ast": 73.8,
+        "stl": 20.84,
+        "blk": 11.48,
+        "tpm": 37.3,
+        "to": 36.7,
         "fgPct": 47.3,
-        "ftPct": 76.2
+        "ftPct": 79.8
       },
       "rank": {
-        "pts": 9,
-        "reb": 8,
-        "ast": 7,
-        "stl": 9,
-        "blk": 10,
-        "tpm": 9,
-        "fgPct": 7,
-        "ftPct": 8,
-        "to": 3
+        "pts": 6,
+        "reb": 9,
+        "ast": 6,
+        "stl": 7,
+        "blk": 9,
+        "tpm": 4,
+        "fgPct": 9,
+        "ftPct": 1,
+        "to": 6
       },
-      "includedCount": 28,
+      "includedCount": 24,
       "skippedCount": 2,
       "skippedPlayers": [
-        "Malik Beasley",
-        "Kyrie Irving"
+        "Kyrie Irving",
+        "Yaxel Lendeborg"
       ]
     },
     {
@@ -220,31 +233,33 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 343.8,
-        "reb": 130.7,
-        "ast": 74,
-        "stl": 24.38,
-        "blk": 17.15,
-        "tpm": 42.8,
-        "to": 41.9,
-        "fgPct": 47.2,
-        "ftPct": 76.7
+        "pts": 291.6,
+        "reb": 112.4,
+        "ast": 65.4,
+        "stl": 21.63,
+        "blk": 15.2,
+        "tpm": 36.5,
+        "to": 37.6,
+        "fgPct": 46.6,
+        "ftPct": 76.2
       },
       "rank": {
-        "pts": 8,
-        "reb": 7,
+        "pts": 9,
+        "reb": 10,
         "ast": 8,
-        "stl": 6,
-        "blk": 4,
+        "stl": 4,
+        "blk": 3,
         "tpm": 5,
-        "fgPct": 8,
-        "ftPct": 7,
-        "to": 5
+        "fgPct": 11,
+        "ftPct": 10,
+        "to": 8
       },
-      "includedCount": 30,
-      "skippedCount": 1,
+      "includedCount": 25,
+      "skippedCount": 3,
       "skippedPlayers": [
-        "Thomas Sorber"
+        "Thomas Sorber",
+        "Hannes Steinbach",
+        "Trevon Brazile"
       ]
     },
     {
@@ -252,61 +267,69 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 365.2,
-        "reb": 155,
-        "ast": 89.8,
-        "stl": 26.11,
-        "blk": 18.47,
-        "tpm": 36.3,
-        "to": 45.4,
-        "fgPct": 49.4,
-        "ftPct": 76.8
+        "pts": 300.8,
+        "reb": 126.3,
+        "ast": 73.2,
+        "stl": 20.66,
+        "blk": 16.09,
+        "tpm": 28.4,
+        "to": 36.6,
+        "fgPct": 48.8,
+        "ftPct": 77.3
       },
       "rank": {
-        "pts": 5,
-        "reb": 1,
-        "ast": 4,
-        "stl": 4,
-        "blk": 1,
-        "tpm": 8,
-        "fgPct": 2,
-        "ftPct": 6,
-        "to": 8
+        "pts": 8,
+        "reb": 2,
+        "ast": 7,
+        "stl": 8,
+        "blk": 2,
+        "tpm": 9,
+        "fgPct": 4,
+        "ftPct": 8,
+        "to": 5
       },
-      "includedCount": 29,
-      "skippedCount": 0,
-      "skippedPlayers": []
+      "includedCount": 22,
+      "skippedCount": 4,
+      "skippedPlayers": [
+        "Darius Acuff Jr.",
+        "Aday Mara",
+        "Dailyn Swain",
+        "Henri Veesaar"
+      ]
     },
     {
       "id": 8,
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 320.3,
-        "reb": 153,
-        "ast": 68.9,
-        "stl": 24.12,
-        "blk": 18.14,
-        "tpm": 32.2,
-        "to": 41.7,
-        "fgPct": 48,
-        "ftPct": 71.8
+        "pts": 287.2,
+        "reb": 135.8,
+        "ast": 62.1,
+        "stl": 20.2,
+        "blk": 16.25,
+        "tpm": 27.3,
+        "to": 36.9,
+        "fgPct": 49.1,
+        "ftPct": 73.2
       },
       "rank": {
         "pts": 10,
-        "reb": 3,
-        "ast": 11,
-        "stl": 7,
-        "blk": 2,
-        "tpm": 10,
-        "fgPct": 4,
+        "reb": 1,
+        "ast": 10,
+        "stl": 9,
+        "blk": 1,
+        "tpm": 11,
+        "fgPct": 3,
         "ftPct": 12,
-        "to": 4
+        "to": 7
       },
-      "includedCount": 29,
-      "skippedCount": 1,
+      "includedCount": 22,
+      "skippedCount": 4,
       "skippedPlayers": [
-        "Fred VanVleet"
+        "Fred VanVleet",
+        "Mikel Brown Jr.",
+        "Nate Ament",
+        "Karim Lopez"
       ]
     },
     {
@@ -314,31 +337,36 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 316.5,
-        "reb": 110.6,
-        "ast": 71,
-        "stl": 24.11,
-        "blk": 9.53,
-        "tpm": 38.9,
-        "to": 36.5,
-        "fgPct": 46.6,
-        "ftPct": 79.9
+        "pts": 254,
+        "reb": 89.4,
+        "ast": 59.7,
+        "stl": 18.78,
+        "blk": 8.36,
+        "tpm": 24,
+        "to": 29.6,
+        "fgPct": 50,
+        "ftPct": 78
       },
       "rank": {
         "pts": 11,
         "reb": 11,
-        "ast": 10,
-        "stl": 8,
-        "blk": 12,
-        "tpm": 7,
-        "fgPct": 12,
-        "ftPct": 1,
-        "to": 2
+        "ast": 11,
+        "stl": 11,
+        "blk": 11,
+        "tpm": 12,
+        "fgPct": 1,
+        "ftPct": 7,
+        "to": 1
       },
-      "includedCount": 29,
-      "skippedCount": 1,
+      "includedCount": 20,
+      "skippedCount": 6,
       "skippedPlayers": [
-        "Damian Lillard"
+        "Damian Lillard",
+        "Jayden Quaintance",
+        "Ebuka Okorie",
+        "Chris Cenac Jr.",
+        "Zuby Ejiofor",
+        "Ryan Conwell"
       ]
     },
     {
@@ -346,91 +374,102 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 348.5,
-        "reb": 136.4,
-        "ast": 72.7,
-        "stl": 26.54,
-        "blk": 15.44,
-        "tpm": 39,
-        "to": 42.3,
-        "fgPct": 47.5,
-        "ftPct": 76.1
+        "pts": 304.1,
+        "reb": 119.5,
+        "ast": 63.7,
+        "stl": 22.28,
+        "blk": 13.36,
+        "tpm": 31.6,
+        "to": 36.4,
+        "fgPct": 48,
+        "ftPct": 76.8
       },
       "rank": {
         "pts": 7,
-        "reb": 6,
+        "reb": 5,
         "ast": 9,
         "stl": 3,
-        "blk": 5,
-        "tpm": 6,
+        "blk": 6,
+        "tpm": 7,
         "fgPct": 6,
         "ftPct": 9,
-        "to": 7
+        "to": 3
       },
-      "includedCount": 30,
-      "skippedCount": 0,
-      "skippedPlayers": []
+      "includedCount": 25,
+      "skippedCount": 3,
+      "skippedPlayers": [
+        "Labaron Philon Jr.",
+        "Joshua Jefferson",
+        "Tarris Reed Jr."
+      ]
     },
     {
       "id": 11,
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 394.3,
-        "reb": 126.6,
-        "ast": 98.6,
-        "stl": 29.33,
-        "blk": 13.57,
-        "tpm": 44.2,
-        "to": 51,
-        "fgPct": 47,
-        "ftPct": 75.5
+        "pts": 339.2,
+        "reb": 117.2,
+        "ast": 85.6,
+        "stl": 25.66,
+        "blk": 12.98,
+        "tpm": 34.6,
+        "to": 44.9,
+        "fgPct": 47.7,
+        "ftPct": 76.1
       },
       "rank": {
-        "pts": 3,
-        "reb": 10,
-        "ast": 2,
+        "pts": 4,
+        "reb": 6,
+        "ast": 1,
         "stl": 1,
-        "blk": 8,
-        "tpm": 3,
-        "fgPct": 10,
+        "blk": 7,
+        "tpm": 6,
+        "fgPct": 8,
         "ftPct": 11,
-        "to": 11
+        "to": 12
       },
-      "includedCount": 30,
-      "skippedCount": 0,
-      "skippedPlayers": []
+      "includedCount": 24,
+      "skippedCount": 3,
+      "skippedPlayers": [
+        "Tyrese Haliburton",
+        "Kingston Flemings",
+        "Sergio de Larrea"
+      ]
     },
     {
       "id": 12,
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 273.7,
-        "reb": 91.3,
-        "ast": 66.7,
-        "stl": 21.28,
-        "blk": 11.61,
-        "tpm": 31.1,
-        "to": 35.2,
-        "fgPct": 48.6,
-        "ftPct": 79.9
+        "pts": 251,
+        "reb": 73.1,
+        "ast": 56.4,
+        "stl": 16.38,
+        "blk": 7.71,
+        "tpm": 27.7,
+        "to": 31.5,
+        "fgPct": 48.5,
+        "ftPct": 78.5
       },
       "rank": {
         "pts": 12,
         "reb": 12,
         "ast": 12,
         "stl": 12,
-        "blk": 11,
-        "tpm": 12,
-        "fgPct": 3,
-        "ftPct": 2,
-        "to": 1
+        "blk": 12,
+        "tpm": 10,
+        "fgPct": 5,
+        "ftPct": 4,
+        "to": 2
       },
-      "includedCount": 30,
-      "skippedCount": 1,
+      "includedCount": 21,
+      "skippedCount": 4,
       "skippedPlayers": [
-        "Tyrese Haliburton"
+        "Cameron Carr",
+        "Christian Anderson",
+        "Bennett Stirtz",
+        "Ben Simmons"
       ]
     }
   ]

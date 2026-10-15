@@ -167,7 +167,7 @@ ROLLING_RANKINGS_2026_27.forEach(p => {
 // laufende-Saison-Fenster existiert. Statischer Snapshot, kein
 // Live-Scrape — siehe Kommentar in der Datei selbst.
 const LAST_SEASON_STATS = (() => {
-  const p = path.join(ROOT, 'data', 'last-season-stats-2025-26.js');
+  const p = path.join(SPORT_DATA, 'last-season-stats-2025-26.js');
   return fs.existsSync(p) ? (loadVmArray(p, 'LAST_SEASON_STATS_2025_26') || []) : [];
 })();
 

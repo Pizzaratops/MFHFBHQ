@@ -61,7 +61,7 @@ function loadVmObject(file, varName) {
   return sandbox.__X__;
 }
 
-const LIVE_PROJECTIONS = loadVmObject(path.join(ROOT, 'data', 'live-projections.js'), 'LIVE_PROJECTIONS');
+const LIVE_PROJECTIONS = loadVmObject(path.join(SPORT_DATA, 'live-projections.js'), 'LIVE_PROJECTIONS') /* sportweit seit 15.10.2026 */;
 const ROSTERS_LIVE = loadVmObject(path.join(ROOT, 'data', 'rosters-live.js'), 'ROSTERS_LIVE');
 const NAME_ALIASES = loadVmObject(path.join(SPORT_DATA, 'aliases.js'), 'NAME_ALIASES') || {};
 

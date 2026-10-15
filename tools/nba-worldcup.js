@@ -462,7 +462,7 @@
   MFHFB.pages.register({
     id: 'wcdraft', section: 'draft', label: 'World Cup Draft', icon: '🌍', applies: { sport: ['nba'] },
     when: league => !!league.worldCup,
-    data: ['?sport:aliases', 'projections-consensus'],
+    data: ['?sport:aliases', 'sport:projections-consensus'],
     title: () => 'World Cup Draft', render, mount,
   });
 })();

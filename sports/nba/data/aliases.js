@@ -196,6 +196,7 @@ const NAME_FIRST_ALIASES = {
   'd angelo russell': 'dangelo russell', // Apostroph durch Leerzeichen ersetzt statt entfernt
   'dlo':              'dangelo russell', // Spitzname
   'nic batum':        'nicolas batum',
+  'mouhamadou gueye': 'mouhamed gueye', // Funkytown-Liste vs. TTHQ (15.10.2026)
 };
 
 /**

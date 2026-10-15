@@ -1,9 +1,11 @@
 // ============================================================
-//  PROJECTIONS_CONSENSUS — Funkytown (AUTO-GENERIERT, nicht von Hand editieren)
+//  PROJECTIONS_CONSENSUS — EINE Quelle für alle NBA-Ligen (TTHQ, Funkytown, World Cup …)
 // ============================================================
-//  Erzeugt von scripts/adopt-tthq-projections.js am 2026-10-15T15:43:13.372Z
-//  Quelle: leagues/tthq/data/projections-consensus.js (555 Spieler)
-//  + 20 Spieler nur aus projections-consensus-own.js (Funkytown-Stand 08.10.2026)
+//  Seit 15.10.2026 sportweit (vorher je Liga eine Kopie). Entstanden aus
+//  TTHQ (555 Spieler) + den Funkytown-Veteranen, die TTHQ nicht projiziert.
+//  Änderungen nur hier; alle Ligen lesen diese Datei
+//  (Frontend 'sport:projections-consensus', Scripts sports/nba/data/).
+//  Neu bauen: node sports/nba/scripts/build-consensus-projections.js <bbm.json> <hashtag.json>
 // ============================================================
 
 const PROJECTIONS_CONSENSUS = {

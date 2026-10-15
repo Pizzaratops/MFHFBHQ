@@ -28,7 +28,8 @@
   const POOLS = ['100', '150', '200', '250', '300', '350', '400', 'all'];
   const SOURCES = [['twoplus', 'Mind. 2 von 3 Quellen'], ['', 'Alle Spieler'], ['three', 'Nur voller Konsens (3/3)'], ['two', 'Genau 2 von 3'], ['one', 'Nur 1 Quelle'], ['warn', 'Nur auffällige Werte']];
   const defaults = () => ({ weights: { ...DEFAULT_W }, filters: {}, pool: '200', source: 'twoplus', sort: 'z', dir: -1, q: '', pos: '' });
-  const getState = ctx => { const s = { ...defaults(), ...ctx.store.getJSON('cproj', {}) }; s.weights = { ...DEFAULT_W, ...s.weights }; return s; };
+  // Einstellungen gelten für ALLE NBA-Ligen (sportStore, 15.10.2026); alter Liga-Stand als Startwert
+  const getState = ctx => { const saved = ctx.sportStore ? ctx.sportStore.getJSON('cproj', null) : null; const s = { ...defaults(), ...(saved || ctx.store.getJSON('cproj', {})) }; s.weights = { ...DEFAULT_W, ...s.weights }; return s; };
 
   function auctionTaken(ctx) {
     const set = new Set();
@@ -218,7 +219,7 @@
     N().bindModeControl(root, ctx.refresh);
     const save = (patch, full) => {
       const st = { ...getState(ctx), ...patch };
-      ctx.store.setJSON('cproj', st);
+      (ctx.sportStore || ctx.store).setJSON('cproj', st);
       if (full) return ctx.refresh();
       const { all, rows } = filtered(ctx, st);
       root.querySelector('[data-body]').innerHTML = tbody(ctx, rows);
@@ -258,7 +259,7 @@
 
   MFHFB.pages.register({
     id: 'projections', section: 'players', label: 'Projections', icon: '🔮', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'projections-consensus'],
+    data: ['teams', '?rosters-live', '?sport:aliases', 'sport:projections-consensus'],
     title: () => 'Projections 2026/27', render, mount,
   });
 })();

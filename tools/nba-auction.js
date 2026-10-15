@@ -881,7 +881,7 @@
   MFHFB.pages.register({
     id: 'auction', section: 'draft', label: 'Auction Draft', icon: '💰', applies: { sport: ['nba'] },
     when: league => !!league.auctionDraft,
-    data: ['?teams', '?rosters-live', '?sport:aliases', '?auction-history', '?auction-plan', 'projections-consensus'],
+    data: ['?teams', '?rosters-live', '?sport:aliases', '?auction-history', '?auction-plan', 'sport:projections-consensus'],
     title: () => 'Auction Draft', render, mount,
   });
 })();

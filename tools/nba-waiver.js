@@ -163,7 +163,7 @@
 
   MFHFB.pages.register({
     id: 'waiver', section: 'teams', label: 'Waiver', icon: '🆓', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?live-projections', '?projections-consensus'],
+    data: ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?sport:live-projections', '?sport:projections-consensus'],
     title: () => 'Waiver', render, mount,
   });
 })();

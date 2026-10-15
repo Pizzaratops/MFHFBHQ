@@ -154,7 +154,7 @@
 
   MFHFB.pages.register({
     id: 'nbateams', section: 'nba', label: 'NBA-Teams', icon: '🏀', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?rankings', '?players', '?live-projections', '?sport:nba-power-rankings', '?sport:nba-power-score'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?rankings', '?players', '?sport:live-projections', '?sport:nba-power-rankings', '?sport:nba-power-score'],
     title: ctx => (ctx.params[0] ? full(N().canonTeam(ctx.params[0])) : 'NBA Power Rankings'), render, mount,
   });
 })();

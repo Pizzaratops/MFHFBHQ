@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ============================================================
-//  BUILD LIVE PROJECTIONS
+//  BUILD LIVE PROJECTIONS (sportweit, seit 15.10.2026 EINMAL für alle NBA-Ligen)
 // ============================================================
 //  Blendet Beyaz' Preseason-Baseline (data/projections-baseline.js)
 //  mit den echten Boxscore-Stats der bisherigen Saison und schreibt
@@ -31,25 +31,25 @@
 //  träge zu werden. Leicht anpassbar, falls sich das nicht bewährt.
 //
 //  Usage:
-//    node scripts/build-live-projections.js [--league=nba] [--weight=2]
+//    node scripts/build-live-projections.js [--league=nba] [--weight=2]   (im Ordner sports/nba)
+//  Ausgabe: sports/nba/data/live-projections.js (vorher je Liga unter leagues/<liga>/data/)
 // ============================================================
 
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..'); // = sports/nba
 // MFHFB HQ (29.09.2026): sportweite NBA-Dateien (für alle NBA-Ligen gleich,
 // z.B. aliases/livescores/offseason/rolling) liegen unter sports/nba/data/,
 // liga-eigene weiter unter leagues/<liga>/data/ (= ROOT/data).
-const SPORT_DATA = path.join(__dirname, '..', '..', '..', 'sports', 'nba', 'data');
-const BASELINE_PATH = path.join(ROOT, 'data', 'projections-baseline.js');
-const CONSENSUS_PATH = path.join(ROOT, 'data', 'projections-consensus.js');
-const RANKINGS_PATH = path.join(ROOT, 'data', 'rankings.js');
+const SPORT_DATA = path.join(__dirname, '..', 'data');
+const BASELINE_PATH = path.join(SPORT_DATA, 'projections-baseline.js');
+const CONSENSUS_PATH = path.join(SPORT_DATA, 'projections-consensus.js');
 // MFHFB HQ: die Tages-CSVs schreibt die sportweite Pipeline EINMAL für alle
 // NBA-Ligen nach sports/nba/scripts/data/ (vorher scripts/data/ je Repo).
-const CSV_DIR = path.join(__dirname, '..', '..', '..', 'sports', 'nba', 'scripts', 'data');
-const OUT = path.join(ROOT, 'data', 'live-projections.js');
+const CSV_DIR = path.join(__dirname, 'data');
+const OUT = path.join(SPORT_DATA, 'live-projections.js');
 
 const args = process.argv.slice(2);
 const leagueArg = (args.find(a => a.startsWith('--league=')) || '').split('=')[1] || 'nba';
@@ -143,7 +143,15 @@ const PROJECTIONS_BASELINE = (() => {
   console.log(`  Stats-Quelle: ${fromConsensus} aus Consensus, ${baselineOnly} nur aus Baseline, ${ratingsCarried} mit übernommenen z-Werten.`);
   return merged;
 })();
-const DYNASTY_PLAYERS = loadVmArray(RANKINGS_PATH, 'DYNASTY_PLAYERS') || [];
+// Namens-Kanonisierung: Schreibweisen aus ALLEN NBA-Ligen — Form [rang, name] wie
+// DYNASTY_PLAYERS. Reihenfolge: Funkytown zuerst, TTHQ-Dynasty-Rangliste ZULETZT, weil
+// die Maps unten bei gleicher normalisierter Form den letzten Eintrag behalten → TTHQ gewinnt
+// (identisch zur früheren TTHQ-Ausgabe).
+const LEAGUES_DIR = path.join(__dirname, '..', '..', '..', 'leagues');
+const DYNASTY_PLAYERS = [
+  ...(loadVmArray(path.join(LEAGUES_DIR, 'funkytown', 'data', 'players.js'), 'PLAYER_DB') || []).map(p => [null, p[0]]),
+  ...(loadVmArray(path.join(LEAGUES_DIR, 'tthq', 'data', 'rankings.js'), 'DYNASTY_PLAYERS') || []),
+];
 const dynastyByName = new Map(DYNASTY_PLAYERS.map(p => [p[1], p]));
 
 // ── Name-Normalisierung wie in den anderen Scripts (fuer CSV-Namen,
@@ -323,7 +331,9 @@ allNames.forEach(name => {
 // zu bewahren -- also dieselbe Pool-Rechnung wie ab Saisonstart schon vorher
 // anwenden (Stats = Consensus/Baseline, Wurfvolumen aus der Consensus).
 // Ligen mit echten Baseline-z (Funkytown) sind davon nicht betroffen.
-const baselineHasZ = Object.values(PROJECTIONS_BASELINE).some(p => p && p.z);
+// Sportweit (15.10.2026): die Master-Baseline mischt TTHQ (z = 0) und Funkytown-Veteranen
+// (eigene z, andere Skala) → nur wenn ALLE Spieler einen z haben, bleibt der Original-z.
+const baselineHasZ = Object.values(PROJECTIONS_BASELINE).every(p => p && p.z);
 if (filesRead > 0 || !baselineHasZ) {
   function mean(arr) { return arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0; }
   function stdDev(arr, m) {
@@ -332,10 +342,14 @@ if (filesRead > 0 || !baselineHasZ) {
     return Math.sqrt(variance);
   }
   const liveEntries = Object.entries(live);
-  const poolFgSum = liveEntries.reduce((s, [, p]) => s + p.fgm, 0);
-  const poolFgaSum = liveEntries.reduce((s, [, p]) => s + p.fga, 0);
-  const poolFtSum = liveEntries.reduce((s, [, p]) => s + p.ftm, 0);
-  const poolFtaSum = liveEntries.reduce((s, [, p]) => s + p.fta, 0);
+  // Referenz-Pool für Mittelwert/Streuung: Consensus-Spieler (kuratiert, ohne Karteileichen)
+  // plus alle mit echten Saisonspielen. Baseline-only-Veteranen werden auf DIESER Skala bewertet,
+  // ziehen den Pool aber nicht runter (sonst Luka-z je nach Ligen-Mix verschieden).
+  const poolEntries = liveEntries.filter(([n, p]) => PROJECTIONS_CONSENSUS[n] || p.gamesPlayed > 0);
+  const poolFgSum = poolEntries.reduce((s, [, p]) => s + p.fgm, 0);
+  const poolFgaSum = poolEntries.reduce((s, [, p]) => s + p.fga, 0);
+  const poolFtSum = poolEntries.reduce((s, [, p]) => s + p.ftm, 0);
+  const poolFtaSum = poolEntries.reduce((s, [, p]) => s + p.fta, 0);
   const poolFgPct = poolFgaSum > 0 ? poolFgSum / poolFgaSum : 0;
   const poolFtPct = poolFtaSum > 0 ? poolFtSum / poolFtaSum : 0;
   liveEntries.forEach(([, p]) => {
@@ -348,7 +362,7 @@ if (filesRead > 0 || !baselineHasZ) {
   ];
   const zStats = {};
   Z_CATS.forEach(cat => {
-    const values = liveEntries.map(([, p]) => p[cat.key]);
+    const values = poolEntries.map(([, p]) => p[cat.key]);
     const m = mean(values);
     zStats[cat.key] = { mean: m, sd: stdDev(values, m) };
   });

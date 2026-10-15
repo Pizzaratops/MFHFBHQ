@@ -9,8 +9,8 @@ name: TTHQ Sync (Taco Tuesday)
 #
 #   1. sync-espn-rosters.js          -> rosters-live.js (+ Trade-Erkennung -> trade-history.js)
 #   2. sync-espn-picks.js            -> picks-live.js (nur anstehender Draft, nicht fatal)
-#   3. build-live-projections.js     -> live-projections.js (Baseline/Consensus + Saison-CSVs)
-#   4. build-team-analytics.js       -> team-analytics.js (braucht 1 + 3)
+#   3. build-team-analytics.js       -> team-analytics.js (braucht 1 + sportweite live-projections.js)
+#   (Live Projections + Projections-Dateien sind seit 15.10.2026 sportweit, s. nba-sync.yml)
 #   5. build-best-available-board.js -> best-available-board.js
 #   6. build-dynasty-live.js         -> dynasty-live.js (nur Anzeige)
 #
@@ -62,11 +62,6 @@ jobs:
         continue-on-error: true
         run: node scripts/sync-espn-picks.js
 
-      - name: Live Projections
-        id: liveproj
-        continue-on-error: true
-        run: node scripts/build-live-projections.js --league=nba
-
       - name: Team Analytics
         id: analytics
         continue-on-error: true
@@ -103,7 +98,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.rosters.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure' || steps.dynlive.outcome == 'failure'
+        if: steps.rosters.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure' || steps.dynlive.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1

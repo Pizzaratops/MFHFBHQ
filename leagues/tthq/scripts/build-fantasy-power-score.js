@@ -74,7 +74,7 @@ function loadConst(file, constName) {
 
 const TEAMS = loadConst('data/teams-rosters.js', 'TEAMS');
 const ROSTERS_LIVE = loadConst('data/rosters-live.js', 'ROSTERS_LIVE');
-const LAST_SEASON_STATS_2025_26 = loadConst('data/last-season-stats-2025-26.js', 'LAST_SEASON_STATS_2025_26');
+const LAST_SEASON_STATS_2025_26 = loadConst('../../sports/nba/data/last-season-stats-2025-26.js', 'LAST_SEASON_STATS_2025_26');
 
 // ------------------------------------------------------------
 // Name-Matching: ROSTERS_LIVE (ESPN-Schreibweise) gegen

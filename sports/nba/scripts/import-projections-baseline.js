@@ -25,13 +25,12 @@ const path = require('path');
 const vm = require('vm');
 const XLSX = require('xlsx');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..'); // = sports/nba
 // MFHFB HQ (29.09.2026): sportweite NBA-Dateien (für alle NBA-Ligen gleich,
 // z.B. aliases/livescores/offseason/rolling) liegen unter sports/nba/data/,
 // liga-eigene weiter unter leagues/<liga>/data/ (= ROOT/data).
-const SPORT_DATA = path.join(__dirname, '..', '..', '..', 'sports', 'nba', 'data');
-const PLAYERS_PATH = path.join(ROOT, 'data', 'players.js');
-const OUT = path.join(ROOT, 'data', 'projections-baseline.js');
+const SPORT_DATA = path.join(__dirname, '..', 'data');
+const OUT = path.join(SPORT_DATA, 'projections-baseline.js'); // sportweit (15.10.2026)
 
 const xlsxPath = process.argv[2];
 const sheetArg = process.argv[3];
@@ -92,17 +91,25 @@ function aliasCanonical(raw) {
   return NAME_ALIASES[base] || null;
 }
 
-const PLAYER_DB = loadVmArray(PLAYERS_PATH, 'PLAYER_DB') || [];
-const playerByNorm = new Map();
-PLAYER_DB.forEach(p => playerByNorm.set(normalizeName(p[0]), p));
+// Namens-Kanonisierung: Schreibweisen aus ALLEN NBA-Ligen — Form [rang, name] wie
+// DYNASTY_PLAYERS. Reihenfolge: Funkytown zuerst, TTHQ-Dynasty-Rangliste ZULETZT, weil
+// die Maps unten bei gleicher normalisierter Form den letzten Eintrag behalten → TTHQ gewinnt
+// (identisch zur früheren TTHQ-Ausgabe).
+const LEAGUES_DIR = path.join(__dirname, '..', '..', '..', 'leagues');
+const DYNASTY_PLAYERS = [
+  ...(loadVmArray(path.join(LEAGUES_DIR, 'funkytown', 'data', 'players.js'), 'PLAYER_DB') || []).map(p => [null, p[0]]),
+  ...(loadVmArray(path.join(LEAGUES_DIR, 'tthq', 'data', 'rankings.js'), 'DYNASTY_PLAYERS') || []),
+];
+const dynastyByNorm = new Map();
+DYNASTY_PLAYERS.forEach(p => dynastyByNorm.set(normalizeName(p[1]), p));
 function canonicalName(rawName) {
   const aliasName = aliasCanonical(rawName);
   if (aliasName) {
-    const m = playerByNorm.get(normalizeName(aliasName));
-    if (m) return m[0];
+    const m = dynastyByNorm.get(normalizeName(aliasName));
+    if (m) return m[1];
   }
-  const m = playerByNorm.get(normalizeName(rawName));
-  return m ? m[0] : stripDiacritics(rawName).trim();
+  const m = dynastyByNorm.get(normalizeName(rawName));
+  return m ? m[1] : stripDiacritics(rawName).trim();
 }
 
 // ── xlsx laden, Header robust finden ──────────────────────────
@@ -126,8 +133,14 @@ const header = rows[headerRowIdx].map(h => (h || '').toString().trim());
 const col = name => header.findIndex(h => h.toLowerCase() === name.toLowerCase());
 const idx = {
   player: col('Player') !== -1 ? col('Player') : col('Name'),
-  min: col('MIN'), pts: col('PTS'), reb: col('REB'), ast: col('AST'),
-  stl: col('STL'), blk: col('BLK'), tpm: col('3PM'), tov: col('TOV'),
+  // MPG/TREB/TO sind Alternativ-Header aus Beyaz' neuerem Export-Template
+  // (2026/27-Datei) -- gleiche Bedeutung wie MIN/REB/TOV, nur anders benannt.
+  min: col('MIN') !== -1 ? col('MIN') : col('MPG'),
+  pts: col('PTS'),
+  reb: col('REB') !== -1 ? col('REB') : col('TREB'),
+  ast: col('AST'),
+  stl: col('STL'), blk: col('BLK'), tpm: col('3PM'),
+  tov: col('TOV') !== -1 ? col('TOV') : col('TO'),
   fgmfga: header.findIndex(h => /^FGM.?FGA$/i.test(h)),
   ftmfta: header.findIndex(h => /^FTM.?FTA$/i.test(h)),
   fgm: col('FGM'), fga: col('FGA'), ftm: col('FTM'), fta: col('FTA'),

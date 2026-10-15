@@ -242,10 +242,19 @@
       getJSON(k, fallback) { try { const v = store.get(l.key + ':' + k); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } },
       setJSON(k, v) { store.set(l.key + ':' + k, JSON.stringify(v)); },
     };
+    // Sport-bezogener Speicher (mfhfb:sport-<sport>:<key>, seit 15.10.2026): Einstellungen,
+    // die für alle Ligen eines Sports gleich sein sollen (z. B. Projection-Gewichte).
+    const sp = 'sport-' + l.sport + ':';
+    const sportStore = {
+      get: k => store.get(sp + k),
+      set: (k, v) => store.set(sp + k, v),
+      getJSON(k, fallback) { try { const v = store.get(sp + k); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } },
+      setJSON(k, v) { store.set(sp + k, JSON.stringify(v)); },
+    };
     let firstPaint = true;
     MFHFB.data.load(l, typeof page.data === 'function' ? page.data(l) : page.data)
       .then(data => {
-        const ctx = { league: l, data, params, href, ui: MFHFB.ui, store: leagueStore };
+        const ctx = { league: l, data, params, href, ui: MFHFB.ui, store: leagueStore, sportStore };
         // Neu zeichnen ohne Routenwechsel (z.B. nach Klick auf einen
         // Modus-Umschalter). Daten sind gecacht, daher sofort.
         ctx.refresh = () => {

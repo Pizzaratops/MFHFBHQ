@@ -2,8 +2,20 @@
 
 Umgezogen aus Taco-Tuesday-HQ (TTHQ, ESPN 44361109, Dynasty) und
 Citizens-of-Funkytown (ESPN 15679, Redraft) am 29.09.2026.
-**Stand: vorbereitet, noch nicht aktiv** — der Hub liest die NBA-Daten weiter aus
-den alten Repos (`js/leagues.js`), bis der Cutover unten erledigt ist.
+**Stand: aktiv seit dem Cutover am 15.10.2026** (`NBA_CUTOVER = true`) — alle NBA-Ligen
+lesen nur noch aus dem Hub, die alten Repos sind Archiv.
+
+## Grundsatz: eine Quelle pro Spieler (seit 15.10.2026)
+
+Alles, was zu einem **Spieler** gehört, liegt EINMAL unter `sports/nba/data/` und gilt
+für jede NBA-Liga (TTHQ, Funkytown, World Cup, jede künftige Liga): Projections
+(Baseline, Consensus, Live), Stats (Saison, Vorjahre, Live Scores), Rankings,
+Preseason, Draft-Klassen. Unter `leagues/<liga>/data/` steht nur, was die **Liga**
+ausmacht: Teams, Kader, Picks, Matchups, Standings, Auction, Beiträge und daraus
+abgeleitete Liga-Auswertungen (Team Analytics, Best-Available-Board, Dynasty-Werte).
+Neue Liga = nur Liga-Dateien anlegen, Spielerdaten sind sofort da.
+Seiteneinstellungen, die für alle Ligen gelten sollen (z. B. Projection-Gewichte),
+speichert der Browser pro Sport (`ctx.sportStore`, `mfhfb:sport-nba:…`).
 
 ## Aufbau
 
@@ -36,12 +48,15 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | nba-power-rankings.js, nba-power-score.js | build-nba-power-rankings.js / -score.js | Matchup-Wochen aus der TTHQ-Liga (`leagues/tthq/js/espn-sync.js`) |
 | preseason-score.js (+ preseason/<Saison>/games/*.json Cache) | update-preseason-score.js (Logik: preseason-score.js) | Preseason Score, Seite „🌱 Preseason“; lädt schon vor dem Cutover aus dem Hub (`./`-Pfad in `files`) |
 | preseason-baseline-2025-26.json | build-baseline.py (jährlich) | Vorsaison-Werte je ESPN-Athlete-ID + Positions-Referenz |
+| projections-baseline.js | `scripts/import-projections-baseline.js <xlsx>` | **Master** für alle Ligen (TTHQ + relevante Funkytown-Veteranen) |
+| projections-consensus.js | `scripts/build-consensus-projections.js <bbm.json> <hashtag.json>` / `replace-consensus-source.js` | Beyaz × BBM × Hashtag, Keep-Liste `scripts/data/consensus-keep-list.txt` |
+| live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Baseline/Consensus + echte Saison-CSVs; z über den Consensus-Pool |
+| last-season-stats-2025-26.js | statisch (BBM-Export inkl. Alter) | Vorsaison, für Planner/Cat Web/Boards |
 | aliases.js, rolling-rankings.js, season-rankings.js, last-season-stats-2003-04 … 2024-25, draft-class-2025/2026, draft2026/2027, draft-capital-2026 | statisch / manuell | in beiden Repos identisch (aliases: TTHQ-Fassung = Obermenge) |
 
 ### Liga-eigen (`leagues/<liga>/data/`)
-- **beide:** teams-rosters, rosters-live, live-projections, projections-baseline/-consensus,
-  team-analytics, best-available-board, last-season-stats-2025-26 (Versionen unterscheiden sich!),
-  stats.js, draft-results-*
+- **beide:** teams-rosters, rosters-live, team-analytics, best-available-board, stats.js, draft-results-*
+  (Projections + last-season-stats-2025-26 seit 15.10.2026 sportweit, s. oben)
 - **TTHQ:** rankings, hashtag, dynasty-live, dynasty-rolling, picks, picks-live, trade-history,
   fantasy-power-score, season-2021-22 … 2025-26
 - **Funkytown:** players, season-history, season-matchups, league-dues
@@ -58,13 +73,14 @@ nba-sync.yml  (halbstündlich 06–22 Uhr Berlin, :07/:37)
  gate ──► sport (sports/nba)                                   ──► tthq      (leagues/tthq)
           daily-9cat ─► convert-to-livescores                        sync-espn-rosters (+Trades)
                      └► convert-to-boxscores                         sync-espn-picks
-          prune-raw-data (CSV 400 d, games.json 120 d)               build-live-projections ◄─ Roh-CSVs, aliases
-          update-all-aggregates                                      build-team-analytics
+          prune-raw-data (CSV 400 d, games.json 120 d)               build-team-analytics ◄─ live-projections (sport)
+          update-all-aggregates                                      
           build-offseason-rankings ─► build-postdraft-board          build-best-available-board ◄─ aggregate, offseason,
           build-rolling-archive                                      build-dynasty-live             rolling, postdraft …
+          build-live-projections (sportweit) ◄─ Roh-CSVs, aliases
           (09/21 Uhr: build-nba-power-rankings/-score)          ──► funkytown (leagues/funkytown)
                                                                      sync-espn-rosters, sync-espn-matchups,
-                                                                     build-live-projections, build-team-analytics,
+                                                                     build-team-analytics,
                                                                      build-best-available-board
 ```
 
@@ -151,7 +167,7 @@ import-dynasty-rolling-snapshot (TTHQ); `convert-bbm-last-season.py` (sportweit)
 
 ### Umstelltag (Checkliste)
 
-Erledigt: Schritte 1–3 (Workflows laufen seit 29.09. parallel).
+Erledigt: Schritte 1–5 (15.10.2026: handgepflegte Dateien abgeglichen — nur ein Trade fehlte, übernommen —, `NBA_CUTOVER = true`). Offen: 6 + 7 (Beyaz), dann 8 (Claude).
 
 4. **Handgepflegte Dateien holen:** Actions → „NBA Umstelltag — handgepflegte
    Dateien …“ (`nba-import-manual.yml`, liegt in `_workflows-nach-github-kopieren/`)
@@ -228,8 +244,7 @@ bewusst nicht übernommen, damit die Rose-Metric für alle Standard wird).
 
 ## Consensus-Projections: eine Quelle austauschen
 
-`node sports/nba/scripts/replace-consensus-source.js <a|b|c> neu.json leagues/<liga>/data/projections-consensus.js "Bezeichnung"`
+`node sports/nba/scripts/replace-consensus-source.js <a|b|c> neu.json sports/nba/data/projections-consensus.js "Bezeichnung"`
 ersetzt eine Quelle und rechnet den Mittelwert neu (Logik wie
-build-consensus-projections.js). Vor dem Cutover die erzeugten Dateien zusätzlich in
-die alten Repos (TTHQ/Funkytown `data/`) kopieren. Zuletzt: Quelle b = Josh Lloyd
+build-consensus-projections.js). Gilt sofort für alle NBA-Ligen. Zuletzt: Quelle b = Josh Lloyd
 (BBM), Stand 06.10.2026.

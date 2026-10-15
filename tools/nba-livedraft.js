@@ -279,7 +279,7 @@
   MFHFB.pages.register({
     id: 'livedraft', section: 'draft', label: 'Live Draft', icon: '🔴', applies: { sport: ['nba'] },
     when: league => !!league.liveDraft,
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn', '?nba-draft', '?live-projections'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:draft-class-2026', '?sport:draft-class-2025', 'picks', '?picks-live', 'best-available-board', 'live-draft', '?live-draft-espn', '?nba-draft', '?sport:live-projections'],
     title: () => 'Live Draft', render, mount,
   });
 })();

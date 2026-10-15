@@ -49,7 +49,7 @@
     .concat(HIST.map(k => ({ key: k, label: `${k.slice(0, 4)}/${k.slice(5)} (Saison-Ist-Werte)`, short: `${k.slice(2, 4)}/${k.slice(5)}` })));
   // 2025-26 unterscheidet sich zwischen den Ligen (Funkytown mit Alter und
   // anderen Z-Scores) → liga-eigene Datei; ältere Saisons sind identisch.
-  const seasonFile = k => (k === '2025-26' ? 'last-season-stats-2025-26' : 'sport:last-season-stats-' + k);
+  const seasonFile = k => (k === '2025-26' ? 'sport:last-season-stats-2025-26' : 'sport:last-season-stats-' + k);
   const seasonConst = k => 'LAST_SEASON_STATS_' + k.replace('-', '_');
 
   const PER36_MIN_MPG = 10;
@@ -147,7 +147,7 @@
     return env;
   }
   // Rang-relevante Einstellungen (Score-Modus, Projections-Gewichte) → Cache-Schlüssel
-  const rankSig = env => N().getMode() + '|' + (env.ctx.store.get('cproj') || '');
+  const rankSig = env => N().getMode() + '|' + ((env.ctx.sportStore || env.ctx.store).get('cproj') || '');
 
   // Metadaten für "current": pos/team/experience aus BEST_AVAILABLE_BOARD,
   // Rang wie auf der Seite Projections (Fallback: Board-Rang).
@@ -587,7 +587,7 @@
 
   MFHFB.pages.register({
     id: 'catweb', section: 'players', label: 'Cat Web', icon: '🕸️', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?live-projections', '?best-available-board', '?projections-consensus'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections', '?best-available-board', '?sport:projections-consensus'],
     title: () => 'Cat Web', render, mount,
   });
 
