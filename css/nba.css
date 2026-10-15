@@ -1125,3 +1125,4 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .nc-line b { color: var(--text); font-weight: 800; }
 .nc-line i { font-style: normal; opacity: .45; }
 .nc-shot { font-weight: 800; border-radius: 8px; padding: 6px 12px; }
+.nc-mode { display: inline-block; vertical-align: middle; font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--league-accent); color: #fff; margin-left: 6px; }

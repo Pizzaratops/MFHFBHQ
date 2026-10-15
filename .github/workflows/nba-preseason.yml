@@ -55,7 +55,7 @@ jobs:
         run: |
           git config user.name "mfhfb-hq-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/preseason-score.js data/preseason/ 2>/dev/null || true
+          git add data/preseason-score.js data/preseason-games.js data/preseason/ 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "Keine Änderungen -- nichts zu committen."
             exit 0

@@ -18,6 +18,8 @@
 // Ausgabe:
 //   data/preseason/<Saison>/games/<eventId>.json   (Cache, wird nie neu geladen)
 //   data/preseason-score.js                        (Tabelle für die Website, PRESEASON_SCORE)
+//   data/preseason-games.js                        (PRESEASON_GAMES: kompakte Spielerzeilen je Spiel
+//                                                   für die Sticky-Ansicht der Best-of-Karten in Live Scores, 15.10.2026)
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -35,6 +37,28 @@ const START = process.env.PRESEASON_START || `${startYear}-09-25`;
 const BASELINE_FILE = process.env.BASELINE_FILE || path.join(DATA_DIR, `preseason-baseline-${prevSeason}.json`);
 const GAME_DIR = path.join(DATA_DIR, 'preseason', SEASON, 'games');
 const OUT_FILE = path.join(DATA_DIR, 'preseason-score.js');
+const GAMES_FILE = path.join(DATA_DIR, 'preseason-games.js');
+
+// Kompakte Spielerzeilen je Spiel (US-Ostküsten-Datum) inkl. Team-Nenner der %-Stats,
+// gleiche Formeln wie PS.aggregate(). Der Browser summiert je Zeitraum und rechnet die Raten.
+const GAME_COLS = ['d', 'id', 'n', 't', 'p', 'mp', 'pts', 'orb', 'drb', 'ast', 'stl', 'blk', 'tov', 'fga', 'fta', 'fg3a', 'dStl', 'dBlk', 'dOrb', 'dDrb', 'dAst', 'dUsg', 'plays'];
+function writeGames(rows, baseline) {
+  const r2 = x => Math.round(x * 100) / 100;
+  const etDay = iso => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+  const seen = new Set();
+  const out = rows.filter(r => r.tm && r.tm.mp >= 200).filter(r => { const k = r.gameId + ':' + r.athleteId; if (seen.has(k)) return false; seen.add(k); return true; }).map(r => {
+    const tm = r.tm, op = r.op, f = r.mp / (tm.mp / 5);
+    return [etDay(r.date), r.athleteId, r.name, r.teamAbbr, PS.posGroup(r.pos || (baseline.players[r.athleteId] || {}).pos), r2(r.mp), r.pts, r.orb, r.drb, r.ast, r.stl, r.blk, r.tov, r.fga, r.fta, r.fg3a,
+      r2(f * (op.fga + 0.44 * op.fta - op.orb + op.tov)), r2(f * (op.fga - op.fg3a)), r2(f * (tm.orb + op.drb)), r2(f * (tm.drb + op.orb)),
+      r2(Math.max(0, f * tm.fgm - r.fgm)), r2(f * (tm.fga + 0.44 * tm.fta + tm.tov)), r2(r.fga + 0.44 * r.fta + r.tov)];
+  }).sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+  const body = { season: SEASON, cols: GAME_COLS, bias: PS.CONFIG.bias, tiers: PS.CONFIG.tiers, weights: PS.CONFIG.weights, inverted: PS.CONFIG.inverted, ref: baseline.position_reference, rows: out };
+  const txt = '// AUTO-GENERIERT von sports/nba/scripts/update-preseason-score.js (Workflow "NBA Preseason Score").\n' +
+    '// Kompakte Preseason-Spielerzeilen je Spiel für die Sticky-Best-of-Karten (tools/nba-livescores.js). Nicht von Hand editieren.\n' +
+    'const PRESEASON_GAMES = ' + JSON.stringify(body) + ';\n';
+  let old = ''; try { old = fs.readFileSync(GAMES_FILE, 'utf8'); } catch (e) { /* neu */ }
+  if (old !== txt) { fs.writeFileSync(GAMES_FILE, txt); console.log(`geschrieben: ${GAMES_FILE} – ${out.length} Spielerzeilen`); }
+}
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (MFHFB preseason-score)', Accept: 'application/json' };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -93,6 +117,7 @@ async function main() {
   const files = fs.readdirSync(GAME_DIR).filter(f => f.endsWith('.json'));
   if (!files.length) { console.log('Noch keine Preseason-Spiele – nichts zu tun.'); return; }
   const rows = files.flatMap(f => PS.parseEspnSummary(JSON.parse(fs.readFileSync(path.join(GAME_DIR, f), 'utf8'))));
+  writeGames(rows, baseline);
   const table = PS.buildPreseasonTable(rows, baseline);
   table.season = SEASON;
   // Nur schreiben, wenn sich außer dem Zeitstempel etwas geändert hat
@@ -106,4 +131,8 @@ async function main() {
     'const PRESEASON_SCORE = ' + JSON.stringify(table) + ';\n');
   console.log(`geschrieben: ${OUT_FILE} – ${table.games} Spiele, ${table.players.length} Spieler, ${table.players.filter(p => p.ranked).length} mit Rang`);
 }
-main().catch(e => { console.error(e); process.exit(1); });
+if (process.env.GAMES_ONLY) {
+  // Nur PRESEASON_GAMES aus dem Cache neu schreiben (ohne ESPN-Abruf)
+  const baseline = JSON.parse(fs.readFileSync(BASELINE_FILE, 'utf8'));
+  writeGames(fs.readdirSync(GAME_DIR).filter(f => f.endsWith('.json')).flatMap(f => PS.parseEspnSummary(JSON.parse(fs.readFileSync(path.join(GAME_DIR, f), 'utf8')))), baseline);
+} else main().catch(e => { console.error(e); process.exit(1); });

@@ -28,7 +28,7 @@
   const PERIODS = [['daily', 'Daily'], ['week', 'Weekly'], ['month', 'Monthly'], ['box', 'Box Scores']];
   const WCATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['to', 'TO'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%']];
   const STAT_COLS = [['min', 'MIN'], ['pts', 'PTS', 'pts'], ['reb', 'REB', 'reb'], ['ast', 'AST', 'ast'], ['stl', 'STL', 'stl'], ['blk', 'BLK', 'blk'], ['to', 'TO', 'to'], ['tpm', '3PM', 'tpm'], ['fgPct', 'FG%', 'fgImpact'], ['ftPct', 'FT%', 'ftImpact']];
-  const defaults = { sort: 'composite', asc: false, minGames: 1, weights: {}, heat: false, nc: false, nk: 'top10' };
+  const defaults = { sort: 'composite', asc: false, minGames: 1, weights: {}, heat: false, nc: false, nk: 'top10', ncm: '9cat' };
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('livescores', {}) });
 
   function source(data, period, comp) {
@@ -136,7 +136,7 @@
     return { suffix: 'of the Night', minG: 0 };
   }
   const RADAR_CATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO']];
-  const EXP_FILES = ['?preseason-score', '?sport:draft-class-2026', '?sport:draft-class-2025', '?sport:last-season-stats-2022-23', '?sport:last-season-stats-2023-24', '?sport:last-season-stats-2024-25'];
+  const EXP_FILES = ['?preseason-score', '?sport:preseason-games', '?sport:draft-class-2026', '?sport:draft-class-2025', '?sport:last-season-stats-2022-23', '?sport:last-season-stats-2023-24', '?sport:last-season-stats-2024-25'];
   // NBA-Rückkehrer ohne Vorsaison-Minuten, die nicht in den Statistik-Dateien 2022–25 stehen
   const NOT_ROOKIE = ['Mario Hezonja', 'Alpha Diallo', 'Lonnie Walker IV', 'Dane Goodwin', 'Jake Stephens', 'Keenan Evans', 'Jon Elmore', 'Tarik Phillip', 'Tyreke Key', 'Elfrid Payton', 'James Johnson'];
   let EXPD = null; // geladene Zusatzdaten (je Liga gleich, sportweit)
@@ -157,47 +157,105 @@
     if (p.ftPct != null && isFinite(p.ftPct) && (p.ftPct || z.ftImpact)) it.push(['FT', de0(p.ftPct) + '%']); // 0 % ohne Versuch ausblenden
     return it.map(([l, v]) => `<span class="nc-s">${l}: <b>${v}</b></span>`).join(' <i>/</i> ');
   }
+  // ---------- Sticky-Modus (nur NBA Pre-Season, Daten: PRESEASON_GAMES) ----------
+  //  Raten wie auf der Preseason-Seite (gleiche Formeln/Bias/Positions-Referenz), aber
+  //  OHNE Vorsaison und ohne Shrinkage: reine Leistung im Zeitraum. Score = gewichteter
+  //  Schnitt der z-Werte (Sticky ×1,5 · Other ×1 · Icky ×0,5), positionsrelativ.
+  const ST_AXES = ['ORB%', 'DRB%', 'BLK%', 'AST%', 'PTS/36', 'TRB/36', 'STL%', 'TOV%', 'TS%', 'FTr'];
+  const ST_LINE = ['ORB%', 'DRB%', 'BLK%', 'AST%', 'PTS/36', 'TRB/36'];
+  const ST_LEAD = [...ST_LINE, 'STL%', 'TS%'];
+  const ST_MIN = { daily: 15, week: 40, month: 60 };
+  function stickyPool(G, from, to) {
+    const c = {}; G.cols.forEach((k, i) => { c[k] = i; });
+    const by = new Map();
+    G.rows.forEach(r => {
+      if (r[c.d] < from || r[c.d] > to) return;
+      let a = by.get(r[c.id]);
+      if (!a) { a = { name: r[c.n], team: r[c.t], pos: r[c.p], games: 0 }; G.cols.slice(5).forEach(k => { a[k] = 0; }); by.set(r[c.id], a); }
+      a.games += 1; a.team = r[c.t];
+      G.cols.slice(5).forEach(k => { a[k] += r[c[k]]; });
+    });
+    const div = (x, y) => (y > 0 ? x / y : null);
+    const tierOf = {}; Object.entries(G.tiers).forEach(([tr, l]) => l.forEach(s => { tierOf[s] = tr; }));
+    return [...by.values()].map(a => {
+      const R = { 'PTS/36': div(a.pts * 36, a.mp), 'TRB/36': div((a.orb + a.drb) * 36, a.mp), 'ORB%': div(a.orb, a.dOrb), 'DRB%': div(a.drb, a.dDrb),
+        'BLK%': div(a.blk, a.dBlk), 'STL%': div(a.stl, a.dStl), 'AST%': div(a.ast, a.dAst), 'TOV%': div(a.tov, a.plays), 'FTr': div(a.fta, a.fga), 'TS%': div(a.pts, 2 * (a.fga + 0.44 * a.fta)) };
+      const ref = G.ref[a.pos] || G.ref.ALL, z = {};
+      let ws = 0, ss = 0;
+      ST_AXES.forEach(s => {
+        if (R[s] == null || !ref[s]) { z[s] = null; return; }
+        let v = (R[s] / (G.bias[s] || 1) - ref[s].mean) / (ref[s].sd || 1);
+        if (G.inverted.includes(s)) v = -v;
+        z[s] = v;
+        const w = G.weights[tierOf[s]] || 0; ws += w; ss += w * v;
+      });
+      return { ...a, R, z, score: ws ? ss / ws : 0 };
+    });
+  }
+  const fmtRate = (s, v) => (v == null ? '—' : (s.includes('/') ? v : v * 100).toFixed(1).replace('.', ','));
+  const stLine = (p, keys) => keys.map(s => `<span class="nc-s">${s}: <b>${fmtRate(s, p.R[s])}</b></span>`).join(' <i>/</i> ');
+
   function nightCard(ctx, st, entry, r) {
     const e = ctx.ui.esc;
     const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', SC = ncScope(r, st), avg = r.period !== 'daily';
+    const canSticky = r.comp === 'nba-preseason', sticky = canSticky && st.ncm === 'sticky';
     const K = { n: NIGHT_KINDS[kind].n, label: `${NIGHT_KINDS[kind].label} ${SC.suffix}` };
     const dailyDates = Object.keys(source(ctx.data, 'daily', r.comp)).sort();
     if (avg && dailyDates.length && entry.windowStart < dailyDates[0]) entry = { ...entry, windowStart: dailyDates[0] };
     const compLabel = ((COMPS.find(c => c[0] === r.comp) || [])[1] || r.comp).replace(/^\S+\s/, '');
     const sel = `<select class="tr-select" data-nk aria-label="Kategorie">${Object.entries(NIGHT_KINDS).map(([k, v]) => `<option value="${k}"${k === kind ? ' selected' : ''}>${v.label} ${SC.suffix}</option>`).join('')}</select>
+      ${canSticky ? `<div class="seg" role="group" aria-label="Bewertung"><button type="button" class="seg-btn${sticky ? '' : ' active'}" data-ncm="9cat" title="Box Score: Summe der 9-Cat-z-Werte">9-Cat</button><button type="button" class="seg-btn${sticky ? ' active' : ''}" data-ncm="sticky" title="Raten wie auf der Preseason-Seite (ORB%, DRB%, BLK%, AST% …), positionsbereinigt, ohne Vorsaison">Sticky</button></div>` : ''}
       <button type="button" class="seg-btn active nc-shot" data-ncshot>📸 Screenshot</button>`;
-    if (kind !== 'top10' && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Rookie-/Sophomore-Daten …</p></div>`;
+    if ((kind !== 'top10' || sticky) && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Daten …</p></div>`;
     const exp = kind === 'top10' ? null : expOf(EXPD);
-    const pool = (entry.players || []).filter(p => p.min > 0 && (!avg || p.games >= SC.minG)).map(p => ({ p, c: composite(p, st) })).sort((a, b) => b.c - a.c).map(x => x.p);
-    const list = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n);
     const team = p => N().canonTeam(p.team) || p.team;
-    const meta = p => (avg ? `${p.games} Sp. · ${Number(p.min).toFixed(1).replace('.', ',')} Min./Sp.` : `${p.min} Min.`);
-    let body;
-    if (!list.length) body = ctx.ui.empty('Niemand in dieser Nacht', avg ? `Kein Spieler dieser Gruppe mit mindestens ${SC.minG} Spielen.` : 'In dieser Nacht hat kein Spieler dieser Gruppe gespielt.', '🌙');
-    else {
-      const top = list[0], z = top.zScores || {};
-      const radar = MFHFB.charts.radar({
-        axes: RADAR_CATS.map(([, l]) => ({ label: l })),
-        series: [{ name: top.name, vals: RADAR_CATS.map(([k]) => Math.max(0.04, Math.min(1, (z[k] || 0) / 6 + 0.5))), tips: RADAR_CATS.map(([k, l]) => `${l}: z ${sgn1(z[k])}`) }],
-        size: 260, label: `Cat Web ${top.name}`,
+    const f1 = v => Number(v).toFixed(1).replace('.', ',');
+    let items, minNote, label = K.label;
+    if (sticky) {
+      const G = EXPD.PRESEASON_GAMES;
+      if (!G) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">Keine Sticky-Daten (preseason-games.js fehlt).</p></div>`;
+      const from = avg ? entry.windowStart : r.date, to = avg ? entry.windowEnd : r.date, minM = ST_MIN[r.period] || 15;
+      const pool = stickyPool(G, from, to).filter(p => p.mp >= minM).sort((a, b) => b.score - a.score);
+      items = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n).map(p => ({
+        name: p.name, team: team(p), meta: avg ? `${p.games} Sp. · ${f1(p.mp / p.games)} Min./Sp.` : `${Math.round(p.mp)} Min.`,
+        lead: stLine(p, ST_LEAD), line: stLine(p, ST_LINE),
+        axes: ST_AXES, vals: ST_AXES.map(s => (p.z[s] == null ? null : Math.max(0.04, Math.min(1, p.z[s] / 6 + 0.5)))), tips: ST_AXES.map(s => `${s}: ${fmtRate(s, p.R[s])} (z ${sgn1(p.z[s])})`),
+      }));
+      minNote = `Sticky-Raten, positionsbereinigt · mind. ${minM} Min.`;
+      label += ' · Sticky';
+    } else {
+      const pool = (entry.players || []).filter(p => p.min > 0 && (!avg || p.games >= SC.minG)).map(p => ({ p, c: composite(p, st) })).sort((a, b) => b.c - a.c).map(x => x.p);
+      items = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n).map(p => {
+        const z = p.zScores || {};
+        return { name: p.name, team: team(p), meta: avg ? `${p.games} Sp. · ${f1(p.min)} Min./Sp.` : `${p.min} Min.`, lead: statLine(p, avg), line: statLine(p, avg),
+          axes: RADAR_CATS.map(([, l]) => l), vals: RADAR_CATS.map(([k]) => Math.max(0.04, Math.min(1, (z[k] || 0) / 6 + 0.5))), tips: RADAR_CATS.map(([k, l]) => `${l}: z ${sgn1(z[k])}`) };
       });
+      minNote = avg ? `Ø pro Spiel · mind. ${SC.minG} Spiele` : '';
+    }
+    let body;
+    if (!items.length) body = ctx.ui.empty('Niemand gefunden', 'In diesem Zeitraum hat kein Spieler dieser Gruppe die Mindestvorgabe erreicht.', '🌙');
+    else {
+      const top = items[0];
+      const radar = MFHFB.charts.radar({ axes: top.axes.map(l => ({ label: l })), series: [{ name: top.name, vals: top.vals, tips: top.tips }], size: 260, label: `Cat Web ${top.name}` });
       body = `<div class="nc-grid">
         <div class="nc-lead">
           <div class="nc-rank">1.</div>
           <div class="nc-name">${e(top.name)}</div>
-          <div class="nc-team">${e(team(top))} · ${meta(top)}</div>
+          <div class="nc-team">${e(top.team)} · ${top.meta}</div>
           <div class="nc-radar">${radar}</div>
-          <div class="nc-line">${statLine(top, avg)}</div>
+          <div class="nc-line">${top.lead}</div>
         </div>
-        <ol class="nc-list">${list.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(team(p))} · ${meta(p)}</small></div><div class="nc-line">${statLine(p, avg)}</div></div></li>`).join('')}</ol>
+        <ol class="nc-list">${items.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(p.team)} · ${p.meta}</small></div><div class="nc-line">${p.line}</div></div></li>`).join('')}</ol>
       </div>`;
     }
+    const when = avg ? `${e(fmtShort(entry.windowStart))} – ${e(fmtShort(entry.windowEnd))}` : `${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele`;
     return `<div class="controls nc-controls">${sel}</div>
-      <section class="card nc-card" data-share="${e(K.label)} · ${e(fmtShort(r.date))}">
-        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${avg ? `${e(fmtShort(entry.windowStart))} – ${e(fmtShort(entry.windowEnd))} · Ø pro Spiel · mind. ${SC.minG} Spiele` : `${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele`}</div><h2 class="nc-title display">${e(K.label)}</h2></div>
+      <section class="card nc-card${sticky ? ' sticky' : ''}" data-share="${e(label)} · ${e(fmtShort(r.date))}">
+        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${when}${minNote ? ' · ' + minNote : ''}</div><h2 class="nc-title display">${e(K.label)}${sticky ? ' <span class="nc-mode">Sticky Stats</span>' : ''}</h2></div>
         ${body}
       </section>`;
   }
+
 
   function render(ctx) {
     const { data, ui, href } = ctx;
@@ -291,7 +349,8 @@
     if (ncBtn) ncBtn.addEventListener('click', () => { save({ nc: !getState(ctx).nc }); ctx.refresh(); });
     const nk = root.querySelector('[data-nk]');
     if (nk) nk.addEventListener('change', () => { save({ nk: nk.value }); ctx.refresh(); });
-    if (root.querySelector('[data-nchost]') && !EXPD) MFHFB.data.load(ctx.league, EXP_FILES).then(d => { EXPD = d || {}; }).catch(() => { EXPD = {}; }).then(() => { if (root.isConnected && getState(ctx).nk !== 'top10') ctx.refresh(); });
+    root.querySelectorAll('[data-ncm]').forEach(b => b.addEventListener('click', () => { save({ ncm: b.dataset.ncm }); ctx.refresh(); }));
+    if (root.querySelector('[data-nchost]') && !EXPD) MFHFB.data.load(ctx.league, EXP_FILES).then(d => { EXPD = d || {}; }).catch(() => { EXPD = {}; }).then(() => { if (root.isConnected && (getState(ctx).nk !== 'top10' || getState(ctx).ncm === 'sticky')) ctx.refresh(); });
     const shot = root.querySelector('[data-ncshot]');
     if (shot) shot.addEventListener('click', async () => {
       const card = root.querySelector('.nc-card[data-share]'); if (!card) return;
