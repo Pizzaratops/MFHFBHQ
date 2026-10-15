@@ -216,7 +216,7 @@
         <ol class="nc-list" start="2">${list.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(N().canonTeam(p.team) || p.team)} · ${p.min} Min.</small></div><div class="nc-line">${statLine(p)}</div></div></li>`).join('')}</ol>
       </div>`;
     }
-    return `<div class="controls ps-controls nc-controls">${sel}<button type="button" class="btn nc-shot" data-ncshot>📸 Screenshot</button></div>
+    return `<div class="controls ps-controls nc-controls">${sel}<button type="button" class="seg-btn active nc-shot" data-ncshot>📸 Screenshot</button></div>
       <section class="card nc-card" data-share="${e(K.label)} · ${e(fmtDay(day))}">
         <div class="nc-head"><div class="nc-kicker">🌱 NBA Preseason · ${e(fmtDay(day))} · ${games} Spiele</div><h2 class="nc-title display">${e(K.label)}</h2></div>
         ${body}
