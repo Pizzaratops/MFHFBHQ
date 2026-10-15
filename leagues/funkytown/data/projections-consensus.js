@@ -1,7 +1,7 @@
 // ============================================================
 //  PROJECTIONS_CONSENSUS — Funkytown (AUTO-GENERIERT, nicht von Hand editieren)
 // ============================================================
-//  Erzeugt von scripts/adopt-tthq-projections.js am 2026-10-15T13:39:40.968Z
+//  Erzeugt von scripts/adopt-tthq-projections.js am 2026-10-15T14:08:29.749Z
 //  Quelle: leagues/tthq/data/projections-consensus.js (555 Spieler)
 //  + 20 Spieler nur aus projections-consensus-own.js (Funkytown-Stand 08.10.2026)
 // ============================================================
