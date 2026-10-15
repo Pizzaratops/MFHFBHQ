@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-15T11:12:12.112Z",
+  "generatedAt": "2026-10-15T16:42:54.366Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -812,7 +812,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.6,
           "last3AvgPoints": 13.2,
-          "projPoints": 11.8
+          "projPoints": 11.9
         },
         {
           "name": "Tory Horton",
@@ -1067,7 +1067,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.7,
           "last3AvgPoints": 10.1,
-          "projPoints": 12.4
+          "projPoints": 12.5
         },
         {
           "name": "Rome Odunze",
@@ -1199,7 +1199,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 19.7,
-          "projPoints": 20.9
+          "projPoints": 21
         },
         {
           "name": "Tua Tagovailoa",
@@ -1906,7 +1906,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.1,
           "last3AvgPoints": 9.2,
-          "projPoints": 13.3
+          "projPoints": 13.2
         },
         {
           "name": "Tory Horton",
@@ -2160,7 +2160,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.5,
           "last3AvgPoints": 9.9,
-          "projPoints": 13.6
+          "projPoints": 13.7
         },
         {
           "name": "Tory Horton",
@@ -3421,7 +3421,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5,
           "last3AvgPoints": 8.3,
-          "projPoints": 8.7
+          "projPoints": 8.8
         },
         {
           "name": "Cam Little",
@@ -3653,7 +3653,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 32.4,
           "last3AvgPoints": 16.4,
-          "projPoints": 13.2
+          "projPoints": 13.1
         },
         {
           "name": "Rachaad White",
@@ -3753,7 +3753,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.2,
           "last3AvgPoints": 10.5,
-          "projPoints": 5.4
+          "projPoints": 5.3
         },
         {
           "name": "Germie Bernard",
