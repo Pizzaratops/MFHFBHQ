@@ -1124,3 +1124,4 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .nc-line .nc-s { white-space: nowrap; }
 .nc-line b { color: var(--text); font-weight: 800; }
 .nc-line i { font-style: normal; opacity: .45; }
+.nc-shot { font-weight: 800; }
