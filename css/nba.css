@@ -1126,3 +1126,17 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .nc-line i { font-style: normal; opacity: .45; }
 .nc-shot { font-weight: 800; border-radius: 8px; padding: 6px 12px; }
 .nc-mode { display: inline-block; vertical-align: middle; font-size: 13px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--league-accent); color: #fff; margin-left: 6px; }
+/* Best-of-Karte NFL (tools/nfl-players.js) */
+.nc-pts { font-size: 15px; margin-top: 4px; }
+.nc-pts b, .nc-ptsr b { font-size: 22px; font-weight: 900; color: var(--league-accent); }
+.nc-ptsr { margin-left: auto; text-align: right; white-space: nowrap; font-size: 12px; color: var(--muted); }
+.nc-ptsr b { font-size: 18px; }
+.nc-grow { flex: 1; min-width: 0; }
+.nc-list li { align-items: center; }
+.nc-cap { font-size: 11px; color: var(--muted); margin-top: -2px; }
+.nc-foot { font-size: 11px; margin-top: 10px; }
+.nc-bars { display: flex; align-items: flex-end; gap: 6px; height: 150px; padding: 16px 8px 0; justify-content: center; }
+.nc-bar { flex: 1; max-width: 34px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; font-size: 10px; }
+.nc-bar span { display: block; width: 100%; background: color-mix(in srgb, var(--league-accent) 45%, transparent); border-radius: 4px 4px 0 0; }
+.nc-bar.on span { background: var(--league-accent); }
+.nc-bar b { order: -1; font-size: 10px; } .nc-bar i { font-style: normal; color: var(--muted); }
