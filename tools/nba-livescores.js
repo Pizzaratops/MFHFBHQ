@@ -15,6 +15,7 @@
 //
 //  Neu: Punt-Gewichte werden je Liga gemerkt (früher nur für die Sitzung);
 //  Zeilen mit Punt-Kategorie = 0 bleiben sichtbar, die Spalte wird gedimmt.
+//  15.10.2026: 📸 Night Card (Best Rookies/Sophomores/Vets/Top 10 of the Night).
 // ============================================================
 
 (function () {
@@ -27,7 +28,7 @@
   const PERIODS = [['daily', 'Daily'], ['week', 'Weekly'], ['month', 'Monthly'], ['box', 'Box Scores']];
   const WCATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['to', 'TO'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%']];
   const STAT_COLS = [['min', 'MIN'], ['pts', 'PTS', 'pts'], ['reb', 'REB', 'reb'], ['ast', 'AST', 'ast'], ['stl', 'STL', 'stl'], ['blk', 'BLK', 'blk'], ['to', 'TO', 'to'], ['tpm', '3PM', 'tpm'], ['fgPct', 'FG%', 'fgImpact'], ['ftPct', 'FT%', 'ftImpact']];
-  const defaults = { sort: 'composite', asc: false, minGames: 1, weights: {}, heat: false };
+  const defaults = { sort: 'composite', asc: false, minGames: 1, weights: {}, heat: false, nc: false, nk: 'top10' };
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('livescores', {}) });
 
   function source(data, period, comp) {
@@ -115,6 +116,78 @@
       : `<div class="card ls-boxgame upcoming"><div class="card-head"><h2>${e(g.away ? g.away.name : '?')} @ ${e(g.home ? g.home.name : '?')}</h2><span class="muted">🕒 ${e(g.statusText || 'Noch nicht gespielt')}</span></div></div>`).join('');
   }
 
+
+  // ---------- Night Card „Best … of the Night“ (Screenshot, 15.10.2026) ----------
+  //  Daily-Ansicht: Top-Spieler des Tages nach Z-Composite (inkl. Punt-Gewichten).
+  //  Links Nr. 1 mit Cat-Web-Radar der Nacht, rechts Plätze 2–5 bzw. 2–10.
+  //  Erfahrung: Rookie = Draft 2026 oder ohne NBA-Minuten 2022–26 (Undrafted),
+  //  Sophomore = Draft 2025, sonst Vet. Die Zusatzdaten werden erst beim Öffnen geladen.
+  const NIGHT_KINDS = {
+    top10: { label: 'Best 10 Players of the Night', n: 10 },
+    rookie: { label: 'Best Rookies of the Night', n: 5 },
+    sophomore: { label: 'Best Sophomores of the Night', n: 5 },
+    vet: { label: 'Best Vets of the Night', n: 5 },
+  };
+  const RADAR_CATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO']];
+  const EXP_FILES = ['?preseason-score', '?sport:draft-class-2026', '?sport:draft-class-2025', '?sport:last-season-stats-2022-23', '?sport:last-season-stats-2023-24', '?sport:last-season-stats-2024-25'];
+  // NBA-Rückkehrer ohne Vorsaison-Minuten, die nicht in den Statistik-Dateien 2022–25 stehen
+  const NOT_ROOKIE = ['Mario Hezonja', 'Alpha Diallo', 'Lonnie Walker IV', 'Dane Goodwin', 'Jake Stephens', 'Keenan Evans', 'Jon Elmore', 'Tarik Phillip', 'Tyreke Key', 'Elfrid Payton', 'James Johnson'];
+  let EXPD = null; // geladene Zusatzdaten (je Liga gleich, sportweit)
+  function expOf(d) {
+    const k = N().key, nm = p => k(typeof p === 'string' ? p : p.name);
+    const rk = new Set((d.DRAFT_CLASS_2026 || []).map(nm));
+    const so = new Set((d.DRAFT_CLASS_2025 || []).map(nm));
+    const before = new Set([...NOT_ROOKIE, ...['2022_23', '2023_24', '2024_25'].flatMap(y => d['LAST_SEASON_STATS_' + y] || [])].map(nm));
+    const noPrior = new Set(((d.PRESEASON_SCORE || {}).players || []).filter(p => !p.priorMin).map(nm));
+    return name => { const n = k(name); return rk.has(n) ? 'rookie' : so.has(n) ? 'sophomore' : (noPrior.has(n) && !before.has(n)) ? 'rookie' : 'vet'; };
+  }
+  const de0 = v => Number(v).toFixed(0);
+  const sgn1 = x => (x == null ? '—' : (x > 0 ? '+' : x < 0 ? '−' : '±') + Math.abs(x).toFixed(1).replace('.', ','));
+  function statLine(p) {
+    const z = p.zScores || {};
+    const it = [['PTS', p.pts], ['REB', p.reb], ['AST', p.ast], ['STL', p.stl], ['BLK', p.blk], ['3PM', p.tpm], ['TO', p.to]];
+    if (p.fgPct != null && isFinite(p.fgPct) && (p.fgPct || z.fgImpact)) it.push(['FG', de0(p.fgPct) + '%']);
+    if (p.ftPct != null && isFinite(p.ftPct) && (p.ftPct || z.ftImpact)) it.push(['FT', de0(p.ftPct) + '%']); // 0 % ohne Versuch ausblenden
+    return it.map(([l, v]) => `<span class="nc-s">${l}: <b>${v}</b></span>`).join(' <i>/</i> ');
+  }
+  function nightCard(ctx, st, entry, r) {
+    const e = ctx.ui.esc;
+    const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', K = NIGHT_KINDS[kind];
+    const compLabel = ((COMPS.find(c => c[0] === r.comp) || [])[1] || r.comp).replace(/^\S+\s/, '');
+    const sel = `<select class="tr-select" data-nk aria-label="Kategorie">${Object.entries(NIGHT_KINDS).map(([k, v]) => `<option value="${k}"${k === kind ? ' selected' : ''}>${v.label}</option>`).join('')}</select>
+      <button type="button" class="seg-btn active nc-shot" data-ncshot>📸 Screenshot</button>`;
+    if (kind !== 'top10' && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Rookie-/Sophomore-Daten …</p></div>`;
+    const exp = kind === 'top10' ? null : expOf(EXPD);
+    const pool = (entry.players || []).filter(p => p.min > 0).map(p => ({ p, c: composite(p, st) })).sort((a, b) => b.c - a.c).map(x => x.p);
+    const list = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n);
+    const team = p => N().canonTeam(p.team) || p.team;
+    let body;
+    if (!list.length) body = ctx.ui.empty('Niemand in dieser Nacht', 'In dieser Nacht hat kein Spieler dieser Gruppe gespielt.', '🌙');
+    else {
+      const top = list[0], z = top.zScores || {};
+      const radar = MFHFB.charts.radar({
+        axes: RADAR_CATS.map(([, l]) => ({ label: l })),
+        series: [{ name: top.name, vals: RADAR_CATS.map(([k]) => Math.max(0.04, Math.min(1, (z[k] || 0) / 6 + 0.5))), tips: RADAR_CATS.map(([k, l]) => `${l}: z ${sgn1(z[k])}`) }],
+        size: 260, label: `Cat Web ${top.name}`,
+      });
+      body = `<div class="nc-grid">
+        <div class="nc-lead">
+          <div class="nc-rank">1.</div>
+          <div class="nc-name">${e(top.name)}</div>
+          <div class="nc-team">${e(team(top))} · ${top.min} Min.</div>
+          <div class="nc-radar">${radar}</div>
+          <div class="nc-line">${statLine(top)}</div>
+        </div>
+        <ol class="nc-list">${list.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(team(p))} · ${p.min} Min.</small></div><div class="nc-line">${statLine(p)}</div></div></li>`).join('')}</ol>
+      </div>`;
+    }
+    return `<div class="controls nc-controls">${sel}</div>
+      <section class="card nc-card" data-share="${e(K.label)} · ${e(fmtShort(r.date))}">
+        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele</div><h2 class="nc-title display">${e(K.label)}</h2></div>
+        ${body}
+      </section>`;
+  }
+
   function render(ctx) {
     const { data, ui, href } = ctx;
     const e = ui.esc;
@@ -158,6 +231,7 @@
       ${info ? `<div class="ls-info">${info}</div>` : ''}
       ${!box ? `<div class="ls-tools">
         ${r.period !== 'daily' ? `<label class="ls-min">🎚️ Min. Spiele <input type="range" min="1" max="5" step="1" value="${st.minGames}" data-min> <b data-minval>${st.minGames}</b></label>` : ''}
+        ${r.period === 'daily' && !empty ? `<button type="button" class="seg-btn${st.nc ? ' active' : ''}" data-nc>📸 Night Card</button>` : ''}
         <label class="dna-check"><input type="checkbox" data-heat ${st.heat ? 'checked' : ''}> Heatmap</label>
         <details class="ls-punt"${punted.length ? ' open' : ''}><summary>⚖️ Punt / Gewichtung${punted.length ? ` <span class="ls-puntn">${punted.length} angepasst</span>` : ''}</summary>
           <div class="ls-puntgrid">${WCATS.map(([k, l]) => `<label class="ls-pitem${weightOf(st, k) === 0 ? ' punted' : ''}"><span>${l} <b data-wval="${k}">${weightOf(st, k).toFixed(2)}</b></span><input type="range" min="0" max="2" step="0.25" value="${weightOf(st, k)}" data-w="${k}"></label>`).join('')}</div>
@@ -165,6 +239,7 @@
         </details>
         ${r.period !== 'daily' && count ? '<button type="button" class="seg-btn" data-csv>⬇️ CSV</button>' : ''}
       </div>` : ''}
+      ${r.period === 'daily' && !empty && st.nc ? `<div data-nchost>${nightCard(ctx, st, entry, r)}</div>` : ''}
       <div data-content>${content}</div>`;
   }
 
@@ -199,6 +274,21 @@
       inp.closest('.ls-pitem').classList.toggle('punted', Number(inp.value) === 0);
       rerenderTable();
     }));
+
+    // Night Card
+    const ncBtn = root.querySelector('[data-nc]');
+    if (ncBtn) ncBtn.addEventListener('click', () => { save({ nc: !getState(ctx).nc }); ctx.refresh(); });
+    const nk = root.querySelector('[data-nk]');
+    if (nk) nk.addEventListener('change', () => { save({ nk: nk.value }); ctx.refresh(); });
+    if (root.querySelector('[data-nchost]') && !EXPD) MFHFB.data.load(ctx.league, EXP_FILES).then(d => { EXPD = d || {}; }).catch(() => { EXPD = {}; }).then(() => { if (root.isConnected && getState(ctx).nk !== 'top10') ctx.refresh(); });
+    const shot = root.querySelector('[data-ncshot]');
+    if (shot) shot.addEventListener('click', async () => {
+      const card = root.querySelector('.nc-card[data-share]'); if (!card) return;
+      shot.disabled = true; const old = shot.textContent; shot.textContent = '⏳ …';
+      try { await MFHFB.share.share(card, card.dataset.share, ctx.league); shot.textContent = '✅ Gespeichert'; }
+      catch (err) { console.error(err); shot.textContent = '⚠️ Fehler'; }
+      setTimeout(() => { shot.textContent = old; shot.disabled = false; }, 1500);
+    });
     const reset = root.querySelector('[data-wreset]');
     if (reset) reset.addEventListener('click', () => { save({ weights: {} }); ctx.refresh(); });
     const csv = root.querySelector('[data-csv]');
