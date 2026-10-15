@@ -85,6 +85,11 @@ const LEAGUES = [
     mode: NBA_CUTOVER ? 'native' : 'legacy',
     nativePreview: !NBA_CUTOVER, // bis zum Cutover: neue Version zum Testen (Button „✨ Neue Version“)
     dataBase: NBA_CUTOVER ? 'leagues/tthq/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/',
+    // Sportweite NBA-Daten (Live Scores, Rankings, Preseason …) schon vor dem Cutover aus dem Hub
+    // (15.10.2026): das alte Repo aktualisiert Live Scores nur 1×/Tag um ~22 Uhr, also vor den
+    // US-Spielen → hinkte eine Nacht hinterher; der Hub läuft ab 6 Uhr halbstündlich. Alle Dateien,
+    // die das alte Repo unter data/ hat, liegen auch unter sports/nba/data/.
+    sportDataBase: 'sports/nba/data/',
     files: { teams: 'teams-rosters', 'live-draft': './leagues/tthq/data/live-draft-2026', 'live-draft-espn': './leagues/tthq/data/live-draft-espn', 'nba-draft': './sports/nba/data/nba-draft-2026', 'preseason-score': './sports/nba/data/preseason-score' },
     keepers: true,
     // Live-Draft-Seite (#/tthq/livedraft): Jahr des laufenden Drafts. Nach dem
