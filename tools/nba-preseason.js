@@ -15,7 +15,7 @@
 //  Browser gemerkt. Redraft-Ligen (Funkytown) starten mit dem Filter
 //  „Waiver-Kandidaten“ (FA + Rolle ⬆️ oder ein ↑-Badge).
 //
-//  Neu 06.10.2026.
+//  Neu 06.10.2026. Night Card (Best of the Night als Bild) 15.10.2026.
 // ============================================================
 
 (function () {
@@ -36,7 +36,7 @@
   const signed = (x, d) => (x == null ? '—' : (x > 0 ? '+' : x < 0 ? '−' : '±') + de(Math.abs(x), d));
 
   function defaults(ctx) {
-    return { q: '', team: '', pos: '', status: 'all', ranked: true, badges: false, waiver: ctx.league.format === 'Redraft', sort: 'score', dir: -1, open: null };
+    return { q: '', team: '', pos: '', status: 'all', ranked: true, badges: false, waiver: ctx.league.format === 'Redraft', sort: 'score', dir: -1, open: null, nk: 'top10', nd: '' };
   }
   const getState = ctx => ({ ...defaults(ctx), ...ctx.store.getJSON('preseason', {}) });
 
@@ -149,6 +149,80 @@
     }).join('');
   }
 
+
+  // ---------- Night Card (Screenshot) ----------
+  //  Beste Spieler einer Preseason-Nacht aus LIVESCORES_DAILY['nba-preseason']
+  //  (Ranking = composite, die Summe der 9-Cat-z-Werte des Tages-Pools).
+  //  Erfahrung: Rookie = Draft 2026 oder ohne NBA-Minuten 2022–26 (Undrafted),
+  //  Sophomore = Draft 2025, sonst Vet. Neu 15.10.2026.
+  const NIGHT_KINDS = {
+    top10: { label: 'Best 10 Players of the Night', n: 10 },
+    rookie: { label: 'Best Rookies of the Night', n: 5 },
+    sophomore: { label: 'Best Sophomores of the Night', n: 5 },
+    vet: { label: 'Best Vets of the Night', n: 5 },
+  };
+  const RADAR_CATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO']];
+  const nightDays = data => (data.LIVESCORES_DAILY || {})['nba-preseason'] || {};
+
+  // NBA-Rückkehrer ohne Vorsaison-Minuten, die nicht in den Statistik-Dateien 2022–25 stehen
+  const NOT_ROOKIE = ['Mario Hezonja', 'Alpha Diallo', 'Lonnie Walker IV', 'Dane Goodwin', 'Jake Stephens', 'Keenan Evans', 'Jon Elmore', 'Tarik Phillip', 'Tyreke Key', 'Elfrid Payton', 'James Johnson'];
+  function expOf(data) {
+    const k = N().key, nm = p => k(typeof p === 'string' ? p : p.name);
+    const rk = new Set((data.DRAFT_CLASS_2026 || []).map(nm));
+    const so = new Set((data.DRAFT_CLASS_2025 || []).map(nm));
+    const nbaBefore = new Set([...NOT_ROOKIE, ...['2022_23', '2023_24', '2024_25'].flatMap(y => data['LAST_SEASON_STATS_' + y] || [])].map(nm));
+    const noPrior = new Set(((data.PRESEASON_SCORE || {}).players || []).filter(p => !p.priorMin).map(nm));
+    return name => { const n = k(name); return rk.has(n) ? 'rookie' : so.has(n) ? 'sophomore' : (noPrior.has(n) && !nbaBefore.has(n)) ? 'rookie' : 'vet'; };
+  }
+
+  const fmtDay = d => new Date(d + 'T12:00:00').toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' });
+  const statLine = p => {
+    const it = [['PTS', p.pts], ['REB', p.reb], ['AST', p.ast], ['STL', p.stl], ['BLK', p.blk], ['3PM', p.tpm], ['TO', p.to]].map(([l, v]) => [l, v]);
+    if (p.fgPct != null && isFinite(p.fgPct) && (p.fgPct || (p.zScores || {}).fgImpact)) it.push(['FG', de(p.fgPct, 0) + '%']);
+    const noFta = !p.ftPct && !((p.zScores || {}).ftImpact); // 0 % ohne Versuch
+    if (p.ftPct != null && isFinite(p.ftPct) && !noFta) it.push(['FT', de(p.ftPct, 0) + '%']);
+    return it.map(([l, v]) => `<span class="nc-s">${l}: <b>${v}</b></span>`).join(' <i>/</i> ');
+  };
+
+  function nightCard(ctx, st) {
+    const e = ctx.ui.esc, D = nightDays(ctx.data);
+    const days = Object.keys(D).filter(d => (D[d].players || []).length).sort();
+    if (!days.length) return '';
+    const day = days.includes(st.nd) ? st.nd : days[days.length - 1];
+    const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', K = NIGHT_KINDS[kind];
+    const exp = expOf(ctx.data);
+    const pool = (D[day].players || []).filter(p => p.min > 0).slice().sort((a, b) => b.composite - a.composite);
+    const list = (kind === 'top10' ? pool : pool.filter(p => exp(p.name) === kind)).slice(0, K.n);
+    const sel = `<select class="tr-select" data-nk aria-label="Kategorie">${Object.entries(NIGHT_KINDS).map(([k, v]) => `<option value="${k}"${k === kind ? ' selected' : ''}>${v.label}</option>`).join('')}</select>
+      <select class="tr-select" data-nd aria-label="Nacht">${days.slice().reverse().map(d => `<option value="${d}"${d === day ? ' selected' : ''}>${fmtDay(d)}</option>`).join('')}</select>`;
+    const games = (D[day].games || []).length;
+    let body;
+    if (!list.length) body = ctx.ui.empty('Niemand in dieser Nacht', 'In dieser Nacht hat kein Spieler dieser Gruppe gespielt.', '🌙');
+    else {
+      const top = list[0];
+      const radar = MFHFB.charts.radar({
+        axes: RADAR_CATS.map(([, l]) => ({ label: l })),
+        series: [{ name: top.name, vals: RADAR_CATS.map(([k]) => Math.max(0.04, Math.min(1, ((top.zScores || {})[k] || 0) / 6 + 0.5))), tips: RADAR_CATS.map(([k, l]) => `${l}: z ${signed((top.zScores || {})[k], 1)}`) }],
+        size: 260, label: `Cat Web ${top.name}`,
+      });
+      body = `<div class="nc-grid">
+        <div class="nc-lead">
+          <div class="nc-rank">1.</div>
+          <div class="nc-name">${e(top.name)}</div>
+          <div class="nc-team">${e(N().canonTeam(top.team) || top.team)} · ${top.min} Min.</div>
+          <div class="nc-radar">${radar}</div>
+          <div class="nc-line">${statLine(top)}</div>
+        </div>
+        <ol class="nc-list" start="2">${list.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(N().canonTeam(p.team) || p.team)} · ${p.min} Min.</small></div><div class="nc-line">${statLine(p)}</div></div></li>`).join('')}</ol>
+      </div>`;
+    }
+    return `<div class="controls ps-controls nc-controls">${sel}<span class="muted small">📸 Knopf oben rechts in der Karte = Screenshot</span></div>
+      <section class="card nc-card" data-share="${e(K.label)} · ${e(fmtDay(day))}">
+        <div class="nc-head"><div class="nc-kicker">🌱 NBA Preseason · ${e(fmtDay(day))} · ${games} Spiele</div><h2 class="nc-title display">${e(K.label)}</h2></div>
+        ${body}
+      </section>`;
+  }
+
   function render(ctx) {
     const { data, ui, league } = ctx;
     const e = ui.esc;
@@ -165,6 +239,7 @@
     return `
       <div class="page-head"><h1 class="page-title display">🌱 Preseason ${e(T.season || '')}</h1>
         <div class="page-sub">Stand: ${e(when)} · ${T.games} Spiele · ${T.players.filter(p => p.ranked).length} Spieler mit Rang (≥ 40 Min.) · Vergleich: Saison ${e(T.baselineSeason || '')}</div></div>
+      ${nightCard(ctx, st)}
       <details class="card ps-info">
         <summary>ℹ️ Was zeigt der Preseason Score?</summary>
         <div class="ps-info-body">
@@ -208,6 +283,9 @@
     root.querySelectorAll('[data-f]').forEach(s => s.addEventListener('change', () => save({ [s.dataset.f]: s.value })));
     root.querySelectorAll('[data-pos]').forEach(b => b.addEventListener('click', () => save({ pos: b.dataset.pos }, true)));
     root.querySelectorAll('[data-chk]').forEach(c => c.addEventListener('change', () => save({ [c.dataset.chk]: c.checked })));
+    const nk = root.querySelector('[data-nk]'), nd = root.querySelector('[data-nd]');
+    if (nk) nk.addEventListener('change', () => save({ nk: nk.value }, true));
+    if (nd) nd.addEventListener('change', () => save({ nd: nd.value }, true));
     const my = root.querySelector('[data-myteam]');
     if (my) my.addEventListener('change', () => {
       ctx.store.set('myteam', my.value);
@@ -225,7 +303,7 @@
 
   MFHFB.pages.register({
     id: 'preseason', section: 'players', label: 'Preseason', icon: '🌱', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?preseason-score'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?preseason-score', '?sport:livescores-daily', '?sport:draft-class-2026', '?sport:draft-class-2025', '?sport:last-season-stats-2022-23', '?sport:last-season-stats-2023-24', '?sport:last-season-stats-2024-25'],
     title: () => 'Preseason', render, mount,
   });
 })();
