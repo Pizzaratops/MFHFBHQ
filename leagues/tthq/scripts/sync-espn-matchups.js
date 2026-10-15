@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ============================================================
-//  ESPN WOCHEN-MATCHUPS SYNC — TTHQ (seit 16.10.2026, Kopie von Funkytown)
+//  ESPN WOCHEN-MATCHUPS SYNC (TTHQ + Funkytown, identische Dateien)
 // ============================================================
 //  Schritt in tthq-sync.yml: holt die bereits entschiedenen Matchups der
 //  laufenden ESPN-Saison und schreibt sie nach data/season-matchups.js
@@ -8,8 +8,9 @@
 //  Vor Saisonstart gibt es noch keine entschiedenen Wochen, dann ändert
 //  sich einfach nichts.
 //
-//  Vorjahre (ESPN-Saisons der letzten 5 Jahre) werden EINMALIG automatisch
-//  nachgeholt, sobald sie in der Datei fehlen — kein manueller Workflow nötig.
+//  Vorjahre werden EINMALIG automatisch nachgeholt, sobald sie in der Datei
+//  fehlen (seit 16.10.2026) — kein manueller Workflow nötig. Welche Jahre:
+//  die aus data/season-history.js (Funkytown), sonst die letzten 5 ESPN-Saisons.
 //
 //  Bewusst NICHT fatal (exit 0), damit ein ESPN-Aussetzer den Rest des
 //  Workflows nicht stoppt.
@@ -27,6 +28,22 @@ const { loadConfig, fetchSeasonMatchups, writeMatchups } = require('./lib/espn-m
 const HISTORY_YEARS = 5;
 const OUT = path.join(__dirname, '..', 'data', 'season-matchups.js');
 
+function historyYears(cfg) {
+  const p = path.join(__dirname, '..', 'data', 'season-history.js');
+  if (fs.existsSync(p)) {
+    try {
+      const sandbox = {};
+      vm.createContext(sandbox);
+      vm.runInContext(fs.readFileSync(p, 'utf8') + '\nthis.__H__ = SEASON_HISTORY;', sandbox);
+      const ys = (sandbox.__H__ || []).map(s => s.espnSeason).filter(y => y && y < cfg.ESPN_SEASON);
+      if (ys.length) return ys;
+    } catch (e) { /* Fallback unten */ }
+  }
+  const out = [];
+  for (let y = cfg.ESPN_SEASON - HISTORY_YEARS; y < cfg.ESPN_SEASON; y++) out.push(y);
+  return out;
+}
+
 function existingYears() {
   if (!fs.existsSync(OUT)) return new Set();
   try {
@@ -43,7 +60,7 @@ async function main() {
   const years = i > -1 ? [parseInt(process.argv[i + 1], 10)] : [cfg.ESPN_SEASON];
   if (i === -1) {
     const have = existingYears();
-    for (let y = cfg.ESPN_SEASON - HISTORY_YEARS; y < cfg.ESPN_SEASON; y++) if (!have.has(y)) years.push(y);
+    historyYears(cfg).forEach(y => { if (!have.has(y)) years.push(y); });
   }
   const out = [];
   for (const season of years) {
