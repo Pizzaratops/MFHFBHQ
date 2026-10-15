@@ -127,6 +127,7 @@
     rookie: { label: 'Best Rookies', n: 5 },
     sophomore: { label: 'Best Sophomores', n: 5 },
     vet: { label: 'Best Vets', n: 5 },
+    fa: { label: 'Best Waiver Wire Players', n: 10 }, // Free Agents DIESER Liga (aktuelle Kader)
   };
   // Zeitraum der Karte: Daily = Nacht, Weekly = Woche, Monthly = Monat bzw. ganze Preseason.
   // Weekly/Monthly sind Pro-Spiel-Schnitte → Mindestspiele, damit Einzelspiel-Ausreißer nicht oben landen.
@@ -206,8 +207,9 @@
     const sel = `<select class="tr-select" data-nk aria-label="Kategorie">${Object.entries(NIGHT_KINDS).map(([k, v]) => `<option value="${k}"${k === kind ? ' selected' : ''}>${v.label} ${SC.suffix}</option>`).join('')}</select>
       ${canSticky ? `<div class="seg" role="group" aria-label="Bewertung"><button type="button" class="seg-btn${sticky ? '' : ' active'}" data-ncm="9cat" title="Box Score: Summe der 9-Cat-z-Werte">9-Cat</button><button type="button" class="seg-btn${sticky ? ' active' : ''}" data-ncm="sticky" title="Raten wie auf der Preseason-Seite (ORB%, DRB%, BLK%, AST% …), positionsbereinigt, ohne Vorsaison">Sticky</button></div>` : ''}
       <button type="button" class="seg-btn active nc-shot" data-ncshot>📸 Screenshot</button>`;
-    if ((kind !== 'top10' || sticky) && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Daten …</p></div>`;
-    const exp = kind === 'top10' ? null : expOf(EXPD);
+    if ((!['top10', 'fa'].includes(kind) || sticky) && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Daten …</p></div>`;
+    const owner = N().ownerIndex(ctx.data);
+    const exp = kind === 'top10' ? null : kind === 'fa' ? (name => (owner(name) ? 'x' : 'fa')) : expOf(EXPD);
     const team = p => N().canonTeam(p.team) || p.team;
     const f1 = v => Number(v).toFixed(1).replace('.', ',');
     let items, minNote, label = K.label;
@@ -251,7 +253,7 @@
     const when = avg ? `${e(fmtShort(entry.windowStart))} – ${e(fmtShort(entry.windowEnd))}` : `${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele`;
     return `<div class="controls nc-controls">${sel}</div>
       <section class="card nc-card${sticky ? ' sticky' : ''}" data-share="${e(label)} · ${e(fmtShort(r.date))}">
-        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${when}${minNote ? ' · ' + minNote : ''}</div><h2 class="nc-title display">${e(K.label)}${sticky ? ' <span class="nc-mode">Sticky Stats</span>' : ''}</h2></div>
+        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${when}${kind === 'fa' ? ` · Free Agents ${e(ctx.league.short || ctx.league.name)}` : ''}${minNote ? ' · ' + minNote : ''}</div><h2 class="nc-title display">${e(K.label)}${sticky ? ' <span class="nc-mode">Sticky Stats</span>' : ''}</h2></div>
         ${body}
       </section>`;
   }
