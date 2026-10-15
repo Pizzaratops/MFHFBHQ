@@ -137,7 +137,8 @@
     return { suffix: 'of the Night', minG: 0 };
   }
   const RADAR_CATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO']];
-  const EXP_FILES = ['?preseason-score', '?sport:preseason-games', '?sport:draft-class-2026', '?sport:draft-class-2025', '?sport:last-season-stats-2022-23', '?sport:last-season-stats-2023-24', '?sport:last-season-stats-2024-25'];
+  // immer aus dem Hub ('./'), auch für TTHQ, das die übrigen Sportdaten noch aus dem alten Repo lädt
+  const EXP_FILES = ['?preseason-score', ...['preseason-games', 'draft-class-2026', 'draft-class-2025', 'last-season-stats-2022-23', 'last-season-stats-2023-24', 'last-season-stats-2024-25'].map(f => '?./sports/nba/data/' + f)];
   // NBA-Rückkehrer ohne Vorsaison-Minuten, die nicht in den Statistik-Dateien 2022–25 stehen
   const NOT_ROOKIE = ['Mario Hezonja', 'Alpha Diallo', 'Lonnie Walker IV', 'Dane Goodwin', 'Jake Stephens', 'Keenan Evans', 'Jon Elmore', 'Tarik Phillip', 'Tyreke Key', 'Elfrid Payton', 'James Johnson'];
   let EXPD = null; // geladene Zusatzdaten (je Liga gleich, sportweit)
@@ -199,7 +200,9 @@
   function nightCard(ctx, st, entry, r) {
     const e = ctx.ui.esc;
     const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', SC = ncScope(r, st), avg = r.period !== 'daily';
-    const canSticky = r.comp === 'nba-preseason', sticky = canSticky && st.ncm === 'sticky';
+    // Sticky-Daten gibt es nur für die Preseason (PRESEASON_GAMES). TTHQ führt die Preseason-Spiele
+    // im alten Datenstand unter „NBA“ → Umschalter nicht am Wettbewerb festmachen, sondern an den Daten.
+    const canSticky = !r.comp.startsWith('nba-summer'), sticky = canSticky && st.ncm === 'sticky';
     const K = { n: NIGHT_KINDS[kind].n, label: `${NIGHT_KINDS[kind].label} ${SC.suffix}` };
     const dailyDates = Object.keys(source(ctx.data, 'daily', r.comp)).sort();
     if (avg && dailyDates.length && entry.windowStart < dailyDates[0]) entry = { ...entry, windowStart: dailyDates[0] };
@@ -217,7 +220,9 @@
       const G = EXPD.PRESEASON_GAMES;
       if (!G) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">Keine Sticky-Daten (preseason-games.js fehlt).</p></div>`;
       const from = avg ? entry.windowStart : r.date, to = avg ? entry.windowEnd : r.date, minM = ST_MIN[r.period] || 15;
-      const pool = stickyPool(G, from, to).filter(p => p.mp >= minM).sort((a, b) => b.score - a.score);
+      const all = stickyPool(G, from, to);
+      if (!all.length) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">Für diesen Zeitraum gibt es keine Sticky-Daten. Sticky Stats gibt es nur für Preseason-Spiele.</p></div>`;
+      const pool = all.filter(p => p.mp >= minM).sort((a, b) => b.score - a.score);
       items = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n).map(p => ({
         name: p.name, team: team(p), meta: avg ? `${p.games} Sp. · ${f1(p.mp / p.games)} Min./Sp.` : `${Math.round(p.mp)} Min.`,
         lead: stLine(p, ST_LEAD), line: stLine(p, ST_LINE),
