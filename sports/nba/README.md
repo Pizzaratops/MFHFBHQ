@@ -167,7 +167,7 @@ import-dynasty-rolling-snapshot (TTHQ); `convert-bbm-last-season.py` (sportweit)
 
 ### Umstelltag (Checkliste)
 
-Erledigt: Schritte 1–5 (15.10.2026: handgepflegte Dateien abgeglichen — nur ein Trade fehlte, übernommen —, `NBA_CUTOVER = true`). Offen: 6 + 7 (Beyaz), dann 8 (Claude).
+Erledigt: Schritte 1–7 (15.10.2026: Dateien abgeglichen — nur ein Trade fehlte —, `NBA_CUTOVER = true`, Weiterleitungen in beiden alten Repos, alte Workflows aus (TTHQ von Beyaz deaktiviert, Funkytown-Workflows gelöscht)). Offen: cron-job.org-Trigger (Beyaz), dann 8 (Claude).
 
 4. **Handgepflegte Dateien holen:** Actions → „NBA Umstelltag — handgepflegte
    Dateien …“ (`nba-import-manual.yml`, liegt in `_workflows-nach-github-kopieren/`)
