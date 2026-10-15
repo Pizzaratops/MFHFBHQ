@@ -15,7 +15,7 @@
 //
 //  Neu: Punt-Gewichte werden je Liga gemerkt (früher nur für die Sitzung);
 //  Zeilen mit Punt-Kategorie = 0 bleiben sichtbar, die Spalte wird gedimmt.
-//  15.10.2026: 📸 Night Card (Best Rookies/Sophomores/Vets/Top 10 of the Night).
+//  15.10.2026: 📸 Best-of-Karte (Night/Week/Preseason bzw. Month) als Bild.
 // ============================================================
 
 (function () {
@@ -123,11 +123,18 @@
   //  Erfahrung: Rookie = Draft 2026 oder ohne NBA-Minuten 2022–26 (Undrafted),
   //  Sophomore = Draft 2025, sonst Vet. Die Zusatzdaten werden erst beim Öffnen geladen.
   const NIGHT_KINDS = {
-    top10: { label: 'Best 10 Players of the Night', n: 10 },
-    rookie: { label: 'Best Rookies of the Night', n: 5 },
-    sophomore: { label: 'Best Sophomores of the Night', n: 5 },
-    vet: { label: 'Best Vets of the Night', n: 5 },
+    top10: { label: 'Best 10 Players', n: 10 },
+    rookie: { label: 'Best Rookies', n: 5 },
+    sophomore: { label: 'Best Sophomores', n: 5 },
+    vet: { label: 'Best Vets', n: 5 },
   };
+  // Zeitraum der Karte: Daily = Nacht, Weekly = Woche, Monthly = Monat bzw. ganze Preseason.
+  // Weekly/Monthly sind Pro-Spiel-Schnitte → Mindestspiele, damit Einzelspiel-Ausreißer nicht oben landen.
+  function ncScope(r, st) {
+    if (r.period === 'week') return { suffix: 'of the Week', minG: Math.max(2, st.minGames) };
+    if (r.period === 'month') return r.comp === 'nba-preseason' ? { suffix: 'of the Preseason', minG: Math.max(3, st.minGames) } : { suffix: 'of the Month', minG: Math.max(5, st.minGames) };
+    return { suffix: 'of the Night', minG: 0 };
+  }
   const RADAR_CATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO']];
   const EXP_FILES = ['?preseason-score', '?sport:draft-class-2026', '?sport:draft-class-2025', '?sport:last-season-stats-2022-23', '?sport:last-season-stats-2023-24', '?sport:last-season-stats-2024-25'];
   // NBA-Rückkehrer ohne Vorsaison-Minuten, die nicht in den Statistik-Dateien 2022–25 stehen
@@ -143,26 +150,30 @@
   }
   const de0 = v => Number(v).toFixed(0);
   const sgn1 = x => (x == null ? '—' : (x > 0 ? '+' : x < 0 ? '−' : '±') + Math.abs(x).toFixed(1).replace('.', ','));
-  function statLine(p) {
-    const z = p.zScores || {};
-    const it = [['PTS', p.pts], ['REB', p.reb], ['AST', p.ast], ['STL', p.stl], ['BLK', p.blk], ['3PM', p.tpm], ['TO', p.to]];
+  function statLine(p, avg) {
+    const z = p.zScores || {}, f = v => (avg ? Number(v).toFixed(1).replace('.', ',') : v);
+    const it = [['PTS', p.pts], ['REB', p.reb], ['AST', p.ast], ['STL', p.stl], ['BLK', p.blk], ['3PM', p.tpm], ['TO', p.to]].map(([l, v]) => [l, f(v)]);
     if (p.fgPct != null && isFinite(p.fgPct) && (p.fgPct || z.fgImpact)) it.push(['FG', de0(p.fgPct) + '%']);
     if (p.ftPct != null && isFinite(p.ftPct) && (p.ftPct || z.ftImpact)) it.push(['FT', de0(p.ftPct) + '%']); // 0 % ohne Versuch ausblenden
     return it.map(([l, v]) => `<span class="nc-s">${l}: <b>${v}</b></span>`).join(' <i>/</i> ');
   }
   function nightCard(ctx, st, entry, r) {
     const e = ctx.ui.esc;
-    const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', K = NIGHT_KINDS[kind];
+    const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', SC = ncScope(r, st), avg = r.period !== 'daily';
+    const K = { n: NIGHT_KINDS[kind].n, label: `${NIGHT_KINDS[kind].label} ${SC.suffix}` };
+    const dailyDates = Object.keys(source(ctx.data, 'daily', r.comp)).sort();
+    if (avg && dailyDates.length && entry.windowStart < dailyDates[0]) entry = { ...entry, windowStart: dailyDates[0] };
     const compLabel = ((COMPS.find(c => c[0] === r.comp) || [])[1] || r.comp).replace(/^\S+\s/, '');
-    const sel = `<select class="tr-select" data-nk aria-label="Kategorie">${Object.entries(NIGHT_KINDS).map(([k, v]) => `<option value="${k}"${k === kind ? ' selected' : ''}>${v.label}</option>`).join('')}</select>
+    const sel = `<select class="tr-select" data-nk aria-label="Kategorie">${Object.entries(NIGHT_KINDS).map(([k, v]) => `<option value="${k}"${k === kind ? ' selected' : ''}>${v.label} ${SC.suffix}</option>`).join('')}</select>
       <button type="button" class="seg-btn active nc-shot" data-ncshot>📸 Screenshot</button>`;
     if (kind !== 'top10' && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Rookie-/Sophomore-Daten …</p></div>`;
     const exp = kind === 'top10' ? null : expOf(EXPD);
-    const pool = (entry.players || []).filter(p => p.min > 0).map(p => ({ p, c: composite(p, st) })).sort((a, b) => b.c - a.c).map(x => x.p);
+    const pool = (entry.players || []).filter(p => p.min > 0 && (!avg || p.games >= SC.minG)).map(p => ({ p, c: composite(p, st) })).sort((a, b) => b.c - a.c).map(x => x.p);
     const list = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n);
     const team = p => N().canonTeam(p.team) || p.team;
+    const meta = p => (avg ? `${p.games} Sp. · ${Number(p.min).toFixed(1).replace('.', ',')} Min./Sp.` : `${p.min} Min.`);
     let body;
-    if (!list.length) body = ctx.ui.empty('Niemand in dieser Nacht', 'In dieser Nacht hat kein Spieler dieser Gruppe gespielt.', '🌙');
+    if (!list.length) body = ctx.ui.empty('Niemand in dieser Nacht', avg ? `Kein Spieler dieser Gruppe mit mindestens ${SC.minG} Spielen.` : 'In dieser Nacht hat kein Spieler dieser Gruppe gespielt.', '🌙');
     else {
       const top = list[0], z = top.zScores || {};
       const radar = MFHFB.charts.radar({
@@ -174,16 +185,16 @@
         <div class="nc-lead">
           <div class="nc-rank">1.</div>
           <div class="nc-name">${e(top.name)}</div>
-          <div class="nc-team">${e(team(top))} · ${top.min} Min.</div>
+          <div class="nc-team">${e(team(top))} · ${meta(top)}</div>
           <div class="nc-radar">${radar}</div>
-          <div class="nc-line">${statLine(top)}</div>
+          <div class="nc-line">${statLine(top, avg)}</div>
         </div>
-        <ol class="nc-list">${list.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(team(p))} · ${p.min} Min.</small></div><div class="nc-line">${statLine(p)}</div></div></li>`).join('')}</ol>
+        <ol class="nc-list">${list.slice(1).map((p, i) => `<li><span class="nc-n">${i + 2}.</span><div><div class="nc-pname">${e(p.name)} <small>${e(team(p))} · ${meta(p)}</small></div><div class="nc-line">${statLine(p, avg)}</div></div></li>`).join('')}</ol>
       </div>`;
     }
     return `<div class="controls nc-controls">${sel}</div>
       <section class="card nc-card" data-share="${e(K.label)} · ${e(fmtShort(r.date))}">
-        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele</div><h2 class="nc-title display">${e(K.label)}</h2></div>
+        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${avg ? `${e(fmtShort(entry.windowStart))} – ${e(fmtShort(entry.windowEnd))} · Ø pro Spiel · mind. ${SC.minG} Spiele` : `${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele`}</div><h2 class="nc-title display">${e(K.label)}</h2></div>
         ${body}
       </section>`;
   }
@@ -231,7 +242,7 @@
       ${info ? `<div class="ls-info">${info}</div>` : ''}
       ${!box ? `<div class="ls-tools">
         ${r.period !== 'daily' ? `<label class="ls-min">🎚️ Min. Spiele <input type="range" min="1" max="5" step="1" value="${st.minGames}" data-min> <b data-minval>${st.minGames}</b></label>` : ''}
-        ${r.period === 'daily' && !empty ? `<button type="button" class="seg-btn${st.nc ? ' active' : ''}" data-nc>📸 Night Card</button>` : ''}
+        ${!empty ? `<button type="button" class="seg-btn${st.nc ? ' active' : ''}" data-nc>📸 ${r.period === 'daily' ? 'Night Card' : r.period === 'week' ? 'Week Card' : r.comp === 'nba-preseason' ? 'Preseason Card' : 'Month Card'}</button>` : ''}
         <label class="dna-check"><input type="checkbox" data-heat ${st.heat ? 'checked' : ''}> Heatmap</label>
         <details class="ls-punt"${punted.length ? ' open' : ''}><summary>⚖️ Punt / Gewichtung${punted.length ? ` <span class="ls-puntn">${punted.length} angepasst</span>` : ''}</summary>
           <div class="ls-puntgrid">${WCATS.map(([k, l]) => `<label class="ls-pitem${weightOf(st, k) === 0 ? ' punted' : ''}"><span>${l} <b data-wval="${k}">${weightOf(st, k).toFixed(2)}</b></span><input type="range" min="0" max="2" step="0.25" value="${weightOf(st, k)}" data-w="${k}"></label>`).join('')}</div>
@@ -239,7 +250,7 @@
         </details>
         ${r.period !== 'daily' && count ? '<button type="button" class="seg-btn" data-csv>⬇️ CSV</button>' : ''}
       </div>` : ''}
-      ${r.period === 'daily' && !empty && st.nc ? `<div data-nchost>${nightCard(ctx, st, entry, r)}</div>` : ''}
+      ${!box && !empty && st.nc ? `<div data-nchost>${nightCard(ctx, st, entry, r)}</div>` : ''}
       <div data-content>${content}</div>`;
   }
 
