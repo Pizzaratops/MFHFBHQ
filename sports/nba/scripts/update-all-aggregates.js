@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ============================================================
-//  Aktualisiert Weekly + Monthly für ALLE Ligen, für die es
+//  Aktualisiert Weekly + Monthly (+ Season, eigene Datei) für ALLE Ligen, für die es
 //  Tages-CSVs in scripts/data gibt — in einem einzigen Lese-/
 //  Schreibvorgang von data/livescores-aggregate.js.
 // ============================================================
@@ -20,7 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const {
-  buildEntry, loadExisting, mergeEntry, trimKeep, writeOut,
+  buildEntry, loadExisting, mergeEntry, trimSmart, writeOut,
   DEFAULT_OUT, DEFAULT_DIR, DEFAULT_KEEP,
 } = require('./convert-aggregate-to-livescores');
 
@@ -78,6 +78,10 @@ for (const league of leagues) {
 // 2) Für jede Liga × Periode aktualisieren
 // ------------------------------------------------------------
 const existing = loadExisting(out);
+// Saison bis heute (period "season") in eigener Datei, damit livescores-aggregate.js
+// klein bleibt; Seiten, die die Saison brauchen, laden sie zusätzlich.
+const seasonOut = arg('season-out', path.join(path.dirname(out), 'livescores-season.js'));
+const existingSeason = loadExisting(seasonOut, 'LIVESCORES_SEASON');
 let updated = 0;
 let skipped = 0;
 
@@ -86,14 +90,14 @@ for (const league of leagues) {
   const effectiveEnd = latest && latest < endDate ? latest : endDate;
   const anchorNote = effectiveEnd !== endDate ? ` (Liga beendet, Fenster verankert auf letzten Spieltag ${effectiveEnd})` : '';
 
-  for (const period of ['week', 'month']) {
+  for (const period of ['week', 'month', 'season']) {
     const entry = buildEntry({ period, league, endDate: effectiveEnd, dir });
     if (!entry) {
       console.log(`  – ${period}/${league}: keine ausreichenden Daten bis ${effectiveEnd}, übersprungen.`);
       skipped++;
       continue;
     }
-    mergeEntry(existing, period, league, effectiveEnd, entry);
+    mergeEntry(period === 'season' ? existingSeason : existing, period, league, effectiveEnd, entry);
     console.log(`  ✓ ${period}/${league}: ${entry.players.length} Spieler, Fenster ${entry.windowStart}–${entry.windowEnd} (${entry.daysInWindow} Tag(e))${anchorNote}.`);
     updated++;
   }
@@ -104,6 +108,10 @@ if (!updated) {
   process.exit(0);
 }
 
-trimKeep(existing, keep);
-writeOut(existing, out);
+// --keep bleibt als Parameter erhalten (Kompatibilität), ausgedünnt wird nach trimSmart
+void keep;
+trimSmart(existing);
+trimSmart(existingSeason);
+writeOut(existing, out, 'LIVESCORES_AGGREGATE');
+writeOut(existingSeason, seasonOut, 'LIVESCORES_SEASON');
 console.log(`\n${out} geschrieben: ${updated} Eintrag/Einträge aktualisiert, ${skipped} übersprungen.`);

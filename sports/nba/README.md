@@ -39,11 +39,12 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 ### Sportweit (`sports/nba/data/`)
 | Datei | erzeugt von | Hinweis |
 |---|---|---|
-| livescores-daily.js | convert-to-livescores.js | Tages-Z-Scores je ESPN-Liga (nba, nba-preseason, Summer Leagues) |
-| livescores-boxscores.js | convert-to-boxscores.js | Box Scores je Spiel |
-| livescores-aggregate.js | update-all-aggregates.js | Weekly/Monthly |
+| livescores-daily.js | convert-to-livescores.js | Tages-Z-Scores je ESPN-Liga (nba, nba-preseason, nba-postseason, Summer Leagues), 60 Tage |
+| livescores-boxscores.js | convert-to-boxscores.js | Box Scores je Spiel, 14 Tage |
+| livescores-aggregate.js | update-all-aggregates.js | Weekly/Monthly; letzte 8 Tage komplett, älter nur Sonntage/Monatsende, beendete Wettbewerbe nur der letzte Stand |
+| livescores-season.js | update-all-aggregates.js | **ganze Saison bis heute** (seit 16.10.2026), gleiche Ausdünnung (Monatsende) |
 | offseason-rankings.js | build-offseason-rankings.js | Summer League + Preseason |
-| rolling-rankings-2026-27.js | build-rolling-archive.js | laufende Saison |
+| rolling-rankings-2026-27.js | build-rolling-archive.js | laufende Saison; Stichtag = letzter Aggregat-Tag, eosRank = Saison-Rang |
 | postdraft-board.js | build-postdraft-board.js | Big Board + Draft Capital + Off-Season + Sticky Score (GitHub-CSV) |
 | nba-power-rankings.js, nba-power-score.js | build-nba-power-rankings.js / -score.js | Matchup-Wochen aus der TTHQ-Liga (`leagues/tthq/js/espn-sync.js`) |
 | preseason-score.js (+ preseason/<Saison>/games/*.json Cache) | update-preseason-score.js (Logik: preseason-score.js) | Preseason Score, Seite „🌱 Preseason“; lädt schon vor dem Cutover aus dem Hub (`./`-Pfad in `files`) |
@@ -58,7 +59,7 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 - **beide:** teams-rosters, rosters-live, team-analytics, best-available-board, stats.js, draft-results-*
   (Projections + last-season-stats-2025-26 seit 15.10.2026 sportweit, s. oben)
 - **TTHQ:** rankings, hashtag, dynasty-live, dynasty-rolling, picks, picks-live, trade-history,
-  fantasy-power-score, season-2021-22 … 2025-26
+  fantasy-power-score, season-matchups (seit 16.10.2026), season-2021-22 … 2025-26
 - **Funkytown:** players, season-history, season-matchups, league-dues
 
 Nicht übernommen: `projectionsbaseline.js`/`projectionsconsensus.js` und die
@@ -72,14 +73,15 @@ Script-Ordner (Kopie der Datendatei), der `projections/`-Ordner (Fantrax/ADP-Too
 nba-sync.yml  (halbstündlich 06–22 Uhr Berlin, :07/:37)
  gate ──► sport (sports/nba)                                   ──► tthq      (leagues/tthq)
           daily-9cat ─► convert-to-livescores                        sync-espn-rosters (+Trades)
-                     └► convert-to-boxscores                         sync-espn-picks
-          prune-raw-data (CSV 400 d, games.json 120 d)               build-team-analytics ◄─ live-projections (sport)
-          update-all-aggregates                                      
-          build-offseason-rankings ─► build-postdraft-board          build-best-available-board ◄─ aggregate, offseason,
-          build-rolling-archive                                      build-dynasty-live             rolling, postdraft …
-          build-live-projections (sportweit) ◄─ Roh-CSVs, aliases
+                     └► convert-to-boxscores                         sync-espn-picks, sync-espn-matchups
+          prune-raw-data (CSV 400 d, games.json 120 d)               fetch-draft-results-espn --auto
+          update-all-aggregates (week, month, season)                build-team-analytics ◄─ live-projections (sport)
+          build-offseason-rankings ─► build-postdraft-board          build-best-available-board ◄─ season, aggregate, …
+          build-rolling-archive                                      build-dynasty-live ◄─ season vs. projections-baseline
+          build-live-projections (sportweit) ◄─ Roh-CSVs, aliases    build-fantasy-power-score ◄─ live-projections
           (09/21 Uhr: build-nba-power-rankings/-score)          ──► funkytown (leagues/funkytown)
                                                                      sync-espn-rosters, sync-espn-matchups,
+                                                                     fetch-draft-results-espn --auto,
                                                                      build-team-analytics,
                                                                      build-best-available-board
 ```
@@ -88,16 +90,16 @@ Die Liga-Scripts lesen sportweite Eingaben über `SPORT_DATA`
 (`sports/nba/data/`) bzw. die Roh-CSVs aus `sports/nba/scripts/data/` — jede
 Änderung ist im Script mit `MFHFB HQ` kommentiert. Formeln unverändert.
 
-## Workflows (`_workflows-nach-github-kopieren/`)
+## Workflows (`.github/workflows/`)
 
 | Workflow | Auslöser | schreibt | concurrency |
 |---|---|---|---|
 | nba-sync.yml | 35 Crons (halbstündlich 06–22 Berlin) + manuell (Datum, Liga-Slug, Power) | sports/nba/data, sports/nba/scripts/data — ruft danach tthq-sync + funkytown-sync auf | nba-data |
 | tthq-sync.yml | von nba-sync (workflow_call) + manuell | leagues/tthq/data | tthq-data (Job) |
 | funkytown-sync.yml | von nba-sync (workflow_call) + manuell | leagues/funkytown/data | funkytown-data (Job) |
-| funkytown-standings.yml | manuell (Saison/Bereich) | leagues/funkytown/data/season-history.js | funkytown-data |
+| funkytown-standings.yml | manuell (Saison/Bereich) | leagues/funkytown/data/season-history.js, season-matchups.js | funkytown-data |
 | nba-backfill.yml | manuell | sports/nba | nba-data |
-| nba-draft-results.yml | manuell, Liga wählbar | leagues/<liga>/data/draft-results-*.js | <liga>-data |
+| nba-draft-results.yml | manuell, Liga wählbar (seit 16.10.2026 meist unnötig: der Liga-Sync holt den Draft automatisch) | leagues/<liga>/data/draft-results-*.js | <liga>-data |
 | tthq-pick-journal.yml | manuell | leagues/tthq/data/picks-live.js | tthq-data |
 | nba-preseason.yml | täglich 10:00 UTC + manuell (force) | sports/nba/data/preseason-score.js, data/preseason/ | nba-preseason |
 
@@ -248,3 +250,24 @@ bewusst nicht übernommen, damit die Rose-Metric für alle Standard wird).
 ersetzt eine Quelle und rechnet den Mittelwert neu (Logik wie
 build-consensus-projections.js). Gilt sofort für alle NBA-Ligen. Zuletzt: Quelle b = Josh Lloyd
 (BBM), Stand 06.10.2026.
+
+## Saisonbetrieb (Audit 16.10.2026)
+
+Ab dem ersten Spieltag läuft alles ohne Handgriff (nba-sync halbstündlich → Liga-Ketten):
+
+| Stufe | Quelle | wirkt auf |
+|---|---|---|
+| Daily | daily-9cat → livescores-daily | Live Scores (Night Card) |
+| Weekly / Monthly | update-all-aggregates → livescores-aggregate | Live Scores, Player Rankings (7/30 Tage), Planner (30 Tage) |
+| Season | update-all-aggregates → livescores-season | Live Scores „Season“, Player Rankings „Saison“ mit Δ-Rang zum Vortag, Planner-Quelle, Rolling-Archiv (eosRank), Best Available |
+| Projections | build-live-projections (Baseline wie 2 Spiele + echte Spiele) | Planner, Cat Web, Team Analytics, Waiver, Power Score, Funkytown-Board |
+| Dynasty | build-dynasty-live: Saison-Rang gegen Projection-Rang, Shrinkage n/(n+20), Alter, nur signifikant (≥ 8 Spiele) | Dynasty Rankings „Live“, Trade Analyzer + Trade Finder („📈 Live-Form“, Standard an) |
+
+- Best Available (beide Ligen): `currentSeason` = 60 % Saison + 40 % 30 Tage, Gewicht wächst mit den
+  Spielen (voll ab 20); Off-Season-Signal fällt bis 10 Spiele weg, Vorjahr halbiert sich bis 20.
+- Playoffs/Play-In laufen als eigene Liga `nba-postseason` (nicht in Saison-Rankings/Projections),
+  All-Star/Rising Stars (kein NBA-Team) werden übersprungen.
+- Rolling-Archiv: Bug behoben — es suchte das heutige Datum, die Aggregate stehen aber auf dem
+  letzten Spieltag (US-Datum, meist gestern) → lief vorher ins Leere.
+- Draft Results werden nach dem Draft automatisch geholt (`--auto`, einmalig).
+- TTHQ hat jetzt „Tabellenverlauf“ (season-matchups, Vorjahre werden einmalig automatisch nachgeholt).

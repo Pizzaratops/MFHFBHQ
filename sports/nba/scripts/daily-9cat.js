@@ -22,7 +22,9 @@
 //     Sie landen als eigene Liga "nba-preseason" in den Dateien, damit sie in
 //     die Off-Season-Rankings zählen und NICHT in die Saison-Projections
 //     (behebt den fehlenden Preseason-Schutz der alten TTHQ-Version).
-//     Playoffs/Play-In (type 3/5) zählen zur regulären Liga "nba".
+//     Playoffs/Play-In (type 3/5) seit 16.10.2026 als eigene Liga
+//     "nba-postseason" (zählen nicht in Saison-Rankings/Projections), und
+//     Showspiele ohne NBA-Team (All-Star, Rising Stars) werden übersprungen.
 //  Rechenlogik (Z-Scores, CSV/Meta/Games-JSON-Format) unverändert.
 //
 //  Speichert zusätzlich eine CSV im selben Ordner wie das Script:
@@ -106,9 +108,19 @@ const SUMMARY_URL = (slug, eventId) => `https://site.api.espn.com/apis/site/v2/s
 // Unter welchem Liga-Schlüssel ein Spiel gespeichert wird (Preseason-Schutz,
 // siehe Kopf).
 function outputLeague(slug, event) {
-  if (slug === 'nba' && event.season && Number(event.season.type) === 1) return 'nba-preseason';
+  if (slug === 'nba' && event.season) {
+    const t = Number(event.season.type);
+    if (t === 1) return 'nba-preseason';
+    if (t === 3 || t === 5) return 'nba-postseason'; // Playoffs / Play-In
+  }
   return slug;
 }
+// Die 30 NBA-Teams (Scoreboard-Codes, kanonisiert über canonAbbr). Spiele, in
+// denen KEIN NBA-Team steht (All-Star Game, Rising Stars), gehören nicht in
+// die Saison-Statistik.
+const NBA_TEAM_ABBRS = new Set(['ATL', 'BOS', 'BKN', 'CHA', 'CHI', 'CLE', 'DAL', 'DEN', 'DET', 'GS', 'HOU', 'IND', 'LAC', 'LAL', 'MEM',
+  'MIA', 'MIL', 'MIN', 'NO', 'NY', 'OKC', 'ORL', 'PHI', 'PHX', 'POR', 'SA', 'SAC', 'TOR', 'UTAH', 'WSH']);
+const isNbaTeam = c => !!c && NBA_TEAM_ABBRS.has(canonAbbr(c.team?.abbreviation || ''));
 
 // 9cat Kategorien, in der Reihenfolge wie sie im Composite gewichtet werden.
 // 'invert: true' bedeutet: niedriger ist besser (Turnovers).
@@ -137,7 +149,13 @@ async function fetchGames(slug, dateStr) {
   const res = await fetch(SCOREBOARD_URL(slug, dateStr));
   if (!res.ok) throw new Error(`Scoreboard fetch fehlgeschlagen: HTTP ${res.status}`);
   const data = await res.json();
-  const events = data.events || [];
+  const events = (data.events || []).filter(e => {
+    if (slug !== 'nba') return true;
+    const cs = e.competitions?.[0]?.competitors || [];
+    if (cs.some(isNbaTeam)) return true;
+    console.log(`  Übersprungen (kein NBA-Team, z.B. All-Star): ${e.shortName || e.name}`);
+    return false;
+  });
   return events.map(e => {
     const competitors = e.competitions?.[0]?.competitors || [];
     const home = competitors.find(c => c.homeAway === 'home');

@@ -196,9 +196,9 @@ jobs:
         continue-on-error: true
         run: |
           if [ -n "$DATE_ARG" ]; then
-            node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=120
+            node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=60
           else
-            node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --keep-days=120
+            node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --keep-days=60
           fi
 
       - name: livescores-boxscores.js (Box Scores)
@@ -206,9 +206,9 @@ jobs:
         continue-on-error: true
         run: |
           if [ -n "$DATE_ARG" ]; then
-            node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=120
+            node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=14
           else
-            node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --keep-days=120
+            node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --keep-days=14
           fi
 
       # CSV/Meta 400 Tage (Saison-Summen + Off-Season brauchen sie; die

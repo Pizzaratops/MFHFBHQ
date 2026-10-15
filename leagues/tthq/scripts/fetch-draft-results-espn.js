@@ -25,9 +25,15 @@
 //
 //  Schreibt data/draft-results-<saison>.js. Nicht fatal bei Fehlern.
 //
+//  AUTO-MODUS (16.10.2026): Mit --auto läuft das Script in jedem Liga-Sync
+//  mit, holt den Draft der laufenden ESPN-Saison genau EINMAL, sobald ESPN
+//  ihn als abgeschlossen meldet, und tut danach nichts mehr (ein Abruf je
+//  Lauf nur, solange der Draft noch aussteht). Fehler sind dann nicht fatal.
+//
 //  Usage:
 //    node scripts/fetch-draft-results-espn.js --season 2026
-//    node scripts/fetch-draft-results-espn.js            (Standard: ESPN_SEASON - 1)
+//    node scripts/fetch-draft-results-espn.js            (Standard: ESPN_SEASON, sonst Vorjahr)
+//    node scripts/fetch-draft-results-espn.js --auto     (Liga-Sync)
 // ============================================================
 
 const fs = require('fs');
@@ -70,10 +76,25 @@ function httpsGetJson(url) {
   });
 }
 
+const AUTO = process.argv.includes('--auto');
+
+function activeSeasonDone(season) {
+  const p = path.join(ROOT, 'data', 'draft-results-active.js');
+  if (!fs.existsSync(p)) return false;
+  try {
+    const sandbox = {};
+    vm.createContext(sandbox);
+    vm.runInContext(`${fs.readFileSync(p, 'utf8')}\nthis.__D__ = DRAFT_RESULTS;`, sandbox);
+    const d = sandbox.__D__;
+    return !!(d && d.espnSeason === season && Array.isArray(d.picks) && d.picks.length);
+  } catch (e) { return false; }
+}
+
 async function main() {
   const cfg = loadConfig();
   const arg = process.argv.indexOf('--season');
-  const season = arg > -1 ? parseInt(process.argv[arg + 1], 10) : cfg.ESPN_SEASON - 1;
+  let season = arg > -1 ? parseInt(process.argv[arg + 1], 10) : cfg.ESPN_SEASON;
+  if (AUTO && activeSeasonDone(season)) { console.log(`Draft Results ${season} liegen schon vor -- nichts zu tun.`); return; }
 
   const base = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${season}/segments/0/leagues/${cfg.ESPN_LEAGUE_ID}`;
 
@@ -81,8 +102,9 @@ async function main() {
 
   // ── 1. Draft-Reihenfolge und Picks ──────────────────────────
   const draftData = await httpsGetJson(`${base}?view=mDraftDetail`);
-  const dd = draftData.draftDetail;
+  let dd = draftData.draftDetail;
   if (!dd) throw new Error('Kein draftDetail in der Antwort -- falsche Saison/Liga-ID?');
+  if (!dd.drafted && AUTO) { console.log(`Draft ${season} laut ESPN noch nicht abgeschlossen -- später erneut.`); return; }
   if (!dd.drafted) {
     console.warn(`Warnung: ESPN meldet den Draft für Saison ${season} noch nicht als abgeschlossen. Ergebnisse können unvollständig sein.`);
   }
@@ -125,10 +147,9 @@ async function main() {
   picks.sort((a, b) => a.overallPickNumber - b.overallPickNumber);
 
   const out = `// ============================================================
-//  AUTO-GENERIERT von scripts/fetch-draft-results-espn.js.
-//  Manuell ausgeloest über "Draft Results abrufen" in GitHub Actions,
-//  läuft NICHT täglich -- ein abgeschlossener Draft ändert sich nicht
-//  mehr. Erneut ausführen, falls sich die Namensauflösung verbessern
+//  AUTO-GENERIERT von scripts/fetch-draft-results-espn.js (automatisch
+//  im Liga-Sync, sobald ESPN den Draft als abgeschlossen meldet, oder
+//  manuell über "Draft Results abrufen"). Erneut ausführen, falls sich die Namensauflösung verbessern
 //  soll (z.B. nachdem ein zunächst nicht auflösbarer Spieler wieder
 //  auf einem Roster auftaucht).
 //  Zuletzt abgerufen: ${new Date().toISOString()}
@@ -157,5 +178,5 @@ const DRAFT_RESULTS = {
 
 main().catch(err => {
   console.error('Draft Results Abruf fehlgeschlagen:', err.message);
-  process.exit(1); // hier bewusst fatal: manuell ausgeloest, Fehler soll auffallen
+  if (!AUTO) process.exit(1); // manuell: fatal, Fehler soll auffallen; im Liga-Sync nicht
 });

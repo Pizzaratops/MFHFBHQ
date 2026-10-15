@@ -5,7 +5,7 @@
 //
 //  Port von js/matchup-planner.js (TTHQ = Funkytown, Logik unverändert):
 //  - Statistik je Spieler = w × Projection + (1 − w) × gespielte Stats
-//    (Quelle wählbar: Reg. Saison / Preseason 25/26 / Off Season;
+//    (Quelle wählbar: Saison 26/27 / letzte 30 Tage / Vorsaison 25/26 / Off Season;
 //    Standard = beste Kaderabdeckung).
 //  - Spielplan echt aus ESPN (Liga-Matchups + NBA-Spielplan), per Proxy
 //    geladen und im Browser gecacht (mfhfb:<liga>:planner-*).
@@ -83,12 +83,18 @@
 
   function rankSources(ctx) {
     const d = ctx.data, key = N().key, out = [];
+    // ganze Saison bis heute vor dem 30-Tage-Fenster; bei gleicher Abdeckung gewinnt die Saison
+    const season = d.LIVESCORES_SEASON && d.LIVESCORES_SEASON.season && d.LIVESCORES_SEASON.season.nba;
+    if (season) {
+      const dates = Object.keys(season).sort(), last = dates[dates.length - 1], snap = last && season[last];
+      if (snap && Array.isArray(snap.players) && snap.players.length) out.push({ id: 'season', label: `Ganze Saison bis ${last}`, short: 'Saison', players: snap.players, leagueAvg: snap.leagueAvg || { fg: 46, ft: 78 } });
+    }
     const month = d.LIVESCORES_AGGREGATE && d.LIVESCORES_AGGREGATE.month && d.LIVESCORES_AGGREGATE.month.nba;
     if (month) {
       const dates = Object.keys(month).sort(), last = dates[dates.length - 1], snap = last && month[last];
-      if (snap && Array.isArray(snap.players) && snap.players.length) out.push({ id: 'reg', label: `Reguläre Saison, Monatsfenster bis ${last}`, short: 'Reg. Saison', players: snap.players, leagueAvg: snap.leagueAvg || { fg: 46, ft: 78 } });
+      if (snap && Array.isArray(snap.players) && snap.players.length) out.push({ id: 'reg', label: `Letzte 30 Tage bis ${last}`, short: '30 Tage', players: snap.players, leagueAvg: snap.leagueAvg || { fg: 46, ft: 78 } });
     }
-    if (Array.isArray(d.LAST_SEASON_STATS_2025_26) && d.LAST_SEASON_STATS_2025_26.length) out.push({ id: 'last', label: 'Preseason, komplette Saison 2025/26', short: 'Preseason', players: d.LAST_SEASON_STATS_2025_26, leagueAvg: { fg: 46.5, ft: 78 } });
+    if (Array.isArray(d.LAST_SEASON_STATS_2025_26) && d.LAST_SEASON_STATS_2025_26.length) out.push({ id: 'last', label: 'Vorsaison, komplette Saison 2025/26', short: 'Vorsaison', players: d.LAST_SEASON_STATS_2025_26, leagueAvg: { fg: 46.5, ft: 78 } });
     const O = d.OFFSEASON_RANKINGS;
     if (O && O.players && O.players.length) out.push({ id: 'off', label: `Off Season, ${O.windowStart} bis ${O.windowEnd}`, short: 'Off Season', players: O.players, leagueAvg: O.leagueAvg || { fg: 43, ft: 71 } });
     const rostered = new Set(allRostered(ctx).map(p => key(p.name)));
@@ -98,7 +104,8 @@
       let hit = 0; rostered.forEach(k => { if (keys.has(k)) hit++; });
       s.coverage = hit / total;
     });
-    return out.sort((a, b) => b.coverage - a.coverage);
+    // stabile Sortierung: Abdeckung (auf 5 % gerundet), bei Gleichstand Reihenfolge oben (Saison zuerst)
+    return out.map((s, i) => ({ s, i })).sort((a, b) => (Math.round(b.s.coverage * 20) - Math.round(a.s.coverage * 20)) || (a.i - b.i)).map(x => x.s);
   }
 
   function buildIndex(ctx, st) {
@@ -522,7 +529,7 @@
 
   MFHFB.pages.register({
     id: 'planner', section: 'matchups', label: 'Matchup-Planer', icon: '⚔️', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections', '?sport:livescores-aggregate', '?sport:last-season-stats-2025-26', '?sport:offseason-rankings'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:last-season-stats-2025-26', '?sport:offseason-rankings'],
     title: () => 'Matchup-Planer', render, mount,
   });
 })();

@@ -21,11 +21,11 @@
 (function () {
   const N = () => MFHFB.nba;
   const COMPS = [
-    ['nba', '🏆 NBA'], ['nba-preseason', '🏀 NBA Pre-Season'],
+    ['nba', '🏆 NBA'], ['nba-postseason', '🏆 NBA Playoffs'], ['nba-preseason', '🏀 NBA Pre-Season'],
     ['nba-summer-california', '☀️ Summer League – California'], ['nba-summer-utah', '🏔️ Summer League – Salt Lake City'],
     ['nba-summer-las-vegas', '🏖️ Summer League – Las Vegas'],
   ];
-  const PERIODS = [['daily', 'Daily'], ['week', 'Weekly'], ['month', 'Monthly'], ['box', 'Box Scores']];
+  const PERIODS = [['daily', 'Daily'], ['week', 'Weekly'], ['month', 'Monthly'], ['season', 'Season'], ['box', 'Box Scores']];
   const WCATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['to', 'TO'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%']];
   const STAT_COLS = [['min', 'MIN'], ['pts', 'PTS', 'pts'], ['reb', 'REB', 'reb'], ['ast', 'AST', 'ast'], ['stl', 'STL', 'stl'], ['blk', 'BLK', 'blk'], ['to', 'TO', 'to'], ['tpm', '3PM', 'tpm'], ['fgPct', 'FG%', 'fgImpact'], ['ftPct', 'FT%', 'ftImpact']];
   const defaults = { sort: 'composite', asc: false, minGames: 1, weights: {}, heat: false, nc: false, nk: 'top10', ncm: '9cat' };
@@ -34,6 +34,7 @@
   function source(data, period, comp) {
     if (period === 'daily') return ((data.LIVESCORES_DAILY || {})[comp]) || {};
     if (period === 'box') return ((data.LIVESCORES_BOXSCORES || {})[comp]) || {};
+    if (period === 'season') return (((data.LIVESCORES_SEASON || {}).season || {})[comp]) || {};
     return (((data.LIVESCORES_AGGREGATE || {})[period] || {})[comp]) || {};
   }
   // Wettbewerb mit den jüngsten Daten als Start (NBA in der Saison, sonst Summer League/Preseason)
@@ -53,7 +54,10 @@
     const period = PERIODS.some(p => p[0] === pp) ? pp : 'daily';
     const comp = COMPS.some(c => c[0] === pc) ? pc : defaultComp(data);
     const dates = Object.keys(source(data, period, comp)).sort();
-    const date = pd && /^\d{4}-\d{2}-\d{2}$/.test(pd) ? pd : dates[dates.length - 1] || null;
+    let date = pd && /^\d{4}-\d{2}-\d{2}$/.test(pd) ? pd : dates[dates.length - 1] || null;
+    // Ältere Wochen/Monate/Saison-Stände werden ausgedünnt (nur Sonntage bzw. Monatsende) →
+    // ein Datum ohne Eintrag rastet auf den letzten vorhandenen Stichtag davor ein.
+    if (date && dates.length && !dates.includes(date)) date = dates.filter(d => d <= date).pop() || dates[0];
     return { period, comp, dates, date };
   }
 
@@ -131,9 +135,14 @@
   };
   // Zeitraum der Karte: Daily = Nacht, Weekly = Woche, Monthly = Monat bzw. ganze Preseason.
   // Weekly/Monthly sind Pro-Spiel-Schnitte → Mindestspiele, damit Einzelspiel-Ausreißer nicht oben landen.
-  function ncScope(r, st) {
+  function ncScope(r, st, entry) {
     if (r.period === 'week') return { suffix: 'of the Week', minG: Math.max(2, st.minGames) };
     if (r.period === 'month') return r.comp === 'nba-preseason' ? { suffix: 'of the Preseason', minG: Math.max(3, st.minGames) } : { suffix: 'of the Month', minG: Math.max(5, st.minGames) };
+    if (r.period === 'season') {
+      // Mindestspiele wachsen mit der Saison: halbe Spielzahl des Dauerbrenners, max. 20
+      const maxG = Math.max(0, ...((entry && entry.players) || []).map(p => p.games || 0));
+      return { suffix: r.comp === 'nba-preseason' ? 'of the Preseason' : r.comp === 'nba-postseason' ? 'of the Playoffs' : 'of the Season', minG: Math.max(st.minGames, Math.min(20, Math.ceil(maxG / 2))) };
+    }
     return { suffix: 'of the Night', minG: 0 };
   }
   const RADAR_CATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO']];
@@ -166,7 +175,7 @@
   const ST_AXES = ['ORB%', 'DRB%', 'BLK%', 'AST%', 'PTS/36', 'TRB/36', 'STL%', 'TOV%', 'TS%', 'FTr'];
   const ST_LINE = ['ORB%', 'DRB%', 'BLK%', 'AST%', 'PTS/36', 'TRB/36'];
   const ST_LEAD = [...ST_LINE, 'STL%', 'TS%'];
-  const ST_MIN = { daily: 15, week: 40, month: 60 };
+  const ST_MIN = { daily: 15, week: 40, month: 60, season: 60 };
   function stickyPool(G, from, to) {
     const c = {}; G.cols.forEach((k, i) => { c[k] = i; });
     const by = new Map();
@@ -199,10 +208,9 @@
 
   function nightCard(ctx, st, entry, r) {
     const e = ctx.ui.esc;
-    const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', SC = ncScope(r, st), avg = r.period !== 'daily';
-    // Sticky-Daten gibt es nur für die Preseason (PRESEASON_GAMES). TTHQ führt die Preseason-Spiele
-    // im alten Datenstand unter „NBA“ → Umschalter nicht am Wettbewerb festmachen, sondern an den Daten.
-    const canSticky = !r.comp.startsWith('nba-summer'), sticky = canSticky && st.ncm === 'sticky';
+    const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', SC = ncScope(r, st, entry), avg = r.period !== 'daily';
+    // Sticky-Daten gibt es nur für die Preseason (PRESEASON_GAMES) → Umschalter nur dort.
+    const canSticky = r.comp === 'nba-preseason', sticky = canSticky && st.ncm === 'sticky';
     const K = { n: NIGHT_KINDS[kind].n, label: `${NIGHT_KINDS[kind].label} ${SC.suffix}` };
     const dailyDates = Object.keys(source(ctx.data, 'daily', r.comp)).sort();
     if (avg && dailyDates.length && entry.windowStart < dailyDates[0]) entry = { ...entry, windowStart: dailyDates[0] };
@@ -294,9 +302,9 @@
     const punted = WCATS.filter(([k]) => weightOf(st, k) !== 1);
     return `
       <div class="page-head"><h1 class="page-title display">🔴 Live Scores</h1>
-        <div class="page-sub">${r.date ? (r.period === 'daily' || box ? fmtLong(r.date) : `${r.period === 'week' ? 'Woche' : 'Monat'} bis ${fmtShort(r.date)}`) : ''}${count ? ` · ${count} Spieler` : ''} · Z-Scores je Kategorie, FG%/FT% als Impact (Abweichung × Würfe)</div></div>
+        <div class="page-sub">${r.date ? (r.period === 'daily' || box ? fmtLong(r.date) : `${r.period === 'week' ? 'Woche' : r.period === 'season' ? (r.comp === 'nba-preseason' ? 'Preseason' : 'Saison') : 'Monat'} bis ${fmtShort(r.date)}`) : ''}${count ? ` · ${count} Spieler` : ''} · Z-Scores je Kategorie, FG%/FT% als Impact (Abweichung × Würfe)</div></div>
       <div class="controls">
-        <div class="seg" role="group">${PERIODS.filter(([p]) => p !== 'box' || Object.keys(source(data, 'box', r.comp)).length).map(([p, l]) => `<a class="seg-btn${p === r.period ? ' active' : ''}" href="${link(p, r.comp)}">${l}</a>`).join('')}</div>
+        <div class="seg" role="group">${PERIODS.filter(([p]) => p !== 'box' || Object.keys(source(data, 'box', r.comp)).length).map(([p, l]) => `<a class="seg-btn${p === r.period ? ' active' : ''}" href="${link(p, r.comp, p === 'daily' || p === 'box' ? null : r.date)}">${l}</a>`).join('')}</div>
         <select class="tr-select" data-comp aria-label="Wettbewerb">${(availableComps.length ? availableComps : COMPS).map(([c, l]) => `<option value="${c}"${c === r.comp ? ' selected' : ''}>${l}</option>`).join('')}</select>
         <div class="seg ls-datenav" role="group">
           ${prev ? `<a class="seg-btn" href="${link(r.period, r.comp, prev)}" aria-label="Vorheriger Tag">◀</a>` : '<span class="seg-btn disabled">◀</span>'}
@@ -306,8 +314,8 @@
       </div>
       ${info ? `<div class="ls-info">${info}</div>` : ''}
       ${!box ? `<div class="ls-tools">
-        ${r.period !== 'daily' ? `<label class="ls-min">🎚️ Min. Spiele <input type="range" min="1" max="5" step="1" value="${st.minGames}" data-min> <b data-minval>${st.minGames}</b></label>` : ''}
-        ${!empty ? `<button type="button" class="seg-btn${st.nc ? ' active' : ''}" data-nc>📸 ${r.period === 'daily' ? 'Night Card' : r.period === 'week' ? 'Week Card' : r.comp === 'nba-preseason' ? 'Preseason Card' : 'Month Card'}</button>` : ''}
+        ${r.period !== 'daily' ? `<label class="ls-min">🎚️ Min. Spiele <input type="range" min="1" max="${r.period === 'season' ? 20 : r.period === 'month' ? 10 : 5}" step="1" value="${st.minGames}" data-min> <b data-minval>${st.minGames}</b></label>` : ''}
+        ${!empty ? `<button type="button" class="seg-btn${st.nc ? ' active' : ''}" data-nc>📸 ${r.period === 'daily' ? 'Night Card' : r.period === 'week' ? 'Week Card' : r.period === 'season' ? (r.comp === 'nba-preseason' ? 'Preseason Card' : 'Season Card') : r.comp === 'nba-preseason' ? 'Preseason Card' : 'Month Card'}</button>` : ''}
         <label class="dna-check"><input type="checkbox" data-heat ${st.heat ? 'checked' : ''}> Heatmap</label>
         <details class="ls-punt"${punted.length ? ' open' : ''}><summary>⚖️ Punt / Gewichtung${punted.length ? ` <span class="ls-puntn">${punted.length} angepasst</span>` : ''}</summary>
           <div class="ls-puntgrid">${WCATS.map(([k, l]) => `<label class="ls-pitem${weightOf(st, k) === 0 ? ' punted' : ''}"><span>${l} <b data-wval="${k}">${weightOf(st, k).toFixed(2)}</b></span><input type="range" min="0" max="2" step="0.25" value="${weightOf(st, k)}" data-w="${k}"></label>`).join('')}</div>
@@ -379,14 +387,14 @@
       const blob = new Blob(['﻿' + [head.join(';'), ...lines].join('\n')], { type: 'text/csv;charset=utf-8;' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `livescores_${r.period === 'week' ? 'Woche' : 'Monat'}_${r.comp}_${r.date}.csv`;
+      a.download = `livescores_${r.period === 'week' ? 'Woche' : r.period === 'season' ? 'Saison' : 'Monat'}_${r.comp}_${r.date}.csv`;
       document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
     });
   }
 
   MFHFB.pages.register({
     id: 'livescores', section: 'players', label: 'Live Scores', icon: '🔴', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'sport:livescores-daily', 'sport:livescores-aggregate', '?sport:livescores-boxscores'],
+    data: ['teams', '?rosters-live', '?sport:aliases', 'sport:livescores-daily', 'sport:livescores-aggregate', '?sport:livescores-season', '?sport:livescores-boxscores'],
     title: () => 'Live Scores', render, mount,
   });
 })();

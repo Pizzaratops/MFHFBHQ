@@ -62,6 +62,13 @@ jobs:
         continue-on-error: true
         run: node scripts/sync-espn-matchups.js
 
+      # Seit 16.10.2026 automatisch: holt den Draft der laufenden Saison
+      # genau einmal, sobald ESPN ihn als abgeschlossen meldet.
+      - name: Draft Results (einmalig nach dem Draft)
+        id: draftres
+        continue-on-error: true
+        run: node scripts/fetch-draft-results-espn.js --auto
+
       - name: Team Analytics
         id: analytics
         continue-on-error: true
@@ -93,7 +100,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.rosters.outcome == 'failure' || steps.matchups.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure'
+        if: steps.draftres.outcome == 'failure' || steps.rosters.outcome == 'failure' || steps.matchups.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1

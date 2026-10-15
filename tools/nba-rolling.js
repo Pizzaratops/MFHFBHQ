@@ -23,7 +23,7 @@
 
   function season(ctx, key) {
     const d = ctx.data;
-    if (key === '2026') return { key, label: '2026/27', players: d.ROLLING_RANKINGS_2026 || [], months: d.RR2026_MONTHS || [], weeks: d.RR2026_WEEKS || [], eosTitle: 'Aktueller Rang (neuester Monat)' };
+    if (key === '2026') return { key, label: '2026/27', players: d.ROLLING_RANKINGS_2026 || [], months: d.RR2026_MONTHS || [], weeks: d.RR2026_WEEKS || [], eosTitle: 'Saison-Rang (ganze Saison bis heute)' };
     return { key: '2025', label: '2025/26', players: d.ROLLING_RANKINGS || [], months: RR_MONTHS_2025, weeks: d.RR_WEEKS || [], eosTitle: 'End of Season Rank' };
   }
   const periods = (S, view) => (view === 'weekly' ? S.weeks.map(w => ({ key: String(w), label: 'W' + w })) : S.months.map(m => ({ key: m, label: MONTH_LABEL[m] || m })));
@@ -90,7 +90,7 @@
         <input type="search" class="search" placeholder="Spieler oder Fantasy-Team …" value="${e(st.q)}" data-q aria-label="Suchen">
         ${st.sel.length ? '<button type="button" class="seg-btn mp-btn" data-clear>✕ Auswahl leeren</button>' : ''}</div>
       ${st.sel.length ? `<div class="card bump-card"><div class="bump-wrap" data-bump>${chart(S, view, st.sel, 900)}</div><div class="bump-tip" hidden></div></div>` : ''}
-      <div class="table-wrap"><table class="table compact nba-rr"><thead><tr>${th('name', 'Spieler', 'nba-sticky')}${th('eos', sk === '2026' ? 'Aktuell' : 'EOS', 'num', S.eosTitle)}${P.map(x => th(x.key, x.label, 'num')).join('')}</tr></thead>
+      <div class="table-wrap"><table class="table compact nba-rr"><thead><tr>${th('name', 'Spieler', 'nba-sticky')}${th('eos', sk === '2026' ? 'Saison' : 'EOS', 'num', S.eosTitle)}${P.map(x => th(x.key, x.label, 'num')).join('')}</tr></thead>
         <tbody data-body>${tbody(ctx, S, view, st)}</tbody></table></div>`;
   }
 

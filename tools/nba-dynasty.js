@@ -7,7 +7,10 @@
 //  applies keepers). Daten (je Liga):
 //  - DYNASTY_PLAYERS [rank, name, team, pos, dob]   (data/rankings.js)
 //  - DYNASTY_ROLLING [{date, label, ranks:{name:rank}}] Snapshots
-//  - DYNASTY_LIVE    [{name, baseRank, liveRank, delta, source}] Live-Nudge
+//  - DYNASTY_LIVE    [{name, baseRank, liveRank, delta, games, expRank, seasonRank}]
+//                    Saison-Form gegen Erwartung (nur signifikante Bewegungen,
+//                    s. leagues/tthq/scripts/build-dynasty-live.js); fließt im
+//                    Trade Analyzer/Finder in den Wert ein (Schalter „Live-Form“)
 //  - HASHTAG_RANKINGS [rank, name, team, pos] + MATT_RANKS {name: rank}
 //  Admin-Edit-Modus (PIN) ist bewusst NICHT übernommen — die Rangliste
 //  wird weiter über data/rankings.js im Repo gepflegt.
@@ -36,6 +39,10 @@
     return dlt > 0 ? ` <small class="up" title="Seit ${prev.label}: ${dlt} Plätze nach oben">▲${dlt}</small>` : ` <small class="down" title="Seit ${prev.label}: ${-dlt} Plätze nach unten">▼${-dlt}</small>`;
   }
 
+  const liveTip = lv => (lv.games != null
+    ? `${lv.delta > 0 ? 'Besser' : 'Schlechter'} als erwartet: Saison-Rang ${lv.seasonRank} statt erwartet ${lv.expRank} (${lv.games} Spiele) → Live-Rang ${lv.liveRank}. Zählt im Trade Analyzer, wenn „Live-Form“ an ist.`
+    : `Live-Rang ${lv.liveRank}`);
+
   function listRows(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc, nba = N(), I = indexes(ctx);
     const snaps = d.DYNASTY_ROLLING || [];
@@ -56,12 +63,21 @@
         <td><a class="nba-team-link" href="${ctx.href('nbateams', nba.canonTeam(p[2]))}">${e(p[2])}</a></td>
         <td class="muted">${e(p[3])}</td><td class="num">${age ?? '—'}</td>
         <td>${o ? `<a class="nba-tlink mp-tc" style="${nba.tcStyle(o)}" href="${ctx.href('teams', o.id)}"><span class="nba-tdot"></span>${e(o.name)}</a>` : '<span class="nba-tag fa">frei</span>'}</td>
-        <td class="num">${lv ? `<span class="${lv.delta > 0 ? 'up' : 'down'}" title="Aktuelle Performance deutet ${lv.delta > 0 ? 'nach oben' : 'nach unten'} (Basis: ${lv.source === 'current' ? 'laufende Saison' : 'Off-Season'}) · Live-Rang ${lv.liveRank}">${lv.delta > 0 ? '▲' : '▼'}${Math.abs(lv.delta)}</span>` : '<span class="muted">—</span>'}</td>
+        <td class="num">${lv ? `<span class="${lv.delta > 0 ? 'up' : 'down'}" title="${e(liveTip(lv))}">#${lv.liveRank} ${lv.delta > 0 ? '▲' : '▼'}${Math.abs(lv.delta)}</span>` : '<span class="muted">—</span>'}</td>
         <td class="num">${nba.rankBadge(I.matt.get(k) ?? null)}</td>
         <td class="num">${nba.rankBadge(I.hash.get(k) ?? null)}</td>
       </tr>`;
     }).join('');
   }
+
+  function liveNote(d) {
+    const M = d.DYNASTY_LIVE_META;
+    if (!M) return '';
+    if (M.mode !== 'season') return '<p class="muted small">📈 Die Spalte „Live“ füllt sich ab Saisonstart: Wer nach mind. 8 Spielen deutlich besser oder schlechter spielt als erwartet, bekommt einen Live-Rang.</p>';
+    const n = (d.DYNASTY_LIVE || []).length;
+    return `<p class="muted small">📈 Live-Rang: Saison bis ${ctx_date(M.date)} gegen die Erwartung vor der Saison · ${n} Spieler mit deutlicher Abweichung · zählt im Trade Analyzer/Finder („Live-Form“).</p>`;
+  }
+  const ctx_date = s => (s ? s.split('-').reverse().join('.') : '');
 
   function rankingsView(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc;
@@ -70,8 +86,9 @@
     return `<div class="controls">
         <div class="seg" role="group">${[['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']].map(([k, l]) => `<button type="button" class="seg-btn${st.own === k ? ' active' : ''}" data-own="${k}">${l}</button>`).join('')}</div>
         ${sinceSel}<input type="search" class="search" placeholder="Spieler, Team, Position, Fantasy-Team …" value="${e(st.q)}" data-q aria-label="Suchen"></div>
+      ${liveNote(d)}
       <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">MFHFB</th><th class="nba-sticky">Spieler</th><th>NBA</th><th>Pos</th><th class="num">Alter</th><th>Fantasy-Team</th>
-        <th class="num" title="Live-Nudge: aktuelle Performance gegen den Dynasty-Rang (informativ, ändert die Rangliste nicht)">Live</th><th class="num">Matt</th><th class="num">#️⃣ Hashtag</th></tr></thead>
+        <th class="num" title="Live-Rang: Saison-Form gegen die Erwartung vor der Saison (nur deutliche Abweichungen ab 8 Spielen; ändert die Rangliste nicht, zählt aber im Trade Analyzer)">Live</th><th class="num">Matt</th><th class="num">#️⃣ Hashtag</th></tr></thead>
         <tbody data-body>${listRows(ctx, st)}</tbody></table></div>`;
   }
 

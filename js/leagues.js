@@ -93,6 +93,7 @@ const LEAGUES = [
     espn: { season: 2027, toTeam: { 1: 1, 2: 2, 4: 3, 7: 4, 5: 5, 11: 6, 8: 7, 10: 8, 6: 9, 14: 10, 3: 11, 9: 12 } },
     // Saison-Archiv (data/season-XXXX-YY.js: Endstand + Kader) — Liga-Historie
     seasonArchive: ['2021-22', '2022-23', '2023-24', '2024-25', '2025-26'],
+    seasonMatchups: true,      // data/season-matchups.js (tthq-sync, seit 16.10.2026) → Seite „Tabellenverlauf“
     // Endplatzierungen (nach Playoffs) je Saison wie oben, pro HEUTIGER Team-ID —
     // aus dem alten Standings-Chart (js/standings.js), von Beyaz bestätigt
     // (29.09.2026). Ordnet auch Vorgänger-Franchises zu (z. B. Seagulls ←
@@ -132,9 +133,8 @@ const LEAGUES = [
     // Draft Day 11.10.): native Hub-Version für alle, Daten aus den
     // Hub-Syncs (leagues/funkytown/data/, handgepflegte Dateien dort sind
     // identisch mit dem alten Repo). Die alte Seite bleibt über „✨“ /
-    // ?legacy erreichbar. Projections = TTHQ-Dateien (funkytown-sync.yml
-    // übernimmt vor jedem Lauf projections-baseline/-consensus aus leagues/tthq,
-    // ergänzt um Funkytown-Veteranen, s. leagues/funkytown/scripts/adopt-tthq-projections.js).
+    // ?legacy erreichbar. Projections seit 15.10.2026 sportweit
+    // (sports/nba/data/projections-*.js, eine Quelle für alle NBA-Ligen).
     mode: 'native',
     dataBase: 'leagues/funkytown/data/',
     files: { teams: 'teams-rosters', 'draft-results-active': 'draft-results-active', 'preseason-score': './sports/nba/data/preseason-score' },

@@ -1,5 +1,5 @@
 // ============================================================
-//  Geteilte Aggregations-Logik (Woche / Monat)
+//  Geteilte Aggregations-Logik (Woche / Monat / Saison)
 // ============================================================
 //  Extrahiert aus aggregate-9cat.js, damit sowohl das manuelle
 //  CLI-Tool (Konsole + CSV) als auch der Live-Scores-Converter
@@ -32,6 +32,11 @@ const OFFSEASON_LEAGUES = [
   'nba-summer-las-vegas',
   'nba-preseason',
 ];
+// Kurze Wettbewerbe mit eigenem Saisonfenster (ab dem ersten Spieltag):
+// Off-Season + Playoffs/Play-In ("nba-postseason", seit 16.10.2026 getrennt).
+// Playoffs bleiben bewusst NICHT in OFFSEASON_LEAGUES (sonst flössen sie in
+// die Off-Season-Rankings).
+const SHORT_LEAGUES = [...OFFSEASON_LEAGUES, 'nba-postseason'];
 
 const FIELD_MAP = {
   pts: 'ptsPg', reb: 'rebPg', ast: 'astPg', stl: 'stlPg', blk: 'blkPg',
@@ -100,13 +105,34 @@ function stdDev(arr, m) {
  *   { status: 'ok', windowStart, windowEnd, windowDays, filesInWindow, allPlayers,
  *     eligible, leagueFGpct, leagueFTpct, minGames }
  */
-function computeAggregate({ league, period, endDate, dir, minGames }) {
-  const WINDOW_DAYS = period === 'month' ? 30 : 7;
-  const DEFAULT_MIN_GAMES = period === 'month' ? 4 : 2;
+// Saisonbeginn für period 'season' (15.10.2026): reguläre Saison ab 1. August des
+// Saison-Startjahres; Off-Season-Ligen (Summer League, Preseason) ab ihrem ersten
+// Spieltag innerhalb der letzten 150 Tage (= das ganze Turnier / die ganze Preseason).
+function seasonStartFor(league, end, dir) {
+  if (!SHORT_LEAGUES.includes(league)) {
+    const y = end.getUTCMonth() >= 7 ? end.getUTCFullYear() : end.getUTCFullYear() - 1;
+    return new Date(Date.UTC(y, 7, 1));
+  }
+  const floor = new Date(end); floor.setUTCDate(floor.getUTCDate() - 150);
+  const re = new RegExp(`^daily-9cat_${league}_(\\d{4}-\\d{2}-\\d{2})\\.csv$`);
+  const dates = fs.readdirSync(dir).map(f => (f.match(re) || [])[1]).filter(Boolean).map(toDate)
+    .filter(d => d >= floor && d <= end).sort((a, b) => a - b);
+  return dates.length ? dates[0] : floor;
+}
 
+function computeAggregate({ league, period, endDate, dir, minGames }) {
   const end = toDate(endDate);
-  const start = new Date(end);
-  start.setUTCDate(start.getUTCDate() - (WINDOW_DAYS - 1));
+  let start, WINDOW_DAYS, DEFAULT_MIN_GAMES;
+  if (period === 'season') {
+    start = seasonStartFor(league, end, dir);
+    WINDOW_DAYS = Math.round((end - start) / 86400000) + 1;
+    DEFAULT_MIN_GAMES = null; // dynamisch, s. unten
+  } else {
+    WINDOW_DAYS = period === 'month' ? 30 : 7;
+    DEFAULT_MIN_GAMES = period === 'month' ? 4 : 2;
+    start = new Date(end);
+    start.setUTCDate(start.getUTCDate() - (WINDOW_DAYS - 1));
+  }
 
   const filePattern = new RegExp(`^daily-9cat_${league}_(\\d{4}-\\d{2}-\\d{2})\\.csv$`);
   const filesInWindow = fs.readdirSync(dir)
@@ -123,6 +149,8 @@ function computeAggregate({ league, period, endDate, dir, minGames }) {
   if (!filesInWindow.length) {
     return { status: 'no-files', windowStart: start, windowEnd: end };
   }
+  // Saison: Fensterbeginn = erster Spieltag (nicht der 1. August)
+  if (period === 'season') { start = toDate(filesInWindow[0].date); WINDOW_DAYS = Math.round((end - start) / 86400000) + 1; }
 
   // MIN_GAMES darf nie höher sein, als die im Fenster tatsächlich verfügbaren
   // Spieltage es zulassen — sonst bleibt "month" für kurze Formate wie Summer
@@ -136,7 +164,10 @@ function computeAggregate({ league, period, endDate, dir, minGames }) {
   // MIN_GAMES von 1 — dort spielen viele Spieler insgesamt nur ein einziges
   // Spiel, und sollen trotzdem in Weekly/Monthly auftauchen.
   const dynamicCap = Math.max(1, Math.ceil(filesInWindow.length / 2));
-  const effectiveDefault = OFFSEASON_LEAGUES.includes(league) ? 1 : DEFAULT_MIN_GAMES;
+  // Saison: Mindestspiele wachsen mit der Saison (20 % der Spieltage mit Daten,
+  // höchstens 15) — früh im Jahr reichen 1-2 Spiele, ab ~75 Spieltagen 15.
+  const seasonMin = Math.max(1, Math.min(15, Math.ceil(filesInWindow.length * 0.2)));
+  const effectiveDefault = OFFSEASON_LEAGUES.includes(league) ? 1 : (period === 'season' ? seasonMin : DEFAULT_MIN_GAMES);
   const MIN_GAMES = minGames != null ? minGames : Math.min(effectiveDefault, dynamicCap);
 
   const players = new Map(); // key: name -> aggregate object

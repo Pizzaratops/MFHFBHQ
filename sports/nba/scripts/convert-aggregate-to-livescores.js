@@ -84,7 +84,7 @@ function buildEntry({ period, league, endDate, dir, minGames }) {
   };
 }
 
-function loadExisting(outPath) {
+function loadExisting(outPath, constName = 'LIVESCORES_AGGREGATE') {
   if (!fs.existsSync(outPath)) return {};
   const code = fs.readFileSync(outPath, 'utf8');
   // FATAL bei liegen gebliebenen Merge-Konfliktmarkern (siehe conflict-guard.js) --
@@ -94,7 +94,7 @@ function loadExisting(outPath) {
   const sandbox = {};
   vm.createContext(sandbox);
   try {
-    vm.runInContext(`${code}\nthis.__RESULT__ = typeof LIVESCORES_AGGREGATE !== "undefined" ? LIVESCORES_AGGREGATE : {};`, sandbox);
+    vm.runInContext(`${code}\nthis.__RESULT__ = typeof ${constName} !== "undefined" ? ${constName} : {};`, sandbox);
     return sandbox.__RESULT__ || {};
   } catch (err) {
     console.error(`Konnte bestehende ${outPath} nicht parsen (${err.message}) — sie wird komplett neu geschrieben.`);
@@ -106,6 +106,44 @@ function mergeEntry(existing, period, league, endDate, entry) {
   existing[period] = existing[period] || {};
   existing[period][league] = existing[period][league] || {};
   existing[period][league][endDate] = entry;
+}
+
+// Ausdünnen statt fester Anzahl (15./16.10.2026): eine reguläre Saison hätte mit
+// --keep=180 je Periode ~180 Stichtage × ~450 Spieler (≈ 40 MB, zu groß für die
+// Seiten). Behalten werden je Liga/Periode:
+//  - alle Stichtage der letzten RECENT_DAYS Tage (vor dem neuesten),
+//  - ältere nur noch sonntags (week) bzw. am Monatsletzten (month, season),
+//    höchstens ~13 Monate zurück,
+//  - beendete Wettbewerbe (Summer League, Preseason, Playoffs: letzter Spieltag
+//    > ENDED_DAYS vor dem neuesten Stichtag der Datei) nur noch ihren letzten Stand.
+// Ergebnis bei voller Saison ≈ 7 MB (Aggregate) + ≈ 2 MB (Season).
+const RECENT_DAYS = 8;
+const ENDED_DAYS = 21;
+function isLastOfMonth(d) { const x = new Date(d + 'T12:00:00Z'); x.setUTCDate(x.getUTCDate() + 1); return x.getUTCDate() === 1; }
+function isSunday(d) { return new Date(d + 'T12:00:00Z').getUTCDay() === 0; }
+const dayDiff = (a, b) => Math.round((new Date(a + 'T12:00:00Z') - new Date(b + 'T12:00:00Z')) / 86400000);
+function trimSmart(existing, recentDays = RECENT_DAYS) {
+  let newest = '';
+  for (const period of Object.keys(existing)) {
+    for (const league of Object.keys(existing[period])) {
+      Object.keys(existing[period][league]).forEach(d => { if (d > newest) newest = d; });
+    }
+  }
+  for (const period of Object.keys(existing)) {
+    for (const league of Object.keys(existing[period])) {
+      const dates = Object.keys(existing[period][league]).sort();
+      if (!dates.length) continue;
+      const latest = dates[dates.length - 1];
+      const ended = dayDiff(newest, latest) > ENDED_DAYS;
+      dates.forEach(d => {
+        if (d === latest) return;
+        const age = dayDiff(latest, d);
+        if (!ended && age <= recentDays) return;
+        const keepIt = !ended && age <= 400 && (period === 'week' ? isSunday(d) : isLastOfMonth(d));
+        if (!keepIt) delete existing[period][league][d];
+      });
+    }
+  }
 }
 
 function trimKeep(existing, keep) {
@@ -141,7 +179,7 @@ ${players}
       }`;
 }
 
-function serialize(existing) {
+function serialize(existing, constName = 'LIVESCORES_AGGREGATE') {
   const periodBlocks = Object.keys(existing).sort().map(period => {
     const leagueBlocks = Object.keys(existing[period]).sort().map(league => {
       const dates = Object.keys(existing[period][league]).sort();
@@ -177,22 +215,25 @@ function serialize(existing) {
 //    ]
 //  }
 //
-//  period: "week" | "month"
+//  period: "week" | "month" (livescores-aggregate.js) bzw. "season" (livescores-season.js,
+//          Saison bis zum Stichtag, gleiche Form; seit 15.10.2026)
+//  Ältere Stichtage werden ausgedünnt (s. trimSmart): letzte 8 Tage komplett,
+//  davor nur Sonntage (week/season) bzw. Monatsletzte (month).
 //  endDate: Stichtag, an dem das Fenster endet ("YYYY-MM-DD")
 // ============================================================
 
-const LIVESCORES_AGGREGATE = {
+const ${constName} = {
 ${periodBlocks}
 };
 `;
 }
 
-function writeOut(existing, outPath) {
+function writeOut(existing, outPath, constName) {
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, serialize(existing), 'utf8');
+  fs.writeFileSync(outPath, serialize(existing, constName), 'utf8');
 }
 
-module.exports = { buildEntry, loadExisting, mergeEntry, trimKeep, serialize, writeOut, DEFAULT_OUT, DEFAULT_DIR, DEFAULT_KEEP };
+module.exports = { buildEntry, loadExisting, mergeEntry, trimKeep, trimSmart, serialize, writeOut, DEFAULT_OUT, DEFAULT_DIR, DEFAULT_KEEP };
 
 // ------------------------------------------------------------
 // CLI

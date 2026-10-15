@@ -12,9 +12,10 @@
 //   - Post-Draft-Score für Rookies (data/postdraft-board.js)       Gewicht 0.30
 //   - Letzte Saison 2025/26 (data/rolling-rankings.js, eosRank)    Gewicht 0.20
 //   - Off-Season 2026 (data/offseason-rankings.js, SL+Preseason)   Gewicht 0.15
-//   - Laufende Saison 2026/27 (data/livescores-aggregate.js,
-//     Liga "nba", 30-Tage-Fenster — existiert erst NACH Saisonstart,
-//     überschreibt dann automatisch Off-Season als dominantes Signal) Gewicht 0.35
+//   - Laufende Saison 2026/27 (livescores-season.js = ganze Saison 60 %
+//     + livescores-aggregate.js 30 Tage 40 %, Liga "nba") — Gewicht wächst
+//     mit den Spielen: 3 Sp. ≈ 0.08, ab 20 Sp. 0.50. Off-Season fällt bis
+//     10 Spiele auf 0, Vorjahr bis 20 Spiele auf die Hälfte.
 //
 //  WICHTIG — bekannte Datenlücke: data/rolling-rankings.js enthält nur
 //  Gesamt-Ränge (eosRank/Monats-/Wochenränge), KEINE Kategorie-Z-Scores
@@ -196,7 +197,7 @@ const LIVESCORES_AGGREGATE = (() => {
   return fs.existsSync(p) ? loadVmObject(p, 'LIVESCORES_AGGREGATE') : null;
 })();
 
-const OFFSEASON_LEAGUE_KEYS = new Set(['nba-summer-california', 'nba-summer-utah', 'nba-summer-las-vegas', 'nba-preseason']);
+const OFFSEASON_LEAGUE_KEYS = new Set(['nba-summer-california', 'nba-summer-utah', 'nba-summer-las-vegas', 'nba-preseason', 'nba-postseason']);
 
 // Findet für einen Zeitraum ("week"|"month") das späteste verfügbare Fenster.
 // Bevorzugt die Liga "nba" (reguläre Saison), sobald sie existiert — sonst
@@ -221,6 +222,20 @@ const LATEST_WEEK = latestWindow('week');
 const LATEST_MONTH = latestWindow('month');
 const isRegularSeason = LATEST_MONTH && !OFFSEASON_LEAGUE_KEYS.has(LATEST_MONTH.league);
 
+// Ganze reguläre Saison bis heute (sports/nba/data/livescores-season.js, seit 16.10.2026).
+const LIVESCORES_SEASON = (() => {
+  const p = path.join(SPORT_DATA, 'livescores-season.js');
+  return fs.existsSync(p) ? loadVmObject(p, 'LIVESCORES_SEASON') : null;
+})();
+const LATEST_SEASON = (() => {
+  const S = LIVESCORES_SEASON && LIVESCORES_SEASON.season;
+  if (!S) return null;
+  const lk = Object.keys(S).find(k => !OFFSEASON_LEAGUE_KEYS.has(k));
+  if (!lk) return null;
+  const dates = Object.keys(S[lk] || {}).sort();
+  return dates.length ? { date: dates[dates.length - 1], window: S[lk][dates[dates.length - 1]], league: lk } : null;
+})();
+
 function byNameMap(list, nameKey) {
   const m = new Map();
   list.forEach(p => m.set(normalizeName(p[nameKey] ?? p.name), p));
@@ -230,6 +245,8 @@ const week7ByName = new Map();
 if (LATEST_WEEK) LATEST_WEEK.window.players.forEach(p => week7ByName.set(normalizeName(p.name), p));
 const month30ByName = new Map();
 if (LATEST_MONTH) LATEST_MONTH.window.players.forEach(p => month30ByName.set(normalizeName(p.name), p));
+const seasonByName = new Map();
+if (LATEST_SEASON) LATEST_SEASON.window.players.forEach(p => seasonByName.set(normalizeName(p.name), p));
 const offseasonByName = new Map();
 if (OFFSEASON_RANKINGS && Array.isArray(OFFSEASON_RANKINGS.players)) {
   OFFSEASON_RANKINGS.players.forEach(p => offseasonByName.set(normalizeName(p.name), p));
@@ -298,6 +315,7 @@ candidates.forEach((info, key) => {
   const off = offseasonByName.get(key);
   const week = week7ByName.get(key);
   const month = month30ByName.get(key);
+  const seas = isRegularSeason ? seasonByName.get(key) : null;
   const roll = rollingByName.get(key);
 
   const lastStats = lastSeasonStatsByName.get(key);
@@ -312,11 +330,28 @@ candidates.forEach((info, key) => {
   // "currentSeason" nur als EIGENES Signal zählen, sobald die reguläre Saison
   // läuft — während der Off-Season wäre das dieselben Summer-League-Zahlen
   // wie im "offseason"-Signal oben und würde sie doppelt gewichten.
-  if (month && isRegularSeason) signals.push(['currentSeason', month.composite / 3]);
+  //
+  // Seit 16.10.2026: Wert = ganze Saison (60 %) + letzte 30 Tage (40 %, Form),
+  // Gewicht wächst mit der Stichprobe (voll ab 20 Spielen). Im Gegenzug
+  // verlieren Off-Season (Summer League/Preseason, weg ab 10 Spielen) und
+  // Vorjahr (halbiert ab 20 Spielen) an Gewicht → Tag für Tag mehr Saison.
+  const gSeason = seas ? (seas.games || 0) : (month && isRegularSeason ? (month.games || 0) : 0);
+  const sample = Math.min(1, gSeason / 20);
+  if (isRegularSeason && (seas || month)) {
+    const v = seas && month ? (0.6 * seas.composite + 0.4 * month.composite) / 3 : (seas || month).composite / 3;
+    signals.push(['currentSeason', v, BASE_WEIGHTS.currentSeason * Math.max(0.15, sample) * (1 / 0.7)]);
+  }
+  const weightOf = (k, w) => {
+    if (w != null) return w;
+    if (!isRegularSeason) return BASE_WEIGHTS[k];
+    if (k === 'offseason') return BASE_WEIGHTS[k] * Math.max(0, 1 - gSeason / 10);
+    if (k === 'lastSeason') return BASE_WEIGHTS[k] * (1 - 0.5 * sample);
+    return BASE_WEIGHTS[k];
+  };
 
-  const weightSum = signals.reduce((s, [k]) => s + BASE_WEIGHTS[k], 0);
+  const weightSum = signals.reduce((s, [k, , w]) => s + weightOf(k, w), 0);
   const compositeScore = weightSum > 0
-    ? Math.round((signals.reduce((s, [k, v]) => s + v * (BASE_WEIGHTS[k] / weightSum), 0)) * 100) / 100
+    ? Math.round((signals.reduce((s, [k, v, w]) => s + v * (weightOf(k, w) / weightSum), 0)) * 100) / 100
     : -99; // keinerlei Signal vorhanden -> ans Ende sortieren
 
   // Beschreibungsfelder: laufende Saison > Off-Season, sonst leer
@@ -326,6 +361,7 @@ candidates.forEach((info, key) => {
   const bw30 = month ? bestWorstCategory(month.zScores) : (off ? bestWorstCategory(off.zScores) : (lastStats ? bestWorstCategory(lastStats.zScores) : null));
   const z7 = week ? Math.round(week.composite * 100) / 100 : null;
   const z30 = month ? Math.round(month.composite * 100) / 100 : (off ? Math.round(off.composite * 100) / 100 : (lastStats ? Math.round(lastStats.composite * 100) / 100 : null));
+  const zSeason = seas ? Math.round(seas.composite * 100) / 100 : null;
 
   players.push({
     name: info.name,
@@ -346,6 +382,8 @@ candidates.forEach((info, key) => {
     minutesAvg,
     z7,
     z30,
+    zSeason,
+    gamesSeason: seas ? seas.games : null,
     bestCat7: bw7 ? bw7.best.cat : null,
     bestCat30: bw30 ? bw30.best.cat : null,
     worstCat30: bw30 ? bw30.worst.cat : null,
@@ -366,7 +404,7 @@ const lines = players.map(p => {
   return `  { rank: ${p.rank}, name: ${JSON.stringify(p.name)}, nbaTeam: ${JSON.stringify(p.nbaTeam)}, pos: ${JSON.stringify(p.pos)}, dob: ${f(p.dob)}, age: ${f(p.age)}, ` +
     `isRookie: ${p.isRookie}, experience: ${JSON.stringify(p.experience)}, dynastyRank: ${f(p.dynastyRank)}, bbmRank: ${f(p.bbmRank)}, lastSeasonRank: ${f(p.lastSeasonRank)}, season2627Rank: ${f(p.season2627Rank)}, ` +
     `postDraftRank: ${f(p.postDraftRank)}, stickyScore: ${f(p.stickyScore)}, minutesAvg: ${f(p.minutesAvg)}, ` +
-    `z7: ${f(p.z7)}, z30: ${f(p.z30)}, bestCat7: ${f(p.bestCat7)}, bestCat30: ${f(p.bestCat30)}, worstCat30: ${f(p.worstCat30)}, ` +
+    `z7: ${f(p.z7)}, z30: ${f(p.z30)}, zSeason: ${f(p.zSeason)}, gamesSeason: ${f(p.gamesSeason)}, bestCat7: ${f(p.bestCat7)}, bestCat30: ${f(p.bestCat30)}, worstCat30: ${f(p.worstCat30)}, ` +
     `statsWindow: ${f(p.statsWindow)}, compositeScore: ${p.compositeScore}, signalsUsed: ${JSON.stringify(p.signalsUsed)} }`;
 });
 

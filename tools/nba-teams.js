@@ -226,7 +226,7 @@
     const e = ui.esc, nba = N().init(data);
     const R = data.DRAFT_RESULTS;
     const head = `<div class="page-head"><h1 class="page-title display">🏆 Draft Results</h1><div class="page-sub">${R && R.espnSeason ? `ESPN-Saison ${R.espnSeason} · abgerufen ${new Date(R.fetchedAt).toLocaleDateString('de-DE')}` : 'Wer hat wen gepickt'}</div></div>`;
-    if (!R || !R.picks || !R.picks.length) return head + ui.empty('Noch keine Draft Results', 'Nach dem Draft über Actions → „Draft Results abrufen“ → Run workflow laden. Aktualisiert sich nicht automatisch.', '🏆');
+    if (!R || !R.picks || !R.picks.length) return head + ui.empty('Noch keine Draft Results', 'Werden automatisch geladen, sobald ESPN den Draft als abgeschlossen meldet (Liga-Sync, alle 30 Minuten).', '🏆');
     const teams = nba.leagueTeams(data, true);
     const rounds = [...new Set(R.picks.map(p => p.round))].sort((a, b) => a - b);
     const unresolved = R.picks.filter(p => p.nameSource === 'unresolved').length;

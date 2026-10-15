@@ -40,9 +40,10 @@ const arg = (name, fallback) => {
   return found ? found.split('=').slice(1).join('=') : fallback;
 };
 
-const dateStr = arg('date', new Date().toISOString().slice(0, 10));
+const dateArg = arg('date', new Date().toISOString().slice(0, 10));
 const LEAGUE = arg('league', 'nba');
 const AGG_PATH = arg('agg', path.join(__dirname, '..', 'data', 'livescores-aggregate.js'));
+const SEASON_PATH = arg('season', path.join(__dirname, '..', 'data', 'livescores-season.js'));
 const OUT = arg('out', path.join(__dirname, '..', 'data', 'rolling-rankings-2026-27.js'));
 
 // Feste Kategorie-Gewichtung fürs Rolling Ranking.
@@ -114,8 +115,17 @@ if (!AGG) {
   process.exit(0);
 }
 
+// Stichtag = letzter vorhandener Aggregat-Tag <= --date (Standard heute).
+// Die Aggregate sind auf den letzten Spieltag (US-Datum, meist „gestern“)
+// verankert — mit dem reinen Tagesdatum lief das Archiv sonst ins Leere.
+const aggDates = [...new Set([...Object.keys((AGG.week || {})[LEAGUE] || {}), ...Object.keys((AGG.month || {})[LEAGUE] || {})])].sort();
+const dateStr = aggDates.filter(d => d <= dateArg).pop() || dateArg;
+if (dateStr !== dateArg) console.log(`Stichtag ${dateArg} ohne Aggregat → letzter vorhandener Stand ${dateStr}.`);
 const weekEntry = AGG.week && AGG.week[LEAGUE] ? AGG.week[LEAGUE][dateStr] : null;
 const monthEntry = AGG.month && AGG.month[LEAGUE] ? AGG.month[LEAGUE][dateStr] : null;
+// Saison bis heute (livescores-season.js) → eosRank = echter Saison-Rang statt 30-Tage-Fenster
+const SEASON = loadVmObject(SEASON_PATH, 'LIVESCORES_SEASON');
+const seasonEntry = SEASON && SEASON.season && SEASON.season[LEAGUE] ? SEASON.season[LEAGUE][dateStr] : null;
 
 if (!weekEntry && !monthEntry) {
   console.log(`Keine Week/Month-Daten für ${LEAGUE}/${dateStr} — Rolling-Archiv bleibt unverändert (vermutlich noch keine reguläre Saison).`);
@@ -152,7 +162,7 @@ if (monthEntry) {
   ranked.forEach(({ name, rank }) => {
     const p = ensurePlayer(name);
     p.rankings[monthLabel] = rank;
-    p.eosRank = rank; // aktuellster verfügbarer Stand
+    if (!seasonEntry) p.eosRank = rank; // aktuellster verfügbarer Stand (ohne Saisondaten)
   });
 }
 
@@ -172,8 +182,18 @@ if (weekEntry) {
   ranked.forEach(({ name, rank }) => {
     const p = ensurePlayer(name);
     p.weeklyRanks[weekLabel] = rank;
-    if (!monthEntry) p.eosRank = rank; // Fallback, falls (noch) kein Monats-Bucket existiert
+    if (!monthEntry && !seasonEntry) p.eosRank = rank; // Fallback, falls (noch) kein Monats-Bucket existiert
   });
+}
+
+// ------------------------------------------------------------
+// 4b) eosRank = Rang über die ganze Saison bis zum Stichtag. Wer in der
+//     Saisonliste fehlt (zu wenige Spiele), bekommt keinen Rang statt eines
+//     veralteten aus einem früheren Monat.
+// ------------------------------------------------------------
+if (seasonEntry) {
+  Object.values(playersByName).forEach(p => { p.eosRank = null; });
+  rankByWeightedComposite(seasonEntry.players).forEach(({ name, rank }) => { ensurePlayer(name).eosRank = rank; });
 }
 
 // ------------------------------------------------------------

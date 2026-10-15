@@ -17,6 +17,9 @@
 //   - Analyzer: Paket-Abschlag 0.80^i, Finder: 0.70^i (wie im Original)
 //   - Urteil: < 5 %-Punkte von 50/50 fair, < 12 leicht, sonst deutlich
 //
+//  Neu (16.10.2026): „Live-Form“ — mit DYNASTY_LIVE (Saison gegen Erwartung)
+//  zählt bei deutlich über-/unterperformenden Spielern der Live-Rang statt des
+//  Dynasty-Rangs (Schalter, Standard an; Trade-Historie bleibt eingefroren).
 //  Nicht übernommen: Share-Bild (html2canvas) → „Als Text kopieren“;
 //  Trade speichern / Admin-Staging / Löschen / Export der Historie
 //  (die Historie wird in data/trade-history.js im Repo gepflegt).
@@ -26,7 +29,16 @@
 (function () {
   const N = () => MFHFB.nba;
   const APPLIES = { sport: ['nba'], keepers: [true] };
-  const DATA = ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?picks', '?picks-live'];
+  const DATA = ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?picks', '?picks-live', '?dynasty-live'];
+  // Live-Form (seit 16.10.2026): Live-Rang aus DYNASTY_LIVE (Saison gegen Erwartung, nur
+  // signifikante Abweichungen) ersetzt den Dynasty-Rang für den Wert. Ligaweiter Schalter.
+  const liveOn = ctx => ctx.store.getJSON('dynlive', true) !== false;
+  const hasLive = data => Array.isArray(data.DYNASTY_LIVE) && data.DYNASTY_LIVE.length > 0;
+  function liveToggle(ctx) {
+    if (!hasLive(ctx.data)) return '';
+    const on = liveOn(ctx), n = ctx.data.DYNASTY_LIVE.length;
+    return `<label class="tr-nba-cb tr-nba-live" title="Spieler, die in dieser Saison deutlich besser oder schlechter spielen als erwartet, werden mit ihrem Live-Rang bewertet (${n} Spieler, siehe Dynasty Rankings → Spalte Live)."><input type="checkbox" data-live${on ? ' checked' : ''}> 📈 Live-Form einrechnen <small class="muted">(${n} Spieler)</small></label>`;
+  }
 
   // Trade values from MFHFBs spreadsheet (rank → value lookup) — wörtlich aus trade-analyzer.js
   const TRADE_VALUE_TABLE = {"1": 1590, "2": 1375, "3": 1350, "4": 1325, "5": 1050, "6": 970, "7": 930, "8": 860, "9": 840, "10": 780, "11": 770, "12": 760, "13": 750, "14": 740, "15": 730, "16": 690, "17": 680, "18": 670, "19": 660, "20": 650, "21": 640, "22": 630, "23": 620, "24": 610, "25": 600, "26": 590, "27": 560, "28": 530, "29": 490, "30": 475, "31": 460, "32": 445, "33": 430, "34": 415, "35": 400, "36": 395, "37": 390, "38": 385, "39": 380, "40": 375, "41": 370, "42": 365, "43": 360, "44": 355, "45": 350, "46": 345, "47": 340, "48": 335, "49": 330, "50": 325, "51": 320, "52": 315, "53": 295, "54": 290, "55": 285, "56": 280, "57": 275, "58": 270, "59": 265, "60": 260, "61": 255, "62": 250, "63": 245, "64": 240, "65": 235, "66": 230, "67": 225, "68": 199, "69": 197, "70": 195, "71": 193, "72": 191, "73": 189, "74": 187, "75": 185, "76": 183, "77": 181, "78": 179, "79": 177, "80": 175, "81": 173, "82": 171, "83": 150, "84": 149, "85": 148, "86": 147, "87": 146, "88": 145, "89": 144, "90": 143, "91": 142, "92": 141, "93": 140, "94": 139, "95": 138, "96": 137, "97": 136, "98": 135, "99": 134, "100": 133, "101": 132, "102": 131, "103": 130, "104": 129, "105": 128, "106": 127, "107": 126, "108": 125, "109": 124, "110": 123, "111": 122, "112": 120, "113": 119.5, "114": 119, "115": 118.5, "116": 118, "117": 117.5, "118": 117, "119": 116.5, "120": 116, "121": 115.5, "122": 115, "123": 114.5, "124": 114, "125": 113.5, "126": 113, "127": 112.5, "128": 112, "129": 111.5, "130": 111, "131": 110.5, "132": 110, "133": 109.5, "134": 109, "135": 108.5, "136": 108, "137": 107.5, "138": 107, "139": 106.5, "140": 106, "141": 105.5, "142": 105, "143": 104.5, "144": 104, "145": 103.5, "146": 103, "147": 102.5, "148": 102, "149": 101.5, "150": 101, "151": 100.5, "152": 100, "153": 99.5, "154": 99, "155": 98.5, "156": 98, "157": 97.5, "158": 97, "159": 96.5, "160": 96, "161": 95.5, "162": 95, "163": 94.5, "164": 94, "165": 93.5, "166": 93, "167": 92.5, "168": 92, "169": 91.5, "170": 91, "171": 90.5, "172": 90, "173": 89.5, "174": 89, "175": 88.5, "176": 88, "177": 87.5, "178": 87, "179": 86.5, "180": 86, "181": 85.5, "182": 85, "183": 84.5, "184": 84, "185": 83.5, "186": 83, "187": 82.5, "188": 82, "189": 81.5, "190": 81, "191": 80.5, "192": 80, "193": 79.5, "194": 79, "195": 78.5, "196": 78, "197": 77.5, "198": 77, "199": 76.5, "200": 76, "201": 75.5, "202": 75, "203": 74.5, "204": 74, "205": 73.5, "206": 73, "207": 72.5, "208": 72, "209": 71.5, "210": 71, "211": 70.5, "212": 70, "213": 69.5, "214": 69, "215": 68.5, "216": 68, "217": 67.5, "218": 67, "219": 66.5, "220": 66, "221": 65.5, "222": 65, "223": 64.5, "224": 64, "225": 63.5, "226": 63, "227": 62.5, "228": 62, "229": 61.5, "230": 61, "231": 60.5, "232": 60, "233": 59.5, "234": 59, "235": 58.8, "236": 58.6, "237": 58.4, "238": 58.2, "239": 58, "240": 57.8, "241": 57.6, "242": 57.4, "243": 57.2, "244": 57, "245": 56.8, "246": 56.6, "247": 56.4, "248": 56.2, "249": 56, "250": 55.8, "251": 55.6, "252": 55.4, "253": 55.2, "254": 55, "255": 54.8, "256": 54.6, "257": 54.4, "258": 54.2, "259": 54, "260": 53.8, "261": 53.6, "262": 53.4, "263": 53.2, "264": 53, "265": 52.8, "266": 52.6, "267": 52.4, "268": 52.2, "269": 52, "270": 51.8, "271": 51.6, "272": 51.4, "273": 51.2, "274": 51, "275": 50.8, "276": 50.6, "277": 50.4, "278": 50.2, "279": 50, "280": 49.8, "281": 49.6, "282": 49.4, "283": 49.2, "284": 49, "285": 48.8, "286": 48.6, "287": 48.4, "288": 48.2, "289": 48, "290": 47.8, "291": 47.6, "292": 47.4, "293": 47.2, "294": 47, "295": 46.8, "296": 46.6, "297": 46.4, "298": 46.2, "299": 46, "300": 45.8, "301": 45.6, "302": 45.4, "303": 45.2, "304": 45, "305": 44.8, "306": 44.6, "307": 44.4, "308": 44.2, "309": 44, "310": 43.8, "311": 43.6, "312": 43.4, "313": 43.2, "314": 43, "315": 42.8, "316": 42.6, "317": 42.4, "318": 42.2, "319": 42, "320": 41.8, "321": 41.6, "322": 41.4, "323": 41.2, "324": 41, "325": 40.8, "326": 40.6, "327": 40.4, "328": 40.2, "329": 40, "330": 39.8, "331": 39.6, "332": 39.4, "333": 39.2, "334": 39, "335": 38.8, "336": 38.6, "337": 38.4, "338": 38.2, "339": 38, "340": 37.8, "341": 37.6, "342": 37.4, "343": 37.2, "344": 37, "345": 36.8, "346": 36.6, "347": 36.4, "348": 36.2, "349": 36, "350": 35.8, "351": 35.6, "352": 35.4, "353": 35.2, "354": 35, "355": 34.8, "356": 34.6, "357": 34.4, "358": 34.2, "359": 34, "360": 33.8, "361": 33.6, "362": 33.4, "363": 33.2, "364": 33, "365": 32.8, "366": 32.6, "367": 32.4, "368": 32.2, "369": 32, "370": 31.8, "371": 31.6, "372": 31.4, "373": 31.2, "374": 31, "375": 30.8, "376": 30.6, "377": 30.4, "378": 30.2, "379": 30, "380": 29.8, "381": 29.6, "382": 29.4, "383": 29.2, "384": 29, "385": 28.8, "386": 28.6, "387": 28.4, "388": 28.2, "389": 28, "390": 27.8, "391": 27.6, "392": 27.4, "393": 27.2, "394": 27, "395": 26.8, "396": 26.6, "397": 26.4, "398": 26.2, "399": 26, "400": 25.8, "401": 25.6, "402": 25.4, "403": 25.2, "404": 25, "405": 24.8, "406": 24.6, "407": 24.4, "408": 24.2, "409": 24, "410": 23.8, "411": 23.6, "412": 23.4, "413": 23.2, "414": 23, "415": 22.8, "416": 22.6, "417": 22.4, "418": 22.2, "419": 22, "420": 21.8, "421": 21.6, "422": 21.4, "423": 21.2, "424": 21, "425": 20.8, "426": 20.6, "427": 20.4, "428": 20.2, "429": 20, "430": 19.8, "431": 19.6, "432": 19.4, "433": 19.2, "434": 19, "435": 18.8, "436": 18.6, "437": 18.4, "438": 18.2, "439": 18, "440": 17.8, "441": 17.6, "442": 17.4, "443": 17.2, "444": 17, "445": 16.8, "446": 16.6, "447": 16.4, "448": 16.2, "449": 16, "450": 15.8, "451": 15.6, "452": 15.4, "453": 15.2, "454": 15, "455": 14.8, "456": 14.6, "457": 14.4, "458": 14.2, "459": 14, "460": 13.8, "461": 13.6, "462": 13.4, "463": 13.2, "464": 13, "465": 12.8, "466": 12.6, "467": 12.4, "468": 12.2, "469": 12, "470": 11.8, "471": 11.6, "472": 11.4, "473": 11.2, "474": 11, "475": 10.8, "476": 10.6, "477": 10.4, "478": 10.2, "479": 10, "480": 9.8, "481": 9.6, "482": 9.4, "483": 9.2, "484": 9, "485": 8.8, "486": 8.6, "487": 8.4, "488": 8.2, "489": 8, "490": 7.8, "491": 7.6, "492": 7.4, "493": 7.2, "494": 7, "495": 6.8, "496": 6.6, "497": 6.4, "498": 6.2, "499": 6, "500": 5.8, "501": 5.6, "502": 5.4, "503": 5.2, "504": 5, "505": 4.8, "506": 4.6, "507": 4.4, "508": 4.2, "509": 4, "510": 3.8, "511": 3.6, "512": 3.4, "513": 3.2, "514": 3, "515": 2.8, "516": 2.6, "517": 2.4, "518": 2.2, "519": 2, "520": 1.8, "521": 1.6, "522": 1.4, "523": 1.2, "524": 1, "525": 0.8, "526": 0.6, "527": 0.4, "528": 0, "529": 0, "530": 0, "531": 0, "532": 0, "533": 0, "534": 0, "535": 0, "536": 0, "537": 0, "538": 0, "539": 0, "540": 0, "541": 0, "542": 0, "543": 0, "544": 0, "545": 0, "546": 0, "547": 0, "548": 0, "549": 0, "550": 0, "551": 0, "552": 0, "553": 0, "554": 0, "555": 0, "556": 0, "557": 0, "558": 0, "559": 0, "560": 0, "561": 0, "562": 0, "563": 0, "564": 0, "565": 0, "566": 0, "567": 0, "568": 0, "569": 0, "570": 0, "571": 0, "572": 0, "573": 0, "574": 0, "575": 0, "576": 0, "577": 0, "578": 0, "579": 0, "580": 0, "581": 0, "582": 0, "583": 0, "584": 0, "585": 0, "586": 0, "587": 0, "588": 0, "589": 0, "590": 0, "591": 0, "592": 0, "593": 0, "594": 0, "595": 0, "596": 0, "597": 0, "598": 0, "599": 0, "600": 0, "601": 0, "602": 0, "603": 0, "604": 0, "605": 0, "606": 0, "607": 0, "608": 0, "609": 0, "610": 0, "611": 0, "612": 0, "613": 0, "614": 0, "615": 0, "616": 0, "617": 0, "618": 0, "619": 0, "620": 0, "621": 0, "622": 0, "623": 0, "624": 0, "625": 0, "626": 0, "627": 0, "628": 0, "629": 0, "630": 0, "631": 0, "632": 0, "633": 0, "634": 0, "635": 0, "636": 0, "637": 0, "638": 0, "639": 0, "640": 0, "641": 0, "642": 0, "643": 0, "644": 0, "645": 0, "646": 0, "647": 0, "648": 0, "649": 0, "650": 0, "651": 0, "652": 0, "653": 0, "654": 0, "655": 0, "656": 0, "657": 0};
@@ -156,17 +168,21 @@
   //  Datenmodell (pro geladenem Datensatz gecacht)
   // ============================================================
   const models = new WeakMap();
-  function model(data) {
-    if (models.has(data)) return models.get(data);
+  function model(data, live = true) {
+    const cache = models.get(data) || {};
+    const ck = live ? 'live' : 'base';
+    if (cache[ck]) return cache[ck];
     const nba = N().init(data);
     const allTeams = nba.leagueTeams(data, true);
     const teamById = new Map(allTeams.map(t => [t.id, t]));
     const team = id => teamById.get(id) || { id, name: 'Team ' + id, color: null };
     const owner = nba.ownerIndex(data);
+    const LV = live ? new Map((data.DYNASTY_LIVE || []).filter(x => x.liveRank).map(x => [nba.key(x.name), x])) : null;
     const players = (data.DYNASTY_PLAYERS || []).map(p => {
-      const o = owner(p[1]);
-      return { isPick: false, rank: p[0], name: p[1], nba: p[2], pos: p[3], dob: p[4] || null, owner: o, ownerId: o ? o.id : null };
+      const o = owner(p[1]), lv = LV && LV.get(nba.key(p[1]));
+      return { isPick: false, rank: lv ? lv.liveRank : p[0], baseRank: p[0], live: lv || null, name: p[1], nba: p[2], pos: p[3], dob: p[4] || null, owner: o, ownerId: o ? o.id : null };
     });
+    if (LV && LV.size) players.sort((a, b) => a.rank - b.rank || a.baseRank - b.baseRank);
     const byName = new Map(players.map(p => [p.name, p]));
     const picks = nba.picks(data).map(p => {
       const orig = team(p.originalOwner), curr = team(p.currentOwner);
@@ -186,7 +202,7 @@
       hashRank: n => hash.get(nba.key(n)) ?? null,
       mattRank: n => matt.get(nba.key(n)) ?? null,
     };
-    models.set(data, m);
+    cache[ck] = m; models.set(data, cache);
     return m;
   }
   // Auswahl als Referenz speichern ({t:'p', n:name} | {t:'k', k:pickKey}) → Objekt
@@ -196,6 +212,11 @@
 
   // ---------- kleine Render-Helfer ----------
   const esc = s => MFHFB.ui.esc(s);
+  // MFHFB-Rang + (falls Live-Form aktiv und signifikant) Live-Rang, dazu Matt/Hashtag
+  function rankBadges(m, p) {
+    const lv = p.live ? `<span class="nba-rk ${N().rankTier(p.rank)} tr-nba-lv ${p.live.delta > 0 ? 'up' : 'down'}" title="Live-Form: Saison-Rang ${p.live.seasonRank} statt erwartet ${p.live.expRank} (${p.live.games} Spiele)">Live #${p.rank} ${p.live.delta > 0 ? '▲' : '▼'}${Math.abs(p.live.delta)}</span>` : '';
+    return `${badge('MFHFB', p.baseRank ?? p.rank)}${lv}${badge('Matt', m.mattRank(p.name))}${badge('#️⃣', m.hashRank(p.name))}`;
+  }
   function badge(label, r) {
     const nba = N();
     return `<span class="nba-rk ${r == null ? 'none' : nba.rankTier(r)}">${label} ${r == null ? '—' : '#' + r}</span>`;
@@ -273,7 +294,7 @@
         ${check(on)}
         <span class="tr-nba-main"><span class="tr-nba-name">${esc(p.name)}</span>
           <span class="tr-nba-detail">${esc(p.nba)} · ${p.owner ? teamTag(p.owner) : 'frei'}</span>
-          <span class="tr-nba-badges">${badge('MFHFB', p.rank)}${badge('Matt', m.mattRank(p.name))}${badge('#️⃣', m.hashRank(p.name))}</span></span>
+          <span class="tr-nba-badges">${rankBadges(m, p)}</span></span>
         <span class="tr-nba-val">${fmt(dynastyValue(p.rank, p.dob, mode))}</span>
       </button>`;
     }).join('');
@@ -323,7 +344,7 @@
         const age = p.dob ? playerAgeToday(p.dob) : null;
         const cls = mult >= 1.20 ? 'a-hi' : mult >= 1.05 ? 'a-up' : mult <= 0.50 ? 'a-lo' : mult <= 0.80 ? 'a-dn' : '';
         const ageLbl = mode !== 'raw' && age ? `<span class="tr-nba-age ${cls}">${age} J. · ${mult >= 1 ? '+' : ''}${Math.round((mult - 1) * 100)} %</span>` : '';
-        badges = `${badge('MFHFB', p.rank)}${badge('Matt', m.mattRank(p.name))}${badge('#️⃣', m.hashRank(p.name))}${ageLbl}`;
+        badges = `${rankBadges(m, p)}${ageLbl}`;
         detail = `${esc(p.nba)} · ${p.owner ? esc(p.owner.name) : 'frei'}`;
       }
       return `<div class="tr-nba-bdrow">
@@ -386,7 +407,7 @@
         <div class="tr-nba-vs">vs</div>
         ${breakdownSide(m, selB, 'Seite B', valB, mode)}
       </div>
-      <div class="tr-nba-explain"><b>${MODES.find(x => x.key === mode).label.replace(/^\S+\s/, '')}: so wird gerechnet.</b> Jeder Spieler bekommt den Wert seines MFHFB-Dynasty-Rangs aus dem Trade-Sheet (nur Ränge 1–${Object.keys(TRADE_VALUE_TABLE).length}, danach 0), multipliziert mit dem Alters-Faktor. ${ageNote} Picks: fester Wert je Jahr/Runde/Slot (early 1–4, mid 5–8, late 9–12; ohne Slot „mid“) mit Jahres-Faktor je Modus. Pro Seite zählt das wertvollste Asset voll, jedes weitere mit ×0,8, ×0,8², … (Paket-Abschlag).</div>
+      <div class="tr-nba-explain"><b>${MODES.find(x => x.key === mode).label.replace(/^\S+\s/, '')}: so wird gerechnet.</b> Jeder Spieler bekommt den Wert seines MFHFB-Dynasty-Rangs aus dem Trade-Sheet (nur Ränge 1–${Object.keys(TRADE_VALUE_TABLE).length}, danach 0)${selA.concat(selB).some(p => p.live) ? ' — bei „Live #“ zählt der Live-Rang (Saison-Form gegen Erwartung)' : ''}, multipliziert mit dem Alters-Faktor. ${ageNote} Picks: fester Wert je Jahr/Runde/Slot (early 1–4, mid 5–8, late 9–12; ohne Slot „mid“) mit Jahres-Faktor je Modus. Pro Seite zählt das wertvollste Asset voll, jedes weitere mit ×0,8, ×0,8², … (Paket-Abschlag).</div>
       <div class="tr-nba-actions"><button type="button" class="seg-btn" data-copy>📋 Als Text kopieren</button><button type="button" class="seg-btn" data-reset>↺ Neuer Trade</button></div>
     </div>`;
   }
@@ -394,12 +415,12 @@
   function analyzerPage(ctx) {
     const { data, ui } = ctx;
     if (!data.DYNASTY_PLAYERS) return ui.empty('Keine Dynasty-Rangliste', 'DYNASTY_PLAYERS fehlt für diese Liga.', '⚖️');
-    const m = model(data);
+    const m = model(data, liveOn(ctx));
     const st = tState(ctx);
     return `<div class="tr-nba" data-trnba>
       <div class="page-head"><h1 class="page-title display">⚖️ Trade Analyzer</h1>
         <div class="page-sub"><span class="explain">Schwierig, einen Dynasty-Calc zu bauen, der alles berücksichtigt. Nehmt dies hier als Anlaufpunkt.</span> Siehe auch <a href="${ctx.href('tradefinder')}">Trade Finder</a> und <a href="${ctx.href('tradehistory')}">Trade-Historie</a>.</div></div>
-      <div class="controls tr-nba-modebar">${modeSeg(st.mode, 'data-mode')}<div class="tr-nba-desc">${modeDesc(st.mode)}</div></div>
+      <div class="controls tr-nba-modebar">${modeSeg(st.mode, 'data-mode')}${liveToggle(ctx)}<div class="tr-nba-desc">${modeDesc(st.mode)}</div></div>
       <div class="tr-cols">${sideCard(ctx, m, st, 'A')}${sideCard(ctx, m, st, 'B')}</div>
       ${resultBox(ctx, m, st)}
     </div>`;
@@ -408,7 +429,7 @@
   function analyzerMount(root, ctx) {
     const wrap = root.querySelector('[data-trnba]');
     if (!wrap) return;
-    const m = model(ctx.data);
+    const m = model(ctx.data, liveOn(ctx));
     const save = (st, full = true) => { ctx.store.setJSON(TKEY, st); if (full) ctx.refresh(); };
     // Route-Parameter: #/<liga>/trade/<teamId> → Seite A vorauswählen (einmal pro Aufruf)
     if (ctx.params[0] && !ctx._trParam) {
@@ -444,6 +465,7 @@
     });
     wrap.addEventListener('change', ev => {
       const el = ev.target;
+      if (el.hasAttribute('data-live')) { ctx.store.setJSON('dynlive', el.checked); ctx.refresh(); return; }
       const side = el.dataset.tt || el.dataset.nba;
       if (!side) return;
       const st = tState(ctx);
@@ -754,7 +776,7 @@
   function finderPage(ctx) {
     const { data, ui } = ctx, e = esc;
     if (!data.DYNASTY_PLAYERS) return ui.empty('Keine Dynasty-Rangliste', 'DYNASTY_PLAYERS fehlt für diese Liga.', '🔍');
-    const m = model(data);
+    const m = model(data, liveOn(ctx));
     const st = fState(ctx);
     const give = giveItems(m, st);
     const giveTotal = giveTotalOf(give);
@@ -778,6 +800,7 @@
             <select class="tr-select" data-target aria-label="Trade mit"><option value="">🌮 Alle Teams</option>${teamOpts(st.target)}</select></div>
         </div>
         <div class="tr-nba-desc">${modeDesc(st.mode)}</div>
+        ${liveToggle(ctx)}
         <div class="tr-nba-cfgrow">
           <div class="tr-nba-field"><div class="tr-pool-label">Trade-Format</div>
             <div class="tr-nba-fmt"><label>Ich gebe <input type="number" min="1" max="5" value="${st.nGive}" data-ngive inputmode="numeric"></label><span>für</span><label>Ich bekomme <input type="number" min="1" max="3" value="${st.nGet}" data-nget inputmode="numeric"></label></div></div>
@@ -809,7 +832,7 @@
   function finderMount(root, ctx) {
     const wrap = root.querySelector('[data-trfind]');
     if (!wrap) return;
-    const m = model(ctx.data);
+    const m = model(ctx.data, liveOn(ctx));
     const save = (patch, full = true) => { ctx.store.setJSON(FKEY, { ...fState(ctx), ...patch }); if (full) ctx.refresh(); };
     wrap.addEventListener('click', ev => {
       const b = ev.target.closest('button');
@@ -839,6 +862,7 @@
     });
     wrap.addEventListener('change', ev => {
       const el = ev.target;
+      if (el.hasAttribute('data-live')) { ctx.store.setJSON('dynlive', el.checked); ctx.refresh(); return; }
       if (el.hasAttribute('data-target')) save({ target: el.value ? Number(el.value) : null });
       else if (el.hasAttribute('data-giveteam')) save({ giveTeam: el.value ? Number(el.value) : null, give: [], ran: false });
       else if (el.hasAttribute('data-same')) save({ sameTeam: el.checked });

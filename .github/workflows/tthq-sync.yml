@@ -9,10 +9,12 @@ name: TTHQ Sync (Taco Tuesday)
 #
 #   1. sync-espn-rosters.js          -> rosters-live.js (+ Trade-Erkennung -> trade-history.js)
 #   2. sync-espn-picks.js            -> picks-live.js (nur anstehender Draft, nicht fatal)
+#   2b. sync-espn-matchups.js        -> season-matchups.js (Tabellenverlauf, seit 16.10.2026)
 #   3. build-team-analytics.js       -> team-analytics.js (braucht 1 + sportweite live-projections.js)
 #   (Live Projections + Projections-Dateien sind seit 15.10.2026 sportweit, s. nba-sync.yml)
 #   5. build-best-available-board.js -> best-available-board.js
-#   6. build-dynasty-live.js         -> dynasty-live.js (nur Anzeige)
+#   6. build-dynasty-live.js         -> dynasty-live.js (Saison-Form vs. Erwartung → Live-Rang im Trade Analyzer)
+#   7. build-fantasy-power-score.js  -> fantasy-power-score.js (Kader × Saison-/Vorjahres-Stats)
 #
 # Keine Secrets nötig (ESPN öffentlich).
 
@@ -62,6 +64,18 @@ jobs:
         continue-on-error: true
         run: node scripts/sync-espn-picks.js
 
+      - name: ESPN Wochen-Matchups (Tabellenverlauf)
+        id: matchups
+        continue-on-error: true
+        run: node scripts/sync-espn-matchups.js
+
+      # Seit 16.10.2026 automatisch: holt den Draft der laufenden Saison
+      # genau einmal, sobald ESPN ihn als abgeschlossen meldet.
+      - name: Draft Results (einmalig nach dem Draft)
+        id: draftres
+        continue-on-error: true
+        run: node scripts/fetch-draft-results-espn.js --auto
+
       - name: Team Analytics
         id: analytics
         continue-on-error: true
@@ -72,10 +86,15 @@ jobs:
         continue-on-error: true
         run: node scripts/build-best-available-board.js
 
-      - name: Dynasty Live Nudge
+      - name: Dynasty Live (Saison-Form vs. Erwartung)
         id: dynlive
         continue-on-error: true
         run: node scripts/build-dynasty-live.js
+
+      - name: Fantasy Power Score
+        id: powerscore
+        continue-on-error: true
+        run: node scripts/build-fantasy-power-score.js
 
       - name: Commit & Push falls geändert
         run: |
@@ -98,7 +117,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.rosters.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure' || steps.dynlive.outcome == 'failure'
+        if: steps.draftres.outcome == 'failure' || steps.rosters.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.matchups.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure' || steps.dynlive.outcome == 'failure' || steps.powerscore.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1

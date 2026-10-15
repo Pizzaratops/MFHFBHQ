@@ -53,6 +53,14 @@
 //  Team-Summe ausgeschlossen und pro Team gezählt/geloggt, exakt wie
 //  scripts/build-team-analytics.js das für Spieler ohne Projection tut.
 //
+//  UPDATE 16.10.2026: Hauptquelle sind jetzt die sportweiten Live
+//  Projections (sports/nba/data/live-projections.js = Preseason-Projection
+//  geblendet mit den echten Saison-Boxscores, täglich neu). Damit zählen
+//  Rookies mit, und ab Saisonstart wandert die Saison-Form automatisch
+//  ein. FG%/FT% jetzt korrekt über Σ Treffer / Σ Versuche. Wer dort fehlt,
+//  bekommt weiter die Vorjahres-Zeile (LAST_SEASON_STATS_2025_26).
+//  Läuft in jedem tthq-sync.
+//
 //  Usage: node scripts/build-fantasy-power-score.js
 //  Output: data/fantasy-power-score.js — FANTASY_POWER_SCORE
 // ============================================================
@@ -75,6 +83,15 @@ function loadConst(file, constName) {
 const TEAMS = loadConst('data/teams-rosters.js', 'TEAMS');
 const ROSTERS_LIVE = loadConst('data/rosters-live.js', 'ROSTERS_LIVE');
 const LAST_SEASON_STATS_2025_26 = loadConst('../../sports/nba/data/last-season-stats-2025-26.js', 'LAST_SEASON_STATS_2025_26');
+const LIVE_PROJECTIONS = (() => {
+  try { return loadConst('../../sports/nba/data/live-projections.js', 'LIVE_PROJECTIONS') || {}; } catch (e) { return {}; }
+})();
+// Live Projections in dieselbe Zeilenform wie LAST_SEASON_STATS bringen (pro Spiel)
+const PROJ_ROWS = Object.entries(LIVE_PROJECTIONS).filter(([, p]) => p && (p.pts || p.reb || p.ast)).map(([name, p]) => ({
+  name, team: p.team || null, src: 'proj', gamesPlayed: p.gamesPlayed || 0,
+  pts: p.pts || 0, reb: p.reb || 0, ast: p.ast || 0, stl: p.stl || 0, blk: p.blk || 0, tpm: p.tpm || 0, to: p.tov || 0,
+  fgm: p.fgm || 0, fga: p.fga || 0, ftm: p.ftm || 0, fta: p.fta || 0, fgPct: p.fgPct, ftPct: p.ftPct,
+}));
 
 // ------------------------------------------------------------
 // Name-Matching: ROSTERS_LIVE (ESPN-Schreibweise) gegen
@@ -110,24 +127,32 @@ const NAME_ALIASES = {
   'nic claxton': 'nicolas claxton',
 };
 
-const byExactName = new Map(LAST_SEASON_STATS_2025_26.map(p => [p.name, p]));
-const byNormName = new Map();
-LAST_SEASON_STATS_2025_26.forEach(p => {
-  const k = normalizeName(p.name);
-  if (!byNormName.has(k)) byNormName.set(k, []);
-  byNormName.get(k).push(p);
-});
+const stripAccents = n => String(n || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+function indexRows(rows) {
+  const exact = new Map(rows.map(p => [p.name, p]));
+  const norm = new Map();
+  rows.forEach(p => {
+    const k = normalizeName(stripAccents(p.name));
+    if (!norm.has(k)) norm.set(k, []);
+    norm.get(k).push(p);
+  });
+  return { exact, norm };
+}
+const IDX_PROJ = indexRows(PROJ_ROWS);
+const IDX_LAST = indexRows(LAST_SEASON_STATS_2025_26);
 
-function findPlayerStats(rosterPlayer) {
-  if (byExactName.has(rosterPlayer.name)) return byExactName.get(rosterPlayer.name);
-  let norm = normalizeName(rosterPlayer.name);
+function lookup(idx, rosterPlayer) {
+  if (idx.exact.has(rosterPlayer.name)) return idx.exact.get(rosterPlayer.name);
+  let norm = normalizeName(stripAccents(rosterPlayer.name));
   norm = NAME_ALIASES[norm] || norm;
-  const candidates = byNormName.get(norm) || [];
+  const candidates = idx.norm.get(norm) || [];
   if (!candidates.length) return null;
   if (candidates.length === 1) return candidates[0];
   // Mehrdeutig (z.B. mehrere "Cam Johnson") -- über NBA-Team disambiguieren.
   return candidates.find(c => c.team === rosterPlayer.team) || candidates[0];
 }
+// Live Projection zuerst, sonst Vorjahr
+const findPlayerStats = rosterPlayer => lookup(IDX_PROJ, rosterPlayer) || lookup(IDX_LAST, rosterPlayer);
 
 // ------------------------------------------------------------
 // Kategorien -- alle 9 Standard-Cats, kein Kürzen (User-Entscheidung).
@@ -170,10 +195,15 @@ function buildTeamAggregate(teamId) {
   }
 
   const sumOf = key => included.reduce((s, p) => s + (p[key] || 0), 0);
-  const totalGames = included.reduce((s, p) => s + (p.games || 0), 0);
-  const weightedPct = key => totalGames > 0
-    ? included.reduce((s, p) => s + (p[key] || 0) * (p.games || 0), 0) / totalGames
-    : null;
+  // FG%/FT%: Projection-Zeilen bringen Treffer/Versuche mit (Σ Treffer / Σ Versuche);
+  // Vorjahres-Zeilen nur Prozent → Versuche aus dem Prozentwert nicht rekonstruierbar,
+  // daher dort 10 FGA / 3 FTA als neutrales Gewicht.
+  const att = (p, a) => (p.src === 'proj' ? (p[a] || 0) : (a === 'fga' ? 10 : 3));
+  const made = (p, m, a, pct) => (p.src === 'proj' ? (p[m] || 0) : att(p, a) * (p[pct] || 0) / 100);
+  const weightedPct = (m, a, pct) => {
+    const A = included.reduce((s, p) => s + att(p, a), 0);
+    return A > 0 ? 100 * included.reduce((s, p) => s + made(p, m, a, pct), 0) / A : null;
+  };
 
   const values = {
     pts: +sumOf('pts').toFixed(1),
@@ -183,11 +213,11 @@ function buildTeamAggregate(teamId) {
     blk: +sumOf('blk').toFixed(2),
     tpm: +sumOf('tpm').toFixed(1),
     to: +sumOf('to').toFixed(1),
-    fgPct: weightedPct('fgPct') != null ? +weightedPct('fgPct').toFixed(1) : null,
-    ftPct: weightedPct('ftPct') != null ? +weightedPct('ftPct').toFixed(1) : null,
+    fgPct: weightedPct('fgm', 'fga', 'fgPct') != null ? +weightedPct('fgm', 'fga', 'fgPct').toFixed(1) : null,
+    ftPct: weightedPct('ftm', 'fta', 'ftPct') != null ? +weightedPct('ftm', 'fta', 'ftPct').toFixed(1) : null,
   };
 
-  return { values, includedCount: included.length, skippedCount: skipped.length, skippedPlayers: skipped };
+  return { values, includedCount: included.length, projCount: included.filter(p => p.src === 'proj').length, skippedCount: skipped.length, skippedPlayers: skipped };
 }
 
 function main() {
@@ -211,19 +241,22 @@ function main() {
       values: agg.values,
       rank: agg.values ? rank : null,
       includedCount: agg.includedCount,
+      projCount: agg.projCount || 0,
       skippedCount: agg.skippedCount,
       skippedPlayers: agg.skippedPlayers,
     };
   });
 
-  console.log('Fantasy Bootleg Power Score — Skip-Report (Spieler ohne 2025/26-Saisonstatzeile):');
+  console.log('Fantasy Bootleg Power Score — Skip-Report (Spieler ohne Projection und ohne 2025/26-Zeile):');
   teams.forEach(t => {
     if (t.skippedCount) console.log(`  ${t.name}: ${t.skippedCount} übersprungen — ${t.skippedPlayers.join(', ')}`);
   });
 
   const payload = {
     generatedAt: new Date().toISOString(),
-    sourceSeason: '2025-26 (letzte abgeschlossene Saison, BBM-Export — siehe data/last-season-stats-2025-26.js)',
+    sourceSeason: PROJ_ROWS.length
+      ? `Live Projections 2026/27 (Projection + bisherige Saison${PROJ_ROWS.some(p => p.gamesPlayed > 0) ? `, bis zu ${Math.max(...PROJ_ROWS.map(p => p.gamesPlayed))} Spiele` : ', noch ohne Saisonspiele'}) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26`
+      : '2025-26 (letzte abgeschlossene Saison, BBM-Export — siehe data/last-season-stats-2025-26.js)',
     categories: CATEGORIES.map(c => ({ key: c.key, label: c.label, lowerIsBetter: c.asc })),
     teams,
   };
@@ -233,9 +266,8 @@ function main() {
 //  scripts/build-fantasy-power-score.js. NICHT MANUELL EDITIEREN.
 //
 //  9-Kategorien-Spinnennetz für die 12 TTHQ-Fantasy-Teams. Basis:
-//  aktueller Kader (ROSTERS_LIVE) × echte Saison-2025/26-Boxscores
-//  (LAST_SEASON_STATS_2025_26) -- siehe Kommentar im Sync-Script für
-//  die Begründung dieser Datenquelle (kein ESPN-Netzwerkzugriff nötig).
+//  aktueller Kader (ROSTERS_LIVE) × Live Projections (Projection +
+//  bisherige Saison, Fallback Vorjahr 2025/26) -- siehe Sync-Script.
 //  FANTASY_POWER_SCORE.teams[i].values = Kader-Summe (PTS/REB/AST/
 //  STL/BLK/3PM/TO) bzw. spielegewichteter Durchschnitt (FG%/FT%).
 //  .rank = Liga-Rang (1-12) je Kategorie. Frontend berechnet daraus
