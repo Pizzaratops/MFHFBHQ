@@ -91,7 +91,7 @@ for (const league of leagues) {
   const anchorNote = effectiveEnd !== endDate ? ` (Liga beendet, Fenster verankert auf letzten Spieltag ${effectiveEnd})` : '';
 
   for (const period of ['week', 'month', 'season']) {
-    const entry = buildEntry({ period, league, endDate: effectiveEnd, dir });
+    const entry = buildEntry({ period, league, endDate: effectiveEnd, dir, minMpg: parseFloat(arg('min-mpg', '0')) || 0 });
     if (!entry) {
       console.log(`  – ${period}/${league}: keine ausreichenden Daten bis ${effectiveEnd}, übersprungen.`);
       skipped++;
@@ -112,8 +112,10 @@ if (!updated) {
 void keep;
 // --recent-days: wie viele Tage komplett behalten werden (NBA 8, College 4 — viel mehr Spieler)
 const recentDays = parseInt(arg('recent-days', '8'), 10);
-trimSmart(existing, recentDays);
-trimSmart(existingSeason, recentDays);
+// --week-history=false: ältere Wochen nicht als Sonntags-Stände aufheben (College, Dateigröße)
+const weekHistory = arg('week-history', 'true') !== 'false';
+trimSmart(existing, recentDays, weekHistory);
+trimSmart(existingSeason, recentDays, weekHistory);
 writeOut(existing, out, 'LIVESCORES_AGGREGATE');
 writeOut(existingSeason, seasonOut, 'LIVESCORES_SEASON');
 console.log(`\n${out} geschrieben: ${updated} Eintrag/Einträge aktualisiert, ${skipped} übersprungen.`);

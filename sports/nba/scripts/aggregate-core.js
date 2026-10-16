@@ -120,7 +120,7 @@ function seasonStartFor(league, end, dir) {
   return dates.length ? dates[0] : floor;
 }
 
-function computeAggregate({ league, period, endDate, dir, minGames }) {
+function computeAggregate({ league, period, endDate, dir, minGames, minMpg }) {
   const end = toDate(endDate);
   let start, WINDOW_DAYS, DEFAULT_MIN_GAMES;
   if (period === 'season') {
@@ -204,7 +204,8 @@ function computeAggregate({ league, period, endDate, dir, minGames }) {
   }
 
   const allPlayers = Array.from(players.values());
-  const eligible = allPlayers.filter(p => p.games >= MIN_GAMES);
+  // minMpg (College): nur Rotationsspieler in den z-Pool (sonst ~1.500 Spieler je Stichtag)
+  const eligible = allPlayers.filter(p => p.games >= MIN_GAMES && (!minMpg || p.min / p.games >= minMpg));
 
   if (!eligible.length) {
     return { status: 'no-eligible', windowStart: start, windowEnd: end, allPlayersCount: allPlayers.length, minGames: MIN_GAMES };

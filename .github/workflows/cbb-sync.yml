@@ -75,7 +75,7 @@ jobs:
           node $S/convert-to-livescores.js --dir=$D --out=$O/livescores-daily.js --keep-days=21 $DA
           node $S/convert-to-boxscores.js --dir=$D --out=$O/livescores-boxscores.js --keep-days=7 $DA
           node $S/prune-raw-data.js --dir=$D --keep-days=400 --keep-days-games=21
-          node $S/update-all-aggregates.js --dir=$D --out=$O/livescores-aggregate.js --recent-days=4
+          node $S/update-all-aggregates.js --dir=$D --out=$O/livescores-aggregate.js --recent-days=4 --min-mpg=10 --week-history=false
           node $S/build-rolling-archive.js --league=ncaab --agg=$O/livescores-aggregate.js --season=$O/livescores-season.js --out=$O/rolling-rankings-2026-27.js
 
       - name: Waiver-Board
@@ -87,7 +87,7 @@ jobs:
         run: |
           git config user.name "mfhfb-hq-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add leagues/cbb/data sports/cbb/data sports/cbb/scripts/data 2>/dev/null || true
+          git add -A leagues/cbb/data sports/cbb
           if git diff --cached --quiet; then
             echo "Keine Änderungen -- nichts zu committen."
             exit 0

@@ -41,8 +41,8 @@ const round2 = (n) => Math.round(n * 100) / 100;
  * @returns {Object|null} Eintrag (players etc.) oder null, wenn keine
  *   Daten/nicht genug Spiele im Fenster vorhanden sind.
  */
-function buildEntry({ period, league, endDate, dir, minGames }) {
-  const result = computeAggregate({ league, period, endDate, dir, minGames });
+function buildEntry({ period, league, endDate, dir, minGames, minMpg }) {
+  const result = computeAggregate({ league, period, endDate, dir, minGames, minMpg });
 
   if (result.status === 'no-files' || result.status === 'no-eligible') {
     return null;
@@ -122,7 +122,7 @@ const ENDED_DAYS = 21;
 function isLastOfMonth(d) { const x = new Date(d + 'T12:00:00Z'); x.setUTCDate(x.getUTCDate() + 1); return x.getUTCDate() === 1; }
 function isSunday(d) { return new Date(d + 'T12:00:00Z').getUTCDay() === 0; }
 const dayDiff = (a, b) => Math.round((new Date(a + 'T12:00:00Z') - new Date(b + 'T12:00:00Z')) / 86400000);
-function trimSmart(existing, recentDays = RECENT_DAYS) {
+function trimSmart(existing, recentDays = RECENT_DAYS, weekHistory = true) {
   let newest = '';
   for (const period of Object.keys(existing)) {
     for (const league of Object.keys(existing[period])) {
@@ -139,7 +139,7 @@ function trimSmart(existing, recentDays = RECENT_DAYS) {
         if (d === latest) return;
         const age = dayDiff(latest, d);
         if (!ended && age <= recentDays) return;
-        const keepIt = !ended && age <= 400 && (period === 'week' ? isSunday(d) : isLastOfMonth(d));
+        const keepIt = !ended && age <= 400 && (period === 'week' ? weekHistory && isSunday(d) : isLastOfMonth(d));
         if (!keepIt) delete existing[period][league][d];
       });
     }
