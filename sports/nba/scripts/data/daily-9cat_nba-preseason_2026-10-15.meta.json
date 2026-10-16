@@ -1,0 +1,12 @@
+{
+  "league": "nba-preseason",
+  "date": "2026-10-15",
+  "games": [
+    "Toronto Raptors 120 @ New York Knicks 122 (Final)",
+    "Oklahoma City Thunder 89 @ Houston Rockets 116 (Final)"
+  ],
+  "leagueAvg": {
+    "fg": 46,
+    "ft": 72.2
+  }
+}

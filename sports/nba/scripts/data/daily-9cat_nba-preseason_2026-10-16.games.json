@@ -1,0 +1,222 @@
+{
+  "league": "nba-preseason",
+  "date": "2026-10-16",
+  "games": [
+    {
+      "id": "401898406",
+      "line": "Miami Heat @ Orlando Magic (10/16 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 7:00 PM EDT",
+      "away": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401898407",
+      "line": "Boston Celtics @ Philadelphia 76ers (10/16 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 7:00 PM EDT",
+      "away": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401908946",
+      "line": "Toronto Raptors @ Detroit Pistons (10/16 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 7:00 PM EDT",
+      "away": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401914126",
+      "line": "Milwaukee Bucks @ Indiana Pacers (10/16 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 7:00 PM EDT",
+      "away": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401898408",
+      "line": "Atlanta Hawks @ Dallas Mavericks (10/16 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 8:00 PM EDT",
+      "away": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401898843",
+      "line": "Sacramento Kings @ San Antonio Spurs (10/16 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 8:00 PM EDT",
+      "away": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401901822",
+      "line": "Charlotte Hornets @ Memphis Grizzlies (10/16 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 8:00 PM EDT",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906509",
+      "line": "Washington Wizards @ New Orleans Pelicans (10/16 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 8:00 PM EDT",
+      "away": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NO",
+        "name": "New Orleans Pelicans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401908943",
+      "line": "Minnesota Timberwolves @ Chicago Bulls (10/16 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 8:00 PM EDT",
+      "away": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401898409",
+      "line": "Portland Trail Blazers @ Golden State Warriors (10/16 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 10:00 PM EDT",
+      "away": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401908948",
+      "line": "Utah Jazz @ Phoenix Suns (10/16 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 10:00 PM EDT",
+      "away": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401898719",
+      "line": "Denver Nuggets @ Los Angeles Lakers (10/16 - 10:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/16 - 10:30 PM EDT",
+      "away": {
+        "abbr": "DEN",
+        "name": "Denver Nuggets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
