@@ -957,13 +957,13 @@
     market: (d, live, sheet) => market(d, { targets: {}, sold: {} }, live, { league: { sheet: sheet || { hours: 24, tzOffsetMin: 0 } } }) };
 
   const base = { applies: { sport: ['cbb'] }, data: ['nil-auction', '?live-bids'] };
-  MFHFB.pages.register({ ...base, id: 'home', section: 'home', label: 'NIL-Auktion', icon: '💰', title: () => 'NIL-Auktion', render: wrap(renderBoard), mount: inner(mountBoard) });
-  MFHFB.pages.register({ ...base, data: ['nil-auction', '?nil-extra', '?live-bids'], id: 'bids', section: 'home', label: 'Live-Gebote', icon: '⏱', title: () => 'Live-Gebote', render: wrap(renderBids), mount: inner(mountBids) });
-  MFHFB.pages.register({ ...base, id: 'auctionplan', section: 'home', label: 'Mein Plan', icon: '🎯', title: () => 'Mein Plan', render: wrap(renderPlan), mount: inner(mountPlan) });
-  MFHFB.pages.register({ ...base, id: 'auctionteams', section: 'teams', label: 'Budgets', icon: '🏦', title: () => 'Budgets', render: wrap(renderTeams) });
+  MFHFB.pages.register({ ...base, id: 'nil', section: 'draft', label: 'NIL-Auktion', icon: '💰', title: () => 'NIL-Auktion', render: wrap(renderBoard), mount: inner(mountBoard) });
+  MFHFB.pages.register({ ...base, data: ['nil-auction', '?nil-extra', '?live-bids'], id: 'bids', section: 'draft', label: 'Live-Gebote', icon: '⏱', title: () => 'Live-Gebote', render: wrap(renderBids), mount: inner(mountBids) });
+  MFHFB.pages.register({ ...base, id: 'auctionplan', section: 'draft', label: 'Mein Plan', icon: '🎯', title: () => 'Mein Plan', render: wrap(renderPlan), mount: inner(mountPlan) });
+  MFHFB.pages.register({ ...base, id: 'auctionteams', section: 'draft', label: 'Budgets', icon: '🏦', title: () => 'Budgets', render: wrap(renderTeams) });
   const withExtra = { ...base, data: ['nil-auction', '?nil-extra', '?live-bids'] };
-  MFHFB.pages.register({ ...withExtra, id: 'auctionsigned', section: 'home', label: 'Zuschläge', icon: '🧾', title: () => 'Zuschläge', render: wrap(renderSigned), mount: inner(mountSort('signedSort')) });
-  MFHFB.pages.register({ ...withExtra, id: 'auctionledger', section: 'teams', label: 'Team-Bilanz', icon: '⚖️', title: () => 'Team-Bilanz', render: wrap(renderLedger), mount: inner(mountSort('ledgerSort', ledgerToggle)) });
+  MFHFB.pages.register({ ...withExtra, id: 'auctionsigned', section: 'draft', label: 'Zuschläge', icon: '🧾', title: () => 'Zuschläge', render: wrap(renderSigned), mount: inner(mountSort('signedSort')) });
+  MFHFB.pages.register({ ...withExtra, id: 'auctionledger', section: 'draft', label: 'Team-Bilanz', icon: '⚖️', title: () => 'Team-Bilanz', render: wrap(renderLedger), mount: inner(mountSort('ledgerSort', ledgerToggle)) });
   MFHFB.pages.register({ ...base, id: 'nil2025', section: 'draft', label: 'Preise 2025', icon: '📊', title: () => 'NIL-Preise 2025', render: wrap(renderNil), mount: inner(mountNil) });
   MFHFB.pages.register({ ...base, id: 'auctionhelp', section: 'league', label: 'Regeln & Rechnung', icon: '📜', title: () => 'Regeln & Rechnung', render: wrap(renderHelp) });
 })();

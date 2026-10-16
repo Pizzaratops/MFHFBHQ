@@ -35,6 +35,8 @@ MFHFB.nba = (function () {
   let FIRST = {};
   function init(data) {
     if (data && data.NAME_FIRST_ALIASES) FIRST = data.NAME_FIRST_ALIASES;
+    // College (Dizzle CBB): Schul-Kürzel → Name (sports/cbb/data/schools.js)
+    if (data && Array.isArray(data.CBB_SCHOOLS)) data.CBB_SCHOOLS.forEach(s => { if (!TEAM_NAMES[s.short]) TEAM_NAMES[s.short] = s.name; });
     return api;
   }
   // = normalizeName() aus data/aliases.js

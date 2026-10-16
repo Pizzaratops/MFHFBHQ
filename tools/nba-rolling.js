@@ -24,7 +24,8 @@
   function season(ctx, key) {
     const d = ctx.data;
     if (key === '2026') return { key, label: '2026/27', players: d.ROLLING_RANKINGS_2026 || [], months: d.RR2026_MONTHS || [], weeks: d.RR2026_WEEKS || [], eosTitle: 'Saison-Rang (ganze Saison bis heute)' };
-    return { key: '2025', label: '2025/26', players: d.ROLLING_RANKINGS || [], months: RR_MONTHS_2025, weeks: d.RR_WEEKS || [], eosTitle: 'End of Season Rank' };
+    // College: Monate kommen aus der Datei (RR_MONTHS, Nov–März)
+    return { key: '2025', label: '2025/26', players: d.ROLLING_RANKINGS || [], months: d.RR_MONTHS || RR_MONTHS_2025, weeks: d.RR_WEEKS || [], eosTitle: 'End of Season Rank' };
   }
   const periods = (S, view) => (view === 'weekly' ? S.weeks.map(w => ({ key: String(w), label: 'W' + w })) : S.months.map(m => ({ key: m, label: MONTH_LABEL[m] || m })));
   const rankAt = (p, view, k) => { const v = (view === 'weekly' ? p.weeklyRanks : p.rankings) || {}; return v[k] ?? null; };
@@ -130,8 +131,8 @@
   }
 
   MFHFB.pages.register({
-    id: 'rolling', section: 'players', label: 'Rolling Rankings', icon: '📈', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:rolling-rankings', '?sport:rolling-rankings-2026-27'],
+    id: 'rolling', section: 'players', label: 'Rolling Rankings', icon: '📈', applies: { sport: ['nba', 'cbb'] },
+    data: l => ['teams', '?rosters-live'].concat(l.sport === 'cbb' ? [] : ['?sport:aliases'], ['?sport:rolling-rankings', '?sport:rolling-rankings-2026-27']),
     title: () => 'Rolling Rankings', render, mount,
   });
 })();

@@ -60,6 +60,8 @@ const SPORT_DATA = {
   nfl: { dataBase: 'sports/nfl/data/' },
   // NBA: seit dem Cutover (15.10.2026) aus dem Hub; vorher aus dem alten TTHQ-Repo
   nba: { dataBase: NBA_CUTOVER ? 'sports/nba/data/' : 'https://pizzaratops.github.io/Taco-Tuesday-HQ/data/' },
+  // College Basketball (Dizzle CBB): Stats aus sports/cbb (cbb-sync.yml)
+  cbb: { dataBase: 'sports/cbb/data/' },
 };
 
 const SPORTS = {
@@ -279,7 +281,7 @@ const LEAGUES = [
     },
   },
   {
-    // College Basketball (Dizzles Liga) — vorerst nur die NIL-Auktion 2026
+    // College Basketball (Dizzles Liga) — ganze Liga seit 16.10.2026 (tools/cbb-league.js + NBA-Tools),
     // (tools/cbb-auction.js). Daten: leagues/cbb/data/nil-auction.js, von Hand
     // aus Dizzle_CBB_Off-season.xlsx erzeugt; Budgets dort in CBB_TEAMS pflegen.
     key: 'cbb',
@@ -294,6 +296,11 @@ const LEAGUES = [
     accent2: '#f2b84f',
     mode: 'native',
     dataBase: 'leagues/cbb/data/',
+    platformLeagueId: 'z8gwfku2mpmwh0xe',
+    // Seit 16.10.2026 ganze Liga: Fantrax-Sync (cbb-sync.yml) → Übersicht, Kader,
+    // Tabelle, Spielplan; College-Stats (sports/cbb) → Live Scores, Rankings,
+    // Rolling, Waiver. NIL-Auktion bleibt unter „Draft & Picks“.
+    files: { teams: 'teams-rosters' },
     // Google Sheet der NIL-Auktion (öffentlich lesbar): Tabelle „ACTIVE BIDS“ +
     // „SIGNED PLAYERS“ → Seite „Live-Gebote“. Zeiten im Sheet sind UTC
     // (tzOffsetMin 0; geprüft 01.10.2026 über die NOW()-Zelle oben im Sheet).

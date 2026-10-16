@@ -78,16 +78,21 @@
     const nba = N(), proj = nba.projRanks(ctx.data);
     const has = k => board.some(p => p[k] != null);
     const G = gainModel(ctx, getState(ctx));
-    const e = ctx.ui.esc;
+    const e = ctx.ui.esc, cbb = ctx.league.sport === 'cbb';
     return [
       G && { k: 'gain', l: 'Gain', desc: true, t: 'Zusätzliche erwartete Kategorie-Siege pro Woche gegen die Liga, wenn du ihn holst und dafür den entbehrlichsten Spieler droppst', v: p => { const g = G.gain(p.name); return g ? g.v : null; }, f: (v, p) => { const g = G.gain(p.name); if (!g) return '<span class="muted">—</span>'; const tip = g.cats.slice().sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).filter(x => Math.abs(x.d) >= 0.005).slice(0, 5).map(x => `${GLAB[x.c]} ${x.d >= 0 ? '+' : ''}${Math.round(x.d * 100)}`).join(' · '); return `<span class="wc-gain ${g.v >= 0.05 ? 'hi' : g.v >= 0 ? 'mid' : 'lo'}" title="${e('Siegchance-Änderung (Prozentpunkte): ' + tip)}">${g.v >= 0 ? '+' : ''}${g.v.toFixed(2)}</span>`; } },
       G && { k: 'drop', l: 'für', t: 'Wen du dafür droppen würdest (bester Tausch)', v: p => { const g = G.gain(p.name); return g ? g.drop : null; }, f: (v) => (v ? `<span class="muted small">${e(v)}</span>` : '—') },
-      { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null, f: v => (v != null ? v : '—') },
+      !cbb && { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null, f: v => (v != null ? v : '—') },
       { k: 'minutesAvg', l: 'MIN', t: 'Minuten pro Spiel im jüngsten Fenster', v: p => p.minutesAvg ?? null, f: v => (v != null ? v : '—') },
       { k: 'bestCat30', l: 'Beste Kat.', t: 'Stärkste Kategorie im jüngsten Fenster (laufende Saison > Off-Season)', v: p => { const i = CAT_ORDER.indexOf(p.bestCat30); return i < 0 ? null : i; }, f: (v, p) => (p.bestCat30 ? `<span class="up strong">${p.bestCat30}</span>` : '—') },
       { k: 'worstCat30', l: 'Schwächste', v: p => { const i = CAT_ORDER.indexOf(p.worstCat30); return i < 0 ? null : i; }, f: (v, p) => (p.worstCat30 ? `<span class="down strong">${p.worstCat30}</span>` : '—') },
+      // College (Dizzle CBB): Klasse, Vorsaison-Rang, Saison-z, NIL-Wert
+      cbb && { k: 'cls', l: 'Kl.', t: 'Klasse (Fr/So/Jr/Sr, aus der NIL-Liste)', v: p => ['Fr', 'So', 'Jr', 'Sr', 'Gr'].indexOf(p.cls) + 1 || null, f: (v, p) => (p.cls ? e(p.cls) : '—') },
+      cbb && { k: 'lastSeasonRank', l: 'Vorsaison', t: 'Rang 2025-26 über alle D-I-Spieler (9-Cat pro Spiel)', v: p => p.lastSeasonRank ?? null, f: v => nba.rankBadge(v) },
+      cbb && { k: 'zSeason', l: 'Saison z', desc: true, t: '9-Cat-z der laufenden Saison (pro Spiel)', v: p => p.zSeason ?? null, f: (v, p) => (v == null ? '—' : `<span class="ls-comp ${v >= 0 ? 'up' : 'down'}" title="${p.gamesSeason} Spiele">${v >= 0 ? '+' : ''}${v.toFixed(1)}</span>`) },
+      cbb && { k: 'nilValue', l: 'NIL', desc: true, t: 'Geschätzter NIL-Wert aus der Auktions-Vorbereitung 2026', v: p => p.nilValue ?? null, f: v => (v == null ? '—' : '$' + v) },
       has('dynastyRank') && { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFB Dynasty-Rang', v: p => p.dynastyRank ?? null, f: v => nba.rankBadge(v) },
-      { k: 'season2627Rank', l: 'Rang 26/27', t: 'Rang in der laufenden Saison (Rolling-Rankings-Archiv, füllt sich ab Saisonstart)', v: p => p.season2627Rank ?? null, f: v => nba.rankBadge(v) },
+      !cbb && { k: 'season2627Rank', l: 'Rang 26/27', t: 'Rang in der laufenden Saison (Rolling-Rankings-Archiv, füllt sich ab Saisonstart)', v: p => p.season2627Rank ?? null, f: v => nba.rankBadge(v) },
       proj && { k: 'proj', l: 'Proj. 26/27', t: 'Rang in den Saison-Projektionen dieser Liga', v: p => proj(p.name), f: v => nba.rankBadge(v) },
     ].filter(Boolean);
   }
@@ -131,14 +136,14 @@
       <div class="page-head"><h1 class="page-title display">🆓 Waiver</h1>
         <div class="page-sub">${all.length} freie Spieler<span class="explain"> · sortiert nach Gesamtscore über alle Signale (täglich neu) · Reihenfolge = Empfehlung</span></div></div>
       <div class="controls">
-        <div class="seg" role="group">${[['all', 'Alle'], ['rookie', 'Rookies'], ['sophomore', 'Sophomores']].map(([v, l]) => `<button type="button" class="seg-btn${st.exp === v ? ' active' : ''}" data-exp="${v}">${l}</button>`).join('')}</div>
-        <select class="tr-select" data-nba aria-label="NBA-Team"><option value="">Alle NBA-Teams (${all.length})</option>${teams.map(t => `<option value="${t}"${st.nba === t ? ' selected' : ''}>${t} (${all.filter(p => p.nbaTeam === t).length})</option>`).join('')}</select>
+        <div class="seg" role="group">${[['all', 'Alle'], ['rookie', ctx.league.sport === 'cbb' ? 'Freshmen' : 'Rookies'], ['sophomore', 'Sophomores']].map(([v, l]) => `<button type="button" class="seg-btn${st.exp === v ? ' active' : ''}" data-exp="${v}">${l}</button>`).join('')}</div>
+        <select class="tr-select" data-nba aria-label="NBA-Team"><option value="">${ctx.league.sport === 'cbb' ? 'Alle Schulen' : 'Alle NBA-Teams'} (${all.length})</option>${teams.map(t => `<option value="${t}"${st.nba === t ? ' selected' : ''}>${t} (${all.filter(p => p.nbaTeam === t).length})</option>`).join('')}</select>
         <input type="search" class="search" placeholder="Spieler, Team, Position …" value="${e(st.q)}" data-q aria-label="Suchen">
         ${st.sort ? '<button type="button" class="seg-btn" data-unsort>↺ Empfehlung</button>' : ''}
         ${data.PROJECTIONS_CONSENSUS ? `<select class="tr-select" data-my aria-label="Mein Team"><option value="">🎯 Mein Team für „Gain“ …</option>${N().leagueTeams(data).map(t => `<option value="${t.id}"${st.my === t.id ? ' selected' : ''}>${e(t.name)}</option>`).join('')}</select>` : ''}
       </div>
       ${(G => G ? `<div class="small wc-gainnote">🎯 <b>Gain</b> für <b>${e((N().leagueTeams(data).find(t => t.id === st.my) || {}).name || '')}</b>: Im Schnitt gewinnst du gegen die Liga <b>${G.base.toFixed(1).replace('.', ',')}</b> Kategorien pro Woche. Stark: ${Object.entries(G.baseP).filter(([, v]) => v >= 0.65).map(([c]) => GLAB[c]).join(', ') || '–'} · knapp: ${Object.entries(G.baseP).filter(([, v]) => v > 0.35 && v < 0.65).map(([c]) => GLAB[c]).join(', ') || '–'} · schwach: ${Object.entries(G.baseP).filter(([, v]) => v <= 0.35).map(([c]) => GLAB[c]).join(', ') || '–'}. „Gain“ = Kategorie-Siege mehr, wenn du ihn für den Spieler unter „für“ holst. Spalte antippen = sortieren.${ctx.league.format && /dynasty/i.test(ctx.league.format) ? ' <b>Dynasty:</b> Gain zählt nur diese Saison, Alter und Zukunftswert stehen in „MFHFB“/„Alter“.' : ''}</div>` : '')(gainModel(ctx, st))}
-      <div class="table-wrap"><table class="table compact nba-waiver"><thead><tr><th class="num">#</th>${th('name', 'Spieler')}${th('nbaTeam', 'NBA')}${th('pos', 'Pos')}${cols.map(c => th(c.k, c.l, c.t, 'num')).join('')}</tr></thead>
+      <div class="table-wrap"><table class="table compact nba-waiver"><thead><tr><th class="num">#</th>${th('name', 'Spieler')}${th('nbaTeam', ctx.league.sport === 'cbb' ? 'Schule' : 'NBA')}${th('pos', 'Pos')}${cols.map(c => th(c.k, c.l, c.t, 'num')).join('')}</tr></thead>
         <tbody data-body>${tbody(ctx, st)}</tbody></table></div>`;
   }
 
@@ -162,8 +167,8 @@
   }
 
   MFHFB.pages.register({
-    id: 'waiver', section: 'teams', label: 'Waiver', icon: '🆓', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?sport:live-projections', '?sport:projections-consensus'],
+    id: 'waiver', section: 'teams', label: 'Waiver', icon: '🆓', applies: { sport: ['nba', 'cbb'] },
+    data: l => (l.sport === 'cbb' ? ['teams', '?rosters-live', 'best-available-board'] : ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?sport:live-projections', '?sport:projections-consensus']),
     title: () => 'Waiver', render, mount,
   });
 })();

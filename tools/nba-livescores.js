@@ -20,11 +20,15 @@
 
 (function () {
   const N = () => MFHFB.nba;
-  const COMPS = [
+  const COMPS_NBA = [
     ['nba', '🏆 NBA'], ['nba-postseason', '🏆 NBA Playoffs'], ['nba-preseason', '🏀 NBA Pre-Season'],
     ['nba-summer-california', '☀️ Summer League – California'], ['nba-summer-utah', '🏔️ Summer League – Salt Lake City'],
     ['nba-summer-las-vegas', '🏖️ Summer League – Las Vegas'],
   ];
+  // College (Dizzle CBB, 16.10.2026): eigene Wettbewerbe, Daten aus sports/cbb
+  const COMPS_CBB = [['ncaab', '🎓 NCAAB'], ['ncaab-postseason', '🏆 March Madness']];
+  let COMPS = COMPS_NBA, CBB = false;
+  const setSport = ctx => { CBB = ctx.league.sport === 'cbb'; COMPS = CBB ? COMPS_CBB : COMPS_NBA; };
   const PERIODS = [['daily', 'Daily'], ['week', 'Weekly'], ['month', 'Monthly'], ['season', 'Season'], ['box', 'Box Scores']];
   const WCATS = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['to', 'TO'], ['tpm', '3PM'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%']];
   const STAT_COLS = [['min', 'MIN'], ['pts', 'PTS', 'pts'], ['reb', 'REB', 'reb'], ['ast', 'AST', 'ast'], ['stl', 'STL', 'stl'], ['blk', 'BLK', 'blk'], ['to', 'TO', 'to'], ['tpm', '3PM', 'tpm'], ['fgPct', 'FG%', 'fgImpact'], ['ftPct', 'FT%', 'ftImpact']];
@@ -126,7 +130,7 @@
   //  Links Nr. 1 mit Cat-Web-Radar der Nacht, rechts Plätze 2–5 bzw. 2–10.
   //  Erfahrung: Rookie = Draft 2026 oder ohne NBA-Minuten 2022–26 (Undrafted),
   //  Sophomore = Draft 2025, sonst Vet. Die Zusatzdaten werden erst beim Öffnen geladen.
-  const NIGHT_KINDS = {
+  const NIGHT_KINDS_ALL = {
     top10: { label: 'Best 10 Players', n: 10 },
     rookie: { label: 'Best Rookies', n: 5 },
     sophomore: { label: 'Best Sophomores', n: 5 },
@@ -208,6 +212,7 @@
 
   function nightCard(ctx, st, entry, r) {
     const e = ctx.ui.esc;
+    const NIGHT_KINDS = nightKinds();
     const kind = NIGHT_KINDS[st.nk] ? st.nk : 'top10', SC = ncScope(r, st, entry), avg = r.period !== 'daily';
     // Sticky-Daten gibt es nur für die Preseason (PRESEASON_GAMES) → Umschalter nur dort.
     const canSticky = r.comp === 'nba-preseason', sticky = canSticky && st.ncm === 'sticky';
@@ -221,7 +226,7 @@
     if ((!['top10', 'fa'].includes(kind) || sticky) && !EXPD) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">⏳ Lade Daten …</p></div>`;
     const owner = N().ownerIndex(ctx.data);
     const exp = kind === 'top10' ? null : kind === 'fa' ? (name => (owner(name) ? 'x' : 'fa')) : expOf(EXPD);
-    const team = p => N().canonTeam(p.team) || p.team;
+    const team = p => (CBB ? p.team : N().canonTeam(p.team) || p.team);
     const f1 = v => Number(v).toFixed(1).replace('.', ',');
     let items, minNote, label = K.label;
     if (sticky) {
@@ -272,7 +277,11 @@
   }
 
 
+  // College: Rookie/Sophomore/Vet-Karten brauchen NBA-Draft-Klassen → nur Top 10 + Waiver Wire
+  const nightKinds = () => (CBB ? { top10: NIGHT_KINDS_ALL.top10, fa: NIGHT_KINDS_ALL.fa } : NIGHT_KINDS_ALL);
+
   function render(ctx) {
+    setSport(ctx);
     const { data, ui, href } = ctx;
     const e = ui.esc;
     N().init(data);
@@ -328,6 +337,7 @@
   }
 
   function mount(root, ctx) {
+    setSport(ctx);
     const r = resolve(ctx);
     const save = patch => { ctx.store.setJSON('livescores', { ...getState(ctx), ...patch }); };
     const rerenderTable = () => {
@@ -365,6 +375,7 @@
     const nk = root.querySelector('[data-nk]');
     if (nk) nk.addEventListener('change', () => { save({ nk: nk.value }); ctx.refresh(); });
     root.querySelectorAll('[data-ncm]').forEach(b => b.addEventListener('click', () => { save({ ncm: b.dataset.ncm }); ctx.refresh(); }));
+    if (CBB && root.querySelector('[data-nchost]') && !EXPD) EXPD = {};
     if (root.querySelector('[data-nchost]') && !EXPD) MFHFB.data.load(ctx.league, EXP_FILES).then(d => { EXPD = d || {}; }).catch(() => { EXPD = {}; }).then(() => { if (root.isConnected && (getState(ctx).nk !== 'top10' || getState(ctx).ncm === 'sticky')) ctx.refresh(); });
     const shot = root.querySelector('[data-ncshot]');
     if (shot) shot.addEventListener('click', async () => {
@@ -393,8 +404,9 @@
   }
 
   MFHFB.pages.register({
-    id: 'livescores', section: 'players', label: 'Live Scores', icon: '🔴', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'sport:livescores-daily', 'sport:livescores-aggregate', '?sport:livescores-season', '?sport:livescores-boxscores'],
+    id: 'livescores', section: 'players', label: 'Live Scores', icon: '🔴', applies: { sport: ['nba', 'cbb'] },
+    data: l => (l.sport === 'cbb' ? ['teams', '?rosters-live', '?sport:schools', '?sport:livescores-daily', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:livescores-boxscores']
+      : ['teams', '?rosters-live', '?sport:aliases', 'sport:livescores-daily', 'sport:livescores-aggregate', '?sport:livescores-season', '?sport:livescores-boxscores']),
     title: () => 'Live Scores', render, mount,
   });
 })();

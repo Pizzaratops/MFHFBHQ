@@ -31,11 +31,17 @@
   //  reg    → LIVESCORES_AGGREGATE.month.nba (rollierende 30 Tage)
   //  week   → LIVESCORES_AGGREGATE.week.nba (rollierende 7 Tage)
   //  off    → OFFSEASON_RANKINGS
-  const TABS = [['season', '🏆 Saison'], ['reg', '📅 30 Tage'], ['week', '⚡ 7 Tage'], ['off', '☀️ Off Season']];
+  //  College (Dizzle CBB, 16.10.2026): Liga-Schlüssel "ncaab", 4. Reiter = Vorsaison 2025-26
+  //  (LAST_SEASON_RANKINGS aus sports/cbb/data) statt Off Season.
+  let LK = 'nba', CBB = false;
+  const setSport = ctx => { CBB = ctx.league.sport === 'cbb'; LK = CBB ? 'ncaab' : 'nba'; };
+  const TABS_NBA = [['season', '🏆 Saison'], ['reg', '📅 30 Tage'], ['week', '⚡ 7 Tage'], ['off', '☀️ Off Season']];
+  const TABS_CBB = [['season', '🏆 Saison'], ['reg', '📅 30 Tage'], ['week', '⚡ 7 Tage'], ['off', '📜 Vorsaison 25/26']];
+  let TABS = TABS_NBA;
   function srcFor(data, tab) {
-    if (tab === 'season') return ((data.LIVESCORES_SEASON || {}).season || {}).nba;
-    if (tab === 'reg') return ((data.LIVESCORES_AGGREGATE || {}).month || {}).nba;
-    if (tab === 'week') return ((data.LIVESCORES_AGGREGATE || {}).week || {}).nba;
+    if (tab === 'season') return ((data.LIVESCORES_SEASON || {}).season || {})[LK];
+    if (tab === 'reg') return ((data.LIVESCORES_AGGREGATE || {}).month || {})[LK];
+    if (tab === 'week') return ((data.LIVESCORES_AGGREGATE || {}).week || {})[LK];
     return null;
   }
   // { entry, prev } — prev = vorheriger Stichtag (für Δ-Rang)
@@ -49,7 +55,10 @@
     return { entry: { ...e, _stichtag: last }, prev: p && p.players && p.players.length ? { ...p, _stichtag: dates[dates.length - 2] } : null };
   }
   const regEntry = data => entryFor(data, 'season').entry || entryFor(data, 'reg').entry;
-  const offEntry = data => (data.OFFSEASON_RANKINGS && data.OFFSEASON_RANKINGS.players && data.OFFSEASON_RANKINGS.players.length ? data.OFFSEASON_RANKINGS : null);
+  const offEntry = data => {
+    const O = CBB ? data.LAST_SEASON_RANKINGS : data.OFFSEASON_RANKINGS;
+    return O && O.players && O.players.length ? O : null;
+  };
   const defaultTab = data => (entryFor(data, 'season').entry ? 'season' : entryFor(data, 'reg').entry ? 'reg' : 'off');
   const tabOf = ctx => (TABS.some(t => t[0] === ctx.params[0]) ? ctx.params[0] : defaultTab(ctx.data));
 
@@ -102,7 +111,7 @@
         <td class="num rank">${i + 1}</td>
         <td class="num">${deltaCell(p)}</td>
         <td class="strong nba-sticky">${e(p.name)}</td>
-        <td><div class="ls-team"><a class="nba-team-link" href="${ctx.href('nbateams', p.team)}">${e(p.team || '')}</a>${second}</div></td>
+        <td><div class="ls-team">${CBB ? `<b>${e(p.team || '')}</b>` : `<a class="nba-team-link" href="${ctx.href('nbateams', p.team)}">${e(p.team || '')}</a>`}${second}</div></td>
         ${COLS.map(c => { const v = p[c.k]; const z = c.z && p.zScores ? p.zScores[c.z] : NaN; return `<td class="num" style="${nba.heat(z)}">${typeof v === 'number' ? v.toFixed(c.d) + (c.pct ? '%' : '') : '—'}</td>`; }).join('')}
         <td class="num"><span class="ls-comp ${pos ? 'up' : 'down'}"${typeof p.zRaw === 'number' ? ` title="Z roh ${(p.zRaw >= 0 ? '+' : '') + p.zRaw.toFixed(2)}"` : ''}>${nba.fmtScore(p.composite)}</span></td>
       </tr>`;
@@ -111,6 +120,7 @@
 
   function render(ctx) {
     const { data, ui, params } = ctx, nba = N();
+    setSport(ctx); TABS = CBB ? TABS_CBB : TABS_NBA;
     nba.init(data);
     const tab = tabOf(ctx);
     const { entry, prev } = entryFor(data, tab);
@@ -119,10 +129,10 @@
     const head = `<div class="page-head"><h1 class="page-title display">🏅 Player Rankings 2026/27</h1>
       <div class="page-sub explain">9-Cat-Rankings automatisch aus den Live-Score-Stats · Bewertung umschaltbar</div></div>`;
     if (!entry) {
-      return `${head}<div class="controls">${tabs}</div>${ui.empty(tab === 'off' ? 'Noch keine Off-Season-Daten' : 'Noch keine Saison-Daten', tab === 'off' ? 'Summer League / Pre-Season fehlen noch.' : 'Kommt automatisch ab dem ersten Spieltag der regulären Saison (jeden Morgen aktualisiert).', '🏅')}`;
+      return `${head}<div class="controls">${tabs}</div>${ui.empty(tab === 'off' ? (CBB ? 'Keine Vorsaison-Daten' : 'Noch keine Off-Season-Daten') : 'Noch keine Saison-Daten', tab === 'off' ? (CBB ? 'last-season-rankings.js fehlt.' : 'Summer League / Pre-Season fehlen noch.') : 'Kommt automatisch ab dem ersten Spieltag der regulären Saison (jeden Morgen aktualisiert).', '🏅')}`;
     }
     const meta = tab === 'off'
-      ? `${fmtDate(entry.windowStart)} – ${fmtDate(entry.windowEnd)} · ${(entry.leagues || []).map(l => LEAGUE_LABELS[l] || l).join(', ')}`
+      ? `${fmtDate(entry.windowStart)} – ${fmtDate(entry.windowEnd)} · ${CBB ? `ganze Saison ${entry.season || ''}, alle D-I-Spieler ab ${entry.minGames} Spielen und 12 Min.` : (entry.leagues || []).map(l => LEAGUE_LABELS[l] || l).join(', ')}`
       : `${tab === 'season' ? `Saison ${fmtDate(entry.windowStart)} bis ${fmtDate(entry._stichtag)}` : tab === 'week' ? `Rollierende 7 Tage bis ${fmtDate(entry._stichtag)}` : `Rollierende 30 Tage bis ${fmtDate(entry._stichtag)}`} · ${entry.daysInWindow} Spieltag${entry.daysInWindow === 1 ? '' : 'e'}${prev ? ` · Δ = Rang gegenüber ${fmtDate(prev._stichtag)}` : ''}`;
     const avg = entry.leagueAvg ? ` · Liga-Ø FG% ${entry.leagueAvg.fg.toFixed(1)} · FT% ${entry.leagueAvg.ft.toFixed(1)}` : '';
     const all = rows(ctx, entry, prev);
@@ -130,7 +140,7 @@
     return `${head}
       <div class="controls">${tabs}${nba.modeControl()}
         <div class="seg" role="group">${[['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']].map(([k, l]) => `<button type="button" class="seg-btn${st.own === k ? ' active' : ''}" data-own="${k}">${l}</button>`).join('')}</div>
-        <input type="search" class="search" placeholder="Spieler, NBA- oder Fantasy-Team …" value="${ui.esc(st.q)}" data-q aria-label="Suchen"></div>
+        <input type="search" class="search" placeholder="Spieler, ${CBB ? 'Schule' : 'NBA-Team'} oder Fantasy-Team …" value="${ui.esc(st.q)}" data-q aria-label="Suchen"></div>
       <div class="ls-info">${meta} · min. ${entry.minGames} Spiele${avg} · ${all.length} Spieler</div>
       <div class="table-wrap"><table class="table compact nba-prank"><thead><tr>
         <th class="num">#</th>${th('drk', 'Δ', 'num')}${th('name', 'Spieler', 'nba-sticky')}${th('team', 'Team')}${COLS.map(c => th(c.k, c.l, 'num')).join('')}${th('composite', nba.scoreLabel(), 'num')}
@@ -138,6 +148,7 @@
   }
 
   function mount(root, ctx) {
+    setSport(ctx); TABS = CBB ? TABS_CBB : TABS_NBA;
     N().bindModeControl(root, ctx.refresh);
     const save = (patch, full) => {
       ctx.store.setJSON('prank', { ...getState(ctx), ...patch });
@@ -157,8 +168,9 @@
   }
 
   MFHFB.pages.register({
-    id: 'players', section: 'players', label: 'Player Rankings', icon: '🏅', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:offseason-rankings'],
+    id: 'players', section: 'players', label: 'Player Rankings', icon: '🏅', applies: { sport: ['nba', 'cbb'] },
+    data: l => (l.sport === 'cbb' ? ['teams', '?rosters-live', '?sport:schools', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:last-season-rankings']
+      : ['teams', '?rosters-live', '?sport:aliases', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:offseason-rankings']),
     title: () => 'Player Rankings', render, mount,
   });
 })();

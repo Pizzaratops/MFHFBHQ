@@ -1147,3 +1147,18 @@ details.card[open] > summary h2::before { content: '▾ '; }
 .tr-nba-live { margin: 4px 0; }
 .nba-rk.tr-nba-lv.up { box-shadow: inset 0 0 0 1.5px var(--good, #2e9d5b); }
 .nba-rk.tr-nba-lv.down { box-shadow: inset 0 0 0 1.5px var(--bad, #d0453a); }
+/* Dizzle CBB (16.10.2026) */
+.nba-tcard.mine { outline: 2px solid var(--tcx); }
+.cbb-week { margin-bottom: 12px; }
+.cbb-week.now { outline: 2px solid var(--league-accent); }
+.cbb-mine { padding: 8px 14px 0; font-weight: 600; }
+.cbb-mgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 6px 14px; padding: 10px 14px; }
+.cbb-m { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; font-size: 13px; padding: 4px 6px; border-radius: 6px; }
+.cbb-m > a { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 420px) { .cbb-mgrid { grid-template-columns: 1fr; } }
+.cbb-m.mine { background: color-mix(in srgb, var(--league-accent) 14%, transparent); }
+.cbb-weeks { display: grid; gap: 4px; }
+.cbb-roster .cbb-grp td { font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: var(--surface-2, transparent); }
+tr.mine td { background: color-mix(in srgb, var(--league-accent) 10%, transparent); }
+tr.cbb-cut td { border-bottom: 2px dashed var(--league-accent); }
+.nba-tc-foot .small { white-space: nowrap; }
