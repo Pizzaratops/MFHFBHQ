@@ -7,6 +7,7 @@
 //  #/cbb/cbbdyn                  Dynasty-Rang (Projektion × Restjahre × NBA-Draft-Risiko)
 //  #/cbb/cbbtrade[/finder]       Trade Analyzer + Trade Finder (Dynasty- oder Jetzt-Wert)
 //  #/cbb/cbbplaner[/<Woche>]     Matchup-Planer: beide Gegner der Woche, Kategorien, Aufstellungs-Tipps
+//  #/cbb/cbbradar                Fantasy Radar: 9-Cat-Perzentile + College-Kontext, Vorsaison, Vergleich, Profil-Zwillinge
 //
 //  Daten:
 //   sports/cbb/data/projections-cbb.js  CBB_PROJECTIONS   (build-projections.py)
@@ -519,8 +520,113 @@
     if (w) w.addEventListener('change', () => { location.hash = ctx.href('cbbplaner', w.value).replace(/^.*#/, '#'); });
   }
 
+
+  // ============================================================
+  //  6 — Fantasy Radar (9-Cat-Perzentile + College-Kontext, Vergleich, Profil-Zwillinge)
+  // ============================================================
+  const RCATS = [['pts', 'PTS'], ['tpm', '3PM'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['to', 'TO CTRL'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%']];
+  const RCTX = [
+    ['min', 'Minuten', p => p.min], ['usg', 'Usage', p => p.usg], ['conf', 'Sicherheit', p => p.conf],
+    ['pace', 'Team-Tempo', (p, C) => (C[p.team] || {}).paceRel], ['srs', 'Team-Stärke', (p, C) => (C[p.team] || {}).srs],
+    ['yrs', 'Restjahre', p => (p.yrs || 0) * (1 - (p.leave || 0) * 0.5)], ['dyn', 'Dynasty', p => p.dyn || 0],
+  ];
+  const rcache = new WeakMap();
+  const pctl = (sorted, v) => { if (v == null || !sorted.length) return null; let lo = 0, hi = sorted.length; while (lo < hi) { const m = (lo + hi) >> 1; if (sorted[m] < v) lo = m + 1; else hi = m; } let lo2 = lo; hi = sorted.length; while (lo2 < hi) { const m = (lo2 + hi) >> 1; if (sorted[m] <= v) lo2 = m + 1; else hi = m; } return 100 * (lo + 0.5 * (lo2 - lo)) / sorted.length; };
+  function radarEnv(data) {
+    if (rcache.has(data)) return rcache.get(data);
+    const I = idx(data), C = data.CBB_TEAM_CONTEXT || {};
+    const pool = I.list.filter(p => p.min >= 10 && p.zc);
+    const S = {}, SX = {}, SL = {};
+    RCATS.forEach(([k]) => { S[k] = pool.map(p => p.zc[k] || 0).sort((a, b) => a - b); });
+    RCTX.forEach(([k, , f]) => { SX[k] = pool.map(p => f(p, C)).filter(v => v != null && (k !== 'dyn' || v > 0)).sort((a, b) => a - b); });
+    const LS = ((data.LAST_SEASON_RANKINGS || {}).players || []).filter(p => p.min >= 10 && p.zScores);
+    RCATS.forEach(([k]) => { SL[k] = LS.map(p => p.zScores[k] || 0).sort((a, b) => a - b); });
+    const lastBy = new Map(); LS.forEach(p => lastBy.set(N().key(p.name), p));
+    const prof = p => RCATS.map(([k]) => pctl(S[k], (p.zc || {})[k] || 0));
+    const env = { I, C, pool, S, SX, SL, lastBy, prof, profs: new Map(pool.map(p => [p, prof(p)])) };
+    rcache.set(data, env);
+    return env;
+  }
+  const pid = p => p.name + '|' + p.team;
+  function radarPage(ctx) {
+    const { data, ui } = ctx, e = ui.esc, nba = N().init(data);
+    if (!data.CBB_PROJECTIONS) return ui.empty('Keine Projections', '', '🕸️');
+    const E = radarEnv(data), I = E.I;
+    const byId = new Map(I.list.map(p => [pid(p), p]));
+    const st = { sel: [], last: true, ...ctx.store.getJSON('cbbradar', {}) };
+    let sel = st.sel.map(id => byId.get(id)).filter(Boolean).slice(0, 3);
+    if (!sel.length) {
+      const me = myTeam(data);
+      const mine = me ? nba.roster(data, me.id).map(r => I.proj(r.name, r.team)).filter(Boolean).sort((a, b) => b.z - a.z) : [];
+      sel = [mine[0] || I.list.slice().sort((a, b) => b.z - a.z)[0]];
+    }
+    const main = sel[0];
+    const last = st.last && sel.length === 1 ? E.lastBy.get(nba.key(main.name)) : null;
+    const series = sel.map(p => { const v = E.prof(p); return { name: p.name, vals: v.map(x => x / 100), tips: RCATS.map(([k, l], i) => `${p.name} · ${l}: ${Math.round(v[i])}. Perzentil (Projektion 26/27)`) }; });
+    if (last) {
+      const v = RCATS.map(([k]) => pctl(E.SL[k], last.zScores[k] || 0));
+      series.push({ name: main.name + ' (Vorsaison)', vals: v.map(x => x / 100), tips: RCATS.map(([, l], i) => `${main.name} 25/26 (${last.team}): ${l} ${Math.round(v[i])}. Perzentil`) });
+    }
+    const radar1 = MFHFB.charts.radar({ axes: RCATS.map(([, l], i) => ({ label: sel.length === 1 ? `${l} ${Math.round(E.prof(main)[i])}` : l })), series, size: 300, label: 'Fantasy Radar ' + main.name });
+    const ctxVals = p => RCTX.map(([k, , f]) => pctl(E.SX[k], f(p, E.C)));
+    const radar2 = MFHFB.charts.radar({ axes: RCTX.map(([, l], i) => ({ label: sel.length === 1 ? `${l} ${Math.round(ctxVals(main)[i] || 0)}` : l })),
+      series: sel.map(p => { const v = ctxVals(p); return { name: p.name, vals: v.map(x => (x == null ? null : x / 100)), tips: RCTX.map(([, l], i) => `${p.name} · ${l}: ${v[i] == null ? '—' : Math.round(v[i]) + '. Perzentil'}`) }; }), size: 300, label: 'College-Kontext' });
+    const chipNames = sel.map(p => p.name).concat(last ? [main.name + ' 25/26'] : []);
+    // Profil-Zwillinge: kleinster mittlerer Perzentil-Abstand, frei bevorzugt
+    const mp = E.prof(main);
+    const twins = E.pool.filter(p => p !== main && p.min >= 15).map(p => { const v = E.profs.get(p); return { p, d: 100 - v.reduce((s, x, i) => s + Math.abs(x - mp[i]), 0) / v.length, o: I.owner(p.name) }; })
+      .sort((a, b) => b.d - a.d);
+    const freeTw = twins.filter(x => !x.o && x.p.fx).slice(0, 5), anyTw = twins.slice(0, 5);
+    const twRow = x => `<tr><td class="strong">${e(x.p.name)}${srcBadge(ctx, x.p)}</td><td>${schoolLink(ctx, x.p.team)}</td><td class="num">${Math.round(x.d)}</td><td class="num"><span class="${x.p.z >= 0 ? 'up' : 'down'}">${sgn(x.p.z)}</span></td><td>${tLink(ctx, x.o)}</td>
+      <td><button type="button" class="seg-btn mp-btn" data-add="${e(pid(x.p))}">+ Vergleich</button> <button type="button" class="seg-btn mp-btn" data-open="${e(pid(x.p))}">Öffnen</button></td></tr>`;
+    const row = (l, f) => `<tr><td class="strong">${l}</td>${sel.map(p => `<td class="num">${f(p)}</td>`).join('')}</tr>`;
+    const c = E.C[main.team] || {};
+    return `<div class="page-head"><h1 class="page-title display">🕸️ Fantasy Radar</h1>
+        <div class="page-sub">Perzentil je Kategorie gegen alle College-Spieler ab 10 Min. (Projektion 26/27${I.live && I.live.players ? ' + echte Spiele' : ''}) · bis zu 3 Spieler vergleichen</div></div>
+      <div class="controls"><input class="search" list="cbbr-list" placeholder="Spieler hinzufügen …" data-pick aria-label="Spieler suchen">
+        <datalist id="cbbr-list">${I.list.filter(p => p.min >= 5).map(p => `<option value="${e(p.name)} · ${e(p.team)}">`).join('')}</datalist>
+        ${sel.map((p, k) => `<span class="dna-chip ${MFHFB.charts.SEL[k]}"><i></i>${e(p.name)} <button type="button" class="linklike" data-del="${e(pid(p))}" aria-label="entfernen">✕</button></span>`).join('')}
+        ${sel.length === 1 ? `<label class="small"><input type="checkbox" data-last${st.last ? ' checked' : ''}> Vorsaison einblenden</label>` : ''}</div>
+      <div class="cbbm-ctx"><div class="card cw-radar"><div class="card-head"><h2>9 Kategorien</h2></div>${MFHFB.charts.chips(chipNames)}${radar1}
+          ${last ? `<p class="small muted" style="padding:0 14px 10px">Vorsaison 25/26 bei ${e(last.team)}: ${last.games} Spiele, ${last.min} Min., Rang #${last.rank}. Unterschied zur Projektion = neue Rolle, Schule, Entwicklung.</p>` : sel.length === 1 && st.last ? '<p class="small muted" style="padding:0 14px 10px">Keine Vorsaison-Daten (Freshman oder neu).</p>' : ''}</div>
+        <div class="card cw-radar"><div class="card-head"><h2>College-Kontext</h2></div>${MFHFB.charts.chips(sel.map(p => p.name))}${radar2}
+          <p class="small muted" style="padding:0 14px 10px">Minuten, Usage, Datensicherheit, Tempo und Stärke der Schule, Restjahre (mit Draft-Risiko), Dynasty-Wert — jeweils als Perzentil.</p></div></div>
+      <div class="table-wrap"><table class="table compact"><thead><tr><th></th>${sel.map((p, k) => `<th class="num"><span class="dna-chip ${MFHFB.charts.SEL[k]} cw-dot"><i></i></span>${e(p.name.split(' ').slice(-1)[0])}</th>`).join('')}</tr></thead><tbody>
+        ${row('Schule', p => schoolLink(ctx, p.team) + ` <small class="muted">${e(p.pos || '')}${p.cls ? ' ' + CLS[p.cls] : ''}</small>`)}
+        ${row('Rolle', p => `${e(p.role || '—')}<br><small class="muted">${e((p.arche || []).join(' · '))}</small>`)}
+        ${row('Min / Usg', p => `${r1(p.min)} / ${r1(p.usg)}`)}
+        ${RCATS.map(([k, l], i) => row(l, p => { const v = E.prof(p)[i]; const raw = { pts: p.pts, tpm: p.tpm, reb: p.reb, ast: p.ast, stl: p.stl, blk: p.blk, to: p.tov, fgImpact: p.fgPct, ftImpact: p.ftPct }[k]; return `<span style="${nba.heat((v - 50) / 20)}"><b>${Math.round(v)}</b></span> <small class="muted">${raw == null ? '' : Number(raw).toFixed(k === 'fgImpact' || k === 'ftImpact' || k === 'pts' || k === 'reb' || k === 'ast' ? 1 : 2)}</small>`; })).join('')}
+        ${row('9-Cat z', p => `<b class="${p.z >= 0 ? 'up' : 'down'}">${sgn(p.z)}</b>`)}
+        ${row('Dynasty', p => `${(p.dyn || 0).toFixed(1)}${p.leave ? ` <small class="muted">Draft ${Math.round(p.leave * 100)} %</small>` : ''}`)}
+        ${row('Fantasy-Team', p => (p.fx ? tLink(ctx, I.owner(p.name)) : '—'))}
+      </tbody></table></div>
+      ${sel.length === 1 ? `<div class="note">🏫 ${e(c.name || main.team)}: ${styleNotes(c).slice(0, 3).join(' ') || 'Stil nah am D-I-Schnitt.'}</div>` : ''}
+      <div class="cbbm-trade"><div class="card"><div class="card-head"><h2>👯 Profil-Zwillinge (frei)</h2><span class="muted small">ähnliches Kategorie-Profil wie ${e(main.name)}</span></div>
+          <div class="table-wrap"><table class="table compact"><thead><tr><th>Spieler</th><th>Schule</th><th class="num" title="100 = identisches Profil">Match</th><th class="num">z</th><th></th><th></th></tr></thead><tbody>${freeTw.map(twRow).join('') || '<tr><td colspan="6" class="muted">—</td></tr>'}</tbody></table></div></div>
+        <div class="card"><div class="card-head"><h2>👯 Profil-Zwillinge (alle)</h2></div>
+          <div class="table-wrap"><table class="table compact"><thead><tr><th>Spieler</th><th>Schule</th><th class="num">Match</th><th class="num">z</th><th></th><th></th></tr></thead><tbody>${anyTw.map(twRow).join('')}</tbody></table></div></div></div>
+      <p class="small muted">Perzentil 90 = besser als 90 % aller College-Spieler ab 10 Min. TO CTRL: hoch = wenig Ballverluste. FG%/FT% nach Einfluss (Quote × Volumen). Match = 100 − mittlerer Perzentil-Abstand über 9 Kategorien.</p>`;
+  }
+  function radarMount(root, ctx) {
+    const get = () => ({ sel: [], last: true, ...ctx.store.getJSON('cbbradar', {}) });
+    const E = radarEnv(ctx.data);
+    const cur = () => { const st = get(); if (st.sel.length) return st.sel; const h = root.querySelector('[data-del]'); return h ? [h.dataset.del] : []; };
+    const save = patch => { ctx.store.setJSON('cbbradar', { ...get(), ...patch }); ctx.refresh(); };
+    const pick = root.querySelector('[data-pick]');
+    if (pick) pick.addEventListener('change', () => {
+      const [n, t] = pick.value.split(' · ');
+      const p = E.I.list.find(x => x.name === n && x.team === t);
+      if (p) save({ sel: cur().filter(x => x !== pid(p)).concat(pid(p)).slice(-3) });
+    });
+    root.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => save({ sel: cur().filter(x => x !== b.dataset.del) })));
+    root.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => save({ sel: cur().filter(x => x !== b.dataset.add).concat(b.dataset.add).slice(-3) })));
+    root.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => save({ sel: [b.dataset.open] })));
+    const l = root.querySelector('[data-last]'); if (l) l.addEventListener('change', () => save({ last: l.checked }));
+  }
+
   const D = ['teams', '?rosters-live', 'sport:projections-cbb', '?sport:live-projections-cbb'];
   MFHFB.pages.register({ id: 'cbbproj', section: 'players', label: 'Projections', icon: '🔮', applies: A, data: D.concat(['?sport:team-context']), title: () => 'Projections 2026/27', render: projPage, mount: projMount });
+  MFHFB.pages.register({ id: 'cbbradar', section: 'players', label: 'Fantasy Radar', icon: '🕸️', applies: A, data: D.concat(['?sport:team-context', '?sport:last-season-rankings']), title: () => 'Fantasy Radar', render: radarPage, mount: radarMount });
   MFHFB.pages.register({ id: 'cbbschulen', section: 'teams', label: 'Schulen & Kontext', icon: '🏫', applies: A, data: D.concat(['sport:team-context']), title: ({ data, params }) => (params[0] && ((data.CBB_TEAM_CONTEXT || {})[params[0]] || {}).name) || 'Schulen & Kontext', render: schoolPage });
   MFHFB.pages.register({ id: 'cbbdyn', section: 'dynasty', label: 'Dynasty Rankings', icon: '🏆', applies: A, data: D.concat(['rankings']), title: () => 'Dynasty Rankings', render: dynPage, mount: dynMount });
   MFHFB.pages.register({ id: 'cbbtrade', section: 'trade', label: 'Trade Analyzer', icon: '⚖️', applies: A, data: D, title: ({ params }) => (params[0] === 'finder' ? 'Trade Finder' : 'Trade Analyzer'), render: tradePage, mount: tradeMount });
