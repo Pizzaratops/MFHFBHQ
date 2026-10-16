@@ -18,7 +18,7 @@ const URL = id => `https://site.api.espn.com/apis/site/v2/sports/basketball/mens
 const inch = h => { const m = String(h || '').match(/(\d+)'\s*(\d+)/); return m ? Number(m[1]) * 12 + Number(m[2]) : null; };
 
 async function main() {
-  const out = {}, coach = {}, prev = {};
+  const out = {}, coach = {}, prev = {}, sched = {};
   const season = Number(process.env.CBB_SEASON || (new Date().getUTCMonth() >= 7 ? new Date().getUTCFullYear() + 1 : new Date().getUTCFullYear()));
   let fail = 0, n = 0, firstErr = '';
   for (const s of SCHOOLS) {
@@ -39,6 +39,14 @@ async function main() {
         const pc = Array.isArray(pj.coach) ? pj.coach[0] : pj.coach;
         if (pc) prev[s.short] = `${pc.firstName || ''} ${pc.lastName || ''}`.trim();
       } catch (e) { /* egal */ }
+      // Spielplan der Saison (US-Datum je Spiel) → Spiele pro Fantasy-Woche (Matchup-Planer)
+      try {
+        const sj = await (await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/${s.espn}/schedule?season=${season}`)).json();
+        sched[s.short] = (sj.events || []).map(ev => {
+          const d = new Date(ev.date);
+          return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+        }).sort();
+      } catch (e) { /* egal */ }
     } catch (e) { fail++; if (!firstErr) firstErr = `${s.name}: ${e.message}`; console.warn(`  ! ${s.name}: ${e.message}`); }
   }
   if (n < 500) throw new Error(`nur ${n} Spieler, ${fail} Fehler (erster: ${firstErr}) — Datei bleibt`);
@@ -53,6 +61,9 @@ ${Object.entries(out).map(([k, v]) => `  ${JSON.stringify(k)}: ${JSON.stringify(
 
 // Head Coach je Schule [Name, Jahre an der Schule] — Stil-Faktoren hängen am Coach
 const CBB_ESPN_COACHES = ${JSON.stringify(coach)};
+
+// Spieltage je Schule (US-Ostküsten-Datum), reguläre Saison laut ESPN-Spielplan
+const CBB_GAME_DATES = ${JSON.stringify(sched)};
 
 // Head Coach der Vorsaison (${season - 1}) laut ESPN — Vergleich zeigt Trainerwechsel
 const CBB_ESPN_COACHES_PREV = ${JSON.stringify(prev)};
