@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-16T17:23:25.035Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-16T20:06:24.236Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -229,7 +229,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Micah Robinson","nbaTeam":"TCU","pos":"F","cls":"Jr","experience":"veteran","nilValue":11,"minutesAvg":26.5,"z30":1.27,"bestCat30":"STL","worstCat30":"FG%","lastSeasonRank":1053,"projZ":4.76,"projMin":26.5,"role":"Starter","statsWindow":"last-season","compositeScore":0.57,"signalsUsed":1,"rank":223},
   {"name":"Oziyah Sellers","nbaTeam":"SMU","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":27.2,"z30":1.44,"bestCat30":"TO","worstCat30":"STL","lastSeasonRank":1012,"projZ":4.77,"projMin":27.2,"role":"Starter","statsWindow":"last-season","compositeScore":0.57,"signalsUsed":1,"rank":224},
   {"name":"Eian Elmer","nbaTeam":"Wisc","pos":"F","cls":"Sr","experience":"veteran","nilValue":5,"minutesAvg":21,"z30":6.23,"bestCat30":"3PM","worstCat30":"AST","lastSeasonRank":164,"projZ":4.73,"projMin":21,"role":"Starter","statsWindow":"last-season","compositeScore":0.56,"signalsUsed":1,"rank":225},
-  {"name":"Adam Clark","nbaTeam":"Seton","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":25.6,"z30":2.04,"bestCat30":"STL","worstCat30":"TO","lastSeasonRank":852,"projZ":4.68,"projMin":25.6,"role":"Starter","statsWindow":"last-season","compositeScore":0.55,"signalsUsed":1,"rank":226},
+  {"name":"Adam Clark","nbaTeam":"Miss","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":25.6,"z30":2.04,"bestCat30":"STL","worstCat30":"TO","lastSeasonRank":852,"projZ":4.68,"projMin":25.6,"role":"Starter","statsWindow":"last-season","compositeScore":0.55,"signalsUsed":1,"rank":226},
   {"name":"Andrew McKeever","nbaTeam":"Iowa","pos":"C","cls":"Jr","experience":"veteran","nilValue":1,"minutesAvg":25.6,"z30":1.54,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":985,"projZ":4.69,"projMin":25.6,"role":"Starter","statsWindow":"last-season","compositeScore":0.55,"signalsUsed":1,"rank":227},
   {"name":"Duke Brennan","nbaTeam":"Okla","pos":"F","cls":"Grad","experience":"veteran","nilValue":4,"minutesAvg":25.1,"z30":3.61,"bestCat30":"REB","worstCat30":"FT%","lastSeasonRank":498,"projZ":4.7,"projMin":25.1,"role":"Starter","statsWindow":"last-season","compositeScore":0.55,"signalsUsed":1,"rank":228},
   {"name":"Aaron McBride","nbaTeam":"LoyMa","pos":"F","cls":"Sr","experience":"veteran","nilValue":11,"minutesAvg":23.1,"z30":2.53,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":740,"projZ":4.65,"projMin":23.1,"role":"Starter","statsWindow":"last-season","compositeScore":0.54,"signalsUsed":1,"rank":229},

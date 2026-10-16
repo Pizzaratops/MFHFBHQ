@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-16T17:23:24.804Z
+//  Stand: 2026-10-16T20:06:23.999Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -28,7 +28,7 @@ const CBB_PLAYER_POOL = [
 ["07a7x","Ace Reiser","UtSt","G","G,Flx","FA"],
 ["079zd","Acen Jimenez","Dart","G","G,Flx","FA"],
 ["07185","Achille Lonati","StBon","G","G,Flx","FA"],
-["06gfi","Adam Clark","Seton","G","G,Flx","T"],
+["06gfi","Adam Clark","Miss","G","G,Flx","T"],
 ["01atq","Adam Miller","Gonz","G","G,Flx","FA"],
 ["071vn","Adam Olsen","Aub","F","F/C,Flx","FA"],
 ["079f1","Adam Oumiddoch","Vill","G","G,Flx","FA"],
@@ -570,7 +570,7 @@ const CBB_PLAYER_POOL = [
 ["0713e","Dante Allen","Mia-FL","G","G,Flx","FA"],
 ["071b1","Dante Censori-Hercules","Portl","G","G,Flx","FA"],
 ["07aqq","Darien Moore","Seton","G","G,Flx","FA"],
-["06gd5","Darin Smith","Rut","F","F/C,Flx","FA"],
+["06gd5","Darin Smith","Rut","F","F/C,G,Flx","FA"],
 ["06ynh","Darius Adams","NCSU","G","G,Flx","T"],
 ["079np","Darius Bivins","StMar","G","G,Flx","T"],
 ["079oz","Darius Ratliff","USC","C","F/C,Flx","T"],
@@ -744,7 +744,7 @@ const CBB_PLAYER_POOL = [
 ["0728j","Ege Demir","Duques","C","F/C,Flx","FA"],
 ["079ef","Egor Amosov","UConn","F","F/C,Flx","T"],
 ["079lp","Egor Ryzhov","Mia-FL","C","F/C,Flx","FA"],
-["06g9b","Eian Elmer","Wisc","F","F/C,Flx","T"],
+["06g9b","Eian Elmer","Wisc","F","F/C,G,Flx","T"],
 ["07a1f","EJ Hazelett","IndSt","G","G,Flx","FA"],
 ["070in","EJ Horton","N TX","G","G,Flx","FA"],
 ["07a1p","EJ McQuillan","IndSt","G","G,Flx","FA"],
