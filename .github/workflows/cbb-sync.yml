@@ -23,6 +23,10 @@ on:
         description: "Spieltag (YYYY-MM-DD) für die Stats, leer = gestern + heute (US-Ostküste)"
         required: false
         default: ""
+      rosters:
+        description: "ESPN-Kader der Pool-Schulen neu holen (sonst montags 07 Uhr)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -52,11 +56,19 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           IN_STATS: ${{ github.event.inputs.stats }}
+          IN_ROSTERS: ${{ github.event.inputs.rosters }}
         run: |
-          H=$(TZ=Europe/Berlin date +%H)
+          H=$(TZ=Europe/Berlin date +%H); DOW=$(TZ=Europe/Berlin date +%u)
+          if [ "$IN_ROSTERS" = "true" ] || { [ "$DOW" = "1" ] && [ "$H" = "07" ]; }; then echo "rosters=true" >> "$GITHUB_OUTPUT"; else echo "rosters=false" >> "$GITHUB_OUTPUT"; fi
           if [ "$EVENT" = "workflow_dispatch" ] && [ "$IN_STATS" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           elif [ "$H" = "07" ] || [ "$H" = "10" ] || [ "$H" = "14" ] || [ "$H" = "22" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           else echo "run=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: ESPN-Kader (Klasse, Größe, Position)
+        id: espnrosters
+        if: steps.gate.outputs.rosters == 'true'
+        continue-on-error: true
+        run: node sports/cbb/scripts/sync-espn-rosters.js
 
       - name: Tagesdaten von ESPN (daily-9cat, College)
         id: daily
@@ -104,7 +116,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure'
+        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
           exit 1
