@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-16T14:42:53.583Z",
+  "generatedAt": "2026-10-16T14:59:19.603Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -84,7 +84,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 1,
         "tpm": 3,
         "fgPct": 1,
-        "ftPct": 6,
+        "ftPct": 7,
         "to": 12
       },
       "includedCount": 27,
@@ -115,7 +115,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 4,
         "tpm": 4,
         "fgPct": 5,
-        "ftPct": 5,
+        "ftPct": 6,
         "to": 8
       },
       "includedCount": 28,
@@ -140,9 +140,9 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 4,
-        "reb": 10,
+        "reb": 9,
         "ast": 4,
-        "stl": 6,
+        "stl": 5,
         "blk": 9,
         "tpm": 2,
         "fgPct": 11,
@@ -171,7 +171,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 2,
-        "reb": 7,
+        "reb": 6,
         "ast": 3,
         "stl": 11,
         "blk": 10,
@@ -202,7 +202,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 6,
-        "reb": 8,
+        "reb": 7,
         "ast": 6,
         "stl": 10,
         "blk": 8,
@@ -233,14 +233,14 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 11,
-        "reb": 9,
-        "ast": 12,
-        "stl": 9,
+        "reb": 8,
+        "ast": 11,
+        "stl": 8,
         "blk": 5,
         "tpm": 7,
         "fgPct": 8,
         "ftPct": 10,
-        "to": 3
+        "to": 4
       },
       "includedCount": 28,
       "projCount": 27,
@@ -266,7 +266,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 7,
         "reb": 3,
         "ast": 5,
-        "stl": 7,
+        "stl": 6,
         "blk": 3,
         "tpm": 12,
         "fgPct": 4,
@@ -328,7 +328,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 10,
         "reb": 11,
         "ast": 10,
-        "stl": 8,
+        "stl": 7,
         "blk": 11,
         "tpm": 11,
         "fgPct": 3,
@@ -345,29 +345,29 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 314.7,
-        "reb": 121.8,
-        "ast": 65.8,
-        "stl": 22.38,
-        "blk": 14.61,
-        "tpm": 35.2,
-        "to": 36.5,
-        "fgPct": 47.1,
-        "ftPct": 78.1
+        "pts": 304.2,
+        "reb": 111.5,
+        "ast": 61.4,
+        "stl": 21.34,
+        "blk": 13.88,
+        "tpm": 34.5,
+        "to": 34,
+        "fgPct": 47,
+        "ftPct": 78.9
       },
       "rank": {
         "pts": 9,
-        "reb": 6,
-        "ast": 11,
-        "stl": 5,
+        "reb": 10,
+        "ast": 12,
+        "stl": 9,
         "blk": 7,
         "tpm": 8,
         "fgPct": 9,
-        "ftPct": 8,
-        "to": 4
+        "ftPct": 5,
+        "to": 2
       },
-      "includedCount": 28,
-      "projCount": 28,
+      "includedCount": 27,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -425,8 +425,8 @@ const FANTASY_POWER_SCORE = {
         "blk": 12,
         "tpm": 10,
         "fgPct": 10,
-        "ftPct": 7,
-        "to": 2
+        "ftPct": 8,
+        "to": 3
       },
       "includedCount": 25,
       "projCount": 25,
