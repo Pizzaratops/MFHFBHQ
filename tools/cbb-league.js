@@ -99,7 +99,7 @@
       const cur = b.zSeason != null;
       return `<tr>
         <td class="pos-col"><span class="pos nba-pos">${e(p.status === 'A' ? p.slot : p.status === 'IR' ? 'IR' : 'Res')}</span></td>
-        <td class="strong">${e(p.name)}${b.cls ? ` <span class="nba-age" title="Klasse">${e(b.cls)}</span>` : ''}${nba.injury(p.inj)}</td>
+        <td class="strong">${e(p.name)}${b.cls ? ` <span class="nba-age" title="Klasse">${e(b.cls)}</span>` : ''}${nba.injury(p.inj)}${b.gone ? ' <span class="nba-inj out" title="Letzte Saison Senior/Graduate an dieser Schule und nicht mehr im ESPN-Kader — Spielberechtigung vermutlich vorbei">WEG?</span>' : ''}</td>
         <td title="${e(p.elig || '')}">${e(p.team || '')} <small class="muted">${e(p.pos || '')}</small></td>
         <td class="num">${n ? `<b>$${n.price}</b>` : b.nilValue != null ? `<span class="muted" title="geschätzter NIL-Wert">~$${b.nilValue}</span>` : '<span class="muted">—</span>'}</td>
         <td class="num">${nba.rankBadge(b.lastSeasonRank || null, 'Rang Vorsaison 2025-26 (9-Cat pro Spiel, ganze D-I)')}</td>

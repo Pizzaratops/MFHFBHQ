@@ -7,7 +7,9 @@ name: CBB Sync (Dizzle CBB Dynasty)
 #     ESPN-Boxscores mens-college-basketball, nur Fantrax-Pool-Schulen
 #     → sports/cbb/scripts/data (CSV) → Live Scores, Week/Month/Season,
 #     Rolling-Archiv, Waiver-Board. Dieselben Scripts wie NBA (sports/nba/scripts)
-#     mit --dir/--out auf sports/cbb.
+#     mit --dir/--out auf sports/cbb. Danach Live-Projections (Projektion + echte Spiele).
+#  3. Wöchentlich (Montag 07 Uhr oder rosters=true): ESPN-Kader, Coaches, Spielplan →
+#     Modell (sports/cbb/scripts/model/build-projections.py): Projections, Team-Kontext, Dynasty.
 # Keine Secrets nötig (Fantrax + ESPN öffentlich).
 
 on:
@@ -70,6 +72,22 @@ jobs:
         continue-on-error: true
         run: node sports/cbb/scripts/sync-espn-rosters.js
 
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.rosters == 'true'
+        with:
+          python-version: '3.12'
+
+      - name: Projections 2026/27 + Team-Kontext + Dynasty (Modell, wöchentlich)
+        id: model
+        if: steps.gate.outputs.rosters == 'true'
+        continue-on-error: true
+        env:
+          CBB_WORK: sports/cbb/scripts/model/cache
+        run: |
+          pip install -q pandas pyarrow numpy
+          python3 sports/cbb/scripts/model/build-projections.py || { echo "::error title=CBB-Modell::build-projections.py fehlgeschlagen"; exit 1; }
+          node sports/cbb/scripts/build-live-projections.js
+
       - name: Tagesdaten von ESPN (daily-9cat, College)
         id: daily
         if: steps.gate.outputs.run == 'true'
@@ -89,6 +107,7 @@ jobs:
           node $S/prune-raw-data.js --dir=$D --keep-days=400 --keep-days-games=21
           node $S/update-all-aggregates.js --dir=$D --out=$O/livescores-aggregate.js --recent-days=4 --min-mpg=10 --week-history=false
           node $S/build-rolling-archive.js --league=ncaab --agg=$O/livescores-aggregate.js --season=$O/livescores-season.js --out=$O/rolling-rankings-2026-27.js
+          node sports/cbb/scripts/build-live-projections.js
 
       - name: Waiver-Board
         id: board
@@ -116,7 +135,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure'
+        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure' || steps.model.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
           exit 1

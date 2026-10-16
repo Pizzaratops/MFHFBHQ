@@ -86,9 +86,10 @@
       { k: 'minutesAvg', l: 'MIN', t: 'Minuten pro Spiel im jüngsten Fenster', v: p => p.minutesAvg ?? null, f: v => (v != null ? v : '—') },
       { k: 'bestCat30', l: 'Beste Kat.', t: 'Stärkste Kategorie im jüngsten Fenster (laufende Saison > Off-Season)', v: p => { const i = CAT_ORDER.indexOf(p.bestCat30); return i < 0 ? null : i; }, f: (v, p) => (p.bestCat30 ? `<span class="up strong">${p.bestCat30}</span>` : '—') },
       { k: 'worstCat30', l: 'Schwächste', v: p => { const i = CAT_ORDER.indexOf(p.worstCat30); return i < 0 ? null : i; }, f: (v, p) => (p.worstCat30 ? `<span class="down strong">${p.worstCat30}</span>` : '—') },
-      // College (Dizzle CBB): Klasse, Vorsaison-Rang, Saison-z, NIL-Wert
+      // College (Dizzle CBB): Klasse, Vorsaison-Rang, Projektion, Saison-z, NIL-Wert
       cbb && { k: 'cls', l: 'Kl.', t: 'Klasse (Fr/So/Jr/Sr, aus der NIL-Liste)', v: p => ['Fr', 'So', 'Jr', 'Sr', 'Gr'].indexOf(p.cls) + 1 || null, f: (v, p) => (p.cls ? e(p.cls) : '—') },
       cbb && { k: 'lastSeasonRank', l: 'Vorsaison', t: 'Rang 2025-26 über alle D-I-Spieler (9-Cat pro Spiel)', v: p => p.lastSeasonRank ?? null, f: v => nba.rankBadge(v) },
+      cbb && { k: 'projZ', l: 'Proj. z', desc: true, t: 'Projektion 2026/27 (9-Cat-z pro Spiel, mit Team-Kontext und Minuten im neuen Kader) — Seite „Projections“', v: p => p.projZ ?? null, f: (v, p) => (v == null ? '—' : `<span class="${v >= 0 ? 'up' : 'down'}" title="${p.role ? e(p.role) + ', ' : ''}${p.projMin ?? '?'} Min.">${v >= 0 ? '+' : ''}${v.toFixed(1)}</span>`) },
       cbb && { k: 'zSeason', l: 'Saison z', desc: true, t: '9-Cat-z der laufenden Saison (pro Spiel)', v: p => p.zSeason ?? null, f: (v, p) => (v == null ? '—' : `<span class="ls-comp ${v >= 0 ? 'up' : 'down'}" title="${p.gamesSeason} Spiele">${v >= 0 ? '+' : ''}${v.toFixed(1)}</span>`) },
       cbb && { k: 'nilValue', l: 'NIL', desc: true, t: 'Geschätzter NIL-Wert aus der Auktions-Vorbereitung 2026', v: p => p.nilValue ?? null, f: v => (v == null ? '—' : '$' + v) },
       has('dynastyRank') && { k: 'dynastyRank', l: 'MFHFB', t: 'MFHFB Dynasty-Rang', v: p => p.dynastyRank ?? null, f: v => nba.rankBadge(v) },

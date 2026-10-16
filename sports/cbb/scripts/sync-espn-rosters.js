@@ -41,26 +41,49 @@ async function main() {
       } catch (e) { /* egal */ }
     } catch (e) { fail++; if (!firstErr) firstErr = `${s.name}: ${e.message}`; console.warn(`  ! ${s.name}: ${e.message}`); }
   }
-  // Spielplan: ESPN-Scoreboard wochenweise (Team-Spielplan-Endpunkt liefert vor Saisonstart nichts)
-  const byEspn = {}; SCHOOLS.forEach(s => { byEspn[String(s.espn)] = s.short; sched[s.short] = []; });
+  // Spielplan: erst Varianten an einer Schule testen (Notice im Actions-Log), dann die beste nehmen
+  const BASE = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball';
   const et = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' });
   const ymd = d => d.toISOString().slice(0, 10).replace(/-/g, '');
-  let games = 0;
-  for (let d = new Date(Date.UTC(season - 1, 9, 27)); d < new Date(Date.UTC(season, 3, 10)); d = new Date(d.getTime() + 7 * 864e5)) {
-    const e2 = new Date(d.getTime() + 6 * 864e5);
-    try {
-      const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?dates=${ymd(d)}-${ymd(e2)}&groups=50&limit=1000`);
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      const j = await r.json();
-      (j.events || []).forEach(ev => {
-        const day = et.format(new Date(ev.date)); games++;
-        ((ev.competitions || [])[0] || {}).competitors?.forEach(c => { const sh = byEspn[String(c.id || (c.team && c.team.id))]; if (sh && !sched[sh].includes(day)) sched[sh].push(day); });
-      });
-    } catch (e) { console.warn(`  ! Spielplan ${ymd(d)}: ${e.message}`); }
+  const getJ = async u => { const r = await fetch(u); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); };
+  const evDates = j => (j.events || []).map(ev => et.format(new Date(ev.date)));
+  const probeId = (SCHOOLS.find(x => x.short === 'Ill') || SCHOOLS[0]).espn;
+  const variants = {
+    team: id => `${BASE}/teams/${id}/schedule?season=${season}`,
+    teamType: id => `${BASE}/teams/${id}/schedule?season=${season}&seasontype=2`,
+    teamPlain: id => `${BASE}/teams/${id}/schedule`,
+  };
+  let use = null; const probe = [];
+  for (const [k, f] of Object.entries(variants)) {
+    try { const d = evDates(await getJ(f(probeId))).filter(x => x >= `${season - 1}-10-01`); probe.push(`${k} ${d.length}${d.length ? ' ab ' + d[0] : ''}`); if (!use && d.length >= 10) use = k; }
+    catch (e) { probe.push(`${k} ${e.message}`); }
   }
-  Object.values(sched).forEach(v => v.sort());
+  let sbDay = 0;
+  try { sbDay = (await getJ(`${BASE}/scoreboard?dates=${season - 1}1110&groups=50&limit=500`)).events?.length || 0; } catch (e) { /* egal */ }
+  probe.push(`scoreboard(10.11.) ${sbDay}`);
+  console.log(`::notice title=ESPN-Spielplan-Test::${probe.join(' · ')} → ${use || (sbDay ? 'scoreboard' : 'nichts')}`);
+  const byEspn = {}; SCHOOLS.forEach(x => { byEspn[String(x.espn)] = x.short; sched[x.short] = []; });
+  let games = 0;
+  if (use) {
+    for (const x of SCHOOLS) {
+      try { sched[x.short] = Array.from(new Set(evDates(await getJ(variants[use](x.espn))).filter(d => d >= `${season - 1}-10-01`))).sort(); games += sched[x.short].length; }
+      catch (e) { console.warn(`  ! Spielplan ${x.name}: ${e.message}`); }
+    }
+  } else if (sbDay) {
+    // Tag für Tag übers Scoreboard (1. Nov – 15. März)
+    for (let d = new Date(Date.UTC(season - 1, 10, 1)); d <= new Date(Date.UTC(season, 2, 15)); d = new Date(d.getTime() + 864e5)) {
+      try {
+        const j = await getJ(`${BASE}/scoreboard?dates=${ymd(d)}&groups=50&limit=500`);
+        (j.events || []).forEach(ev => {
+          const day = et.format(new Date(ev.date)); games++;
+          (((ev.competitions || [])[0] || {}).competitors || []).forEach(c => { const sh = byEspn[String(c.id || (c.team && c.team.id))]; if (sh && !sched[sh].includes(day)) sched[sh].push(day); });
+        });
+      } catch (e) { console.warn(`  ! Scoreboard ${ymd(d)}: ${e.message}`); }
+    }
+    Object.values(sched).forEach(v => v.sort());
+  }
   const withG = Object.values(sched).filter(v => v.length).length;
-  console.log(`::notice title=ESPN-Spielplan::${games} Spiele, ${withG} Schulen mit Terminen`);
+  console.log(`::notice title=ESPN-Spielplan::${games} Spiel-Termine, ${withG} Schulen mit Terminen`);
   if (!withG) console.log('::warning title=ESPN-Spielplan::keine Termine gefunden');
   if (n < 500) throw new Error(`nur ${n} Spieler, ${fail} Fehler (erster: ${firstErr}) — Datei bleibt`);
   fs.writeFileSync(path.join(DATA, 'espn-rosters.js'), `// ============================================================
