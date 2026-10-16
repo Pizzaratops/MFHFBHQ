@@ -134,5 +134,6 @@ async function main() {
 
 main().catch(err => {
   console.error('Fantrax-Sync fehlgeschlagen (alte Daten bleiben):', err.message);
+  console.log(`::error title=Fantrax::${err.message}`);
   process.exitCode = 1;
 });

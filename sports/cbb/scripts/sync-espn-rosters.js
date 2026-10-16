@@ -18,21 +18,23 @@ const URL = id => `https://site.api.espn.com/apis/site/v2/sports/basketball/mens
 const inch = h => { const m = String(h || '').match(/(\d+)'\s*(\d+)/); return m ? Number(m[1]) * 12 + Number(m[2]) : null; };
 
 async function main() {
-  const out = {};
-  let fail = 0, n = 0;
+  const out = {}, coach = {};
+  let fail = 0, n = 0, firstErr = '';
   for (const s of SCHOOLS) {
     try {
       const res = await fetch(URL(s.espn), { headers: { 'User-Agent': 'mfhfb-hq-bot' } });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const j = await res.json();
       const list = (j.athletes || []).flatMap(a => (a.items ? a.items : [a]));
+      const c = Array.isArray(j.coach) ? j.coach[0] : j.coach;
+      if (c) coach[s.short] = [`${c.firstName || ''} ${c.lastName || ''}`.trim(), c.experience ?? null];
       out[s.short] = list.map(a => [String(a.id), a.fullName || a.displayName, (a.position && a.position.abbreviation) || '',
         inch(a.displayHeight) || (a.height ? Math.round(a.height) : null), a.weight ? Math.round(a.weight) : null,
         (a.experience && (a.experience.abbreviation || a.experience.displayValue)) || '', a.experience ? a.experience.years ?? null : null]);
       n += out[s.short].length;
-    } catch (e) { fail++; console.warn(`  ! ${s.name}: ${e.message}`); }
+    } catch (e) { fail++; if (!firstErr) firstErr = `${s.name}: ${e.message}`; console.warn(`  ! ${s.name}: ${e.message}`); }
   }
-  if (n < 500) throw new Error(`nur ${n} Spieler — Antworten unvollständig, Datei bleibt`);
+  if (n < 500) throw new Error(`nur ${n} Spieler, ${fail} Fehler (erster: ${firstErr}) — Datei bleibt`);
   fs.writeFileSync(path.join(DATA, 'espn-rosters.js'), `// ============================================================
 //  CBB_ESPN_ROSTERS — ESPN-Kader der Pool-Schulen, AUTO-GENERIERT (sync-espn-rosters.js)
 //  Stand: ${new Date().toISOString()} · Zeile: [espnId, Name, Pos, Größe (Zoll), Gewicht (lbs), Klasse, Jahre]
@@ -41,7 +43,10 @@ async function main() {
 const CBB_ESPN_ROSTERS = {
 ${Object.entries(out).map(([k, v]) => `  ${JSON.stringify(k)}: ${JSON.stringify(v)}`).join(',\n')}
 };
+
+// Head Coach je Schule [Name, Jahre an der Schule] — Stil-Faktoren hängen am Coach
+const CBB_ESPN_COACHES = ${JSON.stringify(coach)};
 `, 'utf8');
   console.log(`espn-rosters.js: ${Object.keys(out).length} Schulen, ${n} Spieler, ${fail} Fehler.`);
 }
-main().catch(e => { console.error('ESPN-Kader fehlgeschlagen:', e.message); process.exitCode = 1; });
+main().catch(e => { console.error('ESPN-Kader fehlgeschlagen:', e.message); console.log(`::error title=ESPN-Kader::${e.message}`); process.exitCode = 1; });
