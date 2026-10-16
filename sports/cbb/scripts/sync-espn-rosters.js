@@ -39,16 +39,29 @@ async function main() {
         const pc = Array.isArray(pj.coach) ? pj.coach[0] : pj.coach;
         if (pc) prev[s.short] = `${pc.firstName || ''} ${pc.lastName || ''}`.trim();
       } catch (e) { /* egal */ }
-      // Spielplan der Saison (US-Datum je Spiel) → Spiele pro Fantasy-Woche (Matchup-Planer)
-      try {
-        const sj = await (await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/${s.espn}/schedule?season=${season}`)).json();
-        sched[s.short] = (sj.events || []).map(ev => {
-          const d = new Date(ev.date);
-          return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
-        }).sort();
-      } catch (e) { /* egal */ }
     } catch (e) { fail++; if (!firstErr) firstErr = `${s.name}: ${e.message}`; console.warn(`  ! ${s.name}: ${e.message}`); }
   }
+  // Spielplan: ESPN-Scoreboard wochenweise (Team-Spielplan-Endpunkt liefert vor Saisonstart nichts)
+  const byEspn = {}; SCHOOLS.forEach(s => { byEspn[String(s.espn)] = s.short; sched[s.short] = []; });
+  const et = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' });
+  const ymd = d => d.toISOString().slice(0, 10).replace(/-/g, '');
+  let games = 0;
+  for (let d = new Date(Date.UTC(season - 1, 9, 27)); d < new Date(Date.UTC(season, 3, 10)); d = new Date(d.getTime() + 7 * 864e5)) {
+    const e2 = new Date(d.getTime() + 6 * 864e5);
+    try {
+      const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?dates=${ymd(d)}-${ymd(e2)}&groups=50&limit=1000`);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      (j.events || []).forEach(ev => {
+        const day = et.format(new Date(ev.date)); games++;
+        ((ev.competitions || [])[0] || {}).competitors?.forEach(c => { const sh = byEspn[String(c.id || (c.team && c.team.id))]; if (sh && !sched[sh].includes(day)) sched[sh].push(day); });
+      });
+    } catch (e) { console.warn(`  ! Spielplan ${ymd(d)}: ${e.message}`); }
+  }
+  Object.values(sched).forEach(v => v.sort());
+  const withG = Object.values(sched).filter(v => v.length).length;
+  console.log(`::notice title=ESPN-Spielplan::${games} Spiele, ${withG} Schulen mit Terminen`);
+  if (!withG) console.log('::warning title=ESPN-Spielplan::keine Termine gefunden');
   if (n < 500) throw new Error(`nur ${n} Spieler, ${fail} Fehler (erster: ${firstErr}) — Datei bleibt`);
   fs.writeFileSync(path.join(DATA, 'espn-rosters.js'), `// ============================================================
 //  CBB_ESPN_ROSTERS — ESPN-Kader der Pool-Schulen, AUTO-GENERIERT (sync-espn-rosters.js)
