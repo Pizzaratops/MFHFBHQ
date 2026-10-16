@@ -22,7 +22,7 @@ async function main() {
   let fail = 0, n = 0, firstErr = '';
   for (const s of SCHOOLS) {
     try {
-      const res = await fetch(URL(s.espn), { headers: { 'User-Agent': 'mfhfb-hq-bot' } });
+      const res = await fetch(URL(s.espn)); // ohne eigenen User-Agent (ESPN blockt „bot“)
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const j = await res.json();
       const list = (j.athletes || []).flatMap(a => (a.items ? a.items : [a]));
