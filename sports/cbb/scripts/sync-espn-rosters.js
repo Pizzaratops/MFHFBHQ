@@ -18,7 +18,8 @@ const URL = id => `https://site.api.espn.com/apis/site/v2/sports/basketball/mens
 const inch = h => { const m = String(h || '').match(/(\d+)'\s*(\d+)/); return m ? Number(m[1]) * 12 + Number(m[2]) : null; };
 
 async function main() {
-  const out = {}, coach = {};
+  const out = {}, coach = {}, prev = {};
+  const season = Number(process.env.CBB_SEASON || (new Date().getUTCMonth() >= 7 ? new Date().getUTCFullYear() + 1 : new Date().getUTCFullYear()));
   let fail = 0, n = 0, firstErr = '';
   for (const s of SCHOOLS) {
     try {
@@ -32,6 +33,12 @@ async function main() {
         inch(a.displayHeight) || (a.height ? Math.round(a.height) : null), a.weight ? Math.round(a.weight) : null,
         (a.experience && (a.experience.abbreviation || a.experience.displayValue)) || '', a.experience ? a.experience.years ?? null : null]);
       n += out[s.short].length;
+      // Coach der Vorsaison (Trainerwechsel → Team-Stil weniger stabil)
+      try {
+        const pj = await (await fetch(URL(s.espn) + '?season=' + (season - 1))).json();
+        const pc = Array.isArray(pj.coach) ? pj.coach[0] : pj.coach;
+        if (pc) prev[s.short] = `${pc.firstName || ''} ${pc.lastName || ''}`.trim();
+      } catch (e) { /* egal */ }
     } catch (e) { fail++; if (!firstErr) firstErr = `${s.name}: ${e.message}`; console.warn(`  ! ${s.name}: ${e.message}`); }
   }
   if (n < 500) throw new Error(`nur ${n} Spieler, ${fail} Fehler (erster: ${firstErr}) — Datei bleibt`);
@@ -46,6 +53,9 @@ ${Object.entries(out).map(([k, v]) => `  ${JSON.stringify(k)}: ${JSON.stringify(
 
 // Head Coach je Schule [Name, Jahre an der Schule] — Stil-Faktoren hängen am Coach
 const CBB_ESPN_COACHES = ${JSON.stringify(coach)};
+
+// Head Coach der Vorsaison (${season - 1}) laut ESPN — Vergleich zeigt Trainerwechsel
+const CBB_ESPN_COACHES_PREV = ${JSON.stringify(prev)};
 `, 'utf8');
   console.log(`espn-rosters.js: ${Object.keys(out).length} Schulen, ${n} Spieler, ${fail} Fehler.`);
 }
