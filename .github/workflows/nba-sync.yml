@@ -117,6 +117,7 @@ jobs:
           IN_DATE: ${{ github.event.inputs.date }}
           IN_LEAGUE: ${{ github.event.inputs.league }}
           IN_POWER: ${{ github.event.inputs.power }}
+          SCHED: ${{ github.event.schedule }}
         run: |
           if [ "$EVENT" = "workflow_dispatch" ]; then
             echo "Manueller Start, Zeit-Check wird übersprungen."
@@ -127,7 +128,15 @@ jobs:
             echo "power=${IN_POWER:-false}" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          HOUR=$(TZ=Europe/Berlin date +%H)
+          # GEPLANTE Berlin-Stunde aus dem auslösenden Cron (nicht die Ist-Zeit): GitHub startet
+          # Cron-Läufe oft 2-5 Stunden zu spät (gemessen Okt. 2026: Morgen-Crons laufen erst ~11 Uhr,
+          # 22-Uhr-Läufe nach Mitternacht). Mit der Ist-Zeit fielen die späten Läufe aus dem
+          # Fenster und der 22-Uhr-Korrekturlauf ging verloren.
+          CRON_H=$(echo "$SCHED" | awk '{print $2}')
+          OFF=$(TZ=Europe/Berlin date +%z | cut -c2-3)
+          HOUR=$(printf '%02d' $(( (10#$CRON_H + 10#$OFF) % 24 )))
+          NOW=$(TZ=Europe/Berlin date +%H:%M)
+          echo "Geplant ${HOUR}:xx Berlin (Cron '${SCHED}'), gestartet ${NOW}."
           echo "league=auto" >> "$GITHUB_OUTPUT"
           echo "end=" >> "$GITHUB_OUTPUT"
           if [ "$HOUR" -ge 6 ] && [ "$HOUR" -le 22 ]; then

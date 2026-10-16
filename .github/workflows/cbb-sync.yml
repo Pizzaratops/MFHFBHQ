@@ -14,7 +14,17 @@ name: CBB Sync (Dizzle CBB Dynasty)
 
 on:
   schedule:
-    - cron: "47 * * * *"
+    - cron: "47 * * * *"     # Fantrax stündlich
+    # Stats 07/10/14/22 Uhr Berlin, je Uhrzeit Sommer- und Winter-Variante (Gate rechnet die
+    # GEPLANTE Berlin-Stunde aus dem Cron — GitHub startet Crons oft Stunden zu spät)
+    - cron: "17 5 * * *"
+    - cron: "17 6 * * *"
+    - cron: "17 8 * * *"
+    - cron: "17 9 * * *"
+    - cron: "17 12 * * *"
+    - cron: "17 13 * * *"
+    - cron: "17 20 * * *"
+    - cron: "17 21 * * *"
   workflow_dispatch:
     inputs:
       stats:
@@ -59,8 +69,14 @@ jobs:
           EVENT: ${{ github.event_name }}
           IN_STATS: ${{ github.event.inputs.stats }}
           IN_ROSTERS: ${{ github.event.inputs.rosters }}
+          SCHED: ${{ github.event.schedule }}
         run: |
-          H=$(TZ=Europe/Berlin date +%H); DOW=$(TZ=Europe/Berlin date +%u)
+          H=xx; DOW=$(TZ=Europe/Berlin date +%u)
+          if [ "$EVENT" = "schedule" ] && [ "$SCHED" != "47 * * * *" ]; then
+            CRON_H=$(echo "$SCHED" | awk '{print $2}'); OFF=$(TZ=Europe/Berlin date +%z | cut -c2-3)
+            H=$(printf '%02d' $(( (10#$CRON_H + 10#$OFF) % 24 )))
+            echo "Geplant ${H}:17 Berlin (Cron '${SCHED}'), gestartet $(TZ=Europe/Berlin date +%H:%M)."
+          fi
           if [ "$IN_ROSTERS" = "true" ] || { [ "$DOW" = "1" ] && [ "$H" = "07" ]; }; then echo "rosters=true" >> "$GITHUB_OUTPUT"; else echo "rosters=false" >> "$GITHUB_OUTPUT"; fi
           if [ "$EVENT" = "workflow_dispatch" ] && [ "$IN_STATS" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           elif [ "$H" = "07" ] || [ "$H" = "10" ] || [ "$H" = "14" ] || [ "$H" = "22" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
