@@ -234,7 +234,7 @@ X['fname'] = X.apply(fxname, axis=1)
 X['inpool'] = X.apply(lambda r: (r.school, key(r['name'])) in pool_by, axis=1)
 r1 = lambda v: None if pd.isna(v) else round(float(v), 1)
 r2 = lambda v: None if pd.isna(v) else round(float(v), 2)
-OUT = X[X.inpool | (X.mpg_hat >= 12)].copy().sort_values('z', ascending=False)
+OUT = X[X.inpool | (X.mpg_hat >= 12)].copy().sort_values(['z', 'fname', 'school'], ascending=[False, True, True])  # feste Reihenfolge bei Gleichstand
 ts = pd.Timestamp.now('UTC').strftime('%Y-%m-%d')
 
 proj = []
@@ -288,7 +288,7 @@ with open(os.path.join(SD, 'team-context.js'), 'w', encoding='utf8') as f:
 const CBB_TEAM_CONTEXT = {json.dumps(ctx, ensure_ascii=False, separators=(',', ':'))};
 """)
 
-dynp = OUT[OUT.inpool].sort_values(['dyn', 'z'], ascending=False)
+dynp = OUT[OUT.inpool].sort_values(['dyn', 'z', 'fname', 'school'], ascending=[False, False, True, True])
 with open(os.path.join(LD, 'rankings.js'), 'w', encoding='utf8') as f:
     clsl = {1: 'Fr', 2: 'So', 3: 'Jr', 4: 'Sr', 5: 'Gr'}
     lines = [json.dumps([i + 1, r.fname, r.school, r.pos, None, clsl.get(int(r.cls)) if r.cls else None, r2(r.dyn), r2(r.z), int(r.yrs), r.leave], ensure_ascii=False) for i, r in enumerate(dynp.itertuples())]
