@@ -1,6 +1,6 @@
 // ============================================================
 //  CBB_ESPN_ROSTERS — ESPN-Kader der Pool-Schulen, AUTO-GENERIERT (sync-espn-rosters.js)
-//  Stand: 2026-10-16T08:22:40.633Z · Zeile: [espnId, Name, Pos, Größe (Zoll), Gewicht (lbs), Klasse, Jahre]
+//  Stand: 2026-10-16T08:24:09.029Z · Zeile: [espnId, Name, Pos, Größe (Zoll), Gewicht (lbs), Klasse, Jahre]
 // ============================================================
 
 const CBB_ESPN_ROSTERS = {
