@@ -110,8 +110,10 @@ if (!updated) {
 
 // --keep bleibt als Parameter erhalten (Kompatibilität), ausgedünnt wird nach trimSmart
 void keep;
-trimSmart(existing);
-trimSmart(existingSeason);
+// --recent-days: wie viele Tage komplett behalten werden (NBA 8, College 4 — viel mehr Spieler)
+const recentDays = parseInt(arg('recent-days', '8'), 10);
+trimSmart(existing, recentDays);
+trimSmart(existingSeason, recentDays);
 writeOut(existing, out, 'LIVESCORES_AGGREGATE');
 writeOut(existingSeason, seasonOut, 'LIVESCORES_SEASON');
 console.log(`\n${out} geschrieben: ${updated} Eintrag/Einträge aktualisiert, ${skipped} übersprungen.`);

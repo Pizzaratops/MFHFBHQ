@@ -1,0 +1,110 @@
+name: CBB Sync (Dizzle CBB Dynasty)
+
+# College Basketball (Fantrax-Liga z8gwfku2mpmwh0xe), seit 16.10.2026.
+#  1. Fantrax (jeder Lauf, stündlich): Teams, Kader, Spielplan, Standings,
+#     Spielerpool → leagues/cbb/data/ (sync-fantrax.js)
+#  2. Stats (4× täglich: 07/10/14/22 Uhr Berlin, oder manuell mit stats=true):
+#     ESPN-Boxscores mens-college-basketball, nur Fantrax-Pool-Schulen
+#     → sports/cbb/scripts/data (CSV) → Live Scores, Week/Month/Season,
+#     Rolling-Archiv, Waiver-Board. Dieselben Scripts wie NBA (sports/nba/scripts)
+#     mit --dir/--out auf sports/cbb.
+# Keine Secrets nötig (Fantrax + ESPN öffentlich).
+
+on:
+  schedule:
+    - cron: "47 * * * *"
+  workflow_dispatch:
+    inputs:
+      stats:
+        description: "Stats-Pipeline auch außerhalb der festen Uhrzeiten laufen lassen"
+        type: boolean
+        default: false
+      date:
+        description: "Spieltag (YYYY-MM-DD) für die Stats, leer = gestern + heute (US-Ostküste)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cbb-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fantrax (Teams, Kader, Spielplan, Standings)
+        id: fantrax
+        continue-on-error: true
+        run: node leagues/cbb/scripts/sync-fantrax.js
+
+      - name: Stats-Lauf jetzt?
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          IN_STATS: ${{ github.event.inputs.stats }}
+        run: |
+          H=$(TZ=Europe/Berlin date +%H)
+          if [ "$EVENT" = "workflow_dispatch" ] && [ "$IN_STATS" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$H" = "07" ] || [ "$H" = "10" ] || [ "$H" = "14" ] || [ "$H" = "22" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
+          else echo "run=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Tagesdaten von ESPN (daily-9cat, College)
+        id: daily
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        run: node sports/cbb/scripts/daily-9cat.js ${{ github.event.inputs.date }}
+
+      - name: Live Scores, Box Scores, Week/Month/Season, Rolling
+        id: stats
+        if: steps.gate.outputs.run == 'true'
+        continue-on-error: true
+        run: |
+          S=sports/nba/scripts; D=sports/cbb/scripts/data; O=sports/cbb/data
+          DATE="${{ github.event.inputs.date }}"
+          DA=""; [ -n "$DATE" ] && DA="--date=$DATE"
+          node $S/convert-to-livescores.js --dir=$D --out=$O/livescores-daily.js --keep-days=21 $DA
+          node $S/convert-to-boxscores.js --dir=$D --out=$O/livescores-boxscores.js --keep-days=7 $DA
+          node $S/prune-raw-data.js --dir=$D --keep-days=400 --keep-days-games=21
+          node $S/update-all-aggregates.js --dir=$D --out=$O/livescores-aggregate.js --recent-days=4
+          node $S/build-rolling-archive.js --league=ncaab --agg=$O/livescores-aggregate.js --season=$O/livescores-season.js --out=$O/rolling-rankings-2026-27.js
+
+      - name: Waiver-Board
+        id: board
+        continue-on-error: true
+        run: node leagues/cbb/scripts/build-best-available-board.js
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add leagues/cbb/data sports/cbb/data sports/cbb/scripts/data 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: cbb sync"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "Push fehlgeschlagen (Versuch $i/5) -- hole aktuellen Stand und versuche erneut..."
+            git fetch origin main
+            git rebase origin/main
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          exit 1
+
+      - name: Fehlgeschlagene Schritte melden
+        if: steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure'
+        run: |
+          echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
+          exit 1

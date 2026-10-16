@@ -36,7 +36,7 @@ const OFFSEASON_LEAGUES = [
 // Off-Season + Playoffs/Play-In ("nba-postseason", seit 16.10.2026 getrennt).
 // Playoffs bleiben bewusst NICHT in OFFSEASON_LEAGUES (sonst flössen sie in
 // die Off-Season-Rankings).
-const SHORT_LEAGUES = [...OFFSEASON_LEAGUES, 'nba-postseason'];
+const SHORT_LEAGUES = [...OFFSEASON_LEAGUES, 'nba-postseason', 'ncaab-postseason'];
 
 const FIELD_MAP = {
   pts: 'ptsPg', reb: 'rebPg', ast: 'astPg', stl: 'stlPg', blk: 'blkPg',
