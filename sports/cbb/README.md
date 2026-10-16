@@ -56,3 +56,14 @@ Live: Projektion zählt wie 1 + 3 × Datensicherheit Spiele, dann echte Spiele.
 Waiver-Board: laufende Saison (Gewicht wächst bis 12 Spiele) + Projektion (sonst Vorsaison/NIL).
 Senior/Grad der Vorsaison, die nicht mehr im vollen ESPN-Kader stehen (`CBB_GONE`), rutschen ans Ende
 und bekommen auf der Kaderseite „WEG?“.
+
+## NBA-DNA (`sports/cbb/scripts/model/nba-translation.py`)
+
+Letzte College-Saison 2009–2022 (hoopR) → erste 4 NBA-Jahre (BBM-Exporte in sports/nba/data):
+P(NBA-Rotation), P(Fantasy-Top-150), erwartetes NBA-z je Kategorie, historische Vergleiche.
+Test 2017–22: AUC 0,97; Translation r: BLK 0,85 · REB 0,74 · AST 0,72 · FG% 0,71 · FT% 0,64 ·
+3PM 0,63 · TO 0,63 · STL 0,56 · PTS 0,50. Läuft nicht automatisch (braucht hoopR 2006–2026):
+einmal pro Saison nach dem Saisonende bzw. wenn neue Spieler dazukommen:
+`CBB_FIRST=2006 CBB_WORK=/tmp/cbbhist HOOPR_DIR=… python3 sports/cbb/scripts/model/prep.py`,
+NBA-Saisons als JSON nach /tmp/cbbhist/nba.json (siehe Script-Kopf), dann
+`CBB_HIST=/tmp/cbbhist python3 sports/cbb/scripts/model/nba-translation.py` → `sports/cbb/data/nba-dna.js`.

@@ -7,6 +7,7 @@
 //  #/cbb/cbbdyn                  Dynasty-Rang (Projektion × Restjahre × NBA-Draft-Risiko)
 //  #/cbb/cbbtrade[/finder]       Trade Analyzer + Trade Finder (Dynasty- oder Jetzt-Wert)
 //  #/cbb/cbbplaner[/<Woche>]     Matchup-Planer: beide Gegner der Woche, Kategorien, Aufstellungs-Tipps
+//  #/cbb/cbbdna[/<Name|Schule>]   NBA-DNA: Chance auf NBA-Rotation/Fantasy-Top-150, NBA-Kategorie-Profil, historische Vergleiche
 //  #/cbb/cbbradar                Fantasy Radar: 9-Cat-Perzentile + College-Kontext, Vorsaison, Vergleich, Profil-Zwillinge
 //
 //  Daten:
@@ -600,6 +601,7 @@
         ${row('Dynasty', p => `${(p.dyn || 0).toFixed(1)}${p.leave ? ` <small class="muted">Draft ${Math.round(p.leave * 100)} %</small>` : ''}`)}
         ${row('Fantasy-Team', p => (p.fx ? tLink(ctx, I.owner(p.name)) : '—'))}
       </tbody></table></div>
+      ${sel.length === 1 && data.CBB_NBA_DNA && data.CBB_NBA_DNA.p[pid(main)] ? (() => { const d = data.CBB_NBA_DNA.p[pid(main)]; const t = dnaTags(d.nz); return `<div class="note">🧬 <b>NBA-DNA:</b> ${pctS(d.rot)} NBA-Rotation, ${pctS(d.fan)} Fantasy-Top-150${t.plus.length ? ` · nimmt mit: ${t.plus.join(', ')}` : ''} · ähnlich: ${e(d.comps[0][0])} (${e(compOut(d.comps[0]))}). <a href="${ctx.href('cbbdna', pid(main))}">Details →</a></div>`; })() : ''}
       ${sel.length === 1 ? `<div class="note">🏫 ${e(c.name || main.team)}: ${styleNotes(c).slice(0, 3).join(' ') || 'Stil nah am D-I-Schnitt.'}</div>` : ''}
       <div class="cbbm-trade"><div class="card"><div class="card-head"><h2>👯 Profil-Zwillinge (frei)</h2><span class="muted small">ähnliches Kategorie-Profil wie ${e(main.name)}</span></div>
           <div class="table-wrap"><table class="table compact"><thead><tr><th>Spieler</th><th>Schule</th><th class="num" title="100 = identisches Profil">Match</th><th class="num">z</th><th></th><th></th></tr></thead><tbody>${freeTw.map(twRow).join('') || '<tr><td colspan="6" class="muted">—</td></tr>'}</tbody></table></div></div>
@@ -624,9 +626,93 @@
     const l = root.querySelector('[data-last]'); if (l) l.addEventListener('change', () => save({ last: l.checked }));
   }
 
+
+  // ============================================================
+  //  7 — NBA-DNA: Setzt er sich in der NBA durch, welche Kategorien nimmt er mit?
+  // ============================================================
+  const DCATS = [['pts', 'PTS'], ['tpm', '3PM'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO CTRL']];
+  const DDEF2 = { own: 'all', q: '', sort: 'fan' };
+  const pctS = v => `${Math.round(v * 100)} %`;
+  const chanceCls = v => (v >= 0.5 ? 'up' : v >= 0.2 ? '' : 'muted');
+  const dnaTags = (nz, n = 2) => { const e = DCATS.map(([k, l]) => [l, nz[k]]).sort((a, b) => b[1] - a[1]); return { plus: e.slice(0, n).filter(x => x[1] > 0.15).map(x => x[0]), minus: e.slice(-n).filter(x => x[1] < -0.15).map(x => x[0]) }; };
+  const compOut = c => (c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3]);
+  function dnaRows(ctx, st) {
+    const { data, ui } = ctx, e = ui.esc, I = idx(data), DN = (data.CBB_NBA_DNA || {}).p || {};
+    const q = st.q.toLowerCase().trim();
+    let L = I.list.filter(p => DN[pid(p)]).map(p => ({ p, d: DN[pid(p)], o: I.owner(p.name) })).filter(x => {
+      if (st.own === 'free' && (x.o || !x.p.fx)) return false;
+      if (st.own === 'owned' && !x.o) return false;
+      return !q || [x.p.name, x.p.team, x.o && x.o.name].some(v => String(v || '').toLowerCase().includes(q));
+    });
+    L.sort((a, b) => (st.sort === 'rot' ? b.d.rot - a.d.rot : st.sort === 'z' ? b.p.z - a.p.z : b.d.fan - a.d.fan));
+    L = L.slice(0, 300);
+    if (!L.length) return `<tr><td colspan="9">${ui.empty('Keine Treffer', '', '🔎')}</td></tr>`;
+    return L.map((x, i) => { const t = dnaTags(x.d.nz), c = x.d.comps[0];
+      return `<tr><td class="num">${i + 1}</td><td class="strong nba-sticky"><a href="${ctx.href('cbbdna', pid(x.p))}">${e(x.p.name)}</a> ${x.p.cls ? `<span class="nba-age">${CLS[x.p.cls] || ''}</span>` : ''}</td>
+        <td>${schoolLink(ctx, x.p.team)} <small class="muted">${e(x.p.pos || '')}</small></td>
+        <td class="num"><b class="${chanceCls(x.d.rot)}">${pctS(x.d.rot)}</b></td><td class="num"><b class="${chanceCls(x.d.fan * 1.6)}">${pctS(x.d.fan)}</b></td>
+        <td class="small">${t.plus.map(l => `<span class="up strong">${l}</span>`).join(' ')}${t.minus.length ? ' · ' + t.minus.map(l => `<span class="down">${l}</span>`).join(' ') : ''}</td>
+        <td class="small">${c ? `${e(c[0])} <span class="muted">(${e(compOut(c))})</span>` : ''}</td>
+        <td class="num"><span class="${x.p.z >= 0 ? 'up' : 'down'}">${sgn(x.p.z)}</span></td><td>${x.p.fx ? tLink(ctx, x.o) : '—'}</td></tr>`; }).join('');
+  }
+  function dnaPage(ctx) {
+    const { data, ui, params } = ctx, e = ui.esc;
+    const DD = data.CBB_NBA_DNA;
+    if (!DD) return ui.empty('Keine NBA-DNA', 'nba-dna.js fehlt.', '🧬');
+    const M = DD.meta, I = idx(data);
+    if (params[0]) {
+      const p = I.list.find(x => pid(x) === params[0]), d = DD.p[params[0]];
+      if (!p || !d) return ui.empty('Spieler nicht gefunden', 'Für Spieler ohne College-Daten (ab 250 Min.) gibt es noch keine DNA.', '🧬');
+      const t = dnaTags(d.nz, 3);
+      const bar = ([k, l]) => { const v = d.nz[k], w = Math.max(-50, Math.min(50, v * 33)); return `<div class="cbbm-bar" title="erwartetes NBA-z ${l}: ${sgn(v)} (0 = durchschnittlicher NBA-Rotationsspieler) · Translation r = ${M.catR[k]}"><span>${l}</span><div class="cbbm-track"><i class="${w >= 0 ? 'pos' : 'neg'}" style="${w >= 0 ? 'left:50%' : `left:${50 + w}%`};width:${Math.abs(w)}%"></i></div><b>${sgn(v)}</b></div>`; };
+      const lastSeason = `${d.season - 1}/${String(d.season).slice(2)}`;
+      return `<a class="back" href="${ctx.href('cbbdna')}">← NBA-DNA</a>
+        <div class="page-head"><h1 class="page-title display">🧬 ${e(p.name)}</h1>
+          <div class="page-sub">${e(((data.CBB_TEAM_CONTEXT || {})[p.team] || {}).name || p.team)} · ${e(p.pos || '')}${p.cls ? ' · ' + CLS[p.cls] : ''} · Basis: College-Saison ${lastSeason} (${d.yr}. College-Jahr, ${d.min} Min.) — „wenn er danach in die NBA ginge“</div></div>
+        <div class="cbbm-dnahead">
+          <div class="dna-badge ${d.rot >= 0.5 ? 'p-hi' : ''}"><b>${pctS(d.rot)}</b><small>NBA-Rotation</small></div>
+          <div class="dna-badge"><b>${pctS(d.fan)}</b><small>Fantasy-Top-150</small></div>
+          <div class="small muted" style="max-width:520px">Chance, in den ersten 4 NBA-Jahren eine Saison mit 40+ Spielen und 18+ Min. zu haben bzw. eine Top-150-Saison (9-Cat). Zum Vergleich: im Schnitt schaffen das ${pctS(M.base.rot)} bzw. ${pctS(M.base.fan)} aller College-Spieler mit 300+ Min.</div></div>
+        <div class="cbbm-ctx"><div class="card"><div class="card-head"><h2>NBA-Profil, wenn er es schafft</h2><span class="muted small">erwartetes 9-Cat-z, 0 = Ø NBA-Rotationsspieler</span></div>
+            <div class="cbbm-bars">${DCATS.map(bar).join('')}</div>
+            <p class="small muted" style="padding:0 14px 10px">${t.plus.length ? `Nimmt mit: <b>${t.plus.join(', ')}</b>. ` : ''}${t.minus.length ? `Schwach in der NBA: <b>${t.minus.join(', ')}</b>.` : ''}</p></div>
+          <div class="card"><div class="card-head"><h2>👯 Historische Vergleiche</h2><span class="muted small">ähnlichstes College-Profil, mit NBA-Karriere</span></div>
+            <div class="table-wrap"><table class="table compact"><thead><tr><th>Spieler</th><th class="num">College bis</th><th class="num">Match</th><th>NBA</th><th class="num" title="bester BBM-Wert pro Spiel in den ersten 4 Jahren">BBM</th></tr></thead><tbody>
+            ${d.comps.map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1]}</td><td class="num">${c[2]}</td><td class="small">${e(compOut(c))}</td><td class="num">${c[4] == null ? '—' : sgn(c[4])}</td></tr>`).join('')}</tbody></table></div>
+            <p class="small muted" style="padding:0 14px 10px">Vergleich nur unter Spielern, die es in die NBA geschafft haben — zeigt den Spielertyp, nicht die Chance.</p></div></div>
+        <div class="note">So übersetzt sich College → NBA (Test an 2017–22, r = Zusammenhang College-Profil → NBA-Kategorie): ${DCATS.map(([k, l]) => `<b>${l}</b> ${M.catR[k].toFixed(2)}`).join(' · ')}. Blocks, Rebounds und Assists nehmen Spieler am verlässlichsten mit, Punkte am wenigsten — College-Scorer werden in der NBA oft Rollenspieler.</div>
+        <p class="small"><a href="${ctx.href('cbbradar')}">→ Fantasy Radar</a> · <a href="${ctx.href('cbbproj')}">→ Projections</a></p>`;
+    }
+    const st = { ...DDEF2, ...ctx.store.getJSON('cbbdna', {}) };
+    const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([k, l]) => `<button type="button" class="seg-btn${st[key] === k ? ' active' : ''}" data-set="${key}" data-val="${k}">${l}</button>`).join('')}</div>`;
+    const catBars = DCATS.slice().sort((a, b) => M.catR[b[0]] - M.catR[a[0]]).map(([k, l]) => `<div class="cbbm-bar"><span>${l}</span><div class="cbbm-track"><i class="pos" style="left:0;width:${Math.round(M.catR[k] * 100)}%"></i></div><b>${M.catR[k].toFixed(2)}</b></div>`).join('');
+    return `<div class="page-head"><h1 class="page-title display">🧬 NBA-DNA</h1>
+        <div class="page-sub">Setzt er sich in der NBA durch — und welche Fantasy-Kategorien nimmt er mit? Gelernt aus ${M.n.toLocaleString('de-DE')} College-Abschlusssaisons ${M.years[0]}–${M.years[1]} und deren ersten 4 NBA-Jahren.</div></div>
+      <div class="cbbm-ctx"><div class="card"><div class="card-head"><h2>Was übersetzt sich?</h2><span class="muted small">r: College-Profil → NBA-Kategorie (Test 2017–22)</span></div><div class="cbbm-bars cbbm-bars-r">${catBars}</div></div>
+        <div class="card"><div class="card-head"><h2>Wie gut trifft das Modell?</h2></div><ul class="cbbm-notes">
+          <li>Trennschärfe (AUC) im Test 2017–22: <b>${M.auc.rot.toFixed(2)}</b> für NBA-Rotation, <b>${M.auc.fan.toFixed(2)}</b> für Fantasy-Top-150.</li>
+          <li>${M.nRot} Rotationsspieler und ${M.nFan} Fantasy-Top-150-Spieler in den Daten.</li>
+          <li>Stärkste Signale: Niveau der Schule, Minuten, <b>Steals + Blocks</b> (Athletik), junges Alter (frühes College-Jahr), Punkte, Zweier-Quote, Dreier-Volumen.</li>
+          <li>Kalibrierung im Test: Unter 40 % stimmen die Chancen gut, bei 40–80 % sind sie etwas zu optimistisch (real eher 30–55 %), über 80 % trafen 80–85 %.</li>
+          <li>Ohne Körpermaße, Alter in Jahren und Scouting — echte Draft-Modelle wissen mehr. Basis ist die letzte College-Saison, nicht die laufende.</li></ul></div></div>
+      <div class="controls">${seg('own', [['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']])}${seg('sort', [['fan', 'Fantasy-Chance'], ['rot', 'NBA-Chance'], ['z', 'College 26/27']])}
+        <input type="search" class="search" placeholder="Spieler, Schule, Fantasy-Team …" value="${e(st.q)}" data-q aria-label="Suchen"></div>
+      <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th class="nba-sticky">Spieler</th><th>Schule</th><th class="num" title="Saison mit 40+ Spielen und 18+ Min. in den ersten 4 NBA-Jahren">NBA</th><th class="num" title="Top-150-Saison (9-Cat) in den ersten 4 NBA-Jahren">Fantasy</th><th>NBA-Stärken · Schwächen</th><th>Ähnlichster Ex-College-Spieler</th><th class="num" title="Projektion College 26/27">z 26/27</th><th>Fantasy-Team</th></tr></thead>
+        <tbody data-body>${dnaRows(ctx, st)}</tbody></table></div>
+      <p class="small muted">Nur Spieler mit mind. 250 College-Minuten in einer Saison (Freshmen 26/27 folgen nach der Saison). Für Dynasty heißt eine hohe NBA-Chance auch: Er bleibt womöglich nicht lange im College.</p>`;
+  }
+  function dnaMount(root, ctx) {
+    const get = () => ({ ...DDEF2, ...ctx.store.getJSON('cbbdna', {}) });
+    const save = (patch, full = true) => { ctx.store.setJSON('cbbdna', { ...get(), ...patch }); if (full) ctx.refresh(); };
+    root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => save({ [b.dataset.set]: b.dataset.val })));
+    const q = root.querySelector('[data-q]');
+    if (q) q.addEventListener('input', () => { save({ q: q.value }, false); root.querySelector('[data-body]').innerHTML = dnaRows(ctx, get()); });
+  }
+
   const D = ['teams', '?rosters-live', 'sport:projections-cbb', '?sport:live-projections-cbb'];
   MFHFB.pages.register({ id: 'cbbproj', section: 'players', label: 'Projections', icon: '🔮', applies: A, data: D.concat(['?sport:team-context']), title: () => 'Projections 2026/27', render: projPage, mount: projMount });
-  MFHFB.pages.register({ id: 'cbbradar', section: 'players', label: 'Fantasy Radar', icon: '🕸️', applies: A, data: D.concat(['?sport:team-context', '?sport:last-season-rankings']), title: () => 'Fantasy Radar', render: radarPage, mount: radarMount });
+  MFHFB.pages.register({ id: 'cbbradar', section: 'players', label: 'Fantasy Radar', icon: '🕸️', applies: A, data: D.concat(['?sport:team-context', '?sport:last-season-rankings', '?sport:nba-dna']), title: () => 'Fantasy Radar', render: radarPage, mount: radarMount });
+  MFHFB.pages.register({ id: 'cbbdna', section: 'players', label: 'NBA-DNA', icon: '🧬', applies: A, data: D.concat(['sport:nba-dna', '?sport:team-context']), title: ({ data, params }) => (params[0] ? params[0].split('|')[0] + ' · NBA-DNA' : 'NBA-DNA'), render: dnaPage, mount: dnaMount });
   MFHFB.pages.register({ id: 'cbbschulen', section: 'teams', label: 'Schulen & Kontext', icon: '🏫', applies: A, data: D.concat(['sport:team-context']), title: ({ data, params }) => (params[0] && ((data.CBB_TEAM_CONTEXT || {})[params[0]] || {}).name) || 'Schulen & Kontext', render: schoolPage });
   MFHFB.pages.register({ id: 'cbbdyn', section: 'dynasty', label: 'Dynasty Rankings', icon: '🏆', applies: A, data: D.concat(['rankings']), title: () => 'Dynasty Rankings', render: dynPage, mount: dynMount });
   MFHFB.pages.register({ id: 'cbbtrade', section: 'trade', label: 'Trade Analyzer', icon: '⚖️', applies: A, data: D, title: ({ params }) => (params[0] === 'finder' ? 'Trade Finder' : 'Trade Analyzer'), render: tradePage, mount: tradeMount });

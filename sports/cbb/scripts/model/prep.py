@@ -15,7 +15,7 @@ NUM = {'minutes': 'min', 'points': 'pts', 'rebounds': 'reb', 'offensive_rebounds
 ps, ts = [], []
 import sys
 LAST = int(os.environ.get('CBB_LAST_SEASON', '2026'))
-for y in range(LAST - 4, LAST + 1):
+for y in range(int(os.environ.get('CBB_FIRST', LAST - 4)), LAST + 1):
     d = pd.read_parquet(B + f'player_box/parquet/player_box_{y}.parquet')
     d = d[(d.did_not_play != True) & (d.minutes.fillna(0) > 0) & d.season_type.isin([2, 3]) & d.athlete_id.notna()]
     for k, v in NUM.items(): d[v] = d[k].fillna(0).astype(float)
@@ -65,7 +65,7 @@ for y in range(LAST - 4, LAST + 1):
 P = pd.concat(ps, ignore_index=True); T = pd.concat(ts, ignore_index=True)
 T = T[T.games >= 10]
 # Cache für build-projections.py ohne hoopR: Klassen der letzten Saison + Teamnamen
-LAST = max(range(2022, 2027))
+
 try:
     rr = pd.read_parquet(B + f'rosters/parquet/rosters_{LAST}.parquet', columns=['athlete_id', 'experience_display_value', 'height', 'position_abbreviation'])
     rr.to_parquet(WORK + f'/rosters_{LAST}.parquet')

@@ -1197,3 +1197,5 @@ tr.cbb-cut td { border-bottom: 2px dashed var(--league-accent); }
 .cbbm-prob { position: relative; height: 16px; min-width: 90px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
 .cbbm-prob i { position: absolute; left: 0; top: 0; bottom: 0; opacity: .55; }
 .cbbm-prob span { position: relative; font-size: 11px; font-weight: 700; padding-left: 6px; line-height: 16px; }
+.cbbm-dnahead { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+.cbbm-dnahead .dna-badge.p-hi { --q: #2e9d62; }
