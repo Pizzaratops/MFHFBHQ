@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-15T22:39:04.610Z",
+  "generatedAt": "2026-10-16T08:58:40.038Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -128,14 +128,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 344.5,
-        "reb": 116.5,
-        "ast": 79.5,
-        "stl": 22.3,
-        "blk": 11.71,
-        "tpm": 42.6,
-        "to": 37.8,
-        "fgPct": 47,
+        "pts": 349.5,
+        "reb": 114.8,
+        "ast": 79.6,
+        "stl": 22.29,
+        "blk": 11.52,
+        "tpm": 44.3,
+        "to": 37.5,
+        "fgPct": 46.8,
         "ftPct": 81.2
       },
       "rank": {
@@ -145,7 +145,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 6,
         "blk": 9,
         "tpm": 2,
-        "fgPct": 10,
+        "fgPct": 11,
         "ftPct": 3,
         "to": 6
       },
@@ -424,7 +424,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 12,
         "blk": 12,
         "tpm": 10,
-        "fgPct": 11,
+        "fgPct": 10,
         "ftPct": 7,
         "to": 2
       },
