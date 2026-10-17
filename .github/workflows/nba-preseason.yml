@@ -28,7 +28,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: nba-preseason
+  group: nba-data   # gleiche Gruppe wie nba-sync.yml: beide schreiben die Preseason-Dateien
   cancel-in-progress: false
 
 jobs:
