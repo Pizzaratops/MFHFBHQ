@@ -237,7 +237,7 @@
       if (!all.length) {
         const dI = G.cols.indexOf('d'), last = G.rows.reduce((m, x) => (x[dI] > m ? x[dI] : m), '');
         const msg = last && from > last
-          ? `Die Sticky Stats für diesen Spieltag sind noch nicht da. Sie kommen über einen eigenen Abruf, der morgens läuft (06:40 / 08:40 / 12:00 Uhr) und etwas hinter den Live Scores hängt. Letzter Stand: ${e(fmtShort(last))}.`
+          ? `Die Sticky Stats für diesen Spieltag sind noch nicht da. Sie kommen mit dem nächsten stündlichen Sync. Letzter Stand: ${e(fmtShort(last))}.`
           : 'Für diesen Zeitraum gibt es keine Sticky-Daten. Sticky Stats gibt es nur für Preseason-Spiele.';
         return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">${msg}</p></div>`;
       }
