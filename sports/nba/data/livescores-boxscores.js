@@ -2616,9 +2616,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401898406",
-      line: "Miami Heat @ Orlando Magic (10/16 - 7:00 PM EDT)",
+      line: "Miami Heat @ Orlando Magic (5:59 - 2nd)",
       completed: false,
-      statusText: "10/16 - 7:00 PM EDT",
+      statusText: "5:59 - 2nd",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -2634,9 +2634,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401898407",
-      line: "Boston Celtics @ Philadelphia 76ers (10/16 - 7:00 PM EDT)",
+      line: "Boston Celtics @ Philadelphia 76ers (5:01 - 2nd)",
       completed: false,
-      statusText: "10/16 - 7:00 PM EDT",
+      statusText: "5:01 - 2nd",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
@@ -2652,9 +2652,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401908946",
-      line: "Toronto Raptors @ Detroit Pistons (10/16 - 7:00 PM EDT)",
+      line: "Toronto Raptors @ Detroit Pistons (6:26 - 2nd)",
       completed: false,
-      statusText: "10/16 - 7:00 PM EDT",
+      statusText: "6:26 - 2nd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
@@ -2670,9 +2670,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401914126",
-      line: "Milwaukee Bucks @ Indiana Pacers (10/16 - 7:00 PM EDT)",
+      line: "Milwaukee Bucks @ Indiana Pacers (2:06 - 2nd)",
       completed: false,
-      statusText: "10/16 - 7:00 PM EDT",
+      statusText: "2:06 - 2nd",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
