@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-16T23:36:09.086Z
+//  Stand: 2026-10-17T01:34:53.750Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -121,6 +121,7 @@ const CBB_PLAYER_POOL = [
 ["06yrn","Amari Evans","Tex","G","G,Flx","FA"],
 ["06n70","Amari McCottry","StLou","G","G,Flx","T"],
 ["06nep","Amarion Dickerson","GrCan","G","F/C,G,Flx","FA"],
+["0650z","Amarri Tice","Syr","F","F/C,Flx","FA"],
 ["06v6l","Amere Brown","Ark","G","G,Flx","FA"],
 ["06msl","Amier Ali","Cal","G","F/C,G,Flx","T"],
 ["070oh","Amir A.Jenkins","WVU","G","G,Flx","FA"],
@@ -353,6 +354,7 @@ const CBB_PLAYER_POOL = [
 ["06msm","Bryson Tucker","Wash","F","F/C,Flx","FA"],
 ["0797j","Bryton Barrett","GMas","F","F/C,Flx","FA"],
 ["06gmf","Bukky Oboye","Aub","C","F/C,Flx","FA"],
+["07103","Butta Johnson","VaTec","G","G,Flx","FA"],
 ["06mxo","C.J. Cox","Pur","G","G,Flx","FA"],
 ["06ykv","Cade Bennerman","UNC","F","F/C,Flx","FA"],
 ["06nfd","Cade Courbat","NrthIA","G","G,Flx","FA"],
@@ -377,7 +379,7 @@ const CBB_PLAYER_POOL = [
 ["06hz6","Caleb Walker","AF","F","F/C,Flx","FA"],
 ["06pv0","Caleb Williams","GTown","F","F/C,Flx","FA"],
 ["07a8t","Caleb Williams","Aub","G","G,Flx","FA"],
-["072tq","Calvin Russell","Syr","F","F/C,Flx","FA"],
+["072tq","Calvin Russell","Syr","F","F/C,G,Flx","FA"],
 ["070mj","Cam Carroll","Rice","G","G,Flx","FA"],
 ["070vi","Cam Hiatt","Dart","G","G,Flx","FA"],
 ["0717z","Cam Hutson","StLou","G","F/C,G,Flx","FA"],
@@ -677,7 +679,7 @@ const CBB_PLAYER_POOL = [
 ["05ozm","Dominick Harris","Pacif","G","G,Flx","FA"],
 ["06mx5","Dominick Stewart","Rich","G","G,Flx","FA"],
 ["071rc","Dominik Robinson","WaSt","F","F/C,Flx","FA"],
-["06r2r","Dominique Diomande","Pitt","G","G,Flx","FA"],
+["06r2r","Dominique Diomande","Pitt","G","F/C,G,Flx","FA"],
 ["079f3","Dominykas Daubaris","Cal","F","F/C,Flx","FA"],
 ["06yyc","Dominykas Pleta","IaSt","F","F/C,Flx","FA"],
 ["064x6","Donald Hand","LoyIL","G","G,Flx","T"],
@@ -1111,6 +1113,7 @@ const CBB_PLAYER_POOL = [
 ["071z7","Jalen Stokes","UCDav","G","G,Flx","FA"],
 ["05web","Jalen Warley","Gonz","G","G,Flx","FA"],
 ["064yr","Jalen Washington","Tenn","C","F/C,Flx","FA"],
+["02w0n","Jalen Washington","Tenn","G","G,Flx","FA"],
 ["071gi","Jalen Wilson","NrthIA","F","F/C,Flx","FA"],
 ["06n7c","Jalil Bethea","Pitt","G","G,Flx","T"],
 ["070nb","Jalin Holland","Col","G","G,Flx","T"],
@@ -1362,6 +1365,7 @@ const CBB_PLAYER_POOL = [
 ["071se","Junseok Yeo","SeatU","F","F/C,Flx","FA"],
 ["06gvt","Jurian Dixon","UVA","G","G,Flx","FA"],
 ["06gpv","Juslin Bodo Bodo","Baylor","C","F/C,Flx","T"],
+["064uv","Justin Abson","Wake","F","F/C,Flx","FA"],
 ["07a10","Justin Burns","Drake","F","F/C,Flx","FA"],
 ["07aqo","Justin Caldwell","GTown","F","F/C,Flx","FA"],
 ["07a41","Justin Curry","Valpa","G","G,Flx","FA"],
