@@ -101,7 +101,7 @@ Die Liga-Scripts lesen sportweite Eingaben über `SPORT_DATA`
 | nba-backfill.yml | manuell | sports/nba | nba-data |
 | nba-draft-results.yml | manuell, Liga wählbar (seit 16.10.2026 meist unnötig: der Liga-Sync holt den Draft automatisch) | leagues/<liga>/data/draft-results-*.js | <liga>-data |
 | tthq-pick-journal.yml | manuell | leagues/tthq/data/picks-live.js | tthq-data |
-| nba-preseason.yml | täglich 10:00 UTC + manuell (force) | sports/nba/data/preseason-score.js, data/preseason/ | nba-preseason |
+| nba-preseason.yml | Fallback täglich 10:00 UTC + manuell (force); regulär stündlich als Schritt in nba-sync | sports/nba/data/preseason-score.js, preseason-games.js, data/preseason/ | nba-data |
 
 **Warum so:** Die Liga-Ketten brauchen die Sportdaten desselben Laufs. Ein
 einziger geplanter Workflow mit `needs: sport` garantiert die Reihenfolge, das
