@@ -234,7 +234,13 @@
       if (!G) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">Keine Sticky-Daten (preseason-games.js fehlt).</p></div>`;
       const from = avg ? entry.windowStart : r.date, to = avg ? entry.windowEnd : r.date, minM = ST_MIN[r.period] || 15;
       const all = stickyPool(G, from, to);
-      if (!all.length) return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">Für diesen Zeitraum gibt es keine Sticky-Daten. Sticky Stats gibt es nur für Preseason-Spiele.</p></div>`;
+      if (!all.length) {
+        const dI = G.cols.indexOf('d'), last = G.rows.reduce((m, x) => (x[dI] > m ? x[dI] : m), '');
+        const msg = last && from > last
+          ? `Die Sticky Stats für diesen Spieltag sind noch nicht da. Sie kommen über einen eigenen Abruf, der morgens läuft (06:40 / 08:40 / 12:00 Uhr) und etwas hinter den Live Scores hängt. Letzter Stand: ${e(fmtShort(last))}.`
+          : 'Für diesen Zeitraum gibt es keine Sticky-Daten. Sticky Stats gibt es nur für Preseason-Spiele.';
+        return `<div class="controls nc-controls">${sel}</div><div class="card nc-card"><p class="muted">${msg}</p></div>`;
+      }
       const pool = all.filter(p => p.mp >= minM).sort((a, b) => b.score - a.score);
       items = (exp ? pool.filter(p => exp(p.name) === kind) : pool).slice(0, K.n).map(p => ({
         name: p.name, team: team(p), meta: avg ? `${p.games} Sp. · ${f1(p.mp / p.games)} Min./Sp.` : `${Math.round(p.mp)} Min.`,

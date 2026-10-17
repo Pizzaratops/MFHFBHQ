@@ -14,7 +14,12 @@ name: NBA Preseason Score
 
 on:
   schedule:
-    - cron: '0 10 * * *'
+    # Mehrmals täglich (17.10.2026): GitHub startet geplante Läufe oft Stunden zu spät
+    # (10:00 UTC lief real ~14:30). Spiele sind gecacht, ein Lauf ohne neue Spiele
+    # dauert ~25 s und committet nichts.
+    - cron: '40 4 * * *'   # 06:40 MESZ, nach den späten US-Spielen
+    - cron: '40 6 * * *'   # 08:40 MESZ
+    - cron: '0 10 * * *'   # 12:00 MESZ (Nachzügler, ESPN-Korrekturen)
   workflow_dispatch:
     inputs:
       force:
