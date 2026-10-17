@@ -85,10 +85,31 @@ async function main() {
   if (!fs.existsSync(BASELINE_FILE)) { console.error(`Baseline fehlt: ${BASELINE_FILE}`); process.exit(1); }
   const baseline = JSON.parse(fs.readFileSync(BASELINE_FILE, 'utf8'));
 
-  // 1) Alle Preseason-Spieltage von START bis heute abfragen
+  // 1) Preseason-Spieltage abfragen
   const cached = new Set(fs.readdirSync(GAME_DIR).filter(f => f.endsWith('.json')).map(f => f.replace('.json', '')));
+  // MFHFB HQ (17.10.2026): Ende der Preseason automatisch erkennen. Letzter gecachter
+  // Spieltag (US-Ostküste); liegt er >= 3 Tage zurück, ist die Preseason vorbei
+  // (sie hat keine solchen Lücken) → sofort beenden, Daten bleiben als Endstand.
+  // Außerdem nur ab dem Tag vor dem letzten Spieltag scannen statt ab START.
+  let lastDay = '';
+  cached.forEach(id => {
+    try {
+      const g = JSON.parse(fs.readFileSync(path.join(GAME_DIR, `${id}.json`), 'utf8'));
+      const iso = g.header && g.header.competitions && g.header.competitions[0] && g.header.competitions[0].date;
+      if (iso) { const k = ymd(etDate(new Date(iso))); if (k > lastDay) lastDay = k; }
+    } catch (e) { /* ignorieren */ }
+  });
+  if (lastDay && !process.env.FORCE) {
+    const last = new Date(`${lastDay.slice(0, 4)}-${lastDay.slice(4, 6)}-${lastDay.slice(6)}T12:00:00`);
+    if ((today - last) / 86400000 >= 3) { console.log(`Preseason vorbei (letzter Spieltag ${lastDay}) – nichts zu tun.`); return; }
+  }
+  let scanFrom = new Date(`${START}T12:00:00`);
+  if (lastDay) {
+    const l = new Date(`${lastDay.slice(0, 4)}-${lastDay.slice(4, 6)}-${lastDay.slice(6)}T12:00:00`); l.setDate(l.getDate() - 1);
+    if (l > scanFrom) scanFrom = l;
+  }
   const toFetch = [];
-  for (let d = new Date(`${START}T12:00:00`); d <= today; d.setDate(d.getDate() + 1)) {
+  for (let d = scanFrom; d <= today; d.setDate(d.getDate() + 1)) {
     const sb = await getJSON(`https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${ymd(d)}&seasontype=1&limit=100`);
     await sleep(300);
     if (!sb || !Array.isArray(sb.events)) continue;

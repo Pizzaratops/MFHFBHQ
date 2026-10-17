@@ -218,7 +218,7 @@ Konstanten in `scripts/preseason-score.js` nicht ändern** (Ausnahme:
 `parseEspnSummary()`, falls ESPN das Boxscore-Format ändert).
 
 - Workflow `nba-preseason.yml` → `scripts/update-preseason-score.js` (im Ordner
-  sports/nba): ESPN-Scoreboard `seasontype=1` ab 25.09. → neue Spiele per Summary
+  sports/nba): ESPN-Scoreboard `seasontype=1` ab 25.09. (bzw. ab dem letzten gecachten Spieltag), endet automatisch 3 Tage nach dem letzten Preseason-Spiel (Fallback: 25.09. + 40 Tage). → neue Spiele per Summary
   laden → Cache `data/preseason/<Saison>/games/<id>.json` (nie neu geladen) →
   `data/preseason-score.js`. Außerhalb von 25.09. + 40 Tagen sofort Ende; manuell
   mit `force=true`. Schreibt nur bei inhaltlicher Änderung.
