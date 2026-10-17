@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-17T06:01:16.910Z",
+  "generatedAt": "2026-10-17T06:50:01.601Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -84,7 +84,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 1,
         "tpm": 3,
         "fgPct": 1,
-        "ftPct": 7,
+        "ftPct": 6,
         "to": 12
       },
       "includedCount": 27,
@@ -108,14 +108,14 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 78.6
       },
       "rank": {
-        "pts": 5,
+        "pts": 6,
         "reb": 4,
         "ast": 8,
         "stl": 4,
         "blk": 4,
         "tpm": 4,
         "fgPct": 5,
-        "ftPct": 6,
+        "ftPct": 5,
         "to": 8
       },
       "includedCount": 28,
@@ -141,9 +141,9 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 4,
         "reb": 9,
-        "ast": 4,
-        "stl": 5,
-        "blk": 9,
+        "ast": 5,
+        "stl": 6,
+        "blk": 10,
         "tpm": 2,
         "fgPct": 11,
         "ftPct": 3,
@@ -174,11 +174,11 @@ const FANTASY_POWER_SCORE = {
         "reb": 6,
         "ast": 3,
         "stl": 11,
-        "blk": 10,
+        "blk": 11,
         "tpm": 1,
         "fgPct": 12,
         "ftPct": 1,
-        "to": 10
+        "to": 9
       },
       "includedCount": 26,
       "projCount": 25,
@@ -201,7 +201,7 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 81.3
       },
       "rank": {
-        "pts": 6,
+        "pts": 7,
         "reb": 7,
         "ast": 6,
         "stl": 10,
@@ -252,29 +252,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 326.8,
-        "reb": 136,
-        "ast": 78,
-        "stl": 21.73,
-        "blk": 17.52,
-        "tpm": 30.2,
-        "to": 40.4,
+        "pts": 343.9,
+        "reb": 142.2,
+        "ast": 80.9,
+        "stl": 22.4,
+        "blk": 18.9,
+        "tpm": 32,
+        "to": 42.4,
         "fgPct": 48.2,
-        "ftPct": 77.6
+        "ftPct": 77.3
       },
       "rank": {
-        "pts": 7,
+        "pts": 5,
         "reb": 3,
-        "ast": 5,
-        "stl": 6,
-        "blk": 3,
-        "tpm": 12,
+        "ast": 4,
+        "stl": 5,
+        "blk": 2,
+        "tpm": 11,
         "fgPct": 4,
         "ftPct": 11,
-        "to": 9
+        "to": 10
       },
-      "includedCount": 26,
-      "projCount": 26,
+      "includedCount": 27,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -298,9 +298,9 @@ const FANTASY_POWER_SCORE = {
         "reb": 2,
         "ast": 7,
         "stl": 3,
-        "blk": 2,
+        "blk": 3,
         "tpm": 9,
-        "fgPct": 2,
+        "fgPct": 3,
         "ftPct": 12,
         "to": 7
       },
@@ -314,29 +314,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 298.4,
-        "reb": 103.8,
-        "ast": 65.9,
-        "stl": 21.47,
-        "blk": 10.79,
-        "tpm": 30.4,
-        "to": 32.4,
-        "fgPct": 48.5,
-        "ftPct": 79
+        "pts": 310.8,
+        "reb": 111.4,
+        "ast": 67.7,
+        "stl": 22.08,
+        "blk": 11.71,
+        "tpm": 31,
+        "to": 33.8,
+        "fgPct": 48.8,
+        "ftPct": 78.4
       },
       "rank": {
-        "pts": 10,
+        "pts": 9,
         "reb": 11,
         "ast": 10,
-        "stl": 8,
-        "blk": 11,
-        "tpm": 11,
-        "fgPct": 3,
-        "ftPct": 4,
+        "stl": 7,
+        "blk": 9,
+        "tpm": 12,
+        "fgPct": 2,
+        "ftPct": 8,
         "to": 1
       },
-      "includedCount": 26,
-      "projCount": 26,
+      "includedCount": 28,
+      "projCount": 28,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -356,14 +356,14 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 78.7
       },
       "rank": {
-        "pts": 9,
+        "pts": 10,
         "reb": 10,
         "ast": 12,
-        "stl": 7,
+        "stl": 8,
         "blk": 7,
         "tpm": 8,
         "fgPct": 9,
-        "ftPct": 5,
+        "ftPct": 4,
         "to": 2
       },
       "includedCount": 28,
@@ -425,7 +425,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12,
         "tpm": 10,
         "fgPct": 10,
-        "ftPct": 8,
+        "ftPct": 7,
         "to": 3
       },
       "includedCount": 25,
