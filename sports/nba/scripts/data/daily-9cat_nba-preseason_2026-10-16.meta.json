@@ -1,0 +1,22 @@
+{
+  "league": "nba-preseason",
+  "date": "2026-10-16",
+  "games": [
+    "Miami Heat 115 @ Orlando Magic 136 (Final)",
+    "Boston Celtics 125 @ Philadelphia 76ers 120 (Final/OT)",
+    "Toronto Raptors 125 @ Detroit Pistons 129 (Final)",
+    "Milwaukee Bucks 128 @ Indiana Pacers 127 (Final/OT)",
+    "Atlanta Hawks @ Dallas Mavericks (End of 3rd)",
+    "Sacramento Kings @ San Antonio Spurs (End of 3rd)",
+    "Charlotte Hornets @ Memphis Grizzlies (11:24 - 4th)",
+    "Washington Wizards @ New Orleans Pelicans (11:15 - 4th)",
+    "Minnesota Timberwolves @ Chicago Bulls (2.5 - 3rd)",
+    "Portland Trail Blazers @ Golden State Warriors (10/16 - 10:00 PM EDT)",
+    "Utah Jazz @ Phoenix Suns (10/16 - 10:00 PM EDT)",
+    "Denver Nuggets @ Los Angeles Lakers (10/16 - 10:30 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 46.4,
+    "ft": 73.3
+  }
+}
