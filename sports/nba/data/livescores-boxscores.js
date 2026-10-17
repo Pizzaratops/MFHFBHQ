@@ -3019,9 +3019,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401898409",
-      line: "Portland Trail Blazers @ Golden State Warriors (5:04 - 2nd)",
+      line: "Portland Trail Blazers @ Golden State Warriors (22.6 - 3rd)",
       completed: false,
-      statusText: "5:04 - 2nd",
+      statusText: "22.6 - 3rd",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -3037,9 +3037,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401908948",
-      line: "Utah Jazz @ Phoenix Suns (5:17 - 2nd)",
+      line: "Utah Jazz @ Phoenix Suns (End of 4th)",
       completed: false,
-      statusText: "5:17 - 2nd",
+      statusText: "End of 4th",
       away: {
         abbr: "UTAH", name: "Utah Jazz", score: null,
         players: [
@@ -3055,9 +3055,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401898719",
-      line: "Denver Nuggets @ Los Angeles Lakers (6:19 - 1st)",
+      line: "Denver Nuggets @ Los Angeles Lakers (Halftime)",
       completed: false,
-      statusText: "6:19 - 1st",
+      statusText: "Halftime",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [

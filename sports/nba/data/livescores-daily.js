@@ -1755,7 +1755,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-16": {
-      games: ["Miami Heat 115 @ Orlando Magic 136 (Final)","Boston Celtics 125 @ Philadelphia 76ers 120 (Final/OT)","Toronto Raptors 125 @ Detroit Pistons 129 (Final)","Milwaukee Bucks 128 @ Indiana Pacers 127 (Final/OT)","Atlanta Hawks 135 @ Dallas Mavericks 111 (Final)","Sacramento Kings 97 @ San Antonio Spurs 126 (Final)","Charlotte Hornets 98 @ Memphis Grizzlies 117 (Final)","Washington Wizards 106 @ New Orleans Pelicans 107 (Final)","Minnesota Timberwolves 116 @ Chicago Bulls 133 (Final)","Portland Trail Blazers @ Golden State Warriors (5:04 - 2nd)","Utah Jazz @ Phoenix Suns (5:17 - 2nd)","Denver Nuggets @ Los Angeles Lakers (6:19 - 1st)"],
+      games: ["Miami Heat 115 @ Orlando Magic 136 (Final)","Boston Celtics 125 @ Philadelphia 76ers 120 (Final/OT)","Toronto Raptors 125 @ Detroit Pistons 129 (Final)","Milwaukee Bucks 128 @ Indiana Pacers 127 (Final/OT)","Atlanta Hawks 135 @ Dallas Mavericks 111 (Final)","Sacramento Kings 97 @ San Antonio Spurs 126 (Final)","Charlotte Hornets 98 @ Memphis Grizzlies 117 (Final)","Washington Wizards 106 @ New Orleans Pelicans 107 (Final)","Minnesota Timberwolves 116 @ Chicago Bulls 133 (Final)","Portland Trail Blazers @ Golden State Warriors (22.6 - 3rd)","Utah Jazz @ Phoenix Suns (End of 4th)","Denver Nuggets @ Los Angeles Lakers (Halftime)"],
       leagueAvg: { fg: 45.2, ft: 75.1 },
       players: [
         { rank: 1, name: "Cooper Flagg", team: "DAL", min: 30, pts: 26, reb: 12, ast: 4, stl: 2, blk: 1, to: 2, tpm: 2, fgPct: 40, ftPct: 88.9, composite: 10.74, zScores: { pts: 2.821, reb: 3.08, ast: 1.086, stl: 1.523, blk: 0.95, tpm: 0.882, fgImpact: -0.867, ftImpact: 1.876, to: -0.606 } },
