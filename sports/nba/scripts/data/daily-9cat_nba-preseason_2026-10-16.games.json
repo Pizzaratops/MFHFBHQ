@@ -2139,6 +2139,33 @@
             }
           },
           {
+            "name": "John Ukomadu",
+            "min": 3,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -5.07,
+            "zScores": {
+              "pts": -1.332,
+              "reb": -1.178,
+              "ast": -0.97,
+              "stl": -0.8,
+              "blk": -0.519,
+              "tpm": -0.791,
+              "fgImpact": -0.386,
+              "ftImpact": 0,
+              "to": 0.91
+            }
+          },
+          {
             "name": "Isaac Jones",
             "min": 7,
             "pts": 6,
@@ -2351,33 +2378,6 @@
               "tpm": 0.031,
               "fgImpact": 1.823,
               "ftImpact": 0.651,
-              "to": 0.91
-            }
-          },
-          {
-            "name": "John Ukomadu",
-            "min": 3,
-            "pts": 0,
-            "reb": 0,
-            "ast": 0,
-            "stl": 0,
-            "blk": 0,
-            "to": 0,
-            "tpm": 0,
-            "fgm": 0,
-            "fga": 1,
-            "ftm": 0,
-            "fta": 0,
-            "composite": -5.07,
-            "zScores": {
-              "pts": -1.332,
-              "reb": -1.178,
-              "ast": -0.97,
-              "stl": -0.8,
-              "blk": -0.519,
-              "tpm": -0.791,
-              "fgImpact": -0.386,
-              "ftImpact": 0,
               "to": 0.91
             }
           }
@@ -2996,6 +2996,33 @@
             }
           },
           {
+            "name": "Rienk Mast",
+            "min": 15,
+            "pts": 3,
+            "reb": 4,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 1,
+            "fgm": 1,
+            "fga": 2,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -1.35,
+            "zScores": {
+              "pts": -0.855,
+              "reb": 0.271,
+              "ast": -0.457,
+              "stl": -0.8,
+              "blk": -0.519,
+              "tpm": 0.031,
+              "fgImpact": 0.069,
+              "ftImpact": 0,
+              "to": 0.91
+            }
+          },
+          {
             "name": "Jay Huff",
             "min": 14,
             "pts": 4,
@@ -3020,6 +3047,33 @@
               "fgImpact": -1.862,
               "ftImpact": 0.717,
               "to": 0.151
+            }
+          },
+          {
+            "name": "Keba Keita",
+            "min": 13,
+            "pts": 10,
+            "reb": 6,
+            "ast": 0,
+            "stl": 0,
+            "blk": 1,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 5,
+            "fga": 5,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 1.36,
+            "zScores": {
+              "pts": 0.257,
+              "reb": 0.995,
+              "ast": -0.97,
+              "stl": -0.8,
+              "blk": 0.994,
+              "tpm": -0.791,
+              "fgImpact": 2.279,
+              "ftImpact": 0,
+              "to": -0.607
             }
           },
           {
@@ -3128,60 +3182,6 @@
               "fgImpact": -0.703,
               "ftImpact": 0,
               "to": -2.125
-            }
-          },
-          {
-            "name": "Rienk Mast",
-            "min": 15,
-            "pts": 3,
-            "reb": 4,
-            "ast": 1,
-            "stl": 0,
-            "blk": 0,
-            "to": 0,
-            "tpm": 1,
-            "fgm": 1,
-            "fga": 2,
-            "ftm": 0,
-            "fta": 0,
-            "composite": -1.35,
-            "zScores": {
-              "pts": -0.855,
-              "reb": 0.271,
-              "ast": -0.457,
-              "stl": -0.8,
-              "blk": -0.519,
-              "tpm": 0.031,
-              "fgImpact": 0.069,
-              "ftImpact": 0,
-              "to": 0.91
-            }
-          },
-          {
-            "name": "Keba Keita",
-            "min": 13,
-            "pts": 10,
-            "reb": 6,
-            "ast": 0,
-            "stl": 0,
-            "blk": 1,
-            "to": 2,
-            "tpm": 0,
-            "fgm": 5,
-            "fga": 5,
-            "ftm": 0,
-            "fta": 0,
-            "composite": 1.36,
-            "zScores": {
-              "pts": 0.257,
-              "reb": 0.995,
-              "ast": -0.97,
-              "stl": -0.8,
-              "blk": 0.994,
-              "tpm": -0.791,
-              "fgImpact": 2.279,
-              "ftImpact": 0,
-              "to": -0.607
             }
           }
         ]
