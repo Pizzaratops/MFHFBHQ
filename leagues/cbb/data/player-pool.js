@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-17T23:30:30.796Z
+//  Stand: 2026-10-18T01:33:51.269Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -778,7 +778,7 @@ const CBB_PLAYER_POOL = [
 ["079rs","Eltayeb Eltayeb","VaTec","G","G,Flx","FA"],
 ["06vyi","Elyjah Freeman","Tex","G","F/C,G,Flx","T"],
 ["0711m","Elzie Harrington","SDSU","G","G,Flx","T"],
-["06hxu","Emmanuel Innocenti","AzSt","F","F/C,Flx","FA"],
+["06hxu","Emmanuel Innocenti","AzSt","F","F/C,G,Flx","FA"],
 ["0796b","Emmanuel Jamgbadi","Brown","F","F/C,Flx","FA"],
 ["0716u","Emmanuel Kanga","GMas","F","F/C,Flx","FA"],
 ["0718o","Emmett Adair","GMas","F","F/C,Flx","FA"],
@@ -831,6 +831,7 @@ const CBB_PLAYER_POOL = [
 ["06mtc","Felix Kossaras","GrgWas","G","G,Flx","FA"],
 ["064gt","Filip Borovicanin","Xav","F","F/C,Flx","FA"],
 ["06vyk","Filip Jovic","UCLA","F","F/C,Flx","FA"],
+["07atp","Filip Malesevic","AzSt","C","F/C,Flx","FA"],
 ["07ajo","Finley Billy","Penn","F","F/C,Flx","FA"],
 ["06gfp","Finley Bizjack","WVU","G","G,Flx","T"],
 ["070s8","Finley Keeffe","Okla","F","F/C,Flx","FA"],
@@ -1168,6 +1169,7 @@ const CBB_PLAYER_POOL = [
 ["079dn","Javon Bardwell","Prov","F","F/C,Flx","FA"],
 ["065ev","Javon Bennett","Gonz","G","G,Flx","T"],
 ["0717f","Javon Perry","URI","F","F/C,Flx","FA"],
+["06n8t","Javontae Campbell","Cin","G","G,Flx","FA"],
 ["079nk","Javonte Floyd","UCLA","C","F/C,Flx","FA"],
 ["070un","Jax Abalos","Corn","F","F/C,Flx","FA"],
 ["07a8p","Jax Allen","UtSt","G","G,Flx","FA"],
@@ -1277,6 +1279,7 @@ const CBB_PLAYER_POOL = [
 ["06gei","Johnny Kinziger","IlSt","G","G,Flx","FA"],
 ["070uw","Jojo McIver","ColSt","G","G,Flx","FA"],
 ["06q2x","JoJo Moore","Tul","G","G,Flx","FA"],
+["07atq","Jokubas Rudaitis","AzSt","G","G,Flx","FA"],
 ["071h5","Jon Carroll","Drake","F","F/C,Flx","FA"],
 ["070u9","Jonah Drezner","Brown","G","G,Flx","FA"],
 ["06n7h","Jonah Hinton","URI","G","G,Flx","FA"],
