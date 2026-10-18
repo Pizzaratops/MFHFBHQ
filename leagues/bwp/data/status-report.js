@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-17T23:53:58.859Z",
+  "generatedAt": "2026-10-18T04:00:04.020Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -812,7 +812,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.6,
           "last3AvgPoints": 13.2,
-          "projPoints": 13.2
+          "projPoints": 13.1
         },
         {
           "name": "Tory Horton",
@@ -1033,7 +1033,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2,
           "last3AvgPoints": 9,
-          "projPoints": 8.1
+          "projPoints": 8
         },
         {
           "name": "Minnesota Vikings",
@@ -1365,7 +1365,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.4,
           "last3AvgPoints": 7.4,
-          "projPoints": 7.3
+          "projPoints": 7.4
         },
         {
           "name": "Colston Loveland",
@@ -1398,7 +1398,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 17,
-          "projPoints": 18.5
+          "projPoints": 18.6
         },
         {
           "name": "DJ Moore",
@@ -1520,7 +1520,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.6,
           "last3AvgPoints": 12.2,
-          "projPoints": 12.2
+          "projPoints": 12.1
         },
         {
           "name": "Quinn Ewers",
@@ -1619,7 +1619,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 7.7,
-          "projPoints": 11.3
+          "projPoints": 11.4
         },
         {
           "name": "Brandin Cooks",
@@ -1957,7 +1957,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "NYJ",
           "isStarter": false,
-          "status": "IR",
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -2138,7 +2138,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 10.6,
-          "projPoints": 11.2
+          "projPoints": 11.3
         },
         {
           "name": "Ricky Pearsall",
@@ -2171,7 +2171,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.5,
           "last3AvgPoints": 9.9,
-          "projPoints": 13.4
+          "projPoints": 13.2
         },
         {
           "name": "Tory Horton",
@@ -2193,7 +2193,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.9,
           "last3AvgPoints": 7.9,
-          "projPoints": 8.2
+          "projPoints": 8.3
         },
         {
           "name": "TreVeyon Henderson",
@@ -2325,7 +2325,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 12.2,
-          "projPoints": 10.3
+          "projPoints": 10.2
         },
         {
           "name": "Michael Mayer",
@@ -2491,14 +2491,14 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.2,
           "last3AvgPoints": 12.2,
-          "projPoints": 12.8
+          "projPoints": 12.9
         },
         {
           "name": "Rachaad White",
           "pos": "RB",
           "nfl": "WAS",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 3,
           "last3AvgPoints": 7.1,
@@ -3532,7 +3532,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 10.6,
-          "projPoints": 11.2
+          "projPoints": 11.3
         },
         {
           "name": "Kimani Vidal",
@@ -3543,7 +3543,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.6,
           "last3AvgPoints": 9.1,
-          "projPoints": 7
+          "projPoints": 7.1
         },
         {
           "name": "Tyrone Tracy",
@@ -3605,7 +3605,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "NYJ",
           "isStarter": false,
-          "status": "IR",
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -3671,7 +3671,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "WAS",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 3,
           "last3AvgPoints": 7.1,
@@ -3903,7 +3903,7 @@ const STATUS_REPORT_DATA = {
           "pos": "QB",
           "nfl": "PHI",
           "isStarter": false,
-          "status": "O",
+          "status": "IR",
           "flag": false,
           "lastGamePoints": 13,
           "last3AvgPoints": 13.4,
