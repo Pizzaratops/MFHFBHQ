@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-19T04:01:19.626Z",
+  "generatedAt": "2026-10-19T05:01:13.001Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -145,7 +145,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 6,
         "blk": 10,
         "tpm": 2,
-        "fgPct": 11,
+        "fgPct": 10,
         "ftPct": 3,
         "to": 6
       },
@@ -299,7 +299,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 7,
         "stl": 3,
         "blk": 3,
-        "tpm": 9,
+        "tpm": 10,
         "fgPct": 3,
         "ftPct": 12,
         "to": 7
@@ -332,7 +332,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 9,
         "tpm": 12,
         "fgPct": 2,
-        "ftPct": 8,
+        "ftPct": 7,
         "to": 1
       },
       "includedCount": 28,
@@ -407,15 +407,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 285.9,
-        "reb": 87.8,
-        "ast": 69.1,
-        "stl": 18.63,
-        "blk": 9.4,
-        "tpm": 32.5,
-        "to": 36.1,
-        "fgPct": 47,
-        "ftPct": 78.5
+        "pts": 288.4,
+        "reb": 88.6,
+        "ast": 69.7,
+        "stl": 18.88,
+        "blk": 9.46,
+        "tpm": 33.1,
+        "to": 36.3,
+        "fgPct": 46.8,
+        "ftPct": 78.4
       },
       "rank": {
         "pts": 12,
@@ -423,13 +423,13 @@ const FANTASY_POWER_SCORE = {
         "ast": 9,
         "stl": 12,
         "blk": 12,
-        "tpm": 10,
-        "fgPct": 10,
-        "ftPct": 7,
+        "tpm": 9,
+        "fgPct": 11,
+        "ftPct": 8,
         "to": 3
       },
-      "includedCount": 25,
-      "projCount": 25,
+      "includedCount": 26,
+      "projCount": 26,
       "skippedCount": 0,
       "skippedPlayers": []
     }
