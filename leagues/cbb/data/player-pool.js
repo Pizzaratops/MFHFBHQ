@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-19T16:30:46.208Z
+//  Stand: 2026-10-19T18:43:22.594Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -2009,6 +2009,7 @@ const CBB_PLAYER_POOL = [
 ["06gph","Riley Allenspach","Cin","F","F/C,Flx","FA"],
 ["07275","Riley Dering","AF","F","F/C,Flx","FA"],
 ["06q7n","Riley Fox","Yale","F","F/C,Flx","T"],
+["064lw","Riley Kugel","UCF","G","G,Flx","FA"],
 ["06nhu","Riley Parker","Portl","G","G,Flx","FA"],
 ["06nbi","Ring Nyeri","Wake","F","F/C,Flx","FA"],
 ["07ali","River Sawyer","ColSt","G","G,Flx","FA"],
