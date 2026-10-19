@@ -1,0 +1,91 @@
+/* ============================================================
+   basketball.de US-Manager (tools/usm.js) — 19.10.2026
+   ============================================================ */
+.usm-grid { display: grid; grid-template-columns: minmax(300px, 400px) minmax(0, 1fr); gap: 14px; align-items: start; }
+.usm-grid > * { min-width: 0; }
+.usm-side { display: flex; flex-direction: column; gap: 14px; }
+.usm-pad { padding: 12px 14px; }
+.usm-mt { margin-top: 14px; }
+.usm-small { font-size: 12.5px; }
+.usm-foot { font-size: 12px; margin-top: 14px; line-height: 1.5; }
+.usm-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.usm-sv { font-size: 26px; }
+.usm-stats .stat-row { margin-bottom: 14px; }
+
+.usm-group { margin-bottom: 10px; }
+.usm-gh { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--league-accent); margin: 6px 0 4px; }
+.usm-r { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; font-size: 13.5px; }
+.usm-r:nth-child(even) { background: var(--surface2); }
+.usm-n { flex: 1; min-width: 0; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.usm-m { font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.usm-x { border: 0; background: none; color: var(--muted); font-size: 18px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.usm-x:hover { color: #d9534f; }
+.usm-sug { cursor: pointer; }
+.usm-sug:hover { box-shadow: inset 0 0 0 1px var(--league-accent); }
+.usm-fill { margin-top: 10px; border: 1px dashed var(--league-accent); border-radius: 10px; padding: 8px 10px; }
+
+.usm-btn {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer; text-decoration: none; white-space: nowrap;
+  font: 700 13px 'DM Sans', sans-serif; padding: 7px 12px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+}
+.usm-btn:hover { border-color: var(--league-accent); }
+.usm-btn.primary { background: var(--league-accent); border-color: var(--league-accent); color: #fff; }
+.usm-btn:disabled { opacity: .55; cursor: wait; }
+.usm-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.usm-opts { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+.usm-opts label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.usm-opts input[type=number] { width: 54px; }
+.usm-inline { margin-top: 0; }
+.usm-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.usm-input, .usm-opts input[type=number] {
+  font: 500 14px 'DM Sans', sans-serif; color: var(--text); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 10px; padding: 7px 10px; outline: none;
+}
+.usm-input:focus, .usm-opts input:focus { border-color: var(--league-accent); }
+.usm-filters .usm-input[type=search] { flex: 1; min-width: 160px; }
+.usm-sel { flex: 0 0 auto; }
+.usm-ta { width: 100%; min-height: 120px; font: 12px ui-monospace, Menlo, monospace; }
+.usm-steps { margin: 6px 0 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; }
+.usm-steps code { font-size: 12px; background: var(--surface2); padding: 1px 5px; border-radius: 5px; }
+
+.usm-tbl { overflow-x: auto; }
+.usm-table { font-size: 13px; }
+.usm-table th.th-sort { cursor: pointer; user-select: none; }
+.usm-table th.usm-sorted { color: var(--league-accent); }
+.usm-table td.usm-name { white-space: nowrap; }
+.usm-table tr.usm-on td { background: color-mix(in srgb, var(--league-accent) 12%, transparent); }
+.usm-table tr.usm-unaff td { opacity: .45; }
+.usm-pick {
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; line-height: 1;
+  border: 1px solid var(--border); background: var(--bg); color: var(--muted);
+}
+.usm-pick.on { background: var(--league-accent); border-color: var(--league-accent); color: #fff; }
+.usm-ovr {
+  width: 50px; text-align: right; font: 600 12.5px 'DM Sans', sans-serif; font-variant-numeric: tabular-nums;
+  color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 3px 5px;
+}
+.usm-ovr.set { border-color: var(--league-accent); color: var(--league-accent); }
+.usm-cash { width: 76px; }
+.usm-more { text-align: center; padding: 12px; }
+
+.usm-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 1px 5px; border-radius: 4px; margin-left: 5px; vertical-align: 1px; }
+.usm-tag.r { background: color-mix(in srgb, var(--league-accent2) 18%, transparent); color: var(--league-accent2); }
+.usm-tag.inj { background: #d9534f1f; color: #d9534f; }
+.usm-tag.q { background: #c8a0201f; color: #c8a020; }
+.usm-tag.est { background: var(--surface2); color: var(--muted); }
+
+.usm-trade { display: grid; grid-template-columns: 1fr 1fr auto auto; gap: 8px 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.usm-trade:last-child { border-bottom: 0; }
+.usm-lbl { font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.usm-gain { text-align: right; font-weight: 800; color: #2e9d62; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1000px) { .usm-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) {
+  .usm-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .usm-row .stat:first-child { grid-column: auto; }
+  .usm-sv { font-size: 20px; }
+  .usm-row .stat { padding: 10px 12px; }
+  .usm-trade { grid-template-columns: 1fr 1fr; }
+  .usm-gain { text-align: left; }
+}

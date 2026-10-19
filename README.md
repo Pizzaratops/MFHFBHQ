@@ -1,6 +1,6 @@
 # MFHFB HQ
 
-Ein Hauptquartier für alle MFHFB-Ligen: Taco Tuesday (TTHQ), Citizens of Funkytown, Foodball (Bear Witch Project), Dynasty of Pretend Experts (DOPE) und Dizzle CBB (College Basketball, NIL-Auktion).
+Ein Hauptquartier für alle MFHFB-Ligen: Taco Tuesday (TTHQ), Citizens of Funkytown, Foodball (Bear Witch Project), Dynasty of Pretend Experts (DOPE), Dizzle CBB (College Basketball, NIL-Auktion) und den basketball.de US-Manager (Salary Cap).
 
 Live: https://pizzaratops.github.io/MFHFBHQ/ · als App installierbar (Manifest; öffnet dann direkt die zuletzt genutzte Liga).
 
@@ -27,10 +27,12 @@ tools/nfl-*.js        NFL-Seiten (BWP, DOPE)
 tools/nba-*.js        NBA-Seiten (TTHQ, Funkytown)
 tools/cbb-auction.js  CBB: NIL-Auktion (Board, Live-Gebote, Mein Plan, Budgets, Preise 2025) — Daten leagues/cbb/data/nil-auction.js
                       + live-bids.js (stündlich aus dem Liga-Sheet, .github/workflows/cbb-bids.yml)
+tools/usm.js          basketball.de US-Manager: Draft & Value (Auffüll-Optimierer), Mein Team & Trades, Gehälter, Import (Bookmarklet)
+                      — Daten leagues/usm/data/usm-base.js, Snapshots im Browser (mfhfb:usm:*)
 tools/home.js         Übersicht (alle Ligen)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
-css/nfl.css, nba.css, cbb.css  sportspezifische Styles
+css/nfl.css, nba.css, cbb.css, usm.css  sportspezifische Styles
 .github/workflows/    Sync-Workflows (nfl-*, bwp-*, dope-*, nba-*, tthq-*, funkytown-*)
 ```
 

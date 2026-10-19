@@ -281,6 +281,26 @@ const LEAGUES = [
     },
   },
   {
+    // basketball.de US-Manager (Salary-Cap-Spiel, seit 19.10.2026): 15 Spieler
+    // (min. 5 G / 5 F / 2 C), 63 Mio Budget, alle 15 punkten. Kein Liga-Sync —
+    // Gehälter-Basis in leagues/usm/data/usm-base.js (Stand 18.10.2026), wöchentliche
+    // Updates per Bookmarklet (tools/usm.js, Seite „Import“), Spielerwerte aus den
+    // sportweiten NBA-Projections.
+    key: 'usm',
+    name: 'basketball.de US-Manager',
+    short: 'US-Manager',
+    emoji: '💶',
+    sport: 'nba',
+    platform: 'basketball.de',
+    format: 'Salary Cap',
+    scoring: 'points',
+    accent: '#e84a0c',
+    accent2: '#3b82f6',
+    mode: 'native',
+    dataBase: 'leagues/usm/data/',
+    pages: ['usmdraft', 'usmteam', 'usmsalary', 'usmimport'],
+  },
+  {
     // College Basketball (Dizzles Liga) — ganze Liga seit 16.10.2026 (tools/cbb-league.js + NBA-Tools),
     // (tools/cbb-auction.js). Daten: leagues/cbb/data/nil-auction.js, von Hand
     // aus Dizzle_CBB_Off-season.xlsx erzeugt; Budgets dort in CBB_TEAMS pflegen.
