@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-19T20:43:51.698Z
+//  Stand: 2026-10-19T23:43:45.508Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -96,6 +96,7 @@ const CBB_PLAYER_POOL = [
 ["06yrb","Alex Lloyd","Fla","G","G,Flx","FA"],
 ["06nh6","Alex Massung","Penn","G","G,Flx","FA"],
 ["079ex","Alex Smith","OhSt","F","F/C,Flx","FA"],
+["0710b","Alex Steen","FSU","F","F/C,Flx","FA"],
 ["070wq","Alex Touomou","Harv","F","F/C,Flx","FA"],
 ["070v6","Alex Wilkins","KY","G","G,Flx","T"],
 ["079b9","Alexander Leeth","Rice","F","F/C,Flx","FA"],
@@ -1502,6 +1503,7 @@ const CBB_PLAYER_POOL = [
 ["06gmw","Kwame Evans","Vill","F","F/C,Flx","T"],
 ["071bd","Ky Pernell","TxSt","G","G,Flx","FA"],
 ["06gki","Kyan Evans","Minn","G","G,Flx","FA"],
+["064lk","KyeRon Lindsay","UAB","F","F/C,Flx","FA"],
 ["05wke","Kyle Cuffe","StJon","G","G,Flx","FA"],
 ["065cb","Kyle Evans","NCSU","F","F/C,Flx","T"],
 ["07a12","Kyle Grill","Brad","G","G,Flx","FA"],
