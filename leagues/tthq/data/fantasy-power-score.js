@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-19T11:12:51.519Z",
+  "generatedAt": "2026-10-19T12:01:23.000Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -78,7 +78,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 1,
-        "reb": 1,
+        "reb": 2,
         "ast": 1,
         "stl": 1,
         "blk": 1,
@@ -108,7 +108,7 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 78.6
       },
       "rank": {
-        "pts": 6,
+        "pts": 7,
         "reb": 4,
         "ast": 8,
         "stl": 4,
@@ -116,7 +116,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 4,
         "fgPct": 5,
         "ftPct": 5,
-        "to": 8
+        "to": 7
       },
       "includedCount": 28,
       "projCount": 28,
@@ -141,7 +141,7 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 4,
         "reb": 9,
-        "ast": 5,
+        "ast": 6,
         "stl": 6,
         "blk": 10,
         "tpm": 2,
@@ -172,13 +172,13 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 2,
         "reb": 6,
-        "ast": 3,
+        "ast": 4,
         "stl": 11,
         "blk": 11,
         "tpm": 1,
         "fgPct": 12,
         "ftPct": 1,
-        "to": 9
+        "to": 8
       },
       "includedCount": 26,
       "projCount": 25,
@@ -201,9 +201,9 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 81.3
       },
       "rank": {
-        "pts": 7,
+        "pts": 8,
         "reb": 7,
-        "ast": 6,
+        "ast": 7,
         "stl": 10,
         "blk": 8,
         "tpm": 5,
@@ -265,13 +265,13 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 5,
         "reb": 3,
-        "ast": 4,
+        "ast": 5,
         "stl": 5,
-        "blk": 2,
+        "blk": 3,
         "tpm": 11,
         "fgPct": 4,
         "ftPct": 11,
-        "to": 10
+        "to": 9
       },
       "includedCount": 27,
       "projCount": 27,
@@ -283,29 +283,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 322.4,
-        "reb": 150.6,
-        "ast": 74.4,
-        "stl": 22.77,
-        "blk": 18.27,
-        "tpm": 32.6,
-        "to": 40.2,
-        "fgPct": 48.5,
-        "ftPct": 75.6
+        "pts": 341.1,
+        "reb": 163,
+        "ast": 83.3,
+        "stl": 24.69,
+        "blk": 19.2,
+        "tpm": 33.4,
+        "to": 43.8,
+        "fgPct": 48.6,
+        "ftPct": 75.1
       },
       "rank": {
-        "pts": 8,
-        "reb": 2,
-        "ast": 7,
+        "pts": 6,
+        "reb": 1,
+        "ast": 3,
         "stl": 3,
-        "blk": 3,
-        "tpm": 10,
+        "blk": 2,
+        "tpm": 9,
         "fgPct": 3,
         "ftPct": 12,
-        "to": 7
+        "to": 10
       },
-      "includedCount": 26,
-      "projCount": 25,
+      "includedCount": 28,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -423,7 +423,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 9,
         "stl": 12,
         "blk": 12,
-        "tpm": 9,
+        "tpm": 10,
         "fgPct": 11,
         "ftPct": 8,
         "to": 3
