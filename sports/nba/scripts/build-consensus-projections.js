@@ -249,10 +249,19 @@ function main() {
     const vB = srcVals(rawB, rawB ? rawB.fga : 0, rawB ? rawB.fta : 0);
     const vC = srcVals(rawC, rawC ? rawC.fga : 0, rawC ? rawC.fta : 0);
 
+    // BBM-Pauschalminuten (19.10.2026): liegt BBM >= 10 Min ueber dem
+    // Schnitt der uebrigen Quellen, zaehlt BBM nicht (Rohwert bleibt unter b).
+    const othersMin = [vA, vC].filter(Boolean).map(v => v.min);
+    const bInflated = !!(vB && othersMin.length &&
+      vB.min - othersMin.reduce((s, x) => s + x, 0) / othersMin.length >= 10);
+
     const contributing = [];
     if (vA) contributing.push('a');
-    if (vB) contributing.push('b');
+    if (vB && !bInflated) contributing.push('b');
     if (vC) contributing.push('c');
+
+    // Nur BBM kennt den Spieler: BBM-Pauschalwerte fuer Two-Way/Bank → verwerfen.
+    if (contributing.length === 1 && contributing[0] === 'b') { stats.droppedPhantom++; return; }
 
     if (!contributing.length) {
       // Nur eine unplausible Beyaz-Zeile und sonst nichts. Ohne
@@ -284,7 +293,7 @@ function main() {
     }
     if (contributing.length === 1 && contributing[0] === 'a') stats.keptViaException++;
 
-    const merged = averageVals([vA, vB, vC]);
+    const merged = averageVals([vA, bInflated ? null : vB, vC]);
     const team = (rawB && rawB.team) || (rawC && rawC.team) || '';
     const pos = (rawA && rawA.pos) || (rawB && rawB.pos) || (rawC && rawC.pos) || '';
     const g = (rawC && rawC.g) || (rawB && rawB.g) || null;
@@ -299,6 +308,7 @@ function main() {
       a: vA, b: vB, c: vC,
     };
     if (aImplausible) entry.aImplausible = true;
+    if (bInflated) entry.bInflated = true;
     result[displayName] = entry;
   });
 

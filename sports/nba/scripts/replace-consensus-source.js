@@ -74,6 +74,17 @@ function averageVals(list) {
   return out;
 }
 // ------------------------------------------------------------------
+// BBM-Pauschalminuten (19.10.2026): BBM gibt tiefen Bank-/Two-Way-Spielern
+// pauschal ~20–25 Min. Liegt b ≥ 10 Min über dem Schnitt der übrigen Quellen,
+// zählt b nicht zur Mittelung (Rohwert bleibt unter b, Flag bInflated).
+// Spieler, die NUR BBM führt, werden aus demselben Grund nicht aufgenommen.
+const BBM_GAP = 10;
+function bbmInflated(parts) {
+  if (!parts.b) return false;
+  const others = [parts.a, parts.c].filter(Boolean).map(v => v.min);
+  if (!others.length) return false;
+  return parts.b.min - others.reduce((s, x) => s + x, 0) / others.length >= BBM_GAP;
+}
 
 const src = fs.readFileSync(consPath, 'utf8');
 const m = src.match(/const PROJECTIONS_CONSENSUS = /);
@@ -95,16 +106,21 @@ for (const [name, e] of Object.entries(cons)) {
   if (v) stat.updated++; else if (e[letter]) stat.removedSrc++;
   const next = { ...e, [letter]: v };
   const parts = { a: e.aImplausible ? null : next.a, b: next.b, c: next.c };
+  const bInflated = bbmInflated(parts);
+  if (bInflated) parts.b = null;
   const merged = averageVals([parts.a, parts.b, parts.c]);
   if (!merged) { stat.droppedRows++; continue; }
   const contributing = ['a', 'b', 'c'].filter(x => parts[x]);
+  if (contributing.join('') === 'b') { stat.droppedRows++; continue; } // nur BBM → nicht aufnehmen
   const team = letter === 'b' && raw && raw.team ? raw.team : e.team;
   const g = e.c ? e.g : (raw && raw.g) || e.g;
   out[name] = { team, pos: e.pos, g, ...merged, sources: contributing.join(''), sourceCount: contributing.length, a: next.a, b: next.b, c: next.c };
   if (e.aImplausible) out[name].aImplausible = true;
+  if (bInflated) out[name].bInflated = true;
 }
 for (const [k, fname] of freshByNorm) {
   if (used.has(k)) continue;
+  if (letter === 'b') continue; // Spieler nur bei BBM → nicht aufnehmen (siehe bbmInflated)
   const raw = fresh[fname];
   const v = srcVals(raw, raw.fga, raw.fta);
   if (!v) continue;
