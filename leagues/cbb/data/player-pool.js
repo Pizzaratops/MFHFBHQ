@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-19T15:00:06.142Z
+//  Stand: 2026-10-19T15:38:20.433Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -2270,6 +2270,7 @@ const CBB_PLAYER_POOL = [
 ["064gr","Trey Campbell","Utah","G","G,Flx","FA"],
 ["06glk","Trey Green","StLou","G","G,Flx","T"],
 ["079ep","Trey Hall","TxTch","F","F/C,Flx","FA"],
+["05wt9","Trey Kaufman-Renn","Kan","F","F/C,Flx","FA"],
 ["06ynd","Trey McKenney","Mich","G","G,Flx","T"],
 ["05wif","Trey Moss","LaSal","G","G,Flx","FA"],
 ["06n7u","Trey Parker","Seton","G","G,Flx","FA"],
