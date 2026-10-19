@@ -41,7 +41,7 @@
     'Sacramento Kings': 'SAC', 'San Antonio Spurs': 'SAS', 'Toronto Raptors': 'TOR', 'Utah Jazz': 'UTA', 'Washington Wizards': 'WAS', 'Free Agents': 'FA',
   };
   // basketball.de-Name → Projections-Name, wo die Normalisierung nicht reicht
-  const NAME_FIX = { 'gregory jackson': 'gg jackson', 'elijah harkless': 'ej harkless', 'nahshon hyland': 'bones hyland' };
+  const NAME_FIX = { 'gregory jackson': 'gg jackson', 'elijah harkless': 'ej harkless', 'nahshon hyland': 'bones hyland', 'maleek thomas': 'meleek thomas' };
   // Verletzungs-Seed (Stand 18.10.2026): [Verfügbarkeit im Trade-Lock bis 15.11., Label]
   const STATUS = {
     'moses moody': [0, 'Out'], 'jimmy butler': [0, 'Out'], 'kristaps porzingis': [0, 'Out'], 'shaedon sharpe': [0, 'Out'],
@@ -115,7 +115,8 @@
         if (MN > 0) {
           const FP = (s26 ? s26[2] : 0) + 0.5 * (s25 ? s25[2] : 0);
           fpm = (FP + PRIOR_FPM * PRIOR_MIN) / (MN + PRIOR_MIN); src = 'hist';
-          baseMin = s26 && s26[0] > 0 ? 0.9 * s26[1] / s26[0] : 0;
+          // Steht der Spieler mit 0 Minuten in den Projections, gilt das (bewusst nicht eingeplant)
+          baseMin = P ? 0 : (s26 && s26[0] > 0 ? 0.9 * s26[1] / s26[0] : 0);
         } else { fpm = 0.45; src = 'est'; }
       }
       const min = (o.min != null) ? +o.min : baseMin;
@@ -266,6 +267,7 @@
     if (p.rookie) t += '<span class="usm-tag r">R</span>';
     if (p.status) t += `<span class="usm-tag ${p.av <= 0.5 ? 'inj' : 'q'}">${e(p.status)}</span>`;
     if (p.src === 'est') t += '<span class="usm-tag est">geschätzt</span>';
+    else if (p.src === 'hist') t += '<span class="usm-tag est" title="Keine MFHFB-Projection – Werte aus den basketball.de-FP der Vorjahre">ohne Proj.</span>';
     return t;
   }
   const head = (title, sub) => `<div class="page-head"><h1 class="page-title display">${title}</h1><div class="page-sub">${sub}</div></div>`;
