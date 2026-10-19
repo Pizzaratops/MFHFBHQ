@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-19T19:20:01.403Z
+//  Stand: 2026-10-19T20:43:51.698Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1784,6 +1784,7 @@ const CBB_PLAYER_POOL = [
 ["070oi","MJ Feenane","WVU","G","G,Flx","FA"],
 ["070q8","MJ Thomas","UNLV","F","F/C,Flx","FA"],
 ["064mo","Mohamed Keita","Tem","C","F/C,Flx","FA"],
+["07atv","Mohamed Sankhe","WaSt","F","F/C,Flx","FA"],
 ["06hkh","Money Williams","BC","G","G,Flx","T"],
 ["071t0","Montana Wheeler","KSU","G","G,Flx","FA"],
 ["06gmx","Mookie Cook","SJSU","F","F/C,Flx","FA"],
