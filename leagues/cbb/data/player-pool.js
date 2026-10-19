@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-19T06:58:26.745Z
+//  Stand: 2026-10-19T10:44:14.297Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -636,7 +636,7 @@ const CBB_PLAYER_POOL = [
 ["06nb6","DeSean Goode","Mia-FL","F","F/C,Flx","FA"],
 ["0799l","Deshaun Vaden","Cin","F","F/C,Flx","FA"],
 ["07a1d","DeShawn Denson","IndSt","G","G,Flx","FA"],
-["071fu","DeShawn Gory","OrSt","F","F/C,Flx","FA"],
+["071fu","DeShawn Gory","OrSt","F","F/C,Flx","T"],
 ["06h5v","Deshayne Montgomery","Lou","G","G,Flx","T"],
 ["0799j","Desmeon Jones","WichSt","G","G,Flx","FA"],
 ["0796y","Desmond Bellot","Ford","G","G,Flx","FA"],
