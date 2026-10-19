@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-19T15:26:06.372Z",
+  "generatedAt": "2026-10-19T20:56:49.834Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -746,7 +746,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 32.3,
           "last3AvgPoints": 32.3,
-          "projPoints": 17.2
+          "projPoints": 17.6
         },
         {
           "name": "Brock Bowers",
@@ -1630,7 +1630,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 7.2,
-          "projPoints": 3.7
+          "projPoints": 5.1
         },
         {
           "name": "Hunter Henry",
@@ -1840,7 +1840,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 32.3,
           "last3AvgPoints": 32.3,
-          "projPoints": 17.2
+          "projPoints": 17.6
         },
         {
           "name": "Blake Corum",
@@ -2447,7 +2447,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 26.3,
           "last3AvgPoints": 17.1,
-          "projPoints": 16.4
+          "projPoints": 16.8
         },
         {
           "name": "DJ Moore",
@@ -2502,7 +2502,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3,
           "last3AvgPoints": 7.1,
-          "projPoints": 10.9
+          "projPoints": 10.8
         },
         {
           "name": "Chase Brown",
@@ -3510,7 +3510,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 32.3,
           "last3AvgPoints": 32.3,
-          "projPoints": 17.2
+          "projPoints": 17.6
         },
         {
           "name": "Blake Corum",
@@ -3653,7 +3653,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17.3,
           "last3AvgPoints": 18.3,
-          "projPoints": 20.8
+          "projPoints": 20.9
         },
         {
           "name": "Isaiah Likely",
@@ -3675,7 +3675,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3,
           "last3AvgPoints": 7.1,
-          "projPoints": 10.9
+          "projPoints": 10.8
         },
         {
           "name": "Chris Olave",
@@ -3808,7 +3808,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 7.9,
-          "projPoints": 9.4
+          "projPoints": 9.3
         },
         {
           "name": "Derrick Henry",
