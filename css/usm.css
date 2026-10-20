@@ -91,3 +91,6 @@
   .usm-trade { grid-template-columns: 1fr 1fr; }
   .usm-gain { text-align: left; }
 }
+
+/* Zeitraum-Umschalter (Trade-Lock / 7 Tage / Rest-Saison / pro Spiel) */
+.usm-hz { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }

@@ -27,6 +27,43 @@
   const PF_PER_MIN = { G: 0.061, F: 0.072, C: 0.101 };
   const PRIOR_FPM = 0.55, PRIOR_MIN = 150, PHANTOM_GAMES = 15;
   const SEASON_START = new Date('2026-10-20'), SEASON_END = new Date('2027-04-11');
+  // Trade-Lock: Kader ab Anmeldeschluss fix bis zum ersten Trade-Update (Trades gelten ab 22:00)
+  const LOCK_START = new Date('2026-10-20T20:30:00+02:00'), LOCK_END = new Date('2026-11-15T22:00:00+01:00');
+  // Zeitraum, über den Spieler verglichen werden: EV = FP/G × Verfügbarkeit × Spiele im Zeitraum
+  const HORIZONS = {
+    lock: { label: 'Trade-Lock', short: 'bis 15.11.', unit: 'FP bis 15.11.' },
+    week: { label: '7 Tage', short: '7 Tage', unit: 'FP in 7 Tagen' },
+    rest: { label: 'Rest-Saison', short: 'Saison', unit: 'FP Rest-Saison' },
+    game: { label: 'Pro Spiel', short: 'pro Spiel', unit: 'FP/G' },
+  };
+  const defaultHorizon = () => (new Date() < LOCK_END ? 'lock' : 'week');
+  const horizonOf = st => { const h = st.get('horizon'); return HORIZONS[h] ? h : defaultHorizon(); };
+  function horizonWindow(h) {
+    const now = new Date();
+    if (h === 'lock') return [new Date(Math.max(now, LOCK_START)), LOCK_END];
+    if (h === 'week') return [now, new Date(now.getTime() + 7 * 864e5)];
+    if (h === 'rest') return [new Date(Math.max(now, SEASON_START)), new Date(SEASON_END.getTime() + 2 * 864e5)];
+    return null;
+  }
+  const schedCache = new WeakMap();
+  function teamGames(data) {
+    // USM_SCHEDULE.games: "YYYYMMDDHHMM AWAY HOME" (UTC) → { ABBR: [Date, …] }
+    if (!data.USM_SCHEDULE) return null;
+    if (schedCache.has(data)) return schedCache.get(data);
+    const m = {};
+    data.USM_SCHEDULE.games.forEach(g => {
+      const [t, a, h] = g.split(' ');
+      const d = new Date(Date.UTC(+t.slice(0, 4), +t.slice(4, 6) - 1, +t.slice(6, 8), +t.slice(8, 10), +t.slice(10, 12)));
+      (m[a] = m[a] || []).push(d); (m[h] = m[h] || []).push(d);
+    });
+    schedCache.set(data, m);
+    return m;
+  }
+  function gamesIn(data, abbr, h) {
+    const w = horizonWindow(h), tg = teamGames(data);
+    if (!w || !tg || !tg[abbr]) return null;
+    return tg[abbr].filter(d => d >= w[0] && d < w[1]).length;
+  }
   const DATES = [
     { label: '📋 Anmeldeschluss', iso: '2026-10-20T20:30:00+02:00' },
     { label: '🆘 Helpside Trade', iso: '2026-11-01T22:00:00+01:00' },
@@ -68,7 +105,7 @@
   const flip = n => { const i = n.indexOf(','); return i < 0 ? n.trim() : n.slice(i + 1).trim() + ' ' + n.slice(0, i).trim(); };
   const nkey = raw => { const k = MFHFB.nba.key(raw); return NAME_FIX[k] || k; };
   const squash = k => String(k).replace(/[^a-z]/g, '');
-  const valueStyle = v => { const t = Math.max(0, Math.min(1, (v - 2) / 2.5)); return `color:hsl(${Math.round(t * 140)},62%,48%)`; };
+  const valueStyle = (v, pool) => { const k = pool && pool.scale || 1, t = Math.max(0, Math.min(1, (v / k - 2) / 2.5)); return `color:hsl(${Math.round(t * 140)},62%,48%)`; };
 
   // ---------------- Speicher (mfhfb:usm:*) ----------------
   const S = {
@@ -88,6 +125,7 @@
 
   function buildPool(data, st) {
     MFHFB.nba.init(data);
+    const horizon = horizonOf(st);
     const snaps = allSnapshots(data, st);
     const cur = snaps[snaps.length - 1], prev = snaps.length > 1 ? snaps[snaps.length - 2] : null;
     const salMap = s => new Map(s.players.map(p => [squash(nkey(flip(p[0]))), p[3]]));
@@ -136,15 +174,19 @@
       if (fpgAct > 0 && fpAct > 0) gp = Math.round(fpAct / fpgAct);
       // Live-Projections enthalten die echten Spiele schon; nur ohne Projection selbst einblenden
       if (gp && src !== 'proj') fpg = (fpg * PHANTOM_GAMES + fpgAct * gp) / (PHANTOM_GAMES + gp);
-      const ev = fpg * av;
+      const evg = fpg * av, abbr = TEAM_ABBR[team] || team;
+      const ng = horizon === 'game' ? null : gamesIn(data, abbr, horizon);
+      const ev = ng == null ? evg : evg * ng;
       out.set(k, {
-        key: k, name, short, team, abbr: TEAM_ABBR[team] || team, pos, sal, c: Math.round(sal * 100), rookie: !!rookie,
-        fpm, src, min, minSet: o.min != null, av, avSet: o.av != null, status, fpg, ev, value: sal > 0 ? ev / sal : 0,
+        key: k, name, short, team, abbr, pos, sal, c: Math.round(sal * 100), rookie: !!rookie,
+        fpm, src, min, minSet: o.min != null, av, avSet: o.av != null, status, fpg, evg, ng, ev, value: sal > 0 ? ev / sal : 0,
         gp, fpgAct: fpgAct || 0, prevSal: prevSal.has(k) ? prevSal.get(k) : null, firstSal: firstSal.has(k) ? firstSal.get(k) : null,
         fp26: s26 && s26[0] ? s26[2] / s26[0] : null,
       });
     }
-    return { players: [...out.values()], byKey: out, date: cur.date, snapshots: snaps };
+    const withG = [...out.values()].filter(p => p.ng != null && p.team !== 'Free Agents');
+    const scale = horizon === 'game' || !withG.length ? 1 : Math.max(1, sum(withG, p => p.ng) / withG.length);
+    return { players: [...out.values()], byKey: out, date: cur.date, snapshots: snaps, horizon, unit: HORIZONS[horizon].unit, scale };
   }
 
   // ---------------- Optimierer (exakter Knapsack je Position) ----------------
@@ -272,15 +314,21 @@
   const stat = (label, val, cls) => `<div class="stat"><div class="stat-label">${label}</div><div class="stat-value display usm-sv ${cls || ''}">${val}</div></div>`;
   const srcLabel = { proj: 'MFHFB-Projection', none: 'keine Projection' };
   const remainingGames = () => 82 * Math.max(0, Math.min(1, (SEASON_END - Math.max(new Date(), SEASON_START)) / (SEASON_END - SEASON_START)));
-  const DATA = ['usm-base', '?sport:aliases', '?sport:live-projections', '?sport:projections-consensus'];
+  // Umschalter „Zeitraum“: speichert den Zeitraum und zeichnet die Seite neu
+  const horizonSeg = st => `<div class="usm-hz"><span class="muted usm-small">Zeitraum</span><div class="seg" role="group" aria-label="Zeitraum">${Object.entries(HORIZONS)
+    .filter(([k]) => k !== 'lock' || new Date() < LOCK_END)
+    .map(([k, h]) => `<button type="button" class="seg-btn${horizonOf(st) === k ? ' active' : ''}" data-horizon="${k}">${h.label}</button>`).join('')}</div></div>`;
+  const mountHorizon = (root, ctx) => root.querySelectorAll('[data-horizon]').forEach(b => b.addEventListener('click', () => { ctx.store.set('horizon', b.dataset.horizon); ctx.refresh(); }));
+  const DATA = ['usm-base', '?usm-schedule', '?sport:aliases', '?sport:live-projections', '?sport:projections-consensus'];
 
   // ======================= DRAFT & VALUE =======================
   MFHFB.pages.register({
     id: 'usmdraft', section: 'draft', label: 'Draft & Value', icon: '💶', applies: { sport: ['nba'] },
     when: l => l.key === 'usm', data: DATA,
-    render() {
+    render({ store }) {
       return head('Draft &amp; Value', 'Value-Board und Kader-Builder: Spieler antippen, „Optimal auffüllen“ rechnet den besten Rest unter Budget und Positionsregeln.')
         + MFHFB.ui.countdowns(DATES.map(d => ({ label: d.label, at: new Date(d.iso) })).filter(d => d.at > new Date()).slice(0, 1))
+        + horizonSeg(store)
         + `<div class="usm-stats" id="usmStats"></div>
         <div class="usm-grid">
           <div class="usm-side">
@@ -331,6 +379,7 @@
     },
     mount(root, ctx) {
       MFHFB.ui.mountCountdowns(root);
+      mountHorizon(root, ctx);
       const st = ctx.store, $ = id => root.querySelector('#' + id);
       let pool = buildPool(ctx.data, st), draft = S.draft(st).filter(k => pool.byKey.has(k)), fill = null;
       const view = { pos: 'ALL', sort: 'value', dir: -1, limit: 150 };
@@ -355,7 +404,7 @@
         const restCls = s.rest < -1e-9 ? 'down' : (s.open > 0 && s.rest < 0.5 * s.open ? 'warn' : 'up');
         $('usmStats').innerHTML = `<div class="stat-row usm-row">
           ${stat('Rest', `<span class="${restCls}">${f1(s.rest, 2)}</span>`)}${stat('Verplant', f1(s.used, 2))}${stat('Kader', s.ps.length + '/15')}
-          ${stat('G / F / C', `${s.cnt.G}/${s.cnt.F}/${s.cnt.C}`)}${stat('FP/G (EV)', f1(s.ev))}</div>`;
+          ${stat('G / F / C', `${s.cnt.G}/${s.cnt.F}/${s.cnt.C}`)}${stat(pool.unit, f1(s.ev))}</div>`;
         $('usmCount').textContent = `${s.ps.length}/15 · ${f1(s.used, 2)} Mio`;
 
         const grp = { G: 'Guards', F: 'Forwards', C: 'Center' };
@@ -367,7 +416,7 @@
 
         if (fill) {
           $('usmFillBox').innerHTML = !fill.add ? '<div class="usm-fill"><span class="down">Keine gültige Auffüllung – Budget oder Positionen passen nicht.</span></div>'
-            : `<div class="usm-fill"><div class="usm-gh"><span>Vorschlag: +${fill.add.length} · ${f1(fill.cost, 2)} Mio</span><span>Team ≈ ${f1(s.ev + fill.total)} FP/G</span></div>
+            : `<div class="usm-fill"><div class="usm-gh"><span>Vorschlag: +${fill.add.length} · ${f1(fill.cost, 2)} Mio</span><span>Team ≈ ${f1(s.ev + fill.total)} ${pool.unit}</span></div>
               ${fill.add.map(p => `<div class="usm-r"><span class="usm-n">${p.pos} · ${e(p.short)}${tags(p)}</span><span class="usm-m">${p.abbr} · ${f1(p.sal, 2)} · ${Math.round(p.min)}m · ${f1(p.ev)}</span></div>`).join('')}
               <div class="usm-actions"><button class="usm-btn primary" data-fill="apply">Übernehmen</button><button class="usm-btn" data-fill="close">Verwerfen</button></div></div>`;
         } else $('usmFillBox').innerHTML = '';
@@ -377,14 +426,14 @@
           const l = pool.players.filter(p => p.pos === pos && !draft.includes(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= mm && p.src === 'proj' && canAdd(p, s))
             .sort((a, b) => b.value - a.value).slice(0, 6);
           return `<div class="usm-group"><div class="usm-gh"><span>${grp[pos]}${s.need[pos] ? ` · noch ${s.need[pos]} Pflicht` : ' · Flex'}</span><span>FP/Mio</span></div>
-            ${l.length ? l.map(p => `<div class="usm-r usm-sug" data-add="${e(p.key)}"><span class="usm-n">${e(p.short)}${tags(p)}</span><span class="usm-m">${p.abbr} · ${f1(p.sal, 2)} · ${Math.round(p.min)}m · ${f1(p.ev)} · <b style="${valueStyle(p.value)}">${f1(p.value)}</b></span></div>`).join('')
+            ${l.length ? l.map(p => `<div class="usm-r usm-sug" data-add="${e(p.key)}"><span class="usm-n">${e(p.short)}${tags(p)}</span><span class="usm-m">${p.abbr} · ${f1(p.sal, 2)} · ${Math.round(p.min)}m · ${f1(p.ev)} · <b style="${valueStyle(p.value, pool)}">${f1(p.value)}</b></span></div>`).join('')
               : '<div class="muted usm-small">Kein Spieler passt.</div>'}</div>`;
         }).join('');
         table(s);
       }
 
       const COLS = [['', 'l', null], ['Spieler', 'l', 'short'], ['Team', 'l', 'abbr'], ['Pos', 'l', 'pos'], ['Gehalt', 'num', 'sal'], ['Min', 'num', 'min'],
-        ['FP/G', 'num', 'fpg'], ['Verf.', 'num', 'av'], ['EV', 'num', 'ev'], ['FP/Mio', 'num', 'value'], ['FP/G 25-26', 'num', 'fp26']];
+        ['FP/G', 'num', 'fpg'], ['Verf.', 'num', 'av'], ...(pool.horizon === 'game' ? [] : [['Sp.', 'num', 'ng']]), [pool.horizon === 'game' ? 'EV' : 'EV ' + HORIZONS[pool.horizon].short, 'num', 'ev'], ['FP/Mio', 'num', 'value'], ['FP/G 25-26', 'num', 'fp26']];
       function table(s) {
         const q = $('usmSearch').value.trim().toLowerCase(), minF = +$('usmMinF').value || 0;
         let l = pool.players.filter(p => (view.pos === 'ALL' || p.pos === view.pos) && (!$('usmFA').checked || p.team !== 'Free Agents')
@@ -404,7 +453,7 @@
               <td class="num"><input class="usm-ovr${p.minSet ? ' set' : ''}" type="number" min="0" max="48" step="1" value="${Math.round(p.min)}" data-ovr="min" data-key="${e(p.key)}" title="Quelle: ${srcLabel[p.src]}"></td>
               <td class="num">${f1(p.fpg)}</td>
               <td class="num"><input class="usm-ovr${p.avSet ? ' set' : ''}" type="number" min="0" max="100" step="5" value="${Math.round(p.av * 100)}" data-ovr="av" data-key="${e(p.key)}" title="Verfügbarkeit in %"></td>
-              <td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value)}">${f1(p.value)}</td>
+              ${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td>
               <td class="num muted">${f1(p.fp26)}</td></tr>`;
           }).join('') + '</tbody>';
         $('usmMore').innerHTML = total > view.limit ? `<button class="usm-btn" data-more>Mehr anzeigen (${total - view.limit} weitere)</button>` : `<span class="muted usm-small">${total} Spieler</span>`;
@@ -493,18 +542,19 @@
       const cash = team.cash || 0, salSum = sum(ps, p => p.sal), val = salSum + cash, start = sum(ps, p => p.firstSal ?? p.sal) + cash, dv = val - start;
       const dc = d => d == null ? '–' : `<span class="${d > 0.004 ? 'up' : d < -0.004 ? 'down' : 'muted'}">${d > 0 ? '+' : ''}${f1(d, 2)}</span>`;
       return head('Mein Team &amp; Trades', `Gehälter vom ${fmtDate(pool.date)} · ${pool.snapshots.length} Snapshot${pool.snapshots.length > 1 ? 's' : ''}`)
-        + `<div class="stat-row usm-row">${stat('Teamwert', f1(val, 2))}${stat('Δ seit Start', `<span class="${dv >= 0 ? 'up' : 'down'}">${dv >= 0 ? '+' : ''}${f1(dv, 2)}</span>`)}${stat('Gehälter', f1(salSum, 2))}${stat('Restbudget', f1(cash, 2))}${stat('FP/G (EV)', f1(sum(ps, p => p.ev)))}</div>
+        + `<div class="stat-row usm-row">${stat('Teamwert', f1(val, 2))}${stat('Δ seit Start', `<span class="${dv >= 0 ? 'up' : 'down'}">${dv >= 0 ? '+' : ''}${f1(dv, 2)}</span>`)}${stat('Gehälter', f1(salSum, 2))}${stat('Restbudget', f1(cash, 2))}${stat(pool.unit, f1(sum(ps, p => p.ev)))}</div>`
+        + horizonSeg(store) + `
         <section class="card" data-share="Mein US-Manager-Team">
           <div class="card-head"><h2>Kader</h2><label class="muted usm-small">Restbudget <input type="number" class="usm-ovr usm-cash" id="usmCash" step="0.01" value="${f1(cash, 2)}"></label></div>
-          <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Gehalt</th><th class="num">Δ Woche</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num">FP/G proj</th><th class="num">EV</th><th class="num">FP/Mio</th></tr></thead><tbody>
+          <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Gehalt</th><th class="num">Δ Woche</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num">FP/G proj</th>${pool.horizon === 'game' ? '' : '<th class="num">Sp.</th>'}<th class="num">EV</th><th class="num">FP/Mio</th></tr></thead><tbody>
           ${ps.slice().sort((a, b) => a.pos.localeCompare(b.pos) || b.sal - a.sal).map(p => `<tr><td>${p.pos}</td><td class="strong usm-name">${e(p.short)}${tags(p)}</td><td>${p.abbr}</td>
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${dc(p.prevSal != null ? p.sal - p.prevSal : null)}</td><td class="num">${dc(p.firstSal != null ? p.sal - p.firstSal : null)}</td>
-            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${f1(p.fpg)}</td><td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value)}">${f1(p.value)}</td></tr>`).join('')}
+            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${f1(p.fpg)}</td>${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td></tr>`).join('')}
           ${miss ? `<tr><td colspan="11" class="down">${miss} Spieler fehlen im aktuellen Snapshot.</td></tr>` : ''}</tbody></table></div>
         </section>
         <section class="card usm-mt">
           <div class="card-head"><h2>Trade-Finder</h2><span class="usm-opts usm-inline"><label>Min. Minuten <input type="number" id="usmTrMin" value="14" min="0" max="40"></label><button class="usm-btn primary" id="usmTrBtn">Trades suchen</button></span></div>
-          <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten FP pro Spiel, hochgerechnet auf ca. ${Math.round(remainingGames())} Rest-Spiele. Ein Zusatz-Trade kostet ${TRADE_COST} Mio Budget. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
+          <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten Punkten im gewählten Zeitraum (${HORIZONS[pool.horizon].label}), inkl. Spielplan. Ein Zusatz-Trade kostet ${TRADE_COST} Mio Budget. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
         </section>`;
     },
     mount(root, ctx) {
@@ -512,6 +562,7 @@
       if (!team) return;
       const cashEl = root.querySelector('#usmCash');
       cashEl.addEventListener('change', () => { team.cash = +cashEl.value || 0; st.setJSON('team', team); ctx.refresh(); });
+      mountHorizon(root, ctx);
       let last = [];
       root.querySelector('#usmTrBtn').addEventListener('click', ev => {
         const b = ev.currentTarget; b.disabled = true; b.textContent = 'Suche…';
@@ -523,7 +574,7 @@
           const block = (title, l, off) => `<div class="group-title">${title}</div>` + (l.length ? l.map((t, i) => `<div class="usm-trade">
               <div><div class="usm-lbl">Raus</div>${t.out.map(p => `${p.pos} ${e(p.short)} <span class="usm-m">${f1(p.sal, 2)} · ${f1(p.ev)}</span>`).join('<br>')}</div>
               <div><div class="usm-lbl">Rein</div>${t.in.map(p => `${p.pos} ${e(p.short)}${tags(p)} <span class="usm-m">${p.abbr} · ${f1(p.sal, 2)} · ${f1(p.ev)}</span>`).join('<br>')}</div>
-              <div class="usm-gain">+${f1(t.gain)} FP/G<br><span class="usm-m">≈ +${Math.round(t.gain * rg)} Saison · Rest ${f1(t.cashAfter, 2)}</span></div>
+              <div class="usm-gain">+${f1(t.gain)} ${pool.unit}<br><span class="usm-m">${pool.horizon === 'game' ? `≈ +${Math.round(t.gain * rg)} Saison · ` : ''}Rest ${f1(t.cashAfter, 2)}</span></div>
               <div><button class="usm-btn" data-apply="${off + i}">Ausführen</button></div></div>`).join('') : '<div class="muted usm-small">Keine Verbesserung gefunden.</div>');
           root.querySelector('#usmTrOut').className = '';
           root.querySelector('#usmTrOut').innerHTML = block('1-für-1', r.singles, 0) + block('2-für-2 (2 Trades)', r.doubles, r.singles.length);
