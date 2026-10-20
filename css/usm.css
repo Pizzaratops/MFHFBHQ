@@ -22,6 +22,8 @@
 .usm-x:hover { color: #d9534f; }
 .usm-sug { cursor: pointer; }
 .usm-sug:hover { box-shadow: inset 0 0 0 1px var(--league-accent); }
+.usm-xfer { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; }
+.usm-xfer .usm-ta { min-height: 70px; word-break: break-all; }
 .usm-fill { margin-top: 10px; border: 1px dashed var(--league-accent); border-radius: 10px; padding: 8px 10px; }
 
 .usm-btn {

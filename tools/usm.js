@@ -299,6 +299,11 @@
                   <label>Min. Minuten <input type="number" id="usmMinMin" value="14" min="0" max="40"></label>
                   <label><input type="checkbox" id="usmNoRk"> ohne weitere Rookies</label>
                 </div>
+                <div class="usm-actions">
+                  <button class="usm-btn" id="usmExp">Kader-Code kopieren</button>
+                  <button class="usm-btn" id="usmImpCode">Code einfügen</button>
+                </div>
+                <div id="usmXfer"></div>
                 <div id="usmFillBox"></div>
               </div>
             </section>
@@ -431,6 +436,28 @@
         else if (t.id === 'usmMinMin') { fill = null; paint(); }
       });
       ['usmSearch', 'usmMinF'].forEach(id => $(id).addEventListener('input', () => { view.limit = 150; table(state()); }));
+      // Kader + eigene Werte zwischen Geräten übertragen (gleiches Format wie die Claude-Seite: "USM1.<base64>")
+      const xfer = h => { $('usmXfer').innerHTML = h ? `<div class="usm-xfer">${h}</div>` : ''; };
+      $('usmExp').addEventListener('click', () => {
+        const code = 'USM1.' + btoa(unescape(encodeURIComponent(JSON.stringify({ d: draft.map(k => pool.byKey.get(k).short), o: Object.fromEntries(Object.entries(S.ovr(st)).map(([k, v]) => [(pool.byKey.get(k) || {}).short || k, v])) }))));
+        const show = () => { xfer(`<span>Code markiert – kopieren und auf dem anderen Gerät einfügen:</span><textarea class="usm-input usm-ta" id="usmXCode" readonly>${e(code)}</textarea>`); $('usmXCode').select(); };
+        if (navigator.clipboard) navigator.clipboard.writeText(code).then(() => xfer(`<span class="up">Kopiert ✓ (${draft.length} Spieler). Auf dem anderen Gerät „Code einfügen“.</span>`)).catch(show); else show();
+      });
+      $('usmImpCode').addEventListener('click', () => {
+        xfer('<textarea class="usm-input usm-ta" id="usmXIn" placeholder="USM1.…"></textarea><div class="usm-actions"><button class="usm-btn primary" id="usmXApply">Übernehmen</button><button class="usm-btn" id="usmXCancel">Abbrechen</button></div><span class="muted">Ersetzt Draft-Kader und eigene Minuten/Verfügbarkeiten auf diesem Gerät.</span>');
+        $('usmXCancel').addEventListener('click', () => xfer(''));
+        $('usmXApply').addEventListener('click', () => {
+          try {
+            const o = JSON.parse(decodeURIComponent(escape(atob($('usmXIn').value.trim().replace(/^USM1\./, '')))));
+            if (!o || !Array.isArray(o.d)) throw new Error();
+            const byShort = new Map(pool.players.map(p => [p.short, p.key]));
+            const keys = o.d.map(n => byShort.get(n)).filter(Boolean).slice(0, ROSTER);
+            const ov = {}; Object.entries(o.o || {}).forEach(([n, v]) => { const k = byShort.get(n); if (k) ov[k] = v; });
+            draft = keys; save(); st.setJSON('overrides', ov); pool = buildPool(ctx.data, st); fill = null; paint();
+            xfer(`<span class="up">Übernommen ✓ ${keys.length} Spieler${o.d.length > keys.length ? ` (${o.d.length - keys.length} unbekannt)` : ''}.</span>`);
+          } catch (err) { xfer('<span class="down">Code nicht lesbar – bitte komplett kopieren (beginnt mit USM1.).</span>'); }
+        });
+      });
       $('usmClear').addEventListener('click', () => { if (draft.length && !confirm('Draft-Kader leeren?')) return; draft = []; fill = null; save(); paint(); });
       $('usmFill').addEventListener('click', () => {
         const s = state(); if (s.open <= 0) return alert('Kader ist schon voll.');
