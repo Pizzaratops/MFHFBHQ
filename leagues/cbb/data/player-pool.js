@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-20T23:11:15.479Z
+//  Stand: 2026-10-20T23:53:06.071Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1054,6 +1054,7 @@ const CBB_PLAYER_POOL = [
 ["070om","Jacob Ross","UConn","F","F/C,Flx","FA"],
 ["06gle","Jacob Theodosiou","Duke","G","G,Flx","FA"],
 ["070y4","Jacob Tsai","Yale","G","G,Flx","FA"],
+["071pq","Jacob Walker","OkSt","G","G,Flx","FA"],
 ["079mb","Jacob Webber","Pur","G","G,Flx","FA"],
 ["0795i","Jaden Bailes","SeatU","G","G,Flx","FA"],
 ["06q53","Jaden Bobbett","LSU","G","G,Flx","FA"],
@@ -1743,7 +1744,7 @@ const CBB_PLAYER_POOL = [
 ["079qt","Mervedi Miteo","Rut","F","F/C,Flx","FA"],
 ["070ko","Micah Curtis","Wyo","F","F/C,Flx","FA"],
 ["064vb","Micah Handlogten","Miss","C","F/C,Flx","FA"],
-["06mu8","Micah Robinson","TCU","F","F/C,Flx","T"],
+["06mu8","Micah Robinson","TCU","F","F/C,G,Flx","T"],
 ["071ha","Micah Tucker","GrCan","G","G,Flx","FA"],
 ["06gb6","Michael Belle","VCU","G","F/C,G,Flx","FA"],
 ["064zd","Michael Collins","Cin","G","G,Flx","FA"],
