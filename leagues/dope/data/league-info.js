@@ -103,7 +103,7 @@ const LEAGUE_INFO = {
   "tradeReviewDays": 0
  },
  "nflWeek": 7,
- "lastScoredWeek": 5,
+ "lastScoredWeek": 6,
  "previousLeagueId": null,
- "syncedAt": "2026-10-20T04:42:23.312Z"
+ "syncedAt": "2026-10-20T11:28:57.362Z"
 };
