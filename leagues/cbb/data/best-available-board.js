@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-20T19:38:27.556Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-20T22:42:24.910Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2417,6 +2417,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2411},
   {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2412},
   {"name":"KyeRon Lindsay","nbaTeam":"UAB","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2413},
-  {"name":"Jared McGregor","nbaTeam":"BYU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2414},
-  {"name":"Noah Haaland","nbaTeam":"Gonz","pos":"F","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2415}
+  {"name":"Saliou Niang","nbaTeam":"LSU","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2414},
+  {"name":"Jared McGregor","nbaTeam":"BYU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2415},
+  {"name":"Noah Haaland","nbaTeam":"Gonz","pos":"F","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2416}
 ];
