@@ -12,8 +12,8 @@
 //      Fouls fehlen in den Projections → PF/Min je Position, kalibriert an
 //      den echten Manager-FP 2025-26 (G 0,061 · F 0,072 · C 0,101).
 //      Live-Projections blenden ab Saisonstart die echten Stats ein.
-//   2. Sonst: echte Manager-FP/Min aus den basketball.de-Profilen
-//      (25-26 voll, 24-25 halb, 150 Phantom-Minuten Richtung 0,55).
+//   2. Sonst (seit 20.10.2026): 0 – keine Vorjahreswerte, Spieler wird
+//      nicht empfohlen (Tag „ohne Proj.“).
 //   Minuten pro Spieler überschreibbar (FP/G skaliert pro Minute).
 //   Verfügbarkeit = Consensus-Spiele/82, Verletzungs-Seed (Stand 18.10.)
 //   oder eigener Wert.
@@ -114,13 +114,9 @@
           - 0.5 * ((P.fga || 0) - (P.fgm || 0)) - 0.5 * ((P.fta || 0) - (P.ftm || 0)) - 0.5 * pfm * P.min;
         fpm = fp / P.min; baseMin = P.min; src = 'proj';
       } else {
-        const MN = (s26 ? s26[1] : 0) + 0.5 * (s25 ? s25[1] : 0);
-        if (MN > 0) {
-          const FP = (s26 ? s26[2] : 0) + 0.5 * (s25 ? s25[2] : 0);
-          fpm = (FP + PRIOR_FPM * PRIOR_MIN) / (MN + PRIOR_MIN); src = 'hist';
-          // Steht der Spieler mit 0 Minuten in den Projections, gilt das (bewusst nicht eingeplant)
-          baseMin = P ? 0 : (s26 && s26[0] > 0 ? 0.9 * s26[1] / s26[0] : 0);
-        } else { fpm = 0.45; src = 'est'; }
+        // 20.10.2026 (Beyaz): ohne MFHFB-Projection KEINE Vorjahreswerte mehr –
+        // Spieler zählt mit 0 (taucht nicht in Empfehlungen/Optimierer auf).
+        fpm = 0; src = 'none'; baseMin = 0;
       }
       const min = (o.min != null) ? +o.min : baseMin;
 
@@ -196,7 +192,7 @@
     const need = { G: Math.max(0, MINPOS.G - have.G), F: Math.max(0, MINPOS.F - have.F), C: Math.max(0, MINPOS.C - have.C) };
     if (need.G + need.F + need.C > open) return null;
     const cand = pool.filter(p => !keys.has(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= opts.minMin
-      && p.src !== 'est' && !(opts.noRookies && p.rookie));
+      && p.src === 'proj' && !(opts.noRookies && p.rookie));
     const D = {};
     ['G', 'F', 'C'].forEach(pos => { D[pos] = knap(prune(cand.filter(p => p.pos === pos), open), open, B); });
     let bt = -1e9, bs = null;
@@ -228,7 +224,7 @@
   // ---------------- Trade-Finder ----------------
   function findTrades(pool, team, cash, minMin) {
     const tk = new Set(team.map(p => p.key));
-    const cand = pool.filter(p => !tk.has(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= minMin && p.src !== 'est');
+    const cand = pool.filter(p => !tk.has(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= minMin && p.src === 'proj');
     const singles = [];
     for (const out of team) {
       const avail = cash + out.sal, rest = team.filter(p => p !== out);
@@ -269,13 +265,12 @@
     let t = '';
     if (p.rookie) t += '<span class="usm-tag r">R</span>';
     if (p.status) t += `<span class="usm-tag ${p.av <= 0.5 ? 'inj' : 'q'}">${e(p.status)}</span>`;
-    if (p.src === 'est') t += '<span class="usm-tag est">geschätzt</span>';
-    else if (p.src === 'hist') t += '<span class="usm-tag est" title="Keine MFHFB-Projection – Werte aus den basketball.de-FP der Vorjahre">ohne Proj.</span>';
+    if (p.src === 'none') t += '<span class="usm-tag est" title="Keine MFHFB-Projection (BBM/Hashtag) – zählt mit 0">ohne Proj.</span>';
     return t;
   }
   const head = (title, sub) => `<div class="page-head"><h1 class="page-title display">${title}</h1><div class="page-sub">${sub}</div></div>`;
   const stat = (label, val, cls) => `<div class="stat"><div class="stat-label">${label}</div><div class="stat-value display usm-sv ${cls || ''}">${val}</div></div>`;
-  const srcLabel = { proj: 'MFHFB-Projection', hist: 'basketball.de-FP Vorjahre', est: 'geschätzt' };
+  const srcLabel = { proj: 'MFHFB-Projection', none: 'keine Projection' };
   const remainingGames = () => 82 * Math.max(0, Math.min(1, (SEASON_END - Math.max(new Date(), SEASON_START)) / (SEASON_END - SEASON_START)));
   const DATA = ['usm-base', '?sport:aliases', '?sport:live-projections', '?sport:projections-consensus'];
 
@@ -332,7 +327,7 @@
             <div class="usm-more" id="usmMore"></div>
           </section>
         </div>
-        <p class="muted usm-foot">Projektion = MFHFB-Projection (Live/Consensus) in Manager-Punkten, Fouls je Position geschätzt; ohne Projection: echte basketball.de-FP pro Minute der Vorjahre. EV = FP/G × Verfügbarkeit. Minuten und Verfügbarkeit in der Tabelle überschreibbar. Verletzungsstatus Stand 18.10.2026.</p>`;
+        <p class="muted usm-foot">Projektion = MFHFB-Projection (Live/Consensus) in Manager-Punkten, Fouls je Position geschätzt; ohne Projection: 0 (keine Vorjahreswerte). EV = FP/G × Verfügbarkeit. Minuten und Verfügbarkeit in der Tabelle überschreibbar. Verletzungsstatus Stand 18.10.2026.</p>`;
     },
     mount(root, ctx) {
       MFHFB.ui.mountCountdowns(root);
@@ -379,7 +374,7 @@
 
         const mm = +$('usmMinMin').value || 0;
         $('usmSugg').innerHTML = s.open <= 0 ? '<div class="muted usm-small">Kader komplett.</div>' : ['G', 'F', 'C'].map(pos => {
-          const l = pool.players.filter(p => p.pos === pos && !draft.includes(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= mm && p.src !== 'est' && canAdd(p, s))
+          const l = pool.players.filter(p => p.pos === pos && !draft.includes(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= mm && p.src === 'proj' && canAdd(p, s))
             .sort((a, b) => b.value - a.value).slice(0, 6);
           return `<div class="usm-group"><div class="usm-gh"><span>${grp[pos]}${s.need[pos] ? ` · noch ${s.need[pos]} Pflicht` : ' · Flex'}</span><span>FP/Mio</span></div>
             ${l.length ? l.map(p => `<div class="usm-r usm-sug" data-add="${e(p.key)}"><span class="usm-n">${e(p.short)}${tags(p)}</span><span class="usm-m">${p.abbr} · ${f1(p.sal, 2)} · ${Math.round(p.min)}m · ${f1(p.ev)} · <b style="${valueStyle(p.value)}">${f1(p.value)}</b></span></div>`).join('')
