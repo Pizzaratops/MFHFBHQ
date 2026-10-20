@@ -256,7 +256,7 @@
   const TEAM_DATA = ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections'];
   MFHFB.pages.register({
     id: 'home', section: 'home', label: 'Übersicht', icon: '🏠', applies: A,
-    data: TEAM_DATA.concat(['?rankings', '?picks']),
+    data: TEAM_DATA.concat(['?rankings', '?players', '?picks']),
     render: home, mount: root => MFHFB.ui.mountCountdowns && MFHFB.ui.mountCountdowns(root),
   });
   MFHFB.pages.register({
