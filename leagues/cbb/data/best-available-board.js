@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-20T15:23:42.130Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-20T17:03:01.278Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -255,7 +255,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Oziyah Sellers","nbaTeam":"SMU","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":27.2,"z30":1.44,"bestCat30":"TO","worstCat30":"STL","lastSeasonRank":1012,"projZ":4.56,"projMin":27.2,"role":"Starter","statsWindow":"last-season","compositeScore":0.46,"signalsUsed":1,"rank":249},
   {"name":"Rakim Chaney","nbaTeam":"Valpa","pos":"G","cls":"So","experience":"sophomore","nilValue":9,"minutesAvg":25.5,"z30":1.95,"bestCat30":"STL","worstCat30":"FG%","lastSeasonRank":875,"projZ":4.54,"projMin":25.5,"role":"Starter","statsWindow":"last-season","compositeScore":0.46,"signalsUsed":1,"rank":250},
   {"name":"Aaron McBride","nbaTeam":"LoyMa","pos":"F","cls":"Sr","experience":"veteran","nilValue":11,"minutesAvg":23.1,"z30":2.53,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":740,"projZ":4.48,"projMin":23.1,"role":"Starter","statsWindow":"last-season","compositeScore":0.45,"signalsUsed":1,"rank":251},
-  {"name":"Adam Clark","nbaTeam":"Seton","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":25.6,"z30":2.04,"bestCat30":"STL","worstCat30":"TO","lastSeasonRank":852,"projZ":4.48,"projMin":25.6,"role":"Starter","statsWindow":"last-season","compositeScore":0.45,"signalsUsed":1,"rank":252},
+  {"name":"Adam Clark","nbaTeam":"Miss","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":25.6,"z30":2.04,"bestCat30":"STL","worstCat30":"TO","lastSeasonRank":852,"projZ":4.48,"projMin":25.6,"role":"Starter","statsWindow":"last-season","compositeScore":0.45,"signalsUsed":1,"rank":252},
   {"name":"Bruce Branch III","nbaTeam":"BYU","pos":"F","cls":"Fr","experience":"rookie","nilValue":43,"minutesAvg":27,"projZ":4.5,"projMin":27,"role":"Starter","compositeScore":0.45,"signalsUsed":1,"rank":253},
   {"name":"Brock Harding","nbaTeam":"TCU","pos":"G","cls":"Sr","experience":"veteran","nilValue":4,"minutesAvg":27.1,"z30":1.25,"bestCat30":"AST","worstCat30":"FG%","lastSeasonRank":1062,"projZ":4.44,"projMin":27.1,"role":"Starter","statsWindow":"last-season","compositeScore":0.44,"signalsUsed":1,"rank":254},
   {"name":"John Blackwell","nbaTeam":"Duke","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":22.5,"z30":7.56,"bestCat30":"FT%","worstCat30":"BLK","lastSeasonRank":88,"projZ":4.44,"projMin":22.5,"role":"Starter","statsWindow":"last-season","compositeScore":0.44,"signalsUsed":1,"rank":255},
