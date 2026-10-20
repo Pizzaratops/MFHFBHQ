@@ -1,0 +1,13 @@
+{
+  "league": "nba",
+  "date": "2026-10-20",
+  "games": [
+    "Boston Celtics 113 @ Detroit Pistons 121 (Final)",
+    "Philadelphia 76ers @ New York Knicks (10/20 - 7:00 PM EDT)",
+    "Oklahoma City Thunder @ San Antonio Spurs (10/20 - 9:30 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 45.4,
+    "ft": 83
+  }
+}

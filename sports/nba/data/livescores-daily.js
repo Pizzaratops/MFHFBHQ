@@ -28,6 +28,36 @@
 // ============================================================
 
 const LIVESCORES_DAILY = {
+  "nba": {
+    "2026-10-20": {
+      games: ["Boston Celtics 113 @ Detroit Pistons 121 (Final)","Philadelphia 76ers @ New York Knicks (10/20 - 7:00 PM EDT)","Oklahoma City Thunder @ San Antonio Spurs (10/20 - 9:30 PM EDT)"],
+      leagueAvg: { fg: 45.4, ft: 83 },
+      players: [
+        { rank: 1, name: "Paul George", team: "BOS", min: 31, pts: 38, reb: 5, ast: 3, stl: 5, blk: 0, to: 3, tpm: 7, fgPct: 57.1, ftPct: 87.5, composite: 11.02, zScores: { pts: 2.898, reb: 0.425, ast: 0.174, stl: 4.059, blk: -0.693, tpm: 2.814, fgImpact: 1.779, ftImpact: 0.705, to: -1.134 } },
+        { rank: 2, name: "Jalen Duren", team: "DET", min: 28, pts: 22, reb: 9, ast: 1, stl: 1, blk: 1, to: 1, tpm: 0, fgPct: 61.5, ftPct: 85.7, composite: 5.29, zScores: { pts: 1.204, reb: 2.123, ast: -0.522, stl: 0.218, blk: 0.832, tpm: -0.738, fgImpact: 1.513, ftImpact: 0.372, to: 0.292 } },
+        { rank: 3, name: "Javonte Green", team: "DET", min: 18, pts: 19, reb: 4, ast: 0, stl: 0, blk: 0, to: 0, tpm: 5, fgPct: 50, ftPct: 100, composite: 3.05, zScores: { pts: 0.886, reb: 0, ast: -0.87, stl: -0.742, blk: -0.693, tpm: 1.799, fgImpact: 0.331, ftImpact: 1.332, to: 1.004 } },
+        { rank: 4, name: "Cade Cunningham", team: "DET", min: 35, pts: 22, reb: 4, ast: 8, stl: 1, blk: 1, to: 5, tpm: 1, fgPct: 44.4, ftPct: 100, composite: 2.92, zScores: { pts: 1.204, reb: 0, ast: 1.915, stl: 0.218, blk: 0.832, tpm: -0.231, fgImpact: -0.123, ftImpact: 1.665, to: -2.559 } },
+        { rank: 5, name: "Ausar Thompson", team: "DET", min: 33, pts: 11, reb: 11, ast: 5, stl: 1, blk: 0, to: 3, tpm: 0, fgPct: 50, ftPct: 100, composite: 2.8, zScores: { pts: 0.039, reb: 2.973, ast: 0.87, stl: 0.218, blk: -0.693, tpm: -0.738, fgImpact: 0.266, ftImpact: 0.999, to: -1.134 } },
+        { rank: 6, name: "Payton Pritchard", team: "BOS", min: 28, pts: 17, reb: 4, ast: 1, stl: 0, blk: 0, to: 0, tpm: 2, fgPct: 44.4, ftPct: 87.5, composite: 0.64, zScores: { pts: 0.674, reb: 0, ast: -0.522, stl: -0.742, blk: -0.693, tpm: 0.277, fgImpact: -0.065, ftImpact: 0.705, to: 1.004 } },
+        { rank: 7, name: "John Collins", team: "DET", min: 25, pts: 6, reb: 5, ast: 1, stl: 1, blk: 1, to: 0, tpm: 0, fgPct: 42.9, ftPct: 0, composite: 0.6, zScores: { pts: -0.491, reb: 0.425, ast: -0.522, stl: 0.218, blk: 0.832, tpm: -0.738, fgImpact: -0.13, ftImpact: -0.001, to: 1.004 } },
+        { rank: 8, name: "Derrick White", team: "BOS", min: 36, pts: 17, reb: 1, ast: 8, stl: 1, blk: 0, to: 4, tpm: 3, fgPct: 53.8, ftPct: 0, composite: 0.57, zScores: { pts: 0.674, reb: -1.274, ast: 1.915, stl: 0.218, blk: -0.693, tpm: 0.784, fgImpact: 0.792, ftImpact: -0.001, to: -1.846 } },
+        { rank: 9, name: "Sam Hauser", team: "BOS", min: 18, pts: 11, reb: 4, ast: 1, stl: 0, blk: 0, to: 0, tpm: 3, fgPct: 57.1, ftPct: 0, composite: 0.46, zScores: { pts: 0.039, reb: 0, ast: -0.522, stl: -0.742, blk: -0.693, tpm: 0.784, fgImpact: 0.59, ftImpact: -0.001, to: 1.004 } },
+        { rank: 10, name: "Jordan Walsh", team: "BOS", min: 13, pts: 0, reb: 6, ast: 1, stl: 1, blk: 1, to: 0, tpm: 0, fgPct: 0, ftPct: 0, composite: -0.14, zScores: { pts: -1.127, reb: 0.849, ast: -0.522, stl: 0.218, blk: 0.832, tpm: -0.738, fgImpact: -0.656, ftImpact: -0.001, to: 1.004 } },
+        { rank: 11, name: "Paul Reed", team: "DET", min: 17, pts: 6, reb: 6, ast: 2, stl: 1, blk: 0, to: 2, tpm: 0, fgPct: 66.7, ftPct: 100, composite: -0.32, zScores: { pts: -0.491, reb: 0.849, ast: -0.174, stl: 0.218, blk: -0.693, tpm: -0.738, fgImpact: 0.461, ftImpact: 0.666, to: -0.421 } },
+        { rank: 12, name: "Neemias Queta", team: "BOS", min: 22, pts: 3, reb: 4, ast: 2, stl: 1, blk: 2, to: 1, tpm: 0, fgPct: 33.3, ftPct: 50, composite: -0.41, zScores: { pts: -0.809, reb: 0, ast: -0.174, stl: 0.218, blk: 2.357, tpm: -0.738, fgImpact: -0.26, ftImpact: -1.295, to: 0.292 } },
+        { rank: 13, name: "Baylor Scheierman", team: "BOS", min: 18, pts: 8, reb: 3, ast: 0, stl: 1, blk: 0, to: 1, tpm: 2, fgPct: 75, ftPct: 0, composite: -0.63, zScores: { pts: -0.279, reb: -0.425, ast: -0.87, stl: 0.218, blk: -0.693, tpm: 0.277, fgImpact: 0.85, ftImpact: -0.001, to: 0.292 } },
+        { rank: 14, name: "Duncan Robinson", team: "DET", min: 28, pts: 21, reb: 2, ast: 2, stl: 1, blk: 0, to: 3, tpm: 5, fgPct: 50, ftPct: 75, composite: -0.66, zScores: { pts: 1.098, reb: -0.849, ast: -0.174, stl: 0.218, blk: -0.693, tpm: 1.799, fgImpact: 0.331, ftImpact: -1.255, to: -1.134 } },
+        { rank: 15, name: "Isaiah Joe", team: "DET", min: 19, pts: 8, reb: 2, ast: 2, stl: 1, blk: 1, to: 1, tpm: 2, fgPct: 22.2, ftPct: 66.7, composite: -2.15, zScores: { pts: -0.279, reb: -0.849, ast: -0.174, stl: 0.218, blk: 0.832, tpm: 0.277, fgImpact: -1.506, ftImpact: -0.961, to: 0.292 } },
+        { rank: 16, name: "Jayson Tatum", team: "BOS", min: 38, pts: 13, reb: 4, ast: 11, stl: 0, blk: 0, to: 2, tpm: 0, fgPct: 26.1, ftPct: 100, composite: -2.25, zScores: { pts: 0.25, reb: 0, ast: 2.959, stl: -0.742, blk: -0.693, tpm: -0.738, fgImpact: -3.199, ftImpact: 0.332, to: -0.421 } },
+        { rank: 17, name: "Kevin Huerter", team: "DET", min: 18, pts: 3, reb: 3, ast: 2, stl: 0, blk: 0, to: 0, tpm: 1, fgPct: 25, ftPct: 0, composite: -2.66, zScores: { pts: -0.809, reb: -0.425, ast: -0.174, stl: -0.742, blk: -0.693, tpm: -0.231, fgImpact: -0.591, ftImpact: -0.001, to: 1.004 } },
+        { rank: 18, name: "Mitchell Robinson", team: "BOS", min: 18, pts: 4, reb: 3, ast: 1, stl: 1, blk: 2, to: 2, tpm: 0, fgPct: 100, ftPct: 0, composite: -2.7, zScores: { pts: -0.703, reb: -0.425, ast: -0.522, stl: 0.218, blk: 2.357, tpm: -0.738, fgImpact: 0.785, ftImpact: -3.255, to: -0.421 } },
+        { rank: 19, name: "Daniss Jenkins", team: "DET", min: 15, pts: 3, reb: 2, ast: 3, stl: 0, blk: 0, to: 1, tpm: 1, fgPct: 33.3, ftPct: 0, composite: -3.12, zScores: { pts: -0.809, reb: -0.849, ast: 0.174, stl: -0.742, blk: -0.693, tpm: -0.231, fgImpact: -0.26, ftImpact: -0.001, to: 0.292 } },
+        { rank: 20, name: "Ronald Holland II", team: "DET", min: 3, pts: 0, reb: 1, ast: 1, stl: 0, blk: 1, to: 1, tpm: 0, fgPct: 0, ftPct: 0, composite: -3.61, zScores: { pts: -1.127, reb: -1.274, ast: -0.522, stl: -0.742, blk: 0.832, tpm: -0.738, fgImpact: -0.325, ftImpact: -0.001, to: 0.292 } },
+        { rank: 21, name: "Hugo Gonzalez", team: "BOS", min: 10, pts: 0, reb: 3, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgPct: 0, ftPct: 0, composite: -3.92, zScores: { pts: -1.127, reb: -0.425, ast: -0.87, stl: -0.742, blk: -0.693, tpm: -0.738, fgImpact: -0.325, ftImpact: -0.001, to: 1.004 } },
+        { rank: 22, name: "Luka Garza", team: "BOS", min: 8, pts: 2, reb: 2, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgPct: 33.3, ftPct: 0, composite: -4.78, zScores: { pts: -0.915, reb: -0.849, ast: -0.87, stl: -0.742, blk: -0.693, tpm: -0.738, fgImpact: -0.26, ftImpact: -0.001, to: 0.292 } }
+      ]
+    }
+  },
   "nba-preseason": {
     "2026-10-03": {
       games: ["Miami Heat 129 @ Toronto Raptors 105 (Final)"],
