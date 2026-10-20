@@ -1,0 +1,60 @@
+{
+  "league": "nba",
+  "date": "2026-10-20",
+  "games": [
+    {
+      "id": "401909088",
+      "line": "Boston Celtics @ Detroit Pistons (10/20 - 3:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/20 - 3:00 PM EDT",
+      "away": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909089",
+      "line": "Philadelphia 76ers @ New York Knicks (10/20 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/20 - 7:00 PM EDT",
+      "away": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909090",
+      "line": "Oklahoma City Thunder @ San Antonio Spurs (10/20 - 9:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/20 - 9:30 PM EDT",
+      "away": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
