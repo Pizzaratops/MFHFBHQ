@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-20T00:20:30.043Z
+//  Stand: 2026-10-20T05:22:29.700Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1054,7 +1054,6 @@ const CBB_PLAYER_POOL = [
 ["070om","Jacob Ross","UConn","F","F/C,Flx","FA"],
 ["06gle","Jacob Theodosiou","Duke","G","G,Flx","FA"],
 ["070y4","Jacob Tsai","Yale","G","G,Flx","FA"],
-["071pq","Jacob Walker","OkSt","G","G,Flx","FA"],
 ["079mb","Jacob Webber","Pur","G","G,Flx","FA"],
 ["0795i","Jaden Bailes","SeatU","G","G,Flx","FA"],
 ["06q53","Jaden Bobbett","LSU","G","G,Flx","FA"],
@@ -1983,7 +1982,6 @@ const CBB_PLAYER_POOL = [
 ["07a9e","Ralph Scott","Tenn","F","F/C,Flx","FA"],
 ["07amt","Randy Livingston","TxSt","G","G,Flx","FA"],
 ["06gkg","Rashaan Mbemba","ColSt","F","F/C,Flx","FA"],
-["065sy","Rashad King","LSU","G","G,Flx","FA"],
 ["0650q","Rasheed Jones","Rut","G","G,Flx","FA"],
 ["071g1","Rashund Washington","UIC","G","G,Flx","FA"],
 ["06pxl","Ray Adams","SeatU","F","F/C,Flx","FA"],
