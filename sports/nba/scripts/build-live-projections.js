@@ -137,9 +137,9 @@ const PROJECTIONS_BASELINE = (() => {
   });
   // Spieler, die nur die alte Baseline kennt, nicht verlieren
   let baselineOnly = 0;
-  Object.keys(PROJECTIONS_BASELINE_RAW).forEach(name => {
-    if (!merged[name]) { merged[name] = PROJECTIONS_BASELINE_RAW[name]; baselineOnly++; }
-  });
+  // 20.10.2026: Spieler, die nur Beyaz' Baseline kennt, NICHT mehr übernehmen
+  // (Baseline ist keine Stats-Quelle mehr; sonst tauchen z. B. gewaivte
+  // Spieler wie Bruce Brown mit alten Minuten wieder auf).
   console.log(`  Stats-Quelle: ${fromConsensus} aus Consensus, ${baselineOnly} nur aus Baseline, ${ratingsCarried} mit übernommenen z-Werten.`);
   return merged;
 })();

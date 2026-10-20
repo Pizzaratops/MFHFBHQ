@@ -77,6 +77,10 @@ const ROOT = path.join(__dirname, '..'); // = sports/nba
 // liga-eigene weiter unter leagues/<liga>/data/ (= ROOT/data).
 const SPORT_DATA = path.join(__dirname, '..', 'data');
 const OUT = path.join(SPORT_DATA, 'projections-consensus.js'); // sportweit (15.10.2026)
+// 20.10.2026 (Beyaz): eigene Baseline (Quelle a) fließt nicht mehr in den
+// Consensus ein, sie verzog Minuten und Werte. Consensus = BBM (b) + Hashtag (c).
+// Auf true setzen, um Quelle a wieder einzubeziehen.
+const USE_BASELINE = false;
 
 function loadBaseline() {
   const sandbox = {};
@@ -230,7 +234,7 @@ function main() {
 
   allKeys.forEach(key => {
     const displayName = mineByNorm.get(key) || bbmByNorm.get(key) || hashtagByNorm.get(key);
-    const rawA = mineByNorm.has(key) ? baseline[mineByNorm.get(key)] : null;
+    const rawA = USE_BASELINE && mineByNorm.has(key) ? baseline[mineByNorm.get(key)] : null;
     const rawB = bbmByNorm.has(key) ? bbm[bbmByNorm.get(key)] : null;
     const rawC = hashtagByNorm.has(key) ? hashtag[hashtagByNorm.get(key)] : null;
 
