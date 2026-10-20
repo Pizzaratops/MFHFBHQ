@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909088",
-      "line": "Boston Celtics @ Detroit Pistons (10:09 - 3rd)",
+      "line": "Boston Celtics @ Detroit Pistons (2:21 - 3rd)",
       "completed": false,
-      "statusText": "10:09 - 3rd",
+      "statusText": "2:21 - 3rd",
       "away": {
         "abbr": "BOS",
         "name": "Boston Celtics",
