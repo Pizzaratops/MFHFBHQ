@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-20T03:01:16.508Z",
+  "generatedAt": "2026-10-20T04:01:16.599Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -206,7 +206,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 7,
         "stl": 10,
         "blk": 9,
-        "tpm": 5,
+        "tpm": 6,
         "fgPct": 6,
         "ftPct": 2,
         "to": 6
@@ -376,15 +376,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 341.8,
-        "reb": 120.1,
-        "ast": 91.1,
-        "stl": 25.41,
-        "blk": 14.27,
-        "tpm": 36.9,
-        "to": 43.8,
-        "fgPct": 47.7,
-        "ftPct": 77.8
+        "pts": 347,
+        "reb": 123.7,
+        "ast": 90.6,
+        "stl": 25.54,
+        "blk": 15.23,
+        "tpm": 39.2,
+        "to": 43.5,
+        "fgPct": 47.5,
+        "ftPct": 77.6
       },
       "rank": {
         "pts": 3,
@@ -392,13 +392,13 @@ const FANTASY_POWER_SCORE = {
         "ast": 2,
         "stl": 2,
         "blk": 6,
-        "tpm": 6,
+        "tpm": 5,
         "fgPct": 7,
         "ftPct": 9,
         "to": 11
       },
-      "includedCount": 27,
-      "projCount": 27,
+      "includedCount": 28,
+      "projCount": 28,
       "skippedCount": 0,
       "skippedPlayers": []
     },
