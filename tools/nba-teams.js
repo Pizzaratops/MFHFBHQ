@@ -39,6 +39,19 @@
     return `<span class="nba-str" title="${src.tip}"><small>${src.label}</small><span class="nba-rk ${tier}">#${avg}</span></span>`;
   }
 
+  // Ø-Alter des Kaders + Rang in der Liga (1 = jüngstes Team). 20.10.2026
+  function ageInfo(data, t) {
+    const nba = N(), a = nba.teamAge(data, t.id);
+    if (!a) return null;
+    const all = nba.leagueTeams(data, false).map(x => nba.teamAge(data, x.id)).filter(Boolean).map(x => x.avg).sort((x, y) => x - y);
+    return { avg: a.avg, n: a.n, rank: all.findIndex(v => v >= a.avg - 1e-9) + 1, of: all.length };
+  }
+  const fmtAge = v => v.toFixed(1).replace('.', ',');
+  function ageBadge(data, t) {
+    const a = ageInfo(data, t);
+    return a ? `<span class="nba-tage" title="Ø Alter des Kaders (${a.n} Spieler mit Geburtsdatum) · ${a.rank}. jüngstes von ${a.of} Teams">🎂 Ø ${fmtAge(a.avg)}</span>` : '';
+  }
+
   function countdownTargets(ctx) {
     const d = ctx.data, out = [];
     ((ctx.league.countdowns) || []).forEach(c => out.push({ label: c.label, at: new Date(c.iso) }));
@@ -58,7 +71,7 @@
     const card = t => `<a class="nba-tcard${t.inactive ? ' inactive' : ''}" href="${href('teams', t.id)}" style="${nba.tcStyle(t)}">
         <span class="nba-tc-top"><span class="nba-avatar">${e(nba.initials(t.name))}</span>
           <span class="nba-tc-name"><b>${e(t.name)}</b><small>${e(t.owner || '')}${t.inactive ? ' · pausiert' : ''}</small></span></span>
-        <span class="nba-tc-foot"><span class="nba-rec">📊 ${e(nba.record(data, t))}</span>${t.inactive ? '' : strength(ctx, t)}</span></a>`;
+        <span class="nba-tc-foot"><span class="nba-rec">📊 ${e(nba.record(data, t))}</span>${ageBadge(data, t)}${t.inactive ? '' : strength(ctx, t)}</span></a>`;
     return `
       <div class="page-head">
         <h1 class="page-title display">${e(league.emoji)} ${e(league.name)}</h1>
@@ -171,7 +184,7 @@
       <div class="nba-thead" style="${nba.tcStyle(t)}">
         <span class="nba-avatar big">${e(nba.initials(t.name))}</span>
         <div><h1 class="page-title display">${e(t.name)}</h1>
-          <div class="page-sub">${e(t.owner || '')} · 📊 ${e(nba.record(data, t))} · ${nba.roster(data, tid).length} Spieler${t.inactive ? ' · pausiert' : ''}</div></div>
+          <div class="page-sub">${e(t.owner || '')} · 📊 ${e(nba.record(data, t))} · ${nba.roster(data, tid).length} Spieler${(a => a ? ` · 🎂 Ø ${fmtAge(a.avg)} Jahre <span class="muted">(${a.rank}. jüngstes von ${a.of})</span>` : '')(ageInfo(data, t))}${t.inactive ? ' · pausiert' : ''}</div></div>
       </div>
       <div class="chip-row" aria-label="Team wechseln">${teams.map(x => `<a class="chip-link${x.id === tid ? ' active' : ''}" href="${href('teams', x.id, ...(tab !== 'roster' ? [tab] : []))}" title="${e(x.name)}" style="${nba.tcStyle(x)}"><span class="nba-chipav">${e(nba.initials(x.name))}</span></a>`).join('')}</div>
       ${hasPicks ? `<div class="week-picker"><a class="week-btn done${tab === 'roster' ? ' active' : ''}" href="${href('teams', tid)}">Kader</a><a class="week-btn done${tab === 'picks' ? ' active' : ''}" href="${href('teams', tid, 'picks')}">Eigene Picks</a><a class="week-btn done${tab === 'draft' ? ' active' : ''}" href="${href('teams', tid, 'draft')}">Draft & Keeper</a></div>` : ''}

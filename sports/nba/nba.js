@@ -318,6 +318,14 @@ MFHFB.nba = (function () {
     if (mo < 0 || (mo === 0 && t.getDate() < d.getDate())) a--;
     return a;
   }
+  // Ø-Alter eines Kaders (Dezimaljahre, nur Spieler mit Geburtsdatum). 20.10.2026
+  function teamAge(data, tid) {
+    const dob = dobIndex(data), now = Date.now();
+    const ages = roster(data, tid).map(p => dob(p.name)).filter(Boolean)
+      .map(d => (now - new Date(d).getTime()) / (365.25 * 864e5)).filter(a => a > 15 && a < 50);
+    if (!ages.length) return null;
+    return { avg: ages.reduce((a, b) => a + b, 0) / ages.length, n: ages.length };
+  }
   // Rang-Badge-Stufen (dynastyRankColor/Bg aus navigation.js)
   const rankTier = r => (r == null ? '' : r === 1 ? 't1' : r <= 5 ? 't2' : r <= 15 ? 't3' : r <= 30 ? 't4' : r <= 75 ? 't5' : 't6');
   const rankBadge = (r, title) => (r == null ? '<span class="nba-rk none">—</span>' : `<span class="nba-rk ${rankTier(r)}"${title ? ` title="${title}"` : ''}>#${r}</span>`);
@@ -333,7 +341,7 @@ MFHFB.nba = (function () {
 
   const api = {
     ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, preDraft, unicorn, unicornBadge, record, initials, teamColor, injury,
-    tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, rankTier, rankBadge,
+    tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, teamAge, rankTier, rankBadge,
     MODES, getMode, setMode, modeControl, bindModeControl, fromCatZ, fmtScore, scorePositive, scoreLabel, percentileOf, heat,
   };
   return api;
