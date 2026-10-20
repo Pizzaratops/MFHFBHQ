@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-20T16:01:16.258Z",
+  "generatedAt": "2026-10-20T16:50:37.724Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, noch ohne Saisonspiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -277,9 +277,10 @@ const FANTASY_POWER_SCORE = {
       },
       "includedCount": 26,
       "projCount": 26,
-      "skippedCount": 1,
+      "skippedCount": 2,
       "skippedPlayers": [
-        "Henri Veesaar"
+        "Henri Veesaar",
+        "Tacko Fall"
       ]
     },
     {
@@ -436,10 +437,11 @@ const FANTASY_POWER_SCORE = {
       },
       "includedCount": 24,
       "projCount": 23,
-      "skippedCount": 2,
+      "skippedCount": 3,
       "skippedPlayers": [
         "Ben Simmons",
-        "Adam Flagler"
+        "Adam Flagler",
+        "Mario Hezonja"
       ]
     }
   ]
