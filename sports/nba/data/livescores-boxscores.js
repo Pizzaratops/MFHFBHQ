@@ -37,9 +37,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909088",
-      line: "Boston Celtics @ Detroit Pistons (1:11 - 2nd)",
+      line: "Boston Celtics @ Detroit Pistons (10:09 - 3rd)",
       completed: false,
-      statusText: "1:11 - 2nd",
+      statusText: "10:09 - 3rd",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
