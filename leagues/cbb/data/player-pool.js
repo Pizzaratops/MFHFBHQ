@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-21T20:54:51.995Z
+//  Stand: 2026-10-21T23:20:48.467Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -188,6 +188,7 @@ const CBB_PLAYER_POOL = [
 ["07a82","Arturas Butajevas","Fla","F","F/C,Flx","T"],
 ["0658n","Arturo Dean","UCF","G","G,Flx","FA"],
 ["06dtf","Asa Thomas","UIC","G","G,Flx","FA"],
+["079fb","Asher Elson","Xav","F","F/C,Flx","FA"],
 ["0719f","Ashton Magee","MissSt","G","F/C,G,Flx","FA"],
 ["079cw","Ashton McCullough","ECU","G","G,Flx","FA"],
 ["05xjz","Ashton Smith","UTSA","F","F/C,Flx","FA"],
@@ -989,7 +990,7 @@ const CBB_PLAYER_POOL = [
 ["07207","Isaiah Malone","UCF","F","F/C,Flx","FA"],
 ["079mj","Isaiah Rogers","Stan","G","G,Flx","FA"],
 ["06v6j","Isaiah Sealy","Ark","F","F/C,Flx","FA"],
-["06nfw","Isaiah Shaw","UConn","G","G,Flx","FA"],
+["06nfw","Isaiah Shaw","UConn","G","F/C,G,Flx","FA"],
 ["06ndu","Isaiah Sy","SDSU","F","F/C,G,Flx","FA"],
 ["05x5t","Isaiah Walker","Xav","G","G,Flx","FA"],
 ["07a9b","Isaiah Ward","UTEP","F","F/C,Flx","FA"],
