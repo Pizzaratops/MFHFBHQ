@@ -75,9 +75,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909089",
-      line: "Philadelphia 76ers @ New York Knicks (8:09 - 2nd)",
+      line: "Philadelphia 76ers @ New York Knicks (7:55 - 3rd)",
       completed: false,
-      statusText: "8:09 - 2nd",
+      statusText: "7:55 - 3rd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
