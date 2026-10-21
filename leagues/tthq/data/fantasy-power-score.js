@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-21T06:01:19.605Z",
+  "generatedAt": "2026-10-21T07:01:16.600Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 1 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -115,7 +115,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 4,
         "tpm": 3,
         "fgPct": 5,
-        "ftPct": 7,
+        "ftPct": 6,
         "to": 7
       },
       "includedCount": 28,
@@ -221,29 +221,29 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 276.6,
-        "reb": 116.8,
-        "ast": 64,
-        "stl": 22.69,
-        "blk": 15.72,
-        "tpm": 35.4,
-        "to": 36,
-        "fgPct": 45.5,
-        "ftPct": 78.4
+        "pts": 275.6,
+        "reb": 116.7,
+        "ast": 61.2,
+        "stl": 22.42,
+        "blk": 15.6,
+        "tpm": 35.5,
+        "to": 34.9,
+        "fgPct": 45.9,
+        "ftPct": 77.9
       },
       "rank": {
-        "pts": 11,
+        "pts": 12,
         "reb": 8,
-        "ast": 10,
+        "ast": 11,
         "stl": 6,
         "blk": 5,
         "tpm": 7,
         "fgPct": 11,
-        "ftPct": 5,
+        "ftPct": 8,
         "to": 4
       },
       "includedCount": 27,
-      "projCount": 25,
+      "projCount": 26,
       "skippedCount": 1,
       "skippedPlayers": [
         "Thomas Sorber"
@@ -270,7 +270,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 8,
         "stl": 9,
         "blk": 3,
-        "tpm": 9,
+        "tpm": 10,
         "fgPct": 3,
         "ftPct": 10,
         "to": 9
@@ -304,9 +304,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 4,
         "stl": 4,
         "blk": 2,
-        "tpm": 10,
+        "tpm": 11,
         "fgPct": 4,
-        "ftPct": 11,
+        "ftPct": 12,
         "to": 10
       },
       "includedCount": 28,
@@ -337,8 +337,8 @@ const FANTASY_POWER_SCORE = {
         "blk": 9,
         "tpm": 12,
         "fgPct": 2,
-        "ftPct": 8,
-        "to": 2
+        "ftPct": 7,
+        "to": 1
       },
       "includedCount": 27,
       "projCount": 27,
@@ -370,7 +370,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 7,
         "tpm": 8,
         "fgPct": 10,
-        "ftPct": 6,
+        "ftPct": 5,
         "to": 3
       },
       "includedCount": 28,
@@ -414,29 +414,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 266.8,
-        "reb": 84.2,
-        "ast": 61.4,
-        "stl": 18.28,
-        "blk": 9.52,
-        "tpm": 30.6,
-        "to": 32.3,
-        "fgPct": 44.8,
-        "ftPct": 75.1
+        "pts": 277.2,
+        "reb": 87.4,
+        "ast": 61.9,
+        "stl": 18.91,
+        "blk": 9.73,
+        "tpm": 33,
+        "to": 32.6,
+        "fgPct": 44.9,
+        "ftPct": 75.7
       },
       "rank": {
-        "pts": 12,
+        "pts": 11,
         "reb": 12,
-        "ast": 11,
+        "ast": 10,
         "stl": 12,
         "blk": 12,
-        "tpm": 11,
+        "tpm": 9,
         "fgPct": 12,
-        "ftPct": 12,
-        "to": 1
+        "ftPct": 11,
+        "to": 2
       },
-      "includedCount": 24,
-      "projCount": 23,
+      "includedCount": 25,
+      "projCount": 24,
       "skippedCount": 3,
       "skippedPlayers": [
         "Ben Simmons",
