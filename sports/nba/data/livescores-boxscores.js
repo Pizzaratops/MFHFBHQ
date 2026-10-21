@@ -110,9 +110,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909090",
-      line: "Oklahoma City Thunder @ San Antonio Spurs (7:20 - 1st)",
+      line: "Oklahoma City Thunder @ San Antonio Spurs (Halftime)",
       completed: false,
-      statusText: "7:20 - 1st",
+      statusText: "Halftime",
       away: {
         abbr: "OKC", name: "Oklahoma City Thunder", score: null,
         players: [

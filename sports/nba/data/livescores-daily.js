@@ -30,7 +30,7 @@
 const LIVESCORES_DAILY = {
   "nba": {
     "2026-10-20": {
-      games: ["Boston Celtics 113 @ Detroit Pistons 121 (Final)","Philadelphia 76ers 106 @ New York Knicks 100 (Final)","Oklahoma City Thunder @ San Antonio Spurs (7:20 - 1st)"],
+      games: ["Boston Celtics 113 @ Detroit Pistons 121 (Final)","Philadelphia 76ers 106 @ New York Knicks 100 (Final)","Oklahoma City Thunder @ San Antonio Spurs (Halftime)"],
       leagueAvg: { fg: 42.3, ft: 78.5 },
       players: [
         { rank: 1, name: "Paul George", team: "BOS", min: 31, pts: 38, reb: 5, ast: 3, stl: 5, blk: 0, to: 3, tpm: 7, fgPct: 57.1, ftPct: 87.5, composite: 12.89, zScores: { pts: 3.209, reb: 0.145, ast: 0.181, stl: 4.434, blk: -0.814, tpm: 3.52, fgImpact: 2.379, ftImpact: 1.081, to: -1.241 } },
