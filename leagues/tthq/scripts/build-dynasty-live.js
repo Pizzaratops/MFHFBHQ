@@ -7,9 +7,10 @@
 //  Spieler in der laufenden Saison im Vergleich zu dem, was vor der
 //  Saison von ihm erwartet wurde?
 //
-//    erwartet = Rang nach der Preseason-Projection (projections-baseline.js,
-//               9-Cat-z über den Consensus-Pool, gleiche Mathe wie
-//               build-live-projections.js)
+//    erwartet = Rang nach der Projection zum Saisonstart (eingefrorener
+//               Snapshot sports/nba/data/snapshots/projections-<saison>-opening-night.js,
+//               9-Cat-z über den Snapshot-Pool, gleiche Mathe wie
+//               build-live-projections.js; Fallback aktuelle Consensus)
 //    tatsächlich = Rang nach der ganzen Saison bis heute
 //               (livescores-season.js, 9-Cat-z pro Spiel)
 //    beide Ränge nur innerhalb der Spieler, die in beiden Listen stehen.
@@ -91,8 +92,21 @@ function normalizeName(raw) {
 
 const DYNASTY_PLAYERS = loadVmArray(path.join(ROOT, 'data', 'rankings.js'), 'DYNASTY_PLAYERS') || [];
 const load = (file, name) => { const p = path.join(SPORT_DATA, file); return fs.existsSync(p) ? loadVmObject(p, name) : null; };
-const BASELINE = load('projections-baseline.js', 'PROJECTIONS_BASELINE') || {};
-const CONSENSUS = load('projections-consensus.js', 'PROJECTIONS_CONSENSUS') || {};
+// Erwartung = eingefrorener Opening-Night-Snapshot der Saison (seit 21.10.2026,
+// vorher Beyaz' Baseline). Der Snapshot ändert sich während der Saison nicht,
+// dadurch bleibt die Erwartung stabil. Fallback: aktuelle Consensus.
+const EXPECTATION = (() => {
+  const dir = path.join(SPORT_DATA, 'snapshots');
+  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => /^projections-\d{4}-\d{2}-opening-night\.js$/.test(f)).sort() : [];
+  if (files.length) {
+    const f = files[files.length - 1];
+    const m = fs.readFileSync(path.join(dir, f), 'utf8').match(/const\s+(PROJECTIONS_SNAPSHOT_\w+)\s*=\s*\{/);
+    const snap = m && loadVmObject(path.join(dir, f), m[1]);
+    if (snap && snap.players && Object.keys(snap.players).length) return { players: snap.players, source: `snapshots/${f}` };
+  }
+  return { players: load('projections-consensus.js', 'PROJECTIONS_CONSENSUS') || {}, source: 'projections-consensus.js' };
+})();
+console.log(`Erwartung aus ${EXPECTATION.source} (${Object.keys(EXPECTATION.players).length} Spieler).`);
 const SEASON = load('livescores-season.js', 'LIVESCORES_SEASON');
 const ALIASES = (() => {
   const p = path.join(SPORT_DATA, 'aliases.js');
@@ -116,9 +130,8 @@ const latestSeason = (() => {
 
 // ---------- erwartete Stärke: 9-Cat-z der Preseason-Projection ----------
 function expectedZ() {
-  const list = Object.entries(BASELINE).filter(([, p]) => p && (p.pts || p.reb || p.ast));
-  const pool = list.filter(([n]) => CONSENSUS[n]);
-  const ref = pool.length >= 100 ? pool : list;
+  const list = Object.entries(EXPECTATION.players).filter(([, p]) => p && (p.pts || p.reb || p.ast));
+  const ref = list;
   const sum = (arr, k) => arr.reduce((s, [, p]) => s + (p[k] || 0), 0);
   const fgP = sum(ref, 'fga') > 0 ? sum(ref, 'fgm') / sum(ref, 'fga') : 0;
   const ftP = sum(ref, 'fta') > 0 ? sum(ref, 'ftm') / sum(ref, 'fta') : 0;
@@ -162,7 +175,7 @@ if (latestSeason && Array.isArray(latestSeason.entry.players)) {
   const actRank = new Map(act.slice().sort((a, b) => b.z - a.z).map((p, i) => [p.key, i + 1]));
   const byKey = new Map(act.map(p => [p.key, p]));
   const ref = new Date(latestSeason.date + 'T12:00:00Z');
-  meta = { mode: 'season', date: latestSeason.date, pool: act.length };
+  meta = { mode: 'season', date: latestSeason.date, pool: act.length, expectation: EXPECTATION.source };
   DYNASTY_PLAYERS.forEach(row => {
     const [baseRank, name, , , dob] = row;
     const k = keyOf(name), p = byKey.get(k);

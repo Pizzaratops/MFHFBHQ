@@ -247,7 +247,7 @@ th.punted, td.punted { opacity: .35; }
 .cp-fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px 14px; padding: 4px 14px 8px; }
 .cp-f { display: grid; grid-template-columns: 42px 1fr 1fr; gap: 6px; align-items: center; font-size: 12px; font-weight: 700; }
 .cp-src { font-size: 11px; font-weight: 800; letter-spacing: -.05em; }
-.cp-src.n3 { color: #2e9d62; } .cp-src.n2 { color: var(--league-accent); } .cp-src.n1 { color: var(--muted); } .cp-src.warn { color: #c8a020; }
+.cp-src.n3, .cp-src.n2 { color: #2e9d62; } .cp-src.n1 { color: var(--muted); } .cp-src.warn { color: #c8a020; }
 
 /* ---------- NBA: Rolling Rankings ---------- */
 .rr-rk { display: inline-block; min-width: 30px; padding: 1px 6px; border-radius: 6px; font-variant-numeric: tabular-nums; font-size: 12px; font-weight: 700; }

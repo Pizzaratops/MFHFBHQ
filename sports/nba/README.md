@@ -49,9 +49,10 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | nba-power-rankings.js, nba-power-score.js | build-nba-power-rankings.js / -score.js | Matchup-Wochen aus der TTHQ-Liga (`leagues/tthq/js/espn-sync.js`) |
 | preseason-score.js (+ preseason/<Saison>/games/*.json Cache) | update-preseason-score.js (Logik: preseason-score.js) | Preseason Score, Seite „🌱 Preseason“; lädt schon vor dem Cutover aus dem Hub (`./`-Pfad in `files`) |
 | preseason-baseline-2025-26.json | build-baseline.py (jährlich) | Vorsaison-Werte je ESPN-Athlete-ID + Positions-Referenz |
-| projections-baseline.js | `scripts/import-projections-baseline.js <xlsx>` | **Master** für alle Ligen (TTHQ + relevante Funkytown-Veteranen) |
-| projections-consensus.js | `scripts/build-consensus-projections.js <bbm.json> <hashtag.json>` / `replace-consensus-source.js` | Beyaz × BBM × Hashtag, Keep-Liste `scripts/data/consensus-keep-list.txt` |
-| live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Baseline/Consensus + echte Saison-CSVs; z über den Consensus-Pool |
+| projections-baseline.js | `scripts/import-projections-baseline.js <xlsx>` | Beyaz' alte Projections – **seit 20.10.2026 ohne Wirkung** (nicht mehr im Consensus, nicht in Live, nicht in Dynasty Live) |
+| projections-consensus.js | `scripts/build-consensus-projections.js <bbm.json> <hashtag.json>` / `replace-consensus-source.js` | BBM × Hashtag (seit 20.10.2026; BBM zählt nicht bei ≥ 10 Min über Hashtag, reine BBM-Zeilen raus) |
+| live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Consensus + echte Saison-CSVs als **gedämpftes Delta je Kategorie** (siehe „Live Projections“ unten); z über den Live-Pool |
+| snapshots/projections-2026-27-opening-night.js | eingefroren (20.10.2026) | Board zum Tipoff; Erwartung für Dynasty Live + Saisonend-Abgleich. Nie überschreiben. |
 | last-season-stats-2025-26.js | statisch (BBM-Export inkl. Alter) | Vorsaison, für Planner/Cat Web/Boards |
 | aliases.js, rolling-rankings.js, season-rankings.js, last-season-stats-2003-04 … 2024-25, draft-class-2025/2026, draft2026/2027, draft-capital-2026 | statisch / manuell | in beiden Repos identisch (aliases: TTHQ-Fassung = Obermenge) |
 
@@ -77,7 +78,7 @@ nba-sync.yml  (halbstündlich 06–22 Uhr Berlin, :07/:37)
           prune-raw-data (CSV 400 d, games.json 120 d)               fetch-draft-results-espn --auto
           update-all-aggregates (week, month, season)                build-team-analytics ◄─ live-projections (sport)
           build-offseason-rankings ─► build-postdraft-board          build-best-available-board ◄─ season, aggregate, …
-          build-rolling-archive                                      build-dynasty-live ◄─ season vs. projections-baseline
+          build-rolling-archive                                      build-dynasty-live ◄─ season vs. Opening-Night-Snapshot
           build-live-projections (sportweit) ◄─ Roh-CSVs, aliases    build-fantasy-power-score ◄─ live-projections
           (09/21 Uhr: build-nba-power-rankings/-score)          ──► funkytown (leagues/funkytown)
                                                                      sync-espn-rosters, sync-espn-matchups,
@@ -150,8 +151,7 @@ import-dynasty-rolling-snapshot (TTHQ); `convert-bbm-last-season.py` (sportweit)
 - `prune-raw-data.js`: optional `--keep-days-games`; Workflow: CSV 400 Tage, games.json 120.
 - `build-offseason-rankings.js`: nur CSVs ab 1. Juni des laufenden Off-Season-Jahres (`--since`).
 - `build-live-projections.js` (beide Ligen): nur CSVs ab 1. August des Saisonjahres (`--since`);
-  CSV-Ordner = `sports/nba/scripts/data`; wenn die Baseline keine z-Werte hat (TTHQ, alle 0),
-  wird z mit derselben Pool-Formel wie ab Saisonstart berechnet.
+  CSV-Ordner = `sports/nba/scripts/data`; Projection = nur noch die Consensus; z immer über den Live-Pool.
 - `build-nba-power-*.js`: ESPN-Config aus `leagues/tthq/js/espn-sync.js`.
 - `backfill-9cat.js`: konvertiert mit `--league=auto` (wegen Preseason-Aufteilung).
 - Liga-Scripts: sportweite Dateien über `SPORT_DATA`.
@@ -260,8 +260,8 @@ Ab dem ersten Spieltag läuft alles ohne Handgriff (nba-sync halbstündlich → 
 | Daily | daily-9cat → livescores-daily | Live Scores (Night Card) |
 | Weekly / Monthly | update-all-aggregates → livescores-aggregate | Live Scores, Player Rankings (7/30 Tage), Planner (30 Tage) |
 | Season | update-all-aggregates → livescores-season | Live Scores „Season“, Player Rankings „Saison“ mit Δ-Rang zum Vortag, Planner-Quelle, Rolling-Archiv (eosRank), Best Available |
-| Projections | build-live-projections (Baseline wie 2 Spiele + echte Spiele) | Planner, Cat Web, Team Analytics, Waiver, Power Score, Funkytown-Board |
-| Dynasty | build-dynasty-live: Saison-Rang gegen Projection-Rang, Shrinkage n/(n+20), Alter, nur signifikant (≥ 8 Spiele) | Dynasty Rankings „Live“, Trade Analyzer + Trade Finder („📈 Live-Form“, Standard an) |
+| Projections | build-live-projections (Consensus + echte Spiele, gedämpftes Delta je Kategorie) | Projections-Seite („Saison live“), Planner, Cat Web, Team Analytics, Waiver, Power Score, US-Manager, Funkytown-Board |
+| Dynasty | build-dynasty-live: Saison-Rang gegen Rang im Opening-Night-Snapshot, Shrinkage n/(n+20), Alter, nur signifikant (≥ 8 Spiele) | Dynasty Rankings „Live“, Trade Analyzer + Trade Finder („📈 Live-Form“, Standard an) |
 
 - Best Available (beide Ligen): `currentSeason` = 60 % Saison + 40 % 30 Tage, Gewicht wächst mit den
   Spielen (voll ab 20); Off-Season-Signal fällt bis 10 Spiele weg, Vorjahr halbiert sich bis 20.
@@ -271,3 +271,27 @@ Ab dem ersten Spieltag läuft alles ohne Handgriff (nba-sync halbstündlich → 
   letzten Spieltag (US-Datum, meist gestern) → lief vorher ins Leere.
 - Draft Results werden nach dem Draft automatisch geholt (`--auto`, einmalig).
 - TTHQ hat jetzt „Tabellenverlauf“ (season-matchups, Vorjahre werden einmalig automatisch nachgeholt).
+
+## Live Projections: gedämpftes Delta (seit 21.10.2026)
+
+Vorher zählte die Projection pauschal wie 2 Spiele – nach einem einzigen Abend war ein Drittel
+des Werts schon dieser Abend (Paul George 38 Pkt → Projection 16,6 → 23,7). Jetzt je Kategorie:
+
+    live = Projection + (Saisonschnitt − Projection) · n / (n + k)
+
+| Kategorie | MIN | PTS | AST | REB | 3PM | TO | BLK | STL | FGA | FTA | FG% | FT% |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| k | 4 Sp. | 6 | 7 | 10 | 12 | 12 | 23 | 25 | 4 | 12 | 300 Versuche | 120 Versuche |
+
+- **Gemessen, nicht geschätzt:** ESPN-Boxscores 2022–2026 (sportsdataverse), ~900 Spieler-Saisons
+  mit ≥ 40 Spielen. Prior = Vorjahre (2/3 Vorsaison + 1/3 davor), k minimiert den Fehler beim
+  Vorhersagen des Saison-Rests nach 1–30 Spielen. Gegen w = 2 sinkt der Fehler (RMSE) in jeder
+  Zählkategorie, am stärksten bei STL (~25 %) und BLK (~27 %), bei PTS ~9 %.
+- Die Consensus ist ein besserer Prior als die Vorjahre → die k sind eher vorsichtig (Saison zählt
+  etwas früh). Alle k gemeinsam skalieren: `--kscale=1.3`.
+- Minuten fließen jetzt auch ein (k = 4: Rollenwechsel zeigen sich schnell).
+- FG%/FT% über Versuche: `(Proj-% · 300 + FGM) / (300 + FGA)`, Makes = Quote × gemischte Versuche.
+- Spieler ohne Projection (Two-Way, Garbage Time): dieselbe Dämpfung Richtung 0 (Liga-Quote) –
+  ein Spiel mit 3 Minuten macht keinen Stammspieler.
+- Echte Stats werden der Projection über den normalisierten Namen zugeordnet (Diakritika, Jr.).
+

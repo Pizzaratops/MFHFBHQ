@@ -2,37 +2,39 @@
 // ============================================================
 //  BUILD LIVE PROJECTIONS (sportweit, seit 15.10.2026 EINMAL für alle NBA-Ligen)
 // ============================================================
-//  Blendet Beyaz' Preseason-Baseline (data/projections-baseline.js)
-//  mit den echten Boxscore-Stats der bisherigen Saison und schreibt
-//  data/live-projections.js. Läuft ab Saisonstart als Teil der
-//  täglichen Pipeline (nach daily-9cat.js), siehe README
-//  "Season-Start-Plan: Projections-Flow".
+//  Mischt die Saison-Projection (data/projections-consensus.js = BBM +
+//  Hashtag) mit den echten Boxscore-Stats der laufenden Saison und schreibt
+//  data/live-projections.js. Läuft in jedem nba-sync nach daily-9cat.js.
 //
-//  Quelle für die echten Stats: die taeglichen CSVs, die daily-9cat.js
-//  ohnehin schon pro Spieltag unter scripts/data/ ablegt
-//  (daily-9cat_<league>_<date>.csv) — hier werden sie season-weit
-//  aufsummiert (nicht die kompakten LIVESCORES_DAILY-Prozentwerte, weil
-//  die keine rohen Makes/Attempts mehr enthalten).
+//  Quelle für die echten Stats: die Tages-CSVs von daily-9cat.js unter
+//  scripts/data/ (daily-9cat_<liga>_<datum>.csv), season-weit aufsummiert.
 //
-//  Blend-Formel je Counting-Stat (PTS, REB, AST, STL, BLK, 3PM, TOV,
-//  FGM, FGA, FTM, FTA):
-//    geblendeter Wert = (Baseline × BASELINE_WEIGHT + Σ echte Spiele)
-//                        / (BASELINE_WEIGHT + Anzahl echter Spiele)
-//  FG%/FT% werden NICHT direkt gemittelt (Verhältniszahlen!), sondern
-//  aus den geblendeten FGM/FGA bzw. FTM/FTA berechnet — die Baseline
-//  bringt dafür ihre eigenen Makes/Attempts mit (siehe
-//  import-projections-baseline.js), kein Prozent-Mittelwert nötig.
+//  GEDÄMPFTES DELTA je Kategorie (seit 21.10.2026, vorher pauschal
+//  "Projection zählt wie 2 Spiele"):
+//    live = Projection + (Saisonschnitt − Projection) · n / (n + k)
+//  n = echte Spiele, k = Spiele, ab denen die Saison zur Hälfte zählt.
+//  k je Kategorie EMPIRISCH bestimmt (ESPN-Boxscores 2022–2026, ~900
+//  Spieler-Saisons, Prior = Vorjahre, k minimiert den Fehler beim
+//  Vorhersagen des Saison-Rests nach 1–30 Spielen):
+//    MIN 4 · PTS 6 · AST 7 · REB 10 · 3PM 12 · TO 12 · BLK 23 · STL 25
+//    FGA 4 · FTA 12 (Volumen)
+//  Quoten über Versuche statt Spiele:
+//    FG% = (Proj-FG% · 300 + echte FGM) / (300 + echte FGA)
+//    FT% = (Proj-FT% · 120 + echte FTM) / (120 + echte FTA)
+//  Gegen die alte Formel (w = 2) sinkt der Vorhersagefehler (RMSE) in jeder
+//  Zählkategorie, am stärksten bei STL (~−25 %) und BLK (~−27 %), PTS ~−9 %. Ein einzelnes
+//  Spiel bewegt Punkte so um ~14 %, Steals um ~4 % der Abweichung.
+//  Die Consensus-Projection ist besser als der Vorjahres-Prior der Messung,
+//  die k sind also eher vorsichtig (Saison zählt eher etwas zu früh).
+//  --kscale=1.5 o. ä. skaliert alle k gemeinsam.
 //
-//  BASELINE_WEIGHT = 2: die Baseline zählt wie 2 "virtuelle" Spiele.
-//  Bewusste Wahl (siehe Chat-Diskussion): Gewicht 1 macht die Baseline
-//  schon nach 3-4 Spielen fast bedeutungslos (sehr reaktionsschnell auf
-//  Breakouts/Bruchbuden, aber wackelig in den ersten Wochen); Gewicht 2
-//  gibt ihr etwas mehr Bestand gegen Kleine-Stichprobe-Ausreißer, ohne
-//  träge zu werden. Leicht anpassbar, falls sich das nicht bewährt.
+//  Spieler ohne Projection: gleiche Dämpfung Richtung 0 (Liga-Quote bei
+//  FG%/FT%) – erst nach einigen Spielen zählen sie wie gesehen. Minuten werden ebenfalls
+//  gedämpft gemischt (vorher blieben sie fest auf der Projection).
 //
 //  Usage:
-//    node scripts/build-live-projections.js [--league=nba] [--weight=2]   (im Ordner sports/nba)
-//  Ausgabe: sports/nba/data/live-projections.js (vorher je Liga unter leagues/<liga>/data/)
+//    node scripts/build-live-projections.js [--league=nba] [--kscale=1] [--since=YYYY-MM-DD]   (im Ordner sports/nba)
+//  Ausgabe: sports/nba/data/live-projections.js
 // ============================================================
 
 const fs = require('fs');
@@ -44,7 +46,6 @@ const ROOT = path.join(__dirname, '..'); // = sports/nba
 // z.B. aliases/livescores/offseason/rolling) liegen unter sports/nba/data/,
 // liga-eigene weiter unter leagues/<liga>/data/ (= ROOT/data).
 const SPORT_DATA = path.join(__dirname, '..', 'data');
-const BASELINE_PATH = path.join(SPORT_DATA, 'projections-baseline.js');
 const CONSENSUS_PATH = path.join(SPORT_DATA, 'projections-consensus.js');
 // MFHFB HQ: die Tages-CSVs schreibt die sportweite Pipeline EINMAL für alle
 // NBA-Ligen nach sports/nba/scripts/data/ (vorher scripts/data/ je Repo).
@@ -53,7 +54,10 @@ const OUT = path.join(SPORT_DATA, 'live-projections.js');
 
 const args = process.argv.slice(2);
 const leagueArg = (args.find(a => a.startsWith('--league=')) || '').split('=')[1] || 'nba';
-const BASELINE_WEIGHT = parseFloat((args.find(a => a.startsWith('--weight=')) || '').split('=')[1]) || 2;
+const K_SCALE = parseFloat((args.find(a => a.startsWith('--kscale=')) || '').split('=')[1]) || 1;
+// Empirische Dämpfung (siehe Kopfkommentar): Spiele bis Halbe-Halbe je Kategorie
+const K_GAMES = { min: 4, pts: 6, reb: 10, ast: 7, stl: 25, blk: 23, tpm: 12, tov: 12, fga: 4, fta: 12 };
+const K_ATT = { fgPct: 300, ftPct: 120 }; // Quoten: Versuche bis Halbe-Halbe
 // MFHFB HQ (29.09.2026): nur Tages-CSVs der LAUFENDEN Saison summieren (ab
 // 1. August des Saison-Startjahres; überschreibbar mit --since=YYYY-MM-DD).
 // Vorher begrenzte nur prune-raw-data.js --keep-days=120 das Fenster -- das
@@ -78,6 +82,7 @@ function extractBalanced(code, marker, openCh, closeCh) {
   return code.slice(start, end) + ';';
 }
 function loadVmArray(filePath, varName) {
+  if (!fs.existsSync(filePath)) return null; // fehlende Liga-Datei darf den Sync nicht abbrechen
   const code = fs.readFileSync(filePath, 'utf8');
   const snippet = extractBalanced(code, `const ${varName} = [`, '[', ']');
   if (!snippet) return null;
@@ -95,54 +100,22 @@ function loadVmObject(filePath, varName) {
   return sandbox.__RESULT__;
 }
 
-// ── Stats-Quelle: Consensus bevorzugt, Baseline als Rueckfall ──
-//  Seit dem Consensus-Import (Beyaz x Josh Lloyd, siehe
-//  scripts/build-consensus-projections.js) ist data/projections-consensus.js
-//  die bessere Grundlage: sie mittelt zwei unabhaengige Quellen und hat
-//  echte Makes/Attempts statt nur Prozente.
-//
-//  ABER: die Consensus-Datei enthaelt NUR Stats, keine Bewertungsfelder.
-//  z / zFloor / zDepth / adpVal gibt es ausschliesslich in der alten
-//  Baseline (Formel stammt aus dem Projections-Repo und ist hier nicht
-//  nachgebaut). Deshalb werden BEIDE geladen:
-//    Stats            -> Consensus, sonst Baseline
-//    z/zFloor/zDepth/adpVal -> immer Baseline
-//  Faellt die Consensus-Datei weg, laeuft alles unveraendert wie vorher.
-const PROJECTIONS_BASELINE_RAW = loadVmObject(BASELINE_PATH, 'PROJECTIONS_BASELINE') || {};
+// ── Projection-Quelle: NUR noch die Consensus (BBM + Hashtag, seit 20.10.2026) ──
+//  Beyaz' alte Baseline (projections-baseline.js) fließt nicht mehr ein.
 const PROJECTIONS_CONSENSUS = loadVmObject(CONSENSUS_PATH, 'PROJECTIONS_CONSENSUS') || {};
-
-const PROJECTIONS_BASELINE = (() => {
-  if (!Object.keys(PROJECTIONS_CONSENSUS).length) {
-    console.log('  Hinweis: keine Consensus-Datei gefunden, nutze data/projections-baseline.js.');
-    return PROJECTIONS_BASELINE_RAW;
-  }
-  const merged = {};
-  let fromConsensus = 0, ratingsCarried = 0;
-  Object.keys(PROJECTIONS_CONSENSUS).forEach(name => {
-    const c = PROJECTIONS_CONSENSUS[name];
-    const b = PROJECTIONS_BASELINE_RAW[name] || {};
-    if (b.z !== undefined) ratingsCarried++;
-    fromConsensus++;
-    merged[name] = {
-      min: c.min, pts: c.pts, reb: c.reb, ast: c.ast, stl: c.stl, blk: c.blk,
-      tpm: c.tpm, tov: c.tov,
-      fgm: c.fgm || 0, fga: c.fga || 0, ftm: c.ftm || 0, fta: c.fta || 0,
-      fgPct: c.fgPct, ftPct: c.ftPct,
-      // Ohne Wurfversuche bleibt nur der Prozentwert -- dieselbe
-      // Kennzeichnung wie in der alten Baseline, damit die Blend-Logik
-      // unten unveraendert damit umgehen kann.
-      pctOnly: !(c.fga > 0),
-      z: b.z || 0, zFloor: b.zFloor || 0, zDepth: b.zDepth || 0, adpVal: b.adpVal || 0,
-    };
-  });
-  // Spieler, die nur die alte Baseline kennt, nicht verlieren
-  let baselineOnly = 0;
-  // 20.10.2026: Spieler, die nur Beyaz' Baseline kennt, NICHT mehr übernehmen
-  // (Baseline ist keine Stats-Quelle mehr; sonst tauchen z. B. gewaivte
-  // Spieler wie Bruce Brown mit alten Minuten wieder auf).
-  console.log(`  Stats-Quelle: ${fromConsensus} aus Consensus, ${baselineOnly} nur aus Baseline, ${ratingsCarried} mit übernommenen z-Werten.`);
-  return merged;
-})();
+if (!Object.keys(PROJECTIONS_CONSENSUS).length) {
+  console.error('FEHLER: data/projections-consensus.js fehlt oder ist leer – Abbruch, live-projections.js bleibt unverändert.');
+  process.exit(1);
+}
+const PROJECTIONS = {};
+Object.entries(PROJECTIONS_CONSENSUS).forEach(([name, c]) => {
+  PROJECTIONS[name] = {
+    min: c.min || 0, pts: c.pts || 0, reb: c.reb || 0, ast: c.ast || 0, stl: c.stl || 0, blk: c.blk || 0,
+    tpm: c.tpm || 0, tov: c.tov || 0, fgm: c.fgm || 0, fga: c.fga || 0, ftm: c.ftm || 0, fta: c.fta || 0,
+    fgPct: c.fgPct || (c.fga > 0 ? c.fgm / c.fga * 100 : 0), ftPct: c.ftPct || (c.fta > 0 ? c.ftm / c.fta * 100 : 0),
+  };
+});
+console.log(`  Projection-Quelle: ${Object.keys(PROJECTIONS).length} Spieler aus der Consensus.`);
 // Namens-Kanonisierung: Schreibweisen aus ALLEN NBA-Ligen — Form [rang, name] wie
 // DYNASTY_PLAYERS. Reihenfolge: Funkytown zuerst, TTHQ-Dynasty-Rangliste ZULETZT, weil
 // die Maps unten bei gleicher normalisierter Form den letzten Eintrag behalten → TTHQ gewinnt
@@ -195,7 +168,7 @@ function parseCsvLine(line) {
   return out;
 }
 
-const totals = new Map(); // canonicalName -> { games, pts, reb, ast, stl, blk, tpm, tov, fgm, fga, ftm, fta }
+const totals = new Map(); // canonicalName -> { games, min, pts, reb, ast, stl, blk, tpm, tov, fgm, fga, ftm, fta }
 let filesRead = 0;
 if (fs.existsSync(CSV_DIR)) {
   const files = fs.readdirSync(CSV_DIR).filter(f => f.startsWith(`daily-9cat_${leagueArg}_`) && f.endsWith('.csv')
@@ -205,7 +178,7 @@ if (fs.existsSync(CSV_DIR)) {
     const header = parseCsvLine(lines[0]).map(h => h.trim());
     const col = name => header.indexOf(name);
     const c = {
-      name: col('Name'), pts: col('PTS'), reb: col('REB'), ast: col('AST'),
+      name: col('Name'), min: col('MIN'), pts: col('PTS'), reb: col('REB'), ast: col('AST'),
       stl: col('STL'), blk: col('BLK'), to: col('TO'), tpm: col('3PM'),
       fgm: col('FGM'), fga: col('FGA'), ftm: col('FTM'), fta: col('FTA'),
     };
@@ -215,8 +188,9 @@ if (fs.existsSync(CSV_DIR)) {
       const r = parseCsvLine(lines[i]);
       if (!r[c.name]) continue;
       const name = canonicalName(r[c.name].trim());
-      const t = totals.get(name) || { games: 0, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, tpm: 0, tov: 0, fgm: 0, fga: 0, ftm: 0, fta: 0 };
+      const t = totals.get(name) || { games: 0, min: 0, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, tpm: 0, tov: 0, fgm: 0, fga: 0, ftm: 0, fta: 0 };
       t.games += 1;
+      t.min += c.min !== -1 ? (parseFloat(r[c.min]) || 0) : 0;
       t.pts += parseFloat(r[c.pts]) || 0;
       t.reb += parseFloat(r[c.reb]) || 0;
       t.ast += parseFloat(r[c.ast]) || 0;
@@ -234,83 +208,57 @@ if (fs.existsSync(CSV_DIR)) {
 }
 console.log(`${filesRead} Tages-CSV(s) für Liga "${leagueArg}" eingelesen, ${totals.size} Spieler mit echten Stats.`);
 
-// ── Blenden ──────────────────────────────────────────────────
-// PTS/REB/AST/STL/BLK/3PM/TOV sind normale Counting-Stats -> generische
-// Blend-Formel. FGM/FGA/FTM/FTA brauchen Sonderbehandlung, wenn die
-// Baseline nur FG%/FT% ohne Volumen hat (pctOnly, siehe
-// import-projections-baseline.js) — reine Counting-Stat-Blend würde
-// sonst faelschlich Baseline-Volumen von 0 einmischen und FGA/FTA
-// künstlich runterziehen.
-const COUNTING_KEYS = ['pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'tov'];
-const SHOOTING_PAIRS = [['fgm', 'fga', 'fgPct'], ['ftm', 'fta', 'ftPct']];
-const allNames = new Set([...Object.keys(PROJECTIONS_BASELINE), ...totals.keys()]);
+// ── Gedämpftes Delta (siehe Kopfkommentar) ───────────────────
+// Echte Stats werden der Projection per normalisiertem Namen zugeordnet
+// (CSV-Schreibweise ≠ Consensus-Schreibweise, z. B. Diakritika/Jr.).
+const projByNorm = new Map(Object.keys(PROJECTIONS).map(n => [normalizeName(n), n]));
+const actualByProj = new Map(); // Projection-Name -> totals
+const actualOnly = new Map();   // ohne Projection
+totals.forEach((t, name) => {
+  const alias = aliasCanonical(name);
+  const proj = projByNorm.get(normalizeName(name)) || (alias && projByNorm.get(normalizeName(alias)));
+  if (proj) {
+    const prev = actualByProj.get(proj);
+    if (prev) Object.keys(t).forEach(k => { prev[k] += t[k]; }); else actualByProj.set(proj, { ...t });
+  } else actualOnly.set(name, t);
+});
+
+const COUNTING_KEYS = ['min', 'pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'tov', 'fga', 'fta'];
+const share = (n, key) => n / (n + K_GAMES[key] * K_SCALE);
+
+// Spieler OHNE Projection (Two-Way, Garbage Time …): gedämpft Richtung „kein Beitrag“
+// (0 Minuten/Stats, Liga-Quote), damit 1 Spiel mit 3 Minuten nicht wie ein Stammspieler aussieht.
+const poolSum = k => Object.values(PROJECTIONS).reduce((a, p) => a + (p[k] || 0), 0);
+const NO_PROJ_PRIOR = {
+  min: 0, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, tpm: 0, tov: 0, fga: 0, fta: 0,
+  fgPct: poolSum('fga') ? poolSum('fgm') / poolSum('fga') * 100 : 46,
+  ftPct: poolSum('fta') ? poolSum('ftm') / poolSum('fta') * 100 : 78,
+};
 
 const live = {};
-allNames.forEach(name => {
-  const base = PROJECTIONS_BASELINE[name] || null;
-  const actual = totals.get(name) || null;
-  const games = actual ? actual.games : 0;
-  const pctOnly = !!(base && base.pctOnly);
-
-  const blended = {};
+function buildRow(proj, actual) {
+  const base = proj || NO_PROJ_PRIOR;
+  const n = actual ? actual.games : 0;
+  const row = {};
   COUNTING_KEYS.forEach(k => {
-    const baseVal = base ? (base[k] || 0) : 0;
-    const actualSum = actual ? (actual[k] || 0) : 0;
-    const w = base ? BASELINE_WEIGHT : 0; // kein Baseline-Eintrag -> reiner Saison-Schnitt
-    const denom = w + games;
-    blended[k] = denom > 0 ? (baseVal * w + actualSum) / denom : 0;
+    const avg = n ? actual[k] / n : 0;
+    row[k] = !n ? base[k] : base[k] + (avg - base[k]) * share(n, k);
   });
-
-  SHOOTING_PAIRS.forEach(([mKey, aKey, pctKey]) => {
-    if (pctOnly) {
-      // Kein Baseline-Volumen bekannt: solange keine echten Spiele vorliegen,
-      // einfach die Baseline-Prozentzahl unveraendert zeigen. Sobald echte
-      // Spiele da sind, wird das TATSAECHLICHE Wurfvolumen der echten Spiele
-      // auch fuer die "virtuellen" Baseline-Spiele angenommen (kein
-      // erfundener Fixwert) — das reduziert sich mathematisch exakt auf
-      // einen game-gewichteten Prozent-Durchschnitt zwischen Baseline-%
-      // und Saison-%, ohne die Attempts-Verzerrung eines naiven simplen
-      // Prozent-Mittelwerts über unterschiedlich große Stichproben.
-      if (games > 0) {
-        const avgAttPerGame = actual[aKey] / games;
-        const virtualAttTotal = avgAttPerGame * BASELINE_WEIGHT;
-        const virtualMadeTotal = virtualAttTotal * (base[pctKey] / 100);
-        const denom = BASELINE_WEIGHT + games;
-        blended[mKey] = (virtualMadeTotal + actual[mKey]) / denom;
-        blended[aKey] = (virtualAttTotal + actual[aKey]) / denom;
-      } else {
-        blended[mKey] = 0;
-        blended[aKey] = 0;
-        blended[pctKey] = base[pctKey];
-      }
-    } else {
-      const baseVal = base ? (base[mKey] || 0) : 0;
-      const baseAtt = base ? (base[aKey] || 0) : 0;
-      const actualMade = actual ? (actual[mKey] || 0) : 0;
-      const actualAtt = actual ? (actual[aKey] || 0) : 0;
-      const w = base ? BASELINE_WEIGHT : 0;
-      const denom = w + games;
-      blended[mKey] = denom > 0 ? (baseVal * w + actualMade) / denom : 0;
-      blended[aKey] = denom > 0 ? (baseAtt * w + actualAtt) / denom : 0;
-    }
+  [['fgm', 'fga', 'fgPct'], ['ftm', 'fta', 'ftPct']].forEach(([mKey, aKey, pctKey]) => {
+    const made = actual ? actual[mKey] : 0, att = actual ? actual[aKey] : 0;
+    const kA = K_ATT[pctKey] * K_SCALE;
+    const pct = (base[pctKey] / 100 * kA + made) / (kA + att) * 100;
+    row[pctKey] = pct;
+    row[mKey] = row[aKey] * pct / 100;
   });
-
-  blended.min = base ? base.min : 0; // MIN wird nicht season-live geblendet, reine Baseline-Info
-  if (blended.fgPct === undefined) blended.fgPct = blended.fga > 0 ? (blended.fgm / blended.fga) * 100 : 0;
-  if (blended.ftPct === undefined) blended.ftPct = blended.fta > 0 ? (blended.ftm / blended.fta) * 100 : 0;
-  blended.gamesPlayed = games;
-  blended.hasBaseline = !!base;
-  // zFloor/zDepth/adpVal: statische Baseline-Werte, kein Live-Recalc (Formel
-  // aus dem Projections-Repo nicht bekannt) — "z" selbst wird unten frisch
-  // ueber den kompletten Pool neu berechnet (gleiche Mathe wie ueberall
-  // sonst im Projekt, siehe scripts/build-offseason-rankings.js).
-  blended.zFloor = base ? base.zFloor : 0;
-  blended.zDepth = base ? base.zDepth : 0;
-  blended.adpVal = base ? base.adpVal : 0;
-  blended.z = base ? base.z : 0; // Fallback: Original-Baseline-Z, wird unten ggf. live neu berechnet
-
-  live[name] = blended;
-});
+  row.gamesPlayed = n;
+  row.hasBaseline = !!proj;            // Name historisch: true = hat eine Projection
+  row.z = 0; row.zFloor = 0; row.zDepth = 0; row.adpVal = 0; // Altfelder, keine Seite liest sie mehr
+  return row;
+}
+Object.keys(PROJECTIONS).forEach(name => { live[name] = buildRow(PROJECTIONS[name], actualByProj.get(name) || null); });
+actualOnly.forEach((t, name) => { if (!live[name]) live[name] = buildRow(null, t); });
+console.log(`  ${actualByProj.size} Spieler mit Projection + echten Spielen, ${actualOnly.size} nur mit echten Spielen.`);
 
 // ── Z-Score frisch ueber den kompletten Pool berechnen ────────
 // Exakt gleiche Mathematik wie scripts/build-offseason-rankings.js /
@@ -333,8 +281,7 @@ allNames.forEach(name => {
 // Ligen mit echten Baseline-z (Funkytown) sind davon nicht betroffen.
 // Sportweit (15.10.2026): die Master-Baseline mischt TTHQ (z = 0) und Funkytown-Veteranen
 // (eigene z, andere Skala) → nur wenn ALLE Spieler einen z haben, bleibt der Original-z.
-const baselineHasZ = Object.values(PROJECTIONS_BASELINE).every(p => p && p.z);
-if (filesRead > 0 || !baselineHasZ) {
+{
   function mean(arr) { return arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0; }
   function stdDev(arr, m) {
     if (arr.length < 2) return 0;
@@ -345,7 +292,7 @@ if (filesRead > 0 || !baselineHasZ) {
   // Referenz-Pool für Mittelwert/Streuung: Consensus-Spieler (kuratiert, ohne Karteileichen)
   // plus alle mit echten Saisonspielen. Baseline-only-Veteranen werden auf DIESER Skala bewertet,
   // ziehen den Pool aber nicht runter (sonst Luka-z je nach Ligen-Mix verschieden).
-  const poolEntries = liveEntries.filter(([n, p]) => PROJECTIONS_CONSENSUS[n] || p.gamesPlayed > 0);
+  const poolEntries = liveEntries.filter(([n, p]) => PROJECTIONS[n] || p.gamesPlayed > 0);
   const poolFgSum = poolEntries.reduce((s, [, p]) => s + p.fgm, 0);
   const poolFgaSum = poolEntries.reduce((s, [, p]) => s + p.fga, 0);
   const poolFtSum = poolEntries.reduce((s, [, p]) => s + p.ftm, 0);
@@ -378,11 +325,7 @@ if (filesRead > 0 || !baselineHasZ) {
     delete p._fgImpact;
     delete p._ftImpact;
   });
-  console.log(filesRead > 0
-    ? 'Z-Scores frisch über den Live-Pool berechnet (echte Saison-Daten vorhanden).'
-    : 'Baseline ohne z-Werte (alle 0) -- Z-Scores über den Projections-Pool berechnet.');
-} else {
-  console.log('Noch keine echten Saison-Daten — Original-Z aus der Baseline bleibt unverändert.');
+  console.log('Z-Scores (9-Cat) über den Live-Pool berechnet.');
 }
 
 function serialize(obj) {
@@ -399,19 +342,19 @@ const out = `// ============================================================
 //  LIVE PROJECTIONS
 // ============================================================
 //  AUTO-GENERIERT von scripts/build-live-projections.js. Nicht von
-//  Hand editieren. Blend aus data/projections-baseline.js (Preseason)
-//  + den echten Saison-Stats bisher (BASELINE_WEIGHT=${BASELINE_WEIGHT}, siehe
-//  Script-Kommentar für die Formel). Siehe README "Season-Start-Plan:
-//  Projections-Flow".
+//  Hand editieren. Consensus-Projection (BBM + Hashtag) + echte Saison-
+//  Stats als gedämpftes Delta je Kategorie: live = Proj + (Ist − Proj)·n/(n+k),
+//  k (Spiele) MIN 4 · PTS 6 · AST 7 · REB 10 · 3PM 12 · TO 12 · BLK 23 · STL 25,
+//  FG%/FT% über 300/120 Versuche${K_SCALE !== 1 ? ` · kscale ${K_SCALE}` : ''}. Formel: Script-Kopfkommentar.
 //  Zuletzt gebaut: ${today} · Liga: ${leagueArg} · ${filesRead} Spieltag(e) eingerechnet
 //
 //  Shape: LIVE_PROJECTIONS["Spielername"] = {
-//    min, pts, reb, ast, stl, blk, tpm, tov, fgm, fga, ftm, fta,  // Pro-Spiel-Schnitte, geblendet
+//    min, pts, reb, ast, stl, blk, tpm, tov, fgm, fga, ftm, fta,  // Pro-Spiel-Werte, gedämpft gemischt
 //    fgPct, ftPct,        // aus geblendeten Makes/Attempts berechnet, NICHT gemittelt
 //    gamesPlayed,          // echte Spiele bisher in dieser Liga
-//    hasBaseline,          // false = kein Preseason-Wert vorhanden, reiner Saison-Schnitt
+//    hasBaseline,          // false = keine Projection (gedämpft Richtung 0)
 //    z,                    // frisch ueber den kompletten Pool berechneter 9cat-Composite-Z-Score
-//    zFloor, zDepth, adpVal, // statische Baseline-Werte (kein Live-Recalc, Formel aus Projections-Repo)
+//    zFloor, zDepth, adpVal, // Altfelder (immer 0), nur für Abwärtskompatibilität
 //  }
 // ============================================================
 
@@ -420,4 +363,4 @@ ${serialize(live)}
 };
 `;
 fs.writeFileSync(OUT, out, 'utf8');
-console.log(`${OUT} geschrieben: ${allNames.size} Spieler total.`);
+console.log(`${OUT} geschrieben: ${Object.keys(live).length} Spieler total.`);
