@@ -1,0 +1,8 @@
+# Spieler, die NICHT in den Consensus dürfen (gewaivt ohne neues Team, Saison vorbei).
+# Ein Name pro Zeile, Schreibweise egal (wird normalisiert). Wer ein neues Team findet:
+# Zeile löschen, beim nächsten Quellen-Update kommt er automatisch zurück.
+Ben Simmons        # Achillessehne, Saison vorbei (19.10.2026)
+Bruce Brown        # gewaivt NYK 17.10.2026
+Kevin Porter Jr.   # gewaivt MIL 19.10.2026
+Walter Clayton Jr. # gewaivt MEM 19.10.2026
+Micah Peavy        # gewaivt MEM 19.10.2026

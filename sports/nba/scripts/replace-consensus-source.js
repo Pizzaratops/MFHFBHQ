@@ -74,16 +74,18 @@ function averageVals(list) {
   return out;
 }
 // ------------------------------------------------------------------
-// BBM-Pauschalminuten (19.10.2026): BBM gibt tiefen Bank-/Two-Way-Spielern
-// pauschal ~20–25 Min. Liegt b ≥ 10 Min über dem Schnitt der übrigen Quellen,
-// zählt b nicht zur Mittelung (Rohwert bleibt unter b, Flag bInflated).
+// BBM-Pauschalminuten (19.10.2026, verschärft 21.10.2026): BBM gibt tiefen
+// Bank-/Two-Way-Spielern pauschal ~17–25 Min. BBM zählt nicht zur Mittelung,
+// wenn es ≥ 10 Min über dem Schnitt der übrigen Quellen liegt ODER ≥ 5 Min
+// UND ≥ 50 % darüber (z. B. 18 vs. 10). Rohwert bleibt unter b, Flag bInflated.
 // Spieler, die NUR BBM führt, werden aus demselben Grund nicht aufgenommen.
-const BBM_GAP = 10;
+const BBM_GAP = 10, BBM_GAP_REL = 5, BBM_RATIO = 1.5;
 function bbmInflated(parts) {
   if (!parts.b) return false;
   const others = [parts.a, parts.c].filter(Boolean).map(v => v.min);
   if (!others.length) return false;
-  return parts.b.min - others.reduce((s, x) => s + x, 0) / others.length >= BBM_GAP;
+  const ref = others.reduce((s, x) => s + x, 0) / others.length, gap = parts.b.min - ref;
+  return gap >= BBM_GAP || (gap >= BBM_GAP_REL && parts.b.min >= BBM_RATIO * ref);
 }
 
 const src = fs.readFileSync(consPath, 'utf8');

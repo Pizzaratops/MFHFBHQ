@@ -253,11 +253,12 @@ function main() {
     const vB = srcVals(rawB, rawB ? rawB.fga : 0, rawB ? rawB.fta : 0);
     const vC = srcVals(rawC, rawC ? rawC.fga : 0, rawC ? rawC.fta : 0);
 
-    // BBM-Pauschalminuten (19.10.2026): liegt BBM >= 10 Min ueber dem
-    // Schnitt der uebrigen Quellen, zaehlt BBM nicht (Rohwert bleibt unter b).
+    // BBM-Pauschalminuten (19.10./21.10.2026): BBM zaehlt nicht bei >= 10 Min
+    // ueber den uebrigen Quellen oder >= 5 Min UND >= 50 % darueber.
     const othersMin = [vA, vC].filter(Boolean).map(v => v.min);
-    const bInflated = !!(vB && othersMin.length &&
-      vB.min - othersMin.reduce((s, x) => s + x, 0) / othersMin.length >= 10);
+    const refMin = othersMin.length ? othersMin.reduce((s, x) => s + x, 0) / othersMin.length : 0;
+    const gapMin = vB ? vB.min - refMin : 0;
+    const bInflated = !!(vB && othersMin.length && (gapMin >= 10 || (gapMin >= 5 && vB.min >= 1.5 * refMin)));
 
     const contributing = [];
     if (vA) contributing.push('a');

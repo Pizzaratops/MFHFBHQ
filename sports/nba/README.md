@@ -50,7 +50,7 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | preseason-score.js (+ preseason/<Saison>/games/*.json Cache) | update-preseason-score.js (Logik: preseason-score.js) | Preseason Score, Seite „🌱 Preseason“; lädt schon vor dem Cutover aus dem Hub (`./`-Pfad in `files`) |
 | preseason-baseline-2025-26.json | build-baseline.py (jährlich) | Vorsaison-Werte je ESPN-Athlete-ID + Positions-Referenz |
 | projections-baseline.js | `scripts/import-projections-baseline.js <xlsx>` | Beyaz' alte Projections – **seit 20.10.2026 ohne Wirkung** (nicht mehr im Consensus, nicht in Live, nicht in Dynasty Live) |
-| projections-consensus.js | `scripts/build-consensus-projections.js <bbm.json> <hashtag.json>` / `replace-consensus-source.js` | BBM × Hashtag (seit 20.10.2026; BBM zählt nicht bei ≥ 10 Min über Hashtag, reine BBM-Zeilen raus) |
+| projections-consensus.js | **wöchentlich** `scripts/update-projection-sources.js --bbm=… --hashtag=…` (ruft `replace-consensus-source.js`) | BBM „Combined“ × Hashtag (seit 20.10.2026). BBM zählt nicht bei ≥ 10 Min über Hashtag oder ≥ 5 Min UND ≥ 50 % darüber; reine BBM-Zeilen raus; Ausschlüsse `scripts/data/consensus-exclude.txt`; Rohquellen mit Datum in `scripts/data/projection-sources/` |
 | live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Consensus + echte Saison-CSVs als **gedämpftes Delta je Kategorie** (siehe „Live Projections“ unten); z über den Live-Pool |
 | snapshots/projections-2026-27-opening-night.js | eingefroren (20.10.2026) | Board zum Tipoff; Erwartung für Dynasty Live + Saisonend-Abgleich. Nie überschreiben. |
 | last-season-stats-2025-26.js | statisch (BBM-Export inkl. Alter) | Vorsaison, für Planner/Cat Web/Boards |
@@ -294,4 +294,17 @@ des Werts schon dieser Abend (Paul George 38 Pkt → Projection 16,6 → 23,7). 
 - Spieler ohne Projection (Two-Way, Garbage Time): dieselbe Dämpfung Richtung 0 (Liga-Quote) –
   ein Spiel mit 3 Minuten macht keinen Stammspieler.
 - Echte Stats werden der Projection über den normalisierten Namen zugeordnet (Diakritika, Jr.).
+
+## Wöchentliches Quellen-Update (montags, seit 21.10.2026)
+
+1. **Hashtag:** `hashtagbasketball.com/import-v4/fantasy-basketball-projections` (Login im Claude-Browser),
+   Anzeige „All“ (Wert 900), „2026-27 Rest of Season Projections“. Tabelle `ContentPlaceHolder1_GridView1`.
+2. **BBM:** `basketballmonster.com/projections.aspx` (Login im Claude-Browser), Projection Source
+   **Combined**, Player Filter **All Players**, Per Game Stats. Tabelle `table.modern-stats-table`,
+   Spalten Name/Team/Pos/g/m/g/p/g/3/g/r/g/a/g/s/g/b/g/fg%/fga/g/ft%/fta/g/to/g; Zeilen mit 0 Min weglassen.
+3. Beide als JSON im Format von `replace-consensus-source.js` speichern (Prozente 0–100), dann
+   `node sports/nba/scripts/update-projection-sources.js --bbm=bbm.json --hashtag=hashtag.json`.
+   Bricht ab, wenn eine Quelle < 300 Spieler hat (falscher Filter).
+4. Gewaivte Spieler ohne neues Team in `consensus-exclude.txt` eintragen (und in `tools/usm.js` STATUS).
+5. Committen; Dynasty Live/Team Analytics ziehen im nächsten Liga-Sync nach.
 
