@@ -20,7 +20,7 @@
 
 const NFL_PROFILE_COMP = {
   "meta": {
-    "builtAt": "2026-10-21T13:21:36.287Z",
+    "builtAt": "2026-10-21T14:27:22.297Z",
     "matchFeatures": {
       "QB": [
         "avgPpaPass",
@@ -269566,128 +269566,6 @@ const NFL_PROFILE_COMP = {
           "draftCapitalScore": 0.511
         }
       ],
-      "2025_4819215": [
-        {
-          "id": "nfl_2022_jeremyruckert",
-          "name": "Jeremy Ruckert",
-          "team": "Ohio State",
-          "year": 2021,
-          "dist": 1.301,
-          "draftYear": 2022,
-          "draftRound": 3,
-          "draftPick": 101,
-          "ras": 4.16,
-          "draftCapitalScore": 0.39
-        },
-        {
-          "id": "nfl_2022_nickmuse",
-          "name": "Nick Muse",
-          "team": "South Carolina",
-          "year": 2021,
-          "dist": 1.422,
-          "draftYear": 2022,
-          "draftRound": 7,
-          "draftPick": 227,
-          "ras": null,
-          "draftCapitalScore": 0.174
-        },
-        {
-          "id": "nfl_2026_matthewhibner",
-          "name": "Matthew Hibner",
-          "team": "SMU",
-          "year": 2025,
-          "dist": 1.432,
-          "draftYear": 2026,
-          "draftRound": 4,
-          "draftPick": 133,
-          "ras": 7.23,
-          "draftCapitalScore": 0.338
-        },
-        {
-          "id": "nfl_2023_cameronlatu",
-          "name": "Cameron Latu",
-          "team": "Alabama",
-          "year": 2022,
-          "dist": 1.444,
-          "draftYear": 2023,
-          "draftRound": 3,
-          "draftPick": 101,
-          "ras": 1.84,
-          "draftCapitalScore": 0.39
-        },
-        {
-          "id": "nfl_2026_joeroyer",
-          "name": "Joe Royer",
-          "team": "Cincinnati",
-          "year": 2025,
-          "dist": 1.568,
-          "draftYear": 2026,
-          "draftRound": 5,
-          "draftPick": 170,
-          "ras": 4.02,
-          "draftCapitalScore": 0.313
-        },
-        {
-          "id": "nfl_2020_daltonkeene",
-          "name": "Dalton Keene",
-          "team": "Virginia Tech",
-          "year": 2019,
-          "dist": 1.64,
-          "draftYear": 2020,
-          "draftRound": 3,
-          "draftPick": 101,
-          "ras": 6.22,
-          "draftCapitalScore": 0.39
-        },
-        {
-          "id": "nfl_2019_irvsmith",
-          "name": "Irv Smith Jr.",
-          "team": "Alabama",
-          "year": 2018,
-          "dist": 1.642,
-          "draftYear": 2019,
-          "draftRound": 2,
-          "draftPick": 50,
-          "ras": 3.86,
-          "draftCapitalScore": 0.511
-        },
-        {
-          "id": "nfl_2021_noahgray",
-          "name": "Noah Gray",
-          "team": "Duke",
-          "year": 2020,
-          "dist": 1.655,
-          "draftYear": 2021,
-          "draftRound": 5,
-          "draftPick": 162,
-          "ras": 4.67,
-          "draftCapitalScore": 0.313
-        },
-        {
-          "id": "nfl_2019_alizemack",
-          "name": "Alize Mack",
-          "team": "Notre Dame",
-          "year": 2018,
-          "dist": 1.704,
-          "draftYear": 2019,
-          "draftRound": 7,
-          "draftPick": 231,
-          "ras": 5.61,
-          "draftCapitalScore": 0.174
-        },
-        {
-          "id": "nfl_2021_kylengranson",
-          "name": "Kylen Granson",
-          "team": "SMU",
-          "year": 2020,
-          "dist": 1.708,
-          "draftYear": 2021,
-          "draftRound": 4,
-          "draftPick": 127,
-          "ras": null,
-          "draftCapitalScore": 0.338
-        }
-      ],
       "2025_4819226": [
         {
           "id": "nfl_2019_jacesternberger",
@@ -283133,7 +283011,7 @@ const NFL_PROFILE_COMP = {
       "poolSize": 158,
       "matched": 158,
       "unmatched": 575,
-      "targetsWithComps": 331
+      "targetsWithComps": 330
     }
   },
   "feats": {
@@ -308658,15 +308536,6 @@ const NFL_PROFILE_COMP = {
         "usageOverall": 10.1,
         "heightIn": 10.1,
         "weightLb": 38.7
-      },
-      "2025_4819215": {
-        "recShare": 6.7,
-        "ydShare": 11.8,
-        "tdShare": 43.7,
-        "avgPPA": 28.6,
-        "usageOverall": 22.7,
-        "heightIn": 38.7,
-        "weightLb": 42
       },
       "2025_4819226": {
         "recShare": 54.6,

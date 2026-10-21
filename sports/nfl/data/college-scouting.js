@@ -24,7 +24,7 @@
 
 const COLLEGE_SCOUTING = {
   "meta": {
-    "lastSync": "2026-10-21T13:20:35.688Z",
+    "lastSync": "2026-10-21T14:26:21.781Z",
     "currentSeason": 2026,
     "years": [
       2013,
@@ -233624,24 +233624,6 @@ const COLLEGE_SCOUTING = {
         "weightLb": 245
       },
       {
-        "id": "2025_4819215",
-        "rawId": "4819215",
-        "name": "Josh Kattus",
-        "team": "Kentucky",
-        "conf": "SEC",
-        "year": 2025,
-        "rec": 17,
-        "yds": 195,
-        "td": 2,
-        "recShare": 7.4,
-        "ydShare": 8,
-        "tdShare": 13.3,
-        "usageOverall": 4.7,
-        "avgPPA": 0.598,
-        "heightIn": 76,
-        "weightLb": 247
-      },
-      {
         "id": "2025_4819226",
         "rawId": "4819226",
         "name": "Brody Foley",
@@ -345938,78 +345920,6 @@ const COLLEGE_SCOUTING = {
           "team": "Missouri",
           "year": 2018,
           "dist": 0.688
-        }
-      ],
-      "2025_4819215": [
-        {
-          "id": "2021_4431051",
-          "name": "Izayah Cummings",
-          "team": "Kentucky",
-          "year": 2021,
-          "dist": 0.361
-        },
-        {
-          "id": "2021_4872953",
-          "name": "Thomaz Whitford",
-          "team": "New Mexico State",
-          "year": 2021,
-          "dist": 0.444
-        },
-        {
-          "id": "2025_4869745",
-          "name": "Kyirin Heath",
-          "team": "Southern Miss",
-          "year": 2025,
-          "dist": 0.466
-        },
-        {
-          "id": "2018_4034862",
-          "name": "Jack Stoll",
-          "team": "Nebraska",
-          "year": 2018,
-          "dist": 0.48
-        },
-        {
-          "id": "2015_512695",
-          "name": "Keith Heitzman",
-          "team": "Ohio",
-          "year": 2015,
-          "dist": 0.495
-        },
-        {
-          "id": "2014_515453",
-          "name": "Jon Davis",
-          "team": "Illinois",
-          "year": 2014,
-          "dist": 0.52
-        },
-        {
-          "id": "2022_4367182",
-          "name": "Michael Ezeike",
-          "team": "UCLA",
-          "year": 2022,
-          "dist": 0.53
-        },
-        {
-          "id": "2025_5121720",
-          "name": "Noah Meyers",
-          "team": "Western Kentucky",
-          "year": 2025,
-          "dist": 0.541
-        },
-        {
-          "id": "2020_4040874",
-          "name": "Johnny Huntley III",
-          "team": "Liberty",
-          "year": 2020,
-          "dist": 0.543
-        },
-        {
-          "id": "2021_4426367",
-          "name": "Austin Stogner",
-          "team": "Oklahoma",
-          "year": 2021,
-          "dist": 0.642
         }
       ],
       "2025_4819226": [
