@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-21T17:11:31.459Z
+//  Stand: 2026-10-21T17:41:11.039Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -527,6 +527,7 @@ const CBB_PLAYER_POOL = [
 ["06gvy","Connor Sevilla","UCDav","G","G,Flx","FA"],
 ["064la","Connor Turnbull","UtSt","F","F/C,Flx","T"],
 ["06gp2","Cooper Bowser","Ark","F","F/C,Flx","FA"],
+["07aul","Cooper Cornelius","SDSU","G","G,Flx","FA"],
 ["06nd0","Cooper Haynes","Belm","G","G,Flx","FA"],
 ["07a0p","Cooper Knowles","Belm","F","F/C,Flx","FA"],
 ["06msp","Cooper Koch","Iowa","F","F/C,Flx","T"],
@@ -1216,6 +1217,7 @@ const CBB_PLAYER_POOL = [
 ["079kg","JD Jones","FSU","G","G,Flx","FA"],
 ["06hdf","Jean Aranguren","GrgWas","G","G,Flx","FA"],
 ["06gfh","Jeannot Basima","Yale","G","G,Flx","FA"],
+["07auk","Jel Malek","SDSU","G","G,Flx","FA"],
 ["06dvk","Jelani Hamilton","FAU","G","G,Flx","T"],
 ["079bu","Jelani McKoy","WVU","G","G,Flx","FA"],
 ["07a7k","Jemai Lake","OrSt","G","G,Flx","FA"],
