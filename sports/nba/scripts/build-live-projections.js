@@ -28,6 +28,17 @@
 //  die k sind also eher vorsichtig (Saison zählt eher etwas zu früh).
 //  --kscale=1.5 o. ä. skaliert alle k gemeinsam.
 //
+//  xStats (seit 21.10.2026, wöchentlich): data/xstats-season.js (Josh Lloyds
+//  Methode, Montagslauf über scripts/xstats-browser.js + import-xstats.js).
+//  Für Spieler MIT x-Werten ersetzt bis zum Stand der Datei der x-Wert ganz
+//  (STL) bzw. zur Hälfte (TO, 3PM, FGM) den echten Wert, danach zählen die
+//  echten Spiele wie gehabt. Backtest 2023–2026 (2.730 Fälle), RMSE:
+//    STL  echt k25 → x k10       ≈ −7 %
+//    TO   echt k12 → Mix k7      ≈ −5 %
+//    3PM  echt k12 → Mix k7      ≈ −3 %
+//    FG%  echt 300 → Mix 140 FGA ≈ −5 %
+//  Andere Saison in der Datei oder Spieler ohne x-Werte: alte k.
+//
 //  Spieler ohne Projection: gleiche Dämpfung Richtung 0 (Liga-Quote bei
 //  FG%/FT%) – erst nach einigen Spielen zählen sie wie gesehen. Minuten werden ebenfalls
 //  gedämpft gemischt (vorher blieben sie fest auf der Projection).
@@ -223,8 +234,36 @@ totals.forEach((t, name) => {
   } else actualOnly.set(name, t);
 });
 
+// ── xStats (siehe Kopfkommentar) ──────────────────────────────
+const X_K_GAMES = { stl: 10, tov: 7, tpm: 7 };
+const X_K_FG = 140;
+const X_WEIGHT = { stl: 1, tov: 0.5, tpm: 0.5, fgm: 0.5 }; // Anteil, den x am echten Wert ersetzt
+const XS = loadVmObject(path.join(SPORT_DATA, 'xstats-season.js'), 'XSTATS_SEASON');
+const SEASON = (() => { const y = +SINCE.slice(0, 4); return `${y}-${String((y + 1) % 100).padStart(2, '0')}`; })();
+const xsByNorm = new Map();
+if (XS && XS.meta && XS.meta.season === SEASON) {
+  Object.entries(XS.players || {}).forEach(([n, x]) => xsByNorm.set(normalizeName(n), x));
+  console.log(`  xStats: ${xsByNorm.size} Spieler, Stand ${XS.meta.through}.`);
+} else if (XS) console.log(`  xStats ignoriert: Saison ${XS.meta && XS.meta.season} ≠ ${SEASON}.`);
+function xFor(name) {
+  const alias = aliasCanonical(name);
+  return xsByNorm.get(normalizeName(name)) || (alias && xsByNorm.get(normalizeName(alias))) || null;
+}
+let xApplied = 0;
+// Echte Saison-Summen bis zum xStats-Stand anteilig durch x ersetzen.
+// x.gp > echte Spiele = Daten passen nicht zusammen → nicht anwenden.
+function withX(actual, x) {
+  if (!actual || !x || !x.gp || x.gp > actual.games) return null;
+  const a = { ...actual };
+  [['stl', 'stl', 'xstl'], ['tov', 'tov', 'xtov'], ['tpm', 'tpm', 'xtpm'], ['fgm', 'fgm', 'xfgm']].forEach(([k, r, xk]) => {
+    a[k] = Math.max(0, a[k] - (x[r] - x[xk]) * X_WEIGHT[k]);
+  });
+  a.fgm = Math.min(a.fgm, a.fga);
+  xApplied++;
+  return a;
+}
+
 const COUNTING_KEYS = ['min', 'pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'tov', 'fga', 'fta'];
-const share = (n, key) => n / (n + K_GAMES[key] * K_SCALE);
 
 // Spieler OHNE Projection (Two-Way, Garbage Time …): gedämpft Richtung „kein Beitrag“
 // (0 Minuten/Stats, Liga-Quote), damit 1 Spiel mit 3 Minuten nicht wie ein Stammspieler aussieht.
@@ -236,29 +275,33 @@ const NO_PROJ_PRIOR = {
 };
 
 const live = {};
-function buildRow(proj, actual) {
+function buildRow(proj, actual, name) {
   const base = proj || NO_PROJ_PRIOR;
   const n = actual ? actual.games : 0;
+  const xa = n ? withX(actual, xFor(name)) : null;
+  const act = xa || actual;
+  const kOf = k => (xa && X_K_GAMES[k]) || K_GAMES[k];
   const row = {};
   COUNTING_KEYS.forEach(k => {
-    const avg = n ? actual[k] / n : 0;
-    row[k] = !n ? base[k] : base[k] + (avg - base[k]) * share(n, k);
+    const avg = n ? act[k] / n : 0;
+    row[k] = !n ? base[k] : base[k] + (avg - base[k]) * (n / (n + kOf(k) * K_SCALE));
   });
   [['fgm', 'fga', 'fgPct'], ['ftm', 'fta', 'ftPct']].forEach(([mKey, aKey, pctKey]) => {
-    const made = actual ? actual[mKey] : 0, att = actual ? actual[aKey] : 0;
-    const kA = K_ATT[pctKey] * K_SCALE;
+    const made = act ? act[mKey] : 0, att = act ? act[aKey] : 0;
+    const kA = (xa && pctKey === 'fgPct' ? X_K_FG : K_ATT[pctKey]) * K_SCALE;
     const pct = (base[pctKey] / 100 * kA + made) / (kA + att) * 100;
     row[pctKey] = pct;
     row[mKey] = row[aKey] * pct / 100;
   });
   row.gamesPlayed = n;
+  if (xa) row.xStats = true;
   row.hasBaseline = !!proj;            // Name historisch: true = hat eine Projection
   row.z = 0; row.zFloor = 0; row.zDepth = 0; row.adpVal = 0; // Altfelder, keine Seite liest sie mehr
   return row;
 }
-Object.keys(PROJECTIONS).forEach(name => { live[name] = buildRow(PROJECTIONS[name], actualByProj.get(name) || null); });
-actualOnly.forEach((t, name) => { if (!live[name]) live[name] = buildRow(null, t); });
-console.log(`  ${actualByProj.size} Spieler mit Projection + echten Spielen, ${actualOnly.size} nur mit echten Spielen.`);
+Object.keys(PROJECTIONS).forEach(name => { live[name] = buildRow(PROJECTIONS[name], actualByProj.get(name) || null, name); });
+actualOnly.forEach((t, name) => { if (!live[name]) live[name] = buildRow(null, t, name); });
+console.log(`  ${actualByProj.size} Spieler mit Projection + echten Spielen, ${actualOnly.size} nur mit echten Spielen, xStats angewandt bei ${xApplied}.`);
 
 // ── Z-Score frisch ueber den kompletten Pool berechnen ────────
 // Exakt gleiche Mathematik wie scripts/build-offseason-rankings.js /
@@ -332,7 +375,7 @@ function serialize(obj) {
   const lines = Object.entries(obj).map(([name, s]) => {
     const escaped = name.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     const round = n => Math.round(n * 100) / 100;
-    return `  "${escaped}": { min:${round(s.min)}, pts:${round(s.pts)}, reb:${round(s.reb)}, ast:${round(s.ast)}, stl:${round(s.stl)}, blk:${round(s.blk)}, tpm:${round(s.tpm)}, tov:${round(s.tov)}, fgm:${round(s.fgm)}, fga:${round(s.fga)}, ftm:${round(s.ftm)}, fta:${round(s.fta)}, fgPct:${round(s.fgPct)}, ftPct:${round(s.ftPct)}, gamesPlayed:${s.gamesPlayed}, hasBaseline:${s.hasBaseline}, z:${round(s.z)}, zFloor:${round(s.zFloor)}, zDepth:${round(s.zDepth)}, adpVal:${round(s.adpVal)} }`;
+    return `  "${escaped}": { min:${round(s.min)}, pts:${round(s.pts)}, reb:${round(s.reb)}, ast:${round(s.ast)}, stl:${round(s.stl)}, blk:${round(s.blk)}, tpm:${round(s.tpm)}, tov:${round(s.tov)}, fgm:${round(s.fgm)}, fga:${round(s.fga)}, ftm:${round(s.ftm)}, fta:${round(s.fta)}, fgPct:${round(s.fgPct)}, ftPct:${round(s.ftPct)}, gamesPlayed:${s.gamesPlayed}, hasBaseline:${s.hasBaseline}${s.xStats ? ', xStats:true' : ''}, z:${round(s.z)}, zFloor:${round(s.zFloor)}, zDepth:${round(s.zDepth)}, adpVal:${round(s.adpVal)} }`;
   });
   return lines.join(',\n');
 }
@@ -345,7 +388,7 @@ const out = `// ============================================================
 //  Hand editieren. Consensus-Projection (BBM + Hashtag) + echte Saison-
 //  Stats als gedämpftes Delta je Kategorie: live = Proj + (Ist − Proj)·n/(n+k),
 //  k (Spiele) MIN 4 · PTS 6 · AST 7 · REB 10 · 3PM 12 · TO 12 · BLK 23 · STL 25,
-//  FG%/FT% über 300/120 Versuche${K_SCALE !== 1 ? ` · kscale ${K_SCALE}` : ''}. Formel: Script-Kopfkommentar.
+//  FG%/FT% über 300/120 Versuche${xsByNorm.size ? `; xStats Stand ${XS.meta.through} (STL x k10, TO/3PM Mix k7, FG% Mix 140 FGA)` : ''}${K_SCALE !== 1 ? ` · kscale ${K_SCALE}` : ''}. Formel: Script-Kopfkommentar.
 //  Zuletzt gebaut: ${today} · Liga: ${leagueArg} · ${filesRead} Spieltag(e) eingerechnet
 //
 //  Shape: LIVE_PROJECTIONS["Spielername"] = {
@@ -353,6 +396,7 @@ const out = `// ============================================================
 //    fgPct, ftPct,        // aus geblendeten Makes/Attempts berechnet, NICHT gemittelt
 //    gamesPlayed,          // echte Spiele bisher in dieser Liga
 //    hasBaseline,          // false = keine Projection (gedämpft Richtung 0)
+//    xStats,               // nur wenn true: STL/TO/3PM/FG% mit xStats gemischt
 //    z,                    // frisch ueber den kompletten Pool berechneter 9cat-Composite-Z-Score
 //    zFloor, zDepth, adpVal, // Altfelder (immer 0), nur für Abwärtskompatibilität
 //  }

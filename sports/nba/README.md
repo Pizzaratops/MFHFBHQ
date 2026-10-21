@@ -51,7 +51,8 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | preseason-baseline-2025-26.json | build-baseline.py (jährlich) | Vorsaison-Werte je ESPN-Athlete-ID + Positions-Referenz |
 | projections-baseline.js | `scripts/import-projections-baseline.js <xlsx>` | Beyaz' alte Projections – **seit 20.10.2026 ohne Wirkung** (nicht mehr im Consensus, nicht in Live, nicht in Dynasty Live) |
 | projections-consensus.js | **wöchentlich** `scripts/update-projection-sources.js --bbm=… --hashtag=…` (ruft `replace-consensus-source.js`) | BBM „Combined“ × Hashtag (seit 20.10.2026). BBM zählt nicht bei ≥ 10 Min über Hashtag oder ≥ 5 Min UND ≥ 50 % darüber; reine BBM-Zeilen raus; Ausschlüsse `scripts/data/consensus-exclude.txt`; Rohquellen mit Datum in `scripts/data/projection-sources/` |
-| live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Consensus + echte Saison-CSVs als **gedämpftes Delta je Kategorie** (siehe „Live Projections“ unten); z über den Live-Pool |
+| live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Consensus + echte Saison-CSVs als **gedämpftes Delta je Kategorie** (siehe „Live Projections“ unten), STL/TO/3PM/FG% mit xStats; z über den Live-Pool |
+| xstats-season.js | `scripts/import-xstats.js` (Montagslauf, Daten per `xstats-browser.js` im Claude-Browser) | Josh Lloyds xStats der Saison (Summen bis Stand) |
 | snapshots/projections-2026-27-opening-night.js | eingefroren (20.10.2026) | Board zum Tipoff; Erwartung für Dynasty Live + Saisonend-Abgleich. Nie überschreiben. |
 | last-season-stats-2025-26.js | statisch (BBM-Export inkl. Alter) | Vorsaison, für Planner/Cat Web/Boards |
 | aliases.js, rolling-rankings.js, season-rankings.js, last-season-stats-2003-04 … 2024-25, draft-class-2025/2026, draft2026/2027, draft-capital-2026 | statisch / manuell | in beiden Repos identisch (aliases: TTHQ-Fassung = Obermenge) |
@@ -295,6 +296,21 @@ des Werts schon dieser Abend (Paul George 38 Pkt → Projection 16,6 → 23,7). 
   ein Spiel mit 3 Minuten macht keinen Stammspieler.
 - Echte Stats werden der Projection über den normalisierten Namen zugeordnet (Diakritika, Jr.).
 
+### xStats (seit 21.10.2026, wöchentlich)
+
+Josh Lloyds xStats (joshlloydfantasy.com/research/xstats-method) messen, was ein Spieler „hätte
+liefern sollen“: xSTL = a·MIN + c·Deflections, xTO = Touches · Liga-TO/Touch, x3PM/xFGM = Wurfversuche
+je Zone × Liga-Quote der Zone. `data/xstats-season.js` (Saison-Summen bis Stand) ersetzt den echten
+Wert bis zu diesem Stand ganz (STL) bzw. zur Hälfte (TO, 3PM, FGM); spätere Spiele zählen normal.
+
+| | STL | TO | 3PM | FG% |
+|---|---|---|---|---|
+| mit xStats | x allein, k 10 | Mix, k 7 | Mix, k 7 | Mix, 140 Versuche |
+| Fehler (RMSE) vs. ohne | ≈ −7 % | ≈ −5 % | ≈ −3 % | ≈ −5 % |
+
+Backtest 2023–2026 (stats.nba.com, 2.730 Fälle). PTS/REB/AST/BLK gewinnen < 2 % → nicht genutzt.
+Spieler ohne x-Werte und Dateien einer anderen Saison: alte k. Live-Zeilen mit x tragen `xStats:true`.
+
 ## Wöchentliches Quellen-Update (montags, seit 21.10.2026)
 
 1. **Hashtag:** `hashtagbasketball.com/import-v4/fantasy-basketball-projections` (Login im Claude-Browser),
@@ -306,5 +322,10 @@ des Werts schon dieser Abend (Paul George 38 Pkt → Projection 16,6 → 23,7). 
    `node sports/nba/scripts/update-projection-sources.js --bbm=bbm.json --hashtag=hashtag.json`.
    Bricht ab, wenn eine Quelle < 300 Spieler hat (falscher Filter).
 4. Gewaivte Spieler ohne neues Team in `consensus-exclude.txt` eintragen (und in `tools/usm.js` STATUS).
-5. Committen; Dynasty Live/Team Analytics ziehen im nächsten Liga-Sync nach.
+5. **xStats:** im Claude-Browser `www.nba.com` öffnen (stats.nba.com blockt Cloud-IPs), Inhalt von
+   `scripts/xstats-browser.js` ausführen, dann `await window.__xstats('2026-27', '10/20/2026', '<letzter Spieltag MM/DD/YYYY>')`.
+   `window.__xs.text` in eine Datei schreiben und
+   `node sports/nba/scripts/import-xstats.js xs.txt --through=YYYY-MM-DD`, danach
+   `node scripts/build-live-projections.js --league=nba` (in `sports/nba`).
+6. Committen; Dynasty Live/Team Analytics ziehen im nächsten Liga-Sync nach.
 
