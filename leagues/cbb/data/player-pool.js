@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-21T01:00:47.481Z
+//  Stand: 2026-10-21T06:36:28.498Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -53,6 +53,7 @@ const CBB_PLAYER_POOL = [
 ["06g5z","Aidan Cammann","Stan","F","F/C,Flx","FA"],
 ["07afu","Aidan Chronister","Mizzou","G","G,Flx","FA"],
 ["06n5d","Aidan Crotty","Ford","G","G,Flx","FA"],
+["065av","Aidan Mahaney","UCSB","G","G,Flx","FA"],
 ["0656i","Aidan Shaw","GrgWas","G","F/C,G,Flx","FA"],
 ["07asv","Aidan Wing","LoyIL","F","F/C,Flx","FA"],
 ["0717n","Aiden Argabright","Rich","G","G,Flx","T"],
@@ -1299,6 +1300,7 @@ const CBB_PLAYER_POOL = [
 ["07206","Jordan Ellerbee","Butl","G","G,Flx","FA"],
 ["070w6","Jordan Frison","WichSt","G","G,Flx","T"],
 ["079b7","Jordan Ghee","BC","G","G,Flx","FA"],
+["07aua","Jordan Houegban","UCLA","G","G,Flx","FA"],
 ["079uf","Jordan Johnson","UCSD","G","G,Flx","FA"],
 ["06gn7","Jordan Marsh","Tem","G","G,Flx","T"],
 ["064il","Jordan Pope","TAMU","G","G,Flx","FA"],
