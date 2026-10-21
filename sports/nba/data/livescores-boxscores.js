@@ -75,9 +75,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909089",
-      line: "Philadelphia 76ers @ New York Knicks (10/20 - 7:00 PM EDT)",
+      line: "Philadelphia 76ers @ New York Knicks (8:09 - 2nd)",
       completed: false,
-      statusText: "10/20 - 7:00 PM EDT",
+      statusText: "8:09 - 2nd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
