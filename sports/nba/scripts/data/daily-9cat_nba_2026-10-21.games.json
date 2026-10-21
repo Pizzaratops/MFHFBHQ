@@ -1,0 +1,204 @@
+{
+  "league": "nba",
+  "date": "2026-10-21",
+  "games": [
+    {
+      "id": "401909834",
+      "line": "Atlanta Hawks @ Orlando Magic (10/21 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 7:00 PM EDT",
+      "away": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909835",
+      "line": "Milwaukee Bucks @ Washington Wizards (10/21 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 7:00 PM EDT",
+      "away": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909091",
+      "line": "Minnesota Timberwolves @ Miami Heat (10/21 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 7:30 PM EDT",
+      "away": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909836",
+      "line": "Charlotte Hornets @ Brooklyn Nets (10/21 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 7:30 PM EDT",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BKN",
+        "name": "Brooklyn Nets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909837",
+      "line": "Chicago Bulls @ Toronto Raptors (10/21 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 7:30 PM EDT",
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909838",
+      "line": "Utah Jazz @ Memphis Grizzlies (10/21 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 8:00 PM EDT",
+      "away": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909839",
+      "line": "Indiana Pacers @ New Orleans Pelicans (10/21 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 8:00 PM EDT",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NO",
+        "name": "New Orleans Pelicans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909840",
+      "line": "Dallas Mavericks @ Houston Rockets (10/21 - 8:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 8:30 PM EDT",
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909092",
+      "line": "Golden State Warriors @ Los Angeles Lakers (10/21 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 10:00 PM EDT",
+      "away": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909841",
+      "line": "Phoenix Suns @ Portland Trail Blazers (10/21 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 10:00 PM EDT",
+      "away": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909842",
+      "line": "Sacramento Kings @ LA Clippers (10/21 - 10:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/21 - 10:30 PM EDT",
+      "away": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
