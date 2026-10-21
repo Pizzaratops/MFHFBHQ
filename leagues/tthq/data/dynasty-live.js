@@ -2,7 +2,7 @@
 //  DYNASTY LIVE — Saison-Form gegen Erwartung
 // ============================================================
 //  AUTO-GENERIERT von scripts/build-dynasty-live.js (tthq-sync).
-//  Nicht von Hand editieren. Zuletzt aktualisiert: 2026-10-20
+//  Nicht von Hand editieren. Zuletzt aktualisiert: 2026-10-21
 //  Stand der Saisondaten: 2026-10-20
 //
 //  Nur signifikante Bewegungen (≥ 8 Spiele, |shift| ≥ 0.08).
