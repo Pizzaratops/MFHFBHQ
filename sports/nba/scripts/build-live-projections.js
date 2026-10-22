@@ -28,8 +28,12 @@
 //  die k sind also eher vorsichtig (Saison zählt eher etwas zu früh).
 //  --kscale=1.5 o. ä. skaliert alle k gemeinsam.
 //
-//  xStats (seit 21.10.2026, wöchentlich): data/xstats-season.js (Josh Lloyds
-//  Methode, Montagslauf über scripts/xstats-browser.js + import-xstats.js).
+//  xStats (Josh Lloyds Methode) aus zwei Dateien:
+//   - data/xstats-season.js, wöchentlich (seit 21.10.2026, Montagslauf über
+//     scripts/xstats-browser.js + import-xstats.js): STL, TO (+ 3PM/FGM als Ersatz)
+//   - data/xstats-pbp.js, täglich (seit 22.10.2026, scripts/xstats-pbp.py im
+//     nba-sync): 3PM, FGM aus dem Play-by-Play von Ramiro Bentes
+//     (github.com/ramirobentes/nba_data – fremdes Projekt, frei veröffentlicht).
 //  Für Spieler MIT x-Werten ersetzt bis zum Stand der Datei der x-Wert ganz
 //  (STL) bzw. zur Hälfte (TO, 3PM, FGM) den echten Wert, danach zählen die
 //  echten Spiele wie gehabt. Backtest 2023–2026 (2.730 Fälle), RMSE:
@@ -238,29 +242,43 @@ totals.forEach((t, name) => {
 const X_K_GAMES = { stl: 10, tov: 7, tpm: 7 };
 const X_K_FG = 140;
 const X_WEIGHT = { stl: 1, tov: 0.5, tpm: 0.5, fgm: 0.5 }; // Anteil, den x am echten Wert ersetzt
-const XS = loadVmObject(path.join(SPORT_DATA, 'xstats-season.js'), 'XSTATS_SEASON');
 const SEASON = (() => { const y = +SINCE.slice(0, 4); return `${y}-${String((y + 1) % 100).padStart(2, '0')}`; })();
-const xsByNorm = new Map();
-if (XS && XS.meta && XS.meta.season === SEASON) {
-  Object.entries(XS.players || {}).forEach(([n, x]) => xsByNorm.set(normalizeName(n), x));
-  console.log(`  xStats: ${xsByNorm.size} Spieler, Stand ${XS.meta.through}.`);
-} else if (XS) console.log(`  xStats ignoriert: Saison ${XS.meta && XS.meta.season} ≠ ${SEASON}.`);
-function xFor(name) {
-  const alias = aliasCanonical(name);
-  return xsByNorm.get(normalizeName(name)) || (alias && xsByNorm.get(normalizeName(alias))) || null;
+// Zwei Dateien: wöchentlich (nba.com über den Claude-Browser, alle vier
+// Kategorien) und täglich (Play-by-Play von Ramiro Bentes, github.com/
+// ramirobentes/nba_data, nur 3PM/FGM). Für 3PM/FGM gewinnt die tägliche.
+function loadX(file, varName, label) {
+  const X = loadVmObject(path.join(SPORT_DATA, file), varName);
+  const map = new Map();
+  if (X && X.meta && X.meta.season === SEASON) {
+    Object.entries(X.players || {}).forEach(([n, x]) => map.set(normalizeName(n), x));
+    console.log(`  xStats ${label}: ${map.size} Spieler, Stand ${X.meta.through}.`);
+  } else if (X) console.log(`  xStats ${label} ignoriert: Saison ${X.meta && X.meta.season} ≠ ${SEASON}.`);
+  return { meta: map.size ? X.meta : null, map };
 }
-let xApplied = 0;
-// Echte Saison-Summen bis zum xStats-Stand anteilig durch x ersetzen.
-// x.gp > echte Spiele = Daten passen nicht zusammen → nicht anwenden.
-function withX(actual, x) {
-  if (!actual || !x || !x.gp || x.gp > actual.games) return null;
-  const a = { ...actual };
-  [['stl', 'stl', 'xstl'], ['tov', 'tov', 'xtov'], ['tpm', 'tpm', 'xtpm'], ['fgm', 'fgm', 'xfgm']].forEach(([k, r, xk]) => {
-    a[k] = Math.max(0, a[k] - (x[r] - x[xk]) * X_WEIGHT[k]);
+const XW = loadX('xstats-season.js', 'XSTATS_SEASON', 'wöchentlich (nba.com)');
+const XP = loadX('xstats-pbp.js', 'XSTATS_PBP', 'täglich (Play-by-Play, R. Bentes)');
+function lookupX(map, name) {
+  const alias = aliasCanonical(name);
+  return map.get(normalizeName(name)) || (alias && map.get(normalizeName(alias))) || null;
+}
+const X_CATS = [['stl', 'xstl', ['w']], ['tov', 'xtov', ['w']], ['tpm', 'xtpm', ['p', 'w']], ['fgm', 'xfgm', ['p', 'w']]];
+const xCount = { stl: 0, tov: 0, tpm: 0, fgm: 0 };
+// Echte Saison-Summen bis zum jeweiligen xStats-Stand anteilig durch x ersetzen.
+// x.gp > echte Spiele = Daten passen (noch) nicht zusammen → diese Quelle nicht anwenden.
+function withX(actual, name) {
+  if (!actual || !actual.games) return null;
+  const src = { w: lookupX(XW.map, name), p: lookupX(XP.map, name) };
+  const ok = x => x && x.gp && x.gp <= actual.games;
+  const a = { ...actual }, used = {};
+  X_CATS.forEach(([k, xk, order]) => {
+    const x = order.map(o => src[o]).find(v => ok(v) && v[xk] !== undefined);
+    if (!x) return;
+    a[k] = Math.max(0, a[k] - (x[k] - x[xk]) * X_WEIGHT[k]);
+    used[k] = true; xCount[k]++;
   });
+  if (!Object.keys(used).length) return null;
   a.fgm = Math.min(a.fgm, a.fga);
-  xApplied++;
-  return a;
+  return { a, used };
 }
 
 const COUNTING_KEYS = ['min', 'pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'tov', 'fga', 'fta'];
@@ -278,9 +296,9 @@ const live = {};
 function buildRow(proj, actual, name) {
   const base = proj || NO_PROJ_PRIOR;
   const n = actual ? actual.games : 0;
-  const xa = n ? withX(actual, xFor(name)) : null;
-  const act = xa || actual;
-  const kOf = k => (xa && X_K_GAMES[k]) || K_GAMES[k];
+  const xr = n ? withX(actual, name) : null;
+  const act = xr ? xr.a : actual;
+  const kOf = k => (xr && xr.used[k] && X_K_GAMES[k]) || K_GAMES[k];
   const row = {};
   COUNTING_KEYS.forEach(k => {
     const avg = n ? act[k] / n : 0;
@@ -288,20 +306,20 @@ function buildRow(proj, actual, name) {
   });
   [['fgm', 'fga', 'fgPct'], ['ftm', 'fta', 'ftPct']].forEach(([mKey, aKey, pctKey]) => {
     const made = act ? act[mKey] : 0, att = act ? act[aKey] : 0;
-    const kA = (xa && pctKey === 'fgPct' ? X_K_FG : K_ATT[pctKey]) * K_SCALE;
+    const kA = (xr && xr.used.fgm && pctKey === 'fgPct' ? X_K_FG : K_ATT[pctKey]) * K_SCALE;
     const pct = (base[pctKey] / 100 * kA + made) / (kA + att) * 100;
     row[pctKey] = pct;
     row[mKey] = row[aKey] * pct / 100;
   });
   row.gamesPlayed = n;
-  if (xa) row.xStats = true;
+  if (xr) row.xStats = true;
   row.hasBaseline = !!proj;            // Name historisch: true = hat eine Projection
   row.z = 0; row.zFloor = 0; row.zDepth = 0; row.adpVal = 0; // Altfelder, keine Seite liest sie mehr
   return row;
 }
 Object.keys(PROJECTIONS).forEach(name => { live[name] = buildRow(PROJECTIONS[name], actualByProj.get(name) || null, name); });
 actualOnly.forEach((t, name) => { if (!live[name]) live[name] = buildRow(null, t, name); });
-console.log(`  ${actualByProj.size} Spieler mit Projection + echten Spielen, ${actualOnly.size} nur mit echten Spielen, xStats angewandt bei ${xApplied}.`);
+console.log(`  ${actualByProj.size} Spieler mit Projection + echten Spielen, ${actualOnly.size} nur mit echten Spielen, xStats angewandt: STL ${xCount.stl}, TO ${xCount.tov}, 3PM ${xCount.tpm}, FG% ${xCount.fgm}.`);
 
 // ── Z-Score frisch ueber den kompletten Pool berechnen ────────
 // Exakt gleiche Mathematik wie scripts/build-offseason-rankings.js /
@@ -388,7 +406,7 @@ const out = `// ============================================================
 //  Hand editieren. Consensus-Projection (BBM + Hashtag) + echte Saison-
 //  Stats als gedämpftes Delta je Kategorie: live = Proj + (Ist − Proj)·n/(n+k),
 //  k (Spiele) MIN 4 · PTS 6 · AST 7 · REB 10 · 3PM 12 · TO 12 · BLK 23 · STL 25,
-//  FG%/FT% über 300/120 Versuche${xsByNorm.size ? `; xStats Stand ${XS.meta.through} (STL x k10, TO/3PM Mix k7, FG% Mix 140 FGA)` : ''}${K_SCALE !== 1 ? ` · kscale ${K_SCALE}` : ''}. Formel: Script-Kopfkommentar.
+//  FG%/FT% über 300/120 Versuche${XW.meta ? `; xStats STL/TO Stand ${XW.meta.through}` : ''}${XP.meta ? `; x3PM/xFG% Stand ${XP.meta.through} (Play-by-Play: Ramiro Bentes, github.com/ramirobentes/nba_data)` : ''}${K_SCALE !== 1 ? ` · kscale ${K_SCALE}` : ''}. Formel: Script-Kopfkommentar.
 //  Zuletzt gebaut: ${today} · Liga: ${leagueArg} · ${filesRead} Spieltag(e) eingerechnet
 //
 //  Shape: LIVE_PROJECTIONS["Spielername"] = {

@@ -53,6 +53,7 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | projections-consensus.js | **wöchentlich** `scripts/update-projection-sources.js --bbm=… --hashtag=…` (ruft `replace-consensus-source.js`) | BBM „Combined“ × Hashtag (seit 20.10.2026). BBM zählt nicht bei ≥ 10 Min über Hashtag oder ≥ 5 Min UND ≥ 50 % darüber; reine BBM-Zeilen raus; Ausschlüsse `scripts/data/consensus-exclude.txt`; Rohquellen mit Datum in `scripts/data/projection-sources/` |
 | live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Consensus + echte Saison-CSVs als **gedämpftes Delta je Kategorie** (siehe „Live Projections“ unten), STL/TO/3PM/FG% mit xStats; z über den Live-Pool |
 | xstats-season.js | `scripts/import-xstats.js` (Montagslauf, Daten per `xstats-browser.js` im Claude-Browser) | Josh Lloyds xStats der Saison (Summen bis Stand) |
+| xstats-pbp.js | `scripts/xstats-pbp.py` (nba-sync, lädt nur bei neuer Release-Datei) | x3PM/xFGM täglich aus dem Play-by-Play von **Ramiro Bentes** ([nba_data](https://github.com/ramirobentes/nba_data), fremdes Projekt) |
 | snapshots/projections-2026-27-opening-night.js | eingefroren (20.10.2026) | Board zum Tipoff; Erwartung für Dynasty Live + Saisonend-Abgleich. Nie überschreiben. |
 | last-season-stats-2025-26.js | statisch (BBM-Export inkl. Alter) | Vorsaison, für Planner/Cat Web/Boards |
 | aliases.js, rolling-rankings.js, season-rankings.js, last-season-stats-2003-04 … 2024-25, draft-class-2025/2026, draft2026/2027, draft-capital-2026 | statisch / manuell | in beiden Repos identisch (aliases: TTHQ-Fassung = Obermenge) |
@@ -310,6 +311,19 @@ Wert bis zu diesem Stand ganz (STL) bzw. zur Hälfte (TO, 3PM, FGM); spätere Sp
 
 Backtest 2023–2026 (stats.nba.com, 2.730 Fälle). PTS/REB/AST/BLK gewinnen < 2 % → nicht genutzt.
 Spieler ohne x-Werte und Dateien einer anderen Saison: alte k. Live-Zeilen mit x tragen `xStats:true`.
+
+**Zwei Quellen (seit 22.10.2026):**
+- **STL, TO:** `data/xstats-season.js`, wöchentlich (Montagslauf, nba.com über den Claude-Browser –
+  Deflections und Touches gibt es nur dort).
+- **3PM, FG%:** `data/xstats-pbp.js`, täglich im nba-sync aus den Play-by-Play-Dateien von
+  **Ramiro Bentes** ([github.com/ramirobentes/nba_data](https://github.com/ramirobentes/nba_data), R-Paket
+  [nbadatar](https://github.com/ramirobentes/nbadatar)). Das ist sein Projekt, nicht unseres: wir lesen nur
+  die frei veröffentlichten Release-Dateien. Die liegen auf GitHub, deshalb gehen sie – anders als
+  stats.nba.com – auch aus GitHub Actions. Zonen nur über die Distanz (3PT < 23,6 ft = Ecke; 2PT < 4 ft RA,
+  < 14 ft Paint, sonst Mid-Range), Liga-Quote = laufende Saison, anfangs Richtung Vorsaison gedämpft.
+  Abgleich mit nba.com (20.10.2026): x3PM r = 0,987, xFGM r = 0,997. Fehlt die Datei, nimmt der Build
+  die wöchentlichen 3PM/FGM-Werte.
+- Hinweis auf der Projections-Seite („Quellen & Dank“) nennt beide Quellen ausdrücklich als fremd.
 
 ## Wöchentliches Quellen-Update (montags, seit 21.10.2026)
 

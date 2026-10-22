@@ -218,8 +218,18 @@
         <th class="num">#</th>${th('name', 'Spieler', 'nba-sticky')}<th>Team</th><th>Pos</th><th>Fantasy</th>${th('z', nba.scoreLabel(), 'num', 'Gewichteter 9-Cat-Gesamtwert relativ zum Pool')}${th('min', 'MIN', 'num')}${live ? th('gp', 'Sp.', 'num', 'Echte Spiele in dieser Saison') : ''}
         ${CATS.map(c => th(c.pct || c.key, c.label, 'num')).join('')}<th class="num" title="Feldwürfe getroffen-versucht">FGM-A</th><th class="num" title="Freiwürfe getroffen-versucht">FTM-A</th>
         ${th('rankDiff', 'Δ Rang', 'num', 'Abstand BBM-Rang ↔ Hashtag-Rang (Preseason), nur wenn beide den Spieler projizieren. Klein = beide sind sich einig.')}<th class="num">Quellen</th>
-      </tr></thead><tbody data-body>${tbody(ctx, rows)}</tbody></table></div>`;
+      </tr></thead><tbody data-body>${tbody(ctx, rows)}</tbody></table></div>
+      ${CREDITS}`;
   }
+
+  // Quellenhinweis (seit 22.10.2026): fremde Daten/Methoden klar als fremd kennzeichnen.
+  const A = (href, t) => `<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
+  const CREDITS = `<p class="note cp-credits"><strong>Quellen &amp; Dank.</strong>
+    Projections: Josh Lloyd (${A('https://basketballmonster.com/projections.aspx', 'Basketball Monster')}) und ${A('https://hashtagbasketball.com/fantasy-basketball-projections', 'Hashtag Basketball')}.
+    Echte Saison-Stats: ESPN. xStats nach der ${A('https://joshlloydfantasy.com/research/xstats-method/', 'xStats-Methode von Josh Lloyd')}:
+    xSTL/xTO wöchentlich aus NBA.com-Statistiken, x3PM/xFG% täglich aus den frei veröffentlichten Play-by-Play-Daten von
+    <strong>Ramiro Bentes</strong> (${A('https://github.com/ramirobentes/nba_data', 'github.com/ramirobentes/nba_data')}, ${A('https://github.com/ramirobentes/nbadatar', 'nbadatar')}).
+    Die Daten sind sein Projekt, nicht unseres – MFHFB HQ übernimmt sie unverändert und rechnet daraus nur die Erwartungswerte.</p>`;
 
   function csv(ctx) {
     const { rows } = filtered(ctx, getState(ctx));

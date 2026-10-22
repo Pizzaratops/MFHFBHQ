@@ -266,6 +266,15 @@ jobs:
             node scripts/build-rolling-archive.js --league=nba
           fi
 
+      # Seit 22.10.2026: x3PM/xFG% aus dem Play-by-Play von Ramiro Bentes
+      # (github.com/ramirobentes/nba_data, fremdes Projekt, frei veröffentlicht).
+      # Lädt nur, wenn sich die Release-Datei geändert hat (ca. 1x täglich);
+      # pyarrow wird dann bei Bedarf nachinstalliert.
+      - name: xStats aus Play-by-Play (R. Bentes)
+        id: xpbp
+        continue-on-error: true
+        run: python3 scripts/xstats-pbp.py
+
       # Seit 15.10.2026 EINMAL für alle NBA-Ligen (vorher je Liga):
       # Baseline/Consensus (sports/nba/data/projections-*.js) + Saison-CSVs.
       - name: Live Projections (sportweit)
@@ -306,7 +315,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.daily.outcome == 'failure' || steps.preseason.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure'
+        if: steps.daily.outcome == 'failure' || steps.preseason.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.xpbp.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1
