@@ -1205,3 +1205,22 @@ tr.cbb-cut td { border-bottom: 2px dashed var(--league-accent); }
 /* Quellenhinweis Projections (22.10.2026) */
 .cp-credits { margin-top: 14px; font-size: .82rem; line-height: 1.5; }
 .cp-credits a { white-space: nowrap; }
+
+/* ---------- Rollen & Matchups (PbP-Insights, 23.10.2026) ---------- */
+.pi-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; margin-bottom: 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.pi-tabs::-webkit-scrollbar { display: none; }
+.pi-tabs .seg-btn { white-space: nowrap; }
+.pi-quick { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-bottom: 10px; font-size: 13px; }
+.pi-chip { border: 1px solid var(--border); background: var(--surface2); color: var(--text); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
+.pi-chip:hover { border-color: var(--league-accent); }
+.pi-own { display: inline-block; min-width: 26px; text-align: center; font-size: 11px; font-weight: 800; padding: 1px 5px; border-radius: 6px; background: var(--surface2); border: 1px solid var(--border); }
+.pi-val { font-weight: 800; }
+.pi-val.hi { color: #2e9d62; } .pi-val.mid { color: #5f9e3d; }
+.pi-table td, .pi-table th { white-space: nowrap; }
+.pi-starsel { max-width: 100%; }
+.pi-body .explain { margin-top: 4px; }
+/* Matchup-Planer: Matchup-Faktoren (23.10.2026) */
+.mp-g-cell { position: relative; }
+.mp-g-b2b { position: absolute; top: 1px; right: 2px; font-size: 9px; line-height: 1; }
+.mp-g-fx { position: absolute; bottom: 1px; right: 3px; font-size: 8px; line-height: 1; }
+.wv-ben { font-size: 12px; font-weight: 700; white-space: nowrap; }

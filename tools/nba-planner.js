@@ -54,7 +54,7 @@
   }
   function prefs(ctx) {
     const p = cached(ctx, 'planner') || {};
-    return { teamA: null, teamB: null, projWeight: 0.5, rankSourceId: null, period: null, auto: true, off: {}, ...p };
+    return { teamA: null, teamB: null, projWeight: 0.5, rankSourceId: null, period: null, auto: true, off: {}, pbp: true, ...p };
   }
   const savePrefs = (ctx, st) => ctx.store.setJSON('planner', { ...st, season: season(ctx) });
   const loadSched = ctx => ({ sched: cached(ctx, 'planner-sched'), nba: cached(ctx, 'planner-nba') });
@@ -193,36 +193,80 @@
     return off;
   }
 
+  // ---------- Matchup-Faktoren aus dem Play-by-Play (seit 23.10.2026) ----------
+  //  Daten: PBP_INSIGHTS (sports/nba/data/pbp-insights.js, Play-by-Play von
+  //  Ramiro Bentes). Je Spiel: Pace beider Teams × was der Gegner in der
+  //  Kategorie zulässt; Blowout-Risiko kostet Startern (≥ 30 Min.) Minuten;
+  //  am 2. Abend eines Back-to-backs zählt das Spiel nur mit (1 − Extra-
+  //  Pausenquote). Backtests: sports/nba/README.md → „PbP-Insights“.
+  const PB_CATS = ['pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'to'];
+  let pbIdx = { src: null, map: null };
+  function pbPlayer(PB, name) {
+    if (pbIdx.src !== PB) { const m = new Map(); Object.entries(PB.players || {}).forEach(([n, v]) => m.set(N().key(n), v)); pbIdx = { src: PB, map: m }; }
+    return pbIdx.map.get(N().key(name)) || null;
+  }
+  function gameFactor(PB, p, g, teamSched) {
+    const nba = N(), T = PB.teams || {}, me = T[nba.canonTeam(p.nbaTeam)], op = T[nba.canonTeam(g.opp)];
+    const out = { w: 1, f: {}, b2b: 0, blow: null, paceF: 1 };
+    out.paceF = me && op ? ((me.paceF || 1) + (op.paceF || 1)) / 2 : 1;
+    PB_CATS.forEach(c => { out.f[c] = out.paceF * ((op && op.allowF && op.allowF[c === 'to' ? 'tov' : c]) || 1); });
+    const prm = (PB.meta && PB.meta.params) || {};
+    if (p.stats && p.stats.min >= 30 && me && op && prm.blowLogit) {
+      const d = Math.abs((me.net || 0) - (op.net || 0) + (g.home ? 1.5 : -1.5));
+      const P = 1 / (1 + Math.exp(-(prm.blowLogit[0] + prm.blowLogit[1] * d)));
+      const m = 1 - (prm.blowMinLoss || 4.75) / p.stats.min * (P - 0.17);
+      out.blow = P;
+      PB_CATS.forEach(c => { out.f[c] *= m; });
+    }
+    if (!p.inj && teamSched && teamSched[g.sp - 1]) {
+      const pi = pbPlayer(PB, p.name), lg = (PB.meta && PB.meta.b2bLeague) || {};
+      const x = pi && pi.b2b ? pi.b2b.extra : (p.stats && p.stats.min >= 24 && lg.b2b != null ? lg.b2b - lg.reg : 0);
+      out.b2b = Math.max(0, Math.min(0.6, x || 0));
+      out.w = 1 - out.b2b;
+    }
+    return out;
+  }
+
   function breakdown(ctx, S, st, tid, index, days) {
     const nba = N();
+    const PB = st.pbp !== false && ctx.data.PBP_INSIGHTS ? ctx.data.PBP_INSIGHTS : null;
     const slots = starterSlots(S);
     const players = nba.roster(ctx.data, tid).map(p => {
       const k = nba.key(p.name), hit = index.byKey.get(k);
       const sched = (S.nba && S.nba.byTeam[p.team]) || {};
       const games = days.filter(d => sched[d.sp]).map(d => ({ sp: d.sp, opp: sched[d.sp].opp, home: sched[d.sp].home, off: false }));
-      return { name: p.name, key: k, pos: p.pos, nbaTeam: p.team, inj: p.inj || null, stats: hit ? hit.stats : null, z: hit ? hit.z : null, composite: hit ? hit.composite : null, src: hit ? hit.src : 'none', games };
+      const pl = { name: p.name, key: k, pos: p.pos, nbaTeam: p.team, inj: p.inj || null, stats: hit ? hit.stats : null, z: hit ? hit.z : null, composite: hit ? hit.composite : null, src: hit ? hit.src : 'none', games };
+      games.forEach(g => { g.fx = PB ? gameFactor(PB, pl, g, sched) : null; });
+      return pl;
     }).sort((a, b) => ((a.composite === null) !== (b.composite === null) ? (a.composite === null ? 1 : -1) : (b.composite || 0) - (a.composite || 0)));
 
     const offSet = st.auto ? autoOff(tid, players, days, slots) : st.off;
     players.forEach(p => {
       p.games.forEach(g => { g.off = !!offSet[offKey(tid, p.key, g.sp)]; });
       p.played = p.games.filter(g => !g.off).length;
+      p.exp = p.games.filter(g => !g.off).reduce((a, g) => a + (g.fx ? g.fx.w : 1), 0); // erwartete Spiele (B2B-Pausen abgezogen)
     });
     const totals = {}, sds = {};
     CATS.filter(c => c.type === 'count').forEach(c => {
       let sum = 0, v = 0;
-      players.forEach(p => { if (!p.stats || !p.played) return; const per = p.stats[c.key]; sum += per * p.played; v += p.played * (c.cv * per) ** 2; });
+      players.forEach(p => {
+        if (!p.stats || !p.played) return;
+        const per = p.stats[c.key];
+        p.games.forEach(g => { if (g.off) return; const w = g.fx ? g.fx.w : 1, f = g.fx ? g.fx.f[c.key] || 1 : 1; sum += per * f * w; v += w * (c.cv * per * f) ** 2; });
+      });
       totals[c.key] = sum; sds[c.key] = Math.sqrt(v);
     });
     let wSum = 0;
-    players.forEach(p => { if (p.stats && p.played) wSum += p.stats.min * p.played; });
+    players.forEach(p => { if (p.stats && p.played) wSum += p.stats.min * p.exp; });
     ['fgPct', 'ftPct'].forEach(k => {
-      totals[k] = wSum ? players.reduce((s, p) => (p.stats && p.played ? s + p.stats[k] * p.stats.min * p.played : s), 0) / wSum : 0;
+      totals[k] = wSum ? players.reduce((s, p) => (p.stats && p.played ? s + p.stats[k] * p.stats.min * p.exp : s), 0) / wSum : 0;
       sds[k] = CATS.find(c => c.key === k).sd;
     });
     return {
       tid, players, totals, sds, slots,
       gameCount: players.reduce((s, p) => s + p.played, 0),
+      expCount: players.reduce((s, p) => s + (p.exp || 0), 0),
+      pbp: !!PB,
       scheduledCount: players.reduce((s, p) => s + p.games.length, 0),
       activeCount: players.filter(p => p.stats && p.played).length,
       missingCount: players.filter(p => !p.stats).length,
@@ -350,7 +394,10 @@
       const cells = days.map(d => {
         const g = p.games.find(x => x.sp === d.sp);
         if (!g) return '<td class="mp-g-cell"></td>';
-        return `<td class="mp-g-cell game${g.off ? ' off' : ''}" data-game="${T.tid}|${e(p.key)}|${d.sp}"><span class="mp-g-opp">${g.home ? '' : '@'}${e(g.opp)}</span><span class="mp-g-box">${g.off ? '' : '✓'}</span></td>`;
+        const fx = g.fx, pc = v => `${v >= 1 ? '+' : '−'}${Math.abs(Math.round((v - 1) * 100))} %`;
+        const tip = fx ? `Pace ${pc(fx.paceF)} · Gegner lässt zu: PTS ${pc(fx.f.pts / fx.paceF)}, REB ${pc(fx.f.reb / fx.paceF)}, AST ${pc(fx.f.ast / fx.paceF)}, 3PM ${pc(fx.f.tpm / fx.paceF)}, STL ${pc(fx.f.stl / fx.paceF)}, BLK ${pc(fx.f.blk / fx.paceF)}${fx.blow != null ? ` · Blowout-Risiko ${Math.round(fx.blow * 100)} %` : ''}${fx.b2b ? ` · 2. Abend Back-to-back: Pause ${Math.round(fx.b2b * 100)} % wahrscheinlicher` : ''}` : '';
+        const mark = fx ? (fx.b2b >= 0.08 ? '<span class="mp-g-b2b" aria-label="Back-to-back-Risiko">💤</span>' : '') + ((fx.f.pts >= 1.04) ? '<span class="mp-g-fx up" aria-hidden="true">▲</span>' : fx.f.pts <= 0.96 ? '<span class="mp-g-fx down" aria-hidden="true">▼</span>' : '') : '';
+        return `<td class="mp-g-cell game${g.off ? ' off' : ''}" data-game="${T.tid}|${e(p.key)}|${d.sp}"${tip ? ` title="${e(tip)}"` : ''}><span class="mp-g-opp">${g.home ? '' : '@'}${e(g.opp)}</span><span class="mp-g-box">${g.off ? '' : '✓'}</span>${mark}</td>`;
       }).join('');
       return `<tr class="${p.played ? '' : 'idle'}">
         <td class="mp-g-name" data-player="${T.tid}|${e(p.key)}" title="ganze Zeile umschalten"><span class="strong">${e(p.name)}</span>${nba.injury(p.inj)}
@@ -363,7 +410,7 @@
       ${perDay.map(n => `<td class="mp-g-cell${n > T.slots ? ' over' : ''}">${n || ''}</td>`).join('')}</tr>`;
     return `<section class="mp-gridsec">
       <h2 class="mp-grid-head mp-tc" style="${nba.tcStyle(team)}"><span>${e(team.name)}</span>
-        <small>${T.gameCount} von ${T.scheduledCount} angesetzten Spielen aktiv · ${T.activeCount} Spieler im Einsatz${T.missingCount ? ` · ${T.missingCount} ohne Daten` : ''}</small></h2>
+        <small>${T.gameCount} von ${T.scheduledCount} angesetzten Spielen aktiv${T.pbp && T.expCount < T.gameCount - 0.05 ? ` (erwartet ${T.expCount.toFixed(1).replace('.', ',')} wegen Back-to-backs)` : ''} · ${T.activeCount} Spieler im Einsatz${T.missingCount ? ` · ${T.missingCount} ohne Daten` : ''}</small></h2>
       <div class="table-wrap"><table class="table compact mp-grid"><thead>${head}</thead><tbody>${rows}</tbody><tfoot>${foot}</tfoot></table></div>
     </section>`;
   }
@@ -385,6 +432,7 @@
       ${share < 0.6 ? `<br><span class="warn">Nur ${Math.round(share * 100)} % der Kader sind in beiden Quellen vertreten.</span> Für alle übrigen zählt automatisch die einzige vorhandene Quelle — die Basis-Wahl ändert bei ihnen nichts.` : ''}</p>
       <p>Jedes Häkchen im Raster ist ein real angesetztes NBA-Spiel aus dem ESPN-Spielplan. Die Kategoriesummen sind Pro-Spiel-Schnitt mal Zahl der aktiven Spiele. Die Wahrscheinlichkeit je Kategorie folgt aus dem Abstand beider Summen im Verhältnis zur erwarteten Streuung; Steals und Blocks schwanken bei kleinem Volumen deutlich stärker als Punkte.</p>
       <p>Aufstellen darfst Du pro Tag nur ${slots} Spieler. Deshalb füllt der Planer die Aufstellung standardmäßig selbst: je Spieltag die besten verfügbaren Spieler nach Z-Score, der Rest sitzt. Sobald Du das erste Spiel von Hand umschaltest, friert dieser Stand ein.</p>
+      <p><strong>🔬 Matchup-Faktoren</strong> (${st.pbp !== false ? 'an' : 'aus'}): je Spiel Pace beider Teams × was der Gegner in der Kategorie zulässt (▲/▼ im Raster = Punkte-Faktor ≥ ±4 %, Details per Tooltip), Blowout-Risiko kostet Startern mit ≥ 30 Min. Minuten, und am 2. Abend eines Back-to-backs zählt ein Spiel nur mit der Wahrscheinlichkeit, dass der Spieler nicht pausiert (💤). Quelle: Play-by-Play von Ramiro Bentes, Seite „Rollen &amp; Matchups“. Je Spiel ist der Effekt klein, über eine Woche spürbar.</p>
       <p><span class="warn">Grenze:</span> Die Automatik kennt keine Positionsvorgaben. Prozentwerte sind nach Minuten × Spielen gewichtet, weil die Stat-Quellen keine Wurfversuche mitliefern.</p>
     </div></details>`;
   }
@@ -423,7 +471,7 @@
           <div class="mp-field"><span>Basis (Stats / Projections)</span><div class="seg" role="group">${BASIS.map(([p, l]) => `<button type="button" class="seg-btn${cur === p ? ' active' : ''}" data-basis="${p}">${l}</button>`).join('')}</div></div>
           <label class="mp-field"><span>Stat-Quelle</span><select class="tr-select" data-src${index.srcs.length ? '' : ' disabled'}>${index.srcs.length ? index.srcs.map((s, i) => `<option value="${s.id}"${index.rankId === s.id ? ' selected' : ''}>${e(s.short)} · deckt ${Math.round(s.coverage * 100)} % der Kader${i === 0 ? ' · Standard' : ''}</option>`).join('') : '<option>— keine gespielten Stats —</option>'}</select></label>
         </div>
-        <div class="mp-row mp-schedrow"><button type="button" class="seg-btn mp-btn" data-fetch>↻ ESPN-Spielplan laden</button><span class="mp-status" data-status>${status}</span></div>
+        <div class="mp-row mp-schedrow"><button type="button" class="seg-btn mp-btn" data-fetch>↻ ESPN-Spielplan laden</button>${data.PBP_INSIGHTS ? `<button type="button" class="seg-btn mp-btn${st.pbp !== false ? ' on' : ''}" data-pbp aria-pressed="${st.pbp !== false}" title="Pace, Gegner, Blowouts und Back-to-backs einrechnen (Play-by-Play)">${st.pbp !== false ? '☑' : '☐'} 🔬 Matchup-Faktoren</button>` : ''}<span class="mp-status" data-status>${status}</span></div>
       </div>`;
 
     let body;
@@ -479,6 +527,8 @@
       put({ period: p, teamB: o, off: {}, auto: true });
     });
     root.querySelectorAll('[data-basis]').forEach(b => b.addEventListener('click', () => put({ projWeight: Number(b.dataset.basis) / 100 })));
+    const pbpBtn = root.querySelector('[data-pbp]');
+    if (pbpBtn) pbpBtn.addEventListener('click', () => put({ pbp: get().pbp === false }));
     const src = root.querySelector('[data-src]');
     if (src) src.addEventListener('change', () => put({ rankSourceId: src.value || null }));
     const auto = root.querySelector('[data-auto]');
@@ -529,7 +579,7 @@
 
   MFHFB.pages.register({
     id: 'planner', section: 'matchups', label: 'Matchup-Planer', icon: '⚔️', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:last-season-stats-2025-26', '?sport:offseason-rankings'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections', '?sport:livescores-aggregate', '?sport:livescores-season', '?sport:last-season-stats-2025-26', '?sport:offseason-rankings', '?sport:pbp-insights'],
     title: () => 'Matchup-Planer', render, mount,
   });
 })();

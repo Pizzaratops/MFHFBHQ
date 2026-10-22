@@ -266,22 +266,31 @@ jobs:
             node scripts/build-rolling-archive.js --league=nba
           fi
 
-      # Seit 22.10.2026: x3PM/xFG% aus dem Play-by-Play von Ramiro Bentes
-      # (github.com/ramirobentes/nba_data, fremdes Projekt, frei veröffentlicht).
-      # Lädt nur, wenn sich die Release-Datei geändert hat (ca. 1x täglich);
-      # pyarrow wird dann bei Bedarf nachinstalliert. Manueller Start = --force.
-      - name: xStats aus Play-by-Play (R. Bentes)
-        id: xpbp
+      # Seit 22./23.10.2026: Play-by-Play von Ramiro Bentes
+      # (github.com/ramirobentes/nba_data, fremdes Projekt, frei veröffentlicht):
+      # x3PM/xFG% (xstats-pbp.py) und PbP-Insights (Profiteure, Rollen, Teams,
+      # Back-to-backs, Fouls; build-pbp-insights.py). Das Gate (nur
+      # Standardbibliothek) prüft per HEAD, ob die Datei neu ist (~1x täglich);
+      # nur dann eigenes Python mit pandas/pyarrow (System-Python auf dem
+      # Runner stürzte mit pip-pyarrow ab, Exit 139). Manueller Start = immer.
+      - name: PbP-Gate (neue Play-by-Play-Datei?)
+        id: pbpgate
         continue-on-error: true
-        run: python3 scripts/xstats-pbp.py ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+        run: python3 scripts/pbp-gate.py ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
 
-      # Seit 23.10.2026: Profiteure, Rollen, Team-Profile, Back-to-backs, Fouls
-      # aus demselben Play-by-Play (R. Bentes). Lädt nur bei neuer Datei,
-      # pandas/pyarrow bei Bedarf per pip. Vorsaison-Cache liegt im Repo.
-      - name: PbP-Insights (R. Bentes)
+      - uses: actions/setup-python@v5
+        if: steps.pbpgate.outputs.run == 'true'
+        with:
+          python-version: '3.12'
+
+      - name: xStats + PbP-Insights (R. Bentes)
         id: pbpins
+        if: steps.pbpgate.outputs.run == 'true'
         continue-on-error: true
-        run: python3 scripts/build-pbp-insights.py ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+        run: |
+          python -m pip install --quiet pandas pyarrow
+          python scripts/xstats-pbp.py --force
+          python scripts/build-pbp-insights.py --force
 
       # Seit 15.10.2026 EINMAL für alle NBA-Ligen (vorher je Liga):
       # Baseline/Consensus (sports/nba/data/projections-*.js) + Saison-CSVs.
@@ -323,7 +332,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.daily.outcome == 'failure' || steps.preseason.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.xpbp.outcome == 'failure' || steps.pbpins.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure'
+        if: steps.daily.outcome == 'failure' || steps.preseason.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.pbpgate.outcome == 'failure' || steps.pbpins.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1

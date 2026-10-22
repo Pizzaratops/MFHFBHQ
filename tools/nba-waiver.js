@@ -68,6 +68,37 @@
   }
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('waiver', {}) });
 
+  // ---------- Rolle aus dem Play-by-Play (seit 23.10.2026) ----------
+  // PBP_INSIGHTS (Daten: Ramiro Bentes, nba_data): Minuten-Trend der nächsten
+  // 10 Spiele (Backtest: Fehler −4 %), neu in der Startformation, und ob er
+  // vom Ausfall eines Stars profitiert (Star laut ESPN-Kader dieser Liga OUT).
+  let roleCache = { data: null, R: null };
+  function roleModel(ctx) {
+    const data = ctx.data, PB = data.PBP_INSIGHTS, nba = N();
+    if (!PB) return null;
+    if (roleCache.data === data) return roleCache.R;
+    const pl = new Map(); Object.entries(PB.players || {}).forEach(([n, v]) => pl.set(nba.key(n), v));
+    const out = new Set(); nba.leagueTeams(data, true).forEach(t => nba.roster(data, t.id).forEach(p => { if (p.inj === 'OUT' || p.inj === 'SUSP') out.add(nba.key(p.name)); }));
+    const ben = new Map();
+    Object.entries(PB.stars || {}).forEach(([star, s]) => {
+      if (!out.has(nba.key(star))) return;
+      (s.top || []).forEach(r => { const k = nba.key(r.y), cur = ben.get(k); if (r.val > 0.5 && (!cur || r.val > cur.val)) ben.set(k, { star, ...r }); });
+    });
+    const R = { get: name => pl.get(nba.key(name)) || null, ben: name => ben.get(nba.key(name)) || null };
+    roleCache = { data, R };
+    return R;
+  }
+  function roleCell(ctx, p, R) {
+    const e = ctx.ui.esc, x = R.get(p.name), b = R.ben(p.name), out = [];
+    if (x && x.trend10 != null && x.minLive != null && x.gp >= 3) {
+      const d = x.trend10 - x.minLive;
+      if (Math.abs(d) >= 1.5) out.push(`<span class="${d > 0 ? 'up' : 'down'}" title="Minuten-Trend nächste 10 Spiele: ${x.trend10.toFixed(1).replace('.', ',')} (Saison ${x.minLive.toFixed(1).replace('.', ',')}, letzte 3: ${x.last3.toFixed(1).replace('.', ',')})">${d > 0 ? '📈' : '📉'} ${d > 0 ? '+' : '−'}${Math.abs(d).toFixed(1).replace('.', ',')}</span>`);
+    }
+    if (x && x.startLast3 >= 2 && x.gp >= 3 && (x.starts - x.startLast3) / Math.max(1, x.gp - 3) < 0.34) out.push('<span class="nba-tag rk" title="Startet seit Kurzem">NEU S5</span>');
+    if (b) out.push(`<span class="wv-ben" title="${e(b.star)} fällt aus: ${b.dMin > 0 ? '+' : ''}${b.dMin.toFixed(1).replace('.', ',')} Min., ${b.pts > 0 ? '+' : ''}${b.pts.toFixed(1).replace('.', ',')} PTS pro Spiel erwartet (Seite „Rollen &amp; Matchups“)">🩹 ${e(b.star.split(' ').filter(w => !/^(jr\.?|sr\.?|ii|iii|iv)$/i.test(w)).slice(-1)[0])}</span>`);
+    return out.join(' ') || '<span class="muted">—</span>';
+  }
+
   function pool(ctx, st) {
     const nba = N();
     const owner = nba.ownerIndex(ctx.data);
@@ -82,6 +113,7 @@
     return [
       G && { k: 'gain', l: 'Gain', desc: true, t: 'Zusätzliche erwartete Kategorie-Siege pro Woche gegen die Liga, wenn du ihn holst und dafür den entbehrlichsten Spieler droppst', v: p => { const g = G.gain(p.name); return g ? g.v : null; }, f: (v, p) => { const g = G.gain(p.name); if (!g) return '<span class="muted">—</span>'; const tip = g.cats.slice().sort((a, b) => Math.abs(b.d) - Math.abs(a.d)).filter(x => Math.abs(x.d) >= 0.005).slice(0, 5).map(x => `${GLAB[x.c]} ${x.d >= 0 ? '+' : ''}${Math.round(x.d * 100)}`).join(' · '); return `<span class="wc-gain ${g.v >= 0.05 ? 'hi' : g.v >= 0 ? 'mid' : 'lo'}" title="${e('Siegchance-Änderung (Prozentpunkte): ' + tip)}">${g.v >= 0 ? '+' : ''}${g.v.toFixed(2)}</span>`; } },
       G && { k: 'drop', l: 'für', t: 'Wen du dafür droppen würdest (bester Tausch)', v: p => { const g = G.gain(p.name); return g ? g.drop : null; }, f: (v) => (v ? `<span class="muted small">${e(v)}</span>` : '—') },
+      !cbb && roleModel(ctx) && { k: 'role', l: 'Rolle', desc: true, t: 'Aus dem Play-by-Play: 📈/📉 Minuten-Trend der nächsten 10 Spiele, NEU S5 = startet seit Kurzem, 🩹 = profitiert vom Ausfall eines Stars (laut ESPN OUT)', v: p => { const R = roleModel(ctx), x = R.get(p.name), b = R.ben(p.name); return (b ? 10 + b.val : 0) + (x && x.trend10 != null && x.minLive != null && x.gp >= 3 ? x.trend10 - x.minLive : 0); }, f: (v, p) => roleCell(ctx, p, roleModel(ctx)) },
       !cbb && { k: 'age', l: 'Alter', v: p => nba.age(p.dob) ?? p.age ?? null, f: v => (v != null ? v : '—') },
       { k: 'minutesAvg', l: 'MIN', t: 'Minuten pro Spiel im jüngsten Fenster', v: p => p.minutesAvg ?? null, f: v => (v != null ? v : '—') },
       { k: 'bestCat30', l: 'Beste Kat.', t: 'Stärkste Kategorie im jüngsten Fenster (laufende Saison > Off-Season)', v: p => { const i = CAT_ORDER.indexOf(p.bestCat30); return i < 0 ? null : i; }, f: (v, p) => (p.bestCat30 ? `<span class="up strong">${p.bestCat30}</span>` : '—') },
@@ -169,7 +201,7 @@
 
   MFHFB.pages.register({
     id: 'waiver', section: 'teams', label: 'Waiver', icon: '🆓', applies: { sport: ['nba', 'cbb'] },
-    data: l => (l.sport === 'cbb' ? ['teams', '?rosters-live', 'best-available-board'] : ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?sport:live-projections', '?sport:projections-consensus']),
+    data: l => (l.sport === 'cbb' ? ['teams', '?rosters-live', 'best-available-board'] : ['teams', '?rosters-live', '?sport:aliases', 'best-available-board', '?sport:live-projections', '?sport:projections-consensus', '?sport:pbp-insights']),
     title: () => 'Waiver', render, mount,
   });
 })();

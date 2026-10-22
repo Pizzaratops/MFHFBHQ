@@ -404,6 +404,13 @@ head = f"""// ============================================================
 //  META {json.dumps({'season': SEASON, 'assetUpdated': stamp})}
 // ============================================================
 """
+# Team-Kürzel wie im Hub (nba.js canonTeam: NOR, PHO …), damit Seiten direkt nachschlagen können
+HUB = {'NOP': 'NOR', 'PHX': 'PHO'}
+teams = {HUB.get(k, k): v for k, v in teams.items()}
+for v in players.values():
+    v['team'] = HUB.get(v['team'], v['team'])
+for v in stars.values():
+    v['team'] = HUB.get(v['team'], v['team'])
 body = json.dumps({'meta': meta, 'teams': teams, 'players': dict(sorted(players.items())), 'stars': stars}, ensure_ascii=False, separators=(',', ':'))
 open(OUT, 'w', encoding='utf-8').write(head + 'const PBP_INSIGHTS = ' + body + ';\n')
 print(f'{OUT}: {len(players)} Spieler, {len(teams)} Teams, {len(stars)} Stars mit Profiteuren · Stand {through} · {os.path.getsize(OUT) // 1024} KB')
