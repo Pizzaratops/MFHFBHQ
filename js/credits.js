@@ -30,6 +30,9 @@
       `<b>Ramiro Bentes</b> (${A('https://github.com/ramirobentes/nba_data', 'nba_data')}, ${A('https://github.com/ramirobentes/nbadatar', 'nbadatar')}): Play-by-Play für x3PM/xFG%. Sein Projekt, nicht unseres – wir übernehmen die Daten unverändert und rechnen nur daraus.`,
       `${A('https://github.com/sportsdataverse', 'sportsdataverse / hoopR')}: historische Boxscores und Spielpläne (Baseline, Backtests, Power Rankings).`,
       '<b>Bootleg Power Score:</b> Idee von Brett Kollmann und EJ Snyder (NFL Bootleg), übernommen und für NBA-Teams und Fantasy-Teams abgeändert.',
+      '<b>Unicorns:</b> nach Rotoballer, „Fantasy Basketball Unicorns“ (Dan Palyo) – Kategorie-Paare und Picks übernommen, Schwelle angepasst.',
+      '<b>Gain</b> (Waiver) und die Team-Auswertung im World Cup: Idee von u/EdgiestOW (r/fantasybball).',
+      '<b>Rollen &amp; Matchups</b> (Profiteure, Minuten-Trend, Gegner-Faktoren, Back-to-backs): eigene Auswertung auf dem Play-by-Play von Ramiro Bentes.',
     ]],
     ['🎓 College & NBA Draft', [
       `${A('https://www.fantrax.com', 'Fantrax')} und ${A('https://www.espn.com/mens-college-basketball/', 'ESPN')}: College-Stats, Kader, Trainer, Spielpläne.`,

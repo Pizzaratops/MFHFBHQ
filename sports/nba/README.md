@@ -53,6 +53,7 @@ leagues/funkytown/          Repo-Layout von Citizens-of-Funkytown gespiegelt
 | projections-consensus.js | **wöchentlich** `scripts/update-projection-sources.js --bbm=… --hashtag=…` (ruft `replace-consensus-source.js`) | BBM „Combined“ × Hashtag (seit 20.10.2026). BBM zählt nicht bei ≥ 10 Min über Hashtag oder ≥ 5 Min UND ≥ 50 % darüber; reine BBM-Zeilen raus; Ausschlüsse `scripts/data/consensus-exclude.txt`; Rohquellen mit Datum in `scripts/data/projection-sources/` |
 | live-projections.js | `scripts/build-live-projections.js` (nba-sync, sportweit) | Consensus + echte Saison-CSVs als **gedämpftes Delta je Kategorie** (siehe „Live Projections“ unten), STL/TO/3PM/FG% mit xStats; z über den Live-Pool |
 | xstats-season.js | `scripts/import-xstats.js` (Montagslauf, Daten per `xstats-browser.js` im Claude-Browser) | Josh Lloyds xStats der Saison (Summen bis Stand) |
+| pbp-insights.js | `scripts/build-pbp-insights.py` (nba-sync, nur bei neuer PbP-Datei) | Profiteure, Rollen-Radar, Team-Profile, Back-to-backs, Fouls – Seite „Rollen & Matchups“, Matchup-Planer, Waiver |
 | xstats-pbp.js | `scripts/xstats-pbp.py` (nba-sync, lädt nur bei neuer Release-Datei) | x3PM/xFGM täglich aus dem Play-by-Play von **Ramiro Bentes** ([nba_data](https://github.com/ramirobentes/nba_data), fremdes Projekt) |
 | snapshots/projections-2026-27-opening-night.js | eingefroren (20.10.2026) | Board zum Tipoff; Erwartung für Dynasty Live + Saisonend-Abgleich. Nie überschreiben. |
 | last-season-stats-2025-26.js | statisch (BBM-Export inkl. Alter) | Vorsaison, für Planner/Cat Web/Boards |
@@ -343,3 +344,30 @@ Spieler ohne x-Werte und Dateien einer anderen Saison: alte k. Live-Zeilen mit x
    `node scripts/build-live-projections.js --league=nba` (in `sports/nba`).
 6. Committen; Dynasty Live/Team Analytics ziehen im nächsten Liga-Sync nach.
 
+
+## PbP-Insights (seit 23.10.2026)
+
+Alles aus dem Play-by-Play von **Ramiro Bentes** ([nba_data](https://github.com/ramirobentes/nba_data),
+fremdes Projekt). `scripts/pbp_lib.py` baut daraus Box Scores – gegen die ESPN-CSVs geprüft:
+PTS/REB/AST/STL/BLK/TO/3PM/FG/FT bei allen 304 Spielern der ersten zwei Spieltage exakt, Minuten ±0,25.
+Formate: ab 2022-23 Blocker/Stealer in `player2`, davor in `player3`; 2017-18 bis 2021-22 fehlen
+Blocks im Play-by-Play ganz.
+
+**Ablauf im nba-sync:** `pbp-gate.py` (nur Standardbibliothek) prüft per HEAD, ob die Datei neu ist.
+Nur dann `actions/setup-python` + pandas/pyarrow und `xstats-pbp.py` + `build-pbp-insights.py`
+(System-Python auf dem Runner stürzte mit pip-pyarrow ab, Exit 139). Vorsaison-Werte (Team-Profile,
+On/Off-Paare, B2B-Historie aus zwei Saisons) liegen in `scripts/data/pbp-prior-<Saison>.json` und werden
+nur gebaut, wenn die Datei fehlt (neue Saison → einfach löschen bzw. entsteht automatisch).
+
+### Backtests (Scripts lagen in der Session-Scratchpad, Ergebnisse hier)
+
+| Idee | Ergebnis | Umgesetzt |
+|---|---|---|
+| Garbage-Time-Stats abwerten (Gewicht 0–1, Rest durch Vorjahres-Garbage ersetzt) | alle Kategorien < 0,5 %, bei Bankspielern sogar schlechter | **nein**, nur Info (Rollen-Radar „Garbage“) |
+| Minuten-Trend: letzte 3 Spiele | nächste 10 Spiele: MIN −3,6 %, REB −2,9 %, PTS −1,7 % (β 0,3); Saison-Rest: −1 bis −2 % (β 0,2) | Live Projections β 0,2, Rollen-Radar „Trend 10“ β 0,3 |
+| Starts, Crunchtime als Rollen-Signal | darüber hinaus &lt; 0,5 % | nur Info (NEU S5, 🔥) |
+| Wer profitiert, wenn X fehlt (2.121 Paare, 2. Saisonhälfte) | reine On/Off-Verteilung überschätzt (Steigung 0,23); Modell Δ = 3,41 + 0,093·OnOff − 0,229·Y-Min + 0,137·X-Min: Fehler 5,64 → 4,56 (−19 %); Raten ohne X gedämpft mit 600 Min. am besten | Seite „Wer profitiert?“, Waiver 🩹 |
+| Pace + Gegner-Faktor je Spiel | −0,2 bis −0,4 % je Spiel (Einzelspiel streut stark), aber jede Kategorie gleiche Richtung | Matchup-Planer (abschaltbar) |
+| Blowouts | P(≥ 20) 14 % bei gleich starken Teams, 30 % bei großem Gefälle; Starter ≥ 30 Min. dann −4,8 Min. | Matchup-Planer |
+| Back-to-backs | Stammspieler fehlen am 2. Abend 21 % statt 15 %; Extra-Quote hält sich (r 0,31) | Matchup-Planer (erwartete Spiele), Seite |
+| Wurfprofil (Ring, 3PA, FT-Rate, ohne Assist) → Dynasty-Ausbruch (1.411 junge Spieler 2013–2025) | kein Gewinn über Wert/Minuten/Alter | **nein**, nur Info |
