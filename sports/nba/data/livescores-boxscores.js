@@ -157,9 +157,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909834",
-      line: "Atlanta Hawks @ Orlando Magic (10/21 - 7:00 PM EDT)",
+      line: "Atlanta Hawks @ Orlando Magic (7:09 - 2nd)",
       completed: false,
-      statusText: "10/21 - 7:00 PM EDT",
+      statusText: "7:09 - 2nd",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -175,9 +175,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909835",
-      line: "Milwaukee Bucks @ Washington Wizards (10/21 - 7:00 PM EDT)",
+      line: "Milwaukee Bucks @ Washington Wizards (6:23 - 2nd)",
       completed: false,
-      statusText: "10/21 - 7:00 PM EDT",
+      statusText: "6:23 - 2nd",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -193,9 +193,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909091",
-      line: "Minnesota Timberwolves @ Miami Heat (10/21 - 7:30 PM EDT)",
+      line: "Minnesota Timberwolves @ Miami Heat (3:59 - 1st)",
       completed: false,
-      statusText: "10/21 - 7:30 PM EDT",
+      statusText: "3:59 - 1st",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
@@ -211,9 +211,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909836",
-      line: "Charlotte Hornets @ Brooklyn Nets (10/21 - 7:30 PM EDT)",
+      line: "Charlotte Hornets @ Brooklyn Nets (6:04 - 1st)",
       completed: false,
-      statusText: "10/21 - 7:30 PM EDT",
+      statusText: "6:04 - 1st",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -229,9 +229,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909837",
-      line: "Chicago Bulls @ Toronto Raptors (10/21 - 7:30 PM EDT)",
+      line: "Chicago Bulls @ Toronto Raptors (6:07 - 1st)",
       completed: false,
-      statusText: "10/21 - 7:30 PM EDT",
+      statusText: "6:07 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
