@@ -1,0 +1,42 @@
+{
+  "league": "nba",
+  "date": "2026-10-22",
+  "games": [
+    {
+      "id": "401909093",
+      "line": "Cleveland Cavaliers @ Philadelphia 76ers (10/22 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/22 - 7:00 PM EDT",
+      "away": {
+        "abbr": "CLE",
+        "name": "Cleveland Cavaliers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909094",
+      "line": "Denver Nuggets @ Oklahoma City Thunder (10/22 - 9:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/22 - 9:30 PM EDT",
+      "away": {
+        "abbr": "DEN",
+        "name": "Denver Nuggets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
