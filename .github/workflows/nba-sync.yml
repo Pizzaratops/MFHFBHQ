@@ -269,11 +269,11 @@ jobs:
       # Seit 22.10.2026: x3PM/xFG% aus dem Play-by-Play von Ramiro Bentes
       # (github.com/ramirobentes/nba_data, fremdes Projekt, frei veröffentlicht).
       # Lädt nur, wenn sich die Release-Datei geändert hat (ca. 1x täglich);
-      # pyarrow wird dann bei Bedarf nachinstalliert.
+      # pyarrow wird dann bei Bedarf nachinstalliert. Manueller Start = --force.
       - name: xStats aus Play-by-Play (R. Bentes)
         id: xpbp
         continue-on-error: true
-        run: python3 scripts/xstats-pbp.py
+        run: python3 scripts/xstats-pbp.py ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
 
       # Seit 15.10.2026 EINMAL für alle NBA-Ligen (vorher je Liga):
       # Baseline/Consensus (sports/nba/data/projections-*.js) + Saison-CSVs.
