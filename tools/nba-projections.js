@@ -224,12 +224,11 @@
 
   // Quellenhinweis (seit 22.10.2026): fremde Daten/Methoden klar als fremd kennzeichnen.
   const A = (href, t) => `<a href="${href}" target="_blank" rel="noopener">${t}</a>`;
-  const CREDITS = `<p class="note cp-credits"><strong>Quellen &amp; Dank.</strong>
-    Projections: Josh Lloyd (${A('https://basketballmonster.com/projections.aspx', 'Basketball Monster')}) und ${A('https://hashtagbasketball.com/fantasy-basketball-projections', 'Hashtag Basketball')}.
-    Echte Saison-Stats: ESPN. xStats nach der ${A('https://joshlloydfantasy.com/research/xstats-method/', 'xStats-Methode von Josh Lloyd')}:
-    xSTL/xTO wöchentlich aus NBA.com-Statistiken, x3PM/xFG% täglich aus den frei veröffentlichten Play-by-Play-Daten von
-    <strong>Ramiro Bentes</strong> (${A('https://github.com/ramirobentes/nba_data', 'github.com/ramirobentes/nba_data')}, ${A('https://github.com/ramirobentes/nbadatar', 'nbadatar')}).
-    Die Daten sind sein Projekt, nicht unseres – MFHFB HQ übernimmt sie unverändert und rechnet daraus nur die Erwartungswerte.</p>`;
+  const CREDITS = `<p class="note cp-credits"><strong>Quellen.</strong>
+    Projections: Josh Lloyd (${A('https://basketballmonster.com/projections.aspx', 'Basketball Monster')}) und ${A('https://hashtagbasketball.com/fantasy-basketball-projections', 'Hashtag Basketball')} · echte Stats: ESPN ·
+    ${A('https://joshlloydfantasy.com/research/xstats-method/', 'xStats-Methode: Josh Lloyd')} · xSTL/xTO: NBA.com ·
+    x3PM/xFG%: Play-by-Play von <strong>Ramiro Bentes</strong> (${A('https://github.com/ramirobentes/nba_data', 'nba_data')}) – sein Projekt, nicht unseres.
+    <button type="button" class="credits-link" data-credits>Alle Quellen &amp; Dank</button></p>`;
 
   function csv(ctx) {
     const { rows } = filtered(ctx, getState(ctx));
