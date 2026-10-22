@@ -187,7 +187,7 @@ const totals = new Map(); // canonicalName -> { games, min, pts, reb, ast, stl, 
 let filesRead = 0;
 if (fs.existsSync(CSV_DIR)) {
   const files = fs.readdirSync(CSV_DIR).filter(f => f.startsWith(`daily-9cat_${leagueArg}_`) && f.endsWith('.csv')
-    && f.slice(`daily-9cat_${leagueArg}_`.length, -4) >= SINCE); // MFHFB HQ: Saison-Fenster, s.o.
+    && f.slice(`daily-9cat_${leagueArg}_`.length, -4) >= SINCE).sort(); // MFHFB HQ: Saison-Fenster, s.o.; chronologisch für den Minuten-Trend
   files.forEach(f => {
     const lines = fs.readFileSync(path.join(CSV_DIR, f), 'utf8').split('\n').filter(Boolean);
     const header = parseCsvLine(lines[0]).map(h => h.trim());
@@ -203,9 +203,10 @@ if (fs.existsSync(CSV_DIR)) {
       const r = parseCsvLine(lines[i]);
       if (!r[c.name]) continue;
       const name = canonicalName(r[c.name].trim());
-      const t = totals.get(name) || { games: 0, min: 0, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, tpm: 0, tov: 0, fgm: 0, fga: 0, ftm: 0, fta: 0 };
+      const t = totals.get(name) || { games: 0, min: 0, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, tpm: 0, tov: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, mins: [] };
       t.games += 1;
       t.min += c.min !== -1 ? (parseFloat(r[c.min]) || 0) : 0;
+      t.mins.push([f.slice(-14, -4), c.min !== -1 ? (parseFloat(r[c.min]) || 0) : 0]); // [Datum, Minuten] für den Trend
       t.pts += parseFloat(r[c.pts]) || 0;
       t.reb += parseFloat(r[c.reb]) || 0;
       t.ast += parseFloat(r[c.ast]) || 0;
@@ -234,11 +235,13 @@ totals.forEach((t, name) => {
   const proj = projByNorm.get(normalizeName(name)) || (alias && projByNorm.get(normalizeName(alias)));
   if (proj) {
     const prev = actualByProj.get(proj);
-    if (prev) Object.keys(t).forEach(k => { prev[k] += t[k]; }); else actualByProj.set(proj, { ...t });
+    if (prev) Object.keys(t).forEach(k => { if (k === 'mins') prev.mins = prev.mins.concat(t.mins).sort((a, b) => (a[0] < b[0] ? -1 : 1)); else prev[k] += t[k]; });
+    else actualByProj.set(proj, { ...t, mins: t.mins.slice() });
   } else actualOnly.set(name, t);
 });
 
 // ── xStats (siehe Kopfkommentar) ──────────────────────────────
+const MIN_TREND_BETA = 0.2; // Minuten-Trend letzte 3 Spiele (siehe buildRow)
 const X_K_GAMES = { stl: 10, tov: 7, tpm: 7 };
 const X_K_FG = 140;
 const X_WEIGHT = { stl: 1, tov: 0.5, tpm: 0.5, fgm: 0.5 }; // Anteil, den x am echten Wert ersetzt
@@ -304,6 +307,17 @@ function buildRow(proj, actual, name) {
     const avg = n ? act[k] / n : 0;
     row[k] = !n ? base[k] : base[k] + (avg - base[k]) * (n / (n + kOf(k) * K_SCALE));
   });
+  // Minuten-Trend (seit 23.10.2026): die letzten 3 Spiele zählen extra.
+  // Backtest Play-by-Play 2023–2026: β 0,2 senkt den Fehler über den Saison-
+  // Rest bei MIN ~1 %, REB/AST/TO ~1,5–2 %, PTS/3PM/STL ~1 %. Zählwerte
+  // werden mit dem Minuten-Verhältnis skaliert (gedeckelt 0,5–1,6).
+  if (n >= 3 && actual.mins && actual.mins.length >= 3 && row.min > 0) {
+    const last3 = actual.mins.slice(-3).reduce((a, x) => a + x[1], 0) / 3;
+    const adj = row.min + MIN_TREND_BETA * (last3 - row.min);
+    const ratio = Math.min(1.6, Math.max(0.5, adj / row.min));
+    COUNTING_KEYS.forEach(k => { if (k !== 'min') row[k] *= ratio; });
+    row.min = adj;
+  }
   [['fgm', 'fga', 'fgPct'], ['ftm', 'fta', 'ftPct']].forEach(([mKey, aKey, pctKey]) => {
     const made = act ? act[mKey] : 0, att = act ? act[aKey] : 0;
     const kA = (xr && xr.used.fgm && pctKey === 'fgPct' ? X_K_FG : K_ATT[pctKey]) * K_SCALE;
