@@ -1,12 +1,11 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-23T17:52:35.790Z
+//  Stand: 2026-10-23T20:40:11.495Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
 ["064ez","064ez","","","G,Flx","T"],
-["064gk","064gk","","","F/C,G,Flx","T"],
 ["064ht","064ht","","","F/C,Flx","T"],
 ["06qgl","A.J. Patterson","AF","G","G,Flx","FA"],
 ["079w5","Aaron Banks","LoyMa","G","G,Flx","FA"],
@@ -365,6 +364,7 @@ const CBB_PLAYER_POOL = [
 ["07a7v","Cade Krueger","SJSU","G","G,Flx","FA"],
 ["065mm","Cade Pendleton","UCSD","F","F/C,Flx","FA"],
 ["06gcx","Cade Phillips","TAMU","F","F/C,Flx","FA"],
+["064gk","Cade Tyson","Minn","G","F/C,G,Flx","T"],
 ["071g5","Caden Hawkins","SIU","G","G,Flx","FA"],
 ["0666s","Caden Pierce","Pur","F","F/C,Flx","FA"],
 ["065cz","Caden Powell","Baylor","C","F/C,Flx","FA"],
