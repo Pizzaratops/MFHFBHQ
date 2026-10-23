@@ -443,6 +443,25 @@ const LIVESCORES_AGGREGATE = {
           { rank: 321, name: "Darius Acuff Jr.", team: "SAC", games: 1, min: 35, pts: 12, reb: 3, ast: 3, stl: 3, blk: 0, to: 4, tpm: 0, fgPct: 20.8, ftPct: 40, composite: -7.19, zScores: { pts: 0.23, reb: -0.28, ast: 0.33, stl: 2.02, blk: -0.52, tpm: -0.73, fgImpact: -3.89, ftImpact: -2.54, to: -1.82 } },
           { rank: 322, name: "Josh Giddey", team: "CHI", games: 1, min: 24, pts: 2, reb: 7, ast: 6, stl: 0, blk: 0, to: 5, tpm: 0, fgPct: 10, ftPct: 0, composite: -7.31, zScores: { pts: -0.9, reb: 1, ast: 1.58, stl: -0.77, blk: -0.52, tpm: -0.73, fgImpact: -2.33, ftImpact: -2.12, to: -2.52 } }
         ]
+      },
+      "2026-10-22": {
+        windowStart: "2026-09-23",
+        windowEnd: "2026-10-22",
+        windowDays: 30,
+        daysInWindow: 3,
+        minGames: 2,
+        leagueAvg: { fg: 43.6, ft: 77.2 },
+        players: [
+          { rank: 1, name: "Tyrese Maxey", team: "PHI", games: 2, min: 41, pts: 30, reb: 3.5, ast: 5.5, stl: 2.5, blk: 1.5, to: 2, tpm: 2, fgPct: 50, ftPct: 82.4, composite: 10.4, zScores: { pts: 1.96, reb: -0.48, ast: 1.19, stl: 1.64, blk: 1.44, tpm: 1.41, fgImpact: 1.78, ftImpact: 1.95, to: -0.5 } },
+          { rank: 2, name: "Jaylen Brown", team: "PHI", games: 2, min: 36.5, pts: 20, reb: 8, ast: 5, stl: 1, blk: 0.5, to: 3, tpm: 1.5, fgPct: 50, ftPct: 75, composite: 3.1, zScores: { pts: 0.86, reb: 1.01, ast: 0.96, stl: 0, blk: -0.29, tpm: 0.71, fgImpact: 1.44, ftImpact: -0.19, to: -1.39 } },
+          { rank: 3, name: "Joel Embiid", team: "PHI", games: 2, min: 33.5, pts: 18.5, reb: 9, ast: 3.5, stl: 1, blk: 1.5, to: 2.5, tpm: 1.5, fgPct: 38.7, ftPct: 76.9, composite: 2.42, zScores: { pts: 0.69, reb: 1.34, ast: 0.28, stl: 0, blk: 1.44, tpm: 0.71, fgImpact: -1.02, ftImpact: -0.08, to: -0.95 } },
+          { rank: 4, name: "LeBron James", team: "PHI", games: 2, min: 33.5, pts: 15.5, reb: 9.5, ast: 6, stl: 2, blk: 1, to: 3, tpm: 0.5, fgPct: 37, ftPct: 76.9, composite: 1.59, zScores: { pts: 0.36, reb: 1.5, ast: 1.42, stl: 1.1, blk: 0.58, tpm: -0.71, fgImpact: -1.19, ftImpact: -0.08, to: -1.39 } },
+          { rank: 5, name: "Kentavious Caldwell-Pope", team: "PHI", games: 2, min: 25.5, pts: 6.5, reb: 3.5, ast: 1.5, stl: 0.5, blk: 0.5, to: 0.5, tpm: 1.5, fgPct: 44.4, ftPct: 100, composite: 0.04, zScores: { pts: -0.63, reb: -0.48, ast: -0.63, stl: -0.55, blk: -0.29, tpm: 0.71, fgImpact: 0.05, ftImpact: 1.01, to: 0.85 } },
+          { rank: 6, name: "VJ Edgecombe", team: "PHI", games: 2, min: 34, pts: 10, reb: 5.5, ast: 3.5, stl: 2, blk: 0, to: 1, tpm: 0.5, fgPct: 38.1, ftPct: 60, composite: -2.84, zScores: { pts: -0.25, reb: 0.18, ast: 0.28, stl: 1.1, blk: -1.15, tpm: -0.71, fgImpact: -0.78, ftImpact: -1.91, to: 0.4 } },
+          { rank: 7, name: "Adem Bona", team: "PHI", games: 2, min: 12, pts: 1, reb: 2.5, ast: 0.5, stl: 0, blk: 1, to: 0.5, tpm: 0, fgPct: 50, ftPct: 0, composite: -4.13, zScores: { pts: -1.24, reb: -0.81, ast: -1.09, stl: -1.1, blk: 0.58, tpm: -1.41, fgImpact: 0.08, ftImpact: 0, to: 0.85 } },
+          { rank: 8, name: "Anfernee Simons", team: "PHI", games: 2, min: 21, pts: 7.5, reb: 2.5, ast: 0, stl: 0, blk: 0, to: 0.5, tpm: 1.5, fgPct: 35.7, ftPct: 66.7, composite: -4.78, zScores: { pts: -0.52, reb: -0.81, ast: -1.32, stl: -1.1, blk: -1.15, tpm: 0.71, fgImpact: -0.74, ftImpact: -0.7, to: 0.85 } },
+          { rank: 9, name: "Jabari Walker", team: "PHI", games: 2, min: 3.5, pts: 1, reb: 0.5, ast: 0.5, stl: 0, blk: 0, to: 0, tpm: 0, fgPct: 100, ftPct: 0, composite: -5.79, zScores: { pts: -1.24, reb: -1.47, ast: -1.09, stl: -1.1, blk: -1.15, tpm: -1.41, fgImpact: 0.38, ftImpact: 0, to: 1.29 } }
+        ]
       }
     },
     "nba-preseason": {
@@ -6504,6 +6523,25 @@ const LIVESCORES_AGGREGATE = {
           { rank: 320, name: "Jaylen Clark", team: "MIN", games: 1, min: 3, pts: 1, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgPct: 0, ftPct: 25, composite: -6.64, zScores: { pts: -1.02, reb: -0.92, ast: -0.5, stl: -0.77, blk: -0.52, tpm: -0.73, fgImpact: -0.3, ftImpact: -2.86, to: 0.97 } },
           { rank: 321, name: "Darius Acuff Jr.", team: "SAC", games: 1, min: 35, pts: 12, reb: 3, ast: 3, stl: 3, blk: 0, to: 4, tpm: 0, fgPct: 20.8, ftPct: 40, composite: -7.19, zScores: { pts: 0.23, reb: -0.28, ast: 0.33, stl: 2.02, blk: -0.52, tpm: -0.73, fgImpact: -3.89, ftImpact: -2.54, to: -1.82 } },
           { rank: 322, name: "Josh Giddey", team: "CHI", games: 1, min: 24, pts: 2, reb: 7, ast: 6, stl: 0, blk: 0, to: 5, tpm: 0, fgPct: 10, ftPct: 0, composite: -7.31, zScores: { pts: -0.9, reb: 1, ast: 1.58, stl: -0.77, blk: -0.52, tpm: -0.73, fgImpact: -2.33, ftImpact: -2.12, to: -2.52 } }
+        ]
+      },
+      "2026-10-22": {
+        windowStart: "2026-10-16",
+        windowEnd: "2026-10-22",
+        windowDays: 7,
+        daysInWindow: 3,
+        minGames: 2,
+        leagueAvg: { fg: 43.6, ft: 77.2 },
+        players: [
+          { rank: 1, name: "Tyrese Maxey", team: "PHI", games: 2, min: 41, pts: 30, reb: 3.5, ast: 5.5, stl: 2.5, blk: 1.5, to: 2, tpm: 2, fgPct: 50, ftPct: 82.4, composite: 10.4, zScores: { pts: 1.96, reb: -0.48, ast: 1.19, stl: 1.64, blk: 1.44, tpm: 1.41, fgImpact: 1.78, ftImpact: 1.95, to: -0.5 } },
+          { rank: 2, name: "Jaylen Brown", team: "PHI", games: 2, min: 36.5, pts: 20, reb: 8, ast: 5, stl: 1, blk: 0.5, to: 3, tpm: 1.5, fgPct: 50, ftPct: 75, composite: 3.1, zScores: { pts: 0.86, reb: 1.01, ast: 0.96, stl: 0, blk: -0.29, tpm: 0.71, fgImpact: 1.44, ftImpact: -0.19, to: -1.39 } },
+          { rank: 3, name: "Joel Embiid", team: "PHI", games: 2, min: 33.5, pts: 18.5, reb: 9, ast: 3.5, stl: 1, blk: 1.5, to: 2.5, tpm: 1.5, fgPct: 38.7, ftPct: 76.9, composite: 2.42, zScores: { pts: 0.69, reb: 1.34, ast: 0.28, stl: 0, blk: 1.44, tpm: 0.71, fgImpact: -1.02, ftImpact: -0.08, to: -0.95 } },
+          { rank: 4, name: "LeBron James", team: "PHI", games: 2, min: 33.5, pts: 15.5, reb: 9.5, ast: 6, stl: 2, blk: 1, to: 3, tpm: 0.5, fgPct: 37, ftPct: 76.9, composite: 1.59, zScores: { pts: 0.36, reb: 1.5, ast: 1.42, stl: 1.1, blk: 0.58, tpm: -0.71, fgImpact: -1.19, ftImpact: -0.08, to: -1.39 } },
+          { rank: 5, name: "Kentavious Caldwell-Pope", team: "PHI", games: 2, min: 25.5, pts: 6.5, reb: 3.5, ast: 1.5, stl: 0.5, blk: 0.5, to: 0.5, tpm: 1.5, fgPct: 44.4, ftPct: 100, composite: 0.04, zScores: { pts: -0.63, reb: -0.48, ast: -0.63, stl: -0.55, blk: -0.29, tpm: 0.71, fgImpact: 0.05, ftImpact: 1.01, to: 0.85 } },
+          { rank: 6, name: "VJ Edgecombe", team: "PHI", games: 2, min: 34, pts: 10, reb: 5.5, ast: 3.5, stl: 2, blk: 0, to: 1, tpm: 0.5, fgPct: 38.1, ftPct: 60, composite: -2.84, zScores: { pts: -0.25, reb: 0.18, ast: 0.28, stl: 1.1, blk: -1.15, tpm: -0.71, fgImpact: -0.78, ftImpact: -1.91, to: 0.4 } },
+          { rank: 7, name: "Adem Bona", team: "PHI", games: 2, min: 12, pts: 1, reb: 2.5, ast: 0.5, stl: 0, blk: 1, to: 0.5, tpm: 0, fgPct: 50, ftPct: 0, composite: -4.13, zScores: { pts: -1.24, reb: -0.81, ast: -1.09, stl: -1.1, blk: 0.58, tpm: -1.41, fgImpact: 0.08, ftImpact: 0, to: 0.85 } },
+          { rank: 8, name: "Anfernee Simons", team: "PHI", games: 2, min: 21, pts: 7.5, reb: 2.5, ast: 0, stl: 0, blk: 0, to: 0.5, tpm: 1.5, fgPct: 35.7, ftPct: 66.7, composite: -4.78, zScores: { pts: -0.52, reb: -0.81, ast: -1.32, stl: -1.1, blk: -1.15, tpm: 0.71, fgImpact: -0.74, ftImpact: -0.7, to: 0.85 } },
+          { rank: 9, name: "Jabari Walker", team: "PHI", games: 2, min: 3.5, pts: 1, reb: 0.5, ast: 0.5, stl: 0, blk: 0, to: 0, tpm: 0, fgPct: 100, ftPct: 0, composite: -5.79, zScores: { pts: -1.24, reb: -1.47, ast: -1.09, stl: -1.1, blk: -1.15, tpm: -1.41, fgImpact: 0.38, ftImpact: 0, to: 1.29 } }
         ]
       }
     },
