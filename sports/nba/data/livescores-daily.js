@@ -364,7 +364,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-22": {
-      games: ["Cleveland Cavaliers 106 @ Philadelphia 76ers 114 (Final)","Denver Nuggets @ Oklahoma City Thunder (6:43 - 1st)"],
+      games: ["Cleveland Cavaliers 106 @ Philadelphia 76ers 114 (Final)","Denver Nuggets @ Oklahoma City Thunder (Halftime)"],
       leagueAvg: { fg: 45.3, ft: 75.9 },
       players: [
         { rank: 1, name: "Donovan Mitchell", team: "CLE", min: 35, pts: 32, reb: 10, ast: 3, stl: 2, blk: 1, to: 5, tpm: 2, fgPct: 57.9, ftPct: 72.7, composite: 7.09, zScores: { pts: 2.03, reb: 1.761, ast: 0.387, stl: 0.949, blk: 0.776, tpm: 1.488, fgImpact: 2.069, ftImpact: -0.784, to: -1.58 } },

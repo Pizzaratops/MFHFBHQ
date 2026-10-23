@@ -626,9 +626,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909094",
-      line: "Denver Nuggets @ Oklahoma City Thunder (6:43 - 1st)",
+      line: "Denver Nuggets @ Oklahoma City Thunder (Halftime)",
       completed: false,
-      statusText: "6:43 - 1st",
+      statusText: "Halftime",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
