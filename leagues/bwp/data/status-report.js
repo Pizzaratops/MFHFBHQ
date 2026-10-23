@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-23T11:21:28.689Z",
+  "generatedAt": "2026-10-23T16:50:07.183Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -375,7 +375,7 @@ const STATUS_REPORT_DATA = {
           "name": "Kirk Cousins",
           "pos": "QB",
           "nfl": "LV",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 18.5,
@@ -587,7 +587,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "TB",
           "isStarter": false,
-          "status": "Q",
+          "status": "D",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -1288,7 +1288,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.2,
           "last3AvgPoints": 14.3,
-          "projPoints": 7.4
+          "projPoints": 7.3
         },
         {
           "name": "Blake Corum",
@@ -1376,7 +1376,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.5,
           "last3AvgPoints": 14.3,
-          "projPoints": 15.9
+          "projPoints": 16
         },
         {
           "name": "DJ Moore",
@@ -1586,7 +1586,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.3,
           "last3AvgPoints": 4.9,
-          "projPoints": 9.2
+          "projPoints": 9.3
         },
         {
           "name": "Brandin Cooks",
@@ -2543,8 +2543,8 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "TB",
           "isStarter": true,
-          "status": "Q",
-          "flag": false,
+          "status": "D",
+          "flag": true,
           "lastGamePoints": 17.8,
           "last3AvgPoints": 12.8,
           "projPoints": 13.6
@@ -2682,7 +2682,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 10.5
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 1
     },
     {
       "id": "felix-espn-320102468",
@@ -2797,7 +2797,7 @@ const STATUS_REPORT_DATA = {
           "pos": "?",
           "nfl": "PIT",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 1.5,
           "last3AvgPoints": 6.3,
@@ -3521,7 +3521,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.3,
           "last3AvgPoints": 6.4,
-          "projPoints": 5.5
+          "projPoints": 4.4
         },
         {
           "name": "Emeka Egbuka",
@@ -3543,7 +3543,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 27,
           "last3AvgPoints": 14.9,
-          "projPoints": 16
+          "projPoints": 16.1
         },
         {
           "name": "Omar Cooper Jr.",
