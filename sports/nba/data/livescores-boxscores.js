@@ -591,9 +591,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909093",
-      line: "Cleveland Cavaliers @ Philadelphia 76ers (6:43 - 2nd)",
+      line: "Cleveland Cavaliers @ Philadelphia 76ers (3:59 - 3rd)",
       completed: false,
-      statusText: "6:43 - 2nd",
+      statusText: "3:59 - 3rd",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
