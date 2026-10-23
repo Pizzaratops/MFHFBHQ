@@ -672,9 +672,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909848",
-      line: "Chicago Bulls @ Milwaukee Bucks (Halftime)",
+      line: "Chicago Bulls @ Milwaukee Bucks (7:44 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "7:44 - 3rd",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
