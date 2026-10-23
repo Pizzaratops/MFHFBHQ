@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909848",
-      "line": "Chicago Bulls @ Milwaukee Bucks (10/23 - 4:00 PM EDT)",
+      "line": "Chicago Bulls @ Milwaukee Bucks (8:29 - 1st)",
       "completed": false,
-      "statusText": "10/23 - 4:00 PM EDT",
+      "statusText": "8:29 - 1st",
       "away": {
         "abbr": "CHI",
         "name": "Chicago Bulls",
