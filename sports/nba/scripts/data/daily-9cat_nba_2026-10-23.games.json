@@ -1,0 +1,222 @@
+{
+  "league": "nba",
+  "date": "2026-10-23",
+  "games": [
+    {
+      "id": "401909848",
+      "line": "Chicago Bulls @ Milwaukee Bucks (10/23 - 4:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 4:00 PM EDT",
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909095",
+      "line": "New York Knicks @ Boston Celtics (10/23 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 7:00 PM EDT",
+      "away": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909843",
+      "line": "Atlanta Hawks @ Charlotte Hornets (10/23 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 7:00 PM EDT",
+      "away": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909844",
+      "line": "Dallas Mavericks @ Indiana Pacers (10/23 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 7:00 PM EDT",
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909845",
+      "line": "Minnesota Timberwolves @ Orlando Magic (10/23 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 7:00 PM EDT",
+      "away": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909846",
+      "line": "Toronto Raptors @ Washington Wizards (10/23 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 7:00 PM EDT",
+      "away": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909847",
+      "line": "Detroit Pistons @ Miami Heat (10/23 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 8:00 PM EDT",
+      "away": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909096",
+      "line": "Houston Rockets @ San Antonio Spurs (10/23 - 9:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 9:30 PM EDT",
+      "away": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909849",
+      "line": "New Orleans Pelicans @ Utah Jazz (10/23 - 9:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 9:30 PM EDT",
+      "away": {
+        "abbr": "NO",
+        "name": "New Orleans Pelicans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909850",
+      "line": "Memphis Grizzlies @ Golden State Warriors (10/23 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 10:00 PM EDT",
+      "away": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909851",
+      "line": "LA Clippers @ Los Angeles Lakers (10/23 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 10:00 PM EDT",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909852",
+      "line": "Portland Trail Blazers @ Sacramento Kings (10/23 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/23 - 10:00 PM EDT",
+      "away": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
