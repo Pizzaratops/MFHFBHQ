@@ -1,7 +1,7 @@
 // ============================================================
 //  PbP-Insights der laufenden Saison (Profiteure, Rollen, Teams, B2B, Fouls)
 //  Play-by-Play: Ramiro Bentes, github.com/ramirobentes/nba_data (nicht unser Projekt, frei veröffentlichte Daten)
-//  Erzeugt von scripts/build-pbp-insights.py am 2026-10-22 · Saison 2026-27 · Stand 2026-10-21
+//  Erzeugt von scripts/build-pbp-insights.py am 2026-10-23 · Saison 2026-27 · Stand 2026-10-21
 //  Gelesen von tools/nba-insights.js, tools/nba-planner.js, tools/nba-waiver.js
 //  META {"season": "2026-27", "assetUpdated": "Thu, 22 Oct 2026 13:31:16 GMT"}
 // ============================================================
