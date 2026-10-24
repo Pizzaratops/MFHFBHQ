@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-24T07:04:44.402Z",
+  "generatedAt": "2026-10-24T12:33:27.512Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -944,7 +944,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 25.4,
           "last3AvgPoints": 20.3,
-          "projPoints": 24.3
+          "projPoints": 24.4
         },
         {
           "name": "Denver Broncos",
@@ -1100,7 +1100,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 14.8,
-          "projPoints": 11.2
+          "projPoints": 11.3
         },
         {
           "name": "Colston Loveland",
@@ -2049,7 +2049,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 25.4,
           "last3AvgPoints": 20.3,
-          "projPoints": 24.3
+          "projPoints": 24.4
         },
         {
           "name": "Denver Broncos",
@@ -2215,7 +2215,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19,
           "last3AvgPoints": 14,
-          "projPoints": 12.4
+          "projPoints": 12.3
         },
         {
           "name": "Nicholas Singleton",
@@ -3036,17 +3036,6 @@ const STATUS_REPORT_DATA = {
           "projPoints": 18.5
         },
         {
-          "name": "RJ Harvey",
-          "pos": "RB",
-          "nfl": "DEN",
-          "isStarter": true,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 14.6,
-          "last3AvgPoints": 7.7,
-          "projPoints": 11.4
-        },
-        {
           "name": "James Cook III",
           "pos": "RB",
           "nfl": "BUF",
@@ -3067,6 +3056,17 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": 11.1
+        },
+        {
+          "name": "Derrick Henry",
+          "pos": "RB",
+          "nfl": "BAL",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 5,
+          "last3AvgPoints": 14,
+          "projPoints": 20.1
         }
       ],
       "flaggedCount": 0
@@ -3708,7 +3708,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 27.9,
           "last3AvgPoints": 29.4,
-          "projPoints": 19.4
+          "projPoints": 19.3
         },
         {
           "name": "Jalen Nailor",
