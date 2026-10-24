@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-24T05:01:38.174Z",
+  "generatedAt": "2026-10-24T06:01:32.088Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 2 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -255,7 +255,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "KraftPaket Knödel",
       "values": {
         "pts": 331,
-        "reb": 140.9,
+        "reb": 141,
         "ast": 78,
         "stl": 22.73,
         "blk": 18.58,
