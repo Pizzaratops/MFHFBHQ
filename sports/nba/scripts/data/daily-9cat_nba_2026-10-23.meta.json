@@ -3,20 +3,20 @@
   "date": "2026-10-23",
   "games": [
     "Chicago Bulls 132 @ Milwaukee Bucks 125 (Final)",
-    "New York Knicks @ Boston Celtics (3:21 - 3rd)",
-    "Atlanta Hawks @ Charlotte Hornets (9:52 - 4th)",
-    "Dallas Mavericks @ Indiana Pacers (2:57 - 3rd)",
-    "Minnesota Timberwolves @ Orlando Magic (11:49 - 4th)",
-    "Toronto Raptors @ Washington Wizards (1:51 - 3rd)",
-    "Detroit Pistons @ Miami Heat (6:45 - 2nd)",
-    "Houston Rockets @ San Antonio Spurs (10/23 - 9:30 PM EDT)",
-    "New Orleans Pelicans @ Utah Jazz (10/23 - 9:30 PM EDT)",
+    "New York Knicks 103 @ Boston Celtics 107 (Final)",
+    "Atlanta Hawks 128 @ Charlotte Hornets 81 (Final)",
+    "Dallas Mavericks 121 @ Indiana Pacers 105 (Final)",
+    "Minnesota Timberwolves 115 @ Orlando Magic 93 (Final)",
+    "Toronto Raptors 112 @ Washington Wizards 102 (Final)",
+    "Detroit Pistons @ Miami Heat (End of 3rd)",
+    "Houston Rockets @ San Antonio Spurs (4:54 - 1st)",
+    "New Orleans Pelicans @ Utah Jazz (2:55 - 1st)",
     "Memphis Grizzlies @ Golden State Warriors (10/23 - 10:00 PM EDT)",
     "LA Clippers @ Los Angeles Lakers (10/23 - 10:00 PM EDT)",
     "Portland Trail Blazers @ Sacramento Kings (10/23 - 10:00 PM EDT)"
   ],
   "leagueAvg": {
-    "fg": 48.4,
-    "ft": 75
+    "fg": 44.8,
+    "ft": 73.1
   }
 }
