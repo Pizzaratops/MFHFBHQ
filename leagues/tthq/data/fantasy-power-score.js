@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-24T14:26:32.736Z",
+  "generatedAt": "2026-10-24T14:50:16.548Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 2 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -68,7 +68,7 @@ const FANTASY_POWER_SCORE = {
       "values": {
         "pts": 436.7,
         "reb": 163.5,
-        "ast": 100.1,
+        "ast": 100.2,
         "stl": 29.16,
         "blk": 19.65,
         "tpm": 39.7,
@@ -99,7 +99,7 @@ const FANTASY_POWER_SCORE = {
       "values": {
         "pts": 335.2,
         "reb": 131.7,
-        "ast": 74.2,
+        "ast": 74.1,
         "stl": 23.99,
         "blk": 17.51,
         "tpm": 38.9,
@@ -160,10 +160,10 @@ const FANTASY_POWER_SCORE = {
       "owner": "Sven",
       "values": {
         "pts": 357.6,
-        "reb": 120.6,
+        "reb": 120.5,
         "ast": 77.9,
         "stl": 21.4,
-        "blk": 11.33,
+        "blk": 11.37,
         "tpm": 43.9,
         "to": 39.9,
         "fgPct": 46.3,
@@ -385,7 +385,7 @@ const FANTASY_POWER_SCORE = {
       "values": {
         "pts": 343.4,
         "reb": 123,
-        "ast": 91.3,
+        "ast": 91.2,
         "stl": 26.79,
         "blk": 14.88,
         "tpm": 35.2,
@@ -416,7 +416,7 @@ const FANTASY_POWER_SCORE = {
       "values": {
         "pts": 274.4,
         "reb": 85.1,
-        "ast": 61,
+        "ast": 61.1,
         "stl": 19.31,
         "blk": 9.38,
         "tpm": 32,
