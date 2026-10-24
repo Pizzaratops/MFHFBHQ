@@ -415,7 +415,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-23": {
-      games: ["Chicago Bulls 132 @ Milwaukee Bucks 125 (Final)","New York Knicks 103 @ Boston Celtics 107 (Final)","Atlanta Hawks 128 @ Charlotte Hornets 81 (Final)","Dallas Mavericks 121 @ Indiana Pacers 105 (Final)","Minnesota Timberwolves 115 @ Orlando Magic 93 (Final)","Toronto Raptors 112 @ Washington Wizards 102 (Final)","Detroit Pistons 128 @ Miami Heat 111 (Final)","Houston Rockets @ San Antonio Spurs (Halftime)","New Orleans Pelicans @ Utah Jazz (9:21 - 3rd)","Memphis Grizzlies @ Golden State Warriors (7:52 - 2nd)","LA Clippers @ Los Angeles Lakers (4:36 - 2nd)","Portland Trail Blazers @ Sacramento Kings (5:07 - 2nd)"],
+      games: ["Chicago Bulls 132 @ Milwaukee Bucks 125 (Final)","New York Knicks 103 @ Boston Celtics 107 (Final)","Atlanta Hawks 128 @ Charlotte Hornets 81 (Final)","Dallas Mavericks 121 @ Indiana Pacers 105 (Final)","Minnesota Timberwolves 115 @ Orlando Magic 93 (Final)","Toronto Raptors 112 @ Washington Wizards 102 (Final)","Detroit Pistons 128 @ Miami Heat 111 (Final)","Houston Rockets @ San Antonio Spurs (4:36 - 4th)","New Orleans Pelicans @ Utah Jazz (1:46 - 4th)","Memphis Grizzlies @ Golden State Warriors (6:41 - 3rd)","LA Clippers @ Los Angeles Lakers (11:16 - 4th)","Portland Trail Blazers @ Sacramento Kings (11:57 - 4th)"],
       leagueAvg: { fg: 44.8, ft: 72.8 },
       players: [
         { rank: 1, name: "Jayson Tatum", team: "BOS", min: 37, pts: 36, reb: 9, ast: 7, stl: 3, blk: 0, to: 2, tpm: 3, fgPct: 53.8, ftPct: 100, composite: 13.95, zScores: { pts: 3.554, reb: 1.626, ast: 2.008, stl: 2.26, blk: -0.554, tpm: 1.564, fgImpact: 1.735, ftImpact: 2.196, to: -0.438 } },

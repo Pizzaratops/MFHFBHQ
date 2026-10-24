@@ -4842,9 +4842,9 @@
     },
     {
       "id": "401909096",
-      "line": "Houston Rockets @ San Antonio Spurs (Halftime)",
+      "line": "Houston Rockets @ San Antonio Spurs (4:36 - 4th)",
       "completed": false,
-      "statusText": "Halftime",
+      "statusText": "4:36 - 4th",
       "away": {
         "abbr": "HOU",
         "name": "Houston Rockets",
@@ -4860,9 +4860,9 @@
     },
     {
       "id": "401909849",
-      "line": "New Orleans Pelicans @ Utah Jazz (9:21 - 3rd)",
+      "line": "New Orleans Pelicans @ Utah Jazz (1:46 - 4th)",
       "completed": false,
-      "statusText": "9:21 - 3rd",
+      "statusText": "1:46 - 4th",
       "away": {
         "abbr": "NO",
         "name": "New Orleans Pelicans",
@@ -4878,9 +4878,9 @@
     },
     {
       "id": "401909850",
-      "line": "Memphis Grizzlies @ Golden State Warriors (7:52 - 2nd)",
+      "line": "Memphis Grizzlies @ Golden State Warriors (6:41 - 3rd)",
       "completed": false,
-      "statusText": "7:52 - 2nd",
+      "statusText": "6:41 - 3rd",
       "away": {
         "abbr": "MEM",
         "name": "Memphis Grizzlies",
@@ -4896,9 +4896,9 @@
     },
     {
       "id": "401909851",
-      "line": "LA Clippers @ Los Angeles Lakers (4:36 - 2nd)",
+      "line": "LA Clippers @ Los Angeles Lakers (11:16 - 4th)",
       "completed": false,
-      "statusText": "4:36 - 2nd",
+      "statusText": "11:16 - 4th",
       "away": {
         "abbr": "LAC",
         "name": "LA Clippers",
@@ -4914,9 +4914,9 @@
     },
     {
       "id": "401909852",
-      "line": "Portland Trail Blazers @ Sacramento Kings (5:07 - 2nd)",
+      "line": "Portland Trail Blazers @ Sacramento Kings (11:57 - 4th)",
       "completed": false,
-      "statusText": "5:07 - 2nd",
+      "statusText": "11:57 - 4th",
       "away": {
         "abbr": "POR",
         "name": "Portland Trail Blazers",
