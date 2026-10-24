@@ -708,9 +708,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909095",
-      line: "New York Knicks @ Boston Celtics (10/23 - 7:00 PM EDT)",
+      line: "New York Knicks @ Boston Celtics (6:27 - 2nd)",
       completed: false,
-      statusText: "10/23 - 7:00 PM EDT",
+      statusText: "6:27 - 2nd",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -726,9 +726,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909843",
-      line: "Atlanta Hawks @ Charlotte Hornets (10/23 - 7:00 PM EDT)",
+      line: "Atlanta Hawks @ Charlotte Hornets (4:38 - 2nd)",
       completed: false,
-      statusText: "10/23 - 7:00 PM EDT",
+      statusText: "4:38 - 2nd",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -744,9 +744,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909844",
-      line: "Dallas Mavericks @ Indiana Pacers (10/23 - 7:00 PM EDT)",
+      line: "Dallas Mavericks @ Indiana Pacers (6:50 - 2nd)",
       completed: false,
-      statusText: "10/23 - 7:00 PM EDT",
+      statusText: "6:50 - 2nd",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
@@ -762,9 +762,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909845",
-      line: "Minnesota Timberwolves @ Orlando Magic (10/23 - 7:00 PM EDT)",
+      line: "Minnesota Timberwolves @ Orlando Magic (3:26 - 2nd)",
       completed: false,
-      statusText: "10/23 - 7:00 PM EDT",
+      statusText: "3:26 - 2nd",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
@@ -780,9 +780,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909846",
-      line: "Toronto Raptors @ Washington Wizards (10/23 - 7:00 PM EDT)",
+      line: "Toronto Raptors @ Washington Wizards (6:56 - 2nd)",
       completed: false,
-      statusText: "10/23 - 7:00 PM EDT",
+      statusText: "6:56 - 2nd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
