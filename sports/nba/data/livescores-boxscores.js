@@ -1143,9 +1143,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909853",
-      line: "Miami Heat @ Charlotte Hornets (10/24 - 6:00 PM EDT)",
+      line: "Miami Heat @ Charlotte Hornets (5:39 - 2nd)",
       completed: false,
-      statusText: "10/24 - 6:00 PM EDT",
+      statusText: "5:39 - 2nd",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
