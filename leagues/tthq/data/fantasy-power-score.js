@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-24T14:06:34.213Z",
+  "generatedAt": "2026-10-24T14:26:32.736Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 2 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -289,7 +289,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Harald Peterson",
       "values": {
         "pts": 314.3,
-        "reb": 153.9,
+        "reb": 154,
         "ast": 77.9,
         "stl": 24.01,
         "blk": 18.24,
