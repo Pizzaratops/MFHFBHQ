@@ -415,7 +415,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-23": {
-      games: ["Chicago Bulls 132 @ Milwaukee Bucks 125 (Final)","New York Knicks @ Boston Celtics (6:27 - 2nd)","Atlanta Hawks @ Charlotte Hornets (4:38 - 2nd)","Dallas Mavericks @ Indiana Pacers (6:50 - 2nd)","Minnesota Timberwolves @ Orlando Magic (3:26 - 2nd)","Toronto Raptors @ Washington Wizards (6:56 - 2nd)","Detroit Pistons @ Miami Heat (10/23 - 8:00 PM EDT)","Houston Rockets @ San Antonio Spurs (10/23 - 9:30 PM EDT)","New Orleans Pelicans @ Utah Jazz (10/23 - 9:30 PM EDT)","Memphis Grizzlies @ Golden State Warriors (10/23 - 10:00 PM EDT)","LA Clippers @ Los Angeles Lakers (10/23 - 10:00 PM EDT)","Portland Trail Blazers @ Sacramento Kings (10/23 - 10:00 PM EDT)"],
+      games: ["Chicago Bulls 132 @ Milwaukee Bucks 125 (Final)","New York Knicks @ Boston Celtics (3:21 - 3rd)","Atlanta Hawks @ Charlotte Hornets (9:52 - 4th)","Dallas Mavericks @ Indiana Pacers (2:57 - 3rd)","Minnesota Timberwolves @ Orlando Magic (11:49 - 4th)","Toronto Raptors @ Washington Wizards (1:51 - 3rd)","Detroit Pistons @ Miami Heat (6:45 - 2nd)","Houston Rockets @ San Antonio Spurs (10/23 - 9:30 PM EDT)","New Orleans Pelicans @ Utah Jazz (10/23 - 9:30 PM EDT)","Memphis Grizzlies @ Golden State Warriors (10/23 - 10:00 PM EDT)","LA Clippers @ Los Angeles Lakers (10/23 - 10:00 PM EDT)","Portland Trail Blazers @ Sacramento Kings (10/23 - 10:00 PM EDT)"],
       leagueAvg: { fg: 48.4, ft: 75 },
       players: [
         { rank: 1, name: "Tyler Herro", team: "MIL", min: 32, pts: 34, reb: 5, ast: 4, stl: 1, blk: 0, to: 1, tpm: 5, fgPct: 50, ftPct: 71.4, composite: 6.38, zScores: { pts: 2.798, reb: 0.183, ast: 0.435, stl: 0.252, blk: -0.518, tpm: 2.773, fgImpact: 0.296, ftImpact: -0.281, to: 0.446 } },

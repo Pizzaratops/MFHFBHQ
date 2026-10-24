@@ -708,9 +708,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909095",
-      line: "New York Knicks @ Boston Celtics (6:27 - 2nd)",
+      line: "New York Knicks @ Boston Celtics (3:21 - 3rd)",
       completed: false,
-      statusText: "6:27 - 2nd",
+      statusText: "3:21 - 3rd",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -726,9 +726,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909843",
-      line: "Atlanta Hawks @ Charlotte Hornets (4:38 - 2nd)",
+      line: "Atlanta Hawks @ Charlotte Hornets (9:52 - 4th)",
       completed: false,
-      statusText: "4:38 - 2nd",
+      statusText: "9:52 - 4th",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -744,9 +744,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909844",
-      line: "Dallas Mavericks @ Indiana Pacers (6:50 - 2nd)",
+      line: "Dallas Mavericks @ Indiana Pacers (2:57 - 3rd)",
       completed: false,
-      statusText: "6:50 - 2nd",
+      statusText: "2:57 - 3rd",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
@@ -762,9 +762,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909845",
-      line: "Minnesota Timberwolves @ Orlando Magic (3:26 - 2nd)",
+      line: "Minnesota Timberwolves @ Orlando Magic (11:49 - 4th)",
       completed: false,
-      statusText: "3:26 - 2nd",
+      statusText: "11:49 - 4th",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
@@ -780,9 +780,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909846",
-      line: "Toronto Raptors @ Washington Wizards (6:56 - 2nd)",
+      line: "Toronto Raptors @ Washington Wizards (1:51 - 3rd)",
       completed: false,
-      statusText: "6:56 - 2nd",
+      statusText: "1:51 - 3rd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
@@ -798,9 +798,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909847",
-      line: "Detroit Pistons @ Miami Heat (10/23 - 8:00 PM EDT)",
+      line: "Detroit Pistons @ Miami Heat (6:45 - 2nd)",
       completed: false,
-      statusText: "10/23 - 8:00 PM EDT",
+      statusText: "6:45 - 2nd",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
