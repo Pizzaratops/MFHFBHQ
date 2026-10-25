@@ -1,0 +1,132 @@
+{
+  "league": "nba",
+  "date": "2026-10-25",
+  "games": [
+    {
+      "id": "401909861",
+      "line": "Los Angeles Lakers @ Utah Jazz (10/25 - 5:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 5:00 PM EDT",
+      "away": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909862",
+      "line": "Indiana Pacers @ Brooklyn Nets (10/25 - 6:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 6:00 PM EDT",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BKN",
+        "name": "Brooklyn Nets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909863",
+      "line": "Orlando Magic @ New York Knicks (10/25 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 7:00 PM EDT",
+      "away": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909864",
+      "line": "Toronto Raptors @ Minnesota Timberwolves (10/25 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 7:00 PM EDT",
+      "away": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909865",
+      "line": "LA Clippers @ Oklahoma City Thunder (10/25 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 7:00 PM EDT",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909866",
+      "line": "Detroit Pistons @ Philadelphia 76ers (10/25 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 7:30 PM EDT",
+      "away": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909867",
+      "line": "Memphis Grizzlies @ Sacramento Kings (10/25 - 9:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/25 - 9:00 PM EDT",
+      "away": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
