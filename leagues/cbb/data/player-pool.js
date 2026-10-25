@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-25T13:44:43.679Z
+//  Stand: 2026-10-25T14:35:39.614Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -444,7 +444,7 @@ const CBB_PLAYER_POOL = [
 ["06nc5","Charlie Dortch","ColSt","F","F/C,Flx","FA"],
 ["07a0r","Charlie Gersmehl","Belm","F","F/C,Flx","FA"],
 ["070u7","Charlie OSullivan","Brown","F","F/C,Flx","FA"],
-["07ao4","Chase Byington","Vand","G","G,Flx","FA"],
+["07ao4","Chase Byington","Vand","G","F/C,G,Flx","FA"],
 ["079ud","Chase Foster","Pitt","F","F/C,Flx","T"],
 ["07ajn","Chase Geremia","Penn","G","G,Flx","FA"],
 ["0799n","Chase Hill","Col","F","F/C,Flx","FA"],
@@ -812,7 +812,7 @@ const CBB_PLAYER_POOL = [
 ["07ajq","Ethan Lin","Penn","G","G,Flx","FA"],
 ["06gfn","Ethan McComb","Butl","G","G,Flx","FA"],
 ["066ic","Ethan Meuser","Pepp","F","F/C,Flx","FA"],
-["07ao0","Ethan Mgbako","Vand","F","F/C,Flx","FA"],
+["07ao0","Ethan Mgbako","Vand","F","F/C,G,Flx","FA"],
 ["065zr","Ethan Roberts","ND","G","F/C,G,Flx","FA"],
 ["07a1t","Ethan Sabec","Princ","G","G,Flx","FA"],
 ["07a0q","Ethan Sage","Belm","G","F/C,G,Flx","FA"],
@@ -864,7 +864,7 @@ const CBB_PLAYER_POOL = [
 ["06g7k","Gabe Cupps","UIC","G","G,Flx","FA"],
 ["06h5q","Gabe Dynes","Lou","C","F/C,Flx","FA"],
 ["0798u","Gabe Hornberger","Colum","G","G,Flx","FA"],
-["07ao1","Gabe Nesmith","Vand","F","F/C,Flx","FA"],
+["07ao1","Gabe Nesmith","Vand","F","F/C,G,Flx","FA"],
 ["070ke","Gabe Oldham","Drake","F","F/C,Flx","FA"],
 ["072jy","Gabriel Landeira","GTown","G","G,Flx","FA"],
 ["06ndk","Gabriel Pozzato","Xav","F","F/C,Flx","FA"],
