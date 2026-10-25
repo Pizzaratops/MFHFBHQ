@@ -1445,9 +1445,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909861",
-      line: "Los Angeles Lakers @ Utah Jazz (10/25 - 5:00 PM EDT)",
+      line: "Los Angeles Lakers @ Utah Jazz (2:12 - 1st)",
       completed: false,
-      statusText: "10/25 - 5:00 PM EDT",
+      statusText: "2:12 - 1st",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
