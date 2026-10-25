@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-25T16:02:41.422Z",
+  "generatedAt": "2026-10-25T16:44:07.142Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 3 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -173,7 +173,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 2,
         "reb": 6,
         "ast": 4,
-        "stl": 11,
+        "stl": 10,
         "blk": 11,
         "tpm": 1,
         "fgPct": 11,
@@ -240,7 +240,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 6,
         "fgPct": 9,
         "ftPct": 10,
-        "to": 2
+        "to": 3
       },
       "includedCount": 27,
       "projCount": 26,
@@ -352,26 +352,26 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 283.6,
-        "reb": 109.5,
-        "ast": 61.1,
-        "stl": 21.49,
-        "blk": 13.63,
-        "tpm": 31.5,
-        "to": 34.8,
-        "fgPct": 46.3,
-        "ftPct": 78.2
+        "pts": 279.8,
+        "reb": 108.1,
+        "ast": 60.6,
+        "stl": 20.97,
+        "blk": 13.4,
+        "tpm": 31.2,
+        "to": 34.2,
+        "fgPct": 46.4,
+        "ftPct": 78.3
       },
       "rank": {
         "pts": 10,
         "reb": 11,
-        "ast": 10,
-        "stl": 10,
+        "ast": 11,
+        "stl": 11,
         "blk": 7,
         "tpm": 10,
         "fgPct": 12,
         "ftPct": 8,
-        "to": 3
+        "to": 2
       },
       "includedCount": 28,
       "projCount": 28,
@@ -427,7 +427,7 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 12,
         "reb": 12,
-        "ast": 11,
+        "ast": 10,
         "stl": 12,
         "blk": 12,
         "tpm": 8,
