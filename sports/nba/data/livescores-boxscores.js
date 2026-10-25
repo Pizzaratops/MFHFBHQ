@@ -1445,9 +1445,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909861",
-      line: "Los Angeles Lakers @ Utah Jazz (5:37 - 3rd)",
+      line: "Los Angeles Lakers @ Utah Jazz (End of 3rd)",
       completed: false,
-      statusText: "5:37 - 3rd",
+      statusText: "End of 3rd",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -1463,9 +1463,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909862",
-      line: "Indiana Pacers @ Brooklyn Nets (9:29 - 2nd)",
+      line: "Indiana Pacers @ Brooklyn Nets (4:59 - 2nd)",
       completed: false,
-      statusText: "9:29 - 2nd",
+      statusText: "4:59 - 2nd",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
