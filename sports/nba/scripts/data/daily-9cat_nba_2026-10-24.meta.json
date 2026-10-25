@@ -1,0 +1,18 @@
+{
+  "league": "nba",
+  "date": "2026-10-24",
+  "games": [
+    "Miami Heat 110 @ Charlotte Hornets 115 (Final)",
+    "Brooklyn Nets @ Cleveland Cavaliers (Halftime)",
+    "Milwaukee Bucks @ Philadelphia 76ers (9:59 - 3rd)",
+    "Washington Wizards @ Chicago Bulls (6:23 - 2nd)",
+    "San Antonio Spurs @ Dallas Mavericks (5:53 - 2nd)",
+    "Houston Rockets @ Atlanta Hawks (4:26 - 1st)",
+    "New Orleans Pelicans @ Denver Nuggets (10/24 - 9:00 PM EDT)",
+    "Golden State Warriors @ Phoenix Suns (10/24 - 10:00 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 43.4,
+    "ft": 92
+  }
+}
