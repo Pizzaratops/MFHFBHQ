@@ -1143,9 +1143,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909853",
-      line: "Miami Heat @ Charlotte Hornets (5:39 - 2nd)",
+      line: "Miami Heat @ Charlotte Hornets (11:15 - 4th)",
       completed: false,
-      statusText: "5:39 - 2nd",
+      statusText: "11:15 - 4th",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -1161,9 +1161,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909854",
-      line: "Brooklyn Nets @ Cleveland Cavaliers (10/24 - 7:30 PM EDT)",
+      line: "Brooklyn Nets @ Cleveland Cavaliers (3:36 - 1st)",
       completed: false,
-      statusText: "10/24 - 7:30 PM EDT",
+      statusText: "3:36 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -1179,9 +1179,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909855",
-      line: "Milwaukee Bucks @ Philadelphia 76ers (10/24 - 7:30 PM EDT)",
+      line: "Milwaukee Bucks @ Philadelphia 76ers (2:55 - 1st)",
       completed: false,
-      statusText: "10/24 - 7:30 PM EDT",
+      statusText: "2:55 - 1st",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
