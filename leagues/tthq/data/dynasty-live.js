@@ -14,7 +14,7 @@
 //  expRank/seasonRank = Rang im gemeinsamen Pool (Projection vs. Saison).
 // ============================================================
 
-const DYNASTY_LIVE_META = {"mode":"season","date":"2026-10-24","pool":338,"expectation":"snapshots/projections-2026-27-opening-night.js"};
+const DYNASTY_LIVE_META = {"mode":"season","date":"2026-10-24","pool":343,"expectation":"snapshots/projections-2026-27-opening-night.js"};
 
 const DYNASTY_LIVE = [
 
