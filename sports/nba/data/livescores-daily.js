@@ -696,7 +696,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-24": {
-      games: ["Miami Heat 110 @ Charlotte Hornets 115 (Final)","Brooklyn Nets @ Cleveland Cavaliers (Halftime)","Milwaukee Bucks @ Philadelphia 76ers (9:59 - 3rd)","Washington Wizards @ Chicago Bulls (6:23 - 2nd)","San Antonio Spurs @ Dallas Mavericks (5:53 - 2nd)","Houston Rockets @ Atlanta Hawks (4:26 - 1st)","New Orleans Pelicans @ Denver Nuggets (10/24 - 9:00 PM EDT)","Golden State Warriors @ Phoenix Suns (10/24 - 10:00 PM EDT)"],
+      games: ["Miami Heat 110 @ Charlotte Hornets 115 (Final)","Brooklyn Nets @ Cleveland Cavaliers (3:54 - 4th)","Milwaukee Bucks @ Philadelphia 76ers (1:05 - 4th)","Washington Wizards @ Chicago Bulls (11:08 - 4th)","San Antonio Spurs @ Dallas Mavericks (11:42 - 4th)","Houston Rockets @ Atlanta Hawks (11:10 - 3rd)","New Orleans Pelicans @ Denver Nuggets (5:30 - 2nd)","Golden State Warriors @ Phoenix Suns (10/24 - 10:00 PM EDT)"],
       leagueAvg: { fg: 43.4, ft: 92 },
       players: [
         { rank: 1, name: "Naz Reid", team: "CHA", min: 37, pts: 23, reb: 9, ast: 0, stl: 0, blk: 2, to: 1, tpm: 5, fgPct: 56.3, ftPct: 0, composite: 7.56, zScores: { pts: 1.187, reb: 1.767, ast: -0.846, stl: -0.905, blk: 2.095, tpm: 2.182, fgImpact: 1.781, ftImpact: 0, to: 0.295 } },

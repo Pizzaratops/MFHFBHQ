@@ -1179,9 +1179,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909854",
-      line: "Brooklyn Nets @ Cleveland Cavaliers (Halftime)",
+      line: "Brooklyn Nets @ Cleveland Cavaliers (3:54 - 4th)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "3:54 - 4th",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -1197,9 +1197,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909855",
-      line: "Milwaukee Bucks @ Philadelphia 76ers (9:59 - 3rd)",
+      line: "Milwaukee Bucks @ Philadelphia 76ers (1:05 - 4th)",
       completed: false,
-      statusText: "9:59 - 3rd",
+      statusText: "1:05 - 4th",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -1215,9 +1215,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909857",
-      line: "Washington Wizards @ Chicago Bulls (6:23 - 2nd)",
+      line: "Washington Wizards @ Chicago Bulls (11:08 - 4th)",
       completed: false,
-      statusText: "6:23 - 2nd",
+      statusText: "11:08 - 4th",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -1233,9 +1233,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909858",
-      line: "San Antonio Spurs @ Dallas Mavericks (5:53 - 2nd)",
+      line: "San Antonio Spurs @ Dallas Mavericks (11:42 - 4th)",
       completed: false,
-      statusText: "5:53 - 2nd",
+      statusText: "11:42 - 4th",
       away: {
         abbr: "SA", name: "San Antonio Spurs", score: null,
         players: [
@@ -1251,9 +1251,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909856",
-      line: "Houston Rockets @ Atlanta Hawks (4:26 - 1st)",
+      line: "Houston Rockets @ Atlanta Hawks (11:10 - 3rd)",
       completed: false,
-      statusText: "4:26 - 1st",
+      statusText: "11:10 - 3rd",
       away: {
         abbr: "HOU", name: "Houston Rockets", score: null,
         players: [
@@ -1269,9 +1269,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909859",
-      line: "New Orleans Pelicans @ Denver Nuggets (10/24 - 9:00 PM EDT)",
+      line: "New Orleans Pelicans @ Denver Nuggets (5:30 - 2nd)",
       completed: false,
-      statusText: "10/24 - 9:00 PM EDT",
+      statusText: "5:30 - 2nd",
       away: {
         abbr: "NO", name: "New Orleans Pelicans", score: null,
         players: [
