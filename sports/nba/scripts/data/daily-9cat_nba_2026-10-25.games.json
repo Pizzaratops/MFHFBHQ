@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909861",
-      "line": "Los Angeles Lakers @ Utah Jazz (6:17 - 2nd)",
+      "line": "Los Angeles Lakers @ Utah Jazz (5:30 - 2nd)",
       "completed": false,
-      "statusText": "6:17 - 2nd",
+      "statusText": "5:30 - 2nd",
       "away": {
         "abbr": "LAL",
         "name": "Los Angeles Lakers",
