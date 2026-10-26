@@ -318,6 +318,35 @@ MFHFB.nba = (function () {
     if (mo < 0 || (mo === 0 && t.getDate() < d.getDate())) a--;
     return a;
   }
+  // ---------- Matchup-Wochen → ESPN-Spieltage (26.10.2026) ----------
+  //  ESPN liefert in scheduleSettings.matchupPeriods für NBA-Ligen nur [Woche],
+  //  nicht die Spieltage. Echte Spieltage stehen in pointsByScoringPeriod der
+  //  Matchups (sched.periodSps, sobald eine Woche läuft). Sonst: Montag–Sonntag ab dem
+  //  ersten Spieltag; eine Kalenderwoche zu viel → All-Star-Woche (Februar) mit der
+  //  folgenden verbunden (wie ESPN). Gleiche Logik wie leagues/bbc/scripts/sync-espn.js.
+  function periodDays(nbaS, sched, period) {
+    const known = sched && sched.periodSps && sched.periodSps[period];
+    if (known && known.length) return known.slice();
+    if (!nbaS || !nbaS.spDate) return [];
+    const sps = Object.keys(nbaS.spDate).map(Number).sort((a, b) => a - b);
+    if (!sps.length) return [];
+    const first = sps[0], last = (sched && sched.finalSp) || sps[sps.length - 1];
+    const et = iso => { const d = new Date(new Date(iso).getTime() - 5 * 3600e3); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); };
+    const day0 = et(nbaS.spDate[first]) ;
+    const dayOf = sp => day0 + (sp - first) * 864e5;
+    const weeks = [];
+    for (let sp = first; sp <= last; sp++) { if (!weeks.length || new Date(dayOf(sp)).getUTCDay() === 1) weeks.push([]); weeks[weeks.length - 1].push(sp); }
+    const count = (sched && sched.matchupPeriods && Object.keys(sched.matchupPeriods).length) || weeks.length;
+    const games = w => w.reduce((s, sp) => s + Object.values(nbaS.byTeam || {}).filter(t => t[sp]).length, 0);
+    while (weeks.length > count) {
+      let mi = -1, mg = Infinity;
+      for (let i = 1; i < weeks.length - 1; i++) { if (new Date(dayOf(weeks[i][0])).getUTCMonth() !== 1) continue; const g = games(weeks[i]); if (g < mg) { mg = g; mi = i; } }
+      if (mi < 0) for (let i = 1; i < weeks.length - 1; i++) { const g = games(weeks[i]); if (g < mg) { mg = g; mi = i; } }
+      weeks.splice(mi, 2, weeks[mi].concat(weeks[mi + 1]));
+    }
+    return weeks[period - 1] || [];
+  }
+
   // Ø-Alter eines Kaders (Dezimaljahre, nur Spieler mit Geburtsdatum). 20.10.2026
   function teamAge(data, tid) {
     const dob = dobIndex(data), now = Date.now();
@@ -341,7 +370,7 @@ MFHFB.nba = (function () {
 
   const api = {
     ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, preDraft, unicorn, unicornBadge, record, initials, teamColor, injury,
-    tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, teamAge, rankTier, rankBadge,
+    tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, teamAge, periodDays, rankTier, rankBadge,
     MODES, getMode, setMode, modeControl, bindModeControl, fromCatZ, fmtScore, scorePositive, scoreLabel, percentileOf, heat,
   };
   return api;

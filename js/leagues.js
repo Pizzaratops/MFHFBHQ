@@ -159,6 +159,29 @@ const LEAGUES = [
     repo: 'Citizens-of-Funkytown',
   },
   {
+    // Banana Boat Crew (seit 26.10.2026): ESPN H2H Points, Redraft, 10 Teams.
+    // Eigene Points-Seiten (tools/nba-points.js), weil die 9-Cat-Tools mit
+    // Kategorie-Z-Werten rechnen. Daten: leagues/bbc/data/ (bbc-sync.yml nach
+    // dem sportweiten nba-sync). Team-IDs = ESPN-Team-IDs. Beyaz = Flying Illini (2).
+    key: 'bbc',
+    name: 'Banana Boat Crew',
+    short: 'BBC',
+    emoji: '🍌',
+    sport: 'nba',
+    platform: 'ESPN',
+    format: 'Redraft',
+    scoring: 'points',
+    platformLeagueId: '1761634032',
+    accent: '#f5c518',
+    accent2: '#2b6cb0',
+    mode: 'native',
+    dataBase: 'leagues/bbc/data/',
+    files: { 'draft-results-active': 'draft-results' },
+    myTeam: 2,
+    espn: { season: 2027 },
+    pages: ['ptshome', 'schedule', 'ptsstand', 'ptsmatch', 'ptsplanner', 'ptsteams', 'ptswaiver', 'ptstx', 'ptstrade', 'draftresults', 'ptsplayers', 'insights', 'nbateams'],
+  },
+  {
     key: 'bwp',
     name: 'Bear Witch Project',
     short: 'Foodball',

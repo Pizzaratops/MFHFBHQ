@@ -167,7 +167,7 @@
   }
   function weekDays(S, st) {
     if (!S.sched || !S.nba || !st.period) return [];
-    const sps = (S.sched.matchupPeriods && S.sched.matchupPeriods[st.period]) || [];
+    const sps = N().periodDays(S.nba, S.sched, st.period);
     return sps.slice().sort((a, b) => a - b).map(sp => {
       const d = dateForSp(S.nba, sp);
       return { sp, dayLabel: d ? DAYS[d.getDay()] : `T${sp}`, dateLabel: d ? `${d.getDate()}.${d.getMonth() + 1}.` : '' };
@@ -296,7 +296,7 @@
     const L = ctx.league, E = L.espn, espn = MFHFB.espn, problems = [];
     let sched = null, nbaS = null;
     try {
-      const data = await espn.fetchViaProxy(espn.fbaLeagueUrl(E.season, L.platformLeagueId, ['mMatchupScore', 'mSettings']));
+      const data = await espn.fetchViaProxy(espn.fbaLeagueUrl(E.season, L.platformLeagueId, ['mMatchupScore', 'mSettings', 'mStatus']));
       const matchups = [];
       (data.schedule || []).forEach(m => {
         const h = E.toTeam[m.home && m.home.teamId], a = E.toTeam[m.away && m.away.teamId];
@@ -306,8 +306,15 @@
       const raw = (data.settings && data.settings.scheduleSettings && data.settings.scheduleSettings.matchupPeriods) || {};
       const matchupPeriods = {};
       Object.keys(raw).forEach(k => { matchupPeriods[k] = Array.isArray(raw[k]) ? raw[k].map(Number) : []; });
+      // Echte Spieltage je Woche (ESPN matchupPeriods enthält nur [Woche], 26.10.2026)
+      const periodSps = {};
+      (data.schedule || []).forEach(m => {
+        const k = Object.keys((m.home && m.home.pointsByScoringPeriod) || {}).map(Number).sort((a, b) => a - b);
+        if (k.length && m.winner && m.winner !== 'UNDECIDED') periodSps[m.matchupPeriodId] = k;
+      });
       sched = {
-        season: E.season, ts: Date.now(), currentPeriod: (data.status && data.status.currentMatchupPeriod) || 1, matchups, matchupPeriods,
+        season: E.season, ts: Date.now(), currentPeriod: (data.status && data.status.currentMatchupPeriod) || 1, matchups, matchupPeriods, periodSps,
+        finalSp: (data.status && data.status.finalScoringPeriod) || null,
         lineupSlotCounts: (data.settings && data.settings.rosterSettings && data.settings.rosterSettings.lineupSlotCounts) || null,
       };
       ctx.store.setJSON('planner-sched', sched);

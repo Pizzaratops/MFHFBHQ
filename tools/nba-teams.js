@@ -247,8 +247,8 @@
     const byId = {}; teams.forEach(t => { byId[t.id] = t; });
     return head + `
       ${unresolved ? `<div class="note">⚠️ ${unresolved} Spieler nicht auflösbar (nicht mehr auf einem Kader) — statt Name steht die ESPN-ID.</div>` : ''}
-      <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">Pick</th><th class="num">Rnd</th><th>Team</th><th>Spieler</th></tr></thead><tbody>
-        ${order.map(p => `<tr><td class="num strong">${p.overallPickNumber}</td><td class="num">${p.round}</td><td><span class="nba-tdot" style="${nba.tcStyle(byId[p.teamId])}"></span>${e((byId[p.teamId] || {}).name || p.teamId)}</td><td class="strong">${p.nameSource === 'unresolved' ? `<span class="muted">ESPN #${e(p.playerId)}</span>` : e(p.playerName)}</td></tr>`).join('')}
+      <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">Pick</th><th class="num">Rnd</th><th>Team</th><th>Spieler</th>${order.some(p => p.bid) ? '<th class="num" title="Auktionsgebot">$</th>' : ''}</tr></thead><tbody>
+        ${order.map(p => `<tr><td class="num strong">${p.overallPickNumber}</td><td class="num">${p.round}</td><td><span class="nba-tdot" style="${nba.tcStyle(byId[p.teamId])}"></span>${e((byId[p.teamId] || {}).name || p.teamId)}</td><td class="strong">${p.nameSource === 'unresolved' ? `<span class="muted">ESPN #${e(p.playerId)}</span>` : e(p.playerName)}</td>${order.some(x => x.bid) ? `<td class="num">${p.bid ? '$' + p.bid : ''}</td>` : ''}</tr>`).join('')}
       </tbody></table></div>
       <div class="page-sub" style="margin-top:8px">${rounds.length} Runden · ${order.length} Picks</div>`;
   }

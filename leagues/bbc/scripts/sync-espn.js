@@ -176,8 +176,10 @@ async function main() {
   }
   const gamesIn = w => w.reduce((s, sp) => s + (NBA_PRO_SCHEDULE ? Object.values(NBA_PRO_SCHEDULE.byTeam).filter(t => t[sp]).length : 0), 0);
   while (weeks.length > periodCount) {
-    let mi = 1, mg = Infinity;
-    for (let i = 1; i < weeks.length - 1; i++) { const g = gamesIn(weeks[i]); if (g < mg) { mg = g; mi = i; } }
+    // ESPN verbindet die All-Star-Woche (Februar) mit der folgenden; Fallback: Woche mit den wenigsten Spielen
+    let mi = -1, mg = Infinity;
+    for (let i = 1; i < weeks.length - 1; i++) { if (new Date(spDay(weeks[i][0])).getUTCMonth() !== 1) continue; const g = gamesIn(weeks[i]); if (g < mg) { mg = g; mi = i; } }
+    if (mi < 0) for (let i = 1; i < weeks.length - 1; i++) { const g = gamesIn(weeks[i]); if (g < mg) { mg = g; mi = i; } }
     weeks.splice(mi, 2, weeks[mi].concat(weeks[mi + 1]));
   }
   const periods = {};
@@ -198,7 +200,13 @@ async function main() {
     hDay: byDay(m.home), aDay: byDay(m.away), winner: m.winner || 'UNDECIDED', playoff: m.matchupPeriodId > regular, tier: m.playoffTierType || 'NONE',
   }));
 
+  // Spiel gegen den Median? (ESPN-Option: jede Woche zusätzlich Sieg/Niederlage gegen die
+  // Wochen-Mitte). Erkennbar daran, dass ESPN doppelt so viele Ergebnisse zählt wie Matchups entschieden sind.
+  const decidedTeamGames = matchups.filter(m => !m.playoff && m.winner !== 'UNDECIDED').length * 2;
+  const espnGames = L.teams.reduce((a, t) => { const o = (t.record && t.record.overall) || {}; return a + (o.wins || 0) + (o.losses || 0) + (o.ties || 0); }, 0);
+  const median = decidedTeamGames > 0 && espnGames >= decidedTeamGames * 2 - 1;
   const LEAGUE_INFO = {
+    median, medianSetting: (S.scheduleSettings && (S.scheduleSettings.medianScoring || S.scheduleSettings.matchupMedian)) || (sc.scoringEnhancementType || null),
     leagueId: LEAGUE_ID, season: SEASON, name: S.name || 'Banana Boat Crew', size: S.size || TEAMS.length,
     scoringType: sc.scoringType || null, scoring, lineup,
     lineupLock: (S.rosterSettings && S.rosterSettings.lineupLocktimeType) || null,

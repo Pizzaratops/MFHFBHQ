@@ -35,7 +35,8 @@ MFHFB.espn = (function () {
 
   const FBA = 'https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/';
   const fbaLeagueUrl = (season, leagueId, views) => `${FBA}${season}/segments/0/leagues/${leagueId}?${views.map(v => 'view=' + v).join('&')}`;
-  const fbaProScheduleUrl = season => `${FBA}${season}?view=proTeamSchedules_${season}`;
+  // 26.10.2026: proTeamSchedules_<Saison> liefert keine proTeams mehr → proTeamSchedules_wl
+  const fbaProScheduleUrl = season => `${FBA}${season}?view=proTeamSchedules_wl`;
 
   return { fetchViaProxy, fbaLeagueUrl, fbaProScheduleUrl };
 })();

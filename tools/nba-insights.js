@@ -51,18 +51,21 @@
       const best = (s.top || []).find(r => !L.owner(r.y));
       return `<button type="button" class="pi-chip" data-star="${e(s.name)}">${e(s.name)}${best ? ` → <span class="up">${e(best.y)}</span> frei` : ''}</button>`;
     }).join(' ')}</div>` : '';
+    const SC = ctx.league.scoring === 'points' && ctx.data.LEAGUE_INFO ? ctx.data.LEAGUE_INFO.scoring : null; // Points-Liga: Wert = Δ Fantasy-Punkte
+    if (SC) (sel.top || []).forEach(r => { r.val = CATS.reduce((a, [k]) => a + (r[k] || 0) * (SC[k] || 0), 0); });
+    if (SC) (sel.top || []).sort((a, b) => b.val - a.val);
     const rows = (sel.top || []).filter(r => !st.free || !L.owner(r.y)).map(r => `<tr>
       <td class="strong">${e(r.y)}</td><td>${ownerTag(ctx, L, r.y)}</td>
       <td class="num">${fmt(r.min)} → <b>${fmt(r.min + r.dMin)}</b></td><td class="num ${cls(r.dMin)}">${sgn(r.dMin)}</td>
       ${CATS.map(([k, , d]) => `<td class="num ${cls(r[k], k === 'tov')}">${sgn(r[k], d)}</td>`).join('')}
-      <td class="num"><span class="pi-val ${r.val >= 2 ? 'hi' : r.val >= 1 ? 'mid' : ''}">${sgn(r.val)}</span></td>
+      <td class="num"><span class="pi-val ${r.val >= (SC ? 4 : 2) ? 'hi' : r.val >= (SC ? 2 : 1) ? 'mid' : ''}">${sgn(r.val)}</span></td>
       <td class="num muted small" title="Minuten von ihm ohne ${e(sel.name)} auf dem Feld · ganze Spiele ohne ${e(sel.name)}">${r.minOff} · ${r.gMissed}</td></tr>`).join('');
     return `${quick}
       <div class="controls"><select class="tr-select pi-starsel" data-starsel aria-label="Star">${opts}</select>
         <button type="button" class="seg-btn${st.free ? ' on' : ''}" data-free aria-pressed="${st.free}">${st.free ? '☑' : '☐'} nur freie Spieler</button></div>
-      <p class="small muted">Wenn <b>${e(sel.name)}</b> (${e(sel.team)}, ${fmt(sel.min)} Min.) ausfällt: erwartete Änderung pro Spiel. „Wert“ = Summe der Kategorie-Änderungen in Liga-Standardabweichungen (TO zählt negativ).</p>
+      <p class="small muted">Wenn <b>${e(sel.name)}</b> (${e(sel.team)}, ${fmt(sel.min)} Min.) ausfällt: erwartete Änderung pro Spiel. ${SC ? '„Δ FP“ = erwartete Fantasy-Punkte mehr pro Spiel mit eurem Scoring (Wurfquoten-Anteil nicht enthalten).' : '„Wert“ = Summe der Kategorie-Änderungen in Liga-Standardabweichungen (TO zählt negativ).'}</p>
       <div class="table-wrap"><table class="table compact pi-table"><thead><tr><th>Spieler</th><th>Team</th><th class="num">Min. jetzt → neu</th><th class="num">Δ Min</th>
-        ${CATS.map(([, l]) => `<th class="num">Δ ${l}</th>`).join('')}<th class="num" title="Summe in Standardabweichungen">Wert</th><th class="num" title="Minuten ohne den Star auf dem Feld · verpasste Spiele des Stars (Stichprobe)">Basis</th></tr></thead>
+        ${CATS.map(([, l]) => `<th class="num">Δ ${l}</th>`).join('')}<th class="num" title="${SC ? 'Δ Fantasy-Punkte pro Spiel mit eurem Scoring (ohne FGM/FGA/FTM/FTA-Anteil)' : 'Summe in Standardabweichungen'}">${SC ? 'Δ FP' : 'Wert'}</th><th class="num" title="Minuten ohne den Star auf dem Feld · verpasste Spiele des Stars (Stichprobe)">Basis</th></tr></thead>
         <tbody>${rows || `<tr><td colspan="12">${ctx.ui.empty('Keine Treffer', 'Filter „nur freie“ ausschalten.', '🔎')}</td></tr>`}</tbody></table></div>
       <p class="explain small">So gerechnet: Minuten-Zuwachs aus einem Modell, das an 2.121 echten Ausfällen (2023–2026) geeicht ist – Spieler mit wenig Minuten gewinnen am meisten, die On/Off-Verteilung im Team zählt mit, die Summe ist auf die Minuten des Stars gedeckelt. Fehler gegenüber „keine Änderung“ −19 %. Stats aus den Raten ohne den Star auf dem Feld (gedämpft, 600 Min.). Vorsaison zählt nur, wenn beide noch im selben Team spielen.</p>`;
   }
@@ -174,7 +177,7 @@
 
   MFHFB.pages.register({
     id: 'insights', section: 'players', label: 'Rollen & Matchups', icon: '🔬', applies: { sport: ['nba'] },
-    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:pbp-insights'],
+    data: ['teams', '?rosters-live', '?sport:aliases', '?sport:pbp-insights', '?league-info'],
     title: () => 'Rollen & Matchups', render, mount,
   });
 })();
