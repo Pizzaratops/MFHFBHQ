@@ -1716,9 +1716,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909868",
-      line: "Washington Wizards @ Charlotte Hornets (10/26 - 7:00 PM EDT)",
+      line: "Washington Wizards @ Charlotte Hornets (6:59 - 1st)",
       completed: false,
-      statusText: "10/26 - 7:00 PM EDT",
+      statusText: "6:59 - 1st",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -1734,9 +1734,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909869",
-      line: "Minnesota Timberwolves @ Cleveland Cavaliers (10/26 - 7:00 PM EDT)",
+      line: "Minnesota Timberwolves @ Cleveland Cavaliers (7:37 - 1st)",
       completed: false,
-      statusText: "10/26 - 7:00 PM EDT",
+      statusText: "7:37 - 1st",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
