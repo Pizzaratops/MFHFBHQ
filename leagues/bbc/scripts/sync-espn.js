@@ -43,6 +43,16 @@ function get(url, filter) {
     if (url.includes('/leagues/') && !url.includes('mTransactions2')) return Promise.resolve(JSON.parse(fs.readFileSync(process.env.BBC_OFFLINE, 'utf8')));
     return Promise.reject(new Error('offline'));
   }
+  // ESPN antwortet Nodes https bei dieser (nicht öffentlich gelisteten) Liga mit 401,
+  // curl bekommt 200 – deshalb zuerst curl, Node-https nur als Ersatz.
+  try {
+    const args = ['-sS', '--compressed', '-A', 'mfhfb-hq-bot', '-H', 'Accept: application/json', '-w', '\n%{http_code}', url];
+    if (filter) args.splice(4, 0, '-H', 'X-Fantasy-Filter: ' + JSON.stringify(filter));
+    const out = require('child_process').execFileSync('curl', args, { maxBuffer: 64 * 1024 * 1024 }).toString();
+    const cut = out.lastIndexOf('\n'), code = out.slice(cut + 1).trim();
+    if (code !== '200') return Promise.reject(new Error(`HTTP ${code} für ${url}`));
+    return Promise.resolve(JSON.parse(out.slice(0, cut)));
+  } catch (e) { if (/^HTTP|JSON/.test(e.message)) return Promise.reject(e); /* kein curl → Node */ }
   return new Promise((resolve, reject) => {
     const headers = { 'User-Agent': 'mfhfb-hq-bot', Accept: 'application/json' };
     if (filter) headers['X-Fantasy-Filter'] = JSON.stringify(filter);
