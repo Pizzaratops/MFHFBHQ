@@ -151,6 +151,7 @@ async function main() {
         if (g.date && (!spDate[sp] || g.date < spDate[sp])) spDate[sp] = g.date;
       }));
     });
+    if (Object.keys(byTeam).length < 28) console.warn(`NBA-Spielplan unvollständig: ${((P.settings && P.settings.proTeams) || []).length} proTeams, ${Object.keys(byTeam).length} mit Spielen; Schlüssel: ${Object.keys(P).join(',')}/${Object.keys(P.settings || {}).join(',')}`);
     if (Object.keys(byTeam).length >= 28) NBA_PRO_SCHEDULE = { season: SEASON, spDate: Object.fromEntries(Object.entries(spDate).map(([k, v]) => [k, new Date(v).toISOString()])), byTeam };
   } catch (e) { console.warn('NBA-Spielplan nicht geladen (alter Stand bleibt):', e.message); }
 
