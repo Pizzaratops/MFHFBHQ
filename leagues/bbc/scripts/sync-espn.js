@@ -264,5 +264,6 @@ async function main() {
   console.log(`BBC-Sync: ${TEAMS.length} Teams, ${total} Spieler, Woche ${LEAGUE_INFO.currentPeriod} (Spieltag ${latest}), ${matchups.length} Matchups, ${Object.keys(periods).length} Wochen, ${fresh.length} neue Transaktionen, Draft ${DRAFT_RESULTS ? DRAFT_RESULTS.picks.length + ' Picks' : '—'}.`);
 }
 
+const WARN = []; const _w = console.warn; console.warn = (...a) => { WARN.push(a.join(' ')); _w(...a); };
 const status = (ok, extra) => { try { fs.mkdirSync(DATA, { recursive: true }); fs.writeFileSync(path.join(DATA, 'sync-status.js'), `// Letzter Lauf von sync-espn.js (Diagnose)\nconst SYNC_STATUS = ${JSON.stringify({ ok, at: new Date().toISOString(), ...extra })};\n`); } catch (e) { /* egal */ } };
-main().then(() => status(true, {})).catch(err => { console.error('BBC-Sync fehlgeschlagen:', err.message); status(false, { error: err.message, stack: String(err.stack || '').split('\n').slice(0, 4).join(' | ') }); process.exit(1); });
+main().then(() => status(true, { warnings: WARN.slice(0, 20) })).catch(err => { console.error('BBC-Sync fehlgeschlagen:', err.message); status(false, { error: err.message, stack: String(err.stack || '').split('\n').slice(0, 4).join(' | ') }); process.exit(1); });
