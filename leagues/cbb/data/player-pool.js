@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-26T20:10:47.869Z
+//  Stand: 2026-10-26T23:54:36.239Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1695,7 +1695,6 @@ const CBB_PLAYER_POOL = [
 ["079ch","Marko Maric","Butl","F","F/C,Flx","FA"],
 ["07a6v","Marko Vuckovic","Fres","C","F/C,Flx","FA"],
 ["06dun","Markus Burton","Ind","G","G,Flx","T"],
-["064zr","Marquel Sutton","LSU","F","F/C,Flx","FA"],
 ["06gba","Marqui Worthy","USD","G","G,Flx","FA"],
 ["07a96","Marquis Clark","Tenn","G","G,Flx","FA"],
 ["079kd","Martay Barnes","FSU","G","G,Flx","FA"],
@@ -1928,7 +1927,6 @@ const CBB_PLAYER_POOL = [
 ["071n4","Owen Odom","UVA","G","G,Flx","FA"],
 ["0717x","Owen Verna","StJos","G","G,Flx","FA"],
 ["064v2","Oziyah Sellers","SMU","G","G,Flx","FA"],
-["05wop","Pablo Tamba","LSU","F","F/C,Flx","FA"],
 ["06q84","Pape NDiaye","KSU","F","F/C,Flx","FA"],
 ["06dv1","Parker Friedrichsen","Wash","G","G,Flx","FA"],
 ["06g59","Parker Gerrits","Wyo","G","G,Flx","FA"],
@@ -2036,7 +2034,6 @@ const CBB_PLAYER_POOL = [
 ["06dtd","RJ Godfrey","Ariz","F","F/C,Flx","FA"],
 ["06gck","RJ Johnson","MissSt","G","G,Flx","FA"],
 ["05wv0","RJ Keene","NCSU","G","G,Flx","FA"],
-["0651j","RJ Luis","LSU","G","F/C,G,Flx","T"],
 ["06nq4","RJ Nance","Portl","G","G,Flx","FA"],
 ["064i5","RJ Smith","UCSB","G","G,Flx","FA"],
 ["0798k","RJ Smith","LaSal","G","G,Flx","FA"],
@@ -2190,6 +2187,7 @@ const CBB_PLAYER_POOL = [
 ["079ds","Symon Ghai","NW","C","F/C,Flx","FA"],
 ["06q2r","T.J. Prosise","GMas","G","G,Flx","FA"],
 ["06qch","T.O. Barrett","Vand","G","G,Flx","FA"],
+["064mr","Tae Davis","Okla","F","F/C,Flx","FA"],
 ["0711l","Tae Simmons","SDSU","F","F/C,Flx","FA"],
 ["06n0l","Tahaad Pettiford","Aub","G","G,Flx","T"],
 ["06g8e","Taison Chatman","Utah","G","G,Flx","FA"],
