@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-25T23:09:47.993Z",
+  "generatedAt": "2026-10-26T00:01:33.729Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 3 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,13 +66,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 437.7,
+        "pts": 438,
         "reb": 164.1,
-        "ast": 101.5,
-        "stl": 29.01,
+        "ast": 101.3,
+        "stl": 29.06,
         "blk": 19.4,
-        "tpm": 40.3,
-        "to": 55.4,
+        "tpm": 40.4,
+        "to": 55.3,
         "fgPct": 47.8,
         "ftPct": 78.8
       },
@@ -97,14 +97,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 333.8,
-        "reb": 129.9,
-        "ast": 75.3,
-        "stl": 23.86,
-        "blk": 17.1,
-        "tpm": 38.8,
-        "to": 41.1,
-        "fgPct": 47.7,
+        "pts": 334.1,
+        "reb": 129.7,
+        "ast": 75.1,
+        "stl": 23.85,
+        "blk": 17.01,
+        "tpm": 38.7,
+        "to": 41.2,
+        "fgPct": 47.8,
         "ftPct": 78.1
       },
       "rank": {
@@ -114,7 +114,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 4,
         "blk": 4,
         "tpm": 4,
-        "fgPct": 5,
+        "fgPct": 4,
         "ftPct": 8,
         "to": 9
       },
@@ -128,14 +128,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 338.5,
+        "pts": 338,
         "reb": 112.4,
-        "ast": 75.4,
-        "stl": 23.65,
-        "blk": 11.62,
-        "tpm": 42.2,
-        "to": 36.1,
-        "fgPct": 46.7,
+        "ast": 75.3,
+        "stl": 23.71,
+        "blk": 11.63,
+        "tpm": 42.3,
+        "to": 36,
+        "fgPct": 46.6,
         "ftPct": 80.9
       },
       "rank": {
@@ -145,7 +145,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 5,
         "blk": 10,
         "tpm": 2,
-        "fgPct": 8,
+        "fgPct": 9,
         "ftPct": 2,
         "to": 5
       },
@@ -190,14 +190,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Anadolu Ballers",
       "owner": "Murat Oguz",
       "values": {
-        "pts": 323.1,
-        "reb": 119.1,
-        "ast": 72.8,
-        "stl": 21.84,
-        "blk": 11.95,
-        "tpm": 37.6,
-        "to": 37.5,
-        "fgPct": 47.5,
+        "pts": 323.2,
+        "reb": 119,
+        "ast": 72.5,
+        "stl": 21.79,
+        "blk": 12.01,
+        "tpm": 37.7,
+        "to": 37.4,
+        "fgPct": 47.6,
         "ftPct": 80.8
       },
       "rank": {
@@ -221,12 +221,12 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 275.5,
-        "reb": 114.4,
+        "pts": 274.5,
+        "reb": 114.5,
         "ast": 60.3,
-        "stl": 21.51,
-        "blk": 14.78,
-        "tpm": 36,
+        "stl": 21.46,
+        "blk": 14.76,
+        "tpm": 35.7,
         "to": 34.8,
         "fgPct": 46.7,
         "ftPct": 77.1
@@ -238,7 +238,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 9,
         "blk": 5,
         "tpm": 6,
-        "fgPct": 9,
+        "fgPct": 8,
         "ftPct": 10,
         "to": 3
       },
@@ -271,7 +271,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 6,
         "blk": 2,
         "tpm": 10,
-        "fgPct": 4,
+        "fgPct": 5,
         "ftPct": 11,
         "to": 10
       },
@@ -288,15 +288,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 315.5,
-        "reb": 153.1,
-        "ast": 77.8,
-        "stl": 24.16,
-        "blk": 18.15,
-        "tpm": 31,
+        "pts": 318,
+        "reb": 153.2,
+        "ast": 78,
+        "stl": 24.18,
+        "blk": 18.13,
+        "tpm": 31.5,
         "to": 40.7,
-        "fgPct": 48.4,
-        "ftPct": 75.4
+        "fgPct": 48.5,
+        "ftPct": 75.5
       },
       "rank": {
         "pts": 8,
@@ -352,24 +352,24 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 281.3,
-        "reb": 107.5,
-        "ast": 60.5,
-        "stl": 20.8,
+        "pts": 281.6,
+        "reb": 108,
+        "ast": 60.7,
+        "stl": 20.77,
         "blk": 13.44,
-        "tpm": 32,
+        "tpm": 31.9,
         "to": 33.5,
-        "fgPct": 46.5,
+        "fgPct": 46.6,
         "ftPct": 78.5
       },
       "rank": {
         "pts": 10,
         "reb": 11,
-        "ast": 11,
+        "ast": 10,
         "stl": 11,
         "blk": 7,
         "tpm": 9,
-        "fgPct": 11,
+        "fgPct": 10,
         "ftPct": 6,
         "to": 2
       },
@@ -383,14 +383,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 343.8,
-        "reb": 122.2,
-        "ast": 91.6,
-        "stl": 27.16,
-        "blk": 14.68,
-        "tpm": 35.5,
-        "to": 44.1,
-        "fgPct": 47.2,
+        "pts": 341.7,
+        "reb": 121.8,
+        "ast": 91.2,
+        "stl": 27.04,
+        "blk": 14.63,
+        "tpm": 35.3,
+        "to": 43.9,
+        "fgPct": 47.1,
         "ftPct": 78.4
       },
       "rank": {
@@ -416,9 +416,9 @@ const FANTASY_POWER_SCORE = {
       "values": {
         "pts": 274.2,
         "reb": 85.1,
-        "ast": 60.9,
-        "stl": 19.26,
-        "blk": 9.29,
+        "ast": 60.7,
+        "stl": 19.23,
+        "blk": 9.28,
         "tpm": 32.2,
         "to": 35.1,
         "fgPct": 46.6,
@@ -427,11 +427,11 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 12,
         "reb": 12,
-        "ast": 10,
+        "ast": 11,
         "stl": 12,
         "blk": 12,
         "tpm": 8,
-        "fgPct": 10,
+        "fgPct": 11,
         "ftPct": 4,
         "to": 4
       },
