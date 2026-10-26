@@ -180,7 +180,7 @@
     }
     const teams = nba.leagueTeams(data, true);
     return `
-      <a class="back" href="${href('home')}">← Alle Teams</a>
+      <a class="back" href="${href('teams')}">← Alle Teams</a>
       <div class="nba-thead" style="${nba.tcStyle(t)}">
         <span class="nba-avatar big">${e(nba.initials(t.name))}</span>
         <div><h1 class="page-title display">${e(t.name)}</h1>
@@ -254,11 +254,8 @@
   }
 
   const TEAM_DATA = ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections'];
-  MFHFB.pages.register({
-    id: 'home', section: 'home', label: 'Übersicht', icon: '🏠', applies: A,
-    data: TEAM_DATA.concat(['?rankings', '?players', '?picks']),
-    render: home, mount: root => MFHFB.ui.mountCountdowns && MFHFB.ui.mountCountdowns(root),
-  });
+  // Seit 26.10.2026 ist die Startseite die Schnell-Übersicht (tools/nba-quick.js);
+  // die Team-Kacheln stehen unter „Teams & Kader“ (gleiche Funktion home()).
   MFHFB.pages.register({
     id: 'teams', section: 'teams', label: 'Teams & Kader', icon: '🧍', applies: A,
     data: TEAM_DATA.concat(['?rankings', '?hashtag', '?players', '?picks', '?picks-live']),

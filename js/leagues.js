@@ -80,6 +80,7 @@ const LEAGUES = [
     platform: 'ESPN',
     format: 'Dynasty',
     scoring: 'categories',
+    myTeam: 1, // Beyaz (Fighting Illini) – Standard für Royal Rumble
     platformLeagueId: '44361109',
     accent: '#6c63ff',
     accent2: '#f2b84f',
@@ -128,6 +129,7 @@ const LEAGUES = [
     platform: 'ESPN',
     format: 'Redraft',
     scoring: 'categories',
+    myTeam: 1, // Beyaz (Fighting Illini) – Standard für Royal Rumble
     platformLeagueId: '15679',
     accent: '#ff6584',
     accent2: '#6c63ff',
