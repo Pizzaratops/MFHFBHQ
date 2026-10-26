@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-26T07:01:36.243Z",
+  "generatedAt": "2026-10-26T08:01:26.532Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 4 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -110,7 +110,7 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 5,
         "reb": 4,
-        "ast": 6,
+        "ast": 7,
         "stl": 5,
         "blk": 4,
         "tpm": 4,
@@ -128,29 +128,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 336.1,
-        "reb": 111.6,
-        "ast": 74.3,
-        "stl": 23.99,
-        "blk": 11.75,
-        "tpm": 42.1,
-        "to": 35.9,
+        "pts": 343.3,
+        "reb": 114,
+        "ast": 75.6,
+        "stl": 25.81,
+        "blk": 12.38,
+        "tpm": 43.6,
+        "to": 36.6,
         "fgPct": 46.4,
-        "ftPct": 80.6
+        "ftPct": 80.5
       },
       "rank": {
-        "pts": 4,
+        "pts": 3,
         "reb": 9,
-        "ast": 7,
-        "stl": 4,
-        "blk": 10,
+        "ast": 6,
+        "stl": 3,
+        "blk": 8,
         "tpm": 2,
         "fgPct": 11,
         "ftPct": 3,
         "to": 5
       },
-      "includedCount": 26,
-      "projCount": 26,
+      "includedCount": 27,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -205,7 +205,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 7,
         "ast": 8,
         "stl": 8,
-        "blk": 9,
+        "blk": 10,
         "tpm": 5,
         "fgPct": 6,
         "ftPct": 2,
@@ -302,7 +302,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 8,
         "reb": 2,
         "ast": 5,
-        "stl": 3,
+        "stl": 4,
         "blk": 3,
         "tpm": 8,
         "fgPct": 2,
@@ -334,7 +334,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 10,
         "ast": 9,
         "stl": 7,
-        "blk": 8,
+        "blk": 9,
         "tpm": 12,
         "fgPct": 1,
         "ftPct": 8,
@@ -392,7 +392,7 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 78.3
       },
       "rank": {
-        "pts": 3,
+        "pts": 4,
         "reb": 5,
         "ast": 2,
         "stl": 2,
