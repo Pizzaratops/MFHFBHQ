@@ -1,0 +1,51 @@
+name: ESPN Probe (Liga-Rohdaten einmalig sichern)
+
+# Hilfs-Workflow (26.10.2026): holt die Rohdaten einer ESPN-Fantasy-Liga
+# (Einstellungen, Teams, Kader, Matchups, Draft) und legt sie unter
+# _probe/ ab, damit eine neue Liga im Hub eingerichtet werden kann.
+# Die Sandbox der Hub-Entwicklung erreicht ESPN nicht direkt.
+
+on:
+  workflow_dispatch:
+    inputs:
+      league:
+        description: 'ESPN-Liga-ID'
+        required: true
+      season:
+        description: 'ESPN-Saison (2027 = 2026/27)'
+        required: false
+        default: '2027'
+      sport:
+        description: 'fba = Basketball, ffl = Football'
+        required: false
+        default: 'fba'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: ESPN abrufen
+        env:
+          L: ${{ inputs.league }}
+          S: ${{ inputs.season }}
+          G: ${{ inputs.sport }}
+        run: |
+          mkdir -p _probe
+          B="https://lm-api-reads.fantasy.espn.com/apis/v3/games/$G/seasons/$S/segments/0/leagues/$L"
+          curl -sSf -A "mfhfb-hq-bot" "$B?view=mSettings&view=mTeam&view=mRoster&view=mMatchupScore&view=mStatus&view=mDraftDetail&view=mStandings&view=mNav" -o "_probe/espn-$L-$S.json"
+          curl -sSf -A "mfhfb-hq-bot" "$B?view=mBoxscore&view=mMatchupScore&scoringPeriodId=1" -o "_probe/espn-$L-$S-box.json" || true
+          curl -sSf -A "mfhfb-hq-bot" "https://lm-api-reads.fantasy.espn.com/apis/v3/games/$G/seasons/$S/segments/0/leagues/$L/communication/?view=kona_league_communication" -o "_probe/espn-$L-$S-comm.json" || true
+          ls -la _probe
+      - name: Commit
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add _probe/
+          git commit -m "chore: ESPN-Probe ${{ inputs.league }}" || exit 0
+          for i in 1 2 3; do git push && exit 0; git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1
