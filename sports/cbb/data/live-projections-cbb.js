@@ -4,4 +4,4 @@
 //  g = Spiele, w = Gewicht der Projektion in virtuellen Spielen, season = reiner Saisonschnitt.
 // ============================================================
 
-const CBB_PROJ_LIVE = {"at":"2026-10-26T13:03:13.949Z","since":"2026-08-01","last":null,"files":0,"players":0,"p":{}};
+const CBB_PROJ_LIVE = {"at":"2026-10-26T16:10:17.220Z","since":"2026-08-01","last":null,"files":0,"players":0,"p":{}};
