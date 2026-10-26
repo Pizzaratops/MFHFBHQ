@@ -39,6 +39,14 @@ jobs:
           SWID: ${{ secrets.SWID }}
         run: node leagues/bbc/scripts/sync-espn.js
 
+      - name: Wochen-Stats je Team (Royal Rumble)
+        id: weekstats
+        continue-on-error: true
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          SWID: ${{ secrets.SWID }}
+        run: node sports/nba/scripts/sync-week-stats.js --league=bbc --espn=1761634032 --season=2027
+
       - name: Fantasy-Punkte je Spieler
         id: points
         continue-on-error: true
@@ -63,7 +71,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.espn.outcome == 'failure' || steps.points.outcome == 'failure'
+        if: steps.espn.outcome == 'failure' || steps.points.outcome == 'failure' || steps.weekstats.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
           exit 1

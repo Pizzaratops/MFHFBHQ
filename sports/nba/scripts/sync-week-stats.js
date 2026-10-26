@@ -25,9 +25,18 @@ if (!league) { console.error('--league=<ordner> fehlt'); process.exit(1); }
 const DIR = path.join(__dirname, '..', '..', '..', 'leagues', league);
 const OUT = path.join(DIR, 'data', 'week-stats.js');
 
-const sb = {}; vm.createContext(sb);
-vm.runInContext(fs.readFileSync(path.join(DIR, 'js', 'espn-sync.js'), 'utf8') + '\nthis.C = { ESPN_LEAGUE_ID, ESPN_SEASON, ESPN_TO_TT_TEAM };', sb);
-const { ESPN_LEAGUE_ID: LID, ESPN_SEASON: SEASON, ESPN_TO_TT_TEAM: MAP } = sb.C;
+// Konfiguration: leagues/<liga>/js/espn-sync.js (TTHQ, Funkytown) oder per Argument
+// --espn=<Liga-ID> [--season=2027] mit Team-ID = ESPN-ID (Banana Boat Crew).
+let LID, SEASON, MAP;
+const argEspn = (process.argv.find(a => a.startsWith('--espn=')) || '').split('=')[1];
+if (argEspn) {
+  LID = Number(argEspn); SEASON = Number((process.argv.find(a => a.startsWith('--season=')) || '').split('=')[1]) || 2027;
+  MAP = new Proxy({}, { get: (o, k) => (/^\d+$/.test(String(k)) ? Number(k) : undefined) });
+} else {
+  const sb = {}; vm.createContext(sb);
+  vm.runInContext(fs.readFileSync(path.join(DIR, 'js', 'espn-sync.js'), 'utf8') + '\nthis.C = { ESPN_LEAGUE_ID, ESPN_SEASON, ESPN_TO_TT_TEAM };', sb);
+  ({ ESPN_LEAGUE_ID: LID, ESPN_SEASON: SEASON, ESPN_TO_TT_TEAM: MAP } = sb.C);
+}
 const URL = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${SEASON}/segments/0/leagues/${LID}`;
 const COOKIE = process.env.ESPN_S2 ? `espn_s2=${process.env.ESPN_S2}${process.env.SWID ? `; SWID=${process.env.SWID}` : ''}` : '';
 
