@@ -141,7 +141,8 @@ async function main() {
   // ---------- NBA-Spielplan (Spieltag = ESPN scoringPeriod) ----------
   let NBA_PRO_SCHEDULE = loadConst('nba-schedule.js', 'NBA_PRO_SCHEDULE');
   try {
-    const P = await get(`${BASE}?view=proTeamSchedules_${SEASON}`);
+    let P = await get(`${BASE}?view=proTeamSchedules_wl`);
+    if (!(P.settings && P.settings.proTeams)) P = await get(`${BASE}?view=proTeamSchedules_${SEASON}`);
     const byTeam = {}, spDate = {};
     ((P.settings && P.settings.proTeams) || []).forEach(t => {
       const ab = PRO[t.id]; if (!ab) return;
