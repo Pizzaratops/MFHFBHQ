@@ -79,6 +79,16 @@ jobs:
         continue-on-error: true
         run: node scripts/build-best-available-board.js
 
+      # Seit 26.10.2026: gezählte Kategorien je Team und Woche (Schnell-Übersicht:
+      # Live-Matchups, Royal Rumble, Team-Totals). Abgeschlossene Wochen einmalig.
+      - name: Wochen-Kategorien je Team
+        id: weekstats
+        continue-on-error: true
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          SWID: ${{ secrets.SWID }}
+        run: node ../../sports/nba/scripts/sync-week-stats.js --league=funkytown
+
       - name: Commit & Push falls geändert
         run: |
           git config user.name "mfhfb-hq-bot"
@@ -100,7 +110,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.draftres.outcome == 'failure' || steps.rosters.outcome == 'failure' || steps.matchups.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure'
+        if: steps.weekstats.outcome == 'failure' || steps.draftres.outcome == 'failure' || steps.rosters.outcome == 'failure' || steps.matchups.outcome == 'failure' || steps.analytics.outcome == 'failure' || steps.bestavail.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1

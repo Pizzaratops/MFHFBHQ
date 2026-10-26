@@ -349,11 +349,13 @@ jobs:
     needs: [gate, sport]
     if: always() && needs.gate.outputs.run == 'true'
     uses: ./.github/workflows/tthq-sync.yml
+    secrets: inherit
 
   funkytown:
     needs: [gate, sport]
     if: always() && needs.gate.outputs.run == 'true'
     uses: ./.github/workflows/funkytown-sync.yml
+    secrets: inherit
 
   bbc:
     needs: [gate, sport]
