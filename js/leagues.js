@@ -192,6 +192,7 @@ const LEAGUES = [
     platform: 'ESPN',
     format: 'Dynasty',
     scoring: 'points',
+    myTeam: 'bear-witch-project', // Beyaz – Standard für Royal Rumble
     platformLeagueId: '91260355',
     accent: '#e0794a',
     accent2: '#4d7bb0',

@@ -18,7 +18,7 @@
 (function () {
   const N = () => MFHFB.nba;
   const A = { sport: ['nba'], scoring: ['points'] };
-  const DATA = ['teams', '?rosters-live', 'league-info', '?players', '?points', '?nba-schedule', '?transactions', '?sport:aliases', '?sport:pbp-insights'];
+  const DATA = ['teams', '?rosters-live', 'league-info', '?players', '?points', '?nba-schedule', '?transactions', '?week-stats', '?sport:aliases', '?sport:pbp-insights'];
   const SLOTS = ['PG', 'SG', 'SF', 'PF', 'C', 'UTIL'];
   const CV = 0.38; // Streuung eines Spieler-Spiels in FP (Variationskoeffizient)
   const DAYS = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
@@ -195,6 +195,7 @@
       ${myT && myRow ? `<div class="pt-mine" style="${N().tcStyle(myT)}"><div><div class="pt-mine-name">${e(myT.name)}</div><div class="muted small">${e(myT.owner || '')}</div></div>
         <div class="pt-mine-stats"><span><b>${myRow.w}-${myRow.l}${myRow.tie ? '-' + myRow.tie : ''}</b><small>Bilanz</small></span><span><b>${myRow.rank}.</b><small>Platz</small></span><span><b>${f0(myRow.pf)}</b><small>Punkte</small></span><span><b>${myRow.apPct != null ? pctTxt(myRow.apPct) : '—'}</b><small title="Siegquote, wenn du jede Woche gegen alle gespielt hättest">All-Play</small></span></div></div>` : ''}
       <h2 class="pt-h2">⚔️ ${weekName(M, cur)} live</h2><div class="pt-cards">${cards || ctx.ui.empty('Keine Matchups', '', '⚔️')}</div>
+      ${rumble(ctx, M)}
       <div class="pt-two">
         <section><h2 class="pt-h2">📈 Tabelle</h2>${standTable(ctx, M, st, true)}</section>
         <section><h2 class="pt-h2">🔥 Top letzte 7 Tage</h2><div class="table-wrap"><table class="table compact"><thead><tr><th>Spieler</th><th>Team</th><th class="num">FP/Sp.</th><th class="num">Sp.</th></tr></thead><tbody>
@@ -202,6 +203,36 @@
           ${tx.length ? `<h2 class="pt-h2">🔁 Letzte Transaktionen</h2>${txList(ctx, M, tx)}` : ''}</section>
       </div>`;
   }
+  // ---------- 👑 Royal Rumble (Points): ein Team gegen die ganze Liga in einer Woche ----------
+  //  Punkte je Team aus den Matchups (ESPN), Kategorien aus WEEK_STATS (gezählte Stats
+  //  der Aufstellung, sync-week-stats.js). Farbe aus Sicht des gewählten Teams.
+  function rumble(ctx, M) {
+    const e = ctx.ui.esc, I = M.I, W = ctx.data.WEEK_STATS || null;
+    const st = { rr: myTeamId(ctx), rrWeek: null, ...ctx.store.getJSON('ptsrumble', {}) };
+    const weeks = [...new Set((I.matchups || []).filter(m => !m.playoff && (m.hp || m.ap)).map(m => m.p))].sort((a, b) => a - b);
+    if (!weeks.length) return '';
+    const wk = weeks.includes(st.rrWeek) ? st.rrWeek : weeks[weeks.length - 1];
+    const pts = {};
+    I.matchups.filter(m => m.p === wk).forEach(m => { if (m.home != null) pts[m.home] = m.hp || 0; if (m.away != null) pts[m.away] = m.ap || 0; });
+    const ids = M.teams.map(t => t.id).filter(id => pts[id] != null);
+    const me = ids.includes(st.rr) ? st.rr : ids[0];
+    const cat = (W && W.periods && W.periods[wk]) || {};
+    const CC = [['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['tpm', '3PM'], ['tov', 'TO']];
+    const hasCat = !!cat[me];
+    const rows = ids.filter(id => id !== me).map(id => ({ id, p: pts[id], c: cat[id] || null })).sort((a, b) => a.p - b.p);
+    const wins = rows.filter(r => pts[me] > r.p).length, losses = rows.filter(r => pts[me] < r.p).length;
+    const cmpCls = (k, v) => { if (!hasCat || v == null) return ''; const mine = cat[me][k] || 0; if (mine === v) return 'tie'; return (k === 'tov' ? mine < v : mine > v) ? 'win' : 'loss'; };
+    const fg = c => (c && c.fga ? `${(c.fgm / c.fga).toFixed(3).replace(/^0/, '')}<small>${c.fgm}/${c.fga}</small>` : '—');
+    const row = (id, p, c, isMe) => `<tr class="${isMe ? 'qk-me' : ''}"><td>${teamCell(ctx, M.tById.get(id))}</td><td class="num">${c ? c.gp : '—'}</td><td class="num strong ${isMe ? '' : pts[me] > p ? 'up' : pts[me] < p ? 'down' : ''}">${f1(p)}</td><td class="num ${isMe ? 'muted' : ''}">${isMe ? '—' : pts[me] > p ? 'W' : pts[me] < p ? 'L' : 'T'}</td>
+      ${hasCat ? `<td class="num qk-c">${fg(c)}</td>${CC.map(([k]) => `<td class="num qk-c ${isMe ? '' : cmpCls(k, c && c[k])}">${c ? c[k] : '—'}</td>`).join('')}` : ''}</tr>`;
+    return `<section class="qk-sec"><div class="qk-head"><h2 class="pt-h2" style="margin:0">👑 Royal Rumble</h2>
+        <select class="tr-select" data-rr>${ids.map(id => `<option value="${id}"${id === me ? ' selected' : ''}>${e(M.tById.get(id).name)}</option>`).join('')}</select>
+        <select class="tr-select" data-rrweek>${weeks.slice().reverse().map(w => `<option value="${w}"${w === wk ? ' selected' : ''}>${weekName(M, w)}${w === I.currentPeriod ? ' (läuft)' : ''}</option>`).join('')}</select></div>
+      <p class="small muted">${e(M.tById.get(me).name)} gegen jedes Team in ${weekName(M, wk)}: <b>${wins}-${losses}</b>. Kategorien: grün = ${e(M.tById.get(me).name)} hatte mehr (bei TO weniger).</p>
+      <div class="table-wrap"><table class="table compact qk-rr"><thead><tr><th>Team</th><th class="num">GP</th><th class="num">FP</th><th class="num">Erg.</th>${hasCat ? `<th class="num">FG%</th>${CC.map(([, l]) => `<th class="num">${l}</th>`).join('')}` : ''}</tr></thead><tbody>
+        ${row(me, pts[me], cat[me], true)}${rows.map(r => row(r.id, r.p, r.c, false)).join('')}</tbody></table></div></section>`;
+  }
+
   function matchCard(ctx, M, m, my) {
     const e = ctx.ui.esc, h = M.tById.get(m.home), a = M.tById.get(m.away);
     const pr = projectMatchup(M, m);
@@ -459,6 +490,9 @@
 
   // ---------- Interaktion ----------
   function mountCommon(root, ctx) {
+    const rs = p => { ctx.store.setJSON('ptsrumble', { ...ctx.store.getJSON('ptsrumble', {}), ...p }); ctx.refresh(); };
+    const rr = root.querySelector('[data-rr]'); if (rr) rr.addEventListener('change', () => rs({ rr: Number(rr.value) }));
+    const rw = root.querySelector('[data-rrweek]'); if (rw) rw.addEventListener('change', () => rs({ rrWeek: Number(rw.value) }));
     root.querySelectorAll('[data-setmine]').forEach(b => b.addEventListener('click', () => {
       const id = Number(b.dataset.setmine) || Number((root.querySelector('[data-pteam]') || {}).value) || null;
       ctx.store.setJSON('myteam', id); ctx.refresh();
