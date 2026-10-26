@@ -2,7 +2,7 @@
 //  x3PM / xFGM der laufenden Saison aus Play-by-Play
 //  Play-by-Play: Ramiro Bentes, github.com/ramirobentes/nba_data (nicht unser Projekt, frei veröffentlichte Daten)
 //  Methode: Josh Lloyd (joshlloydfantasy.com/research/xstats-method)
-//  Erzeugt von scripts/xstats-pbp.py am 2026-10-25 · Saison 2026-27 · Stand 2026-10-22
+//  Erzeugt von scripts/xstats-pbp.py am 2026-10-26 · Saison 2026-27 · Stand 2026-10-22
 //  Wird von scripts/build-live-projections.js gelesen (3PM, FG%).
 //  META {"season": "2026-27", "assetUpdated": "Fri, 23 Oct 2026 12:24:00 GMT"}
 // ============================================================

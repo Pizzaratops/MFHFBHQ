@@ -1,0 +1,17 @@
+{
+  "league": "nba",
+  "date": "2026-10-25",
+  "games": [
+    "Los Angeles Lakers 132 @ Utah Jazz 123 (Final)",
+    "Indiana Pacers @ Brooklyn Nets (End of 3rd)",
+    "Orlando Magic @ New York Knicks (3:41 - 2nd)",
+    "Toronto Raptors @ Minnesota Timberwolves (5:51 - 2nd)",
+    "LA Clippers @ Oklahoma City Thunder (51.1 - 2nd)",
+    "Detroit Pistons @ Philadelphia 76ers (3:46 - 1st)",
+    "Memphis Grizzlies @ Sacramento Kings (10/25 - 9:00 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 48.9,
+    "ft": 81.5
+  }
+}

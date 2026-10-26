@@ -1445,27 +1445,46 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909861",
-      line: "Los Angeles Lakers @ Utah Jazz (End of 3rd)",
-      completed: false,
-      statusText: "End of 3rd",
+      line: "Los Angeles Lakers 132 @ Utah Jazz 123 (Final)",
+      completed: true,
+      statusText: "Final",
       away: {
-        abbr: "LAL", name: "Los Angeles Lakers", score: null,
+        abbr: "LAL", name: "Los Angeles Lakers", score: 132,
         players: [
-
+          { name: "Ziaire Williams", min: 30, pts: 11, reb: 2, ast: 1, stl: 1, blk: 0, to: 0, tpm: 3, fgm: 3, fga: 9, ftm: 2, fta: 2, composite: -0.3, zScores: { pts: -0.092, reb: -0.634, ast: -0.444, stl: 0.291, blk: -0.662, tpm: 0.763, fgImpact: -1.198, ftImpact: 0.908, to: 0.772 } },
+          { name: "Walker Kessler", min: 28, pts: 2, reb: 7, ast: 0, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -0.73, zScores: { pts: -0.816, reb: 1.03, ast: -0.789, stl: -0.727, blk: 1.076, tpm: -0.693, fgImpact: 0.019, ftImpact: 0, to: 0.171 } },
+          { name: "Matisse Thybulle", min: 26, pts: 11, reb: 1, ast: 1, stl: 3, blk: 1, to: 0, tpm: 3, fgm: 4, fga: 8, ftm: 0, fta: 0, composite: 3.51, zScores: { pts: -0.092, reb: -0.966, ast: -0.444, stl: 2.326, blk: 1.076, tpm: 0.763, fgImpact: 0.078, ftImpact: 0, to: 0.772 } },
+          { name: "Luka Doncic", min: 38, pts: 52, reb: 8, ast: 10, stl: 2, blk: 0, to: 4, tpm: 8, fgm: 17, fga: 30, ftm: 10, fta: 11, composite: 13.98, zScores: { pts: 3.207, reb: 1.362, ast: 2.663, stl: 1.308, blk: -0.662, tpm: 3.19, fgImpact: 2.006, ftImpact: 2.536, to: -1.629 } },
+          { name: "Austin Reaves", min: 36, pts: 29, reb: 1, ast: 4, stl: 1, blk: 2, to: 3, tpm: 4, fgm: 7, fga: 12, ftm: 11, fta: 13, composite: 6.26, zScores: { pts: 1.356, reb: -0.966, ast: 0.592, stl: 0.291, blk: 2.814, tpm: 1.248, fgImpact: 0.974, ftImpact: 0.984, to: -1.029 } },
+          { name: "Kevon Looney", min: 5, pts: 2, reb: 2, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 2, fta: 2, composite: -3.06, zScores: { pts: -0.816, reb: -0.634, ast: -0.789, stl: -0.727, blk: -0.662, tpm: -0.693, fgImpact: -0.419, ftImpact: 0.908, to: 0.772 } },
+          { name: "Sandro Mamukelashvili", min: 21, pts: 9, reb: 3, ast: 0, stl: 0, blk: 1, to: 0, tpm: 1, fgm: 2, fga: 4, ftm: 4, fta: 6, composite: -2.59, zScores: { pts: -0.253, reb: -0.301, ast: -0.789, stl: -0.727, blk: 1.076, tpm: -0.208, fgImpact: 0.039, ftImpact: -2.195, to: 0.772 } },
+          { name: "Jake LaRavia", min: 15, pts: 0, reb: 4, ast: 1, stl: 2, blk: 1, to: 0, tpm: 0, fgm: 0, fga: 3, ftm: 0, fta: 0, composite: -0.18, zScores: { pts: -0.977, reb: 0.032, ast: -0.444, stl: 1.308, blk: 1.076, tpm: -0.693, fgImpact: -1.256, ftImpact: 0, to: 0.772 } },
+          { name: "Collin Sexton", min: 20, pts: 13, reb: 2, ast: 1, stl: 0, blk: 0, to: 2, tpm: 1, fgm: 5, fga: 11, ftm: 2, fta: 2, composite: -2.45, zScores: { pts: 0.069, reb: -0.634, ast: -0.444, stl: -0.727, blk: -0.662, tpm: -0.208, fgImpact: -0.321, ftImpact: 0.908, to: -0.429 } },
+          { name: "Quentin Grimes", min: 20, pts: 3, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 2, ftm: 1, fta: 2, composite: -4.99, zScores: { pts: -0.736, reb: -0.966, ast: -0.444, stl: -0.727, blk: -0.662, tpm: -0.693, fgImpact: 0.019, ftImpact: -1.552, to: 0.772 } }
         ]
       },
       home: {
-        abbr: "UTAH", name: "Utah Jazz", score: null,
+        abbr: "UTAH", name: "Utah Jazz", score: 123,
         players: [
-
+          { name: "Lauri Markkanen", min: 38, pts: 28, reb: 6, ast: 1, stl: 0, blk: 0, to: 1, tpm: 5, fgm: 9, fga: 19, ftm: 5, fta: 6, composite: 2.07, zScores: { pts: 1.276, reb: 0.697, ast: -0.444, stl: -0.727, blk: -0.662, tpm: 1.733, fgImpact: -0.243, ftImpact: 0.265, to: 0.171 } },
+          { name: "Jaren Jackson Jr.", min: 33, pts: 20, reb: 2, ast: 1, stl: 0, blk: 0, to: 4, tpm: 1, fgm: 7, fga: 14, ftm: 5, fta: 6, composite: -3.27, zScores: { pts: 0.632, reb: -0.634, ast: -0.444, stl: -0.727, blk: -0.662, tpm: -0.208, fgImpact: 0.136, ftImpact: 0.265, to: -1.629 } },
+          { name: "Keyonte George", min: 33, pts: 24, reb: 9, ast: 10, stl: 1, blk: 0, to: 6, tpm: 2, fgm: 7, fga: 13, ftm: 8, fta: 10, composite: 2.56, zScores: { pts: 0.954, reb: 1.695, ast: 2.663, stl: 0.291, blk: -0.662, tpm: 0.277, fgImpact: 0.555, ftImpact: -0.379, to: -2.83 } },
+          { name: "Ace Bailey", min: 29, pts: 17, reb: 12, ast: 4, stl: 0, blk: 1, to: 2, tpm: 1, fgm: 8, fga: 11, ftm: 0, fta: 0, composite: 5.64, zScores: { pts: 0.391, reb: 2.693, ast: 0.592, stl: -0.727, blk: 1.076, tpm: -0.208, fgImpact: 2.25, ftImpact: 0, to: -0.429 } },
+          { name: "Darryn Peterson", min: 30, pts: 8, reb: 3, ast: 2, stl: 3, blk: 1, to: 1, tpm: 0, fgm: 4, fga: 13, ftm: 0, fta: 0, composite: 0.13, zScores: { pts: -0.333, reb: -0.301, ast: -0.099, stl: 2.326, blk: 1.076, tpm: -0.693, fgImpact: -2.016, ftImpact: 0, to: 0.171 } },
+          { name: "Brice Sensabaugh", min: 17, pts: 7, reb: 6, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 3, fga: 7, ftm: 0, fta: 0, composite: -1.35, zScores: { pts: -0.414, reb: 0.697, ast: -0.444, stl: -0.727, blk: -0.662, tpm: -0.208, fgImpact: -0.36, ftImpact: 0, to: 0.772 } },
+          { name: "Jaxson Hayes", min: 19, pts: 9, reb: 5, ast: 1, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 4, fga: 5, ftm: 1, fta: 2, composite: -0.84, zScores: { pts: -0.253, reb: 0.364, ast: -0.444, stl: 0.291, blk: -0.662, tpm: -0.693, fgImpact: 1.334, ftImpact: -1.552, to: 0.772 } },
+          { name: "Svi Mykhailiuk", min: 14, pts: 2, reb: 3, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -4.03, zScores: { pts: -0.816, reb: -0.301, ast: -0.789, stl: -0.727, blk: -0.662, tpm: -0.693, fgImpact: -0.818, ftImpact: 0, to: 0.772 } },
+          { name: "Josh Okogie", min: 10, pts: 2, reb: 2, ast: 2, stl: 1, blk: 0, to: 2, tpm: 0, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -3.02, zScores: { pts: -0.816, reb: -0.634, ast: -0.099, stl: 0.291, blk: -0.662, tpm: -0.693, fgImpact: 0.019, ftImpact: 0, to: -0.429 } },
+          { name: "Josh Green", min: 3, pts: 0, reb: 0, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -4.03, zScores: { pts: -0.977, reb: -1.299, ast: -0.444, stl: -0.727, blk: -0.662, tpm: -0.693, fgImpact: 0, ftImpact: 0, to: 0.772 } },
+          { name: "Isaiah Collier", min: 13, pts: 6, reb: 3, ast: 6, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 6, ftm: 2, fta: 3, composite: -3.32, zScores: { pts: -0.494, reb: -0.301, ast: 1.282, stl: -0.727, blk: -0.662, tpm: -0.693, fgImpact: -0.799, ftImpact: -1.098, to: 0.171 } }
         ]
       }
     },
       {
       id: "401909862",
-      line: "Indiana Pacers @ Brooklyn Nets (4:59 - 2nd)",
+      line: "Indiana Pacers @ Brooklyn Nets (End of 3rd)",
       completed: false,
-      statusText: "4:59 - 2nd",
+      statusText: "End of 3rd",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
@@ -1481,9 +1500,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909863",
-      line: "Orlando Magic @ New York Knicks (10/25 - 7:00 PM EDT)",
+      line: "Orlando Magic @ New York Knicks (3:41 - 2nd)",
       completed: false,
-      statusText: "10/25 - 7:00 PM EDT",
+      statusText: "3:41 - 2nd",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -1499,9 +1518,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909864",
-      line: "Toronto Raptors @ Minnesota Timberwolves (10/25 - 7:00 PM EDT)",
+      line: "Toronto Raptors @ Minnesota Timberwolves (5:51 - 2nd)",
       completed: false,
-      statusText: "10/25 - 7:00 PM EDT",
+      statusText: "5:51 - 2nd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
@@ -1517,9 +1536,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909865",
-      line: "LA Clippers @ Oklahoma City Thunder (10/25 - 7:00 PM EDT)",
+      line: "LA Clippers @ Oklahoma City Thunder (51.1 - 2nd)",
       completed: false,
-      statusText: "10/25 - 7:00 PM EDT",
+      statusText: "51.1 - 2nd",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
@@ -1535,9 +1554,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909866",
-      line: "Detroit Pistons @ Philadelphia 76ers (10/25 - 7:30 PM EDT)",
+      line: "Detroit Pistons @ Philadelphia 76ers (3:46 - 1st)",
       completed: false,
-      statusText: "10/25 - 7:30 PM EDT",
+      statusText: "3:46 - 1st",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
