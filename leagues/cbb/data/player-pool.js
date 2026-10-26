@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-26T01:46:50.133Z
+//  Stand: 2026-10-26T07:04:38.959Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -122,7 +122,7 @@ const CBB_PLAYER_POOL = [
 ["06yrn","Amari Evans","Tex","G","G,Flx","FA"],
 ["06n70","Amari McCottry","StLou","G","G,Flx","T"],
 ["06nep","Amarion Dickerson","GrCan","G","F/C,G,Flx","FA"],
-["0650z","Amarri Tice","Syr","F","F/C,Flx","FA"],
+["0650z","Amarri Tice","Syr","F","F/C,Flx","T"],
 ["06v6l","Amere Brown","Ark","G","G,Flx","FA"],
 ["06msl","Amier Ali","Cal","G","F/C,G,Flx","T"],
 ["070oh","Amir A.Jenkins","WVU","G","G,Flx","FA"],
@@ -475,7 +475,7 @@ const CBB_PLAYER_POOL = [
 ["079p1","Christian Collins","USC","F","F/C,Flx","T"],
 ["0652t","Christian Fermin","Tenn","F","F/C,Flx","FA"],
 ["07a34","Christian Gilliland","SIU","G","G,Flx","FA"],
-["071n9","Christian Gurdak","Rut","C","F/C,Flx","FA"],
+["071n9","Christian Gurdak","Rut","C","F/C,Flx","T"],
 ["06gmg","Christian Hammond","NCSU","G","G,Flx","T"],
 ["071af","Christian Harmon","UVA","G","G,Flx","FA"],
 ["0718h","Christian Humphrey","LoyMa","F","F/C,Flx","T"],
@@ -643,7 +643,7 @@ const CBB_PLAYER_POOL = [
 ["06nb6","DeSean Goode","Mia-FL","F","F/C,Flx","FA"],
 ["0799l","Deshaun Vaden","Cin","F","F/C,Flx","FA"],
 ["07a1d","DeShawn Denson","IndSt","G","G,Flx","FA"],
-["071fu","DeShawn Gory","OrSt","F","F/C,Flx","FA"],
+["071fu","DeShawn Gory","OrSt","F","F/C,Flx","T"],
 ["06h5v","Deshayne Montgomery","Lou","G","G,Flx","T"],
 ["0799j","Desmeon Jones","WichSt","G","G,Flx","FA"],
 ["0796y","Desmond Bellot","Ford","G","G,Flx","FA"],
@@ -1373,7 +1373,7 @@ const CBB_PLAYER_POOL = [
 ["0796r","Julian Washington","Dayt","G","G,Flx","FA"],
 ["07anp","Julius Avent","MSU","F","F/C,Flx","FA"],
 ["06puw","Julius Halaifonua","OkSt","C","F/C,Flx","T"],
-["079mm","Julius Price","Stan","G","G,Flx","FA"],
+["079mm","Julius Price","Stan","G","G,Flx","T"],
 ["06nag","Julius Thedford","Mem","G","G,Flx","FA"],
 ["079ee","Junior County","UConn","G","G,Flx","FA"],
 ["07a16","Junior Kemm","Evans","G","G,Flx","FA"],
@@ -1875,7 +1875,7 @@ const CBB_PLAYER_POOL = [
 ["079ni","Nikola Kusturica","UCLA","G","F/C,G,Flx","T"],
 ["06hra","Nikolaos Chitikoudis","Xav","F","F/C,Flx","FA"],
 ["07105","Nikolas Khamenia","UConn","G","F/C,G,Flx","T"],
-["06eod","Nils Machowski","UConn","G","G,Flx","FA"],
+["06eod","Nils Machowski","UConn","G","G,Flx","T"],
 ["0798y","Nino Zarkovic","Colum","G","G,Flx","FA"],
 ["079x5","Nishayne Sharpe","Pacif","G","G,Flx","FA"],
 ["07a94","Nnadalu Noble","UCDav","F","F/C,Flx","FA"],
