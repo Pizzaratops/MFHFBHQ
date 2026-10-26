@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-10-26T12:39:17.001Z",
+  "generatedAt": "2026-10-26T19:49:09.900Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1144,7 +1144,7 @@ const STATUS_REPORT_DATA = {
           "flag": true,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": null
+          "projPoints": 1
         },
         {
           "name": "Eli Raridon",
@@ -1575,7 +1575,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.4,
           "last3AvgPoints": 4.8,
-          "projPoints": 6.9
+          "projPoints": 7
         },
         {
           "name": "Sam Roush",
@@ -1972,7 +1972,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.9,
           "last3AvgPoints": 6.6,
-          "projPoints": 8.9
+          "projPoints": 9
         },
         {
           "name": "Brandin Cooks",
@@ -2491,7 +2491,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16,
           "last3AvgPoints": 20.1,
-          "projPoints": 17.2
+          "projPoints": 17.4
         },
         {
           "name": "Justin Herbert",
@@ -3454,7 +3454,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1,
           "last3AvgPoints": 5.3,
-          "projPoints": 8.8
+          "projPoints": 8.9
         },
         {
           "name": "Cam Little",
@@ -3885,7 +3885,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.1,
           "last3AvgPoints": 11,
-          "projPoints": 11.5
+          "projPoints": 11.6
         },
         {
           "name": "Deebo Samuel Sr.",
