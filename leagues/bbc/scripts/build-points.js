@@ -98,6 +98,7 @@ allKeys.forEach(k => {
     out.gp = n; out.tot = r1(sum('fp')); out.fpg = r1(sum('fp') / n); out.min = r1(sum('min') / n);
     out.cat = Object.fromEntries(['pts', 'reb', 'ast', 'stl', 'blk', 'tov', 'tpm', 'fgm', 'fga', 'ftm', 'fta'].map(kk => [kk, r1(sum(kk) / n)]));
     [[7, 'l7'], [14, 'l14'], [30, 'l30']].forEach(([d, kk]) => { const w = g.filter(x => daysAgo(x.date, d)); if (w.length) { out[kk] = r1(w.reduce((a, x) => a + x.fp, 0) / w.length); out[kk + 'g'] = w.length; } });
+    const lastG = g[g.length - 1]; if (lastG.date === lastDate) { out.l1 = r1(lastG.fp); out.l1min = Math.round(lastG.min); }
     out.log = g.slice(-10).map(x => [x.date.slice(5), r1(x.fp), Math.round(x.min)]);
     out.hi = r1(Math.max(...g.map(x => x.fp)));
   }

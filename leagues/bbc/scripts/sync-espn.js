@@ -46,8 +46,8 @@ function get(url, filter) {
   // ESPN antwortet Nodes https bei dieser (nicht öffentlich gelisteten) Liga mit 401,
   // curl bekommt 200 – deshalb zuerst curl, Node-https nur als Ersatz.
   try {
-    const args = ['-sS', '--compressed', '-A', 'mfhfb-hq-bot', '-H', 'Accept: application/json', '-w', '\n%{http_code}', url];
-    if (filter) args.splice(4, 0, '-H', 'X-Fantasy-Filter: ' + JSON.stringify(filter));
+    const args = ['-sS', '-A', 'mfhfb-hq-bot', '-w', '\n%{http_code}', url];
+    if (filter) args.splice(3, 0, '-H', 'X-Fantasy-Filter: ' + JSON.stringify(filter));
     const out = require('child_process').execFileSync('curl', args, { maxBuffer: 64 * 1024 * 1024 }).toString();
     const cut = out.lastIndexOf('\n'), code = out.slice(cut + 1).trim();
     if (code !== '200') return Promise.reject(new Error(`HTTP ${code} für ${url}`));
@@ -81,7 +81,7 @@ const injOf = s => (!s || s === 'ACTIVE' || s === 'NORMAL' ? null : s === 'DAY_T
 
 async function main() {
   fs.mkdirSync(DATA, { recursive: true });
-  const L = await get(`${LEAGUE}?view=mSettings&view=mTeam&view=mRoster&view=mMatchupScore&view=mStatus&view=mDraftDetail`);
+  const L = await get(`${LEAGUE}?view=mSettings&view=mTeam&view=mRoster&view=mMatchupScore&view=mStatus&view=mDraftDetail&view=mStandings&view=mNav`);
   const S = L.settings || {};
   if (!L.teams || !L.teams.length) throw new Error('Keine Teams in der ESPN-Antwort');
   const members = new Map((L.members || []).map(m => [m.id, m]));
