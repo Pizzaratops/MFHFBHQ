@@ -197,10 +197,14 @@ async function main() {
 
   // ---------- Spieler-Namen (für Draft + Transaktionen) ----------
   const names = new Map();
+  const ESPN_PLAYERS = {}; // alle aktiven NBA-Spieler: Positionen (für freie Spieler im Planer), Team, Verletzung
   Object.values(ROSTERS_LIVE).flat().forEach(p => names.set(p.espnId, { name: p.name, team: p.team }));
   try {
     const all = await get(`${BASE}/players?scoringPeriodId=0&view=players_wl`, { filterActive: { value: true } });
-    (all || []).forEach(p => { if (!names.has(p.id)) names.set(p.id, { name: p.fullName, team: PRO[p.proTeamId] || 'FA' }); });
+    (all || []).forEach(p => {
+      if (!names.has(p.id)) names.set(p.id, { name: p.fullName, team: PRO[p.proTeamId] || 'FA' });
+      if (p.fullName) { const o = { pos: posOf(p), team: PRO[p.proTeamId] || 'FA' }; const inj = injOf(p.injuryStatus); if (inj) o.inj = inj; ESPN_PLAYERS[p.fullName] = o; }
+    });
   } catch (e) { console.warn('Spielerliste nicht geladen:', e.message); }
   const nm = id => (names.get(id) || {}).name || null;
 
@@ -239,8 +243,12 @@ async function main() {
   write('league-info.js', 'LEAGUE_INFO — Einstellungen, Scoring, Wochen → Spieltage, alle Matchups mit Tagespunkten.', { LEAGUE_INFO });
   if (NBA_PRO_SCHEDULE) write('nba-schedule.js', 'NBA_PRO_SCHEDULE — NBA-Spiele je Team und ESPN-Spieltag: byTeam[Team][Spieltag] = [Gegner, heim?1:0].', { NBA_PRO_SCHEDULE });
   if (DRAFT_RESULTS) write('draft-results.js', 'DRAFT_RESULTS — Auktion (bid = Gebot in $).', { DRAFT_RESULTS });
+  // Kader-Spieler ergänzen/überschreiben (aktuellster Verletzungsstatus)
+  Object.values(ROSTERS_LIVE).flat().forEach(p => { ESPN_PLAYERS[p.name] = { pos: p.pos, team: p.team, ...(p.inj ? { inj: p.inj } : {}) }; });
+  if (Object.keys(ESPN_PLAYERS).length > 200) write('players.js', 'ESPN_PLAYERS — alle aktiven NBA-Spieler: spielbare Positionen, Team, Verletzung (für freie Spieler).', { ESPN_PLAYERS });
   write('transactions.js', 'TRANSACTIONS — Adds/Drops/Trades (neueste zuerst, max. 400).', { TRANSACTIONS });
   console.log(`BBC-Sync: ${TEAMS.length} Teams, ${total} Spieler, Woche ${LEAGUE_INFO.currentPeriod} (Spieltag ${latest}), ${matchups.length} Matchups, ${Object.keys(periods).length} Wochen, ${fresh.length} neue Transaktionen, Draft ${DRAFT_RESULTS ? DRAFT_RESULTS.picks.length + ' Picks' : '—'}.`);
 }
 
-main().catch(err => { console.error('BBC-Sync fehlgeschlagen:', err.message); process.exit(1); });
+const status = (ok, extra) => { try { fs.mkdirSync(DATA, { recursive: true }); fs.writeFileSync(path.join(DATA, 'sync-status.js'), `// Letzter Lauf von sync-espn.js (Diagnose)\nconst SYNC_STATUS = ${JSON.stringify({ ok, at: new Date().toISOString(), ...extra })};\n`); } catch (e) { /* egal */ } };
+main().then(() => status(true, {})).catch(err => { console.error('BBC-Sync fehlgeschlagen:', err.message); status(false, { error: err.message, stack: String(err.stack || '').split('\n').slice(0, 4).join(' | ') }); process.exit(1); });

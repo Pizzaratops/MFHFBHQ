@@ -39,6 +39,7 @@ const LIVE = loadConst(path.join(NBA, 'data', 'live-projections.js'), 'LIVE_PROJ
 const CONS = loadConst(path.join(NBA, 'data', 'projections-consensus.js'), 'PROJECTIONS_CONSENSUS') || {};
 const SCHED = loadConst(path.join(DATA, 'nba-schedule.js'), 'NBA_PRO_SCHEDULE');
 const ALIASES = loadConst(path.join(NBA, 'data', 'aliases.js'), 'NAME_ALIASES') || {};
+const ESPN_PLAYERS = loadConst(path.join(DATA, 'players.js'), 'ESPN_PLAYERS') || {};
 
 // Namen wie sports/nba/nba.js key()
 const base = s => String(s || '').toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\./g, '').replace(/['’‘`]/g, '').replace(/\s+/g, ' ');
@@ -75,6 +76,7 @@ files.forEach(f => {
 // ---------- Projektionen ----------
 const projOf = new Map(); Object.entries(LIVE).forEach(([n, v]) => projOf.set(key(n), { n, v }));
 const preOf = new Map(); Object.entries(CONS).forEach(([n, v]) => preOf.set(key(n), { n, v }));
+const espnOf = new Map(Object.entries(ESPN_PLAYERS).map(([n, v]) => [key(n), v]));
 const allKeys = new Set([...P.keys(), ...[...projOf.keys()].filter(k => projOf.get(k).v.hasBaseline || P.has(k))]);
 
 // Rest-Spiele je NBA-Team ab dem nächsten Spieltag
@@ -88,7 +90,9 @@ allKeys.forEach(k => {
   const e = P.get(k), pj = projOf.get(k), pr = preOf.get(k);
   const name = (e && e.name) || (pj && pj.n) || (pr && pr.n);
   const team = (e && e.team) || canon(pr && pr.v.team) || null;
-  const out = { team };
+  const ep = espnOf.get(k);
+  const out = { team: (ep && ep.team && ep.team !== 'FA' ? ep.team : team) || null };
+  if (ep) { out.pos = ep.pos; if (ep.inj) out.inj = ep.inj; }
   if (e) {
     const g = e.games, n = g.length, sum = kk => g.reduce((a, x) => a + x[kk], 0);
     out.gp = n; out.tot = r1(sum('fp')); out.fpg = r1(sum('fp') / n); out.min = r1(sum('min') / n);
@@ -100,8 +104,8 @@ allKeys.forEach(k => {
   if (pj) out.proj = r1(fp(pj.v));
   if (pr) { out.pre = r1(fp(pr.v)); out.preG = pr.v.g || null; }
   const avail = pr && pr.v.g ? Math.min(1, pr.v.g / 80) : 0.85;
-  if (team && remainTeam[team] != null && (out.proj || out.fpg)) {
-    out.rosG = r1(remainTeam[team] * avail);
+  if (out.team && remainTeam[out.team] != null && (out.proj || out.fpg)) {
+    out.rosG = r1(remainTeam[out.team] * avail);
     out.rosFp = Math.round((out.proj != null ? out.proj : out.fpg) * out.rosG);
   }
   if (out.proj == null && out.fpg == null) return;
