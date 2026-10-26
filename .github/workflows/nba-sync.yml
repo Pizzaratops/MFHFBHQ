@@ -359,3 +359,4 @@ jobs:
     needs: [gate, sport]
     if: always() && needs.gate.outputs.run == 'true'
     uses: ./.github/workflows/bbc-sync.yml
+    secrets: inherit

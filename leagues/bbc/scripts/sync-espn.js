@@ -2,8 +2,8 @@
 // ============================================================
 //  BANANA BOAT CREW — ESPN-Sync (Points-Liga, Redraft, seit 26.10.2026)
 // ============================================================
-//  Ein Script, ein Lauf, alle Liga-Daten aus ESPN (öffentliche Liga,
-//  kein Cookie nötig). Läuft in bbc-sync.yml (nach dem sportweiten
+//  Ein Script, ein Lauf, alle Liga-Daten aus ESPN. Die Liga ist privat →
+//  Cookies aus den Repo-Secrets ESPN_S2 + SWID (dieselben wie BWP). Läuft in bbc-sync.yml (nach dem sportweiten
 //  nba-sync, halbstündlich 06–22 Uhr Berlin).
 //
 //  Schreibt nach leagues/bbc/data/:
@@ -28,6 +28,8 @@ const SEASON = 2027;
 const DATA = path.join(__dirname, '..', 'data');
 const BASE = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/fba/seasons/${SEASON}`;
 const LEAGUE = `${BASE}/segments/0/leagues/${LEAGUE_ID}`;
+// Die Liga ist privat: Zugriff mit Beyaz' ESPN-Cookies (Repo-Secrets ESPN_S2 + SWID, wie BWP)
+const COOKIE = process.env.ESPN_S2 ? `espn_s2=${process.env.ESPN_S2}${process.env.SWID ? `; SWID=${process.env.SWID}` : ''}` : '';
 
 // ESPN proTeamId → Hub-Kürzel (wie sports/nba/nba.js ESPN_PRO)
 const PRO = { 1: 'ATL', 2: 'BOS', 3: 'NOR', 4: 'CHI', 5: 'CLE', 6: 'DAL', 7: 'DEN', 8: 'DET', 9: 'GSW', 10: 'HOU', 11: 'IND', 12: 'LAC', 13: 'LAL', 14: 'MIA', 15: 'MIL', 16: 'MIN', 17: 'BKN', 18: 'NYK', 19: 'ORL', 20: 'PHI', 21: 'PHO', 22: 'POR', 23: 'SAC', 24: 'SAS', 25: 'OKC', 26: 'UTA', 27: 'WAS', 28: 'TOR', 29: 'MEM', 30: 'CHA', 33: 'UTA', 38: 'NOR', 40: 'WAS', 41: 'CHA' };
@@ -48,6 +50,7 @@ function get(url, filter) {
   try {
     const args = ['-sS', '-A', 'mfhfb-hq-bot', '-w', '\n%{http_code}', url];
     if (filter) args.splice(3, 0, '-H', 'X-Fantasy-Filter: ' + JSON.stringify(filter));
+    if (COOKIE) args.splice(3, 0, '-b', COOKIE);
     const out = require('child_process').execFileSync('curl', args, { maxBuffer: 64 * 1024 * 1024 }).toString();
     const cut = out.lastIndexOf('\n'), code = out.slice(cut + 1).trim();
     if (code !== '200') return Promise.reject(new Error(`HTTP ${code} für ${url}`));
@@ -55,6 +58,7 @@ function get(url, filter) {
   } catch (e) { if (/^HTTP|JSON/.test(e.message)) return Promise.reject(e); /* kein curl → Node */ }
   return new Promise((resolve, reject) => {
     const headers = { 'User-Agent': 'mfhfb-hq-bot', Accept: 'application/json' };
+    if (COOKIE) headers.Cookie = COOKIE;
     if (filter) headers['X-Fantasy-Filter'] = JSON.stringify(filter);
     https.get(url, { headers }, res => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) return get(res.headers.location, filter).then(resolve, reject);

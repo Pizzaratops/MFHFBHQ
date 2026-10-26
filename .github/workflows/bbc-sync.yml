@@ -3,7 +3,7 @@ name: BBC Sync (Banana Boat Crew)
 # Banana Boat Crew (ESPN 1761634032, Points, Redraft) -- liga-eigene Kette nach
 # leagues/bbc/data/. Wird von nba-sync.yml nach der sportweiten Pipeline
 # aufgerufen (halbstündlich 06-22 Uhr Berlin, parallel zu TTHQ/Funkytown) und
-# ist zusätzlich manuell startbar. Keine Secrets nötig (Liga öffentlich).
+# ist zusätzlich manuell startbar. Liga privat → Secrets ESPN_S2 + SWID (wie BWP).
 #
 #   1. sync-espn.js   -> teams, rosters-live, league-info, nba-schedule, draft-results, transactions
 #   2. build-points.js -> points.js (Fantasy-Punkte mit Liga-Scoring, braucht 1 + sportweite CSVs/Projections)
@@ -34,6 +34,9 @@ jobs:
       - name: ESPN (Kader, Matchups, Spielplan, Draft, Transaktionen)
         id: espn
         continue-on-error: true
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          SWID: ${{ secrets.SWID }}
         run: node leagues/bbc/scripts/sync-espn.js
 
       - name: Fantasy-Punkte je Spieler
