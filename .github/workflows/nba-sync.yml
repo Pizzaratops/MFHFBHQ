@@ -80,6 +80,11 @@ on:
     - cron: '7 21 * * *'   # 22:07 Berlin (Winter)
   workflow_dispatch:
     inputs:
+      pbp_force:
+        description: 'Play-by-Play-Auswertungen neu rechnen, auch wenn die Datei unverändert ist'
+        type: boolean
+        required: false
+        default: false
       date:
         description: 'Datum (YYYY-MM-DD), leer = gestern + heute (US-Ostküste)'
         required: false
@@ -272,11 +277,12 @@ jobs:
       # Back-to-backs, Fouls; build-pbp-insights.py). Das Gate (nur
       # Standardbibliothek) prüft per HEAD, ob die Datei neu ist (~1x täglich);
       # nur dann eigenes Python mit pandas/pyarrow (System-Python auf dem
-      # Runner stürzte mit pip-pyarrow ab, Exit 139). Manueller Start = immer.
+      # Runner stürzte mit pip-pyarrow ab, Exit 139). Erzwingen: Input pbp_force
+      # (NICHT bei jedem workflow_dispatch – cron-job.org startet auch so).
       - name: PbP-Gate (neue Play-by-Play-Datei?)
         id: pbpgate
         continue-on-error: true
-        run: python3 scripts/pbp-gate.py ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+        run: python3 scripts/pbp-gate.py ${{ inputs.pbp_force && '--force' || '' }}
 
       - uses: actions/setup-python@v5
         if: steps.pbpgate.outputs.run == 'true'

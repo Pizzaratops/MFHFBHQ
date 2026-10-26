@@ -34,11 +34,13 @@ jobs:
           L: ${{ inputs.league }}
           S: ${{ inputs.season }}
           G: ${{ inputs.sport }}
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
         run: |
           mkdir -p _probe
           B="https://lm-api-reads.fantasy.espn.com/apis/v3/games/$G/seasons/$S/segments/0/leagues/$L"
-          curl -sSf -A "mfhfb-hq-bot" "$B?view=mSettings&view=mTeam&view=mRoster&view=mMatchupScore&view=mStatus&view=mDraftDetail&view=mStandings&view=mNav" -o "_probe/espn-$L-$S.json"
-          curl -sSf -A "mfhfb-hq-bot" "$B?view=mBoxscore&view=mMatchupScore&scoringPeriodId=1" -o "_probe/espn-$L-$S-box.json" || true
+          code=$(curl -sS -A "mfhfb-hq-bot" ${ESPN_S2:+-b "espn_s2=$ESPN_S2; SWID=$ESPN_SWID"} -w "%{http_code}" "$B?view=mSettings&view=mTeam&view=mRoster&view=mMatchupScore&view=mStatus&view=mDraftDetail&view=mStandings&view=mNav" -o "_probe/espn-$L-$S.json"); echo "HTTP $code" | tee "_probe/espn-$L-$S.status"
+          curl -sSf -A "mfhfb-hq-bot" ${ESPN_S2:+-b "espn_s2=$ESPN_S2; SWID=$ESPN_SWID"} "$B?view=mBoxscore&view=mMatchupScore&scoringPeriodId=1" -o "_probe/espn-$L-$S-box.json" || true
           curl -sSf -A "mfhfb-hq-bot" "https://lm-api-reads.fantasy.espn.com/apis/v3/games/$G/seasons/$S/segments/0/leagues/$L/communication/?view=kona_league_communication" -o "_probe/espn-$L-$S-comm.json" || true
           ls -la _probe
       - name: Commit
