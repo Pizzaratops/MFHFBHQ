@@ -1,0 +1,168 @@
+{
+  "league": "nba",
+  "date": "2026-10-26",
+  "games": [
+    {
+      "id": "401909868",
+      "line": "Washington Wizards @ Charlotte Hornets (10/26 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 7:00 PM EDT",
+      "away": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909869",
+      "line": "Minnesota Timberwolves @ Cleveland Cavaliers (10/26 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 7:00 PM EDT",
+      "away": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CLE",
+        "name": "Cleveland Cavaliers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909870",
+      "line": "Chicago Bulls @ Boston Celtics (10/26 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 7:30 PM EDT",
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909871",
+      "line": "Dallas Mavericks @ Miami Heat (10/26 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 7:30 PM EDT",
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909872",
+      "line": "Indiana Pacers @ Milwaukee Bucks (10/26 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 8:00 PM EDT",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909873",
+      "line": "Phoenix Suns @ Oklahoma City Thunder (10/26 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 8:00 PM EDT",
+      "away": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909874",
+      "line": "Atlanta Hawks @ Houston Rockets (10/26 - 8:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 8:30 PM EDT",
+      "away": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909875",
+      "line": "Memphis Grizzlies @ Utah Jazz (10/26 - 9:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 9:00 PM EDT",
+      "away": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909876",
+      "line": "Golden State Warriors @ Denver Nuggets (10/26 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/26 - 10:00 PM EDT",
+      "away": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DEN",
+        "name": "Denver Nuggets",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
