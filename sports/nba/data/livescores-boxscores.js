@@ -1734,9 +1734,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909869",
-      line: "Minnesota Timberwolves @ Cleveland Cavaliers (3:13 - 2nd)",
+      line: "Minnesota Timberwolves @ Cleveland Cavaliers (2:40 - 2nd)",
       completed: false,
-      statusText: "3:13 - 2nd",
+      statusText: "2:40 - 2nd",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
@@ -1752,9 +1752,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909870",
-      line: "Chicago Bulls @ Boston Celtics (2:26 - 1st)",
+      line: "Chicago Bulls @ Boston Celtics (1:44 - 1st)",
       completed: false,
-      statusText: "2:26 - 1st",
+      statusText: "1:44 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
