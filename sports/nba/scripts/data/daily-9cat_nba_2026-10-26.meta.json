@@ -3,17 +3,17 @@
   "date": "2026-10-26",
   "games": [
     "Washington Wizards 103 @ Charlotte Hornets 110 (Final)",
-    "Minnesota Timberwolves @ Cleveland Cavaliers (End of OT)",
-    "Chicago Bulls @ Boston Celtics (End of 4th)",
-    "Dallas Mavericks @ Miami Heat (20.4 - 4th)",
-    "Indiana Pacers @ Milwaukee Bucks (8:27 - 4th)",
-    "Phoenix Suns @ Oklahoma City Thunder (8:49 - 4th)",
-    "Atlanta Hawks @ Houston Rockets (6:36 - 3rd)",
-    "Memphis Grizzlies @ Utah Jazz (5:54 - 2nd)",
-    "Golden State Warriors @ Denver Nuggets (10/26 - 10:00 PM EDT)"
+    "Minnesota Timberwolves 125 @ Cleveland Cavaliers 127 (Final/OT)",
+    "Chicago Bulls 99 @ Boston Celtics 134 (Final)",
+    "Dallas Mavericks 113 @ Miami Heat 109 (Final)",
+    "Indiana Pacers 102 @ Milwaukee Bucks 110 (Final)",
+    "Phoenix Suns 114 @ Oklahoma City Thunder 125 (Final)",
+    "Atlanta Hawks 110 @ Houston Rockets 120 (Final)",
+    "Memphis Grizzlies @ Utah Jazz (12:00 - 4th)",
+    "Golden State Warriors @ Denver Nuggets (3:03 - 2nd)"
   ],
   "leagueAvg": {
-    "fg": 45.6,
-    "ft": 81.3
+    "fg": 45.5,
+    "ft": 73.1
   }
 }
