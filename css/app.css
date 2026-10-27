@@ -632,3 +632,14 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
   .kc-box-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .kc-pl { font-size: 12px; }
 }
+
+/* ---------- NBA Dynasty Rankings: OpenRAPM-Impact (tools/nba-dynasty.js) ---------- */
+.rapm { font-variant-numeric: tabular-nums; font-weight: 700; cursor: help; white-space: nowrap; }
+.rapm small { color: var(--muted); font-weight: 600; margin-left: 1px; }
+.rapm-arrow { display: inline-block; font-weight: 900; font-size: 11px; padding: 0 5px; border-radius: 99px; margin-left: 3px; }
+.rapm-arrow.up { color: #fff; background: #2e9d62; }
+.rapm-arrow.down { color: #fff; background: #d9534f; }
+.rapm-note summary { cursor: pointer; }
+.rapm-d { display: none; font-size: 10.5px; color: var(--muted); white-space: nowrap; margin-top: 2px; }
+.rapm-open .rapm-d { display: block; }
+.rapm-note p { margin: 8px 0 0; font-size: 13px; line-height: 1.5; }

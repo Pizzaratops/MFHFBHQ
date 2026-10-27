@@ -12,6 +12,9 @@
 //                    s. leagues/tthq/scripts/build-dynasty-live.js); fließt im
 //                    Trade Analyzer/Finder in den Wert ein (Schalter „Live-Form“)
 //  - HASHTAG_RANKINGS [rank, name, team, pos] + MATT_RANKS {name: rank}
+//  - OPENRAPM (sportweit, sync-openrapm.js): Impact-Spalte + Minuten-Pfeil
+//    (28.10.2026). Nur Zusatzinfo, ändert keine Ränge — Begründung und
+//    Backtest im Kopf von sports/nba/scripts/sync-openrapm.js.
 //  Admin-Edit-Modus (PIN) ist bewusst NICHT übernommen — die Rangliste
 //  wird weiter über data/rankings.js im Repo gepflegt.
 // ============================================================
@@ -27,7 +30,8 @@
     const hash = new Map((d.HASHTAG_RANKINGS || []).map(p => [nba.key(p[1]), p[0]]));
     const matt = new Map(Object.entries(d.MATT_RANKS || {}).map(([n, r]) => [nba.key(n), r]));
     const live = new Map((d.DYNASTY_LIVE || []).map(x => [nba.key(x.name), x]));
-    return { hash, matt, live, owner: nba.ownerIndex(d) };
+    const rapm = new Map((d.OPENRAPM || []).map(x => [nba.key(x.n), x]));
+    return { hash, matt, live, rapm, owner: nba.ownerIndex(d) };
   }
 
   function changeBadge(snaps, since, name, rank) {
@@ -43,6 +47,21 @@
     ? `${lv.delta > 0 ? 'Besser' : 'Schlechter'} als erwartet: Saison-Rang ${lv.seasonRank} statt erwartet ${lv.expRank} (${lv.games} Spiele) → Live-Rang ${lv.liveRank}. Zählt im Trade Analyzer, wenn „Live-Form“ an ist.`
     : `Live-Rang ${lv.liveRank}`);
 
+  // OpenRAPM: laufende Saison ab 1.000 Possessions, sonst Vorsaison
+  const sg = v => (v > 0 ? '+' : v < 0 ? '−' : '±') + Math.abs(v).toFixed(1).replace('.', ',');
+  function impactCell(d, r, e) {
+    if (!r) return '<span class="muted">—</span>';
+    const M = d.OPENRAPM_META || {}, useCur = r.c && r.c[3] >= (M.minPoss || 1000);
+    const v = useCur ? r.c : r.l;
+    if (!v) return '<span class="muted">—</span>';
+    const yr = s => `${s - 1}/${String(s).slice(2)}`;
+    const line = (x, s) => (x ? `${yr(s)}: gesamt ${sg(x[2])} (Off ${sg(x[0])}, Def ${sg(x[1])}) · ${Math.round(x[3]).toLocaleString('de-DE')} Poss.` : '');
+    const tip = ['OpenRAPM: Punkte pro 100 Possessions gegenüber einem Durchschnittsspieler', line(r.c, M.cur), line(r.l, M.prev)].filter(Boolean).join('\n')
+      + (r.f ? `\n${r.f > 0 ? '↑ Minuten-Tendenz: starke Offensiv-Wirkung für einen Spieler unter 24 MPG — bekommt erfahrungsgemäß eher mehr Minuten.' : '↓ Minuten-Tendenz: schwache Offensiv-Wirkung für einen Spieler unter 24 MPG — verliert erfahrungsgemäß eher Minuten.'} (${r.m} MPG)` : '');
+    const arrow = r.f > 0 ? ' <span class="rapm-arrow up">↑</span>' : r.f < 0 ? ' <span class="rapm-arrow down">↓</span>' : '';
+    return `<span class="rapm ${v[2] >= 1 ? 'up' : v[2] <= -1 ? 'down' : ''}" title="${e(tip)}" role="button" tabindex="0">${sg(v[2])}${useCur ? '' : '<small>*</small>'}</span>${arrow}<span class="rapm-d">Off ${sg(v[0])} · Def ${sg(v[1])}${r.f ? ` · ${r.m} MPG` : ''}</span>`;
+  }
+
   function listRows(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc, nba = N(), I = indexes(ctx);
     const snaps = d.DYNASTY_ROLLING || [];
@@ -53,7 +72,7 @@
       if (st.own === 'owned' && !o) return false;
       return !q || [p[1], p[2], p[3], o && o.name].some(x => String(x || '').toLowerCase().includes(q));
     });
-    if (!list.length) return `<tr><td colspan="9">${ctx.ui.empty('Keine Treffer', 'Suche oder Filter anpassen.', '🔎')}</td></tr>`;
+    if (!list.length) return `<tr><td colspan="10">${ctx.ui.empty('Keine Treffer', 'Suche oder Filter anpassen.', '🔎')}</td></tr>`;
     return list.map(p => {
       const k = nba.key(p[1]), o = I.owner(p[1]), lv = I.live.get(k);
       const age = nba.age(p[4]);
@@ -64,6 +83,7 @@
         <td class="muted">${e(p[3])}</td><td class="num">${age ?? '—'}</td>
         <td>${o ? `<a class="nba-tlink mp-tc" style="${nba.tcStyle(o)}" href="${ctx.href('teams', o.id)}"><span class="nba-tdot"></span>${e(o.name)}</a>` : '<span class="nba-tag fa">frei</span>'}</td>
         <td class="num">${lv ? `<span class="${lv.delta > 0 ? 'up' : 'down'}" title="${e(liveTip(lv))}">#${lv.liveRank} ${lv.delta > 0 ? '▲' : '▼'}${Math.abs(lv.delta)}</span>` : '<span class="muted">—</span>'}</td>
+        <td class="num">${impactCell(d, I.rapm.get(k), e)}</td>
         <td class="num">${nba.rankBadge(I.matt.get(k) ?? null)}</td>
         <td class="num">${nba.rankBadge(I.hash.get(k) ?? null)}</td>
       </tr>`;
@@ -79,6 +99,17 @@
   }
   const ctx_date = s => (s ? s.split('-').reverse().join('.') : '');
 
+  function rapmNote(d) {
+    const M = d.OPENRAPM_META;
+    if (!M) return '';
+    const yr = s => `${s - 1}/${String(s).slice(2)}`;
+    return `<details class="note rapm-note"><summary>📊 <b>Impact</b> und <b>Minuten-Pfeil</b> – was ist das?</summary>
+      <p><b>Impact</b> ist <a href="https://openrapm.com/" target="_blank" rel="noopener">OpenRAPM</a> von Nathan Walker: Wie viele Punkte pro 100 Ballbesitze ein Team mit dem Spieler auf dem Feld besser (+) oder schlechter (−) ist als mit einem Durchschnittsspieler – bereinigt um Mit- und Gegenspieler. Er misst echten Basketball-Wert, <i>nicht</i> Fantasy-Stats. Angezeigt wird die laufende Saison ${yr(M.cur)}, sobald ein Spieler 1.000 Ballbesitze hat, sonst ${yr(M.prev)} (mit *). Antippen zeigt Offense/Defense.</p>
+      <p><b>↑ / ↓ Minuten-Pfeil</b> (nur Spieler unter 24 MPG): Bankspieler mit starker Offensiv-Wirkung bekommen erfahrungsgemäß im Folgejahr mehr Minuten, schwache weniger – im Schnitt etwa ±1 MPG, unabhängig davon, wie gut ihre Fantasy-Stats schon sind. Für den Fantasy-Wert selbst bringt RAPM dagegen kaum etwas, deshalb ändert die Spalte <b>keine</b> Ränge. Der Pfeil ist eine Tendenz, keine Garantie (Backtest 2004–2024: 36 % der ↑-Spieler legten 3+ MPG zu, sonst 28–32 %).</p>
+      <p class="muted small">OpenRAPM-Stand ${ctx_date(M.built)} · täglich aktualisiert · Daten MIT-lizenziert (github.com/bbstats/openrapm).</p>
+    </details>`;
+  }
+
   function rankingsView(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc;
     const snaps = d.DYNASTY_ROLLING || [];
@@ -87,8 +118,9 @@
         <div class="seg" role="group">${[['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']].map(([k, l]) => `<button type="button" class="seg-btn${st.own === k ? ' active' : ''}" data-own="${k}">${l}</button>`).join('')}</div>
         ${sinceSel}<input type="search" class="search" placeholder="Spieler, Team, Position, Fantasy-Team …" value="${e(st.q)}" data-q aria-label="Suchen"></div>
       ${liveNote(d)}
+      ${rapmNote(d)}
       <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">MFHFB</th><th class="nba-sticky">Spieler</th><th>NBA</th><th>Pos</th><th class="num">Alter</th><th>Fantasy-Team</th>
-        <th class="num" title="Live-Rang: Saison-Form gegen die Erwartung vor der Saison (nur deutliche Abweichungen ab 8 Spielen; ändert die Rangliste nicht, zählt aber im Trade Analyzer)">Live</th><th class="num">Matt</th><th class="num">#️⃣ Hashtag</th></tr></thead>
+        <th class="num" title="Live-Rang: Saison-Form gegen die Erwartung vor der Saison (nur deutliche Abweichungen ab 8 Spielen; ändert die Rangliste nicht, zählt aber im Trade Analyzer)">Live</th><th class="num" title="OpenRAPM-Impact (Punkte pro 100 Possessions); ↑/↓ = Minuten-Tendenz für Spieler unter 24 MPG">Impact</th><th class="num">Matt</th><th class="num">#️⃣ Hashtag</th></tr></thead>
         <tbody data-body>${listRows(ctx, st)}</tbody></table></div>`;
   }
 
@@ -148,6 +180,8 @@
     const view = ctx.params[0] === 'verlauf' || ctx.params[0] === 'hashtag' ? ctx.params[0] : 'liste';
     const save = (patch, full = true) => { ctx.store.setJSON('dynrank', { ...getState(ctx), ...patch }); if (full) ctx.refresh(); };
     root.querySelectorAll('[data-own]').forEach(b => b.addEventListener('click', () => save({ own: b.dataset.own })));
+    // Impact antippen → Offense/Defense einblenden (Tooltip geht am Handy nicht)
+    root.addEventListener('click', ev => { const c = ev.target.closest('.rapm'); if (c) c.parentElement.classList.toggle('rapm-open'); });
     const since = root.querySelector('[data-since]');
     if (since) since.addEventListener('change', () => save({ since: since.value }));
     const q = root.querySelector('[data-q]');
@@ -174,7 +208,7 @@
 
   MFHFB.pages.register({
     id: 'dynrank', section: 'dynasty', label: 'Dynasty Rankings', icon: '🏆', applies: { sport: ['nba'], keepers: [true] },
-    data: ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?dynasty-rolling', '?dynasty-live'],
+    data: ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?dynasty-rolling', '?dynasty-live', '?sport:openrapm'],
     title: () => 'Dynasty Rankings', render, mount,
   });
 })();

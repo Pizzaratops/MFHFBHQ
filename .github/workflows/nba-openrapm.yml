@@ -1,0 +1,40 @@
+name: NBA OpenRAPM (Impact-Werte)
+
+# Holt täglich die OpenRAPM-Ratings (github.com/bbstats/openrapm, MIT,
+# dort täglich ~11 Uhr Berlin neu gebaut) nach sports/nba/data/openrapm.js:
+# Impact-Spalte + Minuten-Pfeil in den NBA-Dynasty-Rankings.
+# Keine Secrets nötig.
+
+on:
+  schedule:
+    - cron: "23 12 * * *"   # 13:23/14:23 Berlin
+    - cron: "23 18 * * *"   # Nachzügler
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-data   # nie gleichzeitig mit dem NBA Sync pushen
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: OpenRAPM holen
+        run: node sports/nba/scripts/sync-openrapm.js
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sports/nba/data/openrapm.js
+          if git diff --cached --quiet; then echo "Keine Änderung."; exit 0; fi
+          git commit -m "chore: NBA OpenRAPM"
+          for i in 1 2 3 4 5; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1
