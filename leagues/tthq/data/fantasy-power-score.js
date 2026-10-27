@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-27T22:17:24.282Z",
+  "generatedAt": "2026-10-27T22:34:41.746Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 4 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -254,11 +254,11 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 331.6,
-        "reb": 142.2,
-        "ast": 79.5,
+        "pts": 333.6,
+        "reb": 142.8,
+        "ast": 79.6,
         "stl": 23.01,
-        "blk": 18.27,
+        "blk": 18.44,
         "tpm": 32.6,
         "to": 44.7,
         "fgPct": 47.6,
@@ -269,18 +269,17 @@ const FANTASY_POWER_SCORE = {
         "reb": 3,
         "ast": 4,
         "stl": 6,
-        "blk": 3,
+        "blk": 2,
         "tpm": 9,
         "fgPct": 4,
         "ftPct": 11,
         "to": 11
       },
-      "includedCount": 26,
-      "projCount": 26,
-      "skippedCount": 2,
+      "includedCount": 27,
+      "projCount": 27,
+      "skippedCount": 1,
       "skippedPlayers": [
-        "Henri Veesaar",
-        "Tacko Fall"
+        "Henri Veesaar"
       ]
     },
     {
@@ -303,7 +302,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 2,
         "ast": 5,
         "stl": 5,
-        "blk": 2,
+        "blk": 3,
         "tpm": 11,
         "fgPct": 2,
         "ftPct": 12,
