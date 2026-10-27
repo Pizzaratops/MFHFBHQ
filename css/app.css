@@ -446,6 +446,9 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .tr-chip:hover { border-color: var(--muted); }
 .tr-chip.on { border-color: var(--league-accent); background: color-mix(in srgb, var(--league-accent) 14%, var(--surface)); }
 .tr-verdict { text-align: center; font-weight: 700; margin-top: 14px; }
+.tr-verdict-top { margin: 0 0 14px; padding-right: 90px; padding-left: 90px; }
+.tr-share > .share-btn { top: 10px; bottom: auto; } /* Teilen-Knopf im Urteilsbalken oben */
+@media (max-width: 760px) { .tr-verdict-top { padding-left: 12px; padding-right: 44px; } }
 .tr-actions { text-align: center; margin: -4px 0 8px; }
 .tr-actions .seg-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); }
 .tr-impact { padding: 4px 0; }

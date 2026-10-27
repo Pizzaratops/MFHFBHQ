@@ -233,11 +233,11 @@
           .sort((a, b) => b.v - a.v);
         const picks = futureYears.flatMap(y => MFHFB.draft.picksHeld(d, teams, team.name, y, rounds)
           .map(p => ({ kind: 'pick', year: y, round: p.round, origin: p.origin, name: `${p.origin} ${y} ${p.round}` })));
-        pool = `
+        pool = `<div class="no-share">
           <div class="tr-pool-label">Kader</div>
           <div class="tr-pool">${roster.map(p => { const a = { kind: 'player', name: p.name }; return `<button type="button" class="tr-chip${has(side, a) ? ' on' : ''}" data-toggle="${side}" data-kind="player" data-name="${e(p.name)}"><span class="pos pos-${e(String(p.pos || '').replace(/[^A-Z]/gi, ''))}">${e(p.dyn || p.pos || '')}</span> ${e(p.name)} <small>${p.v ? fmt(p.v) : '–'}</small></button>`; }).join('')}</div>
           ${picks.length ? `<div class="tr-pool-label">Picks</div>
-          <div class="tr-pool">${picks.map(p => `<button type="button" class="tr-chip pick${has(side, p) ? ' on' : ''}" data-toggle="${side}" data-kind="pick" data-name="${e(p.name)}" data-year="${p.year}" data-round="${p.round}">${p.year} ${p.round}${p.origin !== team.name ? ` <small>via ${e(p.origin)}</small>` : ''} <small>${fmt(val.pickValue(p.year, p.round) || 0)}</small></button>`).join('')}</div>` : ''}`;
+          <div class="tr-pool">${picks.map(p => `<button type="button" class="tr-chip pick${has(side, p) ? ' on' : ''}" data-toggle="${side}" data-kind="pick" data-name="${e(p.name)}" data-year="${p.year}" data-round="${p.round}">${p.year} ${p.round}${p.origin !== team.name ? ` <small>via ${e(p.origin)}</small>` : ''} <small>${fmt(val.pickValue(p.year, p.round) || 0)}</small></button>`).join('')}</div>` : ''}</div>`;
       }
       return `<div class="card tr-col">
         <div class="card-head"><h2>Team ${side} gibt</h2></div>
@@ -246,8 +246,8 @@
             <option value="">— Team wählen —</option>
             ${teams.map(t => `<option value="${e(t.name)}"${t.name === teamName ? ' selected' : ''}>${e(t.emoji || '')} ${e(t.name)}${t.owner ? ' (' + e(t.owner) + ')' : ''}</option>`).join('')}
           </select>
-          <div class="tr-search"><input type="search" placeholder="Beliebigen Spieler suchen …" data-search="${side}" autocomplete="off"><div class="tr-suggest" data-suggest="${side}" hidden></div></div>
-          <div class="tr-assets">${assets.length ? assets.map((a, i) => `<div class="tr-asset"><span>${e(a.kind === 'pick' ? `${a.name.replace(` ${a.year} ${a.round}`, '')} ${a.year} ${a.round}` : a.name)}${a.kind === 'player' ? ' ' + rk.tag(a.name) : ''}</span><span class="muted">${fmt(assetValue(val, a))}</span><button type="button" data-remove="${side}" data-idx="${i}" aria-label="Entfernen">✕</button></div>`).join('') : '<div class="muted tr-empty">Noch nichts ausgewählt.</div>'}</div>
+          <div class="tr-search no-share"><input type="search" placeholder="Beliebigen Spieler suchen …" data-search="${side}" autocomplete="off"><div class="tr-suggest" data-suggest="${side}" hidden></div></div>
+          <div class="tr-assets">${assets.length ? assets.map((a, i) => `<div class="tr-asset"><span>${e(a.kind === 'pick' ? `${a.name.replace(` ${a.year} ${a.round}`, '')} ${a.year} ${a.round}` : a.name)}${a.kind === 'player' ? ' ' + rk.tag(a.name) : ''}</span><span class="muted">${fmt(assetValue(val, a))}</span><button type="button" class="no-share" data-remove="${side}" data-idx="${i}" aria-label="Entfernen">✕</button></div>`).join('') : '<div class="muted tr-empty">Noch nichts ausgewählt.</div>'}</div>
           <div class="tr-total">Gesamtwert <b>${fmt(total)}</b></div>
           ${pool}
         </div>
@@ -293,9 +293,9 @@
         <h1 class="page-title display">⚖️ Trade Analyzer</h1>
         <div class="page-sub explain">Werte = Schnitt aus KeepTradeCut und Dynasty Daddy${data.TRADE_VALUES_META ? ` (Stand ${new Date(data.TRADE_VALUES_META.updated).toLocaleDateString('de-DE')}, wöchentlich)` : ''} · Picks nach Runde und Jahr · <b>WR25</b> = Positionsrang nach Trade-Wert${rk.hasProj ? ', Proj = Positionsrang in der Saisonprojektion (Liga-Scoring)' : ''}</div>
       </div>
-      <div data-share="Trade">
+      <div class="tr-share" data-share="Trade">
+      <div class="note tr-verdict tr-verdict-top">${verdict}</div>
       <div class="tr-cols">${column('A')}${column('B')}</div>
-      <div class="note tr-verdict">${verdict}</div>
       </div>
       ${(st.A.length || st.B.length || st.teamA || st.teamB) ? '<div class="tr-actions"><button type="button" class="seg-btn" data-reset>↺ Neuer Trade</button></div>' : ''}
       ${impact}
