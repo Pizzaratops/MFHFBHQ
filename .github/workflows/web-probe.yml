@@ -1,0 +1,45 @@
+name: Web Probe (Rohdaten einer URL sichern)
+
+# Hilfs-Workflow (27.10.2026): Die Sandbox der Hub-Entwicklung erreicht viele
+# Seiten nicht direkt (z. B. KeepTradeCut, Dynasty Daddy). Dieser Workflow
+# holt bis zu drei URLs aus GitHub Actions und legt Antwort + HTTP-Status
+# unter _probe/web/ ab, um zu prüfen, ob/wie ein Sync von dort funktioniert.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'URLs, durch Leerzeichen getrennt (max. 3)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Abrufen
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          mkdir -p _probe/web
+          i=0
+          for u in $URLS; do
+            i=$((i+1)); [ $i -gt 3 ] && break
+            f="_probe/web/$(echo "$u" | sed 's#https\?://##; s#[^A-Za-z0-9._-]#_#g' | cut -c1-80)"
+            code=$(curl -sS -L -m 60 -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" -w "%{http_code}" "$u" -o "$f.body" || echo "ERR")
+            echo "$code $u" | tee "$f.status"
+            gzip -9 -f "$f.body"
+          done
+          ls -la _probe/web
+      - name: Commit
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add _probe/
+          git commit -m "chore: Web-Probe" || exit 0
+          for i in 1 2 3; do git push && exit 0; git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1
