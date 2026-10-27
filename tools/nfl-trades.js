@@ -6,8 +6,13 @@
 //
 //  Werte: TRADE_VALUES (Schnitt aus KeepTradeCut + Dynasty Daddy, Feld
 //  "avg") und PICK_VALUES[runde][jahr] — identisch zur bisherigen Seite.
-//  Pick-Werte ab Runde 5 = Wert der 4. Runde, unbekannte Jahre = letztes
+//  Pick-Werte ab Runde 5 = 4. Runde × 0,5 je Runde, unbekannte Jahre = letztes
 //  bekanntes Jahr (wie bisher).
+//
+//  Seit 27.10.2026: Werte wöchentlich per Sync (sync-trade-values.js), dazu
+//  je Spieler zwei „normale“ Ränge: Dyn = Positionsrang nach Trade-Wert
+//  (z. B. WR25), Proj = Positionsrang in der Saisonprojektion der Liga
+//  (Liga-Scoring, ESPN bzw. Sleeper) — damit „WR25 gegen RB25“ sichtbar ist.
 //
 //  Historie: aktuelle Saison aus TRADES (inkl. Multi-Team-Trades), ältere
 //  Saisons optional aus TRADES_HISTORY (DOPE) — Variante aus DOPE
@@ -25,11 +30,20 @@
     const byName = new Map(), byKey = new Map();
     (data.TRADE_VALUES || []).forEach(p => { byName.set(p.name, p); byKey.set(normKey(p.name), p); });
     const pv = data.PICK_VALUES || {};
+    // Runden ohne eigenen Wert (KTC/DD bewerten nur 1.–4.): Wert der letzten bekannten
+    // Runde × 0,5 je weitere Runde (bis 27.10.2026: pauschal Wert der 4. Runde).
+    const rNum = r => parseInt(r, 10) || 0;
     const pickValue = (year, round) => {
-      const table = pv[round] || pv['4th'];
-      if (!table) return null;
+      let table = pv[round], factor = 1;
+      if (!table) {
+        const known = Object.keys(pv).sort((x, y) => rNum(x) - rNum(y));
+        const last = known[known.length - 1];
+        if (!last) return null;
+        table = pv[last]; factor = Math.pow(0.5, Math.max(0, rNum(round) - rNum(last)));
+      }
       const years = Object.keys(table).map(Number).sort((a, b) => a - b);
-      return table[year] ?? table[years[years.length - 1]] ?? null;
+      const v = table[year] ?? table[years[years.length - 1]];
+      return v == null ? null : Math.round(v * factor);
     };
     const player = name => byName.get(name) || byKey.get(normKey(name)) || null;
     // Freitext-Asset aus der Historie ("2027 2nd (via X)" oder Spielername)
@@ -48,7 +62,28 @@
   }
 
   const fmt = n => Math.round(n).toLocaleString('de-DE');
-  MFHFB.trade = { valuer, normKey };
+
+  // ---------- Positionsränge (Dyn = Trade-Wert, Proj = Saisonprojektion der Liga) ----------
+  const posOf = x => { const p = String(x || '').split('/')[0].toUpperCase(); return p === 'D/ST' || p === 'DEF' ? 'DST' : p; };
+  function ranker(data) {
+    const dyn = new Map(), proj = new Map(), seen = {};
+    (data.TRADE_VALUES || []).slice().sort((a, b) => b.avg - a.avg).forEach(p => {
+      const pos = posOf(p.pos); seen[pos] = (seen[pos] || 0) + 1;
+      dyn.set(normKey(p.name), pos + (p.posRank || seen[pos]));
+    });
+    const pp = ((data.PLAYER_PROJECTIONS && data.PLAYER_PROJECTIONS.players) || []).filter(p => p.projectedPoints > 0).sort((a, b) => b.projectedPoints - a.projectedPoints);
+    const pc = {};
+    pp.forEach(p => { const pos = posOf(p.pos); pc[pos] = (pc[pos] || 0) + 1; proj.set(normKey(p.name), { rk: pos + pc[pos], pts: p.projectedPoints }); });
+    const of = name => { const k = normKey(name); return { dyn: dyn.get(k) || null, proj: proj.get(k) || null }; };
+    // HTML-Badge: „WR25 · Proj WR18“
+    const tag = name => {
+      const r = of(name); if (!r.dyn && !r.proj) return '';
+      const t = `Dyn = Positionsrang nach Trade-Wert${r.proj ? ` · Proj = Positionsrang Saisonprojektion (${Math.round(r.proj.pts)} Pkt.)` : ''}`;
+      return `<span class="tr-rk" title="${t}">${r.dyn ? `<b>${r.dyn}</b>` : ''}${r.dyn && r.proj ? ' · ' : ''}${r.proj ? `Proj ${r.proj.rk}` : ''}</span>`;
+    };
+    return { of, tag, hasProj: proj.size > 0 };
+  }
+  MFHFB.trade = { valuer, normKey, ranker };
 
   // ---------- Trade History ----------
   function allTrades(data, season) {
@@ -178,6 +213,7 @@
     const val = valuer(data);
     if (!val.list.length) return ui.empty('Keine Trade-Werte', 'TRADE_VALUES fehlt für diese Liga.', '⚖️');
     const st = tradeState(ctx);
+    const rk = ranker(data);
     const teams = data.LEAGUE_TEAMS || [];
     const byName = n => teams.find(t => t.name === n);
     const d = MFHFB.draft.normalize(data);
@@ -193,13 +229,13 @@
       let pool = '';
       if (team) {
         const roster = ((data.ROSTERS_LIVE || {})[team.id] || [])
-          .map(p => ({ name: p.name, pos: p.pos, v: (val.player(p.name) || {}).avg || 0 }))
+          .map(p => ({ name: p.name, pos: p.pos, v: (val.player(p.name) || {}).avg || 0, dyn: rk.of(p.name).dyn }))
           .sort((a, b) => b.v - a.v);
         const picks = futureYears.flatMap(y => MFHFB.draft.picksHeld(d, teams, team.name, y, rounds)
           .map(p => ({ kind: 'pick', year: y, round: p.round, origin: p.origin, name: `${p.origin} ${y} ${p.round}` })));
         pool = `
           <div class="tr-pool-label">Kader</div>
-          <div class="tr-pool">${roster.map(p => { const a = { kind: 'player', name: p.name }; return `<button type="button" class="tr-chip${has(side, a) ? ' on' : ''}" data-toggle="${side}" data-kind="player" data-name="${e(p.name)}"><span class="pos pos-${e(String(p.pos || '').replace(/[^A-Z]/gi, ''))}">${e(p.pos || '')}</span> ${e(p.name)} <small>${p.v ? fmt(p.v) : '–'}</small></button>`; }).join('')}</div>
+          <div class="tr-pool">${roster.map(p => { const a = { kind: 'player', name: p.name }; return `<button type="button" class="tr-chip${has(side, a) ? ' on' : ''}" data-toggle="${side}" data-kind="player" data-name="${e(p.name)}"><span class="pos pos-${e(String(p.pos || '').replace(/[^A-Z]/gi, ''))}">${e(p.dyn || p.pos || '')}</span> ${e(p.name)} <small>${p.v ? fmt(p.v) : '–'}</small></button>`; }).join('')}</div>
           ${picks.length ? `<div class="tr-pool-label">Picks</div>
           <div class="tr-pool">${picks.map(p => `<button type="button" class="tr-chip pick${has(side, p) ? ' on' : ''}" data-toggle="${side}" data-kind="pick" data-name="${e(p.name)}" data-year="${p.year}" data-round="${p.round}">${p.year} ${p.round}${p.origin !== team.name ? ` <small>via ${e(p.origin)}</small>` : ''} <small>${fmt(val.pickValue(p.year, p.round) || 0)}</small></button>`).join('')}</div>` : ''}`;
       }
@@ -211,7 +247,7 @@
             ${teams.map(t => `<option value="${e(t.name)}"${t.name === teamName ? ' selected' : ''}>${e(t.emoji || '')} ${e(t.name)}${t.owner ? ' (' + e(t.owner) + ')' : ''}</option>`).join('')}
           </select>
           <div class="tr-search"><input type="search" placeholder="Beliebigen Spieler suchen …" data-search="${side}" autocomplete="off"><div class="tr-suggest" data-suggest="${side}" hidden></div></div>
-          <div class="tr-assets">${assets.length ? assets.map((a, i) => `<div class="tr-asset"><span>${e(a.kind === 'pick' ? `${a.name.replace(` ${a.year} ${a.round}`, '')} ${a.year} ${a.round}` : a.name)}</span><span class="muted">${fmt(assetValue(val, a))}</span><button type="button" data-remove="${side}" data-idx="${i}" aria-label="Entfernen">✕</button></div>`).join('') : '<div class="muted tr-empty">Noch nichts ausgewählt.</div>'}</div>
+          <div class="tr-assets">${assets.length ? assets.map((a, i) => `<div class="tr-asset"><span>${e(a.kind === 'pick' ? `${a.name.replace(` ${a.year} ${a.round}`, '')} ${a.year} ${a.round}` : a.name)}${a.kind === 'player' ? ' ' + rk.tag(a.name) : ''}</span><span class="muted">${fmt(assetValue(val, a))}</span><button type="button" data-remove="${side}" data-idx="${i}" aria-label="Entfernen">✕</button></div>`).join('') : '<div class="muted tr-empty">Noch nichts ausgewählt.</div>'}</div>
           <div class="tr-total">Gesamtwert <b>${fmt(total)}</b></div>
           ${pool}
         </div>
@@ -255,7 +291,7 @@
     return `
       <div class="page-head">
         <h1 class="page-title display">⚖️ Trade Analyzer</h1>
-        <div class="page-sub explain">Werte = Schnitt aus KeepTradeCut und Dynasty Daddy · Picks nach Runde und Jahr</div>
+        <div class="page-sub explain">Werte = Schnitt aus KeepTradeCut und Dynasty Daddy${data.TRADE_VALUES_META ? ` (Stand ${new Date(data.TRADE_VALUES_META.updated).toLocaleDateString('de-DE')}, wöchentlich)` : ''} · Picks nach Runde und Jahr · <b>WR25</b> = Positionsrang nach Trade-Wert${rk.hasProj ? ', Proj = Positionsrang in der Saisonprojektion (Liga-Scoring)' : ''}</div>
       </div>
       <div data-share="Trade">
       <div class="tr-cols">${column('A')}${column('B')}</div>
@@ -269,6 +305,7 @@
   function analyzerMount(root, ctx) {
     const save = st => { ctx.store.setJSON('trade', st); ctx.refresh(); };
     const val = valuer(ctx.data);
+    const rk = ranker(ctx.data);
     root.querySelectorAll('[data-team]').forEach(sel => sel.addEventListener('change', () => {
       const st = tradeState(ctx); const side = sel.dataset.team;
       if (st['team' + side] !== sel.value) st[side] = st[side].filter(a => a.kind !== 'pick'); // Picks gehören zum alten Team
@@ -295,7 +332,7 @@
         const q = normKey(input.value);
         if (!q) { box.hidden = true; box.innerHTML = ''; return; }
         const hits = val.list.filter(p => normKey(p.name).includes(q)).slice(0, 8);
-        box.innerHTML = hits.map(p => `<button type="button" class="tr-sug" data-add="${MFHFB.ui.esc(p.name)}">${MFHFB.ui.esc(p.name)} <small>${MFHFB.ui.esc(p.team || '')} ${MFHFB.ui.esc(p.pos || '')} · ${fmt(p.avg)}</small></button>`).join('') || '<div class="tr-sug muted">Kein Treffer</div>';
+        box.innerHTML = hits.map(p => `<button type="button" class="tr-sug" data-add="${MFHFB.ui.esc(p.name)}">${MFHFB.ui.esc(p.name)} <small>${MFHFB.ui.esc(p.team || '')} ${MFHFB.ui.esc(rk.of(p.name).dyn || p.pos || '')}${rk.of(p.name).proj ? ' · Proj ' + rk.of(p.name).proj.rk : ''} · ${fmt(p.avg)}</small></button>`).join('') || '<div class="tr-sug muted">Kein Treffer</div>';
         box.hidden = false;
       });
       box.addEventListener('click', ev => {

@@ -430,6 +430,8 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .tr-sug small { color: var(--muted); font-weight: 600; }
 .tr-asset { display: grid; grid-template-columns: 1fr auto 28px; gap: 8px; align-items: center; padding: 7px 10px; background: color-mix(in srgb, var(--league-accent) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--league-accent) 40%, var(--border)); border-radius: 9px; font-size: 13px; font-weight: 700; }
 .tr-asset + .tr-asset { margin-top: 6px; }
+.tr-rk { display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.tr-rk b { color: var(--league-accent); font-weight: 800; }
 .tr-asset .muted { font-variant-numeric: tabular-nums; }
 .tr-asset button { border: 0; background: none; cursor: pointer; color: var(--muted); font-size: 14px; }
 .tr-asset button:hover { color: var(--text); }
