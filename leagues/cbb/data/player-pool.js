@@ -1,11 +1,12 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-27T00:26:07.808Z
+//  Stand: 2026-10-27T05:39:20.308Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
 ["064ez","064ez","","","G,Flx","T"],
+["07a7t","07a7t","","","G,Flx","T"],
 ["06qgl","A.J. Patterson","AF","G","G,Flx","FA"],
 ["079w5","Aaron Banks","LoyMa","G","G,Flx","FA"],
 ["071rb","Aaron Glass","Vand","G","G,Flx","T"],
@@ -1669,7 +1670,6 @@ const CBB_PLAYER_POOL = [
 ["071b2","Mantas Juzenas","StMar","G","F/C,G,Flx","T"],
 ["06mvi","Mantas Kocanas","Cal","C","F/C,Flx","FA"],
 ["07a9l","Mantas Laurencikas","Tex","G","G,Flx","FA"],
-["07a7t","Mantas Rubstavicius","Aub","G","G,Flx","T"],
 ["07a75","Maper Maker","Ark","F","F/C,Flx","T"],
 ["071ay","Marchelo Moreira","Portl","G","G,Flx","FA"],
 ["075z5","Marcio Santos","LSU","C","F/C,Flx","FA"],
