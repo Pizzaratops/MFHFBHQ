@@ -28,7 +28,8 @@ jobs:
           JOB: ${{ inputs.job }}
         run: |
           mkdir -p _probe/logs
-          gh api "repos/${GITHUB_REPOSITORY}/actions/jobs/$JOB/logs" > /tmp/full.txt || true
+          curl -sSL -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/$JOB/logs" -o /tmp/full.txt -w "HTTP %{http_code}\n"
+          head -c 300 /tmp/full.txt; echo
           # Schrittköpfe + Fehler/Warnungen + Umgebung jeder Fehlermeldung
           grep -n -i -E "##\[group\]Run |error|fehl|failed|exception|exit code|HTTP [45]|ENOTFOUND|ETIMEDOUT|ECONNRESET" /tmp/full.txt | cut -c1-400 | head -400 > "_probe/logs/$JOB.txt"
           tail -c 20000 /tmp/full.txt > "_probe/logs/$JOB-tail.txt"
