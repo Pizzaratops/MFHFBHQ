@@ -136,6 +136,31 @@ const CATEGORIES = [
   { key: 'to', label: 'TO', invert: true },
 ];
 
+
+// Robuster JSON-Abruf (27.10.2026): ESPN liefert gelegentlich eine leere oder
+// abgeschnittene Antwort ("Unexpected end of JSON input") bzw. kurz 5xx. Dann
+// bis zu 4 Versuche mit wachsender Pause, statt den Tag sofort als Fehler zu
+// werten. 4xx (außer 429) wird nicht wiederholt.
+async function fetchJsonRetry(url, label) {
+  const waits = [2000, 5000, 10000];
+  for (let i = 0; ; i++) {
+    let err;
+    try {
+      const res = await fetch(url, { headers: { 'cache-control': 'no-cache' } });
+      if (!res.ok) {
+        err = new Error(`${label}: HTTP ${res.status}`);
+        if (res.status < 500 && res.status !== 429) throw Object.assign(err, { final: true });
+      } else {
+        const text = await res.text();
+        try { return JSON.parse(text); } catch (e) { err = new Error(`${label}: ${e.message} (${text.length} Bytes)`); }
+      }
+    } catch (e) { if (e.final) throw e; err = err || e; }
+    if (i >= waits.length) throw err;
+    console.warn(`  … ${err.message} — neuer Versuch in ${waits[i] / 1000}s`);
+    await new Promise(r => setTimeout(r, waits[i]));
+  }
+}
+
 // ------------------------------------------------------------
 // 1) Spiele des Tages holen
 // ------------------------------------------------------------
@@ -146,9 +171,7 @@ const CATEGORIES = [
 // gegen wen spielt und wann, statt "keine Daten" (23.08.2026, auf Wunsch:
 // ESPN zeigt den Spielplan ja auch schon vorher an).
 async function fetchGames(slug, dateStr) {
-  const res = await fetch(SCOREBOARD_URL(slug, dateStr));
-  if (!res.ok) throw new Error(`Scoreboard fetch fehlgeschlagen: HTTP ${res.status}`);
-  const data = await res.json();
+  const data = await fetchJsonRetry(SCOREBOARD_URL(slug, dateStr), 'Scoreboard');
   const events = (data.events || []).filter(e => {
     if (slug !== 'nba') return true;
     const cs = e.competitions?.[0]?.competitors || [];
@@ -220,12 +243,9 @@ function canonAbbr(a) {
 }
 
 async function fetchGamePlayers(slug, gameId) {
-  const res = await fetch(SUMMARY_URL(slug, gameId));
-  if (!res.ok) {
-    console.warn(`  ! Boxscore fehlgeschlagen für Spiel ${gameId}: HTTP ${res.status}`);
-    return [];
-  }
-  const data = await res.json();
+  let data;
+  try { data = await fetchJsonRetry(SUMMARY_URL(slug, gameId), `Boxscore ${gameId}`); }
+  catch (e) { console.warn(`  ! Boxscore fehlgeschlagen für Spiel ${gameId}: ${e.message}`); return []; }
   const teams = data.boxscore?.players || [];
   const players = [];
 
