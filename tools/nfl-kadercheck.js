@@ -3,9 +3,14 @@
 // ============================================================
 //  #/<liga>/kadercheck
 //
-//  Idee wie die Power Rankings von Dynasty Daddy: je Team Ränge für
-//  Overall, Starter, QB/RB/WR/TE und (Dynasty) Draft, dazu „Team Needs“
-//  (Tier-Labels auf Wunsch am 27.10.2026 entfernt). Zeile anklicken → Kader je Position mit Werten.
+//  Je Team eine Karte: Overall-/Starter-Rang (Dynasty zusätzlich Draft +
+//  Ø Alter), vier Positionsbalken QB/RB/WR/TE (Länge = Stärke relativ zum
+//  Ligabesten, Farbe = Rang) und die Team Needs. Karte antippen → Fenster
+//  mit Kader je Position, Picks und passenden Trade-Partnern (deren
+//  Stärke deine Lücke füllt und umgekehrt) samt Sprung in den Trade
+//  Analyzer mit beiden Teams vorausgewählt.
+//  (27.10.2026: erst Tabelle im Dynasty-Daddy-Stil, dann auf Wunsch
+//  Karten-Design, ohne Tier-Labels.)
 //
 //  Umschalter (pro Liga gemerkt):
 //   - Saison:  Wert = Saisonprojektion mit Liga-Scoring (PLAYER_PROJECTIONS,
@@ -115,97 +120,152 @@
     return { rows, R, N, slots, hasProj: V.season.size > 0, hasDyn: V.dyn.size > 0 };
   }
 
-
   // Farbe je Rang: grün (1) → gelb → rot (N)
-  const rankStyle = (r, N) => {
-    const t = N > 1 ? (r - 1) / (N - 1) : 0;
-    return `background:hsla(${Math.round(120 * (1 - t))},62%,42%,.22);color:hsl(${Math.round(120 * (1 - t))},70%,${t > .5 ? 58 : 46}%)`;
-  };
+  const hueOf = (r, N) => Math.round(120 * (1 - (N > 1 ? (r - 1) / (N - 1) : 0)));
+  const fmt = v => Math.round(v).toLocaleString('de-DE');
+
+  // Needs = unteres Drittel; Stärken = obere Hälfte
+  const needsOf = (R, N, id) => POS.filter(P => R[P].get(id) > N - Math.ceil(N / 3)).sort((a, b) => R[b].get(id) - R[a].get(id));
+  const strongOf = (R, N, id) => POS.filter(P => R[P].get(id) <= N / 2);
+
+  // Trade-Partner: Partner ist stark, wo ich schwach bin — und braucht, was ich habe
+  function partners(M, R, x) {
+    const N = M.N, myStrong = strongOf(R, N, x.id);
+    // ohne klare Lücke: die schwächste(n) Position(en) aus der unteren Hälfte, sonst die schwächste überhaupt
+    let mine = needsOf(R, N, x.id);
+    if (!mine.length) mine = POS.filter(P => R[P].get(x.id) > N / 2);
+    if (!mine.length) mine = [POS.slice().sort((a, b) => R[b].get(x.id) - R[a].get(x.id))[0]];
+    return M.rows.filter(y => y.id !== x.id).map(y => {
+      const give = mine.filter(P => R[P].get(y.id) <= N / 2);            // er hat, was ich brauche
+      const get = needsOf(R, N, y.id).filter(P => myStrong.includes(P));  // ich habe, was er braucht
+      const score = give.reduce((a, P) => a + R[P].get(x.id) - R[P].get(y.id), 0)
+        + get.reduce((a, P) => a + R[P].get(y.id) - R[P].get(x.id), 0) + (give.length && get.length ? N : 0);
+      return { y, give, get, score };
+    }).filter(p => p.give.length).sort((a, b) => b.score - a.score).slice(0, 3);
+  }
+
+  function bars(R, N, x, S, maxPos) {
+    const nd = needsOf(R, N, x.id);
+    return POS.map(P => {
+      const r = R[P].get(x.id), h = hueOf(r, N), w = maxPos[P] ? Math.max(4, Math.round(S.pos[P] / maxPos[P] * 100)) : 0;
+      return `<div class="kc-bar${nd.includes(P) ? ' need' : ''}">
+        <span class="kc-bar-l">${P}</span>
+        <span class="kc-bar-t"><span style="width:${w}%;background:hsl(${h},58%,46%)"></span></span>
+        <span class="kc-bar-r" style="color:hsl(${h},62%,${r > N / 2 ? 58 : 44}%)">${r}.</span>
+      </div>`;
+    }).join('');
+  }
 
   function render(ctx) {
-    const { data, ui, href } = ctx;
+    const { data, ui, league } = ctx;
     const e = ui.esc;
     if (!data.LEAGUE_TEAMS || !data.ROSTERS_LIVE) return ui.empty('Keine Kaderdaten', 'Teams oder Kader fehlen für diese Liga.', '🩺');
     const M = model(ctx);
     let mode = ctx.store.getJSON('kc-mode', 'season');
     if (mode === 'season' && !M.hasProj) mode = 'dynasty';
     if (mode === 'dynasty' && !M.hasDyn) mode = 'season';
-    const dyn = mode === 'dynasty';
-    const R = M.R[mode], N = M.N;
-    const sortKey = ctx.store.getJSON('kc-sort', 'overall');
-    const cols = [['overall', 'Overall'], ['starter', 'Starter'], ...POS.map(P => [P, P]), ...(dyn ? [['draft', 'Draft']] : [])];
-    const validSort = cols.some(c => c[0] === sortKey) ? sortKey : 'overall';
-    const rows = M.rows.slice().sort((a, b) => R[validSort].get(a.id) - R[validSort].get(b.id));
-    const fmt = v => Math.round(v).toLocaleString('de-DE');
-    const needs = x => POS.filter(P => R[P].get(x.id) > N - Math.ceil(N / 3)).sort((a, b) => R[b].get(x.id) - R[a].get(x.id));
-    const cell = r => `<span class="kc-rk" style="${rankStyle(r, N)}">${r}</span>`;
+    const dyn = mode === 'dynasty', R = M.R[mode], N = M.N;
+    const keys = [['overall', 'Overall'], ['starter', 'Starter'], ...POS.map(P => [P, P]), ...(dyn ? [['draft', 'Draft']] : [])];
+    let sortKey = ctx.store.getJSON('kc-sort', 'overall');
+    if (!keys.some(k => k[0] === sortKey)) sortKey = 'overall';
+    const rows = M.rows.slice().sort((a, b) => R[sortKey].get(a.id) - R[sortKey].get(b.id));
+    const S = x => (dyn ? x.D : x.S);
+    const maxPos = {}; POS.forEach(P => { maxPos[P] = Math.max(...M.rows.map(x => S(x).pos[P]), 0); });
+    const me = league.myTeam;
 
-    const detail = x => {
-      const S = dyn ? x.D : x.S;
-      const col = P => {
-        const list = S.players.filter(p => p.pos === P);
-        return `<div class="kc-pos"><div class="kc-pos-h">${P} <span>Rang ${R[P].get(x.id)}</span></div>
-          ${list.length ? list.map(p => `<div class="kc-pl${S.starters.has(p.name) ? ' st' : ''}" title="${S.starters.has(p.name) ? 'in der optimalen Aufstellung' : 'Bank/Tiefe'}"><span>${S.starters.has(p.name) ? '★ ' : ''}${e(p.name)}</span><b>${p.v ? fmt(p.v) : '–'}</b></div>`).join('') : '<div class="muted small">—</div>'}
-        </div>`;
-      };
-      const picks = dyn ? `<div class="kc-pos"><div class="kc-pos-h">Picks <span>Rang ${R.draft.get(x.id)}</span></div>
-          ${x.picks.length ? x.picks.map(p => `<div class="kc-pl"><span>${p.year} ${p.round}${p.own ? '' : ` <small>via ${e(p.origin)}</small>`}</span><b>${fmt(p.v)}</b></div>`).join('') : '<div class="muted small">keine</div>'}
-        </div>` : '';
-      const nd = needs(x);
-      return `<div class="kc-detail">
-        <div class="kc-side">
-          <div><small>Overall</small><b>${R.overall.get(x.id)}</b> <span class="muted">(${fmt(dyn ? x.dynOverall : x.S.total)})</span></div>
-          <div><small>Starter</small><b>${R.starter.get(x.id)}</b> <span class="muted">(${fmt(S.starter)}${dyn ? '' : ' Pkt.'})</span></div>
-          ${dyn && x.age ? `<div><small>Ø Alter</small><b>${x.age.toFixed(1).replace('.', ',')}</b></div>` : ''}
-          <div><small>Team Needs</small><b>${nd.length ? nd.join(', ') : '—'}</b></div>
-          <a class="seg-btn" href="${href('trade')}">⚖️ Trade Analyzer</a>
-          <a class="seg-btn" href="${href('teams', x.id)}">👥 Kader</a>
+    const stat = (label, r, sub) => `<div class="kc-stat"><small>${label}</small><b style="color:hsl(${hueOf(r, N)},62%,${r > N / 2 ? 58 : 44}%)">${r}.</b>${sub ? `<i>${sub}</i>` : ''}</div>`;
+    const card = x => {
+      const t = x.team, nd = needsOf(R, N, x.id), mine = x.id === me;
+      return `<button type="button" class="kc-team${mine ? ' mine' : ''}" data-kc="${e(x.id)}" aria-label="${e(t.name)}: Kader und Trade-Partner anzeigen">
+        <div class="kc-team-h">
+          <span class="kc-emoji">${e(t.emoji || '🏈')}</span>
+          <span class="kc-name"><b>${e(t.name)}</b><small>${e(t.owner || '')}${mine ? ' · Dein Team' : ''}</small></span>
+          <span class="kc-rec">${x.pct == null ? '' : ui.record(x.rec)}</span>
         </div>
-        <div class="kc-cols">${POS.map(col).join('')}${picks}</div>
-      </div>`;
+        <div class="kc-stats">
+          ${stat('Overall', R.overall.get(x.id))}
+          ${stat('Starter', R.starter.get(x.id))}
+          ${dyn ? stat('Draft', R.draft.get(x.id)) : ''}
+          ${dyn && x.age ? `<div class="kc-stat"><small>Ø Alter</small><b>${x.age.toFixed(1).replace('.', ',')}</b></div>` : ''}
+        </div>
+        <div class="kc-bars">${bars(R, N, x, S(x), maxPos)}</div>
+        <div class="kc-needs">${nd.length ? `<span>Needs</span>${nd.map(P => `<span class="kc-need">${P}</span>`).join('')}` : '<span class="kc-ok">✓ keine klare Lücke</span>'}<span class="kc-more">Details ›</span></div>
+      </button>`;
     };
 
-    const head = cols.map(([k, l]) => `<th class="num kc-sort${k === validSort ? ' on' : ''}" data-sort="${k}" title="Nach ${l} sortieren">${l}${k === validSort ? ' ↑' : ''}</th>`).join('');
-    const span = 3 + cols.length + (dyn ? 1 : 0);
     return `
       <div class="page-head">
         <h1 class="page-title display">🩺 Kader-Check</h1>
-        <div class="page-sub">Wo steht jedes Team — und welche Positionen fehlen?<span class="explain"> ${dyn ? 'Dynasty: Trade-Werte (KTC + Dynasty Daddy); Overall = alle Spieler + Picks zur Hälfte.' : 'Saison: Projektion mit dem Liga-Scoring.'} Starter = beste Aufstellung mit den Lineup-Slots der Liga (${M.slots.join(', ')}); bei den Positionen zählen Starter voll, FLEX-Kandidaten halb, die Tiefe wenig. K/DST zählen nicht. Zeile antippen für den Kader.</span></div>
+        <div class="page-sub">Wo steht jedes Team — und welche Positionen fehlen?<span class="explain"> ${dyn ? 'Dynasty: Trade-Werte (KTC + Dynasty Daddy); Overall = alle Spieler + Picks zur Hälfte.' : 'Saison: Projektion mit dem Liga-Scoring.'} Balken = Positionsstärke im Vergleich zum Ligabesten, Zahl = Rang. Starter voll, FLEX-Kandidaten halb, Tiefe wenig; K/DST zählen nicht. Needs = Position im unteren Drittel.</span></div>
       </div>
-      <div class="controls">
+      <div class="controls kc-controls">
         <div class="seg" role="group" aria-label="Bewertung">
-          <button type="button" class="seg-btn${dyn ? '' : ' active'}" data-mode="season"${M.hasProj ? '' : ' disabled'}>📅 Current Season</button>
-          <button type="button" class="seg-btn${dyn ? ' active' : ''}" data-mode="dynasty"${M.hasDyn ? '' : ' disabled'}>💎 Dynasty Values</button>
+          <button type="button" class="seg-btn${dyn ? '' : ' active'}" data-mode="season"${M.hasProj ? '' : ' disabled'}>📅 Saison</button>
+          <button type="button" class="seg-btn${dyn ? ' active' : ''}" data-mode="dynasty"${M.hasDyn ? '' : ' disabled'}>💎 Dynasty</button>
+        </div>
+        <div class="seg kc-sortseg" role="group" aria-label="Sortieren nach">
+          ${keys.map(([k, l]) => `<button type="button" class="seg-btn${k === sortKey ? ' active' : ''}" data-sort="${k}">${l}</button>`).join('')}
         </div>
       </div>
-      <div class="card kc-card" data-share="Kader-Check · ${dyn ? 'Dynasty' : 'Saison'}">
-      <div class="table-wrap">
-        <table class="table kc-table">
-          <thead><tr><th>Team</th><th class="num">Bilanz</th>${head}${dyn ? '<th class="num">Ø Alter</th>' : ''}<th>Needs</th></tr></thead>
-          <tbody>${rows.map(x => {
-            const t = x.team, nd = needs(x);
-            return `<tr class="kc-row" data-kc="${e(x.id)}" tabindex="0">
-              <td><span class="team-cell"><span class="team-emoji">${e(t.emoji || '')}</span><span><span class="team-name">${e(t.name)}</span>${t.owner ? `<span class="team-owner">${e(t.owner)}</span>` : ''}</span></span></td>
-              <td class="num strong">${x.pct == null ? '–' : ui.record(x.rec)}</td>
-              ${cols.map(([k]) => `<td class="num">${cell(R[k].get(x.id))}</td>`).join('')}
-              ${dyn ? `<td class="num">${x.age ? x.age.toFixed(1).replace('.', ',') : '–'}</td>` : ''}
-              <td class="kc-needs">${nd.length ? nd.map(P => `<span class="pos pos-${P}">${P}</span>`).join(' ') : '<span class="muted">—</span>'}</td>
-            </tr>
-            <tr class="kc-drow" data-kcd="${e(x.id)}" hidden><td colspan="${span}">${detail(x)}</td></tr>`;
-          }).join('')}</tbody>
-        </table>
-      </div>
+      <div class="kc-grid" data-share="Kader-Check · ${dyn ? 'Dynasty' : 'Saison'}">${rows.map(card).join('')}</div>
+      <div class="dna-modal kc-modal" data-kcmodal hidden></div>`;
+  }
+
+  function detailHtml(ctx, M, mode, id) {
+    const e = ctx.ui.esc, dyn = mode === 'dynasty', R = M.R[mode], N = M.N;
+    const x = M.rows.find(r => r.id === id); if (!x) return '';
+    const S = dyn ? x.D : x.S, t = x.team;
+    const col = P => {
+      const list = S.players.filter(p => p.pos === P), r = R[P].get(x.id);
+      return `<div class="kc-pos"><div class="kc-pos-h"><span>${P}</span><span style="color:hsl(${hueOf(r, N)},62%,${r > N / 2 ? 58 : 44}%)">Rang ${r}</span></div>
+        ${list.length ? list.map(p => `<div class="kc-pl${S.starters.has(p.name) ? ' st' : ''}"><span>${S.starters.has(p.name) ? '★ ' : ''}${e(p.name)}</span><b>${p.v ? fmt(p.v) : '–'}</b></div>`).join('') : '<div class="kc-pl"><span>—</span></div>'}
       </div>`;
+    };
+    // Picks kompakt: eine Zeile pro Jahr, fremde Picks mit Tooltip „via …“
+    const years = [...new Set(x.picks.map(p => p.year))];
+    const pk = dyn ? `<div class="kc-picks"><div class="kc-pos-h"><span>Picks</span><span>Rang ${R.draft.get(x.id)} · ${fmt(x.draft)}</span></div>
+        ${years.length ? years.map(y => { const l = x.picks.filter(p => p.year === y); return `<div class="kc-pick-row"><b>${y}</b><span>${l.map(p => `<i class="${p.own ? '' : 'via'}" title="${p.own ? 'eigener Pick' : 'via ' + e(p.origin)}">${p.round}</i>`).join('')}</span><small>${fmt(l.reduce((a, p) => a + p.v, 0))}</small></div>`; }).join('') : '<div class="kc-pl"><span>keine</span></div>'}
+        <div class="muted small">umrandet = via Trade (antippen/hovern für das Ursprungsteam)</div>
+      </div>` : '';
+    const ps = partners(M, R, x);
+    const partnerHtml = ps.length ? ps.map(p => `<div class="kc-partner">
+        <div class="kc-partner-h"><span>${e(p.y.team.emoji || '🏈')} <b>${e(p.y.team.name)}</b></span></div>
+        <div class="kc-partner-t">✅ stark bei ${p.give.map(P => `<b>${P}</b> (${R[P].get(p.y.id)}.)`).join(', ')} — füllt die Lücke</div>
+        ${p.get.length ? `<div class="kc-partner-t">🔄 braucht ${p.get.map(P => `<b>${P}</b> (${R[P].get(p.y.id)}.)`).join(', ')} — da ist ${e(t.name)} stark</div>` : ''}
+        <button type="button" class="seg-btn active kc-go" data-trade="${e(p.y.team.name)}">⚖️ Im Trade Analyzer öffnen</button>
+      </div>`).join('') : '<p class="muted small">Keine klare Lücke, die ein anderes Team füllen könnte.</p>';
+    return `<div class="dna-modal-box kc-box">
+      <div class="dna-modal-head">
+        <div><div class="kc-box-t">${e(t.emoji || '🏈')} ${e(t.name)}</div><div class="muted small">${e(t.owner || '')}${x.pct == null ? '' : ' · ' + ctx.ui.record(x.rec)} · ${dyn ? 'Dynasty-Werte' : 'Saisonprojektion'} · ★ = in der besten Aufstellung</div></div>
+        <button type="button" class="dna-modal-x" data-kcclose aria-label="Schließen">✕</button>
+      </div>
+      <h3 class="kc-box-sub first">🤝 Passende Trade-Partner</h3>
+      <div class="kc-partners">${partnerHtml}</div>
+      <h3 class="kc-box-sub">👥 Kader</h3>
+      <div class="kc-box-grid">${POS.map(col).join('')}</div>
+      ${pk}
+    </div>`;
   }
 
   function mount(root, ctx) {
     root.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => { ctx.store.setJSON('kc-mode', b.dataset.mode); ctx.refresh(); }));
-    root.querySelectorAll('[data-sort]').forEach(th => th.addEventListener('click', () => { ctx.store.setJSON('kc-sort', th.dataset.sort); ctx.refresh(); }));
-    const toggle = tr => { const d = root.querySelector(`[data-kcd="${CSS.escape(tr.dataset.kc)}"]`); if (d) { d.hidden = !d.hidden; tr.classList.toggle('open', !d.hidden); } };
-    root.querySelectorAll('.kc-row').forEach(tr => {
-      tr.addEventListener('click', ev => { if (!ev.target.closest('a')) toggle(tr); });
-      tr.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); toggle(tr); } });
-    });
+    root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => { ctx.store.setJSON('kc-sort', b.dataset.sort); ctx.refresh(); }));
+    const modal = root.querySelector('[data-kcmodal]'); if (!modal) return;
+    const M = model(ctx);
+    const mode = root.querySelector('[data-mode="dynasty"].active') ? 'dynasty' : 'season';
+    const close = () => { modal.classList.remove('open'); modal.hidden = true; modal.innerHTML = ''; document.removeEventListener('keydown', onKey); };
+    const onKey = ev => { if (ev.key === 'Escape') close(); };
+    root.querySelectorAll('[data-kc]').forEach(b => b.addEventListener('click', () => {
+      modal.innerHTML = detailHtml(ctx, M, mode, b.dataset.kc);
+      modal.hidden = false; modal.classList.add('open'); document.addEventListener('keydown', onKey);
+      const team = (M.rows.find(r => r.id === b.dataset.kc) || {}).team;
+      modal.querySelector('[data-kcclose]').addEventListener('click', close);
+      modal.querySelectorAll('[data-trade]').forEach(t => t.addEventListener('click', () => {
+        ctx.store.setJSON('trade', { teamA: team.name, teamB: t.dataset.trade, A: [], B: [] }); // Trade Analyzer: beide Teams vorausgewählt
+        close(); location.hash = ctx.href('trade');
+      }));
+    }));
+    modal.addEventListener('click', ev => { if (ev.target === modal) close(); });
   }
 
   MFHFB.pages.register({
@@ -214,5 +274,5 @@
     data: ['teams', 'rosters-live', 'weekly-scores', 'sport:trade-values', '?projections', 'draft', 'trades', '?league-info'], // trades.js enthält FUTURE_PICKS
     title: () => 'Kader-Check', render, mount,
   });
-  MFHFB.kaderCheck = { model, scoreTeam };
+  MFHFB.kaderCheck = { model, scoreTeam, partners };
 })();
