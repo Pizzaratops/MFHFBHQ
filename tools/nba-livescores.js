@@ -127,15 +127,16 @@
 
   // ---------- Night Card „Best … of the Night“ (Screenshot, 15.10.2026) ----------
   //  Daily-Ansicht: Top-Spieler des Tages nach Z-Composite (inkl. Punt-Gewichten).
-  //  Links Nr. 1 mit Cat-Web-Radar der Nacht, rechts Plätze 2–5 bzw. 2–10.
+  //  Links Nr. 1 mit Cat-Web-Radar der Nacht, rechts Plätze 2–5 bzw. 2–6.
+  //  27.10.2026: Top 6 statt 10; Screenshot immer zweispaltig (data-share-width), passt aufs Handy.
   //  Erfahrung: Rookie = Draft 2026 oder ohne NBA-Minuten 2022–26 (Undrafted),
   //  Sophomore = Draft 2025, sonst Vet. Die Zusatzdaten werden erst beim Öffnen geladen.
   const NIGHT_KINDS_ALL = {
-    top10: { label: 'Best 10 Players', n: 10 },
+    top10: { label: 'Best 6 Players', n: 6 },
     rookie: { label: 'Best Rookies', n: 5 },
     sophomore: { label: 'Best Sophomores', n: 5 },
     vet: { label: 'Best Vets', n: 5 },
-    fa: { label: 'Best Waiver Wire Players', n: 10 }, // Free Agents DIESER Liga (aktuelle Kader)
+    fa: { label: 'Best Waiver Wire Players', n: 6 }, // Free Agents DIESER Liga (aktuelle Kader)
   };
   // Zeitraum der Karte: Daily = Nacht, Weekly = Woche, Monthly = Monat bzw. ganze Preseason.
   // Weekly/Monthly sind Pro-Spiel-Schnitte → Mindestspiele, damit Einzelspiel-Ausreißer nicht oben landen.
@@ -276,7 +277,7 @@
     }
     const when = avg ? `${e(fmtShort(entry.windowStart))} – ${e(fmtShort(entry.windowEnd))}` : `${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele`;
     return `<div class="controls nc-controls">${sel}</div>
-      <section class="card nc-card${sticky ? ' sticky' : ''}" data-share="${e(label)} · ${e(fmtShort(r.date))}">
+      <section class="card nc-card${sticky ? ' sticky' : ''}" data-share-width="760" data-share="${e(label)} · ${e(fmtShort(r.date))}">
         <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${when}${kind === 'fa' ? ` · Free Agents ${e(ctx.league.short || ctx.league.name)}` : ''}${minNote ? ' · ' + minNote : ''}</div><h2 class="nc-title display">${e(K.label)}${sticky ? ' <span class="nc-mode">Sticky Stats</span>' : ''}</h2></div>
         ${body}
       </section>`;

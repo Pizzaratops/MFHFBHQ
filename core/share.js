@@ -60,13 +60,17 @@ MFHFB.share = (function () {
   async function capture(el, title, league) {
     const h2c = await loadLib();
     const bg = getComputedStyle(document.body).backgroundColor;
+    // data-share-width: feste Bildbreite (z. B. Night Card zweispaltig auch vom Handy aus).
+    //  windowWidth ≥ Breite, damit die Handy-Media-Queries im Klon nicht greifen.
+    const fixedW = +el.dataset.shareWidth || 0;
     const canvas = await h2c(el, {
       backgroundColor: toRgb(bg) || bg, scale: Math.min(2, window.devicePixelRatio || 1) * 1.5, useCORS: true, logging: false,
-      windowWidth: Math.max(document.documentElement.clientWidth, el.scrollWidth + 40),
+      windowWidth: Math.max(document.documentElement.clientWidth, el.scrollWidth + 40, fixedW + 80),
       onclone: (doc, clone) => {
         flattenColors(el, clone);
         clone.querySelectorAll('.share-btn, .no-share, .bump-tip').forEach(b => b.remove());
         clone.style.padding = '14px';
+        if (fixedW) { clone.style.boxSizing = 'border-box'; clone.style.width = fixedW + 'px'; clone.style.maxWidth = 'none'; }
         const f = doc.createElement('div');
         f.textContent = `MFHFB HQ · ${league ? league.short || league.name : ''} · ${new Date().toLocaleDateString('de-DE')}`;
         f.style.cssText = 'grid-column:1/-1;margin-top:10px;font:700 12px "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;opacity:.7;text-align:right';
