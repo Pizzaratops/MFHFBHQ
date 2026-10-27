@@ -4,7 +4,7 @@
 //  AUTO-GENERIERT von scripts/sync-espn-rosters.js über die GitHub
 //  Action ".github/workflows/sync-espn-rosters.yml". Nicht von Hand
 //  editieren — Änderungen werden beim nächsten Sync überschrieben.
-//  Zuletzt synchronisiert: 2026-10-27T04:32:02.299Z
+//  Zuletzt synchronisiert: 2026-10-27T11:54:34.618Z
 // ============================================================
 
 const ROSTERS_LIVE = {
@@ -24,5 +24,5 @@ const ROSTERS_LIVE = {
 
 const TEAM_RECORDS_LIVE = {
   season: 2026,
-  records: {"bear-witch-project":"2-4-0","burrowhead-dancers":"1-5-0","fred-bulls":"3-3-0","lion-cereals":"1-5-0","vice-city-crackheads":"3-3-0","beastmode":"6-0-0","angry-ducks":"5-1-0","team-beermode":"2-4-0","running-bisons":"4-2-0","the-lamartrix":"4-2-0","charged-up":"3-3-0","london-nopunts":"2-4-0"}
+  records: {"bear-witch-project":"2-5-0","burrowhead-dancers":"1-6-0","fred-bulls":"4-3-0","lion-cereals":"1-6-0","vice-city-crackheads":"3-4-0","beastmode":"6-1-0","angry-ducks":"6-1-0","team-beermode":"2-5-0","running-bisons":"5-2-0","the-lamartrix":"5-2-0","charged-up":"4-3-0","london-nopunts":"3-4-0"}
 };
