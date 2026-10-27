@@ -580,13 +580,6 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .kc-row { cursor: pointer; }
 .kc-row:hover td, .kc-row.open td { background: color-mix(in srgb, var(--league-accent) 7%, transparent); }
 .kc-rk { display: inline-block; min-width: 26px; padding: 3px 5px; border-radius: 7px; font-weight: 800; font-variant-numeric: tabular-nums; text-align: center; }
-.kc-tier { display: inline-block; white-space: nowrap; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; color: #fff; }
-.kc-contender { background: #c9a227; }
-.kc-lastdance { background: #d6455f; }
-.kc-fraud { background: #e0284f; }
-.kc-process { background: #7b3f8c; }
-.kc-rebuild { background: #6b7280; }
-.kc-bubble { background: #3b82c4; }
 .kc-needs .pos { font-size: 10px; min-width: 0; padding: 2px 5px; }
 .kc-drow > td { padding: 0 !important; background: var(--surface2); }
 .kc-detail { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding: 14px 16px; }
@@ -602,7 +595,6 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .kc-pl.st { color: var(--text); font-weight: 700; }
 .kc-pl b { font-variant-numeric: tabular-nums; font-weight: 700; }
 .kc-pl small { color: var(--muted); font-weight: 500; }
-.kc-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px 16px; margin-top: 14px; font-size: 12px; }
 @media (max-width: 640px) {
   /* Detail bleibt beim seitlichen Scrollen der Tabelle im Bild */
   .kc-detail { grid-template-columns: minmax(0, 1fr); position: sticky; left: 0; width: calc(100vw - 36px); box-sizing: border-box; padding: 12px; }

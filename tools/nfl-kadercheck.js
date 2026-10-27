@@ -4,8 +4,8 @@
 //  #/<liga>/kadercheck
 //
 //  Idee wie die Power Rankings von Dynasty Daddy: je Team Ränge für
-//  Overall, Starter, QB/RB/WR/TE und (Dynasty) Draft, dazu ein Tier-Label
-//  und „Team Needs“. Zeile anklicken → Kader je Position mit Werten.
+//  Overall, Starter, QB/RB/WR/TE und (Dynasty) Draft, dazu „Team Needs“
+//  (Tier-Labels auf Wunsch am 27.10.2026 entfernt). Zeile anklicken → Kader je Position mit Werten.
 //
 //  Umschalter (pro Liga gemerkt):
 //   - Saison:  Wert = Saisonprojektion mit Liga-Scoring (PLAYER_PROJECTIONS,
@@ -23,13 +23,6 @@
 //     dass 15 Picks sonst so viel zählen wie der ganze Kader).
 //   - Draft (nur Dynasty) = Summe der gehaltenen Zukunfts-Picks.
 //   - Ø Alter (nur Dynasty) = nach Wert gewichtetes Alter.
-//  Tier (immer aus BEIDEN Modi, damit es nicht mit dem Schalter springt):
-//   Last Dance  = Starter (Saison) obere Hälfte, Dynasty unteres Drittel
-//   Contender   = Starter (Saison) oberes Drittel
-//   Fraud       = Bilanz ≥ 50 %, aber Starter (Saison) untere Hälfte
-//   Trust the Process = Bilanz < 50 %, aber Dynasty/Draft stark
-//   Rebuild     = Starter (Saison) untere Hälfte, sonst
-//   Bubble      = Rest (Mittelfeld)
 //  Team Needs = Positionen im unteren Drittel des gewählten Modus.
 // ============================================================
 
@@ -119,29 +112,9 @@
     };
     POS.forEach(P => { R.season[P] = rankBy(rows, x => x.S.pos[P]); R.dynasty[P] = rankBy(rows, x => x.D.pos[P]); });
 
-    const third = Math.ceil(N / 3), half = N / 2;
-    rows.forEach(x => {
-      const sR = R.season.starter.get(x.id), dR = R.dynasty.overall.get(x.id), drR = R.dynasty.draft.get(x.id);
-      let tier;
-      if (sR <= half && dR > N - third) tier = 'lastdance';
-      else if (sR <= third) tier = 'contender';
-      else if (x.pct != null && x.pct >= 0.5 && sR > half) tier = 'fraud';
-      else if ((x.pct == null || x.pct < 0.5) && (dR <= half || drR <= third)) tier = 'process';
-      else if (sR > half) tier = 'rebuild';
-      else tier = 'bubble';
-      x.tier = tier;
-    });
     return { rows, R, N, slots, hasProj: V.season.size > 0, hasDyn: V.dyn.size > 0 };
   }
 
-  const TIERS = {
-    contender: ['Contender', 'Starter-Aufstellung im oberen Drittel der Liga (Saisonprojektion).'],
-    lastdance: ['Last Dance', 'Jetzt noch gut, aber der Dynasty-Wert gehört zum unteren Drittel — das Fenster schließt sich.'],
-    fraud: ['Fraud', 'Bilanz von 50 % oder besser, aber die Starter gehören zur unteren Hälfte — die Bilanz ist besser als der Kader.'],
-    process: ['Trust the Process', 'Bilanz unter 50 %, aber Dynasty-Wert oder Picks sind stark — die Zukunft passt.'],
-    rebuild: ['Rebuild', 'Starter in der unteren Hälfte, ohne starke Zukunftswerte.'],
-    bubble: ['Bubble', 'Mittelfeld: weder klarer Contender noch Rebuild.'],
-  };
 
   // Farbe je Rang: grün (1) → gelb → rot (N)
   const rankStyle = (r, N) => {
@@ -193,7 +166,7 @@
     };
 
     const head = cols.map(([k, l]) => `<th class="num kc-sort${k === validSort ? ' on' : ''}" data-sort="${k}" title="Nach ${l} sortieren">${l}${k === validSort ? ' ↑' : ''}</th>`).join('');
-    const span = 4 + cols.length + (dyn ? 1 : 0);
+    const span = 3 + cols.length + (dyn ? 1 : 0);
     return `
       <div class="page-head">
         <h1 class="page-title display">🩺 Kader-Check</h1>
@@ -208,13 +181,12 @@
       <div class="card kc-card" data-share="Kader-Check · ${dyn ? 'Dynasty' : 'Saison'}">
       <div class="table-wrap">
         <table class="table kc-table">
-          <thead><tr><th>Team</th><th class="num">Bilanz</th><th>Tier</th>${head}${dyn ? '<th class="num">Ø Alter</th>' : ''}<th>Needs</th></tr></thead>
+          <thead><tr><th>Team</th><th class="num">Bilanz</th>${head}${dyn ? '<th class="num">Ø Alter</th>' : ''}<th>Needs</th></tr></thead>
           <tbody>${rows.map(x => {
-            const t = x.team, nd = needs(x), [tl, tt] = TIERS[x.tier];
+            const t = x.team, nd = needs(x);
             return `<tr class="kc-row" data-kc="${e(x.id)}" tabindex="0">
               <td><span class="team-cell"><span class="team-emoji">${e(t.emoji || '')}</span><span><span class="team-name">${e(t.name)}</span>${t.owner ? `<span class="team-owner">${e(t.owner)}</span>` : ''}</span></span></td>
               <td class="num strong">${x.pct == null ? '–' : ui.record(x.rec)}</td>
-              <td><span class="kc-tier kc-${x.tier}" title="${e(tt)}">${tl}</span></td>
               ${cols.map(([k]) => `<td class="num">${cell(R[k].get(x.id))}</td>`).join('')}
               ${dyn ? `<td class="num">${x.age ? x.age.toFixed(1).replace('.', ',') : '–'}</td>` : ''}
               <td class="kc-needs">${nd.length ? nd.map(P => `<span class="pos pos-${P}">${P}</span>`).join(' ') : '<span class="muted">—</span>'}</td>
@@ -223,8 +195,7 @@
           }).join('')}</tbody>
         </table>
       </div>
-      </div>
-      <div class="kc-legend">${Object.entries(TIERS).map(([k, [l, t]]) => `<div><span class="kc-tier kc-${k}">${l}</span> <span class="muted">${e(t)}</span></div>`).join('')}</div>`;
+      </div>`;
   }
 
   function mount(root, ctx) {
