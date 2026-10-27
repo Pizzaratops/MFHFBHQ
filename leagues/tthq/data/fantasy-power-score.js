@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-27T09:01:16.793Z",
+  "generatedAt": "2026-10-27T10:01:19.422Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 4 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,15 +97,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 329.9,
-        "reb": 129.7,
-        "ast": 75.1,
-        "stl": 24.38,
-        "blk": 16.63,
-        "tpm": 38.5,
-        "to": 40.9,
-        "fgPct": 47.6,
-        "ftPct": 77.7
+        "pts": 329.1,
+        "reb": 126.6,
+        "ast": 75.2,
+        "stl": 24.48,
+        "blk": 15.63,
+        "tpm": 40.2,
+        "to": 41,
+        "fgPct": 47,
+        "ftPct": 78.1
       },
       "rank": {
         "pts": 6,
@@ -114,8 +114,8 @@ const FANTASY_POWER_SCORE = {
         "stl": 4,
         "blk": 4,
         "tpm": 4,
-        "fgPct": 4,
-        "ftPct": 8,
+        "fgPct": 7,
+        "ftPct": 7,
         "to": 7
       },
       "includedCount": 28,
@@ -207,7 +207,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 11,
         "blk": 10,
         "tpm": 5,
-        "fgPct": 7,
+        "fgPct": 6,
         "ftPct": 2,
         "to": 5
       },
@@ -271,7 +271,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 6,
         "blk": 3,
         "tpm": 10,
-        "fgPct": 5,
+        "fgPct": 4,
         "ftPct": 11,
         "to": 11
       },
@@ -337,7 +337,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 9,
         "tpm": 12,
         "fgPct": 1,
-        "ftPct": 7,
+        "ftPct": 8,
         "to": 1
       },
       "includedCount": 28,
@@ -398,7 +398,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 3,
         "blk": 6,
         "tpm": 6,
-        "fgPct": 6,
+        "fgPct": 5,
         "ftPct": 9,
         "to": 10
       },
