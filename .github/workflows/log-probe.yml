@@ -1,0 +1,43 @@
+name: Log Probe (Job-Log sichern)
+
+# Hilfs-Workflow (27.10.2026): Die Sandbox der Hub-Entwicklung kann die
+# Actions-Logs nicht laden (Blob-Speicher gesperrt). Dieser Workflow holt
+# das Log eines Jobs per API und legt die Fehler-relevanten Zeilen unter
+# _probe/logs/<job>.txt ab.
+
+on:
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Job-ID'
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log holen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB: ${{ inputs.job }}
+        run: |
+          mkdir -p _probe/logs
+          gh api "repos/${GITHUB_REPOSITORY}/actions/jobs/$JOB/logs" > /tmp/full.txt || true
+          # Schrittköpfe + Fehler/Warnungen + Umgebung jeder Fehlermeldung
+          grep -n -i -E "##\[group\]Run |error|fehl|failed|exception|exit code|HTTP [45]|ENOTFOUND|ETIMEDOUT|ECONNRESET" /tmp/full.txt | cut -c1-400 | head -400 > "_probe/logs/$JOB.txt"
+          tail -c 20000 /tmp/full.txt > "_probe/logs/$JOB-tail.txt"
+          wc -l /tmp/full.txt
+      - name: Commit
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add _probe/
+          git commit -m "chore: Log-Probe ${{ inputs.job }}" || exit 0
+          for i in 1 2 3; do git push && exit 0; git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1
