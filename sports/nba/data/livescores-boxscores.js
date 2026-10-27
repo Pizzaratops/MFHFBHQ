@@ -2074,9 +2074,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909877",
-      line: "Brooklyn Nets @ Boston Celtics (10/27 - 7:30 PM EDT)",
+      line: "Brooklyn Nets @ Boston Celtics (9:28 - 1st)",
       completed: false,
-      statusText: "10/27 - 7:30 PM EDT",
+      statusText: "9:28 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
