@@ -1,0 +1,19 @@
+{
+  "league": "nba",
+  "date": "2026-10-26",
+  "games": [
+    "Washington Wizards 103 @ Charlotte Hornets 110 (Final)",
+    "Minnesota Timberwolves @ Cleveland Cavaliers (End of OT)",
+    "Chicago Bulls @ Boston Celtics (End of 4th)",
+    "Dallas Mavericks @ Miami Heat (20.4 - 4th)",
+    "Indiana Pacers @ Milwaukee Bucks (8:27 - 4th)",
+    "Phoenix Suns @ Oklahoma City Thunder (8:49 - 4th)",
+    "Atlanta Hawks @ Houston Rockets (6:36 - 3rd)",
+    "Memphis Grizzlies @ Utah Jazz (5:54 - 2nd)",
+    "Golden State Warriors @ Denver Nuggets (10/26 - 10:00 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 45.6,
+    "ft": 81.3
+  }
+}
