@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-27T06:01:14.505Z",
+  "generatedAt": "2026-10-27T07:01:20.596Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 4 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -115,7 +115,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 4,
         "tpm": 4,
         "fgPct": 4,
-        "ftPct": 9,
+        "ftPct": 8,
         "to": 7
       },
       "includedCount": 28,
@@ -142,7 +142,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 3,
         "reb": 7,
         "ast": 6,
-        "stl": 3,
+        "stl": 2,
         "blk": 8,
         "tpm": 1,
         "fgPct": 10,
@@ -171,7 +171,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 2,
-        "reb": 6,
+        "reb": 5,
         "ast": 3,
         "stl": 7,
         "blk": 11,
@@ -273,7 +273,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 10,
         "fgPct": 5,
         "ftPct": 11,
-        "to": 10
+        "to": 11
       },
       "includedCount": 26,
       "projCount": 26,
@@ -381,29 +381,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 346.2,
-        "reb": 122.1,
-        "ast": 92.8,
-        "stl": 26.52,
-        "blk": 14.72,
-        "tpm": 36,
-        "to": 45,
+        "pts": 336.6,
+        "reb": 119.3,
+        "ast": 87.7,
+        "stl": 25.22,
+        "blk": 14.39,
+        "tpm": 36.1,
+        "to": 43.3,
         "fgPct": 47.5,
-        "ftPct": 78
+        "ftPct": 77.7
       },
       "rank": {
         "pts": 4,
-        "reb": 5,
+        "reb": 6,
         "ast": 2,
-        "stl": 2,
+        "stl": 3,
         "blk": 6,
         "tpm": 6,
         "fgPct": 6,
-        "ftPct": 8,
-        "to": 11
+        "ftPct": 9,
+        "to": 10
       },
       "includedCount": 28,
-      "projCount": 27,
+      "projCount": 28,
       "skippedCount": 0,
       "skippedPlayers": []
     },
