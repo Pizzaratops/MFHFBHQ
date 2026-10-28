@@ -2235,9 +2235,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909881",
-      line: "Miami Heat @ Atlanta Hawks (2:31 - 1st)",
+      line: "Miami Heat @ Atlanta Hawks (2:38 - 2nd)",
       completed: false,
-      statusText: "2:31 - 1st",
+      statusText: "2:38 - 2nd",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -2253,9 +2253,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909882",
-      line: "Washington Wizards @ Cleveland Cavaliers (2:44 - 1st)",
+      line: "Washington Wizards @ Cleveland Cavaliers (3:29 - 2nd)",
       completed: false,
-      statusText: "2:44 - 1st",
+      statusText: "3:29 - 2nd",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -2271,9 +2271,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909883",
-      line: "Charlotte Hornets @ Detroit Pistons (4:16 - 1st)",
+      line: "Charlotte Hornets @ Detroit Pistons (5:55 - 2nd)",
       completed: false,
-      statusText: "4:16 - 1st",
+      statusText: "5:55 - 2nd",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -2289,9 +2289,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909884",
-      line: "Philadelphia 76ers @ Indiana Pacers (4:24 - 1st)",
+      line: "Philadelphia 76ers @ Indiana Pacers (9:16 - 2nd)",
       completed: false,
-      statusText: "4:24 - 1st",
+      statusText: "9:16 - 2nd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -2307,9 +2307,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909885",
-      line: "Orlando Magic @ Toronto Raptors (10/28 - 7:30 PM EDT)",
+      line: "Orlando Magic @ Toronto Raptors (4:17 - 1st)",
       completed: false,
-      statusText: "10/28 - 7:30 PM EDT",
+      statusText: "4:17 - 1st",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
