@@ -2074,9 +2074,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909877",
-      line: "Brooklyn Nets @ Boston Celtics (2:53 - 1st)",
+      line: "Brooklyn Nets @ Boston Celtics (3.4 - 4th)",
       completed: false,
-      statusText: "2:53 - 1st",
+      statusText: "3.4 - 4th",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -2092,9 +2092,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909878",
-      line: "Detroit Pistons @ New York Knicks (10/27 - 8:00 PM EDT)",
+      line: "Detroit Pistons @ New York Knicks (6:39 - 3rd)",
       completed: false,
-      statusText: "10/27 - 8:00 PM EDT",
+      statusText: "6:39 - 3rd",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -2110,9 +2110,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909879",
-      line: "Sacramento Kings @ San Antonio Spurs (10/27 - 8:00 PM EDT)",
+      line: "Sacramento Kings @ San Antonio Spurs (10:51 - 4th)",
       completed: false,
-      statusText: "10/27 - 8:00 PM EDT",
+      statusText: "10:51 - 4th",
       away: {
         abbr: "SAC", name: "Sacramento Kings", score: null,
         players: [
