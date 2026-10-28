@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-28T19:08:28.739Z
+//  Stand: 2026-10-28T23:36:09.992Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1033,7 +1033,7 @@ const CBB_PLAYER_POOL = [
 ["064uo","Jackson Fields","GaTec","F","F/C,Flx","FA"],
 ["06hmt","Jackson Hicke","Princ","G","G,Flx","T"],
 ["06gv0","Jackson Holcombe","Utah","G","G,Flx","T"],
-["070ut","Jackson Keith","David","F","F/C,Flx","FA"],
+["070ut","Jackson Keith","David","F","F/C,G,Flx","FA"],
 ["07a5k","Jackson Kiss","UNLV","F","F/C,Flx","T"],
 ["06mxe","Jackson McAndrew","Crei","F","F/C,Flx","T"],
 ["06yri","Jackson McVey","GaTec","C","F/C,Flx","FA"],
@@ -1290,6 +1290,7 @@ const CBB_PLAYER_POOL = [
 ["075yg","Jonas Boulefaa","Mur","C","F/C,Flx","T"],
 ["0710q","Jonas Johnson","DeP","F","F/C,Flx","FA"],
 ["07a1u","Jonas Oware","Yale","C","F/C,Flx","FA"],
+["06hyi","Jonathan Griman","AzSt","F","F/C,Flx","FA"],
 ["06mx7","Jonathan Powell","Pitt","G","F/C,G,Flx","FA"],
 ["079ou","Jonathan Sanderson","ND","G","G,Flx","FA"],
 ["07a80","Jones Lay","Fla","C","F/C,Flx","FA"],
