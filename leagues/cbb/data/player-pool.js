@@ -1,10 +1,11 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-28T13:34:31.025Z
+//  Stand: 2026-10-28T15:07:24.092Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
+["01bth","01bth","","","G,Flx","FA"],
 ["064ez","064ez","","","G,Flx","T"],
 ["06qgl","A.J. Patterson","AF","G","G,Flx","FA"],
 ["079w5","Aaron Banks","LoyMa","G","G,Flx","FA"],
@@ -352,7 +353,6 @@ const CBB_PLAYER_POOL = [
 ["070us","Bryson Cardinal","Butl","F","F/C,Flx","FA"],
 ["079eh","Bryson Howard","Duke","G","G,Flx","FA"],
 ["06rru","Bryson Tiller","Mizzou","F","F/C,Flx","T"],
-["06msm","Bryson Tucker","Wash","F","F/C,Flx","FA"],
 ["0797j","Bryton Barrett","GMas","F","F/C,Flx","FA"],
 ["06gmf","Bukky Oboye","Aub","C","F/C,Flx","FA"],
 ["07103","Butta Johnson","VaTec","G","G,Flx","FA"],
@@ -646,7 +646,6 @@ const CBB_PLAYER_POOL = [
 ["06h5v","Deshayne Montgomery","Lou","G","G,Flx","T"],
 ["0799j","Desmeon Jones","WichSt","G","G,Flx","FA"],
 ["0796y","Desmond Bellot","Ford","G","G,Flx","FA"],
-["064mw","Desmond Claude","Wash","G","G,Flx","FA"],
 ["06dut","Desmond Roberts","UVA","G","G,Flx","FA"],
 ["06n5t","Deuce Jones","UAB","G","G,Flx","T"],
 ["071bx","Devin Booker","LaSal","G","G,Flx","FA"],
@@ -1055,7 +1054,6 @@ const CBB_PLAYER_POOL = [
 ["06msq","Jacob Koch","Iowa","G","G,Flx","FA"],
 ["079di","Jacob Lanier","Nebras","F","F/C,G,Flx","FA"],
 ["06dva","Jacob McFarland","Pacif","C","F/C,Flx","FA"],
-["05piv","Jacob Ognacevic","Wash","F","F/C,Flx","FA"],
 ["070o9","Jacob Patrick","SMU","G","G,Flx","FA"],
 ["070om","Jacob Ross","UConn","F","F/C,Flx","FA"],
 ["06gle","Jacob Theodosiou","Duke","G","G,Flx","FA"],
@@ -1361,7 +1359,6 @@ const CBB_PLAYER_POOL = [
 ["06g3w","JT Toppin","TxTch","F","F/C,Flx","T"],
 ["071sb","JT White","SeatU","G","G,Flx","FA"],
 ["07ag0","Juan Fernandez","SouthCar","F","F/C,Flx","T"],
-["01bth","Juan Fernandez","SouthCar","G","G,Flx","FA"],
 ["06n9r","Juke Harris","Tenn","G","G,Flx","T"],
 ["07a2l","Jules Isebaert","NrthIA","F","F/C,Flx","FA"],
 ["079zs","Julian Adigun","Harv","F","F/C,Flx","T"],
@@ -1977,7 +1974,6 @@ const CBB_PLAYER_POOL = [
 ["06gue","Quentin Jones","StLou","G","G,Flx","T"],
 ["06q4s","Quentin McCoy","Ill","G","G,Flx","FA"],
 ["06ymz","Quentin Rhymes","Fres","G","G,Flx","FA"],
-["05wuh","Quimari Peterson","Wash","G","G,Flx","FA"],
 ["0652e","Quin Berger","Mia-FL","G","G,Flx","FA"],
 ["07abj","Quincy Wadley","Okla","G","G,Flx","FA"],
 ["079r3","Quincy Watson","UVA","G","G,Flx","FA"],
