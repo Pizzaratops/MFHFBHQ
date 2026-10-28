@@ -1,0 +1,14 @@
+{
+  "league": "nba",
+  "date": "2026-10-27",
+  "games": [
+    "Brooklyn Nets 124 @ Boston Celtics 125 (Final/OT)",
+    "Detroit Pistons 97 @ New York Knicks 111 (Final)",
+    "Sacramento Kings 103 @ San Antonio Spurs 130 (Final)",
+    "Portland Trail Blazers @ Los Angeles Lakers (10/27 - 11:00 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 45.8,
+    "ft": 75.7
+  }
+}
