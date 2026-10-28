@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-28T15:07:24.272Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-28T16:07:26.101Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2422,11 +2422,10 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Toneari Lane","nbaTeam":"USD","pos":"G","experience":"veteran","minutesAvg":26.8,"z30":1.16,"bestCat30":"3PM","worstCat30":"REB","lastSeasonRank":1088,"statsWindow":"last-season","compositeScore":-19.61,"signalsUsed":1,"gone":true,"rank":2416},
   {"name":"Alex Steen","nbaTeam":"FSU","pos":"F","experience":"veteran","minutesAvg":19.8,"z30":0.96,"bestCat30":"FG%","worstCat30":"3PM","lastSeasonRank":1134,"statsWindow":"last-season","compositeScore":-19.68,"signalsUsed":1,"gone":true,"rank":2417},
   {"name":"Isaiah Walker","nbaTeam":"Xav","pos":"G","experience":"veteran","minutesAvg":17,"z30":-2.13,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2150,"statsWindow":"last-season","compositeScore":-20.71,"signalsUsed":1,"gone":true,"rank":2418},
-  {"name":"01bth","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
-  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2421},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2422},
-  {"name":"Jaden Bobbett","nbaTeam":"LSU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2423},
-  {"name":"Jared McGregor","nbaTeam":"BYU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2424},
-  {"name":"PJ Carter","nbaTeam":"LSU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2425}
+  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2421},
+  {"name":"Jaden Bobbett","nbaTeam":"LSU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2422},
+  {"name":"Jared McGregor","nbaTeam":"BYU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2423},
+  {"name":"PJ Carter","nbaTeam":"LSU","pos":"G","experience":"veteran","compositeScore":-119,"signalsUsed":0,"gone":true,"rank":2424}
 ];
