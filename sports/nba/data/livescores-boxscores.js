@@ -2235,9 +2235,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909881",
-      line: "Miami Heat @ Atlanta Hawks (10/28 - 7:00 PM EDT)",
+      line: "Miami Heat @ Atlanta Hawks (2:31 - 1st)",
       completed: false,
-      statusText: "10/28 - 7:00 PM EDT",
+      statusText: "2:31 - 1st",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -2253,9 +2253,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909882",
-      line: "Washington Wizards @ Cleveland Cavaliers (10/28 - 7:00 PM EDT)",
+      line: "Washington Wizards @ Cleveland Cavaliers (2:44 - 1st)",
       completed: false,
-      statusText: "10/28 - 7:00 PM EDT",
+      statusText: "2:44 - 1st",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -2271,9 +2271,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909883",
-      line: "Charlotte Hornets @ Detroit Pistons (10/28 - 7:00 PM EDT)",
+      line: "Charlotte Hornets @ Detroit Pistons (4:16 - 1st)",
       completed: false,
-      statusText: "10/28 - 7:00 PM EDT",
+      statusText: "4:16 - 1st",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -2289,9 +2289,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909884",
-      line: "Philadelphia 76ers @ Indiana Pacers (10/28 - 7:00 PM EDT)",
+      line: "Philadelphia 76ers @ Indiana Pacers (4:24 - 1st)",
       completed: false,
-      statusText: "10/28 - 7:00 PM EDT",
+      statusText: "4:24 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
