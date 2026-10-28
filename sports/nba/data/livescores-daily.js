@@ -1249,7 +1249,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-27": {
-      games: ["Brooklyn Nets 124 @ Boston Celtics 125 (Final/OT)","Detroit Pistons 97 @ New York Knicks 111 (Final)","Sacramento Kings 103 @ San Antonio Spurs 130 (Final)","Portland Trail Blazers @ Los Angeles Lakers (6:59 - 2nd)"],
+      games: ["Brooklyn Nets 124 @ Boston Celtics 125 (Final/OT)","Detroit Pistons 97 @ New York Knicks 111 (Final)","Sacramento Kings 103 @ San Antonio Spurs 130 (Final)","Portland Trail Blazers @ Los Angeles Lakers (4:20 - 3rd)"],
       leagueAvg: { fg: 45.8, ft: 75.7 },
       players: [
         { rank: 1, name: "Victor Wembanyama", team: "SA", min: 27, pts: 29, reb: 10, ast: 2, stl: 2, blk: 5, to: 0, tpm: 0, fgPct: 66.7, ftPct: 100, composite: 14.16, zScores: { pts: 2.144, reb: 1.735, ast: -0.148, stl: 1.561, blk: 5.328, tpm: -0.672, fgImpact: 2.935, ftImpact: 0.391, to: 0.882 } },

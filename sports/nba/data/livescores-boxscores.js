@@ -2195,9 +2195,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909880",
-      line: "Portland Trail Blazers @ Los Angeles Lakers (6:59 - 2nd)",
+      line: "Portland Trail Blazers @ Los Angeles Lakers (4:20 - 3rd)",
       completed: false,
-      statusText: "6:59 - 2nd",
+      statusText: "4:20 - 3rd",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
