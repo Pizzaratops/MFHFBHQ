@@ -3,7 +3,7 @@
 // ============================================================
 //  AUTO-GENERIERT von scripts/build-dynasty-live.js (tthq-sync).
 //  Nicht von Hand editieren. Zuletzt aktualisiert: 2026-10-28
-//  Stand der Saisondaten: 2026-10-26
+//  Stand der Saisondaten: 2026-10-27
 //
 //  Nur signifikante Bewegungen (≥ 8 Spiele, |shift| ≥ 0.08).
 //  liveRank ersetzt im Trade Analyzer/Finder den Dynasty-Rang, wenn
@@ -14,7 +14,7 @@
 //  expRank/seasonRank = Rang im gemeinsamen Pool (Projection vs. Saison).
 // ============================================================
 
-const DYNASTY_LIVE_META = {"mode":"season","date":"2026-10-26","pool":331,"expectation":"snapshots/projections-2026-27-opening-night.js"};
+const DYNASTY_LIVE_META = {"mode":"season","date":"2026-10-27","pool":334,"expectation":"snapshots/projections-2026-27-opening-night.js"};
 
 const DYNASTY_LIVE = [
 
