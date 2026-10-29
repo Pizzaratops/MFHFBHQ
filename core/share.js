@@ -7,6 +7,10 @@
 //  als PNG gerendert, mit Fußzeile „MFHFB HQ · Liga · Datum“:
 //  - Handy mit Web-Share-API: Teilen-Dialog (Instagram, WhatsApp …)
 //  - sonst: Download als PNG
+//  29.10.2026: Standard = nur Werte (Hinweise/Fußnoten/Erklärungen fallen im
+//  Bild weg, SHARE_STRIP); lange drücken bzw. Rechtsklick auf 📸 = mit
+//  Erklärungen. Breite Tabellen werden in voller Breite gerendert statt
+//  (v. a. auf dem Handy) am Bildschirmrand abgeschnitten.
 //  html2canvas kennt color-mix()/color(srgb …) nicht → die berechneten
 //  Farben werden im Klon vorher per Canvas in rgb() umgerechnet.
 // ============================================================
@@ -57,18 +61,27 @@ MFHFB.share = (function () {
     });
   }
 
-  async function capture(el, title, league) {
+  // Erklärende Elemente, die im „Nur Werte“-Bild wegfallen
+  const SHARE_STRIP = '.note:not(.tr-verdict), details, p.muted, .page-sub, .cbb-foot, .kc-more, .share-explain, .rapm-note, .tip-i';
+
+  async function capture(el, title, league, opts = {}) {
     const h2c = await loadLib();
     const bg = getComputedStyle(document.body).backgroundColor;
     // data-share-width: feste Bildbreite (z. B. Night Card zweispaltig auch vom Handy aus).
     //  windowWidth ≥ Breite, damit die Handy-Media-Queries im Klon nicht greifen.
     const fixedW = +el.dataset.shareWidth || 0;
+    // Tabellen mit seitlichem Scrollen (Handy): ganze Breite ins Bild statt abschneiden
+    const wide = !fixedW && [el, ...el.querySelectorAll('.table-wrap')].some(w => w.scrollWidth > w.clientWidth + 4);
+    const needW = wide ? Math.max(el.scrollWidth, ...[...el.querySelectorAll('.table-wrap')].map(w => w.scrollWidth)) : 0;
     const canvas = await h2c(el, {
       backgroundColor: toRgb(bg) || bg, scale: Math.min(2, window.devicePixelRatio || 1) * 1.5, useCORS: true, logging: false,
-      windowWidth: Math.max(document.documentElement.clientWidth, el.scrollWidth + 40, fixedW + 80),
+      windowWidth: Math.max(document.documentElement.clientWidth, el.scrollWidth + 40, fixedW + 80, wide ? Math.round(needW * 1.6) + 80 : 0),
       onclone: (doc, clone) => {
         flattenColors(el, clone);
         clone.querySelectorAll('.share-btn, .no-share, .bump-tip').forEach(b => b.remove());
+        if (!opts.explain) clone.querySelectorAll(SHARE_STRIP).forEach(b => b.remove());
+        clone.querySelectorAll('.table-wrap').forEach(w => { w.style.overflow = 'visible'; w.style.maxWidth = 'none'; });
+        if (wide) { clone.style.overflow = 'visible'; clone.style.boxSizing = 'border-box'; clone.style.width = 'max-content'; clone.style.minWidth = el.clientWidth + 'px'; clone.style.maxWidth = 'none'; }
         clone.style.padding = '14px';
         if (fixedW) { clone.style.boxSizing = 'border-box'; clone.style.width = fixedW + 'px'; clone.style.maxWidth = 'none'; }
         const f = doc.createElement('div');
@@ -83,8 +96,8 @@ MFHFB.share = (function () {
 
   const slug = s => String(s || 'mfhfb').toLowerCase().normalize('NFD').replace(/[^\w]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 
-  async function share(el, title, league) {
-    const blob = await capture(el, title, league);
+  async function share(el, title, league, opts) {
+    const blob = await capture(el, title, league, opts);
     const name = `${league ? league.key + '-' : ''}${slug(title)}.png`;
     const file = new File([blob], name, { type: 'image/png' });
     if (navigator.canShare && navigator.canShare({ files: [file] }) && matchMedia('(pointer: coarse)').matches) {
@@ -109,15 +122,20 @@ MFHFB.share = (function () {
     root.querySelectorAll('[data-share]').forEach(el => {
       if (el.querySelector(':scope > .share-btn')) return;
       const b = document.createElement('button');
-      b.type = 'button'; b.className = 'share-btn'; b.title = 'Als Bild teilen / speichern';
+      b.type = 'button'; b.className = 'share-btn'; b.title = 'Als Bild teilen / speichern (nur Werte) · lange drücken: mit Erklärungen';
       b.innerHTML = '📸<span> Teilen</span>';
-      b.addEventListener('click', async ev => {
-        ev.preventDefault(); ev.stopPropagation();
-        b.disabled = true; const old = b.innerHTML; b.innerHTML = '⏳';
-        try { const r = await share(el, el.dataset.share, league); b.innerHTML = r === 'downloaded' ? '✅' : old; }
+      const run = async explain => {
+        b.disabled = true; const old = b.innerHTML; b.innerHTML = explain ? '📝⏳' : '⏳';
+        try { const r = await share(el, el.dataset.share, league, { explain }); b.innerHTML = r === 'downloaded' ? '✅' : old; }
         catch (e) { console.error(e); b.innerHTML = '⚠️'; b.title = 'Fehler: ' + e.message; }
         setTimeout(() => { b.innerHTML = old; b.disabled = false; }, 1500);
-      });
+      };
+      // Tippen = nur Werte; lange drücken (550 ms) oder Rechtsklick = mit Erklärungen
+      let timer = null, longDone = false;
+      b.addEventListener('pointerdown', () => { longDone = false; timer = setTimeout(() => { longDone = true; run(true); }, 550); });
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => b.addEventListener(t, () => clearTimeout(timer)));
+      b.addEventListener('contextmenu', ev => { ev.preventDefault(); clearTimeout(timer); if (!longDone) { longDone = true; run(true); } });
+      b.addEventListener('click', ev => { ev.preventDefault(); ev.stopPropagation(); if (longDone) { longDone = false; return; } run(false); });
       if (getComputedStyle(el).position === 'static') el.classList.add('share-host');
       el.appendChild(b);
     });

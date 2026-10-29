@@ -207,7 +207,7 @@
           ${keys.map(([k, l]) => `<button type="button" class="seg-btn${k === sortKey ? ' active' : ''}" data-sort="${k}">${l}</button>`).join('')}
         </div>
       </div>
-      <div class="kc-grid" data-share="Kader-Check · ${dyn ? 'Dynasty' : 'Saison'}">${rows.map(card).join('')}</div>
+      <div class="kc-grid" data-share-width="760" data-share="Kader-Check · ${dyn ? 'Dynasty' : 'Saison'}">${rows.map(card).join('')}</div>
       <div class="dna-modal kc-modal" data-kcmodal hidden></div>`;
   }
 

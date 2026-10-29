@@ -278,7 +278,7 @@
     const when = avg ? `${e(fmtShort(entry.windowStart))} – ${e(fmtShort(entry.windowEnd))}` : `${e(fmtLong(r.date))} · ${(entry.games || []).length} Spiele`;
     return `<div class="controls nc-controls">${sel}</div>
       <section class="card nc-card${sticky ? ' sticky' : ''}" data-share-width="760" data-share="${e(label)} · ${e(fmtShort(r.date))}">
-        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${when}${kind === 'fa' ? ` · Free Agents ${e(ctx.league.short || ctx.league.name)}` : ''}${minNote ? ' · ' + minNote : ''}</div><h2 class="nc-title display">${e(K.label)}${sticky ? ' <span class="nc-mode">Sticky Stats</span>' : ''}</h2></div>
+        <div class="nc-head"><div class="nc-kicker">${e(compLabel)} · ${when}${kind === 'fa' ? ` · Free Agents ${e(ctx.league.short || ctx.league.name)}` : ''}${minNote ? `<span class="share-explain"> · ${minNote}</span>` : ''}</div><h2 class="nc-title display">${e(K.label)}${sticky ? ' <span class="nc-mode">Sticky Stats</span>' : ''}</h2></div>
         ${body}
       </section>`;
   }
