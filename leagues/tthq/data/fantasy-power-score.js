@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-29T11:01:18.290Z",
+  "generatedAt": "2026-10-29T11:28:04.156Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 5 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -145,7 +145,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 3,
         "blk": 8,
         "tpm": 2,
-        "fgPct": 9,
+        "fgPct": 10,
         "ftPct": 3,
         "to": 6
       },
@@ -270,7 +270,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 4,
         "stl": 7,
         "blk": 2,
-        "tpm": 10,
+        "tpm": 9,
         "fgPct": 4,
         "ftPct": 11,
         "to": 11
@@ -349,25 +349,25 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 285.7,
-        "reb": 110,
-        "ast": 64.4,
-        "stl": 20.75,
-        "blk": 13.42,
-        "tpm": 32.9,
+        "pts": 287.1,
+        "reb": 114.4,
+        "ast": 64,
+        "stl": 20.9,
+        "blk": 14.48,
+        "tpm": 31.8,
         "to": 36.1,
-        "fgPct": 46.2,
-        "ftPct": 78.8
+        "fgPct": 46.8,
+        "ftPct": 78.2
       },
       "rank": {
         "pts": 10,
         "reb": 10,
         "ast": 9,
         "stl": 10,
-        "blk": 7,
-        "tpm": 9,
-        "fgPct": 10,
-        "ftPct": 6,
+        "blk": 6,
+        "tpm": 10,
+        "fgPct": 9,
+        "ftPct": 7,
         "to": 4
       },
       "includedCount": 28,
@@ -395,7 +395,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 5,
         "ast": 2,
         "stl": 2,
-        "blk": 6,
+        "blk": 7,
         "tpm": 6,
         "fgPct": 5,
         "ftPct": 9,
@@ -429,7 +429,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12,
         "tpm": 11,
         "fgPct": 12,
-        "ftPct": 7,
+        "ftPct": 6,
         "to": 3
       },
       "includedCount": 26,
