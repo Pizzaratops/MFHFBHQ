@@ -2235,9 +2235,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909881",
-      line: "Miami Heat @ Atlanta Hawks (2:38 - 2nd)",
+      line: "Miami Heat @ Atlanta Hawks (1:30 - 2nd)",
       completed: false,
-      statusText: "2:38 - 2nd",
+      statusText: "1:30 - 2nd",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -2271,9 +2271,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909883",
-      line: "Charlotte Hornets @ Detroit Pistons (5:55 - 2nd)",
+      line: "Charlotte Hornets @ Detroit Pistons (5:20 - 2nd)",
       completed: false,
-      statusText: "5:55 - 2nd",
+      statusText: "5:20 - 2nd",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -2289,9 +2289,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909884",
-      line: "Philadelphia 76ers @ Indiana Pacers (9:16 - 2nd)",
+      line: "Philadelphia 76ers @ Indiana Pacers (8:20 - 2nd)",
       completed: false,
-      statusText: "9:16 - 2nd",
+      statusText: "8:20 - 2nd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
