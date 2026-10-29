@@ -1,0 +1,246 @@
+-28T22:30:11.0905699Z ##[group]Run if grep -rlnE '^(<{7} |={7}$|>{7} )' --include='*.js' sports/nba leagues/tthq leagues/funkytown; then
+2026-10-28T22:30:11.0906785Z [36;1mif grep -rlnE '^(<{7} |={7}$|>{7} )' --include='*.js' sports/nba leagues/tthq leagues/funkytown; then[0m
+2026-10-28T22:30:11.0907655Z [36;1m  echo "::error::Unaufgelöster Git-Merge-Konflikt in den oben gelisteten Dateien -- bitte manuell auflösen und neu pushen."[0m
+2026-10-28T22:30:11.0908285Z [36;1m  exit 1[0m
+2026-10-28T22:30:11.0908534Z [36;1mfi[0m
+2026-10-28T22:30:11.0931509Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:11.0931839Z env:
+2026-10-28T22:30:11.0932082Z   DATE_ARG: 
+2026-10-28T22:30:11.0932535Z   END_ARG: 
+2026-10-28T22:30:11.0932771Z   LEAGUE_ARG: auto
+2026-10-28T22:30:11.0933022Z ##[endgroup]
+2026-10-28T22:30:11.1240044Z ##[group]Run actions/setup-node@v4
+2026-10-28T22:30:11.1240416Z with:
+2026-10-28T22:30:11.1240666Z   node-version: 20
+2026-10-28T22:30:11.1240922Z   always-auth: false
+2026-10-28T22:30:11.1241197Z   check-latest: false
+2026-10-28T22:30:11.1244100Z   token: ***
+2026-10-28T22:30:11.1244362Z env:
+2026-10-28T22:30:11.1244587Z   DATE_ARG: 
+2026-10-28T22:30:11.1244843Z   END_ARG: 
+2026-10-28T22:30:11.1245076Z   LEAGUE_ARG: auto
+2026-10-28T22:30:11.1245323Z ##[endgroup]
+2026-10-28T22:30:11.2747003Z Attempting to download 20...
+2026-10-28T22:30:11.3237956Z (node:2539) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-28T22:30:11.9206589Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-28T22:30:11.9256261Z Acquiring 20.20.2 - x64 from https://github.com/actions/node-versions/releases/download/20.20.2-23521894959/node-20.20.2-linux-x64.tar.gz
+2026-10-28T22:30:12.3514036Z Extracting ...
+2026-10-28T22:30:12.3659245Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/bf59194d-0092-4e5d-b2da-a1c25a331ffe -f /home/runner/work/_temp/d9a62115-c757-425c-b994-bbe1e8308139
+2026-10-28T22:30:13.3643269Z Adding to the cache ...
+2026-10-28T22:30:14.9250038Z ##[group]Environment details
+2026-10-28T22:30:15.1711587Z node: v20.20.2
+2026-10-28T22:30:15.1712676Z npm: 10.8.2
+2026-10-28T22:30:15.1713037Z yarn: 1.22.22
+2026-10-28T22:30:15.1713794Z ##[endgroup]
+2026-10-28T22:30:15.1911146Z ##[group]Run node scripts/daily-9cat.js ${DATE_ARG} --league=${LEAGUE_ARG}
+2026-10-28T22:30:15.1911724Z [36;1mnode scripts/daily-9cat.js ${DATE_ARG} --league=${LEAGUE_ARG}[0m
+2026-10-28T22:30:15.1935307Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:15.1935584Z env:
+2026-10-28T22:30:15.1935782Z   DATE_ARG: 
+2026-10-28T22:30:15.1936004Z   END_ARG: 
+2026-10-28T22:30:15.1936189Z   LEAGUE_ARG: auto
+2026-10-28T22:30:15.1936405Z ##[endgroup]
+2026-10-28T22:30:15.2382566Z Lade Spielplan nba 2026-10-27...
+2026-10-28T22:30:15.4174258Z   … Scoreboard: Unexpected end of JSON input (0 Bytes) — neuer Versuch in 2s
+2026-10-28T22:30:17.4370232Z   … Scoreboard: Unexpected end of JSON input (0 Bytes) — neuer Versuch in 5s
+2026-10-28T22:30:22.4881206Z   … Scoreboard: Unexpected end of JSON input (0 Bytes) — neuer Versuch in 10s
+2026-10-28T22:30:32.5504165Z   ! nba 2026-10-27: Scoreboard: Unexpected end of JSON input (0 Bytes)
+2026-10-28T22:30:32.5514410Z Lade Spielplan nba 2026-10-28...
+2026-10-28T22:30:32.6052845Z 
+2026-10-28T22:30:32.6053817Z === Daily 9cat Ranking — 2026-10-28 (Liga: nba) ===
+2026-10-28T22:30:32.6054200Z 
+2026-10-28T22:30:32.6057293Z 12 Spiel(e) gefunden (0 abgeschlossen, 12 noch ausstehend): MIA @ ATL, WSH @ CLE, CHA @ DET, PHI @ IND, ORL @ TOR, NY @ CHI, HOU @ MIL, GS @ MIN, DEN @ NO, SA @ UTAH, OKC @ DAL, LAL @ LAC
+2026-10-28T22:30:32.6058817Z 
+2026-10-28T22:30:32.6059456Z Lade Boxscores für abgeschlossene Spiele...
+2026-10-28T22:30:32.6060233Z 0 Spieler mit Einsatzzeit gefunden.
+2026-10-28T22:30:32.6060517Z 
+2026-10-28T22:30:32.6061678Z Noch keine abgeschlossenen Spiele mit Boxscore-Daten — CSV/Meta/9cat-Ranking werden übersprungen. Spielplan (Box Scores) wird trotzdem geschrieben.
+2026-10-28T22:30:32.6062897Z 
+2026-10-28T22:30:32.6066871Z Games-JSON (Box Scores) gespeichert: /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/scripts/data/daily-9cat_nba_2026-10-28.games.json
+2026-10-28T22:30:32.6069082Z Fehler: 1 Spielplan-Abruf(e) fehlgeschlagen
+2026-10-28T22:30:32.6069586Z 
+2026-10-28T22:30:32.6122000Z ##[error]Process completed with exit code 1.
+2026-10-28T22:30:32.6177130Z ##[group]Run node scripts/update-preseason-score.js
+2026-10-28T22:30:32.6177596Z [36;1mnode scripts/update-preseason-score.js[0m
+2026-10-28T22:30:32.6198032Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:32.6198292Z env:
+2026-10-28T22:30:32.6198474Z   DATE_ARG: 
+2026-10-28T22:30:32.6198664Z   END_ARG: 
+2026-10-28T22:30:32.6198848Z   LEAGUE_ARG: auto
+2026-10-28T22:30:32.6199056Z ##[endgroup]
+2026-10-28T22:30:32.6896337Z Preseason vorbei (letzter Spieltag 20261016) – nichts zu tun.
+2026-10-28T22:30:32.6961628Z ##[group]Run if [ -n "$DATE_ARG" ]; then
+2026-10-28T22:30:32.6961993Z [36;1mif [ -n "$DATE_ARG" ]; then[0m
+2026-10-28T22:30:32.6963013Z [36;1m  node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=60[0m
+2026-10-28T22:30:32.6963520Z [36;1melse[0m
+2026-10-28T22:30:32.6963901Z [36;1m  node scripts/convert-to-livescores.js --league="$LEAGUE_ARG" --keep-days=60[0m
+2026-10-28T22:30:32.6964319Z [36;1mfi[0m
+2026-10-28T22:30:32.6984803Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:32.6985066Z env:
+2026-10-28T22:30:32.6985250Z   DATE_ARG: 
+2026-10-28T22:30:32.6985438Z   END_ARG: 
+2026-10-28T22:30:32.6985622Z   LEAGUE_ARG: auto
+2026-10-28T22:30:32.6985822Z ##[endgroup]
+2026-10-28T22:30:32.8358937Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/livescores-daily.js aktualisiert: nba / 2026-10-27 (93 Spieler, 4 Spiel(e)).
+2026-10-28T22:30:32.8478830Z ##[group]Run if [ -n "$DATE_ARG" ]; then
+2026-10-28T22:30:32.8479176Z [36;1mif [ -n "$DATE_ARG" ]; then[0m
+2026-10-28T22:30:32.8479660Z [36;1m  node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --date="$DATE_ARG" --keep-days=14[0m
+2026-10-28T22:30:32.8480141Z [36;1melse[0m
+2026-10-28T22:30:32.8480489Z [36;1m  node scripts/convert-to-boxscores.js --league="$LEAGUE_ARG" --keep-days=14[0m
+2026-10-28T22:30:32.8480911Z [36;1mfi[0m
+2026-10-28T22:30:32.8500893Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:32.8501145Z env:
+2026-10-28T22:30:32.8501325Z   DATE_ARG: 
+2026-10-28T22:30:32.8501512Z   END_ARG: 
+2026-10-28T22:30:32.8501738Z   LEAGUE_ARG: auto
+2026-10-28T22:30:32.8501939Z ##[endgroup]
+2026-10-28T22:30:32.9791704Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/livescores-boxscores.js aktualisiert: nba / 2026-10-27 (4 Spiel(e)).
+2026-10-28T22:30:33.0493004Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/livescores-boxscores.js aktualisiert: nba / 2026-10-28 (12 Spiel(e)).
+2026-10-28T22:30:33.0618529Z ##[group]Run node scripts/prune-raw-data.js --keep-days=400 --keep-days-games=120
+2026-10-28T22:30:33.0619145Z [36;1mnode scripts/prune-raw-data.js --keep-days=400 --keep-days-games=120[0m
+2026-10-28T22:30:33.0640088Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:33.0640338Z env:
+2026-10-28T22:30:33.0640520Z   DATE_ARG: 
+2026-10-28T22:30:33.0640710Z   END_ARG: 
+2026-10-28T22:30:33.0640895Z   LEAGUE_ARG: auto
+2026-10-28T22:30:33.0641118Z ##[endgroup]
+2026-10-28T22:30:33.0954805Z scripts/data/ aufgeräumt: 0 Datei(en) älter als 400 Tage (games.json: 120) gelöscht, 103 behalten.
+2026-10-28T22:30:33.1029864Z ##[group]Run if [ -n "$END_ARG" ]; then
+2026-10-28T22:30:33.1030471Z [36;1mif [ -n "$END_ARG" ]; then[0m
+2026-10-28T22:30:33.1031218Z [36;1m  node scripts/update-all-aggregates.js --end="$END_ARG" --keep=180[0m
+2026-10-28T22:30:33.1031977Z [36;1melse[0m
+2026-10-28T22:30:33.1032757Z [36;1m  node scripts/update-all-aggregates.js --keep=180[0m
+2026-10-28T22:30:33.1033373Z [36;1mfi[0m
+2026-10-28T22:30:33.1055188Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:33.1055440Z env:
+2026-10-28T22:30:33.1055641Z   DATE_ARG: 
+2026-10-28T22:30:33.1055829Z   END_ARG: 
+2026-10-28T22:30:33.1056008Z   LEAGUE_ARG: auto
+2026-10-28T22:30:33.1056207Z ##[endgroup]
+2026-10-28T22:30:33.1394554Z Gefundene Ligen: nba, nba-preseason, nba-summer-california, nba-summer-las-vegas, nba-summer-utah
+2026-10-28T22:30:33.4257241Z   ✓ week/nba: 355 Spieler, Fenster 2026-10-21–2026-10-27 (7 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-10-27).
+2026-10-28T22:30:33.4330433Z   ✓ month/nba: 182 Spieler, Fenster 2026-09-28–2026-10-27 (8 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-10-27).
+2026-10-28T22:30:33.4410284Z   ✓ season/nba: 358 Spieler, Fenster 2026-10-20–2026-10-27 (8 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-10-27).
+2026-10-28T22:30:33.4497802Z   ✓ week/nba-preseason: 554 Spieler, Fenster 2026-10-10–2026-10-16 (7 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-10-16).
+2026-10-28T22:30:33.4734090Z   ✓ month/nba-preseason: 589 Spieler, Fenster 2026-09-17–2026-10-16 (14 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-10-16).
+2026-10-28T22:30:33.4862872Z   ✓ season/nba-preseason: 589 Spieler, Fenster 2026-10-03–2026-10-16 (14 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-10-16).
+2026-10-28T22:30:33.4876237Z   ✓ week/nba-summer-california: 116 Spieler, Fenster 2026-06-30–2026-07-06 (4 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-06).
+2026-10-28T22:30:33.4889557Z   ✓ month/nba-summer-california: 116 Spieler, Fenster 2026-06-07–2026-07-06 (4 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-06).
+2026-10-28T22:30:33.4920762Z   ✓ season/nba-summer-california: 116 Spieler, Fenster 2026-07-03–2026-07-06 (4 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-06).
+2026-10-28T22:30:33.4977542Z   ✓ week/nba-summer-las-vegas: 403 Spieler, Fenster 2026-07-13–2026-07-19 (7 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-19).
+2026-10-28T22:30:33.5064884Z   ✓ month/nba-summer-las-vegas: 446 Spieler, Fenster 2026-06-20–2026-07-19 (11 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-19).
+2026-10-28T22:30:33.5133438Z   ✓ season/nba-summer-las-vegas: 446 Spieler, Fenster 2026-07-09–2026-07-19 (11 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-19).
+2026-10-28T22:30:33.5143730Z   ✓ week/nba-summer-utah: 61 Spieler, Fenster 2026-07-01–2026-07-07 (3 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-07).
+2026-10-28T22:30:33.5153880Z   ✓ month/nba-summer-utah: 61 Spieler, Fenster 2026-06-08–2026-07-07 (3 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-07).
+2026-10-28T22:30:33.5163988Z   ✓ season/nba-summer-utah: 61 Spieler, Fenster 2026-07-04–2026-07-07 (3 Tag(e)) (Liga beendet, Fenster verankert auf letzten Spieltag 2026-07-07).
+2026-10-28T22:30:33.6281043Z 
+2026-10-28T22:30:33.6282654Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/livescores-aggregate.js geschrieben: 15 Eintrag/Einträge aktualisiert, 0 übersprungen.
+2026-10-28T22:30:33.6503676Z ##[group]Run node scripts/build-offseason-rankings.js
+2026-10-28T22:30:33.6504091Z [36;1mnode scripts/build-offseason-rankings.js[0m
+2026-10-28T22:30:33.6523823Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:33.6524068Z env:
+2026-10-28T22:30:33.6524268Z   DATE_ARG: 
+2026-10-28T22:30:33.6524455Z   END_ARG: 
+2026-10-28T22:30:33.6524637Z   LEAGUE_ARG: auto
+2026-10-28T22:30:33.6524834Z ##[endgroup]
+2026-10-28T22:30:33.7161791Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/offseason-rankings.js aktualisiert: 841 Spieler, 2026-07-03–2026-10-16, Ligen: nba-preseason, nba-summer-california, nba-summer-las-vegas, nba-summer-utah.
+2026-10-28T22:30:33.7237132Z ##[group]Run node scripts/build-postdraft-board.js
+2026-10-28T22:30:33.7237532Z [36;1mnode scripts/build-postdraft-board.js[0m
+2026-10-28T22:30:33.7257608Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:33.7257852Z env:
+2026-10-28T22:30:33.7258049Z   DATE_ARG: 
+2026-10-28T22:30:33.7258234Z   END_ARG: 
+2026-10-28T22:30:33.7258416Z   LEAGUE_ARG: auto
+2026-10-28T22:30:33.7258615Z ##[endgroup]
+2026-10-28T22:30:33.9759624Z Sticky Score: 121 Spieler von https://raw.githubusercontent.com/Pizzaratops/Summer-League-Modell/main/data/current-season-2026.csv geladen.
+2026-10-28T22:30:33.9777803Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/postdraft-board.js aktualisiert: 56 Spieler.
+2026-10-28T22:30:33.9846567Z ##[group]Run if [ -n "$END_ARG" ]; then
+2026-10-28T22:30:33.9846921Z [36;1mif [ -n "$END_ARG" ]; then[0m
+2026-10-28T22:30:33.9847322Z [36;1m  node scripts/build-rolling-archive.js --date="$END_ARG" --league=nba[0m
+2026-10-28T22:30:33.9847719Z [36;1melse[0m
+2026-10-28T22:30:33.9847990Z [36;1m  node scripts/build-rolling-archive.js --league=nba[0m
+2026-10-28T22:30:33.9848311Z [36;1mfi[0m
+2026-10-28T22:30:33.9867967Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:33.9868215Z env:
+2026-10-28T22:30:33.9868395Z   DATE_ARG: 
+2026-10-28T22:30:33.9868581Z   END_ARG: 
+2026-10-28T22:30:33.9868762Z   LEAGUE_ARG: auto
+2026-10-28T22:30:33.9868961Z ##[endgroup]
+2026-10-28T22:30:34.2234966Z Stichtag 2026-10-28 ohne Aggregat → letzter vorhandener Stand 2026-10-27.
+2026-10-28T22:30:34.2940107Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/rolling-rankings-2026-27.js aktualisiert: 391 Spieler, Monate: Oct, Wochen: 2, Monat "Oct" aktualisiert, Woche 2 aktualisiert.
+2026-10-28T22:30:34.3146181Z ##[group]Run python3 scripts/pbp-gate.py 
+2026-10-28T22:30:34.3146535Z [36;1mpython3 scripts/pbp-gate.py [0m
+2026-10-28T22:30:34.3166559Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:34.3166808Z env:
+2026-10-28T22:30:34.3166986Z   DATE_ARG: 
+2026-10-28T22:30:34.3167175Z   END_ARG: 
+2026-10-28T22:30:34.3167363Z   LEAGUE_ARG: auto
+2026-10-28T22:30:34.3167562Z ##[endgroup]
+2026-10-28T22:30:34.6063698Z PbP-Gate: run=false (unverändert seit Wed, 28 Oct 2026 13:40:58 GMT)
+2026-10-28T22:30:34.6227627Z ##[group]Run node scripts/build-live-projections.js --league=nba
+2026-10-28T22:30:34.6228127Z [36;1mnode scripts/build-live-projections.js --league=nba[0m
+2026-10-28T22:30:34.6247927Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:34.6248170Z env:
+2026-10-28T22:30:34.6248348Z   DATE_ARG: 
+2026-10-28T22:30:34.6248531Z   END_ARG: 
+2026-10-28T22:30:34.6248717Z   LEAGUE_ARG: auto
+2026-10-28T22:30:34.6248920Z ##[endgroup]
+2026-10-28T22:30:34.6747451Z   Projection-Quelle: 437 Spieler aus der Consensus.
+2026-10-28T22:30:34.6935572Z 8 Tages-CSV(s) für Liga "nba" eingelesen, 416 Spieler mit echten Stats.
+2026-10-28T22:30:34.6988067Z   xStats wöchentlich (nba.com): 375 Spieler, Stand 2026-10-25.
+2026-10-28T22:30:34.7017225Z   xStats täglich (Play-by-Play, R. Bentes): 417 Spieler, Stand 2026-10-27.
+2026-10-28T22:30:34.7122938Z   379 Spieler mit Projection + echten Spielen, 37 nur mit echten Spielen, xStats angewandt: STL 375, TO 375, 3PM 413, FG% 413.
+2026-10-28T22:30:34.7199123Z Z-Scores (9-Cat) über den Live-Pool berechnet.
+2026-10-28T22:30:34.7233749Z /home/runner/work/MFHFBHQ/MFHFBHQ/sports/nba/data/live-projections.js geschrieben: 474 Spieler total.
+2026-10-28T22:30:34.7339205Z ##[group]Run git config user.name "mfhfb-hq-bot"
+2026-10-28T22:30:34.7339631Z [36;1mgit config user.name "mfhfb-hq-bot"[0m
+2026-10-28T22:30:34.7340056Z [36;1mgit config user.email "actions@users.noreply.github.com"[0m
+2026-10-28T22:30:34.7340448Z [36;1mgit add data/ scripts/data/[0m
+2026-10-28T22:30:34.7340738Z [36;1mif git diff --cached --quiet; then[0m
+2026-10-28T22:30:34.7341090Z [36;1m  echo "Keine Änderungen -- nichts zu committen."[0m
+2026-10-28T22:30:34.7341406Z [36;1m  exit 0[0m
+2026-10-28T22:30:34.7341620Z [36;1mfi[0m
+2026-10-28T22:30:34.7341852Z [36;1mgit commit -m "chore: nba sync (sportweit)"[0m
+2026-10-28T22:30:34.7342153Z [36;1mfor i in 1 2 3 4 5; do[0m
+2026-10-28T22:30:34.7342717Z [36;1m  if git push; then exit 0; fi[0m
+2026-10-28T22:30:34.7343378Z [36;1m  echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."[0m
+2026-10-28T22:30:34.7344083Z [36;1m  git fetch origin "${GITHUB_REF_NAME}"[0m
+2026-10-28T22:30:34.7344406Z [36;1m  git rebase "origin/${GITHUB_REF_NAME}"[0m
+2026-10-28T22:30:34.7344698Z [36;1m  sleep $((RANDOM % 8 + 3))[0m
+2026-10-28T22:30:34.7344938Z [36;1mdone[0m
+2026-10-28T22:30:34.7345318Z [36;1mecho "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."[0m
+2026-10-28T22:30:34.7345948Z [36;1mexit 1[0m
+2026-10-28T22:30:34.7365340Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:34.7365585Z env:
+2026-10-28T22:30:34.7365763Z   DATE_ARG: 
+2026-10-28T22:30:34.7365949Z   END_ARG: 
+2026-10-28T22:30:34.7366131Z   LEAGUE_ARG: auto
+2026-10-28T22:30:34.7366335Z ##[endgroup]
+2026-10-28T22:30:34.8369436Z Keine Änderungen -- nichts zu committen.
+2026-10-28T22:30:34.8410243Z ##[group]Run echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
+2026-10-28T22:30:34.8411519Z [36;1mecho "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."[0m
+2026-10-28T22:30:34.8412552Z [36;1mexit 1[0m
+2026-10-28T22:30:34.8431553Z shell: /usr/bin/bash -e {0}
+2026-10-28T22:30:34.8431790Z env:
+2026-10-28T22:30:34.8431967Z   DATE_ARG: 
+2026-10-28T22:30:34.8432151Z   END_ARG: 
+2026-10-28T22:30:34.8432614Z   LEAGUE_ARG: auto
+2026-10-28T22:30:34.8432839Z ##[endgroup]
+2026-10-28T22:30:34.8473200Z Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert.
+2026-10-28T22:30:34.8476063Z ##[error]Process completed with exit code 1.
+2026-10-28T22:30:34.8595030Z Post job cleanup.
+2026-10-28T22:30:34.9478980Z [command]/usr/bin/git version
+2026-10-28T22:30:34.9527445Z git version 2.56.0
+2026-10-28T22:30:34.9573746Z Temporarily overriding HOME='/home/runner/work/_temp/c04e3356-f52f-473e-a210-cc9b420b25da' before making global git config changes
+2026-10-28T22:30:34.9575590Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-28T22:30:34.9580579Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/MFHFBHQ/MFHFBHQ
+2026-10-28T22:30:34.9624342Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-28T22:30:34.9669042Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-28T22:30:34.9963172Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-28T22:30:34.9990579Z http.https://github.com/.extraheader
+2026-10-28T22:30:35.0006338Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-28T22:30:35.0046541Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-28T22:30:35.0358176Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-28T22:30:35.0409854Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-28T22:30:35.0808629Z Cleaning up orphan processes
+2026-10-28T22:30:35.1197994Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,24 @@
+35:2026-10-28T22:30:08.7114467Z ##[group]Run actions/checkout@v4
+113:2026-10-28T22:30:11.0905699Z ##[group]Run if grep -rlnE '^(<{7} |={7}$|>{7} )' --include='*.js' sports/nba leagues/tthq leagues/funkytown; then
+115:2026-10-28T22:30:11.0907655Z [36;1m  echo "::error::Unaufgelöster Git-Merge-Konflikt in den oben gelisteten Dateien -- bitte manuell auflösen und neu pushen."[0m
+124:2026-10-28T22:30:11.1240044Z ##[group]Run actions/setup-node@v4
+147:2026-10-28T22:30:15.1911146Z ##[group]Run node scripts/daily-9cat.js ${DATE_ARG} --league=${LEAGUE_ARG}
+172:2026-10-28T22:30:32.6069082Z Fehler: 1 Spielplan-Abruf(e) fehlgeschlagen
+174:2026-10-28T22:30:32.6122000Z ##[error]Process completed with exit code 1.
+175:2026-10-28T22:30:32.6177130Z ##[group]Run node scripts/update-preseason-score.js
+184:2026-10-28T22:30:32.6961628Z ##[group]Run if [ -n "$DATE_ARG" ]; then
+197:2026-10-28T22:30:32.8478830Z ##[group]Run if [ -n "$DATE_ARG" ]; then
+211:2026-10-28T22:30:33.0618529Z ##[group]Run node scripts/prune-raw-data.js --keep-days=400 --keep-days-games=120
+220:2026-10-28T22:30:33.1029864Z ##[group]Run if [ -n "$END_ARG" ]; then
+250:2026-10-28T22:30:33.6503676Z ##[group]Run node scripts/build-offseason-rankings.js
+259:2026-10-28T22:30:33.7237132Z ##[group]Run node scripts/build-postdraft-board.js
+269:2026-10-28T22:30:33.9846567Z ##[group]Run if [ -n "$END_ARG" ]; then
+283:2026-10-28T22:30:34.3146181Z ##[group]Run python3 scripts/pbp-gate.py 
+292:2026-10-28T22:30:34.6227627Z ##[group]Run node scripts/build-live-projections.js --league=nba
+307:2026-10-28T22:30:34.7339205Z ##[group]Run git config user.name "mfhfb-hq-bot"
+318:2026-10-28T22:30:34.7343378Z [36;1m  echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."[0m
+323:2026-10-28T22:30:34.7345318Z [36;1mecho "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."[0m
+332:2026-10-28T22:30:34.8410243Z ##[group]Run echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
+333:2026-10-28T22:30:34.8411519Z [36;1mecho "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."[0m
+341:2026-10-28T22:30:34.8473200Z Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert.
+342:2026-10-28T22:30:34.8476063Z ##[error]Process completed with exit code 1.
