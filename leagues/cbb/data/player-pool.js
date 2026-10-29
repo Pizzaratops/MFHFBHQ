@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-29T13:00:34.914Z
+//  Stand: 2026-10-29T15:14:55.443Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1058,7 +1058,6 @@ const CBB_PLAYER_POOL = [
 ["071pq","Jacob Walker","OkSt","G","G,Flx","FA"],
 ["079mb","Jacob Webber","Pur","G","G,Flx","FA"],
 ["0795i","Jaden Bailes","SeatU","G","G,Flx","FA"],
-["06q53","Jaden Bobbett","LSU","G","G,Flx","FA"],
 ["07alj","Jaden Ghoreishi","ColSt","F","F/C,Flx","FA"],
 ["064fa","Jaden Henley","GrCan","G","G,Flx","FA"],
 ["06nsm","Jaden Johnson","LaSal","G","G,Flx","FA"],
@@ -1663,7 +1662,6 @@ const CBB_PLAYER_POOL = [
 ["07a9l","Mantas Laurencikas","Tex","G","G,Flx","FA"],
 ["07a75","Maper Maker","Ark","F","F/C,Flx","T"],
 ["071ay","Marchelo Moreira","Portl","G","G,Flx","FA"],
-["075z5","Marcio Santos","LSU","C","F/C,Flx","FA"],
 ["079ka","Marcis Ponder","FSU","C","F/C,Flx","T"],
 ["079kq","Marco John Wuol","UCSB","C","F/C,Flx","FA"],
 ["06gat","Marcus Adams","HI","F","F/C,Flx","T"],
@@ -1727,7 +1725,6 @@ const CBB_PLAYER_POOL = [
 ["06mvo","Max Langenfield","Evans","G","G,Flx","FA"],
 ["0716z","Max Lipacis","LaSal","F","F/C,Flx","FA"],
 ["06ymy","Max Lorenson","Minn","G","G,Flx","FA"],
-["065sj","Max Mackinnon","LSU","G","G,Flx","FA"],
 ["06n5p","Max Miller","Ford","G","G,Flx","FA"],
 ["079bv","Max Olejasz","WVU","F","F/C,Flx","FA"],
 ["06n7x","Max Pikaar","SIU","F","F/C,Flx","FA"],
@@ -1954,7 +1951,6 @@ const CBB_PLAYER_POOL = [
 ["06ykr","Phoenix Gill","NW","G","G,Flx","FA"],
 ["070t9","Pierre Couisnard","WichSt","G","G,Flx","FA"],
 ["07a35","Pietro Ranieri","SIU","F","F/C,Flx","FA"],
-["05pz0","PJ Carter","LSU","G","G,Flx","FA"],
 ["064kt","PJ Haggerty","TAMU","G","G,Flx","T"],
 ["07alk","Pops Dunson","ColSt","G","G,Flx","FA"],
 ["064l4","Preston Clark","TAMU","F","F/C,Flx","FA"],
@@ -2051,7 +2047,6 @@ const CBB_PLAYER_POOL = [
 ["07142","Roman Siulepa","Miss","F","F/C,Flx","FA"],
 ["07amq","Roman Stathis","WaSt","F","F/C,Flx","FA"],
 ["06h5w","Ron Jessamy","TxSt","F","F/C,Flx","FA"],
-["070r8","Ron Zipper","LSU","G","G,Flx","FA"],
 ["06qn4","Ronnie Harrison","WaSt","F","F/C,Flx","FA"],
 ["0716n","Roor Akhuar","Ford","F","F/C,Flx","FA"],
 ["0687g","Rory Hawke","StMar","G","G,Flx","FA"],
