@@ -1,0 +1,35 @@
+name: TTHQ Hashtag Dynasty Rankings
+
+# Holt wöchentlich die Hashtag-Basketball-Dynasty-Rankings nach
+# leagues/tthq/data/hashtag.js (HASHTAG_RANKINGS; MATT_RANKS bleibt).
+# Hashtag aktualisiert unregelmäßig — ändert sich nichts, kein Commit.
+
+on:
+  schedule:
+    - cron: "41 9 * * 1"   # montags 10:41/11:41 Berlin
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Hashtag holen
+        run: node leagues/tthq/scripts/sync-hashtag.js
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          # nur echte Änderungen der Rangliste committen (nicht nur das Abrufdatum im Kopf)
+          if git diff --quiet -I 'geholt 20' -- leagues/tthq/data/hashtag.js; then git checkout -- leagues/tthq/data/hashtag.js; echo "Keine Änderung."; exit 0; fi
+          git add leagues/tthq/data/hashtag.js
+          git commit -m "chore: TTHQ Hashtag Dynasty Rankings"
+          for i in 1 2 3 4 5; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1

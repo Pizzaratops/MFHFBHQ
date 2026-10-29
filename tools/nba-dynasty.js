@@ -1,7 +1,7 @@
 // ============================================================
 //  Tool (NBA, Dynasty): Dynasty-Rankings + Verlauf + Hashtag
 // ============================================================
-//  #/<liga>/dynrank[/verlauf|/hashtag]
+//  #/<liga>/dynrank[/verlauf|/hashtag|/matt]
 //
 //  Port von js/rankings-ui.js + js/dynasty-rolling-ui.js (nur TTHQ,
 //  applies keepers). Daten (je Liga):
@@ -34,6 +34,20 @@
     return { hash, matt, live, rapm, owner: nba.ownerIndex(d) };
   }
 
+
+  // Snapshots auf die aktuellen Spielernamen abbilden (diakritik-unabhängig):
+  // ältere Snapshots schreiben „Luka Doncic“, die aktuelle Liste „Luka Dončić“.
+  function snapsOf(d) {
+    if (d._kcSnaps) return d._kcSnaps;
+    const nba = N(), cur = new Map((d.DYNASTY_PLAYERS || []).map(p => [nba.key(p[1]), p[1]]));
+    d._kcSnaps = (d.DYNASTY_ROLLING || []).map(s => {
+      const ranks = {};
+      Object.entries(s.ranks || {}).forEach(([n, r]) => { const t = cur.get(nba.key(n)) || n; if (ranks[t] == null || r < ranks[t]) ranks[t] = r; });
+      return { ...s, ranks };
+    });
+    return d._kcSnaps;
+  }
+
   function changeBadge(snaps, since, name, rank) {
     if (snaps.length < 2) return '';
     const prev = snaps.find(s => s.date === since) || snaps[snaps.length - 2];
@@ -64,7 +78,7 @@
 
   function listRows(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc, nba = N(), I = indexes(ctx);
-    const snaps = d.DYNASTY_ROLLING || [];
+    const snaps = snapsOf(d);
     const q = st.q.toLowerCase().trim();
     const list = (d.DYNASTY_PLAYERS || []).filter(p => {
       const o = I.owner(p[1]);
@@ -112,7 +126,7 @@
 
   function rankingsView(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc;
-    const snaps = d.DYNASTY_ROLLING || [];
+    const snaps = snapsOf(d);
     const sinceSel = snaps.length >= 2 ? `<select class="tr-select" data-since aria-label="Veränderung seit">${snaps.slice(0, -1).map((s, i) => { const def = i === snaps.length - 2; const on = st.since ? s.date === st.since : def; return `<option value="${s.date}"${on ? ' selected' : ''}>Δ seit ${e(s.label)}${def ? ' (letztes Update)' : ''}</option>`; }).join('')}</select>` : '';
     return `<div class="controls">
         <div class="seg" role="group">${[['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']].map(([k, l]) => `<button type="button" class="seg-btn${st.own === k ? ' active' : ''}" data-own="${k}">${l}</button>`).join('')}</div>
@@ -132,7 +146,7 @@
 
   function historyView(ctx, st) {
     const d = ctx.data, e = ctx.ui.esc, nba = N();
-    const snaps = d.DYNASTY_ROLLING || [];
+    const snaps = snapsOf(d);
     if (snaps.length < 2) return ctx.ui.empty('Noch kein Verlauf', 'Es gibt erst einen Snapshot der Dynasty-Rangliste.', '📉');
     const last = snaps[snaps.length - 1], first = snaps[0];
     const q = st.q.toLowerCase().trim();
@@ -162,22 +176,42 @@
       </tbody></table></div>`;
   }
 
+  // Matt-Lawson-Rangliste (MATT_RANKS {name: rank}); Team/Pos/Alter aus DYNASTY_PLAYERS
+  // (jeder Matt-Spieler steht durch blend-dynasty-with-external.js auch dort).
+  function mattView(ctx, st) {
+    const d = ctx.data, e = ctx.ui.esc, nba = N(), I = indexes(ctx);
+    const dp = new Map((d.DYNASTY_PLAYERS || []).map(p => [nba.key(p[1]), p]));
+    const q = st.q.toLowerCase().trim();
+    const list = Object.entries(d.MATT_RANKS || {}).sort((a, b) => a[1] - b[1]).map(([n, r]) => ({ n, r, p: dp.get(nba.key(n)) }))
+      .filter(x => !q || [x.n, x.p && x.p[2], x.p && x.p[3]].some(v => String(v || '').toLowerCase().includes(q)));
+    if (!list.length) return ctx.ui.empty('Keine Matt-Rangliste', 'MATT_RANKS fehlt oder kein Treffer.', '📋');
+    const diff = (a, b) => (a == null || b == null || a === b ? '' : ` <small class="${b < a ? 'up' : 'down'}">${b < a ? '▲' : '▼'}${Math.abs(a - b)}</small>`);
+    return `<div class="controls"><input type="search" class="search" placeholder="Spieler, Team, Position …" value="${e(st.q)}" data-q aria-label="Suchen"></div>
+      <p class="muted small">Matt Lawson Dynasty Rankings (9-Cat, Tab „Categories“) · ${list.length} Spieler · ▲/▼ = MFHFB sieht den Spieler höher/tiefer als Matt</p>
+      <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">Matt</th><th>Spieler</th><th>NBA</th><th>Pos</th><th class="num">Alter</th><th>Fantasy-Team</th><th class="num">MFHFB</th><th class="num">#️⃣ Hashtag</th></tr></thead><tbody>
+      ${list.map(x => { const o = I.owner(x.n), p = x.p, k = nba.key(x.n); return `<tr><td class="num">${nba.rankBadge(x.r)}</td><td class="strong">${e(x.n)}</td>
+        <td>${p ? `<a class="nba-team-link" href="${ctx.href('nbateams', nba.canonTeam(p[2]))}">${e(p[2])}</a>` : '—'}</td><td class="muted">${p ? e(p[3]) : ''}</td><td class="num">${p ? nba.age(p[4]) ?? '—' : '—'}</td>
+        <td>${o ? `<a class="nba-tlink mp-tc" style="${nba.tcStyle(o)}" href="${ctx.href('teams', o.id)}"><span class="nba-tdot"></span>${e(o.name)}</a>` : '<span class="nba-tag fa">frei</span>'}</td>
+        <td class="num">${nba.rankBadge(p ? p[0] : null)}${diff(x.r, p ? p[0] : null)}</td><td class="num">${nba.rankBadge(I.hash.get(k) ?? null)}</td></tr>`; }).join('')}
+      </tbody></table></div>`;
+  }
+
   function render(ctx) {
     const { data, ui, params } = ctx, nba = N();
     nba.init(data);
     if (!data.DYNASTY_PLAYERS) return ui.empty('Keine Dynasty-Rangliste', 'DYNASTY_PLAYERS fehlt für diese Liga.', '🏆');
-    const view = params[0] === 'verlauf' || params[0] === 'hashtag' ? params[0] : 'liste';
+    const view = ['verlauf', 'hashtag', 'matt'].includes(params[0]) ? params[0] : 'liste';
     const st = getState(ctx);
-    const tabs = `<div class="seg" role="tablist">${[['liste', '🏆 MFHFB-Rangliste'], ['verlauf', '📉 Verlauf'], ['hashtag', '#️⃣ Hashtag']].map(([k, l]) => `<a class="seg-btn${view === k ? ' active' : ''}" href="${ctx.href('dynrank', ...(k === 'liste' ? [] : [k]))}">${l}</a>`).join('')}</div>`;
-    const snaps = data.DYNASTY_ROLLING || [];
+    const tabs = `<div class="seg" role="tablist">${[['liste', '🏆 MFHFB-Rangliste'], ['verlauf', '📉 Verlauf'], ['matt', '📋 Matt'], ['hashtag', '#️⃣ Hashtag']].map(([k, l]) => `<a class="seg-btn${view === k ? ' active' : ''}" href="${ctx.href('dynrank', ...(k === 'liste' ? [] : [k]))}">${l}</a>`).join('')}</div>`;
+    const snaps = snapsOf(data);
     return `<div class="page-head"><h1 class="page-title display">🏆 Dynasty Rankings</h1>
         <div class="page-sub">${data.DYNASTY_PLAYERS.length} Spieler · ${snaps.length ? 'letztes Update ' + ui.esc(snaps[snaps.length - 1].label) : ''}<span class="explain"> · Vergleich mit Matt und Hashtag Basketball</span></div></div>
       <div class="controls">${tabs}</div>
-      ${view === 'verlauf' ? historyView(ctx, st) : view === 'hashtag' ? hashtagView(ctx, st) : rankingsView(ctx, st)}`;
+      ${view === 'verlauf' ? historyView(ctx, st) : view === 'hashtag' ? hashtagView(ctx, st) : view === 'matt' ? mattView(ctx, st) : rankingsView(ctx, st)}`;
   }
 
   function mount(root, ctx) {
-    const view = ctx.params[0] === 'verlauf' || ctx.params[0] === 'hashtag' ? ctx.params[0] : 'liste';
+    const view = ['verlauf', 'hashtag', 'matt'].includes(ctx.params[0]) ? ctx.params[0] : 'liste';
     const save = (patch, full = true) => { ctx.store.setJSON('dynrank', { ...getState(ctx), ...patch }); if (full) ctx.refresh(); };
     root.querySelectorAll('[data-own]').forEach(b => b.addEventListener('click', () => save({ own: b.dataset.own })));
     // Impact antippen → Offense/Defense einblenden (Tooltip geht am Handy nicht)
@@ -200,7 +234,7 @@
     if (clr) clr.addEventListener('click', () => save({ sel: [] }));
     const wrap = root.querySelector('[data-bump]');
     if (wrap) {
-      const snaps = ctx.data.DYNASTY_ROLLING || [], sel = getState(ctx).sel.slice(0, MAX_SEL);
+      const snaps = snapsOf(ctx.data), sel = getState(ctx).sel.slice(0, MAX_SEL);
       MFHFB.charts.responsive(wrap, w => historyChart(snaps, sel, w));
       MFHFB.charts.bumpInteract(wrap, root.querySelector('.bump-tip'), id => save({ sel: getState(ctx).sel.filter(x => x !== id) }));
     }
