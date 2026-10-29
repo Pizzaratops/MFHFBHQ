@@ -527,6 +527,22 @@ async function processDay(LEAGUE, dateStr, games) {
   console.log(`Games-JSON (Box Scores) gespeichert: ${gamesJsonPath}\n`);
 }
 
+// Tag schon vollständig gespeichert? (games.json vorhanden, alle Spiele beendet,
+// Boxscores da). Dann ist ein fehlgeschlagener Neu-Abruf nur eine Warnung:
+// ESPN liefert für einzelne Vortage zeitweise leere Antworten (z. B. 27.10.2026
+// abends), obwohl der Tag längst komplett im Hub liegt (28.10.2026).
+function dayComplete(dateStr) {
+  try {
+    const files = fs.readdirSync(OUT_DIR).filter(f => f.endsWith(`_${dateStr}.games.json`));
+    if (!files.length) return false;
+    return files.every(f => {
+      const g = JSON.parse(fs.readFileSync(path.join(OUT_DIR, f), 'utf8')).games || [];
+      return g.length > 0 && g.every(x => x.completed && ((x.away?.players?.length || 0) + (x.home?.players?.length || 0)) > 0);
+    });
+  } catch (e) { return false; }
+}
+
+
 // MFHFB HQ: Schleife über Tage × ESPN-Slugs (Auto-Modus aus Funkytown).
 // Ein fehlgeschlagener Abruf bricht die übrigen Tage/Slugs nicht ab, der
 // Exit-Code ist am Ende trotzdem 1 (Workflow-Schritt wird rot).
@@ -539,6 +555,10 @@ async function main() {
         console.log(`Lade Spielplan ${slug} ${dateStr}...`);
         games = await fetchGames(slug, dateStr); // abgeschlossene UND noch ausstehende Spiele
       } catch (e) {
+        if (dateStr !== todayYYYYMMDD() && dayComplete(dateStr)) {
+          console.warn(`  ! ${slug} ${dateStr}: ${e.message} — Tag ist schon vollständig gespeichert, nur Warnung.`);
+          continue;
+        }
         console.warn(`  ! ${slug} ${dateStr}: ${e.message}`);
         failed++;
         continue;
