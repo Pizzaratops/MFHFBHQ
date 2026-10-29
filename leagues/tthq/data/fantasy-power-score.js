@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-29T15:29:04.186Z",
+  "generatedAt": "2026-10-29T16:01:27.560Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 5 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -67,10 +67,10 @@ const FANTASY_POWER_SCORE = {
       "owner": "Kong Power",
       "values": {
         "pts": 455,
-        "reb": 166.7,
+        "reb": 166.8,
         "ast": 108.7,
         "stl": 30.91,
-        "blk": 19.65,
+        "blk": 19.61,
         "tpm": 42.2,
         "to": 59.1,
         "fgPct": 47.7,
@@ -129,7 +129,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Timo Xtremo",
       "values": {
         "pts": 345.5,
-        "reb": 119,
+        "reb": 118.9,
         "ast": 78.7,
         "stl": 25.85,
         "blk": 12.61,
@@ -224,7 +224,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 282.6,
         "reb": 115.7,
         "ast": 60.3,
-        "stl": 21.59,
+        "stl": 21.65,
         "blk": 14.68,
         "tpm": 35.7,
         "to": 34.9,
@@ -290,7 +290,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 323.5,
         "reb": 156,
         "ast": 79.3,
-        "stl": 23.55,
+        "stl": 23.48,
         "blk": 18.27,
         "tpm": 32.8,
         "to": 42.2,
