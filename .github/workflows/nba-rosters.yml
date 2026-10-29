@@ -1,0 +1,38 @@
+name: NBA-Kader (ESPN)
+
+# Täglich die aktuellen Kader aller 30 NBA-Teams nach
+# sports/nba/data/nba-rosters.js (Referenz für Team-/Fehlt-Abgleich der
+# Dynasty-Listen). Keine Secrets.
+
+on:
+  schedule:
+    - cron: "53 10 * * *"   # 11:53/12:53 Berlin
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Kader holen
+        run: node sports/nba/scripts/sync-nba-rosters.js
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -I 'updated|Stand 20' -- sports/nba/data/nba-rosters.js && git ls-files --error-unmatch sports/nba/data/nba-rosters.js >/dev/null 2>&1; then git checkout -- sports/nba/data/nba-rosters.js; echo "Keine Änderung."; exit 0; fi
+          git add sports/nba/data/nba-rosters.js
+          git commit -m "chore: NBA-Kader (ESPN)"
+          for i in 1 2 3 4 5; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1
