@@ -1,0 +1,60 @@
+{
+  "league": "nba",
+  "date": "2026-10-29",
+  "games": [
+    {
+      "id": "401909893",
+      "line": "Cleveland Cavaliers @ Atlanta Hawks (10/29 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/29 - 8:00 PM EDT",
+      "away": {
+        "abbr": "CLE",
+        "name": "Cleveland Cavaliers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909894",
+      "line": "Sacramento Kings @ New Orleans Pelicans (10/29 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/29 - 8:00 PM EDT",
+      "away": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NO",
+        "name": "New Orleans Pelicans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909895",
+      "line": "Memphis Grizzlies @ Portland Trail Blazers (10/29 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/29 - 10:00 PM EDT",
+      "away": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
