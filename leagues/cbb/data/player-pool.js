@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-29T16:13:12.758Z
+//  Stand: 2026-10-29T17:05:49.869Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -770,6 +770,7 @@ const CBB_PLAYER_POOL = [
 ["05amn","Elijah Jones","GMas","F","F/C,Flx","T"],
 ["0711q","Elijah Perryman","Cin","G","G,Flx","FA"],
 ["06gcz","Elijah Price","Nev","F","F/C,Flx","T"],
+["065cp","Elijah Saunders","Prov","F","F/C,Flx","FA"],
 ["06dtb","Elijah Strong","StLou","F","F/C,Flx","FA"],
 ["0799i","Elijah Williams","Baylor","F","F/C,Flx","FA"],
 ["079ke","Elisee Assui","FSU","G","G,Flx","FA"],
