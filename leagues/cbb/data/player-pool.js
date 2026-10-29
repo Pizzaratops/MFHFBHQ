@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-29T18:57:32.116Z
+//  Stand: 2026-10-29T22:02:06.582Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -875,7 +875,7 @@ const CBB_PLAYER_POOL = [
 ["06gkq","Garwey Dual","Syr","G","G,Flx","FA"],
 ["06q0q","Gavin Doty","Syr","G","G,Flx","T"],
 ["07121","Gavin Gores","Wyo","F","F/C,Flx","FA"],
-["06g99","Gavin Griffiths","Tem","G","G,Flx","T"],
+["06g99","Gavin Griffiths","Tem","G","F/C,G,Flx","T"],
 ["070mv","Gavin Hightower","Prov","G","G,Flx","FA"],
 ["06g5s","Gavin Marrs","StJos","F","F/C,Flx","FA"],
 ["06gch","Gavin Murphy","TCU","G","G,Flx","FA"],
