@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-29T02:55:01.964Z
+//  Stand: 2026-10-29T10:26:57.564Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -337,7 +337,6 @@ const CBB_PLAYER_POOL = [
 ["07asy","Brooks Bahr","BYU","G","G,Flx","FA"],
 ["07arj","Bruce Branch III","BYU","F","F/C,Flx","T"],
 ["06q9p","Bruno Alocen","Valpa","G","G,Flx","FA"],
-["079cu","Bryan Little","ECU","F","F/C,Flx","FA"],
 ["06qb2","Bryce Bedgood","UCSB","F","F/C,Flx","FA"],
 ["06mxt","Bryce Dortch","ND","F","F/C,Flx","FA"],
 ["06gac","Bryce Ford","AzSt","G","G,Flx","FA"],
@@ -594,7 +593,6 @@ const CBB_PLAYER_POOL = [
 ["06puj","David Castillo","SCla","G","G,Flx","FA"],
 ["06g5p","David Fuchs","Clem","F","F/C,Flx","FA"],
 ["070hz","David Gomez","Col","F","F/C,Flx","FA"],
-["01be4","David Green","Tuls","F","F/C,Flx","FA"],
 ["0711z","David Iweze","Cin","F","F/C,Flx","FA"],
 ["079bo","David Katoa","Utah","G","G,Flx","FA"],
 ["065bn","David Mager","Pepp","G","G,Flx","FA"],
