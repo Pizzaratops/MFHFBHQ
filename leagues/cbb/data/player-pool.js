@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-30T15:03:50.202Z
+//  Stand: 2026-10-30T15:58:24.485Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -836,6 +836,7 @@ const CBB_PLAYER_POOL = [
 ["06mtc","Felix Kossaras","GrgWas","G","G,Flx","FA"],
 ["064gt","Filip Borovicanin","Xav","F","F/C,G,Flx","FA"],
 ["06vyk","Filip Jovic","UCLA","F","F/C,Flx","FA"],
+["07awg","Filip Kalajzic","N TX","F","F/C,Flx","FA"],
 ["07atp","Filip Malesevic","AzSt","C","F/C,Flx","FA"],
 ["07ajo","Finley Billy","Penn","F","F/C,Flx","FA"],
 ["06gfp","Finley Bizjack","WVU","G","G,Flx","T"],
@@ -1230,7 +1231,7 @@ const CBB_PLAYER_POOL = [
 ["06nas","Jeremiah Johnson","Tuls","G","G,Flx","FA"],
 ["06n4u","Jeremiah Wilkinson","Ark","G","G,Flx","T"],
 ["071a0","Jeremy Dent-Smith","StMar","G","G,Flx","FA"],
-["06py9","Jeremy Elyzee","UAB","F","F/C,Flx","FA"],
+["06py9","Jeremy Elyzee","UAB","F","F/C,G,Flx","FA"],
 ["06hcd","Jeremy Fears","MSU","G","G,Flx","T"],
 ["0652a","Jeremy Foumena","UNLV","C","F/C,Flx","FA"],
 ["0719u","Jermaine ONeal","SMU","F","F/C,Flx","T"],

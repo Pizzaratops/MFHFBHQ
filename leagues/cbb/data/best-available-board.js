@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-30T15:03:50.420Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-10-30T15:58:25.220Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2422,6 +2422,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Alex Steen","nbaTeam":"FSU","pos":"F","experience":"veteran","minutesAvg":19.8,"z30":0.96,"bestCat30":"FG%","worstCat30":"3PM","lastSeasonRank":1134,"statsWindow":"last-season","compositeScore":-19.68,"signalsUsed":1,"gone":true,"rank":2416},
   {"name":"Isaiah Walker","nbaTeam":"Xav","pos":"G","experience":"veteran","minutesAvg":17,"z30":-2.13,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2150,"statsWindow":"last-season","compositeScore":-20.71,"signalsUsed":1,"gone":true,"rank":2417},
   {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2418},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420}
+  {"name":"Filip Kalajzic","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2421}
 ];
