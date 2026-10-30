@@ -1,0 +1,186 @@
+{
+  "league": "nba",
+  "date": "2026-10-30",
+  "games": [
+    {
+      "id": "401909277",
+      "line": "Charlotte Hornets @ Washington Wizards (10/30 - 7:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 7:00 PM EDT",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909278",
+      "line": "Chicago Bulls @ Boston Celtics (10/30 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 7:30 PM EDT",
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909279",
+      "line": "Detroit Pistons @ Brooklyn Nets (10/30 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 7:30 PM EDT",
+      "away": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BKN",
+        "name": "Brooklyn Nets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909280",
+      "line": "New York Knicks @ Philadelphia 76ers (10/30 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 7:30 PM EDT",
+      "away": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909281",
+      "line": "Orlando Magic @ Toronto Raptors (10/30 - 7:30 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 7:30 PM EDT",
+      "away": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909282",
+      "line": "Indiana Pacers @ Miami Heat (10/30 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 8:00 PM EDT",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909283",
+      "line": "Houston Rockets @ Dallas Mavericks (10/30 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 8:00 PM EDT",
+      "away": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909284",
+      "line": "LA Clippers @ Minnesota Timberwolves (10/30 - 8:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 8:00 PM EDT",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909285",
+      "line": "Los Angeles Lakers @ Golden State Warriors (10/30 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 10:00 PM EDT",
+      "away": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909286",
+      "line": "Denver Nuggets @ Phoenix Suns (10/30 - 10:00 PM EDT)",
+      "completed": false,
+      "statusText": "10/30 - 10:00 PM EDT",
+      "away": {
+        "abbr": "DEN",
+        "name": "Denver Nuggets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
