@@ -1,2 +1,2 @@
 // Letzter Lauf von sync-espn.js (Diagnose)
-const SYNC_STATUS = {"ok":true,"at":"2026-10-30T17:01:21.304Z","warnings":[]};
+const SYNC_STATUS = {"ok":true,"at":"2026-10-30T17:08:20.735Z","warnings":[]};
