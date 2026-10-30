@@ -2805,9 +2805,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909277",
-      line: "Charlotte Hornets @ Washington Wizards (End of 1st)",
+      line: "Charlotte Hornets @ Washington Wizards (4:03 - 2nd)",
       completed: false,
-      statusText: "End of 1st",
+      statusText: "4:03 - 2nd",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -2823,9 +2823,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909278",
-      line: "Chicago Bulls @ Boston Celtics (10/30 - 7:30 PM EDT)",
+      line: "Chicago Bulls @ Boston Celtics (4:28 - 1st)",
       completed: false,
-      statusText: "10/30 - 7:30 PM EDT",
+      statusText: "4:28 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -2841,9 +2841,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909279",
-      line: "Detroit Pistons @ Brooklyn Nets (10/30 - 7:30 PM EDT)",
+      line: "Detroit Pistons @ Brooklyn Nets (2:29 - 1st)",
       completed: false,
-      statusText: "10/30 - 7:30 PM EDT",
+      statusText: "2:29 - 1st",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -2859,9 +2859,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909280",
-      line: "New York Knicks @ Philadelphia 76ers (10/30 - 7:30 PM EDT)",
+      line: "New York Knicks @ Philadelphia 76ers (4:47 - 1st)",
       completed: false,
-      statusText: "10/30 - 7:30 PM EDT",
+      statusText: "4:47 - 1st",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -2877,9 +2877,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909281",
-      line: "Orlando Magic @ Toronto Raptors (10/30 - 7:30 PM EDT)",
+      line: "Orlando Magic @ Toronto Raptors (4:38 - 1st)",
       completed: false,
-      statusText: "10/30 - 7:30 PM EDT",
+      statusText: "4:38 - 1st",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
