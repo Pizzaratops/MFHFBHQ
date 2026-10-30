@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909893",
-      "line": "Cleveland Cavaliers @ Atlanta Hawks (2:15 - 2nd)",
+      "line": "Cleveland Cavaliers @ Atlanta Hawks (8:32 - 4th)",
       "completed": false,
-      "statusText": "2:15 - 2nd",
+      "statusText": "8:32 - 4th",
       "away": {
         "abbr": "CLE",
         "name": "Cleveland Cavaliers",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401909894",
-      "line": "Sacramento Kings @ New Orleans Pelicans (4:35 - 2nd)",
+      "line": "Sacramento Kings @ New Orleans Pelicans (8:20 - 4th)",
       "completed": false,
-      "statusText": "4:35 - 2nd",
+      "statusText": "8:20 - 4th",
       "away": {
         "abbr": "SAC",
         "name": "Sacramento Kings",
