@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-10-29T23:57:41.329Z
+//  Stand: 2026-10-30T01:00:06.685Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -561,6 +561,7 @@ const CBB_PLAYER_POOL = [
 ["070um","DaMaryon Fishburn","Corn","G","G,Flx","FA"],
 ["0725i","Dame Salane","Tul","C","F/C,Flx","FA"],
 ["07108","Dame Sarr","Duke","G","F/C,G,Flx","T"],
+["064hd","Damien Mayo","SIU","G","G,Flx","FA"],
 ["0716h","Damon Friery","Dayt","F","F/C,Flx","FA"],
 ["06h6o","Damon Wilkinson","Nebras","C","F/C,Flx","FA"],
 ["079z7","Dan Civello","Dart","C","F/C,Flx","FA"],
@@ -768,6 +769,7 @@ const CBB_PLAYER_POOL = [
 ["070uq","Elijah Griffin","Corn","G","G,Flx","FA"],
 ["065yp","Elijah Hulsewe","UCF","C","F/C,Flx","FA"],
 ["05amn","Elijah Jones","GMas","F","F/C,Flx","T"],
+["06py3","Elijah Mahi","SCla","F","F/C,Flx","FA"],
 ["0711q","Elijah Perryman","Cin","G","G,Flx","FA"],
 ["06gcz","Elijah Price","Nev","F","F/C,Flx","T"],
 ["065cp","Elijah Saunders","Prov","F","F/C,Flx","FA"],
@@ -1143,7 +1145,6 @@ const CBB_PLAYER_POOL = [
 ["06g6v","Jaqari Miles","GrCan","G","G,Flx","FA"],
 ["06gdl","JaQualon Roberts","David","F","F/C,Flx","FA"],
 ["06nde","JaQuan Johnson","IaSt","G","G,Flx","T"],
-["065bt","Jared McGregor","BYU","G","G,Flx","FA"],
 ["065t3","Jaret Valencia","WichSt","F","F/C,Flx","FA"],
 ["06g9l","Jarin Stevenson","UNC","F","F/C,Flx","T"],
 ["070hy","Jarne Elouna Eyenga","Rice","F","F/C,Flx","FA"],
