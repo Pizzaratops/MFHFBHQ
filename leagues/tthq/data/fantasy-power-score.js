@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-30T21:26:23.238Z",
+  "generatedAt": "2026-10-30T21:41:21.364Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 6 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,29 +66,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 453.6,
-        "reb": 166.3,
-        "ast": 109.4,
-        "stl": 30.71,
-        "blk": 19.53,
-        "tpm": 42.3,
-        "to": 58.9,
-        "fgPct": 47.7,
-        "ftPct": 78.9
+        "pts": 430.1,
+        "reb": 154.3,
+        "ast": 104.9,
+        "stl": 28.72,
+        "blk": 18.61,
+        "tpm": 38.5,
+        "to": 55.4,
+        "fgPct": 48.1,
+        "ftPct": 78.7
       },
       "rank": {
         "pts": 1,
-        "reb": 1,
+        "reb": 2,
         "ast": 1,
         "stl": 1,
         "blk": 1,
-        "tpm": 3,
-        "fgPct": 3,
+        "tpm": 5,
+        "fgPct": 2,
         "ftPct": 4,
         "to": 12
       },
-      "includedCount": 28,
-      "projCount": 27,
+      "includedCount": 26,
+      "projCount": 25,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -113,8 +113,8 @@ const FANTASY_POWER_SCORE = {
         "ast": 7,
         "stl": 4,
         "blk": 4,
-        "tpm": 4,
-        "fgPct": 6,
+        "tpm": 3,
+        "fgPct": 5,
         "ftPct": 5,
         "to": 7
       },
@@ -139,10 +139,10 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 80.3
       },
       "rank": {
-        "pts": 3,
+        "pts": 4,
         "reb": 7,
         "ast": 5,
-        "stl": 2,
+        "stl": 3,
         "blk": 8,
         "tpm": 2,
         "fgPct": 10,
@@ -170,8 +170,8 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 81.2
       },
       "rank": {
-        "pts": 2,
-        "reb": 5,
+        "pts": 3,
+        "reb": 6,
         "ast": 3,
         "stl": 5,
         "blk": 10,
@@ -206,8 +206,8 @@ const FANTASY_POWER_SCORE = {
         "ast": 8,
         "stl": 11,
         "blk": 11,
-        "tpm": 5,
-        "fgPct": 7,
+        "tpm": 6,
+        "fgPct": 6,
         "ftPct": 2,
         "to": 5
       },
@@ -273,7 +273,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 9,
         "fgPct": 4,
         "ftPct": 11,
-        "to": 11
+        "to": 10
       },
       "includedCount": 27,
       "projCount": 27,
@@ -299,12 +299,12 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 7,
-        "reb": 2,
+        "reb": 1,
         "ast": 6,
         "stl": 6,
         "blk": 3,
         "tpm": 8,
-        "fgPct": 2,
+        "fgPct": 3,
         "ftPct": 12,
         "to": 9
       },
@@ -367,7 +367,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 6,
         "tpm": 10,
         "fgPct": 8,
-        "ftPct": 7,
+        "ftPct": 8,
         "to": 4
       },
       "includedCount": 28,
@@ -380,26 +380,26 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 344.7,
-        "reb": 120.7,
-        "ast": 87,
-        "stl": 25.79,
-        "blk": 14.32,
-        "tpm": 36.2,
-        "to": 43.2,
-        "fgPct": 47.4,
-        "ftPct": 78
+        "pts": 356.3,
+        "reb": 122,
+        "ast": 89.4,
+        "stl": 26.67,
+        "blk": 14.18,
+        "tpm": 38.8,
+        "to": 45.2,
+        "fgPct": 47,
+        "ftPct": 78.7
       },
       "rank": {
-        "pts": 4,
-        "reb": 6,
+        "pts": 2,
+        "reb": 5,
         "ast": 2,
-        "stl": 3,
+        "stl": 2,
         "blk": 7,
-        "tpm": 6,
-        "fgPct": 5,
-        "ftPct": 8,
-        "to": 10
+        "tpm": 4,
+        "fgPct": 7,
+        "ftPct": 6,
+        "to": 11
       },
       "includedCount": 28,
       "projCount": 28,
@@ -429,7 +429,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12,
         "tpm": 11,
         "fgPct": 12,
-        "ftPct": 6,
+        "ftPct": 7,
         "to": 3
       },
       "includedCount": 26,
