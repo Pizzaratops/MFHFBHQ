@@ -2805,9 +2805,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909277",
-      line: "Charlotte Hornets @ Washington Wizards (10/30 - 7:00 PM EDT)",
+      line: "Charlotte Hornets @ Washington Wizards (End of 1st)",
       completed: false,
-      statusText: "10/30 - 7:00 PM EDT",
+      statusText: "End of 1st",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
