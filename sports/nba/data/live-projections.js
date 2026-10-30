@@ -6,7 +6,7 @@
 //  Stats als gedämpftes Delta je Kategorie: live = Proj + (Ist − Proj)·n/(n+k),
 //  k (Spiele) MIN 4 · PTS 6 · AST 7 · REB 10 · 3PM 12 · TO 12 · BLK 23 · STL 25,
 //  FG%/FT% über 300/120 Versuche; xStats STL/TO Stand 2026-10-25; x3PM/xFG% Stand 2026-10-28 (Play-by-Play: Ramiro Bentes, github.com/ramirobentes/nba_data). Formel: Script-Kopfkommentar.
-//  Zuletzt gebaut: 2026-10-29 · Liga: nba · 9 Spieltag(e) eingerechnet
+//  Zuletzt gebaut: 2026-10-30 · Liga: nba · 9 Spieltag(e) eingerechnet
 //
 //  Shape: LIVE_PROJECTIONS["Spielername"] = {
 //    min, pts, reb, ast, stl, blk, tpm, tov, fgm, fga, ftm, fta,  // Pro-Spiel-Werte, gedämpft gemischt
