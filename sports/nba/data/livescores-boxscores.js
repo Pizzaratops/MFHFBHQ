@@ -2687,9 +2687,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909893",
-      line: "Cleveland Cavaliers @ Atlanta Hawks (10/29 - 8:00 PM EDT)",
+      line: "Cleveland Cavaliers @ Atlanta Hawks (2:15 - 2nd)",
       completed: false,
-      statusText: "10/29 - 8:00 PM EDT",
+      statusText: "2:15 - 2nd",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -2705,9 +2705,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909894",
-      line: "Sacramento Kings @ New Orleans Pelicans (10/29 - 8:00 PM EDT)",
+      line: "Sacramento Kings @ New Orleans Pelicans (4:35 - 2nd)",
       completed: false,
-      statusText: "10/29 - 8:00 PM EDT",
+      statusText: "4:35 - 2nd",
       away: {
         abbr: "SAC", name: "Sacramento Kings", score: null,
         players: [
