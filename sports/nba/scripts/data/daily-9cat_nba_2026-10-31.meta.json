@@ -1,0 +1,17 @@
+{
+  "league": "nba",
+  "date": "2026-10-31",
+  "games": [
+    "Portland Trail Blazers 112 @ Utah Jazz 90 (Final)",
+    "Philadelphia 76ers @ Charlotte Hornets (10/31 - 6:00 PM EDT)",
+    "Atlanta Hawks @ New Orleans Pelicans (10/31 - 7:00 PM EDT)",
+    "Sacramento Kings @ Memphis Grizzlies (10/31 - 8:00 PM EDT)",
+    "Cleveland Cavaliers @ Milwaukee Bucks (10/31 - 8:00 PM EDT)",
+    "Minnesota Timberwolves @ San Antonio Spurs (10/31 - 8:00 PM EDT)",
+    "Oklahoma City Thunder @ Houston Rockets (10/31 - 8:30 PM EDT)"
+  ],
+  "leagueAvg": {
+    "fg": 39,
+    "ft": 82.1
+  }
+}
