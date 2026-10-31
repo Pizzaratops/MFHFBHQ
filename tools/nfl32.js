@@ -10,6 +10,7 @@
 //    home       Übersicht (letzte Woche, Top/Flop, Spieler der Woche, Top 10)
 //    n32table   Power-Tabelle (All-Play-Quote, Ø, PF, Form, Duelle)
 //    n32rolling Rolling Rankings (Bump-Chart je Woche)
+//    n32sched   Spielplan-Liga: echter NFL-Spielplan als H2H, optional + Median-Bonus, mit Rolling
 //    n32week    Wochen-Ergebnisse inkl. Aufstellungen
 //    n32team    Team-Profil (Wochenlog, Positionsstärke, Top-Scorer)
 //    n32compare Team-Vergleich (zwei Teams nebeneinander)
@@ -365,10 +366,105 @@
     };
   }
 
+  // ---------- Spielplan-Liga: echter NFL-Spielplan als H2H (+ optional Median-Spiel) ----------
+  //  Jede Woche Fantasy-Punkte gegen die Fantasy-Punkte des echten NFL-Gegners.
+  //  Median-Bonus (wie DOPE/Sleeper): zusätzlich W/L gegen den Median aller
+  //  Teams dieser Woche. Zum Vergleich: die echte NFL-Bilanz.
+  function weekMedian(m, w) {
+    const v = m.teams.map(id => m.games[id].find(g => g.w === w)).filter(Boolean).map(g => g.pts).sort((a, b) => a - b);
+    if (!v.length) return null;
+    const h = Math.floor(v.length / 2);
+    return v.length % 2 ? v[h] : (v[h - 1] + v[h]) / 2;
+  }
+  function schedTable(m, upto, median) {
+    const med = {}; m.complete.forEach(w => { med[w] = weekMedian(m, w); });
+    const rows = m.teams.map(id => {
+      const g = m.games[id].filter(x => x.complete && x.w <= upto);
+      const h = { w: 0, l: 0, t: 0 }, md = { w: 0, l: 0, t: 0 }, nfl = { w: 0, l: 0, t: 0 };
+      let pf = 0, pa = 0;
+      g.forEach(x => {
+        pf += x.pts;
+        if (x.oppPts != null) { pa += x.oppPts; if (x.pts > x.oppPts) h.w++; else if (x.pts < x.oppPts) h.l++; else h.t++; }
+        if (x.pts > med[x.w]) md.w++; else if (x.pts < med[x.w]) md.l++; else md.t++;
+        if (x.score[0] > x.score[1]) nfl.w++; else if (x.score[0] < x.score[1]) nfl.l++; else nfl.t++;
+      });
+      const tot = median ? { w: h.w + md.w, l: h.l + md.l, t: h.t + md.t } : h;
+      const n = tot.w + tot.l + tot.t;
+      return { id, gp: g.length, h, md, nfl, tot, pct: n ? (tot.w + tot.t / 2) / n : 0, pf, pa, ppg: g.length ? pf / g.length : 0 };
+    }).filter(r => r.gp).sort((a, b) => (b.pct - a.pct) || (b.pf - a.pf));
+    rows.forEach((r, i) => { r.rank = i + 1; });
+    // Rang nach echter NFL-Bilanz (Tiebreak Fantasy-PF) für den Vergleich
+    rows.slice().sort((a, b) => ((b.nfl.w + b.nfl.t / 2) / (b.gp || 1) - (a.nfl.w + a.nfl.t / 2) / (a.gp || 1)) || (b.pf - a.pf)).forEach((r, i) => { r.nflRank = i + 1; });
+    return rows;
+  }
+  const schedSet = ctx => ({ median: false, sel: [], ...ctx.store.getJSON('n32sched', {}) });
+  function schedRoll(m, median) {
+    const byTeam = {};
+    m.complete.forEach(w => schedTable(m, w, median).forEach(r => { (byTeam[r.id] = byTeam[r.id] || {})[w] = { rank: r.rank, tip: `${rec(r.tot)} · ${num(r.pf, 0)} PF` }; }));
+    return byTeam;
+  }
+  function schedPage(ctx) {
+    const m = model(ctx.data);
+    if (!m.lastC) return noData(ctx);
+    const set = schedSet(ctx);
+    const upto = m.complete.includes(Number(ctx.params[0])) ? Number(ctx.params[0]) : m.lastC;
+    const tab = schedTable(m, upto, set.median);
+    const i = m.complete.indexOf(upto);
+    const prevRank = i > 0 ? Object.fromEntries(schedTable(m, m.complete[i - 1], set.median).map(r => [r.id, r.rank])) : {};
+    const byTeam = schedRoll(m, set.median);
+    const sel = set.sel.filter(id => byTeam[id]).slice(0, 3);
+    const lastW = m.lastC, prevW = m.complete[m.complete.length - 2];
+    const order = m.teams.filter(id => byTeam[id] && byTeam[id][lastW]).sort((a, b) => byTeam[a][lastW].rank - byTeam[b][lastW].rank);
+    const label = set.median ? 'H2H + Median' : 'H2H';
+    return `
+      ${head('🗓️ Spielplan-Liga', `<span class="explain">Was wäre, wenn: Jedes Team spielt Fantasy gegen seinen echten NFL-Gegner der Woche${set.median ? ' und bekommt zusätzlich ein Spiel gegen den Wochen-Median (Bonus-W, wie DOPE)' : ''}. Sortiert nach Bilanz, Tiebreak Punkte. NFL = echte Bilanz zum Vergleich.</span> · nach Woche ${upto}`)}
+      <div class="controls"><div class="seg" role="group">${[[false, 'Nur H2H'], [true, 'H2H + Median (Bonus-W)']].map(([v, l]) => `<button type="button" class="seg-btn${set.median === v ? ' active' : ''}" data-median="${v}">${l}</button>`).join('')}</div></div>
+      ${weekChips(ctx, 'n32sched', m.complete, upto)}
+      <div class="table-wrap" data-share="NFL 32 · Spielplan-Liga (${label}) nach Woche ${upto}">
+        <table class="table compact"><thead><tr>
+          <th class="num">#</th><th>Team</th><th class="num">Bilanz</th>${set.median ? '<th class="num" title="davon gegen den echten Gegner">H2H</th><th class="num" title="Bonus-Spiel gegen den Wochen-Median">Median</th>' : ''}
+          <th class="num">PF</th><th class="num" title="Fantasy-Punkte der echten Gegner">PA</th><th class="num" title="Echte NFL-Bilanz">NFL</th><th class="num" title="Platz nach Fantasy minus Platz nach echter NFL-Bilanz">vs NFL</th><th class="num">Trend</th>
+        </tr></thead>
+        <tbody>${tab.map(r => { const mv = prevRank[r.id] ? prevRank[r.id] - r.rank : 0; const d = r.nflRank - r.rank; return `<tr>
+          <td class="num rank">${r.rank}</td><td>${teamCell(ctx, r.id, { abbr: true })}</td>
+          <td class="num strong">${rec(r.tot)}</td>${set.median ? `<td class="num">${rec(r.h)}</td><td class="num">${rec(r.md)}</td>` : ''}
+          <td class="num">${num(r.pf, 0)}</td><td class="num muted">${num(r.pa, 0)}</td><td class="num muted">${rec(r.nfl)}</td>
+          <td class="num ${d > 0 ? 'up' : d < 0 ? 'down' : 'muted'}" title="NFL-Platz ${r.nflRank}">${d ? MFHFB.ui.signed(d, 0) : '±0'}</td>
+          <td class="num ${mv > 0 ? 'up' : mv < 0 ? 'down' : 'muted'}">${mv > 0 ? '▲ ' + mv : mv < 0 ? '▼ ' + -mv : '–'}</td></tr>`; }).join('')}</tbody></table>
+      </div>
+      <h2 class="group-title">Rolling Rankings · ${label}</h2>
+      <div class="pick-row n32-picks">${[...m.teams].sort().map(id => { const k = sel.indexOf(id); return `<button type="button" class="pick${k > -1 ? ' on ' + SEL[k] : ''}" data-pick="${id}" title="${e(T().name(id))}">${dot(id)}<span>${id}</span></button>`; }).join('')}
+        ${sel.length ? '<button type="button" class="pick clear" data-clear>✕</button>' : ''}</div>
+      <div class="card bump-card" data-share="NFL 32 · Spielplan-Liga Rolling (${label})">
+        <div class="bump-wrap" data-bump>${rollSvg(m, byTeam, sel, 900)}</div>
+        <div class="bump-tip" hidden></div>
+        <div class="bump-hint explain">${sel.length ? '' : 'Tipp: bis zu drei Teams antippen, um ihren Verlauf hervorzuheben. '}Hovern zeigt Details.</div>
+      </div>
+      <div class="table-wrap"><table class="table compact"><thead><tr><th>Team</th>${m.complete.map(w => `<th class="num">W${w}</th>`).join('')}${prevW ? '<th class="num">Trend</th>' : ''}</tr></thead>
+        <tbody>${order.map(id => { const c = byTeam[id][lastW], p = prevW && byTeam[id][prevW]; const mv = c && p ? p.rank - c.rank : 0; const k = sel.indexOf(id);
+          return `<tr${k > -1 ? ` class="row-${SEL[k]}"` : ''}><td>${teamCell(ctx, id)}</td>${m.complete.map(w => `<td class="num${w === lastW ? ' strong' : ''}">${byTeam[id][w] ? byTeam[id][w].rank : '–'}</td>`).join('')}${prevW ? `<td class="num ${mv > 0 ? 'up' : mv < 0 ? 'down' : 'muted'}">${mv > 0 ? '▲ ' + mv : mv < 0 ? '▼ ' + -mv : '–'}</td>` : ''}</tr>`; }).join('')}</tbody></table></div>`;
+  }
+  function schedMount(root, ctx) {
+    const set = schedSet(ctx);
+    const save = patch => { ctx.store.setJSON('n32sched', { ...schedSet(ctx), ...patch }); ctx.refresh(); };
+    root.querySelectorAll('[data-median]').forEach(b => b.addEventListener('click', () => save({ median: b.dataset.median === 'true' })));
+    root.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.pick; let sel = set.sel.filter(x => x !== id);
+      if (sel.length === set.sel.length) sel = [...set.sel, id].slice(-3);
+      save({ sel });
+    }));
+    const clr = root.querySelector('[data-clear]'); if (clr) clr.addEventListener('click', () => save({ sel: [] }));
+    const wrap = root.querySelector('[data-bump]'); if (!wrap) return;
+    const m = model(ctx.data), byTeam = schedRoll(m, set.median), sel = set.sel.filter(id => byTeam[id]).slice(0, 3);
+    MFHFB.charts.responsive(wrap, w => rollSvg(m, byTeam, sel, w));
+    MFHFB.charts.bumpInteract(wrap, root.querySelector('.bump-tip'), id => { const btn = root.querySelector(`[data-pick="${CSS.escape(id)}"]`); if (btn) btn.click(); });
+  }
+
   const reg = p => MFHFB.pages.register({ applies: A, data: D, ...p });
   reg({ id: 'home', section: 'home', label: 'Übersicht', icon: '🏠', render: home });
   reg({ id: 'n32table', section: 'standings', label: 'Power-Tabelle', icon: '🏆', render: tablePage });
   reg({ id: 'n32rolling', section: 'standings', label: 'Rolling Rankings', icon: '📊', render: rollingPage, mount: rollingMount });
+  reg({ id: 'n32sched', section: 'standings', label: 'Spielplan-Liga', icon: '🗓️', render: schedPage, mount: schedMount });
   reg({ id: 'n32week', section: 'matchups', label: 'Wochen', icon: '📅', render: weekPage, title: ({ params }) => (params[0] ? `Woche ${params[0]}` : 'Wochen') });
   reg({ id: 'n32team', section: 'teams', label: 'Team-Profil', icon: '🧍', render: teamPage, mount: navMount('n32team', 'n32team'), title: ({ params }) => (params[0] ? MFHFB.nfl.teams.name(params[0]) : 'Team-Profil') });
   reg({ id: 'n32compare', section: 'teams', label: 'Team-Vergleich', icon: '🆚', render: comparePage, mount: navMount('n32compare', 'n32compare') });
