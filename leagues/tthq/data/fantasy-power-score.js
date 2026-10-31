@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-31T11:11:40.248Z",
+  "generatedAt": "2026-10-31T12:01:22.329Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 6 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,29 +66,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 433.9,
-        "reb": 155,
-        "ast": 105.1,
-        "stl": 28.73,
-        "blk": 18.55,
-        "tpm": 39.1,
-        "to": 55.2,
+        "pts": 449.9,
+        "reb": 161.1,
+        "ast": 108.4,
+        "stl": 30.26,
+        "blk": 19.35,
+        "tpm": 40.6,
+        "to": 57.8,
         "fgPct": 48.2,
-        "ftPct": 78.6
+        "ftPct": 78.5
       },
       "rank": {
         "pts": 1,
-        "reb": 2,
+        "reb": 1,
         "ast": 1,
         "stl": 1,
         "blk": 1,
-        "tpm": 5,
+        "tpm": 3,
         "fgPct": 1,
-        "ftPct": 5,
+        "ftPct": 6,
         "to": 12
       },
-      "includedCount": 26,
-      "projCount": 25,
+      "includedCount": 28,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -113,7 +113,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 7,
         "stl": 4,
         "blk": 4,
-        "tpm": 3,
+        "tpm": 4,
         "fgPct": 5,
         "ftPct": 4,
         "to": 7
@@ -299,7 +299,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 7,
-        "reb": 1,
+        "reb": 2,
         "ast": 6,
         "stl": 6,
         "blk": 3,
@@ -396,9 +396,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 2,
         "stl": 2,
         "blk": 7,
-        "tpm": 4,
+        "tpm": 5,
         "fgPct": 7,
-        "ftPct": 6,
+        "ftPct": 5,
         "to": 11
       },
       "includedCount": 28,
