@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-10-31T03:01:18.658Z",
+  "generatedAt": "2026-10-31T04:01:20.964Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 6 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -160,7 +160,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Sven",
       "values": {
         "pts": 351.5,
-        "reb": 121,
+        "reb": 120.9,
         "ast": 80.7,
         "stl": 23.61,
         "blk": 11.58,
@@ -258,7 +258,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 142.3,
         "ast": 79.8,
         "stl": 22.75,
-        "blk": 18.31,
+        "blk": 18.28,
         "tpm": 32.6,
         "to": 44.8,
         "fgPct": 47.7,
@@ -324,7 +324,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 22.46,
         "blk": 11.84,
         "tpm": 29,
-        "to": 33.1,
+        "to": 33,
         "fgPct": 48.3,
         "ftPct": 77.7
       },
@@ -381,7 +381,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Nils",
       "values": {
         "pts": 358.2,
-        "reb": 123.1,
+        "reb": 123.2,
         "ast": 90.3,
         "stl": 26.4,
         "blk": 14.27,
