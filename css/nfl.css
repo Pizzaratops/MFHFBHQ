@@ -503,3 +503,61 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .op-more { padding: 0 14px 12px; }
 .op-more summary { cursor: pointer; font-size: 13px; font-weight: 700; color: var(--league-accent); }
 .op-more .op-abs-grid { padding: 10px 0 0; }
+
+/* ---------- NFL 32 (All-Play-Liga, tools/nfl32.js) ---------- */
+.n32-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--tc); flex: none; margin-right: 2px; vertical-align: baseline; }
+.n32-abbr { font-size: 11px; margin-left: 4px; }
+.n32-more { font-size: 13px; font-weight: 600; margin-left: 8px; text-decoration: none; }
+.n32-weeks { margin-bottom: 12px; }
+.n32-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.n32-kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; min-width: 0; }
+.n32-kpi-l { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.n32-kpi-v { font-size: 20px; font-weight: 800; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.n32-kpi-s { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.n32-list { display: flex; flex-direction: column; gap: 6px; }
+.n32-row { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.n32-row > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 34px minmax(90px, 1.3fr) 64px 70px minmax(90px, 1.2fr) 90px; align-items: center; gap: 8px; padding: 8px 10px; font-variant-numeric: tabular-nums; }
+.n32-row > summary::-webkit-details-marker { display: none; }
+.n32-row[open] > summary { border-bottom: 1px solid var(--border); }
+.n32-r { color: var(--muted); font-weight: 700; text-align: right; }
+.n32-t { display: flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; }
+.n32-p { font-weight: 800; text-align: right; font-size: 16px; }
+.n32-ap, .n32-real { font-size: 12px; text-align: right; }
+.n32-vs { font-size: 12px; white-space: nowrap; }
+.n32-lineup { padding: 6px 10px 10px; display: grid; gap: 2px; }
+.n32-slot { display: grid; grid-template-columns: 44px 1fr auto; gap: 8px; font-size: 13px; padding: 3px 0; border-bottom: 1px dashed color-mix(in srgb, var(--border) 60%, transparent); }
+.n32-slot.empty { opacity: .5; }
+.n32-slot-k { font-weight: 700; color: var(--muted); font-size: 11px; align-self: center; }
+.n32-slot-p { font-weight: 700; font-variant-numeric: tabular-nums; }
+.n32-bench { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.n32-open { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.n32-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); }
+.n32-picks .pick { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; }
+.n32-heat .n32-h { background: hsl(var(--h) 60% 45% / .22); }
+.n32-heat th a { text-decoration: none; }
+.n32-avg td { border-top: 2px solid var(--border); }
+.n32-bars { display: grid; gap: 8px; margin-bottom: 8px; }
+.n32-bar-row { display: grid; grid-template-columns: 38px 1fr; gap: 8px; align-items: center; }
+.n32-bar-k { font-weight: 700; font-size: 12px; color: var(--muted); }
+.n32-bar-cols { display: grid; gap: 3px; }
+.n32-bar-line { display: grid; grid-template-columns: 1fr 86px; gap: 8px; align-items: center; }
+.n32-bar { position: relative; height: 12px; background: var(--surface2); border-radius: 6px; }
+.n32-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; opacity: .85; }
+.n32-bar-avg { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); opacity: .55; }
+.n32-bar-v { font-size: 12px; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.n32-bar-legend { font-size: 11px; color: var(--muted); }
+.n32-select { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px 8px; }
+.n32-select select { background: transparent; color: var(--text); border: 0; font: inherit; font-weight: 700; max-width: 220px; }
+.n32-vs-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.n32-cmp { padding: 4px 0; margin-bottom: 8px; }
+.n32-cmp .n32-cmp-l { text-align: center; color: var(--muted); font-size: 12px; }
+.n32-cmp th { white-space: nowrap; }
+.n32-win { color: var(--league-accent); }
+@media (max-width: 640px) {
+  .n32-row > summary { grid-template-columns: 26px minmax(70px, 1fr) 56px minmax(70px, auto); row-gap: 2px; }
+  .n32-ap { grid-column: 2; text-align: left; }
+  .n32-vs { grid-column: 3 / 5; text-align: right; }
+  .n32-real { display: none; }
+  .n32-kpis { grid-template-columns: 1fr 1fr; }
+  .n32-kpi-v { font-size: 17px; }
+}

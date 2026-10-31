@@ -245,6 +245,25 @@ const LEAGUES = [
     repo: 'Dynasty-Of-Pretend-Experts',
   },
   {
+    // 31.10.2026: Alle 32 NFL-Teams als Fantasy-Teams. Pro Woche zählt die
+    // bestmögliche Aufstellung aus den eigenen Spielern (QB, 2 RB, 2 WR, TE,
+    // 2 FLEX, K, DEF) mit DOPE-Scoring; Wertung nur All-Play (kein H2H).
+    // Daten: leagues/nfl32/scripts/sync-nfl32.js (nflverse, dienstags).
+    key: 'nfl32',
+    name: 'NFL 32',
+    short: 'NFL 32',
+    emoji: '🏟️',
+    sport: 'nfl',
+    platform: 'nflverse',
+    format: 'All-Play, Best Ball',
+    scoring: 'allplay',
+    accent: '#3b82f6',
+    accent2: '#f59e0b',
+    mode: 'native',
+    dataBase: 'leagues/nfl32/data/',
+    pages: ['home', 'n32table', 'n32rolling', 'n32week', 'n32team', 'n32compare', 'n32pos', 'nflrankings', 'nflmatchup'],
+  },
+  {
     // Fantrax NBA World Cup (Draft-Only-Turnier): 4 Conferences à 12
     // Divisionen à 12 Teams, je 14 Runden. Keine eigenen Datendateien —
     // die Seite „World Cup Draft“ (tools/nba-worldcup.js) holt die Picks
