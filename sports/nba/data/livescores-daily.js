@@ -1918,7 +1918,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-10-31": {
-      games: ["Portland Trail Blazers 112 @ Utah Jazz 90 (Final)","Philadelphia 76ers @ Charlotte Hornets (2:05 - 2nd)","Atlanta Hawks @ New Orleans Pelicans (10/31 - 7:00 PM EDT)","Sacramento Kings @ Memphis Grizzlies (10/31 - 8:00 PM EDT)","Cleveland Cavaliers @ Milwaukee Bucks (10/31 - 8:00 PM EDT)","Minnesota Timberwolves @ San Antonio Spurs (10/31 - 8:00 PM EDT)","Oklahoma City Thunder @ Houston Rockets (10/31 - 8:30 PM EDT)"],
+      games: ["Portland Trail Blazers 112 @ Utah Jazz 90 (Final)","Philadelphia 76ers @ Charlotte Hornets (Halftime)","Atlanta Hawks @ New Orleans Pelicans (7:07 - 1st)","Sacramento Kings @ Memphis Grizzlies (10/31 - 8:00 PM EDT)","Cleveland Cavaliers @ Milwaukee Bucks (10/31 - 8:00 PM EDT)","Minnesota Timberwolves @ San Antonio Spurs (10/31 - 8:00 PM EDT)","Oklahoma City Thunder @ Houston Rockets (10/31 - 8:30 PM EDT)"],
       leagueAvg: { fg: 39, ft: 82.1 },
       players: [
         { rank: 1, name: "Jrue Holiday", team: "POR", min: 22, pts: 14, reb: 4, ast: 3, stl: 1, blk: 0, to: 1, tpm: 2, fgPct: 66.7, ftPct: 100, composite: 6.12, zScores: { pts: 0.918, reb: 0.259, ast: 1.038, stl: 0, blk: -0.535, tpm: 0.791, fgImpact: 1.841, ftImpact: 1.511, to: 0.299 } },

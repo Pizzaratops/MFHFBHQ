@@ -699,9 +699,9 @@
     },
     {
       "id": "401909897",
-      "line": "Philadelphia 76ers @ Charlotte Hornets (2:05 - 2nd)",
+      "line": "Philadelphia 76ers @ Charlotte Hornets (Halftime)",
       "completed": false,
-      "statusText": "2:05 - 2nd",
+      "statusText": "Halftime",
       "away": {
         "abbr": "PHI",
         "name": "Philadelphia 76ers",
@@ -717,9 +717,9 @@
     },
     {
       "id": "401909898",
-      "line": "Atlanta Hawks @ New Orleans Pelicans (10/31 - 7:00 PM EDT)",
+      "line": "Atlanta Hawks @ New Orleans Pelicans (7:07 - 1st)",
       "completed": false,
-      "statusText": "10/31 - 7:00 PM EDT",
+      "statusText": "7:07 - 1st",
       "away": {
         "abbr": "ATL",
         "name": "Atlanta Hawks",
