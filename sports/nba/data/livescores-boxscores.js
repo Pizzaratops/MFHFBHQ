@@ -3199,9 +3199,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909896",
-      line: "Portland Trail Blazers @ Utah Jazz (7:02 - 3rd)",
+      line: "Portland Trail Blazers @ Utah Jazz (11:21 - 4th)",
       completed: false,
-      statusText: "7:02 - 3rd",
+      statusText: "11:21 - 4th",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
