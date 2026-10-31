@@ -3240,9 +3240,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909897",
-      line: "Philadelphia 76ers @ Charlotte Hornets (10/31 - 6:00 PM EDT)",
+      line: "Philadelphia 76ers @ Charlotte Hornets (5:47 - 1st)",
       completed: false,
-      statusText: "10/31 - 6:00 PM EDT",
+      statusText: "5:47 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
