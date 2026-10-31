@@ -261,7 +261,7 @@ const LEAGUES = [
     accent2: '#f59e0b',
     mode: 'native',
     dataBase: 'leagues/nfl32/data/',
-    pages: ['home', 'n32table', 'n32rolling', 'n32sched', 'n32week', 'n32team', 'n32compare', 'n32pos', 'nflrankings', 'nflmatchup'],
+    pages: ['home', 'n32table', 'n32rolling', 'n32sched', 'n32week', 'n32team', 'n32compare', 'n32pos', 'nflrankings'],
   },
   {
     // Fantrax NBA World Cup (Draft-Only-Turnier): 4 Conferences à 12
