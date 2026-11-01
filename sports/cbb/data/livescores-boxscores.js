@@ -37,9 +37,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920982",
-      line: "Notre Dame Fighting Irish @ Villanova Wildcats (11/1 - 9:30 AM EST)",
+      line: "Notre Dame Fighting Irish @ Villanova Wildcats (14:28 - 2nd)",
       completed: false,
-      statusText: "11/1 - 9:30 AM EST",
+      statusText: "14:28 - 2nd",
       away: {
         abbr: "ND", name: "Notre Dame Fighting Irish", score: null,
         players: [
