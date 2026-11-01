@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-01T18:31:51.485Z",
+  "generatedAt": "2026-11-01T18:52:03.148Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 7 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -111,7 +111,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 7,
         "reb": 4,
         "ast": 7,
-        "stl": 4,
+        "stl": 5,
         "blk": 4,
         "tpm": 4,
         "fgPct": 6,
@@ -141,7 +141,7 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 4,
         "reb": 7,
-        "ast": 4,
+        "ast": 5,
         "stl": 3,
         "blk": 8,
         "tpm": 2,
@@ -159,29 +159,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 352.7,
-        "reb": 120.1,
-        "ast": 79.8,
-        "stl": 23.53,
-        "blk": 11.47,
-        "tpm": 45,
-        "to": 41.3,
+        "pts": 360.5,
+        "reb": 122.3,
+        "ast": 82.4,
+        "stl": 24.25,
+        "blk": 11.63,
+        "tpm": 45.7,
+        "to": 42.1,
         "fgPct": 46,
         "ftPct": 81.1
       },
       "rank": {
-        "pts": 3,
+        "pts": 2,
         "reb": 6,
-        "ast": 5,
-        "stl": 5,
+        "ast": 3,
+        "stl": 4,
         "blk": 10,
         "tpm": 1,
         "fgPct": 11,
         "ftPct": 2,
         "to": 9
       },
-      "includedCount": 26,
-      "projCount": 26,
+      "includedCount": 27,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -267,7 +267,7 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 5,
         "reb": 3,
-        "ast": 3,
+        "ast": 4,
         "stl": 7,
         "blk": 2,
         "tpm": 9,
@@ -391,7 +391,7 @@ const FANTASY_POWER_SCORE = {
         "ftPct": 78.5
       },
       "rank": {
-        "pts": 2,
+        "pts": 3,
         "reb": 5,
         "ast": 2,
         "stl": 2,
