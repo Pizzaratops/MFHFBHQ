@@ -165,7 +165,9 @@ const teamList = Object.entries(TEAMS).map(([id, [name, color, conf]]) => ({ id,
 fs.writeFileSync(path.join(DATA, 'teams.js'), head('LEAGUE_TEAMS — die 30 NBA-Teams als Fantasy-Teams', 'Farben für dunklen und hellen Hintergrund lesbar.') +
   `const LEAGUE_TEAMS = [\n${teamList.map(t => '  ' + JSON.stringify(t)).join(',\n')}\n];\n`, 'utf8');
 const season = Number(day0.slice(0, 4)) + 1;
-const data = { season: `${season - 1}-${String(season).slice(2)}`, updated: new Date().toISOString(), scoring: 'BBC (ESPN Points)', scoringKeys: SC, slots: SLOTS, weeks };
+// Zeitstempel nur bei echter Änderung neu setzen (sonst Commit-Churn bei jedem NBA-Sync)
+const same = prev && JSON.stringify(prev.weeks) === JSON.stringify(weeks);
+const data = { season: `${season - 1}-${String(season).slice(2)}`, updated: same ? prev.updated : new Date().toISOString(), scoring: 'BBC (ESPN Points)', scoringKeys: SC, slots: SLOTS, weeks };
 fs.writeFileSync(OUT, head(`NBA30 — Woche für Woche: beste Aufstellung je NBA-Team und Spiel (Saison ${data.season})`,
   'games[]: { d, team, opp, home, score:[eigene, gegnerische], pts, oppPts, lineup:[slot, name, pos, pts], bench:[name, pos, pts] }') +
   `const NBA30 = ${JSON.stringify(data)};\n`, 'utf8');
