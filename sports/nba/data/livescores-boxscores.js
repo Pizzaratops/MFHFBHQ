@@ -3471,6 +3471,82 @@ const LIVESCORES_BOXSCORES = {
       }
     }
     ]
+  },
+    "2026-11-01": {
+    games: [
+      {
+      id: "401909903",
+      line: "Boston Celtics @ Orlando Magic (11/1 - 3:30 PM EST)",
+      completed: false,
+      statusText: "11/1 - 3:30 PM EST",
+      away: {
+        abbr: "BOS", name: "Boston Celtics", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "ORL", name: "Orlando Magic", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401909904",
+      line: "Brooklyn Nets @ Indiana Pacers (11/1 - 5:00 PM EST)",
+      completed: false,
+      statusText: "11/1 - 5:00 PM EST",
+      away: {
+        abbr: "BKN", name: "Brooklyn Nets", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "IND", name: "Indiana Pacers", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401909905",
+      line: "LA Clippers @ Golden State Warriors (11/1 - 8:30 PM EST)",
+      completed: false,
+      statusText: "11/1 - 8:30 PM EST",
+      away: {
+        abbr: "LAC", name: "LA Clippers", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "GS", name: "Golden State Warriors", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401909906",
+      line: "Toronto Raptors @ Los Angeles Lakers (11/1 - 9:00 PM EST)",
+      completed: false,
+      statusText: "11/1 - 9:00 PM EST",
+      away: {
+        abbr: "TOR", name: "Toronto Raptors", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "LAL", name: "Los Angeles Lakers", score: null,
+        players: [
+
+        ]
+      }
+    }
+    ]
   }
   },
   "nba-preseason": {
