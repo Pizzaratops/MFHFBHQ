@@ -1,0 +1,11 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-01",
+  "games": [
+    "Notre Dame Fighting Irish 74 @ Villanova Wildcats 72 (Final)"
+  ],
+  "leagueAvg": {
+    "fg": 40.2,
+    "ft": 74.4
+  }
+}
