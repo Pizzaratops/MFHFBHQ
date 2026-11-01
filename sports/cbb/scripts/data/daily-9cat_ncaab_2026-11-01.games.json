@@ -1,0 +1,24 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-01",
+  "games": [
+    {
+      "id": "401920982",
+      "line": "Notre Dame Fighting Irish @ Villanova Wildcats (11/1 - 9:30 AM EST)",
+      "completed": false,
+      "statusText": "11/1 - 9:30 AM EST",
+      "away": {
+        "abbr": "ND",
+        "name": "Notre Dame Fighting Irish",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Vill",
+        "name": "Villanova Wildcats",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
