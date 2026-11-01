@@ -424,14 +424,31 @@
     });
     let act;
     if (opt) {
-      // beste Aufstellung: je Spieler nach Wochenwert, G max 8, F/C max 8, Flx max 4 (Fantrax-Regeln)
-      const cap = { G: 8, 'F/C': 8, Flx: 4 }, n = { G: 0, 'F/C': 0, Flx: 0 };
+      // beste Aufstellung (Fantrax: 8 G, 8 F/C, 4 Flex). Exakt optimal: nach Wochen-
+      // wert absteigend aufnehmen, solange die Menge noch aufstellbar ist (Matroid → Greedy optimal).
+      // Danach Slots verteilen: nur-G → G, nur-F/C → F/C, Doppelte füllen auf, Rest Flex.
+      const kind = x => { const el = String(x.r.elig || 'Flx').split(','); const g = el.includes('G'), f = el.includes('F/C'); return g && f ? 'B' : g ? 'G' : f ? 'F' : 'X'; };
+      const c = { G: 0, F: 0, B: 0, X: 0 };
       act = [];
-      players.filter(x => x.p && x.r.status !== 'IR').sort((a, b) => b.val - a.val).forEach(x => {
-        const el = String(x.r.elig || 'Flx').split(',');
-        const slot = ['G', 'F/C', 'Flx'].find(k => (el.includes(k) || k === 'Flx') && n[k] < cap[k]);
-        if (slot) { n[slot]++; x.slot = slot; act.push(x); }
+      // Lock: wer in dieser Woche schon gespielt hat, bleibt wie in Fantrax (aktiv drin, Bank draußen)
+      const td = today();
+      const first = x => hasDates ? (GD[x.r.team] || []).filter(d => inWin(w, d)).sort()[0] : null;
+      players.forEach(x => { const d = first(x); x.locked = !!(d && d < td); });
+      const order = players.filter(x => x.p && x.r.status !== 'IR' && !(x.locked && x.r.status !== 'A'))
+        .sort((a, b) => ((b.locked && b.r.status === 'A') - (a.locked && a.r.status === 'A')) || (b.val - a.val));
+      order.forEach(x => {
+        const k = kind(x);
+        // aufstellbar ⇔ gesamt ≤ 20 und Überhang (nur-G über 8 + nur-F/C über 8 + nur-Flex) ≤ 4
+        const n2 = { ...c, [k]: c[k] + 1 };
+        if (act.length >= 20 || Math.max(0, n2.G - 8) + Math.max(0, n2.F - 8) + n2.X > 4) return;
+        c[k]++; act.push(x);
       });
+      const n = { G: 0, 'F/C': 0, Flx: 0 };
+      const put = (x, slot) => { x.slot = slot; n[slot]++; };
+      act.filter(x => kind(x) === 'G').forEach(x => put(x, n.G < 8 ? 'G' : 'Flx'));
+      act.filter(x => kind(x) === 'F').forEach(x => put(x, n['F/C'] < 8 ? 'F/C' : 'Flx'));
+      act.filter(x => kind(x) === 'B').forEach(x => put(x, n.G < 8 ? 'G' : n['F/C'] < 8 ? 'F/C' : 'Flx'));
+      act.filter(x => kind(x) === 'X').forEach(x => put(x, 'Flx'));
     } else act = players.filter(x => x.r.status === 'A');
     act.forEach(x => { x.on = true; });
     const tot = {}, sd = {};
@@ -519,6 +536,90 @@
     if (t) t.addEventListener('change', () => { ctx.store.setJSON('cbbplaner', { ...ctx.store.getJSON('cbbplaner', {}), team: Number(t.value) }); ctx.refresh(); });
     const w = root.querySelector('[data-week]');
     if (w) w.addEventListener('change', () => { location.hash = ctx.href('cbbplaner', w.value).replace(/^.*#/, '#'); });
+  }
+
+
+  // ============================================================
+  //  5b — Aufstellung der Woche (einfache To-do-Ansicht)
+  // ============================================================
+  //  01.11.2026 auf Wunsch: der Matchup-Planer ist zu voll. Diese Seite sagt
+  //  nur: wen in Fantrax aktivieren, wen auf die Bank — und bis wann
+  //  (Lock je Spieler beim ersten Spiel der Woche). Darunter die beste
+  //  Aufstellung nach Slots (8 G / 8 F/C / 4 Flex) mit Spieltagen.
+  const WD = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+  function lineupPage(ctx) {
+    const { data, ui, params } = ctx, e = ui.esc, nba = N().init(data);
+    const W = windows(data);
+    if (!W.length || !data.CBB_PROJECTIONS) return ui.empty('Kein Spielplan', 'Fantrax-Sync oder Projections fehlen.', '🧩');
+    const teams = nba.leagueTeams(data, true), byId = teamById(data);
+    const st = { team: null, ...ctx.store.getJSON('cbbplaner', {}) };
+    const me = myTeam(data) || teams[0];
+    const tid = teams.some(t => t.id === st.team) ? st.team : me.id;
+    const td = today();
+    const cur = W.find(w => inWin(w, td)) || W.find(w => w.start > td) || W[W.length - 1];
+    const w = W.find(x => x.n === Number(params[0])) || cur;
+    const GD = data.CBB_GAME_DATES || {};
+    const T = weekTeam(data, tid, w, true);
+    const F = weekTeam(data, tid, w, false);
+    const dates = x => (GD[x.r.team] || []).filter(d => inWin(w, d)).sort();
+    const fmtD = s => (s ? s.slice(8, 10) + '.' + s.slice(5, 7) + '.' : '');
+    const dayChip = d => `<span class="cbbl-day${d < td ? ' past' : ''}">${WD[new Date(d + 'T12:00:00Z').getUTCDay()]}</span>`;
+    const lastDay = w.to ? new Date(new Date(w.to + 'T12:00:00Z').getTime() - 864e5).toISOString().slice(0, 10) : w.end;
+
+    // Änderungen gegenüber Fantrax
+    const ins = T.players.filter(x => x.on && x.r.status !== 'A');
+    const outs = T.players.filter(x => !x.on && x.r.status === 'A');
+    const locked = x => x.locked;
+    const deadline = [...ins, ...outs].map(x => dates(x)[0]).filter(d => d && d >= td).sort()[0];
+    const gone = new Set((data.CBB_GONE || []).map(g => N().key(g[0])));
+    const why = x => (x.r.status === 'IR' ? 'auf IR' : !x.p ? (gone.has(N().key(x.r.name)) ? 'vermutlich nicht spielberechtigt (nicht im ESPN-Kader)' : 'keine Projektion — selbst prüfen') : x.games === 0 ? 'kein Spiel diese Woche' : `weniger Wochenwert (${sgn(x.val)})`);
+    const moveRow = (x, dir) => `<li class="cbbl-move ${dir}"><span class="cbbl-arrow">${dir === 'in' ? '▲' : '▼'}</span>
+      <b>${e(x.r.name)}</b>${nba.injury(x.r.inj)} <span class="muted">${e(x.r.team)}</span>
+      <span class="cbbl-meta">${dir === 'in' ? `aktivieren → ${e(x.slot)} · ${x.games} Spiele` : `auf die Bank · ${why(x)}`}${locked(x) ? ' · <span class="down">schon gesperrt</span>' : ''}</span></li>`;
+    const sumVal = L => L.filter(x => x.on && x.p).reduce((a, x) => a + x.val, 0);
+    const gain = sumVal(T.players) - sumVal(F.players);
+
+    // Gegner-Prognose kompakt (beide Aufstellungen optimal)
+    const opps = w.matchups.filter(m => m.includes(tid)).map(m => (m[0] === tid ? m[1] : m[0]));
+    const oppLine = oid => { const R = cmp(T, weekTeam(data, oid, w, true)), R0 = cmp(F, weekTeam(data, oid, w, true)); return `<div class="cbbl-opp"><span>vs ${tLink(ctx, byId[oid])}</span><b class="${R.exp >= 4.5 ? 'up' : 'down'}">≈ ${R.exp.toFixed(1)} : ${(9 - R.exp).toFixed(1)}</b>${Math.abs(R.exp - R0.exp) >= 0.05 ? `<span class="muted small">(so wie jetzt: ${R0.exp.toFixed(1)})</span>` : ''}</div>`; };
+
+    const slotBox = (slot, label, cap) => {
+      const L = T.act.filter(x => x.slot === slot).sort((a, b) => b.val - a.val);
+      return `<div class="card cbbl-slot"><div class="card-head"><h2>${label}</h2><span class="muted small">${L.length}/${cap}</span></div>
+        <div class="cbbl-rows">${L.map(x => `<div class="cbbl-row${x.r.status !== 'A' ? ' new' : ''}">
+          <span class="cbbl-name">${x.r.status !== 'A' ? '<span class="up" title="in Fantrax noch nicht aktiv">▲</span> ' : ''}${e(x.r.name)}${nba.injury(x.r.inj)}<small class="muted">${e(x.r.team)}</small></span>
+          <span class="cbbl-days">${dates(x).map(dayChip).join('') || `<span class="muted small">${x.games}×</span>`}</span>
+          <span class="cbbl-val ${x.val >= 0 ? 'up' : 'down'}">${sgn(x.val)}</span></div>`).join('')}</div></div>`;
+    };
+    const bench = T.players.filter(x => !x.on).sort((a, b) => b.val - a.val);
+
+    return `<div class="page-head"><h1 class="page-title display">🧩 Aufstellung</h1>
+        <div class="page-sub">Woche ${w.n} · ${fmtD(w.start)}–${fmtD(lastDay)} · <span class="explain">beste 20 nach Wochenwert = Spiele × Projektion (z pro Spiel), Fantrax-Regeln 8 G / 8 F/C / 4 Flex. Gesperrt wird jeder Spieler mit seinem ersten Spiel der Woche.</span></div></div>
+      <div class="controls"><select class="tr-select" data-team>${teams.map(x => `<option value="${x.id}"${x.id === tid ? ' selected' : ''}>${e(x.name)}</option>`).join('')}</select>
+        <select class="tr-select" data-week>${W.map(x => `<option value="${x.n}"${x.n === w.n ? ' selected' : ''}>Woche ${x.n} · ${fmtD(x.start)}${x.n === cur.n ? ' (aktuell)' : ''}</option>`).join('')}</select>
+        <a class="btn-link small" href="${ctx.href('cbbplaner', w.n)}">Details im Matchup-Planer →</a></div>
+      <div data-share="Aufstellung · ${e((byId[tid] || {}).name || '')} · Woche ${w.n}">
+      <div class="card cbbl-todo">
+        <div class="card-head"><h2>${ins.length || outs.length ? '📋 In Fantrax ändern' : '✅ Aufstellung passt'}</h2>${ins.length || outs.length ? `<span class="muted small">${ins.length} rein · ${outs.length} raus${gain > 0.05 ? ` · Wochenwert ${sgn(gain)}` : ''}</span>` : ''}</div>
+        ${ins.length || outs.length ? `<ul class="cbbl-moves">${ins.map(x => moveRow(x, 'in')).join('')}${outs.map(x => moveRow(x, 'out')).join('')}</ul>
+          ${deadline ? `<div class="cbbl-deadline">⏰ Spätestens bis <b>${WD[new Date(deadline + 'T12:00:00Z').getUTCDay()]} ${fmtD(deadline)}</b> vor dem ersten Spiel ändern — danach ist der Spieler für die Woche gesperrt.</div>` : ''}`
+          : '<p class="muted cbbl-ok">Die 20 Aktiven in Fantrax sind schon die beste Wahl für diese Woche.</p>'}
+        ${opps.length ? `<div class="cbbl-opps">${opps.map(oppLine).join('')}</div>` : ''}
+      </div>
+      <div class="cbbl-grid">${slotBox('G', 'Guards', 8)}${slotBox('F/C', 'Forwards / Center', 8)}${slotBox('Flx', 'Flex', 4)}</div>
+      </div>
+      <div class="card"><div class="card-head"><h2>Bank</h2><span class="muted small">${bench.length} Spieler</span></div>
+        <div class="cbbl-rows">${bench.map(x => `<div class="cbbl-row bench${x.r.status === 'A' ? ' out' : ''}">
+          <span class="cbbl-name">${x.r.status === 'A' ? '<span class="down" title="in Fantrax aktiv">▼</span> ' : ''}${e(x.r.name)}${nba.injury(x.r.inj)}<small class="muted">${e(x.r.team)} · ${e(String(x.r.elig || '').replace(/,?Flx/, '') || 'Flx')}</small></span>
+          <span class="cbbl-days">${dates(x).map(dayChip).join('')}</span>
+          <span class="cbbl-why muted small">${why(x)}</span></div>`).join('')}</div></div>
+      ${!T.hasDates ? '<div class="note">📅 Der ESPN-Spielplan ist noch nicht geladen — bis dahin wird mit 2 Spielen pro Spieler gerechnet.</div>' : ''}`;
+  }
+  function lineupMount(root, ctx) {
+    const t = root.querySelector('[data-team]');
+    if (t) t.addEventListener('change', () => { ctx.store.setJSON('cbbplaner', { ...ctx.store.getJSON('cbbplaner', {}), team: Number(t.value) }); ctx.refresh(); });
+    const w = root.querySelector('[data-week]');
+    if (w) w.addEventListener('change', () => { location.hash = ctx.href('cbblineup', w.value).replace(/^.*#/, '#'); });
   }
 
 
@@ -716,5 +817,6 @@
   MFHFB.pages.register({ id: 'cbbschulen', section: 'teams', label: 'Schulen & Kontext', icon: '🏫', applies: A, data: D.concat(['sport:team-context']), title: ({ data, params }) => (params[0] && ((data.CBB_TEAM_CONTEXT || {})[params[0]] || {}).name) || 'Schulen & Kontext', render: schoolPage });
   MFHFB.pages.register({ id: 'cbbdyn', section: 'dynasty', label: 'Dynasty Rankings', icon: '🏆', applies: A, data: D.concat(['rankings']), title: () => 'Dynasty Rankings', render: dynPage, mount: dynMount });
   MFHFB.pages.register({ id: 'cbbtrade', section: 'trade', label: 'Trade Analyzer', icon: '⚖️', applies: A, data: D, title: ({ params }) => (params[0] === 'finder' ? 'Trade Finder' : 'Trade Analyzer'), render: tradePage, mount: tradeMount });
+  MFHFB.pages.register({ id: 'cbblineup', section: 'matchups', label: 'Aufstellung', icon: '🧩', applies: A, data: D.concat(['fantasy-schedule', '?sport:espn-rosters']), title: () => 'Aufstellung', render: lineupPage, mount: lineupMount });
   MFHFB.pages.register({ id: 'cbbplaner', section: 'matchups', label: 'Matchup-Planer', icon: '⚔️', applies: A, data: D.concat(['fantasy-schedule', '?sport:espn-rosters']), title: () => 'Matchup-Planer', render: plannerPage, mount: plannerMount });
 })();
