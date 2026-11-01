@@ -3476,9 +3476,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909903",
-      line: "Boston Celtics @ Orlando Magic (9:36 - 1st)",
+      line: "Boston Celtics @ Orlando Magic (2:39 - 1st)",
       completed: false,
-      statusText: "9:36 - 1st",
+      statusText: "2:39 - 1st",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
