@@ -1,0 +1,14 @@
+{
+  "league": "nba",
+  "date": "2026-11-01",
+  "games": [
+    "Boston Celtics 108 @ Orlando Magic 97 (Final)",
+    "Brooklyn Nets @ Indiana Pacers (Halftime)",
+    "LA Clippers @ Golden State Warriors (11/1 - 8:30 PM EST)",
+    "Toronto Raptors @ Los Angeles Lakers (11/1 - 9:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 43,
+    "ft": 82.2
+  }
+}
