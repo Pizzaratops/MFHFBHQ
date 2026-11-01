@@ -561,3 +561,7 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
   .n32-kpis { grid-template-columns: 1fr 1fr; }
   .n32-kpi-v { font-size: 17px; }
 }
+.n32-game { border-top: 1px solid var(--border); }
+.n32-game:first-child { border-top: 0; }
+.n32-game-h { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px 10px 0; font-size: 13px; font-weight: 600; }
+.n32-game-p { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; }

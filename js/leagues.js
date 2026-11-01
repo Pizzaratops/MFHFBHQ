@@ -264,6 +264,25 @@ const LEAGUES = [
     pages: ['home', 'n32table', 'n32rolling', 'n32sched', 'n32week', 'n32team', 'n32compare', 'n32pos', 'nflrankings'],
   },
   {
+    // 01.11.2026: Gegenstück zu NFL 32 — alle 30 NBA-Teams als Fantasy-Teams.
+    // Pro Spiel die beste Aufstellung (PG/SG/SF/PF/C/UTIL) mit dem Points-
+    // Scoring der Banana Boat Crew, Woche = Summe aller Spiele (BBC-Perioden),
+    // Wertung All-Play. Daten: leagues/nba30/scripts/sync-nba30.js (NBA-Sync).
+    key: 'nba30',
+    name: 'NBA 30',
+    short: 'NBA 30',
+    emoji: '🏀',
+    sport: 'nba',
+    platform: 'ESPN Box Scores',
+    format: 'All-Play, Best Ball',
+    scoring: 'allplay',
+    accent: '#f97316',
+    accent2: '#3b82f6',
+    mode: 'native',
+    dataBase: 'leagues/nba30/data/',
+    pages: ['home', 'n32table', 'n32rolling', 'n32sched', 'n32week', 'n32team', 'n32compare', 'n32pos'],
+  },
+  {
     // Fantrax NBA World Cup (Draft-Only-Turnier): 4 Conferences à 12
     // Divisionen à 12 Teams, je 14 Runden. Keine eigenen Datendateien —
     // die Seite „World Cup Draft“ (tools/nba-worldcup.js) holt die Picks
