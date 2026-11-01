@@ -3240,9 +3240,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909897",
-      line: "Philadelphia 76ers @ Charlotte Hornets (6:50 - 3rd)",
+      line: "Philadelphia 76ers @ Charlotte Hornets (9:29 - 4th)",
       completed: false,
-      statusText: "6:50 - 3rd",
+      statusText: "9:29 - 4th",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -3258,9 +3258,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909898",
-      line: "Atlanta Hawks @ New Orleans Pelicans (33.0 - 1st)",
+      line: "Atlanta Hawks @ New Orleans Pelicans (3:02 - 2nd)",
       completed: false,
-      statusText: "33.0 - 1st",
+      statusText: "3:02 - 2nd",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
