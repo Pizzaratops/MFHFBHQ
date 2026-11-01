@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-01T14:01:12.744Z",
+  "generatedAt": "2026-11-01T14:14:33.303Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 7 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -71,9 +71,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 107.6,
         "stl": 30.24,
         "blk": 19.32,
-        "tpm": 40.7,
+        "tpm": 40.6,
         "to": 57.8,
-        "fgPct": 48.2,
+        "fgPct": 48.1,
         "ftPct": 78.6
       },
       "rank": {
@@ -83,7 +83,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 1,
         "blk": 1,
         "tpm": 3,
-        "fgPct": 1,
+        "fgPct": 2,
         "ftPct": 5,
         "to": 12
       },
@@ -135,7 +135,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12.62,
         "tpm": 44.3,
         "to": 39.2,
-        "fgPct": 46.3,
+        "fgPct": 46.1,
         "ftPct": 80.1
       },
       "rank": {
@@ -164,7 +164,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 79.8,
         "stl": 23.53,
         "blk": 11.47,
-        "tpm": 45.2,
+        "tpm": 45,
         "to": 41.3,
         "fgPct": 46,
         "ftPct": 81.1
@@ -206,7 +206,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 8,
         "stl": 11,
         "blk": 11,
-        "tpm": 7,
+        "tpm": 6,
         "fgPct": 5,
         "ftPct": 1,
         "to": 5
@@ -226,7 +226,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 59.9,
         "stl": 21.73,
         "blk": 14.64,
-        "tpm": 36.3,
+        "tpm": 35.9,
         "to": 34.8,
         "fgPct": 46.8,
         "ftPct": 77
@@ -237,8 +237,8 @@ const FANTASY_POWER_SCORE = {
         "ast": 11,
         "stl": 9,
         "blk": 5,
-        "tpm": 6,
-        "fgPct": 8,
+        "tpm": 7,
+        "fgPct": 9,
         "ftPct": 10,
         "to": 2
       },
@@ -259,9 +259,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 80,
         "stl": 22.93,
         "blk": 18.57,
-        "tpm": 32.8,
+        "tpm": 32.6,
         "to": 44.5,
-        "fgPct": 47.7,
+        "fgPct": 47.6,
         "ftPct": 76.8
       },
       "rank": {
@@ -292,9 +292,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 77.7,
         "stl": 23.2,
         "blk": 18.08,
-        "tpm": 32.9,
+        "tpm": 33,
         "to": 41.1,
-        "fgPct": 48,
+        "fgPct": 47.9,
         "ftPct": 75.6
       },
       "rank": {
@@ -323,7 +323,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 61.6,
         "stl": 22.65,
         "blk": 11.82,
-        "tpm": 28.7,
+        "tpm": 28.9,
         "to": 33.5,
         "fgPct": 48.2,
         "ftPct": 77.6
@@ -335,7 +335,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 8,
         "blk": 9,
         "tpm": 12,
-        "fgPct": 2,
+        "fgPct": 1,
         "ftPct": 9,
         "to": 1
       },
@@ -356,7 +356,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 14.55,
         "tpm": 31.9,
         "to": 37.7,
-        "fgPct": 46.8,
+        "fgPct": 46.9,
         "ftPct": 78
       },
       "rank": {
@@ -366,7 +366,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 10,
         "blk": 6,
         "tpm": 10,
-        "fgPct": 9,
+        "fgPct": 7,
         "ftPct": 8,
         "to": 4
       },
@@ -385,9 +385,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 91.1,
         "stl": 26.88,
         "blk": 14.44,
-        "tpm": 39.5,
+        "tpm": 39.4,
         "to": 45.6,
-        "fgPct": 47,
+        "fgPct": 46.9,
         "ftPct": 78.5
       },
       "rank": {
@@ -397,7 +397,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 2,
         "blk": 7,
         "tpm": 5,
-        "fgPct": 7,
+        "fgPct": 8,
         "ftPct": 6,
         "to": 11
       },
@@ -416,7 +416,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 59.4,
         "stl": 19.77,
         "blk": 9.19,
-        "tpm": 31.7,
+        "tpm": 31.8,
         "to": 35.1,
         "fgPct": 45.7,
         "ftPct": 78.2
