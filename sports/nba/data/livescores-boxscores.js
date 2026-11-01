@@ -3476,9 +3476,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909903",
-      line: "Boston Celtics @ Orlando Magic (47.6 - 4th)",
+      line: "Boston Celtics @ Orlando Magic (25.2 - 4th)",
       completed: false,
-      statusText: "47.6 - 4th",
+      statusText: "25.2 - 4th",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
@@ -3494,9 +3494,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909904",
-      line: "Brooklyn Nets @ Indiana Pacers (7:23 - 2nd)",
+      line: "Brooklyn Nets @ Indiana Pacers (7:05 - 2nd)",
       completed: false,
-      statusText: "7:23 - 2nd",
+      statusText: "7:05 - 2nd",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
