@@ -1734,6 +1734,33 @@
             }
           },
           {
+            "name": "Saddiq Bey",
+            "min": 26,
+            "pts": 25,
+            "reb": 6,
+            "ast": 1,
+            "stl": 4,
+            "blk": 0,
+            "to": 3,
+            "tpm": 1,
+            "fgm": 9,
+            "fga": 13,
+            "ftm": 6,
+            "fta": 7,
+            "composite": 6.61,
+            "zScores": {
+              "pts": 1.83,
+              "reb": 0.811,
+              "ast": -0.57,
+              "stl": 3.615,
+              "blk": -0.513,
+              "tpm": -0.091,
+              "fgImpact": 2.214,
+              "ftImpact": 0.581,
+              "to": -1.268
+            }
+          },
+          {
             "name": "Trendon Watford",
             "min": 18,
             "pts": 7,
@@ -1811,33 +1838,6 @@
               "tpm": -0.731,
               "fgImpact": 0.188,
               "ftImpact": 0.66,
-              "to": -1.268
-            }
-          },
-          {
-            "name": "Saddiq Bey",
-            "min": 26,
-            "pts": 25,
-            "reb": 6,
-            "ast": 1,
-            "stl": 4,
-            "blk": 0,
-            "to": 3,
-            "tpm": 1,
-            "fgm": 9,
-            "fga": 13,
-            "ftm": 6,
-            "fta": 7,
-            "composite": 6.61,
-            "zScores": {
-              "pts": 1.83,
-              "reb": 0.811,
-              "ast": -0.57,
-              "stl": 3.615,
-              "blk": -0.513,
-              "tpm": -0.091,
-              "fgImpact": 2.214,
-              "ftImpact": 0.581,
               "to": -1.268
             }
           },
