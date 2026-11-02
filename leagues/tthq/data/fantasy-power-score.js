@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-02T19:02:22.481Z",
+  "generatedAt": "2026-11-02T19:26:53.497Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 7 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -111,7 +111,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 7,
         "reb": 4,
         "ast": 7,
-        "stl": 6,
+        "stl": 7,
         "blk": 4,
         "tpm": 5,
         "fgPct": 5,
@@ -254,13 +254,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 332.4,
-        "reb": 143.1,
-        "ast": 79.5,
-        "stl": 23.04,
-        "blk": 18.45,
-        "tpm": 32.6,
-        "to": 44.6,
+        "pts": 335.7,
+        "reb": 145.3,
+        "ast": 80.3,
+        "stl": 23.46,
+        "blk": 18.53,
+        "tpm": 33.4,
+        "to": 45.2,
         "fgPct": 47.6,
         "ftPct": 76.8
       },
@@ -268,9 +268,9 @@ const FANTASY_POWER_SCORE = {
         "pts": 5,
         "reb": 3,
         "ast": 5,
-        "stl": 7,
+        "stl": 6,
         "blk": 2,
-        "tpm": 9,
+        "tpm": 8,
         "fgPct": 4,
         "ftPct": 11,
         "to": 10
@@ -303,7 +303,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 6,
         "stl": 5,
         "blk": 3,
-        "tpm": 8,
+        "tpm": 9,
         "fgPct": 3,
         "ftPct": 12,
         "to": 8
