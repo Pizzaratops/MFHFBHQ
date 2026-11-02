@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-02T12:01:42.753Z",
+  "generatedAt": "2026-11-02T13:01:39.879Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 7 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -102,7 +102,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 75.8,
         "stl": 23.33,
         "blk": 15.71,
-        "tpm": 38.6,
+        "tpm": 38.7,
         "to": 39.9,
         "fgPct": 47.2,
         "ftPct": 78.6
@@ -133,9 +133,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 80.8,
         "stl": 26.14,
         "blk": 12.72,
-        "tpm": 44.8,
+        "tpm": 44.7,
         "to": 39.7,
-        "fgPct": 46.2,
+        "fgPct": 46.1,
         "ftPct": 80.1
       },
       "rank": {
@@ -164,7 +164,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 82.8,
         "stl": 24.39,
         "blk": 11.58,
-        "tpm": 46.2,
+        "tpm": 46,
         "to": 42.4,
         "fgPct": 46,
         "ftPct": 81.2
@@ -259,9 +259,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 79.5,
         "stl": 23.04,
         "blk": 18.45,
-        "tpm": 32.5,
+        "tpm": 32.6,
         "to": 44.6,
-        "fgPct": 47.5,
+        "fgPct": 47.6,
         "ftPct": 76.8
       },
       "rank": {
@@ -292,9 +292,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 77.6,
         "stl": 23.49,
         "blk": 18.12,
-        "tpm": 33.6,
+        "tpm": 33.3,
         "to": 41.6,
-        "fgPct": 48,
+        "fgPct": 47.9,
         "ftPct": 75.8
       },
       "rank": {
@@ -323,7 +323,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 61.7,
         "stl": 22.95,
         "blk": 11.85,
-        "tpm": 28.9,
+        "tpm": 29,
         "to": 33.6,
         "fgPct": 48.2,
         "ftPct": 77.6
@@ -354,9 +354,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 65.4,
         "stl": 20.83,
         "blk": 14.55,
-        "tpm": 31.9,
+        "tpm": 32,
         "to": 37.7,
-        "fgPct": 46.7,
+        "fgPct": 46.8,
         "ftPct": 78
       },
       "rank": {
