@@ -3511,9 +3511,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909904",
-      line: "Brooklyn Nets @ Indiana Pacers (5:40 - 3rd)",
+      line: "Brooklyn Nets @ Indiana Pacers (1:43 - 3rd)",
       completed: false,
-      statusText: "5:40 - 3rd",
+      statusText: "1:43 - 3rd",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
