@@ -3533,8 +3533,8 @@ const LIVESCORES_BOXSCORES = {
         players: [
           { name: "Pascal Siakam", min: 36, pts: 17, reb: 5, ast: 5, stl: 1, blk: 0, to: 3, tpm: 0, fgm: 6, fga: 14, ftm: 5, fta: 6, composite: 0.6, zScores: { pts: 0.853, reb: 0.264, ast: 0.99, stl: 0.437, blk: -0.544, tpm: -0.894, fgImpact: 0.115, ftImpact: 0.473, to: -1.09 } },
           { name: "Jay Huff", min: 17, pts: 0, reb: 3, ast: 0, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -2.93, zScores: { pts: -1.242, reb: -0.401, ast: -0.941, stl: -0.874, blk: 1.087, tpm: -0.894, fgImpact: -0.705, ftImpact: 0, to: 1.036 } },
-          { name: "Kelly Oubre Jr.", min: 20, pts: 11, reb: 2, ast: 1, stl: 0, blk: 0, to: 0, tpm: 2, fgm: 3, fga: 8, ftm: 3, fta: 4, composite: -1.61, zScores: { pts: 0.114, reb: -0.734, ast: -0.554, stl: -0.874, blk: -0.544, tpm: 0.447, fgImpact: -0.295, ftImpact: -0.207, to: 1.036 } },
-          { name: "Andrew Nembhard", min: 35, pts: 23, reb: 3, ast: 4, stl: 1, blk: 1, to: 3, tpm: 4, fgm: 7, fga: 19, ftm: 5, fta: 6, composite: 3.68, zScores: { pts: 1.592, reb: -0.401, ast: 0.604, stl: 0.437, blk: 1.087, tpm: 1.789, fgImpact: -0.806, ftImpact: 0.473, to: -1.09 } },
+          { name: "Kelly Oubre Jr.", min: 20, pts: 11, reb: 2, ast: 1, stl: 0, blk: 1, to: 0, tpm: 2, fgm: 3, fga: 8, ftm: 3, fta: 4, composite: 0.02, zScores: { pts: 0.114, reb: -0.734, ast: -0.554, stl: -0.874, blk: 1.087, tpm: 0.447, fgImpact: -0.295, ftImpact: -0.207, to: 1.036 } },
+          { name: "Andrew Nembhard", min: 35, pts: 23, reb: 3, ast: 4, stl: 1, blk: 0, to: 3, tpm: 4, fgm: 7, fga: 19, ftm: 5, fta: 6, composite: 2.05, zScores: { pts: 1.592, reb: -0.401, ast: 0.604, stl: 0.437, blk: -0.544, tpm: 1.789, fgImpact: -0.806, ftImpact: 0.473, to: -1.09 } },
           { name: "Aaron Nesmith", min: 30, pts: 11, reb: 3, ast: 4, stl: 1, blk: 0, to: 3, tpm: 0, fgm: 3, fga: 8, ftm: 5, fta: 6, composite: -1.6, zScores: { pts: 0.114, reb: -0.401, ast: 0.604, stl: 0.437, blk: -0.544, tpm: -0.894, fgImpact: -0.295, ftImpact: 0.473, to: -1.09 } },
           { name: "Larry Nance Jr.", min: 26, pts: 4, reb: 6, ast: 1, stl: 1, blk: 0, to: 2, tpm: 1, fgm: 1, fga: 5, ftm: 1, fta: 4, composite: -5.68, zScores: { pts: -0.749, reb: 0.597, ast: -0.554, stl: 0.437, blk: -0.544, tpm: -0.224, fgImpact: -0.921, ftImpact: -3.338, to: -0.382 } },
           { name: "Jalen Slawson", min: 18, pts: 3, reb: 5, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 1, fga: 1, ftm: 1, fta: 2, composite: -3.93, zScores: { pts: -0.872, reb: 0.264, ast: -0.941, stl: -0.874, blk: -0.544, tpm: -0.894, fgImpact: 0.489, ftImpact: -0.886, to: 0.327 } },
@@ -3547,9 +3547,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909905",
-      line: "LA Clippers @ Golden State Warriors (11/1 - 8:30 PM EST)",
+      line: "LA Clippers @ Golden State Warriors (1:35 - 1st)",
       completed: false,
-      statusText: "11/1 - 8:30 PM EST",
+      statusText: "1:35 - 1st",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
