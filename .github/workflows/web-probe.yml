@@ -29,7 +29,7 @@ jobs:
           i=0
           for u in $URLS; do
             i=$((i+1)); [ $i -gt 3 ] && break
-            f="_probe/web/$(echo "$u" | sed 's#https\?://##; s#[^A-Za-z0-9._-]#_#g' | cut -c1-80)"
+            f="_probe/web/$(echo "$u" | sed 's#https\?://##; s#[^A-Za-z0-9._-]#_#g' | cut -c1-60)_$(echo "$u" | md5sum | cut -c1-8)"
             code=$(curl -sS -L -m 60 -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" -w "%{http_code}" "$u" -o "$f.body" || echo "ERR")
             echo "$code $u" | tee "$f.status"
             gzip -9 -f "$f.body"
