@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-02T01:03:03.178Z
+//  Stand: 2026-11-02T08:21:00.395Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -26,7 +26,7 @@ const CBB_PLAYER_POOL = [
 ["079zd","Acen Jimenez","Dart","G","G,Flx","FA"],
 ["07185","Achille Lonati","StBon","G","G,Flx","FA"],
 ["06gfi","Adam Clark","Miss","G","G,Flx","T"],
-["071vn","Adam Olsen","Aub","F","F/C,Flx","FA"],
+["071vn","Adam Olsen","Aub","F","F/C,Flx","T"],
 ["079f1","Adam Oumiddoch","Vill","G","G,Flx","FA"],
 ["06mu3","Adam Stewart","BYU","C","F/C,Flx","FA"],
 ["07962","Adam Tyson","USF","F","F/C,Flx","FA"],
@@ -141,7 +141,7 @@ const CBB_PLAYER_POOL = [
 ["064gi","Andrew Alia","Drake","G","G,Flx","FA"],
 ["065t4","Andrew Ball","Rich","G","F/C,G,Flx","FA"],
 ["079cr","Andrew Jensen","DeP","F","F/C,Flx","FA"],
-["06hyn","Andrew McKeever","Iowa","C","F/C,Flx","FA"],
+["06hyn","Andrew McKeever","Iowa","C","F/C,Flx","T"],
 ["06g39","Andrew Meadow","Oreg","F","F/C,Flx","T"],
 ["07187","Andrew Osasuyi","UGA","C","F/C,Flx","FA"],
 ["06h43","Andrew Phillips","GrgWas","G","F/C,G,Flx","FA"],
@@ -291,7 +291,7 @@ const CBB_PLAYER_POOL = [
 ["064f7","Braeden Carrington","Wisc","G","G,Flx","FA"],
 ["06duo","Braeden Shrewsberry","ND","G","G,Flx","T"],
 ["065dr","Braeden Smith","ND","G","G,Flx","T"],
-["06nn9","Braeden Speed","FAU","G","G,Flx","FA"],
+["06nn9","Braeden Speed","FAU","G","G,Flx","T"],
 ["06n81","Brandin Cummings","Mem","G","G,Flx","T"],
 ["079kb","Brandon Bass","FSU","G","G,Flx","FA"],
 ["071uc","Brandon Benjamin","BC","F","F/C,Flx","T"],
@@ -332,7 +332,7 @@ const CBB_PLAYER_POOL = [
 ["05xfl","Brock McClure","SIU","G","F/C,G,Flx","FA"],
 ["06gg2","Brock Vice","KSU","F","F/C,Flx","FA"],
 ["06msr","Brody Kozlowski","BYU","F","F/C,Flx","FA"],
-["064ly","Brody Robinson","Crei","G","G,Flx","FA"],
+["064ly","Brody Robinson","Crei","G","G,Flx","T"],
 ["07a7z","Bron Roberts","UtSt","C","F/C,Flx","FA"],
 ["07asy","Brooks Bahr","BYU","G","G,Flx","FA"],
 ["07arj","Bruce Branch III","BYU","F","F/C,Flx","T"],
@@ -1064,7 +1064,7 @@ const CBB_PLAYER_POOL = [
 ["079mb","Jacob Webber","Pur","G","G,Flx","FA"],
 ["0795i","Jaden Bailes","SeatU","G","G,Flx","FA"],
 ["07alj","Jaden Ghoreishi","ColSt","F","F/C,Flx","FA"],
-["064fa","Jaden Henley","GrCan","G","G,Flx","FA"],
+["064fa","Jaden Henley","GrCan","G","G,Flx","T"],
 ["06nsm","Jaden Johnson","LaSal","G","G,Flx","FA"],
 ["07a4j","Jaden Matingou","HI","G","G,Flx","FA"],
 ["064xg","Jaden Schutt","KSU","G","G,Flx","FA"],
@@ -1173,7 +1173,7 @@ const CBB_PLAYER_POOL = [
 ["079dn","Javon Bardwell","Prov","F","F/C,Flx","FA"],
 ["065ev","Javon Bennett","Gonz","G","G,Flx","T"],
 ["0717f","Javon Perry","URI","F","F/C,Flx","FA"],
-["06n8t","Javontae Campbell","Cin","G","G,Flx","FA"],
+["06n8t","Javontae Campbell","Cin","G","G,Flx","T"],
 ["079nk","Javonte Floyd","UCLA","C","F/C,Flx","FA"],
 ["070un","Jax Abalos","Corn","F","F/C,Flx","FA"],
 ["07a8p","Jax Allen","UtSt","G","G,Flx","FA"],
@@ -1451,7 +1451,7 @@ const CBB_PLAYER_POOL = [
 ["070sk","Kelvin Odih","Ford","G","G,Flx","FA"],
 ["07a8n","Kemauri Millender","UGA","G","G,Flx","FA"],
 ["06nh0","Kenan Parrish","Harv","F","F/C,Flx","FA"],
-["070o8","Kendyl Sanders","MissSt","F","F/C,Flx","T"],
+["070o8","Kendyl Sanders","MissSt","F","F/C,Flx","FA"],
 ["06gkk","Kennard Davis","Mizzou","G","G,Flx","T"],
 ["0796e","Kenneth Francis","Brown","G","G,Flx","FA"],
 ["065wk","Kenny Noland","Mich","G","G,Flx","FA"],
@@ -1657,7 +1657,7 @@ const CBB_PLAYER_POOL = [
 ["07au6","Malik Messina-Moore","IlSt","G","G,Flx","FA"],
 ["06gda","Malik Presley","GMas","G","F/C,G,Flx","FA"],
 ["064ds","Malik Reneau","Mia-FL","F","F/C,Flx","T"],
-["064ju","Malique Ewin","Oreg","F","F/C,Flx","FA"],
+["064ju","Malique Ewin","Oreg","F","F/C,Flx","T"],
 ["079qf","Malloy Smith","UNC","G","G,Flx","FA"],
 ["06n4s","Manie Joses","HI","F","F/C,Flx","FA"],
 ["07a95","Manny Green","Tenn","G","G,Flx","FA"],
@@ -2276,7 +2276,7 @@ const CBB_PLAYER_POOL = [
 ["07afq","Trevor Reed","MissSt","F","F/C,Flx","FA"],
 ["06g3p","Trey Autry","Wisc","G","G,Flx","FA"],
 ["071l4","Trey Cady","Denv","G","F/C,G,Flx","FA"],
-["064gr","Trey Campbell","Utah","G","G,Flx","FA"],
+["064gr","Trey Campbell","Utah","G","G,Flx","T"],
 ["06glk","Trey Green","StLou","G","G,Flx","T"],
 ["079ep","Trey Hall","TxTch","F","F/C,Flx","FA"],
 ["05wt9","Trey Kaufman-Renn","Kan","F","F/C,Flx","FA"],
