@@ -1,16 +1,16 @@
 // ============================================================
 //  HASHTAG_RANKINGS — Hashtag Basketball Dynasty Rankings (9-Cat)
 //  AUTO-GENERIERT von leagues/tthq/scripts/sync-hashtag.js
-//  Stand Hashtag: 27 October 2026 · 400 Einträge · geholt 2026-10-29
+//  Stand Hashtag: 27 October 2026 · 400 Einträge · geholt 2026-11-02
 //  MATT_RANKS weiter unten: Matt Lawson, über blend-dynasty-with-external.js
 // ============================================================
 const HASHTAG_RANKINGS = [
   [1,"Victor Wembanyama","SA","C"],
   [2,"Shai Gilgeous-Alexander","OKC","PG"],
   [3,"Luka Doncic","LAL","PG,SG"],
-  [4,"Nikola Jokic","DEN","C"],
-  [5,"Cade Cunningham","DET","PG,SG"],
-  [6,"Cooper Flagg","DAL","SG,SF,PF"],
+  [4,"Cooper Flagg","DAL","SG,SF,PF"],
+  [5,"Nikola Jokic","DEN","C"],
+  [6,"Cade Cunningham","DET","PG,SG"],
   [7,"Anthony Edwards","MIN","PG,SG"],
   [8,"Tyrese Maxey","PHI","PG"],
   [9,"Cameron Boozer","MEM","PF"],
