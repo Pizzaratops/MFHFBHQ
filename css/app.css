@@ -649,3 +649,5 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .table thead th.ts-able:hover { color: var(--text); }
 .table thead th.ts-asc::after { content: ' ▲'; font-size: .8em; color: var(--league-accent); }
 .table thead th.ts-desc::after { content: ' ▼'; font-size: .8em; color: var(--league-accent); }
+/* Glossar-Tooltips (core/glossary.js): dezenter Hinweis, dass Hovern etwas erklärt */
+.table thead th.has-gloss { text-decoration: underline dotted color-mix(in srgb, currentColor 45%, transparent); text-underline-offset: 3px; }
