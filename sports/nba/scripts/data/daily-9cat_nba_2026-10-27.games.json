@@ -26,6 +26,9 @@
             "fga": 23,
             "ftm": 4,
             "fta": 5,
+            "oreb": 2,
+            "dreb": 7,
+            "pm": 8,
             "composite": 0.92,
             "zScores": {
               "pts": 1.452,
@@ -53,6 +56,9 @@
             "fga": 16,
             "ftm": 5,
             "fta": 6,
+            "oreb": 1,
+            "dreb": 11,
+            "pm": 1,
             "composite": 7.9,
             "zScores": {
               "pts": 1.769,
@@ -80,6 +86,9 @@
             "fga": 4,
             "ftm": 0,
             "fta": 0,
+            "oreb": 2,
+            "dreb": 4,
+            "pm": 3,
             "composite": -0.28,
             "zScores": {
               "pts": -0.663,
@@ -107,6 +116,9 @@
             "fga": 3,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": 2,
             "composite": -2.72,
             "zScores": {
               "pts": -0.874,
@@ -134,6 +146,9 @@
             "fga": 9,
             "ftm": 2,
             "fta": 4,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -3,
             "composite": 0.21,
             "zScores": {
               "pts": 0.5,
@@ -161,6 +176,9 @@
             "fga": 1,
             "ftm": 0,
             "fta": 0,
+            "oreb": 2,
+            "dreb": 2,
+            "pm": -17,
             "composite": 1.2,
             "zScores": {
               "pts": -0.769,
@@ -188,6 +206,9 @@
             "fga": 9,
             "ftm": 2,
             "fta": 2,
+            "oreb": 2,
+            "dreb": 1,
+            "pm": 3,
             "composite": 2.5,
             "zScores": {
               "pts": 0.5,
@@ -215,6 +236,9 @@
             "fga": 9,
             "ftm": 1,
             "fta": 2,
+            "oreb": 2,
+            "dreb": 2,
+            "pm": -4,
             "composite": 3.75,
             "zScores": {
               "pts": 0.5,
@@ -242,6 +266,9 @@
             "fga": 6,
             "ftm": 0,
             "fta": 0,
+            "oreb": 1,
+            "dreb": 2,
+            "pm": 4,
             "composite": -0.23,
             "zScores": {
               "pts": -0.874,
@@ -269,6 +296,9 @@
             "fga": 17,
             "ftm": 3,
             "fta": 3,
+            "oreb": 0,
+            "dreb": 5,
+            "pm": -1,
             "composite": 0.99,
             "zScores": {
               "pts": 0.712,
@@ -303,6 +333,9 @@
             "fga": 16,
             "ftm": 3,
             "fta": 3,
+            "oreb": 0,
+            "dreb": 7,
+            "pm": -2,
             "composite": 4.75,
             "zScores": {
               "pts": 1.029,
@@ -330,6 +363,9 @@
             "fga": 20,
             "ftm": 18,
             "fta": 22,
+            "oreb": 0,
+            "dreb": 5,
+            "pm": 5,
             "composite": 10.05,
             "zScores": {
               "pts": 3.144,
@@ -357,6 +393,9 @@
             "fga": 4,
             "ftm": 1,
             "fta": 4,
+            "oreb": 2,
+            "dreb": 3,
+            "pm": -17,
             "composite": -3.43,
             "zScores": {
               "pts": -0.346,
@@ -384,6 +423,9 @@
             "fga": 15,
             "ftm": 5,
             "fta": 5,
+            "oreb": 3,
+            "dreb": 2,
+            "pm": -4,
             "composite": 0.55,
             "zScores": {
               "pts": 0.606,
@@ -411,6 +453,9 @@
             "fga": 8,
             "ftm": 2,
             "fta": 2,
+            "oreb": 2,
+            "dreb": 4,
+            "pm": -6,
             "composite": 4.01,
             "zScores": {
               "pts": 0.5,
@@ -438,6 +483,9 @@
             "fga": 9,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 4,
+            "pm": 9,
             "composite": -0.24,
             "zScores": {
               "pts": 0.077,
@@ -465,6 +513,9 @@
             "fga": 4,
             "ftm": 0,
             "fta": 0,
+            "oreb": 2,
+            "dreb": 2,
+            "pm": 18,
             "composite": -4.1,
             "zScores": {
               "pts": -0.874,
@@ -492,6 +543,9 @@
             "fga": 3,
             "ftm": 1,
             "fta": 2,
+            "oreb": 1,
+            "dreb": 2,
+            "pm": -2,
             "composite": -2.73,
             "zScores": {
               "pts": -0.346,
@@ -519,6 +573,9 @@
             "fga": 7,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 2,
+            "pm": 2,
             "composite": -2.58,
             "zScores": {
               "pts": -0.663,
@@ -546,6 +603,9 @@
             "fga": 5,
             "ftm": 0,
             "fta": 0,
+            "oreb": 1,
+            "dreb": 3,
+            "pm": 7,
             "composite": -1.48,
             "zScores": {
               "pts": -0.769,
@@ -573,6 +633,9 @@
             "fga": 2,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 2,
+            "pm": -5,
             "composite": -4.91,
             "zScores": {
               "pts": -1.086,
@@ -613,6 +676,9 @@
             "fga": 14,
             "ftm": 2,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": -15,
             "composite": -0.35,
             "zScores": {
               "pts": 0.183,
@@ -640,6 +706,9 @@
             "fga": 4,
             "ftm": 0,
             "fta": 0,
+            "oreb": 3,
+            "dreb": 6,
+            "pm": -12,
             "composite": 1.46,
             "zScores": {
               "pts": -0.874,
@@ -667,6 +736,9 @@
             "fga": 12,
             "ftm": 3,
             "fta": 4,
+            "oreb": 5,
+            "dreb": 4,
+            "pm": 7,
             "composite": 6.89,
             "zScores": {
               "pts": 1.241,
@@ -694,6 +766,9 @@
             "fga": 18,
             "ftm": 3,
             "fta": 5,
+            "oreb": 1,
+            "dreb": 8,
+            "pm": -15,
             "composite": 1.91,
             "zScores": {
               "pts": 0.923,
@@ -721,6 +796,9 @@
             "fga": 9,
             "ftm": 1,
             "fta": 3,
+            "oreb": 1,
+            "dreb": 5,
+            "pm": -4,
             "composite": -1.04,
             "zScores": {
               "pts": 0.077,
@@ -748,6 +826,9 @@
             "fga": 3,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 6,
             "composite": -1.26,
             "zScores": {
               "pts": -0.769,
@@ -775,6 +856,9 @@
             "fga": 1,
             "ftm": 1,
             "fta": 4,
+            "oreb": 2,
+            "dreb": 2,
+            "pm": -18,
             "composite": -6.51,
             "zScores": {
               "pts": -0.98,
@@ -802,6 +886,9 @@
             "fga": 4,
             "ftm": 0,
             "fta": 0,
+            "oreb": 2,
+            "dreb": 1,
+            "pm": 3,
             "composite": 0.51,
             "zScores": {
               "pts": -0.663,
@@ -829,6 +916,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 5,
             "composite": -3.7,
             "zScores": {
               "pts": -1.086,
@@ -856,6 +946,9 @@
             "fga": 6,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -9,
             "composite": -2.94,
             "zScores": {
               "pts": -0.769,
@@ -883,6 +976,9 @@
             "fga": 5,
             "ftm": 0,
             "fta": 2,
+            "oreb": 1,
+            "dreb": 0,
+            "pm": -11,
             "composite": -1.71,
             "zScores": {
               "pts": -0.346,
@@ -910,6 +1006,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 2,
             "composite": -4.1,
             "zScores": {
               "pts": -1.086,
@@ -937,6 +1036,9 @@
             "fga": 1,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 0,
             "composite": -3.54,
             "zScores": {
               "pts": -0.874,
@@ -964,6 +1066,9 @@
             "fga": 10,
             "ftm": 4,
             "fta": 4,
+            "oreb": 0,
+            "dreb": 3,
+            "pm": -14,
             "composite": -1.18,
             "zScores": {
               "pts": 0.077,
@@ -991,6 +1096,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 5,
             "composite": -4.03,
             "zScores": {
               "pts": -1.086,
@@ -1025,6 +1133,9 @@
             "fga": 15,
             "ftm": 2,
             "fta": 2,
+            "oreb": 4,
+            "dreb": 3,
+            "pm": 13,
             "composite": 3.15,
             "zScores": {
               "pts": 0.289,
@@ -1052,6 +1163,9 @@
             "fga": 21,
             "ftm": 2,
             "fta": 2,
+            "oreb": 8,
+            "dreb": 12,
+            "pm": -4,
             "composite": 3.17,
             "zScores": {
               "pts": 1.769,
@@ -1079,6 +1193,9 @@
             "fga": 2,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 4,
+            "pm": 19,
             "composite": 4.58,
             "zScores": {
               "pts": -0.451,
@@ -1106,6 +1223,9 @@
             "fga": 10,
             "ftm": 0,
             "fta": 0,
+            "oreb": 1,
+            "dreb": 2,
+            "pm": 10,
             "composite": 1.12,
             "zScores": {
               "pts": 0.183,
@@ -1133,6 +1253,9 @@
             "fga": 18,
             "ftm": 13,
             "fta": 16,
+            "oreb": 1,
+            "dreb": 0,
+            "pm": 14,
             "composite": -0.02,
             "zScores": {
               "pts": 1.346,
@@ -1160,6 +1283,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": 2,
             "composite": -3.81,
             "zScores": {
               "pts": -1.086,
@@ -1187,6 +1313,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 2,
             "composite": -4.1,
             "zScores": {
               "pts": -1.086,
@@ -1214,6 +1343,9 @@
             "fga": 7,
             "ftm": 0,
             "fta": 2,
+            "oreb": 2,
+            "dreb": 6,
+            "pm": 16,
             "composite": -1.97,
             "zScores": {
               "pts": -0.028,
@@ -1241,6 +1373,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 1,
+            "dreb": 0,
+            "pm": 2,
             "composite": -4.54,
             "zScores": {
               "pts": -1.086,
@@ -1268,6 +1403,9 @@
             "fga": 8,
             "ftm": 4,
             "fta": 4,
+            "oreb": 2,
+            "dreb": 0,
+            "pm": -3,
             "composite": 0.99,
             "zScores": {
               "pts": 0.289,
@@ -1295,6 +1433,9 @@
             "fga": 4,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": 0,
             "composite": -2.24,
             "zScores": {
               "pts": -0.557,
@@ -1322,6 +1463,9 @@
             "fga": 3,
             "ftm": 2,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": 0,
             "composite": -0.41,
             "zScores": {
               "pts": -0.874,
@@ -1349,6 +1493,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": -1,
             "composite": -4.1,
             "zScores": {
               "pts": -1.086,
@@ -1389,6 +1536,9 @@
             "fga": 16,
             "ftm": 0,
             "fta": 0,
+            "oreb": 6,
+            "dreb": 8,
+            "pm": -15,
             "composite": 5.31,
             "zScores": {
               "pts": 1.029,
@@ -1416,6 +1566,9 @@
             "fga": 13,
             "ftm": 3,
             "fta": 4,
+            "oreb": 1,
+            "dreb": 5,
+            "pm": -6,
             "composite": 6.11,
             "zScores": {
               "pts": 1.452,
@@ -1443,6 +1596,9 @@
             "fga": 6,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -18,
             "composite": -4,
             "zScores": {
               "pts": -0.663,
@@ -1470,6 +1626,9 @@
             "fga": 10,
             "ftm": 5,
             "fta": 7,
+            "oreb": 0,
+            "dreb": 3,
+            "pm": -20,
             "composite": 1.93,
             "zScores": {
               "pts": 1.241,
@@ -1497,6 +1656,9 @@
             "fga": 20,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 3,
+            "pm": -14,
             "composite": -0.76,
             "zScores": {
               "pts": 0.923,
@@ -1524,6 +1686,9 @@
             "fga": 3,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -1,
             "composite": -1.15,
             "zScores": {
               "pts": -0.874,
@@ -1551,6 +1716,9 @@
             "fga": 1,
             "ftm": 0,
             "fta": 0,
+            "oreb": 1,
+            "dreb": 0,
+            "pm": -12,
             "composite": -4.47,
             "zScores": {
               "pts": -1.086,
@@ -1578,6 +1746,9 @@
             "fga": 9,
             "ftm": 0,
             "fta": 0,
+            "oreb": 3,
+            "dreb": 2,
+            "pm": -10,
             "composite": -3.09,
             "zScores": {
               "pts": -0.874,
@@ -1605,6 +1776,9 @@
             "fga": 7,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 2,
+            "pm": -13,
             "composite": -1.82,
             "zScores": {
               "pts": -0.769,
@@ -1632,6 +1806,9 @@
             "fga": 1,
             "ftm": 0,
             "fta": 0,
+            "oreb": 2,
+            "dreb": 0,
+            "pm": -12,
             "composite": -3.47,
             "zScores": {
               "pts": -1.086,
@@ -1659,6 +1836,9 @@
             "fga": 3,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": -5,
             "composite": -4.2,
             "zScores": {
               "pts": -0.874,
@@ -1686,6 +1866,9 @@
             "fga": 4,
             "ftm": 2,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": -9,
             "composite": -2.8,
             "zScores": {
               "pts": -0.557,
@@ -1720,6 +1903,9 @@
             "fga": 21,
             "ftm": 1,
             "fta": 1,
+            "oreb": 3,
+            "dreb": 7,
+            "pm": 22,
             "composite": 14.03,
             "zScores": {
               "pts": 1.981,
@@ -1747,6 +1933,9 @@
             "fga": 6,
             "ftm": 3,
             "fta": 4,
+            "oreb": 0,
+            "dreb": 4,
+            "pm": 22,
             "composite": -0.2,
             "zScores": {
               "pts": 0.077,
@@ -1774,6 +1963,9 @@
             "fga": 11,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 4,
+            "pm": 12,
             "composite": 4.3,
             "zScores": {
               "pts": 0.395,
@@ -1801,6 +1993,9 @@
             "fga": 11,
             "ftm": 4,
             "fta": 4,
+            "oreb": 0,
+            "dreb": 5,
+            "pm": 14,
             "composite": 2.22,
             "zScores": {
               "pts": 0.5,
@@ -1828,6 +2023,9 @@
             "fga": 7,
             "ftm": 1,
             "fta": 1,
+            "oreb": 2,
+            "dreb": 4,
+            "pm": 23,
             "composite": 5.04,
             "zScores": {
               "pts": 0.289,
@@ -1855,6 +2053,9 @@
             "fga": 2,
             "ftm": 1,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 2,
             "composite": -4.39,
             "zScores": {
               "pts": -0.769,
@@ -1882,6 +2083,9 @@
             "fga": 11,
             "ftm": 4,
             "fta": 5,
+            "oreb": 1,
+            "dreb": 3,
+            "pm": 6,
             "composite": -1.22,
             "zScores": {
               "pts": 0.395,
@@ -1909,6 +2113,9 @@
             "fga": 14,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 3,
+            "pm": 14,
             "composite": 6.27,
             "zScores": {
               "pts": 1.664,
@@ -1936,6 +2143,9 @@
             "fga": 2,
             "ftm": 1,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": 10,
             "composite": -2.94,
             "zScores": {
               "pts": -0.98,
@@ -1963,6 +2173,9 @@
             "fga": 2,
             "ftm": 0,
             "fta": 0,
+            "oreb": 1,
+            "dreb": 3,
+            "pm": 0,
             "composite": -4.66,
             "zScores": {
               "pts": -1.086,
@@ -1990,6 +2203,9 @@
             "fga": 2,
             "ftm": 0,
             "fta": 0,
+            "oreb": 2,
+            "dreb": 3,
+            "pm": 5,
             "composite": -3,
             "zScores": {
               "pts": -0.663,
@@ -2017,6 +2233,9 @@
             "fga": 1,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 5,
             "composite": -2.51,
             "zScores": {
               "pts": -1.086,
@@ -2057,6 +2276,9 @@
             "fga": 5,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -1,
             "composite": 2.43,
             "zScores": {
               "pts": 0.183,
@@ -2084,6 +2306,9 @@
             "fga": 15,
             "ftm": 3,
             "fta": 7,
+            "oreb": 2,
+            "dreb": 2,
+            "pm": 8,
             "composite": 2.04,
             "zScores": {
               "pts": 1.346,
@@ -2111,6 +2336,9 @@
             "fga": 4,
             "ftm": 1,
             "fta": 4,
+            "oreb": 1,
+            "dreb": 9,
+            "pm": -4,
             "composite": -0.06,
             "zScores": {
               "pts": -0.134,
@@ -2138,6 +2366,9 @@
             "fga": 12,
             "ftm": 7,
             "fta": 11,
+            "oreb": 0,
+            "dreb": 5,
+            "pm": -1,
             "composite": 0.14,
             "zScores": {
               "pts": 1.135,
@@ -2165,6 +2396,9 @@
             "fga": 13,
             "ftm": 4,
             "fta": 4,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 8,
             "composite": 3.1,
             "zScores": {
               "pts": 1.346,
@@ -2192,6 +2426,9 @@
             "fga": 8,
             "ftm": 2,
             "fta": 2,
+            "oreb": 2,
+            "dreb": 8,
+            "pm": 5,
             "composite": 6.3,
             "zScores": {
               "pts": 0.395,
@@ -2219,6 +2456,9 @@
             "fga": 12,
             "ftm": 4,
             "fta": 6,
+            "oreb": 2,
+            "dreb": 2,
+            "pm": 10,
             "composite": 3.12,
             "zScores": {
               "pts": 1.241,
@@ -2246,6 +2486,9 @@
             "fga": 2,
             "ftm": 1,
             "fta": 3,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": 2,
             "composite": -4.68,
             "zScores": {
               "pts": -0.663,
@@ -2273,6 +2516,9 @@
             "fga": 3,
             "ftm": 2,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 2,
+            "pm": 4,
             "composite": -6,
             "zScores": {
               "pts": -0.874,
@@ -2300,6 +2546,9 @@
             "fga": 4,
             "ftm": 2,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 2,
+            "pm": 4,
             "composite": -1.24,
             "zScores": {
               "pts": -0.451,
@@ -2334,6 +2583,9 @@
             "fga": 5,
             "ftm": 1,
             "fta": 2,
+            "oreb": 2,
+            "dreb": 0,
+            "pm": -3,
             "composite": 2.38,
             "zScores": {
               "pts": 0.077,
@@ -2361,6 +2613,9 @@
             "fga": 9,
             "ftm": 1,
             "fta": 4,
+            "oreb": 2,
+            "dreb": 6,
+            "pm": 3,
             "composite": -1.24,
             "zScores": {
               "pts": 0.289,
@@ -2388,6 +2643,9 @@
             "fga": 5,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 2,
+            "pm": -12,
             "composite": -4.47,
             "zScores": {
               "pts": -0.557,
@@ -2415,6 +2673,9 @@
             "fga": 22,
             "ftm": 11,
             "fta": 13,
+            "oreb": 0,
+            "dreb": 5,
+            "pm": 7,
             "composite": 11.61,
             "zScores": {
               "pts": 3.25,
@@ -2442,6 +2703,9 @@
             "fga": 13,
             "ftm": 6,
             "fta": 7,
+            "oreb": 1,
+            "dreb": 3,
+            "pm": 0,
             "composite": 7.35,
             "zScores": {
               "pts": 1.664,
@@ -2469,6 +2733,9 @@
             "fga": 0,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "pm": -8,
             "composite": -4.1,
             "zScores": {
               "pts": -1.086,
@@ -2496,6 +2763,9 @@
             "fga": 9,
             "ftm": 2,
             "fta": 2,
+            "oreb": 1,
+            "dreb": 3,
+            "pm": 6,
             "composite": 3.8,
             "zScores": {
               "pts": 0.712,
@@ -2523,6 +2793,9 @@
             "fga": 2,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -10,
             "composite": 1.76,
             "zScores": {
               "pts": -0.557,
@@ -2550,6 +2823,9 @@
             "fga": 11,
             "ftm": 1,
             "fta": 2,
+            "oreb": 0,
+            "dreb": 1,
+            "pm": -8,
             "composite": -4.96,
             "zScores": {
               "pts": -0.134,
@@ -2577,6 +2853,9 @@
             "fga": 4,
             "ftm": 0,
             "fta": 0,
+            "oreb": 0,
+            "dreb": 4,
+            "pm": -10,
             "composite": -4.1,
             "zScores": {
               "pts": -0.874,
