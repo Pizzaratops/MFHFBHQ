@@ -2,12 +2,12 @@
   "league": "ncaab",
   "date": "2026-11-02",
   "games": [
+    "Carnegie Mellon Tartans @ Princeton Tigers (9:36 - 2nd)",
+    "UMBC Retrievers @ George Mason Patriots (12:18 - 2nd)",
+    "St. Francis (IL) Fighting Saints @ UIC Flames (11:15 - 1st)",
     "Murray State Racers 94 @ Tennessee State Tigers 64 (Final)",
-    "UTEP Miners @ Northern Kentucky Norse (11/2 - 2:30 PM EST)",
-    "UTSA Roadrunners @ San José State Spartans (11/2 - 3:00 PM EST)",
-    "Carnegie Mellon Tartans @ Princeton Tigers (11/2 - 4:00 PM EST)",
-    "UMBC Retrievers @ George Mason Patriots (11/2 - 4:00 PM EST)",
-    "St. Francis (IL) Fighting Saints @ UIC Flames (11/2 - 5:00 PM EST)",
+    "UTEP Miners 76 @ Northern Kentucky Norse 84 (Final)",
+    "UTSA Roadrunners 74 @ San José State Spartans 95 (Final)",
     "UAB Blazers @ McNeese Cowboys (11/2 - 5:30 PM EST)",
     "Miami Hurricanes @ Florida Gators (11/2 - 6:00 PM EST)",
     "Oakland Golden Grizzlies @ Michigan Wolverines (11/2 - 6:00 PM EST)",
@@ -115,7 +115,7 @@
     "Seattle U Redhawks @ Hawai'i Rainbow Warriors (11/2 - 11:59 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 51.6,
-    "ft": 82.8
+    "fg": 47.4,
+    "ft": 73.9
   }
 }
