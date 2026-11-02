@@ -76,17 +76,30 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401911707",
-      line: "Murray State Racers @ Tennessee State Tigers (11/2 - 11:30 AM EST)",
-      completed: false,
-      statusText: "11/2 - 11:30 AM EST",
+      line: "Murray State Racers 94 @ Tennessee State Tigers 64 (Final)",
+      completed: true,
+      statusText: "Final",
       away: {
-        abbr: "Mur", name: "Murray State Racers", score: null,
+        abbr: "Mur", name: "Murray State Racers", score: 94,
         players: [
-
+          { name: "Brigham Rogers", min: 26, pts: 10, reb: 5, ast: 3, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 4, fga: 7, ftm: 2, fta: 4, composite: 2.76, zScores: { pts: 0.503, reb: 1.716, ast: 1.781, stl: 0.368, blk: -0.522, tpm: -0.522, fgImpact: 0.597, ftImpact: -1.932, to: 0.775 } },
+          { name: "Talis Soulhac", min: 21, pts: 13, reb: 2, ast: 3, stl: 3, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 5, ftm: 9, fta: 10, composite: 4.2, zScores: { pts: 0.963, reb: -0.232, ast: 1.781, stl: 2.426, blk: -0.522, tpm: -0.522, fgImpact: -0.896, ftImpact: 1.068, to: 0.137 } },
+          { name: "Roman Domon", min: 28, pts: 22, reb: 5, ast: 2, stl: 1, blk: 1, to: 4, tpm: 1, fgm: 8, fga: 16, ftm: 5, fta: 5, composite: 7.05, zScores: { pts: 2.341, reb: 1.716, ast: 0.921, stl: 0.368, blk: 1.915, tpm: 0.696, fgImpact: -0.398, ftImpact: 1.271, to: -1.778 } },
+          { name: "Brayden Shorter", min: 21, pts: 13, reb: 3, ast: 0, stl: 2, blk: 0, to: 1, tpm: 3, fgm: 5, fga: 9, ftm: 0, fta: 0, composite: 5.27, zScores: { pts: 0.963, reb: 0.417, ast: -0.799, stl: 1.397, blk: -0.522, tpm: 3.133, fgImpact: 0.548, ftImpact: 0, to: 0.137 } },
+          { name: "Lachlan Crate", min: 16, pts: 2, reb: 3, ast: 0, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -0.44, zScores: { pts: -0.722, reb: 0.417, ast: -0.799, stl: -0.662, blk: 1.915, tpm: -0.522, fgImpact: -0.846, ftImpact: 0, to: 0.775 } },
+          { name: "Jonas Boulefaa", min: 8, pts: 5, reb: 3, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 2, fga: 2, ftm: 0, fta: 2, composite: -1.3, zScores: { pts: -0.263, reb: 0.417, ast: -0.799, stl: -0.662, blk: -0.522, tpm: 0.696, fgImpact: 1.493, ftImpact: -2.441, to: 0.775 } },
+          { name: "Pavle Nikolic", min: 8, pts: 2, reb: 3, ast: 2, stl: 0, blk: 1, to: 2, tpm: 0, fgm: 0, fga: 1, ftm: 2, fta: 2, composite: 0.56, zScores: { pts: -0.722, reb: 0.417, ast: 0.921, stl: -0.662, blk: 1.915, tpm: -0.522, fgImpact: -0.796, ftImpact: 0.509, to: -0.502 } },
+          { name: "Shon Tupuola", min: 6, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -3.38, zScores: { pts: -0.722, reb: -0.881, ast: -0.799, stl: -0.662, blk: -0.522, tpm: -0.522, fgImpact: -0.05, ftImpact: 0, to: 0.775 } },
+          { name: "Dillon Butler", min: 1, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -4.29, zScores: { pts: -1.028, reb: -1.53, ast: -0.799, stl: -0.662, blk: -0.522, tpm: -0.522, fgImpact: 0, ftImpact: 0, to: 0.775 } },
+          { name: "Mathis Courbon", min: 12, pts: 2, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -3.24, zScores: { pts: -0.722, reb: -1.53, ast: -0.799, stl: -0.662, blk: -0.522, tpm: -0.522, fgImpact: 0.747, ftImpact: 0, to: 0.775 } },
+          { name: "Ben Shtolzberg", min: 15, pts: 6, reb: 3, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 3, ftm: 2, fta: 2, composite: -0.85, zScores: { pts: -0.109, reb: 0.417, ast: -0.799, stl: -0.662, blk: -0.522, tpm: -0.522, fgImpact: 0.697, ftImpact: 0.509, to: 0.137 } },
+          { name: "Kaden Magwood", min: 18, pts: 15, reb: 3, ast: 1, stl: 0, blk: 0, to: 4, tpm: 1, fgm: 5, fga: 8, ftm: 4, fta: 4, composite: 1.84, zScores: { pts: 1.269, reb: 0.417, ast: 0.061, stl: -0.662, blk: -0.522, tpm: 0.696, fgImpact: 1.344, ftImpact: 1.017, to: -1.778 } },
+          { name: "Christian Jones", min: 17, pts: 2, reb: 1, ast: 2, stl: 2, blk: 0, to: 4, tpm: 0, fgm: 1, fga: 5, ftm: 0, fta: 0, composite: -4.55, zScores: { pts: -0.722, reb: -0.881, ast: 0.921, stl: 1.397, blk: -0.522, tpm: -0.522, fgImpact: -2.439, ftImpact: 0, to: -1.778 } },
+          { name: "Navon Shabazz", min: 2, pts: 0, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -3.64, zScores: { pts: -1.028, reb: -0.881, ast: -0.799, stl: -0.662, blk: -0.522, tpm: -0.522, fgImpact: 0, ftImpact: 0, to: 0.775 } }
         ]
       },
       home: {
-        abbr: "TNST", name: "Tennessee State Tigers", score: null,
+        abbr: "TNST", name: "Tennessee State Tigers", score: 64,
         players: [
 
         ]
@@ -94,9 +107,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911532",
-      line: "UTEP Miners @ Northern Kentucky Norse (11/2 - 2:00 PM EST)",
+      line: "UTEP Miners @ Northern Kentucky Norse (11/2 - 2:30 PM EST)",
       completed: false,
-      statusText: "11/2 - 2:00 PM EST",
+      statusText: "11/2 - 2:30 PM EST",
       away: {
         abbr: "UTEP", name: "UTEP Miners", score: null,
         players: [
