@@ -265,6 +265,10 @@ async function fetchGamePlayers(slug, gameId) {
       const iBLK = idx('BLK');
       const iTO = idx('TO');
       const iPTS = idx('PTS');
+      // 02.11.2026: zusätzlich OREB/DREB/+/- (für Points-Ligen wie NBAFO auf Fantrax)
+      const iOREB = idx('OREB');
+      const iDREB = idx('DREB');
+      const iPM = idx('+/-');
 
       for (const athlete of statGroup.athletes || []) {
         const stats = athlete.stats || [];
@@ -292,6 +296,9 @@ async function fetchGamePlayers(slug, gameId) {
           fga: fg.att,
           ftm: ft.made,
           fta: ft.att,
+          oreb: iOREB >= 0 ? Number(stats[iOREB]) || 0 : null,
+          dreb: iDREB >= 0 ? Number(stats[iDREB]) || 0 : null,
+          pm: iPM >= 0 ? Number(String(stats[iPM]).replace('+', '')) || 0 : null,
         });
       }
     }
@@ -508,6 +515,7 @@ async function processDay(LEAGUE, dateStr, games) {
         name: p.name, min: p.min,
         pts: p.pts, reb: p.reb, ast: p.ast, stl: p.stl, blk: p.blk, to: p.to, tpm: p.tpm,
         fgm: p.fgm, fga: p.fga, ftm: p.ftm, fta: p.fta,
+        oreb: p.oreb, dreb: p.dreb, pm: p.pm,
         composite: Number((p.composite ?? 0).toFixed(2)),
         zScores: Object.fromEntries(CATEGORIES.map(c => [c.key, Number((p.zScores?.[c.key] ?? 0).toFixed(3))])),
       }));
