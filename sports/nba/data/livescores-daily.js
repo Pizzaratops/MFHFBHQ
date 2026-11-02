@@ -2085,7 +2085,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-01": {
-      games: ["Boston Celtics 108 @ Orlando Magic 97 (Final)","Brooklyn Nets 98 @ Indiana Pacers 90 (Final)","LA Clippers @ Golden State Warriors (1:35 - 1st)","Toronto Raptors @ Los Angeles Lakers (11/1 - 9:00 PM EST)"],
+      games: ["Boston Celtics 108 @ Orlando Magic 97 (Final)","Brooklyn Nets 98 @ Indiana Pacers 90 (Final)","LA Clippers @ Golden State Warriors (7:49 - 3rd)","Toronto Raptors @ Los Angeles Lakers (1:55 - 2nd)"],
       leagueAvg: { fg: 41.9, ft: 78.3 },
       players: [
         { rank: 1, name: "Paul George", team: "BOS", min: 33, pts: 17, reb: 6, ast: 8, stl: 2, blk: 2, to: 4, tpm: 3, fgPct: 42.9, ftPct: 100, composite: 8.18, zScores: { pts: 0.853, reb: 0.597, ast: 2.148, stl: 1.749, blk: 2.718, tpm: 1.118, fgImpact: 0.117, ftImpact: 0.674, to: -1.799 } },

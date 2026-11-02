@@ -3547,9 +3547,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909905",
-      line: "LA Clippers @ Golden State Warriors (1:35 - 1st)",
+      line: "LA Clippers @ Golden State Warriors (7:49 - 3rd)",
       completed: false,
-      statusText: "1:35 - 1st",
+      statusText: "7:49 - 3rd",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
@@ -3565,9 +3565,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909906",
-      line: "Toronto Raptors @ Los Angeles Lakers (11/1 - 9:00 PM EST)",
+      line: "Toronto Raptors @ Los Angeles Lakers (1:55 - 2nd)",
       completed: false,
-      statusText: "11/1 - 9:00 PM EST",
+      statusText: "1:55 - 2nd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
