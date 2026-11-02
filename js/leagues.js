@@ -181,7 +181,7 @@ const LEAGUES = [
     files: { 'draft-results-active': 'draft-results' },
     myTeam: 2,
     espn: { season: 2027 },
-    pages: ['ptshome', 'schedule', 'ptsstand', 'ptsmatch', 'ptsplanner', 'ptsteams', 'ptswaiver', 'ptstx', 'ptstrade', 'draftresults', 'ptsplayers', 'insights', 'nbateams'],
+    pages: ['ptshome', 'schedule', 'ptsstand', 'ptsrolling', 'ptsmatch', 'ptsplanner', 'ptsteams', 'ptswaiver', 'ptstx', 'ptstrade', 'draftresults', 'ptsplayers', 'insights', 'nbateams'],
   },
   {
     key: 'bwp',

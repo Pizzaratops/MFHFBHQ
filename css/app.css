@@ -643,3 +643,9 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .rapm-d { display: none; font-size: 10.5px; color: var(--muted); white-space: nowrap; margin-top: 2px; }
 .rapm-open .rapm-d { display: block; }
 .rapm-note p { margin: 8px 0 0; font-size: 13px; line-height: 1.5; }
+
+/* ---------- Sortierbare Tabellen (core/table-sort.js) ---------- */
+.table thead th.ts-able { cursor: pointer; user-select: none; }
+.table thead th.ts-able:hover { color: var(--text); }
+.table thead th.ts-asc::after { content: ' ▲'; font-size: .8em; color: var(--league-accent); }
+.table thead th.ts-desc::after { content: ' ▼'; font-size: .8em; color: var(--league-accent); }

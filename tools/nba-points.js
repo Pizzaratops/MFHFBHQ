@@ -145,9 +145,9 @@
   const weekName = (M, p) => (p > (M.I.regularPeriods || 99) ? `Playoff-Runde ${p - M.I.regularPeriods}` : `Woche ${p}`);
 
   // ---------- Tabelle (aus allen entschiedenen Matchups) ----------
-  function standings(M) {
+  function standings(M, upto) {
     const rows = new Map(M.teams.map(t => [t.id, { t, w: 0, l: 0, tie: 0, pf: 0, pa: 0, ap_w: 0, ap_g: 0, weeks: [], form: [] }]));
-    const reg = (M.I.matchups || []).filter(m => !m.playoff && m.winner && m.winner !== 'UNDECIDED');
+    const reg = (M.I.matchups || []).filter(m => !m.playoff && m.winner && m.winner !== 'UNDECIDED' && (upto == null || m.p <= upto));
     const byP = {};
     reg.forEach(m => {
       [[m.home, m.hp, m.ap, 'HOME'], [m.away, m.ap, m.hp, 'AWAY']].forEach(([id, f, a, side]) => {
@@ -364,6 +364,62 @@
       <p class="explain small">Aus allen entschiedenen Hauptrunden-Wochen. All-Play: jede Woche gegen alle anderen Teams gerechnet – zeigt, wie stark ein Team wirklich gepunktet hat, unabhängig vom Gegner. „Glück“ = echte H2H-Siege minus All-Play-Erwartung.${M.I.median ? ' Median-Spiel: Wer in der Woche mehr Punkte als die Hälfte der Liga holt, bekommt einen zweiten Sieg (W-L enthält beide).' : ''}</p>`;
   }
 
+  // ---------- Rolling Rankings (Tabellenplatz nach jeder Woche) ----------
+  const ROLL_SEL = ['sel-1', 'sel-2', 'sel-3'];
+  function rollData(M, mode) {
+    const weeks = [...new Set((M.I.matchups || []).filter(m => !m.playoff && m.winner && m.winner !== 'UNDECIDED').map(m => m.p))].sort((a, b) => a - b);
+    const byTeam = {};
+    weeks.forEach(w => {
+      let st = standings(M, w);
+      if (mode === 'pf') st = st.slice().sort((a, b) => b.pf - a.pf);
+      if (mode === 'ap') st = st.slice().sort((a, b) => (b.apPct || 0) - (a.apPct || 0) || b.pf - a.pf);
+      st.forEach((r, i) => { (byTeam[r.t.id] = byTeam[r.t.id] || {})[w] = { rank: i + 1, tip: `${r.w}-${r.l}${r.tie ? '-' + r.tie : ''} · ${f0(r.pf)} PF · All-Play ${r.apPct != null ? Math.round(r.apPct * 100) + ' %' : '—'}` }; });
+    });
+    return { weeks, byTeam };
+  }
+  function rollSvg(M, R, sel, width) {
+    const rows = M.teams.filter(t => R.byTeam[t.id]).map(t => ({ id: String(t.id), name: t.name, emoji: '',
+      ranks: R.weeks.map(w => (R.byTeam[t.id][w] ? R.byTeam[t.id][w].rank : null)),
+      tips: R.weeks.map(w => (R.byTeam[t.id][w] ? `${t.name} · W${w}: Platz ${R.byTeam[t.id][w].rank} · ${R.byTeam[t.id][w].tip}` : '')) }));
+    return MFHFB.charts.bump({ cols: R.weeks.map(w => 'W' + w), rows, sel, width, maxRank: rows.length, label: 'Rangverlauf' });
+  }
+  const rollSet = ctx => ({ mode: 'table', sel: [], ...ctx.store.getJSON('ptsrolling', {}) });
+  function rollingPage(ctx) {
+    const M = model(ctx), e = ctx.ui.esc;
+    if (!M.I.matchups) return noData(ctx);
+    const set = rollSet(ctx), R = rollData(M, set.mode);
+    if (!R.weeks.length) return ctx.ui.empty('Noch keine Woche entschieden', 'Die Rolling Rankings füllen sich nach der ersten abgeschlossenen Woche.', '📊');
+    const sel = set.sel.map(String).filter(id => R.byTeam[id]).slice(0, 3);
+    const lastW = R.weeks[R.weeks.length - 1], prevW = R.weeks[R.weeks.length - 2];
+    const order = M.teams.filter(t => R.byTeam[t.id]).sort((a, b) => R.byTeam[a.id][lastW].rank - R.byTeam[b.id][lastW].rank);
+    const sub = { table: 'Tabellenplatz nach jeder Woche (Bilanz, Tiebreak Punkte)', pf: 'Rang nach kumulierten Punkten', ap: 'Rang nach All-Play-Quote (jede Woche gegen alle)' }[set.mode];
+    return `${head(ctx, '📊', 'Rolling Rankings', `<span class="explain">${sub}</span>`)}
+      <div class="controls"><div class="seg" role="group">${[['table', 'Tabelle (W-L)'], ['pf', 'Punkte kumuliert'], ['ap', 'All-Play']].map(([v, l]) => `<button type="button" class="seg-btn${set.mode === v ? ' active' : ''}" data-mode="${v}">${l}</button>`).join('')}</div></div>
+      <div class="pick-row">${M.teams.map(t => { const k = sel.indexOf(String(t.id)); return `<button type="button" class="pick${k > -1 ? ' on ' + ROLL_SEL[k] : ''}" data-pick="${t.id}">${e(t.name)}</button>`; }).join('')}${sel.length ? '<button type="button" class="pick clear" data-clear>✕ Auswahl leeren</button>' : ''}</div>
+      <div class="card bump-card" data-share="${e(ctx.league.short || ctx.league.name)} · Rolling Rankings">
+        <div class="bump-wrap" data-bump>${rollSvg(M, R, sel, 900)}</div><div class="bump-tip" hidden></div>
+        <div class="bump-hint explain">${sel.length ? '' : 'Tipp: bis zu drei Teams antippen, um ihren Verlauf hervorzuheben. '}Hovern zeigt Details.</div></div>
+      <div class="table-wrap"><table class="table compact"><thead><tr><th>Team</th>${R.weeks.map(w => `<th class="num">W${w}</th>`).join('')}${prevW ? '<th class="num">Trend</th>' : ''}</tr></thead><tbody>
+        ${order.map(t => { const c = R.byTeam[t.id][lastW], p = prevW && R.byTeam[t.id][prevW]; const mv = c && p ? p.rank - c.rank : 0; const k = sel.indexOf(String(t.id));
+          return `<tr${k > -1 ? ` class="row-${ROLL_SEL[k]}"` : ''}><td>${teamCell(ctx, t)}</td>${R.weeks.map(w => `<td class="num${w === lastW ? ' strong' : ''}">${R.byTeam[t.id][w] ? R.byTeam[t.id][w].rank : '–'}</td>`).join('')}${prevW ? `<td class="num ${mv > 0 ? 'up' : mv < 0 ? 'down' : 'muted'}">${mv > 0 ? '▲ ' + mv : mv < 0 ? '▼ ' + -mv : '–'}</td>` : ''}</tr>`; }).join('')}
+      </tbody></table></div>`;
+  }
+  function rollingMount(root, ctx) {
+    const set = rollSet(ctx);
+    const save = patch => { ctx.store.setJSON('ptsrolling', { ...rollSet(ctx), ...patch }); ctx.refresh(); };
+    root.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => save({ mode: b.dataset.mode })));
+    root.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.pick, cur = set.sel.map(String); let sel = cur.filter(x => x !== id);
+      if (sel.length === cur.length) sel = [...cur, id].slice(-3);
+      save({ sel });
+    }));
+    const clr = root.querySelector('[data-clear]'); if (clr) clr.addEventListener('click', () => save({ sel: [] }));
+    const wrap = root.querySelector('[data-bump]'); if (!wrap) return;
+    const M = model(ctx), R = rollData(M, set.mode), sel = set.sel.map(String).filter(id => R.byTeam[id]).slice(0, 3);
+    MFHFB.charts.responsive(wrap, w => rollSvg(M, R, sel, w));
+    MFHFB.charts.bumpInteract(wrap, root.querySelector('.bump-tip'), id => { const btn = root.querySelector(`[data-pick="${CSS.escape(id)}"]`); if (btn) btn.click(); });
+  }
+
   // ---------- Teams & Kader ----------
   function teamsPage(ctx) {
     const M = model(ctx), e = ctx.ui.esc, nba = N();
@@ -510,6 +566,7 @@
 
   MFHFB.pages.register({ id: 'ptshome', section: 'home', label: 'Übersicht', icon: '🏠', applies: A, data: DATA, render: home, mount: mountCommon });
   MFHFB.pages.register({ id: 'ptsstand', section: 'standings', label: 'Tabelle', icon: '📈', applies: A, data: DATA, render: standPage });
+  MFHFB.pages.register({ id: 'ptsrolling', section: 'standings', label: 'Rolling Rankings', icon: '📊', applies: A, data: DATA, render: rollingPage, mount: rollingMount });
   MFHFB.pages.register({ id: 'ptsmatch', section: 'matchups', label: 'Matchups', icon: '⚔️', applies: A, data: DATA, render: matchups,
     mount(root, ctx) { const s = root.querySelector('[data-week]'); if (s) s.addEventListener('change', () => { location.hash = ctx.href('ptsmatch', s.value).replace(/^.*#/, '#'); }); const id = ctx.params[1]; if (id) { const el = root.querySelector('#m' + id); if (el) el.scrollIntoView({ block: 'center' }); } } });
   MFHFB.pages.register({ id: 'ptsplanner', section: 'matchups', label: 'Matchup-Planer', icon: '🗓️', applies: A, data: DATA.concat(['?sport:projections-consensus']), render: planner,
