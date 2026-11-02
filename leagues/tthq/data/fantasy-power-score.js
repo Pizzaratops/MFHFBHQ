@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-02T07:01:38.553Z",
+  "generatedAt": "2026-11-02T08:01:17.860Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 7 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -84,7 +84,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 1,
         "tpm": 3,
         "fgPct": 1,
-        "ftPct": 6,
+        "ftPct": 5,
         "to": 12
       },
       "includedCount": 28,
@@ -97,25 +97,25 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 320.3,
-        "reb": 124.6,
-        "ast": 76,
-        "stl": 23.75,
-        "blk": 15.08,
-        "tpm": 39.3,
-        "to": 40,
-        "fgPct": 47,
-        "ftPct": 78.9
+        "pts": 320.9,
+        "reb": 126,
+        "ast": 75.8,
+        "stl": 23.33,
+        "blk": 15.71,
+        "tpm": 38.6,
+        "to": 39.9,
+        "fgPct": 47.2,
+        "ftPct": 78.6
       },
       "rank": {
         "pts": 7,
         "reb": 4,
         "ast": 7,
-        "stl": 5,
+        "stl": 6,
         "blk": 4,
         "tpm": 5,
-        "fgPct": 6,
-        "ftPct": 4,
+        "fgPct": 5,
+        "ftPct": 6,
         "to": 7
       },
       "includedCount": 28,
@@ -207,7 +207,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 11,
         "blk": 11,
         "tpm": 7,
-        "fgPct": 5,
+        "fgPct": 6,
         "ftPct": 2,
         "to": 5
       },
@@ -301,7 +301,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 6,
         "reb": 2,
         "ast": 6,
-        "stl": 6,
+        "stl": 5,
         "blk": 3,
         "tpm": 8,
         "fgPct": 3,
@@ -398,7 +398,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 7,
         "tpm": 4,
         "fgPct": 7,
-        "ftPct": 5,
+        "ftPct": 4,
         "to": 11
       },
       "includedCount": 28,
