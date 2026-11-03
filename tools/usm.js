@@ -95,7 +95,7 @@
     'adem bona': [0.85, 'Fuß'], 'tyrese haliburton': [0.85, 'Comeback'], 'franz wagner': [0.9, 'Schulter'], 'anthony black': [0.9, 'Knöchel'],
     // 20.10.2026: gewaivt / Saison vorbei (basketball.de führt sie evtl. noch beim alten Team)
     // 26.10.2026: Walter Clayton (DAL) und Micah Peavy (OKC) per Two-Way neu unter Vertrag → raus
-    'bruce brown': [0, 'gewaivt'], 'kevin porter': [0, 'gewaivt'], 'kevin mccullar': [0, 'gewaivt'],
+    'bruce brown': [0, 'gewaivt'], 'kevin porter': [0, 'gewaivt'], 'kevin mccullar': [0, 'gewaivt'], 'ak okereke': [0, 'gewaivt'],
     'ben simmons': [0, 'Out Saison'],
   };
 
