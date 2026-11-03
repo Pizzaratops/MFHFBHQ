@@ -14,12 +14,12 @@
 //  expRank/seasonRank = Rang im gemeinsamen Pool (Projection vs. Saison).
 // ============================================================
 
-const DYNASTY_LIVE_META = {"mode":"season","date":"2026-11-02","pool":343,"expectation":"snapshots/projections-2026-27-opening-night.js"};
+const DYNASTY_LIVE_META = {"mode":"season","date":"2026-11-02","pool":345,"expectation":"snapshots/projections-2026-27-opening-night.js"};
 
 const DYNASTY_LIVE = [
-  { name: "Amen Thompson", baseRank: 17, liveRank: 19, delta: -2, games: 8, expRank: 20, seasonRank: 83, shift: -0.12, source: "season" },
+  { name: "Amen Thompson", baseRank: 17, liveRank: 19, delta: -2, games: 8, expRank: 20, seasonRank: 84, shift: -0.12, source: "season" },
   { name: "LaMelo Ball", baseRank: 34, liveRank: 37, delta: -3, games: 8, expRank: 38, seasonRank: 96, shift: -0.09, source: "season" },
-  { name: "Naz Reid", baseRank: 67, liveRank: 73, delta: -6, games: 8, expRank: 64, seasonRank: 184, shift: -0.09, source: "season" },
-  { name: "Jabari Smith Jr.", baseRank: 91, liveRank: 80, delta: 11, games: 8, expRank: 88, seasonRank: 19, shift: 0.13, source: "season" },
-  { name: "Moussa Diabaté", baseRank: 147, liveRank: 131, delta: 16, games: 8, expRank: 139, seasonRank: 42, shift: 0.12, source: "season" }
+  { name: "Naz Reid", baseRank: 67, liveRank: 73, delta: -6, games: 8, expRank: 64, seasonRank: 183, shift: -0.09, source: "season" },
+  { name: "Jabari Smith Jr.", baseRank: 91, liveRank: 80, delta: 11, games: 8, expRank: 89, seasonRank: 19, shift: 0.13, source: "season" },
+  { name: "Moussa Diabaté", baseRank: 147, liveRank: 129, delta: 18, games: 8, expRank: 140, seasonRank: 37, shift: 0.13, source: "season" }
 ];
