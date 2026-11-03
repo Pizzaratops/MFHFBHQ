@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-03T16:16:34.121Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-03T17:07:04.992Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2429,6 +2429,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Emmanuel Ogbole","nbaTeam":"Rut","pos":"C","experience":"veteran","minutesAvg":18.8,"z30":-0.88,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":1731,"statsWindow":"last-season","compositeScore":-20.29,"signalsUsed":1,"gone":true,"rank":2423},
   {"name":"Isaiah Walker","nbaTeam":"Xav","pos":"G","experience":"veteran","minutesAvg":17,"z30":-2.13,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2150,"statsWindow":"last-season","compositeScore":-20.71,"signalsUsed":1,"gone":true,"rank":2424},
   {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2425},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2426},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2427}
+  {"name":"Ethan Bilyeu","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2426},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2427},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2428}
 ];
