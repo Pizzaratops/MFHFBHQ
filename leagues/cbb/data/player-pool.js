@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-03T02:55:25.065Z
+//  Stand: 2026-11-03T10:06:42.003Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -631,6 +631,7 @@ const CBB_PLAYER_POOL = [
 ["079ab","Denton Forsythe","Tuls","G","G,Flx","FA"],
 ["064lu","Denzel Aberdeen","Fla","G","G,Flx","T"],
 ["0713o","Derek Dixon","Ariz","G","G,Flx","T"],
+["064g0","Derek Simpson","Prov","G","G,Flx","FA"],
 ["079ac","Derelle Desire","Tuls","F","F/C,Flx","FA"],
 ["06gvu","Derin Saran","Rich","G","G,Flx","FA"],
 ["079ek","Deron Rippey","Duke","G","G,Flx","T"],
@@ -1323,6 +1324,7 @@ const CBB_PLAYER_POOL = [
 ["079w8","Jorge Carot","Pacif","F","F/C,Flx","FA"],
 ["07266","Jose Roberto Tanchyn","USD","F","F/C,Flx","FA"],
 ["079da","Joseph Hartman","Mich","G","G,Flx","FA"],
+["064iu","Joseph Pinion","Prov","G","G,Flx","FA"],
 ["070wp","Joseph Quartey","Harv","G","G,Flx","FA"],
 ["06dv9","Joseph Tugler","Hou","F","F/C,Flx","T"],
 ["06hz7","Josh Gatete","AF","F","F/C,Flx","FA"],
@@ -2022,6 +2024,7 @@ const CBB_PLAYER_POOL = [
 ["06nbi","Ring Nyeri","Wake","F","F/C,Flx","FA"],
 ["07ali","River Sawyer","ColSt","G","G,Flx","FA"],
 ["079ma","Rivers Knight","Pur","F","F/C,Flx","FA"],
+["064xb","RJ Godfrey","Ariz","F","F/C,Flx","FA"],
 ["06dtd","RJ Godfrey","Ariz","F","F/C,Flx","FA"],
 ["06gck","RJ Johnson","MissSt","G","G,Flx","FA"],
 ["05wv0","RJ Keene","NCSU","G","G,Flx","FA"],
