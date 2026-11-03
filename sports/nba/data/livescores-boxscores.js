@@ -3633,9 +3633,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909907",
-      line: "Oklahoma City Thunder @ Cleveland Cavaliers (11/2 - 7:00 PM EST)",
+      line: "Oklahoma City Thunder @ Cleveland Cavaliers (5:22 - 2nd)",
       completed: false,
-      statusText: "11/2 - 7:00 PM EST",
+      statusText: "5:22 - 2nd",
       away: {
         abbr: "OKC", name: "Oklahoma City Thunder", score: null,
         players: [
@@ -3651,9 +3651,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909908",
-      line: "Detroit Pistons @ Charlotte Hornets (11/2 - 7:30 PM EST)",
+      line: "Detroit Pistons @ Charlotte Hornets (6:42 - 1st)",
       completed: false,
-      statusText: "11/2 - 7:30 PM EST",
+      statusText: "6:42 - 1st",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -3669,9 +3669,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909909",
-      line: "Atlanta Hawks @ Indiana Pacers (11/2 - 7:30 PM EST)",
+      line: "Atlanta Hawks @ Indiana Pacers (4:35 - 1st)",
       completed: false,
-      statusText: "11/2 - 7:30 PM EST",
+      statusText: "4:35 - 1st",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -3687,9 +3687,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909910",
-      line: "Brooklyn Nets @ New York Knicks (11/2 - 7:30 PM EST)",
+      line: "Brooklyn Nets @ New York Knicks (4:06 - 1st)",
       completed: false,
-      statusText: "11/2 - 7:30 PM EST",
+      statusText: "4:06 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -3705,9 +3705,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909911",
-      line: "Washington Wizards @ Orlando Magic (11/2 - 7:30 PM EST)",
+      line: "Washington Wizards @ Orlando Magic (4:38 - 1st)",
       completed: false,
-      statusText: "11/2 - 7:30 PM EST",
+      statusText: "4:38 - 1st",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -3723,9 +3723,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909912",
-      line: "Chicago Bulls @ Philadelphia 76ers (11/2 - 7:30 PM EST)",
+      line: "Chicago Bulls @ Philadelphia 76ers (4:55 - 1st)",
       completed: false,
-      statusText: "11/2 - 7:30 PM EST",
+      statusText: "4:55 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
