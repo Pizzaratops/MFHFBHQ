@@ -3,23 +3,23 @@
   "date": "2026-11-02",
   "games": [
     "Oklahoma City Thunder 117 @ Cleveland Cavaliers 112 (Final)",
-    "Detroit Pistons @ Charlotte Hornets (34.6 - 4th)",
+    "Detroit Pistons 124 @ Charlotte Hornets 91 (Final)",
     "Atlanta Hawks 108 @ Indiana Pacers 104 (Final)",
-    "Brooklyn Nets @ New York Knicks (2:01 - 4th)",
+    "Brooklyn Nets 90 @ New York Knicks 103 (Final)",
     "Washington Wizards 103 @ Orlando Magic 94 (Final)",
     "Chicago Bulls 107 @ Philadelphia 76ers 126 (Final)",
-    "Sacramento Kings @ Dallas Mavericks (10:39 - 4th)",
-    "New Orleans Pelicans @ Memphis Grizzlies (7:58 - 4th)",
-    "Milwaukee Bucks @ Minnesota Timberwolves (8:02 - 4th)",
-    "Boston Celtics @ Houston Rockets (8:24 - 3rd)",
-    "Utah Jazz @ San Antonio Spurs (10:21 - 3rd)",
-    "Portland Trail Blazers @ Denver Nuggets (3:28 - 2nd)",
-    "Phoenix Suns @ Golden State Warriors (11/2 - 10:00 PM EST)",
-    "Toronto Raptors @ LA Clippers (11/2 - 10:00 PM EST)",
-    "Miami Heat @ Los Angeles Lakers (11/2 - 10:00 PM EST)"
+    "Sacramento Kings 115 @ Dallas Mavericks 100 (Final)",
+    "New Orleans Pelicans 135 @ Memphis Grizzlies 134 (Final/OT)",
+    "Milwaukee Bucks 100 @ Minnesota Timberwolves 112 (Final)",
+    "Boston Celtics 93 @ Houston Rockets 109 (Final)",
+    "Utah Jazz @ San Antonio Spurs (1:13 - 4th)",
+    "Portland Trail Blazers @ Denver Nuggets (9:53 - 4th)",
+    "Phoenix Suns @ Golden State Warriors (3:45 - 2nd)",
+    "Toronto Raptors @ LA Clippers (5:20 - 2nd)",
+    "Miami Heat @ Los Angeles Lakers (6:34 - 2nd)"
   ],
   "leagueAvg": {
-    "fg": 45.8,
-    "ft": 74.5
+    "fg": 45.4,
+    "ft": 75.5
   }
 }
