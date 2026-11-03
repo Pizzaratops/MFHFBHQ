@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-02T22:19:14.155Z
+//  Stand: 2026-11-03T01:49:24.070Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -663,6 +663,7 @@ const CBB_PLAYER_POOL = [
 ["071b3","Dillan Shaw","AzSt","G","F/C,G,Flx","T"],
 ["06mwm","Dillon Battie","WichSt","F","F/C,Flx","FA"],
 ["071gg","Dillon Butler","Mur","G","G,Flx","FA"],
+["064x7","Dillon Hunter","Clem","G","G,Flx","FA"],
 ["07a0u","Dimitrije Pavlovic","Brad","G","G,Flx","FA"],
 ["06ng2","Dimitrije Vukicevic","UCSD","C","F/C,Flx","FA"],
 ["0796t","Dimitrios Ntapsis","Duques","F","F/C,Flx","FA"],
@@ -1812,6 +1813,7 @@ const CBB_PLAYER_POOL = [
 ["0719z","Myles Jones","Stan","G","G,Flx","FA"],
 ["06grc","Myles Rigsby","Tuls","G","G,Flx","FA"],
 ["0712j","Myles Walker","Nev","G","G,Flx","FA"],
+["064hf","N.J. Benson","GTown","F","F/C,Flx","FA"],
 ["06hba","Naithan George","Pitt","G","G,Flx","T"],
 ["070w7","Najai Hines","UConn","F","F/C,Flx","T"],
 ["071g0","Nano Barrantes","UIC","F","F/C,Flx","FA"],
