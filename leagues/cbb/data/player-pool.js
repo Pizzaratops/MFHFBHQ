@@ -1,11 +1,12 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-04T01:22:04.709Z
+//  Stand: 2026-11-04T03:20:46.616Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
 ["064ez","064ez","","","G,Flx","T"],
+["075yo","075yo","","","G,Flx","T"],
 ["06qgl","A.J. Patterson","AF","G","G,Flx","FA"],
 ["079w5","Aaron Banks","LoyMa","G","G,Flx","FA"],
 ["071rb","Aaron Glass","Vand","G","G,Flx","T"],
@@ -669,7 +670,6 @@ const CBB_PLAYER_POOL = [
 ["06ng2","Dimitrije Vukicevic","UCSD","C","F/C,Flx","FA"],
 ["0796t","Dimitrios Ntapsis","Duques","F","F/C,Flx","FA"],
 ["071bc","Dimp Pernell","TxSt","G","G,Flx","FA"],
-["075yo","Dink Pate","Prov","G","G,Flx","T"],
 ["071rg","Dio Blakely","WaSt","G","G,Flx","FA"],
 ["079ff","Dionycius Bakare","Cal","G","F/C,G,Flx","FA"],
 ["064yz","Dior Johnson","UCF","G","G,Flx","T"],
