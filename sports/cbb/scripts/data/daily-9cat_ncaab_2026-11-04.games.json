@@ -1,0 +1,204 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-04",
+  "games": [
+    {
+      "id": "401920232",
+      "line": "Framingham State Rams @ Dartmouth Big Green (11/4 - 6:30 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 6:30 PM EST",
+      "away": {
+        "abbr": "FRSU",
+        "name": "Framingham State Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Dart",
+        "name": "Dartmouth Big Green",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920191",
+      "line": "Longwood Lancers @ Saint Joseph's Hawks (11/4 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 7:00 PM EST",
+      "away": {
+        "abbr": "LONG",
+        "name": "Longwood Lancers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StJos",
+        "name": "Saint Joseph's Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401902276",
+      "line": "Fairleigh Dickinson Knights @ Butler Bulldogs (11/4 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 7:00 PM EST",
+      "away": {
+        "abbr": "FDU",
+        "name": "Fairleigh Dickinson Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Butl",
+        "name": "Butler Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927361",
+      "line": "Central College Dutch @ Drake Bulldogs (11/4 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 7:30 PM EST",
+      "away": {
+        "abbr": "CNTC",
+        "name": "Central College Dutch",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Drake",
+        "name": "Drake Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919028",
+      "line": "Cal State Northridge Matadors @ Wichita State Shockers (11/4 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 7:30 PM EST",
+      "away": {
+        "abbr": "CSUN",
+        "name": "Cal State Northridge Matadors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WichSt",
+        "name": "Wichita State Shockers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920798",
+      "line": "SE Louisiana Lions @ Auburn Tigers (11/4 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 8:00 PM EST",
+      "away": {
+        "abbr": "SELA",
+        "name": "SE Louisiana Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Aub",
+        "name": "Auburn Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929171",
+      "line": "West Coast Baptist Eagles @ Boise State Broncos (11/4 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 9:00 PM EST",
+      "away": {
+        "abbr": "WCBC",
+        "name": "West Coast Baptist Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Bois",
+        "name": "Boise State Broncos",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918052",
+      "line": "Radford Highlanders @ California Golden Bears (11/4 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 9:00 PM EST",
+      "away": {
+        "abbr": "RAD",
+        "name": "Radford Highlanders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cal",
+        "name": "California Golden Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917514",
+      "line": "Queens University Royals @ Loyola Marymount Lions (11/4 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 10:00 PM EST",
+      "away": {
+        "abbr": "QUC",
+        "name": "Queens University Royals",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LoyMa",
+        "name": "Loyola Marymount Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917513",
+      "line": "Milwaukee Panthers @ Santa Clara Broncos (11/4 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 10:00 PM EST",
+      "away": {
+        "abbr": "MILW",
+        "name": "Milwaukee Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SCla",
+        "name": "Santa Clara Broncos",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917512",
+      "line": "North Dakota State Bison @ Saint Mary's Gaels (11/4 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/4 - 10:00 PM EST",
+      "away": {
+        "abbr": "NDSU",
+        "name": "North Dakota State Bison",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StMar",
+        "name": "Saint Mary's Gaels",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

@@ -1181,10 +1181,11 @@ const LIVESCORES_AGGREGATE = {
         windowDays: 30,
         daysInWindow: 3,
         minGames: 2,
-        leagueAvg: { fg: 37.9, ft: 92.3 },
+        leagueAvg: { fg: 42, ft: 93.8 },
         players: [
-          { rank: 1, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: 3, zScores: { pts: 1, reb: -1, ast: -1, stl: 0, blk: 1, tpm: 1, fgImpact: 1, ftImpact: 0, to: 1 } },
-          { rank: 2, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -3, zScores: { pts: -1, reb: 1, ast: 1, stl: 0, blk: -1, tpm: -1, fgImpact: -1, ftImpact: 0, to: -1 } }
+          { rank: 1, name: "Mason Williams", team: "KY", games: 2, min: 25.5, pts: 13.5, reb: 1.5, ast: 3.5, stl: 0.5, blk: 0, to: 2.5, tpm: 2, fgPct: 47.6, ftPct: 100, composite: 1.78, zScores: { pts: 0.77, reb: -0.71, ast: 0, stl: 0, blk: -0.71, tpm: 1.34, fgImpact: 1.16, ftImpact: 1.22, to: -1.3 } },
+          { rank: 2, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: -0.12, zScores: { pts: 0.64, reb: -0.71, ast: -1.22, stl: 0, blk: 1.41, tpm: -0.27, fgImpact: 0.12, ftImpact: -1.22, to: 1.14 } },
+          { rank: 3, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -1.67, zScores: { pts: -1.41, reb: 1.41, ast: 1.22, stl: 0, blk: -0.71, tpm: -1.07, fgImpact: -1.28, ftImpact: 0, to: 0.16 } }
         ]
       }
     }
@@ -2338,10 +2339,11 @@ const LIVESCORES_AGGREGATE = {
         windowDays: 7,
         daysInWindow: 3,
         minGames: 2,
-        leagueAvg: { fg: 37.9, ft: 92.3 },
+        leagueAvg: { fg: 42, ft: 93.8 },
         players: [
-          { rank: 1, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: 3, zScores: { pts: 1, reb: -1, ast: -1, stl: 0, blk: 1, tpm: 1, fgImpact: 1, ftImpact: 0, to: 1 } },
-          { rank: 2, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -3, zScores: { pts: -1, reb: 1, ast: 1, stl: 0, blk: -1, tpm: -1, fgImpact: -1, ftImpact: 0, to: -1 } }
+          { rank: 1, name: "Mason Williams", team: "KY", games: 2, min: 25.5, pts: 13.5, reb: 1.5, ast: 3.5, stl: 0.5, blk: 0, to: 2.5, tpm: 2, fgPct: 47.6, ftPct: 100, composite: 1.78, zScores: { pts: 0.77, reb: -0.71, ast: 0, stl: 0, blk: -0.71, tpm: 1.34, fgImpact: 1.16, ftImpact: 1.22, to: -1.3 } },
+          { rank: 2, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: -0.12, zScores: { pts: 0.64, reb: -0.71, ast: -1.22, stl: 0, blk: 1.41, tpm: -0.27, fgImpact: 0.12, ftImpact: -1.22, to: 1.14 } },
+          { rank: 3, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -1.67, zScores: { pts: -1.41, reb: 1.41, ast: 1.22, stl: 0, blk: -0.71, tpm: -1.07, fgImpact: -1.28, ftImpact: 0, to: 0.16 } }
         ]
       }
     }
