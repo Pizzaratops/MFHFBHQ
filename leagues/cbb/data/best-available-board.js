@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-04T17:18:02.281Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-04T18:53:02.885Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2431,5 +2431,6 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"075yo","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2425},
   {"name":"Ethan Bilyeu","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2426},
   {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2427},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2428}
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2428},
+  {"name":"Moe Odum","nbaTeam":"SJSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2429}
 ];
