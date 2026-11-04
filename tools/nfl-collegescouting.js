@@ -51,26 +51,172 @@
   const picked = { prod: null, nfl: null, for: null };
 
   const winLabel = (n, cur) => (n === 1 ? `Nur ${cur}` : n >= 4 ? 'Letzte 4 Jahre' : `${cur - n + 1}–${cur}`);
-  const inWindow = (p, st, cur) => p.year > cur - st.win;
   const heightFmt = inch => (inch ? `${Math.floor(inch / 12)}'${inch % 12}"` : null);
+
+  // ============================================================
+  //  SAISON-MIX (04.11.2026) — eine Zeile pro Spieler
+  // ============================================================
+  //  Die Liste rankt Spieler, nicht Spieler-Saisons. Das Zeitfenster oben
+  //  bestimmt, welche Saisons in den Mix einfließen. Gewichte nach Aktualität
+  //  50/30/20/10 %, die laufende Saison anteilig nach Saisonfortschritt
+  //  (gleiche Formel wie volumeFactor() im Sync-Script). Der Mix mittelt die
+  //  Rate-/Share-Features (Volumen über Saisons zu mitteln wäre bei einer halb
+  //  gespielten Saison unfair). Comps für den Mix werden hier live gerechnet:
+  //  Mahalanobis auf denselben z-standardisierten Features wie im Sync-Script
+  //  (Production Comp: kompletter CFBD-Pool, NFL Profile Comp:
+  //  NFL_PROFILE_COMP.pool). Draft Range: gewichtetes Mittel der Saison-z-Werte.
+  const RECENCY_W = [0.5, 0.3, 0.2, 0.1];
+  const MX = (() => {
+    const cache = {}, spaces = {};
+    const progress = C => {
+      const y = C.meta.currentSeason, t = Date.parse(C.meta.lastSync) || Date.now();
+      return Math.max(0.25, Math.min(1, (t - Date.UTC(y, 7, 24)) / (7 * 864e5) / 13));
+    };
+    function mixRecord(C, pos, ss, w, win) {
+      const L = ss[0], feats = (C.meta.features || {})[pos] || [];
+      const m = { id: `mix${win}_${L.rawId}`, rawId: String(L.rawId), name: L.name, team: L.team, conf: L.conf, year: L.year,
+        mix: true, seasons: ss, w, latest: L,
+        heightIn: (ss.find(s => s.heightIn) || {}).heightIn || null, weightLb: (ss.find(s => s.weightLb) || {}).weightLb || null };
+      feats.forEach(f => {
+        let a = 0, b = 0;
+        ss.forEach((s, i) => { if (s[f] != null && !isNaN(s[f])) { a += w[i] * s[f]; b += w[i]; } });
+        m[f] = b ? a / b : null;
+      });
+      return m;
+    }
+    // Spieler im Fenster: { rawId, seasons (neueste zuerst), w, latest, mix (nur bei ≥ 2 Saisons) }
+    function players(C, pos, win) {
+      const key = pos + '|' + win + '|' + C.meta.lastSync;
+      if (cache[key]) return cache[key];
+      const cur = C.meta.currentSeason, prog = progress(C), by = new Map();
+      (C.recent[pos] || []).forEach(r => {
+        if (r.year <= cur - win) return;
+        const k = String(r.rawId);
+        if (!by.has(k)) by.set(k, []);
+        if (!by.get(k).some(x => x.year === r.year)) by.get(k).push(r);
+      });
+      const out = [];
+      by.forEach((ss, rawId) => {
+        ss.sort((a, b) => b.year - a.year);
+        const raw = ss.map((s, i) => RECENCY_W[Math.min(i, RECENCY_W.length - 1)] * (s.year === cur ? prog : 1));
+        const tot = raw.reduce((t, x) => t + x, 0) || 1;
+        const w = raw.map(x => x / tot);
+        out.push({ rawId, seasons: ss, w, latest: ss[0], mix: ss.length > 1 ? mixRecord(C, pos, ss, w, win) : null });
+      });
+      return (cache[key] = out);
+    }
+    // --- Mahalanobis-Raum (identisch zu computeComps im Sync-Script) ---
+    function invert(m) {
+      const d = m.length;
+      const A = m.map((row, i) => [...row, ...Array.from({ length: d }, (_, j) => (i === j ? 1 : 0))]);
+      for (let col = 0; col < d; col++) {
+        let pv = col;
+        for (let r = col + 1; r < d; r++) if (Math.abs(A[r][col]) > Math.abs(A[pv][col])) pv = r;
+        [A[col], A[pv]] = [A[pv], A[col]];
+        if (Math.abs(A[col][col]) < 1e-10) A[col][col] += 1e-6;
+        const p = A[col][col];
+        for (let c = 0; c < 2 * d; c++) A[col][c] /= p;
+        for (let r = 0; r < d; r++) { if (r === col) continue; const f = A[r][col]; for (let c = 0; c < 2 * d; c++) A[r][c] -= f * A[col][c]; }
+      }
+      return A.map(row => row.slice(d));
+    }
+    function space(items) { // items: [{v:[...], ...}]
+      const n = items.length, d = items[0].v.length, mu = [], sd = [];
+      for (let j = 0; j < d; j++) {
+        const m = items.reduce((t, x) => t + x.v[j], 0) / n;
+        mu.push(m); sd.push(Math.sqrt(items.reduce((t, x) => t + (x.v[j] - m) ** 2, 0) / n) || 1);
+      }
+      const z = v => v.map((x, j) => (x - mu[j]) / sd[j]);
+      items.forEach(x => { x.z = z(x.v); });
+      const zm = Array.from({ length: d }, (_, j) => items.reduce((t, x) => t + x.z[j], 0) / n);
+      const cov = Array.from({ length: d }, () => Array(d).fill(0));
+      items.forEach(x => { for (let i = 0; i < d; i++) for (let j = 0; j < d; j++) cov[i][j] += (x.z[i] - zm[i]) * (x.z[j] - zm[j]); });
+      for (let i = 0; i < d; i++) for (let j = 0; j < d; j++) cov[i][j] /= (n - 1);
+      const sorted = Array.from({ length: d }, (_, j) => items.map(x => x.v[j]).sort((a, b) => a - b));
+      return { items, z, inv: invert(cov), sorted };
+    }
+    function dist(a, b, inv) {
+      const df = a.map((x, i) => x - b[i]); let s = 0;
+      for (let i = 0; i < df.length; i++) for (let j = 0; j < df.length; j++) s += df[i] * inv[i][j] * df[j];
+      return Math.sqrt(Math.max(0, s));
+    }
+    function pctl(v, sorted) {
+      let lo = 0, hi = sorted.length;
+      while (lo < hi) { const mid = (lo + hi) >> 1; if (sorted[mid] <= v) lo = mid + 1; else hi = mid; }
+      return Math.round((lo / sorted.length) * 1000) / 10;
+    }
+    function nearest(S, feats, me, skip, n = 10) {
+      const v = feats.map(f => me[f]);
+      if (v.some(x => x == null || isNaN(x))) return { comps: [], perc: null };
+      const tz = S.z(v);
+      const comps = S.items.filter(x => !skip(x)).map(x => ({ x, d: dist(tz, x.z, S.inv) }))
+        .sort((a, b) => a.d - b.d).slice(0, n).map(({ x, d }) => Object.assign({}, x.meta, { dist: Math.round(d * 1000) / 1000 }));
+      const perc = {}; feats.forEach((f, j) => { perc[f] = pctl(v[j], S.sorted[j]); });
+      return { comps, perc };
+    }
+    const memo = {};
+    function prod(C, pos, me) {
+      if (memo[me.id + '|p']) return memo[me.id + '|p'];
+      const feats = (C.meta.features || {})[pos] || [];
+      if (!spaces['p' + pos]) {
+        const items = [];
+        Object.keys(C.seasons || {}).forEach(y => (((C.seasons[y] || {})[pos]) || []).forEach(r => {
+          const v = feats.map(f => r[f]);
+          if (v.every(x => x != null && !isNaN(x))) items.push({ v, rawId: String(r.rawId), meta: { id: r.id, name: r.name, team: r.team, year: r.year } });
+        }));
+        spaces['p' + pos] = items.length >= 30 ? space(items) : null;
+      }
+      const S = spaces['p' + pos];
+      return (memo[me.id + '|p'] = S ? nearest(S, feats, me, x => x.rawId === me.rawId) : { comps: [], perc: null });
+    }
+    function nfl(N, pos, me) {
+      if (memo[me.id + '|n']) return memo[me.id + '|n'];
+      const feats = (N.meta.matchFeatures || {})[pos] || [];
+      if (!spaces['n' + pos]) {
+        const items = ((N.pool || {})[pos] || []).map(r => ({ v: r.v, meta: { id: r.id, name: r.name, team: r.team, year: r.year, draftYear: r.draftYear, draftRound: r.draftRound, draftPick: r.draftPick, ras: r.ras } }));
+        spaces['n' + pos] = items.length >= 30 ? space(items) : null;
+      }
+      const S = spaces['n' + pos];
+      return (memo[me.id + '|n'] = S ? nearest(S, feats, me, () => false) : null);
+    }
+    return { players, prod, nfl, progress };
+  })();
+
+  // Ausgewählte Ansicht: 'mix' oder ein Saison-Jahr
+  function viewOf(pl, season) {
+    if (!pl) return null;
+    if ((season === 'mix' || season === 'auto' || !season) && pl.mix) return pl.mix;
+    return pl.seasons.find(s => String(s.year) === String(season)) || pl.mix || pl.latest;
+  }
+  const bestStat = (pl, stat) => Math.max(...pl.seasons.map(s => s[stat] || 0));
+  const yrsLabel = pl => {
+    const ys = pl.seasons.map(s => s.year).sort((a, b) => a - b);
+    return ys.length > 1 ? `${ys[0]}–${String(ys[ys.length - 1]).slice(2)}` : String(ys[0]);
+  };
 
   function resolve(ctx) {
     const C = ctx.data.COLLEGE_SCOUTING;
     const st = getState(ctx);
-    const [pp, id] = ctx.params;
+    let [pp, id, se] = ctx.params;
+    // alte Links/gespeicherte Auswahl im Format <Saison>_<rawId>
+    if (id && id.includes('_')) { const k = id.indexOf('_'); se = se || id.slice(0, k); id = id.slice(k + 1); }
+    if (st.sel && String(st.sel).includes('_')) st.sel = String(st.sel).split('_').pop();
     if (POS.includes(pp)) st.pos = pp;
     if (id) st.sel = id;
     if (!WINDOWS.includes(st.win)) st.win = 2;
-    const cur = C.meta.currentSeason;
-    const all = (C.recent[st.pos] || []).filter(p => inWindow(p, st, cur));
-    if (!st.sel || !all.some(p => p.id === st.sel)) {
+    const cur = C.meta.currentSeason, stat = PRIMARY[st.pos];
+    let pls = MX.players(C, st.pos, st.win);
+    if (!st.sel || !pls.some(p => p.rawId === String(st.sel))) {
       // Direkt verlinkter Prospect außerhalb des Fensters → Fenster öffnen statt ignorieren
-      const linked = id && (C.recent[st.pos] || []).find(p => p.id === id);
-      if (linked) st.win = Math.min(4, Math.max(st.win, cur - linked.year + 1));
-      else st.sel = (all.slice().sort((a, b) => (b[PRIMARY[st.pos]] || 0) - (a[PRIMARY[st.pos]] || 0))[0] || {}).id || null;
+      const linked = id && (C.recent[st.pos] || []).filter(p => String(p.rawId) === id).sort((a, b) => b.year - a.year)[0];
+      if (linked) { st.win = Math.min(4, Math.max(st.win, cur - linked.year + 1)); pls = MX.players(C, st.pos, st.win); }
+      else st.sel = (pls.slice().sort((a, b) => bestStat(b, stat) - bestStat(a, stat))[0] || {}).rawId || null;
     }
+    st.sel = st.sel != null ? String(st.sel) : null;
+    st.season = se || 'auto';
     return st;
   }
+  const playerOf = (ctx, st) => MX.players(ctx.data.COLLEGE_SCOUTING, st.pos, st.win).find(p => p.rawId === st.sel) || null;
 
   // ============================================================
   //  📈 DRAFT RANGE (v1, 01.10.2026) — grobe Erwartung, KEINE Prognose
@@ -115,14 +261,24 @@
       const f = first(C).get(String(me.rawId));
       return f ? me.year - f + 1 : null;
     }
-    function estimate(env, pos, me, sf) {
+    function zOf(C, M, pos, rec) {
+      const st = zstat(C, M, pos, rec.year), z = {};
+      M.pos[pos].base.forEach(f => { const [m, sd] = st[f] || [0, 1]; z[f] = rec[f] == null || isNaN(rec[f]) || !sd ? 0 : (rec[f] - m) / (sd + 1e-9); });
+      return z;
+    }
+    function estimate(env, pos, rec, sf) {
       const { C, M, curve } = env, P = M.pos[pos], cv = ((sf && curve.posSF) || curve.pos)[pos];
+      const me = rec.mix ? rec.latest : rec; // College-Jahr + Conference aus der neuesten Saison
       const cyear = collegeYear(C, me);
       const out = { cyear, eligible: cyear != null && cyear >= 3 };
       if (!P || !cv) return out;
-      const st = zstat(C, M, pos, me.year);
-      const z = {};
-      P.base.forEach(f => { const [m, sd] = st[f] || [0, 1]; z[f] = me[f] == null || isNaN(me[f]) || !sd ? 0 : (me[f] - m) / (sd + 1e-9); });
+      // Mix: gewichtetes Mittel der z-Werte je Saison (z wird je Saison + Position gebildet,
+      // eine halb gespielte Saison wird also gegen die anderen halben Saisons gemessen)
+      let z;
+      if (rec.mix) {
+        const zs = rec.seasons.map(s => zOf(C, M, pos, s));
+        z = {}; P.base.forEach(f => { z[f] = zs.reduce((t, zz, i) => t + rec.w[i] * zz[f], 0); });
+      } else z = zOf(C, M, pos, me);
       const cy = Math.min(5, cyear || 1);
       const prodYoung = P.prod.reduce((t, f) => t + z[f], 0) / P.prod.length * (4 - Math.max(1, Math.min(4, cy)));
       const x = P.features.map(f => (f.endsWith('_z') ? z[f.slice(0, -2)] : f === 'cyear' ? cy : f === 'p5' ? (M.P5.includes(me.conf) ? 1 : 0) : f === 'prodYoung' ? prodYoung : 0));
@@ -159,7 +315,7 @@
 
   function rangeBox(ctx, st, me, env) {
     const e = MFHFB.ui.esc;
-    const why = env && env.curve ? `Grobe Erwartung, keine Prognose. Gerechnet aus dieser College-Saison „als wäre es die letzte“: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (${isSF(ctx, st) && env.curve.posSF ? `FantasyPros-Dynasty-Superflex-Rankings ${env.curve.yearsSF[0]}–${env.curve.yearsSF[env.curve.yearsSF.length - 1]}, nur Rookies` : `FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB`}). Format oben rechts umschaltbar (Standard: 1QB${ctx.league.superflex ? ', diese Liga: Superflex' : ''}). ${(() => { const b = (env.M.backtest || {})[st.pos]; return b ? `Backtest ${st.pos} (Saisons ${b.test}): Draft ja/nein AUC ${String(b.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(b.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : ''; })()} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze (FCS-Transfers, Redshirt- und Saisons mit wenig Einsatz fehlen).` : 'Grobe Erwartung, keine Prognose.';
+    const why = env && env.curve ? `Grobe Erwartung, keine Prognose. Gerechnet aus der gewählten Ansicht (Saison-Mix oder einzelne Saison) „als wäre es die letzte College-Saison“; beim Mix zählt das gewichtete Mittel der Saison-z-Werte: Produktion, Größe, College-Jahr und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (${isSF(ctx, st) && env.curve.posSF ? `FantasyPros-Dynasty-Superflex-Rankings ${env.curve.yearsSF[0]}–${env.curve.yearsSF[env.curve.yearsSF.length - 1]}, nur Rookies` : `FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB`}). Format oben rechts umschaltbar (Standard: 1QB${ctx.league.superflex ? ', diese Liga: Superflex' : ''}). ${(() => { const b = (env.M.backtest || {})[st.pos]; return b ? `Backtest ${st.pos} (Saisons ${b.test}): Draft ja/nein AUC ${String(b.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(b.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : ''; })()} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr ist eine Untergrenze (FCS-Transfers, Redshirt- und Saisons mit wenig Einsatz fehlen).` : 'Grobe Erwartung, keine Prognose.';
     const head = `<div class="card-head"><h2>${tip('📈 Draft Range', why)}</h2></div>`;
     if (!env) return `<div class="card cs-range">${head}<div class="muted cs-pad">Lade Modell …</div></div>`;
     if (env.error) return `<div class="card cs-range">${head}<div class="muted cs-pad">${e(env.error)}</div></div>`;
@@ -167,7 +323,7 @@
     const r = DR.estimate(env, st.pos, me, sf);
     const cfg = rookieCfg(ctx), T = cfg.teams, maxPick = T * (cfg.rounds || 4);
     const season = me.year, nextDraft = season + 1;
-    const cy = r.cyear != null ? `mind. ${r.cyear}. College-Jahr laut FBS-Daten (Saison ${season})` : 'College-Jahr unbekannt';
+    const cy = r.cyear != null ? `mind. ${r.cyear}. College-Jahr laut FBS-Daten (Saison ${season})${me.mix ? ' · Basis: Saison-Mix' : ''}` : 'College-Jahr unbekannt';
     const elig = r.cyear == null ? '' : r.eligible
       ? `<span class="cs-tag ok">draftberechtigt ${nextDraft}</span>`
       : `<span class="cs-tag" title="Erst ${r.cyear} FBS-Saison(s) in der Historie. Transfers aus der FCS, Saisons unter dem Mindest-Volumen und Redshirt-Jahre fehlen -- dann ist er älter und evtl. schon ${nextDraft} berechtigt.">Draft-Berechtigung unsicher</span>`;
@@ -238,12 +394,17 @@
 
   function prodBox(ctx, st, me) {
     const C = ctx.data.COLLEGE_SCOUTING;
-    const comps = (C.comps[st.pos] || {})[me.id] || [];
+    let comps, feats = (C.feats || {})[st.pos] || {};
+    if (me.mix) {
+      const R = MX.prod(C, st.pos, me);
+      comps = R.comps;
+      if (R.perc) { feats = Object.create(feats); feats[me.id] = R.perc; }
+    } else comps = (C.comps[st.pos] || {})[me.id] || [];
     if (picked.for !== me.id) { picked.for = me.id; picked.prod = null; picked.nfl = null; }
     if (!picked.prod || !comps.some(c => c.id === picked.prod)) picked.prod = (comps[0] || {}).id || null;
     const axes = ((C.meta.features || {})[st.pos] || []).map(k => ({ key: k, label: FEATURE_LABELS[k] || k }));
-    return compBox('prod', '🎓 College Production Comp', '„Produziert wie …“ — nächste Nachbarn nach reinem Produktions-Profil (Mahalanobis-Distanz), unabhängig vom späteren NFL-Erfolg.',
-      comps, (C.feats || {})[st.pos] || {}, axes, me, picked.prod, null,
+    return compBox('prod', '🎓 College Production Comp', '„Produziert wie …“ — nächste Nachbarn nach reinem Produktions-Profil (Mahalanobis-Distanz), unabhängig vom späteren NFL-Erfolg.' + (me.mix ? ' Basis: gewichteter Saison-Mix, verglichen mit einzelnen historischen Saisons; eigene Saisons des Spielers sind ausgeschlossen.' : ''),
+      comps, feats, axes, me, picked.prod, null,
       'Kein vergleichbares Produktionsprofil gefunden (zu wenige vollständige Datensätze im Pool).');
   }
 
@@ -251,13 +412,18 @@
     const e = MFHFB.ui.esc;
     if (!N) return `<div class="card cs-box" data-box="nfl"><div class="card-head"><h2>🏈 NFL Profile Comp</h2></div><div class="muted cs-pad">Lade …</div></div>`;
     if (N.error) return `<div class="card cs-box" data-box="nfl"><div class="card-head"><h2>🏈 NFL Profile Comp</h2></div><div class="muted cs-pad">${e(N.error)}</div></div>`;
-    const comps = (N.comps[st.pos] || {})[me.id] || [];
+    let comps, feats = (N.feats || {})[st.pos] || {}, note = '';
+    if (me.mix) {
+      const R = MX.nfl(N, st.pos, me);
+      if (R) { comps = R.comps; if (R.perc) { feats = Object.create(feats); feats[me.id] = R.perc; } note = ' Basis: gewichteter Saison-Mix.'; }
+      else { comps = (N.comps[st.pos] || {})[me.latest.id] || []; if (feats[me.latest.id]) { feats = Object.create(feats); feats[me.id] = feats[me.latest.id]; } note = ` Für den Mix fehlt der Vergleichspool — angezeigt: Saison ${me.latest.year}.`; }
+    } else comps = (N.comps[st.pos] || {})[me.id] || [];
     const stats = N.stats[st.pos] || {};
     if (!picked.nfl || !comps.some(c => c.id === picked.nfl)) picked.nfl = (comps[0] || {}).id || null;
     const axes = ((N.meta.matchFeatures || {})[st.pos] || []).map(k => ({ key: k, label: FEATURE_LABELS[k] || k }));
     const extra = m => `${m.draftRound != null ? `Rd. ${m.draftRound} Pick ${m.draftPick}` : 'undrafted'} (${e(m.draftYear)}) · RAS ${m.ras != null ? e(m.ras) : '?'}`;
-    return compBox('nfl', '🏈 NFL Profile Comp', '„Profiliert wie …“ — Pre-Draft-Rollenarchetyp gegen tatsächlich gedraftete Spieler mit ähnlichem Produktions- + Größen-Profil. <b>Keine Erfolgs- oder Talentprognose.</b>',
-      comps, (N.feats || {})[st.pos] || {}, axes, me, picked.nfl, extra,
+    return compBox('nfl', '🏈 NFL Profile Comp', '„Profiliert wie …“ — Pre-Draft-Rollenarchetyp gegen tatsächlich gedraftete Spieler mit ähnlichem Produktions- + Größen-Profil. <b>Keine Erfolgs- oder Talentprognose.</b>' + note,
+      comps, feats, axes, me, picked.nfl, extra,
       'Kein Vergleich möglich (Produktions- oder Größen-Daten für diesen Prospect unvollständig).',
       `Vergleichsbasis: ${stats.matched || 0} historisch gedraftete ${st.pos}s mit vollständigem Profil. RAS = an ras.football angelehnter Athletik-Score (0–10) <b>des Comps</b>, nicht des Prospects — der hat Combine/Draft noch vor sich. Radar-Achsen = Matching-Features (Produktion + Größe/Gewicht), nicht RAS/Draft.`);
   }
@@ -265,38 +431,62 @@
   function listHtml(ctx, st) {
     const e = ctx.ui.esc;
     const C = ctx.data.COLLEGE_SCOUTING;
-    const cur = C.meta.currentSeason, stat = PRIMARY[st.pos], q = normKey(st.q);
+    const stat = PRIMARY[st.pos], q = normKey(st.q);
     const byRange = st.sort === 'range' && RENV && !RENV.error;
     const T = rookieCfg(ctx).teams;
-    let list = (C.recent[st.pos] || [])
-      .filter(p => inWindow(p, st, cur) && (!q || normKey(p.name).includes(q)))
-      .filter(p => !st.elig || (DR.collegeYear(C, p) || 0) >= 3);
+    let list = MX.players(C, st.pos, st.win)
+      .filter(pl => !q || normKey(pl.latest.name).includes(q))
+      .filter(pl => !st.elig || (DR.collegeYear(C, pl.latest) || 0) >= 3);
     if (byRange) {
-      list = list.map(p => ({ p, r: DR.estimate(RENV, st.pos, p, isSF(ctx, st)) }))
-        .sort((a, b) => (a.r.expRank || 999) - (b.r.expRank || 999)).map(x => Object.assign({}, x.p, { _r: x.r }));
-    } else list = list.sort((a, b) => (b[stat] || 0) - (a[stat] || 0));
-    return list.length ? list.map((p, i) => `<a class="dna-row${p.id === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, p.id)}">
+      list = list.map(pl => ({ pl, r: DR.estimate(RENV, st.pos, pl.mix || pl.latest, isSF(ctx, st)) }))
+        .sort((a, b) => (a.r.expRank || 999) - (b.r.expRank || 999));
+    } else list = list.map(pl => ({ pl, v: bestStat(pl, stat) })).sort((a, b) => b.v - a.v);
+    return list.length ? list.map(({ pl, r, v }, i) => `<a class="dna-row${pl.rawId === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, pl.rawId)}">
         <span class="dna-idx">${i + 1}</span>
-        <span class="dna-nm">${e(p.name)} <small>${e(p.team)} · ${e(p.year)}</small></span>
-        <span class="dna-avg">${byRange ? (p._r && p._r.rank ? `${DR.pickFmt(p._r.rank.mid, T)} <small>${Math.round(p._r.chance * 100)}%</small>` : '—') : (p[stat] != null ? Math.round(p[stat]).toLocaleString('de-DE') : '—')}</span></a>`).join('')
+        <span class="dna-nm">${e(pl.latest.name)} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
+        <span class="dna-avg">${byRange ? (r && r.rank ? `${DR.pickFmt(r.rank.mid, T)} <small>${Math.round(r.chance * 100)}%</small>` : '—') : (v ? Math.round(v).toLocaleString('de-DE') : '—')}</span></a>`).join('')
       : '<div class="muted" style="padding:12px">Keine Treffer.</div>';
+  }
+
+  const fmtFeat = (k, v) => (v == null || isNaN(v) ? '—' : /ppa/i.test(k) ? v.toFixed(2).replace('.', ',') : v.toFixed(1).replace('.', ','));
+
+  // Saison-Umschalter + Verlauf je Saison (nur bei ≥ 2 Saisons im Fenster)
+  function seasonsHtml(ctx, st, pl, me) {
+    if (!pl || pl.seasons.length < 2) return '';
+    const e = ctx.ui.esc, C = ctx.data.COLLEGE_SCOUTING, cur = C.meta.currentSeason;
+    const feats = (C.meta.features || {})[st.pos] || [];
+    const asc = pl.seasons.map((s, i) => ({ s, w: pl.w[i] })).sort((a, b) => a.s.year - b.s.year);
+    const chips = [['mix', `Mix ${yrsLabel(pl)}`]].concat(asc.map(({ s }) => [String(s.year), String(s.year) + (s.year === cur ? '*' : '')]))
+      .map(([k, l]) => `<a class="seg-btn${(me.mix ? 'mix' : String(me.year)) === k ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, pl.rawId, k)}"${k === 'mix' ? ' title="Gewichteter Mix aller Saisons im gewählten Zeitraum (Gewichte siehe Tabelle)"' : ''}>${e(l)}</a>`).join('');
+    const cols = STAT_LINE[st.pos];
+    const pct = Math.round(MX.progress(C) * 100);
+    const row = (s, w, cls) => `<tr class="${cls || ''}"><td>${e(s.mix ? 'Mix' : s.year + (s.year === cur ? '*' : ''))}</td><td>${e(s.mix ? '' : s.team)}</td>
+      ${cols.map(([k]) => `<td class="num">${s.mix || s[k] == null ? '—' : k === 'compPct' ? fmtFeat(k, s[k]) : Math.round(s[k]).toLocaleString('de-DE')}</td>`).join('')}
+      ${feats.map(f => `<td class="num">${fmtFeat(f, s[f])}</td>`).join('')}
+      <td class="num">${w != null ? Math.round(w * 100) + ' %' : ''}</td></tr>`;
+    return `<div class="cs-seasons">
+      <div class="seg" role="group" aria-label="Saison">${chips}</div>
+      <div class="cs-hist-wrap"><table class="table compact cs-hist" data-nosort><thead><tr><th>Saison</th><th>Team</th>${cols.map(([, l]) => `<th class="num">${e(l)}</th>`).join('')}${feats.map(f => `<th class="num">${e(FEATURE_LABELS[f] || f)}</th>`).join('')}<th class="num" title="Anteil am Mix: 50/30/20/10 % nach Aktualität${pl.seasons.some(s => s.year === cur) ? `, laufende Saison × ${pct} % Saisonfortschritt` : ''}">Anteil am Mix</th></tr></thead>
+      <tbody>${asc.map(({ s, w }) => row(s, w, !me.mix && s.year === me.year ? 'on' : '')).join('')}${pl.mix ? row(pl.mix, null, 'mix' + (me.mix ? ' on' : '')) : ''}</tbody></table></div>
+      ${pl.seasons.some(s => s.year === cur) ? `<div class="muted cs-hint">* laufende Saison (${pct} % gespielt) — Volumen noch unvollständig, Shares/PPA schon vergleichbar.</div>` : ''}
+    </div>`;
   }
 
   function mainHtml(ctx, st, N) {
     const e = ctx.ui.esc;
-    const C = ctx.data.COLLEGE_SCOUTING;
-    const me = (C.recent[st.pos] || []).find(p => p.id === st.sel);
+    const pl = playerOf(ctx, st), me = viewOf(pl, st.season);
     if (!me) return ctx.ui.empty('Kein Prospect gewählt', 'Links einen Prospect auswählen.', '🎓');
-    const stat = PRIMARY[st.pos];
-    const line = STAT_LINE[st.pos].filter(([k]) => me[k] != null).map(([k, l]) => `<b>${k === 'compPct' ? me[k].toFixed(1).replace('.', ',') : Math.round(me[k]).toLocaleString('de-DE')}</b> ${l}`).join(' · ');
+    const stat = PRIMARY[st.pos], L = me.mix ? me.latest : me;
+    const line = me.mix ? '' : STAT_LINE[st.pos].filter(([k]) => me[k] != null).map(([k, l]) => `<b>${k === 'compPct' ? me[k].toFixed(1).replace('.', ',') : Math.round(me[k]).toLocaleString('de-DE')}</b> ${l}`).join(' · ');
     const body = [heightFmt(me.heightIn), me.weightLb ? me.weightLb + ' lb' : null].filter(Boolean).join(', ');
     return `
       <div class="dna-head">
         <div><h2 class="dna-title display">${e(me.name)}</h2>
-          <div class="page-sub">${st.pos} · ${e(me.team)} · Saison ${e(me.year)}${me.conf ? ' · ' + e(me.conf) : ''}${body ? ' · ' + e(body) : ''}</div></div>
-        <div class="dna-badge" title="${PRIMARY_LABEL[st.pos]} in der letzten erfassten College-Saison"><b>${me[stat] != null ? Math.round(me[stat]).toLocaleString('de-DE') : '—'}</b><small>${PRIMARY_LABEL[st.pos]}</small></div>
+          <div class="page-sub">${st.pos} · ${e(me.team)} · ${me.mix ? 'Saisons ' + e(yrsLabel(pl)) + ' (Mix)' : 'Saison ' + e(me.year)}${me.conf ? ' · ' + e(me.conf) : ''}${body ? ' · ' + e(body) : ''}</div></div>
+        <div class="dna-badge" title="${PRIMARY_LABEL[st.pos]} in der Saison ${L.year}"><b>${L[stat] != null ? Math.round(L[stat]).toLocaleString('de-DE') : '—'}</b><small>${PRIMARY_LABEL[st.pos]} ${L.year}</small></div>
       </div>
       ${line ? `<div class="dna-tags">${line}</div>` : ''}
+      ${seasonsHtml(ctx, st, pl, me)}
       <div class="cs-grid">
         <div data-prod>${prodBox(ctx, st, me)}</div>
         <div data-nfl>${nflBox(ctx, st, me, N)}</div>
@@ -313,7 +503,8 @@
     data: ['sport:college-scouting'],
     title: ({ data, params }) => {
       const C = data.COLLEGE_SCOUTING; if (!C || !params[1]) return 'College Scouting';
-      const p = (C.recent[params[0]] || []).find(x => x.id === params[1]);
+      const raw = String(params[1]).split('_').pop();
+      const p = (C.recent[params[0]] || []).find(x => String(x.rawId) === raw);
       return p ? `${p.name} · College Scouting` : 'College Scouting';
     },
     render(ctx) {
@@ -324,12 +515,12 @@
       const st = resolve(ctx);
       ctx._cs = st;
       const cur = C.meta.currentSeason;
-      const all = (C.recent[st.pos] || []).filter(p => inWindow(p, st, cur));
+      const all = MX.players(C, st.pos, st.win);
       const years = C.meta.years.filter(y => y > cur - st.win);
       return `
         <div class="page-head">
           <h1 class="page-title display">${tip('🎓 College Scouting', 'Bekannte Grenzen: CFBD erfasst keine Slot/Outside-Alignment- oder Route-Tree-Daten — zwei Receiver mit gleicher Target Share können völlig unterschiedliche NFL-Rollen bekommen. Beide Comps sind Ähnlichkeits-, keine Erfolgs- oder Talentvergleiche. Quellen: CollegeFootballData, nflverse, FantasyPros (über DynastyProcess).')}</h1>
-          <div class="page-sub">Aktuelle College-Spieler (keine Draftees/UDFAs) · ${all.length} ${st.pos}-Prospects mit Mindest-Volumen · Jahrgänge ${years.join('/')}</div>
+          <div class="page-sub">Aktuelle College-Spieler (keine Draftees/UDFAs) · ${all.length} ${st.pos}-Prospects mit Mindest-Volumen · ${tip(st.win > 1 ? `Saison-Mix ${years.join('/')}` : `Saison ${cur}`, 'Eine Zeile pro Spieler. Der Zeitraum bestimmt, welche Saisons in seinen Mix einfließen: Gewichte 50/30/20/10 % nach Aktualität, die laufende Saison anteilig nach Saisonfortschritt. Gemittelt werden Shares, PPA und Usage (keine Volumenwerte). Einzelne Saisons sind im Detailbereich umschaltbar.')}</div>
         </div>
         <div class="controls">
           <div class="seg" role="group" aria-label="Position">${POS.map(p => `<a class="seg-btn${p === st.pos ? ' active' : ''}" href="${ctx.href('collegescouting', p)}">${p}</a>`).join('')}</div>
@@ -339,10 +530,10 @@
           <aside class="card dna-side">
             <input type="search" class="search" placeholder="Prospect suchen …" value="${e(st.q)}" data-q aria-label="Prospect suchen">
             <div class="cs-lctl">
-              <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range)">Draft Range</button></div>
+              <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range, aus dem Saison-Mix)">Draft Range</button></div>
               <label class="cs-chk" title="Geschätzt: mindestens 3. College-Jahr (Untergrenze aus der CFBD-Historie)"><input type="checkbox" data-elig${st.elig ? ' checked' : ''}> nur sicher draftberechtigt ${C.meta.currentSeason + 1}</label>
             </div>
-            <div class="dna-list-head"><span>Prospect</span><span data-lhead title="${st.sort === 'range' ? 'Mitte der Draft Range (Rookie Draft)' : PRIMARY_LABEL[st.pos] + ' in der letzten erfassten College-Saison'}">${st.sort === 'range' ? 'Rookie-Pick' : PRIMARY_LABEL[st.pos]}</span></div>
+            <div class="dna-list-head"><span>Prospect</span><span data-lhead title="${st.sort === 'range' ? 'Mitte der Draft Range (Rookie Draft), aus dem Saison-Mix' : PRIMARY_LABEL[st.pos] + ' der besten Saison im Zeitraum'}">${st.sort === 'range' ? 'Rookie-Pick' : PRIMARY_LABEL[st.pos]}</span></div>
             <div class="dna-list" data-list>${listHtml(ctx, st)}</div>
           </aside>
           <div class="dna-main" data-main>${mainHtml(ctx, st, null)}</div>
@@ -354,7 +545,7 @@
       ctx.store.setJSON('cs', { pos: st.pos, win: st.win, q: st.q, sel: st.sel, elig: st.elig, sort: st.sort, fmt: st.fmt });
       const C = ctx.data.COLLEGE_SCOUTING;
       if (!C || !C.recent) return;
-      const me = (C.recent[st.pos] || []).find(p => p.id === st.sel);
+      const me = viewOf(playerOf(ctx, st), st.season);
       let N = null;
 
       root.querySelectorAll('[data-win]').forEach(b => b.addEventListener('click', () => {

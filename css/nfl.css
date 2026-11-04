@@ -565,3 +565,13 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .n32-game:first-child { border-top: 0; }
 .n32-game-h { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px 10px 0; font-size: 13px; font-weight: 600; }
 .n32-game-p { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; }
+
+/* College Scouting: Saison-Umschalter + Verlauf (Saison-Mix, 04.11.2026) */
+.cs-seasons { margin: 10px 0 4px; display: flex; flex-direction: column; gap: 8px; }
+.cs-seasons .seg { align-self: flex-start; flex-wrap: wrap; }
+.cs-hist-wrap { overflow-x: auto; }
+.cs-hist { font-size: 12px; white-space: nowrap; }
+.cs-hist tr.on td { background: rgba(68,138,255,.12); font-weight: 700; }
+.cs-hist tr.mix td { border-top: 1px solid var(--border); font-style: italic; }
+.cs-hist tr.mix.on td { font-style: normal; }
+.cs-hint { font-size: 11px; }

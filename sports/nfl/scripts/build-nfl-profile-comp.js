@@ -237,6 +237,14 @@ function main() {
     output.comps[pos] = comps;
     output.feats[pos] = buildFeaturePercentiles(pool, targets, MATCH_FEATURES[pos]);
     output.stats[pos] = { poolSize: pool.length, matched, unmatched, targetsWithComps: Object.keys(comps).length };
+    // Kompakter historischer Pool fürs Frontend: dort werden Comps für den
+    // gewichteten Saison-Mix eines Prospects live gerechnet (Mahalanobis wie
+    // oben). v = Werte in der Reihenfolge von MATCH_FEATURES[pos].
+    output.pool = output.pool || {};
+    output.pool[pos] = pool
+      .filter(p => MATCH_FEATURES[pos].every(f => p[f] != null && !Number.isNaN(p[f])))
+      .map(p => ({ id: p.id, name: p.name, team: p.team, year: p.year, draftYear: p.draftYear, draftRound: p.draftRound,
+        draftPick: p.draftPick, ras: p.ras ? p.ras.overall : null, v: MATCH_FEATURES[pos].map(f => p[f]) }));
     console.log(`${pos}: ${matched} gedraftete Spieler per Name gematcht (${unmatched} nicht gefunden), Pool ${pool.length}, Comps fuer ${Object.keys(comps).length}/${targets.length} aktuelle Prospects.`);
   });
 
