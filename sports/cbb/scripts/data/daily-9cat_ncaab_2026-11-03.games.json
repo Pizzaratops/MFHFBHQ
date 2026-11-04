@@ -3,28 +3,64 @@
   "date": "2026-11-03",
   "games": [
     {
-      "id": "401906848",
-      "line": "Wofford Terriers @ Tennessee Volunteers (11/3 - 6:00 PM EST)",
+      "id": "401920422",
+      "line": "Drexel Dragons @ Virginia Cavaliers (4:09 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 6:00 PM EST",
+      "statusText": "4:09 - 1st",
       "away": {
-        "abbr": "WOF",
-        "name": "Wofford Terriers",
+        "abbr": "DREX",
+        "name": "Drexel Dragons",
         "score": null,
         "players": []
       },
       "home": {
-        "abbr": "Tenn",
-        "name": "Tennessee Volunteers",
+        "abbr": "UVA",
+        "name": "Virginia Cavaliers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929372",
+      "line": "Arkansas-Pine Bluff Golden Lions @ Arkansas Razorbacks (11:46 - 1st)",
+      "completed": false,
+      "statusText": "11:46 - 1st",
+      "away": {
+        "abbr": "UAPB",
+        "name": "Arkansas-Pine Bluff Golden Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ark",
+        "name": "Arkansas Razorbacks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906757",
+      "line": "Sam Houston Bearkats @ Alabama Crimson Tide (Halftime)",
+      "completed": false,
+      "statusText": "Halftime",
+      "away": {
+        "abbr": "SHSU",
+        "name": "Sam Houston Bearkats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Bama",
+        "name": "Alabama Crimson Tide",
         "score": null,
         "players": []
       }
     },
     {
       "id": "401921801",
-      "line": "Manhattan Jaspers @ Kentucky Wildcats (11/3 - 7:00 PM EST)",
+      "line": "Manhattan Jaspers @ Kentucky Wildcats (13:18 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "13:18 - 2nd",
       "away": {
         "abbr": "MAN",
         "name": "Manhattan Jaspers",
@@ -40,9 +76,9 @@
     },
     {
       "id": "401925779",
-      "line": "Purdue Fort Wayne Mastodons @ Duquesne Dukes (11/3 - 7:00 PM EST)",
+      "line": "Purdue Fort Wayne Mastodons @ Duquesne Dukes (13:30 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "13:30 - 2nd",
       "away": {
         "abbr": "PFW",
         "name": "Purdue Fort Wayne Mastodons",
@@ -58,9 +94,9 @@
     },
     {
       "id": "401921819",
-      "line": "Stetson Hatters @ South Carolina Gamecocks (11/3 - 7:00 PM EST)",
+      "line": "Stetson Hatters @ South Carolina Gamecocks (10:59 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "10:59 - 2nd",
       "away": {
         "abbr": "STET",
         "name": "Stetson Hatters",
@@ -76,9 +112,9 @@
     },
     {
       "id": "401920376",
-      "line": "Coppin State Eagles @ Virginia Tech Hokies (11/3 - 7:00 PM EST)",
+      "line": "Coppin State Eagles @ Virginia Tech Hokies (15:53 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "15:53 - 2nd",
       "away": {
         "abbr": "COPP",
         "name": "Coppin State Eagles",
@@ -94,9 +130,9 @@
     },
     {
       "id": "401920304",
-      "line": "Hampton Pirates @ Georgia Tech Yellow Jackets (11/3 - 7:00 PM EST)",
+      "line": "Hampton Pirates @ Georgia Tech Yellow Jackets (15:12 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "15:12 - 2nd",
       "away": {
         "abbr": "HAMP",
         "name": "Hampton Pirates",
@@ -112,9 +148,9 @@
     },
     {
       "id": "401920061",
-      "line": "Holy Cross Crusaders @ Rhode Island Rams (11/3 - 7:00 PM EST)",
+      "line": "Holy Cross Crusaders @ Rhode Island Rams (15:22 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "15:22 - 2nd",
       "away": {
         "abbr": "HC",
         "name": "Holy Cross Crusaders",
@@ -130,9 +166,9 @@
     },
     {
       "id": "401909551",
-      "line": "Wagner Seahawks @ Boston College Eagles (11/3 - 7:00 PM EST)",
+      "line": "Wagner Seahawks @ Boston College Eagles (12:13 - 2nd)",
       "completed": false,
-      "statusText": "11/3 - 7:00 PM EST",
+      "statusText": "12:13 - 2nd",
       "away": {
         "abbr": "WAG",
         "name": "Wagner Seahawks",
@@ -147,64 +183,10 @@
       }
     },
     {
-      "id": "401920422",
-      "line": "Drexel Dragons @ Virginia Cavaliers (11/3 - 7:30 PM EST)",
-      "completed": false,
-      "statusText": "11/3 - 7:30 PM EST",
-      "away": {
-        "abbr": "DREX",
-        "name": "Drexel Dragons",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "UVA",
-        "name": "Virginia Cavaliers",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401906757",
-      "line": "Sam Houston Bearkats @ Alabama Crimson Tide (11/3 - 7:30 PM EST)",
-      "completed": false,
-      "statusText": "11/3 - 7:30 PM EST",
-      "away": {
-        "abbr": "SHSU",
-        "name": "Sam Houston Bearkats",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Bama",
-        "name": "Alabama Crimson Tide",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401929372",
-      "line": "Arkansas-Pine Bluff Golden Lions @ Arkansas Razorbacks (11/3 - 8:00 PM EST)",
-      "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
-      "away": {
-        "abbr": "UAPB",
-        "name": "Arkansas-Pine Bluff Golden Lions",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Ark",
-        "name": "Arkansas Razorbacks",
-        "score": null,
-        "players": []
-      }
-    },
-    {
       "id": "401927385",
-      "line": "Cornell (IA) Rams @ Northern Iowa Panthers (11/3 - 8:00 PM EST)",
+      "line": "Cornell (IA) Rams @ Northern Iowa Panthers (11:59 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
+      "statusText": "11:59 - 1st",
       "away": {
         "abbr": "CNIA",
         "name": "Cornell (IA) Rams",
@@ -220,9 +202,9 @@
     },
     {
       "id": "401921808",
-      "line": "LSU New Orleans Privateers @ LSU Tigers (11/3 - 8:00 PM EST)",
+      "line": "LSU New Orleans Privateers @ LSU Tigers (10:29 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
+      "statusText": "10:29 - 1st",
       "away": {
         "abbr": "NOLA",
         "name": "LSU New Orleans Privateers",
@@ -238,9 +220,9 @@
     },
     {
       "id": "401921165",
-      "line": "Cleveland State Vikings @ Missouri Tigers (11/3 - 8:00 PM EST)",
+      "line": "Cleveland State Vikings @ Missouri Tigers (11:43 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
+      "statusText": "11:43 - 1st",
       "away": {
         "abbr": "CLE",
         "name": "Cleveland State Vikings",
@@ -256,9 +238,9 @@
     },
     {
       "id": "401920806",
-      "line": "Alabama State Hornets @ Texas A&M Aggies (11/3 - 8:00 PM EST)",
+      "line": "Alabama State Hornets @ Texas A&M Aggies (11:51 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
+      "statusText": "11:51 - 1st",
       "away": {
         "abbr": "ALST",
         "name": "Alabama State Hornets",
@@ -274,9 +256,9 @@
     },
     {
       "id": "401920702",
-      "line": "Lipscomb Bisons @ Iowa Hawkeyes (11/3 - 8:00 PM EST)",
+      "line": "Lipscomb Bisons @ Iowa Hawkeyes (12:08 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
+      "statusText": "12:08 - 1st",
       "away": {
         "abbr": "LIP",
         "name": "Lipscomb Bisons",
@@ -292,9 +274,9 @@
     },
     {
       "id": "401909796",
-      "line": "South Dakota State Jackrabbits @ Kansas State Wildcats (11/3 - 8:00 PM EST)",
+      "line": "South Dakota State Jackrabbits @ Kansas State Wildcats (9:46 - 1st)",
       "completed": false,
-      "statusText": "11/3 - 8:00 PM EST",
+      "statusText": "9:46 - 1st",
       "away": {
         "abbr": "SDST",
         "name": "South Dakota State Jackrabbits",
@@ -306,6 +288,376 @@
         "name": "Kansas State Wildcats",
         "score": null,
         "players": []
+      }
+    },
+    {
+      "id": "401906848",
+      "line": "Wofford Terriers 59 @ Tennessee Volunteers 90 (Final)",
+      "completed": true,
+      "statusText": "Final",
+      "away": {
+        "abbr": "WOF",
+        "name": "Wofford Terriers",
+        "score": 59,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tenn",
+        "name": "Tennessee Volunteers",
+        "score": 90,
+        "players": [
+          {
+            "name": "DeWayne Brown II",
+            "min": 31,
+            "pts": 17,
+            "reb": 17,
+            "ast": 3,
+            "stl": 0,
+            "blk": 2,
+            "to": 4,
+            "tpm": 0,
+            "fgm": 7,
+            "fga": 11,
+            "ftm": 3,
+            "fta": 3,
+            "composite": 7.79,
+            "zScores": {
+              "pts": 1.824,
+              "reb": 3.185,
+              "ast": 1.49,
+              "stl": -0.722,
+              "blk": 3.074,
+              "tpm": -0.468,
+              "fgImpact": 1.438,
+              "ftImpact": 0.695,
+              "to": -2.722
+            }
+          },
+          {
+            "name": "Miles Rubin",
+            "min": 23,
+            "pts": 8,
+            "reb": 4,
+            "ast": 2,
+            "stl": 2,
+            "blk": 1,
+            "to": 1,
+            "tpm": 0,
+            "fgm": 4,
+            "fga": 5,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 5.23,
+            "zScores": {
+              "pts": 0.195,
+              "reb": 0.195,
+              "ast": 0.61,
+              "stl": 1.96,
+              "blk": 1.336,
+              "tpm": -0.468,
+              "fgImpact": 1.598,
+              "ftImpact": 0,
+              "to": -0.194
+            }
+          },
+          {
+            "name": "Jalen Haralson",
+            "min": 18,
+            "pts": 6,
+            "reb": 6,
+            "ast": 2,
+            "stl": 1,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 3,
+            "fga": 7,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 0.73,
+            "zScores": {
+              "pts": -0.167,
+              "reb": 0.655,
+              "ast": 0.61,
+              "stl": 0.619,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": -0.764,
+              "ftImpact": 0,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Dai Dai Ames",
+            "min": 20,
+            "pts": 6,
+            "reb": 1,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 2,
+            "fga": 6,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -2.73,
+            "zScores": {
+              "pts": -0.167,
+              "reb": -0.495,
+              "ast": -0.271,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": -1.314,
+              "ftImpact": 0.464,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Tyler Lundblade",
+            "min": 22,
+            "pts": 12,
+            "reb": 3,
+            "ast": 2,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 4,
+            "fgm": 4,
+            "fga": 11,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 2,
+            "zScores": {
+              "pts": 0.919,
+              "reb": -0.035,
+              "ast": 0.61,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": 3.007,
+              "fgImpact": -2.024,
+              "ftImpact": 0,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Braedan Lue",
+            "min": 14,
+            "pts": 2,
+            "reb": 1,
+            "ast": 0,
+            "stl": 1,
+            "blk": 0,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.27,
+            "zScores": {
+              "pts": -0.891,
+              "reb": -0.495,
+              "ast": -1.151,
+              "stl": 0.619,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": 0.55,
+              "ftImpact": 0,
+              "to": -1.037
+            }
+          },
+          {
+            "name": "Chris Washington Jr.",
+            "min": 2,
+            "pts": 0,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.84,
+            "zScores": {
+              "pts": -1.253,
+              "reb": -0.495,
+              "ast": -1.151,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Christian Fermin",
+            "min": 3,
+            "pts": 2,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -2.93,
+            "zScores": {
+              "pts": -0.891,
+              "reb": -0.495,
+              "ast": -1.151,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": 0.55,
+              "ftImpact": 0,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Marquis Clark",
+            "min": 4,
+            "pts": 1,
+            "reb": 1,
+            "ast": 0,
+            "stl": 1,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 1,
+            "fta": 2,
+            "composite": -5.57,
+            "zScores": {
+              "pts": -1.072,
+              "reb": -0.495,
+              "ast": -1.151,
+              "stl": 0.619,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": 0,
+              "ftImpact": -3.245,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Troy Henderson",
+            "min": 12,
+            "pts": 10,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 1,
+            "tpm": 2,
+            "fgm": 3,
+            "fga": 5,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -0.46,
+            "zScores": {
+              "pts": 0.557,
+              "reb": -0.725,
+              "ast": -1.151,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": 1.269,
+              "fgImpact": 0.444,
+              "ftImpact": 0.464,
+              "to": -0.194
+            }
+          },
+          {
+            "name": "Manny Green",
+            "min": 3,
+            "pts": 2,
+            "reb": 0,
+            "ast": 2,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -1.4,
+            "zScores": {
+              "pts": -0.891,
+              "reb": -0.725,
+              "ast": 0.61,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": 0.55,
+              "ftImpact": 0,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Juke Harris",
+            "min": 26,
+            "pts": 7,
+            "reb": 4,
+            "ast": 2,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 1,
+            "fgm": 2,
+            "fga": 4,
+            "ftm": 2,
+            "fta": 2,
+            "composite": 1.1,
+            "zScores": {
+              "pts": 0.014,
+              "reb": 0.195,
+              "ast": 0.61,
+              "stl": -0.722,
+              "blk": -0.401,
+              "tpm": 0.401,
+              "fgImpact": -0.107,
+              "ftImpact": 0.464,
+              "to": 0.648
+            }
+          },
+          {
+            "name": "Terrence Hill Jr.",
+            "min": 21,
+            "pts": 17,
+            "reb": 2,
+            "ast": 3,
+            "stl": 2,
+            "blk": 0,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 6,
+            "fga": 13,
+            "ftm": 5,
+            "fta": 5,
+            "composite": 3.34,
+            "zScores": {
+              "pts": 1.824,
+              "reb": -0.265,
+              "ast": 1.49,
+              "stl": 1.96,
+              "blk": -0.401,
+              "tpm": -0.468,
+              "fgImpact": -0.923,
+              "ftImpact": 1.159,
+              "to": -1.037
+            }
+          }
+        ]
       }
     },
     {

@@ -1174,6 +1174,18 @@ const LIVESCORES_AGGREGATE = {
           { rank: 1105, name: "Alessio Calamita", team: "IndSt", games: 1, min: 23, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 3, tpm: 0, fgPct: 16.7, ftPct: 0, composite: -8.23, zScores: { pts: -1.15, reb: -1.06, ast: -0.95, stl: -0.88, blk: -0.53, tpm: -0.8, fgImpact: -1.41, ftImpact: 0, to: -1.45 } },
           { rank: 1106, name: "Andrew Hilman", team: "USF", games: 1, min: 11, pts: 3, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgPct: 20, ftPct: 20, composite: -8.77, zScores: { pts: -1, reb: -1.43, ast: -0.95, stl: -0.88, blk: -0.53, tpm: -0.8, fgImpact: -1.05, ftImpact: -3.12, to: 0.99 } }
         ]
+      },
+      "2026-11-03": {
+        windowStart: "2026-10-05",
+        windowEnd: "2026-11-03",
+        windowDays: 30,
+        daysInWindow: 3,
+        minGames: 2,
+        leagueAvg: { fg: 37.9, ft: 92.3 },
+        players: [
+          { rank: 1, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: 3, zScores: { pts: 1, reb: -1, ast: -1, stl: 0, blk: 1, tpm: 1, fgImpact: 1, ftImpact: 0, to: 1 } },
+          { rank: 2, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -3, zScores: { pts: -1, reb: 1, ast: 1, stl: 0, blk: -1, tpm: -1, fgImpact: -1, ftImpact: 0, to: -1 } }
+        ]
       }
     }
   },
@@ -2318,6 +2330,18 @@ const LIVESCORES_AGGREGATE = {
           { rank: 1104, name: "Kahmare Holmes", team: "DeP", games: 1, min: 17, pts: 1, reb: 2, ast: 0, stl: 0, blk: 0, to: 3, tpm: 0, fgPct: 0, ftPct: 50, composite: -8.19, zScores: { pts: -1.31, reb: -0.69, ast: -0.95, stl: -0.88, blk: -0.53, tpm: -0.8, fgImpact: -1.07, ftImpact: -0.51, to: -1.45 } },
           { rank: 1105, name: "Alessio Calamita", team: "IndSt", games: 1, min: 23, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 3, tpm: 0, fgPct: 16.7, ftPct: 0, composite: -8.23, zScores: { pts: -1.15, reb: -1.06, ast: -0.95, stl: -0.88, blk: -0.53, tpm: -0.8, fgImpact: -1.41, ftImpact: 0, to: -1.45 } },
           { rank: 1106, name: "Andrew Hilman", team: "USF", games: 1, min: 11, pts: 3, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgPct: 20, ftPct: 20, composite: -8.77, zScores: { pts: -1, reb: -1.43, ast: -0.95, stl: -0.88, blk: -0.53, tpm: -0.8, fgImpact: -1.05, ftImpact: -3.12, to: 0.99 } }
+        ]
+      },
+      "2026-11-03": {
+        windowStart: "2026-10-28",
+        windowEnd: "2026-11-03",
+        windowDays: 7,
+        daysInWindow: 3,
+        minGames: 2,
+        leagueAvg: { fg: 37.9, ft: 92.3 },
+        players: [
+          { rank: 1, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: 3, zScores: { pts: 1, reb: -1, ast: -1, stl: 0, blk: 1, tpm: 1, fgImpact: 1, ftImpact: 0, to: 1 } },
+          { rank: 2, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -3, zScores: { pts: -1, reb: 1, ast: 1, stl: 0, blk: -1, tpm: -1, fgImpact: -1, ftImpact: 0, to: -1 } }
         ]
       }
     }

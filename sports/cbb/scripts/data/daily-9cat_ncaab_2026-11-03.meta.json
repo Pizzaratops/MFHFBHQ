@@ -1,0 +1,31 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-03",
+  "games": [
+    "Drexel Dragons @ Virginia Cavaliers (4:09 - 1st)",
+    "Arkansas-Pine Bluff Golden Lions @ Arkansas Razorbacks (11:46 - 1st)",
+    "Sam Houston Bearkats @ Alabama Crimson Tide (Halftime)",
+    "Manhattan Jaspers @ Kentucky Wildcats (13:18 - 2nd)",
+    "Purdue Fort Wayne Mastodons @ Duquesne Dukes (13:30 - 2nd)",
+    "Stetson Hatters @ South Carolina Gamecocks (10:59 - 2nd)",
+    "Coppin State Eagles @ Virginia Tech Hokies (15:53 - 2nd)",
+    "Hampton Pirates @ Georgia Tech Yellow Jackets (15:12 - 2nd)",
+    "Holy Cross Crusaders @ Rhode Island Rams (15:22 - 2nd)",
+    "Wagner Seahawks @ Boston College Eagles (12:13 - 2nd)",
+    "Cornell (IA) Rams @ Northern Iowa Panthers (11:59 - 1st)",
+    "LSU New Orleans Privateers @ LSU Tigers (10:29 - 1st)",
+    "Cleveland State Vikings @ Missouri Tigers (11:43 - 1st)",
+    "Alabama State Hornets @ Texas A&M Aggies (11:51 - 1st)",
+    "Lipscomb Bisons @ Iowa Hawkeyes (12:08 - 1st)",
+    "South Dakota State Jackrabbits @ Kansas State Wildcats (9:46 - 1st)",
+    "Wofford Terriers 59 @ Tennessee Volunteers 90 (Final)",
+    "Regis University REGIS UNIVERSITY @ Wyoming Cowboys (11/3 - 8:30 PM EST)",
+    "Northern Arizona Lumberjacks @ UNLV Rebels (11/3 - 10:00 PM EST)",
+    "Cal State Fullerton Titans @ San Diego State Aztecs (11/3 - 10:00 PM EST)",
+    "Bethesda Flames @ Pacific Tigers (11/3 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 52.3,
+    "ft": 93.8
+  }
+}
