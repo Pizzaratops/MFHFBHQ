@@ -44,7 +44,7 @@
 
   const normKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z0-9]/g, '');
-  const defaults = { pos: 'WR', win: 2, q: '', sel: null, elig: false, sort: 'stat', fmt: null };
+  const defaults = { pos: 'WR', win: 2, only: null, q: '', sel: null, elig: false, inact: false, sort: 'stat', fmt: null };
   let RENV = null; // Draft-Range-Daten (einmal geladen, für Liste + Box)
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('cs', {}) });
   // Welcher Comp gerade im Radar liegt — flüchtig, pro Prospect
@@ -85,12 +85,16 @@
       return m;
     }
     // Spieler im Fenster: { rawId, seasons (neueste zuerst), w, latest, mix (nur bei ≥ 2 Saisons) }
-    function players(C, pos, win) {
-      const key = pos + '|' + win + '|' + C.meta.lastSync;
+    // only = einzelnes Jahr (Dropdown) statt Zeitraum. Jeder Spieler bekommt
+    // lastSeen (neueste Saison überhaupt in den Daten) und inactive: keine Saison
+    // seit der letzten abgeschlossenen (cur − 1) → vermutlich nicht mehr am College.
+    function players(C, pos, win, only) {
+      const key = pos + '|' + win + '|' + (only || '') + '|' + C.meta.lastSync;
       if (cache[key]) return cache[key];
-      const cur = C.meta.currentSeason, prog = progress(C), by = new Map();
+      const cur = C.meta.currentSeason, prog = progress(C), by = new Map(), last = new Map();
+      (C.recent[pos] || []).forEach(r => { const k = String(r.rawId); last.set(k, Math.max(last.get(k) || 0, r.year)); });
       (C.recent[pos] || []).forEach(r => {
-        if (r.year <= cur - win) return;
+        if (only ? r.year !== only : r.year <= cur - win) return;
         const k = String(r.rawId);
         if (!by.has(k)) by.set(k, []);
         if (!by.get(k).some(x => x.year === r.year)) by.get(k).push(r);
@@ -101,7 +105,9 @@
         const raw = ss.map((s, i) => RECENCY_W[Math.min(i, RECENCY_W.length - 1)] * (s.year === cur ? prog : 1));
         const tot = raw.reduce((t, x) => t + x, 0) || 1;
         const w = raw.map(x => x / tot);
-        out.push({ rawId, seasons: ss, w, latest: ss[0], mix: ss.length > 1 ? mixRecord(C, pos, ss, w, win) : null });
+        const lastSeen = last.get(rawId);
+        out.push({ rawId, seasons: ss, w, latest: ss[0], lastSeen, inactive: lastSeen < cur - 1,
+          mix: ss.length > 1 ? mixRecord(C, pos, ss, w, String(win) + (only || '')) : null });
       });
       return (cache[key] = out);
     }
@@ -204,19 +210,24 @@
     if (POS.includes(pp)) st.pos = pp;
     if (id) st.sel = id;
     if (!WINDOWS.includes(st.win)) st.win = 2;
+    st.only = st.only && (C.meta.years || []).includes(+st.only) ? +st.only : null;
     const cur = C.meta.currentSeason, stat = PRIMARY[st.pos];
-    let pls = MX.players(C, st.pos, st.win);
+    let pls = MX.players(C, st.pos, st.win, st.only);
     if (!st.sel || !pls.some(p => p.rawId === String(st.sel))) {
       // Direkt verlinkter Prospect außerhalb des Fensters → Fenster öffnen statt ignorieren
       const linked = id && (C.recent[st.pos] || []).filter(p => String(p.rawId) === id).sort((a, b) => b.year - a.year)[0];
-      if (linked) { st.win = Math.min(4, Math.max(st.win, cur - linked.year + 1)); pls = MX.players(C, st.pos, st.win); }
+      if (linked) { if (st.only) st.only = linked.year; else st.win = Math.min(4, Math.max(st.win, cur - linked.year + 1)); pls = MX.players(C, st.pos, st.win, st.only); }
       else st.sel = (pls.slice().sort((a, b) => bestStat(b, stat) - bestStat(a, stat))[0] || {}).rawId || null;
     }
     st.sel = st.sel != null ? String(st.sel) : null;
+    if (!st.inact && !id) { // ausgeblendete Inaktive: gemerkte Auswahl ersetzen (direkte Links bleiben)
+      const cp = pls.find(p => p.rawId === st.sel);
+      if (cp && cp.inactive) st.sel = (pls.filter(p => !p.inactive).sort((a, b) => bestStat(b, stat) - bestStat(a, stat))[0] || {}).rawId || st.sel;
+    }
     st.season = se || 'auto';
     return st;
   }
-  const playerOf = (ctx, st) => MX.players(ctx.data.COLLEGE_SCOUTING, st.pos, st.win).find(p => p.rawId === st.sel) || null;
+  const playerOf = (ctx, st) => MX.players(ctx.data.COLLEGE_SCOUTING, st.pos, st.win, st.only).find(p => p.rawId === st.sel) || null;
 
   // ============================================================
   //  📈 DRAFT RANGE (v1, 01.10.2026) — grobe Erwartung, KEINE Prognose
@@ -434,20 +445,22 @@
     const stat = PRIMARY[st.pos], q = normKey(st.q);
     const byRange = st.sort === 'range' && RENV && !RENV.error;
     const T = rookieCfg(ctx).teams;
-    let list = MX.players(C, st.pos, st.win)
+    let list = MX.players(C, st.pos, st.win, st.only)
       .filter(pl => !q || normKey(pl.latest.name).includes(q))
-      .filter(pl => !st.elig || (DR.collegeYear(C, pl.latest) || 0) >= 3);
+      .filter(pl => !st.elig || (DR.collegeYear(C, pl.latest) || 0) >= 3)
+      .filter(pl => st.inact || !pl.inactive || pl.rawId === st.sel);
     if (byRange) {
       list = list.map(pl => ({ pl, r: DR.estimate(RENV, st.pos, pl.mix || pl.latest, isSF(ctx, st)) }))
         .sort((a, b) => (a.r.expRank || 999) - (b.r.expRank || 999));
     } else list = list.map(pl => ({ pl, v: bestStat(pl, stat) })).sort((a, b) => b.v - a.v);
     return list.length ? list.map(({ pl, r, v }, i) => `<a class="dna-row${pl.rawId === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, pl.rawId)}">
         <span class="dna-idx">${i + 1}</span>
-        <span class="dna-nm">${e(pl.latest.name)} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
+        <span class="dna-nm">${e(pl.latest.name)}${pl.inactive ? ` <span class="cs-gone" title="${e(goneText(pl))}">💤</span>` : ''} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
         <span class="dna-avg">${byRange ? (r && r.rank ? `${DR.pickFmt(r.rank.mid, T)} <small>${Math.round(r.chance * 100)}%</small>` : '—') : (v ? Math.round(v).toLocaleString('de-DE') : '—')}</span></a>`).join('')
       : '<div class="muted" style="padding:12px">Keine Treffer.</div>';
   }
 
+  const goneText = pl => `Letzte erfasste Saison ${pl.lastSeen} — seitdem keine Saison mit Mindest-Volumen, kein Draft/UDFA. Vermutlich nicht mehr am College (fertig, verletzt, abgemeldet oder in die FCS gewechselt).`;
   const fmtFeat = (k, v) => (v == null || isNaN(v) ? '—' : /ppa/i.test(k) ? v.toFixed(2).replace('.', ',') : v.toFixed(1).replace('.', ','));
 
   // Saison-Umschalter + Verlauf je Saison (nur bei ≥ 2 Saisons im Fenster)
@@ -481,7 +494,7 @@
     const body = [heightFmt(me.heightIn), me.weightLb ? me.weightLb + ' lb' : null].filter(Boolean).join(', ');
     return `
       <div class="dna-head">
-        <div><h2 class="dna-title display">${e(me.name)}</h2>
+        <div><h2 class="dna-title display">${e(me.name)}${pl && pl.inactive ? ` <span class="cs-gone" title="${e(goneText(pl))}">💤</span>` : ''}</h2>
           <div class="page-sub">${st.pos} · ${e(me.team)} · ${me.mix ? 'Saisons ' + e(yrsLabel(pl)) + ' (Mix)' : 'Saison ' + e(me.year)}${me.conf ? ' · ' + e(me.conf) : ''}${body ? ' · ' + e(body) : ''}</div></div>
         <div class="dna-badge" title="${PRIMARY_LABEL[st.pos]} in der Saison ${L.year}"><b>${L[stat] != null ? Math.round(L[stat]).toLocaleString('de-DE') : '—'}</b><small>${PRIMARY_LABEL[st.pos]} ${L.year}</small></div>
       </div>
@@ -515,16 +528,19 @@
       const st = resolve(ctx);
       ctx._cs = st;
       const cur = C.meta.currentSeason;
-      const all = MX.players(C, st.pos, st.win);
-      const years = C.meta.years.filter(y => y > cur - st.win);
+      const all = MX.players(C, st.pos, st.win, st.only);
+      const years = st.only ? [st.only] : C.meta.years.filter(y => y > cur - st.win);
+      const shown = all.filter(pl => st.inact || !pl.inactive), nInact = all.length - shown.length;
+      const yOpts = [...new Set((C.recent[st.pos] || []).map(r => r.year))].sort((a, b) => b - a);
       return `
         <div class="page-head">
           <h1 class="page-title display">${tip('🎓 College Scouting', 'Bekannte Grenzen: CFBD erfasst keine Slot/Outside-Alignment- oder Route-Tree-Daten — zwei Receiver mit gleicher Target Share können völlig unterschiedliche NFL-Rollen bekommen. Beide Comps sind Ähnlichkeits-, keine Erfolgs- oder Talentvergleiche. Quellen: CollegeFootballData, nflverse, FantasyPros (über DynastyProcess).')}</h1>
-          <div class="page-sub">Aktuelle College-Spieler (keine Draftees/UDFAs) · ${all.length} ${st.pos}-Prospects mit Mindest-Volumen · ${tip(st.win > 1 ? `Saison-Mix ${years.join('/')}` : `Saison ${cur}`, 'Eine Zeile pro Spieler. Der Zeitraum bestimmt, welche Saisons in seinen Mix einfließen: Gewichte 50/30/20/10 % nach Aktualität, die laufende Saison anteilig nach Saisonfortschritt. Gemittelt werden Shares, PPA und Usage (keine Volumenwerte). Einzelne Saisons sind im Detailbereich umschaltbar.')}</div>
+          <div class="page-sub">Aktuelle College-Spieler (keine Draftees/UDFAs) · ${shown.length} ${st.pos}-Prospects mit Mindest-Volumen${nInact ? ` (${nInact} inaktive 💤 ausgeblendet)` : ''} · ${tip(st.only ? `Saison ${st.only}` : st.win > 1 ? `Saison-Mix ${years.join('/')}` : `Saison ${cur}`, 'Eine Zeile pro Spieler. Der Zeitraum bestimmt, welche Saisons in seinen Mix einfließen: Gewichte 50/30/20/10 % nach Aktualität, die laufende Saison anteilig nach Saisonfortschritt. Gemittelt werden Shares, PPA und Usage (keine Volumenwerte). Einzelne Saisons sind im Detailbereich umschaltbar.')}</div>
         </div>
         <div class="controls">
           <div class="seg" role="group" aria-label="Position">${POS.map(p => `<a class="seg-btn${p === st.pos ? ' active' : ''}" href="${ctx.href('collegescouting', p)}">${p}</a>`).join('')}</div>
-          <div class="seg" role="group" aria-label="Saisons">${WINDOWS.map(n => `<button type="button" class="seg-btn${n === st.win ? ' active' : ''}" data-win="${n}">${winLabel(n, cur)}</button>`).join('')}</div>
+          <div class="seg" role="group" aria-label="Saisons">${WINDOWS.map(n => `<button type="button" class="seg-btn${!st.only && n === st.win ? ' active' : ''}" data-win="${n}">${winLabel(n, cur)}</button>`).join('')}</div>
+          <select class="select cs-year${st.only ? ' active' : ''}" data-only aria-label="Einzelnes Jahr" title="Nur eine einzelne Saison anzeigen (ohne Mix)"><option value="">Einzelnes Jahr …</option>${yOpts.map(y => `<option value="${y}"${st.only === y ? ' selected' : ''}>Nur ${y}${y === cur ? ' (läuft)' : ''}</option>`).join('')}</select>
         </div>
         <div class="dna-layout">
           <aside class="card dna-side">
@@ -532,6 +548,7 @@
             <div class="cs-lctl">
               <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range, aus dem Saison-Mix)">Draft Range</button></div>
               <label class="cs-chk" title="Geschätzt: mindestens 3. College-Jahr (Untergrenze aus der CFBD-Historie)"><input type="checkbox" data-elig${st.elig ? ' checked' : ''}> nur sicher draftberechtigt ${C.meta.currentSeason + 1}</label>
+              <label class="cs-chk" title="Spieler ohne Saison seit ${C.meta.currentSeason - 2} (kein Draft/UDFA erfasst) — vermutlich nicht mehr am College"><input type="checkbox" data-inact${st.inact ? ' checked' : ''}> auch inaktive zeigen 💤</label>
             </div>
             <div class="dna-list-head"><span>Prospect</span><span data-lhead title="${st.sort === 'range' ? 'Mitte der Draft Range (Rookie Draft), aus dem Saison-Mix' : PRIMARY_LABEL[st.pos] + ' der besten Saison im Zeitraum'}">${st.sort === 'range' ? 'Rookie-Pick' : PRIMARY_LABEL[st.pos]}</span></div>
             <div class="dna-list" data-list>${listHtml(ctx, st)}</div>
@@ -542,18 +559,25 @@
     },
     mount(root, ctx) {
       const st = ctx._cs || resolve(ctx);
-      ctx.store.setJSON('cs', { pos: st.pos, win: st.win, q: st.q, sel: st.sel, elig: st.elig, sort: st.sort, fmt: st.fmt });
+      ctx.store.setJSON('cs', { pos: st.pos, win: st.win, only: st.only, q: st.q, sel: st.sel, elig: st.elig, inact: st.inact, sort: st.sort, fmt: st.fmt });
       const C = ctx.data.COLLEGE_SCOUTING;
       if (!C || !C.recent) return;
       const me = viewOf(playerOf(ctx, st), st.season);
       let N = null;
 
       root.querySelectorAll('[data-win]').forEach(b => b.addEventListener('click', () => {
-        ctx.store.setJSON('cs', { ...getState(ctx), win: +b.dataset.win });
+        ctx.store.setJSON('cs', { ...getState(ctx), win: +b.dataset.win, only: null });
         // Auswahl-ID aus der URL entfernen, sonst würde sie das Fenster wieder aufziehen
         if (ctx.params[1]) location.hash = ctx.href('collegescouting', st.pos); else ctx.refresh();
       }));
       root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => { ctx.store.setJSON('cs', { ...getState(ctx), sort: b.dataset.sort }); ctx.refresh(); }));
+      const ys = root.querySelector('[data-only]');
+      if (ys) ys.addEventListener('change', () => {
+        ctx.store.setJSON('cs', { ...getState(ctx), only: ys.value ? +ys.value : null });
+        if (ctx.params[1]) location.hash = ctx.href('collegescouting', st.pos); else ctx.refresh();
+      });
+      const ia = root.querySelector('[data-inact]');
+      if (ia) ia.addEventListener('change', () => { ctx.store.setJSON('cs', { ...getState(ctx), inact: ia.checked }); ctx.refresh(); });
       const el = root.querySelector('[data-elig]');
       if (el) el.addEventListener('change', () => { ctx.store.setJSON('cs', { ...getState(ctx), elig: el.checked }); ctx.refresh(); });
       const q = root.querySelector('[data-q]');
