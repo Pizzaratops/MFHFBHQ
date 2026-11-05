@@ -4089,9 +4089,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909922",
-      line: "Philadelphia 76ers @ Detroit Pistons (11/4 - 7:00 PM EST)",
+      line: "Philadelphia 76ers @ Detroit Pistons (9:22 - 1st)",
       completed: false,
-      statusText: "11/4 - 7:00 PM EST",
+      statusText: "9:22 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -4107,9 +4107,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909923",
-      line: "Atlanta Hawks @ Washington Wizards (11/4 - 7:00 PM EST)",
+      line: "Atlanta Hawks @ Washington Wizards (8:59 - 1st)",
       completed: false,
-      statusText: "11/4 - 7:00 PM EST",
+      statusText: "8:59 - 1st",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
