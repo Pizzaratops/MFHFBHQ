@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-05T15:01:33.521Z",
+  "generatedAt": "2026-11-05T15:24:33.086Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 9 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -109,7 +109,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 7,
-        "reb": 4,
+        "reb": 5,
         "ast": 7,
         "stl": 7,
         "blk": 4,
@@ -159,29 +159,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 370,
-        "reb": 125.2,
-        "ast": 82.8,
-        "stl": 24.23,
-        "blk": 11.86,
-        "tpm": 47.2,
-        "to": 44.2,
+        "pts": 380.6,
+        "reb": 127.7,
+        "ast": 85.3,
+        "stl": 25.05,
+        "blk": 12.05,
+        "tpm": 48,
+        "to": 46,
         "fgPct": 46.2,
-        "ftPct": 81.1
+        "ftPct": 81
       },
       "rank": {
         "pts": 2,
-        "reb": 5,
+        "reb": 4,
         "ast": 3,
         "stl": 4,
         "blk": 10,
         "tpm": 1,
         "fgPct": 10,
         "ftPct": 2,
-        "to": 9
+        "to": 10
       },
-      "includedCount": 27,
-      "projCount": 27,
+      "includedCount": 28,
+      "projCount": 28,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -273,7 +273,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 8,
         "fgPct": 4,
         "ftPct": 11,
-        "to": 10
+        "to": 9
       },
       "includedCount": 27,
       "projCount": 27,
