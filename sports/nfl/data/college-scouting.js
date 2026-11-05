@@ -24,7 +24,7 @@
 
 const COLLEGE_SCOUTING = {
   "meta": {
-    "lastSync": "2026-11-05T15:57:58.638Z",
+    "lastSync": "2026-11-05T17:16:43.057Z",
     "currentSeason": 2026,
     "years": [
       2013,
@@ -218322,24 +218322,6 @@ const COLLEGE_SCOUTING = {
         "weightLb": 195
       },
       {
-        "id": "2024_4683227",
-        "rawId": "4683227",
-        "name": "Joseph Manjack",
-        "team": "Houston",
-        "conf": "Big 12",
-        "year": 2024,
-        "rec": 22,
-        "yds": 351,
-        "td": 3,
-        "recShare": 12.1,
-        "ydShare": 19.2,
-        "tdShare": 33.3,
-        "usageOverall": 4.1,
-        "avgPPA": 0.609,
-        "heightIn": 75,
-        "weightLb": 205
-      },
-      {
         "id": "2024_4683237",
         "rawId": "4683237",
         "name": "Keagan Johnson",
@@ -221544,24 +221526,6 @@ const COLLEGE_SCOUTING = {
         "weightLb": 192
       },
       {
-        "id": "2024_5155179",
-        "rawId": "5155179",
-        "name": "Jacob De Jesus",
-        "team": "UNLV",
-        "conf": "Mountain West",
-        "year": 2024,
-        "rec": 36,
-        "yds": 512,
-        "td": 3,
-        "recShare": 20.2,
-        "ydShare": 21.2,
-        "tdShare": 12,
-        "usageOverall": 6.8,
-        "avgPPA": 0.648,
-        "heightIn": 67,
-        "weightLb": 170
-      },
-      {
         "id": "2024_5155519",
         "rawId": "5155519",
         "name": "Yannick Smith",
@@ -222586,24 +222550,6 @@ const COLLEGE_SCOUTING = {
         "avgPPA": 0.775,
         "heightIn": 70,
         "weightLb": 192
-      },
-      {
-        "id": "2025_4683227",
-        "rawId": "4683227",
-        "name": "Joseph Manjack",
-        "team": "TCU",
-        "conf": "Big 12",
-        "year": 2025,
-        "rec": 44,
-        "yds": 579,
-        "td": 3,
-        "recShare": 14.4,
-        "ydShare": 15.4,
-        "tdShare": 10,
-        "usageOverall": 8.7,
-        "avgPPA": 0.55,
-        "heightIn": 75,
-        "weightLb": 205
       },
       {
         "id": "2025_4683237",
@@ -227086,24 +227032,6 @@ const COLLEGE_SCOUTING = {
         "avgPPA": 0.648,
         "heightIn": 74,
         "weightLb": 200
-      },
-      {
-        "id": "2025_5155179",
-        "rawId": "5155179",
-        "name": "Jacob De Jesus",
-        "team": "California",
-        "conf": "ACC",
-        "year": 2025,
-        "rec": 107,
-        "yds": 1022,
-        "td": 6,
-        "recShare": 33.2,
-        "ydShare": 28.6,
-        "tdShare": 30,
-        "usageOverall": 17.9,
-        "avgPPA": 0.379,
-        "heightIn": 67,
-        "weightLb": 170
       },
       {
         "id": "2025_5155519",
@@ -284864,78 +284792,6 @@ const COLLEGE_SCOUTING = {
           "dist": 0.831
         }
       ],
-      "2024_4683227": [
-        {
-          "id": "2025_5126534",
-          "name": "Jeremy Scott",
-          "team": "South Alabama",
-          "year": 2025,
-          "dist": 0.658
-        },
-        {
-          "id": "2025_5148535",
-          "name": "Brett Eskildsen",
-          "team": "Iowa State",
-          "year": 2025,
-          "dist": 0.774
-        },
-        {
-          "id": "2016_536075",
-          "name": "Ernest Calhoun",
-          "team": "Kent State",
-          "year": 2016,
-          "dist": 1.036
-        },
-        {
-          "id": "2020_4570250",
-          "name": "Trevor Wilson",
-          "team": "Buffalo",
-          "year": 2020,
-          "dist": 1.101
-        },
-        {
-          "id": "2014_559754",
-          "name": "Malachi Dupre",
-          "team": "LSU",
-          "year": 2014,
-          "dist": 1.105
-        },
-        {
-          "id": "2018_4241671",
-          "name": "Jeremiah Haydel",
-          "team": "Texas State",
-          "year": 2018,
-          "dist": 1.127
-        },
-        {
-          "id": "2025_5092787",
-          "name": "Marlion Jackson",
-          "team": "Louisiana Tech",
-          "year": 2025,
-          "dist": 1.151
-        },
-        {
-          "id": "2025_5220256",
-          "name": "Donte Lee Jr",
-          "team": "Liberty",
-          "year": 2025,
-          "dist": 1.197
-        },
-        {
-          "id": "2016_3918230",
-          "name": "Xavier Brown",
-          "team": "UL Monroe",
-          "year": 2016,
-          "dist": 1.238
-        },
-        {
-          "id": "2017_3918318",
-          "name": "C.J. Johnson",
-          "team": "Wyoming",
-          "year": 2017,
-          "dist": 1.243
-        }
-      ],
       "2024_4683237": [
         {
           "id": "2023_4428167",
@@ -297680,78 +297536,6 @@ const COLLEGE_SCOUTING = {
           "dist": 0.671
         }
       ],
-      "2024_5155179": [
-        {
-          "id": "2015_3128348",
-          "name": "KD Cannon",
-          "team": "Baylor",
-          "year": 2015,
-          "dist": 0.329
-        },
-        {
-          "id": "2017_3917200",
-          "name": "Malik Henry",
-          "team": "Georgia Southern",
-          "year": 2017,
-          "dist": 0.329
-        },
-        {
-          "id": "2014_511231",
-          "name": "David Glidden",
-          "team": "Oklahoma State",
-          "year": 2014,
-          "dist": 0.384
-        },
-        {
-          "id": "2021_4241225",
-          "name": "R.J. Sneed",
-          "team": "Baylor",
-          "year": 2021,
-          "dist": 0.414
-        },
-        {
-          "id": "2016_3126281",
-          "name": "Justin Hobbs",
-          "team": "Tulsa",
-          "year": 2016,
-          "dist": 0.45
-        },
-        {
-          "id": "2016_546867",
-          "name": "Robert Wheelwright",
-          "team": "Wisconsin",
-          "year": 2016,
-          "dist": 0.535
-        },
-        {
-          "id": "2023_4837200",
-          "name": "Junior Vandeross",
-          "team": "Toledo",
-          "year": 2023,
-          "dist": 0.583
-        },
-        {
-          "id": "2021_4569234",
-          "name": "Keshunn Abram",
-          "team": "Kent State",
-          "year": 2021,
-          "dist": 0.597
-        },
-        {
-          "id": "2020_4361778",
-          "name": "Kearis Jackson",
-          "team": "Georgia",
-          "year": 2020,
-          "dist": 0.65
-        },
-        {
-          "id": "2026_5141394",
-          "name": "Lotzeir Brooks",
-          "team": "Alabama",
-          "year": 2026,
-          "dist": 0.661
-        }
-      ],
       "2024_5155519": [
         {
           "id": "2021_4363032",
@@ -301854,78 +301638,6 @@ const COLLEGE_SCOUTING = {
           "team": "Georgia Tech",
           "year": 2024,
           "dist": 0.439
-        }
-      ],
-      "2025_4683227": [
-        {
-          "id": "2014_536143",
-          "name": "Gehrig Dieter",
-          "team": "Bowling Green",
-          "year": 2014,
-          "dist": 0.396
-        },
-        {
-          "id": "2019_3925343",
-          "name": "Daylon Charlot",
-          "team": "Kansas",
-          "year": 2019,
-          "dist": 0.424
-        },
-        {
-          "id": "2015_517212",
-          "name": "Paul Turner",
-          "team": "Louisiana Tech",
-          "year": 2015,
-          "dist": 0.432
-        },
-        {
-          "id": "2019_4258409",
-          "name": "Zachari Jackson",
-          "team": "UL Monroe",
-          "year": 2019,
-          "dist": 0.444
-        },
-        {
-          "id": "2014_559679",
-          "name": "Speedy Noil",
-          "team": "Texas A&M",
-          "year": 2014,
-          "dist": 0.465
-        },
-        {
-          "id": "2020_4575558",
-          "name": "Josh Kelly",
-          "team": "Fresno State",
-          "year": 2020,
-          "dist": 0.5
-        },
-        {
-          "id": "2023_4916941",
-          "name": "Coy Eakin",
-          "team": "Texas Tech",
-          "year": 2023,
-          "dist": 0.506
-        },
-        {
-          "id": "2017_3917067",
-          "name": "Olabisi Johnson",
-          "team": "Colorado State",
-          "year": 2017,
-          "dist": 0.511
-        },
-        {
-          "id": "2022_4429022",
-          "name": "Kayshon Boutte",
-          "team": "LSU",
-          "year": 2022,
-          "dist": 0.563
-        },
-        {
-          "id": "2020_4047728",
-          "name": "Damon Hazelton",
-          "team": "Missouri",
-          "year": 2020,
-          "dist": 0.571
         }
       ],
       "2025_4683237": [
@@ -319854,78 +319566,6 @@ const COLLEGE_SCOUTING = {
           "team": "Georgia State",
           "year": 2013,
           "dist": 0.875
-        }
-      ],
-      "2025_5155179": [
-        {
-          "id": "2023_4428753",
-          "name": "Lincoln Victor",
-          "team": "Washington State",
-          "year": 2023,
-          "dist": 1.128
-        },
-        {
-          "id": "2018_4372485",
-          "name": "Rondale Moore",
-          "team": "Purdue",
-          "year": 2018,
-          "dist": 1.291
-        },
-        {
-          "id": "2020_4241053",
-          "name": "Jonathan Adams Jr.",
-          "team": "Arkansas State",
-          "year": 2020,
-          "dist": 1.353
-        },
-        {
-          "id": "2019_4036055",
-          "name": "Maurice Ffrench",
-          "team": "Pittsburgh",
-          "year": 2019,
-          "dist": 1.382
-        },
-        {
-          "id": "2014_516363",
-          "name": "Ty Montgomery",
-          "team": "Stanford",
-          "year": 2014,
-          "dist": 1.475
-        },
-        {
-          "id": "2022_4688813",
-          "name": "Josh Downs",
-          "team": "North Carolina",
-          "year": 2022,
-          "dist": 1.477
-        },
-        {
-          "id": "2018_4035277",
-          "name": "Kalija Lipscomb",
-          "team": "Vanderbilt",
-          "year": 2018,
-          "dist": 1.555
-        },
-        {
-          "id": "2023_4431342",
-          "name": "Brennan Presley",
-          "team": "Oklahoma State",
-          "year": 2023,
-          "dist": 1.604
-        },
-        {
-          "id": "2026_5193298",
-          "name": "Chris Durr Jr.",
-          "team": "Maryland",
-          "year": 2026,
-          "dist": 1.708
-        },
-        {
-          "id": "2014_505407",
-          "name": "Justin Hardy",
-          "team": "East Carolina",
-          "year": 2014,
-          "dist": 1.739
         }
       ],
       "2025_5155519": [
