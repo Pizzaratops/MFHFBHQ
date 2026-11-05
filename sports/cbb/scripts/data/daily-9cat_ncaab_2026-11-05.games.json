@@ -1,0 +1,690 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-05",
+  "games": [
+    {
+      "id": "401925031",
+      "line": "McNeese Cowboys @ North Texas Mean Green (11/5 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 5:00 PM EST",
+      "away": {
+        "abbr": "MCN",
+        "name": "McNeese Cowboys",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "N TX",
+        "name": "North Texas Mean Green",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909726",
+      "line": "Wake Forest Demon Deacons @ Vanderbilt Commodores (11/5 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 6:00 PM EST",
+      "away": {
+        "abbr": "Wake",
+        "name": "Wake Forest Demon Deacons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Vand",
+        "name": "Vanderbilt Commodores",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917177",
+      "line": "Chattanooga Mocs @ Penn State Nittany Lions (11/5 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 6:00 PM EST",
+      "away": {
+        "abbr": "UTC",
+        "name": "Chattanooga Mocs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PSU",
+        "name": "Penn State Nittany Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401916287",
+      "line": "Bellarmine Knights @ Indiana Hoosiers (11/5 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 6:00 PM EST",
+      "away": {
+        "abbr": "BELL",
+        "name": "Bellarmine Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ind",
+        "name": "Indiana Hoosiers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919804",
+      "line": "Long Island University Sharks @ Seton Hall Pirates (11/5 - 6:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 6:30 PM EST",
+      "away": {
+        "abbr": "LIU",
+        "name": "Long Island University Sharks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Seton",
+        "name": "Seton Hall Pirates",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929198",
+      "line": "Howard Payne Yellow Jackets @ Texas State Bobcats (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "HWPU",
+        "name": "Howard Payne Yellow Jackets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TxSt",
+        "name": "Texas State Bobcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927395",
+      "line": "Southern Virginia Knights @ Richmond Spiders (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "SOVA",
+        "name": "Southern Virginia Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Rich",
+        "name": "Richmond Spiders",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925819",
+      "line": "Georgia State Panthers @ Charlotte 49ers (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "GAST",
+        "name": "Georgia State Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UNCC",
+        "name": "Charlotte 49ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924733",
+      "line": "Hofstra Pride @ Princeton Tigers (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "HOF",
+        "name": "Hofstra Pride",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Princ",
+        "name": "Princeton Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924718",
+      "line": "Cornell Big Red @ Lehigh Mountain Hawks (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "Corn",
+        "name": "Cornell Big Red",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LEH",
+        "name": "Lehigh Mountain Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924703",
+      "line": "SUNY Old Westbury Panthers @ Columbia Lions (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "OLDW",
+        "name": "SUNY Old Westbury Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Colum",
+        "name": "Columbia Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921747",
+      "line": "Green Bay Phoenix @ Cincinnati Bearcats (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "GB",
+        "name": "Green Bay Phoenix",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cin",
+        "name": "Cincinnati Bearcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920377",
+      "line": "Mercer Bears @ Virginia Tech Hokies (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "MER",
+        "name": "Mercer Bears",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "VaTec",
+        "name": "Virginia Tech Hokies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919823",
+      "line": "Mercyhurst Lakers @ Notre Dame Fighting Irish (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "MERC",
+        "name": "Mercyhurst Lakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ND",
+        "name": "Notre Dame Fighting Irish",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909717",
+      "line": "Central Connecticut Blue Devils @ Syracuse Orange (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "CCSU",
+        "name": "Central Connecticut Blue Devils",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Syr",
+        "name": "Syracuse Orange",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909706",
+      "line": "Buffalo Bulls @ Pittsburgh Panthers (11/5 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:00 PM EST",
+      "away": {
+        "abbr": "BUF",
+        "name": "Buffalo Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pitt",
+        "name": "Pittsburgh Panthers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920759",
+      "line": "Centre Colonels @ Belmont Bruins (11/5 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:30 PM EST",
+      "away": {
+        "abbr": "CCO",
+        "name": "Centre Colonels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Belm",
+        "name": "Belmont Bruins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919002",
+      "line": "Jackson State Tigers @ Tulane Green Wave (11/5 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:30 PM EST",
+      "away": {
+        "abbr": "JKST",
+        "name": "Jackson State Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tul",
+        "name": "Tulane Green Wave",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911195",
+      "line": "Stonehill Skyhawks @ Fordham Rams (11/5 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:30 PM EST",
+      "away": {
+        "abbr": "STO",
+        "name": "Stonehill Skyhawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ford",
+        "name": "Fordham Rams",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906792",
+      "line": "Northwestern State Demons @ Mississippi State Bulldogs (11/5 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 7:30 PM EST",
+      "away": {
+        "abbr": "NWST",
+        "name": "Northwestern State Demons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MissSt",
+        "name": "Mississippi State Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906770",
+      "line": "Jacksonville Dolphins @ Florida Gators (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "JAX",
+        "name": "Jacksonville Dolphins",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Fla",
+        "name": "Florida Gators",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909563",
+      "line": "Coastal Carolina Chanticleers @ Duke Blue Devils (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "CCU",
+        "name": "Coastal Carolina Chanticleers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Duke",
+        "name": "Duke Blue Devils",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925754",
+      "line": "Toledo Rockets @ Michigan State Spartans (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "TOL",
+        "name": "Toledo Rockets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MSU",
+        "name": "Michigan State Spartans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906864",
+      "line": "Gardner-Webb Runnin' Bulldogs @ Texas Longhorns (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "GWEB",
+        "name": "Gardner-Webb Runnin' Bulldogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tex",
+        "name": "Texas Longhorns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927373",
+      "line": "Central State Marauders @ Illinois State Redbirds (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "CNSU",
+        "name": "Central State Marauders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IlSt",
+        "name": "Illinois State Redbirds",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921094",
+      "line": "East Texas A&M Lions @ Rice Owls (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "ETAM",
+        "name": "East Texas A&M Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Rice",
+        "name": "Rice Owls",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920913",
+      "line": "Northern Illinois Huskies @ Tulsa Golden Hurricane (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "NIU",
+        "name": "Northern Illinois Huskies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tuls",
+        "name": "Tulsa Golden Hurricane",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918968",
+      "line": "VMI Keydets @ SMU Mustangs (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "VMI",
+        "name": "VMI Keydets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SMU",
+        "name": "SMU Mustangs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911229",
+      "line": "West Georgia Wolves @ Loyola Chicago Ramblers (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "WGA",
+        "name": "West Georgia Wolves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LoyIL",
+        "name": "Loyola Chicago Ramblers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909491",
+      "line": "Le Moyne Dolphins @ Creighton Bluejays (11/5 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:00 PM EST",
+      "away": {
+        "abbr": "LEM",
+        "name": "Le Moyne Dolphins",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Crei",
+        "name": "Creighton Bluejays",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401913526",
+      "line": "Pennsylvania Quakers @ Illinois Fighting Illini (11/5 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:30 PM EST",
+      "away": {
+        "abbr": "Penn",
+        "name": "Pennsylvania Quakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ill",
+        "name": "Illinois Fighting Illini",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911334",
+      "line": "Calumet St. Joseph Crimson Wave @ Air Force Falcons (11/5 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:30 PM EST",
+      "away": {
+        "abbr": "CSJ",
+        "name": "Calumet St. Joseph Crimson Wave",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "AF",
+        "name": "Air Force Falcons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909501",
+      "line": "South Florida Bulls @ DePaul Blue Demons (11/5 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 8:30 PM EST",
+      "away": {
+        "abbr": "SoFL",
+        "name": "South Florida Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DeP",
+        "name": "DePaul Blue Demons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921133",
+      "line": "Bethune-Cookman Wildcats @ Texas Tech Red Raiders (11/5 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 9:00 PM EST",
+      "away": {
+        "abbr": "BCU",
+        "name": "Bethune-Cookman Wildcats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TxTch",
+        "name": "Texas Tech Red Raiders",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921698",
+      "line": "Towson Tigers @ Utah Utes (11/5 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 9:00 PM EST",
+      "away": {
+        "abbr": "TOW",
+        "name": "Towson Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Utah",
+        "name": "Utah Utes",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911518",
+      "line": "Menlo Oaks @ UC Davis Aggies (11/5 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 9:00 PM EST",
+      "away": {
+        "abbr": "MNLO",
+        "name": "Menlo Oaks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCDav",
+        "name": "UC Davis Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909739",
+      "line": "Cal Poly Mustangs @ Arizona Wildcats (11/5 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 10:30 PM EST",
+      "away": {
+        "abbr": "CP",
+        "name": "Cal Poly Mustangs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ariz",
+        "name": "Arizona Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929292",
+      "line": "La Sierra Golden Eagles @ Pepperdine Waves (11/5 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 10:30 PM EST",
+      "away": {
+        "abbr": "LSIU",
+        "name": "La Sierra Golden Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pepp",
+        "name": "Pepperdine Waves",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
