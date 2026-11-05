@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-04T20:25:33.783Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-05T00:33:16.071Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2426,11 +2426,10 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Toneari Lane","nbaTeam":"USD","pos":"G","experience":"veteran","minutesAvg":26.8,"z30":1.16,"bestCat30":"3PM","worstCat30":"REB","lastSeasonRank":1088,"statsWindow":"last-season","compositeScore":-19.61,"signalsUsed":1,"gone":true,"rank":2420},
   {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rank":2421},
   {"name":"Emmanuel Ogbole","nbaTeam":"Rut","pos":"C","experience":"veteran","minutesAvg":18.8,"z30":-0.88,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":1731,"statsWindow":"last-season","compositeScore":-20.29,"signalsUsed":1,"gone":true,"rank":2422},
-  {"name":"Isaiah Walker","nbaTeam":"Xav","pos":"G","experience":"veteran","minutesAvg":17,"z30":-2.13,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2150,"statsWindow":"last-season","compositeScore":-20.71,"signalsUsed":1,"gone":true,"rank":2423},
-  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2424},
-  {"name":"075yo","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2425},
-  {"name":"Ethan Bilyeu","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2426},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2427},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2428},
-  {"name":"Moe Odum","nbaTeam":"SJSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2429}
+  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2423},
+  {"name":"075yo","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2424},
+  {"name":"Ethan Bilyeu","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2425},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2426},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2427},
+  {"name":"Moe Odum","nbaTeam":"SJSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2428}
 ];
