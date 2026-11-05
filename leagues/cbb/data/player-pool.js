@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-05T16:29:16.636Z
+//  Stand: 2026-11-05T17:27:15.427Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -471,7 +471,6 @@ const CBB_PLAYER_POOL = [
 ["071oy","Christian Brown","Miss","F","F/C,Flx","FA"],
 ["079p1","Christian Collins","USC","F","F/C,Flx","T"],
 ["0652t","Christian Fermin","Tenn","F","F/C,Flx","FA"],
-["07a34","Christian Gilliland","SIU","G","G,Flx","FA"],
 ["071n9","Christian Gurdak","Rut","C","F/C,Flx","T"],
 ["06gmg","Christian Hammond","NCSU","G","G,Flx","T"],
 ["071af","Christian Harmon","UVA","G","G,Flx","FA"],
