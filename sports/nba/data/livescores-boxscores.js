@@ -4107,9 +4107,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909923",
-      line: "Atlanta Hawks @ Washington Wizards (2:40 - 2nd)",
+      line: "Atlanta Hawks @ Washington Wizards (2:08 - 2nd)",
       completed: false,
-      statusText: "2:40 - 2nd",
+      statusText: "2:08 - 2nd",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -4125,9 +4125,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909924",
-      line: "Milwaukee Bucks @ Boston Celtics (3:26 - 1st)",
+      line: "Milwaukee Bucks @ Boston Celtics (2:31 - 1st)",
       completed: false,
-      statusText: "3:26 - 1st",
+      statusText: "2:31 - 1st",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -4143,9 +4143,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909925",
-      line: "Charlotte Hornets @ Brooklyn Nets (4:06 - 1st)",
+      line: "Charlotte Hornets @ Brooklyn Nets (3:47 - 1st)",
       completed: false,
-      statusText: "4:06 - 1st",
+      statusText: "3:47 - 1st",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -4161,9 +4161,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909926",
-      line: "Chicago Bulls @ New York Knicks (4:30 - 1st)",
+      line: "Chicago Bulls @ New York Knicks (3:48 - 1st)",
       completed: false,
-      statusText: "4:30 - 1st",
+      statusText: "3:48 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
