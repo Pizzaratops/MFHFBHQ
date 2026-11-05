@@ -4025,27 +4025,39 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920232",
-      line: "Framingham State Rams @ Dartmouth Big Green (11/4 - 6:30 PM EST)",
-      completed: false,
-      statusText: "11/4 - 6:30 PM EST",
+      line: "Framingham State Rams 50 @ Dartmouth Big Green 107 (Final)",
+      completed: true,
+      statusText: "Final",
       away: {
-        abbr: "FRSU", name: "Framingham State Rams", score: null,
+        abbr: "FRSU", name: "Framingham State Rams", score: 50,
         players: [
 
         ]
       },
       home: {
-        abbr: "Dart", name: "Dartmouth Big Green", score: null,
+        abbr: "Dart", name: "Dartmouth Big Green", score: 107,
         players: [
-
+          { name: "Dan Civello", min: 19, pts: 0, reb: 3, ast: 4, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 0, fga: 5, ftm: 0, fta: 0, composite: -1.37, zScores: { pts: -1.383, reb: -0.417, ast: 2.032, stl: -0.736, blk: 0.985, tpm: -0.855, fgImpact: -1.848, ftImpact: 0, to: 0.849 } },
+          { name: "Cam Hiatt", min: 14, pts: 12, reb: 5, ast: 0, stl: 1, blk: 0, to: 1, tpm: 3, fgm: 3, fga: 8, ftm: 3, fta: 3, composite: 1.52, zScores: { pts: 0.633, reb: 0.667, ast: -1.49, stl: 0.46, blk: -0.615, tpm: 1.368, fgImpact: -0.871, ftImpact: 2.095, to: -0.728 } },
+          { name: "Landon Williams", min: 13, pts: 2, reb: 0, ast: 2, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -3.39, zScores: { pts: -1.047, reb: -2.042, ast: 0.271, stl: 0.46, blk: -0.615, tpm: -0.855, fgImpact: -0.414, ftImpact: 0, to: 0.849 } },
+          { name: "Cameron McNamee", min: 15, pts: 16, reb: 5, ast: 3, stl: 1, blk: 0, to: 0, tpm: 2, fgm: 7, fga: 12, ftm: 0, fta: 0, composite: 4.88, zScores: { pts: 1.306, reb: 0.667, ast: 1.151, stl: 0.46, blk: -0.615, tpm: 0.627, fgImpact: 0.431, ftImpact: 0, to: 0.849 } },
+          { name: "Nikola Abusara", min: 17, pts: 13, reb: 6, ast: 1, stl: 1, blk: 0, to: 1, tpm: 0, fgm: 6, fga: 6, ftm: 1, fta: 1, composite: 2.31, zScores: { pts: 0.801, reb: 1.208, ast: -0.61, stl: 0.46, blk: -0.615, tpm: -0.855, fgImpact: 1.953, ftImpact: 0.698, to: -0.728 } },
+          { name: "Jake Pollack", min: 15, pts: 3, reb: 4, ast: 1, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 1, fga: 3, ftm: 1, fta: 2, composite: -4.27, zScores: { pts: -0.879, reb: 0.125, ast: -0.61, stl: -0.736, blk: 0.985, tpm: -0.855, fgImpact: -0.414, ftImpact: -1.164, to: -0.728 } },
+          { name: "Tyler Garrett", min: 20, pts: 13, reb: 4, ast: 1, stl: 1, blk: 0, to: 1, tpm: 3, fgm: 5, fga: 10, ftm: 0, fta: 0, composite: 0.58, zScores: { pts: 0.801, reb: 0.125, ast: -0.61, stl: 0.46, blk: -0.615, tpm: 1.368, fgImpact: -0.22, ftImpact: 0, to: -0.728 } },
+          { name: "Patrick Tivnan Jr.", min: 7, pts: 3, reb: 5, ast: 2, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -0.97, zScores: { pts: -0.879, reb: 0.667, ast: 0.271, stl: -0.736, blk: -0.615, tpm: -0.114, fgImpact: -0.414, ftImpact: 0, to: 0.849 } },
+          { name: "Anton Strelnikov", min: 10, pts: 8, reb: 3, ast: 2, stl: 0, blk: 2, to: 0, tpm: 0, fgm: 4, fga: 5, ftm: 0, fta: 1, composite: 0.73, zScores: { pts: -0.039, reb: -0.417, ast: 0.271, stl: -0.736, blk: 2.585, tpm: -0.855, fgImpact: 0.933, ftImpact: -1.862, to: 0.849 } },
+          { name: "Acen Jimenez", min: 24, pts: 7, reb: 4, ast: 3, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 2, fga: 4, ftm: 2, fta: 2, composite: 0.18, zScores: { pts: -0.207, reb: 0.125, ast: 1.151, stl: -0.736, blk: -0.615, tpm: -0.114, fgImpact: -0.088, ftImpact: 1.396, to: -0.728 } },
+          { name: "Ernas Valauskas", min: 20, pts: 18, reb: 4, ast: 1, stl: 0, blk: 1, to: 0, tpm: 4, fgm: 7, fga: 10, ftm: 0, fta: 0, composite: 5.53, zScores: { pts: 1.642, reb: 0.125, ast: -0.61, stl: -0.736, blk: 0.985, tpm: 2.108, fgImpact: 1.17, ftImpact: 0, to: 0.849 } },
+          { name: "CJ Aldrich III", min: 20, pts: 12, reb: 6, ast: 2, stl: 3, blk: 0, to: 2, tpm: 1, fgm: 5, fga: 7, ftm: 1, fta: 2, composite: 1.66, zScores: { pts: 0.633, reb: 1.208, ast: 0.271, stl: 2.854, blk: -0.615, tpm: -0.114, fgImpact: 0.889, ftImpact: -1.164, to: -2.304 } },
+          { name: "Ben Brown", min: 6, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 3, ftm: 0, fta: 0, composite: -7.38, zScores: { pts: -1.383, reb: -2.042, ast: -1.49, stl: -0.736, blk: -0.615, tpm: -0.855, fgImpact: -1.109, ftImpact: 0, to: 0.849 } }
         ]
       }
     },
       {
       id: "401920191",
-      line: "Longwood Lancers @ Saint Joseph's Hawks (11/4 - 7:00 PM EST)",
+      line: "Longwood Lancers @ Saint Joseph's Hawks (15:28 - 2nd)",
       completed: false,
-      statusText: "11/4 - 7:00 PM EST",
+      statusText: "15:28 - 2nd",
       away: {
         abbr: "LONG", name: "Longwood Lancers", score: null,
         players: [
@@ -4061,9 +4073,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401902276",
-      line: "Fairleigh Dickinson Knights @ Butler Bulldogs (11/4 - 7:00 PM EST)",
+      line: "Fairleigh Dickinson Knights @ Butler Bulldogs (11:17 - 2nd)",
       completed: false,
-      statusText: "11/4 - 7:00 PM EST",
+      statusText: "11:17 - 2nd",
       away: {
         abbr: "FDU", name: "Fairleigh Dickinson Knights", score: null,
         players: [
@@ -4079,9 +4091,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401927361",
-      line: "Central College Dutch @ Drake Bulldogs (11/4 - 7:30 PM EST)",
+      line: "Central College Dutch @ Drake Bulldogs (Halftime)",
       completed: false,
-      statusText: "11/4 - 7:30 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "CNTC", name: "Central College Dutch", score: null,
         players: [
@@ -4097,9 +4109,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401919028",
-      line: "Cal State Northridge Matadors @ Wichita State Shockers (11/4 - 7:30 PM EST)",
+      line: "Cal State Northridge Matadors @ Wichita State Shockers (Halftime)",
       completed: false,
-      statusText: "11/4 - 7:30 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "CSUN", name: "Cal State Northridge Matadors", score: null,
         players: [
@@ -4115,9 +4127,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920798",
-      line: "SE Louisiana Lions @ Auburn Tigers (11/4 - 8:00 PM EST)",
+      line: "SE Louisiana Lions @ Auburn Tigers (8:32 - 1st)",
       completed: false,
-      statusText: "11/4 - 8:00 PM EST",
+      statusText: "8:32 - 1st",
       away: {
         abbr: "SELA", name: "SE Louisiana Lions", score: null,
         players: [

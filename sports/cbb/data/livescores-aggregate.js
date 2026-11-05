@@ -1187,6 +1187,30 @@ const LIVESCORES_AGGREGATE = {
           { rank: 2, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: -0.12, zScores: { pts: 0.64, reb: -0.71, ast: -1.22, stl: 0, blk: 1.41, tpm: -0.27, fgImpact: 0.12, ftImpact: -1.22, to: 1.14 } },
           { rank: 3, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -1.67, zScores: { pts: -1.41, reb: 1.41, ast: 1.22, stl: 0, blk: -0.71, tpm: -1.07, fgImpact: -1.28, ftImpact: 0, to: 0.16 } }
         ]
+      },
+      "2026-11-04": {
+        windowStart: "2026-10-06",
+        windowEnd: "2026-11-04",
+        windowDays: 30,
+        daysInWindow: 4,
+        minGames: 2,
+        leagueAvg: { fg: 47.1, ft: 72.3 },
+        players: [
+          { rank: 1, name: "Cameron McNamee", team: "Dart", games: 2, min: 20, pts: 14, reb: 5.5, ast: 2.5, stl: 1.5, blk: 0, to: 2.5, tpm: 2, fgPct: 50, ftPct: 100, composite: 4.84, zScores: { pts: 1.41, reb: 1.33, ast: 0.54, stl: 1.58, blk: -0.8, tpm: 1.34, fgImpact: 0.34, ftImpact: 0.92, to: -1.82 } },
+          { rank: 2, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: 4.2, zScores: { pts: 1.17, reb: -0.8, ast: 0.54, stl: -0.34, blk: 0.8, tpm: -0.05, fgImpact: -0.35, ftImpact: 2.15, to: 1.08 } },
+          { rank: 3, name: "Ernas Valauskas", team: "Dart", games: 2, min: 18.5, pts: 12.5, reb: 3.5, ast: 1, stl: 0, blk: 0.5, to: 0, tpm: 2, fgPct: 52.9, ftPct: 75, composite: 3.26, zScores: { pts: 1.05, reb: 0.27, ast: -0.65, stl: -1.3, blk: 0.8, tpm: 1.34, fgImpact: 0.59, ftImpact: 0.09, to: 1.08 } },
+          { rank: 4, name: "Anton Strelnikov", team: "Dart", games: 2, min: 14.5, pts: 10, reb: 2, ast: 2, stl: 1, blk: 1, to: 1, tpm: 0.5, fgPct: 72.7, ftPct: 50, composite: 2.81, zScores: { pts: 0.46, reb: -0.53, ast: 0.14, stl: 0.62, blk: 2.39, tpm: -0.75, fgImpact: 1.66, ftImpact: -1.11, to: -0.08 } },
+          { rank: 5, name: "Cam Hiatt", team: "Dart", games: 2, min: 18, pts: 11.5, reb: 4.5, ast: 0, stl: 1.5, blk: 0, to: 2, tpm: 2, fgPct: 50, ftPct: 83.3, composite: 1.84, zScores: { pts: 0.82, reb: 0.8, ast: -1.44, stl: 1.58, blk: -0.8, tpm: 1.34, fgImpact: 0.24, ftImpact: 0.55, to: -1.24 } },
+          { rank: 6, name: "Mason Williams", team: "KY", games: 2, min: 25.5, pts: 13.5, reb: 1.5, ast: 3.5, stl: 0.5, blk: 0, to: 2.5, tpm: 2, fgPct: 47.6, ftPct: 100, composite: 0.96, zScores: { pts: 1.29, reb: -0.8, ast: 1.33, stl: -0.34, blk: -0.8, tpm: 1.34, fgImpact: 0.07, ftImpact: 0.69, to: -1.82 } },
+          { rank: 7, name: "Patrick Tivnan Jr.", team: "Dart", games: 2, min: 12, pts: 4, reb: 7.5, ast: 1, stl: 1, blk: 0, to: 0, tpm: 1, fgPct: 30, ftPct: 0, composite: 0.63, zScores: { pts: -0.95, reb: 2.39, ast: -0.65, stl: 0.62, blk: -0.8, tpm: -0.05, fgImpact: -1.01, ftImpact: 0, to: 1.08 } },
+          { rank: 8, name: "Landon Williams", team: "Dart", games: 2, min: 18.5, pts: 6, reb: 1, ast: 2.5, stl: 0.5, blk: 0.5, to: 0.5, tpm: 0.5, fgPct: 62.5, ftPct: 50, composite: -0.44, zScores: { pts: -0.48, reb: -1.06, ast: 0.54, stl: -0.34, blk: 0.8, tpm: -0.75, fgImpact: 0.73, ftImpact: -0.37, to: 0.5 } },
+          { rank: 9, name: "Tyler Garrett", team: "Dart", games: 2, min: 12.5, pts: 6.5, reb: 3, ast: 0.5, stl: 0.5, blk: 0, to: 0.5, tpm: 1.5, fgPct: 50, ftPct: 0, composite: -1.24, zScores: { pts: -0.36, reb: 0, ast: -1.05, stl: -0.34, blk: -0.8, tpm: 0.65, fgImpact: 0.17, ftImpact: 0, to: 0.5 } },
+          { rank: 10, name: "Nikola Abusara", team: "Dart", games: 2, min: 20, pts: 8.5, reb: 4.5, ast: 1, stl: 0.5, blk: 0.5, to: 1.5, tpm: 0, fgPct: 80, ftPct: 20, composite: -1.62, zScores: { pts: 0.11, reb: 0.8, ast: -0.65, stl: -0.34, blk: 0.8, tpm: -1.44, fgImpact: 1.94, ftImpact: -2.17, to: -0.66 } },
+          { rank: 11, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -1.93, zScores: { pts: -0.6, reb: -0.27, ast: 2.12, stl: -0.34, blk: -0.8, tpm: -0.75, fgImpact: -1.22, ftImpact: 0, to: -0.08 } },
+          { rank: 12, name: "Acen Jimenez", team: "Dart", games: 2, min: 20, pts: 3.5, reb: 3, ast: 2, stl: 0, blk: 0, to: 1, tpm: 0.5, fgPct: 28.6, ftPct: 100, composite: -4.16, zScores: { pts: -1.07, reb: 0, ast: 0.14, stl: -1.3, blk: -0.8, tpm: -0.75, fgImpact: -0.76, ftImpact: 0.46, to: -0.08 } },
+          { rank: 13, name: "Dan Civello", team: "Dart", games: 2, min: 16, pts: 3, reb: 1.5, ast: 2.5, stl: 0, blk: 0.5, to: 0.5, tpm: 1, fgPct: 20, ftPct: 0, composite: -4.3, zScores: { pts: -1.19, reb: -0.8, ast: 0.54, stl: -1.3, blk: 0.8, tpm: -0.05, fgImpact: -1.6, ftImpact: -1.2, to: 0.5 } },
+          { rank: 14, name: "Ben Brown", team: "Dart", games: 2, min: 12, pts: 1, reb: 0.5, ast: 0, stl: 1.5, blk: 0, to: 0, tpm: 0, fgPct: 20, ftPct: 0, composite: -4.82, zScores: { pts: -1.66, reb: -1.33, ast: -1.44, stl: 1.58, blk: -0.8, tpm: -1.44, fgImpact: -0.8, ftImpact: 0, to: 1.08 } }
+        ]
       }
     }
   },
@@ -2344,6 +2368,30 @@ const LIVESCORES_AGGREGATE = {
           { rank: 1, name: "Mason Williams", team: "KY", games: 2, min: 25.5, pts: 13.5, reb: 1.5, ast: 3.5, stl: 0.5, blk: 0, to: 2.5, tpm: 2, fgPct: 47.6, ftPct: 100, composite: 1.78, zScores: { pts: 0.77, reb: -0.71, ast: 0, stl: 0, blk: -0.71, tpm: 1.34, fgImpact: 1.16, ftImpact: 1.22, to: -1.3 } },
           { rank: 2, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: -0.12, zScores: { pts: 0.64, reb: -0.71, ast: -1.22, stl: 0, blk: 1.41, tpm: -0.27, fgImpact: 0.12, ftImpact: -1.22, to: 1.14 } },
           { rank: 3, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -1.67, zScores: { pts: -1.41, reb: 1.41, ast: 1.22, stl: 0, blk: -0.71, tpm: -1.07, fgImpact: -1.28, ftImpact: 0, to: 0.16 } }
+        ]
+      },
+      "2026-11-04": {
+        windowStart: "2026-10-29",
+        windowEnd: "2026-11-04",
+        windowDays: 7,
+        daysInWindow: 4,
+        minGames: 2,
+        leagueAvg: { fg: 47.1, ft: 72.3 },
+        players: [
+          { rank: 1, name: "Cameron McNamee", team: "Dart", games: 2, min: 20, pts: 14, reb: 5.5, ast: 2.5, stl: 1.5, blk: 0, to: 2.5, tpm: 2, fgPct: 50, ftPct: 100, composite: 4.84, zScores: { pts: 1.41, reb: 1.33, ast: 0.54, stl: 1.58, blk: -0.8, tpm: 1.34, fgImpact: 0.34, ftImpact: 0.92, to: -1.82 } },
+          { rank: 2, name: "Trent Perry", team: "Kan", games: 2, min: 15.5, pts: 13, reb: 1.5, ast: 2.5, stl: 0.5, blk: 0.5, to: 0, tpm: 1, fgPct: 42.9, ftPct: 92.3, composite: 4.2, zScores: { pts: 1.17, reb: -0.8, ast: 0.54, stl: -0.34, blk: 0.8, tpm: -0.05, fgImpact: -0.35, ftImpact: 2.15, to: 1.08 } },
+          { rank: 3, name: "Ernas Valauskas", team: "Dart", games: 2, min: 18.5, pts: 12.5, reb: 3.5, ast: 1, stl: 0, blk: 0.5, to: 0, tpm: 2, fgPct: 52.9, ftPct: 75, composite: 3.26, zScores: { pts: 1.05, reb: 0.27, ast: -0.65, stl: -1.3, blk: 0.8, tpm: 1.34, fgImpact: 0.59, ftImpact: 0.09, to: 1.08 } },
+          { rank: 4, name: "Anton Strelnikov", team: "Dart", games: 2, min: 14.5, pts: 10, reb: 2, ast: 2, stl: 1, blk: 1, to: 1, tpm: 0.5, fgPct: 72.7, ftPct: 50, composite: 2.81, zScores: { pts: 0.46, reb: -0.53, ast: 0.14, stl: 0.62, blk: 2.39, tpm: -0.75, fgImpact: 1.66, ftImpact: -1.11, to: -0.08 } },
+          { rank: 5, name: "Cam Hiatt", team: "Dart", games: 2, min: 18, pts: 11.5, reb: 4.5, ast: 0, stl: 1.5, blk: 0, to: 2, tpm: 2, fgPct: 50, ftPct: 83.3, composite: 1.84, zScores: { pts: 0.82, reb: 0.8, ast: -1.44, stl: 1.58, blk: -0.8, tpm: 1.34, fgImpact: 0.24, ftImpact: 0.55, to: -1.24 } },
+          { rank: 6, name: "Mason Williams", team: "KY", games: 2, min: 25.5, pts: 13.5, reb: 1.5, ast: 3.5, stl: 0.5, blk: 0, to: 2.5, tpm: 2, fgPct: 47.6, ftPct: 100, composite: 0.96, zScores: { pts: 1.29, reb: -0.8, ast: 1.33, stl: -0.34, blk: -0.8, tpm: 1.34, fgImpact: 0.07, ftImpact: 0.69, to: -1.82 } },
+          { rank: 7, name: "Patrick Tivnan Jr.", team: "Dart", games: 2, min: 12, pts: 4, reb: 7.5, ast: 1, stl: 1, blk: 0, to: 0, tpm: 1, fgPct: 30, ftPct: 0, composite: 0.63, zScores: { pts: -0.95, reb: 2.39, ast: -0.65, stl: 0.62, blk: -0.8, tpm: -0.05, fgImpact: -1.01, ftImpact: 0, to: 1.08 } },
+          { rank: 8, name: "Landon Williams", team: "Dart", games: 2, min: 18.5, pts: 6, reb: 1, ast: 2.5, stl: 0.5, blk: 0.5, to: 0.5, tpm: 0.5, fgPct: 62.5, ftPct: 50, composite: -0.44, zScores: { pts: -0.48, reb: -1.06, ast: 0.54, stl: -0.34, blk: 0.8, tpm: -0.75, fgImpact: 0.73, ftImpact: -0.37, to: 0.5 } },
+          { rank: 9, name: "Tyler Garrett", team: "Dart", games: 2, min: 12.5, pts: 6.5, reb: 3, ast: 0.5, stl: 0.5, blk: 0, to: 0.5, tpm: 1.5, fgPct: 50, ftPct: 0, composite: -1.24, zScores: { pts: -0.36, reb: 0, ast: -1.05, stl: -0.34, blk: -0.8, tpm: 0.65, fgImpact: 0.17, ftImpact: 0, to: 0.5 } },
+          { rank: 10, name: "Nikola Abusara", team: "Dart", games: 2, min: 20, pts: 8.5, reb: 4.5, ast: 1, stl: 0.5, blk: 0.5, to: 1.5, tpm: 0, fgPct: 80, ftPct: 20, composite: -1.62, zScores: { pts: 0.11, reb: 0.8, ast: -0.65, stl: -0.34, blk: 0.8, tpm: -1.44, fgImpact: 1.94, ftImpact: -2.17, to: -0.66 } },
+          { rank: 11, name: "RJ Smith", team: "LaSal", games: 2, min: 17, pts: 5.5, reb: 2.5, ast: 4.5, stl: 0.5, blk: 0, to: 1, tpm: 0.5, fgPct: 33.3, ftPct: 0, composite: -1.93, zScores: { pts: -0.6, reb: -0.27, ast: 2.12, stl: -0.34, blk: -0.8, tpm: -0.75, fgImpact: -1.22, ftImpact: 0, to: -0.08 } },
+          { rank: 12, name: "Acen Jimenez", team: "Dart", games: 2, min: 20, pts: 3.5, reb: 3, ast: 2, stl: 0, blk: 0, to: 1, tpm: 0.5, fgPct: 28.6, ftPct: 100, composite: -4.16, zScores: { pts: -1.07, reb: 0, ast: 0.14, stl: -1.3, blk: -0.8, tpm: -0.75, fgImpact: -0.76, ftImpact: 0.46, to: -0.08 } },
+          { rank: 13, name: "Dan Civello", team: "Dart", games: 2, min: 16, pts: 3, reb: 1.5, ast: 2.5, stl: 0, blk: 0.5, to: 0.5, tpm: 1, fgPct: 20, ftPct: 0, composite: -4.3, zScores: { pts: -1.19, reb: -0.8, ast: 0.54, stl: -1.3, blk: 0.8, tpm: -0.05, fgImpact: -1.6, ftImpact: -1.2, to: 0.5 } },
+          { rank: 14, name: "Ben Brown", team: "Dart", games: 2, min: 12, pts: 1, reb: 0.5, ast: 0, stl: 1.5, blk: 0, to: 0, tpm: 0, fgPct: 20, ftPct: 0, composite: -4.82, zScores: { pts: -1.66, reb: -1.33, ast: -1.44, stl: 1.58, blk: -0.8, tpm: -1.44, fgImpact: -0.8, ftImpact: 0, to: 1.08 } }
         ]
       }
     }
