@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-05T01:27:42.407Z
+//  Stand: 2026-11-05T07:26:29.524Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -446,7 +446,6 @@ const CBB_PLAYER_POOL = [
 ["079ud","Chase Foster","Pitt","F","F/C,Flx","T"],
 ["07ajn","Chase Geremia","Penn","G","G,Flx","FA"],
 ["0799n","Chase Hill","Col","F","F/C,Flx","FA"],
-["05626","Chase Johnston","SeatU","G","G,Flx","FA"],
 ["06mt5","Chase McCarty","Hou","F","F/C,Flx","FA"],
 ["071za","Chase Rawlins","UCDav","G","G,Flx","FA"],
 ["0710f","Chase Thompson","Clem","F","F/C,Flx","FA"],
@@ -789,6 +788,7 @@ const CBB_PLAYER_POOL = [
 ["0796b","Emmanuel Jamgbadi","Brown","F","F/C,Flx","FA"],
 ["0716u","Emmanuel Kanga","GMas","F","F/C,Flx","FA"],
 ["06g95","Emmanuel Ogbole","Rut","C","F/C,Flx","FA"],
+["068a9","Emmanuel Okorafor","WichSt","F","F/C,Flx","FA"],
 ["0718o","Emmett Adair","GMas","F","F/C,Flx","FA"],
 ["07994","Endurance Aiyamenkhue","Ariz","F","F/C,Flx","FA"],
 ["079m9","Enzo Shahrvin","Pur","F","F/C,Flx","FA"],
@@ -2252,7 +2252,6 @@ const CBB_PLAYER_POOL = [
 ["0711h","Tomislav Buljan","MD","F","F/C,Flx","T"],
 ["06mse","Tomislav Ivisic","Ill","C","F/C,Flx","T"],
 ["0713r","Tommy Ahneman","ND","C","F/C,Flx","FA"],
-["05ozr","Toneari Lane","USD","G","G,Flx","FA"],
 ["07afv","Toni Bryant","Mizzou","F","F/C,Flx","T"],
 ["06gyr","Torey Alston","VCU","F","F/C,Flx","FA"],
 ["070lq","Tounde Yessoufou","StJon","G","G,Flx","T"],
