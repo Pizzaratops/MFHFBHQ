@@ -14,16 +14,21 @@
 //  expRank/seasonRank = Rang im gemeinsamen Pool (Projection vs. Saison).
 // ============================================================
 
-const DYNASTY_LIVE_META = {"mode":"season","date":"2026-11-04","pool":347,"expectation":"snapshots/projections-2026-27-opening-night.js"};
+const DYNASTY_LIVE_META = {"mode":"season","date":"2026-11-04","pool":352,"expectation":"snapshots/projections-2026-27-opening-night.js"};
 
 const DYNASTY_LIVE = [
-  { name: "Amen Thompson", baseRank: 17, liveRank: 19, delta: -2, games: 8, expRank: 20, seasonRank: 84, shift: -0.12, source: "season" },
-  { name: "LaMelo Ball", baseRank: 34, liveRank: 37, delta: -3, games: 8, expRank: 38, seasonRank: 93, shift: -0.08, source: "season" },
-  { name: "Kel'el Ware", baseRank: 66, liveRank: 79, delta: -13, games: 8, expRank: 35, seasonRank: 167, shift: -0.18, source: "season" },
-  { name: "Naz Reid", baseRank: 67, liveRank: 73, delta: -6, games: 8, expRank: 64, seasonRank: 180, shift: -0.08, source: "season" },
-  { name: "Derrick White", baseRank: 74, liveRank: 82, delta: -8, games: 8, expRank: 24, seasonRank: 100, shift: -0.11, source: "season" },
+  { name: "Amen Thompson", baseRank: 17, liveRank: 19, delta: -2, games: 8, expRank: 20, seasonRank: 82, shift: -0.12, source: "season" },
+  { name: "LaMelo Ball", baseRank: 34, liveRank: 37, delta: -3, games: 8, expRank: 38, seasonRank: 98, shift: -0.09, source: "season" },
+  { name: "Brandon Miller", baseRank: 35, liveRank: 39, delta: -4, games: 9, expRank: 46, seasonRank: 121, shift: -0.1, source: "season" },
+  { name: "Josh Giddey", baseRank: 36, liveRank: 40, delta: -4, games: 8, expRank: 58, seasonRank: 182, shift: -0.11, source: "season" },
+  { name: "Matas Buzelis", baseRank: 54, liveRank: 65, delta: -11, games: 8, expRank: 37, seasonRank: 197, shift: -0.19, source: "season" },
+  { name: "Kel'el Ware", baseRank: 66, liveRank: 79, delta: -13, games: 8, expRank: 35, seasonRank: 170, shift: -0.18, source: "season" },
+  { name: "Derrick White", baseRank: 74, liveRank: 82, delta: -8, games: 8, expRank: 24, seasonRank: 102, shift: -0.11, source: "season" },
   { name: "Jabari Smith Jr.", baseRank: 91, liveRank: 80, delta: 11, games: 8, expRank: 89, seasonRank: 21, shift: 0.13, source: "season" },
-  { name: "Ryan Rollins", baseRank: 103, liveRank: 118, delta: -15, games: 8, expRank: 57, seasonRank: 224, shift: -0.14, source: "season" },
-  { name: "Moussa Diabaté", baseRank: 147, liveRank: 129, delta: 18, games: 8, expRank: 140, seasonRank: 37, shift: 0.13, source: "season" },
-  { name: "Duncan Robinson", baseRank: 305, liveRank: 276, delta: 29, games: 8, expRank: 181, seasonRank: 23, shift: 0.1, source: "season" }
+  { name: "Mikal Bridges", baseRank: 92, liveRank: 101, delta: -9, games: 8, expRank: 71, seasonRank: 224, shift: -0.1, source: "season" },
+  { name: "Ryan Rollins", baseRank: 103, liveRank: 118, delta: -15, games: 8, expRank: 57, seasonRank: 221, shift: -0.14, source: "season" },
+  { name: "Moussa Diabaté", baseRank: 147, liveRank: 135, delta: 12, games: 9, expRank: 140, seasonRank: 65, shift: 0.08, source: "season" },
+  { name: "Nolan Traoré", baseRank: 229, liveRank: 207, delta: 22, games: 8, expRank: 312, seasonRank: 138, shift: 0.1, source: "season" },
+  { name: "Duncan Robinson", baseRank: 305, liveRank: 275, delta: 30, games: 8, expRank: 181, seasonRank: 22, shift: 0.1, source: "season" },
+  { name: "Quenton Jackson", baseRank: 521, liveRank: 480, delta: 41, games: 9, expRank: 279, seasonRank: 115, shift: 0.08, source: "season" }
 ];
