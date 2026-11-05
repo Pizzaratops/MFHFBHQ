@@ -1,0 +1,42 @@
+{
+  "league": "nba",
+  "date": "2026-11-05",
+  "games": [
+    {
+      "id": "401909936",
+      "line": "Orlando Magic @ Phoenix Suns (11/5 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 9:00 PM EST",
+      "away": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909937",
+      "line": "Miami Heat @ Golden State Warriors (11/5 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/5 - 10:00 PM EST",
+      "away": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
