@@ -3,370 +3,10 @@
   "date": "2026-11-05",
   "games": [
     {
-      "id": "401925031",
-      "line": "McNeese Cowboys @ North Texas Mean Green (11/5 - 5:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 5:00 PM EST",
-      "away": {
-        "abbr": "MCN",
-        "name": "McNeese Cowboys",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "N TX",
-        "name": "North Texas Mean Green",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401909726",
-      "line": "Wake Forest Demon Deacons @ Vanderbilt Commodores (11/5 - 6:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 6:00 PM EST",
-      "away": {
-        "abbr": "Wake",
-        "name": "Wake Forest Demon Deacons",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Vand",
-        "name": "Vanderbilt Commodores",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401917177",
-      "line": "Chattanooga Mocs @ Penn State Nittany Lions (11/5 - 6:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 6:00 PM EST",
-      "away": {
-        "abbr": "UTC",
-        "name": "Chattanooga Mocs",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "PSU",
-        "name": "Penn State Nittany Lions",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401916287",
-      "line": "Bellarmine Knights @ Indiana Hoosiers (11/5 - 6:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 6:00 PM EST",
-      "away": {
-        "abbr": "BELL",
-        "name": "Bellarmine Knights",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Ind",
-        "name": "Indiana Hoosiers",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401919804",
-      "line": "Long Island University Sharks @ Seton Hall Pirates (11/5 - 6:30 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 6:30 PM EST",
-      "away": {
-        "abbr": "LIU",
-        "name": "Long Island University Sharks",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Seton",
-        "name": "Seton Hall Pirates",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401929198",
-      "line": "Howard Payne Yellow Jackets @ Texas State Bobcats (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "HWPU",
-        "name": "Howard Payne Yellow Jackets",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "TxSt",
-        "name": "Texas State Bobcats",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401927395",
-      "line": "Southern Virginia Knights @ Richmond Spiders (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "SOVA",
-        "name": "Southern Virginia Knights",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Rich",
-        "name": "Richmond Spiders",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401925819",
-      "line": "Georgia State Panthers @ Charlotte 49ers (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "GAST",
-        "name": "Georgia State Panthers",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "UNCC",
-        "name": "Charlotte 49ers",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401924733",
-      "line": "Hofstra Pride @ Princeton Tigers (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "HOF",
-        "name": "Hofstra Pride",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Princ",
-        "name": "Princeton Tigers",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401924718",
-      "line": "Cornell Big Red @ Lehigh Mountain Hawks (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "Corn",
-        "name": "Cornell Big Red",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "LEH",
-        "name": "Lehigh Mountain Hawks",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401924703",
-      "line": "SUNY Old Westbury Panthers @ Columbia Lions (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "OLDW",
-        "name": "SUNY Old Westbury Panthers",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Colum",
-        "name": "Columbia Lions",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401921747",
-      "line": "Green Bay Phoenix @ Cincinnati Bearcats (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "GB",
-        "name": "Green Bay Phoenix",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Cin",
-        "name": "Cincinnati Bearcats",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401920377",
-      "line": "Mercer Bears @ Virginia Tech Hokies (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "MER",
-        "name": "Mercer Bears",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "VaTec",
-        "name": "Virginia Tech Hokies",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401919823",
-      "line": "Mercyhurst Lakers @ Notre Dame Fighting Irish (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "MERC",
-        "name": "Mercyhurst Lakers",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "ND",
-        "name": "Notre Dame Fighting Irish",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401909717",
-      "line": "Central Connecticut Blue Devils @ Syracuse Orange (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "CCSU",
-        "name": "Central Connecticut Blue Devils",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Syr",
-        "name": "Syracuse Orange",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401909706",
-      "line": "Buffalo Bulls @ Pittsburgh Panthers (11/5 - 7:00 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:00 PM EST",
-      "away": {
-        "abbr": "BUF",
-        "name": "Buffalo Bulls",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Pitt",
-        "name": "Pittsburgh Panthers",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401920759",
-      "line": "Centre Colonels @ Belmont Bruins (11/5 - 7:30 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:30 PM EST",
-      "away": {
-        "abbr": "CCO",
-        "name": "Centre Colonels",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Belm",
-        "name": "Belmont Bruins",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401919002",
-      "line": "Jackson State Tigers @ Tulane Green Wave (11/5 - 7:30 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:30 PM EST",
-      "away": {
-        "abbr": "JKST",
-        "name": "Jackson State Tigers",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Tul",
-        "name": "Tulane Green Wave",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401911195",
-      "line": "Stonehill Skyhawks @ Fordham Rams (11/5 - 7:30 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:30 PM EST",
-      "away": {
-        "abbr": "STO",
-        "name": "Stonehill Skyhawks",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "Ford",
-        "name": "Fordham Rams",
-        "score": null,
-        "players": []
-      }
-    },
-    {
-      "id": "401906792",
-      "line": "Northwestern State Demons @ Mississippi State Bulldogs (11/5 - 7:30 PM EST)",
-      "completed": false,
-      "statusText": "11/5 - 7:30 PM EST",
-      "away": {
-        "abbr": "NWST",
-        "name": "Northwestern State Demons",
-        "score": null,
-        "players": []
-      },
-      "home": {
-        "abbr": "MissSt",
-        "name": "Mississippi State Bulldogs",
-        "score": null,
-        "players": []
-      }
-    },
-    {
       "id": "401906770",
-      "line": "Jacksonville Dolphins @ Florida Gators (11/5 - 8:00 PM EST)",
+      "line": "Jacksonville Dolphins @ Florida Gators (4:46 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "4:46 - 1st",
       "away": {
         "abbr": "JAX",
         "name": "Jacksonville Dolphins",
@@ -382,9 +22,9 @@
     },
     {
       "id": "401909563",
-      "line": "Coastal Carolina Chanticleers @ Duke Blue Devils (11/5 - 8:00 PM EST)",
+      "line": "Coastal Carolina Chanticleers @ Duke Blue Devils (10:49 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "10:49 - 1st",
       "away": {
         "abbr": "CCU",
         "name": "Coastal Carolina Chanticleers",
@@ -400,9 +40,9 @@
     },
     {
       "id": "401925754",
-      "line": "Toledo Rockets @ Michigan State Spartans (11/5 - 8:00 PM EST)",
+      "line": "Toledo Rockets @ Michigan State Spartans (7:58 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "7:58 - 1st",
       "away": {
         "abbr": "TOL",
         "name": "Toledo Rockets",
@@ -418,9 +58,9 @@
     },
     {
       "id": "401906864",
-      "line": "Gardner-Webb Runnin' Bulldogs @ Texas Longhorns (11/5 - 8:00 PM EST)",
+      "line": "Gardner-Webb Runnin' Bulldogs @ Texas Longhorns (5:04 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "5:04 - 1st",
       "away": {
         "abbr": "GWEB",
         "name": "Gardner-Webb Runnin' Bulldogs",
@@ -435,10 +75,298 @@
       }
     },
     {
-      "id": "401927373",
-      "line": "Central State Marauders @ Illinois State Redbirds (11/5 - 8:00 PM EST)",
+      "id": "401919804",
+      "line": "Long Island University Sharks @ Seton Hall Pirates (End of 2nd)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "End of 2nd",
+      "away": {
+        "abbr": "LIU",
+        "name": "Long Island University Sharks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Seton",
+        "name": "Seton Hall Pirates",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929198",
+      "line": "Howard Payne Yellow Jackets @ Texas State Bobcats (11:57 - 2nd)",
+      "completed": false,
+      "statusText": "11:57 - 2nd",
+      "away": {
+        "abbr": "HWPU",
+        "name": "Howard Payne Yellow Jackets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TxSt",
+        "name": "Texas State Bobcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927395",
+      "line": "Southern Virginia Knights @ Richmond Spiders (3:13 - 2nd)",
+      "completed": false,
+      "statusText": "3:13 - 2nd",
+      "away": {
+        "abbr": "SOVA",
+        "name": "Southern Virginia Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Rich",
+        "name": "Richmond Spiders",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925819",
+      "line": "Georgia State Panthers @ Charlotte 49ers (10:19 - 2nd)",
+      "completed": false,
+      "statusText": "10:19 - 2nd",
+      "away": {
+        "abbr": "GAST",
+        "name": "Georgia State Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UNCC",
+        "name": "Charlotte 49ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924733",
+      "line": "Hofstra Pride @ Princeton Tigers (7:58 - 2nd)",
+      "completed": false,
+      "statusText": "7:58 - 2nd",
+      "away": {
+        "abbr": "HOF",
+        "name": "Hofstra Pride",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Princ",
+        "name": "Princeton Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924718",
+      "line": "Cornell Big Red @ Lehigh Mountain Hawks (10:02 - 2nd)",
+      "completed": false,
+      "statusText": "10:02 - 2nd",
+      "away": {
+        "abbr": "Corn",
+        "name": "Cornell Big Red",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LEH",
+        "name": "Lehigh Mountain Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924703",
+      "line": "SUNY Old Westbury Panthers @ Columbia Lions (8:29 - 2nd)",
+      "completed": false,
+      "statusText": "8:29 - 2nd",
+      "away": {
+        "abbr": "OLDW",
+        "name": "SUNY Old Westbury Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Colum",
+        "name": "Columbia Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921747",
+      "line": "Green Bay Phoenix @ Cincinnati Bearcats (13:06 - 2nd)",
+      "completed": false,
+      "statusText": "13:06 - 2nd",
+      "away": {
+        "abbr": "GB",
+        "name": "Green Bay Phoenix",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cin",
+        "name": "Cincinnati Bearcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920377",
+      "line": "Mercer Bears @ Virginia Tech Hokies (11:27 - 2nd)",
+      "completed": false,
+      "statusText": "11:27 - 2nd",
+      "away": {
+        "abbr": "MER",
+        "name": "Mercer Bears",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "VaTec",
+        "name": "Virginia Tech Hokies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919823",
+      "line": "Mercyhurst Lakers @ Notre Dame Fighting Irish (8:26 - 2nd)",
+      "completed": false,
+      "statusText": "8:26 - 2nd",
+      "away": {
+        "abbr": "MERC",
+        "name": "Mercyhurst Lakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ND",
+        "name": "Notre Dame Fighting Irish",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909717",
+      "line": "Central Connecticut Blue Devils @ Syracuse Orange (10:34 - 2nd)",
+      "completed": false,
+      "statusText": "10:34 - 2nd",
+      "away": {
+        "abbr": "CCSU",
+        "name": "Central Connecticut Blue Devils",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Syr",
+        "name": "Syracuse Orange",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909706",
+      "line": "Buffalo Bulls @ Pittsburgh Panthers (16:03 - 2nd)",
+      "completed": false,
+      "statusText": "16:03 - 2nd",
+      "away": {
+        "abbr": "BUF",
+        "name": "Buffalo Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pitt",
+        "name": "Pittsburgh Panthers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920759",
+      "line": "Centre Colonels @ Belmont Bruins (19:00 - 2nd)",
+      "completed": false,
+      "statusText": "19:00 - 2nd",
+      "away": {
+        "abbr": "CCO",
+        "name": "Centre Colonels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Belm",
+        "name": "Belmont Bruins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919002",
+      "line": "Jackson State Tigers @ Tulane Green Wave (Halftime)",
+      "completed": false,
+      "statusText": "Halftime",
+      "away": {
+        "abbr": "JKST",
+        "name": "Jackson State Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tul",
+        "name": "Tulane Green Wave",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911195",
+      "line": "Stonehill Skyhawks @ Fordham Rams (Halftime)",
+      "completed": false,
+      "statusText": "Halftime",
+      "away": {
+        "abbr": "STO",
+        "name": "Stonehill Skyhawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ford",
+        "name": "Fordham Rams",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906792",
+      "line": "Northwestern State Demons @ Mississippi State Bulldogs (Halftime)",
+      "completed": false,
+      "statusText": "Halftime",
+      "away": {
+        "abbr": "NWST",
+        "name": "Northwestern State Demons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MissSt",
+        "name": "Mississippi State Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927373",
+      "line": "Central State Marauders @ Illinois State Redbirds (7:09 - 1st)",
+      "completed": false,
+      "statusText": "7:09 - 1st",
       "away": {
         "abbr": "CNSU",
         "name": "Central State Marauders",
@@ -454,9 +382,9 @@
     },
     {
       "id": "401921094",
-      "line": "East Texas A&M Lions @ Rice Owls (11/5 - 8:00 PM EST)",
+      "line": "East Texas A&M Lions @ Rice Owls (8:16 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "8:16 - 1st",
       "away": {
         "abbr": "ETAM",
         "name": "East Texas A&M Lions",
@@ -472,9 +400,9 @@
     },
     {
       "id": "401920913",
-      "line": "Northern Illinois Huskies @ Tulsa Golden Hurricane (11/5 - 8:00 PM EST)",
+      "line": "Northern Illinois Huskies @ Tulsa Golden Hurricane (7:24 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "7:24 - 1st",
       "away": {
         "abbr": "NIU",
         "name": "Northern Illinois Huskies",
@@ -490,9 +418,9 @@
     },
     {
       "id": "401918968",
-      "line": "VMI Keydets @ SMU Mustangs (11/5 - 8:00 PM EST)",
+      "line": "VMI Keydets @ SMU Mustangs (7:17 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "7:17 - 1st",
       "away": {
         "abbr": "VMI",
         "name": "VMI Keydets",
@@ -508,9 +436,9 @@
     },
     {
       "id": "401911229",
-      "line": "West Georgia Wolves @ Loyola Chicago Ramblers (11/5 - 8:00 PM EST)",
+      "line": "West Georgia Wolves @ Loyola Chicago Ramblers (7:45 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "7:45 - 1st",
       "away": {
         "abbr": "WGA",
         "name": "West Georgia Wolves",
@@ -526,9 +454,9 @@
     },
     {
       "id": "401909491",
-      "line": "Le Moyne Dolphins @ Creighton Bluejays (11/5 - 8:00 PM EST)",
+      "line": "Le Moyne Dolphins @ Creighton Bluejays (7:46 - 1st)",
       "completed": false,
-      "statusText": "11/5 - 8:00 PM EST",
+      "statusText": "7:46 - 1st",
       "away": {
         "abbr": "LEM",
         "name": "Le Moyne Dolphins",
@@ -540,6 +468,1595 @@
         "name": "Creighton Bluejays",
         "score": null,
         "players": []
+      }
+    },
+    {
+      "id": "401909726",
+      "line": "Wake Forest Demon Deacons 51 @ Vanderbilt Commodores 74 (Final)",
+      "completed": true,
+      "statusText": "Final",
+      "away": {
+        "abbr": "Wake",
+        "name": "Wake Forest Demon Deacons",
+        "score": 51,
+        "players": [
+          {
+            "name": "Xander Pintelon",
+            "min": 29,
+            "pts": 5,
+            "reb": 8,
+            "ast": 2,
+            "stl": 0,
+            "blk": 1,
+            "to": 2,
+            "tpm": 1,
+            "fgm": 2,
+            "fga": 7,
+            "ftm": 0,
+            "fta": 1,
+            "composite": 0.09,
+            "zScores": {
+              "pts": -0.278,
+              "reb": 1.729,
+              "ast": 0.639,
+              "stl": -0.449,
+              "blk": 1.025,
+              "tpm": 0.223,
+              "fgImpact": -0.799,
+              "ftImpact": -1.153,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Gavin Placide",
+            "min": 37,
+            "pts": 10,
+            "reb": 8,
+            "ast": 0,
+            "stl": 1,
+            "blk": 3,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 5,
+            "fga": 10,
+            "ftm": 0,
+            "fta": 2,
+            "composite": 4.41,
+            "zScores": {
+              "pts": 0.423,
+              "reb": 1.729,
+              "ast": -0.852,
+              "stl": 0.748,
+              "blk": 3.97,
+              "tpm": -0.609,
+              "fgImpact": 0.542,
+              "ftImpact": -2.306,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Kevair Kennedy",
+            "min": 37,
+            "pts": 20,
+            "reb": 5,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 4,
+            "tpm": 2,
+            "fgm": 7,
+            "fga": 15,
+            "ftm": 4,
+            "fta": 5,
+            "composite": -0.09,
+            "zScores": {
+              "pts": 1.825,
+              "reb": 0.637,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 1.054,
+              "fgImpact": 0.421,
+              "ftImpact": 0.172,
+              "to": -2.452
+            }
+          },
+          {
+            "name": "Justin Ray",
+            "min": 25,
+            "pts": 2,
+            "reb": 4,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 3,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -1.63,
+            "zScores": {
+              "pts": -0.698,
+              "reb": 0.273,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -1.016,
+              "ftImpact": 0.662,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Isaac Carr",
+            "min": 30,
+            "pts": 6,
+            "reb": 2,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 4,
+            "tpm": 2,
+            "fgm": 2,
+            "fga": 6,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.45,
+            "zScores": {
+              "pts": -0.138,
+              "reb": -0.455,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 1.054,
+              "fgImpact": -0.46,
+              "ftImpact": 0,
+              "to": -2.452
+            }
+          },
+          {
+            "name": "Gallagher Placide",
+            "min": 11,
+            "pts": 2,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 3,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.34,
+            "zScores": {
+              "pts": -0.698,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.23,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Justin Abson",
+            "min": 3,
+            "pts": 1,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 1,
+            "fta": 2,
+            "composite": -4.44,
+            "zScores": {
+              "pts": -0.839,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": -0.822,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Antonio Dorn",
+            "min": 2,
+            "pts": 0,
+            "reb": 0,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.01,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Lukas Bojovic",
+            "min": 1,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.76,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Jamari McDowell",
+            "min": 25,
+            "pts": 5,
+            "reb": 3,
+            "ast": 3,
+            "stl": 0,
+            "blk": 2,
+            "to": 1,
+            "tpm": 1,
+            "fgm": 2,
+            "fga": 10,
+            "ftm": 0,
+            "fta": 2,
+            "composite": -0.88,
+            "zScores": {
+              "pts": -0.278,
+              "reb": -0.091,
+              "ast": 1.384,
+              "stl": -0.449,
+              "blk": 2.497,
+              "tpm": 0.223,
+              "fgImpact": -1.815,
+              "ftImpact": -2.306,
+              "to": -0.043
+            }
+          }
+        ]
+      },
+      "home": {
+        "abbr": "Vand",
+        "name": "Vanderbilt Commodores",
+        "score": 74,
+        "players": [
+          {
+            "name": "Chandler Bing",
+            "min": 23,
+            "pts": 13,
+            "reb": 1,
+            "ast": 1,
+            "stl": 1,
+            "blk": 1,
+            "to": 0,
+            "tpm": 1,
+            "fgm": 6,
+            "fga": 8,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 4.68,
+            "zScores": {
+              "pts": 0.844,
+              "reb": -0.819,
+              "ast": -0.106,
+              "stl": 0.748,
+              "blk": 1.025,
+              "tpm": 0.223,
+              "fgImpact": 2.006,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Sebastian Williams-Adams",
+            "min": 16,
+            "pts": 2,
+            "reb": 2,
+            "ast": 2,
+            "stl": 0,
+            "blk": 0,
+            "to": 1,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 3,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -2.29,
+            "zScores": {
+              "pts": -0.698,
+              "reb": -0.455,
+              "ast": 0.639,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.23,
+              "ftImpact": 0,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Berke Buyuktuncel",
+            "min": 27,
+            "pts": 5,
+            "reb": 7,
+            "ast": 3,
+            "stl": 1,
+            "blk": 2,
+            "to": 1,
+            "tpm": 1,
+            "fgm": 2,
+            "fga": 9,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 4.42,
+            "zScores": {
+              "pts": -0.278,
+              "reb": 1.365,
+              "ast": 1.384,
+              "stl": 0.748,
+              "blk": 2.497,
+              "tpm": 0.223,
+              "fgImpact": -1.477,
+              "ftImpact": 0,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Ace Glass",
+            "min": 27,
+            "pts": 16,
+            "reb": 7,
+            "ast": 2,
+            "stl": 0,
+            "blk": 0,
+            "to": 1,
+            "tpm": 4,
+            "fgm": 6,
+            "fga": 14,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 5.02,
+            "zScores": {
+              "pts": 1.264,
+              "reb": 1.365,
+              "ast": 0.639,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 2.717,
+              "fgImpact": -0.026,
+              "ftImpact": 0,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Tyler Tanner",
+            "min": 30,
+            "pts": 17,
+            "reb": 10,
+            "ast": 2,
+            "stl": 1,
+            "blk": 0,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 6,
+            "fga": 14,
+            "ftm": 5,
+            "fta": 5,
+            "composite": 4.98,
+            "zScores": {
+              "pts": 1.405,
+              "reb": 2.457,
+              "ast": 0.639,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.026,
+              "ftImpact": 1.656,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Jackson Sheffield",
+            "min": 13,
+            "pts": 2,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 1,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -2.79,
+            "zScores": {
+              "pts": -0.698,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.339,
+              "ftImpact": 0.662,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Ethan Mgbako",
+            "min": 1,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.76,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Bangot Dak",
+            "min": 16,
+            "pts": 2,
+            "reb": 4,
+            "ast": 1,
+            "stl": 0,
+            "blk": 1,
+            "to": 1,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 7,
+            "ftm": 0,
+            "fta": 2,
+            "composite": -4.5,
+            "zScores": {
+              "pts": -0.698,
+              "reb": 0.273,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": 1.025,
+              "tpm": -0.609,
+              "fgImpact": -1.585,
+              "ftImpact": -2.306,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "T.O. Barrett",
+            "min": 21,
+            "pts": 0,
+            "reb": 4,
+            "ast": 1,
+            "stl": 3,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 4,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 0.68,
+            "zScores": {
+              "pts": -0.979,
+              "reb": 0.273,
+              "ast": -0.106,
+              "stl": 3.14,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -1.355,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Jayden Leverett",
+            "min": 5,
+            "pts": 3,
+            "reb": 3,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 2,
+            "ftm": 1,
+            "fta": 2,
+            "composite": -2.96,
+            "zScores": {
+              "pts": -0.558,
+              "reb": -0.091,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0.108,
+              "ftImpact": -0.822,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Chase Byington",
+            "min": 1,
+            "pts": 0,
+            "reb": 0,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.01,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Baylor Allen",
+            "min": 1,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.76,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Mavrick Hawkins",
+            "min": 1,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.76,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Ant Brown Jr.",
+            "min": 18,
+            "pts": 14,
+            "reb": 2,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 4,
+            "fgm": 5,
+            "fga": 10,
+            "ftm": 0,
+            "fta": 0,
+            "composite": 3.55,
+            "zScores": {
+              "pts": 0.984,
+              "reb": -0.455,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 2.717,
+              "fgImpact": 0.542,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "401925031",
+      "line": "McNeese Cowboys 67 @ North Texas Mean Green 77 (Final)",
+      "completed": true,
+      "statusText": "Final",
+      "away": {
+        "abbr": "MCN",
+        "name": "McNeese Cowboys",
+        "score": 67,
+        "players": []
+      },
+      "home": {
+        "abbr": "N TX",
+        "name": "North Texas Mean Green",
+        "score": 77,
+        "players": [
+          {
+            "name": "Ousmane Ndour",
+            "min": 26,
+            "pts": 7,
+            "reb": 8,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 3,
+            "fga": 3,
+            "ftm": 1,
+            "fta": 2,
+            "composite": 0.66,
+            "zScores": {
+              "pts": 0.003,
+              "reb": 1.729,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 1.342,
+              "ftImpact": -0.822,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Reece Robinson",
+            "min": 23,
+            "pts": 4,
+            "reb": 4,
+            "ast": 2,
+            "stl": 1,
+            "blk": 0,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 2,
+            "fga": 3,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -0.1,
+            "zScores": {
+              "pts": -0.418,
+              "reb": 0.273,
+              "ast": 0.639,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0.556,
+              "ftImpact": 0,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Je'Shawn Stevenson",
+            "min": 37,
+            "pts": 30,
+            "reb": 5,
+            "ast": 5,
+            "stl": 0,
+            "blk": 0,
+            "to": 2,
+            "tpm": 3,
+            "fgm": 12,
+            "fga": 22,
+            "ftm": 3,
+            "fta": 4,
+            "composite": 8.7,
+            "zScores": {
+              "pts": 3.227,
+              "reb": 0.637,
+              "ast": 2.874,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 1.886,
+              "fgImpact": 1.979,
+              "ftImpact": -0.159,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Amar Amkou",
+            "min": 17,
+            "pts": 5,
+            "reb": 4,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 1,
+            "tpm": 1,
+            "fgm": 1,
+            "fga": 5,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -1.82,
+            "zScores": {
+              "pts": -0.278,
+              "reb": 0.273,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 0.223,
+              "fgImpact": -0.908,
+              "ftImpact": 0.662,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Cash Chavis",
+            "min": 31,
+            "pts": 12,
+            "reb": 2,
+            "ast": 3,
+            "stl": 1,
+            "blk": 0,
+            "to": 5,
+            "tpm": 1,
+            "fgm": 2,
+            "fga": 8,
+            "ftm": 7,
+            "fta": 8,
+            "composite": -1.07,
+            "zScores": {
+              "pts": 0.704,
+              "reb": -0.455,
+              "ast": 1.384,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": 0.223,
+              "fgImpact": -1.138,
+              "ftImpact": 1.165,
+              "to": -3.255
+            }
+          },
+          {
+            "name": "Filip Kalajzic",
+            "min": 5,
+            "pts": 1,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 1,
+            "fta": 2,
+            "composite": -4.08,
+            "zScores": {
+              "pts": -0.839,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": -0.822,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "TJ Crumble",
+            "min": 6,
+            "pts": 2,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.03,
+            "zScores": {
+              "pts": -0.698,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0.447,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Braylon Barnes",
+            "min": 2,
+            "pts": 0,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 2,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -4.07,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.677,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Aeneas Alexander",
+            "min": 23,
+            "pts": 10,
+            "reb": 5,
+            "ast": 0,
+            "stl": 1,
+            "blk": 0,
+            "to": 1,
+            "tpm": 2,
+            "fgm": 3,
+            "fga": 7,
+            "ftm": 2,
+            "fta": 2,
+            "composite": 2.17,
+            "zScores": {
+              "pts": 0.423,
+              "reb": 0.637,
+              "ast": -0.852,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": 1.054,
+              "fgImpact": -0.013,
+              "ftImpact": 0.662,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Cole Franklin",
+            "min": 30,
+            "pts": 6,
+            "reb": 5,
+            "ast": 2,
+            "stl": 1,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 2,
+            "fga": 5,
+            "ftm": 2,
+            "fta": 2,
+            "composite": 2.13,
+            "zScores": {
+              "pts": -0.138,
+              "reb": 0.637,
+              "ast": 0.639,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.122,
+              "ftImpact": 0.662,
+              "to": 0.76
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "401917177",
+      "line": "Chattanooga Mocs 93 @ Penn State Nittany Lions 97 (Final)",
+      "completed": true,
+      "statusText": "Final",
+      "away": {
+        "abbr": "UTC",
+        "name": "Chattanooga Mocs",
+        "score": 93,
+        "players": []
+      },
+      "home": {
+        "abbr": "PSU",
+        "name": "Penn State Nittany Lions",
+        "score": 97,
+        "players": [
+          {
+            "name": "Ivan Juric",
+            "min": 27,
+            "pts": 15,
+            "reb": 10,
+            "ast": 1,
+            "stl": 1,
+            "blk": 2,
+            "to": 3,
+            "tpm": 1,
+            "fgm": 2,
+            "fga": 5,
+            "ftm": 10,
+            "fta": 14,
+            "composite": 3.87,
+            "zScores": {
+              "pts": 1.124,
+              "reb": 2.457,
+              "ast": -0.106,
+              "stl": 0.748,
+              "blk": 2.497,
+              "tpm": 0.223,
+              "fgImpact": -0.122,
+              "ftImpact": -1.3,
+              "to": -1.649
+            }
+          },
+          {
+            "name": "Brant Byers",
+            "min": 29,
+            "pts": 6,
+            "reb": 1,
+            "ast": 4,
+            "stl": 0,
+            "blk": 0,
+            "to": 3,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 10,
+            "ftm": 4,
+            "fta": 4,
+            "composite": -3.26,
+            "zScores": {
+              "pts": -0.138,
+              "reb": -0.819,
+              "ast": 2.129,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -2.601,
+              "ftImpact": 1.325,
+              "to": -1.649
+            }
+          },
+          {
+            "name": "Josh Reed",
+            "min": 33,
+            "pts": 25,
+            "reb": 5,
+            "ast": 0,
+            "stl": 5,
+            "blk": 0,
+            "to": 1,
+            "tpm": 0,
+            "fgm": 5,
+            "fga": 8,
+            "ftm": 15,
+            "fta": 16,
+            "composite": 11.78,
+            "zScores": {
+              "pts": 2.526,
+              "reb": 0.637,
+              "ast": -0.852,
+              "stl": 5.533,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 1.22,
+              "ftImpact": 3.815,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Thomas Allard",
+            "min": 27,
+            "pts": 11,
+            "reb": 2,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 3,
+            "tpm": 3,
+            "fgm": 4,
+            "fga": 8,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -0.97,
+            "zScores": {
+              "pts": 0.563,
+              "reb": -0.455,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 1.886,
+              "fgImpact": 0.434,
+              "ftImpact": 0,
+              "to": -1.649
+            }
+          },
+          {
+            "name": "Dasonte Bowen",
+            "min": 36,
+            "pts": 13,
+            "reb": 7,
+            "ast": 3,
+            "stl": 1,
+            "blk": 0,
+            "to": 0,
+            "tpm": 1,
+            "fgm": 3,
+            "fga": 9,
+            "ftm": 6,
+            "fta": 6,
+            "composite": 6.17,
+            "zScores": {
+              "pts": 0.844,
+              "reb": 1.365,
+              "ast": 1.384,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": 0.223,
+              "fgImpact": -0.691,
+              "ftImpact": 1.987,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Francois Wibaut",
+            "min": 18,
+            "pts": 14,
+            "reb": 4,
+            "ast": 1,
+            "stl": 0,
+            "blk": 1,
+            "to": 0,
+            "tpm": 1,
+            "fgm": 5,
+            "fga": 9,
+            "ftm": 3,
+            "fta": 3,
+            "composite": 4.58,
+            "zScores": {
+              "pts": 0.984,
+              "reb": 0.273,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": 1.025,
+              "tpm": 0.223,
+              "fgImpact": 0.881,
+              "ftImpact": 0.994,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Roko Prkacin",
+            "min": 24,
+            "pts": 13,
+            "reb": 6,
+            "ast": 4,
+            "stl": 0,
+            "blk": 0,
+            "to": 3,
+            "tpm": 0,
+            "fgm": 4,
+            "fga": 4,
+            "ftm": 5,
+            "fta": 6,
+            "composite": 3.11,
+            "zScores": {
+              "pts": 0.844,
+              "reb": 1.001,
+              "ast": 2.129,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 1.789,
+              "ftImpact": 0.503,
+              "to": -1.649
+            }
+          },
+          {
+            "name": "Tim Oboh",
+            "min": 2,
+            "pts": 0,
+            "reb": 0,
+            "ast": 0,
+            "stl": 0,
+            "blk": 1,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -2.29,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": 1.025,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Jay Rodgers",
+            "min": 3,
+            "pts": 0,
+            "reb": 0,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 0,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.01,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -1.183,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "401916287",
+      "line": "Bellarmine Knights 69 @ Indiana Hoosiers 92 (Final)",
+      "completed": true,
+      "statusText": "Final",
+      "away": {
+        "abbr": "BELL",
+        "name": "Bellarmine Knights",
+        "score": 69,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ind",
+        "name": "Indiana Hoosiers",
+        "score": 92,
+        "players": [
+          {
+            "name": "Aiden Sherrell",
+            "min": 23,
+            "pts": 12,
+            "reb": 6,
+            "ast": 2,
+            "stl": 1,
+            "blk": 2,
+            "to": 1,
+            "tpm": 1,
+            "fgm": 5,
+            "fga": 6,
+            "ftm": 1,
+            "fta": 2,
+            "composite": 6.84,
+            "zScores": {
+              "pts": 0.704,
+              "reb": 1.001,
+              "ast": 0.639,
+              "stl": 0.748,
+              "blk": 2.497,
+              "tpm": 0.223,
+              "fgImpact": 1.897,
+              "ftImpact": -0.822,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Samet Yigitoglu",
+            "min": 13,
+            "pts": 4,
+            "reb": 1,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 2,
+            "fga": 2,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -2.8,
+            "zScores": {
+              "pts": -0.418,
+              "reb": -0.819,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0.894,
+              "ftImpact": 0,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Markus Burton",
+            "min": 25,
+            "pts": 2,
+            "reb": 2,
+            "ast": 4,
+            "stl": 0,
+            "blk": 0,
+            "to": 1,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 7,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -2.28,
+            "zScores": {
+              "pts": -0.698,
+              "reb": -0.455,
+              "ast": 2.129,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -2.371,
+              "ftImpact": 0.662,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Jaeden Mustaf",
+            "min": 23,
+            "pts": 5,
+            "reb": 4,
+            "ast": 2,
+            "stl": 1,
+            "blk": 0,
+            "to": 1,
+            "tpm": 1,
+            "fgm": 1,
+            "fga": 3,
+            "ftm": 2,
+            "fta": 3,
+            "composite": 0.39,
+            "zScores": {
+              "pts": -0.278,
+              "reb": 0.273,
+              "ast": 0.639,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": 0.223,
+              "fgImpact": -0.23,
+              "ftImpact": -0.491,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Darren Harris",
+            "min": 22,
+            "pts": 23,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 2,
+            "tpm": 5,
+            "fgm": 6,
+            "fga": 11,
+            "ftm": 6,
+            "fta": 8,
+            "composite": 3.05,
+            "zScores": {
+              "pts": 2.246,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 3.549,
+              "fgImpact": 0.99,
+              "ftImpact": -0.319,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Trevor Manhertz",
+            "min": 19,
+            "pts": 9,
+            "reb": 5,
+            "ast": 2,
+            "stl": 0,
+            "blk": 1,
+            "to": 0,
+            "tpm": 2,
+            "fgm": 3,
+            "fga": 4,
+            "ftm": 1,
+            "fta": 3,
+            "composite": 2.98,
+            "zScores": {
+              "pts": 0.283,
+              "reb": 0.637,
+              "ast": 0.639,
+              "stl": -0.449,
+              "blk": 1.025,
+              "tpm": 1.054,
+              "fgImpact": 1.003,
+              "ftImpact": -1.975,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Vaughn Karvala",
+            "min": 5,
+            "pts": 0,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.73,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.339,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Sam Alexis",
+            "min": 24,
+            "pts": 12,
+            "reb": 6,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 2,
+            "tpm": 0,
+            "fgm": 5,
+            "fga": 6,
+            "ftm": 2,
+            "fta": 2,
+            "composite": 1.06,
+            "zScores": {
+              "pts": 0.704,
+              "reb": 1.001,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 1.897,
+              "ftImpact": 0.662,
+              "to": -0.846
+            }
+          },
+          {
+            "name": "Trent Sisley",
+            "min": 17,
+            "pts": 2,
+            "reb": 6,
+            "ast": 1,
+            "stl": 0,
+            "blk": 0,
+            "to": 1,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 2,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -1.24,
+            "zScores": {
+              "pts": -0.698,
+              "reb": 1.001,
+              "ast": -0.106,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0.108,
+              "ftImpact": 0,
+              "to": -0.043
+            }
+          },
+          {
+            "name": "Clemens Sokolov",
+            "min": 3,
+            "pts": 6,
+            "reb": 3,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 2,
+            "fga": 2,
+            "ftm": 2,
+            "fta": 2,
+            "composite": -0.27,
+            "zScores": {
+              "pts": -0.138,
+              "reb": -0.091,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": 0.894,
+              "ftImpact": 0.662,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Justin Monden",
+            "min": 2,
+            "pts": 0,
+            "reb": 1,
+            "ast": 0,
+            "stl": 0,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 0,
+            "fga": 1,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -3.73,
+            "zScores": {
+              "pts": -0.979,
+              "reb": -0.819,
+              "ast": -0.852,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.339,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Drew Snively",
+            "min": 4,
+            "pts": 2,
+            "reb": 2,
+            "ast": 0,
+            "stl": 1,
+            "blk": 0,
+            "to": 0,
+            "tpm": 0,
+            "fgm": 1,
+            "fga": 5,
+            "ftm": 0,
+            "fta": 0,
+            "composite": -2.46,
+            "zScores": {
+              "pts": -0.698,
+              "reb": -0.455,
+              "ast": -0.852,
+              "stl": 0.748,
+              "blk": -0.447,
+              "tpm": -0.609,
+              "fgImpact": -0.908,
+              "ftImpact": 0,
+              "to": 0.76
+            }
+          },
+          {
+            "name": "Bryce Lindsay",
+            "min": 20,
+            "pts": 15,
+            "reb": 2,
+            "ast": 4,
+            "stl": 0,
+            "blk": 0,
+            "to": 2,
+            "tpm": 3,
+            "fgm": 5,
+            "fga": 12,
+            "ftm": 2,
+            "fta": 3,
+            "composite": 2.32,
+            "zScores": {
+              "pts": 1.124,
+              "reb": -0.455,
+              "ast": 2.129,
+              "stl": -0.449,
+              "blk": -0.447,
+              "tpm": 1.886,
+              "fgImpact": -0.135,
+              "ftImpact": -0.491,
+              "to": -0.846
+            }
+          }
+        ]
       }
     },
     {
