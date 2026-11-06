@@ -394,6 +394,10 @@ async function main() {
   }
   const text = parts.join('\n\n────────────────────\n\n') + '\n\n* = neuer Starter · 🔒 = Spiel läuft/vorbei';
   console.log(text);
+  // Zusammenfassung auf der Ergebnisseite des Laufs (GitHub-Mail verlinkt dorthin)
+  if (process.env.GITHUB_STEP_SUMMARY && parts.length) {
+    try { fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## 🏈 Auto-Lineup${DRY ? ' (Testlauf)' : ''}\n\n\`\`\`\n${text}\n\`\`\`\n`); } catch (e) { /* egal */ }
+  }
   if (notify && parts.length) {
     const subject = `🏈 Auto-Lineup: ${subj.join(' · ')}`;
     await sendMail(subject, text);
