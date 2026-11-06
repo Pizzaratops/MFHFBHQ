@@ -1,0 +1,12 @@
+{
+  "league": "nba",
+  "date": "2026-11-05",
+  "games": [
+    "Orlando Magic 104 @ Phoenix Suns 117 (Final)",
+    "Miami Heat @ Golden State Warriors (40.0 - 3rd)"
+  ],
+  "leagueAvg": {
+    "fg": 50,
+    "ft": 62.2
+  }
+}
