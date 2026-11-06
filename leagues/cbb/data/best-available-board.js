@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-06T14:16:19.164Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-06T15:56:53.939Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
