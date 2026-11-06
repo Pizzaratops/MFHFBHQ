@@ -241,6 +241,11 @@ const LEAGUES = [
     notes: {
       dues: '2026 ist von allen bezahlt.',
     },
+    // Aushänge auf „Regeln & Erklärung“ — u. a. Wetten zwischen Ownern (Einsatz = Picks)
+    announcements: [
+      { title: '🤝 Wette um den 1st 2031 <small class="muted">· vereinbart 06.11.2026 im Gruppenchat</small>', highlight: true,
+        html: '<p><b>San José Salamancas</b> 🦎 (Pat) gegen <b>South Steglitz Sharknados</b> 🦈 (Luca).</p><ul><li><b>Wette:</b> Pat ist in der <b>nächsten Saison (2027)</b> besser als Luca.</li><li><b>Einsatz:</b> der eigene <b>1st-Round-Pick 2031</b>. Wer verliert, gibt seinen 1st 2031 an den anderen ab.</li><li><b>Fällig:</b> nach Abschluss der Saison 2027, Pick-Übertrag in Sleeper durch den Commissioner.</li><li><b>Noch offen:</b> was „besser“ genau heißt (Endplatzierung inkl. Playoffs oder Platz nach der regulären Saison).</li></ul>' },
+    ],
     legacyUrl: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/?legacy=1',
     repo: 'Dynasty-Of-Pretend-Experts',
   },
