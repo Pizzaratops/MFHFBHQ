@@ -72,6 +72,13 @@ const TRADES = [
     teamB: "Angry Ducks",
     teamBGives: [],
   },
+  {
+    date: "2026-09-27",
+    teamA: "The Bear Witch Project",
+    teamAGives: ["DeVonta Smith"],
+    teamB: "Burrowhead Dancers",
+    teamBGives: ["2027 1st"],
+  },
 ];
 
 // Getradete Picks INNERHALB des 2026er Drafts (im Gegensatz zu FUTURE_PICKS
@@ -100,6 +107,7 @@ const FUTURE_PICKS = {
     { round: "3rd", from: "Beastmode",     owner: "The Lamartrix" },
     { round: "1st", from: "Team Beermode", owner: "The Bear Witch Project" },
     { round: "3rd", from: "Team Beermode", owner: "The Bear Witch Project" },
+    { round: "1st", from: "Burrowhead Dancers", owner: "The Bear Witch Project" },
   ],
   2028: [],
   2029: [],
