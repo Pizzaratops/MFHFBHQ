@@ -4197,9 +4197,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909936",
-      line: "Orlando Magic @ Phoenix Suns (11/5 - 9:00 PM EST)",
+      line: "Orlando Magic @ Phoenix Suns (2:48 - 2nd)",
       completed: false,
-      statusText: "11/5 - 9:00 PM EST",
+      statusText: "2:48 - 2nd",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
