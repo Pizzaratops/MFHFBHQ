@@ -1,0 +1,72 @@
+name: Auto-Lineup (NFL)
+
+# Stellt die eigene Aufstellung in den Ligen aus automation/auto-lineup.config.json
+# optimal auf (Foodball/ESPN, DOPE/Sleeper) und schickt eine Push-Nachricht (ntfy).
+# Zeiten in UTC, ausgelegt auf US-Winterzeit (ab Anfang November, ET = UTC−5);
+# Inaktive werden ca. 90 Min. vor Kickoff gemeldet:
+#   Do 22:00         vor Thursday Night (Kickoff 01:15 UTC Fr)
+#   Fr 00:05         nach den TNF-Inaktiven
+#   Sa 16:00         Wochenstand (späte Saison: Samstagsspiele)
+#   So 13:00         früh (Wochenstand, London-Spiele 14:30)
+#   So 16:50 / 17:25 nach den Inaktiven für 18:00-Spiele
+#   So 19:50 / 20:40 nach den Inaktiven für 21:05/21:25-Spiele
+#   Mo 00:10         Sunday Night (01:20 UTC)
+#   Mo 23:55         Monday Night (01:15 UTC Di)
+# GitHub startet geplante Läufe teils 5–20 Min. später, daher doppelte Slots.
+#
+# Secrets: ESPN_S2, SWID (bestehen), SLEEPER_TOKEN, NTFY_TOPIC.
+# Manuell: Actions → Auto-Lineup → Run workflow (Testlauf = nichts einreichen).
+
+on:
+  schedule:
+    - cron: '0 22 * * 4'
+    - cron: '5 0 * * 5'
+    - cron: '0 16 * * 6'
+    - cron: '0 13 * * 0'
+    - cron: '50 16 * * 0'
+    - cron: '25 17 * * 0'
+    - cron: '50 19 * * 0'
+    - cron: '40 20 * * 0'
+    - cron: '10 0 * * 1'
+    - cron: '55 23 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: 'Testlauf: nur Nachricht, nichts einreichen'
+        type: boolean
+        default: true
+      report:
+        description: 'Auch Nachricht schicken, wenn schon alles optimal ist'
+        type: boolean
+        default: true
+      only:
+        description: 'Nur diese Liga (Name aus der Config, leer = alle)'
+        required: false
+        default: ''
+
+concurrency:
+  group: auto-lineup
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  lineup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Aufstellung optimieren
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          SWID: ${{ secrets.SWID }}
+          SLEEPER_TOKEN: ${{ secrets.SLEEPER_TOKEN }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          AUTO_LINEUP_DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry && '1' || '0' }}
+          AUTO_LINEUP_REPORT: ${{ github.event_name == 'workflow_dispatch' && inputs.report && '1' || '0' }}
+          AUTO_LINEUP_ONLY: ${{ inputs.only }}
+        run: node automation/auto-lineup.js
