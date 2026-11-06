@@ -246,6 +246,11 @@ const LEAGUES = [
       { title: '🤝 Wette um den 1st 2031 <small class="muted">· vereinbart 06.11.2026 im Gruppenchat</small>', highlight: true,
         html: '<p><b>San José Salamancas</b> 🦎 (Pat) gegen <b>South Steglitz Sharknados</b> 🦈 (Luca).</p><ul><li><b>Wette:</b> Pat ist in der <b>nächsten Saison (2027)</b> besser als Luca.</li><li><b>Einsatz:</b> der eigene <b>1st-Round-Pick 2031</b>. Wer verliert, gibt seinen 1st 2031 an den anderen ab.</li><li><b>Fällig:</b> nach Abschluss der Saison 2027, Pick-Übertrag in Sleeper durch den Commissioner.</li><li><b>Noch offen:</b> was „besser“ genau heißt (Endplatzierung inkl. Playoffs oder Platz nach der regulären Saison).</li></ul>' },
     ],
+    // Randnotizen an Teams (Team-Kachel + Team-Seite), Schlüssel = Team-ID aus data/teams.js
+    teamNotes: {
+      lovethecheesehead: [{ icon: '🤝', short: 'Wette: 1st 2031', text: 'Wette mit den South Steglitz Sharknados (Luca): Pat ist 2027 besser als Luca. Einsatz: 1st 2031, der Verlierer gibt seinen ab. Details unter Regeln & Erklärung.', page: 'erklaerung' }],
+      dickvanhurik: [{ icon: '🤝', short: 'Wette: 1st 2031', text: 'Wette mit den San José Salamancas (Pat): Pat ist 2027 besser als Luca. Einsatz: 1st 2031, der Verlierer gibt seinen ab. Details unter Regeln & Erklärung.', page: 'erklaerung' }],
+    },
     legacyUrl: 'https://pizzaratops.github.io/Dynasty-Of-Pretend-Experts/?legacy=1',
     repo: 'Dynasty-Of-Pretend-Experts',
   },

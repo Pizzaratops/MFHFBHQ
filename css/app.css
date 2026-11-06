@@ -651,3 +651,5 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .table thead th.ts-desc::after { content: ' ▼'; font-size: .8em; color: var(--league-accent); }
 /* Glossar-Tooltips (core/glossary.js): dezenter Hinweis, dass Hovern etwas erklärt */
 .table thead th.has-gloss { text-decoration: underline dotted color-mix(in srgb, currentColor 45%, transparent); text-underline-offset: 3px; }
+.team-note-mark { cursor: help; font-size: .9em; }
+.team-note { margin: 8px 0 4px; }
