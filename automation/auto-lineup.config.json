@@ -1,8 +1,9 @@
 {
-  "_info": "Auto-Lineup (automation/auto-lineup.js): stellt die eigene Aufstellung nach Projektion optimal auf und schickt eine Push-Nachricht (ntfy). mode: submit = einreichen, dry = nur Nachricht. minGain = Mindest-Verbesserung der ganzen Aufstellung in Punkten; stick = so viel muss ein Ersatz mehr bringen, damit ein Starter rausfliegt.",
+  "_info": "Auto-Lineup (automation/auto-lineup.js): stellt die eigene Aufstellung nach Projektion optimal auf und schickt eine Push-Nachricht (ntfy). mode: submit = einreichen, dry = nur Nachricht. minGain = Mindest-Verbesserung der ganzen Aufstellung in Punkten; stick = so viel muss ein Ersatz mehr bringen, damit ein Starter rausfliegt; waiverMin = ab so vielen Punkten Gewinn erscheint ein Waiver-Tipp. Versand: E-Mail (Secrets MAIL_USER, MAIL_PASS, MAIL_TO, optional MAIL_HOST/MAIL_PORT; Standard smtp.web.de:587), zusätzlich ntfy, falls NTFY_TOPIC gesetzt.",
   "mode": "submit",
   "minGain": 0.3,
   "stick": 0.5,
+  "waiverMin": 1.5,
   "leagues": [
     { "name": "Wild Hunt", "platform": "espn", "sport": "nfl", "leagueId": 783491558, "season": 2026, "enabled": true },
     { "name": "Bears Interleague", "platform": "sleeper", "sport": "nfl", "leagueId": "1312955101303824384", "user": "Milchreis", "enabled": true }

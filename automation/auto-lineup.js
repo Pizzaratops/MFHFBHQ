@@ -31,6 +31,7 @@ const CFG = JSON.parse(fs.readFileSync(path.join(__dirname, 'auto-lineup.config.
 const DRY = process.env.AUTO_LINEUP_DRY === '1' || CFG.mode === 'dry';
 const MIN_GAIN = CFG.minGain ?? 0.3;
 const STICK = CFG.stick ?? 0.5;
+const WAIVER_MIN = CFG.waiverMin ?? 1.5;
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 const fmt = x => (Math.round(x * 10) / 10).toFixed(1).replace('.', ',');
 
@@ -138,8 +139,8 @@ function lineupText(slots, assign, before) {
     return `${s.label.padEnd(5)} ${p.name}${p.team ? ` (${p.team})` : ''}${tag} ${fmt(p.proj)}${was.has(p.id) ? '' : ' *'}${p.locked ? ' 🔒' : ''}`;
   });
   const out = before.filter(p => p && !now.has(p.id));
-  return lines.join('\n') + '\n\n* = neuer Starter · 🔒 = Spiel läuft/vorbei' +
-    (out.length ? `\nRaus: ${out.map(p => `${p.name} (${p.team || '?'}, ${p.pos}${p.inj ? ', ' + p.inj : ''}) ${fmt(p.proj)}`).join(', ')}` : '');
+  return lines.join('\n') +
+    (out.length ? `\n\nRaus: ${out.map(p => `${p.name} (${p.team || '?'}, ${p.pos}${p.inj ? ', ' + p.inj : ''}) ${fmt(p.proj)}`).join(', ')}` : '');
 }
 
 // ============================================================
@@ -182,9 +183,23 @@ async function runEspn(L) {
     const i = slots.findIndex((s, k) => s.sid === p.slotId && !before[k]);
     if (i >= 0) { before[i] = p; p.cur = i; }
   });
+  // Free Agents / Waiver (für Waiver-Tipps): Top nach Wochenprojektion
+  let fa = [];
+  try {
+    const filter = { players: { filterStatus: { value: ['FREEAGENT', 'WAIVERS'] }, filterSlotIds: { value: [0, 2, 4, 6, 16, 17] },
+      sortAppliedStatTotal: { sortAsc: false, sortPriority: 1, value: `11${L.season}${week}` }, limit: 80 } };
+    const r = await http(`${base}?view=kona_player_info&scoringPeriodId=${week}`, { headers: { ...headers, 'x-fantasy-filter': JSON.stringify(filter) } });
+    fa = (r.players || []).map(e => {
+      const pl = e.player || {};
+      const st = (pl.stats || []).find(x => x.statSourceId === 1 && x.statSplitTypeId === 1 && x.scoringPeriodId === week);
+      return { id: pl.id, name: pl.fullName, pos: ESPN_POS[pl.defaultPositionId] || '?', team: ESPN_TEAM[pl.proTeamId] || '', eligible: pl.eligibleSlots || [],
+        proj: (st ? st.appliedTotal || 0 : 0) * injuryFactor(pl.injuryStatus), inj: injTag(pl.injuryStatus), locked: !!e.lineupLocked,
+        status: e.status === 'WAIVERS' ? 'Waiver' : 'FA', cur: -1 };
+    }).filter(p => p.proj > 0 && !p.locked);
+  } catch (e) { console.log('ESPN-FA-Liste:', e.message); }
   const assign = optimize(slots, players);
   const gain = total(assign) - total(before);
-  const res = { league: L, week, slots, before, assign, gain, link: `https://fantasy.espn.com/football/team?leagueId=${L.leagueId}&teamId=${me.id}&seasonId=${L.season}` };
+  const res = { league: L, week, slots, before, assign, gain, players, fa, link: `https://fantasy.espn.com/football/team?leagueId=${L.leagueId}&teamId=${me.id}&seasonId=${L.season}` };
   if (gain < MIN_GAIN) return res;
   // Wechsel: jeder Spieler, dessen Slot sich ändert
   const target = new Map();
@@ -226,6 +241,8 @@ async function nflLocks(season, week) {
   });
   return { locked, playing };
 }
+
+const pl_ok = p => p.name && !/^\d+$/.test(p.name);
 
 async function runSleeper(L0) {
   let L = L0;
@@ -276,9 +293,19 @@ async function runSleeper(L0) {
       locked: !!team && locks.locked.has(team), cur: current.indexOf(id) };
   });
   const before = slots.map((s, i) => P.find(p => p.cur === i) || null);
+  // Free Agents: alle projizierten Spieler, die in der Liga niemand hat
+  const owned = new Set();
+  rosters.forEach(r => [...(r.players || []), ...(r.reserve || []), ...(r.taxi || [])].forEach(id => owned.add(String(id))));
+  const fa = Object.keys(proj).filter(id => !owned.has(id) && proj[id] > 0).map(id => {
+    const pl = players[id] || {};
+    const team = nflTeam(pl.team || (pl.position === 'DEF' ? id : ''));
+    const bye = team && !locks.playing.has(team);
+    return { id, name: pl.full_name || (pl.position === 'DEF' ? `${id} D/ST` : id), pos: pl.position || '?', team, positions: pl.fantasy_positions || [pl.position],
+      proj: bye ? 0 : proj[id] * injuryFactor(pl.injury_status), inj: injTag(pl.injury_status), locked: !!team && locks.locked.has(team), status: 'frei', cur: -1 };
+  }).filter(p => p.proj > 0 && !p.locked && pl_ok(p)).sort((a, b) => b.proj - a.proj).slice(0, 80);
   const assign = optimize(slots, P);
   const gain = total(assign) - total(before);
-  const res = { league: L, week, slots, before, assign, gain, link: `https://sleeper.com/leagues/${L.leagueId}/team` };
+  const res = { league: L, week, slots, before, assign, gain, players: P, fa, link: `https://sleeper.com/leagues/${L.leagueId}/team` };
   if (gain < MIN_GAIN) return res;
   const starters = assign.map(p => (p ? p.id : '0'));
   res.items = starters.filter((id, i) => id !== (current[i] || '0')).length;
@@ -297,30 +324,80 @@ async function runSleeper(L0) {
   return res;
 }
 
-// ============================================================
+// ---------- Waiver-Tipps ----------
+//  Für die besten freien Spieler: wie viel besser wäre die optimale Aufstellung
+//  dieser Woche, wenn er im Kader wäre? Nur Vorschläge, es wird nichts geholt.
+function waiverTips(r) {
+  if (!r.fa || !r.fa.length) return [];
+  const base = total(optimize(r.slots, r.players));
+  const tips = [];
+  r.fa.slice().sort((a, b) => b.proj - a.proj).slice(0, 40).forEach(f => {
+    const a2 = optimize(r.slots, r.players.concat([{ ...f, cur: -1 }]));
+    if (!a2.some(p => p && p.id === f.id)) return;
+    const g = total(a2) - base;
+    if (g < WAIVER_MIN) return;
+    const now = new Set(a2.filter(Boolean).map(p => p.id));
+    const out = optimize(r.slots, r.players).filter(p => p && !now.has(p.id));
+    tips.push({ f, g, out });
+  });
+  return tips.sort((a, b) => b.g - a.g).slice(0, 3);
+}
+const tipsText = tips => tips.length ? '\n\nWaiver-Tipps (nur Vorschlag, diese Woche):\n' + tips.map(t =>
+  `+ ${t.f.name} (${t.f.pos}, ${t.f.team || '?'}${t.f.inj ? ', ' + t.f.inj : ''}) ${fmt(t.f.proj)} · ${t.f.status} → +${fmt(t.g)} statt ${t.out.map(p => `${p.name} ${fmt(p.proj)}`).join(', ') || '—'}`).join('\n') : '';
+
+// ---------- Versand: E-Mail (SMTP) und/oder ntfy ----------
+async function sendMail(subject, text) {
+  const { MAIL_USER, MAIL_PASS, MAIL_TO } = process.env;
+  if (!MAIL_USER || !MAIL_PASS || !MAIL_TO) { console.log('(MAIL_USER/MAIL_PASS/MAIL_TO fehlen — keine E-Mail)'); return; }
+  let nodemailer;
+  try { nodemailer = require('nodemailer'); } catch (e) { console.log('nodemailer fehlt — keine E-Mail'); return; }
+  const tr = nodemailer.createTransport({ host: process.env.MAIL_HOST || 'smtp.web.de', port: Number(process.env.MAIL_PORT || 587), secure: false, requireTLS: true, auth: { user: MAIL_USER, pass: MAIL_PASS } });
+  const esc = t => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  try {
+    await tr.sendMail({ from: `MFHFB Auto-Lineup <${MAIL_USER}>`, to: MAIL_TO, subject, text,
+      html: `<pre style="font-family:Menlo,Consolas,monospace;font-size:13px;line-height:1.45">${esc(text)}</pre>` });
+    console.log('E-Mail verschickt.');
+  } catch (e) { console.log('E-Mail-Fehler:', e.message); }
+}
+
 async function main() {
   const only = (process.env.AUTO_LINEUP_ONLY || '').toLowerCase();
+  const REPORT = process.env.AUTO_LINEUP_REPORT === '1', WAIVERS = process.env.AUTO_LINEUP_WAIVERS === '1';
   const leagues = CFG.leagues.filter(l => l.enabled && (!only || l.name.toLowerCase() === only));
-  let failed = 0;
+  const parts = [], subj = [];
+  let failed = 0, notify = false;
   for (const L of leagues) {
     try {
       const r = L.platform === 'espn' ? await runEspn(L) : L.platform === 'sleeper' ? await runSleeper(L) : { skip: 'Plattform nicht unterstützt' };
       if (r.skip) { console.log(`${L.name}: übersprungen (${r.skip})`); continue; }
+      const tips = waiverTips(r);
       const head = `${L.name} · Woche ${r.week}`;
-      const txt = lineupText(r.slots, r.assign, r.before);
+      let block;
       if (r.gain < MIN_GAIN) {
-        console.log(`${head}: Aufstellung ist optimal (Projektion ${fmt(total(r.before))}).\n${lineupText(r.slots, r.before, r.before)}`);
-        if (process.env.AUTO_LINEUP_REPORT === '1') await push(`✅ ${head}: schon optimal`, `Projektion ${fmt(total(r.before))}\n\n${lineupText(r.slots, r.before, r.before)}`, { tags: ['white_check_mark'], priority: 2, click: r.link });
-        continue;
+        block = `✅ ${head}: Aufstellung ist optimal (Projektion ${fmt(total(r.before))})\n\n${lineupText(r.slots, r.before, r.before)}`;
+        subj.push(`${L.name} optimal`);
+        if (REPORT || (WAIVERS && tips.length)) notify = true;
+      } else {
+        const verb = r.submitted ? 'umgestellt' : DRY ? 'Vorschlag (Testlauf, nicht eingereicht)' : 'nichts eingereicht';
+        block = `🏈 ${head}: ${verb} (+${fmt(r.gain)})\nProjektion ${fmt(total(r.before))} → ${fmt(total(r.assign))}\n\n${lineupText(r.slots, r.assign, r.before)}`;
+        subj.push(`${L.name} ${r.submitted ? 'umgestellt' : 'Vorschlag'} +${fmt(r.gain)}`);
+        notify = true;
       }
-      const verb = r.submitted ? 'umgestellt' : DRY ? 'Vorschlag (Testlauf, nicht eingereicht)' : 'nichts zu ändern';
-      await push(`🏈 ${head}: ${verb} (+${fmt(r.gain)})`,
-        `Projektion ${fmt(total(r.before))} → ${fmt(total(r.assign))}\n\n${txt}`, { tags: [r.submitted ? 'football' : 'memo'], priority: r.submitted ? 3 : 2, click: r.link });
+      if (tips.length) subj[subj.length - 1] += ` · ${tips.length} Waiver-Tipp${tips.length > 1 ? 's' : ''}`;
+      parts.push(block + tipsText(tips) + `\n\n${r.link}`);
     } catch (e) {
-      failed++;
+      failed++; notify = true;
       const hint = e.status === 401 || e.status === 403 ? (L.platform === 'sleeper' ? ' — SLEEPER_TOKEN abgelaufen? Neu aus sleeper.com kopieren.' : ' — ESPN-Cookies (ESPN_S2/SWID) abgelaufen?') : '';
-      await push(`⚠️ Auto-Lineup ${L.name}: Fehler`, e.message + hint, { tags: ['warning'], priority: 4 });
+      parts.push(`⚠️ ${L.name}: Fehler\n${e.message}${hint}`);
+      subj.push(`⚠️ ${L.name} Fehler`);
     }
+  }
+  const text = parts.join('\n\n────────────────────\n\n') + '\n\n* = neuer Starter · 🔒 = Spiel läuft/vorbei';
+  console.log(text);
+  if (notify && parts.length) {
+    const subject = `🏈 Auto-Lineup: ${subj.join(' · ')}`;
+    await sendMail(subject, text);
+    if (process.env.NTFY_TOPIC) await push(subject, text, { tags: ['football'], priority: failed ? 4 : 3 });
   }
   process.exitCode = failed ? 1 : 0;
 }

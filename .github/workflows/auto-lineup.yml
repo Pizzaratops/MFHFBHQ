@@ -1,7 +1,8 @@
 name: Auto-Lineup (NFL)
 
 # Stellt die eigene Aufstellung in den Ligen aus automation/auto-lineup.config.json
-# optimal auf (Wild Hunt/ESPN, Bears Interleague/Sleeper) und schickt eine Push-Nachricht (ntfy).
+# optimal auf (Wild Hunt/ESPN, Bears Interleague/Sleeper) und schickt eine E-Mail
+# (bei Änderung/Fehler; dienstags Waiver-Report mit Tipps, falls es welche gibt).
 # Zeiten in UTC, ausgelegt auf US-Winterzeit (ab Anfang November, ET = UTC−5);
 # Inaktive werden ca. 90 Min. vor Kickoff gemeldet:
 #   Do 22:00         vor Thursday Night (Kickoff 01:15 UTC Fr)
@@ -12,9 +13,11 @@ name: Auto-Lineup (NFL)
 #   So 19:50 / 20:40 nach den Inaktiven für 21:05/21:25-Spiele
 #   Mo 00:10         Sunday Night (01:20 UTC)
 #   Mo 23:55         Monday Night (01:15 UTC Di)
+#   Di 17:00         Waiver-Report (vor den Waivern Mi früh): Mail nur, wenn es Tipps gibt
 # GitHub startet geplante Läufe teils 5–20 Min. später, daher doppelte Slots.
 #
-# Secrets: ESPN_S2, SWID (bestehen), SLEEPER_TOKEN, NTFY_TOPIC.
+# Secrets: ESPN_S2, SWID (bestehen), SLEEPER_TOKEN, MAIL_USER, MAIL_PASS, MAIL_TO
+#          (optional MAIL_HOST/MAIL_PORT, Standard smtp.web.de:587; optional NTFY_TOPIC).
 # Manuell: Actions → Auto-Lineup → Run workflow (Testlauf = nichts einreichen).
 
 on:
@@ -29,6 +32,7 @@ on:
     - cron: '40 20 * * 0'
     - cron: '10 0 * * 1'
     - cron: '55 23 * * 1'
+    - cron: '0 17 * * 2'
   workflow_dispatch:
     inputs:
       dry:
@@ -36,7 +40,7 @@ on:
         type: boolean
         default: true
       report:
-        description: 'Auch Nachricht schicken, wenn schon alles optimal ist'
+        description: 'Auch Mail schicken, wenn schon alles optimal ist'
         type: boolean
         default: true
       only:
@@ -60,12 +64,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: nodemailer
+        run: npm install --no-save --no-audit --no-fund nodemailer@6.9.16
       - name: Aufstellung optimieren
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
           SWID: ${{ secrets.SWID }}
           SLEEPER_TOKEN: ${{ secrets.SLEEPER_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          AUTO_LINEUP_WAIVERS: ${{ (github.event.schedule == '0 17 * * 2' || github.event_name == 'workflow_dispatch') && '1' || '0' }}
           AUTO_LINEUP_DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry && '1' || '0' }}
           AUTO_LINEUP_REPORT: ${{ github.event_name == 'workflow_dispatch' && inputs.report && '1' || '0' }}
           AUTO_LINEUP_ONLY: ${{ inputs.only }}
