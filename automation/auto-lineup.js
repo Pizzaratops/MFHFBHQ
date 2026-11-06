@@ -30,6 +30,7 @@ const path = require('path');
 const CFG = JSON.parse(fs.readFileSync(path.join(__dirname, 'auto-lineup.config.json'), 'utf8'));
 const DRY = process.env.AUTO_LINEUP_DRY === '1' || CFG.mode === 'dry';
 const MIN_GAIN = CFG.minGain ?? 0.3;
+const STICK = CFG.stick ?? 0.5;
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 const fmt = x => (Math.round(x * 10) / 10).toFixed(1).replace('.', ',');
 
@@ -88,8 +89,9 @@ function optimize(slots, players) {
   players.forEach(p => { if (p.locked) { if (p.cur >= 0) assign[p.cur] = p; fixed.add(p.id); } });
   const free = players.filter(p => !fixed.has(p.id));
   const open = slots.map((s, i) => i).filter(i => !assign[i]);
-  // Wert mit kleinem Bonus für „bleibt auf seinem Platz“ (vermeidet unnötige Wechsel bei Gleichstand)
-  const val = (p, i) => p.proj + (p.cur === i ? 0.01 : 0);
+  // Wert mit Bonus für bisherige Starter (STICK): ein Starter fliegt nur raus, wenn der
+  // Ersatz mindestens STICK Punkte mehr projiziert — keine Wechsel wegen Rundungsrauschen
+  const val = (p, i) => p.proj + (p.cur >= 0 ? STICK : 0) + (p.cur === i ? 0.01 : 0);
   // gierig: restriktivste Plätze zuerst
   const width = i => free.filter(p => slots[i].elig(p)).length;
   open.sort((a, b) => width(a) - width(b));

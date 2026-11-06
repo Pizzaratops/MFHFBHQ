@@ -1,7 +1,8 @@
 {
-  "_info": "Auto-Lineup (automation/auto-lineup.js): stellt die eigene Aufstellung nach Projektion optimal auf und schickt eine Push-Nachricht (ntfy). mode: submit = einreichen, dry = nur Nachricht. minGain = Mindest-Verbesserung in Punkten, damit umgestellt wird.",
+  "_info": "Auto-Lineup (automation/auto-lineup.js): stellt die eigene Aufstellung nach Projektion optimal auf und schickt eine Push-Nachricht (ntfy). mode: submit = einreichen, dry = nur Nachricht. minGain = Mindest-Verbesserung der ganzen Aufstellung in Punkten; stick = so viel muss ein Ersatz mehr bringen, damit ein Starter rausfliegt.",
   "mode": "submit",
   "minGain": 0.3,
+  "stick": 0.5,
   "leagues": [
     { "name": "Foodball", "platform": "espn", "sport": "nfl", "leagueId": 91260355, "season": 2026, "enabled": true },
     { "name": "DOPE", "platform": "sleeper", "sport": "nfl", "leagueId": "1312799736218017792", "rosterId": 1, "enabled": true }
