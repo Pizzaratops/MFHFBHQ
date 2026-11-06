@@ -4197,9 +4197,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909936",
-      line: "Orlando Magic @ Phoenix Suns (2:48 - 2nd)",
+      line: "Orlando Magic @ Phoenix Suns (9:20 - 4th)",
       completed: false,
-      statusText: "2:48 - 2nd",
+      statusText: "9:20 - 4th",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4215,9 +4215,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909937",
-      line: "Miami Heat @ Golden State Warriors (11/5 - 10:00 PM EST)",
+      line: "Miami Heat @ Golden State Warriors (3:39 - 2nd)",
       completed: false,
-      statusText: "11/5 - 10:00 PM EST",
+      statusText: "3:39 - 2nd",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
