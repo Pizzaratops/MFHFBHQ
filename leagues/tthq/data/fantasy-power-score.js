@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-06T07:01:22.090Z",
+  "generatedAt": "2026-11-06T08:01:18.605Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 9 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,26 +97,26 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 318.6,
-        "reb": 126.6,
-        "ast": 74.4,
-        "stl": 22.45,
-        "blk": 15.5,
-        "tpm": 38.3,
-        "to": 40.2,
-        "fgPct": 47.5,
-        "ftPct": 78.6
+        "pts": 312.3,
+        "reb": 121.7,
+        "ast": 73.7,
+        "stl": 22.04,
+        "blk": 14.64,
+        "tpm": 38.2,
+        "to": 39.6,
+        "fgPct": 47.2,
+        "ftPct": 78.8
       },
       "rank": {
         "pts": 7,
-        "reb": 5,
+        "reb": 6,
         "ast": 7,
         "stl": 8,
-        "blk": 4,
+        "blk": 6,
         "tpm": 5,
         "fgPct": 5,
         "ftPct": 6,
-        "to": 7
+        "to": 6
       },
       "includedCount": 28,
       "projCount": 28,
@@ -147,7 +147,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 2,
         "fgPct": 12,
         "ftPct": 3,
-        "to": 6
+        "to": 7
       },
       "includedCount": 28,
       "projCount": 28,
@@ -236,7 +236,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 7,
         "ast": 12,
         "stl": 9,
-        "blk": 5,
+        "blk": 4,
         "tpm": 6,
         "fgPct": 9,
         "ftPct": 10,
@@ -364,7 +364,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 9,
         "ast": 9,
         "stl": 10,
-        "blk": 6,
+        "blk": 5,
         "tpm": 11,
         "fgPct": 6,
         "ftPct": 8,
@@ -392,7 +392,7 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 3,
-        "reb": 6,
+        "reb": 5,
         "ast": 2,
         "stl": 3,
         "blk": 7,
