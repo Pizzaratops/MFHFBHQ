@@ -1,7 +1,7 @@
 name: Auto-Lineup (NFL)
 
 # Stellt die eigene Aufstellung in den Ligen aus automation/auto-lineup.config.json
-# optimal auf (Foodball/ESPN, DOPE/Sleeper) und schickt eine Push-Nachricht (ntfy).
+# optimal auf (Wild Hunt/ESPN, Bears Interleague/Sleeper) und schickt eine Push-Nachricht (ntfy).
 # Zeiten in UTC, ausgelegt auf US-Winterzeit (ab Anfang November, ET = UTC−5);
 # Inaktive werden ca. 90 Min. vor Kickoff gemeldet:
 #   Do 22:00         vor Thursday Night (Kickoff 01:15 UTC Fr)

@@ -4,7 +4,7 @@
   "minGain": 0.3,
   "stick": 0.5,
   "leagues": [
-    { "name": "Foodball", "platform": "espn", "sport": "nfl", "leagueId": 91260355, "season": 2026, "enabled": true },
-    { "name": "DOPE", "platform": "sleeper", "sport": "nfl", "leagueId": "1312799736218017792", "rosterId": 1, "enabled": true }
+    { "name": "Wild Hunt", "platform": "espn", "sport": "nfl", "leagueId": 783491558, "season": 2026, "enabled": true },
+    { "name": "Bears Interleague", "platform": "sleeper", "sport": "nfl", "leagueId": "1312955101303824384", "user": "Milchreis", "enabled": true }
   ]
 }

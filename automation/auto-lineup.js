@@ -227,7 +227,8 @@ async function nflLocks(season, week) {
   return { locked, playing };
 }
 
-async function runSleeper(L) {
+async function runSleeper(L0) {
+  let L = L0;
   const token = process.env.SLEEPER_TOKEN;
   const S = 'https://api.sleeper.app/v1';
   const state = await http(`${S}/state/nfl`);
@@ -241,9 +242,17 @@ async function runSleeper(L) {
     http(`https://api.sleeper.app/projections/nfl/${season}/${week}?season_type=${state.season_type}&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF`),
     nflLocks(season, week),
   ]);
-  const ros = rosters.find(r => r.roster_id === L.rosterId);
-  const mu = (matchups || []).find(m => m.roster_id === L.rosterId);
-  if (!ros || !mu) throw new Error(`Roster ${L.rosterId} / Matchup Woche ${week} nicht gefunden`);
+  // eigener Roster: feste rosterId oder über den Sleeper-Usernamen (owner_id / co_owners)
+  let rid = L.rosterId;
+  if (!rid && L.user) {
+    const u = await http(`${S}/user/${encodeURIComponent(L.user)}`);
+    const r0 = rosters.find(r => r.owner_id === u.user_id || (r.co_owners || []).includes(u.user_id));
+    rid = r0 && r0.roster_id;
+  }
+  const ros = rosters.find(r => r.roster_id === rid);
+  const mu = (matchups || []).find(m => m.roster_id === rid);
+  if (!ros || !mu) throw new Error(`Eigener Roster (${L.user || rid}) / Matchup Woche ${week} nicht gefunden`);
+  L = { ...L, rosterId: rid };
   const sc = league.scoring_settings || {};
   const proj = {};
   (projArr || []).forEach(x => {
