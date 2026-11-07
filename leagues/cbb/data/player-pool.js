@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-07T23:38:35.059Z
+//  Stand: 2026-11-07T23:59:49.173Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -978,7 +978,6 @@ const CBB_PLAYER_POOL = [
 ["071x6","Isaac Ericksen","IlSt","G","F/C,G,Flx","FA"],
 ["064hp","Isaac Holmes","StLou","G","G,Flx","FA"],
 ["079n0","Isaac Riddle","Wisc","F","F/C,Flx","FA"],
-["065og","Isaac Shingange","UCSB","G","G,Flx","FA"],
 ["064z7","Isaac Traudt","Crei","F","F/C,Flx","FA"],
 ["06prs","Isaac Williams","Baylor","G","G,Flx","FA"],
 ["06q9e","Isaia Howard","Iowa","G","G,Flx","FA"],
@@ -1517,7 +1516,6 @@ const CBB_PLAYER_POOL = [
 ["05wke","Kyle Cuffe","StJon","G","G,Flx","FA"],
 ["065cb","Kyle Evans","NCSU","F","F/C,Flx","T"],
 ["07a12","Kyle Grill","Brad","G","G,Flx","FA"],
-["072dr","Kyle Haughy","UCSB","F","F/C,Flx","FA"],
 ["06nc4","Kyle Jorgensen","ColSt","F","F/C,Flx","T"],
 ["07agm","Kyle Moran","TAMU","G","G,Flx","FA"],
 ["06ggi","Kyle Pock","NrthIA","F","F/C,Flx","FA"],
