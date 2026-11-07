@@ -4204,9 +4204,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909287",
-      line: "Washington Wizards @ Atlanta Hawks (8:22 - 1st)",
+      line: "Washington Wizards @ Atlanta Hawks (Halftime)",
       completed: false,
-      statusText: "8:22 - 1st",
+      statusText: "Halftime",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4222,9 +4222,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909288",
-      line: "Boston Celtics @ Charlotte Hornets (9:00 - 1st)",
+      line: "Boston Celtics @ Charlotte Hornets (2:56 - 2nd)",
       completed: false,
-      statusText: "9:00 - 1st",
+      statusText: "2:56 - 2nd",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
@@ -4240,9 +4240,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909289",
-      line: "Philadelphia 76ers @ Cleveland Cavaliers (11/6 - 7:30 PM EST)",
+      line: "Philadelphia 76ers @ Cleveland Cavaliers (4:27 - 1st)",
       completed: false,
-      statusText: "11/6 - 7:30 PM EST",
+      statusText: "4:27 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
