@@ -37,7 +37,7 @@ const DYNASTY_LIVE = [
   { name: "Derrick White", baseRank: 74, liveRank: 82, delta: -8, games: 9, expRank: 23, seasonRank: 81, shift: -0.1, source: "season" },
   { name: "Zion Williamson", baseRank: 76, liveRank: 67, delta: 9, games: 9, expRank: 97, seasonRank: 19, shift: 0.13, source: "season" },
   { name: "Ajay Mitchell", baseRank: 83, liveRank: 77, delta: 6, games: 9, expRank: 79, seasonRank: 35, shift: 0.08, source: "season" },
-  { name: "Kyshawn George", baseRank: 85, liveRank: 75, delta: 10, games: 9, expRank: 122, seasonRank: 42, shift: 0.13, source: "season" },
+  { name: "Kyshawn George", baseRank: 85, liveRank: 74, delta: 11, games: 9, expRank: 122, seasonRank: 41, shift: 0.13, source: "season" },
   { name: "Jabari Smith Jr.", baseRank: 91, liveRank: 79, delta: 12, games: 9, expRank: 85, seasonRank: 18, shift: 0.15, source: "season" },
   { name: "Mikal Bridges", baseRank: 92, liveRank: 101, delta: -9, games: 8, expRank: 69, seasonRank: 224, shift: -0.1, source: "season" },
   { name: "Ryan Rollins", baseRank: 103, liveRank: 119, delta: -16, games: 9, expRank: 55, seasonRank: 215, shift: -0.15, source: "season" },
