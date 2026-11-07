@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-07T01:44:16.900Z",
+  "generatedAt": "2026-11-07T08:35:35.441Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -955,7 +955,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 23.8,
           "last3AvgPoints": 26.8,
-          "projPoints": 24.1
+          "projPoints": 24
         },
         {
           "name": "Denver Broncos",
@@ -1166,7 +1166,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1.5,
           "last3AvgPoints": 6.1,
-          "projPoints": 7.5
+          "projPoints": 7.6
         },
         {
           "name": "Jared Goff",
@@ -1243,7 +1243,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 20.2,
           "last3AvgPoints": 19.9,
-          "projPoints": 15.4
+          "projPoints": 15.3
         },
         {
           "name": "Sean Tucker",
@@ -1619,7 +1619,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.5,
           "last3AvgPoints": 9.3,
-          "projPoints": 6.1
+          "projPoints": 6.2
         },
         {
           "name": "Demarcus Robinson",
@@ -1641,7 +1641,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 5.9,
-          "projPoints": 6.5
+          "projPoints": 6.4
         },
         {
           "name": "George Kittle",
@@ -1983,7 +1983,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 23.2,
           "last3AvgPoints": 21.7,
-          "projPoints": 14
+          "projPoints": 13.9
         },
         {
           "name": "Tyler Bass",
@@ -2049,7 +2049,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 23.8,
           "last3AvgPoints": 26.8,
-          "projPoints": 24.1
+          "projPoints": 24
         },
         {
           "name": "Denver Broncos",
@@ -2248,7 +2248,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 11.6,
-          "projPoints": 7.6
+          "projPoints": 7.7
         },
         {
           "name": "Aaron Jones Sr.",
@@ -3609,7 +3609,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 11.6,
-          "projPoints": 7.6
+          "projPoints": 7.7
         },
         {
           "name": "Christian McCaffrey",
@@ -3664,7 +3664,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17,
           "last3AvgPoints": 21.6,
-          "projPoints": 13.2
+          "projPoints": 13.3
         },
         {
           "name": "Kenneth Walker III",
