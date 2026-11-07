@@ -10,7 +10,7 @@
 // ============================================================
 const NBA_POWER_SCORE = {
   "season": 2027,
-  "generatedAt": "2026-11-07T00:15:14.509Z",
+  "generatedAt": "2026-11-07T14:51:19.508Z",
   "categories": [
     {
       "key": "ortg",
@@ -10835,11 +10835,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 6,
           "values": {
-            "ortg": 98.2,
+            "ortg": 98,
             "drtg": 108.1,
             "ptsPg": 97.3,
             "oppPtsPg": 106,
-            "tovPg": 17.5,
+            "tovPg": 17.7,
             "drebPg": 33.5
           },
           "rank": {
@@ -10847,7 +10847,7 @@ const NBA_POWER_SCORE = {
             "drtg": 11,
             "ptsPg": 30,
             "oppPtsPg": 4,
-            "tovPg": 27,
+            "tovPg": 28,
             "drebPg": 8
           }
         },
@@ -10869,7 +10869,7 @@ const NBA_POWER_SCORE = {
             "drtg": 28,
             "ptsPg": 17,
             "oppPtsPg": 30,
-            "tovPg": 28,
+            "tovPg": 27,
             "drebPg": 19
           }
         },
@@ -11408,7 +11408,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 6,
           "values": {
             "ortg": 109.7,
-            "drtg": 107.3,
+            "drtg": 107.2,
             "ptsPg": 110.5,
             "oppPtsPg": 109.7,
             "tovPg": 13.7,
@@ -11483,11 +11483,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 1,
           "values": {
-            "ortg": 80.4,
+            "ortg": 79.6,
             "drtg": 101.7,
             "ptsPg": 79,
             "oppPtsPg": 95,
-            "tovPg": 10,
+            "tovPg": 11,
             "drebPg": 37
           },
           "rank": {
@@ -11930,7 +11930,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 1,
           "values": {
             "ortg": 101.7,
-            "drtg": 80.4,
+            "drtg": 79.6,
             "ptsPg": 95,
             "oppPtsPg": 79,
             "tovPg": 14,
@@ -12024,11 +12024,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 7,
           "values": {
-            "ortg": 100.1,
+            "ortg": 100,
             "drtg": 109.6,
             "ptsPg": 98.3,
             "oppPtsPg": 106.4,
-            "tovPg": 17.6,
+            "tovPg": 17.7,
             "drebPg": 32.9
           },
           "rank": {
@@ -12597,7 +12597,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 6,
           "values": {
             "ortg": 109.7,
-            "drtg": 107.3,
+            "drtg": 107.2,
             "ptsPg": 110.5,
             "oppPtsPg": 109.7,
             "tovPg": 13.7,
@@ -13129,11 +13129,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 7,
           "values": {
-            "ortg": 100.1,
+            "ortg": 100,
             "drtg": 109.6,
             "ptsPg": 98.3,
             "oppPtsPg": 106.4,
-            "tovPg": 17.6,
+            "tovPg": 17.7,
             "drebPg": 32.9
           },
           "rank": {
@@ -13702,7 +13702,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 6,
           "values": {
             "ortg": 109.7,
-            "drtg": 107.3,
+            "drtg": 107.2,
             "ptsPg": 110.5,
             "oppPtsPg": 109.7,
             "tovPg": 13.7,
@@ -14150,11 +14150,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 8,
           "values": {
-            "ortg": 99.1,
+            "ortg": 98.9,
             "drtg": 112,
             "ptsPg": 97.4,
             "oppPtsPg": 108.6,
-            "tovPg": 18.5,
+            "tovPg": 18.6,
             "drebPg": 32
           },
           "rank": {
@@ -14723,7 +14723,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 7,
           "values": {
             "ortg": 110.2,
-            "drtg": 106.3,
+            "drtg": 106.2,
             "ptsPg": 109.4,
             "oppPtsPg": 107.4,
             "tovPg": 13.7,
@@ -15479,11 +15479,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 8,
           "values": {
-            "ortg": 99.1,
+            "ortg": 98.9,
             "drtg": 112,
             "ptsPg": 97.4,
             "oppPtsPg": 108.6,
-            "tovPg": 18.5,
+            "tovPg": 18.6,
             "drebPg": 32
           },
           "rank": {
@@ -16052,7 +16052,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 7,
           "values": {
             "ortg": 110.2,
-            "drtg": 106.3,
+            "drtg": 106.2,
             "ptsPg": 109.4,
             "oppPtsPg": 107.4,
             "tovPg": 13.7,
@@ -16388,11 +16388,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 9,
           "values": {
-            "ortg": 99.7,
+            "ortg": 99.6,
             "drtg": 112.5,
             "ptsPg": 98.1,
             "oppPtsPg": 109.2,
-            "tovPg": 18.3,
+            "tovPg": 18.4,
             "drebPg": 31.8
           },
           "rank": {
@@ -16418,7 +16418,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 29.8
           },
           "rank": {
-            "ortg": 29,
+            "ortg": 28,
             "drtg": 29,
             "ptsPg": 17,
             "oppPtsPg": 30,
@@ -16719,7 +16719,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 8,
           "values": {
             "ortg": 112.1,
-            "drtg": 110.4,
+            "drtg": 110.3,
             "ptsPg": 121.6,
             "oppPtsPg": 119.3,
             "tovPg": 16.8,
@@ -16938,7 +16938,7 @@ const NBA_POWER_SCORE = {
           "division": "Northwest",
           "gamesPlayed": 8,
           "values": {
-            "ortg": 103.7,
+            "ortg": 103.5,
             "drtg": 113.3,
             "ptsPg": 107.8,
             "oppPtsPg": 119,
@@ -16946,7 +16946,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 33.6
           },
           "rank": {
-            "ortg": 28,
+            "ortg": 29,
             "drtg": 22,
             "ptsPg": 27,
             "oppPtsPg": 24,
@@ -16961,7 +16961,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 8,
           "values": {
             "ortg": 109.5,
-            "drtg": 107.6,
+            "drtg": 107.4,
             "ptsPg": 108.9,
             "oppPtsPg": 109,
             "tovPg": 13.5,
@@ -17367,7 +17367,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 1,
           "values": {
             "ortg": 107.2,
-            "drtg": 100.7,
+            "drtg": 99.8,
             "ptsPg": 120,
             "oppPtsPg": 113,
             "tovPg": 17,
@@ -17572,7 +17572,7 @@ const NBA_POWER_SCORE = {
           "division": "Northwest",
           "gamesPlayed": 1,
           "values": {
-            "ortg": 100.7,
+            "ortg": 99.8,
             "drtg": 107.2,
             "ptsPg": 113,
             "oppPtsPg": 120,
@@ -17689,11 +17689,11 @@ const NBA_POWER_SCORE = {
           "division": "Southeast",
           "gamesPlayed": 9,
           "values": {
-            "ortg": 99.7,
+            "ortg": 99.6,
             "drtg": 112.5,
             "ptsPg": 98.1,
             "oppPtsPg": 109.2,
-            "tovPg": 18.3,
+            "tovPg": 18.4,
             "drebPg": 31.8
           },
           "rank": {
@@ -17719,7 +17719,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 29.8
           },
           "rank": {
-            "ortg": 29,
+            "ortg": 28,
             "drtg": 30,
             "ptsPg": 17,
             "oppPtsPg": 30,
@@ -18020,7 +18020,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 8,
           "values": {
             "ortg": 112.1,
-            "drtg": 110.4,
+            "drtg": 110.3,
             "ptsPg": 121.6,
             "oppPtsPg": 119.3,
             "tovPg": 16.8,
@@ -18239,7 +18239,7 @@ const NBA_POWER_SCORE = {
           "division": "Northwest",
           "gamesPlayed": 8,
           "values": {
-            "ortg": 103.7,
+            "ortg": 103.5,
             "drtg": 113.3,
             "ptsPg": 107.8,
             "oppPtsPg": 119,
@@ -18247,7 +18247,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 33.6
           },
           "rank": {
-            "ortg": 28,
+            "ortg": 29,
             "drtg": 22,
             "ptsPg": 27,
             "oppPtsPg": 24,
@@ -18262,7 +18262,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 8,
           "values": {
             "ortg": 109.5,
-            "drtg": 107.6,
+            "drtg": 107.4,
             "ptsPg": 108.9,
             "oppPtsPg": 109,
             "tovPg": 13.5,
@@ -18574,6 +18574,1167 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 0,
           "values": null,
           "rank": null
+        }
+      ]
+    },
+    {
+      "matchupPeriodId": 18,
+      "label": "Woche 18",
+      "throughDate": "2026-11-06",
+      "cumulative": [
+        {
+          "abbr": "ATL",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 10,
+          "values": {
+            "ortg": 111.9,
+            "drtg": 111,
+            "ptsPg": 118.1,
+            "oppPtsPg": 114.9,
+            "tovPg": 14.7,
+            "drebPg": 30.4
+          },
+          "rank": {
+            "ortg": 14,
+            "drtg": 17,
+            "ptsPg": 7,
+            "oppPtsPg": 21,
+            "tovPg": 11,
+            "drebPg": 23
+          }
+        },
+        {
+          "abbr": "BOS",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 114.7,
+            "drtg": 106,
+            "ptsPg": 114.8,
+            "oppPtsPg": 105.1,
+            "tovPg": 14.8,
+            "drebPg": 31.2
+          },
+          "rank": {
+            "ortg": 7,
+            "drtg": 4,
+            "ptsPg": 14,
+            "oppPtsPg": 2,
+            "tovPg": 13,
+            "drebPg": 18
+          }
+        },
+        {
+          "abbr": "BKN",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 105,
+            "drtg": 110.7,
+            "ptsPg": 106.6,
+            "oppPtsPg": 112.9,
+            "tovPg": 16.5,
+            "drebPg": 32.4
+          },
+          "rank": {
+            "ortg": 27,
+            "drtg": 14,
+            "ptsPg": 28,
+            "oppPtsPg": 15,
+            "tovPg": 26,
+            "drebPg": 13
+          }
+        },
+        {
+          "abbr": "CHA",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 10,
+          "values": {
+            "ortg": 98.1,
+            "drtg": 113.5,
+            "ptsPg": 96.3,
+            "oppPtsPg": 110.2,
+            "tovPg": 18.1,
+            "drebPg": 31
+          },
+          "rank": {
+            "ortg": 30,
+            "drtg": 23,
+            "ptsPg": 30,
+            "oppPtsPg": 9,
+            "tovPg": 29,
+            "drebPg": 21
+          }
+        },
+        {
+          "abbr": "CHI",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 103.6,
+            "drtg": 120.5,
+            "ptsPg": 111.6,
+            "oppPtsPg": 129.6,
+            "tovPg": 16.1,
+            "drebPg": 29.8
+          },
+          "rank": {
+            "ortg": 28,
+            "drtg": 30,
+            "ptsPg": 18,
+            "oppPtsPg": 30,
+            "tovPg": 20,
+            "drebPg": 26
+          }
+        },
+        {
+          "abbr": "CLE",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 114.3,
+            "drtg": 109.3,
+            "ptsPg": 119.2,
+            "oppPtsPg": 114.7,
+            "tovPg": 13.7,
+            "drebPg": 36.8
+          },
+          "rank": {
+            "ortg": 8,
+            "drtg": 10,
+            "ptsPg": 4,
+            "oppPtsPg": 19,
+            "tovPg": 4,
+            "drebPg": 1
+          }
+        },
+        {
+          "abbr": "DAL",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 111.1,
+            "drtg": 109.3,
+            "ptsPg": 112.1,
+            "oppPtsPg": 110.9,
+            "tovPg": 14.9,
+            "drebPg": 31.8
+          },
+          "rank": {
+            "ortg": 17,
+            "drtg": 11,
+            "ptsPg": 16,
+            "oppPtsPg": 10,
+            "tovPg": 14,
+            "drebPg": 17
+          }
+        },
+        {
+          "abbr": "DEN",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 7,
+          "values": {
+            "ortg": 116.2,
+            "drtg": 113.4,
+            "ptsPg": 115.4,
+            "oppPtsPg": 114.7,
+            "tovPg": 15.1,
+            "drebPg": 30.7
+          },
+          "rank": {
+            "ortg": 5,
+            "drtg": 22,
+            "ptsPg": 13,
+            "oppPtsPg": 20,
+            "tovPg": 16,
+            "drebPg": 22
+          }
+        },
+        {
+          "abbr": "DET",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 111.6,
+            "drtg": 101.2,
+            "ptsPg": 111.1,
+            "oppPtsPg": 101.8,
+            "tovPg": 14.5,
+            "drebPg": 33.8
+          },
+          "rank": {
+            "ortg": 15,
+            "drtg": 1,
+            "ptsPg": 21,
+            "oppPtsPg": 1,
+            "tovPg": 9,
+            "drebPg": 7
+          }
+        },
+        {
+          "abbr": "GSW",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 117,
+            "drtg": 111,
+            "ptsPg": 117.8,
+            "oppPtsPg": 113,
+            "tovPg": 16.1,
+            "drebPg": 30.2
+          },
+          "rank": {
+            "ortg": 4,
+            "drtg": 18,
+            "ptsPg": 10,
+            "oppPtsPg": 16,
+            "tovPg": 21,
+            "drebPg": 24
+          }
+        },
+        {
+          "abbr": "HOU",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 119.4,
+            "drtg": 107.3,
+            "ptsPg": 117.9,
+            "oppPtsPg": 107.6,
+            "tovPg": 14.7,
+            "drebPg": 31.1
+          },
+          "rank": {
+            "ortg": 2,
+            "drtg": 8,
+            "ptsPg": 8,
+            "oppPtsPg": 6,
+            "tovPg": 12,
+            "drebPg": 19
+          }
+        },
+        {
+          "abbr": "IND",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 108.7,
+            "drtg": 111.2,
+            "ptsPg": 111.2,
+            "oppPtsPg": 114.2,
+            "tovPg": 14.9,
+            "drebPg": 31.9
+          },
+          "rank": {
+            "ortg": 21,
+            "drtg": 20,
+            "ptsPg": 20,
+            "oppPtsPg": 17,
+            "tovPg": 15,
+            "drebPg": 16
+          }
+        },
+        {
+          "abbr": "LAC",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 105.1,
+            "drtg": 113.5,
+            "ptsPg": 109.1,
+            "oppPtsPg": 115.6,
+            "tovPg": 19.4,
+            "drebPg": 31.1
+          },
+          "rank": {
+            "ortg": 26,
+            "drtg": 24,
+            "ptsPg": 26,
+            "oppPtsPg": 23,
+            "tovPg": 30,
+            "drebPg": 20
+          }
+        },
+        {
+          "abbr": "LAL",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 10,
+          "values": {
+            "ortg": 120.4,
+            "drtg": 110.8,
+            "ptsPg": 122,
+            "oppPtsPg": 114.3,
+            "tovPg": 16.3,
+            "drebPg": 29.1
+          },
+          "rank": {
+            "ortg": 1,
+            "drtg": 16,
+            "ptsPg": 1,
+            "oppPtsPg": 18,
+            "tovPg": 22,
+            "drebPg": 28
+          }
+        },
+        {
+          "abbr": "MEM",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 113.4,
+            "drtg": 108.3,
+            "ptsPg": 117.9,
+            "oppPtsPg": 111.8,
+            "tovPg": 15.8,
+            "drebPg": 35.9
+          },
+          "rank": {
+            "ortg": 10,
+            "drtg": 9,
+            "ptsPg": 9,
+            "oppPtsPg": 11,
+            "tovPg": 19,
+            "drebPg": 2
+          }
+        },
+        {
+          "abbr": "MIA",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 109.2,
+            "drtg": 116.2,
+            "ptsPg": 116,
+            "oppPtsPg": 122.6,
+            "tovPg": 15.2,
+            "drebPg": 32.2
+          },
+          "rank": {
+            "ortg": 20,
+            "drtg": 26,
+            "ptsPg": 12,
+            "oppPtsPg": 28,
+            "tovPg": 17,
+            "drebPg": 14
+          }
+        },
+        {
+          "abbr": "MIL",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 106.4,
+            "drtg": 117.2,
+            "ptsPg": 109.7,
+            "oppPtsPg": 122.1,
+            "tovPg": 16.3,
+            "drebPg": 33.2
+          },
+          "rank": {
+            "ortg": 23,
+            "drtg": 27,
+            "ptsPg": 23,
+            "oppPtsPg": 27,
+            "tovPg": 23,
+            "drebPg": 11
+          }
+        },
+        {
+          "abbr": "MIN",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 10,
+          "values": {
+            "ortg": 114.9,
+            "drtg": 104.6,
+            "ptsPg": 118.4,
+            "oppPtsPg": 107.7,
+            "tovPg": 14.5,
+            "drebPg": 34.2
+          },
+          "rank": {
+            "ortg": 6,
+            "drtg": 2,
+            "ptsPg": 5,
+            "oppPtsPg": 7,
+            "tovPg": 10,
+            "drebPg": 5
+          }
+        },
+        {
+          "abbr": "NOP",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 112,
+            "drtg": 111,
+            "ptsPg": 120.2,
+            "oppPtsPg": 118.8,
+            "tovPg": 16.3,
+            "drebPg": 33.4
+          },
+          "rank": {
+            "ortg": 13,
+            "drtg": 19,
+            "ptsPg": 3,
+            "oppPtsPg": 25,
+            "tovPg": 24,
+            "drebPg": 9
+          }
+        },
+        {
+          "abbr": "NYK",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 110.6,
+            "drtg": 106.4,
+            "ptsPg": 110,
+            "oppPtsPg": 105.1,
+            "tovPg": 14.4,
+            "drebPg": 33.9
+          },
+          "rank": {
+            "ortg": 18,
+            "drtg": 5,
+            "ptsPg": 22,
+            "oppPtsPg": 3,
+            "tovPg": 8,
+            "drebPg": 6
+          }
+        },
+        {
+          "abbr": "OKC",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 110.6,
+            "drtg": 106.4,
+            "ptsPg": 112,
+            "oppPtsPg": 107.4,
+            "tovPg": 12.2,
+            "drebPg": 34.9
+          },
+          "rank": {
+            "ortg": 19,
+            "drtg": 6,
+            "ptsPg": 17,
+            "oppPtsPg": 5,
+            "tovPg": 1,
+            "drebPg": 4
+          }
+        },
+        {
+          "abbr": "ORL",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 105.7,
+            "drtg": 114.3,
+            "ptsPg": 105.5,
+            "oppPtsPg": 115,
+            "tovPg": 17.8,
+            "drebPg": 30
+          },
+          "rank": {
+            "ortg": 25,
+            "drtg": 25,
+            "ptsPg": 29,
+            "oppPtsPg": 22,
+            "tovPg": 28,
+            "drebPg": 25
+          }
+        },
+        {
+          "abbr": "PHI",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 10,
+          "values": {
+            "ortg": 106.7,
+            "drtg": 104.8,
+            "ptsPg": 109.4,
+            "oppPtsPg": 106.6,
+            "tovPg": 12.6,
+            "drebPg": 32.8
+          },
+          "rank": {
+            "ortg": 22,
+            "drtg": 3,
+            "ptsPg": 24,
+            "oppPtsPg": 4,
+            "tovPg": 3,
+            "drebPg": 12
+          }
+        },
+        {
+          "abbr": "PHO",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 7,
+          "values": {
+            "ortg": 113,
+            "drtg": 118.9,
+            "ptsPg": 113.9,
+            "oppPtsPg": 121.4,
+            "tovPg": 14,
+            "drebPg": 27.1
+          },
+          "rank": {
+            "ortg": 11,
+            "drtg": 28,
+            "ptsPg": 15,
+            "oppPtsPg": 26,
+            "tovPg": 6,
+            "drebPg": 30
+          }
+        },
+        {
+          "abbr": "POR",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 8,
+          "values": {
+            "ortg": 118.1,
+            "drtg": 110.7,
+            "ptsPg": 121.4,
+            "oppPtsPg": 112.4,
+            "tovPg": 16.3,
+            "drebPg": 33.3
+          },
+          "rank": {
+            "ortg": 3,
+            "drtg": 15,
+            "ptsPg": 2,
+            "oppPtsPg": 13,
+            "tovPg": 25,
+            "drebPg": 10
+          }
+        },
+        {
+          "abbr": "SAC",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 106.2,
+            "drtg": 120.3,
+            "ptsPg": 109.2,
+            "oppPtsPg": 123.3,
+            "tovPg": 15.6,
+            "drebPg": 29.7
+          },
+          "rank": {
+            "ortg": 24,
+            "drtg": 29,
+            "ptsPg": 25,
+            "oppPtsPg": 29,
+            "tovPg": 18,
+            "drebPg": 27
+          }
+        },
+        {
+          "abbr": "SAS",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 114.2,
+            "drtg": 107.1,
+            "ptsPg": 117.7,
+            "oppPtsPg": 108.7,
+            "tovPg": 12.4,
+            "drebPg": 35.1
+          },
+          "rank": {
+            "ortg": 9,
+            "drtg": 7,
+            "ptsPg": 11,
+            "oppPtsPg": 8,
+            "tovPg": 2,
+            "drebPg": 3
+          }
+        },
+        {
+          "abbr": "TOR",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 112.9,
+            "drtg": 109.4,
+            "ptsPg": 118.2,
+            "oppPtsPg": 112.8,
+            "tovPg": 14,
+            "drebPg": 27.4
+          },
+          "rank": {
+            "ortg": 12,
+            "drtg": 12,
+            "ptsPg": 6,
+            "oppPtsPg": 14,
+            "tovPg": 7,
+            "drebPg": 29
+          }
+        },
+        {
+          "abbr": "UTA",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 103,
+            "drtg": 113.1,
+            "ptsPg": 106.9,
+            "oppPtsPg": 118.2,
+            "tovPg": 17.3,
+            "drebPg": 33.6
+          },
+          "rank": {
+            "ortg": 29,
+            "drtg": 21,
+            "ptsPg": 27,
+            "oppPtsPg": 24,
+            "tovPg": 27,
+            "drebPg": 8
+          }
+        },
+        {
+          "abbr": "WAS",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 9,
+          "values": {
+            "ortg": 111.6,
+            "drtg": 109.8,
+            "ptsPg": 111.4,
+            "oppPtsPg": 112.3,
+            "tovPg": 13.8,
+            "drebPg": 32
+          },
+          "rank": {
+            "ortg": 16,
+            "drtg": 13,
+            "ptsPg": 19,
+            "oppPtsPg": 12,
+            "tovPg": 5,
+            "drebPg": 15
+          }
+        }
+      ],
+      "isolated": [
+        {
+          "abbr": "ATL",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 127.8,
+            "drtg": 127.5,
+            "ptsPg": 139,
+            "oppPtsPg": 132,
+            "tovPg": 16,
+            "drebPg": 29
+          },
+          "rank": {
+            "ortg": 2,
+            "drtg": 16,
+            "ptsPg": 1,
+            "oppPtsPg": 17,
+            "tovPg": 11,
+            "drebPg": 10
+          }
+        },
+        {
+          "abbr": "BOS",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 122.5,
+            "drtg": 83.8,
+            "ptsPg": 119,
+            "oppPtsPg": 80,
+            "tovPg": 18,
+            "drebPg": 37
+          },
+          "rank": {
+            "ortg": 4,
+            "drtg": 1,
+            "ptsPg": 7,
+            "oppPtsPg": 1,
+            "tovPg": 14,
+            "drebPg": 3
+          }
+        },
+        {
+          "abbr": "BKN",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "CHA",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 83.8,
+            "drtg": 122.5,
+            "ptsPg": 80,
+            "oppPtsPg": 119,
+            "tovPg": 15,
+            "drebPg": 24
+          },
+          "rank": {
+            "ortg": 18,
+            "drtg": 15,
+            "ptsPg": 18,
+            "oppPtsPg": 11,
+            "tovPg": 7,
+            "drebPg": 16
+          }
+        },
+        {
+          "abbr": "CHI",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "CLE",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 114.5,
+            "drtg": 92.4,
+            "ptsPg": 119,
+            "oppPtsPg": 95,
+            "tovPg": 15,
+            "drebPg": 42
+          },
+          "rank": {
+            "ortg": 10,
+            "drtg": 3,
+            "ptsPg": 8,
+            "oppPtsPg": 2,
+            "tovPg": 8,
+            "drebPg": 1
+          }
+        },
+        {
+          "abbr": "DAL",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 111.3,
+            "drtg": 98.9,
+            "ptsPg": 112,
+            "oppPtsPg": 100,
+            "tovPg": 15,
+            "drebPg": 34
+          },
+          "rank": {
+            "ortg": 12,
+            "drtg": 4,
+            "ptsPg": 11,
+            "oppPtsPg": 4,
+            "tovPg": 9,
+            "drebPg": 4
+          }
+        },
+        {
+          "abbr": "DEN",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "DET",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "GSW",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "HOU",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "IND",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "LAC",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "LAL",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 120.1,
+            "drtg": 115.4,
+            "ptsPg": 124,
+            "oppPtsPg": 118,
+            "tovPg": 11,
+            "drebPg": 23
+          },
+          "rank": {
+            "ortg": 6,
+            "drtg": 10,
+            "ptsPg": 4,
+            "oppPtsPg": 10,
+            "tovPg": 1,
+            "drebPg": 17
+          }
+        },
+        {
+          "abbr": "MEM",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 91,
+            "drtg": 121.9,
+            "ptsPg": 97,
+            "oppPtsPg": 128,
+            "tovPg": 18,
+            "drebPg": 30
+          },
+          "rank": {
+            "ortg": 17,
+            "drtg": 14,
+            "ptsPg": 16,
+            "oppPtsPg": 16,
+            "tovPg": 15,
+            "drebPg": 9
+          }
+        },
+        {
+          "abbr": "MIA",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "MIL",
+          "conference": "East",
+          "division": "Central",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 108.1,
+            "drtg": 112.4,
+            "ptsPg": 107,
+            "oppPtsPg": 121,
+            "tovPg": 20,
+            "drebPg": 23
+          },
+          "rank": {
+            "ortg": 14,
+            "drtg": 8,
+            "ptsPg": 14,
+            "oppPtsPg": 13,
+            "tovPg": 16,
+            "drebPg": 18
+          }
+        },
+        {
+          "abbr": "MIN",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 117,
+            "drtg": 110.7,
+            "ptsPg": 115,
+            "oppPtsPg": 109,
+            "tovPg": 11,
+            "drebPg": 32
+          },
+          "rank": {
+            "ortg": 7,
+            "drtg": 6,
+            "ptsPg": 10,
+            "oppPtsPg": 6,
+            "tovPg": 2,
+            "drebPg": 7
+          }
+        },
+        {
+          "abbr": "NOP",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 110.7,
+            "drtg": 117,
+            "ptsPg": 109,
+            "oppPtsPg": 115,
+            "tovPg": 13,
+            "drebPg": 29
+          },
+          "rank": {
+            "ortg": 13,
+            "drtg": 12,
+            "ptsPg": 12,
+            "oppPtsPg": 9,
+            "tovPg": 6,
+            "drebPg": 11
+          }
+        },
+        {
+          "abbr": "NYK",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "OKC",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 121.9,
+            "drtg": 91,
+            "ptsPg": 128,
+            "oppPtsPg": 97,
+            "tovPg": 12,
+            "drebPg": 39
+          },
+          "rank": {
+            "ortg": 5,
+            "drtg": 2,
+            "ptsPg": 3,
+            "oppPtsPg": 3,
+            "tovPg": 5,
+            "drebPg": 2
+          }
+        },
+        {
+          "abbr": "ORL",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "PHI",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 92.4,
+            "drtg": 114.5,
+            "ptsPg": 95,
+            "oppPtsPg": 119,
+            "tovPg": 15,
+            "drebPg": 32
+          },
+          "rank": {
+            "ortg": 16,
+            "drtg": 9,
+            "ptsPg": 17,
+            "oppPtsPg": 12,
+            "tovPg": 10,
+            "drebPg": 8
+          }
+        },
+        {
+          "abbr": "PHO",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 0,
+          "values": null,
+          "rank": null
+        },
+        {
+          "abbr": "POR",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 115.4,
+            "drtg": 120.1,
+            "ptsPg": 118,
+            "oppPtsPg": 124,
+            "tovPg": 24,
+            "drebPg": 29
+          },
+          "rank": {
+            "ortg": 9,
+            "drtg": 13,
+            "ptsPg": 9,
+            "oppPtsPg": 14,
+            "tovPg": 18,
+            "drebPg": 12
+          }
+        },
+        {
+          "abbr": "SAC",
+          "conference": "West",
+          "division": "Pacific",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 115.5,
+            "drtg": 129.9,
+            "ptsPg": 109,
+            "oppPtsPg": 124,
+            "tovPg": 11,
+            "drebPg": 29
+          },
+          "rank": {
+            "ortg": 8,
+            "drtg": 18,
+            "ptsPg": 13,
+            "oppPtsPg": 15,
+            "tovPg": 3,
+            "drebPg": 13
+          }
+        },
+        {
+          "abbr": "SAS",
+          "conference": "West",
+          "division": "Southwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 129.9,
+            "drtg": 115.5,
+            "ptsPg": 124,
+            "oppPtsPg": 109,
+            "tovPg": 11,
+            "drebPg": 33
+          },
+          "rank": {
+            "ortg": 1,
+            "drtg": 11,
+            "ptsPg": 5,
+            "oppPtsPg": 7,
+            "tovPg": 4,
+            "drebPg": 5
+          }
+        },
+        {
+          "abbr": "TOR",
+          "conference": "East",
+          "division": "Atlantic",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 112.4,
+            "drtg": 108.1,
+            "ptsPg": 121,
+            "oppPtsPg": 107,
+            "tovPg": 16,
+            "drebPg": 27
+          },
+          "rank": {
+            "ortg": 11,
+            "drtg": 5,
+            "ptsPg": 6,
+            "oppPtsPg": 5,
+            "tovPg": 12,
+            "drebPg": 14
+          }
+        },
+        {
+          "abbr": "UTA",
+          "conference": "West",
+          "division": "Northwest",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 98.9,
+            "drtg": 111.3,
+            "ptsPg": 100,
+            "oppPtsPg": 112,
+            "tovPg": 21,
+            "drebPg": 33
+          },
+          "rank": {
+            "ortg": 15,
+            "drtg": 7,
+            "ptsPg": 15,
+            "oppPtsPg": 8,
+            "tovPg": 17,
+            "drebPg": 6
+          }
+        },
+        {
+          "abbr": "WAS",
+          "conference": "East",
+          "division": "Southeast",
+          "gamesPlayed": 1,
+          "values": {
+            "ortg": 127.5,
+            "drtg": 127.8,
+            "ptsPg": 132,
+            "oppPtsPg": 139,
+            "tovPg": 16,
+            "drebPg": 27
+          },
+          "rank": {
+            "ortg": 3,
+            "drtg": 17,
+            "ptsPg": 2,
+            "oppPtsPg": 18,
+            "tovPg": 13,
+            "drebPg": 15
+          }
         }
       ]
     }
