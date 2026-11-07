@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909287",
-      "line": "Washington Wizards @ Atlanta Hawks (Halftime)",
+      "line": "Washington Wizards @ Atlanta Hawks (4:30 - 4th)",
       "completed": false,
-      "statusText": "Halftime",
+      "statusText": "4:30 - 4th",
       "away": {
         "abbr": "WSH",
         "name": "Washington Wizards",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401909288",
-      "line": "Boston Celtics @ Charlotte Hornets (2:56 - 2nd)",
+      "line": "Boston Celtics @ Charlotte Hornets (9:48 - 4th)",
       "completed": false,
-      "statusText": "2:56 - 2nd",
+      "statusText": "9:48 - 4th",
       "away": {
         "abbr": "BOS",
         "name": "Boston Celtics",
@@ -40,9 +40,9 @@
     },
     {
       "id": "401909289",
-      "line": "Philadelphia 76ers @ Cleveland Cavaliers (4:27 - 1st)",
+      "line": "Philadelphia 76ers @ Cleveland Cavaliers (Halftime)",
       "completed": false,
-      "statusText": "4:27 - 1st",
+      "statusText": "Halftime",
       "away": {
         "abbr": "PHI",
         "name": "Philadelphia 76ers",
@@ -58,9 +58,9 @@
     },
     {
       "id": "401909290",
-      "line": "Utah Jazz @ Dallas Mavericks (11/6 - 8:00 PM EST)",
+      "line": "Utah Jazz @ Dallas Mavericks (2:53 - 2nd)",
       "completed": false,
-      "statusText": "11/6 - 8:00 PM EST",
+      "statusText": "2:53 - 2nd",
       "away": {
         "abbr": "UTAH",
         "name": "Utah Jazz",
@@ -76,9 +76,9 @@
     },
     {
       "id": "401909291",
-      "line": "Oklahoma City Thunder @ Memphis Grizzlies (11/6 - 8:00 PM EST)",
+      "line": "Oklahoma City Thunder @ Memphis Grizzlies (2:22 - 2nd)",
       "completed": false,
-      "statusText": "11/6 - 8:00 PM EST",
+      "statusText": "2:22 - 2nd",
       "away": {
         "abbr": "OKC",
         "name": "Oklahoma City Thunder",
@@ -94,9 +94,9 @@
     },
     {
       "id": "401909292",
-      "line": "Toronto Raptors @ Milwaukee Bucks (11/6 - 8:00 PM EST)",
+      "line": "Toronto Raptors @ Milwaukee Bucks (3:36 - 2nd)",
       "completed": false,
-      "statusText": "11/6 - 8:00 PM EST",
+      "statusText": "3:36 - 2nd",
       "away": {
         "abbr": "TOR",
         "name": "Toronto Raptors",
@@ -112,9 +112,9 @@
     },
     {
       "id": "401909293",
-      "line": "Minnesota Timberwolves @ New Orleans Pelicans (11/6 - 8:00 PM EST)",
+      "line": "Minnesota Timberwolves @ New Orleans Pelicans (5:17 - 2nd)",
       "completed": false,
-      "statusText": "11/6 - 8:00 PM EST",
+      "statusText": "5:17 - 2nd",
       "away": {
         "abbr": "MIN",
         "name": "Minnesota Timberwolves",
