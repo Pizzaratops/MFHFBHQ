@@ -4081,9 +4081,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909938",
-      line: "Denver Nuggets @ Indiana Pacers (11/7 - 5:00 PM EST)",
+      line: "Denver Nuggets @ Indiana Pacers (25.6 - 1st)",
       completed: false,
-      statusText: "11/7 - 5:00 PM EST",
+      statusText: "25.6 - 1st",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
