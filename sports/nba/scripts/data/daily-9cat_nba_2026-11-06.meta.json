@@ -1,0 +1,19 @@
+{
+  "league": "nba",
+  "date": "2026-11-06",
+  "games": [
+    "Washington Wizards 132 @ Atlanta Hawks 139 (Final)",
+    "Boston Celtics 119 @ Charlotte Hornets 80 (Final)",
+    "Philadelphia 76ers @ Cleveland Cavaliers (4:25 - 4th)",
+    "Utah Jazz @ Dallas Mavericks (8:32 - 4th)",
+    "Oklahoma City Thunder @ Memphis Grizzlies (10:51 - 4th)",
+    "Toronto Raptors @ Milwaukee Bucks (End of 3rd)",
+    "Minnesota Timberwolves @ New Orleans Pelicans (End of 3rd)",
+    "Portland Trail Blazers @ Los Angeles Lakers (11/6 - 10:00 PM EST)",
+    "San Antonio Spurs @ Sacramento Kings (11/6 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 44.8,
+    "ft": 89.3
+  }
+}
