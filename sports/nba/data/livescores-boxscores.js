@@ -4204,9 +4204,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909287",
-      line: "Washington Wizards @ Atlanta Hawks (11/6 - 7:00 PM EST)",
+      line: "Washington Wizards @ Atlanta Hawks (8:22 - 1st)",
       completed: false,
-      statusText: "11/6 - 7:00 PM EST",
+      statusText: "8:22 - 1st",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4222,9 +4222,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909288",
-      line: "Boston Celtics @ Charlotte Hornets (11/6 - 7:00 PM EST)",
+      line: "Boston Celtics @ Charlotte Hornets (9:00 - 1st)",
       completed: false,
-      statusText: "11/6 - 7:00 PM EST",
+      statusText: "9:00 - 1st",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
