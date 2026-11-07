@@ -2896,7 +2896,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-06": {
-      games: ["Washington Wizards 132 @ Atlanta Hawks 139 (Final)","Boston Celtics 119 @ Charlotte Hornets 80 (Final)","Philadelphia 76ers 95 @ Cleveland Cavaliers 119 (Final)","Utah Jazz 100 @ Dallas Mavericks 112 (Final)","Oklahoma City Thunder 128 @ Memphis Grizzlies 97 (Final)","Toronto Raptors 121 @ Milwaukee Bucks 107 (Final)","Minnesota Timberwolves 115 @ New Orleans Pelicans 109 (Final)","Portland Trail Blazers @ Los Angeles Lakers (7:43 - 2nd)","San Antonio Spurs @ Sacramento Kings (10:07 - 2nd)"],
+      games: ["Washington Wizards 132 @ Atlanta Hawks 139 (Final)","Boston Celtics 119 @ Charlotte Hornets 80 (Final)","Philadelphia 76ers 95 @ Cleveland Cavaliers 119 (Final)","Utah Jazz 100 @ Dallas Mavericks 112 (Final)","Oklahoma City Thunder 128 @ Memphis Grizzlies 97 (Final)","Toronto Raptors 121 @ Milwaukee Bucks 107 (Final)","Minnesota Timberwolves 115 @ New Orleans Pelicans 109 (Final)","Portland Trail Blazers @ Los Angeles Lakers (3:58 - 3rd)","San Antonio Spurs @ Sacramento Kings (4:25 - 3rd)"],
       leagueAvg: { fg: 44.2, ft: 82.1 },
       players: [
         { rank: 1, name: "Jayson Tatum", team: "BOS", min: 29, pts: 34, reb: 8, ast: 9, stl: 1, blk: 1, to: 4, tpm: 5, fgPct: 56.3, ftPct: 100, composite: 12.79, zScores: { pts: 2.875, reb: 1.235, ast: 2.558, stl: 0.272, blk: 0.89, tpm: 2.547, fgImpact: 1.306, ftImpact: 2.931, to: -1.822 } },
