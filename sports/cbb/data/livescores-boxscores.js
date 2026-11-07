@@ -7116,9 +7116,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401918948",
-      line: "Morehead State Eagles @ Louisville Cardinals (11/7 - 12:00 PM EST)",
+      line: "Morehead State Eagles @ Louisville Cardinals (Halftime)",
       completed: false,
-      statusText: "11/7 - 12:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "MORE", name: "Morehead State Eagles", score: null,
         players: [
