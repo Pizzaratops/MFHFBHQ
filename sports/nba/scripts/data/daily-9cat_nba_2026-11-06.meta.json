@@ -4,16 +4,16 @@
   "games": [
     "Washington Wizards 132 @ Atlanta Hawks 139 (Final)",
     "Boston Celtics 119 @ Charlotte Hornets 80 (Final)",
-    "Philadelphia 76ers @ Cleveland Cavaliers (4:25 - 4th)",
-    "Utah Jazz @ Dallas Mavericks (8:32 - 4th)",
-    "Oklahoma City Thunder @ Memphis Grizzlies (10:51 - 4th)",
-    "Toronto Raptors @ Milwaukee Bucks (End of 3rd)",
-    "Minnesota Timberwolves @ New Orleans Pelicans (End of 3rd)",
-    "Portland Trail Blazers @ Los Angeles Lakers (11/6 - 10:00 PM EST)",
-    "San Antonio Spurs @ Sacramento Kings (11/6 - 10:00 PM EST)"
+    "Philadelphia 76ers 95 @ Cleveland Cavaliers 119 (Final)",
+    "Utah Jazz 100 @ Dallas Mavericks 112 (Final)",
+    "Oklahoma City Thunder 128 @ Memphis Grizzlies 97 (Final)",
+    "Toronto Raptors 121 @ Milwaukee Bucks 107 (Final)",
+    "Minnesota Timberwolves 115 @ New Orleans Pelicans 109 (Final)",
+    "Portland Trail Blazers @ Los Angeles Lakers (7:43 - 2nd)",
+    "San Antonio Spurs @ Sacramento Kings (10:07 - 2nd)"
   ],
   "leagueAvg": {
-    "fg": 44.8,
-    "ft": 89.3
+    "fg": 44.2,
+    "ft": 82.1
   }
 }
