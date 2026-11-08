@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909945",
-      "line": "Philadelphia 76ers @ Chicago Bulls (10:16 - 1st)",
+      "line": "Philadelphia 76ers @ Chicago Bulls (2:21 - 1st)",
       "completed": false,
-      "statusText": "10:16 - 1st",
+      "statusText": "2:21 - 1st",
       "away": {
         "abbr": "PHI",
         "name": "Philadelphia 76ers",
