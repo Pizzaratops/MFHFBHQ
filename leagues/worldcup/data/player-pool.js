@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-08T15:25:47.256Z
+//  Stand: 2026-11-08T20:38:45.579Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -978,7 +978,7 @@ const WC_PLAYER_POOL = [
 ["06mk4","Nikola Topic","OKC","PG","PG,G,Flx","FA"],
 ["027p0","Nikola Vucevic","ORL","C","C,Flx","FA"],
 ["07ao8","Nimari Burnett","(N/A)","SG","SG,G,Flx","FA"],
-["06v5w","Nique Clifford","SAC","SG","SG,G,SF,F,Flx","FA"],
+["06v5w","Nique Clifford","OKC","SG","SG,G,SF,F,Flx","FA"],
 ["06v5u","Noa Essengue","CHI","PF","PF,F,Flx","FA"],
 ["06ccd","Noah Clowney","BKN","PF","PF,C,F,Flx","FA"],
 ["0663u","Noah Kirkwood","(N/A)","G","PG,SG,G,Flx","FA"],
