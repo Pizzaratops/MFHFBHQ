@@ -46,6 +46,8 @@ function key(raw) { // = MFHFB.nba.key
   s = s.replace(/\./g, '').replace(/['’‘`]/g, '').replace(/\b(jr|sr|iii|ii)\b/g, '').replace(/\s+/g, ' ').trim();
   return FIRST[s] || s;
 }
+const CANON = { NOP: 'NOR', NO: 'NOR', PHX: 'PHO', WSH: 'WAS', GS: 'GSW', SA: 'SAS', NY: 'NYK', UTAH: 'UTA', BRK: 'BKN' };
+const canon = a => { const u = String(a || '').toUpperCase(); return CANON[u] || u; };
 const etToday = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 const addDay = (d, n) => { const x = new Date(d + 'T12:00:00Z'); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
 const zero = () => ({ pts: 0, blk: 0, stl: 0, ast: 0, reb: 0, tov: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, tpm: 0, gp: 0, min: 0 });
@@ -99,8 +101,8 @@ async function main() {
       if (day > today) break;
       const f = path.join(BOX, `daily-9cat_nba_${day}.games.json`);
       if (!fs.existsSync(f)) continue;
-      const box = new Map();
-      JSON.parse(fs.readFileSync(f, 'utf8')).games.forEach(g => [g.away, g.home].forEach(side => (side.players || []).forEach(p => box.set(key(p.name), p))));
+      const box = new Map(), played = new Set();
+      JSON.parse(fs.readFileSync(f, 'utf8')).games.forEach(g => [g.away, g.home].forEach(side => { if ((side.players || []).length) played.add(canon(side.abbr)); (side.players || []).forEach(p => box.set(key(p.name), p)); }));
       if (!box.size) continue;
       const ro = await rosterOn(day);
       if (!ro) continue;
@@ -110,7 +112,7 @@ async function main() {
         (r.rosterItems || []).forEach(it => {
           if (it.status !== 'ACTIVE') return;
           const nm = nameOf(it.id), p = box.get(key(nm));
-          if (!p) { if (nm) unmatched.set(nm, (unmatched.get(nm) || 0)); return; }
+          if (!p) { if (nm && played.has(canon((ids[it.id] || {}).team))) unmatched.set(nm, day); return; } // nur melden, wenn sein Team gespielt hat
           if (!p.min) return; // nicht gespielt (DNP)
           const t = tot[id];
           t.pts += p.pts || 0; t.reb += p.reb || 0; t.ast += p.ast || 0; t.stl += p.stl || 0; t.blk += p.blk || 0;
@@ -127,9 +129,9 @@ async function main() {
   }
   const complete = Object.keys(periods).map(Number).filter(n => { const w = weeks.find(x => x.n === n); return w && w.days[w.days.length - 1] < today; });
 
-  // Kontrolle gegen Fantrax (Bilanz inkl. laufender Woche)
+  // Kontrolle gegen Fantrax (Fantrax zählt nur abgeschlossene Wochen)
   const mine = {};
-  Object.values(matchups).forEach(list => list.forEach(m => {
+  complete.forEach(n => (matchups[n] || []).forEach(m => {
     [[m.home, m.hw, m.hl, m.ht], [m.away, m.hl, m.hw, m.ht]].forEach(([id, w, l, t]) => { const r = mine[id] = mine[id] || [0, 0, 0]; r[0] += w; r[1] += l; r[2] += t; });
   }));
   let same = 0, total = 0;
@@ -141,7 +143,7 @@ async function main() {
   });
   console.log(`  Wochen ${Object.keys(periods).join(',')} (laufend: ${cur}) · Bilanz-Abgleich mit Fantrax: ${same}/${total} exakt`);
   if (diffs.length) console.log('  Abweichungen: ' + diffs.join(' · '));
-  if (unmatched.size) console.log(`  ! Ohne Box-Score-Zuordnung (Name): ${[...unmatched.keys()].slice(0, 15).join(', ')}`);
+  if (unmatched.size) console.log(`  ! Team hat gespielt, Spieler aber nicht im Box Score (DNP oder Name abweichend): ${[...unmatched].slice(0, 15).map(([n, d]) => n + ' ' + d).join(', ')}`);
 
   const out = { season: Number(info.seasonYear) + 1, current: cur, updated: new Date().toISOString(), complete, check: `${same}/${total}`, periods, matchups };
   fs.writeFileSync(OUT, `// ============================================================
