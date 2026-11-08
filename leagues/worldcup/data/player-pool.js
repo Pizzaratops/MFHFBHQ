@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-08T07:49:27.760Z
+//  Stand: 2026-11-08T07:54:25.362Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -255,7 +255,7 @@ const WC_PLAYER_POOL = [
 ["07244","Dain Dainja","(N/A)","PF","SF,PF,F,Flx","FA"],
 ["05vyx","Daishen Nix","(N/A)","PG","PG,G,Flx","FA"],
 ["05ujk","Dalano Banton","(N/A)","PG","PG,SG,G,Flx","FA"],
-["0621h","Dalen Terry","(N/A)","SG","SG,G,SF,F,Flx","FA"],
+["0621h","Dalen Terry","OKC","SG","SG,G,SF,F,Flx","FA"],
 ["06mk9","Dalton Knecht","NYK","SF","SG,G,SF,F,Flx","FA"],
 ["07asd","Damari Monsanto","(N/A)","G","PG,SG,G,Flx","FA"],
 ["042nr","Damian Jones","(N/A)","C","C,Flx","FA"],
@@ -382,7 +382,7 @@ const WC_PLAYER_POOL = [
 ["06pu0","Emanuel Miller","(N/A)","PF","PF,F,Flx","FA"],
 ["076uj","Emanuel Sharp","SAC","SG","SG,G,Flx","FA"],
 ["06cd3","Emoni Bates","(N/A)","SF","SF,F,Flx","FA"],
-["06mlw","Enrique Freeman","MIN","PF","PF,F,Flx","FA"],
+["06mlw","Enrique Freeman","(N/A)","PF","PF,F,Flx","FA"],
 ["06666","Eric Demers","(N/A)","G","PG,SG,G,Flx","FA"],
 ["06vy1","Eric Dixon","(N/A)","PF","PF,F,Flx","FA"],
 ["005kf","Eric Gordon","(N/A)","SG","SG,G,SF,F,Flx","FA"],
@@ -757,7 +757,7 @@ const WC_PLAYER_POOL = [
 ["04qrw","Kevin Huerter","DET","SG","SG,G,SF,F,Flx","FA"],
 ["049kh","Kevin Knox","(N/A)","SF","SF,F,Flx","FA"],
 ["005kd","Kevin Love","(N/A)","PF","PF,C,F,Flx","FA"],
-["06mm2","Kevin McCullar","(N/A)","SF","SF,F,Flx","FA"],
+["06mm2","Kevin McCullar","TOR","SF","SF,F,Flx","FA"],
 ["051pa","Kevin Porter","(N/A)","SG","PG,SG,G,Flx","T"],
 ["05qzd","Kevon Harris","(N/A)","SG","SG,G,Flx","FA"],
 ["03ad7","Kevon Looney","LAL","C","C,Flx","FA"],
@@ -985,7 +985,7 @@ const WC_PLAYER_POOL = [
 ["06v7y","Noah Penda","ORL","SF","SF,F,Flx","FA"],
 ["07are","Noam Yaacov","(N/A)","PG","PG,G,Flx","FA"],
 ["06v5p","Nolan Traore","BKN","PG","PG,G,Flx","T"],
-["0722p","Norchad Omier","(N/A)","PF","SF,PF,F,Flx","FA"],
+["0722p","Norchad Omier","CLE","PF","SF,PF,F,Flx","FA"],
 ["03r7z","Norman Powell","CHI","SG","SG,G,SF,F,Flx","T"],
 ["06eoe","Obadiah Noel","(N/A)","SG","SG,G,Flx","FA"],
 ["05qsx","Obi Toppin","IND","PF","PF,C,F,Flx","T"],
