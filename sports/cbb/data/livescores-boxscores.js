@@ -8057,28 +8057,10 @@ const LIVESCORES_BOXSCORES = {
     "2026-11-08": {
     games: [
       {
-      id: "401924646",
-      line: "Iona Gaels @ St. John's Red Storm (11/8 - 12:00 PM EST)",
-      completed: false,
-      statusText: "11/8 - 12:00 PM EST",
-      away: {
-        abbr: "IONA", name: "Iona Gaels", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "StJon", name: "St. John's Red Storm", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401920424",
-      line: "Arkansas Razorbacks @ Virginia Cavaliers (11/8 - 1:00 PM EST)",
+      line: "Arkansas Razorbacks @ Virginia Cavaliers (13:56 - 1st)",
       completed: false,
-      statusText: "11/8 - 1:00 PM EST",
+      statusText: "13:56 - 1st",
       away: {
         abbr: "Ark", name: "Arkansas Razorbacks", score: null,
         players: [
@@ -8093,10 +8075,28 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401924734",
-      line: "Princeton Tigers @ Siena Saints (11/8 - 1:00 PM EST)",
+      id: "401924646",
+      line: "Iona Gaels @ St. John's Red Storm (13:41 - 2nd)",
       completed: false,
-      statusText: "11/8 - 1:00 PM EST",
+      statusText: "13:41 - 2nd",
+      away: {
+        abbr: "IONA", name: "Iona Gaels", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "StJon", name: "St. John's Red Storm", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401924734",
+      line: "Princeton Tigers @ Siena Saints (11:49 - 1st)",
+      completed: false,
+      statusText: "11:49 - 1st",
       away: {
         abbr: "Princ", name: "Princeton Tigers", score: null,
         players: [
@@ -8112,9 +8112,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401921820",
-      line: "Southeast Missouri State Redhawks @ South Carolina Gamecocks (11/8 - 1:00 PM EST)",
+      line: "Southeast Missouri State Redhawks @ South Carolina Gamecocks (11:26 - 1st)",
       completed: false,
-      statusText: "11/8 - 1:00 PM EST",
+      statusText: "11:26 - 1st",
       away: {
         abbr: "SEMO", name: "Southeast Missouri State Redhawks", score: null,
         players: [
@@ -8123,24 +8123,6 @@ const LIVESCORES_BOXSCORES = {
       },
       home: {
         abbr: "SouthCar", name: "South Carolina Gamecocks", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
-      id: "401920355",
-      line: "Harvard Crimson @ Chicago Maroons (11/8 - 1:00 PM EST)",
-      completed: false,
-      statusText: "11/8 - 1:00 PM EST",
-      away: {
-        abbr: "Harv", name: "Harvard Crimson", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "CHI", name: "Chicago Maroons", score: null,
         players: [
 
         ]
@@ -8159,6 +8141,24 @@ const LIVESCORES_BOXSCORES = {
       },
       home: {
         abbr: "Corn", name: "Cornell Big Red", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401920355",
+      line: "Harvard Crimson @ Chicago Maroons (11/8 - 2:00 PM EST)",
+      completed: false,
+      statusText: "11/8 - 2:00 PM EST",
+      away: {
+        abbr: "Harv", name: "Harvard Crimson", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "CHI", name: "Chicago Maroons", score: null,
         players: [
 
         ]
