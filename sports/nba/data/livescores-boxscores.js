@@ -4082,9 +4082,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909946",
-      line: "Los Angeles Lakers @ Detroit Pistons (11/8 - 6:00 PM EST)",
+      line: "Los Angeles Lakers @ Detroit Pistons (10:32 - 2nd)",
       completed: false,
-      statusText: "11/8 - 6:00 PM EST",
+      statusText: "10:32 - 2nd",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
