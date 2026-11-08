@@ -1,0 +1,42 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-07",
+  "games": [
+    "Hampton Pirates @ George Washington Revolutionaries (10:00 - 2nd)",
+    "Northern Arizona Lumberjacks @ New Mexico Lobos (9:07 - 2nd)",
+    "Mercer Bears @ Davidson Wildcats (4:06 - 1st)",
+    "St. Bonaventure Bonnies @ Canisius Golden Griffins (6:18 - 1st)",
+    "Northern Illinois Huskies @ Dayton Flyers (7:54 - 1st)",
+    "Providence Friars @ Nebraska Cornhuskers (10:22 - 1st)",
+    "Morehead State Eagles 57 @ Louisville Cardinals 107 (Final)",
+    "New Mexico State Aggies 68 @ Gonzaga Bulldogs 109 (Final)",
+    "UNC Wilmington Seahawks 78 @ East Carolina Pirates 75 (Final)",
+    "VCU Rams 88 @ Memphis Tigers 89 (Final)",
+    "Long Island University Sharks 80 @ La Salle Explorers 88 (Final)",
+    "San Diego State Aztecs 77 @ Colorado Buffaloes 66 (Final)",
+    "Omaha Mavericks 56 @ Utah State Aggies 90 (Final)",
+    "Oakland Golden Grizzlies 67 @ UC Santa Barbara Gauchos 90 (Final)",
+    "Samford Bulldogs 79 @ UNLV Rebels 88 (Final)",
+    "Lafayette Leopards 57 @ Saint Joseph's Hawks 67 (Final/OT)",
+    "Monmouth Hawks 66 @ Rhode Island Rams 84 (Final)",
+    "VMI Keydets 68 @ UTSA Roadrunners 70 (Final)",
+    "Northern Iowa Panthers 83 @ Furman Paladins 98 (Final)",
+    "Washington State Cougars 71 @ High Point Panthers 83 (Final)",
+    "Denver Pioneers @ UC Riverside Highlanders (16:51 - 1st)",
+    "Central State Marauders @ Duquesne Dukes (18:10 - 1st)",
+    "Maryland Terrapins @ Georgetown Hoyas (18:38 - 1st)",
+    "Northwestern State Demons @ Murray State Racers (11/7 - 8:00 PM EST)",
+    "Southern Indiana Screaming Eagles @ Evansville Purple Aces (11/7 - 8:00 PM EST)",
+    "Pacific Tigers @ Bradley Braves (11/7 - 8:00 PM EST)",
+    "Bethune-Cookman Wildcats @ Grand Canyon Lopes (11/7 - 8:00 PM EST)",
+    "Bethesda Flames @ Pepperdine Waves (11/7 - 9:00 PM EST)",
+    "Fresno State Bulldogs @ UC San Diego Tritons (11/7 - 10:00 PM EST)",
+    "Sacramento State Hornets @ Santa Clara Broncos (11/7 - 10:00 PM EST)",
+    "Portland State Vikings @ Seattle U Redhawks (11/7 - 10:00 PM EST)",
+    "San José State Spartans @ UC Irvine Anteaters (11/7 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 46.9,
+    "ft": 70.3
+  }
+}
