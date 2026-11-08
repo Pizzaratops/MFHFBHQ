@@ -4047,9 +4047,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909945",
-      line: "Philadelphia 76ers @ Chicago Bulls (End of 1st)",
+      line: "Philadelphia 76ers @ Chicago Bulls (5:42 - 2nd)",
       completed: false,
-      statusText: "End of 1st",
+      statusText: "5:42 - 2nd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
