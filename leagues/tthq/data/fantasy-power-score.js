@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-08T14:01:17.270Z",
+  "generatedAt": "2026-11-08T14:15:56.692Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 11 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -133,7 +133,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 79.7,
         "stl": 25.71,
         "blk": 13.03,
-        "tpm": 44.8,
+        "tpm": 44.5,
         "to": 39.6,
         "fgPct": 45.9,
         "ftPct": 79.6
@@ -145,7 +145,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 2,
         "blk": 8,
         "tpm": 2,
-        "fgPct": 11,
+        "fgPct": 12,
         "ftPct": 3,
         "to": 7
       },
@@ -197,7 +197,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 11.37,
         "tpm": 33.7,
         "to": 36.5,
-        "fgPct": 46.8,
+        "fgPct": 46.9,
         "ftPct": 81.4
       },
       "rank": {
@@ -207,7 +207,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 11,
         "blk": 11,
         "tpm": 7,
-        "fgPct": 8,
+        "fgPct": 7,
         "ftPct": 1,
         "to": 4
       },
@@ -226,7 +226,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 58.5,
         "stl": 20.82,
         "blk": 15.07,
-        "tpm": 35.1,
+        "tpm": 35.2,
         "to": 35.6,
         "fgPct": 46.7,
         "ftPct": 76.8
@@ -261,7 +261,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 19.36,
         "tpm": 33,
         "to": 43.6,
-        "fgPct": 47.8,
+        "fgPct": 47.7,
         "ftPct": 76.5
       },
       "rank": {
@@ -292,7 +292,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 76.2,
         "stl": 22.44,
         "blk": 17.62,
-        "tpm": 32.4,
+        "tpm": 32.5,
         "to": 41.6,
         "fgPct": 48.1,
         "ftPct": 75.8
@@ -325,7 +325,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12.1,
         "tpm": 29.8,
         "to": 34.1,
-        "fgPct": 48.3,
+        "fgPct": 48.2,
         "ftPct": 77.5
       },
       "rank": {
@@ -354,9 +354,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 67.7,
         "stl": 21.56,
         "blk": 15.35,
-        "tpm": 30.8,
+        "tpm": 31,
         "to": 38.1,
-        "fgPct": 47.1,
+        "fgPct": 47,
         "ftPct": 78.3
       },
       "rank": {
@@ -385,9 +385,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 89.9,
         "stl": 25.49,
         "blk": 14.56,
-        "tpm": 39,
+        "tpm": 38.9,
         "to": 46.8,
-        "fgPct": 47,
+        "fgPct": 46.9,
         "ftPct": 79.2
       },
       "rank": {
@@ -397,7 +397,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 3,
         "blk": 7,
         "tpm": 4,
-        "fgPct": 7,
+        "fgPct": 8,
         "ftPct": 4,
         "to": 11
       },
@@ -416,9 +416,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 59.6,
         "stl": 18.21,
         "blk": 9.45,
-        "tpm": 30,
+        "tpm": 30.1,
         "to": 35.7,
-        "fgPct": 45.9,
+        "fgPct": 46,
         "ftPct": 78.4
       },
       "rank": {
@@ -428,7 +428,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 12,
         "blk": 12,
         "tpm": 11,
-        "fgPct": 12,
+        "fgPct": 11,
         "ftPct": 7,
         "to": 3
       },
