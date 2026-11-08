@@ -29,9 +29,17 @@ def meta(path):
     return json.loads(m.group(1)) if m else {}
 
 
-stamp = L.head_stamp(L.url('pbp', END))
+# Netzwerkfehler (Timeout o. ä.) beim GitHub-Release-Server: Play-by-Play diesmal
+# auslassen statt den ganzen Sync rot zu machen — der nächste Lauf holt es nach.
+try:
+    stamp = L.head_stamp(L.url('pbp', END))
+    net_err = None
+except Exception as e:  # noqa: BLE001
+    stamp, net_err = None, f'{type(e).__name__}: {e}'
 reason = 'erzwungen' if '--force' in sys.argv else None
-if stamp is None:
+if net_err:
+    run, reason = False, f'Quelle nicht erreichbar ({net_err}), nächster Lauf versucht es erneut'
+elif stamp is None:
     run, reason = False, f'pbp {END} noch nicht veröffentlicht'
 elif reason:
     run = True
