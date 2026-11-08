@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-08T13:53:56.067Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-08T15:14:37.352Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2409,23 +2409,22 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Joshua Wyche","nbaTeam":"VCU","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":3.3,"projZ":-6.78,"projMin":3.3,"role":"Tiefe","compositeScore":-2.19,"signalsUsed":1,"rank":2403},
   {"name":"Nick Del Bosque","nbaTeam":"USD","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":3.9,"projZ":-6.77,"projMin":3.9,"role":"Tiefe","compositeScore":-2.19,"signalsUsed":1,"rank":2404},
   {"name":"Ryan Mandes","nbaTeam":"Princ","pos":"G","cls":"So","experience":"sophomore","minutesAvg":3.4,"projZ":-6.78,"projMin":3.4,"role":"Tiefe","compositeScore":-2.19,"signalsUsed":1,"rank":2405},
-  {"name":"Lucas Denault","nbaTeam":"Princ","pos":"G","experience":"veteran","minutesAvg":3,"projZ":-6.83,"projMin":3,"role":"Tiefe","compositeScore":-2.2,"signalsUsed":1,"rank":2406},
-  {"name":"Will Eggemeier","nbaTeam":"BC","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":3.1,"projZ":-6.84,"projMin":3.1,"role":"Tiefe","compositeScore":-2.2,"signalsUsed":1,"rank":2407},
-  {"name":"Drake Cardwell","nbaTeam":"Aub","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":2.8,"projZ":-6.91,"projMin":2.8,"role":"Tiefe","compositeScore":-2.22,"signalsUsed":1,"rank":2408},
-  {"name":"Niccolo Kalischer-Stork","nbaTeam":"SMU","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":3.8,"projZ":-6.9,"projMin":3.8,"role":"Tiefe","compositeScore":-2.22,"signalsUsed":1,"rank":2409},
-  {"name":"Amere Brown","nbaTeam":"Ark","pos":"G","cls":"So","experience":"sophomore","minutesAvg":4.2,"projZ":-7.03,"projMin":4.2,"role":"Tiefe","compositeScore":-2.25,"signalsUsed":1,"rank":2410},
-  {"name":"Grant Darbyshire","nbaTeam":"Cin","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":3,"projZ":-7.04,"projMin":3,"role":"Tiefe","compositeScore":-2.25,"signalsUsed":1,"rank":2411},
-  {"name":"Quin Berger","nbaTeam":"Mia-FL","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":2.4,"z30":-4.76,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2944,"projZ":-7.13,"projMin":2.4,"role":"Tiefe","statsWindow":"last-season","compositeScore":-2.27,"signalsUsed":1,"rank":2412},
-  {"name":"Kenyon Giles","nbaTeam":"WichSt","pos":"G","experience":"veteran","minutesAvg":36.1,"z30":5.78,"bestCat30":"3PM","worstCat30":"FG%","lastSeasonRank":216,"statsWindow":"last-season","compositeScore":-18.07,"signalsUsed":1,"gone":true,"rank":2413},
-  {"name":"Robbie Avila","nbaTeam":"StLou","pos":"C","experience":"veteran","minutesAvg":26.2,"z30":5.65,"bestCat30":"AST","worstCat30":"TO","lastSeasonRank":227,"statsWindow":"last-season","compositeScore":-18.12,"signalsUsed":1,"gone":true,"rank":2414},
-  {"name":"Rylan Griffen","nbaTeam":"TAMU","pos":"G","cls":"Grad","experience":"veteran","nilValue":16,"minutesAvg":26,"z30":4.89,"bestCat30":"STL","worstCat30":"REB","lastSeasonRank":318,"statsWindow":"last-season","compositeScore":-18.61,"signalsUsed":2,"gone":true,"rank":2415},
-  {"name":"Damien Mayo","nbaTeam":"SIU","pos":"G","experience":"veteran","minutesAvg":25.4,"z30":2.13,"bestCat30":"STL","worstCat30":"REB","lastSeasonRank":827,"statsWindow":"last-season","compositeScore":-19.29,"signalsUsed":1,"gone":true,"rank":2416},
-  {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rank":2417},
-  {"name":"Emmanuel Ogbole","nbaTeam":"Rut","pos":"C","experience":"veteran","minutesAvg":18.8,"z30":-0.88,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":1731,"statsWindow":"last-season","compositeScore":-20.29,"signalsUsed":1,"gone":true,"rank":2418},
-  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
-  {"name":"075yo","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420},
-  {"name":"Ethan Bilyeu","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2421},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2422},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2423},
-  {"name":"Moe Odum","nbaTeam":"SJSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2424}
+  {"name":"Will Eggemeier","nbaTeam":"BC","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":3.1,"projZ":-6.84,"projMin":3.1,"role":"Tiefe","compositeScore":-2.2,"signalsUsed":1,"rank":2406},
+  {"name":"Drake Cardwell","nbaTeam":"Aub","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":2.8,"projZ":-6.91,"projMin":2.8,"role":"Tiefe","compositeScore":-2.22,"signalsUsed":1,"rank":2407},
+  {"name":"Niccolo Kalischer-Stork","nbaTeam":"SMU","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":3.8,"projZ":-6.9,"projMin":3.8,"role":"Tiefe","compositeScore":-2.22,"signalsUsed":1,"rank":2408},
+  {"name":"Amere Brown","nbaTeam":"Ark","pos":"G","cls":"So","experience":"sophomore","minutesAvg":4.2,"projZ":-7.03,"projMin":4.2,"role":"Tiefe","compositeScore":-2.25,"signalsUsed":1,"rank":2409},
+  {"name":"Grant Darbyshire","nbaTeam":"Cin","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":3,"projZ":-7.04,"projMin":3,"role":"Tiefe","compositeScore":-2.25,"signalsUsed":1,"rank":2410},
+  {"name":"Quin Berger","nbaTeam":"Mia-FL","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":2.4,"z30":-4.76,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2944,"projZ":-7.13,"projMin":2.4,"role":"Tiefe","statsWindow":"last-season","compositeScore":-2.27,"signalsUsed":1,"rank":2411},
+  {"name":"Kenyon Giles","nbaTeam":"WichSt","pos":"G","experience":"veteran","minutesAvg":36.1,"z30":5.78,"bestCat30":"3PM","worstCat30":"FG%","lastSeasonRank":216,"statsWindow":"last-season","compositeScore":-18.07,"signalsUsed":1,"gone":true,"rank":2412},
+  {"name":"Robbie Avila","nbaTeam":"StLou","pos":"C","experience":"veteran","minutesAvg":26.2,"z30":5.65,"bestCat30":"AST","worstCat30":"TO","lastSeasonRank":227,"statsWindow":"last-season","compositeScore":-18.12,"signalsUsed":1,"gone":true,"rank":2413},
+  {"name":"Rylan Griffen","nbaTeam":"TAMU","pos":"G","cls":"Grad","experience":"veteran","nilValue":16,"minutesAvg":26,"z30":4.89,"bestCat30":"STL","worstCat30":"REB","lastSeasonRank":318,"statsWindow":"last-season","compositeScore":-18.61,"signalsUsed":2,"gone":true,"rank":2414},
+  {"name":"Damien Mayo","nbaTeam":"SIU","pos":"G","experience":"veteran","minutesAvg":25.4,"z30":2.13,"bestCat30":"STL","worstCat30":"REB","lastSeasonRank":827,"statsWindow":"last-season","compositeScore":-19.29,"signalsUsed":1,"gone":true,"rank":2415},
+  {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rank":2416},
+  {"name":"Emmanuel Ogbole","nbaTeam":"Rut","pos":"C","experience":"veteran","minutesAvg":18.8,"z30":-0.88,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":1731,"statsWindow":"last-season","compositeScore":-20.29,"signalsUsed":1,"gone":true,"rank":2417},
+  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2418},
+  {"name":"075yo","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
+  {"name":"Ethan Bilyeu","nbaTeam":"N TX","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2421},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2422},
+  {"name":"Moe Odum","nbaTeam":"SJSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2423}
 ];
