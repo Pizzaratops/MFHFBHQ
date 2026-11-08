@@ -3102,7 +3102,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-07": {
-      games: ["Denver Nuggets 114 @ Indiana Pacers 102 (Final)","Brooklyn Nets @ Atlanta Hawks (Halftime)","New York Knicks @ Cleveland Cavaliers (3:23 - 2nd)","Washington Wizards @ Oklahoma City Thunder (3:10 - 2nd)","Orlando Magic @ Golden State Warriors (2:00 - 1st)","Houston Rockets @ Phoenix Suns (11/7 - 9:00 PM EST)","San Antonio Spurs @ Portland Trail Blazers (11/7 - 10:00 PM EST)"],
+      games: ["Denver Nuggets 114 @ Indiana Pacers 102 (Final)","Brooklyn Nets @ Atlanta Hawks (52.7 - 4th)","New York Knicks @ Cleveland Cavaliers (8:28 - 4th)","Washington Wizards @ Oklahoma City Thunder (9:07 - 4th)","Orlando Magic @ Golden State Warriors (9:39 - 3rd)","Houston Rockets @ Phoenix Suns (2:03 - 2nd)","San Antonio Spurs @ Portland Trail Blazers (11/7 - 10:00 PM EST)"],
       leagueAvg: { fg: 45.2, ft: 80.8 },
       players: [
         { rank: 1, name: "Nikola Jokic", team: "DEN", min: 36, pts: 19, reb: 13, ast: 8, stl: 1, blk: 1, to: 1, tpm: 1, fgPct: 35, ftPct: 100, composite: 9.1, zScores: { pts: 1.665, reb: 2.846, ast: 2.12, stl: 1.732, blk: 1.159, tpm: -0.032, fgImpact: -1.472, ftImpact: 1.736, to: -0.649 } },
