@@ -1,0 +1,43 @@
+name: World Cup Sync (Fantrax, Division Seattle)
+
+# FBI World Cup 2026-27 [WEST] (Fantrax-Liga nq58zcxtmutve46g), Division Seattle.
+# Stündlich: Teams, Kader, Tabelle, Spielplan, Spielerpool → leagues/worldcup/data/
+# (leagues/worldcup/scripts/sync-fantrax.js), danach Wochen-Kategorien je Team
+# (sync-week-stats.js: tägliche Fantrax-Aufstellung × Box Scores aus sports/nba).
+# Keine Secrets nötig (Fantrax öffentlich).
+# Spieler-Stats/Projections kommen aus den sportweiten NBA-Daten (sports/nba).
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldcup-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fantrax-Sync
+        run: node leagues/worldcup/scripts/sync-fantrax.js
+      - name: Wochen-Kategorien (Fantrax-Aufstellung × Hub-Box-Scores)
+        run: node leagues/worldcup/scripts/sync-week-stats.js
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add leagues/worldcup/data/
+          if git diff --cached --quiet; then echo "Keine Änderungen."; exit 0; fi
+          git commit -m "World Cup: Fantrax-Sync"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && exit 0; sleep 5; done
+          exit 1

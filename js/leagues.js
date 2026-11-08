@@ -293,11 +293,11 @@ const LEAGUES = [
     pages: ['home', 'n32table', 'n32rolling', 'n32sched', 'n32week', 'n32team', 'n32compare', 'n32pos'],
   },
   {
-    // Fantrax NBA World Cup (Draft-Only-Turnier): 4 Conferences à 12
-    // Divisionen à 12 Teams, je 14 Runden. Keine eigenen Datendateien —
-    // die Seite „World Cup Draft“ (tools/nba-worldcup.js) holt die Picks
-    // live im Browser über Fantrax' fxea-API (getDraftResults/getPlayerIds;
-    // die Draft-Results-Webseite ist für Außenstehende gesperrt, die API nicht).
+    // Fantrax NBA World Cup 2026-27 — ganze Liga seit 08.11.2026 (vorher nur Draft-Hilfe).
+    // Conference West = Fantrax-Liga nq58zcxtmutve46g mit 12 Divisionen à 12 Teams; gespielt
+    // wird nur in der Division (Seattle), 9-Cat H2H, Free Agents je Division, keine Trades.
+    // Daten: leagues/worldcup/scripts/sync-fantrax.js (worldcup-sync.yml, stündlich) →
+    // leagues/worldcup/data. Tabelle/Spielplan: tools/wc-league.js, Rest = NBA-Tools.
     key: 'worldcup',
     name: 'Fantrax World Cup',
     short: 'World Cup',
@@ -309,50 +309,13 @@ const LEAGUES = [
     accent: '#16a34a',
     accent2: '#f2b84f',
     mode: 'native',
-    dataBase: 'leagues/tthq/data/',
+    dataBase: 'leagues/worldcup/data/',
     sportDataBase: 'sports/nba/data/',
-    pages: ['wcdraft', 'auction'],
-    // Zweiter Reiter „Auction Draft“ = die Funkytown-Auktion (ESPN 15679,
-    // $200, 14 Plätze, 10 aktive Teams). Teams + Draft-Info aus Funkytown,
-    // Stand geteilt mit #/funkytown/auction (shareWith). Werte aus den
-    // TTHQ-Consensus-Projections. PIN-Sperre in tools/nba-auction.js.
-    auctionDraft: {
-      budget: 200, rosterSize: 14, shareWith: 'funkytown', pin: true, guide: true,
-      // Manueller Zuschlag-Eintrag aus (ESPN live + Paste-Import); bei ESPN-Ausfall auf true setzen
-      manualEntry: false,
-      espnLive: { file: './leagues/funkytown/data/live-auction', leagueId: 15679, season: 2027, teamMap: { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 8: 6, 9: 7, 10: 8, 11: 9, 13: 10, 14: 11, 15: 12 } },
-      // Funkytown-Playoffs: 4 von 10 Teams, je 2 Wochen. NBA-Spiele je Team
-      // in Runde 1 (01.–14.03.2027) und Runde 2 (15.–28.03.2027) — aus Beyaz'
-      // Schedule-Screenshot vom 09.10.2026, Summe je Team gegengeprüft.
-      playoffs: {
-        rounds: ['R1 1.–14.3.', 'R2 15.–28.3.'],
-        games: {
-          GSW: [8, 7], PHI: [7, 8], PHO: [7, 8], MEM: [7, 8], NOR: [8, 7], ATL: [7, 7], LAC: [7, 7], TOR: [6, 8], ORL: [6, 8], BOS: [7, 7],
-          DEN: [7, 7], DAL: [6, 8], SAC: [7, 7], HOU: [7, 7], WAS: [7, 7], UTA: [7, 7], DET: [7, 7], POR: [7, 7], BKN: [7, 7], CHI: [7, 7],
-          LAL: [7, 7], OKC: [7, 7], NYK: [6, 7], MIN: [7, 6], CHA: [6, 7], MIL: [6, 7], MIA: [7, 6], SAS: [6, 7], IND: [6, 7], CLE: [7, 5],
-        },
-      },
-    },
-    files: { teams: './leagues/funkytown/data/teams-rosters', 'rosters-live': './leagues/funkytown/data/rosters-live', 'auction-history': './leagues/funkytown/data/auction-history', 'auction-plan': './leagues/funkytown/data/auction-plan' },
-    worldCup: {
-      rounds: 14, teamsPerDivision: 12,
-      // Fantasy-Playoffs: NBA-Spiele je Team in Runde 1 (11.–17.01.),
-      // Runde 2 (18.–24.01.), Runde 3 (25.–31.01.) — aus Beyaz' Plan (09.10.2026)
-      playoffs: {
-        ATL: [3, 4, 3], BKN: [4, 3, 4], BOS: [3, 4, 4], CHA: [3, 3, 4], CHI: [3, 3, 4], CLE: [4, 3, 4],
-        DAL: [3, 4, 4], DEN: [5, 3, 4], DET: [3, 3, 4], GSW: [4, 4, 3], HOU: [4, 4, 4], IND: [4, 3, 3],
-        LAC: [3, 4, 3], LAL: [4, 4, 4], MEM: [3, 3, 3], MIA: [4, 3, 3], MIL: [4, 3, 3], MIN: [3, 4, 4],
-        NOR: [2, 2, 4], NYK: [4, 4, 3], OKC: [3, 4, 4], ORL: [4, 3, 4], PHI: [3, 4, 4], PHO: [2, 4, 4],
-        POR: [4, 4, 3], SAC: [4, 3, 4], SAS: [2, 3, 3], TOR: [4, 3, 4], UTA: [4, 4, 3], WAS: [4, 4, 3],
-      },
-      my: { conference: 'West', division: 'Seattle' },
-      conferences: [
-        { name: 'West', id: 'nq58zcxtmutve46g' },
-        { name: 'East', id: 'lj2bhz01mutvdfnh' },
-        { name: 'North', id: 'dyu5jrbomu4q4es3' },
-        { name: 'South', id: 'esm01p7umutvdrxa' },
-      ],
-    },
+    platformLeagueId: 'nq58zcxtmutve46g',
+    myTeam: 1, // flyingillini (Beyaz)
+    // Best-Available-Board ist ligaunabhängig (gegen die Kader wird erst im Browser gefiltert)
+    files: { teams: 'teams-rosters', 'best-available-board': './leagues/funkytown/data/best-available-board' },
+    pages: ['home', 'wctable', 'wcschedule', 'livescores', 'teams', 'waiver', 'players', 'projections', 'rolling', 'catweb', 'insights', 'nbateams'],
   },
   {
     // basketball.de US-Manager (Salary-Cap-Spiel, seit 19.10.2026): 15 Spieler

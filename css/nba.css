@@ -924,7 +924,7 @@ th.punted, td.punted { opacity: .35; }
 .au-setnote { padding: 6px 14px 12px; }
 @media (max-width: 1100px) { .au-bascroll { max-height: 520px; } }
 
-/* ---------- World Cup Draft (tools/nba-worldcup.js), nutzt au-* vom Auction Draft ---------- */
+/* ---------- (früher World Cup Draft, Klassen au-* bleiben für den Auction Draft) ---------- */
 .wc-status { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; border-left: 4px solid var(--league-accent); margin-bottom: 12px; }
 .wc-statusline { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; font-size: 14px; }
 .wc-next b { font-variant-numeric: tabular-nums; }
