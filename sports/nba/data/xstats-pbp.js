@@ -2,43 +2,43 @@
 //  x3PM / xFGM der laufenden Saison aus Play-by-Play
 //  Play-by-Play: Ramiro Bentes, github.com/ramirobentes/nba_data (nicht unser Projekt, frei veröffentlichte Daten)
 //  Methode: Josh Lloyd (joshlloydfantasy.com/research/xstats-method)
-//  Erzeugt von scripts/xstats-pbp.py am 2026-11-06 · Saison 2026-27 · Stand 2026-11-05
+//  Erzeugt von scripts/xstats-pbp.py am 2026-11-08 · Saison 2026-27 · Stand 2026-11-07
 //  Wird von scripts/build-live-projections.js gelesen (3PM, FG%).
-//  META {"season": "2026-27", "assetUpdated": "Fri, 06 Nov 2026 12:50:07 GMT"}
+//  META {"season": "2026-27", "assetUpdated": "Sun, 08 Nov 2026 14:02:58 GMT"}
 // ============================================================
 const XSTATS_PBP = {
  "meta": {
   "season": "2026-27",
-  "through": "2026-11-05",
-  "players": 452,
-  "games": 123,
-  "shots": 21666,
-  "assetUpdated": "Fri, 06 Nov 2026 12:50:07 GMT",
+  "through": "2026-11-07",
+  "players": 459,
+  "games": 139,
+  "shots": 24527,
+  "assetUpdated": "Sun, 08 Nov 2026 14:02:58 GMT",
   "zoneRates": {
-   "C3": 0.3734,
-   "AB3": 0.3483,
-   "RA": 0.6648,
+   "C3": 0.3711,
+   "AB3": 0.3477,
+   "RA": 0.6615,
    "PAINT": 0.4372,
-   "MID": 0.4063
+   "MID": 0.4062
   },
   "source": "Play-by-Play: Ramiro Bentes, github.com/ramirobentes/nba_data"
  },
  "players": {
   "AJ Dybantsa": {
-   "gp": 4,
-   "tpm": 3,
-   "xtpm": 4.23,
-   "fgm": 24,
-   "xfgm": 25.95,
-   "fga": 52
+   "gp": 6,
+   "tpm": 5,
+   "xtpm": 6.3,
+   "fgm": 34,
+   "xfgm": 39.28,
+   "fga": 80
   },
   "AJ Green": {
-   "gp": 8,
-   "tpm": 17,
-   "xtpm": 13.43,
-   "fgm": 19,
-   "xfgm": 15.38,
-   "fga": 42
+   "gp": 9,
+   "tpm": 21,
+   "xtpm": 16.23,
+   "fgm": 23,
+   "xfgm": 18.58,
+   "fga": 51
   },
   "AJ Johnson": {
    "gp": 1,
@@ -49,211 +49,219 @@ const XSTATS_PBP = {
    "fga": 1
   },
   "Aaron Gordon": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 10,
-   "xtpm": 9.83,
-   "fgm": 26,
-   "xfgm": 28.12,
-   "fga": 62
+   "xtpm": 11.94,
+   "fgm": 31,
+   "xfgm": 34.58,
+   "fga": 75
   },
   "Aaron Nesmith": {
-   "gp": 7,
-   "tpm": 12,
-   "xtpm": 13.86,
-   "fgm": 29,
-   "xfgm": 31.64,
-   "fga": 72
+   "gp": 8,
+   "tpm": 14,
+   "xtpm": 16.3,
+   "fgm": 32,
+   "xfgm": 36.19,
+   "fga": 83
   },
   "Aaron Wiggins": {
-   "gp": 9,
-   "tpm": 24,
-   "xtpm": 20.75,
-   "fgm": 48,
-   "xfgm": 44.38,
-   "fga": 105
+   "gp": 11,
+   "tpm": 32,
+   "xtpm": 27.68,
+   "fgm": 63,
+   "xfgm": 56.45,
+   "fga": 136
   },
   "Ace Bailey": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 11,
-   "xtpm": 15.85,
-   "fgm": 42,
-   "xfgm": 40.79,
-   "fga": 93
+   "xtpm": 17.2,
+   "fgm": 48,
+   "xfgm": 45.81,
+   "fga": 104
   },
   "Aday Mara": {
-   "gp": 8,
-   "tpm": 0,
-   "xtpm": 0.0,
-   "fgm": 23,
-   "xfgm": 23.57,
-   "fga": 40
+   "gp": 10,
+   "tpm": 1,
+   "xtpm": 0.35,
+   "fgm": 35,
+   "xfgm": 32.41,
+   "fga": 56
   },
   "Adem Bona": {
    "gp": 9,
    "tpm": 0,
    "xtpm": 1.04,
    "fgm": 8,
-   "xfgm": 12.1,
+   "xfgm": 12.05,
    "fga": 21
   },
+  "Adou Thiero": {
+   "gp": 1,
+   "tpm": 0,
+   "xtpm": 0.0,
+   "fgm": 2,
+   "xfgm": 2.65,
+   "fga": 4
+  },
   "Ajay Mitchell": {
-   "gp": 8,
-   "tpm": 5,
-   "xtpm": 8.46,
-   "fgm": 56,
-   "xfgm": 55.39,
-   "fga": 111
+   "gp": 10,
+   "tpm": 9,
+   "xtpm": 11.64,
+   "fgm": 75,
+   "xfgm": 71.35,
+   "fga": 145
   },
   "Al Horford": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 10,
-   "xtpm": 7.71,
-   "fgm": 14,
-   "xfgm": 11.83,
-   "fga": 30
+   "xtpm": 8.39,
+   "fgm": 15,
+   "xfgm": 13.37,
+   "fga": 34
   },
   "Alex Caruso": {
-   "gp": 5,
-   "tpm": 9,
-   "xtpm": 6.32,
-   "fgm": 14,
-   "xfgm": 10.95,
-   "fga": 26
+   "gp": 7,
+   "tpm": 10,
+   "xtpm": 7.7,
+   "fgm": 16,
+   "xfgm": 12.75,
+   "fga": 31
   },
   "Alex Karaban": {
-   "gp": 4,
+   "gp": 5,
    "tpm": 2,
    "xtpm": 1.74,
    "fgm": 2,
-   "xfgm": 2.41,
+   "xfgm": 2.4,
    "fga": 6
   },
   "Alex Morales": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 0,
    "xtpm": 0.72,
    "fgm": 2,
-   "xfgm": 2.49,
+   "xfgm": 2.48,
    "fga": 5
   },
   "Alex Sarr": {
-   "gp": 7,
-   "tpm": 4,
-   "xtpm": 6.34,
-   "fgm": 25,
-   "xfgm": 24.15,
-   "fga": 48
+   "gp": 9,
+   "tpm": 6,
+   "xtpm": 10.15,
+   "fgm": 37,
+   "xfgm": 37.35,
+   "fga": 75
   },
   "Alijah Martin": {
-   "gp": 7,
-   "tpm": 2,
-   "xtpm": 2.09,
-   "fgm": 9,
-   "xfgm": 7.41,
-   "fga": 14
+   "gp": 8,
+   "tpm": 8,
+   "xtpm": 4.54,
+   "fgm": 18,
+   "xfgm": 12.26,
+   "fga": 25
   },
   "Allen Graves": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 3,
-   "xtpm": 4.63,
-   "fgm": 13,
-   "xfgm": 13.66,
-   "fga": 28
+   "xtpm": 5.68,
+   "fgm": 14,
+   "xfgm": 15.77,
+   "fga": 33
   },
   "Alperen Sengun": {
-   "gp": 7,
-   "tpm": 7,
-   "xtpm": 4.9,
-   "fgm": 59,
-   "xfgm": 56.98,
-   "fga": 109
+   "gp": 8,
+   "tpm": 8,
+   "xtpm": 5.59,
+   "fgm": 64,
+   "xfgm": 65.61,
+   "fga": 125
   },
   "Alpha Diallo": {
    "gp": 3,
    "tpm": 0,
    "xtpm": 1.07,
    "fgm": 2,
-   "xfgm": 3.06,
+   "xfgm": 3.05,
    "fga": 6
   },
   "Amen Thompson": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 2,
    "xtpm": 3.18,
-   "fgm": 53,
-   "xfgm": 56.88,
-   "fga": 104
+   "fgm": 60,
+   "xfgm": 66.14,
+   "fga": 119
   },
   "Andre Drummond": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 0,
    "xtpm": 0.35,
    "fgm": 19,
-   "xfgm": 27.34,
-   "fga": 44
+   "xfgm": 27.88,
+   "fga": 45
   },
   "Andrew Nembhard": {
-   "gp": 7,
-   "tpm": 17,
-   "xtpm": 15.03,
-   "fgm": 44,
-   "xfgm": 40.94,
-   "fga": 95
+   "gp": 8,
+   "tpm": 20,
+   "xtpm": 17.08,
+   "fgm": 47,
+   "xfgm": 44.22,
+   "fga": 104
   },
   "Andrew Wiggins": {
    "gp": 9,
    "tpm": 11,
-   "xtpm": 13.06,
+   "xtpm": 13.03,
    "fgm": 31,
-   "xfgm": 32.23,
+   "xfgm": 32.17,
    "fga": 76
   },
   "Anfernee Simons": {
-   "gp": 9,
-   "tpm": 22,
-   "xtpm": 19.55,
-   "fgm": 30,
-   "xfgm": 31.18,
-   "fga": 77
+   "gp": 10,
+   "tpm": 23,
+   "xtpm": 20.56,
+   "fgm": 31,
+   "xfgm": 32.15,
+   "fga": 80
   },
   "Anthony Black": {
-   "gp": 5,
-   "tpm": 10,
-   "xtpm": 7.74,
-   "fgm": 24,
-   "xfgm": 21.35,
-   "fga": 48
+   "gp": 6,
+   "tpm": 12,
+   "xtpm": 9.81,
+   "fgm": 31,
+   "xfgm": 29.04,
+   "fga": 67
   },
   "Anthony Davis": {
    "gp": 8,
    "tpm": 7,
-   "xtpm": 7.02,
+   "xtpm": 7.0,
    "fgm": 73,
-   "xfgm": 72.25,
+   "xfgm": 72.08,
    "fga": 146
   },
   "Anthony Edwards": {
    "gp": 4,
    "tpm": 18,
-   "xtpm": 15.77,
+   "xtpm": 15.74,
    "fgm": 50,
-   "xfgm": 46.44,
+   "xfgm": 46.33,
    "fga": 104
   },
   "Anthony Gill": {
-   "gp": 1,
+   "gp": 2,
    "tpm": 0,
-   "xtpm": 0.0,
+   "xtpm": 0.35,
    "fgm": 0,
-   "xfgm": 0.0,
-   "fga": 0
+   "xfgm": 2.33,
+   "fga": 4
   },
   "Asa Newell": {
    "gp": 5,
    "tpm": 2,
-   "xtpm": 2.84,
+   "xtpm": 2.83,
    "fgm": 7,
-   "xfgm": 7.26,
+   "xfgm": 7.23,
    "fga": 15
   },
   "Ausar Thompson": {
@@ -261,48 +269,48 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 1.04,
    "fgm": 28,
-   "xfgm": 27.04,
+   "xfgm": 26.98,
    "fga": 53
   },
   "Austin Reaves": {
-   "gp": 9,
-   "tpm": 21,
-   "xtpm": 17.12,
-   "fgm": 69,
-   "xfgm": 56.12,
-   "fga": 130
+   "gp": 10,
+   "tpm": 22,
+   "xtpm": 19.91,
+   "fgm": 77,
+   "xfgm": 65.11,
+   "fga": 152
   },
   "Ayo Dosunmu": {
-   "gp": 9,
-   "tpm": 13,
-   "xtpm": 11.92,
-   "fgm": 61,
-   "xfgm": 59.0,
-   "fga": 119
+   "gp": 10,
+   "tpm": 17,
+   "xtpm": 14.0,
+   "fgm": 69,
+   "xfgm": 65.56,
+   "fga": 133
   },
   "Baba Miller": {
    "gp": 7,
    "tpm": 1,
    "xtpm": 0.72,
    "fgm": 6,
-   "xfgm": 4.92,
+   "xfgm": 4.9,
    "fga": 9
   },
   "Bam Adebayo": {
    "gp": 9,
    "tpm": 5,
-   "xtpm": 9.88,
+   "xtpm": 9.85,
    "fgm": 63,
-   "xfgm": 57.29,
+   "xfgm": 57.14,
    "fga": 117
   },
   "Baylor Scheierman": {
-   "gp": 8,
-   "tpm": 11,
-   "xtpm": 8.51,
-   "fgm": 18,
-   "xfgm": 16.91,
-   "fga": 42
+   "gp": 9,
+   "tpm": 12,
+   "xtpm": 9.18,
+   "fgm": 19,
+   "xfgm": 17.57,
+   "fga": 44
   },
   "Ben Saraf": {
    "gp": 1,
@@ -321,52 +329,52 @@ const XSTATS_PBP = {
    "fga": 3
   },
   "Bennedict Mathurin": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 5,
-   "xtpm": 7.71,
-   "fgm": 19,
-   "xfgm": 21.74,
-   "fga": 47
+   "xtpm": 7.7,
+   "fgm": 20,
+   "xfgm": 22.74,
+   "fga": 49
   },
   "Bennett Stirtz": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 9.11,
-   "fgm": 18,
-   "xfgm": 14.84,
-   "fga": 36
+   "gp": 10,
+   "tpm": 16,
+   "xtpm": 12.61,
+   "fgm": 25,
+   "xfgm": 22.03,
+   "fga": 53
   },
   "Bilal Coulibaly": {
-   "gp": 8,
-   "tpm": 3,
-   "xtpm": 6.1,
-   "fgm": 25,
-   "xfgm": 23.95,
-   "fga": 46
+   "gp": 10,
+   "tpm": 4,
+   "xtpm": 8.58,
+   "fgm": 28,
+   "xfgm": 30.32,
+   "fga": 59
   },
   "Blake Wesley": {
    "gp": 2,
    "tpm": 0,
    "xtpm": 0.7,
    "fgm": 0,
-   "xfgm": 2.03,
+   "xfgm": 2.02,
    "fga": 4
   },
   "Bobby Portis Jr.": {
    "gp": 9,
    "tpm": 12,
-   "xtpm": 12.71,
+   "xtpm": 12.68,
    "fgm": 25,
-   "xfgm": 27.66,
+   "xfgm": 27.6,
    "fga": 66
   },
   "Bogdan Bogdanović": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 10,
-   "xtpm": 7.81,
+   "xtpm": 8.14,
    "fgm": 17,
-   "xfgm": 13.36,
-   "fga": 34
+   "xfgm": 13.68,
+   "fga": 35
   },
   "Bogoljub Marković": {
    "gp": 1,
@@ -377,68 +385,68 @@ const XSTATS_PBP = {
    "fga": 1
   },
   "Bones Hyland": {
-   "gp": 9,
-   "tpm": 14,
-   "xtpm": 12.94,
-   "fgm": 28,
-   "xfgm": 24.69,
-   "fga": 60
+   "gp": 10,
+   "tpm": 15,
+   "xtpm": 14.67,
+   "fgm": 29,
+   "xfgm": 27.47,
+   "fga": 67
   },
   "Braden Smith": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 2,
-   "xtpm": 2.11,
+   "xtpm": 2.48,
    "fgm": 13,
-   "xfgm": 11.66,
-   "fga": 25
+   "xfgm": 13.54,
+   "fga": 29
   },
   "Branden Carlson": {
-   "gp": 3,
+   "gp": 4,
    "tpm": 0,
-   "xtpm": 0.7,
-   "fgm": 2,
-   "xfgm": 1.8,
-   "fga": 4
+   "xtpm": 1.07,
+   "fgm": 4,
+   "xfgm": 3.26,
+   "fga": 7
   },
   "Brandin Podziemski": {
-   "gp": 7,
-   "tpm": 16,
-   "xtpm": 16.17,
-   "fgm": 40,
-   "xfgm": 38.19,
-   "fga": 88
+   "gp": 8,
+   "tpm": 20,
+   "xtpm": 17.87,
+   "fgm": 45,
+   "xfgm": 40.7,
+   "fga": 95
   },
   "Brandon Miller": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 27,
-   "xtpm": 35.45,
-   "fgm": 70,
-   "xfgm": 82.1,
-   "fga": 195
+   "xtpm": 36.42,
+   "fgm": 73,
+   "xfgm": 86.67,
+   "fga": 205
   },
   "Brandon Williams": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 7,
-   "xtpm": 7.36,
-   "fgm": 28,
-   "xfgm": 32.76,
-   "fga": 70
+   "xtpm": 8.04,
+   "fgm": 31,
+   "xfgm": 35.57,
+   "fga": 77
   },
   "Brayden Burries": {
-   "gp": 8,
-   "tpm": 6,
-   "xtpm": 9.48,
-   "fgm": 23,
-   "xfgm": 24.8,
-   "fga": 56
+   "gp": 9,
+   "tpm": 7,
+   "xtpm": 11.24,
+   "fgm": 31,
+   "xfgm": 32.47,
+   "fga": 70
   },
   "Brice Sensabaugh": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 14,
-   "xtpm": 10.85,
+   "xtpm": 11.52,
    "fgm": 23,
-   "xfgm": 21.25,
-   "fga": 53
+   "xfgm": 22.35,
+   "fga": 56
   },
   "Bronny James": {
    "gp": 5,
@@ -451,73 +459,73 @@ const XSTATS_PBP = {
   "Brook Lopez": {
    "gp": 8,
    "tpm": 11,
-   "xtpm": 9.08,
+   "xtpm": 9.06,
    "fgm": 42,
-   "xfgm": 34.61,
+   "xfgm": 34.53,
    "fga": 75
   },
   "Brooks Barnhizer": {
-   "gp": 5,
+   "gp": 7,
    "tpm": 0,
    "xtpm": 0.37,
-   "fgm": 2,
-   "xfgm": 1.91,
-   "fga": 4
+   "fgm": 3,
+   "xfgm": 3.01,
+   "fga": 6
   },
   "Bruce Thornton": {
    "gp": 6,
    "tpm": 2,
    "xtpm": 1.39,
    "fgm": 5,
-   "xfgm": 3.52,
+   "xfgm": 3.51,
    "fga": 9
   },
   "Bryce Hopkins": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 2,
-   "xtpm": 1.77,
-   "fgm": 12,
-   "xfgm": 9.44,
-   "fga": 18
+   "xtpm": 1.76,
+   "fgm": 13,
+   "xfgm": 10.72,
+   "fga": 20
   },
   "Bryce McGowens": {
    "gp": 4,
    "tpm": 0,
    "xtpm": 0.7,
    "fgm": 2,
-   "xfgm": 3.13,
+   "xfgm": 3.12,
    "fga": 6
   },
   "Bub Carrington": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 9.53,
-   "fgm": 13,
-   "xfgm": 14.08,
-   "fga": 36
+   "gp": 10,
+   "tpm": 16,
+   "xtpm": 11.27,
+   "fgm": 18,
+   "xfgm": 17.54,
+   "fga": 44
   },
   "Buddy Hield": {
    "gp": 8,
    "tpm": 8,
-   "xtpm": 7.31,
+   "xtpm": 7.3,
    "fgm": 18,
-   "xfgm": 17.27,
+   "xfgm": 17.21,
    "fga": 37
   },
   "CJ McCollum": {
-   "gp": 9,
-   "tpm": 18,
-   "xtpm": 17.44,
-   "fgm": 47,
-   "xfgm": 45.77,
-   "fga": 106
+   "gp": 11,
+   "tpm": 19,
+   "xtpm": 19.84,
+   "fgm": 52,
+   "xfgm": 56.83,
+   "fga": 130
   },
   "Cade Cunningham": {
    "gp": 8,
    "tpm": 18,
-   "xtpm": 19.23,
+   "xtpm": 19.19,
    "fgm": 67,
-   "xfgm": 64.45,
+   "xfgm": 64.3,
    "fga": 142
   },
   "Caleb Love": {
@@ -529,52 +537,52 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Caleb Martin": {
-   "gp": 4,
+   "gp": 5,
    "tpm": 5,
-   "xtpm": 3.26,
+   "xtpm": 3.59,
    "fgm": 8,
-   "xfgm": 5.58,
-   "fga": 14
+   "xfgm": 5.91,
+   "fga": 15
   },
   "Caleb Wilson": {
    "gp": 8,
    "tpm": 19,
-   "xtpm": 22.19,
+   "xtpm": 22.14,
    "fgm": 56,
-   "xfgm": 62.85,
+   "xfgm": 62.67,
    "fga": 137
   },
   "Cam Christie": {
    "gp": 4,
    "tpm": 1,
-   "xtpm": 1.42,
+   "xtpm": 1.41,
    "fgm": 2,
-   "xfgm": 5.39,
+   "xfgm": 5.37,
    "fga": 11
   },
   "Cam Spencer": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 9.43,
-   "fgm": 27,
-   "xfgm": 20.68,
-   "fga": 51
+   "gp": 9,
+   "tpm": 16,
+   "xtpm": 10.82,
+   "fgm": 29,
+   "xfgm": 22.5,
+   "fga": 56
   },
   "Cam Whitmore": {
    "gp": 2,
    "tpm": 0,
    "xtpm": 0.7,
    "fgm": 4,
-   "xfgm": 3.79,
+   "xfgm": 3.78,
    "fga": 7
   },
   "Cameron Boozer": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 18,
-   "xtpm": 16.77,
-   "fgm": 41,
-   "xfgm": 48.33,
-   "fga": 110
+   "xtpm": 19.54,
+   "fgm": 43,
+   "xfgm": 54.56,
+   "fga": 124
   },
   "Cameron Carr": {
    "gp": 3,
@@ -585,12 +593,12 @@ const XSTATS_PBP = {
    "fga": 1
   },
   "Cameron Johnson": {
-   "gp": 4,
-   "tpm": 8,
-   "xtpm": 7.04,
-   "fgm": 13,
-   "xfgm": 12.89,
-   "fga": 31
+   "gp": 5,
+   "tpm": 10,
+   "xtpm": 8.76,
+   "fgm": 21,
+   "xfgm": 18.56,
+   "fga": 43
   },
   "Carson Cooper": {
    "gp": 1,
@@ -601,51 +609,51 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Carter Bryant": {
-   "gp": 7,
-   "tpm": 4,
-   "xtpm": 5.27,
-   "fgm": 6,
-   "xfgm": 7.93,
-   "fga": 19
+   "gp": 9,
+   "tpm": 6,
+   "xtpm": 7.44,
+   "fgm": 8,
+   "xfgm": 10.52,
+   "fga": 26
   },
   "Cason Wallace": {
    "gp": 3,
    "tpm": 3,
-   "xtpm": 3.53,
+   "xtpm": 3.52,
    "fgm": 8,
-   "xfgm": 9.27,
+   "xfgm": 9.24,
    "fga": 20
   },
   "Cedric Coward": {
-   "gp": 7,
-   "tpm": 19,
-   "xtpm": 13.28,
-   "fgm": 36,
-   "xfgm": 33.71,
-   "fga": 76
+   "gp": 8,
+   "tpm": 21,
+   "xtpm": 15.02,
+   "fgm": 40,
+   "xfgm": 37.36,
+   "fga": 85
   },
   "Chaney Johnson": {
-   "gp": 8,
-   "tpm": 6,
-   "xtpm": 7.49,
-   "fgm": 14,
-   "xfgm": 18.85,
-   "fga": 42
+   "gp": 9,
+   "tpm": 7,
+   "xtpm": 7.81,
+   "fgm": 16,
+   "xfgm": 20.47,
+   "fga": 45
   },
   "Charles Bassey": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 0,
    "xtpm": 0.7,
-   "fgm": 19,
-   "xfgm": 16.37,
-   "fga": 29
+   "fgm": 21,
+   "xfgm": 18.29,
+   "fga": 33
   },
   "Chaz Lanier": {
    "gp": 3,
    "tpm": 3,
-   "xtpm": 1.77,
+   "xtpm": 1.76,
    "fgm": 5,
-   "xfgm": 2.87,
+   "xfgm": 2.86,
    "fga": 7
   },
   "Chet Holmgren": {
@@ -653,7 +661,7 @@ const XSTATS_PBP = {
    "tpm": 2,
    "xtpm": 2.11,
    "fgm": 11,
-   "xfgm": 14.68,
+   "xfgm": 14.62,
    "fga": 27
   },
   "Chris Cenac Jr.": {
@@ -661,7 +669,7 @@ const XSTATS_PBP = {
    "tpm": 1,
    "xtpm": 0.72,
    "fgm": 3,
-   "xfgm": 2.05,
+   "xfgm": 2.04,
    "fga": 4
   },
   "Chris Mañon": {
@@ -669,48 +677,48 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.35,
    "fgm": 1,
-   "xfgm": 1.68,
+   "xfgm": 1.67,
    "fga": 3
   },
   "Chris Youngblood": {
-   "gp": 3,
-   "tpm": 2,
-   "xtpm": 3.18,
-   "fgm": 3,
-   "xfgm": 3.85,
-   "fga": 10
+   "gp": 5,
+   "tpm": 6,
+   "xtpm": 6.65,
+   "fgm": 8,
+   "xfgm": 8.19,
+   "fga": 22
   },
   "Christian Anderson": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 2,
-   "xtpm": 5.25,
-   "fgm": 9,
-   "xfgm": 12.48,
-   "fga": 29
+   "xtpm": 7.67,
+   "fgm": 11,
+   "xfgm": 16.2,
+   "fga": 39
   },
   "Christian Braun": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 14,
-   "xtpm": 11.72,
-   "fgm": 39,
-   "xfgm": 34.06,
-   "fga": 71
+   "xtpm": 13.1,
+   "fgm": 41,
+   "xfgm": 37.55,
+   "fga": 79
   },
   "Clint Capela": {
    "gp": 6,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 9,
-   "xfgm": 8.85,
+   "xfgm": 8.81,
    "fga": 14
   },
   "Coby White": {
-   "gp": 2,
-   "tpm": 1,
-   "xtpm": 3.48,
-   "fgm": 5,
-   "xfgm": 8.31,
-   "fga": 18
+   "gp": 3,
+   "tpm": 2,
+   "xtpm": 5.56,
+   "fgm": 6,
+   "xfgm": 11.44,
+   "fga": 26
   },
   "Cody Williams": {
    "gp": 5,
@@ -725,51 +733,51 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 4,
-   "xfgm": 3.53,
+   "xfgm": 3.52,
    "fga": 6
   },
   "Collin Gillespie": {
-   "gp": 7,
-   "tpm": 12,
-   "xtpm": 15.42,
-   "fgm": 17,
-   "xfgm": 21.96,
-   "fga": 57
+   "gp": 8,
+   "tpm": 13,
+   "xtpm": 16.43,
+   "fgm": 20,
+   "xfgm": 24.71,
+   "fga": 63
   },
   "Collin Murray-Boyles": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 5,
-   "xtpm": 4.93,
-   "fgm": 30,
-   "xfgm": 30.91,
-   "fga": 61
+   "xtpm": 5.61,
+   "fgm": 37,
+   "xfgm": 37.2,
+   "fga": 73
   },
   "Collin Sexton": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 8,
-   "xtpm": 10.6,
+   "xtpm": 10.92,
    "fgm": 28,
-   "xfgm": 30.21,
-   "fga": 66
+   "xfgm": 32.23,
+   "fga": 70
   },
   "Cooper Flagg": {
-   "gp": 7,
-   "tpm": 7,
-   "xtpm": 11.57,
-   "fgm": 59,
-   "xfgm": 57.71,
-   "fga": 126
+   "gp": 8,
+   "tpm": 8,
+   "xtpm": 12.93,
+   "fgm": 66,
+   "xfgm": 65.23,
+   "fga": 142
   },
   "Corey Kispert": {
-   "gp": 5,
-   "tpm": 9,
-   "xtpm": 5.22,
-   "fgm": 14,
-   "xfgm": 9.19,
-   "fga": 22
+   "gp": 6,
+   "tpm": 10,
+   "xtpm": 6.26,
+   "fgm": 17,
+   "xfgm": 11.31,
+   "fga": 27
   },
   "Craig Porter Jr.": {
-   "gp": 6,
+   "gp": 8,
    "tpm": 1,
    "xtpm": 1.07,
    "fgm": 2,
@@ -787,9 +795,9 @@ const XSTATS_PBP = {
   "Daeqwon Plowden": {
    "gp": 6,
    "tpm": 2,
-   "xtpm": 3.16,
+   "xtpm": 3.15,
    "fgm": 6,
-   "xfgm": 6.03,
+   "xfgm": 6.01,
    "fga": 14
   },
   "Dailyn Swain": {
@@ -800,229 +808,237 @@ const XSTATS_PBP = {
    "xfgm": 2.46,
    "fga": 5
   },
+  "Dalen Terry": {
+   "gp": 2,
+   "tpm": 0,
+   "xtpm": 0.35,
+   "fgm": 1,
+   "xfgm": 1.45,
+   "fga": 3
+  },
   "Dalton Knecht": {
-   "gp": 1,
+   "gp": 2,
    "tpm": 2,
    "xtpm": 1.39,
    "fgm": 4,
-   "xfgm": 2.5,
+   "xfgm": 2.49,
    "fga": 6
   },
   "Damian Lillard": {
-   "gp": 7,
-   "tpm": 19,
-   "xtpm": 20.92,
-   "fgm": 42,
-   "xfgm": 41.41,
-   "fga": 100
+   "gp": 9,
+   "tpm": 25,
+   "xtpm": 25.4,
+   "fgm": 51,
+   "xfgm": 49.76,
+   "fga": 121
   },
   "Daniel Gafford": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 1,
    "xtpm": 0.37,
-   "fgm": 31,
-   "xfgm": 26.81,
-   "fga": 46
+   "fgm": 33,
+   "xfgm": 28.03,
+   "fga": 48
   },
   "Daniss Jenkins": {
    "gp": 8,
    "tpm": 11,
-   "xtpm": 9.83,
+   "xtpm": 9.81,
    "fgm": 26,
-   "xfgm": 25.62,
+   "xfgm": 25.57,
    "fga": 60
   },
   "Danny Wolf": {
-   "gp": 3,
-   "tpm": 7,
-   "xtpm": 4.23,
-   "fgm": 9,
-   "xfgm": 6.22,
-   "fga": 15
+   "gp": 4,
+   "tpm": 9,
+   "xtpm": 6.65,
+   "fgm": 13,
+   "xfgm": 10.17,
+   "fga": 25
   },
   "Darius Acuff Jr.": {
-   "gp": 8,
-   "tpm": 24,
-   "xtpm": 27.24,
-   "fgm": 75,
-   "xfgm": 83.19,
-   "fga": 189
+   "gp": 9,
+   "tpm": 27,
+   "xtpm": 30.32,
+   "fgm": 84,
+   "xfgm": 91.34,
+   "fga": 209
   },
   "Darius Garland": {
    "gp": 8,
    "tpm": 20,
-   "xtpm": 19.2,
+   "xtpm": 19.17,
    "fgm": 60,
-   "xfgm": 56.39,
+   "xfgm": 56.28,
    "fga": 129
   },
   "Darryn Peterson": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 12.91,
-   "fgm": 35,
-   "xfgm": 41.82,
-   "fga": 99
+   "gp": 9,
+   "tpm": 15,
+   "xtpm": 15.34,
+   "fgm": 41,
+   "xfgm": 46.35,
+   "fga": 111
   },
   "David Jones Garcia": {
-   "gp": 1,
+   "gp": 2,
    "tpm": 0,
-   "xtpm": 0.0,
+   "xtpm": 0.35,
    "fgm": 0,
-   "xfgm": 0.66,
-   "fga": 1
+   "xfgm": 1.45,
+   "fga": 3
   },
   "Davion Mitchell": {
    "gp": 9,
    "tpm": 20,
-   "xtpm": 17.17,
+   "xtpm": 17.13,
    "fgm": 57,
-   "xfgm": 52.71,
+   "xfgm": 52.57,
    "fga": 114
   },
   "Day'Ron Sharpe": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 3,
-   "xtpm": 2.86,
-   "fgm": 21,
-   "xfgm": 23.64,
-   "fga": 42
+   "xtpm": 3.57,
+   "fgm": 25,
+   "xfgm": 28.24,
+   "fga": 50
   },
   "De'Aaron Fox": {
-   "gp": 8,
-   "tpm": 8,
-   "xtpm": 7.76,
-   "fgm": 42,
-   "xfgm": 36.72,
-   "fga": 77
+   "gp": 10,
+   "tpm": 9,
+   "xtpm": 9.16,
+   "fgm": 45,
+   "xfgm": 40.23,
+   "fga": 86
   },
   "De'Andre Hunter": {
    "gp": 8,
    "tpm": 16,
-   "xtpm": 15.52,
+   "xtpm": 15.48,
    "fgm": 36,
-   "xfgm": 35.09,
+   "xfgm": 35.01,
    "fga": 83
   },
   "De'Anthony Melton": {
-   "gp": 9,
-   "tpm": 19,
-   "xtpm": 15.75,
-   "fgm": 28,
-   "xfgm": 27.84,
-   "fga": 67
+   "gp": 10,
+   "tpm": 20,
+   "xtpm": 16.78,
+   "fgm": 29,
+   "xfgm": 29.71,
+   "fga": 72
   },
   "DeAndre Jordan": {
    "gp": 2,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 4,
-   "xfgm": 2.66,
+   "xfgm": 2.65,
    "fga": 4
   },
   "DeMar DeRozan": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 2,
-   "xtpm": 3.21,
-   "fgm": 21,
-   "xfgm": 23.08,
-   "fga": 52
+   "xtpm": 3.92,
+   "fgm": 26,
+   "xfgm": 26.76,
+   "fga": 61
   },
   "Dean Wade": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 5,
-   "xtpm": 4.6,
+   "xtpm": 5.63,
    "fgm": 10,
-   "xfgm": 9.21,
-   "fga": 21
+   "xfgm": 10.88,
+   "fga": 25
   },
   "Deandre Ayton": {
-   "gp": 8,
+   "gp": 10,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 20,
-   "xfgm": 17.23,
-   "fga": 29
+   "fgm": 25,
+   "xfgm": 21.54,
+   "fga": 36
   },
   "Dejounte Murray": {
-   "gp": 5,
-   "tpm": 4,
-   "xtpm": 6.44,
-   "fgm": 33,
-   "xfgm": 35.06,
-   "fga": 69
+   "gp": 6,
+   "tpm": 5,
+   "xtpm": 7.12,
+   "fgm": 36,
+   "xfgm": 40.86,
+   "fga": 80
   },
   "Deni Avdija": {
-   "gp": 7,
-   "tpm": 12,
-   "xtpm": 13.28,
-   "fgm": 54,
-   "xfgm": 54.86,
-   "fga": 113
+   "gp": 9,
+   "tpm": 15,
+   "xtpm": 15.69,
+   "fgm": 65,
+   "xfgm": 67.02,
+   "fga": 138
   },
   "Dennis Schröder": {
    "gp": 9,
    "tpm": 7,
-   "xtpm": 12.29,
+   "xtpm": 12.26,
    "fgm": 32,
-   "xfgm": 41.78,
+   "xfgm": 41.66,
    "fga": 88
   },
   "Derik Queen": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 3,
    "xtpm": 3.18,
-   "fgm": 37,
-   "xfgm": 40.58,
-   "fga": 76
+   "fgm": 39,
+   "xfgm": 42.62,
+   "fga": 80
   },
   "Derrick Jones Jr.": {
    "gp": 7,
    "tpm": 15,
-   "xtpm": 10.57,
+   "xtpm": 10.55,
    "fgm": 31,
-   "xfgm": 28.18,
+   "xfgm": 28.09,
    "fga": 60
   },
   "Derrick White": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 14.38,
-   "fgm": 37,
-   "xfgm": 37.55,
-   "fga": 87
+   "gp": 9,
+   "tpm": 16,
+   "xtpm": 16.46,
+   "fgm": 43,
+   "xfgm": 41.53,
+   "fga": 97
   },
   "Desmond Bane": {
    "gp": 8,
    "tpm": 28,
-   "xtpm": 26.74,
+   "xtpm": 26.68,
    "fgm": 44,
-   "xfgm": 46.42,
+   "xfgm": 46.3,
    "fga": 113
   },
   "Devin Booker": {
-   "gp": 7,
-   "tpm": 13,
-   "xtpm": 12.59,
-   "fgm": 60,
-   "xfgm": 53.47,
-   "fga": 123
+   "gp": 8,
+   "tpm": 15,
+   "xtpm": 15.69,
+   "fgm": 70,
+   "xfgm": 64.01,
+   "fga": 147
   },
   "Devin Vassell": {
-   "gp": 8,
-   "tpm": 9,
-   "xtpm": 12.36,
-   "fgm": 29,
-   "xfgm": 33.78,
-   "fga": 78
+   "gp": 10,
+   "tpm": 16,
+   "xtpm": 15.83,
+   "fgm": 39,
+   "xfgm": 41.12,
+   "fga": 96
   },
   "Dillon Brooks": {
-   "gp": 7,
-   "tpm": 15,
-   "xtpm": 11.17,
-   "fgm": 44,
-   "xfgm": 39.24,
-   "fga": 88
+   "gp": 8,
+   "tpm": 18,
+   "xtpm": 13.58,
+   "fgm": 48,
+   "xfgm": 43.14,
+   "fga": 98
   },
   "Dillon Mitchell": {
    "gp": 1,
@@ -1033,28 +1049,28 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Domantas Sabonis": {
-   "gp": 8,
-   "tpm": 1,
-   "xtpm": 0.7,
-   "fgm": 47,
-   "xfgm": 37.85,
-   "fga": 68
+   "gp": 9,
+   "tpm": 2,
+   "xtpm": 1.39,
+   "fgm": 55,
+   "xfgm": 44.14,
+   "fga": 80
   },
   "Donovan Clingan": {
-   "gp": 7,
-   "tpm": 7,
-   "xtpm": 5.22,
-   "fgm": 33,
-   "xfgm": 31.31,
-   "fga": 58
+   "gp": 9,
+   "tpm": 10,
+   "xtpm": 7.65,
+   "fgm": 42,
+   "xfgm": 38.26,
+   "fga": 72
   },
   "Donovan Mitchell": {
-   "gp": 8,
-   "tpm": 23,
-   "xtpm": 19.55,
-   "fgm": 62,
-   "xfgm": 57.26,
-   "fga": 128
+   "gp": 10,
+   "tpm": 29,
+   "xtpm": 26.12,
+   "fgm": 82,
+   "xfgm": 75.7,
+   "fga": 168
   },
   "Dorian Finney-Smith": {
    "gp": 3,
@@ -1073,27 +1089,27 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Draymond Green": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 2,
-   "xtpm": 3.16,
-   "fgm": 8,
-   "xfgm": 10.23,
-   "fga": 21
+   "xtpm": 3.5,
+   "fgm": 9,
+   "xfgm": 12.29,
+   "fga": 26
   },
   "Dru Smith": {
    "gp": 6,
    "tpm": 3,
    "xtpm": 2.09,
    "fgm": 4,
-   "xfgm": 3.63,
+   "xfgm": 3.62,
    "fga": 9
   },
   "Duncan Robinson": {
    "gp": 8,
    "tpm": 35,
-   "xtpm": 25.57,
+   "xtpm": 25.52,
    "fgm": 45,
-   "xfgm": 37.41,
+   "xfgm": 37.32,
    "fga": 95
   },
   "Duop Reath": {
@@ -1101,47 +1117,47 @@ const XSTATS_PBP = {
    "tpm": 3,
    "xtpm": 2.11,
    "fgm": 6,
-   "xfgm": 4.11,
+   "xfgm": 4.09,
    "fga": 9
   },
   "Dylan Cardwell": {
-   "gp": 1,
+   "gp": 2,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 2,
-   "xfgm": 1.99,
-   "fga": 3
+   "fgm": 5,
+   "xfgm": 5.5,
+   "fga": 9
   },
   "Dylan Harper": {
-   "gp": 8,
-   "tpm": 10,
-   "xtpm": 9.45,
-   "fgm": 58,
-   "xfgm": 60.15,
-   "fga": 116
+   "gp": 10,
+   "tpm": 12,
+   "xtpm": 11.87,
+   "fgm": 69,
+   "xfgm": 70.38,
+   "fga": 139
   },
   "Dyson Daniels": {
-   "gp": 9,
+   "gp": 11,
    "tpm": 1,
-   "xtpm": 4.93,
-   "fgm": 38,
-   "xfgm": 45.05,
-   "fga": 86
+   "xtpm": 5.26,
+   "fgm": 48,
+   "xfgm": 54.46,
+   "fga": 104
   },
   "Ebuka Okorie": {
    "gp": 4,
    "tpm": 0,
    "xtpm": 1.04,
    "fgm": 2,
-   "xfgm": 4.58,
+   "xfgm": 4.56,
    "fga": 9
   },
   "Egor Dëmin": {
    "gp": 4,
    "tpm": 6,
-   "xtpm": 7.34,
+   "xtpm": 7.32,
    "fgm": 9,
-   "xfgm": 11.94,
+   "xfgm": 11.91,
    "fga": 29
   },
   "Elijah Harkless": {
@@ -1153,20 +1169,20 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Emanuel Sharp": {
-   "gp": 8,
-   "tpm": 9,
-   "xtpm": 8.06,
-   "fgm": 12,
-   "xfgm": 12.42,
-   "fga": 32
+   "gp": 9,
+   "tpm": 12,
+   "xtpm": 9.43,
+   "fgm": 15,
+   "xfgm": 15.04,
+   "fga": 39
   },
   "Evan Mobley": {
-   "gp": 8,
-   "tpm": 17,
-   "xtpm": 12.24,
-   "fgm": 56,
-   "xfgm": 49.93,
-   "fga": 100
+   "gp": 10,
+   "tpm": 21,
+   "xtpm": 15.37,
+   "fgm": 69,
+   "xfgm": 62.17,
+   "fga": 124
   },
   "Felix Okpara": {
    "gp": 2,
@@ -1177,36 +1193,36 @@ const XSTATS_PBP = {
    "fga": 1
   },
   "Franz Wagner": {
-   "gp": 8,
-   "tpm": 7,
-   "xtpm": 12.74,
-   "fgm": 59,
-   "xfgm": 68.32,
-   "fga": 137
+   "gp": 9,
+   "tpm": 10,
+   "xtpm": 15.16,
+   "fgm": 70,
+   "xfgm": 77.32,
+   "fga": 159
   },
   "Fred VanVleet": {
-   "gp": 7,
-   "tpm": 18,
-   "xtpm": 18.56,
-   "fgm": 30,
-   "xfgm": 29.33,
-   "fga": 77
+   "gp": 8,
+   "tpm": 22,
+   "xtpm": 21.65,
+   "fgm": 36,
+   "xfgm": 33.66,
+   "fga": 89
   },
   "GG Jackson": {
    "gp": 8,
    "tpm": 9,
-   "xtpm": 8.11,
+   "xtpm": 8.09,
    "fgm": 21,
-   "xfgm": 24.84,
+   "xfgm": 24.76,
    "fga": 53
   },
   "Gary Payton II": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 4,
-   "xtpm": 5.97,
-   "fgm": 20,
-   "xfgm": 20.77,
-   "fga": 42
+   "xtpm": 6.3,
+   "fgm": 22,
+   "xfgm": 22.8,
+   "fga": 47
   },
   "Gary Trent Jr.": {
    "gp": 2,
@@ -1217,35 +1233,35 @@ const XSTATS_PBP = {
    "fga": 5
   },
   "Georges Niang": {
-   "gp": 9,
-   "tpm": 11,
-   "xtpm": 12.81,
-   "fgm": 28,
-   "xfgm": 25.76,
-   "fga": 61
+   "gp": 10,
+   "tpm": 14,
+   "xtpm": 13.84,
+   "fgm": 32,
+   "xfgm": 28.07,
+   "fga": 67
   },
   "Giannis Antetokounmpo": {
    "gp": 9,
    "tpm": 5,
-   "xtpm": 8.36,
+   "xtpm": 8.34,
    "fgm": 93,
-   "xfgm": 88.84,
+   "xfgm": 88.54,
    "fga": 166
   },
   "Goga Bitadze": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 6,
-   "xfgm": 7.98,
-   "fga": 12
+   "fgm": 8,
+   "xfgm": 9.47,
+   "fga": 15
   },
   "Gradey Dick": {
    "gp": 8,
    "tpm": 5,
-   "xtpm": 4.6,
+   "xtpm": 4.59,
    "fgm": 17,
-   "xfgm": 18.67,
+   "xfgm": 18.61,
    "fga": 37
   },
   "Graham Ike": {
@@ -1253,63 +1269,63 @@ const XSTATS_PBP = {
    "tpm": 4,
    "xtpm": 1.39,
    "fgm": 13,
-   "xfgm": 13.73,
+   "xfgm": 13.68,
    "fga": 25
   },
   "Grayson Allen": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 32,
-   "xtpm": 22.71,
+   "xtpm": 24.06,
    "fgm": 40,
-   "xfgm": 32.82,
-   "fga": 85
+   "xfgm": 34.59,
+   "fga": 90
   },
   "Gui Santos": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 4,
-   "xtpm": 3.86,
-   "fgm": 15,
-   "xfgm": 15.56,
-   "fga": 31
+   "xtpm": 4.2,
+   "fgm": 16,
+   "xfgm": 16.29,
+   "fga": 33
   },
   "Hannes Steinbach": {
-   "gp": 3,
+   "gp": 4,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 4,
-   "xfgm": 4.86,
-   "fga": 8
+   "fgm": 6,
+   "xfgm": 8.15,
+   "fga": 13
   },
   "Harrison Barnes": {
-   "gp": 6,
-   "tpm": 5,
-   "xtpm": 3.88,
-   "fgm": 6,
-   "xfgm": 4.55,
-   "fga": 12
+   "gp": 8,
+   "tpm": 8,
+   "xtpm": 7.37,
+   "fgm": 12,
+   "xfgm": 10.67,
+   "fga": 27
   },
   "Herbert Jones": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 6,
-   "xtpm": 7.86,
+   "xtpm": 8.18,
    "fgm": 21,
-   "xfgm": 25.32,
-   "fga": 51
+   "xfgm": 26.45,
+   "fga": 54
   },
   "Hugo González": {
-   "gp": 8,
-   "tpm": 2,
-   "xtpm": 4.28,
-   "fgm": 11,
-   "xfgm": 12.92,
-   "fga": 25
+   "gp": 9,
+   "tpm": 3,
+   "xtpm": 5.68,
+   "fgm": 13,
+   "xfgm": 14.72,
+   "fga": 30
   },
   "Immanuel Quickley": {
    "gp": 8,
    "tpm": 21,
-   "xtpm": 22.07,
+   "xtpm": 22.02,
    "fgm": 45,
-   "xfgm": 44.19,
+   "xfgm": 44.12,
    "fga": 110
   },
   "Isaac Jones": {
@@ -1317,31 +1333,31 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.37,
    "fgm": 1,
-   "xfgm": 1.04,
+   "xfgm": 1.03,
    "fga": 2
   },
   "Isaac Okoro": {
    "gp": 8,
    "tpm": 3,
-   "xtpm": 6.44,
+   "xtpm": 6.42,
    "fgm": 10,
-   "xfgm": 15.3,
+   "xfgm": 15.23,
    "fga": 32
   },
   "Isaiah Collier": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 0,
-   "xtpm": 2.79,
-   "fgm": 17,
-   "xfgm": 20.73,
-   "fga": 43
+   "xtpm": 2.78,
+   "fgm": 19,
+   "xfgm": 21.56,
+   "fga": 45
   },
   "Isaiah Crawford": {
    "gp": 6,
    "tpm": 4,
-   "xtpm": 2.81,
+   "xtpm": 2.8,
    "fgm": 5,
-   "xfgm": 3.48,
+   "xfgm": 3.47,
    "fga": 9
   },
   "Isaiah Evans": {
@@ -1353,84 +1369,84 @@ const XSTATS_PBP = {
    "fga": 3
   },
   "Isaiah Hartenstein": {
-   "gp": 8,
+   "gp": 10,
    "tpm": 0,
    "xtpm": 0.72,
-   "fgm": 26,
-   "xfgm": 29.6,
-   "fga": 54
+   "fgm": 28,
+   "xfgm": 33.86,
+   "fga": 63
   },
   "Isaiah Jackson": {
    "gp": 8,
    "tpm": 1,
    "xtpm": 0.35,
    "fgm": 30,
-   "xfgm": 30.0,
+   "xfgm": 29.89,
    "fga": 52
   },
   "Isaiah Joe": {
    "gp": 3,
    "tpm": 3,
-   "xtpm": 4.53,
+   "xtpm": 4.52,
    "fgm": 7,
-   "xfgm": 7.29,
+   "xfgm": 7.27,
    "fga": 19
   },
   "Isaiah Stewart": {
    "gp": 7,
    "tpm": 8,
-   "xtpm": 4.93,
+   "xtpm": 4.91,
    "fgm": 32,
-   "xfgm": 24.54,
+   "xfgm": 24.46,
    "fga": 48
   },
   "Ivica Zubac": {
-   "gp": 4,
+   "gp": 5,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 12,
-   "xfgm": 14.57,
-   "fga": 25
+   "fgm": 16,
+   "xfgm": 17.6,
+   "fga": 30
   },
   "Ja Morant": {
    "gp": 4,
    "tpm": 6,
-   "xtpm": 4.9,
+   "xtpm": 4.89,
    "fgm": 26,
-   "xfgm": 22.01,
+   "xfgm": 21.97,
    "fga": 48
   },
   "Ja'Kobe Walter": {
-   "gp": 8,
-   "tpm": 18,
-   "xtpm": 17.64,
-   "fgm": 30,
-   "xfgm": 27.5,
-   "fga": 68
+   "gp": 9,
+   "tpm": 19,
+   "xtpm": 20.05,
+   "fgm": 32,
+   "xfgm": 32.48,
+   "fga": 80
   },
   "Ja'Kobi Gillespie": {
    "gp": 2,
    "tpm": 1,
    "xtpm": 1.04,
    "fgm": 2,
-   "xfgm": 1.71,
+   "xfgm": 1.7,
    "fga": 4
   },
   "Jabari Smith Jr.": {
-   "gp": 9,
-   "tpm": 27,
-   "xtpm": 19.25,
-   "fgm": 53,
-   "xfgm": 46.25,
-   "fga": 106
+   "gp": 10,
+   "tpm": 28,
+   "xtpm": 20.61,
+   "fgm": 60,
+   "xfgm": 51.8,
+   "fga": 118
   },
   "Jabari Walker": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 1,
-   "xtpm": 1.39,
-   "fgm": 8,
-   "xfgm": 7.38,
-   "fga": 13
+   "xtpm": 1.74,
+   "fgm": 10,
+   "xfgm": 9.68,
+   "fga": 17
   },
   "Jaden Akins": {
    "gp": 2,
@@ -1441,100 +1457,100 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Jaden Bradley": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 2,
-   "xfgm": 2.64,
-   "fga": 5
+   "fgm": 3,
+   "xfgm": 3.51,
+   "fga": 7
   },
   "Jaden Hardy": {
    "gp": 6,
    "tpm": 1,
-   "xtpm": 2.79,
+   "xtpm": 2.78,
    "fgm": 1,
-   "xfgm": 3.63,
+   "xfgm": 3.62,
    "fga": 10
   },
   "Jaden McDaniels": {
-   "gp": 9,
-   "tpm": 12,
-   "xtpm": 13.91,
-   "fgm": 64,
-   "xfgm": 57.58,
-   "fga": 122
+   "gp": 10,
+   "tpm": 14,
+   "xtpm": 16.41,
+   "fgm": 72,
+   "xfgm": 66.8,
+   "fga": 141
   },
   "Jae'Sean Tate": {
    "gp": 6,
    "tpm": 0,
    "xtpm": 0.35,
    "fgm": 0,
-   "xfgm": 2.75,
+   "xfgm": 2.74,
    "fga": 5
   },
   "Jahmai Mashack": {
-   "gp": 2,
+   "gp": 3,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 1,
-   "xfgm": 0.44,
-   "fga": 1
+   "xfgm": 0.87,
+   "fga": 2
   },
   "Jaime Jaquez Jr.": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 11.0,
-   "fgm": 51,
-   "xfgm": 51.42,
-   "fga": 103
+   "gp": 9,
+   "tpm": 17,
+   "xtpm": 13.45,
+   "fgm": 55,
+   "xfgm": 55.5,
+   "fga": 113
   },
   "Jake LaRavia": {
-   "gp": 8,
-   "tpm": 10,
-   "xtpm": 6.0,
-   "fgm": 19,
-   "xfgm": 15.03,
-   "fga": 32
+   "gp": 9,
+   "tpm": 12,
+   "xtpm": 7.05,
+   "fgm": 21,
+   "xfgm": 17.36,
+   "fga": 37
   },
   "Jakob Poeltl": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 13,
-   "xfgm": 12.12,
-   "fga": 22
+   "fgm": 22,
+   "xfgm": 20.22,
+   "fga": 36
   },
   "Jalen Brunson": {
-   "gp": 8,
-   "tpm": 22,
-   "xtpm": 21.29,
-   "fgm": 67,
-   "xfgm": 70.7,
-   "fga": 162
+   "gp": 9,
+   "tpm": 25,
+   "xtpm": 23.69,
+   "fgm": 79,
+   "xfgm": 81.1,
+   "fga": 187
   },
   "Jalen Duren": {
    "gp": 2,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 10,
-   "xfgm": 9.25,
+   "xfgm": 9.23,
    "fga": 17
   },
   "Jalen Green": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 6,
-   "xtpm": 9.45,
-   "fgm": 32,
-   "xfgm": 38.28,
-   "fga": 79
+   "xtpm": 9.78,
+   "fgm": 39,
+   "xfgm": 45.9,
+   "fga": 93
   },
   "Jalen Johnson": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 8,
-   "xtpm": 10.82,
-   "fgm": 45,
-   "xfgm": 52.35,
-   "fga": 107
+   "xtpm": 12.54,
+   "fgm": 56,
+   "xfgm": 60.73,
+   "fga": 124
   },
   "Jalen Pickett": {
    "gp": 3,
@@ -1545,27 +1561,27 @@ const XSTATS_PBP = {
    "fga": 5
   },
   "Jalen Slawson": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 2,
-   "xtpm": 3.18,
-   "fgm": 8,
-   "xfgm": 8.86,
-   "fga": 19
+   "xtpm": 3.52,
+   "fgm": 10,
+   "xfgm": 10.5,
+   "fga": 22
   },
   "Jalen Smith": {
    "gp": 8,
    "tpm": 11,
-   "xtpm": 13.71,
+   "xtpm": 13.68,
    "fgm": 34,
-   "xfgm": 33.73,
+   "xfgm": 33.62,
    "fga": 72
   },
   "Jalen Suggs": {
    "gp": 3,
    "tpm": 1,
-   "xtpm": 3.23,
+   "xtpm": 3.22,
    "fgm": 10,
-   "xfgm": 13.24,
+   "xfgm": 13.2,
    "fga": 28
   },
   "Jalen Williams": {
@@ -1573,87 +1589,87 @@ const XSTATS_PBP = {
    "tpm": 3,
    "xtpm": 3.13,
    "fgm": 15,
-   "xfgm": 19.15,
+   "xfgm": 19.1,
    "fga": 39
   },
   "Jamal Cain": {
-   "gp": 8,
-   "tpm": 8,
-   "xtpm": 8.83,
-   "fgm": 16,
-   "xfgm": 15.38,
-   "fga": 39
+   "gp": 9,
+   "tpm": 10,
+   "xtpm": 11.68,
+   "fgm": 22,
+   "xfgm": 20.85,
+   "fga": 53
   },
   "Jamal Murray": {
-   "gp": 7,
-   "tpm": 29,
-   "xtpm": 19.95,
-   "fgm": 55,
-   "xfgm": 50.65,
-   "fga": 116
+   "gp": 8,
+   "tpm": 31,
+   "xtpm": 22.0,
+   "fgm": 61,
+   "xfgm": 56.09,
+   "fga": 129
   },
   "Jamal Shead": {
-   "gp": 8,
-   "tpm": 4,
-   "xtpm": 6.32,
-   "fgm": 14,
-   "xfgm": 17.85,
-   "fga": 39
+   "gp": 9,
+   "tpm": 5,
+   "xtpm": 8.04,
+   "fgm": 18,
+   "xfgm": 22.14,
+   "fga": 49
   },
   "Jamaree Bouyea": {
    "gp": 4,
    "tpm": 1,
    "xtpm": 0.37,
    "fgm": 3,
-   "xfgm": 1.22,
+   "xfgm": 1.21,
    "fga": 3
   },
   "James Harden": {
-   "gp": 8,
-   "tpm": 21,
-   "xtpm": 20.2,
-   "fgm": 39,
-   "xfgm": 44.82,
-   "fga": 103
+   "gp": 10,
+   "tpm": 25,
+   "xtpm": 24.01,
+   "fgm": 45,
+   "xfgm": 53.33,
+   "fga": 123
   },
   "James Wiseman": {
    "gp": 4,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 4,
-   "xfgm": 5.93,
+   "xfgm": 5.91,
    "fga": 10
   },
   "Jamison Battle": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 11.94,
-   "fgm": 22,
-   "xfgm": 18.98,
-   "fga": 46
+   "gp": 9,
+   "tpm": 16,
+   "xtpm": 13.33,
+   "fgm": 24,
+   "xfgm": 21.44,
+   "fga": 52
   },
   "Jarace Walker": {
-   "gp": 9,
-   "tpm": 10,
-   "xtpm": 11.27,
-   "fgm": 24,
-   "xfgm": 29.7,
-   "fga": 65
+   "gp": 10,
+   "tpm": 11,
+   "xtpm": 12.98,
+   "fgm": 27,
+   "xfgm": 32.45,
+   "fga": 72
   },
   "Jared McCain": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 15.85,
-   "fgm": 29,
-   "xfgm": 37.75,
-   "fga": 86
+   "gp": 10,
+   "tpm": 17,
+   "xtpm": 20.0,
+   "fgm": 46,
+   "xfgm": 48.4,
+   "fga": 110
   },
   "Jaren Jackson Jr.": {
    "gp": 4,
    "tpm": 5,
-   "xtpm": 4.93,
+   "xtpm": 4.91,
    "fgm": 22,
-   "xfgm": 20.09,
+   "xfgm": 20.05,
    "fga": 44
   },
   "Jarred Vanderbilt": {
@@ -1661,7 +1677,7 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 3,
-   "xfgm": 2.66,
+   "xfgm": 2.65,
    "fga": 4
   },
   "Jarrett Allen": {
@@ -1669,131 +1685,131 @@ const XSTATS_PBP = {
    "tpm": 2,
    "xtpm": 1.04,
    "fgm": 41,
-   "xfgm": 38.51,
+   "xfgm": 38.36,
    "fga": 66
   },
   "Jase Richardson": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 7,
-   "xtpm": 8.16,
-   "fgm": 20,
-   "xfgm": 24.2,
-   "fga": 53
+   "xtpm": 10.29,
+   "fgm": 21,
+   "xfgm": 29.35,
+   "fga": 66
   },
   "Javon Small": {
-   "gp": 1,
-   "tpm": 2,
-   "xtpm": 1.39,
-   "fgm": 2,
-   "xfgm": 2.7,
-   "fga": 7
+   "gp": 2,
+   "tpm": 3,
+   "xtpm": 2.78,
+   "fgm": 5,
+   "xfgm": 6.73,
+   "fga": 16
   },
   "Javonte Green": {
    "gp": 8,
    "tpm": 10,
-   "xtpm": 10.97,
+   "xtpm": 10.94,
    "fgm": 13,
-   "xfgm": 14.47,
+   "xfgm": 14.43,
    "fga": 37
   },
   "Jaxson Hayes": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 0,
    "xtpm": 0.35,
-   "fgm": 20,
-   "xfgm": 19.97,
-   "fga": 36
+   "fgm": 23,
+   "xfgm": 22.33,
+   "fga": 40
   },
   "Jay Huff": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 8,
-   "xtpm": 9.16,
+   "xtpm": 9.85,
    "fgm": 24,
-   "xfgm": 21.31,
-   "fga": 46
+   "xfgm": 22.4,
+   "fga": 49
   },
   "Jaylen Brown": {
-   "gp": 8,
-   "tpm": 16,
-   "xtpm": 12.61,
-   "fgm": 64,
-   "xfgm": 65.35,
-   "fga": 135
+   "gp": 9,
+   "tpm": 18,
+   "xtpm": 15.74,
+   "fgm": 73,
+   "xfgm": 73.25,
+   "fga": 154
   },
   "Jaylen Clark": {
-   "gp": 8,
-   "tpm": 7,
-   "xtpm": 6.1,
-   "fgm": 12,
-   "xfgm": 10.46,
-   "fga": 26
+   "gp": 9,
+   "tpm": 8,
+   "xtpm": 7.19,
+   "fgm": 15,
+   "xfgm": 14.84,
+   "fga": 35
   },
   "Jaylen Wells": {
-   "gp": 8,
-   "tpm": 14,
-   "xtpm": 13.73,
-   "fgm": 33,
-   "xfgm": 27.09,
-   "fga": 63
+   "gp": 9,
+   "tpm": 15,
+   "xtpm": 15.14,
+   "fgm": 35,
+   "xfgm": 29.73,
+   "fga": 70
   },
   "Jaylin Sellers": {
    "gp": 5,
    "tpm": 6,
-   "xtpm": 5.65,
+   "xtpm": 5.63,
    "fgm": 7,
-   "xfgm": 8.49,
+   "xfgm": 8.46,
    "fga": 21
   },
   "Jaylin Williams": {
    "gp": 7,
    "tpm": 5,
-   "xtpm": 8.53,
+   "xtpm": 8.51,
    "fgm": 6,
-   "xfgm": 12.04,
+   "xfgm": 12.0,
    "fga": 30
   },
   "Jaylon Tyson": {
    "gp": 5,
    "tpm": 5,
-   "xtpm": 7.79,
+   "xtpm": 7.77,
    "fgm": 16,
-   "xfgm": 18.12,
+   "xfgm": 18.05,
    "fga": 39
   },
   "Jayson Kent": {
-   "gp": 1,
+   "gp": 2,
    "tpm": 0,
-   "xtpm": 0.7,
-   "fgm": 0,
-   "xfgm": 1.8,
-   "fga": 4
+   "xtpm": 1.39,
+   "fgm": 2,
+   "xfgm": 4.91,
+   "fga": 10
   },
   "Jayson Tatum": {
-   "gp": 7,
-   "tpm": 11,
-   "xtpm": 16.79,
-   "fgm": 59,
-   "xfgm": 65.26,
-   "fga": 141
+   "gp": 8,
+   "tpm": 16,
+   "xtpm": 19.54,
+   "fgm": 68,
+   "xfgm": 72.41,
+   "fga": 157
   },
   "Jerami Grant": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 11.72,
-   "fgm": 26,
-   "xfgm": 31.25,
-   "fga": 68
+   "gp": 9,
+   "tpm": 14,
+   "xtpm": 12.43,
+   "fgm": 30,
+   "xfgm": 33.84,
+   "fga": 74
   },
   "Jeremiah Fears": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 8,
-   "xtpm": 11.59,
-   "fgm": 43,
-   "xfgm": 52.82,
-   "fga": 106
+   "xtpm": 11.91,
+   "fgm": 52,
+   "xfgm": 62.0,
+   "fga": 122
   },
   "Jericho Sims": {
-   "gp": 4,
+   "gp": 5,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 0,
@@ -1801,51 +1817,51 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Jett Howard": {
-   "gp": 3,
+   "gp": 4,
    "tpm": 1,
    "xtpm": 0.72,
    "fgm": 3,
-   "xfgm": 1.82,
-   "fga": 4
+   "xfgm": 2.22,
+   "fga": 5
   },
   "Jevon Carter": {
-   "gp": 4,
-   "tpm": 3,
-   "xtpm": 3.88,
-   "fgm": 4,
-   "xfgm": 5.83,
-   "fga": 15
+   "gp": 5,
+   "tpm": 6,
+   "xtpm": 6.3,
+   "fgm": 7,
+   "xfgm": 8.25,
+   "fga": 22
   },
   "Joan Beringer": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 23,
-   "xfgm": 25.45,
+   "xfgm": 25.34,
    "fga": 40
   },
   "Jock Landale": {
    "gp": 7,
    "tpm": 3,
-   "xtpm": 6.05,
+   "xtpm": 6.03,
    "fgm": 17,
-   "xfgm": 18.87,
+   "xfgm": 18.8,
    "fga": 38
   },
   "Joel Embiid": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 3,
-   "xtpm": 9.05,
+   "xtpm": 9.73,
    "fgm": 45,
-   "xfgm": 50.52,
-   "fga": 109
+   "xfgm": 54.33,
+   "fga": 118
   },
   "John Collins": {
    "gp": 8,
    "tpm": 7,
-   "xtpm": 7.44,
+   "xtpm": 7.42,
    "fgm": 32,
-   "xfgm": 34.69,
+   "xfgm": 34.57,
    "fga": 68
   },
   "John Tonje": {
@@ -1857,35 +1873,35 @@ const XSTATS_PBP = {
    "fga": 2
   },
   "Jonathan Kuminga": {
-   "gp": 9,
-   "tpm": 19,
-   "xtpm": 14.78,
-   "fgm": 41,
-   "xfgm": 43.99,
-   "fga": 93
+   "gp": 10,
+   "tpm": 20,
+   "xtpm": 16.88,
+   "fgm": 46,
+   "xfgm": 49.74,
+   "fga": 105
   },
   "Jonathan Mogbo": {
    "gp": 4,
    "tpm": 1,
    "xtpm": 2.16,
    "fgm": 6,
-   "xfgm": 8.57,
+   "xfgm": 8.54,
    "fga": 17
   },
   "Jordan Clarkson": {
-   "gp": 7,
-   "tpm": 5,
-   "xtpm": 2.86,
-   "fgm": 18,
-   "xfgm": 17.16,
-   "fga": 34
+   "gp": 8,
+   "tpm": 6,
+   "xtpm": 3.2,
+   "fgm": 22,
+   "xfgm": 19.65,
+   "fga": 39
   },
   "Jordan Goodwin": {
    "gp": 5,
    "tpm": 9,
-   "xtpm": 8.41,
+   "xtpm": 8.39,
    "fgm": 15,
-   "xfgm": 13.89,
+   "xfgm": 13.85,
    "fga": 34
   },
   "Jordan Hawkins": {
@@ -1893,88 +1909,88 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 2.11,
    "fgm": 3,
-   "xfgm": 4.0,
+   "xfgm": 3.99,
    "fga": 10
   },
   "Jordan McLaughlin": {
-   "gp": 3,
-   "tpm": 0,
-   "xtpm": 0.72,
-   "fgm": 0,
-   "xfgm": 3.82,
-   "fga": 7
+   "gp": 5,
+   "tpm": 1,
+   "xtpm": 1.44,
+   "fgm": 1,
+   "xfgm": 5.4,
+   "fga": 11
   },
   "Jordan Poole": {
    "gp": 4,
    "tpm": 3,
-   "xtpm": 4.9,
+   "xtpm": 4.89,
    "fgm": 4,
-   "xfgm": 8.58,
+   "xfgm": 8.56,
    "fga": 21
   },
   "Jordan Walsh": {
-   "gp": 8,
-   "tpm": 6,
-   "xtpm": 7.22,
-   "fgm": 13,
-   "xfgm": 15.78,
-   "fga": 34
+   "gp": 9,
+   "tpm": 7,
+   "xtpm": 8.23,
+   "fgm": 15,
+   "xfgm": 17.42,
+   "fga": 38
   },
   "Jose Alvarado": {
    "gp": 4,
    "tpm": 2,
-   "xtpm": 2.44,
+   "xtpm": 2.43,
    "fgm": 4,
-   "xfgm": 6.64,
+   "xfgm": 6.62,
    "fga": 14
   },
   "Josh Dix": {
-   "gp": 5,
-   "tpm": 1,
-   "xtpm": 3.13,
-   "fgm": 4,
-   "xfgm": 5.97,
-   "fga": 14
+   "gp": 7,
+   "tpm": 2,
+   "xtpm": 4.2,
+   "fgm": 7,
+   "xfgm": 9.22,
+   "fga": 21
   },
   "Josh Giddey": {
    "gp": 8,
    "tpm": 8,
-   "xtpm": 9.8,
+   "xtpm": 9.78,
    "fgm": 28,
-   "xfgm": 35.15,
+   "xfgm": 35.04,
    "fga": 72
   },
   "Josh Green": {
-   "gp": 6,
-   "tpm": 3,
-   "xtpm": 3.93,
-   "fgm": 7,
-   "xfgm": 7.43,
-   "fga": 17
+   "gp": 7,
+   "tpm": 4,
+   "xtpm": 4.29,
+   "fgm": 8,
+   "xfgm": 9.28,
+   "fga": 21
   },
   "Josh Hart": {
    "gp": 7,
    "tpm": 13,
-   "xtpm": 13.31,
+   "xtpm": 13.28,
    "fgm": 22,
-   "xfgm": 24.29,
+   "xfgm": 24.22,
    "fga": 57
   },
   "Josh Minott": {
    "gp": 6,
    "tpm": 3,
-   "xtpm": 4.55,
+   "xtpm": 4.54,
    "fgm": 7,
-   "xfgm": 7.65,
+   "xfgm": 7.63,
    "fga": 18
   },
   "Josh Okogie": {
-   "gp": 7,
-   "tpm": 3,
-   "xtpm": 3.18,
-   "fgm": 5,
-   "xfgm": 6.04,
-   "fga": 15
+   "gp": 8,
+   "tpm": 5,
+   "xtpm": 4.22,
+   "fgm": 9,
+   "xfgm": 10.8,
+   "fga": 25
   },
   "Joshua Jefferson": {
    "gp": 1,
@@ -1985,20 +2001,20 @@ const XSTATS_PBP = {
    "fga": 4
   },
   "Jrue Holiday": {
-   "gp": 7,
-   "tpm": 17,
-   "xtpm": 14.01,
-   "fgm": 32,
-   "xfgm": 25.24,
-   "fga": 61
+   "gp": 9,
+   "tpm": 21,
+   "xtpm": 17.18,
+   "fgm": 39,
+   "xfgm": 31.45,
+   "fga": 76
   },
   "Julian Champagnie": {
-   "gp": 8,
-   "tpm": 22,
-   "xtpm": 18.29,
-   "fgm": 25,
-   "xfgm": 21.59,
-   "fga": 58
+   "gp": 10,
+   "tpm": 28,
+   "xtpm": 22.14,
+   "fgm": 32,
+   "xfgm": 25.87,
+   "fga": 70
   },
   "Julian Reese": {
    "gp": 1,
@@ -2009,147 +2025,147 @@ const XSTATS_PBP = {
    "fga": 1
   },
   "Julius Randle": {
-   "gp": 8,
-   "tpm": 14,
-   "xtpm": 14.4,
-   "fgm": 51,
-   "xfgm": 54.08,
-   "fga": 119
+   "gp": 9,
+   "tpm": 15,
+   "xtpm": 15.07,
+   "fgm": 59,
+   "xfgm": 61.67,
+   "fga": 133
   },
   "Justin Champagnie": {
    "gp": 4,
    "tpm": 2,
    "xtpm": 2.46,
    "fgm": 12,
-   "xfgm": 10.88,
+   "xfgm": 10.83,
    "fga": 20
   },
   "Justin Edwards": {
-   "gp": 3,
-   "tpm": 0,
-   "xtpm": 0.0,
-   "fgm": 1,
-   "xfgm": 1.33,
-   "fga": 2
+   "gp": 4,
+   "tpm": 1,
+   "xtpm": 0.7,
+   "fgm": 2,
+   "xfgm": 2.02,
+   "fga": 4
   },
   "Karim López": {
-   "gp": 2,
+   "gp": 3,
    "tpm": 0,
    "xtpm": 0.37,
    "fgm": 1,
-   "xfgm": 1.04,
+   "xfgm": 1.03,
    "fga": 2
   },
   "Karl-Anthony Towns": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 12.19,
-   "fgm": 59,
-   "xfgm": 53.31,
-   "fga": 103
+   "gp": 9,
+   "tpm": 17,
+   "xtpm": 13.56,
+   "fgm": 70,
+   "xfgm": 64.86,
+   "fga": 124
   },
   "Karlo Matković": {
-   "gp": 7,
-   "tpm": 11,
-   "xtpm": 7.27,
-   "fgm": 24,
-   "xfgm": 18.34,
-   "fga": 37
+   "gp": 8,
+   "tpm": 15,
+   "xtpm": 10.06,
+   "fgm": 31,
+   "xfgm": 24.17,
+   "fga": 50
   },
   "Kasparas Jakučionis": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 5,
-   "xtpm": 7.71,
-   "fgm": 18,
-   "xfgm": 20.32,
-   "fga": 42
+   "xtpm": 8.04,
+   "fgm": 19,
+   "xfgm": 21.26,
+   "fga": 44
   },
   "Kawhi Leonard": {
    "gp": 2,
    "tpm": 4,
-   "xtpm": 4.88,
+   "xtpm": 4.87,
    "fgm": 12,
-   "xfgm": 17.19,
+   "xfgm": 17.14,
    "fga": 37
   },
   "Keaton Wagler": {
    "gp": 8,
    "tpm": 13,
-   "xtpm": 12.94,
+   "xtpm": 12.91,
    "fgm": 21,
-   "xfgm": 28.55,
+   "xfgm": 28.49,
    "fga": 68
   },
   "Keegan Murray": {
    "gp": 2,
    "tpm": 0,
-   "xtpm": 2.49,
+   "xtpm": 2.48,
    "fgm": 5,
-   "xfgm": 7.09,
+   "xfgm": 7.08,
    "fga": 17
   },
   "Kel'el Ware": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 6,
-   "xtpm": 9.11,
-   "fgm": 31,
-   "xfgm": 39.16,
-   "fga": 74
+   "xtpm": 10.48,
+   "fgm": 33,
+   "xfgm": 42.16,
+   "fga": 81
   },
   "Keldon Johnson": {
-   "gp": 8,
+   "gp": 10,
    "tpm": 2,
-   "xtpm": 3.53,
-   "fgm": 27,
-   "xfgm": 31.8,
-   "fga": 58
+   "xtpm": 4.59,
+   "fgm": 31,
+   "xfgm": 38.25,
+   "fga": 71
   },
   "Kelly Oubre Jr.": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 7,
-   "xtpm": 9.55,
-   "fgm": 24,
-   "xfgm": 25.81,
-   "fga": 56
+   "xtpm": 10.57,
+   "fgm": 25,
+   "xfgm": 27.87,
+   "fga": 61
   },
   "Kenrich Williams": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 8.43,
-   "fgm": 20,
-   "xfgm": 17.81,
-   "fga": 40
+   "gp": 10,
+   "tpm": 14,
+   "xtpm": 10.52,
+   "fgm": 24,
+   "xfgm": 22.24,
+   "fga": 51
   },
   "Kentavious Caldwell-Pope": {
-   "gp": 9,
-   "tpm": 12,
-   "xtpm": 9.53,
-   "fgm": 18,
-   "xfgm": 16.53,
-   "fga": 41
+   "gp": 10,
+   "tpm": 13,
+   "xtpm": 9.85,
+   "fgm": 19,
+   "xfgm": 16.84,
+   "fga": 42
   },
   "Keon Ellis": {
    "gp": 8,
    "tpm": 7,
-   "xtpm": 9.13,
+   "xtpm": 9.11,
    "fgm": 14,
-   "xfgm": 16.99,
+   "xfgm": 16.95,
    "fga": 41
   },
   "Kevin Durant": {
-   "gp": 9,
-   "tpm": 13,
-   "xtpm": 11.3,
-   "fgm": 59,
-   "xfgm": 49.11,
-   "fga": 112
+   "gp": 10,
+   "tpm": 14,
+   "xtpm": 13.7,
+   "fgm": 64,
+   "xfgm": 54.87,
+   "fga": 126
   },
   "Kevin Huerter": {
    "gp": 8,
    "tpm": 12,
-   "xtpm": 11.24,
+   "xtpm": 11.22,
    "fgm": 19,
-   "xfgm": 19.01,
+   "xfgm": 18.98,
    "fga": 49
   },
   "Kevon Looney": {
@@ -2157,47 +2173,47 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 3,
-   "xfgm": 3.5,
+   "xfgm": 3.49,
    "fga": 6
   },
   "Keyonte George": {
-   "gp": 8,
-   "tpm": 17,
-   "xtpm": 18.13,
-   "fgm": 59,
-   "xfgm": 55.11,
-   "fga": 130
+   "gp": 9,
+   "tpm": 18,
+   "xtpm": 19.49,
+   "fgm": 65,
+   "xfgm": 60.5,
+   "fga": 143
   },
   "Khaman Maluach": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 1,
-   "xtpm": 1.42,
-   "fgm": 21,
-   "xfgm": 21.31,
-   "fga": 37
+   "xtpm": 1.76,
+   "fgm": 24,
+   "xfgm": 23.56,
+   "fga": 41
   },
   "Khris Middleton": {
    "gp": 5,
    "tpm": 1,
-   "xtpm": 1.77,
+   "xtpm": 1.76,
    "fgm": 3,
-   "xfgm": 3.71,
+   "xfgm": 3.7,
    "fga": 9
   },
   "Kingston Flemings": {
-   "gp": 8,
-   "tpm": 7,
-   "xtpm": 5.22,
-   "fgm": 26,
-   "xfgm": 25.3,
-   "fga": 51
+   "gp": 10,
+   "tpm": 8,
+   "xtpm": 6.61,
+   "fgm": 36,
+   "xfgm": 33.52,
+   "fga": 68
   },
   "Klay Thompson": {
    "gp": 9,
    "tpm": 33,
-   "xtpm": 28.14,
+   "xtpm": 28.07,
    "fgm": 43,
-   "xfgm": 35.48,
+   "xfgm": 35.41,
    "fga": 98
   },
   "Koa Peat": {
@@ -2205,23 +2221,23 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 2,
-   "xfgm": 2.43,
+   "xfgm": 2.42,
    "fga": 4
   },
   "Kobe Brown": {
    "gp": 6,
    "tpm": 3,
-   "xtpm": 4.23,
+   "xtpm": 4.22,
    "fgm": 10,
-   "xfgm": 10.18,
+   "xfgm": 10.15,
    "fga": 23
   },
   "Kobe Sanders": {
    "gp": 8,
    "tpm": 14,
-   "xtpm": 12.94,
+   "xtpm": 12.91,
    "fgm": 27,
-   "xfgm": 26.91,
+   "xfgm": 26.85,
    "fga": 63
   },
   "Kon Knueppel": {
@@ -2235,106 +2251,106 @@ const XSTATS_PBP = {
   "Kris Dunn": {
    "gp": 8,
    "tpm": 7,
-   "xtpm": 7.04,
+   "xtpm": 7.02,
    "fgm": 25,
-   "xfgm": 24.94,
+   "xfgm": 24.85,
    "fga": 50
   },
   "Kris Murray": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 1,
-   "xtpm": 3.26,
+   "xtpm": 4.31,
    "fgm": 3,
-   "xfgm": 5.25,
-   "fga": 12
+   "xfgm": 6.3,
+   "fga": 15
   },
   "Kyle Anderson": {
    "gp": 6,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 3,
-   "xfgm": 3.23,
+   "xfgm": 3.22,
    "fga": 7
   },
   "Kyle Filipowski": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 1,
    "xtpm": 1.07,
    "fgm": 3,
-   "xfgm": 4.59,
+   "xfgm": 4.58,
    "fga": 10
   },
   "Kyle Kuzma": {
-   "gp": 8,
-   "tpm": 10,
-   "xtpm": 12.04,
-   "fgm": 31,
-   "xfgm": 34.07,
-   "fga": 71
+   "gp": 9,
+   "tpm": 11,
+   "xtpm": 13.4,
+   "fgm": 37,
+   "xfgm": 38.4,
+   "fga": 80
   },
   "Kyrie Irving": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 21,
-   "xtpm": 19.28,
-   "fgm": 48,
-   "xfgm": 42.21,
-   "fga": 101
+   "xtpm": 20.63,
+   "fgm": 55,
+   "xfgm": 51.21,
+   "fga": 121
   },
   "Kyshawn George": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 15.37,
-   "fgm": 53,
-   "xfgm": 47.13,
-   "fga": 103
+   "gp": 10,
+   "tpm": 22,
+   "xtpm": 20.61,
+   "fgm": 68,
+   "xfgm": 63.0,
+   "fga": 138
   },
   "LJ Cryer": {
    "gp": 7,
    "tpm": 5,
    "xtpm": 3.48,
    "fgm": 6,
-   "xfgm": 6.27,
+   "xfgm": 6.26,
    "fga": 16
   },
   "LaMelo Ball": {
-   "gp": 9,
-   "tpm": 30,
-   "xtpm": 27.37,
-   "fgm": 53,
-   "xfgm": 49.26,
-   "fga": 121
+   "gp": 10,
+   "tpm": 33,
+   "xtpm": 30.09,
+   "fgm": 60,
+   "xfgm": 55.64,
+   "fga": 136
   },
   "Labaron Philon Jr.": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 2,
-   "xtpm": 2.44,
-   "fgm": 5,
-   "xfgm": 5.29,
-   "fga": 13
+   "xtpm": 2.78,
+   "fgm": 6,
+   "xfgm": 6.5,
+   "fga": 16
   },
   "Landry Shamet": {
-   "gp": 8,
-   "tpm": 17,
-   "xtpm": 14.13,
-   "fgm": 24,
-   "xfgm": 22.9,
-   "fga": 55
+   "gp": 9,
+   "tpm": 20,
+   "xtpm": 16.92,
+   "fgm": 27,
+   "xfgm": 25.66,
+   "fga": 63
   },
   "Larry Nance Jr.": {
-   "gp": 8,
-   "tpm": 5,
-   "xtpm": 6.05,
-   "fgm": 10,
-   "xfgm": 11.95,
-   "fga": 27
+   "gp": 9,
+   "tpm": 10,
+   "xtpm": 8.55,
+   "fgm": 15,
+   "xfgm": 14.43,
+   "fga": 34
   },
   "Lauri Markkanen": {
-   "gp": 7,
-   "tpm": 21,
-   "xtpm": 20.25,
-   "fgm": 36,
-   "xfgm": 38.29,
-   "fga": 93
+   "gp": 8,
+   "tpm": 29,
+   "xtpm": 25.5,
+   "fgm": 44,
+   "xfgm": 46.1,
+   "fga": 113
   },
   "Lawson Lovering": {
    "gp": 2,
@@ -2345,92 +2361,92 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "LeBron James": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 6,
-   "xtpm": 8.04,
-   "fgm": 42,
-   "xfgm": 47.29,
-   "fga": 92
+   "xtpm": 9.41,
+   "fgm": 45,
+   "xfgm": 52.86,
+   "fga": 104
   },
   "Leaky Black": {
-   "gp": 4,
-   "tpm": 4,
-   "xtpm": 3.91,
-   "fgm": 6,
-   "xfgm": 5.67,
-   "fga": 14
+   "gp": 5,
+   "tpm": 8,
+   "xtpm": 6.33,
+   "fgm": 10,
+   "xfgm": 8.09,
+   "fga": 21
   },
   "Leonard Miller": {
    "gp": 8,
    "tpm": 5,
-   "xtpm": 9.48,
+   "xtpm": 9.46,
    "fgm": 23,
-   "xfgm": 26.02,
+   "xfgm": 25.92,
    "fga": 53
   },
   "Liam McNeeley": {
-   "gp": 4,
-   "tpm": 0,
-   "xtpm": 1.42,
-   "fgm": 1,
-   "xfgm": 4.24,
-   "fga": 10
+   "gp": 5,
+   "tpm": 1,
+   "xtpm": 3.5,
+   "fgm": 4,
+   "xfgm": 9.62,
+   "fga": 21
   },
   "Luguentz Dort": {
-   "gp": 9,
-   "tpm": 14,
-   "xtpm": 15.35,
-   "fgm": 26,
-   "xfgm": 33.44,
-   "fga": 74
+   "gp": 11,
+   "tpm": 20,
+   "xtpm": 18.82,
+   "fgm": 36,
+   "xfgm": 43.41,
+   "fga": 95
   },
   "Luka Dončić": {
-   "gp": 8,
-   "tpm": 47,
-   "xtpm": 38.06,
-   "fgm": 93,
-   "xfgm": 74.65,
-   "fga": 188
+   "gp": 9,
+   "tpm": 52,
+   "xtpm": 43.2,
+   "fgm": 110,
+   "xfgm": 88.94,
+   "fga": 221
   },
   "Luka Garza": {
-   "gp": 8,
-   "tpm": 11,
-   "xtpm": 7.49,
-   "fgm": 19,
-   "xfgm": 18.09,
-   "fga": 39
+   "gp": 9,
+   "tpm": 13,
+   "xtpm": 8.51,
+   "fgm": 21,
+   "xfgm": 21.71,
+   "fga": 46
   },
   "Luke Kennard": {
-   "gp": 6,
-   "tpm": 12,
-   "xtpm": 8.86,
-   "fgm": 15,
-   "xfgm": 10.8,
-   "fga": 29
+   "gp": 7,
+   "tpm": 15,
+   "xtpm": 10.92,
+   "fgm": 19,
+   "xfgm": 13.3,
+   "fga": 36
   },
   "Luke Kornet": {
-   "gp": 8,
+   "gp": 10,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 9,
-   "xfgm": 10.85,
-   "fga": 17
+   "fgm": 11,
+   "xfgm": 14.5,
+   "fga": 24
   },
   "Malevy Leons": {
    "gp": 5,
    "tpm": 0,
    "xtpm": 0.35,
    "fgm": 1,
-   "xfgm": 2.99,
+   "xfgm": 2.98,
    "fga": 6
   },
   "Malik Monk": {
-   "gp": 7,
-   "tpm": 9,
-   "xtpm": 9.11,
-   "fgm": 20,
-   "xfgm": 24.36,
-   "fga": 57
+   "gp": 8,
+   "tpm": 11,
+   "xtpm": 10.48,
+   "fgm": 23,
+   "xfgm": 26.58,
+   "fga": 63
   },
   "Maliq Brown": {
    "gp": 1,
@@ -2443,185 +2459,185 @@ const XSTATS_PBP = {
   "Marcus Sasser": {
    "gp": 8,
    "tpm": 9,
-   "xtpm": 8.16,
+   "xtpm": 8.14,
    "fgm": 19,
-   "xfgm": 16.43,
+   "xfgm": 16.4,
    "fga": 41
   },
   "Marcus Smart": {
-   "gp": 6,
-   "tpm": 12,
-   "xtpm": 10.97,
-   "fgm": 19,
-   "xfgm": 17.1,
-   "fga": 43
+   "gp": 7,
+   "tpm": 13,
+   "xtpm": 12.33,
+   "fgm": 21,
+   "xfgm": 19.95,
+   "fga": 50
   },
   "Mario Hezonja": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 11.64,
-   "fgm": 27,
-   "xfgm": 25.97,
-   "fga": 59
+   "gp": 10,
+   "tpm": 14,
+   "xtpm": 16.2,
+   "fgm": 33,
+   "xfgm": 34.46,
+   "fga": 78
   },
   "Marvin Bagley III": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 0,
-   "xtpm": 1.04,
-   "fgm": 14,
-   "xfgm": 13.82,
-   "fga": 25
+   "xtpm": 1.39,
+   "fgm": 17,
+   "xfgm": 16.75,
+   "fga": 31
   },
   "Matas Buzelis": {
    "gp": 8,
    "tpm": 10,
-   "xtpm": 13.04,
+   "xtpm": 13.0,
    "fgm": 31,
-   "xfgm": 35.49,
+   "xfgm": 35.38,
    "fga": 76
   },
   "Matisse Thybulle": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 18,
-   "xtpm": 14.88,
+   "xtpm": 15.21,
    "fgm": 24,
-   "xfgm": 21.72,
-   "fga": 54
+   "xfgm": 22.02,
+   "fga": 55
   },
   "Max Christie": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 10,
-   "xtpm": 13.04,
+   "xtpm": 13.38,
    "fgm": 18,
-   "xfgm": 22.26,
-   "fga": 54
+   "xfgm": 22.57,
+   "fga": 55
   },
   "Max Strus": {
    "gp": 2,
    "tpm": 6,
-   "xtpm": 6.32,
+   "xtpm": 6.3,
    "fgm": 6,
-   "xfgm": 8.09,
+   "xfgm": 8.07,
    "fga": 21
   },
   "Meleek Thomas": {
-   "gp": 5,
-   "tpm": 13,
-   "xtpm": 9.83,
-   "fgm": 25,
-   "xfgm": 24.03,
-   "fga": 54
+   "gp": 7,
+   "tpm": 18,
+   "xtpm": 14.0,
+   "fgm": 32,
+   "xfgm": 31.24,
+   "fga": 71
   },
   "Micah Peavy": {
-   "gp": 4,
-   "tpm": 2,
-   "xtpm": 1.44,
-   "fgm": 4,
-   "xfgm": 5.82,
-   "fga": 12
+   "gp": 6,
+   "tpm": 4,
+   "xtpm": 3.94,
+   "fgm": 10,
+   "xfgm": 12.01,
+   "fga": 26
   },
   "Micah Potter": {
-   "gp": 4,
-   "tpm": 1,
-   "xtpm": 1.04,
-   "fgm": 3,
-   "xfgm": 2.36,
-   "fga": 6
+   "gp": 5,
+   "tpm": 2,
+   "xtpm": 1.74,
+   "fgm": 6,
+   "xfgm": 4.36,
+   "fga": 11
   },
   "Michael Porter Jr.": {
-   "gp": 8,
-   "tpm": 28,
-   "xtpm": 25.18,
-   "fgm": 57,
-   "xfgm": 52.34,
-   "fga": 123
+   "gp": 9,
+   "tpm": 31,
+   "xtpm": 29.0,
+   "fgm": 65,
+   "xfgm": 59.57,
+   "fga": 140
   },
   "Mikal Bridges": {
-   "gp": 8,
-   "tpm": 8,
-   "xtpm": 9.55,
-   "fgm": 19,
-   "xfgm": 24.99,
-   "fga": 57
+   "gp": 9,
+   "tpm": 9,
+   "xtpm": 12.03,
+   "fgm": 23,
+   "xfgm": 30.44,
+   "fga": 70
   },
   "Mike Conley": {
-   "gp": 2,
+   "gp": 3,
    "tpm": 3,
-   "xtpm": 1.07,
+   "xtpm": 1.41,
    "fgm": 3,
-   "xfgm": 1.07,
-   "fga": 3
+   "xfgm": 1.41,
+   "fga": 4
   },
   "Mikel Brown Jr.": {
-   "gp": 6,
-   "tpm": 11,
-   "xtpm": 12.94,
-   "fgm": 23,
-   "xfgm": 29.16,
-   "fga": 68
+   "gp": 7,
+   "tpm": 14,
+   "xtpm": 15.69,
+   "fgm": 28,
+   "xfgm": 34.7,
+   "fga": 81
   },
   "Miles Bridges": {
-   "gp": 7,
-   "tpm": 16,
-   "xtpm": 15.85,
-   "fgm": 45,
-   "xfgm": 43.34,
-   "fga": 95
+   "gp": 8,
+   "tpm": 17,
+   "xtpm": 17.57,
+   "fgm": 50,
+   "xfgm": 48.23,
+   "fga": 107
   },
   "Miles McBride": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 11.99,
-   "fgm": 18,
-   "xfgm": 17.12,
-   "fga": 44
+   "gp": 9,
+   "tpm": 16,
+   "xtpm": 13.0,
+   "fgm": 20,
+   "xfgm": 18.56,
+   "fga": 48
   },
   "Mitchell Robinson": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 17,
-   "xfgm": 17.49,
-   "fga": 27
+   "fgm": 20,
+   "xfgm": 20.72,
+   "fga": 32
   },
   "Mo Bamba": {
    "gp": 5,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 19,
-   "xfgm": 16.15,
+   "xfgm": 16.08,
    "fga": 26
   },
   "Mohamed Diawara": {
-   "gp": 3,
+   "gp": 4,
    "tpm": 1,
-   "xtpm": 1.77,
-   "fgm": 2,
-   "xfgm": 2.43,
-   "fga": 6
+   "xtpm": 2.83,
+   "fgm": 3,
+   "xfgm": 4.15,
+   "fga": 10
   },
   "Morez Johnson Jr.": {
-   "gp": 8,
-   "tpm": 1,
-   "xtpm": 2.09,
-   "fgm": 23,
-   "xfgm": 21.65,
-   "fga": 41
+   "gp": 9,
+   "tpm": 2,
+   "xtpm": 2.78,
+   "fgm": 28,
+   "xfgm": 26.25,
+   "fga": 49
   },
   "Moritz Wagner": {
-   "gp": 8,
-   "tpm": 9,
-   "xtpm": 5.62,
-   "fgm": 29,
-   "xfgm": 28.63,
-   "fga": 53
+   "gp": 9,
+   "tpm": 10,
+   "xtpm": 6.3,
+   "fgm": 32,
+   "xfgm": 32.29,
+   "fga": 60
   },
   "Moussa Cissé": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 4,
-   "xfgm": 3.1,
+   "xfgm": 3.08,
    "fga": 5
   },
   "Moussa Diabaté": {
@@ -2629,16 +2645,16 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 33,
-   "xfgm": 32.75,
+   "xfgm": 32.6,
    "fga": 52
   },
   "Myles Turner": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 12,
-   "xtpm": 13.36,
+   "xtpm": 14.72,
    "fgm": 26,
-   "xfgm": 27.09,
-   "fga": 63
+   "xfgm": 29.66,
+   "fga": 70
   },
   "Myron Gardner": {
    "gp": 5,
@@ -2649,43 +2665,43 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Naji Marshall": {
-   "gp": 5,
-   "tpm": 6,
-   "xtpm": 6.29,
-   "fgm": 29,
-   "xfgm": 25.27,
-   "fga": 57
-  },
-  "Nate Ament": {
    "gp": 6,
    "tpm": 6,
-   "xtpm": 5.3,
-   "fgm": 15,
-   "xfgm": 16.13,
-   "fga": 35
+   "xtpm": 7.35,
+   "fgm": 32,
+   "xfgm": 29.8,
+   "fga": 67
+  },
+  "Nate Ament": {
+   "gp": 7,
+   "tpm": 6,
+   "xtpm": 5.63,
+   "fgm": 18,
+   "xfgm": 18.86,
+   "fga": 40
   },
   "Naz Reid": {
-   "gp": 9,
-   "tpm": 21,
-   "xtpm": 21.07,
-   "fgm": 58,
-   "xfgm": 61.25,
-   "fga": 137
+   "gp": 10,
+   "tpm": 23,
+   "xtpm": 22.79,
+   "fgm": 64,
+   "xfgm": 69.91,
+   "fga": 154
   },
   "Neemias Queta": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 2,
    "xtpm": 1.07,
-   "fgm": 28,
-   "xfgm": 28.25,
-   "fga": 48
+   "fgm": 30,
+   "xfgm": 30.74,
+   "fga": 53
   },
   "Nick Martinelli": {
    "gp": 4,
    "tpm": 2,
    "xtpm": 1.04,
    "fgm": 6,
-   "xfgm": 4.56,
+   "xfgm": 4.55,
    "fga": 10
   },
   "Nick Richards": {
@@ -2697,140 +2713,148 @@ const XSTATS_PBP = {
    "fga": 3
   },
   "Nickeil Alexander-Walker": {
-   "gp": 9,
-   "tpm": 37,
-   "xtpm": 32.04,
-   "fgm": 65,
-   "xfgm": 63.86,
-   "fga": 148
+   "gp": 11,
+   "tpm": 43,
+   "xtpm": 39.29,
+   "fgm": 79,
+   "xfgm": 80.02,
+   "fga": 185
   },
   "Nikola Jokić": {
-   "gp": 7,
-   "tpm": 7,
-   "xtpm": 11.17,
-   "fgm": 64,
-   "xfgm": 58.22,
-   "fga": 127
+   "gp": 8,
+   "tpm": 8,
+   "xtpm": 12.19,
+   "fgm": 71,
+   "xfgm": 67.84,
+   "fga": 147
   },
   "Nikola Jović": {
    "gp": 7,
    "tpm": 1,
-   "xtpm": 3.56,
+   "xtpm": 3.55,
    "fgm": 6,
-   "xfgm": 9.26,
+   "xfgm": 9.23,
    "fga": 20
   },
   "Nikola Vučević": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 3,
-   "xtpm": 4.23,
+   "xtpm": 4.57,
    "fgm": 9,
-   "xfgm": 9.06,
-   "fga": 22
+   "xfgm": 9.82,
+   "fga": 24
   },
   "Nique Clifford": {
-   "gp": 7,
-   "tpm": 0,
-   "xtpm": 2.46,
-   "fgm": 4,
-   "xfgm": 6.32,
-   "fga": 15
+   "gp": 8,
+   "tpm": 1,
+   "xtpm": 2.8,
+   "fgm": 6,
+   "xfgm": 7.06,
+   "fga": 17
   },
   "Noa Essengue": {
    "gp": 7,
    "tpm": 3,
-   "xtpm": 4.93,
+   "xtpm": 4.91,
    "fgm": 11,
-   "xfgm": 14.65,
+   "xfgm": 14.6,
    "fga": 30
   },
   "Noah Clowney": {
-   "gp": 8,
-   "tpm": 5,
-   "xtpm": 6.34,
-   "fgm": 14,
-   "xfgm": 16.28,
-   "fga": 35
+   "gp": 9,
+   "tpm": 6,
+   "xtpm": 7.39,
+   "fgm": 15,
+   "xfgm": 18.39,
+   "fga": 40
   },
   "Nolan Traore": {
-   "gp": 8,
-   "tpm": 14,
-   "xtpm": 10.17,
-   "fgm": 35,
-   "xfgm": 32.39,
-   "fga": 70
+   "gp": 9,
+   "tpm": 16,
+   "xtpm": 11.57,
+   "fgm": 43,
+   "xfgm": 36.76,
+   "fga": 80
+  },
+  "Norchad Omier": {
+   "gp": 1,
+   "tpm": 0,
+   "xtpm": 0.0,
+   "fgm": 0,
+   "xfgm": 0.0,
+   "fga": 0
   },
   "Norman Powell": {
    "gp": 8,
    "tpm": 17,
-   "xtpm": 19.18,
+   "xtpm": 19.15,
    "fgm": 41,
-   "xfgm": 43.92,
+   "xfgm": 43.83,
    "fga": 103
   },
   "OG Anunoby": {
-   "gp": 8,
-   "tpm": 14,
-   "xtpm": 17.37,
-   "fgm": 37,
-   "xfgm": 46.52,
-   "fga": 95
+   "gp": 9,
+   "tpm": 17,
+   "xtpm": 20.52,
+   "fgm": 41,
+   "xfgm": 51.48,
+   "fga": 108
   },
   "Obi Toppin": {
-   "gp": 6,
-   "tpm": 12,
-   "xtpm": 10.33,
-   "fgm": 31,
-   "xfgm": 28.01,
-   "fga": 58
+   "gp": 7,
+   "tpm": 14,
+   "xtpm": 13.1,
+   "fgm": 35,
+   "xfgm": 32.47,
+   "fga": 69
   },
   "Olivier-Maxence Prosper": {
-   "gp": 3,
+   "gp": 4,
    "tpm": 0,
-   "xtpm": 0.37,
-   "fgm": 5,
-   "xfgm": 4.57,
-   "fga": 8
+   "xtpm": 1.09,
+   "fgm": 6,
+   "xfgm": 6.59,
+   "fga": 12
   },
   "Onyeka Okongwu": {
-   "gp": 9,
-   "tpm": 12,
-   "xtpm": 14.38,
-   "fgm": 43,
-   "xfgm": 45.08,
-   "fga": 93
+   "gp": 11,
+   "tpm": 16,
+   "xtpm": 17.48,
+   "fgm": 56,
+   "xfgm": 54.64,
+   "fga": 115
   },
   "Oscar Tshiebwe": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 7,
-   "xfgm": 5.09,
-   "fga": 8
+   "fgm": 8,
+   "xfgm": 5.73,
+   "fga": 9
   },
   "Oso Ighodaro": {
-   "gp": 5,
+   "gp": 6,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 16,
-   "xfgm": 13.68,
-   "fga": 24
+   "fgm": 18,
+   "xfgm": 15.39,
+   "fga": 27
   },
   "Ousmane Dieng": {
    "gp": 6,
    "tpm": 1,
-   "xtpm": 3.16,
+   "xtpm": 3.15,
    "fgm": 5,
-   "xfgm": 8.02,
+   "xfgm": 8.0,
    "fga": 17
   },
   "P.J. Washington": {
-   "gp": 8,
-   "tpm": 16,
-   "xtpm": 18.39,
-   "fgm": 39,
-   "xfgm": 43.38,
-   "fga": 98
+   "gp": 9,
+   "tpm": 22,
+   "xtpm": 21.88,
+   "fgm": 46,
+   "xfgm": 49.23,
+   "fga": 112
   },
   "PJ Hall": {
    "gp": 2,
@@ -2845,7 +2869,7 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.37,
    "fgm": 2,
-   "xfgm": 2.37,
+   "xfgm": 2.36,
    "fga": 4
   },
   "Paolo Banchero": {
@@ -2853,16 +2877,16 @@ const XSTATS_PBP = {
    "tpm": 3,
    "xtpm": 2.11,
    "fgm": 16,
-   "xfgm": 10.79,
+   "xfgm": 10.76,
    "fga": 23
   },
   "Pascal Siakam": {
-   "gp": 8,
-   "tpm": 10,
-   "xtpm": 11.59,
-   "fgm": 66,
-   "xfgm": 61.46,
-   "fga": 129
+   "gp": 9,
+   "tpm": 12,
+   "xtpm": 14.05,
+   "fgm": 76,
+   "xfgm": 69.88,
+   "fga": 147
   },
   "Pat Spencer": {
    "gp": 3,
@@ -2877,88 +2901,88 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 1.04,
    "fgm": 1,
-   "xfgm": 3.04,
+   "xfgm": 3.03,
    "fga": 6
   },
   "Paul George": {
-   "gp": 7,
-   "tpm": 24,
-   "xtpm": 20.32,
-   "fgm": 52,
-   "xfgm": 48.82,
-   "fga": 113
+   "gp": 8,
+   "tpm": 26,
+   "xtpm": 22.02,
+   "fgm": 55,
+   "xfgm": 53.23,
+   "fga": 124
   },
   "Paul Reed": {
    "gp": 8,
    "tpm": 5,
-   "xtpm": 2.84,
+   "xtpm": 2.83,
    "fgm": 43,
-   "xfgm": 38.08,
+   "xfgm": 37.97,
    "fga": 74
   },
   "Payton Pritchard": {
-   "gp": 8,
-   "tpm": 13,
-   "xtpm": 14.65,
-   "fgm": 33,
-   "xfgm": 33.22,
-   "fga": 79
+   "gp": 9,
+   "tpm": 17,
+   "xtpm": 16.71,
+   "fgm": 37,
+   "xfgm": 37.21,
+   "fga": 89
   },
   "Pelle Larsson": {
    "gp": 9,
    "tpm": 10,
-   "xtpm": 8.73,
+   "xtpm": 8.72,
    "fgm": 28,
-   "xfgm": 29.67,
+   "xfgm": 29.59,
    "fga": 63
   },
   "Peyton Watson": {
-   "gp": 6,
-   "tpm": 4,
-   "xtpm": 8.53,
-   "fgm": 23,
-   "xfgm": 30.29,
-   "fga": 62
+   "gp": 8,
+   "tpm": 6,
+   "xtpm": 11.73,
+   "fgm": 34,
+   "xfgm": 42.42,
+   "fga": 87
   },
   "Precious Achiuwa": {
-   "gp": 8,
-   "tpm": 2,
-   "xtpm": 2.49,
-   "fgm": 39,
-   "xfgm": 36.33,
-   "fga": 71
+   "gp": 9,
+   "tpm": 3,
+   "xtpm": 3.18,
+   "fgm": 43,
+   "xfgm": 40.87,
+   "fga": 81
   },
   "Quentin Grimes": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 6,
-   "xtpm": 9.16,
-   "fgm": 23,
-   "xfgm": 23.2,
-   "fga": 50
+   "xtpm": 9.83,
+   "fgm": 24,
+   "xfgm": 24.48,
+   "fga": 53
   },
   "Quenton Jackson": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 10,
-   "xtpm": 10.52,
-   "fgm": 32,
-   "xfgm": 32.99,
-   "fga": 70
+   "xtpm": 10.85,
+   "fgm": 35,
+   "xfgm": 35.22,
+   "fga": 74
   },
   "Quinten Post": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 5,
-   "xtpm": 4.93,
+   "xtpm": 6.68,
    "fgm": 16,
-   "xfgm": 12.63,
-   "fga": 27
+   "xfgm": 15.41,
+   "fga": 34
   },
   "RJ Barrett": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 14,
-   "xtpm": 15.4,
-   "fgm": 64,
-   "xfgm": 66.51,
-   "fga": 133
+   "xtpm": 16.78,
+   "fgm": 73,
+   "xfgm": 77.1,
+   "fga": 154
   },
   "Rasheer Fleming": {
    "gp": 2,
@@ -2993,163 +3017,171 @@ const XSTATS_PBP = {
    "fga": 0
   },
   "Reed Sheppard": {
-   "gp": 6,
-   "tpm": 14,
-   "xtpm": 15.35,
-   "fgm": 23,
-   "xfgm": 23.63,
-   "fga": 59
+   "gp": 7,
+   "tpm": 16,
+   "xtpm": 17.41,
+   "fgm": 25,
+   "xfgm": 26.51,
+   "fga": 67
   },
   "Riley Minix": {
-   "gp": 1,
-   "tpm": 0,
-   "xtpm": 0.7,
-   "fgm": 0,
-   "xfgm": 1.36,
-   "fga": 3
+   "gp": 2,
+   "tpm": 2,
+   "xtpm": 1.76,
+   "fgm": 3,
+   "xfgm": 3.08,
+   "fga": 7
   },
   "Robert Williams III": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 19,
-   "xfgm": 18.79,
-   "fga": 31
+   "fgm": 23,
+   "xfgm": 22.02,
+   "fga": 36
   },
   "Ron Harper Jr.": {
-   "gp": 3,
-   "tpm": 1,
-   "xtpm": 1.82,
-   "fgm": 1,
-   "xfgm": 2.69,
-   "fga": 7
+   "gp": 4,
+   "tpm": 2,
+   "xtpm": 2.16,
+   "fgm": 2,
+   "xfgm": 3.69,
+   "fga": 9
   },
   "Ronald Holland II": {
    "gp": 8,
    "tpm": 6,
-   "xtpm": 6.42,
+   "xtpm": 6.4,
    "fgm": 17,
-   "xfgm": 18.54,
+   "xfgm": 18.48,
    "fga": 40
   },
   "Royce O'Neale": {
-   "gp": 9,
-   "tpm": 10,
-   "xtpm": 12.96,
-   "fgm": 13,
-   "xfgm": 14.96,
-   "fga": 40
+   "gp": 10,
+   "tpm": 12,
+   "xtpm": 15.04,
+   "fgm": 15,
+   "xfgm": 17.03,
+   "fga": 46
   },
   "Rudy Gobert": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 0,
    "xtpm": 1.04,
-   "fgm": 20,
-   "xfgm": 27.79,
-   "fga": 47
+   "fgm": 24,
+   "xfgm": 30.99,
+   "fga": 52
   },
   "Rui Hachimura": {
    "gp": 6,
    "tpm": 13,
-   "xtpm": 13.36,
+   "xtpm": 13.33,
    "fgm": 31,
-   "xfgm": 36.89,
+   "xfgm": 36.8,
    "fga": 83
   },
   "Ryan Conwell": {
    "gp": 7,
    "tpm": 6,
-   "xtpm": 5.25,
+   "xtpm": 5.24,
    "fgm": 9,
-   "xfgm": 8.72,
+   "xfgm": 8.71,
    "fga": 23
   },
   "Ryan Dunn": {
-   "gp": 7,
-   "tpm": 5,
-   "xtpm": 3.98,
-   "fgm": 14,
-   "xfgm": 13.69,
-   "fga": 28
+   "gp": 8,
+   "tpm": 7,
+   "xtpm": 4.68,
+   "fgm": 17,
+   "xfgm": 16.12,
+   "fga": 33
   },
   "Ryan Kalkbrenner": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 16,
-   "xfgm": 13.5,
-   "fga": 21
+   "fgm": 17,
+   "xfgm": 14.1,
+   "fga": 22
   },
   "Ryan Nembhard": {
    "gp": 3,
    "tpm": 1,
    "xtpm": 0.35,
    "fgm": 3,
-   "xfgm": 2.52,
+   "xfgm": 2.51,
    "fga": 5
   },
   "Ryan Rollins": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 14.4,
-   "fgm": 35,
-   "xfgm": 44.72,
-   "fga": 97
+   "gp": 9,
+   "tpm": 13,
+   "xtpm": 14.72,
+   "fgm": 38,
+   "xfgm": 46.05,
+   "fga": 100
   },
   "Saddiq Bey": {
-   "gp": 8,
-   "tpm": 14,
-   "xtpm": 13.41,
-   "fgm": 46,
-   "xfgm": 39.8,
-   "fga": 90
+   "gp": 9,
+   "tpm": 17,
+   "xtpm": 15.48,
+   "fgm": 51,
+   "xfgm": 45.55,
+   "fga": 103
   },
   "Sam Hauser": {
-   "gp": 8,
-   "tpm": 17,
-   "xtpm": 15.5,
-   "fgm": 22,
-   "xfgm": 19.62,
-   "fga": 52
+   "gp": 9,
+   "tpm": 20,
+   "xtpm": 17.2,
+   "fgm": 25,
+   "xfgm": 21.31,
+   "fga": 57
   },
   "Sam Merrill": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 14,
-   "xtpm": 14.48,
+   "xtpm": 15.14,
    "fgm": 22,
-   "xfgm": 21.73,
-   "fga": 54
+   "xfgm": 22.8,
+   "fga": 57
   },
   "Sandro Mamukelashvili": {
-   "gp": 9,
-   "tpm": 9,
-   "xtpm": 10.17,
-   "fgm": 30,
-   "xfgm": 29.09,
-   "fga": 64
+   "gp": 10,
+   "tpm": 10,
+   "xtpm": 11.22,
+   "fgm": 32,
+   "xfgm": 31.84,
+   "fga": 70
+  },
+  "Santi Aldama": {
+   "gp": 1,
+   "tpm": 0,
+   "xtpm": 0.0,
+   "fgm": 2,
+   "xfgm": 2.42,
+   "fga": 4
   },
   "Scoot Henderson": {
-   "gp": 7,
+   "gp": 9,
    "tpm": 6,
-   "xtpm": 10.6,
-   "fgm": 19,
-   "xfgm": 24.57,
-   "fga": 58
+   "xtpm": 12.7,
+   "fgm": 23,
+   "xfgm": 29.46,
+   "fga": 70
   },
   "Scottie Barnes": {
    "gp": 8,
    "tpm": 4,
-   "xtpm": 9.21,
+   "xtpm": 9.18,
    "fgm": 75,
-   "xfgm": 76.04,
+   "xfgm": 75.87,
    "fga": 158
   },
   "Scotty Pippen Jr.": {
    "gp": 5,
    "tpm": 2,
-   "xtpm": 3.16,
+   "xtpm": 3.15,
    "fgm": 11,
-   "xfgm": 11.05,
+   "xfgm": 11.03,
    "fga": 26
   },
   "Sergio de Larrea": {
@@ -3157,88 +3189,112 @@ const XSTATS_PBP = {
    "tpm": 3,
    "xtpm": 1.74,
    "fgm": 9,
-   "xfgm": 7.59,
+   "xfgm": 7.58,
    "fga": 18
   },
   "Shai Gilgeous-Alexander": {
-   "gp": 8,
-   "tpm": 21,
-   "xtpm": 20.55,
-   "fgm": 85,
-   "xfgm": 83.45,
-   "fga": 190
+   "gp": 10,
+   "tpm": 27,
+   "xtpm": 24.01,
+   "fgm": 107,
+   "xfgm": 102.51,
+   "fga": 232
   },
   "Sidy Cissoko": {
-   "gp": 7,
-   "tpm": 6,
-   "xtpm": 6.1,
-   "fgm": 14,
-   "xfgm": 11.62,
-   "fga": 26
+   "gp": 9,
+   "tpm": 8,
+   "xtpm": 8.53,
+   "fgm": 17,
+   "xfgm": 15.8,
+   "fga": 36
   },
   "Simone Fontecchio": {
    "gp": 4,
    "tpm": 1,
    "xtpm": 2.09,
    "fgm": 1,
-   "xfgm": 2.5,
+   "xfgm": 2.49,
    "fga": 7
   },
   "Sion James": {
-   "gp": 9,
-   "tpm": 8,
-   "xtpm": 14.58,
-   "fgm": 16,
-   "xfgm": 21.86,
-   "fga": 54
+   "gp": 10,
+   "tpm": 11,
+   "xtpm": 16.3,
+   "fgm": 20,
+   "xfgm": 25.31,
+   "fga": 62
+  },
+  "Spencer Jones": {
+   "gp": 1,
+   "tpm": 3,
+   "xtpm": 1.09,
+   "fgm": 5,
+   "xfgm": 2.63,
+   "fga": 6
   },
   "Stephen Curry": {
-   "gp": 7,
-   "tpm": 33,
-   "xtpm": 26.22,
-   "fgm": 60,
-   "xfgm": 52.99,
-   "fga": 128
+   "gp": 8,
+   "tpm": 38,
+   "xtpm": 29.67,
+   "fgm": 73,
+   "xfgm": 60.29,
+   "fga": 147
   },
   "Stephon Castle": {
-   "gp": 8,
-   "tpm": 19,
-   "xtpm": 20.67,
-   "fgm": 46,
-   "xfgm": 54.05,
-   "fga": 118
+   "gp": 10,
+   "tpm": 22,
+   "xtpm": 23.43,
+   "fgm": 58,
+   "xfgm": 65.22,
+   "fga": 143
   },
   "Steven Adams": {
    "gp": 1,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 2,
-   "xfgm": 1.33,
+   "xfgm": 1.32,
    "fga": 2
   },
   "Svi Mykhailiuk": {
-   "gp": 8,
-   "tpm": 6,
-   "xtpm": 9.18,
-   "fgm": 13,
-   "xfgm": 18.34,
-   "fga": 43
-  },
-  "Tari Eason": {
    "gp": 9,
-   "tpm": 8,
-   "xtpm": 10.65,
-   "fgm": 35,
-   "xfgm": 37.07,
-   "fga": 76
+   "tpm": 6,
+   "xtpm": 10.22,
+   "fgm": 13,
+   "xfgm": 19.36,
+   "fga": 46
   },
-  "Tarris Reed Jr.": {
-   "gp": 4,
+  "T.J. McConnell": {
+   "gp": 1,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 4,
-   "xfgm": 3.1,
+   "fgm": 3,
+   "xfgm": 2.09,
    "fga": 5
+  },
+  "Tacko Fall": {
+   "gp": 1,
+   "tpm": 0,
+   "xtpm": 0.0,
+   "fgm": 0,
+   "xfgm": 0.0,
+   "fga": 0
+  },
+  "Tari Eason": {
+   "gp": 10,
+   "tpm": 8,
+   "xtpm": 11.34,
+   "fgm": 36,
+   "xfgm": 41.15,
+   "fga": 84
+  },
+  "Tarris Reed Jr.": {
+   "gp": 6,
+   "tpm": 0,
+   "xtpm": 0.0,
+   "fgm": 5,
+   "xfgm": 4.62,
+   "fga": 8
   },
   "Taurean Prince": {
    "gp": 2,
@@ -3249,51 +3305,51 @@ const XSTATS_PBP = {
    "fga": 3
   },
   "Taylor Hendricks": {
-   "gp": 3,
-   "tpm": 2,
-   "xtpm": 1.77,
-   "fgm": 2,
-   "xfgm": 1.77,
-   "fga": 5
+   "gp": 4,
+   "tpm": 3,
+   "xtpm": 2.11,
+   "fgm": 3,
+   "xfgm": 2.55,
+   "fga": 7
   },
   "Terance Mann": {
-   "gp": 3,
+   "gp": 4,
    "tpm": 0,
-   "xtpm": 1.44,
+   "xtpm": 2.16,
    "fgm": 1,
-   "xfgm": 2.55,
-   "fga": 6
+   "xfgm": 3.26,
+   "fga": 8
   },
   "Terrence Shannon Jr": {
    "gp": 7,
    "tpm": 13,
-   "xtpm": 11.62,
+   "xtpm": 11.59,
    "fgm": 25,
-   "xfgm": 25.17,
+   "xfgm": 25.11,
    "fga": 59
   },
   "Thomas Bryant": {
-   "gp": 3,
-   "tpm": 4,
-   "xtpm": 3.83,
-   "fgm": 6,
-   "xfgm": 6.44,
-   "fga": 16
+   "gp": 5,
+   "tpm": 6,
+   "xtpm": 5.22,
+   "fgm": 12,
+   "xfgm": 11.13,
+   "fga": 25
   },
   "Tidjane Salaün": {
-   "gp": 8,
-   "tpm": 9,
-   "xtpm": 8.16,
-   "fgm": 16,
-   "xfgm": 14.13,
-   "fga": 33
+   "gp": 9,
+   "tpm": 11,
+   "xtpm": 10.94,
+   "fgm": 19,
+   "xfgm": 18.87,
+   "fga": 44
   },
   "Tim Hardaway Jr.": {
    "gp": 9,
    "tpm": 9,
-   "xtpm": 12.96,
+   "xtpm": 12.93,
    "fgm": 14,
-   "xfgm": 19.19,
+   "xfgm": 19.15,
    "fga": 49
   },
   "Tobe Awaka": {
@@ -3301,304 +3357,304 @@ const XSTATS_PBP = {
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 3,
-   "xfgm": 2.43,
+   "xfgm": 2.42,
    "fga": 4
   },
   "Tobi Lawal": {
-   "gp": 4,
+   "gp": 5,
    "tpm": 1,
-   "xtpm": 0.7,
+   "xtpm": 1.04,
    "fgm": 3,
-   "xfgm": 2.69,
-   "fga": 5
+   "xfgm": 3.03,
+   "fga": 6
   },
   "Tolu Smith": {
    "gp": 7,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 2,
-   "xfgm": 3.32,
+   "xfgm": 3.31,
    "fga": 5
   },
   "Tony Bradley": {
-   "gp": 2,
+   "gp": 3,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 2,
-   "xfgm": 2.43,
+   "xfgm": 2.42,
    "fga": 4
   },
   "Toumani Camara": {
-   "gp": 7,
-   "tpm": 24,
-   "xtpm": 18.09,
-   "fgm": 33,
-   "xfgm": 24.72,
-   "fga": 62
+   "gp": 9,
+   "tpm": 28,
+   "xtpm": 21.91,
+   "fgm": 42,
+   "xfgm": 32.91,
+   "fga": 81
   },
   "Trae Young": {
-   "gp": 8,
-   "tpm": 15,
-   "xtpm": 18.88,
-   "fgm": 43,
-   "xfgm": 44.14,
-   "fga": 106
+   "gp": 10,
+   "tpm": 18,
+   "xtpm": 21.97,
+   "fgm": 51,
+   "xfgm": 53.87,
+   "fga": 128
   },
   "Trayce Jackson-Davis": {
    "gp": 8,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 10,
-   "xfgm": 8.17,
+   "xfgm": 8.14,
    "fga": 14
   },
   "Tre Johnson": {
-   "gp": 7,
-   "tpm": 8,
-   "xtpm": 10.52,
-   "fgm": 22,
-   "xfgm": 23.88,
-   "fga": 58
+   "gp": 9,
+   "tpm": 13,
+   "xtpm": 16.46,
+   "fgm": 33,
+   "xfgm": 35.89,
+   "fga": 89
   },
   "Tre Jones": {
    "gp": 8,
    "tpm": 3,
    "xtpm": 2.09,
    "fgm": 28,
-   "xfgm": 30.51,
+   "xfgm": 30.4,
    "fga": 55
   },
   "Tre Mann": {
-   "gp": 3,
-   "tpm": 0,
-   "xtpm": 0.0,
-   "fgm": 1,
-   "xfgm": 1.33,
-   "fga": 2
-  },
-  "Trendon Watford": {
    "gp": 4,
    "tpm": 0,
-   "xtpm": 1.04,
-   "fgm": 6,
-   "xfgm": 6.36,
-   "fga": 11
+   "xtpm": 0.7,
+   "fgm": 2,
+   "xfgm": 4.0,
+   "fga": 7
+  },
+  "Trendon Watford": {
+   "gp": 5,
+   "tpm": 1,
+   "xtpm": 1.39,
+   "fgm": 10,
+   "xfgm": 10.65,
+   "fga": 18
   },
   "Trevon Brazile": {
-   "gp": 7,
-   "tpm": 6,
-   "xtpm": 6.69,
-   "fgm": 22,
-   "xfgm": 19.74,
-   "fga": 40
+   "gp": 8,
+   "tpm": 7,
+   "xtpm": 7.39,
+   "fgm": 23,
+   "xfgm": 20.83,
+   "fga": 43
   },
   "Trey Lyles": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 10,
-   "xtpm": 9.5,
-   "fgm": 19,
-   "xfgm": 15.13,
-   "fga": 38
+   "xtpm": 10.89,
+   "fgm": 21,
+   "xfgm": 18.49,
+   "fga": 45
   },
   "Trey Murphy III": {
-   "gp": 7,
-   "tpm": 15,
-   "xtpm": 13.63,
-   "fgm": 35,
-   "xfgm": 35.16,
-   "fga": 77
+   "gp": 8,
+   "tpm": 16,
+   "xtpm": 15.34,
+   "fgm": 38,
+   "xfgm": 38.12,
+   "fga": 84
   },
   "Tristan Enaruna": {
-   "gp": 2,
+   "gp": 3,
    "tpm": 0,
-   "xtpm": 1.77,
+   "xtpm": 1.76,
    "fgm": 3,
-   "xfgm": 5.09,
+   "xfgm": 5.07,
    "fga": 10
   },
   "Tristan da Silva": {
-   "gp": 8,
-   "tpm": 27,
-   "xtpm": 22.51,
-   "fgm": 44,
-   "xfgm": 37.19,
-   "fga": 91
+   "gp": 9,
+   "tpm": 32,
+   "xtpm": 28.09,
+   "fgm": 51,
+   "xfgm": 44.91,
+   "fga": 112
   },
   "Ty Jerome": {
-   "gp": 7,
-   "tpm": 18,
-   "xtpm": 16.77,
-   "fgm": 67,
-   "xfgm": 55.62,
-   "fga": 133
+   "gp": 8,
+   "tpm": 20,
+   "xtpm": 19.17,
+   "fgm": 74,
+   "xfgm": 60.98,
+   "fga": 147
   },
   "Tyler Herro": {
-   "gp": 8,
-   "tpm": 29,
-   "xtpm": 23.81,
-   "fgm": 64,
-   "xfgm": 61.66,
-   "fga": 139
+   "gp": 9,
+   "tpm": 30,
+   "xtpm": 25.5,
+   "fgm": 71,
+   "xfgm": 69.14,
+   "fga": 155
   },
   "Tyler Kolek": {
-   "gp": 6,
+   "gp": 7,
    "tpm": 3,
-   "xtpm": 3.51,
+   "xtpm": 4.2,
    "fgm": 5,
-   "xfgm": 7.25,
-   "fga": 17
+   "xfgm": 7.93,
+   "fga": 19
   },
   "Tyrese Haliburton": {
    "gp": 4,
    "tpm": 10,
-   "xtpm": 9.53,
+   "xtpm": 9.5,
    "fgm": 32,
-   "xfgm": 26.79,
+   "xfgm": 26.73,
    "fga": 62
   },
   "Tyrese Maxey": {
-   "gp": 9,
-   "tpm": 23,
-   "xtpm": 23.11,
-   "fgm": 87,
-   "xfgm": 84.71,
-   "fga": 179
+   "gp": 10,
+   "tpm": 25,
+   "xtpm": 26.19,
+   "fgm": 92,
+   "xfgm": 90.39,
+   "fga": 194
   },
   "Tyrese Proctor": {
-   "gp": 7,
-   "tpm": 9,
-   "xtpm": 5.32,
-   "fgm": 16,
-   "xfgm": 13.19,
-   "fga": 30
+   "gp": 9,
+   "tpm": 11,
+   "xtpm": 7.05,
+   "fgm": 19,
+   "xfgm": 17.31,
+   "fga": 39
   },
   "Tyus Jones": {
-   "gp": 7,
-   "tpm": 2,
-   "xtpm": 2.44,
-   "fgm": 7,
-   "xfgm": 7.25,
-   "fga": 16
+   "gp": 8,
+   "tpm": 3,
+   "xtpm": 3.48,
+   "fgm": 8,
+   "xfgm": 8.68,
+   "fga": 20
   },
   "VJ Edgecombe": {
-   "gp": 8,
-   "tpm": 13,
-   "xtpm": 13.36,
-   "fgm": 40,
-   "xfgm": 43.87,
-   "fga": 90
+   "gp": 9,
+   "tpm": 16,
+   "xtpm": 15.09,
+   "fgm": 48,
+   "xfgm": 49.6,
+   "fga": 103
   },
   "Victor Wembanyama": {
-   "gp": 8,
-   "tpm": 12,
-   "xtpm": 17.44,
-   "fgm": 85,
-   "xfgm": 89.84,
-   "fga": 175
+   "gp": 10,
+   "tpm": 19,
+   "xtpm": 21.58,
+   "fgm": 104,
+   "xfgm": 104.01,
+   "fga": 206
   },
   "Vít Krejčí": {
    "gp": 7,
    "tpm": 3,
-   "xtpm": 5.25,
+   "xtpm": 5.24,
    "fgm": 6,
-   "xfgm": 7.86,
+   "xfgm": 7.84,
    "fga": 20
   },
   "Walker Kessler": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 0,
    "xtpm": 0.0,
-   "fgm": 56,
-   "xfgm": 48.89,
-   "fga": 78
+   "fgm": 63,
+   "xfgm": 55.29,
+   "fga": 88
   },
   "Walter Clayton Jr.": {
-   "gp": 7,
-   "tpm": 10,
-   "xtpm": 6.64,
-   "fgm": 17,
-   "xfgm": 15.09,
-   "fga": 36
+   "gp": 8,
+   "tpm": 11,
+   "xtpm": 8.37,
+   "fgm": 21,
+   "xfgm": 18.56,
+   "fga": 44
   },
   "Wendell Carter Jr.": {
-   "gp": 8,
-   "tpm": 8,
-   "xtpm": 7.07,
-   "fgm": 40,
-   "xfgm": 31.04,
-   "fga": 61
+   "gp": 9,
+   "tpm": 11,
+   "xtpm": 8.09,
+   "fgm": 46,
+   "xfgm": 36.36,
+   "fga": 73
   },
   "Will Richard": {
-   "gp": 9,
+   "gp": 10,
    "tpm": 9,
-   "xtpm": 7.44,
-   "fgm": 18,
-   "xfgm": 18.01,
-   "fga": 39
+   "xtpm": 7.42,
+   "fgm": 19,
+   "xfgm": 18.35,
+   "fga": 40
   },
   "Will Riley": {
-   "gp": 6,
-   "tpm": 0,
-   "xtpm": 1.39,
-   "fgm": 1,
-   "xfgm": 2.46,
-   "fga": 6
+   "gp": 8,
+   "tpm": 1,
+   "xtpm": 2.83,
+   "fgm": 6,
+   "xfgm": 6.98,
+   "fga": 15
   },
   "Yang Hansen": {
-   "gp": 4,
-   "tpm": 4,
-   "xtpm": 2.09,
-   "fgm": 5,
-   "xfgm": 4.29,
-   "fga": 10
+   "gp": 6,
+   "tpm": 5,
+   "xtpm": 3.13,
+   "fgm": 8,
+   "xfgm": 7.52,
+   "fga": 17
   },
   "Yaxel Lendeborg": {
-   "gp": 9,
-   "tpm": 21,
-   "xtpm": 18.58,
-   "fgm": 62,
-   "xfgm": 58.77,
-   "fga": 126
+   "gp": 10,
+   "tpm": 23,
+   "xtpm": 19.93,
+   "fgm": 71,
+   "xfgm": 65.25,
+   "fga": 141
   },
   "Yves Missi": {
    "gp": 2,
    "tpm": 0,
    "xtpm": 0.0,
    "fgm": 8,
-   "xfgm": 5.53,
+   "xfgm": 5.5,
    "fga": 9
   },
   "Zaccharie Risacher": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 8,
-   "xtpm": 10.82,
-   "fgm": 22,
-   "xfgm": 27.71,
-   "fga": 61
+   "xtpm": 11.17,
+   "fgm": 24,
+   "xfgm": 31.08,
+   "fga": 68
   },
   "Zach Collins": {
    "gp": 6,
    "tpm": 0,
    "xtpm": 2.46,
    "fgm": 4,
-   "xfgm": 7.3,
+   "xfgm": 7.27,
    "fga": 15
   },
   "Zach Edey": {
-   "gp": 7,
+   "gp": 8,
    "tpm": 1,
    "xtpm": 0.35,
-   "fgm": 21,
-   "xfgm": 22.21,
-   "fga": 38
+   "fgm": 24,
+   "xfgm": 25.42,
+   "fga": 45
   },
   "Zach LaVine": {
-   "gp": 8,
-   "tpm": 23,
-   "xtpm": 21.37,
-   "fgm": 61,
-   "xfgm": 53.06,
-   "fga": 123
+   "gp": 9,
+   "tpm": 24,
+   "xtpm": 23.41,
+   "fgm": 65,
+   "xfgm": 58.03,
+   "fga": 135
   },
   "Zeke Nnaji": {
    "gp": 2,
@@ -3609,28 +3665,28 @@ const XSTATS_PBP = {
    "fga": 1
   },
   "Ziaire Williams": {
-   "gp": 6,
-   "tpm": 11,
-   "xtpm": 8.73,
-   "fgm": 22,
-   "xfgm": 18.17,
-   "fga": 41
+   "gp": 7,
+   "tpm": 13,
+   "xtpm": 10.15,
+   "fgm": 25,
+   "xfgm": 20.21,
+   "fga": 46
   },
   "Zion Williamson": {
-   "gp": 8,
+   "gp": 9,
    "tpm": 3,
-   "xtpm": 2.44,
-   "fgm": 62,
-   "xfgm": 60.04,
-   "fga": 102
+   "xtpm": 2.43,
+   "fgm": 67,
+   "xfgm": 66.19,
+   "fga": 112
   },
   "Zuby Ejiofor": {
-   "gp": 4,
-   "tpm": 3,
-   "xtpm": 2.11,
-   "fgm": 6,
-   "xfgm": 6.31,
-   "fga": 13
+   "gp": 6,
+   "tpm": 4,
+   "xtpm": 3.15,
+   "fgm": 14,
+   "xfgm": 12.63,
+   "fga": 24
   },
   "Zyon Pullin": {
    "gp": 2,
