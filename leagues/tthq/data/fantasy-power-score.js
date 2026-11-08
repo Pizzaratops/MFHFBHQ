@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-08T13:47:29.500Z",
+  "generatedAt": "2026-11-08T14:01:17.270Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 11 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -159,14 +159,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 377,
-        "reb": 127,
-        "ast": 85.4,
-        "stl": 24.92,
-        "blk": 12.02,
-        "tpm": 47.8,
-        "to": 46.2,
-        "fgPct": 46.1,
+        "pts": 373.3,
+        "reb": 129.9,
+        "ast": 83.4,
+        "stl": 24.34,
+        "blk": 12.83,
+        "tpm": 47.2,
+        "to": 45.1,
+        "fgPct": 46.2,
         "ftPct": 81.1
       },
       "rank": {
@@ -174,7 +174,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 4,
         "ast": 3,
         "stl": 4,
-        "blk": 10,
+        "blk": 9,
         "tpm": 1,
         "fgPct": 10,
         "ftPct": 2,
@@ -333,7 +333,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 10,
         "ast": 10,
         "stl": 6,
-        "blk": 9,
+        "blk": 10,
         "tpm": 12,
         "fgPct": 1,
         "ftPct": 9,
