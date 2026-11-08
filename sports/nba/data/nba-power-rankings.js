@@ -9,7 +9,7 @@
 // ============================================================
 const NBA_POWER_RANKINGS = {
   "season": 2027,
-  "generatedAt": "2026-11-07T23:51:12.013Z",
+  "generatedAt": "2026-11-08T14:59:08.259Z",
   "weeks": [
     {
       "matchupPeriodId": 1,
@@ -3306,8 +3306,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 1,
           "winPct": 0.667,
           "off": 113.9,
-          "def": 107.5,
-          "net": 6.3,
+          "def": 107.3,
+          "net": 6.6,
           "rank": {
             "league": 10,
             "conference": 4,
@@ -3485,9 +3485,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 3,
           "losses": 0,
           "winPct": 1,
-          "off": 120.8,
+          "off": 120.5,
           "def": 106.5,
-          "net": 14.3,
+          "net": 14,
           "rank": {
             "league": 2,
             "conference": 1,
@@ -3853,8 +3853,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.5,
           "off": 113.9,
-          "def": 107.5,
-          "net": 6.3,
+          "def": 107.3,
+          "net": 6.6,
           "rank": {
             "league": 13,
             "conference": 7,
@@ -4032,9 +4032,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 0,
           "winPct": 1,
-          "off": 120.8,
+          "off": 120.5,
           "def": 106.5,
-          "net": 14.3,
+          "net": 14,
           "rank": {
             "league": 2,
             "conference": 1,
@@ -4400,14 +4400,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 3,
           "winPct": 0.4,
           "off": 112.7,
-          "def": 110,
-          "net": 2.8,
+          "def": 109.8,
+          "net": 3,
           "rank": {
             "league": 15,
             "conference": 7,
             "division": 2,
             "off": 8,
-            "def": 17
+            "def": 16
           }
         },
         {
@@ -4579,9 +4579,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 0,
           "winPct": 1,
-          "off": 122.7,
+          "off": 122.4,
           "def": 104.8,
-          "net": 17.8,
+          "net": 17.6,
           "rank": {
             "league": 1,
             "conference": 1,
@@ -4641,7 +4641,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 5,
             "division": 1,
             "off": 3,
-            "def": 16
+            "def": 17
           }
         },
         {
@@ -4947,14 +4947,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 3,
           "winPct": 0.4,
           "off": 113.1,
-          "def": 110.2,
-          "net": 2.9,
+          "def": 110,
+          "net": 3.1,
           "rank": {
             "league": 16,
             "conference": 7,
             "division": 2,
             "off": 7,
-            "def": 16
+            "def": 15
           }
         },
         {
@@ -5080,7 +5080,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 9,
             "division": 4,
             "off": 16,
-            "def": 15
+            "def": 16
           }
         },
         {
@@ -5126,9 +5126,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 5,
           "losses": 0,
           "winPct": 1,
-          "off": 122.7,
+          "off": 122.4,
           "def": 104.8,
-          "net": 17.8,
+          "net": 17.6,
           "rank": {
             "league": 1,
             "conference": 1,
@@ -5494,8 +5494,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 3,
           "winPct": 0.5,
           "off": 113.1,
-          "def": 110.2,
-          "net": 2.9,
+          "def": 110,
+          "net": 3.1,
           "rank": {
             "league": 14,
             "conference": 6,
@@ -5673,9 +5673,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 5,
           "losses": 0,
           "winPct": 1,
-          "off": 120.2,
+          "off": 120,
           "def": 107,
-          "net": 13.2,
+          "net": 13,
           "rank": {
             "league": 1,
             "conference": 1,
@@ -6041,14 +6041,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.429,
           "off": 110.3,
-          "def": 111,
-          "net": -0.7,
+          "def": 110.8,
+          "net": -0.6,
           "rank": {
             "league": 17,
             "conference": 7,
             "division": 2,
             "off": 17,
-            "def": 18
+            "def": 17
           }
         },
         {
@@ -6220,9 +6220,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 5,
           "losses": 1,
           "winPct": 0.833,
-          "off": 120.6,
+          "off": 120.4,
           "def": 106.6,
-          "net": 14,
+          "net": 13.8,
           "rank": {
             "league": 4,
             "conference": 2,
@@ -6282,7 +6282,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 6,
             "division": 1,
             "off": 2,
-            "def": 17
+            "def": 18
           }
         },
         {
@@ -6588,8 +6588,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.429,
           "off": 110.3,
-          "def": 111,
-          "net": -0.7,
+          "def": 110.8,
+          "net": -0.6,
           "rank": {
             "league": 17,
             "conference": 7,
@@ -6767,9 +6767,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 6,
           "losses": 1,
           "winPct": 0.857,
-          "off": 120.6,
+          "off": 120.4,
           "def": 106.6,
-          "net": 14,
+          "net": 13.8,
           "rank": {
             "league": 2,
             "conference": 2,
@@ -7135,8 +7135,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.429,
           "off": 109.3,
-          "def": 109.7,
-          "net": -0.5,
+          "def": 109.6,
+          "net": -0.3,
           "rank": {
             "league": 17,
             "conference": 7,
@@ -7314,9 +7314,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 6,
           "losses": 1,
           "winPct": 0.857,
-          "off": 120.8,
+          "off": 120.7,
           "def": 105.7,
-          "net": 15.1,
+          "net": 15,
           "rank": {
             "league": 2,
             "conference": 2,
@@ -7682,8 +7682,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.5,
           "off": 109.3,
-          "def": 109.7,
-          "net": -0.5,
+          "def": 109.6,
+          "net": -0.3,
           "rank": {
             "league": 16,
             "conference": 7,
@@ -7861,9 +7861,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 7,
           "losses": 1,
           "winPct": 0.875,
-          "off": 120.8,
+          "off": 120.7,
           "def": 105.7,
-          "net": 15.1,
+          "net": 15,
           "rank": {
             "league": 1,
             "conference": 1,
@@ -8229,8 +8229,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.5,
           "off": 110,
-          "def": 109.2,
-          "net": 0.8,
+          "def": 109.1,
+          "net": 1,
           "rank": {
             "league": 16,
             "conference": 7,
@@ -8307,7 +8307,7 @@ const NBA_POWER_RANKINGS = {
             "league": 26,
             "conference": 14,
             "division": 4,
-            "off": 28,
+            "off": 29,
             "def": 29
           }
         },
@@ -8408,9 +8408,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 7,
           "losses": 1,
           "winPct": 0.875,
-          "off": 119.4,
+          "off": 119.2,
           "def": 107.3,
-          "net": 12.1,
+          "net": 12,
           "rank": {
             "league": 1,
             "conference": 1,
@@ -8470,7 +8470,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 4,
             "division": 1,
             "off": 1,
-            "def": 15
+            "def": 14
           }
         },
         {
@@ -8553,14 +8553,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.429,
           "off": 112.1,
-          "def": 110.3,
-          "net": 1.8,
+          "def": 110.4,
+          "net": 1.7,
           "rank": {
             "league": 18,
             "conference": 11,
             "division": 5,
             "off": 13,
-            "def": 14
+            "def": 15
           }
         },
         {
@@ -8732,14 +8732,14 @@ const NBA_POWER_RANKINGS = {
           "wins": 1,
           "losses": 6,
           "winPct": 0.143,
-          "off": 103.5,
+          "off": 103.7,
           "def": 113.3,
-          "net": -9.8,
+          "net": -9.7,
           "rank": {
             "league": 30,
             "conference": 15,
             "division": 5,
-            "off": 29,
+            "off": 28,
             "def": 22
           }
         },
@@ -8776,8 +8776,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.556,
           "off": 110,
-          "def": 109.2,
-          "net": 0.8,
+          "def": 109.1,
+          "net": 1,
           "rank": {
             "league": 13,
             "conference": 4,
@@ -8854,7 +8854,7 @@ const NBA_POWER_RANKINGS = {
             "league": 26,
             "conference": 14,
             "division": 4,
-            "off": 28,
+            "off": 29,
             "def": 30
           }
         },
@@ -8955,9 +8955,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 7,
           "losses": 2,
           "winPct": 0.778,
-          "off": 119.4,
+          "off": 119.2,
           "def": 107.3,
-          "net": 12.1,
+          "net": 12,
           "rank": {
             "league": 3,
             "conference": 2,
@@ -9017,7 +9017,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 3,
             "division": 1,
             "off": 1,
-            "def": 15
+            "def": 14
           }
         },
         {
@@ -9100,14 +9100,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.5,
           "off": 112.1,
-          "def": 110.3,
-          "net": 1.8,
+          "def": 110.4,
+          "net": 1.7,
           "rank": {
             "league": 16,
             "conference": 11,
             "division": 5,
             "off": 13,
-            "def": 14
+            "def": 15
           }
         },
         {
@@ -9279,14 +9279,14 @@ const NBA_POWER_RANKINGS = {
           "wins": 1,
           "losses": 7,
           "winPct": 0.125,
-          "off": 103.5,
+          "off": 103.7,
           "def": 113.3,
-          "net": -9.8,
+          "net": -9.7,
           "rank": {
             "league": 30,
             "conference": 15,
             "division": 5,
-            "off": 29,
+            "off": 28,
             "def": 22
           }
         },
@@ -9323,14 +9323,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.556,
           "off": 111.9,
-          "def": 111,
-          "net": 0.8,
+          "def": 110.9,
+          "net": 0.9,
           "rank": {
             "league": 13,
             "conference": 4,
             "division": 1,
             "off": 14,
-            "def": 19
+            "def": 17
           }
         },
         {
@@ -9492,7 +9492,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 7,
             "division": 2,
             "off": 4,
-            "def": 17
+            "def": 18
           }
         },
         {
@@ -9502,9 +9502,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 7,
           "losses": 2,
           "winPct": 0.778,
-          "off": 119.4,
+          "off": 119.2,
           "def": 107.3,
-          "net": 12.1,
+          "net": 12,
           "rank": {
             "league": 3,
             "conference": 2,
@@ -9647,14 +9647,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 4,
           "winPct": 0.5,
           "off": 112,
-          "def": 111,
-          "net": 1,
+          "def": 111.1,
+          "net": 0.9,
           "rank": {
             "league": 16,
             "conference": 11,
             "division": 5,
             "off": 13,
-            "def": 18
+            "def": 19
           }
         },
         {
@@ -9826,9 +9826,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 1,
           "losses": 7,
           "winPct": 0.125,
-          "off": 103,
+          "off": 103.1,
           "def": 113.1,
-          "net": -10.1,
+          "net": -10,
           "rank": {
             "league": 30,
             "conference": 15,
@@ -9852,6 +9852,553 @@ const NBA_POWER_RANKINGS = {
             "conference": 8,
             "division": 2,
             "off": 16,
+            "def": 13
+          }
+        }
+      ]
+    },
+    {
+      "matchupPeriodId": 19,
+      "label": "Woche 19",
+      "throughDate": "2026-11-07",
+      "teams": [
+        {
+          "abbr": "ATL",
+          "conference": "East",
+          "division": "Southeast",
+          "wins": 6,
+          "losses": 4,
+          "winPct": 0.6,
+          "off": 111.7,
+          "def": 111,
+          "net": 0.7,
+          "rank": {
+            "league": 13,
+            "conference": 4,
+            "division": 1,
+            "off": 14,
+            "def": 17
+          }
+        },
+        {
+          "abbr": "BOS",
+          "conference": "East",
+          "division": "Atlantic",
+          "wins": 7,
+          "losses": 2,
+          "winPct": 0.778,
+          "off": 114.7,
+          "def": 106,
+          "net": 8.7,
+          "rank": {
+            "league": 3,
+            "conference": 2,
+            "division": 2,
+            "off": 8,
+            "def": 5
+          }
+        },
+        {
+          "abbr": "BKN",
+          "conference": "East",
+          "division": "Atlantic",
+          "wins": 2,
+          "losses": 6,
+          "winPct": 0.25,
+          "off": 105.8,
+          "def": 110.6,
+          "net": -4.8,
+          "rank": {
+            "league": 24,
+            "conference": 12,
+            "division": 5,
+            "off": 25,
+            "def": 15
+          }
+        },
+        {
+          "abbr": "CHA",
+          "conference": "East",
+          "division": "Southeast",
+          "wins": 3,
+          "losses": 7,
+          "winPct": 0.3,
+          "off": 98.1,
+          "def": 113.5,
+          "net": -15.4,
+          "rank": {
+            "league": 21,
+            "conference": 10,
+            "division": 4,
+            "off": 30,
+            "def": 24
+          }
+        },
+        {
+          "abbr": "CHI",
+          "conference": "East",
+          "division": "Central",
+          "wins": 1,
+          "losses": 7,
+          "winPct": 0.125,
+          "off": 103.6,
+          "def": 120.5,
+          "net": -16.9,
+          "rank": {
+            "league": 26,
+            "conference": 14,
+            "division": 4,
+            "off": 28,
+            "def": 30
+          }
+        },
+        {
+          "abbr": "CLE",
+          "conference": "East",
+          "division": "Central",
+          "wins": 5,
+          "losses": 4,
+          "winPct": 0.556,
+          "off": 113.6,
+          "def": 110,
+          "net": 3.6,
+          "rank": {
+            "league": 14,
+            "conference": 5,
+            "division": 2,
+            "off": 9,
+            "def": 12
+          }
+        },
+        {
+          "abbr": "DAL",
+          "conference": "West",
+          "division": "Southwest",
+          "wins": 5,
+          "losses": 4,
+          "winPct": 0.556,
+          "off": 111.1,
+          "def": 109.3,
+          "net": 1.8,
+          "rank": {
+            "league": 15,
+            "conference": 10,
+            "division": 4,
+            "off": 17,
+            "def": 10
+          }
+        },
+        {
+          "abbr": "DEN",
+          "conference": "West",
+          "division": "Northwest",
+          "wins": 5,
+          "losses": 3,
+          "winPct": 0.625,
+          "off": 116.2,
+          "def": 112.1,
+          "net": 4,
+          "rank": {
+            "league": 12,
+            "conference": 9,
+            "division": 4,
+            "off": 4,
+            "def": 21
+          }
+        },
+        {
+          "abbr": "DET",
+          "conference": "East",
+          "division": "Central",
+          "wins": 6,
+          "losses": 2,
+          "winPct": 0.75,
+          "off": 111.6,
+          "def": 101.2,
+          "net": 10.5,
+          "rank": {
+            "league": 7,
+            "conference": 3,
+            "division": 1,
+            "off": 15,
+            "def": 1
+          }
+        },
+        {
+          "abbr": "GSW",
+          "conference": "West",
+          "division": "Pacific",
+          "wins": 6,
+          "losses": 3,
+          "winPct": 0.667,
+          "off": 116.9,
+          "def": 110.4,
+          "net": 6.4,
+          "rank": {
+            "league": 10,
+            "conference": 7,
+            "division": 2,
+            "off": 3,
+            "def": 14
+          }
+        },
+        {
+          "abbr": "HOU",
+          "conference": "West",
+          "division": "Southwest",
+          "wins": 7,
+          "losses": 2,
+          "winPct": 0.778,
+          "off": 117,
+          "def": 107.2,
+          "net": 9.8,
+          "rank": {
+            "league": 4,
+            "conference": 2,
+            "division": 1,
+            "off": 2,
+            "def": 8
+          }
+        },
+        {
+          "abbr": "IND",
+          "conference": "East",
+          "division": "Central",
+          "wins": 3,
+          "losses": 7,
+          "winPct": 0.3,
+          "off": 108.2,
+          "def": 111.7,
+          "net": -3.5,
+          "rank": {
+            "league": 22,
+            "conference": 11,
+            "division": 3,
+            "off": 20,
+            "def": 20
+          }
+        },
+        {
+          "abbr": "LAC",
+          "conference": "West",
+          "division": "Pacific",
+          "wins": 1,
+          "losses": 7,
+          "winPct": 0.125,
+          "off": 105.1,
+          "def": 113.5,
+          "net": -8.4,
+          "rank": {
+            "league": 27,
+            "conference": 13,
+            "division": 4,
+            "off": 27,
+            "def": 23
+          }
+        },
+        {
+          "abbr": "LAL",
+          "conference": "West",
+          "division": "Pacific",
+          "wins": 8,
+          "losses": 2,
+          "winPct": 0.8,
+          "off": 120.4,
+          "def": 110.8,
+          "net": 9.5,
+          "rank": {
+            "league": 1,
+            "conference": 1,
+            "division": 1,
+            "off": 1,
+            "def": 16
+          }
+        },
+        {
+          "abbr": "MEM",
+          "conference": "West",
+          "division": "Southwest",
+          "wins": 6,
+          "losses": 3,
+          "winPct": 0.667,
+          "off": 113.4,
+          "def": 108.3,
+          "net": 5.1,
+          "rank": {
+            "league": 11,
+            "conference": 8,
+            "division": 3,
+            "off": 10,
+            "def": 9
+          }
+        },
+        {
+          "abbr": "MIA",
+          "conference": "East",
+          "division": "Southeast",
+          "wins": 3,
+          "losses": 6,
+          "winPct": 0.333,
+          "off": 109.2,
+          "def": 116.2,
+          "net": -7,
+          "rank": {
+            "league": 20,
+            "conference": 9,
+            "division": 3,
+            "off": 19,
+            "def": 26
+          }
+        },
+        {
+          "abbr": "MIL",
+          "conference": "East",
+          "division": "Central",
+          "wins": 1,
+          "losses": 8,
+          "winPct": 0.111,
+          "off": 106.4,
+          "def": 117.2,
+          "net": -10.8,
+          "rank": {
+            "league": 28,
+            "conference": 15,
+            "division": 5,
+            "off": 23,
+            "def": 28
+          }
+        },
+        {
+          "abbr": "MIN",
+          "conference": "West",
+          "division": "Northwest",
+          "wins": 7,
+          "losses": 3,
+          "winPct": 0.7,
+          "off": 114.9,
+          "def": 104.6,
+          "net": 10.3,
+          "rank": {
+            "league": 9,
+            "conference": 6,
+            "division": 3,
+            "off": 6,
+            "def": 3
+          }
+        },
+        {
+          "abbr": "NOP",
+          "conference": "West",
+          "division": "Southwest",
+          "wins": 4,
+          "losses": 5,
+          "winPct": 0.444,
+          "off": 112,
+          "def": 111.1,
+          "net": 0.9,
+          "rank": {
+            "league": 18,
+            "conference": 11,
+            "division": 5,
+            "off": 13,
+            "def": 18
+          }
+        },
+        {
+          "abbr": "NYK",
+          "conference": "East",
+          "division": "Atlantic",
+          "wins": 4,
+          "losses": 4,
+          "winPct": 0.5,
+          "off": 111.2,
+          "def": 106.4,
+          "net": 4.8,
+          "rank": {
+            "league": 17,
+            "conference": 7,
+            "division": 4,
+            "off": 16,
+            "def": 7
+          }
+        },
+        {
+          "abbr": "OKC",
+          "conference": "West",
+          "division": "Northwest",
+          "wins": 7,
+          "losses": 2,
+          "winPct": 0.778,
+          "off": 110.9,
+          "def": 103.3,
+          "net": 7.7,
+          "rank": {
+            "league": 5,
+            "conference": 3,
+            "division": 1,
+            "off": 18,
+            "def": 2
+          }
+        },
+        {
+          "abbr": "ORL",
+          "conference": "East",
+          "division": "Southeast",
+          "wins": 2,
+          "losses": 6,
+          "winPct": 0.25,
+          "off": 105.7,
+          "def": 114.5,
+          "net": -8.8,
+          "rank": {
+            "league": 25,
+            "conference": 13,
+            "division": 5,
+            "off": 26,
+            "def": 25
+          }
+        },
+        {
+          "abbr": "PHI",
+          "conference": "East",
+          "division": "Atlantic",
+          "wins": 8,
+          "losses": 2,
+          "winPct": 0.8,
+          "off": 106.7,
+          "def": 104.8,
+          "net": 2,
+          "rank": {
+            "league": 2,
+            "conference": 1,
+            "division": 1,
+            "off": 22,
+            "def": 4
+          }
+        },
+        {
+          "abbr": "PHO",
+          "conference": "West",
+          "division": "Pacific",
+          "wins": 2,
+          "losses": 5,
+          "winPct": 0.286,
+          "off": 112.2,
+          "def": 116.3,
+          "net": -4,
+          "rank": {
+            "league": 23,
+            "conference": 12,
+            "division": 3,
+            "off": 12,
+            "def": 27
+          }
+        },
+        {
+          "abbr": "POR",
+          "conference": "West",
+          "division": "Northwest",
+          "wins": 6,
+          "losses": 2,
+          "winPct": 0.75,
+          "off": 115.7,
+          "def": 111.6,
+          "net": 4.1,
+          "rank": {
+            "league": 8,
+            "conference": 5,
+            "division": 2,
+            "off": 5,
+            "def": 19
+          }
+        },
+        {
+          "abbr": "SAC",
+          "conference": "West",
+          "division": "Pacific",
+          "wins": 1,
+          "losses": 8,
+          "winPct": 0.111,
+          "off": 106.2,
+          "def": 120.3,
+          "net": -14.1,
+          "rank": {
+            "league": 29,
+            "conference": 14,
+            "division": 5,
+            "off": 24,
+            "def": 29
+          }
+        },
+        {
+          "abbr": "SAS",
+          "conference": "West",
+          "division": "Southwest",
+          "wins": 7,
+          "losses": 2,
+          "winPct": 0.778,
+          "off": 114.7,
+          "def": 106.1,
+          "net": 8.6,
+          "rank": {
+            "league": 6,
+            "conference": 4,
+            "division": 2,
+            "off": 7,
+            "def": 6
+          }
+        },
+        {
+          "abbr": "TOR",
+          "conference": "East",
+          "division": "Atlantic",
+          "wins": 5,
+          "losses": 4,
+          "winPct": 0.556,
+          "off": 112.9,
+          "def": 109.4,
+          "net": 3.5,
+          "rank": {
+            "league": 16,
+            "conference": 6,
+            "division": 3,
+            "off": 11,
+            "def": 11
+          }
+        },
+        {
+          "abbr": "UTA",
+          "conference": "West",
+          "division": "Northwest",
+          "wins": 1,
+          "losses": 8,
+          "winPct": 0.111,
+          "off": 103.1,
+          "def": 113.1,
+          "net": -10,
+          "rank": {
+            "league": 30,
+            "conference": 15,
+            "division": 5,
+            "off": 29,
+            "def": 22
+          }
+        },
+        {
+          "abbr": "WAS",
+          "conference": "East",
+          "division": "Southeast",
+          "wins": 4,
+          "losses": 5,
+          "winPct": 0.444,
+          "off": 107.8,
+          "def": 110.3,
+          "net": -2.4,
+          "rank": {
+            "league": 19,
+            "conference": 8,
+            "division": 2,
+            "off": 21,
             "def": 13
           }
         }
