@@ -81,7 +81,7 @@
   const NAME_FIX = { 'gregory jackson': 'gg jackson', 'elijah harkless': 'ej harkless', 'nahshon hyland': 'bones hyland', 'maleek thomas': 'meleek thomas' };
   // Verletzungs-Seed (Stand 18.10.2026): [Verfügbarkeit im Trade-Lock bis 15.11., Label]
   const STATUS = {
-    'moses moody': [0, 'Out'], 'jimmy butler': [0, 'Out'], 'kristaps porzingis': [0, 'Out'], 'shaedon sharpe': [0, 'Out'],
+    'moses moody': [0, 'Out'], 'jimmy butler': [0, 'Out'], 'kristaps porzingis': [0, 'Karriereende'], 'shaedon sharpe': [0, 'Out'],
     'mark williams': [0, 'Out'], 'max strus': [0, 'Out'], 'bradley beal': [0, 'Out'], 'brandon ingram': [0, 'Out'],
     'donte divincenzo': [0, 'Out'], 'santi aldama': [0, 'Out'], 'dereck lively': [0, 'Out'], 'johnny furphy': [0, 'Out'],
     'julian strawther': [0, 'Out'], 'noah penda': [0, 'Out'], 'jordan miller': [0, 'Out'], 'mouhamed gueye': [0, 'Out'],
