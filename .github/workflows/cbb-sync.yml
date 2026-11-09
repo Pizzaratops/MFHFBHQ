@@ -130,6 +130,11 @@ jobs:
         continue-on-error: true
         run: node leagues/cbb/scripts/build-best-available-board.js
 
+      - name: Wochen-Kategorien (Fantrax-Aufstellung × College-Box-Scores)
+        id: weekstats
+        continue-on-error: true
+        run: node scripts/fantrax-week-stats.js --league=cbb
+
       - name: Commit & Push falls geändert
         run: |
           git config user.name "mfhfb-hq-bot"
@@ -151,7 +156,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure' || steps.model.outcome == 'failure'
+        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure' || steps.model.outcome == 'failure' || steps.weekstats.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
           exit 1

@@ -72,7 +72,7 @@
     const myGames = me && cur ? mList.filter(m => m.includes(me.id)) : [];
     return `
       <div class="page-head">
-        <h1 class="page-title display">${e(league.emoji)} ${e(league.name)}</h1>
+        <h1 class="page-title display">🧱 Team-Übersicht</h1>
         <div class="page-sub">Fantrax · Dynasty · 9-Cat H2H · ${teams.length} Teams · je Woche zwei Matchups${set.maxTotalPlayers ? ` · Kader ${set.maxTotalPlayers} (${set.maxTotalActivePlayers} aktiv)` : ''}${sync.at ? ` · Fantrax-Stand ${new Date(sync.at).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}` : ''}</div>
       </div>
       ${start && MFHFB.ui.countdowns ? MFHFB.ui.countdowns([{ label: '🏀 Saisonstart (Woche 1)', at: start }]) : ''}
@@ -165,7 +165,9 @@
   }
 
   const D = ['teams', '?rosters-live'];
-  MFHFB.pages.register({ id: 'home', section: 'home', label: 'Übersicht', icon: '🏠', applies: A, data: D.concat(['?fantasy-schedule', '?team-strength']), render: home, mount: root => MFHFB.ui.mountCountdowns && MFHFB.ui.mountCountdowns(root) });
+  // Übersicht (Matchups, Royal Rumble, Rankings, All-Play) kommt seit 09.11.2026 aus tools/nba-quick.js;
+  // die Team-Kacheln mit Kader-Stand und Stärke stehen jetzt hier:
+  MFHFB.pages.register({ id: 'clubs', section: 'teams', label: 'Team-Übersicht', icon: '🧱', applies: A, data: D.concat(['?fantasy-schedule', '?team-strength']), render: home, mount: root => MFHFB.ui.mountCountdowns && MFHFB.ui.mountCountdowns(root) });
   MFHFB.pages.register({ id: 'teams', section: 'teams', label: 'Teams & Kader', icon: '🧍', applies: A, data: D.concat(['?best-available-board', '?live-bids']), title: ({ data, params }) => ((data.TEAMS || []).find(t => t.id === Number(params[0])) || {}).name || 'Teams & Kader', render: teamPage });
   MFHFB.pages.register({ id: 'standings', section: 'standings', label: 'Tabelle', icon: '🏆', applies: A, data: D.concat(['?fantasy-schedule']), render: standings });
   MFHFB.pages.register({ id: 'cbbschedule', section: 'matchups', label: 'Spielplan', icon: '📅', applies: A, data: D.concat(['fantasy-schedule']), render: schedule });

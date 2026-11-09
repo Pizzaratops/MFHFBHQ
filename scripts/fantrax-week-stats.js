@@ -1,31 +1,39 @@
 #!/usr/bin/env node
 // ============================================================
-//  WOCHEN-KATEGORIEN — FBI World Cup [WEST], Division Seattle (seit 08.11.2026)
+//  WOCHEN-KATEGORIEN für Fantrax-9-Cat-Ligen (World Cup seit 08.11., Dizzle CBB seit 09.11.2026)
 // ============================================================
 //  Fantrax liefert über die öffentliche API keine Kategorie-Werte je Matchup.
 //  Wir rechnen sie selbst nach (wie sports/nba/scripts/sync-week-stats.js für ESPN):
-//   • Aufstellung je Tag: getTeamRosters?period=<Roster-Periode> (Fantrax stellt
-//     täglich auf; Roster-Periode = Spieltag, Startdatum = ET-Datum der Spiele)
-//   • Stats je Spieler und Tag: Hub-Box-Scores
-//     sports/nba/scripts/data/daily-9cat_nba_<YYYY-MM-DD>.games.json
-//   • gezählt werden nur Spieler mit Status ACTIVE an dem Tag
-//   • Matchup-Woche = Fantrax-Scoring-Periode (Montag 19 Uhr ET bis Montag 18:59 ET →
-//     Spiele am Montag zählen schon zur neuen Woche)
+//   • Aufstellung: getTeamRosters?period=<Roster-Periode>. Welche Periode ein Spieltag
+//     hat, steht in getLeagueInfo.rosterPeriods (World Cup: täglich, Dizzle: wöchentlich);
+//     gesucht wird die Periode, die den Spieltag um 23 Uhr ET enthält.
+//   • Stats je Spieler und Tag: Hub-Box-Scores <box>/<prefix><YYYY-MM-DD>.games.json
+//   • gezählt werden nur Spieler mit Status ACTIVE
+//   • Matchup-Woche = Fantrax-Scoring-Periode [start, end) → Spiele am Enddatum
+//     (Montag) zählen schon zur neuen Woche
 //  Abgeschlossene Wochen bleiben aus dem letzten Lauf stehen, die laufende wird neu
 //  gerechnet. Kontrolle: Kategorien-Bilanz aus unseren Wochen vs. Fantrax-Standings.
 //
-//  Ausgabe: leagues/worldcup/data/week-stats.js (WEEK_STATS, Format wie bei TTHQ/Funkytown)
-//  Usage:   node leagues/worldcup/scripts/sync-week-stats.js   (nach sync-fantrax.js)
+//  Ausgabe: leagues/<liga>/data/week-stats.js (WEEK_STATS, Format wie TTHQ/Funkytown)
+//  Usage:   node scripts/fantrax-week-stats.js --league=worldcup|cbb   (nach sync-fantrax.js)
 // ============================================================
 
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..', '..', '..');
-const OUT = path.join(__dirname, '..', 'data', 'week-stats.js');
-const BOX = path.join(ROOT, 'sports', 'nba', 'scripts', 'data');
+const LEAGUES = {
+  worldcup: { id: 'nq58zcxtmutve46g', sport: 'NBA', box: 'sports/nba/scripts/data', prefix: 'daily-9cat_nba_', schedule: 'WC_SCHEDULE', aliases: 'sports/nba/data/aliases.js' },
+  cbb: { id: 'z8gwfku2mpmwh0xe', sport: 'NCAAB', box: 'sports/cbb/scripts/data', prefix: 'daily-9cat_ncaab_', schedule: 'CBB_SCHEDULE', aliases: null },
+};
+const LKEY = (process.argv.find(a => a.startsWith('--league=')) || '--league=worldcup').split('=')[1];
+const CFG = LEAGUES[LKEY];
+if (!CFG) { console.error(`Unbekannte Liga ${LKEY} (${Object.keys(LEAGUES).join(', ')})`); process.exit(1); }
+const ROOT = path.join(__dirname, '..');
+const DATA = `leagues/${LKEY}/data`;
+const OUT = path.join(ROOT, DATA, 'week-stats.js');
+const BOX = path.join(ROOT, CFG.box);
 const BASE = 'https://www.fantrax.com/fxea/general';
-const LEAGUE_ID = 'nq58zcxtmutve46g';
+const LEAGUE_ID = CFG.id;
 const CATS = ['pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'fgp', 'ftp', 'tov'];
 
 const load = (file, name) => {
@@ -39,7 +47,7 @@ async function getJson(url) {
   return res.json();
 }
 const flipName = n => { const s = String(n || ''); const i = s.indexOf(', '); return i > 0 ? `${s.slice(i + 2)} ${s.slice(0, i)}` : s; };
-const FIRST = load('sports/nba/data/aliases.js', 'NAME_FIRST_ALIASES') || {};
+const FIRST = (CFG.aliases && load(CFG.aliases, 'NAME_FIRST_ALIASES')) || {};
 function key(raw) { // = MFHFB.nba.key
   if (!raw) return '';
   let s = String(raw).toLowerCase().trim().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -62,15 +70,18 @@ function compare(a, b) {
 }
 
 async function main() {
-  const TEAMS = load('leagues/worldcup/data/teams-rosters.js', 'TEAMS');
-  const SCH = load('leagues/worldcup/data/fantasy-schedule.js', 'WC_SCHEDULE');
-  const REC = load('leagues/worldcup/data/rosters-live.js', 'TEAM_RECORDS_LIVE');
-  const OLD = load('leagues/worldcup/data/week-stats.js', 'WEEK_STATS');
+  const TEAMS = load(`${DATA}/teams-rosters.js`, 'TEAMS');
+  const SCH = load(`${DATA}/fantasy-schedule.js`, CFG.schedule);
+  const REC = load(`${DATA}/rosters-live.js`, 'TEAM_RECORDS_LIVE');
+  const OLD = load(`${DATA}/week-stats.js`, 'WEEK_STATS');
   if (!TEAMS || !SCH) throw new Error('teams-rosters.js / fantasy-schedule.js fehlen — erst sync-fantrax.js laufen lassen');
   const idByFx = new Map(TEAMS.map(t => [t.fx, t.id]));
 
-  const [info, ids] = await Promise.all([getJson(`${BASE}/getLeagueInfo?leagueId=${LEAGUE_ID}`), getJson(`${BASE}/getPlayerIds?sport=NBA`)]);
-  const rpByDate = new Map((info.rosterPeriods || []).map(p => [String(p.startDate).slice(0, 10), p.number]));
+  const [info, ids] = await Promise.all([getJson(`${BASE}/getLeagueInfo?leagueId=${LEAGUE_ID}`), getJson(`${BASE}/getPlayerIds?sport=${CFG.sport}`)]);
+  // Roster-Periode für einen Spieltag: die Periode, die den Tag um 23 Uhr ET enthält
+  const fxTime = s => Date.parse(String(s).replace(/\.\d+(-\d{2})(\d{2})$/, '$1:$2'));
+  const RP = (info.rosterPeriods || []).map(p => ({ n: p.number, a: fxTime(p.startDate), b: fxTime(p.endDate) }));
+  const rpOf = day => { const t = Date.parse(day + 'T23:00:00-05:00'); const p = RP.find(x => x.a <= t && t <= x.b); return p ? p.n : null; };
   const nameOf = fx => flipName((ids[fx] || {}).name);
   const today = etToday();
 
@@ -84,13 +95,13 @@ async function main() {
 
   const rosterCache = new Map();
   async function rosterOn(day) {
-    const rp = rpByDate.get(day);
+    const rp = rpOf(day);
     if (!rp) return null;
     if (!rosterCache.has(rp)) rosterCache.set(rp, await getJson(`${BASE}/getTeamRosters?leagueId=${LEAGUE_ID}&period=${rp}`));
     return rosterCache.get(rp);
   }
 
-  const periods = {}, matchups = {}, unmatched = new Map();
+  const periods = {}, matchups = {}, unmatched = new Map(), seen = new Set();
   for (const w of weeks) {
     if (w.days[0] > today) break;
     const done = w.days[w.days.length - 1] < today;
@@ -102,7 +113,9 @@ async function main() {
       const f = path.join(BOX, `daily-9cat_nba_${day}.games.json`);
       if (!fs.existsSync(f)) continue;
       const box = new Map(), played = new Set();
-      JSON.parse(fs.readFileSync(f, 'utf8')).games.forEach(g => [g.away, g.home].forEach(side => { if ((side.players || []).length) played.add(canon(side.abbr)); (side.players || []).forEach(p => box.set(key(p.name), p)); }));
+      const dup = new Set();
+      JSON.parse(fs.readFileSync(f, 'utf8')).games.forEach(g => [g.away, g.home].forEach(side => { if ((side.players || []).length) played.add(canon(side.abbr)); (side.players || []).forEach(p => { const k = key(p.name); if (box.has(k)) dup.add(k); box.set(k, p); }); }));
+      dup.forEach(k => box.delete(k)); // gleicher Name zweimal am selben Tag (College) → nicht raten
       if (!box.size) continue;
       const ro = await rosterOn(day);
       if (!ro) continue;
@@ -112,7 +125,8 @@ async function main() {
         (r.rosterItems || []).forEach(it => {
           if (it.status !== 'ACTIVE') return;
           const nm = nameOf(it.id), p = box.get(key(nm));
-          if (!p) { if (nm && played.has(canon((ids[it.id] || {}).team))) unmatched.set(nm, day); return; } // nur melden, wenn sein Team gespielt hat
+          if (!p) { if (nm) unmatched.set(nm, day); return; }
+          seen.add(nm);
           if (!p.min) return; // nicht gespielt (DNP)
           const t = tot[id];
           t.pts += p.pts || 0; t.reb += p.reb || 0; t.ast += p.ast || 0; t.stl += p.stl || 0; t.blk += p.blk || 0;
@@ -143,12 +157,14 @@ async function main() {
   });
   console.log(`  Wochen ${Object.keys(periods).join(',')} (laufend: ${cur}) · Bilanz-Abgleich mit Fantrax: ${same}/${total} exakt`);
   if (diffs.length) console.log('  Abweichungen: ' + diffs.join(' · '));
-  if (unmatched.size) console.log(`  ! Team hat gespielt, Spieler aber nicht im Box Score (DNP oder Name abweichend): ${[...unmatched].slice(0, 15).map(([n, d]) => n + ' ' + d).join(', ')}`);
+  // aktive Spieler, die in den gerechneten Tagen NIE im Box Score auftauchten (verletzt, DNP oder Name abweichend)
+  const never = [...unmatched.keys()].filter(n => !seen.has(n));
+  if (never.length) console.log(`  ! Aktiv, aber nie im Box Score (${never.length}): ${never.slice(0, 25).join(', ')}`);
 
   const out = { season: Number(info.seasonYear) + 1, current: cur, updated: new Date().toISOString(), complete, check: `${same}/${total}`, periods, matchups };
   fs.writeFileSync(OUT, `// ============================================================
-//  WEEK_STATS — Wochen-Kategorien je Team (FBI World Cup, Division Seattle)
-//  AUTO-GENERIERT von leagues/worldcup/scripts/sync-week-stats.js: tägliche
+//  WEEK_STATS — Wochen-Kategorien je Team (${LKEY})
+//  AUTO-GENERIERT von scripts/fantrax-week-stats.js --league=${LKEY}: tägliche
 //  Fantrax-Aufstellung (nur ACTIVE) × Hub-Box-Scores. Kontrolle: check = Teams,
 //  deren nachgerechnete Kategorien-Bilanz exakt Fantrax entspricht.
 //  Shape: { season, current, complete[], periods: { woche: { teamId: Totals } },
@@ -162,5 +178,5 @@ const WEEK_STATS = ${JSON.stringify(out)};
 
 main().catch(err => {
   console.error('Wochen-Stats fehlgeschlagen (alte Daten bleiben):', err.message);
-  console.log(`::warning title=World Cup Wochen-Stats::${err.message}`);
+  console.log(`::warning title=Wochen-Stats ${LKEY}::${err.message}`);
 });

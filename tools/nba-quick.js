@@ -11,6 +11,10 @@
 //  Rechts: 🏅 Beste Spieler – Saison / 7 Tage, alle oder nur freie (Waiver),
 //          bewertet mit dem gewählten Score-Modus (Standard Rose-Metric).
 //
+//          All-Play: jede Woche jedes Team gegen alle anderen (Kategorien-Vergleich),
+//             kumuliert + je Woche — zeigt, wer wirklich stark war, unabhängig vom Spielplan
+//  Gilt für alle 9-Cat-Ligen: ESPN (TTHQ, Funkytown) und Fantrax (World Cup, Dizzle CBB;
+//  WEEK_STATS dort aus scripts/fantrax-week-stats.js, ohne SEASON_MATCHUPS).
 //  Daten: WEEK_STATS (sports/nba/scripts/sync-week-stats.js im Liga-Sync:
 //  gezählte Stats der aktiven Aufstellung je Team und Woche, inkl. FGM/FGA),
 //  SEASON_MATCHUPS (Wochen-Ergebnisse), LIVESCORES_SEASON / _AGGREGATE (Spieler).
@@ -47,6 +51,8 @@
     const weeks = W ? Object.keys(W.periods || {}).map(Number).sort((a, b) => a - b) : [];
     return { data, nba, W, teams, tById, weeks, cur: W ? W.current : null };
   }
+  // Matchup-Planer je Liga (World Cup hat keinen)
+  const plannerId = ctx => (ctx.league.sport === 'cbb' ? 'cbbplaner' : ctx.league.pages && !ctx.league.pages.includes('planner') ? null : 'planner');
   const tName = (M, id, short) => { const t = M.tById.get(Number(id)); return t ? (short && t.abbrev ? t.abbrev : t.name) : 'Team ' + id; };
   const tLink = (ctx, M, id) => { const t = M.tById.get(Number(id)); return t ? `<a class="nba-tlink mp-tc" style="${M.nba.tcStyle(t)}" href="${ctx.href('teams', t.id)}"><span class="nba-tdot"></span>${ctx.ui.esc(t.name)}</a>` : ctx.ui.esc('Team ' + id); };
 
@@ -61,7 +67,8 @@
       const c = a && b ? compare(a, b) : { w: m.hw, l: m.hl, t: m.ht };
       const ta = M.tById.get(m.home), tb = M.tById.get(m.away);
       const lead = c.w > c.l ? 'a' : c.l > c.w ? 'b' : '';
-      return `<a class="qk-m" href="${ctx.href('planner')}">
+      const pl = plannerId(ctx);
+      return `<a class="qk-m"${pl ? ` href="${ctx.href(pl)}"` : ''}>
         <span class="qk-mt${lead === 'a' ? ' lead' : ''}" style="${M.nba.tcStyle(ta)}">${e(tName(M, m.home))}</span>
         <span class="qk-ms"><b>${c.w}-${c.l}${c.t ? '-' + c.t : ''}</b></span>
         <span class="qk-mt r${lead === 'b' ? ' lead' : ''}" style="${M.nba.tcStyle(tb)}">${e(tName(M, m.away))}</span></a>`;
@@ -98,7 +105,7 @@
   // ---------- 📈 Ranking ----------
   function rankingBlock(ctx, M, st) {
     const e = ctx.ui.esc;
-    const tabs = `<div class="seg" role="group">${[['rolling', 'Rolling'], ['totals', 'Totals'], ['avg', 'Ø pro Spiel']].map(([k, l]) => `<button type="button" class="seg-btn${st.rank === k ? ' active' : ''}" data-rank="${k}">${l}</button>`).join('')}</div>`;
+    const tabs = `<div class="seg" role="group">${[['rolling', 'Rolling'], ['allplay', 'All-Play'], ['totals', 'Totals'], ['avg', 'Ø pro Spiel']].map(([k, l]) => `<button type="button" class="seg-btn${st.rank === k ? ' active' : ''}" data-rank="${k}">${l}</button>`).join('')}</div>`;
     if (st.rank === 'rolling') {
       const S = (M.data.SEASON_MATCHUPS || []).find(s => s.current) || null;
       const tot = {};
@@ -108,13 +115,21 @@
         const t = tot[id] = tot[id] || { id, cw: 0, cl: 0, ct: 0, mw: 0, ml: 0, mt: 0, lw: 0, ll: 0, lt: 0 };
         t.cw += x.w; t.cl += x.l; t.ct += x.t; if (x.res === 'W') t.mw++; else if (x.res === 'L') t.ml++; else t.mt++;
       }));
-      const doneWeeks = S ? Object.keys(S.weeks || {}).map(Number) : [];
+      // Fantrax-Ligen ohne SEASON_MATCHUPS: abgeschlossene Wochen aus WEEK_STATS
+      if (!S && M.W) (M.W.complete || []).forEach(w => (M.W.matchups[w] || []).forEach(m => {
+        if (m.playoff) return;
+        [[m.home, m.hw, m.hl, m.winner === 'HOME' ? 'W' : m.winner === 'AWAY' ? 'L' : 'T'], [m.away, m.hl, m.hw, m.winner === 'AWAY' ? 'W' : m.winner === 'HOME' ? 'L' : 'T']].forEach(([id, w, l, res]) => {
+          const t = tot[id] = tot[id] || { id, cw: 0, cl: 0, ct: 0, mw: 0, ml: 0, mt: 0, lw: 0, ll: 0, lt: 0 };
+          t.cw += w; t.cl += l; t.ct += m.ht; if (res === 'W') t.mw++; else if (res === 'L') t.ml++; else t.mt++;
+        });
+      }));
+      const doneWeeks = S ? Object.keys(S.weeks || {}).map(Number) : M.W ? (M.W.complete || []) : [];
       if (M.W && M.cur && !doneWeeks.includes(M.cur)) {
         const per = M.W.periods[M.cur] || {};
         ((M.W.matchups || {})[M.cur] || []).forEach(m => {
           if (!per[m.home] || !per[m.away] || !(per[m.home].gp > 0 || per[m.away].gp > 0)) return; // Woche ohne Spiele zählt (noch) nicht
           const c = compare(withPct(per[m.home]), withPct(per[m.away]));
-          [[m.home, c.w, c.l], [m.away, c.l, c.w]].forEach(([id, w, l]) => { const t = tot[id] = tot[id] || { id, cw: 0, cl: 0, ct: 0, mw: 0, ml: 0, mt: 0, lw: 0, ll: 0, lt: 0 }; t.lw = w; t.ll = l; t.lt = c.t; });
+          [[m.home, c.w, c.l], [m.away, c.l, c.w]].forEach(([id, w, l]) => { const t = tot[id] = tot[id] || { id, cw: 0, cl: 0, ct: 0, mw: 0, ml: 0, mt: 0, lw: 0, ll: 0, lt: 0 }; t.lw += w; t.ll += l; t.lt += c.t; }); // += : Dizzle hat zwei Matchups pro Woche
         });
       }
       const p = (w, l, t) => ((w + l + t) ? (w + t / 2) / (w + l + t) : 0);
@@ -124,6 +139,30 @@
         <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th>Team</th><th class="num" title="Kategorien gesamt inkl. laufender Woche (live)">Kategorien</th><th class="num">Pct</th><th class="num" title="Laufende Woche, live">Diese Woche</th><th class="num" title="Abgeschlossene Matchups">Matchups</th></tr></thead><tbody>
         ${list.map((r, i) => `<tr><td class="num rank">${i + 1}</td><td>${tLink(ctx, M, r.id)}</td><td class="num strong">${r.aw}-${r.al}-${r.at}</td><td class="num">${f3(r.pct)}</td><td class="num muted">${r.lw + r.ll + r.lt ? `${r.lw}-${r.ll}-${r.lt}` : '—'}</td><td class="num">${r.mw}-${r.ml}-${r.mt}</td></tr>`).join('')}
         </tbody></table></div><p class="small muted">Rolling = Kategorie-Bilanz über alle Wochen der Saison, die laufende Woche live eingerechnet.</p></section>`;
+    }
+    if (st.rank === 'allplay') {
+      if (!M.W || !M.weeks.length) return `<section class="qk-sec"><div class="qk-head"><h2>📈 Ranking</h2>${tabs}</div><div class="card qk-empty">Kommt mit dem nächsten Liga-Sync.</div></section>`;
+      const weeks = M.weeks.filter(w => !((M.W.matchups || {})[w] || []).some(m => m.playoff));
+      const rows = {};
+      weeks.forEach(w => {
+        const per = M.W.periods[w] || {};
+        const ids = Object.keys(per).map(Number).filter(id => M.tById.has(id) && per[id].gp > 0);
+        ids.forEach(a => {
+          const r = rows[a] = rows[a] || { id: a, w: 0, l: 0, t: 0, wk: {} };
+          let ww = 0, ll = 0, tt = 0;
+          ids.forEach(b => { if (a === b) return; const c = compare(withPct(per[a]), withPct(per[b])); if (c.w > c.l) ww++; else if (c.w < c.l) ll++; else tt++; });
+          r.w += ww; r.l += ll; r.t += tt; r.wk[w] = { w: ww, l: ll, t: tt, n: ids.length - 1 };
+        });
+      });
+      const list = Object.values(rows).map(r => ({ ...r, pct: (r.w + r.t / 2) / Math.max(1, r.w + r.l + r.t) })).sort((a, b) => b.pct - a.pct || b.w - a.w);
+      const rk = w => { const vals = list.map(r => (r.wk[w] ? r.wk[w].w + r.wk[w].t / 2 : -1)); return v => 1 + vals.filter(x => x > v).length; };
+      const rks = {}; weeks.forEach(w => { rks[w] = rk(w); });
+      return `<section class="qk-sec"><div class="qk-head"><h2>📈 Ranking</h2>${tabs}</div>
+        <div class="table-wrap"><table class="table compact qk-ap"><thead><tr><th class="num">#</th><th>Team</th><th class="num" title="Matchups gegen alle anderen Teams, alle Wochen (Kategorien-Vergleich)">All-Play</th><th class="num">Pct</th>
+          ${weeks.map(w => `<th class="num" title="Woche ${w}: Siege gegen alle anderen Teams${w === M.cur && !(M.W.complete || []).includes(w) ? ' (läuft)' : ''}">W${w}${w === M.cur && !(M.W.complete || []).includes(w) ? '*' : ''}</th>`).join('')}</tr></thead><tbody>
+        ${list.map((r, i) => `<tr><td class="num rank">${i + 1}</td><td>${tLink(ctx, M, r.id)}</td><td class="num strong">${r.w}-${r.l}${r.t ? '-' + r.t : ''}</td><td class="num">${f3(r.pct)}</td>
+          ${weeks.map(w => { const x = r.wk[w]; if (!x) return '<td class="num muted">—</td>'; const p = rks[w](x.w + x.t / 2), hue = Math.round(140 - (p - 1) * 140 / Math.max(1, list.length - 1)); return `<td class="num" style="background:hsl(${hue} 60% 45% / .16)" title="Platz ${p} der Woche">${x.w}-${x.l}${x.t ? '-' + x.t : ''}</td>`; }).join('')}</tr>`).join('')}
+        </tbody></table></div><p class="small muted">All-Play = jede Woche jedes Team gegen alle anderen (gewonnene/verlorene Matchups nach Kategorien). Unabhängig vom Spielplan — zeigt, wer wirklich stark war. Farbe = Platz in der Woche, * = laufende Woche.</p></section>`;
     }
     // Totals / Ø pro Spiel
     if (!M.W) return `<section class="qk-sec"><div class="qk-head"><h2>📈 Ranking</h2>${tabs}</div><div class="card qk-empty">Kommt mit dem nächsten Liga-Sync.</div></section>`;
@@ -144,7 +183,8 @@
   // ---------- 🏅 Beste Spieler ----------
   function bestBlock(ctx, M, st) {
     const e = ctx.ui.esc, nba = M.nba, data = M.data;
-    const src = st.best === 'week' ? ((data.LIVESCORES_AGGREGATE || {}).week || {}).nba : ((data.LIVESCORES_SEASON || {}).season || {}).nba;
+    const lg = ctx.league.sport === 'cbb' ? 'ncaab' : 'nba';
+    const src = st.best === 'week' ? ((data.LIVESCORES_AGGREGATE || {}).week || {})[lg] : ((data.LIVESCORES_SEASON || {}).season || {})[lg];
     const dates = src ? Object.keys(src).sort() : [];
     const entry = dates.length ? src[dates[dates.length - 1]] : null;
     const owner = nba.ownerIndex(data);
@@ -171,7 +211,7 @@
         <div class="page-sub">${e(league.platform)} · ${e(league.format)} · 9-Cat H2H · ${M.teams.length} Teams${M.cur ? ` · Woche ${M.cur}` : ''}${M.W && M.W.updated ? ` · Stand ${new Date(M.W.updated).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}` : ''}</div></div>
       ${countdowns.length && MFHFB.ui.countdowns ? MFHFB.ui.countdowns(countdowns) : ''}
       <div class="qk-grid"><div class="qk-main">
-        <section class="qk-sec"><div class="qk-head"><h2>⚔️ Woche ${M.cur || ''} – Matchups</h2><a class="small" href="${ctx.href('planner')}">Matchup-Planer →</a></div>${matchupsBlock(ctx, M)}</section>
+        <section class="qk-sec"><div class="qk-head"><h2>⚔️ Woche ${M.cur || ''} – Matchups</h2>${plannerId(ctx) ? `<a class="small" href="${ctx.href(plannerId(ctx))}">Matchup-Planer →</a>` : ''}</div>${matchupsBlock(ctx, M)}</section>
         ${rumbleBlock(ctx, M, st)}
         ${rankingBlock(ctx, M, st)}
       </div>${bestBlock(ctx, M, st)}</div>`;
@@ -190,7 +230,7 @@
   }
 
   MFHFB.pages.register({
-    id: 'home', section: 'home', label: 'Übersicht', icon: '🏠', applies: { sport: ['nba'], scoring: ['categories'] },
+    id: 'home', section: 'home', label: 'Übersicht', icon: '🏠', applies: { sport: ['nba', 'cbb'], scoring: ['categories'] },
     data: ['teams', '?rosters-live', '?week-stats', '?season-matchups', '?sport:aliases', '?sport:livescores-season', '?sport:livescores-aggregate'],
     render, mount,
   });
