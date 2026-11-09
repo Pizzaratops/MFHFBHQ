@@ -4082,9 +4082,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909946",
-      line: "Los Angeles Lakers @ Detroit Pistons (2:25 - 2nd)",
+      line: "Los Angeles Lakers @ Detroit Pistons (9:14 - 4th)",
       completed: false,
-      statusText: "2:25 - 2nd",
+      statusText: "9:14 - 4th",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -4100,9 +4100,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909947",
-      line: "Utah Jazz @ Minnesota Timberwolves (11/8 - 7:00 PM EST)",
+      line: "Utah Jazz @ Minnesota Timberwolves (2:54 - 2nd)",
       completed: false,
-      statusText: "11/8 - 7:00 PM EST",
+      statusText: "2:54 - 2nd",
       away: {
         abbr: "UTAH", name: "Utah Jazz", score: null,
         players: [
@@ -4118,9 +4118,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909948",
-      line: "Brooklyn Nets @ Dallas Mavericks (11/8 - 7:30 PM EST)",
+      line: "Brooklyn Nets @ Dallas Mavericks (3:32 - 1st)",
       completed: false,
-      statusText: "11/8 - 7:30 PM EST",
+      statusText: "3:32 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
