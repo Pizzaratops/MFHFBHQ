@@ -20,7 +20,7 @@
 
 const NFL_PROFILE_COMP = {
   "meta": {
-    "builtAt": "2026-11-08T15:54:50.587Z",
+    "builtAt": "2026-11-09T18:05:13.116Z",
     "matchFeatures": {
       "QB": [
         "avgPpaPass",
@@ -282504,25 +282504,25 @@ const NFL_PROFILE_COMP = {
     "QB": {
       "poolSize": 132,
       "matched": 132,
-      "unmatched": 432,
+      "unmatched": 431,
       "targetsWithComps": 262
     },
     "RB": {
       "poolSize": 217,
       "matched": 217,
-      "unmatched": 1047,
+      "unmatched": 1044,
       "targetsWithComps": 665
     },
     "WR": {
       "poolSize": 362,
       "matched": 362,
-      "unmatched": 1137,
+      "unmatched": 1135,
       "targetsWithComps": 1058
     },
     "TE": {
       "poolSize": 158,
       "matched": 158,
-      "unmatched": 575,
+      "unmatched": 574,
       "targetsWithComps": 330
     }
   },
