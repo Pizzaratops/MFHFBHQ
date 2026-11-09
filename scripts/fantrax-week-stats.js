@@ -107,7 +107,10 @@ async function main() {
     const done = w.days[w.days.length - 1] < today;
     // nur Wochen mit echten Spielen aus dem letzten Lauf übernehmen
     const oldHasGames = OLD && OLD.periods && OLD.periods[w.n] && Object.values(OLD.periods[w.n]).some(t => t.gp > 0);
-    if (done && oldHasGames && OLD.complete && OLD.complete.includes(w.n)) { periods[w.n] = OLD.periods[w.n]; matchups[w.n] = OLD.matchups[w.n]; continue; }
+    // Wochen der letzten 18 Tage immer neu rechnen (Box Scores liegen 21 Tage vor; Nachträge,
+    // verspätete Spiele und neue Namens-Zuordnungen landen so auch in abgeschlossenen Wochen)
+    const settled = w.days[w.days.length - 1] < addDay(today, -18);
+    if (done && settled && oldHasGames && OLD.complete && OLD.complete.includes(w.n)) { periods[w.n] = OLD.periods[w.n]; matchups[w.n] = OLD.matchups[w.n]; continue; }
     const tot = {};
     TEAMS.forEach(t => { tot[t.id] = zero(); });
     for (const day of w.days) {
@@ -118,6 +121,15 @@ async function main() {
       const dup = new Set();
       JSON.parse(fs.readFileSync(f, 'utf8')).games.forEach(g => [g.away, g.home].forEach(side => { if ((side.players || []).length) played.add(canon(side.abbr)); (side.players || []).forEach(p => { const k = key(p.name); if (box.has(k)) dup.add(k); box.set(k, p); }); }));
       dup.forEach(k => box.delete(k)); // gleicher Name zweimal am selben Tag (College) → nicht raten
+      // Ersatz-Index für Kurzformen (Will ↔ William, Matt ↔ Matthew …): Nachname + gleiche ersten 3 Buchstaben
+      const byLast = new Map();
+      box.forEach((p, k) => { const parts = k.split(' '); const last = parts.slice(1).join(' '); if (!last) return; if (!byLast.has(last)) byLast.set(last, []); byLast.get(last).push([parts[0], p]); });
+      const lookup = nm => {
+        const k = key(nm); if (box.has(k)) return box.get(k);
+        const parts = k.split(' '), last = parts.slice(1).join(' '), first = parts[0] || '';
+        const c = (byLast.get(last) || []).filter(([f]) => first.length >= 3 && f.length >= 3 && (f.startsWith(first.slice(0, 3)) || first.startsWith(f.slice(0, 3))));
+        return c.length === 1 ? c[0][1] : null;
+      };
       if (!box.size) continue;
       const ro = await rosterOn(day);
       if (!ro) continue;
@@ -126,7 +138,7 @@ async function main() {
         if (!id) return;
         (r.rosterItems || []).forEach(it => {
           if (it.status !== 'ACTIVE') return;
-          const nm = nameOf(it.id), p = box.get(key(nm));
+          const nm = nameOf(it.id), p = lookup(nm);
           if (!p) { if (nm) unmatched.set(nm, day); return; }
           seen.add(nm);
           if (!p.min) return; // nicht gespielt (DNP)

@@ -78,7 +78,12 @@ jobs:
             echo "Geplant ${H}:17 Berlin (Cron '${SCHED}'), gestartet $(TZ=Europe/Berlin date +%H:%M)."
           fi
           if [ "$IN_ROSTERS" = "true" ] || { [ "$DOW" = "1" ] && [ "$H" = "07" ]; }; then echo "rosters=true" >> "$GITHUB_OUTPUT"; else echo "rosters=false" >> "$GITHUB_OUTPUT"; fi
+          # Nachholen: Ist der gestrige Spieltag (US-Ostküste) unvollständig — Datei fehlt oder ein Spiel
+          # ist nicht „Final“ —, läuft der Stats-Teil auch im stündlichen Lauf (GitHub lässt geplante Läufe aus).
+          STALE=$(node -e 'const fs=require("fs");const d=new Date(Date.now()-864e5).toLocaleDateString("en-CA",{timeZone:"America/New_York"});const f="sports/cbb/scripts/data/daily-9cat_ncaab_"+d+".games.json";if(!fs.existsSync(f)){console.log("fehlt "+d);process.exit()}const g=JSON.parse(fs.readFileSync(f,"utf8")).games||[];const o=g.filter(x=>!/\((Final|Canceled|Cancelled|Postponed)/.test(x.line||""));if(o.length)console.log(o.length+" offen am "+d)' 2>/dev/null)
+          if [ -n "$STALE" ]; then echo "Vortag unvollständig: $STALE → Stats-Lauf."; fi
           if [ "$EVENT" = "workflow_dispatch" ] && [ "$IN_STATS" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ -n "$STALE" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           elif [ "$H" = "07" ] || [ "$H" = "10" ] || [ "$H" = "14" ] || [ "$H" = "22" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           else echo "run=false" >> "$GITHUB_OUTPUT"; fi
 
