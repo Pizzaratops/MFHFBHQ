@@ -105,12 +105,14 @@ async function main() {
   for (const w of weeks) {
     if (w.days[0] > today) break;
     const done = w.days[w.days.length - 1] < today;
-    if (done && OLD && OLD.periods && OLD.periods[w.n] && OLD.complete && OLD.complete.includes(w.n)) { periods[w.n] = OLD.periods[w.n]; matchups[w.n] = OLD.matchups[w.n]; continue; }
+    // nur Wochen mit echten Spielen aus dem letzten Lauf übernehmen
+    const oldHasGames = OLD && OLD.periods && OLD.periods[w.n] && Object.values(OLD.periods[w.n]).some(t => t.gp > 0);
+    if (done && oldHasGames && OLD.complete && OLD.complete.includes(w.n)) { periods[w.n] = OLD.periods[w.n]; matchups[w.n] = OLD.matchups[w.n]; continue; }
     const tot = {};
     TEAMS.forEach(t => { tot[t.id] = zero(); });
     for (const day of w.days) {
       if (day > today) break;
-      const f = path.join(BOX, `daily-9cat_nba_${day}.games.json`);
+      const f = path.join(BOX, `${CFG.prefix}${day}.games.json`);
       if (!fs.existsSync(f)) continue;
       const box = new Map(), played = new Set();
       const dup = new Set();
