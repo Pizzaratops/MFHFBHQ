@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-08T20:38:45.579Z
+//  Stand: 2026-11-09T01:03:26.463Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -255,7 +255,7 @@ const WC_PLAYER_POOL = [
 ["07244","Dain Dainja","(N/A)","PF","SF,PF,F,Flx","FA"],
 ["05vyx","Daishen Nix","(N/A)","PG","PG,G,Flx","FA"],
 ["05ujk","Dalano Banton","(N/A)","PG","PG,SG,G,Flx","FA"],
-["0621h","Dalen Terry","OKC","SG","SG,G,SF,F,Flx","FA"],
+["0621h","Dalen Terry","(N/A)","SG","SG,G,SF,F,Flx","FA"],
 ["06mk9","Dalton Knecht","NYK","SF","SG,G,SF,F,Flx","FA"],
 ["07asd","Damari Monsanto","(N/A)","G","PG,SG,G,Flx","FA"],
 ["042nr","Damian Jones","(N/A)","C","C,Flx","FA"],
