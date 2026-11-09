@@ -3,15 +3,15 @@
   "date": "2026-11-08",
   "games": [
     "Philadelphia 76ers 127 @ Chicago Bulls 121 (Final)",
-    "Los Angeles Lakers @ Detroit Pistons (9:14 - 4th)",
-    "Utah Jazz @ Minnesota Timberwolves (2:54 - 2nd)",
-    "Brooklyn Nets @ Dallas Mavericks (3:32 - 1st)",
-    "Boston Celtics @ Milwaukee Bucks (11/8 - 8:00 PM EST)",
+    "Los Angeles Lakers 121 @ Detroit Pistons 116 (Final)",
+    "Utah Jazz @ Minnesota Timberwolves (End of 3rd)",
+    "Brooklyn Nets @ Dallas Mavericks (Halftime)",
+    "Boston Celtics @ Milwaukee Bucks (1:08 - 2nd)",
     "New Orleans Pelicans @ LA Clippers (11/8 - 9:00 PM EST)",
     "Miami Heat @ Sacramento Kings (11/8 - 9:00 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 49.2,
-    "ft": 83.3
+    "fg": 48.2,
+    "ft": 78.2
   }
 }
