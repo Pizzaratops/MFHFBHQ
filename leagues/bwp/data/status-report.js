@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-09T09:30:07.104Z",
+  "generatedAt": "2026-11-09T20:34:29.833Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -398,7 +398,7 @@ const STATUS_REPORT_DATA = {
           "pos": "QB",
           "nfl": "NYG",
           "isStarter": false,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 10.2,
@@ -790,7 +790,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 12,
-          "projPoints": 9.1
+          "projPoints": 9.2
         },
         {
           "name": "Bhayshul Tuten",
@@ -1033,7 +1033,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7,
           "last3AvgPoints": 8.5,
-          "projPoints": 6.3
+          "projPoints": 6.4
         }
       ],
       "flaggedCount": 0
@@ -1387,7 +1387,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.6,
           "last3AvgPoints": 14.6,
-          "projPoints": 10.7
+          "projPoints": 10.8
         },
         {
           "name": "Devin Singletary",
@@ -1983,7 +1983,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16,
           "last3AvgPoints": 16.5,
-          "projPoints": 8.2
+          "projPoints": 8.4
         },
         {
           "name": "Treylon Burks",
@@ -2292,7 +2292,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2,
           "last3AvgPoints": 4.4,
-          "projPoints": 8.6
+          "projPoints": 8.3
         },
         {
           "name": "Brenton Strange",
@@ -2447,7 +2447,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.6,
           "last3AvgPoints": 16.6,
-          "projPoints": 12.7
+          "projPoints": 12.8
         },
         {
           "name": "David Montgomery",
@@ -3841,7 +3841,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.3,
           "last3AvgPoints": 5,
-          "projPoints": 4.9
+          "projPoints": 5
         },
         {
           "name": "Jerry Jeudy",
@@ -3940,7 +3940,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.6,
           "last3AvgPoints": 8,
-          "projPoints": 9.1
+          "projPoints": 9.2
         },
         {
           "name": "San Francisco 49ers",
