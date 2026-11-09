@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-09T13:56:40.532Z
+//  Stand: 2026-11-09T18:58:11.500Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -108,7 +108,7 @@ const WC_PLAYER_POOL = [
 ["06caa","Ben Sheppard","IND","SG","SG,G,SF,F,Flx","FA"],
 ["03lg1","Ben Simmons","SAC","PG","PG,SG,G,Flx","FA"],
 ["06215","Bennedict Mathurin","NOR","SF","SG,G,SF,F,Flx","FA"],
-["076sv","Bennett Stirtz","OKC","PG","PG,G,Flx","FA"],
+["076sv","Bennett Stirtz","OKC","PG","PG,G,Flx","T"],
 ["07401","Bez Mbeng","(N/A)","SG","SG,G,Flx","FA"],
 ["06cc1","Bilal Coulibaly","WAS","SF","SG,G,SF,PF,F,Flx","T"],
 ["04rvz","Billy Preston","(N/A)","PF","SF,PF,F,Flx","FA"],
@@ -309,7 +309,7 @@ const WC_PLAYER_POOL = [
 ["01eon","DeMar DeRozan","DEN","SF","SF,PF,F,Flx","T"],
 ["04vxy","Deng Adel","(N/A)","C","C,Flx","FA"],
 ["05qtj","Deni Avdija","POR","SF","SG,G,SF,PF,F,Flx","T"],
-["031m4","Dennis Schroder","CHA","PG","PG,SG,G,Flx","T"],
+["031m4","Dennis Schroder","CHA","PG","PG,SG,G,Flx","FA"],
 ["049s5","Dennis Smith","(N/A)","PG","PG,G,Flx","FA"],
 ["06cc8","Dereck Lively","DAL","C","C,Flx","T"],
 ["05xp3","Derek Culver","(N/A)","C","C,Flx","FA"],
@@ -363,7 +363,7 @@ const WC_PLAYER_POOL = [
 ["04s00","Duncan Robinson","DET","SF","SG,G,SF,F,Flx","T"],
 ["06gix","Duop Reath","PHO","C","C,Flx","FA"],
 ["03e79","Dwight Powell","(N/A)","C","C,Flx","FA"],
-["06y2o","Dylan Cardwell","SAC","C","PF,C,F,Flx","T"],
+["06y2o","Dylan Cardwell","SAC","C","PF,C,F,Flx","WW"],
 ["06v5y","Dylan Harper","SAS","SG","PG,SG,G,SF,F,Flx","T"],
 ["051p6","Dylan Windler","(N/A)","SF","SF,F,Flx","FA"],
 ["06217","Dyson Daniels","ATL","SG","PG,SG,G,SF,F,Flx","T"],
@@ -470,7 +470,7 @@ const WC_PLAYER_POOL = [
 ["06mmh","Isaac Jones","DET","PF","PF,F,Flx","FA"],
 ["07apr","Isaac McKneely","(N/A)","G","PG,SG,G,Flx","FA"],
 ["05qsk","Isaac Okoro","CHI","SG","SG,G,SF,F,Flx","FA"],
-["06mkl","Isaiah Collier","UTA","PG","PG,SG,G,Flx","FA"],
+["06mkl","Isaiah Collier","UTA","PG","PG,SG,G,Flx","T"],
 ["06mmg","Isaiah Crawford","HOU","SF","SF,F,Flx","FA"],
 ["076ud","Isaiah Evans","MIN","SG","SG,G,Flx","FA"],
 ["04ex6","Isaiah Hartenstein","OKC","C","C,Flx","T"],
@@ -576,7 +576,7 @@ const WC_PLAYER_POOL = [
 ["04ewm","Jarrett Allen","CLE","C","C,Flx","T"],
 ["051om","Jarrett Culver","(N/A)","SG","SG,G,Flx","FA"],
 ["05ya0","Jarron Cumberland","(N/A)","SG","SG,G,Flx","FA"],
-["06v5j","Jase Richardson","ORL","SG","SG,G,Flx","T"],
+["06v5j","Jase Richardson","ORL","SG","SG,G,Flx","FA"],
 ["05uj7","Jason Preston","(N/A)","PG","PG,G,Flx","FA"],
 ["06hht","Javan Johnson","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["06304","Javante McCoy","(N/A)","SG","PG,SG,G,Flx","FA"],
@@ -731,7 +731,7 @@ const WC_PLAYER_POOL = [
 ["06213","Keegan Murray","SAC","PF","SF,PF,F,Flx","T"],
 ["06pty","Keion Brooks","(N/A)","SF","SF,F,Flx","FA"],
 ["06mpg","Keisei Tominaga","(N/A)","PG","PG,G,Flx","FA"],
-["051p9","Keldon Johnson","SAS","SF","SG,G,SF,F,Flx","FA"],
+["051p9","Keldon Johnson","SAS","SF","SG,G,SF,F,Flx","T"],
 ["06mk7","Kelel Ware","MIL","C","PF,C,F,Flx","T"],
 ["062sq","Kellan Grady","(N/A)","SG","PG,SG,G,Flx","FA"],
 ["031m0","Kelly Olynyk","(N/A)","C","C,Flx","FA"],
@@ -754,7 +754,7 @@ const WC_PLAYER_POOL = [
 ["06mos","Keve Aluma","(N/A)","F","SF,PF,F,Flx","FA"],
 ["06mnx","Kevin Cross","(N/A)","F","SF,PF,F,Flx","FA"],
 ["001aw","Kevin Durant","HOU","PF","SG,G,SF,PF,F,Flx","T"],
-["04qrw","Kevin Huerter","DET","SG","SG,G,SF,F,Flx","FA"],
+["04qrw","Kevin Huerter","DET","SG","SG,G,SF,F,Flx","T"],
 ["049kh","Kevin Knox","(N/A)","SF","SF,F,Flx","FA"],
 ["005kd","Kevin Love","(N/A)","PF","PF,C,F,Flx","FA"],
 ["06mm2","Kevin McCullar","TOR","SF","SF,F,Flx","FA"],
@@ -832,7 +832,7 @@ const WC_PLAYER_POOL = [
 ["05ujq","Luka Garza","BOS","C","C,Flx","FA"],
 ["051oz","Luka Samanic","(N/A)","PF","PF,F,Flx","FA"],
 ["06mod","Luke Avdalovic","(N/A)","PG","PG,G,Flx","FA"],
-["04ewd","Luke Kennard","PHO","SG","PG,SG,G,Flx","FA"],
+["04ewd","Luke Kennard","PHO","SG","PG,SG,G,Flx","T"],
 ["04jwb","Luke Kornet","SAS","C","C,Flx","FA"],
 ["055c6","Luke Maye","(N/A)","PF","PF,F,Flx","FA"],
 ["0622j","Luke Travers","(N/A)","SG","SG,G,Flx","FA"],
@@ -1051,7 +1051,7 @@ const WC_PLAYER_POOL = [
 ["027p9","Reggie Jackson","(N/A)","PG","PG,G,Flx","FA"],
 ["05qsz","Reggie Perry","(N/A)","PF","PF,F,Flx","FA"],
 ["03r7r","Richaun Holmes","(N/A)","PF","PF,C,F,Flx","FA"],
-["076ui","Richie Saunders","(N/A)","SG","SG,G,Flx","FA"],
+["076ui","Richie Saunders","MEM","SG","SG,G,Flx","FA"],
 ["06ceg","Ricky Council","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["07aph","Rienk Mast","(N/A)","F","SF,PF,F,Flx","FA"],
 ["06mog","Riley Minix","CLE","SF","SF,F,Flx","FA"],
@@ -1115,7 +1115,7 @@ const WC_PLAYER_POOL = [
 ["06cel","Sidy Cissoko","POR","SF","SF,F,Flx","FA"],
 ["059g5","Simi Shittu","(N/A)","PF","PF,C,F,Flx","FA"],
 ["062pk","Simone Fontecchio","MIA","SF","SF,PF,F,Flx","FA"],
-["06v7z","Sion James","CHA","SG","SG,G,SF,F,Flx","FA"],
+["06v7z","Sion James","CHA","SG","SG,G,SF,F,Flx","T"],
 ["06cem","SirJabari Rice","(N/A)","SG","SG,G,Flx","FA"],
 ["042np","Skal Labissiere","(N/A)","PF","PF,C,F,Flx","FA"],
 ["05qtu","Skylar Mays","(N/A)","SG","SG,G,Flx","FA"],
