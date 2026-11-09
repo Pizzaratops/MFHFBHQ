@@ -66,11 +66,12 @@
       const a = per[m.home] ? withPct(per[m.home]) : null, b = per[m.away] ? withPct(per[m.away]) : null;
       const c = a && b ? compare(a, b) : { w: m.hw, l: m.hl, t: m.ht };
       const ta = M.tById.get(m.home), tb = M.tById.get(m.away);
-      const lead = c.w > c.l ? 'a' : c.l > c.w ? 'b' : '';
+      const started = (a && a.gp > 0) || (b && b.gp > 0); // Wochenanfang: noch niemand gespielt
+      const lead = !started ? '' : c.w > c.l ? 'a' : c.l > c.w ? 'b' : '';
       const pl = plannerId(ctx);
       return `<a class="qk-m"${pl ? ` href="${ctx.href(pl)}"` : ''}>
         <span class="qk-mt${lead === 'a' ? ' lead' : ''}" style="${M.nba.tcStyle(ta)}">${e(tName(M, m.home))}</span>
-        <span class="qk-ms"><b>${c.w}-${c.l}${c.t ? '-' + c.t : ''}</b></span>
+        <span class="qk-ms">${started ? `<b>${c.w}-${c.l}${c.t ? '-' + c.t : ''}</b>` : '<span class="muted">vs</span>'}</span>
         <span class="qk-mt r${lead === 'b' ? ' lead' : ''}" style="${M.nba.tcStyle(tb)}">${e(tName(M, m.away))}</span></a>`;
     }).join('')}</div>`;
   }
@@ -79,7 +80,9 @@
   function rumbleBlock(ctx, M, st) {
     const e = ctx.ui.esc;
     if (!M.W || !M.weeks.length) return '';
-    const wk = M.weeks.includes(st.rrWeek) ? st.rrWeek : M.cur;
+    // Standard: laufende Woche, solange dort noch niemand gespielt hat die letzte Woche mit Spielen
+    const hasGames = w => Object.values(M.W.periods[w] || {}).some(t => t.gp > 0);
+    const wk = M.weeks.includes(st.rrWeek) ? st.rrWeek : hasGames(M.cur) ? M.cur : (M.weeks.filter(hasGames).pop() || M.cur);
     const per = M.W.periods[wk] || {};
     const ids = M.teams.map(t => t.id).filter(id => per[id]);
     if (!ids.length) return '';
