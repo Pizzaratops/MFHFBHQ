@@ -3260,7 +3260,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-08": {
-      games: ["Philadelphia 76ers 127 @ Chicago Bulls 121 (Final)","Los Angeles Lakers @ Detroit Pistons (4:32 - 2nd)","Utah Jazz @ Minnesota Timberwolves (11/8 - 7:00 PM EST)","Brooklyn Nets @ Dallas Mavericks (11/8 - 7:30 PM EST)","Boston Celtics @ Milwaukee Bucks (11/8 - 8:00 PM EST)","New Orleans Pelicans @ LA Clippers (11/8 - 9:00 PM EST)","Miami Heat @ Sacramento Kings (11/8 - 9:00 PM EST)"],
+      games: ["Philadelphia 76ers 127 @ Chicago Bulls 121 (Final)","Los Angeles Lakers @ Detroit Pistons (2:25 - 2nd)","Utah Jazz @ Minnesota Timberwolves (11/8 - 7:00 PM EST)","Brooklyn Nets @ Dallas Mavericks (11/8 - 7:30 PM EST)","Boston Celtics @ Milwaukee Bucks (11/8 - 8:00 PM EST)","New Orleans Pelicans @ LA Clippers (11/8 - 9:00 PM EST)","Miami Heat @ Sacramento Kings (11/8 - 9:00 PM EST)"],
       leagueAvg: { fg: 49.2, ft: 83.3 },
       players: [
         { rank: 1, name: "Tyrese Maxey", team: "PHI", min: 36, pts: 27, reb: 4, ast: 7, stl: 0, blk: 0, to: 1, tpm: 3, fgPct: 56.3, ftPct: 100, composite: 5.82, zScores: { pts: 1.757, reb: -0.366, ast: 1.154, stl: -0.868, blk: -0.504, tpm: 1.626, fgImpact: 1.034, ftImpact: 1.866, to: 0.121 } },
