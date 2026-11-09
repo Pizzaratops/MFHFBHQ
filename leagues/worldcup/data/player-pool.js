@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-09T06:28:47.871Z
+//  Stand: 2026-11-09T08:13:28.032Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
