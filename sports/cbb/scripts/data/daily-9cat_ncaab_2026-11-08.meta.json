@@ -1,0 +1,29 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-08",
+  "games": [
+    "Incarnate Word Cardinals @ UTEP Miners (0:00 - 1st)",
+    "Portland Pilots @ Bethesda Flames (10:16 - 1st)",
+    "Arkansas Razorbacks 72 @ Virginia Cavaliers 91 (Final)",
+    "Iona Gaels 65 @ St. John's Red Storm 104 (Final)",
+    "Princeton Tigers 68 @ Siena Saints 82 (Final)",
+    "Southeast Missouri State Redhawks 68 @ South Carolina Gamecocks 78 (Final)",
+    "Keuka Storm 59 @ Cornell Big Red 99 (Final)",
+    "Harvard Crimson 63 @ Chicago Maroons 47 (Final)",
+    "Central Connecticut Blue Devils 78 @ Dartmouth Big Green 71 (Final/OT)",
+    "Brown Bears 65 @ Lehigh Mountain Hawks 55 (Final)",
+    "Butler Bulldogs 81 @ Boise State Broncos 100 (Final)",
+    "Southern Jaguars 68 @ Drake Bulldogs 75 (Final)",
+    "Idaho State Bengals 82 @ Air Force Falcons 89 (Final)",
+    "Saint Mary's Gaels 95 @ Nevada Wolf Pack 96 (Final/OT)",
+    "Richmond Spiders 79 @ Temple Owls 53 (Final)",
+    "Pittsburgh Panthers @ Penn State Nittany Lions (11/8 - 8:00 PM EST)",
+    "California Golden Bears @ Houston Cougars (11/8 - 8:30 PM EST)",
+    "Wichita State Shockers @ USC Trojans (11/8 - 11:00 PM EST)",
+    "UT Arlington Mavericks @ Hawai'i Rainbow Warriors (11/8 - 11:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 44.7,
+    "ft": 69.8
+  }
+}
