@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T18:47:53.942Z",
+  "updated": "2026-11-10T19:38:26.984Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -50,7 +50,7 @@ const NBA_INJURIES = {
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
     "Jordan Goodwin": ["PHX","Out","GTD","2026-11-10","Calf",0,"2026-11-10"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
-    "Josh Hart": ["NY","Day-To-Day","GTD","2026-11-10","Ankle",0,"2026-11-09"],
+    "Josh Hart": ["NY","Day-To-Day","GTD","2026-11-10","Ankle",0,"2026-11-10"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
@@ -87,7 +87,7 @@ const NBA_INJURIES = {
     "Tarik Biberovic": ["DAL","Out","GTD","2026-11-12","Heel",0,"2026-11-01"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-13","Knee",0,"2026-11-03"],
     "Tobias Harris": ["SA","Out","GTD","2026-11-11","Calf",0,"2026-11-09"],
-    "Trendon Watford": ["NO","Day-To-Day","GTD","2026-11-11","Ankle",0,"2026-11-10"],
+    "Trendon Watford": ["NO","Out","OUT","2026-11-13","Ankle",0,"2026-11-10"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-10"],
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-10","Calf",0,"2026-11-10"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
@@ -97,7 +97,6 @@ const NBA_INJURIES = {
     "Will Richard": ["GS","Out","OUT","2026-11-16","Thumb",0,"2026-11-10"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-17","Foot",0,"2026-11-10"],
     "Yves Missi": ["NO","Out","OUT","2026-11-16","Knee",0,"2026-11-05"],
-    "Zach Collins": ["CHI","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-09"],
-    "Zion Williamson": ["NO","Day-To-Day","GTD","2026-11-11","Rest",0,"2026-11-10"]
+    "Zach Collins": ["CHI","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-09"]
   }
 };
