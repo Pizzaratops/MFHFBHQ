@@ -1,13 +1,13 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T23:01:06.293Z",
+  "updated": "2026-11-10T23:13:05.169Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","GTD","2026-11-13","Toe",0,"2026-11-08"],
-    "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-10"],
+    "Austin Reaves": ["LAL","Day-To-Day","","","",0,"2026-11-10"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
@@ -47,7 +47,7 @@ const NBA_INJURIES = {
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
-    "Josh Hart": ["NY","Day-To-Day","GTD","2026-11-10","Illness",0,"2026-11-10"],
+    "Josh Hart": ["NY","Out","OUT","2026-11-11","Illness",0,"2026-11-10"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
@@ -70,7 +70,7 @@ const NBA_INJURIES = {
     "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-11","Shoulder",0,"2026-11-10"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Quentin Grimes": ["LAL","Day-To-Day","GTD","2026-11-11","Finger",0,"2026-11-10"],
-    "Quinten Post": ["MEM","Day-To-Day","GTD","2026-11-11","Head",0,"2026-11-10"],
+    "Quinten Post": ["MEM","Out","OUT","2026-11-13","Head",0,"2026-11-10"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-16","Elbow",0,"2026-11-10"],
