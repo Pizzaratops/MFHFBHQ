@@ -10,7 +10,7 @@
 // ============================================================
 const NBA_POWER_SCORE = {
   "season": 2027,
-  "generatedAt": "2026-11-10T02:52:29.097Z",
+  "generatedAt": "2026-11-10T16:21:34.041Z",
   "categories": [
     {
       "key": "ortg",
@@ -6350,7 +6350,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 4,
           "values": {
             "ortg": 113.9,
-            "drtg": 107.3,
+            "drtg": 107.5,
             "ptsPg": 121,
             "oppPtsPg": 111.8,
             "tovPg": 13.8,
@@ -6569,7 +6569,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 4,
           "values": {
-            "ortg": 120.5,
+            "ortg": 120.8,
             "drtg": 106.5,
             "ptsPg": 120.8,
             "oppPtsPg": 111,
@@ -7012,7 +7012,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 1,
           "values": {
             "ortg": 102.6,
-            "drtg": 114.2,
+            "drtg": 115.3,
             "ptsPg": 110,
             "oppPtsPg": 120,
             "tovPg": 13,
@@ -7020,7 +7020,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 15,
-            "drtg": 12,
+            "drtg": 14,
             "ptsPg": 10,
             "oppPtsPg": 13,
             "tovPg": 7,
@@ -7071,7 +7071,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 34
           },
           "rank": {
-            "ortg": 5,
+            "ortg": 6,
             "drtg": 6,
             "ptsPg": 11,
             "oppPtsPg": 3,
@@ -7115,7 +7115,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 37
           },
           "rank": {
-            "ortg": 6,
+            "ortg": 7,
             "drtg": 10,
             "ptsPg": 3,
             "oppPtsPg": 14,
@@ -7203,7 +7203,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 1,
           "values": {
-            "ortg": 114.2,
+            "ortg": 115.3,
             "drtg": 102.6,
             "ptsPg": 120,
             "oppPtsPg": 110,
@@ -7211,7 +7211,7 @@ const NBA_POWER_SCORE = {
             "drebPg": 40
           },
           "rank": {
-            "ortg": 7,
+            "ortg": 5,
             "drtg": 4,
             "ptsPg": 6,
             "oppPtsPg": 6,
@@ -7338,7 +7338,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 9,
-            "drtg": 13,
+            "drtg": 12,
             "ptsPg": 4,
             "oppPtsPg": 16,
             "tovPg": 15,
@@ -7490,7 +7490,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 13,
-            "drtg": 14,
+            "drtg": 13,
             "ptsPg": 16,
             "oppPtsPg": 9,
             "tovPg": 11,
@@ -7511,7 +7511,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 4,
           "values": {
             "ortg": 113.9,
-            "drtg": 107.3,
+            "drtg": 107.5,
             "ptsPg": 121,
             "oppPtsPg": 111.8,
             "tovPg": 13.8,
@@ -7730,7 +7730,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 4,
           "values": {
-            "ortg": 120.5,
+            "ortg": 120.8,
             "drtg": 106.5,
             "ptsPg": 120.8,
             "oppPtsPg": 111,
@@ -8532,7 +8532,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 5,
           "values": {
             "ortg": 112.7,
-            "drtg": 109.8,
+            "drtg": 110,
             "ptsPg": 120.2,
             "oppPtsPg": 115.2,
             "tovPg": 14,
@@ -8540,7 +8540,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 8,
-            "drtg": 16,
+            "drtg": 17,
             "ptsPg": 5,
             "oppPtsPg": 18,
             "tovPg": 6,
@@ -8751,7 +8751,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 5,
           "values": {
-            "ortg": 122.4,
+            "ortg": 122.7,
             "drtg": 104.8,
             "ptsPg": 123,
             "oppPtsPg": 108.8,
@@ -8826,7 +8826,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 3,
-            "drtg": 17,
+            "drtg": 16,
             "ptsPg": 2,
             "oppPtsPg": 15,
             "tovPg": 21,
@@ -9777,7 +9777,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 6,
           "values": {
             "ortg": 113.1,
-            "drtg": 110,
+            "drtg": 110.2,
             "ptsPg": 119.2,
             "oppPtsPg": 114.5,
             "tovPg": 13.5,
@@ -9785,7 +9785,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 7,
-            "drtg": 15,
+            "drtg": 16,
             "ptsPg": 7,
             "oppPtsPg": 17,
             "tovPg": 3,
@@ -9939,7 +9939,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 16,
-            "drtg": 16,
+            "drtg": 15,
             "ptsPg": 21,
             "oppPtsPg": 15,
             "tovPg": 13,
@@ -9996,7 +9996,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 5,
           "values": {
-            "ortg": 122.4,
+            "ortg": 122.7,
             "drtg": 104.8,
             "ptsPg": 123,
             "oppPtsPg": 108.8,
@@ -10770,7 +10770,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 6,
           "values": {
             "ortg": 113.1,
-            "drtg": 110,
+            "drtg": 110.2,
             "ptsPg": 119.2,
             "oppPtsPg": 114.5,
             "tovPg": 13.5,
@@ -10989,7 +10989,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 6,
           "values": {
-            "ortg": 120,
+            "ortg": 120.2,
             "drtg": 107,
             "ptsPg": 121,
             "oppPtsPg": 110,
@@ -11959,7 +11959,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 7,
           "values": {
             "ortg": 110.3,
-            "drtg": 110.8,
+            "drtg": 111,
             "ptsPg": 116.3,
             "oppPtsPg": 115.4,
             "tovPg": 14.3,
@@ -11967,7 +11967,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 17,
-            "drtg": 17,
+            "drtg": 18,
             "ptsPg": 14,
             "oppPtsPg": 19,
             "tovPg": 6,
@@ -12178,7 +12178,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 7,
           "values": {
-            "ortg": 120.4,
+            "ortg": 120.6,
             "drtg": 106.6,
             "ptsPg": 120.7,
             "oppPtsPg": 108.3,
@@ -12253,7 +12253,7 @@ const NBA_POWER_SCORE = {
           },
           "rank": {
             "ortg": 2,
-            "drtg": 18,
+            "drtg": 17,
             "ptsPg": 8,
             "oppPtsPg": 16,
             "tovPg": 24,
@@ -13064,7 +13064,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 7,
           "values": {
             "ortg": 110.3,
-            "drtg": 110.8,
+            "drtg": 111,
             "ptsPg": 116.3,
             "oppPtsPg": 115.4,
             "tovPg": 14.3,
@@ -13283,7 +13283,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 7,
           "values": {
-            "ortg": 120.4,
+            "ortg": 120.6,
             "drtg": 106.6,
             "ptsPg": 120.7,
             "oppPtsPg": 108.3,
@@ -14085,7 +14085,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 8,
           "values": {
             "ortg": 109.3,
-            "drtg": 109.6,
+            "drtg": 109.7,
             "ptsPg": 115.3,
             "oppPtsPg": 114,
             "tovPg": 14.5,
@@ -14304,7 +14304,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 8,
           "values": {
-            "ortg": 120.7,
+            "ortg": 120.8,
             "drtg": 105.7,
             "ptsPg": 119.3,
             "oppPtsPg": 106.4,
@@ -15414,7 +15414,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 8,
           "values": {
             "ortg": 109.3,
-            "drtg": 109.6,
+            "drtg": 109.7,
             "ptsPg": 115.3,
             "oppPtsPg": 114,
             "tovPg": 14.5,
@@ -15633,7 +15633,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 8,
           "values": {
-            "ortg": 120.7,
+            "ortg": 120.8,
             "drtg": 105.7,
             "ptsPg": 119.3,
             "oppPtsPg": 106.4,
@@ -16323,7 +16323,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 9,
           "values": {
             "ortg": 110,
-            "drtg": 109.1,
+            "drtg": 109.2,
             "ptsPg": 115.8,
             "oppPtsPg": 113,
             "tovPg": 14.6,
@@ -16459,7 +16459,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 112.3,
             "tovPg": 14.9,
-            "drebPg": 31.5
+            "drebPg": 31.4
           },
           "rank": {
             "ortg": 15,
@@ -16542,7 +16542,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 9,
           "values": {
-            "ortg": 119.2,
+            "ortg": 119.4,
             "drtg": 107.3,
             "ptsPg": 117.9,
             "oppPtsPg": 107.6,
@@ -17121,7 +17121,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 111,
             "oppPtsPg": 112,
             "tovPg": 8,
-            "drebPg": 32
+            "drebPg": 31
           },
           "rank": {
             "ortg": 16,
@@ -17129,7 +17129,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 17,
             "oppPtsPg": 13,
             "tovPg": 1,
-            "drebPg": 17
+            "drebPg": 18
           }
         },
         {
@@ -17607,7 +17607,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 24,
             "oppPtsPg": 24,
             "tovPg": 13,
-            "drebPg": 18
+            "drebPg": 17
           }
         }
       ]
@@ -17624,7 +17624,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 9,
           "values": {
             "ortg": 110,
-            "drtg": 109.1,
+            "drtg": 109.2,
             "ptsPg": 115.8,
             "oppPtsPg": 113,
             "tovPg": 14.6,
@@ -17760,7 +17760,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 112.3,
             "tovPg": 14.9,
-            "drebPg": 31.5
+            "drebPg": 31.4
           },
           "rank": {
             "ortg": 15,
@@ -17843,7 +17843,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 9,
           "values": {
-            "ortg": 119.2,
+            "ortg": 119.4,
             "drtg": 107.3,
             "ptsPg": 117.9,
             "oppPtsPg": 107.6,
@@ -18589,7 +18589,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 10,
           "values": {
             "ortg": 111.9,
-            "drtg": 110.9,
+            "drtg": 111,
             "ptsPg": 118.1,
             "oppPtsPg": 114.9,
             "tovPg": 14.7,
@@ -18725,7 +18725,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 110.9,
             "tovPg": 14.9,
-            "drebPg": 31.8
+            "drebPg": 31.7
           },
           "rank": {
             "ortg": 17,
@@ -18808,7 +18808,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 9,
           "values": {
-            "ortg": 119.2,
+            "ortg": 119.4,
             "drtg": 107.3,
             "ptsPg": 117.9,
             "oppPtsPg": 107.6,
@@ -18997,7 +18997,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 3,
             "oppPtsPg": 25,
             "tovPg": 24,
-            "drebPg": 9
+            "drebPg": 8
           }
         },
         {
@@ -19209,7 +19209,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 106.9,
             "oppPtsPg": 118.2,
             "tovPg": 17.3,
-            "drebPg": 33.6
+            "drebPg": 33.4
           },
           "rank": {
             "ortg": 29,
@@ -19217,7 +19217,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 27,
             "oppPtsPg": 24,
             "tovPg": 27,
-            "drebPg": 8
+            "drebPg": 9
           }
         },
         {
@@ -19511,7 +19511,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 10,
             "oppPtsPg": 6,
             "tovPg": 2,
-            "drebPg": 7
+            "drebPg": 6
           }
         },
         {
@@ -19593,7 +19593,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 17,
             "oppPtsPg": 12,
             "tovPg": 10,
-            "drebPg": 8
+            "drebPg": 7
           }
         },
         {
@@ -19703,7 +19703,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 100,
             "oppPtsPg": 112,
             "tovPg": 21,
-            "drebPg": 33
+            "drebPg": 32
           },
           "rank": {
             "ortg": 15,
@@ -19711,7 +19711,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 15,
             "oppPtsPg": 8,
             "tovPg": 17,
-            "drebPg": 6
+            "drebPg": 8
           }
         },
         {
@@ -19750,7 +19750,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 11,
           "values": {
             "ortg": 111.7,
-            "drtg": 111,
+            "drtg": 111.1,
             "ptsPg": 118.6,
             "oppPtsPg": 115.5,
             "tovPg": 14.5,
@@ -19886,7 +19886,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 110.9,
             "tovPg": 14.9,
-            "drebPg": 31.8
+            "drebPg": 31.7
           },
           "rank": {
             "ortg": 17,
@@ -19969,7 +19969,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 10,
           "values": {
-            "ortg": 117,
+            "ortg": 117.1,
             "drtg": 107.2,
             "ptsPg": 116,
             "oppPtsPg": 107,
@@ -20158,7 +20158,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 2,
             "oppPtsPg": 26,
             "tovPg": 24,
-            "drebPg": 9
+            "drebPg": 8
           }
         },
         {
@@ -20370,7 +20370,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 106.9,
             "oppPtsPg": 118.2,
             "tovPg": 17.3,
-            "drebPg": 33.6
+            "drebPg": 33.4
           },
           "rank": {
             "ortg": 29,
@@ -20378,7 +20378,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 29,
             "oppPtsPg": 24,
             "tovPg": 28,
-            "drebPg": 8
+            "drebPg": 9
           }
         },
         {
@@ -20855,7 +20855,7 @@ const NBA_POWER_SCORE = {
           "gamesPlayed": 11,
           "values": {
             "ortg": 111.7,
-            "drtg": 111,
+            "drtg": 111.1,
             "ptsPg": 118.6,
             "oppPtsPg": 115.5,
             "tovPg": 14.5,
@@ -20991,7 +20991,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 113.9,
             "oppPtsPg": 109.1,
             "tovPg": 15.4,
-            "drebPg": 32
+            "drebPg": 31.9
           },
           "rank": {
             "ortg": 12,
@@ -20999,7 +20999,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 15,
             "oppPtsPg": 9,
             "tovPg": 17,
-            "drebPg": 15
+            "drebPg": 16
           }
         },
         {
@@ -21074,7 +21074,7 @@ const NBA_POWER_SCORE = {
           "division": "Southwest",
           "gamesPlayed": 10,
           "values": {
-            "ortg": 117,
+            "ortg": 117.1,
             "drtg": 107.2,
             "ptsPg": 116,
             "oppPtsPg": 107,
@@ -21475,7 +21475,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 106.2,
             "oppPtsPg": 117.9,
             "tovPg": 16.9,
-            "drebPg": 32.8
+            "drebPg": 32.7
           },
           "rank": {
             "ortg": 29,
@@ -21505,7 +21505,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 26,
             "oppPtsPg": 12,
             "tovPg": 5,
-            "drebPg": 16
+            "drebPg": 15
           }
         }
       ],
