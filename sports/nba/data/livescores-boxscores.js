@@ -4053,9 +4053,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909952",
-      line: "Los Angeles Lakers @ Atlanta Hawks (10:08 - 4th)",
+      line: "Los Angeles Lakers @ Atlanta Hawks (9:39 - 4th)",
       completed: false,
-      statusText: "10:08 - 4th",
+      statusText: "9:39 - 4th",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -4071,9 +4071,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909953",
-      line: "Cleveland Cavaliers @ Charlotte Hornets (9:52 - 4th)",
+      line: "Cleveland Cavaliers @ Charlotte Hornets (8:23 - 4th)",
       completed: false,
-      statusText: "9:52 - 4th",
+      statusText: "8:23 - 4th",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -4089,9 +4089,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909954",
-      line: "Washington Wizards @ Detroit Pistons (4:50 - 3rd)",
+      line: "Washington Wizards @ Detroit Pistons (2:46 - 3rd)",
       completed: false,
-      statusText: "4:50 - 3rd",
+      statusText: "2:46 - 3rd",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4107,9 +4107,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909955",
-      line: "Memphis Grizzlies @ Toronto Raptors (9:19 - 3rd)",
+      line: "Memphis Grizzlies @ Toronto Raptors (8:53 - 3rd)",
       completed: false,
-      statusText: "9:19 - 3rd",
+      statusText: "8:53 - 3rd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4125,9 +4125,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909956",
-      line: "Indiana Pacers @ Dallas Mavericks (4:18 - 2nd)",
+      line: "Indiana Pacers @ Dallas Mavericks (3:33 - 2nd)",
       completed: false,
-      statusText: "4:18 - 2nd",
+      statusText: "3:33 - 2nd",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
@@ -4143,9 +4143,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909957",
-      line: "Denver Nuggets @ Houston Rockets (3:16 - 1st)",
+      line: "Denver Nuggets @ Houston Rockets (2:01 - 1st)",
       completed: false,
-      statusText: "3:16 - 1st",
+      statusText: "2:01 - 1st",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
