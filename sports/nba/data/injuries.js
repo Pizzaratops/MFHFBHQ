@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T21:54:12.552Z",
+  "updated": "2026-11-10T22:01:02.694Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -75,7 +75,7 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Sam Merrill": ["CLE","Day-To-Day","GTD","2026-11-11","Elbow",0,"2026-11-10"],
-    "Scottie Barnes": ["TOR","Day-To-Day","OUT","2026-11-12","Groin",0,"2026-11-10"],
+    "Scottie Barnes": ["TOR","Out","OUT","2026-11-12","Groin",0,"2026-11-10"],
     "Scotty Pippen Jr.": ["MEM","Out","GTD","2026-11-11","Back",0,"2026-11-08"],
     "Sergio de Larrea": ["DAL","Out","GTD","2026-11-12","Knee",0,"2026-11-05"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
@@ -83,6 +83,7 @@ const NBA_INJURIES = {
     "Tarik Biberovic": ["DAL","Out","GTD","2026-11-12","Heel",0,"2026-11-01"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-13","Knee",0,"2026-11-03"],
     "Tobias Harris": ["SA","Out","GTD","2026-11-11","Calf",0,"2026-11-09"],
+    "Trayce Jackson-Davis": ["TOR","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-10"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-13","Ankle",0,"2026-11-10"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-10"],
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-10","Calf",0,"2026-11-10"],
