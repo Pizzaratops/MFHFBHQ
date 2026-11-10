@@ -1,13 +1,12 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T23:13:05.169Z",
+  "updated": "2026-11-10T23:40:40.370Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","GTD","2026-11-13","Toe",0,"2026-11-08"],
-    "Austin Reaves": ["LAL","Day-To-Day","","","",0,"2026-11-10"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
@@ -52,7 +51,6 @@ const NBA_INJURIES = {
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-10"],
-    "Kel'el Ware": ["MIL","Day-To-Day","GTD","2026-11-10","Ankle",0,"2026-11-10"],
     "Keshon Gilbert": ["ATL","Out","GTD","2026-11-13","Knee",0,"2026-11-08"],
     "Keyonte George": ["UTAH","Out","OUT","2026-11-11","Ankle",0,"2026-11-10"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
@@ -75,7 +73,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-16","Elbow",0,"2026-11-10"],
     "Scottie Barnes": ["TOR","Out","OUT","2026-11-12","Groin",0,"2026-11-10"],
-    "Scotty Pippen Jr.": ["MEM","Out","GTD","2026-11-11","Back",0,"2026-11-08"],
+    "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","GTD","2026-11-12","Knee",0,"2026-11-05"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Steven Adams": ["HOU","Out","OUT","2026-11-15","Calf",0,"2026-11-09"],
@@ -89,7 +87,7 @@ const NBA_INJURIES = {
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-10"],
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-10","Calf",0,"2026-11-10"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
-    "Tyler Herro": ["MIL","Day-To-Day","GTD","2026-11-10","Knee",0,"2026-11-09"],
+    "Tyler Herro": ["MIL","Out","OUT","2026-11-11","Knee",0,"2026-11-10"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-13","Hamstring",0,"2026-11-07"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-02","Ankle",0,"2026-11-05"],
     "Will Richard": ["GS","Out","GTD","2026-11-11","Thumb",0,"2026-11-10"],
