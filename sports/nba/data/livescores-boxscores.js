@@ -4053,9 +4053,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909952",
-      line: "Los Angeles Lakers @ Atlanta Hawks (3:31 - 2nd)",
+      line: "Los Angeles Lakers @ Atlanta Hawks (10:33 - 3rd)",
       completed: false,
-      statusText: "3:31 - 2nd",
+      statusText: "10:33 - 3rd",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -4071,9 +4071,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909953",
-      line: "Cleveland Cavaliers @ Charlotte Hornets (1:49 - 2nd)",
+      line: "Cleveland Cavaliers @ Charlotte Hornets (7:57 - 3rd)",
       completed: false,
-      statusText: "1:49 - 2nd",
+      statusText: "7:57 - 3rd",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -4089,9 +4089,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909954",
-      line: "Washington Wizards @ Detroit Pistons (6:22 - 2nd)",
+      line: "Washington Wizards @ Detroit Pistons (Halftime)",
       completed: false,
-      statusText: "6:22 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4107,9 +4107,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909955",
-      line: "Memphis Grizzlies @ Toronto Raptors (3:12 - 1st)",
+      line: "Memphis Grizzlies @ Toronto Raptors (4:36 - 2nd)",
       completed: false,
-      statusText: "3:12 - 1st",
+      statusText: "4:36 - 2nd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4125,9 +4125,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909956",
-      line: "Indiana Pacers @ Dallas Mavericks (11/9 - 8:00 PM EST)",
+      line: "Indiana Pacers @ Dallas Mavericks (4:22 - 1st)",
       completed: false,
-      statusText: "11/9 - 8:00 PM EST",
+      statusText: "4:22 - 1st",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
