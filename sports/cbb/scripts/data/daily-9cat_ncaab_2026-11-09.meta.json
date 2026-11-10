@@ -1,0 +1,39 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-09",
+  "games": [
+    "Illinois State Redbirds @ Purdue Boilermakers (2:12 - 2nd)",
+    "Seton Hall Pirates @ Charlotte 49ers (16:11 - 2nd)",
+    "App State Mountaineers @ Auburn Tigers (11:37 - 2nd)",
+    "Alabama A&M Bulldogs @ DePaul Blue Demons (16:02 - 2nd)",
+    "Eastern Washington Eagles @ Oregon State Beavers (Halftime)",
+    "Mississippi Valley State Delta Devils @ Washington Huskies (6:08 - 1st)",
+    "Rice Owls @ Stanford Cardinal (5:14 - 1st)",
+    "Wagner Seahawks 41 @ UConn Huskies 83 (Final)",
+    "Grambling Tigers 62 @ Texas Longhorns 93 (Final)",
+    "Radford Highlanders 47 @ Tennessee Volunteers 70 (Final)",
+    "North Florida Ospreys 51 @ Miami Hurricanes 89 (Final)",
+    "Oakland Golden Grizzlies 68 @ Alabama Crimson Tide 109 (Final)",
+    "Marshall Thundering Herd 74 @ Ohio State Buckeyes 84 (Final)",
+    "Howard Bison 65 @ Pennsylvania Quakers 78 (Final)",
+    "Syracuse Orange 80 @ Indiana Hoosiers 83 (Final)",
+    "UNC Greensboro Spartans 72 @ UIC Flames 82 (Final)",
+    "Eastern Illinois Panthers 70 @ Notre Dame Fighting Irish 94 (Final)",
+    "Stonehill Skyhawks 55 @ Columbia Lions 75 (Final)",
+    "North Dakota Fighting Hawks 77 @ Clemson Tigers 92 (Final)",
+    "Minnesota Golden Gophers 63 @ Cincinnati Bearcats 61 (Final)",
+    "Florida Gulf Coast Eagles 72 @ Georgia Bulldogs 80 (Final)",
+    "Florida A&M Rattlers 64 @ UAB Blazers 92 (Final)",
+    "Jackson State Tigers 57 @ Mississippi State Bulldogs 98 (Final)",
+    "SIU Edwardsville Cougars 58 @ Missouri Tigers 96 (Final)",
+    "Louisiana Tech Bulldogs 50 @ LSU Tigers 90 (Final)",
+    "Boston University Terriers 55 @ Northwestern Wildcats 72 (Final)",
+    "UL Monroe Warhawks 67 @ Texas A&M Aggies 108 (Final)",
+    "North Alabama Lions 72 @ Oklahoma Sooners 81 (Final)",
+    "Portland Pilots @ Hawai'i Rainbow Warriors (11/9 - 11:59 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 48.5,
+    "ft": 74.4
+  }
+}
