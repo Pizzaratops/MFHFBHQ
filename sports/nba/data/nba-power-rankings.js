@@ -9,7 +9,7 @@
 // ============================================================
 const NBA_POWER_RANKINGS = {
   "season": 2027,
-  "generatedAt": "2026-11-09T19:03:52.441Z",
+  "generatedAt": "2026-11-10T02:40:20.630Z",
   "weeks": [
     {
       "matchupPeriodId": 1,
