@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T22:01:02.694Z",
+  "updated": "2026-11-10T22:18:36.328Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -43,7 +43,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-11","Back",0,"2026-11-10"],
-    "Jaylon Tyson": ["CLE","Out","GTD","2026-11-11","Ankle",0,"2026-11-08"],
+    "Jaylon Tyson": ["CLE","Out","GTD","2026-11-11","Ankle",0,"2026-11-10"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
@@ -74,12 +74,13 @@ const NBA_INJURIES = {
     "Quinten Post": ["MEM","Day-To-Day","GTD","2026-11-11","Head",0,"2026-11-10"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
-    "Sam Merrill": ["CLE","Day-To-Day","GTD","2026-11-11","Elbow",0,"2026-11-10"],
+    "Sam Merrill": ["CLE","Out","OUT","2026-11-13","Elbow",0,"2026-11-10"],
     "Scottie Barnes": ["TOR","Out","OUT","2026-11-12","Groin",0,"2026-11-10"],
     "Scotty Pippen Jr.": ["MEM","Out","GTD","2026-11-11","Back",0,"2026-11-08"],
     "Sergio de Larrea": ["DAL","Out","GTD","2026-11-12","Knee",0,"2026-11-05"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Steven Adams": ["HOU","Out","OUT","2026-11-15","Calf",0,"2026-11-09"],
+    "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-11","Hamstring",0,"2026-11-10"],
     "Tarik Biberovic": ["DAL","Out","GTD","2026-11-12","Heel",0,"2026-11-01"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-13","Knee",0,"2026-11-03"],
     "Tobias Harris": ["SA","Out","GTD","2026-11-11","Calf",0,"2026-11-09"],
