@@ -119,16 +119,26 @@
 
   // ---------------- Gehaltsmodell ----------------
   const salFitCache = new WeakMap();
+  // Quadratischer Fit (10.11.2026): Gehalt ≈ a + b·x + c·x², x = FP/G Vorsaison, nur Spieler mit
+  // ≥ 20 Spielen und Gehalt über dem Minimum (0,5 ist Untergrenze). RMSE 0,14 statt 0,29 linear.
   function salaryFit(data) {
     if (salFitCache.has(data)) return salFitCache.get(data);
-    const pts = data.USM_BASE.players.filter(p => p[6] && p[6][0] >= 20).map(p => [p[6][2] / p[6][0], p[3]]);
-    const n = pts.length, mx = sum(pts, p => p[0]) / n, my = sum(pts, p => p[1]) / n;
-    const sxy = sum(pts, p => (p[0] - mx) * (p[1] - my)), sxx = sum(pts, p => (p[0] - mx) ** 2);
-    const b = sxx ? sxy / sxx : 0.38, fit = { a: my - b * mx, b };
+    const pts = data.USM_BASE.players.filter(p => p[6] && p[6][0] >= 20 && p[3] > SAL_MIN).map(p => [p[6][2] / p[6][0], p[3]]);
+    // Normalgleichungen 3×3
+    const S = (f) => sum(pts, f);
+    const n = pts.length, s1 = S(p => p[0]), s2 = S(p => p[0] ** 2), s3 = S(p => p[0] ** 3), s4 = S(p => p[0] ** 4);
+    const t0 = S(p => p[1]), t1 = S(p => p[0] * p[1]), t2 = S(p => p[0] ** 2 * p[1]);
+    const det3 = m => m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
+    const M = [[n, s1, s2], [s1, s2, s3], [s2, s3, s4]], D = det3(M);
+    const col = (k, v) => M.map((r, i) => r.map((x, j) => j === k ? v[i] : x));
+    const v = [t0, t1, t2];
+    const fit = D ? { a: det3(col(0, v)) / D, b: det3(col(1, v)) / D, c: det3(col(2, v)) / D } : { a: -1.32, b: 0.38, c: 0 };
+    // Grenzwert (Gehalt pro FP/G) bei typischem Spieler (~20 FP/G) für die Marktwert-Gewichtung
+    fit.slope = fit.b + 2 * fit.c * 20;
     salFitCache.set(data, fit);
     return fit;
   }
-  const targetSal = (fit, fpg) => Math.max(SAL_MIN, fit.a + fit.b * fpg);
+  const targetSal = (fit, fpg) => Math.max(SAL_MIN, fit.a + fit.b * fpg + fit.c * fpg * fpg);
   // λ aus den beobachteten Updates: Δ Gehalt ≈ λ · (Ziel − Gehalt) für Spieler mit ≥ 6 Spielen
   function calibrate(snaps, fit) {
     for (let i = snaps.length - 1; i >= 1; i--) {
@@ -621,11 +631,11 @@
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${dc(p.prevSal != null ? p.sal - p.prevSal : null)}</td><td class="num">${dc(p.firstSal != null ? p.sal - p.firstSal : null)}</td>
             <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${p.tgt == null ? '–' : f1(p.tgt, 2)}</td><td class="num">${zc(p)}</td><td class="num">${f1(p.fpg)}</td>${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td></tr>`).join('')}
           ${miss ? `<tr><td colspan="13" class="down">${miss} Spieler fehlen im aktuellen Snapshot.</td></tr>` : ''}</tbody></table></div>
-          <p class="muted usm-small usm-pad">Ziel = geschätztes Gehalt nach dem Modell (Startgehälter ≈ ${f1(pool.fit.a, 2)} + ${f1(pool.fit.b, 3)} · FP/G der Vorsaison), eingesetzt mit den echten FP/G dieser Saison. * = unter ${MIN_GAMES} Spielen, noch kein Gehalts-Update. ${pool.cal ? `Kalibriert am Update ${fmtDate(pool.cal.to)}: pro Update schließt sich etwa ${Math.round(pool.cal.lambda * 100)} % der Lücke.` : 'Wie schnell sich die Lücke schließt, kalibriert das Tool automatisch, sobald es zwei Snapshots mit Gehaltsänderungen gibt (ab 15.11.).'} Die Formel von basketball.de ist geheim (auch Käufe/Verkäufe zählen) – Schätzung.${pool.injDate ? ` Verletzungen: ESPN, Stand ${new Date(pool.injDate).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}.` : ''}</p>
+          <p class="muted usm-small usm-pad">Ziel = geschätztes Gehalt nach dem Modell (Startgehälter ≈ ${f1(pool.fit.a, 2)} + ${f1(pool.fit.b, 3)}·x + ${f1(pool.fit.c, 4)}·x², x = FP/G der Vorsaison, mind. 0,5), eingesetzt mit den echten FP/G dieser Saison. * = unter ${MIN_GAMES} Spielen, noch kein Gehalts-Update. ${pool.cal ? `Kalibriert am Update ${fmtDate(pool.cal.to)}: pro Update schließt sich etwa ${Math.round(pool.cal.lambda * 100)} % der Lücke.` : 'Wie schnell sich die Lücke schließt, kalibriert das Tool automatisch, sobald es zwei Snapshots mit Gehaltsänderungen gibt (ab 15.11.).'} Die Formel von basketball.de ist geheim (auch Käufe/Verkäufe zählen) – Schätzung.${pool.injDate ? ` Verletzungen: ESPN, Stand ${new Date(pool.injDate).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}.` : ''}</p>
         </section>
         <section class="card usm-mt">
           <div class="card-head"><h2>Trade-Finder</h2><span class="usm-opts usm-inline"><label>Min. Minuten <input type="number" id="usmTrMin" value="14" min="0" max="40"></label><label class="usm-small"><input type="checkbox" id="usmTrMw" checked> Marktwert einbeziehen</label><button class="usm-btn primary" id="usmTrBtn">Trades suchen</button></span></div>
-          <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten Punkten im gewählten Zeitraum (${HORIZONS[pool.horizon].label}), inkl. Spielplan und ESPN-Verletzungen. ΔMW = geschätzter Marktwert-Gewinn (Ziel-Gehalt rein minus raus, unter 6 Spielen halb gewichtet). Mit „Marktwert einbeziehen“ zählt 1 Mio ΔMW wie ${f1(0.5 / pool.fit.b * (pool.horizon === 'game' ? 1 : pool.scale), 1)} ${pool.unit}. Der <b>Helpside Trade</b> ist gratis (1×, verfällt nicht); in der Trade-Phase 3 Start-Trades + 1 gratis pro Sonntag, jeder weitere kostet ${TRADE_COST} Mio. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
+          <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten Punkten im gewählten Zeitraum (${HORIZONS[pool.horizon].label}), inkl. Spielplan und ESPN-Verletzungen. ΔMW = geschätzter Marktwert-Gewinn (Ziel-Gehalt rein minus raus, unter 6 Spielen halb gewichtet). Mit „Marktwert einbeziehen“ zählt 1 Mio ΔMW wie ${f1(0.5 / pool.fit.slope * (pool.horizon === 'game' ? 1 : pool.scale), 1)} ${pool.unit}. Der <b>Helpside Trade</b> ist gratis (1×, verfällt nicht); in der Trade-Phase 3 Start-Trades + 1 gratis pro Sonntag, jeder weitere kostet ${TRADE_COST} Mio. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
         </section>`;
     },
     mount(root, ctx) {
@@ -639,7 +649,7 @@
         const b = ev.currentTarget; b.disabled = true; b.textContent = 'Suche…';
         setTimeout(() => {
           const pool = buildPool(ctx.data, st), ps = team.keys.map(k => pool.byKey.get(k)).filter(Boolean);
-          const mwW = root.querySelector('#usmTrMw').checked ? 0.5 / pool.fit.b * (pool.horizon === 'game' ? 1 : pool.scale) : 0;
+          const mwW = root.querySelector('#usmTrMw').checked ? 0.5 / pool.fit.slope * (pool.horizon === 'game' ? 1 : pool.scale) : 0;
           const r = findTrades(pool.players, ps, team.cash || 0, +root.querySelector('#usmTrMin').value || 0, mwW);
           last = [...r.singles, ...r.doubles];
           const rg = remainingGames();
