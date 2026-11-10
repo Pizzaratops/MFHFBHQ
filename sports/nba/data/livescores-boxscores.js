@@ -4053,9 +4053,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909952",
-      line: "Los Angeles Lakers @ Atlanta Hawks (5:56 - 1st)",
+      line: "Los Angeles Lakers @ Atlanta Hawks (End of 1st)",
       completed: false,
-      statusText: "5:56 - 1st",
+      statusText: "End of 1st",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -4071,9 +4071,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909953",
-      line: "Cleveland Cavaliers @ Charlotte Hornets (6:13 - 1st)",
+      line: "Cleveland Cavaliers @ Charlotte Hornets (11:13 - 2nd)",
       completed: false,
-      statusText: "6:13 - 1st",
+      statusText: "11:13 - 2nd",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -4089,9 +4089,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909954",
-      line: "Washington Wizards @ Detroit Pistons (7:19 - 1st)",
+      line: "Washington Wizards @ Detroit Pistons (2:13 - 1st)",
       completed: false,
-      statusText: "7:19 - 1st",
+      statusText: "2:13 - 1st",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
