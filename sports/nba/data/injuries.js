@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T20:59:02.187Z",
+  "updated": "2026-11-10T21:16:34.328Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -69,7 +69,6 @@ const NBA_INJURIES = {
     "Nate Bittle": ["TOR","Out","OUT","2026-11-15","Foot",0,"2026-11-08"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
     "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-11","Shoulder",0,"2026-11-09"],
-    "Oscar Tshiebwe": ["HOU","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-10"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Quentin Grimes": ["LAL","Day-To-Day","GTD","2026-11-11","Finger",0,"2026-11-10"],
     "Quinten Post": ["MEM","Day-To-Day","GTD","2026-11-11","Head",0,"2026-11-10"],
