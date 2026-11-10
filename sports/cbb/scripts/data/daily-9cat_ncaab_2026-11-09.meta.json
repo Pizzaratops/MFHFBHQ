@@ -2,13 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-09",
   "games": [
-    "Illinois State Redbirds @ Purdue Boilermakers (2:12 - 2nd)",
-    "Seton Hall Pirates @ Charlotte 49ers (16:11 - 2nd)",
-    "App State Mountaineers @ Auburn Tigers (11:37 - 2nd)",
-    "Alabama A&M Bulldogs @ DePaul Blue Demons (16:02 - 2nd)",
-    "Eastern Washington Eagles @ Oregon State Beavers (Halftime)",
-    "Mississippi Valley State Delta Devils @ Washington Huskies (6:08 - 1st)",
-    "Rice Owls @ Stanford Cardinal (5:14 - 1st)",
     "Wagner Seahawks 41 @ UConn Huskies 83 (Final)",
     "Grambling Tigers 62 @ Texas Longhorns 93 (Final)",
     "Radford Highlanders 47 @ Tennessee Volunteers 70 (Final)",
@@ -30,10 +23,17 @@
     "Boston University Terriers 55 @ Northwestern Wildcats 72 (Final)",
     "UL Monroe Warhawks 67 @ Texas A&M Aggies 108 (Final)",
     "North Alabama Lions 72 @ Oklahoma Sooners 81 (Final)",
-    "Portland Pilots @ Hawai'i Rainbow Warriors (11/9 - 11:59 PM EST)"
+    "Illinois State Redbirds 59 @ Purdue Boilermakers 76 (Final)",
+    "Seton Hall Pirates 68 @ Charlotte 49ers 62 (Final)",
+    "App State Mountaineers 53 @ Auburn Tigers 75 (Final)",
+    "Alabama A&M Bulldogs 47 @ DePaul Blue Demons 84 (Final)",
+    "Eastern Washington Eagles 84 @ Oregon State Beavers 94 (Final)",
+    "Mississippi Valley State Delta Devils 64 @ Washington Huskies 77 (Final)",
+    "Rice Owls 73 @ Stanford Cardinal 91 (Final)",
+    "Portland Pilots 73 @ Hawai'i Rainbow Warriors 66 (Final)"
   ],
   "leagueAvg": {
-    "fg": 48.5,
-    "ft": 74.4
+    "fg": 47.2,
+    "ft": 75.4
   }
 }
