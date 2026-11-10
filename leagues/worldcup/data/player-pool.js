@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-09T18:58:11.500Z
+//  Stand: 2026-11-10T02:18:33.619Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -613,7 +613,7 @@ const WC_PLAYER_POOL = [
 ["05wkd","Jeff Dowtin","(N/A)","PG","PG,G,Flx","FA"],
 ["001ax","Jeff Green","(N/A)","PF","PF,F,Flx","FA"],
 ["03aq2","Jerami Grant","MEM","PF","SF,PF,F,Flx","FA"],
-["06v5g","Jeremiah Fears","NOR","PG","PG,G,Flx","T"],
+["06v5g","Jeremiah Fears","NOR","PG","PG,SG,G,Flx","T"],
 ["05uj6","Jeremiah Robinson-Earl","(N/A)","PF","PF,C,F,Flx","FA"],
 ["05xnb","Jeremiah Tilmon","(N/A)","C","C,Flx","FA"],
 ["06218","Jeremy Sochan","(N/A)","PF","PF,C,F,Flx","FA"],
