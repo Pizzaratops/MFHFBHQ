@@ -28,7 +28,8 @@ tools/nba-*.js        NBA-Seiten (TTHQ, Funkytown)
 tools/cbb-auction.js  CBB: NIL-Auktion (Board, Live-Gebote, Mein Plan, Budgets, Preise 2025) — Daten leagues/cbb/data/nil-auction.js
                       + live-bids.js (stündlich aus dem Liga-Sheet, .github/workflows/cbb-bids.yml)
 tools/usm.js          basketball.de US-Manager: Draft & Value (Auffüll-Optimierer), Mein Team & Trades, Gehälter, Import (Bookmarklet)
-                      — Daten leagues/usm/data/usm-base.js, Snapshots im Browser (mfhfb:usm:*)
+                      — Daten leagues/usm/data/usm-base.js + usm-snapshots.js (Repo), eigene Snapshots im Browser (mfhfb:usm:*),
+                        Verletzungen sports/nba/data/injuries.js (ESPN, nba-sync), Gehaltsprognose + Marktwert im Trade-Finder
 tools/home.js         Übersicht (alle Ligen)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)

@@ -15,8 +15,11 @@
 //   2. Sonst (seit 20.10.2026): 0 – keine Vorjahreswerte, Spieler wird
 //      nicht empfohlen (Tag „ohne Proj.“).
 //   Minuten pro Spieler überschreibbar (FP/G skaliert pro Minute).
-//   Verfügbarkeit = Consensus-Spiele/82, Verletzungs-Seed (Stand 18.10.)
-//   oder eigener Wert.
+//   Verfügbarkeit = Consensus-Spiele/82 × Anteil verpasster Spiele laut
+//   ESPN-Verletzungsliste (sport:injuries, seit 10.11.2026) oder eigener Wert.
+//  Gehaltsprognose (10.11.2026): Ziel-Gehalt = a + b · echte FP/G (a/b aus den
+//   Startgehältern gefittet), unter 6 Spielen eingefroren; Trade-Finder kann
+//   den Marktwert-Gewinn mitgewichten. Repo-Snapshots: leagues/usm/data/usm-snapshots.js.
 //
 //  Daten: leagues/usm/data/usm-base.js (Gehälter + Manager-FP, Stand
 //  18.10.2026). Wöchentliche Gehälter per Bookmarklet (Seite „Import“),
@@ -79,27 +82,23 @@
   };
   // basketball.de-Name → Projections-Name, wo die Normalisierung nicht reicht
   const NAME_FIX = { 'gregory jackson': 'gg jackson', 'elijah harkless': 'ej harkless', 'nahshon hyland': 'bones hyland', 'maleek thomas': 'meleek thomas' };
-  // Verletzungs-Seed (Stand 18.10.2026): [Verfügbarkeit im Trade-Lock bis 15.11., Label]
+  // Verletzungen kommen seit 10.11.2026 automatisch aus der ESPN-Liste
+  // (sport:injuries, nba-sync). Hier nur noch, was ESPN nicht führt:
+  // gewaivt / Karriereende / Saison vorbei. [Verfügbarkeit, Label]
   const STATUS = {
-    'moses moody': [0, 'Out'], 'jimmy butler': [0, 'Out'], 'kristaps porzingis': [0, 'Karriereende'], 'shaedon sharpe': [0, 'Out'],
-    'mark williams': [0, 'Out'], 'max strus': [0, 'Out'], 'bradley beal': [0, 'Out'], 'brandon ingram': [0, 'Out'],
-    'donte divincenzo': [0, 'Out'], 'santi aldama': [0, 'Out'], 'dereck lively': [0, 'Out'], 'johnny furphy': [0, 'Out'],
-    'julian strawther': [0, 'Out'], 'noah penda': [0, 'Out'], 'jordan miller': [0, 'Out'], 'mouhamed gueye': [0, 'Out'],
-    'henri veesaar': [0, 'Out'], 'ariel hukporti': [0, 'Out'], 'jamir watkins': [0, 'Out'], 'otega oweh': [0, 'Out'],
-    'tristan vukcevic': [0, 'Out'], 'jusuf nurkic': [0.3, 'Out ~4 Wo.'], 'dominick barlow': [0.3, 'Out'],
-    'isaiah stewart': [0.5, 'Out ~2 Wo.'], 'dru smith': [0.5, 'Out ~2 Wo.'], 'tacko fall': [0.5, 'Out ~2 Wo.'],
-    'spencer jones': [0.5, 'fraglich'], 'nicolas claxton': [0.55, 'Hamstring'], 'maxime raynaud': [0.6, 'Out 5-6 Sp.'],
-    'dylan cardwell': [0.6, 'Out 5-6 Sp.'], 'grant williams': [0.6, 'Hamstring'], 'kyrie irving': [0.7, 'Comeback'],
-    'damian lillard': [0.75, 'Comeback'], 'coby white': [0.75, 'Wade'], 'dejounte murray': [0.8, 'Zeh'],
-    'kon knueppel': [0.85, 'Hamstring'], 'aj dybantsa': [0.85, 'Knöchel'], 'tobias harris': [0.85, 'Wade'],
-    'adem bona': [0.85, 'Fuß'], 'tyrese haliburton': [0.85, 'Comeback'], 'franz wagner': [0.9, 'Schulter'], 'anthony black': [0.9, 'Knöchel'],
     // 20.10.2026: gewaivt / Saison vorbei (basketball.de führt sie evtl. noch beim alten Team)
     // 26.10.2026: Walter Clayton (DAL) und Micah Peavy (OKC) per Two-Way neu unter Vertrag → raus
     // 09.11.2026: Kevin McCullar Jr. (TOR, Two-Way) raus; Riley Minix (CLE), Enrique Freeman (MIN), Dalen Terry (OKC) gewaivt
     'bruce brown': [0, 'gewaivt'], 'kevin porter': [0, 'gewaivt'], 'ak okereke': [0, 'gewaivt'],
     'riley minix': [0, 'gewaivt'], 'enrique freeman': [0, 'gewaivt'], 'dalen terry': [0, 'gewaivt'],
-    'ben simmons': [0, 'Out Saison'],
+    'ben simmons': [0, 'Out Saison'], 'kristaps porzingis': [0, 'Karriereende'],
   };
+  // Gehaltsmodell (Analyse 10.11.2026): Startgehälter ≈ a + b · Manager-FP/G der Vorsaison
+  // (r 0,995). Annahme: Updates ziehen das Gehalt Richtung derselben Linie mit den FP/G
+  // der laufenden Saison. Unter 6 Spielen kein Update (Regel). a/b werden beim Laden aus
+  // USM_BASE neu gefittet; λ (Anteil der Lücke pro Update) wird kalibriert, sobald es
+  // zwei Snapshots mit Gehaltsänderungen gibt.
+  const SAL_MIN = 0.5, MIN_GAMES = 6;
 
   const e = s => MFHFB.ui.esc(s);
   const f1 = (x, d = 1) => (x == null || !isFinite(x)) ? '–' : Number(x).toFixed(d);
@@ -118,12 +117,60 @@
     team: st => st.getJSON('team', null),
   };
 
+  // ---------------- Gehaltsmodell ----------------
+  const salFitCache = new WeakMap();
+  function salaryFit(data) {
+    if (salFitCache.has(data)) return salFitCache.get(data);
+    const pts = data.USM_BASE.players.filter(p => p[6] && p[6][0] >= 20).map(p => [p[6][2] / p[6][0], p[3]]);
+    const n = pts.length, mx = sum(pts, p => p[0]) / n, my = sum(pts, p => p[1]) / n;
+    const sxy = sum(pts, p => (p[0] - mx) * (p[1] - my)), sxx = sum(pts, p => (p[0] - mx) ** 2);
+    const b = sxx ? sxy / sxx : 0.38, fit = { a: my - b * mx, b };
+    salFitCache.set(data, fit);
+    return fit;
+  }
+  const targetSal = (fit, fpg) => Math.max(SAL_MIN, fit.a + fit.b * fpg);
+  // λ aus den beobachteten Updates: Δ Gehalt ≈ λ · (Ziel − Gehalt) für Spieler mit ≥ 6 Spielen
+  function calibrate(snaps, fit) {
+    for (let i = snaps.length - 1; i >= 1; i--) {
+      const cur = snaps[i], prev = snaps[i - 1];
+      const pm = new Map(prev.players.map(p => [p[0] + '|' + p[2], p]));
+      let sxy = 0, sxx = 0, n = 0;
+      for (const p of cur.players) {
+        const q = pm.get(p[0] + '|' + p[2]);
+        if (!q || !(q[6] > 0) || !(q[5] > 0) || Math.round(q[5] / q[6]) < MIN_GAMES) continue;
+        const gap = targetSal(fit, q[6]) - q[3], d = p[3] - q[3];
+        sxy += gap * d; sxx += gap * gap; if (d !== 0) n++;
+      }
+      if (n >= 20 && sxx > 0) return { lambda: Math.max(0.05, Math.min(1, sxy / sxx)), from: prev.date, to: cur.date, n };
+    }
+    return null;
+  }
+
+  // ---------------- Verletzungen (ESPN) ----------------
+  // Anteil der Spiele im Zeitraum, die ein Spieler laut ESPN-Liste verpasst.
+  function injuryShare(data, inj, abbr, h) {
+    if (!inj) return null;
+    const [, status, fantasy, ret, , seasonOut] = inj;
+    if (seasonOut || fantasy === 'OFS') return { share: 0, label: 'Out Saison' };
+    const now = new Date(), w = horizonWindow(h === 'game' ? 'rest' : h) || [now, SEASON_END];
+    const back = ret ? new Date(ret + 'T12:00:00Z') : new Date(now.getTime() + 14 * 864e5);
+    const gtd = /day-to-day|questionable/i.test(status) || fantasy === 'GTD';
+    const tg = teamGames(data), games = tg && tg[abbr] ? tg[abbr].filter(d => d >= w[0] && d < w[1]) : null;
+    const before = games ? games.filter(d => d < back).length : null, total = games ? games.length : null;
+    const missRate = gtd ? 0.5 : 1;
+    const share = total ? 1 - missRate * before / total : (gtd ? 0.9 : 0.6);
+    const dd = ret ? `${ret.slice(8, 10)}.${ret.slice(5, 7)}.` : '';
+    return { share: Math.max(0, Math.min(1, share)), label: gtd ? 'GTD' : (dd ? `Out bis ${dd}` : 'Out') };
+  }
+
   // ---------------- Pool ----------------
   function allSnapshots(data, st) {
     const base = { date: data.USM_BASE.date, base: true, players: data.USM_BASE.players.map(p => [p[0], p[1], p[2], p[3], p[4], 0, 0]) };
-    const own = S.snaps(st);
-    const all = own.some(s => s.date === base.date) ? own.slice() : [base, ...own];
-    return all.sort((a, b) => a.date.localeCompare(b.date));
+    // Repo-Snapshots (leagues/usm/data/usm-snapshots.js) + eigene aus dem Browser (gleiches Datum: eigener gewinnt)
+    const byDate = new Map([[base.date, base]]);
+    (data.USM_SNAPSHOTS || []).forEach(s => byDate.set(s.date, { date: s.date, repo: true, players: s.players }));
+    S.snaps(st).forEach(s => byDate.set(s.date, s));
+    return [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));
   }
 
   function buildPool(data, st) {
@@ -137,7 +184,8 @@
     data.USM_BASE.players.forEach(p => { const k = squash(nkey(flip(p[0]))); if (!base.has(k) || base.get(k)[1] === 'Free Agents') base.set(k, p); });
     const projIdx = obj => { const m = new Map(); Object.entries(obj || {}).forEach(([n, p]) => m.set(squash(nkey(n)), p)); return m; };
     const live = projIdx(data.LIVE_PROJECTIONS), cons = projIdx(data.PROJECTIONS_CONSENSUS);
-    const ovr = S.ovr(st);
+    const inj = projIdx(data.NBA_INJURIES && data.NBA_INJURIES.players);
+    const ovr = S.ovr(st), fit = salaryFit(data), cal = calibrate(snaps, fit);
 
     const out = new Map();
     for (const row of cur.players) {
@@ -169,15 +217,23 @@
         if (rot.length) av = Math.max(0.6, Math.min(0.95, sum(rot, s => s[0]) / (rot.length * 80)));
         if (rookie) av = Math.min(av, 0.88);
       }
+      const abbr = TEAM_ABBR[team] || team;
       const sd = STATUS[MFHFB.nba.key(short)];
       if (sd) { av = Math.min(av, sd[0]); status = sd[1]; }
+      else {
+        const ij = injuryShare(data, inj.get(k), abbr, horizon);
+        if (ij) { av *= ij.share; status = ij.label; }
+      }
       if (o.av != null) av = +o.av;
 
       let fpg = fpm * min, gp = 0;
       if (fpgAct > 0 && fpAct > 0) gp = Math.round(fpAct / fpgAct);
       // Live-Projections enthalten die echten Spiele schon; nur ohne Projection selbst einblenden
       if (gp && src !== 'proj') fpg = (fpg * PHANTOM_GAMES + fpgAct * gp) / (PHANTOM_GAMES + gp);
-      const evg = fpg * av, abbr = TEAM_ABBR[team] || team;
+      const evg = fpg * av;
+      // Gehaltsprognose: Ziel = Linie aus der Vorsaison mit den echten FP/G dieser Saison
+      const tgt = gp > 0 ? targetSal(fit, fpgAct) : null, frozen = gp < MIN_GAMES;
+      const gap = tgt == null ? 0 : tgt - sal, next = frozen || tgt == null ? sal : sal + (cal ? cal.lambda : 0) * gap;
       const ng = horizon === 'game' ? null : gamesIn(data, abbr, horizon);
       const ev = ng == null ? evg : evg * ng;
       out.set(k, {
@@ -185,11 +241,13 @@
         fpm, src, min, minSet: o.min != null, av, avSet: o.av != null, status, fpg, evg, ng, ev, value: sal > 0 ? ev / sal : 0,
         gp, fpgAct: fpgAct || 0, prevSal: prevSal.has(k) ? prevSal.get(k) : null, firstSal: firstSal.has(k) ? firstSal.get(k) : null,
         fp26: s26 && s26[0] ? s26[2] / s26[0] : null,
+        tgt, gap, frozen, next,
       });
     }
     const withG = [...out.values()].filter(p => p.ng != null && p.team !== 'Free Agents');
     const scale = horizon === 'game' || !withG.length ? 1 : Math.max(1, sum(withG, p => p.ng) / withG.length);
-    return { players: [...out.values()], byKey: out, date: cur.date, snapshots: snaps, horizon, unit: HORIZONS[horizon].unit, scale };
+    return { players: [...out.values()], byKey: out, date: cur.date, snapshots: snaps, horizon, unit: HORIZONS[horizon].unit, scale, fit, cal,
+      injDate: data.NBA_INJURIES && data.NBA_INJURIES.updated };
   }
 
   // ---------------- Optimierer (exakter Knapsack je Position) ----------------
@@ -267,41 +325,49 @@
   function validFull(ps) { const h = { G: 0, F: 0, C: 0 }; ps.forEach(p => h[p.pos]++); return h.G >= 5 && h.F >= 5 && h.C >= 2; }
 
   // ---------------- Trade-Finder ----------------
-  function findTrades(pool, team, cash, minMin) {
+  // Marktwert-Potenzial eines Spielers: Lücke zum Ziel-Gehalt (unter 6 Spielen halb gewichtet)
+  const mwOf = p => p.tgt == null ? 0 : (p.frozen ? 0.5 : 1) * p.gap;
+  // mwW = FP-Wert von 1 Mio Marktwert im Zeitraum (0 = nur Punkte)
+  function findTrades(pool, team, cash, minMin, mwW = 0) {
     const tk = new Set(team.map(p => p.key));
     const cand = pool.filter(p => !tk.has(p.key) && p.team !== 'Free Agents' && p.ev > 0 && p.min >= minMin && p.src === 'proj');
+    const mk = (out, inn, cashAfter) => {
+      const gain = sum(inn, p => p.ev) - sum(out, p => p.ev), dmw = sum(inn, mwOf) - sum(out, mwOf);
+      return { out, in: inn, gain, dmw, score: gain + mwW * dmw, cashAfter };
+    };
     const singles = [];
     for (const out of team) {
       const avail = cash + out.sal, rest = team.filter(p => p !== out);
       for (const inn of cand) {
         if (inn.sal > avail + 1e-9) continue;
-        const gain = inn.ev - out.ev;
-        if (gain <= 0.05) continue;
+        const t = mk([out], [inn], avail - inn.sal);
+        if (t.score <= 0.05) continue;
         if (inn.pos !== out.pos && !validFull([...rest, inn])) continue;
-        singles.push({ out: [out], in: [inn], gain, cashAfter: avail - inn.sal });
+        singles.push(t);
       }
     }
-    singles.sort((a, b) => b.gain - a.gain);
+    singles.sort((a, b) => b.score - a.score);
     const cnt = new Map(), s1 = [];
     for (const t of singles) { const n = cnt.get(t.out[0].key) || 0; if (n < 3) { cnt.set(t.out[0].key, n + 1); s1.push(t); } if (s1.length >= 20) break; }
-    const top = cand.slice().sort((a, b) => b.ev - a.ev).slice(0, 160), doubles = [];
+    const top = cand.slice().sort((a, b) => (b.ev + mwW * mwOf(b)) - (a.ev + mwW * mwOf(a))).slice(0, 160), doubles = [];
     for (let i = 0; i < team.length; i++) for (let j = i + 1; j < team.length; j++) {
-      const o1 = team[i], o2 = team[j], avail = cash + o1.sal + o2.sal, rest = team.filter(p => p !== o1 && p !== o2), oev = o1.ev + o2.ev;
+      const o1 = team[i], o2 = team[j], avail = cash + o1.sal + o2.sal, rest = team.filter(p => p !== o1 && p !== o2);
+      const oScore = o1.ev + o2.ev + mwW * (mwOf(o1) + mwOf(o2));
       let best = null;
       for (let a = 0; a < top.length; a++) {
         const x = top[a]; if (x.sal >= avail) continue;
         for (let b = a + 1; b < top.length; b++) {
           const y = top[b];
           if (x.sal + y.sal > avail + 1e-9) continue;
-          const gain = x.ev + y.ev - oev;
-          if (best && gain <= best.gain) continue;
+          const score = x.ev + y.ev + mwW * (mwOf(x) + mwOf(y)) - oScore;
+          if (best && score <= best.score) continue;
           if (!validFull([...rest, x, y])) continue;
-          best = { out: [o1, o2], in: [x, y], gain, cashAfter: avail - x.sal - y.sal };
+          best = mk([o1, o2], [x, y], avail - x.sal - y.sal);
         }
       }
-      if (best && best.gain > 0.05) doubles.push(best);
+      if (best && best.score > 0.05) doubles.push(best);
     }
-    doubles.sort((a, b) => b.gain - a.gain);
+    doubles.sort((a, b) => b.score - a.score);
     return { singles: s1, doubles: doubles.slice(0, 15) };
   }
 
@@ -322,7 +388,7 @@
     .filter(([k]) => k !== 'lock' || new Date() < LOCK_END)
     .map(([k, h]) => `<button type="button" class="seg-btn${horizonOf(st) === k ? ' active' : ''}" data-horizon="${k}">${h.label}</button>`).join('')}</div></div>`;
   const mountHorizon = (root, ctx) => root.querySelectorAll('[data-horizon]').forEach(b => b.addEventListener('click', () => { ctx.store.set('horizon', b.dataset.horizon); ctx.refresh(); }));
-  const DATA = ['usm-base', '?usm-schedule', '?sport:aliases', '?sport:live-projections', '?sport:projections-consensus'];
+  const DATA = ['usm-base', '?usm-snapshots', '?usm-schedule', '?sport:aliases', '?sport:live-projections', '?sport:projections-consensus', '?sport:injuries'];
 
   // ======================= DRAFT & VALUE =======================
   MFHFB.pages.register({
@@ -544,20 +610,22 @@
       const ps = team.keys.map(k => pool.byKey.get(k)).filter(Boolean), miss = team.keys.length - ps.length;
       const cash = team.cash || 0, salSum = sum(ps, p => p.sal), val = salSum + cash, start = sum(ps, p => p.firstSal ?? p.sal) + cash, dv = val - start;
       const dc = d => d == null ? '–' : `<span class="${d > 0.004 ? 'up' : d < -0.004 ? 'down' : 'muted'}">${d > 0 ? '+' : ''}${f1(d, 2)}</span>`;
+      const zc = p => p.tgt == null ? '–' : p.frozen ? `<span class="muted" title="Unter ${MIN_GAMES} Spielen: kein Gehalts-Update">${p.gap > 0 ? '+' : ''}${f1(p.gap, 2)}*</span>` : dc(p.gap);
       return head('Mein Team &amp; Trades', `Gehälter vom ${fmtDate(pool.date)} · ${pool.snapshots.length} Snapshot${pool.snapshots.length > 1 ? 's' : ''}`)
-        + `<div class="stat-row usm-row">${stat('Teamwert', f1(val, 2))}${stat('Δ seit Start', `<span class="${dv >= 0 ? 'up' : 'down'}">${dv >= 0 ? '+' : ''}${f1(dv, 2)}</span>`)}${stat('Gehälter', f1(salSum, 2))}${stat('Restbudget', f1(cash, 2))}${stat(pool.unit, f1(sum(ps, p => p.ev)))}</div>`
+        + `<div class="stat-row usm-row">${stat('Teamwert', f1(val, 2))}${stat('Δ seit Start', `<span class="${dv >= 0 ? 'up' : 'down'}">${dv >= 0 ? '+' : ''}${f1(dv, 2)}</span>`)}${stat('Gehälter', f1(salSum, 2))}${stat('Restbudget', f1(cash, 2))}${stat(pool.unit, f1(sum(ps, p => p.ev)))}${stat('Δ Ziel (Kader)', dc(sum(ps, p => p.frozen ? 0 : p.gap)))}</div>`
         + horizonSeg(store) + `
         <section class="card" data-share="Mein US-Manager-Team">
           <div class="card-head"><h2>Kader</h2><label class="muted usm-small">Restbudget <input type="number" class="usm-ovr usm-cash" id="usmCash" step="0.01" value="${f1(cash, 2)}"></label></div>
-          <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Gehalt</th><th class="num">Δ Woche</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num">FP/G proj</th>${pool.horizon === 'game' ? '' : '<th class="num">Sp.</th>'}<th class="num">EV</th><th class="num">FP/Mio</th></tr></thead><tbody>
+          <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Gehalt</th><th class="num">Δ Woche</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num" title="Geschätztes Gehalt laut Modell (echte FP/G dieser Saison)">Ziel</th><th class="num">Δ Ziel</th><th class="num">FP/G proj</th>${pool.horizon === 'game' ? '' : '<th class="num">Sp.</th>'}<th class="num">EV</th><th class="num">FP/Mio</th></tr></thead><tbody>
           ${ps.slice().sort((a, b) => a.pos.localeCompare(b.pos) || b.sal - a.sal).map(p => `<tr><td>${p.pos}</td><td class="strong usm-name">${e(p.short)}${tags(p)}</td><td>${p.abbr}</td>
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${dc(p.prevSal != null ? p.sal - p.prevSal : null)}</td><td class="num">${dc(p.firstSal != null ? p.sal - p.firstSal : null)}</td>
-            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${f1(p.fpg)}</td>${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td></tr>`).join('')}
-          ${miss ? `<tr><td colspan="11" class="down">${miss} Spieler fehlen im aktuellen Snapshot.</td></tr>` : ''}</tbody></table></div>
+            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${p.tgt == null ? '–' : f1(p.tgt, 2)}</td><td class="num">${zc(p)}</td><td class="num">${f1(p.fpg)}</td>${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td></tr>`).join('')}
+          ${miss ? `<tr><td colspan="13" class="down">${miss} Spieler fehlen im aktuellen Snapshot.</td></tr>` : ''}</tbody></table></div>
+          <p class="muted usm-small usm-pad">Ziel = geschätztes Gehalt nach dem Modell (Startgehälter ≈ ${f1(pool.fit.a, 2)} + ${f1(pool.fit.b, 3)} · FP/G der Vorsaison), eingesetzt mit den echten FP/G dieser Saison. * = unter ${MIN_GAMES} Spielen, noch kein Gehalts-Update. ${pool.cal ? `Kalibriert am Update ${fmtDate(pool.cal.to)}: pro Update schließt sich etwa ${Math.round(pool.cal.lambda * 100)} % der Lücke.` : 'Wie schnell sich die Lücke schließt, kalibriert das Tool automatisch, sobald es zwei Snapshots mit Gehaltsänderungen gibt (ab 15.11.).'} Die Formel von basketball.de ist geheim (auch Käufe/Verkäufe zählen) – Schätzung.${pool.injDate ? ` Verletzungen: ESPN, Stand ${new Date(pool.injDate).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}.` : ''}</p>
         </section>
         <section class="card usm-mt">
-          <div class="card-head"><h2>Trade-Finder</h2><span class="usm-opts usm-inline"><label>Min. Minuten <input type="number" id="usmTrMin" value="14" min="0" max="40"></label><button class="usm-btn primary" id="usmTrBtn">Trades suchen</button></span></div>
-          <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten Punkten im gewählten Zeitraum (${HORIZONS[pool.horizon].label}), inkl. Spielplan. Ein Zusatz-Trade kostet ${TRADE_COST} Mio Budget. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
+          <div class="card-head"><h2>Trade-Finder</h2><span class="usm-opts usm-inline"><label>Min. Minuten <input type="number" id="usmTrMin" value="14" min="0" max="40"></label><label class="usm-small"><input type="checkbox" id="usmTrMw" checked> Marktwert einbeziehen</label><button class="usm-btn primary" id="usmTrBtn">Trades suchen</button></span></div>
+          <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten Punkten im gewählten Zeitraum (${HORIZONS[pool.horizon].label}), inkl. Spielplan und ESPN-Verletzungen. ΔMW = geschätzter Marktwert-Gewinn (Ziel-Gehalt rein minus raus, unter 6 Spielen halb gewichtet). Mit „Marktwert einbeziehen“ zählt 1 Mio ΔMW wie ${f1(0.5 / pool.fit.b * (pool.horizon === 'game' ? 1 : pool.scale), 1)} ${pool.unit}. Der <b>Helpside Trade</b> ist gratis (1×, verfällt nicht); in der Trade-Phase 3 Start-Trades + 1 gratis pro Sonntag, jeder weitere kostet ${TRADE_COST} Mio. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
         </section>`;
     },
     mount(root, ctx) {
@@ -571,13 +639,14 @@
         const b = ev.currentTarget; b.disabled = true; b.textContent = 'Suche…';
         setTimeout(() => {
           const pool = buildPool(ctx.data, st), ps = team.keys.map(k => pool.byKey.get(k)).filter(Boolean);
-          const r = findTrades(pool.players, ps, team.cash || 0, +root.querySelector('#usmTrMin').value || 0);
+          const mwW = root.querySelector('#usmTrMw').checked ? 0.5 / pool.fit.b * (pool.horizon === 'game' ? 1 : pool.scale) : 0;
+          const r = findTrades(pool.players, ps, team.cash || 0, +root.querySelector('#usmTrMin').value || 0, mwW);
           last = [...r.singles, ...r.doubles];
           const rg = remainingGames();
           const block = (title, l, off) => `<div class="group-title">${title}</div>` + (l.length ? l.map((t, i) => `<div class="usm-trade">
               <div><div class="usm-lbl">Raus</div>${t.out.map(p => `${p.pos} ${e(p.short)} <span class="usm-m">${f1(p.sal, 2)} · ${f1(p.ev)}</span>`).join('<br>')}</div>
               <div><div class="usm-lbl">Rein</div>${t.in.map(p => `${p.pos} ${e(p.short)}${tags(p)} <span class="usm-m">${p.abbr} · ${f1(p.sal, 2)} · ${f1(p.ev)}</span>`).join('<br>')}</div>
-              <div class="usm-gain">+${f1(t.gain)} ${pool.unit}<br><span class="usm-m">${pool.horizon === 'game' ? `≈ +${Math.round(t.gain * rg)} Saison · ` : ''}Rest ${f1(t.cashAfter, 2)}</span></div>
+              <div class="usm-gain">${t.gain >= 0 ? '+' : ''}${f1(t.gain)} ${pool.unit}<br><span class="usm-m">ΔMW ${t.dmw >= 0 ? '+' : ''}${f1(t.dmw, 2)} · ${pool.horizon === 'game' ? `≈ +${Math.round(t.gain * rg)} Saison · ` : ''}Rest ${f1(t.cashAfter, 2)}</span></div>
               <div><button class="usm-btn" data-apply="${off + i}">Ausführen</button></div></div>`).join('') : '<div class="muted usm-small">Keine Verbesserung gefunden.</div>');
           root.querySelector('#usmTrOut').className = '';
           root.querySelector('#usmTrOut').innerHTML = block('1-für-1', r.singles, 0) + block('2-für-2 (2 Trades)', r.doubles, r.singles.length);
@@ -604,12 +673,12 @@
       const pool = buildPool(data, store);
       return head('Gehälter', `Aktuell: ${fmtDate(pool.date)} · Gehalts-Updates jeden Sonntag 22:00, erstes am 15.11.2026`)
         + `<section class="card"><div class="card-head"><h2>Snapshots</h2></div><div class="usm-pad">
-          ${pool.snapshots.map(s => `<div class="usm-r"><span class="usm-n">${fmtDate(s.date)}${s.base ? ' <span class="usm-tag est">Basis</span>' : ''}</span><span class="usm-m">${s.players.length} Spieler</span>${s.base ? '' : `<button class="usm-x" data-snapdel="${s.date}" aria-label="Löschen">×</button>`}</div>`).join('')}
+          ${pool.snapshots.map(s => `<div class="usm-r"><span class="usm-n">${fmtDate(s.date)}${s.base ? ' <span class="usm-tag est">Basis</span>' : ''}</span><span class="usm-m">${s.players.length} Spieler</span>${s.repo ? ' <span class="usm-tag est">Repo</span>' : ''}${s.base || s.repo ? '' : `<button class="usm-x" data-snapdel="${s.date}" aria-label="Löschen">×</button>`}</div>`).join('')}
           ${pool.snapshots.length < 2 ? '<p class="muted usm-small">Veränderungen gibt es ab dem zweiten Snapshot (Import nach dem Update am 15.11.).</p>' : ''}</div></section>
         <section class="card usm-mt"><div class="usm-pad"><div class="usm-filters">
           <input type="search" class="usm-input" id="usmSalQ" placeholder="Spieler suchen…">
           <label class="usm-small"><input type="checkbox" id="usmSalMine"> nur mein Team</label>
-          <select class="usm-input usm-sel" id="usmSalSort"><option value="d1">Δ letzte Woche ↓</option><option value="d1a">Δ letzte Woche ↑</option><option value="d0">Δ seit Start ↓</option><option value="sal">Gehalt</option></select>
+          <select class="usm-input usm-sel" id="usmSalSort"><option value="d1">Δ letzte Woche ↓</option><option value="d1a">Δ letzte Woche ↑</option><option value="d0">Δ seit Start ↓</option><option value="gap">Δ Ziel ↓ (steigt eher)</option><option value="gapa">Δ Ziel ↑ (fällt eher)</option><option value="sal">Gehalt</option></select>
         </div></div><div class="usm-tbl"><table class="table compact usm-table" id="usmSalTbl"></table></div></section>`;
     },
     mount(root, ctx) {
@@ -620,11 +689,12 @@
       function tbl() {
         const q = $('usmSalQ').value.trim().toLowerCase(), s = $('usmSalSort').value;
         let l = pool.players.filter(p => p.team !== 'Free Agents' && (!$('usmSalMine').checked || mine.has(p.key)) && (!q || p.short.toLowerCase().includes(q)));
-        l.sort((a, b) => s === 'd1' ? d1(b) - d1(a) : s === 'd1a' ? d1(a) - d1(b) : s === 'd0' ? d0(b) - d0(a) : b.sal - a.sal);
-        $('usmSalTbl').innerHTML = `<thead><tr><th>Spieler</th><th>Team</th><th>Pos</th><th class="num">Gehalt</th><th class="num">Vorwoche</th><th class="num">Δ Woche</th><th class="num">Start</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num">FP/G proj</th></tr></thead><tbody>`
+        const gz = p => p.tgt == null ? -99 : p.gap, gza = p => p.tgt == null ? 99 : p.gap;
+        l.sort((a, b) => s === 'd1' ? d1(b) - d1(a) : s === 'd1a' ? d1(a) - d1(b) : s === 'd0' ? d0(b) - d0(a) : s === 'gap' ? gz(b) - gz(a) : s === 'gapa' ? gza(a) - gza(b) : b.sal - a.sal);
+        $('usmSalTbl').innerHTML = `<thead><tr><th>Spieler</th><th>Team</th><th>Pos</th><th class="num">Gehalt</th><th class="num">Vorwoche</th><th class="num">Δ Woche</th><th class="num">Start</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num">Ziel</th><th class="num">Δ Ziel</th><th class="num">FP/G proj</th></tr></thead><tbody>`
           + l.slice(0, 200).map(p => `<tr><td class="strong usm-name">${e(p.short)}${mine.has(p.key) ? ' <span class="usm-tag r">Team</span>' : ''}</td><td>${p.abbr}</td><td>${p.pos}</td>
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${f1(p.prevSal, 2)}</td><td class="num">${dc(d1(p))}</td><td class="num">${f1(p.firstSal, 2)}</td><td class="num">${dc(d0(p))}</td>
-            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${f1(p.fpg)}</td></tr>`).join('') + '</tbody>';
+            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${p.tgt == null ? '–' : f1(p.tgt, 2)}</td><td class="num">${p.tgt == null ? '–' : p.frozen ? `<span class="muted" title="Unter ${MIN_GAMES} Spielen">${p.gap > 0 ? '+' : ''}${f1(p.gap, 2)}*</span>` : dc(p.gap)}</td><td class="num">${f1(p.fpg)}</td></tr>`).join('') + '</tbody>';
       }
       $('usmSalQ').addEventListener('input', tbl);
       ['usmSalMine', 'usmSalSort'].forEach(id => $(id).addEventListener('change', tbl));

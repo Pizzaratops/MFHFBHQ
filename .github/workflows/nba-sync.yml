@@ -306,6 +306,13 @@ jobs:
           python scripts/xstats-pbp.py --force
           python scripts/build-pbp-insights.py --force
 
+      # Seit 10.11.2026: ESPN-Verletzungsliste → data/injuries.js (US-Manager-Verfügbarkeit).
+      # Schreibt nur bei inhaltlicher Änderung.
+      - name: Verletzungen (ESPN)
+        id: injuries
+        continue-on-error: true
+        run: node scripts/sync-injuries.js
+
       # Seit 15.10.2026 EINMAL für alle NBA-Ligen (vorher je Liga):
       # Baseline/Consensus (sports/nba/data/projections-*.js) + Saison-CSVs.
       - name: Live Projections (sportweit)
@@ -346,7 +353,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.daily.outcome == 'failure' || steps.preseason.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.pbpgate.outcome == 'failure' || steps.pbpins.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure' || steps.nba30.outcome == 'failure'
+        if: steps.daily.outcome == 'failure' || steps.preseason.outcome == 'failure' || steps.livescores.outcome == 'failure' || steps.boxscores.outcome == 'failure' || steps.prune.outcome == 'failure' || steps.aggregate.outcome == 'failure' || steps.offseason.outcome == 'failure' || steps.postdraft.outcome == 'failure' || steps.rolling.outcome == 'failure' || steps.pbpgate.outcome == 'failure' || steps.pbpins.outcome == 'failure' || steps.liveproj.outcome == 'failure' || steps.injuries.outcome == 'failure' || steps.powerrank.outcome == 'failure' || steps.powerscore.outcome == 'failure' || steps.nba30.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben). Die übrigen Daten wurden trotzdem gespeichert."
           exit 1
