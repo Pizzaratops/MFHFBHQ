@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T21:24:05.376Z",
+  "updated": "2026-11-10T21:47:10.626Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -14,7 +14,7 @@ const NBA_INJURIES = {
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-13","Achilles",0,"2026-11-10"],
     "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-12","Groin",0,"2026-11-10"],
-    "Brandon Williams": ["GS","Day-To-Day","GTD","2026-11-11","Hamstring",0,"2026-11-10"],
+    "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
     "Cam Christie": ["LAC","Day-To-Day","GTD","2026-11-10","Ankle",0,"2026-11-09"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
@@ -26,7 +26,7 @@ const NBA_INJURIES = {
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-04"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Egor Demin": ["BKN","Out","GTD","2026-11-11","Leg",0,"2026-10-29"],
-    "Gary Payton II": ["GS","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-10"],
+    "Gary Payton II": ["GS","Out","OUT","2026-11-13","Knee",0,"2026-11-10"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-10","Wrist",0,"2026-11-09"],
     "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-10","Knee",0,"2026-11-08"],
     "Grant Williams": ["CHA","Out","GTD","2026-11-12","Hamstring",0,"2026-11-08"],
@@ -90,7 +90,7 @@ const NBA_INJURIES = {
     "Tyler Herro": ["MIL","Day-To-Day","GTD","2026-11-10","Knee",0,"2026-11-09"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-13","Hamstring",0,"2026-11-07"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-02","Ankle",0,"2026-11-05"],
-    "Will Richard": ["GS","Out","OUT","2026-11-16","Thumb",0,"2026-11-10"],
+    "Will Richard": ["GS","Out","GTD","2026-11-11","Thumb",0,"2026-11-10"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-17","Foot",0,"2026-11-10"],
     "Yves Missi": ["NO","Out","OUT","2026-11-16","Knee",0,"2026-11-05"],
     "Zach Collins": ["CHI","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-09"]
