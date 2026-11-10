@@ -1,0 +1,114 @@
+{
+  "league": "nba",
+  "date": "2026-11-10",
+  "games": [
+    {
+      "id": "401909960",
+      "line": "Milwaukee Bucks @ New York Knicks (11/10 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/10 - 7:30 PM EST",
+      "away": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909961",
+      "line": "Boston Celtics @ Philadelphia 76ers (11/10 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/10 - 8:00 PM EST",
+      "away": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909962",
+      "line": "LA Clippers @ Phoenix Suns (11/10 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/10 - 9:00 PM EST",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909963",
+      "line": "Miami Heat @ Utah Jazz (11/10 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/10 - 9:00 PM EST",
+      "away": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909964",
+      "line": "Orlando Magic @ Sacramento Kings (11/10 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/10 - 10:00 PM EST",
+      "away": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909965",
+      "line": "Oklahoma City Thunder @ Portland Trail Blazers (11/10 - 11:00 PM EST)",
+      "completed": false,
+      "statusText": "11/10 - 11:00 PM EST",
+      "away": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
