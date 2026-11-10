@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-10T10:08:49.181Z
+//  Stand: 2026-11-10T18:00:27.716Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -588,7 +588,7 @@ const WC_PLAYER_POOL = [
 ["05wqq","Javonte Smart","(N/A)","PG","PG,G,Flx","FA"],
 ["051oo","Jaxson Hayes","UTA","C","C,Flx","T"],
 ["07ard","Jaxson Robinson","(N/A)","SG","SG,G,Flx","FA"],
-["05uup","Jay Huff","IND","C","C,Flx","T"],
+["05uup","Jay Huff","IND","C","C,Flx","FA"],
 ["05qsy","Jay Scrubb","(N/A)","SG","SG,G,Flx","FA"],
 ["07aa7","Jayden Nunn","(N/A)","SG","SG,G,Flx","FA"],
 ["076t8","Jayden Quaintance","SAS","PF","PF,F,Flx","FA"],
@@ -809,7 +809,7 @@ const WC_PLAYER_POOL = [
 ["0728s","Lamont Butler","(N/A)","PG","PG,SG,G,Flx","FA"],
 ["06mon","Lance Jones","(N/A)","G","PG,SG,G,Flx","FA"],
 ["06hhm","Landers Nolley","(N/A)","SG","SG,G,Flx","FA"],
-["04qs3","Landry Shamet","NYK","SG","SG,G,Flx","FA"],
+["04qs3","Landry Shamet","NYK","SG","SG,G,Flx","T"],
 ["03r7l","Larry Nance","IND","PF","PF,C,F,Flx","FA"],
 ["07atk","Latrell Wrightsell","(N/A)","G","PG,SG,G,Flx","FA"],
 ["04azw","Lauri Markkanen","UTA","PF","SF,PF,F,Flx","T"],
@@ -1115,7 +1115,7 @@ const WC_PLAYER_POOL = [
 ["06cel","Sidy Cissoko","POR","SF","SF,F,Flx","FA"],
 ["059g5","Simi Shittu","(N/A)","PF","PF,C,F,Flx","FA"],
 ["062pk","Simone Fontecchio","MIA","SF","SF,PF,F,Flx","FA"],
-["06v7z","Sion James","CHA","SG","SG,G,SF,F,Flx","T"],
+["06v7z","Sion James","CHA","SG","SG,G,SF,F,Flx","FA"],
 ["06cem","SirJabari Rice","(N/A)","SG","SG,G,Flx","FA"],
 ["042np","Skal Labissiere","(N/A)","PF","PF,C,F,Flx","FA"],
 ["05qtu","Skylar Mays","(N/A)","SG","SG,G,Flx","FA"],
@@ -1203,7 +1203,7 @@ const WC_PLAYER_POOL = [
 ["06moq","Trey Woodbury","(N/A)","G","PG,SG,G,Flx","FA"],
 ["06qf7","Trhae Mitchell","(N/A)","G","PG,SG,G,Flx","FA"],
 ["06mka","Tristan da Silva","ORL","SF","SF,PF,F,Flx","T"],
-["06prk","Tristan Enaruna","CLE","SF","SF,F,Flx","FA"],
+["06prk","Tristan Enaruna","(N/A)","SF","SF,F,Flx","FA"],
 ["06ccu","Tristan Vukcevic","WAS","C","C,Flx","FA"],
 ["06mlv","Tristen Newton","(N/A)","SG","SG,G,Flx","FA"],
 ["04qrs","Troy Brown","(N/A)","SF","SF,F,Flx","FA"],
