@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-10T23:40:40.370Z",
+  "updated": "2026-11-11T00:49:07.938Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -25,7 +25,7 @@ const NBA_INJURIES = {
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Egor Demin": ["BKN","Out","GTD","2026-11-11","Leg",0,"2026-11-10"],
     "Gary Payton II": ["GS","Out","OUT","2026-11-13","Knee",0,"2026-11-10"],
-    "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-10","Wrist",0,"2026-11-09"],
+    "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-10","Wrist",0,"2026-11-11"],
     "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-10","Knee",0,"2026-11-08"],
     "Grant Williams": ["CHA","Out","GTD","2026-11-12","Hamstring",0,"2026-11-08"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
