@@ -1,0 +1,16 @@
+{
+  "league": "nba",
+  "date": "2026-11-10",
+  "games": [
+    "Milwaukee Bucks 85 @ New York Knicks 117 (Final)",
+    "Boston Celtics @ Philadelphia 76ers (9:34 - 4th)",
+    "LA Clippers @ Phoenix Suns (2:05 - 2nd)",
+    "Miami Heat @ Utah Jazz (7:08 - 2nd)",
+    "Orlando Magic @ Sacramento Kings (11/10 - 10:00 PM EST)",
+    "Oklahoma City Thunder @ Portland Trail Blazers (11/10 - 11:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 41.7,
+    "ft": 82.9
+  }
+}
