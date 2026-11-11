@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-11T15:35:39.430Z",
+  "generatedAt": "2026-11-11T16:01:26.853Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 12 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -69,7 +69,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 448.6,
         "reb": 164.8,
         "ast": 109.3,
-        "stl": 30.09,
+        "stl": 30.14,
         "blk": 20.25,
         "tpm": 40.9,
         "to": 57.5,
@@ -131,7 +131,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 347.4,
         "reb": 113.4,
         "ast": 78.7,
-        "stl": 26.18,
+        "stl": 26.23,
         "blk": 12.6,
         "tpm": 44.9,
         "to": 39.3,
@@ -196,14 +196,14 @@ const FANTASY_POWER_SCORE = {
         "stl": 19.83,
         "blk": 10.83,
         "tpm": 33.4,
-        "to": 36.1,
+        "to": 36,
         "fgPct": 46.9,
         "ftPct": 81.9
       },
       "rank": {
         "pts": 8,
         "reb": 10,
-        "ast": 9,
+        "ast": 8,
         "stl": 11,
         "blk": 11,
         "tpm": 7,
@@ -290,7 +290,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 321.6,
         "reb": 152.2,
         "ast": 77.5,
-        "stl": 23.13,
+        "stl": 23.08,
         "blk": 17.55,
         "tpm": 32.7,
         "to": 41.5,
@@ -349,20 +349,20 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 285.3,
-        "reb": 115.7,
-        "ast": 68,
-        "stl": 21.27,
-        "blk": 14.99,
-        "tpm": 30.4,
-        "to": 38.7,
-        "fgPct": 47.1,
-        "ftPct": 78.3
+        "pts": 286.6,
+        "reb": 117.5,
+        "ast": 67,
+        "stl": 21.03,
+        "blk": 14.97,
+        "tpm": 31,
+        "to": 38.3,
+        "fgPct": 47,
+        "ftPct": 78
       },
       "rank": {
         "pts": 9,
         "reb": 7,
-        "ast": 8,
+        "ast": 9,
         "stl": 9,
         "blk": 4,
         "tpm": 10,
@@ -383,7 +383,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 361.3,
         "reb": 123.4,
         "ast": 91.2,
-        "stl": 25.27,
+        "stl": 25.22,
         "blk": 14.48,
         "tpm": 39.3,
         "to": 46.9,
