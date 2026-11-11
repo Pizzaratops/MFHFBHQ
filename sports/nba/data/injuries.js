@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T17:03:49.507Z",
+  "updated": "2026-11-11T17:24:16.310Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -92,7 +92,7 @@ const NBA_INJURIES = {
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-13","Hamstring",0,"2026-11-07"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-13","Foot",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-02","Ankle",0,"2026-11-05"],
-    "Will Richard": ["GS","Out","GTD","2026-11-11","Thumb",0,"2026-11-10"],
+    "Will Richard": ["GS","Day-To-Day","GTD","2026-11-11","Thumb",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-17","Foot",0,"2026-11-10"],
     "Yves Missi": ["NO","Out","OUT","2026-11-16","Knee",0,"2026-11-05"],
     "Zach Collins": ["CHI","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-10"]
