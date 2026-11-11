@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T17:24:16.310Z",
+  "updated": "2026-11-11T17:52:30.182Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -24,7 +24,6 @@ const NBA_INJURIES = {
     "Devin Vassell": ["SA","Day-To-Day","GTD","2026-11-11","Groin",0,"2026-11-10"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-04"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Egor Demin": ["BKN","Out","GTD","2026-11-11","Leg",0,"2026-11-10"],
     "Gary Payton II": ["GS","Out","OUT","2026-11-13","Knee",0,"2026-11-10"],
     "Grant Williams": ["CHA","Out","GTD","2026-11-12","Hamstring",0,"2026-11-08"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
@@ -83,7 +82,7 @@ const NBA_INJURIES = {
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-13","Knee",0,"2026-11-03"],
     "Tobe Awaka": ["CHI","Day-To-Day","GTD","2026-11-11","Back",0,"2026-11-10"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
-    "Trayce Jackson-Davis": ["TOR","Day-To-Day","GTD","2026-11-11","Illness",0,"2026-11-10"],
+    "Trayce Jackson-Davis": ["TOR","Out","OUT","2026-11-12","Illness",0,"2026-11-11"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-13","Ankle",0,"2026-11-10"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-11"],
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-11"],
