@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T18:01:03.551Z",
+  "updated": "2026-11-11T18:36:44.714Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -14,6 +14,7 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","GTD","2026-11-13","Achilles",0,"2026-11-10"],
     "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-12","Groin",0,"2026-11-10"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
+    "Caleb Wilson": ["CHI","Day-To-Day","GTD","2026-11-11","Hip",0,"2026-11-11"],
     "Cam Christie": ["LAC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-11"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
@@ -44,16 +45,17 @@ const NBA_INJURIES = {
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
-    "Josh Hart": ["NY","Out","GTD","2026-11-11","Illness",0,"2026-11-10"],
+    "Josh Hart": ["NY","Out","GTD","2026-11-11","Illness",0,"2026-11-11"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
+    "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-11"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-10"],
     "Keshon Gilbert": ["ATL","Out","GTD","2026-11-13","Knee",0,"2026-11-08"],
     "Keyonte George": ["UTAH","Day-To-Day","GTD","2026-11-11","Ankle",0,"2026-11-11"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
-    "Lauri Markkanen": ["UTAH","Day-To-Day","GTD","2026-11-11","Wrist",0,"2026-11-11"],
+    "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Wrist",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
     "Mikel Brown Jr.": ["BKN","Out","OUT","2026-11-14","Illness",0,"2026-11-11"],
