@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T22:55:51.070Z",
+  "updated": "2026-11-11T23:25:46.437Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
     "Ajay Mitchell": ["OKC","Out","OUT","2026-11-13","Ankle",0,"2026-11-11"],
@@ -23,7 +23,7 @@ const NBA_INJURIES = {
     "Clint Capela": ["HOU","Out","OUT","2026-11-15","Ankle",0,"2026-11-09"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
-    "Devin Vassell": ["SA","Day-To-Day","GTD","2026-11-11","Groin",0,"2026-11-10"],
+    "Devin Vassell": ["SA","Day-To-Day","OUT","2026-11-13","Groin",0,"2026-11-10"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-04"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Gary Payton II": ["GS","Out","OUT","2026-11-13","Knee",0,"2026-11-10"],
@@ -82,7 +82,6 @@ const NBA_INJURIES = {
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Steven Adams": ["HOU","Out","OUT","2026-11-15","Calf",0,"2026-11-09"],
-    "T.J. McConnell": ["IND","Day-To-Day","","","",0,"2026-11-10"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-13","Knee",0,"2026-11-03"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-13","Back",0,"2026-11-11"],
