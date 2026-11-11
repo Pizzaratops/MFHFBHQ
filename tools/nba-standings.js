@@ -254,7 +254,9 @@
   function rsChart(ctx, M, width) {
     const nba = N(), tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
     const final = M.byWeek[M.weeks[M.weeks.length - 1]];
-    const name = id => { const i = M.s.teams && M.s.teams[id]; return (i && i.name) || (i && tmap.get(i.teamId) || {}).name || 'Team ' + id; };
+    // Laufende Saison: aktueller Teamname aus der Liga (Umbenennungen, z. B. Funkytown „Cook Island Airballers“);
+    // alte Saisons behalten den damaligen Namen.
+    const name = id => { const i = M.s.teams && M.s.teams[id], cur = i && tmap.get(i.teamId); return (M.s.current && cur && cur.name) || (i && i.name) || (cur || {}).name || 'Team ' + id; };
     const rows = final.map(r => ({ id: String(r.team), name: name(r.team), ranks: M.weeks.map(w => (M.byWeek[w].find(x => x.team === r.team) || {}).rank ?? null), tips: M.weeks.map(w => { const x = M.byWeek[w].find(y => y.team === r.team); return x ? `${name(r.team)} · W${w}: Platz ${x.rank} · Kat. ${x.cw}-${x.cl}-${x.ct} · Matchups ${x.mw}-${x.ml}-${x.mt}` : ''; }) }));
     return MFHFB.charts.bump({ cols: M.weeks.map(w => 'W' + w), rows, sel: M.sel, width, maxRank: final.length, label: 'Tabellenverlauf' });
   }
@@ -267,7 +269,7 @@
     const liga = leagueMode(ctx);
     const head = `<div class="page-head"><h1 class="page-title display">🏆 Tabelle</h1><div class="page-sub explain">${M ? e(M.s.label) + (M.s.current ? ' (laufend)' : '') : 'Laufende Saison'} · Liga wertet nach ${liga === 'matchups' ? 'Matchups (Most Categories)' : 'Kategorien: jede gewonnene Kategorie zählt als Sieg'}</div></div>`;
     const tmap = new Map(nba.leagueTeams(ctx.data, true).map(t => [t.id, t]));
-    const info = id => { const i = (M && M.s.teams && M.s.teams[id]) || {}; const t = tmap.get(i.teamId); return { name: i.name || (t && t.name) || 'Team ' + id, t }; };
+    const info = id => { const i = (M && M.s.teams && M.s.teams[id]) || {}; const t = tmap.get(i.teamId); return { name: (M && M.s.current && t && t.name) || i.name || (t && t.name) || 'Team ' + id, t }; };
     const lastW = M ? M.weeks[M.weeks.length - 1] : null, prevW = M && M.weeks.length > 1 ? M.weeks[M.weeks.length - 2] : null;
     const final = M ? M.byWeek[lastW] : [];
     const controls = `<div class="controls">

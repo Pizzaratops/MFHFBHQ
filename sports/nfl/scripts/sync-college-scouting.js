@@ -73,7 +73,8 @@ const https = require('https');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'data', 'college-scouting.js');
-const API_KEY = process.env.CFBD_API_KEY;
+// trim(): ein Zeilenumbruch im GitHub-Secret machte den Authorization-Header ungültig (11.11.2026)
+const API_KEY = (process.env.CFBD_API_KEY || '').trim();
 const REBUILD = process.env.COLLEGE_REBUILD === '1';
 const HIST_START = 2013;
 

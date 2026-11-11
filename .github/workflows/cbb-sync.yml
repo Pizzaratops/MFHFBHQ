@@ -53,6 +53,10 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          # aktuellen Branch-Stand holen (nicht den Commit vom Auslösezeitpunkt) – sonst
+          # arbeitet ein wartender Lauf auf altem Stand und der Push endet im Rebase-Konflikt
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-node@v4
         with:
@@ -154,7 +158,7 @@ jobs:
             if git push; then exit 0; fi
             echo "Push fehlgeschlagen (Versuch $i/5) -- hole aktuellen Stand und versuche erneut..."
             git fetch origin main
-            git rebase origin/main
+            git rebase -X theirs origin/main || git rebase --abort
             sleep $((RANDOM % 8 + 3))
           done
           echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."

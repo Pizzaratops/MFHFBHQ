@@ -25,6 +25,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          # aktuellen Branch-Stand holen (nicht den Commit vom Auslösezeitpunkt) – sonst
+          # arbeitet ein wartender Lauf auf altem Stand und der Push endet im Rebase-Konflikt
+          ref: ${{ github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 20
