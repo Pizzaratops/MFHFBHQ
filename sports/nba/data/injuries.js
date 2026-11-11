@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T18:36:44.714Z",
+  "updated": "2026-11-11T18:51:40.721Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -55,7 +55,7 @@ const NBA_INJURIES = {
     "Keyonte George": ["UTAH","Day-To-Day","GTD","2026-11-11","Ankle",0,"2026-11-11"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
-    "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Wrist",0,"2026-11-11"],
+    "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
     "Mikel Brown Jr.": ["BKN","Out","OUT","2026-11-14","Illness",0,"2026-11-11"],
