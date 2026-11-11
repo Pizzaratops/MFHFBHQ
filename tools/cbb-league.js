@@ -19,6 +19,8 @@
   const MY_OWNER = 'MFHFB'; // Beyaz' Team (Fighting Illini) — für die Hervorhebung
   const SLOT_ORDER = ['G', 'F/C', 'Flx'];
   const fmtD = s => (s ? s.slice(8, 10) + '.' + s.slice(5, 7) + '.' : '');
+  // Anzeige-Ende einer Periode: beginnt am Endtag schon die nächste Woche, ist der Vortag der letzte Tag
+  const lastDay = (p, P) => ((P || []).some(q => q.start === p.end) ? new Date(new Date(p.end + 'T12:00:00Z') - 864e5).toISOString().slice(0, 10) : p.end);
   const today = () => new Date().toISOString().slice(0, 10);
   const myTeam = data => (data.TEAMS || []).find(t => t.owner === MY_OWNER) || null;
 
@@ -26,7 +28,9 @@
   function currentPeriod(data) {
     const P = (data.CBB_SCHEDULE && data.CBB_SCHEDULE.periods) || [];
     const t = today();
-    return P.find(p => p.start <= t && t <= p.end) || P.find(p => p.start > t) || P[P.length - 1] || null;
+    // Fantrax liefert als Ende den Starttag der Folgewoche (Montag) → Ende zählt nur mit,
+    // wenn dort keine neue Woche beginnt (sonst stand montags noch die Vorwoche als aktuell da).
+    return P.find((p, i) => p.start <= t && (t < p.end || (t === p.end && !(P[i + 1] && P[i + 1].start === p.end)))) || P.find(p => p.start > t) || P[P.length - 1] || null;
   }
   const teamById = data => { const m = {}; (data.TEAMS || []).forEach(t => { m[t.id] = t; }); return m; };
   const tLink = (ctx, t, mine) => {
@@ -77,7 +81,7 @@
       </div>
       ${start && MFHFB.ui.countdowns ? MFHFB.ui.countdowns([{ label: '🏀 Saisonstart (Woche 1)', at: start }]) : ''}
       ${thin.length ? `<div class="note">📝 Noch nicht komplett in Fantrax eingetragen (unter 20 Spieler): ${thin.map(t => `<b>${e(t.name)}</b> (${counts(t).all})`).join(', ')}. Die Seite gleicht sich stündlich ab.</div>` : ''}
-      ${cur ? `<div class="card cbb-week"><div class="card-head"><h2>⚔️ ${cur.start > today() ? 'Nächste' : 'Diese'} Woche ${cur.n}${cur.playoff ? ' · Playoffs' : ''}</h2><span class="muted small">${fmtD(cur.start)}–${fmtD(cur.end)}</span></div>
+      ${cur ? `<div class="card cbb-week"><div class="card-head"><h2>⚔️ ${cur.start > today() ? 'Nächste' : 'Diese'} Woche ${cur.n}${cur.playoff ? ' · Playoffs' : ''}</h2><span class="muted small">${fmtD(cur.start)}–${fmtD(lastDay(cur, data.CBB_SCHEDULE && data.CBB_SCHEDULE.periods))}</span></div>
         ${myGames.length ? `<div class="cbb-mine">Deine Gegner: ${myGames.map(m => tLink(ctx, byId[m[0] === me.id ? m[1] : m[0]])).join(' und ')}</div>` : ''}
         <div class="cbb-mgrid">${mList.map(m => `<div class="cbb-m${me && m.includes(me.id) ? ' mine' : ''}">${tLink(ctx, byId[m[0]])}<span class="muted">@</span>${tLink(ctx, byId[m[1]])}</div>`).join('')}</div>
         <div class="small muted" style="padding:6px 14px 12px"><a href="${href('cbbschedule')}">Ganzer Spielplan →</a></div></div>` : ''}
@@ -155,7 +159,7 @@
     const teams = N().leagueTeams(data, true);
     const card = p => {
       const ms = focus ? p.matchups.filter(m => m.includes(focus)) : p.matchups;
-      return `<div class="card cbb-week${cur && p.n === cur.n ? ' now' : ''}"><div class="card-head"><h2>Woche ${p.n}${p.playoff ? ' · 🏆 Playoffs' : ''}</h2><span class="muted small">${fmtD(p.start)}–${fmtD(p.end)}</span></div>
+      return `<div class="card cbb-week${cur && p.n === cur.n ? ' now' : ''}"><div class="card-head"><h2>Woche ${p.n}${p.playoff ? ' · 🏆 Playoffs' : ''}</h2><span class="muted small">${fmtD(p.start)}–${fmtD(lastDay(p, P))}</span></div>
         <div class="cbb-mgrid">${ms.map(m => `<div class="cbb-m${me && m.includes(me.id) ? ' mine' : ''}">${tLink(ctx, byId[m[0]], focus === m[0])}<span class="muted">@</span>${tLink(ctx, byId[m[1]], focus === m[1])}</div>`).join('') || '<span class="muted small">—</span>'}</div></div>`;
     };
     return `<div class="page-head"><h1 class="page-title display">📅 Spielplan</h1>
