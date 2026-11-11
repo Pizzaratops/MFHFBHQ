@@ -6169,9 +6169,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401906771",
-      line: "Florida Gators @ Florida State Seminoles (11/10 - 6:00 PM EST)",
+      line: "Florida Gators @ Florida State Seminoles (1:10 - 2nd)",
       completed: false,
-      statusText: "11/10 - 6:00 PM EST",
+      statusText: "1:10 - 2nd",
       away: {
         abbr: "Fla", name: "Florida Gators", score: null,
         players: [
@@ -6186,10 +6186,64 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401920866",
-      line: "NJIT Highlanders @ Rutgers Scarlet Knights (11/10 - 6:30 PM EST)",
+      id: "401909564",
+      line: "Michigan State Spartans @ Duke Blue Devils (Halftime)",
       completed: false,
-      statusText: "11/10 - 6:30 PM EST",
+      statusText: "Halftime",
+      away: {
+        abbr: "MSU", name: "Michigan State Spartans", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "Duke", name: "Duke Blue Devils", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401913527",
+      line: "Illinois Fighting Illini @ Texas Tech Red Raiders (14:21 - 1st)",
+      completed: false,
+      statusText: "14:21 - 1st",
+      away: {
+        abbr: "Ill", name: "Illinois Fighting Illini", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401918987",
+      line: "Memphis Tigers @ Vanderbilt Commodores (Halftime)",
+      completed: false,
+      statusText: "Halftime",
+      away: {
+        abbr: "Mem", name: "Memphis Tigers", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "Vand", name: "Vanderbilt Commodores", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401920866",
+      line: "NJIT Highlanders @ Rutgers Scarlet Knights (8:04 - 2nd)",
+      completed: false,
+      statusText: "8:04 - 2nd",
       away: {
         abbr: "NJIT", name: "NJIT Highlanders", score: null,
         players: [
@@ -6205,9 +6259,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909514",
-      line: "Delaware State Hornets @ Georgetown Hoyas (11/10 - 6:30 PM EST)",
+      line: "Delaware State Hornets @ Georgetown Hoyas (7:48 - 2nd)",
       completed: false,
-      statusText: "11/10 - 6:30 PM EST",
+      statusText: "7:48 - 2nd",
       away: {
         abbr: "DSU", name: "Delaware State Hornets", score: null,
         players: [
@@ -6222,28 +6276,10 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401909564",
-      line: "Michigan State Spartans @ Duke Blue Devils (11/10 - 7:00 PM EST)",
-      completed: false,
-      statusText: "11/10 - 7:00 PM EST",
-      away: {
-        abbr: "MSU", name: "Michigan State Spartans", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "Duke", name: "Duke Blue Devils", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401925781",
-      line: "Washington State Cougars @ Duquesne Dukes (11/10 - 7:00 PM EST)",
+      line: "Washington State Cougars @ Duquesne Dukes (Halftime)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "WaSt", name: "Washington State Cougars", score: null,
         players: [
@@ -6259,9 +6295,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401925773",
-      line: "Bradley Braves @ Davidson Wildcats (11/10 - 7:00 PM EST)",
+      line: "Bradley Braves @ Davidson Wildcats (19:32 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "19:32 - 2nd",
       away: {
         abbr: "Brad", name: "Bradley Braves", score: null,
         players: [
@@ -6277,9 +6313,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401921774",
-      line: "La Salle Explorers @ Villanova Wildcats (11/10 - 7:00 PM EST)",
+      line: "La Salle Explorers @ Villanova Wildcats (16:53 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "16:53 - 2nd",
       away: {
         abbr: "LaSal", name: "La Salle Explorers", score: null,
         players: [
@@ -6295,9 +6331,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401921755",
-      line: "South Alabama Jaguars @ UCF Knights (11/10 - 7:00 PM EST)",
+      line: "South Alabama Jaguars @ UCF Knights (14:08 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "14:08 - 2nd",
       away: {
         abbr: "USA", name: "South Alabama Jaguars", score: null,
         players: [
@@ -6313,9 +6349,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920378",
-      line: "Virginia Tech Hokies @ Iowa Hawkeyes (11/10 - 7:00 PM EST)",
+      line: "Virginia Tech Hokies @ Iowa Hawkeyes (Halftime)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "VaTec", name: "Virginia Tech Hokies", score: null,
         players: [
@@ -6331,9 +6367,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920356",
-      line: "Harvard Crimson @ Northeastern Huskies (11/10 - 7:00 PM EST)",
+      line: "Harvard Crimson @ Northeastern Huskies (15:27 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "15:27 - 2nd",
       away: {
         abbr: "Harv", name: "Harvard Crimson", score: null,
         players: [
@@ -6349,9 +6385,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920306",
-      line: "Eastern Kentucky Colonels @ Georgia Tech Yellow Jackets (11/10 - 7:00 PM EST)",
+      line: "Eastern Kentucky Colonels @ Georgia Tech Yellow Jackets (Halftime)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "EKU", name: "Eastern Kentucky Colonels", score: null,
         players: [
@@ -6367,9 +6403,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920063",
-      line: "Maine Black Bears @ Rhode Island Rams (11/10 - 7:00 PM EST)",
+      line: "Maine Black Bears @ Rhode Island Rams (16:58 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "16:58 - 2nd",
       away: {
         abbr: "ME", name: "Maine Black Bears", score: null,
         players: [
@@ -6385,9 +6421,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401918957",
-      line: "Presbyterian Blue Hose @ NC State Wolfpack (11/10 - 7:00 PM EST)",
+      line: "Presbyterian Blue Hose @ NC State Wolfpack (17:47 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "17:47 - 2nd",
       away: {
         abbr: "PRES", name: "Presbyterian Blue Hose", score: null,
         players: [
@@ -6403,9 +6439,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401917520",
-      line: "Loyola Marymount Lions @ Troy Trojans (11/10 - 7:00 PM EST)",
+      line: "Loyola Marymount Lions @ Troy Trojans (13:17 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "13:17 - 2nd",
       away: {
         abbr: "LoyMa", name: "Loyola Marymount Lions", score: null,
         players: [
@@ -6421,9 +6457,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401913101",
-      line: "Wyoming Cowboys @ North Carolina Tar Heels (11/10 - 7:00 PM EST)",
+      line: "Wyoming Cowboys @ North Carolina Tar Heels (14:06 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "14:06 - 2nd",
       away: {
         abbr: "Wyo", name: "Wyoming Cowboys", score: null,
         players: [
@@ -6439,9 +6475,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911209",
-      line: "Elon Phoenix @ George Washington Revolutionaries (11/10 - 7:00 PM EST)",
+      line: "Elon Phoenix @ George Washington Revolutionaries (17:01 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "17:01 - 2nd",
       away: {
         abbr: "ELON", name: "Elon Phoenix", score: null,
         players: [
@@ -6457,9 +6493,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911196",
-      line: "Iona Gaels @ Fordham Rams (11/10 - 7:00 PM EST)",
+      line: "Iona Gaels @ Fordham Rams (Halftime)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "IONA", name: "Iona Gaels", score: null,
         players: [
@@ -6475,9 +6511,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911187",
-      line: "Siena Saints @ Dayton Flyers (11/10 - 7:00 PM EST)",
+      line: "Siena Saints @ Dayton Flyers (17:23 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "17:23 - 2nd",
       away: {
         abbr: "SIE", name: "Siena Saints", score: null,
         players: [
@@ -6493,9 +6529,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909727",
-      line: "Charleston Southern Buccaneers @ Wake Forest Demon Deacons (11/10 - 7:00 PM EST)",
+      line: "Charleston Southern Buccaneers @ Wake Forest Demon Deacons (16:06 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "16:06 - 2nd",
       away: {
         abbr: "CHSO", name: "Charleston Southern Buccaneers", score: null,
         players: [
@@ -6511,9 +6547,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909553",
-      line: "Maryland Eastern Shore Hawks @ Boston College Eagles (11/10 - 7:00 PM EST)",
+      line: "Maryland Eastern Shore Hawks @ Boston College Eagles (17:59 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "17:59 - 2nd",
       away: {
         abbr: "UMES", name: "Maryland Eastern Shore Hawks", score: null,
         players: [
@@ -6529,9 +6565,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909543",
-      line: "Detroit Mercy Titans @ Xavier Musketeers (11/10 - 7:00 PM EST)",
+      line: "Detroit Mercy Titans @ Xavier Musketeers (15:54 - 2nd)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "15:54 - 2nd",
       away: {
         abbr: "DETM", name: "Detroit Mercy Titans", score: null,
         players: [
@@ -6547,9 +6583,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909533",
-      line: "Bryant Bulldogs @ Providence Friars (11/10 - 7:00 PM EST)",
+      line: "Bryant Bulldogs @ Providence Friars (Halftime)",
       completed: false,
-      statusText: "11/10 - 7:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "BRY", name: "Bryant Bulldogs", score: null,
         players: [
@@ -6564,28 +6600,10 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401918987",
-      line: "Memphis Tigers @ Vanderbilt Commodores (11/10 - 7:15 PM EST)",
-      completed: false,
-      statusText: "11/10 - 7:15 PM EST",
-      away: {
-        abbr: "Mem", name: "Memphis Tigers", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "Vand", name: "Vanderbilt Commodores", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401927369",
-      line: "Evansville Purple Aces @ Middle Tennessee Blue Raiders (11/10 - 7:30 PM EST)",
+      line: "Evansville Purple Aces @ Middle Tennessee Blue Raiders (0:31 - 1st)",
       completed: false,
-      statusText: "11/10 - 7:30 PM EST",
+      statusText: "0:31 - 1st",
       away: {
         abbr: "Evans", name: "Evansville Purple Aces", score: null,
         players: [
@@ -6601,9 +6619,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401925107",
-      line: "Texas State Bobcats @ UT Rio Grande Valley Vaqueros (11/10 - 7:30 PM EST)",
+      line: "Texas State Bobcats @ UT Rio Grande Valley Vaqueros (0:43 - 1st)",
       completed: false,
-      statusText: "11/10 - 7:30 PM EST",
+      statusText: "0:43 - 1st",
       away: {
         abbr: "TxSt", name: "Texas State Bobcats", score: null,
         players: [
@@ -6619,9 +6637,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401919003",
-      line: "Nicholls Colonels @ Tulane Green Wave (11/10 - 7:30 PM EST)",
+      line: "Nicholls Colonels @ Tulane Green Wave (3:08 - 1st)",
       completed: false,
-      statusText: "11/10 - 7:30 PM EST",
+      statusText: "3:08 - 1st",
       away: {
         abbr: "NICH", name: "Nicholls Colonels", score: null,
         players: [
@@ -6636,28 +6654,10 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401913527",
-      line: "Illinois Fighting Illini @ Texas Tech Red Raiders (11/10 - 8:00 PM EST)",
-      completed: false,
-      statusText: "11/10 - 8:00 PM EST",
-      away: {
-        abbr: "Ill", name: "Illinois Fighting Illini", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401927386",
-      line: "Green Bay Phoenix @ Northern Iowa Panthers (11/10 - 8:00 PM EST)",
+      line: "Green Bay Phoenix @ Northern Iowa Panthers (12:49 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "12:49 - 1st",
       away: {
         abbr: "GB", name: "Green Bay Phoenix", score: null,
         players: [
@@ -6673,9 +6673,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401925685",
-      line: "Alcorn State Braves @ Murray State Racers (11/10 - 8:00 PM EST)",
+      line: "Alcorn State Braves @ Murray State Racers (15:45 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "15:45 - 1st",
       away: {
         abbr: "ALCN", name: "Alcorn State Braves", score: null,
         players: [
@@ -6691,9 +6691,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920704",
-      line: "Belmont Bruins @ Lipscomb Bisons (11/10 - 8:00 PM EST)",
+      line: "Belmont Bruins @ Lipscomb Bisons (14:30 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "14:30 - 1st",
       away: {
         abbr: "Belm", name: "Belmont Bruins", score: null,
         players: [
@@ -6709,9 +6709,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401918969",
-      line: "Prairie View A&M Panthers @ SMU Mustangs (11/10 - 8:00 PM EST)",
+      line: "Prairie View A&M Panthers @ SMU Mustangs (14:29 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "14:29 - 1st",
       away: {
         abbr: "PV", name: "Prairie View A&M Panthers", score: null,
         players: [
@@ -6727,9 +6727,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911250",
-      line: "Northern Kentucky Norse @ Saint Louis Billikens (11/10 - 8:00 PM EST)",
+      line: "Northern Kentucky Norse @ Saint Louis Billikens (15:40 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "15:40 - 1st",
       away: {
         abbr: "NKU", name: "Northern Kentucky Norse", score: null,
         players: [
@@ -6745,9 +6745,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909773",
-      line: "Southern Jaguars @ Iowa State Cyclones (11/10 - 8:00 PM EST)",
+      line: "Southern Jaguars @ Iowa State Cyclones (14:35 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "14:35 - 1st",
       away: {
         abbr: "SOU", name: "Southern Jaguars", score: null,
         players: [
@@ -6763,9 +6763,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909752",
-      line: "Yale Bulldogs @ Baylor Bears (11/10 - 8:00 PM EST)",
+      line: "Yale Bulldogs @ Baylor Bears (14:28 - 1st)",
       completed: false,
-      statusText: "11/10 - 8:00 PM EST",
+      statusText: "14:28 - 1st",
       away: {
         abbr: "Yale", name: "Yale Bulldogs", score: null,
         players: [
