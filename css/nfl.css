@@ -579,3 +579,6 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-year { align-self: center; font: inherit; font-size: 13px; font-weight: 600; padding: 7px 10px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
 .cs-year.active { border-color: var(--sel-1, #448aff); box-shadow: 0 0 0 1px var(--sel-1, #448aff) inset; }
+
+/* Playoff-Linie in der Standings-Tabelle (11.11.2026) */
+.table tr.po-cut > td { border-bottom: 2px dashed var(--accent, #e84a0c); }

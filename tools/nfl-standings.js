@@ -12,7 +12,7 @@ MFHFB.pages.register({
   label: 'Standings',
   icon: '📈',
   applies: { scoring: ['points'] },
-  data: ['teams', 'weekly-scores'],
+  data: ['teams', 'weekly-scores', '?league-info'],
   render({ league, data, href, ui }) {
     const e = ui.esc;
     const { season, weeks } = ui.seasonWeeks(data.WEEKLY_SCORES);
@@ -23,11 +23,15 @@ MFHFB.pages.register({
     const team = ui.teamIndex(data.LEAGUE_TEAMS);
     const rows = ui.standings(data.WEEKLY_SCORES, season, lastWeek);
     const note = league.notes && league.notes.standings;
+    // Playoff-Linie (11.11.2026): Anzahl aus league.playoffs (ESPN-Ligen, von Hand) oder LEAGUE_INFO (Sleeper)
+    const li = (data.LEAGUE_INFO && data.LEAGUE_INFO.settings) || {};
+    const po = Object.assign({ teams: li.playoffTeams, weekStart: li.playoffWeekStart }, league.playoffs || {});
+    const poNote = po.teams ? `Top ${po.teams} in die Playoffs (Linie)${po.weekStart ? ` · ab Woche ${po.weekStart}` : ''}${po.tiebreak ? ` · ${po.tiebreak}` : ''}` : '';
 
     return `
       <div class="page-head">
         <h1 class="page-title display">📈 Standings</h1>
-        <div class="page-sub">Stand nach Woche ${lastWeek} · Saison ${e(season)}<span class="explain"> · sortiert nach Siegen, bei Gleichstand nach erzielten Punkten</span></div>
+        <div class="page-sub">Stand nach Woche ${lastWeek} · Saison ${e(season)}${poNote ? ' · ' + e(poNote) : ''}<span class="explain"> · sortiert nach Siegen, bei Gleichstand nach erzielten Punkten</span></div>
       </div>
       ${ui.hasMedian(data.WEEKLY_SCORES, season) ? `<div class="note explain">Bilanz <b>inkl. Median-Spiel</b>: jede Woche zusätzlich ein Sieg oder eine Niederlage gegen den Liga-Median, wie in Sleeper.</div>` : ''}
       ${note ? `<div class="note">${e(note)}</div>` : ''}
@@ -41,7 +45,7 @@ MFHFB.pages.register({
             ${rows.map((r, i) => {
               const t = team(r.teamId);
               const diff = r.pf - r.pa;
-              return `<tr>
+              return `<tr${po.teams && i === po.teams - 1 && i < rows.length - 1 ? ' class="po-cut"' : ''}>
                 <td class="num rank">${i + 1}</td>
                 <td><a class="team-cell" href="${href('teams', r.teamId)}">
                   <span class="team-emoji">${e(t.emoji || '')}</span>
