@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-10T23:36:05.659Z
+//  Stand: 2026-11-11T06:50:49.057Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -184,7 +184,7 @@ const WC_PLAYER_POOL = [
 ["042nf","Caris LeVert","MIL","SG","SG,G,SF,F,Flx","FA"],
 ["05ux5","Carlik Jones","(N/A)","PG","PG,G,Flx","FA"],
 ["051pd","Carsen Edwards","(N/A)","SG","SG,G,Flx","FA"],
-["076ut","Carson Cooper","MEM","C","C,Flx","FA"],
+["076ut","Carson Cooper","LAL","C","C,Flx","FA"],
 ["06v5x","Carter Bryant","SAS","PF","SF,PF,F,Flx","FA"],
 ["06cac","Cason Wallace","OKC","SG","PG,SG,G,SF,F,Flx","FA"],
 ["05qt8","Cassius Stanley","(N/A)","SG","SG,G,Flx","FA"],
@@ -813,7 +813,7 @@ const WC_PLAYER_POOL = [
 ["03r7l","Larry Nance","IND","PF","PF,C,F,Flx","FA"],
 ["07atk","Latrell Wrightsell","(N/A)","G","PG,SG,G,Flx","FA"],
 ["04azw","Lauri Markkanen","UTA","PF","SF,PF,F,Flx","T"],
-["07232","Lawson Lovering","LAL","C","C,Flx","FA"],
+["07232","Lawson Lovering","(N/A)","C","C,Flx","FA"],
 ["06dob","Leaky Black","SAC","SF","SF,F,Flx","T"],
 ["05qsw","Leandro Bolmaro","(N/A)","SG","SG,G,Flx","FA"],
 ["0011e","LeBron James","PHI","SF","SF,PF,F,Flx","T"],
