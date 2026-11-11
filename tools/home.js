@@ -120,7 +120,7 @@ function nqRanking(ctx, team, weekly, season, weeks, st) {
   const { ui, data } = ctx, e = ui.esc;
   const last = weeks[weeks.length - 1];
   const tabs = `<div class="seg" role="group">${[['table', 'Tabelle'], ['allplay', 'All-Play'], ['totals', 'Totals']].map(([k, l]) => `<button type="button" class="seg-btn${st.rank === k ? ' active' : ''}" data-nqrank="${k}">${l}</button>`).join('')}</div>`;
-  const stand = ui.standings(weekly, season, last);
+  const stand = ui.standings(weekly, season, last, (ctx.league.playoffs || {}).tiebreak);
   const T = {};
   stand.forEach(r => { T[r.teamId] = { id: r.teamId, rec: ui.record(r), pf: r.pf, pa: r.pa, wins: r.wins, aw: 0, al: 0, hw: 0, g: 0, max: -Infinity, min: Infinity }; });
   weeks.forEach(w => { const L = (weekly[season] || {})[w] || []; L.forEach(x => { const t = T[x.teamId]; if (!t) return; t.g++; t.max = Math.max(t.max, x.points); t.min = Math.min(t.min, x.points); if (x.points > x.opponentPoints) t.hw++; L.forEach(o => { if (o.teamId === x.teamId) return; if (x.points > o.points) t.aw++; else if (x.points < o.points) t.al++; }); }); });

@@ -15,6 +15,8 @@ name: Auto-Lineup (NFL)
 #   Mo 23:55         Monday Night (01:15 UTC Di)
 #   Di 17:00         Waiver-Report (vor den Waivern Mi früh): Mail nur, wenn es Tipps gibt
 # GitHub startet geplante Läufe teils 5–20 Min. später, daher doppelte Slots.
+# Seit 12.11.2026 startet der Taktgeber im NBA Sync (Job „fanout“, pünktlich über cron-job.org)
+# diese Läufe zur vollen Stunde; die Zeitpläne unten bleiben als Rückfall.
 #
 # Secrets: ESPN_S2, SWID (bestehen), SLEEPER_TOKEN, MAIL_USER, MAIL_PASS, MAIL_TO
 #          (optional MAIL_HOST/MAIL_PORT, Standard smtp.web.de:587; optional NTFY_TOPIC).
@@ -41,6 +43,10 @@ on:
         default: true
       report:
         description: 'Auch Mail schicken, wenn schon alles optimal ist'
+        type: boolean
+        default: true
+      waivers:
+        description: 'Waiver-Tipps mitrechnen (der Taktgeber im NBA Sync setzt das nur dienstags)'
         type: boolean
         default: true
       only:
@@ -81,7 +87,7 @@ jobs:
           MAIL_TO: ${{ secrets.MAIL_TO }}
           MAIL_HOST: ${{ secrets.MAIL_HOST }}
           MAIL_PORT: ${{ secrets.MAIL_PORT }}
-          AUTO_LINEUP_WAIVERS: ${{ (github.event.schedule == '0 17 * * 2' || github.event_name == 'workflow_dispatch') && '1' || '0' }}
+          AUTO_LINEUP_WAIVERS: ${{ (github.event.schedule == '0 17 * * 2' || (github.event_name == 'workflow_dispatch' && github.event.inputs.waivers != 'false')) && '1' || '0' }}
           AUTO_LINEUP_DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry && '1' || '0' }}
           AUTO_LINEUP_REPORT: ${{ github.event_name == 'workflow_dispatch' && inputs.report && '1' || '0' }}
           AUTO_LINEUP_ONLY: ${{ inputs.only }}

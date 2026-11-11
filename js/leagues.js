@@ -209,7 +209,7 @@ const LEAGUES = [
     },
     // ESPN-Einstellungen (geprüft 10.11.2026): 14 Wochen Hauptrunde, 8 Playoff-Teams, Tiebreak direkter Vergleich.
     // Die Tabelle hier sortiert bei Gleichstand nach Punkten – kann bei gleicher Bilanz von ESPN abweichen.
-    playoffs: { teams: 8, weekStart: 15, tiebreak: 'bei gleicher Bilanz entscheidet auf ESPN der direkte Vergleich (hier: Punkte)' },
+    playoffs: { teams: 8, weekStart: 15, tiebreak: 'h2h' },
     // Liga-Beiträge: unbezahlt in der laufenden Saison = "muss zahlen";
     // Zukunftsjahre ebenso, sobald das Team an einem Pick-Trade dieses Jahres beteiligt ist
     dues: { currentOwes: true, tradedPicksOwe: true },

@@ -99,7 +99,7 @@ MFHFB.ui = {
   // Woche zusätzlich ein Ergebnis gegen den Liga-Median (e.medianResult
   // 'W'/'L'/'T'), das in die Bilanz zählt — genau wie in Sleeper. Ligen ohne
   // das Feld (BWP) sind davon nicht betroffen.
-  standings(weekly, season, uptoWeek) {
+  standings(weekly, season, uptoWeek, tiebreak) {
     const totals = {};
     for (let w = 1; w <= uptoWeek; w++) {
       ((weekly[season] || {})[w] || []).forEach(e => {
@@ -115,7 +115,42 @@ MFHFB.ui = {
     }
     // Sortierung nach Win% (Unentschieden = halber Sieg, wie ESPN/Sleeper),
     // Tiebreak Punkte. Ohne Unentschieden identisch zu "nach Siegen".
-    return Object.values(totals).sort((a, b) => ((b.wins + b.ties / 2) - (a.wins + a.ties / 2)) || (b.pf - a.pf));
+    const pct = t => t.wins + t.ties / 2;
+    const rows = Object.values(totals).sort((a, b) => (pct(b) - pct(a)) || (b.pf - a.pf));
+    if (tiebreak !== 'h2h') return rows;
+    // ESPN-Tiebreak „Head to Head" (12.11.2026): Bei gleicher Bilanz zählt der direkte Vergleich
+    // unter den punktgleichen Teams – aber nur, wenn alle untereinander gleich oft gespielt haben
+    // (sonst, und bei weiterem Gleichstand, entscheiden die Punkte). r.h2h = Bilanz im Vergleich.
+    const out = [];
+    for (let i = 0; i < rows.length;) {
+      let j = i + 1;
+      while (j < rows.length && pct(rows[j]) === pct(rows[i])) j++;
+      const grp = rows.slice(i, j);
+      if (grp.length > 1) {
+        const ids = new Set(grp.map(t => t.teamId)), h = {}, cnt = {};
+        grp.forEach(t => { h[t.teamId] = { w: 0, l: 0, t: 0 }; });
+        for (let w = 1; w <= uptoWeek; w++) {
+          ((weekly[season] || {})[w] || []).forEach(e => {
+            if (!ids.has(e.teamId) || !ids.has(e.opponentId) || e.teamId === e.opponentId) return;
+            const k = e.teamId + '|' + e.opponentId;
+            cnt[k] = (cnt[k] || 0) + 1;
+            if (e.points > e.opponentPoints) h[e.teamId].w++;
+            else if (e.points < e.opponentPoints) h[e.teamId].l++;
+            else h[e.teamId].t++;
+          });
+        }
+        const n = cnt[grp[0].teamId + '|' + grp[1].teamId] || 0;
+        const even = n > 0 && grp.every(a => grp.every(b => a === b || (cnt[a.teamId + '|' + b.teamId] || 0) === n));
+        if (even) {
+          const hp = t => h[t.teamId].w + h[t.teamId].t / 2;
+          grp.forEach(t => { t.h2h = h[t.teamId]; });
+          grp.sort((a, b) => (hp(b) - hp(a)) || (b.pf - a.pf));
+        }
+      }
+      out.push(...grp);
+      i = j;
+    }
+    return out;
   },
 
   hasMedian(weekly, season) {

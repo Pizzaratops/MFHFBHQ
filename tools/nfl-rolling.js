@@ -19,9 +19,10 @@
   function ranksByWeek(ctx, mode) {
     const { data, ui } = ctx;
     const { season, weeks } = ui.seasonWeeks(data.WEEKLY_SCORES);
+    const tb = (ctx.league.playoffs || {}).tiebreak;
     const byTeam = {};
     weeks.forEach(w => {
-      let list = ui.standings(data.WEEKLY_SCORES, season, w);
+      let list = ui.standings(data.WEEKLY_SCORES, season, w, tb);
       if (mode === 'points') list = list.slice().sort((a, b) => b.pf - a.pf);
       list.forEach((r, i) => { (byTeam[r.teamId] = byTeam[r.teamId] || {})[w] = { ...r, rank: i + 1 }; });
     });

@@ -21,17 +21,18 @@ MFHFB.pages.register({
     }
     const lastWeek = weeks[weeks.length - 1];
     const team = ui.teamIndex(data.LEAGUE_TEAMS);
-    const rows = ui.standings(data.WEEKLY_SCORES, season, lastWeek);
+    const h2h = (league.playoffs || {}).tiebreak === 'h2h';
+    const rows = ui.standings(data.WEEKLY_SCORES, season, lastWeek, h2h ? 'h2h' : '');
     const note = league.notes && league.notes.standings;
     // Playoff-Linie (11.11.2026): Anzahl aus league.playoffs (ESPN-Ligen, von Hand) oder LEAGUE_INFO (Sleeper)
     const li = (data.LEAGUE_INFO && data.LEAGUE_INFO.settings) || {};
     const po = Object.assign({ teams: li.playoffTeams, weekStart: li.playoffWeekStart }, league.playoffs || {});
-    const poNote = po.teams ? `Top ${po.teams} in die Playoffs (Linie)${po.weekStart ? ` · ab Woche ${po.weekStart}` : ''}${po.tiebreak ? ` · ${po.tiebreak}` : ''}` : '';
+    const poNote = po.teams ? `Top ${po.teams} in die Playoffs (Linie)${po.weekStart ? ` · ab Woche ${po.weekStart}` : ''}` : '';
 
     return `
       <div class="page-head">
         <h1 class="page-title display">📈 Standings</h1>
-        <div class="page-sub">Stand nach Woche ${lastWeek} · Saison ${e(season)}${poNote ? ' · ' + e(poNote) : ''}<span class="explain"> · sortiert nach Siegen, bei Gleichstand nach erzielten Punkten</span></div>
+        <div class="page-sub">Stand nach Woche ${lastWeek} · Saison ${e(season)}${poNote ? ' · ' + e(poNote) : ''}<span class="explain"> · sortiert nach Siegen, bei Gleichstand ${h2h ? 'wie bei ESPN nach direktem Vergleich der punktgleichen Teams (nur wenn alle gleich oft gegeneinander gespielt haben), sonst ' : ''}nach erzielten Punkten</span></div>
       </div>
       ${ui.hasMedian(data.WEEKLY_SCORES, season) ? `<div class="note explain">Bilanz <b>inkl. Median-Spiel</b>: jede Woche zusätzlich ein Sieg oder eine Niederlage gegen den Liga-Median, wie in Sleeper.</div>` : ''}
       ${note ? `<div class="note">${e(note)}</div>` : ''}
@@ -51,7 +52,7 @@ MFHFB.pages.register({
                   <span class="team-emoji">${e(t.emoji || '')}</span>
                   <span><span class="team-name">${e(t.name)}</span>${t.owner ? `<span class="team-owner">${e(t.owner)}</span>` : ''}</span>
                 </a></td>
-                <td class="num strong">${ui.record(r)}</td>
+                <td class="num strong">${ui.record(r)}${r.h2h ? ` <span class="muted" title="Direkter Vergleich unter den Teams mit gleicher Bilanz">(${r.h2h.w}-${r.h2h.l}${r.h2h.t ? '-' + r.h2h.t : ''})</span>` : ''}</td>
                 <td class="num">${ui.num(r.pf)}</td>
                 <td class="num">${ui.num(r.pa)}</td>
                 <td class="num ${diff >= 0 ? 'up' : 'down'}">${ui.signed(diff)}</td>

@@ -97,15 +97,82 @@ on:
         description: 'NBA Power Rankings + Power Score mitbauen (sonst nur 09/21 Uhr)'
         type: boolean
         default: false
+      fanout:
+        description: 'Taktgeber: zur vollen Stunde die übrigen Workflows mit anstoßen (für Handstarts egal)'
+        type: boolean
+        default: true
 
 permissions:
   contents: write
+  actions: write   # Taktgeber-Job startet die anderen Workflows
 
 concurrency:
   group: nba-data
   cancel-in-progress: false
 
 jobs:
+  # ── Taktgeber (12.11.2026) ────────────────────────────────────────────
+  # GitHubs eigene Zeitpläne kommen 3–10 Stunden zu spät oder gar nicht (gemessen
+  # 01.–11.11.2026). cron-job.org startet DIESEN Workflow pünktlich zu jeder vollen
+  # Stunde; der Job stößt dann die übrigen Workflows zur passenden Stunde an.
+  # Maßgeblich ist die Startzeit des Laufs (nicht die Ist-Zeit des Jobs). Läufe, die
+  # nicht in den ersten 20 Minuten einer Stunde gestartet wurden (Handstart), stoßen
+  # nichts an. Die Zeitpläne in den einzelnen Workflows bleiben als Rückfall stehen.
+  # Neue Zeiten hier eintragen, nicht (nur) im jeweiligen Workflow.
+  fanout:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.fanout != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fällige Workflows anstoßen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          T=$(gh api "repos/${GH_REPO}/actions/runs/${RUN_ID}" --jq .created_at 2>/dev/null || true)
+          [ -n "$T" ] || T=$(date -u +%FT%TZ)
+          MIN=$(date -u -d "$T" +%M)
+          UH=$(date -u -d "$T" +%H); UD=$(date -u -d "$T" +%w)                               # UTC: Stunde, Wochentag 0=So
+          BH=$(TZ=Europe/Berlin date -d "$T" +%H); BD=$(TZ=Europe/Berlin date -d "$T" +%u)   # Berlin: Stunde, Wochentag 1=Mo
+          echo "Lauf gestartet ${T} → Berlin Tag ${BD}, ${BH} Uhr · UTC Tag ${UD}, ${UH} Uhr"
+          if [ "$((10#$MIN))" -ge 20 ]; then echo "Kein Start zur vollen Stunde – nichts anzustoßen."; exit 0; fi
+          go() { echo "→ $*"; gh workflow run "$@" --ref main || echo "::warning::Konnte $1 nicht starten"; }
+          bh() { for h in "$@"; do [ "$BH" = "$h" ] && return 0; done; return 1; }
+          uh() { for h in "$@"; do [ "$UH" = "$h" ] && return 0; done; return 1; }
+
+          # stündlich
+          CBB=""
+          if bh 07 10 14 22; then CBB="-f stats=true"; fi
+          if [ "$BD" = 1 ] && bh 07; then CBB="$CBB -f rosters=true"; fi
+          go cbb-sync.yml $CBB
+          go worldcup-sync.yml
+          # alle zwei Stunden
+          if [ $((10#$UH % 2)) -eq 0 ]; then go bwp-live.yml; go dope-sync.yml; fi
+          # täglich (Berlin)
+          if bh 09 21; then go bwp-sync.yml; go nfl-sync.yml; fi
+          if bh 10; then go nfl-college-scouting.yml; fi
+          if bh 12; then go nba-rosters.yml; fi
+          if bh 14 20; then go nba-openrapm.yml; fi
+          # wöchentlich (Berlin)
+          if [ "$BD" = 1 ] && bh 11; then go tthq-hashtag.yml; fi
+          if [ "$BD" = 2 ] && bh 07; then go nfl-sync.yml; fi            # Dienstag früh nach Monday Night
+          if [ "$BD" = 2 ] && bh 08; then go nfl-trade-values.yml; fi
+          if [ "$BD" = 3 ] && bh 10; then go bwp-snapshot.yml; go dope-snapshot.yml; fi
+          if { [ "$BD" = 1 ] || [ "$BD" = 2 ] || [ "$BD" = 5 ]; } && bh 09; then go nfl32.yml; fi
+          # Auto-Lineup (UTC, US-Winterzeit; Inaktive kommen ~90 Min. vor Kickoff) – Zeiten siehe auto-lineup.yml
+          AL=""
+          case "$UD" in
+            4) uh 22 && AL=lineup ;;            # Do vor Thursday Night
+            5) uh 00 && AL=lineup ;;            # nach den TNF-Inaktiven
+            6) uh 16 && AL=lineup ;;            # Samstag
+            0) uh 13 17 20 21 && AL=lineup ;;   # Sonntag: früh, 18-Uhr-Spiele, 21:05/21:25-Spiele
+            1) uh 00 && AL=lineup ;;            # Sunday Night
+            2) uh 00 && AL=lineup; uh 17 && AL=waivers ;;   # Monday Night · Waiver-Report
+          esac
+          if [ "$AL" = lineup ]; then go auto-lineup.yml -f dry=false -f report=false -f waivers=false; fi
+          if [ "$AL" = waivers ]; then go auto-lineup.yml -f dry=false -f report=false -f waivers=true; fi
+
   gate:
     runs-on: ubuntu-latest
     outputs:
