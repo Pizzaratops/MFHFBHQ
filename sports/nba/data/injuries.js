@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T07:01:02.937Z",
+  "updated": "2026-11-11T15:01:10.860Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -13,7 +13,7 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-13","Achilles",0,"2026-11-10"],
     "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-12","Groin",0,"2026-11-10"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
-    "Cam Christie": ["LAC","Out","OUT","2026-11-13","Ankle",0,"2026-11-11"],
+    "Cam Christie": ["LAC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-11"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-15","Ankle",0,"2026-11-09"],
@@ -54,7 +54,7 @@ const NBA_INJURIES = {
     "Keyonte George": ["UTAH","Out","OUT","2026-11-11","Ankle",0,"2026-11-10"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
-    "Lauri Markkanen": ["UTAH","Out","OUT","2026-11-11","Wrist",0,"2026-11-10"],
+    "Lauri Markkanen": ["UTAH","Day-To-Day","GTD","2026-11-11","Wrist",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
     "Morez Johnson Jr.": ["DAL","Day-To-Day","GTD","2026-11-12","Leg",0,"2026-11-10"],
@@ -66,7 +66,7 @@ const NBA_INJURIES = {
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-10"],
     "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-11","Shoulder",0,"2026-11-10"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
-    "Precious Achiuwa": ["SAC","Out","OUT","2026-11-13","Lower Leg",0,"2026-11-11"],
+    "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-13","Lower Leg",0,"2026-11-11"],
     "Quentin Grimes": ["LAL","Day-To-Day","GTD","2026-11-11","Finger",0,"2026-11-10"],
     "Quinten Post": ["MEM","Out","OUT","2026-11-13","Head",0,"2026-11-10"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
@@ -87,7 +87,7 @@ const NBA_INJURIES = {
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-10"],
     "Tristan da Silva": ["ORL","Out","OUT","2026-11-11","Calf",0,"2026-11-11"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
-    "Tyler Herro": ["MIL","Out","OUT","2026-11-11","Knee",0,"2026-11-10"],
+    "Tyler Herro": ["MIL","Out","GTD","2026-11-11","Knee",0,"2026-11-10"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-13","Hamstring",0,"2026-11-07"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-02","Ankle",0,"2026-11-05"],
     "Will Richard": ["GS","Out","GTD","2026-11-11","Thumb",0,"2026-11-10"],
