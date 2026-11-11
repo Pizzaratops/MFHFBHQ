@@ -91,6 +91,9 @@
   }
 
   function renderLanding() {
+    // Zahl der Ligen im Untertitel mitzählen lassen (stand fest auf „Sieben“)
+    const hc = document.getElementById('heroCount'), words = ['Null', 'Eine', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn', 'Elf', 'Zwölf'];
+    if (hc) hc.textContent = words[LEAGUES.length] || String(LEAGUES.length);
     el.groups.innerHTML = Object.keys(SPORTS).map(sport => {
       const leagues = LEAGUES.filter(l => l.sport === sport);
       if (!leagues.length) return '';
@@ -447,6 +450,19 @@
   // ---------------- Start ----------------
   renderLanding();
   window.addEventListener('hashchange', route);
+  // ---------------- Frische Daten nach längerer Pause (11.11.2026) ----------------
+  //  Der Daten-Cache hält die ganze Sitzung. Bleibt der Tab bzw. die installierte
+  //  App offen (Handy: App am nächsten Tag wieder nach vorn geholt), stand sonst
+  //  der alte Stand da, bis man neu lud. War die Seite ≥ 30 Minuten im Hintergrund,
+  //  wird der Cache geleert und die aktuelle Seite neu aufgebaut.
+  (function freshOnReturn() {
+    let hiddenAt = 0;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { hiddenAt = Date.now(); return; }
+      if (hiddenAt && Date.now() - hiddenAt >= 30 * 60000) { MFHFB.data.clear(); route(); }
+      hiddenAt = 0;
+    });
+  })();
   // ---------------- „📲 Installieren“ ----------------
   //  Chrome/Edge/Android: eigener Installations-Dialog (beforeinstallprompt).
   //  iPhone/iPad (Safari kann das nicht per Knopf): Anleitung „Teilen →

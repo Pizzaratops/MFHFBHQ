@@ -22,6 +22,7 @@ window.MFHFB = window.MFHFB || {};
 
 MFHFB.data = (function () {
   const cache = new Map(); // "<liga>|<datei>" -> Promise<Object>
+  const missing = new Set(); // "<liga>|<datei>" optionaler Dateien, die es nicht gibt
 
   function evaluate(src, file) {
     const names = [...src.matchAll(/^\s*(?:const|let|var)\s+([A-Z_][A-Z0-9_]*)\s*=/gm)].map(m => m[1]);
@@ -75,13 +76,19 @@ MFHFB.data = (function () {
     const parts = await Promise.all((files || []).map(f => {
       const optional = f.startsWith('?');
       const name = optional ? f.slice(1) : f;
-      return optional ? loadFile(league, name).catch(() => ({})) : loadFile(league, name);
+      if (!optional) return loadFile(league, name);
+      // Fehlende optionale Datei nur einmal je Sitzung anfragen (11.11.2026): vorher
+      // lief bei jedem Seitenwechsel derselbe 404 erneut (z. B. league-info, picks, rankings).
+      const mk = league.key + '|' + name;
+      if (missing.has(mk)) return {};
+      return loadFile(league, name).catch(() => { missing.add(mk); return {}; });
     }));
     return Object.assign({}, ...parts);
   }
 
   function clear(leagueKey) {
     for (const k of [...cache.keys()]) if (!leagueKey || k.startsWith(leagueKey + '|')) cache.delete(k);
+    for (const k of [...missing]) if (!leagueKey || k.startsWith(leagueKey + '|')) missing.delete(k);
   }
 
   return { load, clear, _evaluate: evaluate };
