@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T22:39:02.097Z",
+  "updated": "2026-11-11T22:55:51.070Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
     "Ajay Mitchell": ["OKC","Out","OUT","2026-11-13","Ankle",0,"2026-11-11"],
@@ -50,7 +50,7 @@ const NBA_INJURIES = {
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
-    "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-10"],
+    "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-11"],
     "Keshon Gilbert": ["ATL","Out","GTD","2026-11-13","Knee",0,"2026-11-08"],
     "Keyonte George": ["UTAH","Day-To-Day","GTD","2026-11-11","Ankle",0,"2026-11-11"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Steven Adams": ["HOU","Out","OUT","2026-11-15","Calf",0,"2026-11-09"],
-    "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-11","Hamstring",0,"2026-11-10"],
+    "T.J. McConnell": ["IND","Day-To-Day","","","",0,"2026-11-10"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-13","Knee",0,"2026-11-03"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-13","Back",0,"2026-11-11"],
@@ -93,7 +93,7 @@ const NBA_INJURIES = {
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-11"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
     "Tyler Herro": ["MIL","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-11"],
-    "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-07"],
+    "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-13","Foot",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Will Richard": ["GS","Day-To-Day","GTD","2026-11-11","Thumb",0,"2026-11-11"],
