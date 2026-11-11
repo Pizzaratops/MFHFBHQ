@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T23:25:46.437Z",
+  "updated": "2026-11-11T23:41:16.476Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
     "Ajay Mitchell": ["OKC","Out","OUT","2026-11-13","Ankle",0,"2026-11-11"],
@@ -21,9 +21,10 @@ const NBA_INJURIES = {
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-13","Foot",0,"2026-11-11"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-15","Ankle",0,"2026-11-09"],
+    "Dailyn Swain": ["CHI","Day-To-Day","GTD","2026-11-11","Back",0,"2026-11-11"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
-    "Devin Vassell": ["SA","Day-To-Day","OUT","2026-11-13","Groin",0,"2026-11-10"],
+    "Devin Vassell": ["SA","Out","OUT","2026-11-13","Groin",0,"2026-11-11"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-04"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Gary Payton II": ["GS","Out","OUT","2026-11-13","Knee",0,"2026-11-10"],
@@ -41,7 +42,6 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-15","Back",0,"2026-11-11"],
-    "Jaylon Tyson": ["CLE","Out","GTD","2026-11-11","Ankle",0,"2026-11-10"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-12","Foot",0,"2026-11-11"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
@@ -68,7 +68,7 @@ const NBA_INJURIES = {
     "Nate Bittle": ["TOR","Out","OUT","2026-11-15","Foot",0,"2026-11-08"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
     "Nolan Traore": ["BKN","Out","OUT","2026-11-14","Calf",0,"2026-11-11"],
-    "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-11","Shoulder",0,"2026-11-10"],
+    "Norman Powell": ["CHI","Out","OUT","2026-11-13","Shoulder",0,"2026-11-11"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Paul George": ["BOS","Out","OUT","2026-11-15","Illness",0,"2026-11-11"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-13","Lower Leg",0,"2026-11-11"],
