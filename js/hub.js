@@ -278,6 +278,7 @@
     function paint(ctx) {
       return Promise.resolve().then(() => page.render(ctx)).then(html => {
         if (seq !== renderSeq) return;
+        resetPageListeners();
         el.nativeMain.innerHTML = html;
         if (page.mount) page.mount(el.nativeMain, ctx);
         MFHFB.ui.explainify(el.nativeMain); // class="explain" → Tooltip an der Überschrift
@@ -292,6 +293,22 @@
       });
     }
   }
+
+  // ---------------- Seiten-Listener aufräumen (11.11.2026) ----------------
+  //  #nativeMain bleibt über alle Seiten bestehen. Tools hängen in mount() Listener
+  //  direkt daran (root.addEventListener) – die blieben nach dem Seitenwechsel und
+  //  nach jedem ctx.refresh() aktiv: Klicks auf anderen Seiten liefen in alte Handler
+  //  (z. B. US-Manager-Sortierung → TypeError auf der CBB-Seite), und nach einem
+  //  Refresh feuerten Handler doppelt. Jetzt bekommt jeder an #nativeMain gehängte
+  //  Listener das Abbruch-Signal der aktuellen Seite; vor jedem Zeichnen wird es ausgelöst.
+  let pageAC = null;
+  const nmAdd = el.nativeMain.addEventListener.bind(el.nativeMain);
+  el.nativeMain.addEventListener = function (type, fn, opts) {
+    const o = opts && typeof opts === 'object' ? Object.assign({}, opts) : { capture: !!opts };
+    if (pageAC && !o.signal) o.signal = pageAC.signal;
+    return nmAdd(type, fn, o);
+  };
+  function resetPageListeners() { if (pageAC) pageAC.abort(); pageAC = new AbortController(); }
 
   // Später nachgeladene Teile (mount, Teil-Updates) ebenfalls „entschlacken“
   new MutationObserver(muts => {
