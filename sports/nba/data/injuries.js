@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T02:01:01.708Z",
+  "updated": "2026-11-11T07:01:02.937Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-12","Back",0,"2026-11-09"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -66,6 +66,7 @@ const NBA_INJURIES = {
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-10"],
     "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-11","Shoulder",0,"2026-11-10"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
+    "Precious Achiuwa": ["SAC","Out","OUT","2026-11-13","Lower Leg",0,"2026-11-11"],
     "Quentin Grimes": ["LAL","Day-To-Day","GTD","2026-11-11","Finger",0,"2026-11-10"],
     "Quinten Post": ["MEM","Out","OUT","2026-11-13","Head",0,"2026-11-10"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
