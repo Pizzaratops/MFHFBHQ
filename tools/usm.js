@@ -706,6 +706,8 @@
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${f1(p.prevSal, 2)}</td><td class="num">${dc(d1(p))}</td><td class="num">${f1(p.firstSal, 2)}</td><td class="num">${dc(d0(p))}</td>
             <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${p.tgt == null ? '–' : f1(p.tgt, 2)}</td><td class="num">${p.tgt == null ? '–' : p.frozen ? `<span class="muted" title="Unter ${MIN_GAMES} Spielen">${p.gap > 0 ? '+' : ''}${f1(p.gap, 2)}*</span>` : dc(p.gap)}</td><td class="num">${f1(p.fpg)}</td></tr>`).join('') + '</tbody>';
       }
+      // Solange es noch kein Gehalts-Update gab (alle Δ = 0), nach Δ Ziel sortieren statt nach einer Spalte voller Nullen
+      if (!pool.players.some(p => Math.abs(d1(p)) > 0.004)) $('usmSalSort').value = 'gap';
       $('usmSalQ').addEventListener('input', tbl);
       ['usmSalMine', 'usmSalSort'].forEach(id => $(id).addEventListener('change', tbl));
       root.addEventListener('click', ev => {

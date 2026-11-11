@@ -45,7 +45,7 @@ css/nfl.css, nba.css, cbb.css, usm.css  sportspezifische Styles
 
 Modi pro Liga (`js/leagues.js`): `legacy` bettet die bisherige Seite ein; mit `nativePreview: true` gibt es den Button „✨ Neue Version“ (pro Liga im Browser gemerkt). `native` = neue Version für alle.
 
-Stand: BWP + DOPE `native` mit Daten im Hub. TTHQ + Funkytown noch `legacy` + Vorschau, Daten noch aus den alten Repos — die Hub-Syncs laufen parallel (Cutover-Schritte: `sports/nba/README.md`).
+Stand (11.11.2026): alle zehn Ligen `native` mit Daten im Hub (NBA-Cutover 15.10.2026). `legacyUrl` zeigt bei TTHQ, Funkytown, BWP und DOPE nur noch auf die alte Seite („Alte Seite“-Knopf).
 
 Migrationsplan: Projekt-Docs `claude/mfhfb-hq-migration-plan.md` und `claude/mfhfb-nba-phase2-status.md`.
 
@@ -54,4 +54,8 @@ Migrationsplan: Projekt-Docs `claude/mfhfb-hq-migration-plan.md` und `claude/mfh
 - localStorage-Keys immer mit Präfix `mfhfb:` bzw. `mfhfb:<liga>:` (alle GitHub-Pages-Seiten unter `pizzaratops.github.io` teilen sich die Origin).
 - Keine npm-Abhängigkeiten in GitHub Actions; Secrets nur als GitHub-Secrets, nie in Dateien.
 - Sync-Workflows: `continue-on-error` je Schritt, ein Commit am Ende, Push mit Retry, `concurrency` je Datenbereich.
+- Sync-Workflows: `actions/checkout` immer mit `ref: ${{ github.ref }}` (sonst arbeitet ein wartender Lauf auf dem Commit vom Auslösezeitpunkt → Rebase-Konflikt); Rebase mit `-X theirs` + `--abort`.
+- GitHubs eigener Zeitplan läuft in diesem Repo 3,5–10 h zu spät und lässt stündliche Läufe meist aus; pünktlich ist nur der Anstoß von außen (cron-job.org → `workflow_dispatch`, bisher nur NBA-Sync).
+- Listener in `mount()` dürfen an `root` (#nativeMain) hängen: der Hub räumt sie vor jedem Neuzeichnen und beim Seitenwechsel ab (AbortSignal, `js/hub.js`). Listener an `document`/`window` muss das Tool selbst aufräumen.
+- Daten-Cache gilt je Sitzung; war der Tab ≥ 30 min im Hintergrund, lädt der Hub neu. Optionale Dateien (`'?name'`), die fehlen, werden je Sitzung nur einmal angefragt.
 - UI auf Deutsch.
