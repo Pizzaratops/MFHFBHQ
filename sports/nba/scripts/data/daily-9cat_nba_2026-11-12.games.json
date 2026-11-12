@@ -1,0 +1,78 @@
+{
+  "league": "nba",
+  "date": "2026-11-12",
+  "games": [
+    {
+      "id": "401909976",
+      "line": "Toronto Raptors @ Philadelphia 76ers (11/12 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 7:00 PM EST",
+      "away": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909977",
+      "line": "Detroit Pistons @ Washington Wizards (11/12 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 7:00 PM EST",
+      "away": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909978",
+      "line": "Dallas Mavericks @ Minnesota Timberwolves (11/12 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 8:00 PM EST",
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909979",
+      "line": "Charlotte Hornets @ Phoenix Suns (11/12 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 9:00 PM EST",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
