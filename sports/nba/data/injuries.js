@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T18:49:31.351Z",
+  "updated": "2026-11-12T19:01:00.948Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -31,7 +31,6 @@ const NBA_INJURIES = {
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Gary Payton II": ["GS","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
-    "Grant Williams": ["CHA","Out","GTD","2026-11-12","Hamstring",0,"2026-11-12"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","OUT","2026-11-17","Hip",0,"2026-11-09"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-18","Ankle",0,"2026-09-28"],
@@ -66,7 +65,6 @@ const NBA_INJURIES = {
     "Morez Johnson Jr.": ["DAL","Day-To-Day","GTD","2026-11-12","Lower Leg",0,"2026-11-11"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-11-20","Foot",0,"2026-10-19"],
-    "Moussa Diabate": ["CHA","Day-To-Day","GTD","2026-11-12","Quadriceps",0,"2026-11-12"],
     "Myles Turner": ["MIL","Day-To-Day","GTD","2026-11-13","Rest",0,"2026-11-12"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-15","Foot",0,"2026-11-08"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
