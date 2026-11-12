@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-12T02:01:00.879Z
+//  Stand: 2026-11-12T03:01:03.385Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -639,7 +639,7 @@ const WC_PLAYER_POOL = [
 ["06v8j","John Tonje","POR","SG","SG,G,Flx","FA"],
 ["07apl","John Ukomadu","(N/A)","F","SF,PF,F,Flx","FA"],
 ["0724o","Johnell Davis","(N/A)","PG","PG,SG,G,Flx","FA"],
-["06v81","Johni Broome","(N/A)","PF","PF,C,F,Flx","FA"],
+["06v81","Johni Broome","MIN","PF","PF,C,F,Flx","FA"],
 ["06219","Johnny Davis","(N/A)","SG","SG,G,Flx","FA"],
 ["06mlh","Johnny Furphy","IND","SG","SG,G,SF,F,Flx","FA"],
 ["0623d","Johnny Juzang","(N/A)","SG","SG,G,SF,F,Flx","FA"],
@@ -878,7 +878,7 @@ const WC_PLAYER_POOL = [
 ["042n5","Marquese Chriss","(N/A)","PF","PF,F,Flx","FA"],
 ["049ki","Marvin Bagley","DEN","PF","PF,C,F,Flx","FA"],
 ["05qy1","Mason Jones","(N/A)","SG","SG,G,Flx","FA"],
-["031m9","Mason Plumlee","(N/A)","C","C,Flx","FA"],
+["031m9","Mason Plumlee","SAC","C","C,Flx","FA"],
 ["06mk3","Matas Buzelis","CHI","SF","SF,PF,F,Flx","T"],
 ["051p0","Matisse Thybulle","LAL","SG","SG,G,SF,F,Flx","T"],
 ["05xac","Matt Coleman","(N/A)","PG","PG,G,Flx","FA"],
