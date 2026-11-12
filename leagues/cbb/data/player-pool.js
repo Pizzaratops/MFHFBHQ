@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-12T04:00:59.533Z
+//  Stand: 2026-11-12T04:20:44.584Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -1678,6 +1678,7 @@ const CBB_PLAYER_POOL = [
 ["064xh","Mark Mitchell","Mizzou","G","F/C,G,Flx","T"],
 ["079ko","Mark Morano","Syr","F","F/C,Flx","T"],
 ["07a2z","Mark Padjen","Mur","G","G,Flx","FA"],
+["07ax5","Mark Woods","KSU","F","F/C,Flx","FA"],
 ["06gaf","Markel Jennings","UGA","G","G,Flx","FA"],
 ["070mz","Markell Alston","UCLA","G","G,Flx","FA"],
 ["079ch","Marko Maric","Butl","F","F/C,Flx","FA"],
@@ -2005,6 +2006,7 @@ const CBB_PLAYER_POOL = [
 ["06n39","Richard Goods","SoFL","F","F/C,Flx","FA"],
 ["064l7","Richard Isaacs","Okla","G","G,Flx","FA"],
 ["06gdp","Richard Nweke","Colum","F","F/C,Flx","FA"],
+["07ax4","Ricky Hill","KSU","G","G,Flx","FA"],
 ["06ynf","Ricky Liburd","Mich","G","F/C,G,Flx","FA"],
 ["0799o","Rider Portela","Col","G","G,Flx","FA"],
 ["06hqh","Rihards Vavers","Mem","F","F/C,Flx","FA"],

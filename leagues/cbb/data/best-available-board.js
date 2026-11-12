@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-12T04:00:59.907Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-12T04:20:44.977Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2422,5 +2422,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Emmanuel Ogbole","nbaTeam":"Rut","pos":"C","experience":"veteran","minutesAvg":18.8,"z30":-0.88,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":1731,"statsWindow":"last-season","compositeScore":-20.29,"signalsUsed":1,"gone":true,"rank":2416},
   {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2417},
   {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2418},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419}
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
+  {"name":"Mark Woods","nbaTeam":"KSU","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420},
+  {"name":"Ricky Hill","nbaTeam":"KSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2421}
 ];
