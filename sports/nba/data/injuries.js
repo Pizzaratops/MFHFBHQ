@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T02:12:30.448Z",
+  "updated": "2026-11-12T03:01:02.870Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
@@ -9,6 +9,7 @@ const NBA_INJURIES = {
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","GTD","2026-11-13","Toe",0,"2026-11-08"],
+    "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-11","Undisclosed",0,"2026-11-12"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-13","Thumb",0,"2026-11-11"],
@@ -16,6 +17,7 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","GTD","2026-11-13","Achilles",0,"2026-11-10"],
     "Brandon Miller": ["CHA","Out","OUT","2026-11-15","Groin",0,"2026-11-12"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
+    "Caleb Wilson": ["CHI","Day-To-Day","GTD","2026-11-13","Hand",0,"2026-11-12"],
     "Cam Christie": ["LAC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-11"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
