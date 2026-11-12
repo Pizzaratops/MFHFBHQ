@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T04:00:58.676Z",
+  "updated": "2026-11-12T15:01:04.185Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
@@ -27,7 +27,7 @@ const NBA_INJURIES = {
     "Dailyn Swain": ["CHI","Out","OUT","2026-11-13","Back",0,"2026-11-12"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
-    "Devin Vassell": ["SA","Out","OUT","2026-11-13","Groin",0,"2026-11-11"],
+    "Devin Vassell": ["SA","Out","GTD","2026-11-13","Groin",0,"2026-11-11"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-04"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Gary Payton II": ["GS","Out","OUT","2026-11-13","Knee",0,"2026-11-10"],
@@ -70,7 +70,7 @@ const NBA_INJURIES = {
     "Nate Bittle": ["TOR","Out","OUT","2026-11-15","Foot",0,"2026-11-08"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
     "Nolan Traore": ["BKN","Out","OUT","2026-11-14","Calf",0,"2026-11-11"],
-    "Norman Powell": ["CHI","Out","OUT","2026-11-13","Shoulder",0,"2026-11-11"],
+    "Norman Powell": ["CHI","Out","GTD","2026-11-13","Shoulder",0,"2026-11-11"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Paul George": ["BOS","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-12"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-13","Lower Leg",0,"2026-11-11"],
