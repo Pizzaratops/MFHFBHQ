@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T01:26:39.846Z",
+  "updated": "2026-11-12T01:40:04.708Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
     "Ajay Mitchell": ["OKC","Out","OUT","2026-11-13","Ankle",0,"2026-11-11"],
@@ -35,7 +35,7 @@ const NBA_INJURIES = {
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
     "Jalen Suggs": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
-    "Jamal Cain": ["ORL","Day-To-Day","GTD","2026-11-11","Shoulder",0,"2026-11-11"],
+    "Jamal Cain": ["ORL","Out","OUT","2026-11-13","Shoulder",0,"2026-11-12"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
@@ -86,7 +86,7 @@ const NBA_INJURIES = {
     "Trayce Jackson-Davis": ["TOR","Out","OUT","2026-11-12","Illness",0,"2026-11-11"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-13","Ankle",0,"2026-11-10"],
     "Trey Murphy III": ["NO","Out","OUT","2026-11-13","Knee",0,"2026-11-11"],
-    "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-11"],
+    "Tristan da Silva": ["ORL","Out","OUT","2026-11-13","Calf",0,"2026-11-12"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-13","Foot",0,"2026-11-11"],
