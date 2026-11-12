@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T21:49:35.496Z",
+  "updated": "2026-11-12T21:54:15.716Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -90,7 +90,7 @@ const NBA_INJURIES = {
     "Steven Adams": ["HOU","Out","OUT","2026-11-15","Calf",0,"2026-11-09"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","GTD","2026-11-13","Knee",0,"2026-11-03"],
-    "Tobe Awaka": ["CHI","Day-To-Day","OUT","2026-11-14","Back",0,"2026-11-12"],
+    "Tobe Awaka": ["CHI","Out","OUT","2026-11-14","Back",0,"2026-11-12"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
     "Trayce Jackson-Davis": ["TOR","Out","OUT","2026-11-15","Illness",0,"2026-11-12"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-14","Ankle",0,"2026-11-12"],
