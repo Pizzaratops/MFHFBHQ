@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-11T23:41:16.476Z",
+  "updated": "2026-11-12T00:01:01.726Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-11"],
     "Ajay Mitchell": ["OKC","Out","OUT","2026-11-13","Ankle",0,"2026-11-11"],
@@ -88,7 +88,7 @@ const NBA_INJURIES = {
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
     "Trayce Jackson-Davis": ["TOR","Out","OUT","2026-11-12","Illness",0,"2026-11-11"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-13","Ankle",0,"2026-11-10"],
-    "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-11"],
+    "Trey Murphy III": ["NO","Out","OUT","2026-11-13","Knee",0,"2026-11-11"],
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-11","Calf",0,"2026-11-11"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
     "Tyler Herro": ["MIL","Day-To-Day","GTD","2026-11-11","Knee",0,"2026-11-11"],
