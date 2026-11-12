@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T22:25:01.604Z",
+  "updated": "2026-11-12T22:50:55.746Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -62,6 +62,7 @@ const NBA_INJURIES = {
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "LeBron James": ["PHI","Out","OUT","2026-11-15","Back",0,"2026-11-12"],
     "Luka Doncic": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-12"],
+    "Marcus Smart": ["HOU","Suspension","OUT","2026-11-18","Suspension",0,"2026-11-12"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
     "Mikel Brown Jr.": ["BKN","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-12"],
