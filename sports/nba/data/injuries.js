@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T17:31:05.517Z",
+  "updated": "2026-11-12T18:33:16.385Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -57,7 +57,7 @@ const NBA_INJURIES = {
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
-    "LeBron James": ["PHI","Day-To-Day","GTD","2026-11-12","Back",0,"2026-11-12"],
+    "LeBron James": ["PHI","Out","OUT","2026-11-15","Back",0,"2026-11-12"],
     "Luka Doncic": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-12"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
@@ -80,7 +80,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-13","Head",0,"2026-11-12"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-16","Elbow",0,"2026-11-10"],
-    "Scottie Barnes": ["TOR","Out","GTD","2026-11-12","Groin",0,"2026-11-10"],
+    "Scottie Barnes": ["TOR","Out","OUT","2026-11-15","Groin",0,"2026-11-12"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
@@ -90,7 +90,7 @@ const NBA_INJURIES = {
     "Thomas Sorber": ["OKC","Out","GTD","2026-11-13","Knee",0,"2026-11-03"],
     "Tobe Awaka": ["CHI","Day-To-Day","GTD","2026-11-13","Back",0,"2026-11-12"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
-    "Trayce Jackson-Davis": ["TOR","Day-To-Day","GTD","2026-11-12","Illness",0,"2026-11-12"],
+    "Trayce Jackson-Davis": ["TOR","Out","OUT","2026-11-15","Illness",0,"2026-11-12"],
     "Trendon Watford": ["NO","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-12"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
