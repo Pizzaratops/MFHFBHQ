@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-12T00:01:02.634Z
+//  Stand: 2026-11-12T01:00:59.457Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -639,7 +639,7 @@ const WC_PLAYER_POOL = [
 ["06v8j","John Tonje","POR","SG","SG,G,Flx","FA"],
 ["07apl","John Ukomadu","(N/A)","F","SF,PF,F,Flx","FA"],
 ["0724o","Johnell Davis","(N/A)","PG","PG,SG,G,Flx","FA"],
-["06v81","Johni Broome","MIN","PF","PF,C,F,Flx","FA"],
+["06v81","Johni Broome","(N/A)","PF","PF,C,F,Flx","FA"],
 ["06219","Johnny Davis","(N/A)","SG","SG,G,Flx","FA"],
 ["06mlh","Johnny Furphy","IND","SG","SG,G,SF,F,Flx","FA"],
 ["0623d","Johnny Juzang","(N/A)","SG","SG,G,SF,F,Flx","FA"],
