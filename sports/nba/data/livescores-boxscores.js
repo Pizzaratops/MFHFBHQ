@@ -4092,9 +4092,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909966",
-      line: "Washington Wizards @ Indiana Pacers (11/11 - 7:00 PM EST)",
+      line: "Washington Wizards @ Indiana Pacers (59.3 - 1st)",
       completed: false,
-      statusText: "11/11 - 7:00 PM EST",
+      statusText: "59.3 - 1st",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4110,9 +4110,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909967",
-      line: "Cleveland Cavaliers @ New York Knicks (11/11 - 7:00 PM EST)",
+      line: "Cleveland Cavaliers @ New York Knicks (2:00 - 1st)",
       completed: false,
-      statusText: "11/11 - 7:00 PM EST",
+      statusText: "2:00 - 1st",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -4128,9 +4128,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909968",
-      line: "Boston Celtics @ Toronto Raptors (11/11 - 7:00 PM EST)",
+      line: "Boston Celtics @ Toronto Raptors (2:50 - 1st)",
       completed: false,
-      statusText: "11/11 - 7:00 PM EST",
+      statusText: "2:50 - 1st",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
