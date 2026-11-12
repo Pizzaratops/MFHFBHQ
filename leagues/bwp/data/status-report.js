@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-12T18:02:03.858Z",
+  "generatedAt": "2026-11-12T18:03:21.659Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -56,7 +56,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "HOU",
           "isStarter": false,
-          "status": "O",
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 0,
           "last3AvgPoints": 0,
@@ -664,7 +664,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "GB",
           "isStarter": false,
-          "status": "Q",
+          "status": "O",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
