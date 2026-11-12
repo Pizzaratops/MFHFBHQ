@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T23:32:00.865Z",
+  "updated": "2026-11-12T23:50:31.895Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -48,7 +48,6 @@ const NBA_INJURIES = {
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-15","Back",0,"2026-11-11"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
-    "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-12","Foot",0,"2026-11-12"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
@@ -68,7 +67,6 @@ const NBA_INJURIES = {
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
     "Mikel Brown Jr.": ["BKN","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-12"],
-    "Morez Johnson Jr.": ["DAL","Day-To-Day","","","",0,"2026-11-11"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-11-20","Foot",0,"2026-10-19"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-15","Foot",0,"2026-11-08"],
