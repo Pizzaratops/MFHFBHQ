@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T21:54:15.716Z",
+  "updated": "2026-11-12T22:13:08.804Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -38,7 +38,7 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-18","Ankle",0,"2026-09-28"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
-    "Jalen Suggs": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
+    "Jalen Suggs": ["ORL","Out","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamal Cain": ["ORL","Day-To-Day","GTD","2026-11-13","Shoulder",0,"2026-11-12"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
