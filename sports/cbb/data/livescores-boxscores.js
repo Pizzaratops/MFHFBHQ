@@ -7781,9 +7781,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920073",
-      line: "Kansas City Roos @ George Mason Patriots (11/12 - 3:00 PM EST)",
+      line: "Kansas City Roos @ George Mason Patriots (Halftime)",
       completed: false,
-      statusText: "11/12 - 3:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "KC", name: "Kansas City Roos", score: null,
         players: [
