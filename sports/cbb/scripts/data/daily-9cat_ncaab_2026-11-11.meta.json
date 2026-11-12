@@ -2,9 +2,7 @@
   "league": "ncaab",
   "date": "2026-11-11",
   "games": [
-    "USC Trojans @ California Golden Bears (Halftime)",
-    "Pacific Tigers @ Long Beach State Beach (0:55 - 2nd)",
-    "UTSA Roadrunners @ Seattle U Redhawks (End of 2nd)",
+    "USC Trojans @ California Golden Bears (3:46 - 2nd)",
     "Jacksonville State Gamecocks 46 @ Houston Cougars 92 (Final)",
     "Arkansas-Pine Bluff Golden Lions 37 @ UCLA Bruins 106 (Final)",
     "Colgate Raiders 59 @ St. John's Red Storm 90 (Final)",
@@ -35,10 +33,12 @@
     "Portland State Vikings 71 @ Colorado State Rams 87 (Final)",
     "Nevada Wolf Pack 63 @ UC Santa Barbara Gauchos 76 (Final)",
     "Cal Poly Mustangs 71 @ Grand Canyon Lopes 99 (Final)",
-    "Mississippi Valley State Delta Devils 66 @ Oregon Ducks 100 (Final)"
+    "Mississippi Valley State Delta Devils 66 @ Oregon Ducks 100 (Final)",
+    "Pacific Tigers 59 @ Long Beach State Beach 62 (Final)",
+    "UTSA Roadrunners 86 @ Seattle U Redhawks 59 (Final)"
   ],
   "leagueAvg": {
-    "fg": 48.7,
-    "ft": 70.8
+    "fg": 48.2,
+    "ft": 70.5
   }
 }
