@@ -85,14 +85,14 @@ jobs:
             exit 0
           fi
           git commit -m "chore: bwp sync"
-          for i in 1 2 3 4 5; do
+          for i in 1 2 3 4 5 6 7 8; do
             if git push; then exit 0; fi
-            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            echo "Push fehlgeschlagen (Versuch $i/8) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
             git fetch origin main
             git rebase -X theirs origin/main || git rebase --abort
             sleep $((RANDOM % 8 + 3))
           done
-          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          echo "Push nach 8 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
           exit 1
 
       - name: Fehlgeschlagene Schritte melden

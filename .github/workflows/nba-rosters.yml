@@ -38,5 +38,5 @@ jobs:
           if git diff --quiet -I 'updated|Stand 20' -- sports/nba/data/nba-rosters.js && git ls-files --error-unmatch sports/nba/data/nba-rosters.js >/dev/null 2>&1; then git checkout -- sports/nba/data/nba-rosters.js; echo "Keine Änderung."; exit 0; fi
           git add sports/nba/data/nba-rosters.js
           git commit -m "chore: NBA-Kader (ESPN)"
-          for i in 1 2 3 4 5; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase -X theirs "origin/${GITHUB_REF_NAME}" || git rebase --abort; done
+          for i in 1 2 3 4 5 6 7 8; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase -X theirs "origin/${GITHUB_REF_NAME}" || git rebase --abort; done
           exit 1

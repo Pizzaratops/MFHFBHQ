@@ -41,5 +41,5 @@ jobs:
           git add leagues/nfl32/data
           if git diff --cached --quiet; then echo "Keine Änderung."; exit 0; fi
           git commit -m "chore: NFL 32 sync"
-          for i in 1 2 3 4 5; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase -X theirs "origin/${GITHUB_REF_NAME}" || git rebase --abort; done
+          for i in 1 2 3 4 5 6 7 8; do git push && exit 0; sleep $((i*5)); git fetch origin "${GITHUB_REF_NAME}"; git rebase -X theirs "origin/${GITHUB_REF_NAME}" || git rebase --abort; done
           exit 1

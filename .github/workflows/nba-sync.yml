@@ -122,7 +122,7 @@ jobs:
   fanout:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.fanout != 'false'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Fällige Workflows anstoßen
         env:
@@ -137,9 +137,27 @@ jobs:
           BH=$(TZ=Europe/Berlin date -d "$T" +%H); BD=$(TZ=Europe/Berlin date -d "$T" +%u)   # Berlin: Stunde, Wochentag 1=Mo
           echo "Lauf gestartet ${T} → Berlin Tag ${BD}, ${BH} Uhr · UTC Tag ${UD}, ${UH} Uhr"
           if [ "$((10#$MIN))" -ge 20 ]; then echo "Kein Start zur vollen Stunde – nichts anzustoßen."; exit 0; fi
-          go() { echo "→ $*"; gh workflow run "$@" --ref main || echo "::warning::Konnte $1 nicht starten"; }
+          # Zwischen den Starts liegt eine Pause: alle Workflows pushen auf main, und ein Push dauert bei der
+          # Repo-Größe ~8 s. Am 12.11. (09 Uhr, 7 Starts gleichzeitig) scheiterten BWP- und TTHQ-Sync daran.
+          go() { echo "→ $*"; gh workflow run "$@" --ref main || echo "::warning::Konnte $1 nicht starten"; sleep "${PAUSE:-25}"; }
           bh() { for h in "$@"; do [ "$BH" = "$h" ] && return 0; done; return 1; }
           uh() { for h in "$@"; do [ "$UH" = "$h" ] && return 0; done; return 1; }
+
+          # Auto-Lineup zuerst: zeitkritisch und ohne Push (UTC, US-Winterzeit; Inaktive kommen ~90 Min. vor Kickoff) – Zeiten siehe auto-lineup.yml
+          AL=""
+          case "$UD" in
+            4) uh 22 && AL=lineup ;;            # Do vor Thursday Night
+            5) uh 00 && AL=lineup ;;            # nach den TNF-Inaktiven
+            6) uh 16 && AL=lineup ;;            # Samstag
+            0) uh 13 17 20 21 && AL=lineup ;;   # Sonntag: früh, 18-Uhr-Spiele, 21:05/21:25-Spiele
+            1) uh 00 && AL=lineup ;;            # Sunday Night
+            2) uh 00 && AL=lineup; uh 17 && AL=waivers ;;   # Monday Night · Waiver-Report
+          esac
+          if [ "$AL" = lineup ]; then PAUSE=0 go auto-lineup.yml -f dry=false -f report=false -f waivers=false; fi
+          if [ "$AL" = waivers ]; then PAUSE=0 go auto-lineup.yml -f dry=false -f report=false -f waivers=true; fi
+
+          # Erst die NBA-Kette dieses Laufs pushen lassen (Sport + drei Ligen, ~80 s)
+          sleep 80
 
           # stündlich
           CBB=""
@@ -160,18 +178,6 @@ jobs:
           if [ "$BD" = 2 ] && bh 08; then go nfl-trade-values.yml; fi
           if [ "$BD" = 3 ] && bh 10; then go bwp-snapshot.yml; go dope-snapshot.yml; fi
           if { [ "$BD" = 1 ] || [ "$BD" = 2 ] || [ "$BD" = 5 ]; } && bh 09; then go nfl32.yml; fi
-          # Auto-Lineup (UTC, US-Winterzeit; Inaktive kommen ~90 Min. vor Kickoff) – Zeiten siehe auto-lineup.yml
-          AL=""
-          case "$UD" in
-            4) uh 22 && AL=lineup ;;            # Do vor Thursday Night
-            5) uh 00 && AL=lineup ;;            # nach den TNF-Inaktiven
-            6) uh 16 && AL=lineup ;;            # Samstag
-            0) uh 13 17 20 21 && AL=lineup ;;   # Sonntag: früh, 18-Uhr-Spiele, 21:05/21:25-Spiele
-            1) uh 00 && AL=lineup ;;            # Sunday Night
-            2) uh 00 && AL=lineup; uh 17 && AL=waivers ;;   # Monday Night · Waiver-Report
-          esac
-          if [ "$AL" = lineup ]; then go auto-lineup.yml -f dry=false -f report=false -f waivers=false; fi
-          if [ "$AL" = waivers ]; then go auto-lineup.yml -f dry=false -f report=false -f waivers=true; fi
 
   gate:
     runs-on: ubuntu-latest
@@ -409,14 +415,14 @@ jobs:
             exit 0
           fi
           git commit -m "chore: nba sync (sportweit)"
-          for i in 1 2 3 4 5; do
+          for i in 1 2 3 4 5 6 7 8; do
             if git push; then exit 0; fi
-            echo "Push fehlgeschlagen (Versuch $i/5) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
+            echo "Push fehlgeschlagen (Versuch $i/8) -- vermutlich hat ein anderer Workflow zeitgleich gepusht. Hole aktuellen Stand und versuche erneut..."
             git fetch origin "${GITHUB_REF_NAME}"
             git rebase "origin/${GITHUB_REF_NAME}"
             sleep $((RANDOM % 8 + 3))
           done
-          echo "Push nach 5 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
+          echo "Push nach 8 Versuchen weiterhin fehlgeschlagen -- bitte Workflow-Log prüfen."
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
