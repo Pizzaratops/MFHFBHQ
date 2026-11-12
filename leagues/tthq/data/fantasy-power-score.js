@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-12T13:01:16.608Z",
+  "generatedAt": "2026-11-12T13:42:24.427Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 13 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -102,9 +102,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 74,
         "stl": 21.9,
         "blk": 14.12,
-        "tpm": 39.1,
+        "tpm": 39.2,
         "to": 39.7,
-        "fgPct": 46.9,
+        "fgPct": 47,
         "ftPct": 79
       },
       "rank": {
@@ -164,7 +164,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 84.2,
         "stl": 23.62,
         "blk": 12.89,
-        "tpm": 47.7,
+        "tpm": 47.6,
         "to": 44,
         "fgPct": 46.1,
         "ftPct": 81.2
@@ -195,7 +195,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 67.1,
         "stl": 20.07,
         "blk": 10.94,
-        "tpm": 33.7,
+        "tpm": 33.6,
         "to": 36,
         "fgPct": 46.9,
         "ftPct": 81.8
@@ -226,7 +226,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 57.9,
         "stl": 20.45,
         "blk": 14.86,
-        "tpm": 34.1,
+        "tpm": 34.2,
         "to": 35.4,
         "fgPct": 46.7,
         "ftPct": 76.4
@@ -259,7 +259,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 81,
         "stl": 23.35,
         "blk": 19.2,
-        "tpm": 31.9,
+        "tpm": 32,
         "to": 43.6,
         "fgPct": 47.6,
         "ftPct": 76.2
@@ -292,7 +292,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 77.9,
         "stl": 23.38,
         "blk": 17.6,
-        "tpm": 33.3,
+        "tpm": 33.2,
         "to": 41.8,
         "fgPct": 47.8,
         "ftPct": 76.1
@@ -385,7 +385,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 90.3,
         "stl": 25.14,
         "blk": 14.42,
-        "tpm": 38.9,
+        "tpm": 38.8,
         "to": 47.2,
         "fgPct": 46.8,
         "ftPct": 79.2
@@ -418,7 +418,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 9.22,
         "tpm": 29.7,
         "to": 35.2,
-        "fgPct": 46.1,
+        "fgPct": 46,
         "ftPct": 78.4
       },
       "rank": {
