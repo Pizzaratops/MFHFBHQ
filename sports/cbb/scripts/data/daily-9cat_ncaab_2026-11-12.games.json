@@ -1,0 +1,258 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-12",
+  "games": [
+    {
+      "id": "401920073",
+      "line": "Kansas City Roos @ George Mason Patriots (11/12 - 3:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 3:00 PM EST",
+      "away": {
+        "abbr": "KC",
+        "name": "Kansas City Roos",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GMas",
+        "name": "George Mason Patriots",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925631",
+      "line": "Bradley Braves @ Coppin State Eagles (11/12 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 6:00 PM EST",
+      "away": {
+        "abbr": "Brad",
+        "name": "Bradley Braves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "COPP",
+        "name": "Coppin State Eagles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917176",
+      "line": "Mercyhurst Lakers @ Penn State Nittany Lions (11/12 - 6:30 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 6:30 PM EST",
+      "away": {
+        "abbr": "MERC",
+        "name": "Mercyhurst Lakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PSU",
+        "name": "Penn State Nittany Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401916288",
+      "line": "Tennessee Tech Golden Eagles @ Indiana Hoosiers (11/12 - 6:30 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 6:30 PM EST",
+      "away": {
+        "abbr": "TNTC",
+        "name": "Tennessee Tech Golden Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ind",
+        "name": "Indiana Hoosiers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921768",
+      "line": "Mercer Bears @ West Virginia Mountaineers (11/12 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 7:00 PM EST",
+      "away": {
+        "abbr": "MER",
+        "name": "Mercer Bears",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WVU",
+        "name": "West Virginia Mountaineers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920064",
+      "line": "Maryland Eastern Shore Hawks @ Rhode Island Rams (11/12 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 7:00 PM EST",
+      "away": {
+        "abbr": "UMES",
+        "name": "Maryland Eastern Shore Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "URI",
+        "name": "Rhode Island Rams",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911307",
+      "line": "Canisius Golden Griffins @ Brown Bears (11/12 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 7:00 PM EST",
+      "away": {
+        "abbr": "CAN",
+        "name": "Canisius Golden Griffins",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Brown",
+        "name": "Brown Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919041",
+      "line": "Oklahoma State Cowboys @ Texas A&M Aggies (11/12 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 8:00 PM EST",
+      "away": {
+        "abbr": "OkSt",
+        "name": "Oklahoma State Cowboys",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TAMU",
+        "name": "Texas A&M Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917524",
+      "line": "Loyola Marymount Lions @ South Alabama Jaguars (11/12 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 8:00 PM EST",
+      "away": {
+        "abbr": "LoyMa",
+        "name": "Loyola Marymount Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USA",
+        "name": "South Alabama Jaguars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401916306",
+      "line": "Southern Jaguars @ Minnesota Golden Gophers (11/12 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 8:00 PM EST",
+      "away": {
+        "abbr": "SOU",
+        "name": "Southern Jaguars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Minn",
+        "name": "Minnesota Golden Gophers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911239",
+      "line": "Richmond Spiders @ Southern Illinois Salukis (11/12 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 8:00 PM EST",
+      "away": {
+        "abbr": "Rich",
+        "name": "Richmond Spiders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SIU",
+        "name": "Southern Illinois Salukis",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921741",
+      "line": "Montana State Bobcats @ BYU Cougars (11/12 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 9:00 PM EST",
+      "away": {
+        "abbr": "MTST",
+        "name": "Montana State Bobcats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BYU",
+        "name": "BYU Cougars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911533",
+      "line": "New Mexico State Aggies @ UTEP Miners (11/12 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 9:00 PM EST",
+      "away": {
+        "abbr": "NMSU",
+        "name": "New Mexico State Aggies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTEP",
+        "name": "UTEP Miners",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911471",
+      "line": "UC Riverside Highlanders @ San José State Spartans (11/12 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/12 - 10:00 PM EST",
+      "away": {
+        "abbr": "UCR",
+        "name": "UC Riverside Highlanders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SJSU",
+        "name": "San José State Spartans",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
