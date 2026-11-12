@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T20:20:25.522Z",
+  "updated": "2026-11-12T21:01:01.901Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -91,7 +91,7 @@ const NBA_INJURIES = {
     "Tobe Awaka": ["CHI","Day-To-Day","GTD","2026-11-13","Back",0,"2026-11-12"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
     "Trayce Jackson-Davis": ["TOR","Out","OUT","2026-11-15","Illness",0,"2026-11-12"],
-    "Trendon Watford": ["NO","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-12"],
+    "Trendon Watford": ["NO","Out","OUT","2026-11-14","Ankle",0,"2026-11-12"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-13","Calf",0,"2026-11-12"],
@@ -100,6 +100,6 @@ const NBA_INJURIES = {
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-13","Foot",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-17","Foot",0,"2026-11-10"],
-    "Yves Missi": ["NO","Out","OUT","2026-11-16","Knee",0,"2026-11-05"]
+    "Yves Missi": ["NO","Out","GTD","2026-11-13","Knee",0,"2026-11-12"]
   }
 };
