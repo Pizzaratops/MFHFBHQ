@@ -2,12 +2,12 @@
   "league": "ncaab",
   "date": "2026-11-11",
   "games": [
-    "USC Trojans @ California Golden Bears (3:46 - 2nd)",
     "Jacksonville State Gamecocks 46 @ Houston Cougars 92 (Final)",
     "Arkansas-Pine Bluff Golden Lions 37 @ UCLA Bruins 106 (Final)",
     "Colgate Raiders 59 @ St. John's Red Storm 90 (Final)",
     "Robert Morris Colonials 53 @ Arkansas Razorbacks 76 (Final)",
     "Marquette Golden Eagles 70 @ Michigan Wolverines 84 (Final)",
+    "USC Trojans 77 @ California Golden Bears 65 (Final)",
     "Lindenwood Lions 60 @ Nebraska Cornhuskers 94 (Final)",
     "Dartmouth Big Green 85 @ UAlbany Great Danes 76 (Final)",
     "Incarnate Word Cardinals 69 @ UC Davis Aggies 81 (Final)",
@@ -38,7 +38,7 @@
     "UTSA Roadrunners 86 @ Seattle U Redhawks 59 (Final)"
   ],
   "leagueAvg": {
-    "fg": 48.2,
-    "ft": 70.5
+    "fg": 47.5,
+    "ft": 70.7
   }
 }
