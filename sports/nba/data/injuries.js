@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T19:01:00.948Z",
+  "updated": "2026-11-12T20:20:25.522Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -84,7 +84,7 @@ const NBA_INJURIES = {
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
-    "Stephen Curry": ["GS","Out","OUT","2026-12-01","Abdomen",0,"2026-11-12"],
+    "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "Steven Adams": ["HOU","Out","OUT","2026-11-15","Calf",0,"2026-11-09"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","GTD","2026-11-13","Knee",0,"2026-11-03"],
