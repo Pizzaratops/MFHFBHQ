@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T21:01:01.901Z",
+  "updated": "2026-11-12T21:24:57.019Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -14,9 +14,10 @@ const NBA_INJURIES = {
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Day-To-Day","GTD","2026-11-13","Thumb",0,"2026-11-12"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
-    "Brandon Ingram": ["LAC","Out","GTD","2026-11-13","Achilles",0,"2026-11-10"],
+    "Brandon Ingram": ["LAC","Out","OUT","2026-11-19","Achilles",0,"2026-11-12"],
     "Brandon Miller": ["CHA","Out","OUT","2026-11-15","Groin",0,"2026-11-12"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
+    "Bryce McGowens": ["NO","Day-To-Day","GTD","2026-11-13","Elbow",0,"2026-11-12"],
     "Caleb Wilson": ["CHI","Day-To-Day","GTD","2026-11-13","Hand",0,"2026-11-12"],
     "Cam Christie": ["LAC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-11"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -31,6 +32,7 @@ const NBA_INJURIES = {
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Gary Payton II": ["GS","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
+    "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-13","Wrist",0,"2026-11-12"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","OUT","2026-11-17","Hip",0,"2026-11-09"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-18","Ankle",0,"2026-09-28"],
