@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-12T22:13:08.804Z",
+  "updated": "2026-11-12T22:25:01.604Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -21,6 +21,7 @@ const NBA_INJURIES = {
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cam Christie": ["LAC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-11"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
+    "Charles Bassey": ["GS","Day-To-Day","GTD","2026-11-13","Toe",0,"2026-11-12"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Day-To-Day","GTD","2026-11-13","Foot",0,"2026-11-12"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-15","Ankle",0,"2026-11-09"],
@@ -31,7 +32,7 @@ const NBA_INJURIES = {
     "Devin Vassell": ["SA","Day-To-Day","GTD","2026-11-13","Groin",0,"2026-11-12"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Gary Payton II": ["GS","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
+    "Evan Mobley": ["CLE","Out","OUT","2026-11-14","Toe",0,"2026-11-12"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-13","Wrist",0,"2026-11-12"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","OUT","2026-11-17","Hip",0,"2026-11-09"],
@@ -67,7 +68,6 @@ const NBA_INJURIES = {
     "Morez Johnson Jr.": ["DAL","Day-To-Day","GTD","2026-11-12","Lower Leg",0,"2026-11-11"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-11-20","Foot",0,"2026-10-19"],
-    "Myles Turner": ["MIL","Day-To-Day","GTD","2026-11-13","Rest",0,"2026-11-12"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-15","Foot",0,"2026-11-08"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-14","Calf",0,"2026-11-12"],
@@ -80,7 +80,6 @@ const NBA_INJURIES = {
     "Quinten Post": ["MEM","Day-To-Day","GTD","2026-11-13","Head",0,"2026-11-12"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
-    "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-13","Head",0,"2026-11-12"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-16","Elbow",0,"2026-11-10"],
     "Scottie Barnes": ["TOR","Out","OUT","2026-11-15","Groin",0,"2026-11-12"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
