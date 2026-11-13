@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T00:03:23.410Z",
+  "generatedAt": "2026-11-13T00:58:12.956Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -44,7 +44,7 @@ const STATUS_REPORT_DATA = {
           "name": "Garrett Wilson",
           "pos": "WR",
           "nfl": "NYJ",
-          "isStarter": false,
+          "isStarter": true,
           "status": "Q",
           "flag": false,
           "lastGamePoints": 0,
@@ -187,7 +187,7 @@ const STATUS_REPORT_DATA = {
           "name": "Adonai Mitchell",
           "pos": "WR",
           "nfl": "NYJ",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 0,
@@ -735,7 +735,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.6,
           "last3AvgPoints": 14.8,
-          "projPoints": 18.8
+          "projPoints": 18.7
         },
         {
           "name": "Brock Bowers",
@@ -1807,7 +1807,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.6,
           "last3AvgPoints": 14.8,
-          "projPoints": 18.8
+          "projPoints": 18.7
         },
         {
           "name": "Blake Corum",
@@ -2067,7 +2067,7 @@ const STATUS_REPORT_DATA = {
           "name": "Audric Estime",
           "pos": "RB",
           "nfl": "NO",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 14.7,
@@ -2155,7 +2155,7 @@ const STATUS_REPORT_DATA = {
           "name": "Omarion Hampton",
           "pos": "RB",
           "nfl": "LAC",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 6,
@@ -2974,7 +2974,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "LAR",
           "isStarter": false,
-          "status": "O",
+          "status": "IR",
           "flag": false,
           "lastGamePoints": 35,
           "last3AvgPoints": 27.3,
@@ -3107,7 +3107,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "LAR",
           "isStarter": true,
-          "status": "O",
+          "status": "IR",
           "flag": true,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -3466,7 +3466,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.6,
           "last3AvgPoints": 14.8,
-          "projPoints": 18.8
+          "projPoints": 18.7
         },
         {
           "name": "Blake Corum",
@@ -3620,7 +3620,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.3,
           "last3AvgPoints": 9.8,
-          "projPoints": 12.4
+          "projPoints": 12.3
         },
         {
           "name": "Rachaad White",
