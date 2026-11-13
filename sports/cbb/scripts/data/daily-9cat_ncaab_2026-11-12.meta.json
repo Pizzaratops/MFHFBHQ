@@ -2,23 +2,23 @@
   "league": "ncaab",
   "date": "2026-11-12",
   "games": [
-    "Tennessee Tech Golden Eagles 66 @ Indiana Hoosiers 90 (Final)",
-    "Mercer Bears @ West Virginia Mountaineers (7:39 - 2nd)",
-    "Maryland Eastern Shore Hawks 47 @ Rhode Island Rams 67 (Final)",
-    "Canisius Golden Griffins @ Brown Bears (2:24 - 2nd)",
-    "Oklahoma State Cowboys @ Texas A&M Aggies (3:59 - 1st)",
-    "Loyola Marymount Lions @ South Alabama Jaguars (Halftime)",
-    "Southern Jaguars @ Minnesota Golden Gophers (Halftime)",
-    "Richmond Spiders @ Southern Illinois Salukis (0:05 - 1st)",
+    "UC Riverside Highlanders @ San José State Spartans (1:07 - 2nd)",
+    "Montana State Bobcats 71 @ BYU Cougars 86 (Final)",
     "Kansas City Roos 68 @ George Mason Patriots 76 (Final)",
     "Bradley Braves 56 @ Coppin State Eagles 54 (Final)",
     "Mercyhurst Lakers 57 @ Penn State Nittany Lions 72 (Final)",
-    "Montana State Bobcats @ BYU Cougars (11/12 - 9:00 PM EST)",
-    "New Mexico State Aggies @ UTEP Miners (11/12 - 9:00 PM EST)",
-    "UC Riverside Highlanders @ San José State Spartans (11/12 - 10:00 PM EST)"
+    "Tennessee Tech Golden Eagles 66 @ Indiana Hoosiers 90 (Final)",
+    "Mercer Bears 61 @ West Virginia Mountaineers 75 (Final)",
+    "Maryland Eastern Shore Hawks 47 @ Rhode Island Rams 67 (Final)",
+    "Canisius Golden Griffins 86 @ Brown Bears 81 (Final)",
+    "Oklahoma State Cowboys 69 @ Texas A&M Aggies 88 (Final)",
+    "Loyola Marymount Lions 72 @ South Alabama Jaguars 79 (Final)",
+    "Southern Jaguars 61 @ Minnesota Golden Gophers 91 (Final)",
+    "Richmond Spiders 70 @ Southern Illinois Salukis 80 (Final)",
+    "New Mexico State Aggies 58 @ UTEP Miners 60 (Final)"
   ],
   "leagueAvg": {
-    "fg": 45.8,
-    "ft": 71.5
+    "fg": 46.2,
+    "ft": 71.8
   }
 }
