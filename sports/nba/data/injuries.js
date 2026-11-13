@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T04:01:03.896Z",
+  "updated": "2026-11-13T05:00:59.417Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -15,7 +15,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Day-To-Day","GTD","2026-11-13","Thumb",0,"2026-11-12"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-19","Achilles",0,"2026-11-12"],
-    "Brandon Miller": ["CHA","Out","OUT","2026-11-15","Groin",0,"2026-11-12"],
+    "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-15","Groin",0,"2026-11-13"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
     "Bryce McGowens": ["NO","Day-To-Day","GTD","2026-11-13","Elbow",0,"2026-11-12"],
     "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-15","Chest",0,"2026-11-13"],
