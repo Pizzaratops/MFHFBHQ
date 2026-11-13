@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T16:01:04.355Z",
+  "updated": "2026-11-13T16:42:20.177Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -33,6 +33,7 @@ const NBA_INJURIES = {
     "Devin Vassell": ["SA","Day-To-Day","GTD","2026-11-13","Groin",0,"2026-11-12"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
+    "Drew Timme": ["PHX","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-13"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-14","Toe",0,"2026-11-12"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-13","Wrist",0,"2026-11-12"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
