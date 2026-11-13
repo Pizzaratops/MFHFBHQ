@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T00:58:12.956Z",
+  "generatedAt": "2026-11-13T02:03:16.192Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1155,7 +1155,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.2,
           "last3AvgPoints": 8.1,
-          "projPoints": 6
+          "projPoints": 5.9
         },
         {
           "name": "Jared Goff",
@@ -1166,7 +1166,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.3,
           "last3AvgPoints": 11.4,
-          "projPoints": 18.8
+          "projPoints": 18.4
         },
         {
           "name": "Chris Godwin Jr.",
@@ -1420,7 +1420,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.6,
           "last3AvgPoints": 13.8,
-          "projPoints": 15.9
+          "projPoints": 15.7
         },
         {
           "name": "Parker Washington",
@@ -1608,7 +1608,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5,
           "last3AvgPoints": 6.7,
-          "projPoints": 8.1
+          "projPoints": 8
         },
         {
           "name": "Demarcus Robinson",
@@ -2237,7 +2237,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.5,
           "last3AvgPoints": 8.9,
-          "projPoints": 10.1
+          "projPoints": 9.9
         },
         {
           "name": "Aaron Jones Sr.",
@@ -3598,7 +3598,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.5,
           "last3AvgPoints": 8.9,
-          "projPoints": 10.1
+          "projPoints": 9.9
         },
         {
           "name": "Christian McCaffrey",
@@ -3653,7 +3653,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5,
           "last3AvgPoints": 16,
-          "projPoints": 12.5
+          "projPoints": 12.4
         },
         {
           "name": "Kenneth Walker III",
