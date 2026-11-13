@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T16:42:20.177Z",
+  "updated": "2026-11-13T17:20:27.765Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -41,9 +41,9 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-18","Ankle",0,"2026-09-28"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
-    "Jalen Suggs": ["ORL","Out","GTD","2026-11-13","Knee",0,"2026-11-12"],
+    "Jalen Suggs": ["ORL","Out","GTD","2026-11-13","Knee",0,"2026-11-13"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
-    "Jamal Cain": ["ORL","Day-To-Day","GTD","2026-11-13","Shoulder",0,"2026-11-12"],
+    "Jamal Cain": ["ORL","Day-To-Day","GTD","2026-11-13","Shoulder",0,"2026-11-13"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
@@ -99,7 +99,7 @@ const NBA_INJURIES = {
     "Trendon Watford": ["NO","Out","OUT","2026-11-14","Ankle",0,"2026-11-12"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
-    "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-13","Calf",0,"2026-11-12"],
+    "Tristan da Silva": ["ORL","Day-To-Day","GTD","2026-11-13","Calf",0,"2026-11-13"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-13","Foot",0,"2026-11-11"],
