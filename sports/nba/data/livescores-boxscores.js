@@ -4027,9 +4027,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909976",
-      line: "Toronto Raptors @ Philadelphia 76ers (4:02 - 2nd)",
+      line: "Toronto Raptors @ Philadelphia 76ers (3:52 - 2nd)",
       completed: false,
-      statusText: "4:02 - 2nd",
+      statusText: "3:52 - 2nd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
