@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-13T14:34:48.829Z
+//  Stand: 2026-11-13T15:02:24.679Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
