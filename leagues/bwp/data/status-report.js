@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T14:03:23.655Z",
+  "generatedAt": "2026-11-13T16:03:21.504Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -2138,7 +2138,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.4,
           "last3AvgPoints": 8.8,
-          "projPoints": 7
+          "projPoints": 6.7
         },
         {
           "name": "Tory Horton",
@@ -3675,7 +3675,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 36.3,
           "last3AvgPoints": 19.5,
-          "projPoints": 20.8
+          "projPoints": 21.4
         },
         {
           "name": "Jalen Nailor",
@@ -3841,7 +3841,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.5,
-          "projPoints": 5.3
+          "projPoints": 5.6
         },
         {
           "name": "Jerry Jeudy",
