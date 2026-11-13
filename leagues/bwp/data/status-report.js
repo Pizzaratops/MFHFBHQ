@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T17:36:26.267Z",
+  "generatedAt": "2026-11-13T18:03:30.178Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -2138,7 +2138,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.4,
           "last3AvgPoints": 8.8,
-          "projPoints": 6.7
+          "projPoints": 8.9
         },
         {
           "name": "Tory Horton",
@@ -2458,7 +2458,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 33.5,
           "last3AvgPoints": 23.6,
-          "projPoints": 20.1
+          "projPoints": 19.6
         },
         {
           "name": "Justin Herbert",
