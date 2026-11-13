@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T20:50:52.943Z",
+  "updated": "2026-11-13T20:58:13.672Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -9,7 +9,7 @@ const NBA_INJURIES = {
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2026-11-20","Toe",0,"2026-11-12"],
-    "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-15","Heel",0,"2026-11-12"],
+    "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-15","Heel",0,"2026-11-13"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Day-To-Day","GTD","2026-11-13","Thumb",0,"2026-11-13"],
@@ -64,7 +64,7 @@ const NBA_INJURIES = {
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "LeBron James": ["PHI","Day-To-Day","GTD","2026-11-15","Back",0,"2026-11-13"],
-    "Luka Doncic": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-12"],
+    "Luka Doncic": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-13"],
     "Marcus Smart": ["HOU","Suspension","OUT","2026-11-18","Suspension",0,"2026-11-12"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-15","Knee",0,"2026-11-10"],
