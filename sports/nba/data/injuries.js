@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T23:29:06.524Z",
+  "updated": "2026-11-13T23:49:46.288Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-13"],
@@ -55,8 +55,7 @@ const NBA_INJURIES = {
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-11"],
     "Keshon Gilbert": ["ATL","Out","OUT","2026-11-20","Knee",0,"2026-11-12"],
     "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-13"],
-    "Kingston Flemings": ["ATL","Day-To-Day","GTD","2026-11-13","Back",0,"2026-11-12"],
-    "Klay Thompson": ["MIA","Day-To-Day","OUT","2026-11-14","Ankle",0,"2026-11-13"],
+    "Klay Thompson": ["MIA","Out","OUT","2026-11-14","Ankle",0,"2026-11-13"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
@@ -74,7 +73,6 @@ const NBA_INJURIES = {
     "Nate Bittle": ["TOR","Out","GTD","2026-11-15","Foot",0,"2026-11-08"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-14","Calf",0,"2026-11-13"],
-    "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-13","Shoulder",0,"2026-11-12"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Paul George": ["BOS","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-12"],
     "Pelle Larsson": ["MIA","Out","OUT","2026-11-14","Illness",0,"2026-11-13"],
