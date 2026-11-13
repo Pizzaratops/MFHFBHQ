@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-13T18:42:57.815Z",
+  "generatedAt": "2026-11-13T19:01:15.748Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 13 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
