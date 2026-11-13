@@ -4027,9 +4027,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909976",
-      line: "Toronto Raptors @ Philadelphia 76ers (3:52 - 2nd)",
+      line: "Toronto Raptors @ Philadelphia 76ers (10:51 - 3rd)",
       completed: false,
-      statusText: "3:52 - 2nd",
+      statusText: "10:51 - 3rd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
@@ -4045,9 +4045,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909977",
-      line: "Detroit Pistons @ Washington Wizards (2:57 - 2nd)",
+      line: "Detroit Pistons @ Washington Wizards (11:24 - 3rd)",
       completed: false,
-      statusText: "2:57 - 2nd",
+      statusText: "11:24 - 3rd",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -4063,9 +4063,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909978",
-      line: "Dallas Mavericks @ Minnesota Timberwolves (11/12 - 8:00 PM EST)",
+      line: "Dallas Mavericks @ Minnesota Timberwolves (5:16 - 1st)",
       completed: false,
-      statusText: "11/12 - 8:00 PM EST",
+      statusText: "5:16 - 1st",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
