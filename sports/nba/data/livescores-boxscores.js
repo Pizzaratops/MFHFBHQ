@@ -4027,9 +4027,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909976",
-      line: "Toronto Raptors @ Philadelphia 76ers (11/12 - 7:00 PM EST)",
+      line: "Toronto Raptors @ Philadelphia 76ers (End of 1st)",
       completed: false,
-      statusText: "11/12 - 7:00 PM EST",
+      statusText: "End of 1st",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
@@ -4045,9 +4045,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909977",
-      line: "Detroit Pistons @ Washington Wizards (11/12 - 7:00 PM EST)",
+      line: "Detroit Pistons @ Washington Wizards (10:46 - 2nd)",
       completed: false,
-      statusText: "11/12 - 7:00 PM EST",
+      statusText: "10:46 - 2nd",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
