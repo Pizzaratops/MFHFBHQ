@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T18:28:40.816Z",
+  "updated": "2026-11-13T20:38:30.927Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-13","Knee",0,"2026-11-12"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -28,7 +28,7 @@ const NBA_INJURIES = {
     "Collin Sexton": ["LAL","Day-To-Day","GTD","2026-11-15","Head",0,"2026-11-12"],
     "Dailyn Swain": ["CHI","Day-To-Day","GTD","2026-11-13","Back",0,"2026-11-12"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-13","Hip",0,"2026-11-12"],
-    "Dejounte Murray": ["NO","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-13"],
+    "Dejounte Murray": ["NO","Out","OUT","2026-11-14","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
     "Devin Vassell": ["SA","Day-To-Day","GTD","2026-11-13","Groin",0,"2026-11-12"],
