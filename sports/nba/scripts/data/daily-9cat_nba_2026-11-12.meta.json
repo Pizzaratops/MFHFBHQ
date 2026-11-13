@@ -1,0 +1,14 @@
+{
+  "league": "nba",
+  "date": "2026-11-12",
+  "games": [
+    "Toronto Raptors 112 @ Philadelphia 76ers 123 (Final)",
+    "Detroit Pistons @ Washington Wizards (2:18 - 2OT)",
+    "Dallas Mavericks @ Minnesota Timberwolves (8:31 - 4th)",
+    "Charlotte Hornets @ Phoenix Suns (3:12 - 2nd)"
+  ],
+  "leagueAvg": {
+    "fg": 50,
+    "ft": 76.6
+  }
+}
