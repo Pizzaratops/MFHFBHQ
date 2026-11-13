@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T16:03:21.504Z",
+  "generatedAt": "2026-11-13T17:36:26.267Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -144,7 +144,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "NYJ",
           "isStarter": false,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 12.1,
@@ -402,7 +402,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 10
+          "projPoints": 10.1
         },
         {
           "name": "Blake Corum",
@@ -546,7 +546,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13,
           "last3AvgPoints": 10.7,
-          "projPoints": 8.9
+          "projPoints": 8.7
         },
         {
           "name": "KC Concepcion",
@@ -878,7 +878,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 8.3
+          "projPoints": 8.4
         },
         {
           "name": "John Metchie III",
@@ -2193,7 +2193,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 9.9,
-          "projPoints": 11.8
+          "projPoints": null
         },
         {
           "name": "Nicholas Singleton",
@@ -2447,7 +2447,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 8.3
+          "projPoints": 8.4
         },
         {
           "name": "CeeDee Lamb",
@@ -2646,7 +2646,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.2,
           "last3AvgPoints": 12.4,
-          "projPoints": 10
+          "projPoints": 10.1
         },
         {
           "name": "Caleb Douglas",
@@ -2657,7 +2657,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13,
           "last3AvgPoints": 10.7,
-          "projPoints": 8.9
+          "projPoints": 8.7
         },
         {
           "name": "Isaiah Likely",
@@ -3022,7 +3022,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 18.3,
           "last3AvgPoints": 22.7,
-          "projPoints": 21.9
+          "projPoints": 22
         },
         {
           "name": "Jonathan Taylor",
@@ -3251,11 +3251,11 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "TEN",
           "isStarter": false,
-          "status": "Q",
+          "status": "O",
           "flag": false,
           "lastGamePoints": 0,
           "last3AvgPoints": 3.3,
-          "projPoints": 12.2
+          "projPoints": 0
         },
         {
           "name": "Rhamondre Stevenson",
@@ -3266,7 +3266,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.8,
           "last3AvgPoints": 16.4,
-          "projPoints": 12.9
+          "projPoints": 0
         },
         {
           "name": "Jaylen Warren",
@@ -3852,7 +3852,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 3.6
+          "projPoints": 3.5
         },
         {
           "name": "Colby Parkinson",
