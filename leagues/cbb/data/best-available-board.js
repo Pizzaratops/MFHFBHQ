@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-13T16:27:36.015Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-13T17:02:22.411Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2418,10 +2418,9 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Quin Berger","nbaTeam":"Mia-FL","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":2.4,"z30":-4.76,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2944,"projZ":-7.15,"projMin":2.4,"role":"Tiefe","statsWindow":"last-season","compositeScore":-2.26,"signalsUsed":1,"rank":2412},
   {"name":"Dillon Hunter","nbaTeam":"Clem","pos":"G","experience":"veteran","minutesAvg":28.6,"z30":0.68,"bestCat30":"AST","worstCat30":"BLK","lastSeasonRank":1226,"statsWindow":"last-season","compositeScore":-19.77,"signalsUsed":1,"gone":true,"rank":2413},
   {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rank":2414},
-  {"name":"Emmanuel Ogbole","nbaTeam":"Rut","pos":"C","experience":"veteran","minutesAvg":18.8,"z30":-0.88,"bestCat30":"BLK","worstCat30":"3PM","lastSeasonRank":1731,"statsWindow":"last-season","compositeScore":-20.29,"signalsUsed":1,"gone":true,"rank":2415},
-  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2416},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2417},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2418},
-  {"name":"Mark Woods","nbaTeam":"KSU","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419},
-  {"name":"Ricky Hill","nbaTeam":"KSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2420}
+  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2415},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2416},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2417},
+  {"name":"Mark Woods","nbaTeam":"KSU","pos":"F","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2418},
+  {"name":"Ricky Hill","nbaTeam":"KSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rank":2419}
 ];
