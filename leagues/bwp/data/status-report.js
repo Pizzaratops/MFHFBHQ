@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T04:03:17.670Z",
+  "generatedAt": "2026-11-13T06:03:20.669Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1332,7 +1332,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 4.9,
-          "projPoints": 7.2
+          "projPoints": 7.1
         },
         {
           "name": "Colston Loveland",
@@ -1950,7 +1950,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.6,
           "last3AvgPoints": 8.5,
-          "projPoints": 15.4
+          "projPoints": 15.3
         },
         {
           "name": "Josh Jacobs",
@@ -2105,7 +2105,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 12.6,
-          "projPoints": 11.6
+          "projPoints": 11.7
         },
         {
           "name": "Ricky Pearsall",
@@ -2138,7 +2138,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.4,
           "last3AvgPoints": 8.8,
-          "projPoints": 6.9
+          "projPoints": 7
         },
         {
           "name": "Tory Horton",
@@ -2160,7 +2160,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 5.4,
-          "projPoints": 7.9
+          "projPoints": 7.8
         },
         {
           "name": "TreVeyon Henderson",
@@ -2469,7 +2469,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.4,
           "last3AvgPoints": 10.6,
-          "projPoints": 13.8
+          "projPoints": 13.9
         },
         {
           "name": "Rachaad White",
@@ -3488,7 +3488,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 12.6,
-          "projPoints": 11.6
+          "projPoints": 11.7
         },
         {
           "name": "Kimani Vidal",
