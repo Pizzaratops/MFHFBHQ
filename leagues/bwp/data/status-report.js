@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T08:03:25.817Z",
+  "generatedAt": "2026-11-13T09:20:24.758Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -2682,17 +2682,6 @@ const STATUS_REPORT_DATA = {
           "projPoints": 6.4
         },
         {
-          "name": "Chad Ryland",
-          "pos": "K",
-          "nfl": "ARI",
-          "isStarter": true,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 3,
-          "last3AvgPoints": 7,
-          "projPoints": 7.8
-        },
-        {
           "name": "Kaelon Black",
           "pos": "RB",
           "nfl": "SF",
@@ -2702,6 +2691,17 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": 7.6
+        },
+        {
+          "name": "Chris Boswell",
+          "pos": "K",
+          "nfl": "PIT",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": 9.5,
+          "projPoints": 10.5
         }
       ],
       "flaggedCount": 0
@@ -3084,7 +3084,7 @@ const STATUS_REPORT_DATA = {
           "name": "Javonte Williams",
           "pos": "RB",
           "nfl": "DAL",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -3106,9 +3106,9 @@ const STATUS_REPORT_DATA = {
           "name": "Puka Nacua",
           "pos": "WR",
           "nfl": "LAR",
-          "isStarter": true,
+          "isStarter": false,
           "status": "IR",
-          "flag": true,
+          "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": null
@@ -3167,9 +3167,20 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": null
+        },
+        {
+          "name": "Bhayshul Tuten",
+          "pos": "RB",
+          "nfl": "JAX",
+          "isStarter": false,
+          "status": "Q",
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": null,
+          "projPoints": null
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 0
     },
     {
       "id": "felix-espn-519920608",
@@ -3841,7 +3852,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 3.6
+          "projPoints": 3.5
         },
         {
           "name": "Colby Parkinson",
