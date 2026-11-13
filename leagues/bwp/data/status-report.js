@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T18:03:30.178Z",
+  "generatedAt": "2026-11-13T20:03:29.215Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -476,7 +476,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "KC",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 36.3,
           "last3AvgPoints": 19.5,
@@ -867,7 +867,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.3,
           "last3AvgPoints": 8.1,
-          "projPoints": 13.2
+          "projPoints": 13.3
         },
         {
           "name": "David Montgomery",
@@ -2072,7 +2072,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.7,
           "last3AvgPoints": 14.7,
-          "projPoints": 8.2
+          "projPoints": 8.3
         },
         {
           "name": "Rome Odunze",
@@ -3173,7 +3173,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "JAX",
           "isStarter": false,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -3222,7 +3222,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.4,
           "last3AvgPoints": 16.9,
-          "projPoints": 14.9
+          "projPoints": 15
         },
         {
           "name": "Jaylen Waddle",
@@ -3565,7 +3565,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.7,
           "last3AvgPoints": 17.3,
-          "projPoints": 17.8
+          "projPoints": 18
         },
         {
           "name": "Omar Cooper Jr.",
@@ -3819,7 +3819,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.3,
           "last3AvgPoints": 8.1,
-          "projPoints": 13.2
+          "projPoints": 13.3
         },
         {
           "name": "Deebo Samuel Sr.",
@@ -3896,7 +3896,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 8.8
+          "projPoints": 8.9
         },
         {
           "name": "Malik Willis",
