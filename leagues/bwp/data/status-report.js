@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-13T10:03:21.308Z",
+  "generatedAt": "2026-11-13T12:03:26.412Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1387,7 +1387,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.1,
           "last3AvgPoints": 9.9,
-          "projPoints": 10.7
+          "projPoints": 10.4
         },
         {
           "name": "Devin Singletary",
@@ -1917,7 +1917,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 18.2,
-          "projPoints": 8.7
+          "projPoints": 8.5
         },
         {
           "name": "Makai Lemon",
@@ -2425,7 +2425,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.6,
           "last3AvgPoints": 11.6,
-          "projPoints": 12.6
+          "projPoints": 12.2
         },
         {
           "name": "Mike Gesicki",
@@ -3543,7 +3543,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.1,
           "last3AvgPoints": 10.7,
-          "projPoints": 5.7
+          "projPoints": 5.6
         },
         {
           "name": "Emeka Egbuka",
@@ -3576,7 +3576,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 18.2,
-          "projPoints": 8.7
+          "projPoints": 8.5
         },
         {
           "name": "Malachi Fields",
@@ -3852,7 +3852,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 3.5
+          "projPoints": 3.6
         },
         {
           "name": "Colby Parkinson",
