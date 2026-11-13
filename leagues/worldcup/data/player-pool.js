@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-13T20:02:43.619Z
+//  Stand: 2026-11-13T21:02:46.066Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -998,7 +998,7 @@ const WC_PLAYER_POOL = [
 ["05qu8","Omer Yurtseven","(N/A)","C","C,Flx","FA"],
 ["06dq7","Onuralp Bitim","(N/A)","SG","SG,G,Flx","FA"],
 ["05qtt","Onyeka Okongwu","ATL","C","PF,C,F,Flx","T"],
-["0622z","Orlando Robinson","(N/A)","C","C,Flx","FA"],
+["0622z","Orlando Robinson","CHI","C","C,Flx","FA"],
 ["06cef","Oscar Tshiebwe","HOU","C","C,Flx","FA"],
 ["059ca","Oshae Brissett","(N/A)","SF","SF,F,Flx","FA"],
 ["06mlm","Oso Ighodaro","PHO","PF","PF,C,F,Flx","T"],
