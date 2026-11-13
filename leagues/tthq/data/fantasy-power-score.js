@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-13T04:01:22.388Z",
+  "generatedAt": "2026-11-13T05:01:16.162Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 13 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,13 +97,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 317.5,
-        "reb": 121.6,
-        "ast": 74.4,
-        "stl": 22.23,
-        "blk": 14.41,
+        "pts": 317.9,
+        "reb": 121.8,
+        "ast": 74.5,
+        "stl": 22.28,
+        "blk": 14.4,
         "tpm": 39.3,
-        "to": 40.3,
+        "to": 40.6,
         "fgPct": 46.9,
         "ftPct": 78.8
       },
@@ -128,11 +128,11 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 349.7,
+        "pts": 349.4,
         "reb": 114.1,
         "ast": 80.1,
-        "stl": 26.37,
-        "blk": 12.5,
+        "stl": 26.41,
+        "blk": 12.49,
         "tpm": 45.5,
         "to": 38.9,
         "fgPct": 45.8,
@@ -159,13 +159,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 373.3,
-        "reb": 127.1,
+        "pts": 373.1,
+        "reb": 127,
         "ast": 83.8,
-        "stl": 23.59,
-        "blk": 12.87,
-        "tpm": 47.5,
-        "to": 43.9,
+        "stl": 23.58,
+        "blk": 12.86,
+        "tpm": 47.6,
+        "to": 43.8,
         "fgPct": 46,
         "ftPct": 81.3
       },
@@ -190,13 +190,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Anadolu Ballers",
       "owner": "Murat Oguz",
       "values": {
-        "pts": 299.4,
+        "pts": 299.1,
         "reb": 108.3,
-        "ast": 67.1,
+        "ast": 67,
         "stl": 20.02,
-        "blk": 10.97,
-        "tpm": 33.5,
-        "to": 35.7,
+        "blk": 10.94,
+        "tpm": 33.6,
+        "to": 35.8,
         "fgPct": 46.8,
         "ftPct": 81.8
       },
@@ -221,15 +221,15 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 274.7,
-        "reb": 112.5,
-        "ast": 58,
-        "stl": 20.52,
-        "blk": 14.86,
-        "tpm": 34.3,
-        "to": 35.4,
+        "pts": 274.5,
+        "reb": 112.7,
+        "ast": 58.1,
+        "stl": 20.53,
+        "blk": 14.87,
+        "tpm": 34.2,
+        "to": 35.7,
         "fgPct": 46.7,
-        "ftPct": 76.5
+        "ftPct": 76.4
       },
       "rank": {
         "pts": 11,
@@ -254,15 +254,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 331.1,
-        "reb": 146,
+        "pts": 330.6,
+        "reb": 145.8,
         "ast": 80.9,
-        "stl": 23.41,
-        "blk": 19.19,
-        "tpm": 32,
+        "stl": 23.42,
+        "blk": 19.17,
+        "tpm": 31.8,
         "to": 43.6,
         "fgPct": 47.7,
-        "ftPct": 76.3
+        "ftPct": 76.4
       },
       "rank": {
         "pts": 5,
@@ -287,13 +287,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 322.8,
-        "reb": 151.8,
-        "ast": 77.9,
-        "stl": 23.38,
+        "pts": 322.9,
+        "reb": 151.9,
+        "ast": 77.8,
+        "stl": 23.36,
         "blk": 17.6,
-        "tpm": 33.2,
-        "to": 41.8,
+        "tpm": 33.3,
+        "to": 41.9,
         "fgPct": 47.8,
         "ftPct": 76.1
       },
@@ -318,13 +318,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 285,
-        "reb": 106,
+        "pts": 284.8,
+        "reb": 105.6,
         "ast": 62.5,
-        "stl": 22.08,
-        "blk": 11.56,
-        "tpm": 29.6,
-        "to": 33.2,
+        "stl": 22.15,
+        "blk": 11.6,
+        "tpm": 29.7,
+        "to": 33.1,
         "fgPct": 48.2,
         "ftPct": 78
       },
@@ -334,7 +334,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 10,
         "stl": 8,
         "blk": 10,
-        "tpm": 11,
+        "tpm": 12,
         "fgPct": 2,
         "ftPct": 9,
         "to": 1
@@ -349,15 +349,15 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 289.2,
-        "reb": 117.8,
-        "ast": 65.6,
-        "stl": 21.02,
-        "blk": 15.05,
-        "tpm": 31.6,
-        "to": 38.6,
+        "pts": 288.4,
+        "reb": 117.6,
+        "ast": 65.7,
+        "stl": 20.99,
+        "blk": 15.04,
+        "tpm": 31.5,
+        "to": 38.5,
         "fgPct": 47,
-        "ftPct": 78.2
+        "ftPct": 78.1
       },
       "rank": {
         "pts": 9,
@@ -411,15 +411,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 252.5,
+        "pts": 253.7,
         "reb": 83.8,
         "ast": 59,
-        "stl": 17.5,
-        "blk": 9.22,
-        "tpm": 29.6,
-        "to": 35.2,
+        "stl": 17.43,
+        "blk": 9.19,
+        "tpm": 29.8,
+        "to": 35.3,
         "fgPct": 46,
-        "ftPct": 78.4
+        "ftPct": 78.5
       },
       "rank": {
         "pts": 12,
@@ -427,7 +427,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 11,
         "stl": 12,
         "blk": 12,
-        "tpm": 12,
+        "tpm": 11,
         "fgPct": 11,
         "ftPct": 7,
         "to": 2
