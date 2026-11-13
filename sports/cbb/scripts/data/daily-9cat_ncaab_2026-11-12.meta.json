@@ -2,7 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-12",
   "games": [
-    "UC Riverside Highlanders @ San José State Spartans (1:07 - 2nd)",
     "Montana State Bobcats 71 @ BYU Cougars 86 (Final)",
     "Kansas City Roos 68 @ George Mason Patriots 76 (Final)",
     "Bradley Braves 56 @ Coppin State Eagles 54 (Final)",
@@ -15,10 +14,11 @@
     "Loyola Marymount Lions 72 @ South Alabama Jaguars 79 (Final)",
     "Southern Jaguars 61 @ Minnesota Golden Gophers 91 (Final)",
     "Richmond Spiders 70 @ Southern Illinois Salukis 80 (Final)",
-    "New Mexico State Aggies 58 @ UTEP Miners 60 (Final)"
+    "New Mexico State Aggies 58 @ UTEP Miners 60 (Final)",
+    "UC Riverside Highlanders 80 @ San José State Spartans 75 (Final)"
   ],
   "leagueAvg": {
-    "fg": 46.2,
-    "ft": 71.8
+    "fg": 46.9,
+    "ft": 71.6
   }
 }
