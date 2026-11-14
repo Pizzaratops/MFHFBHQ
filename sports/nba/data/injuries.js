@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T22:17:13.653Z",
+  "updated": "2026-11-14T22:42:36.963Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -51,6 +51,7 @@ const NBA_INJURIES = {
     "Jaylin Williams": ["OKC","Out","GTD","2026-11-15","Back",0,"2026-11-11"],
     "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-11-14","Head",0,"2026-11-14"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
+    "Joel Embiid": ["PHI","Out","OUT","2026-11-16","Foot",0,"2026-11-14"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","GTD","2026-11-16","Knee",0,"2026-11-09"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
@@ -66,7 +67,6 @@ const NBA_INJURIES = {
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
-    "LeBron James": ["PHI","Day-To-Day","","","",0,"2026-11-13"],
     "Marcus Smart": ["HOU","Suspension","OUT","2026-11-18","Suspension",0,"2026-11-12"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Max Christie": ["DAL","Day-To-Day","GTD","2026-11-14","Ankle",0,"2026-11-14"],
@@ -81,8 +81,8 @@ const NBA_INJURIES = {
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-14","Calf",0,"2026-11-13"],
     "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-14","Back",0,"2026-11-14"],
+    "Ousmane Dieng": ["MIL","Out","OUT","2026-11-18","Finger",0,"2026-11-14"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
-    "Paul George": ["BOS","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-12"],
     "Pelle Larsson": ["MIA","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-14"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-14","Hamstring",0,"2026-11-14"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-14"],
@@ -112,7 +112,6 @@ const NBA_INJURIES = {
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-14","Foot",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-17","Foot",0,"2026-11-10"],
-    "Yves Missi": ["NO","Out","GTD","2026-11-14","Knee",0,"2026-11-14"],
     "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-14","Ankle",0,"2026-11-14"]
   }
 };
