@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T04:00:58.187Z",
+  "updated": "2026-11-14T15:00:59.635Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -101,7 +101,7 @@ const NBA_INJURIES = {
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-14","Foot",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-17","Foot",0,"2026-11-10"],
-    "Yves Missi": ["NO","Out","OUT","2026-11-14","Knee",0,"2026-11-13"],
+    "Yves Missi": ["NO","Out","GTD","2026-11-14","Knee",0,"2026-11-13"],
     "Zach Edey": ["MEM","Out","OUT","2026-11-14","Ankle",0,"2026-11-12"]
   }
 };
