@@ -4,16 +4,16 @@
   "games": [
     "New York Knicks 104 @ Indiana Pacers 106 (Final)",
     "Milwaukee Bucks 99 @ Orlando Magic 107 (Final)",
-    "Cleveland Cavaliers @ Miami Heat (11:54 - 4th)",
-    "Atlanta Hawks @ Chicago Bulls (7:27 - 4th)",
-    "Memphis Grizzlies @ New Orleans Pelicans (47.9 - 3rd)",
-    "Utah Jazz @ Houston Rockets (Halftime)",
-    "Golden State Warriors @ San Antonio Spurs (3:58 - 1st)",
-    "Portland Trail Blazers @ Sacramento Kings (11/13 - 10:00 PM EST)",
-    "Oklahoma City Thunder @ LA Clippers (11/13 - 10:30 PM EST)"
+    "Cleveland Cavaliers 121 @ Miami Heat 133 (Final)",
+    "Atlanta Hawks 117 @ Chicago Bulls 125 (Final/OT)",
+    "Memphis Grizzlies 142 @ New Orleans Pelicans 111 (Final)",
+    "Utah Jazz @ Houston Rockets (1:06 - 4th)",
+    "Golden State Warriors @ San Antonio Spurs (Halftime)",
+    "Portland Trail Blazers @ Sacramento Kings (4:27 - 2nd)",
+    "Oklahoma City Thunder @ LA Clippers (3:49 - 1st)"
   ],
   "leagueAvg": {
-    "fg": 42.6,
-    "ft": 72.3
+    "fg": 45.5,
+    "ft": 78
   }
 }
