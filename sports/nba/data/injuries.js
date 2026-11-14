@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-13T23:49:46.288Z",
+  "updated": "2026-11-14T00:01:05.639Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-13"],
@@ -11,7 +11,6 @@ const NBA_INJURIES = {
     "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-15","Heel",0,"2026-11-13"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
-    "Bennedict Mathurin": ["NO","Day-To-Day","GTD","2026-11-13","Thumb",0,"2026-11-13"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-19","Achilles",0,"2026-11-12"],
     "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-15","Groin",0,"2026-11-13"],
