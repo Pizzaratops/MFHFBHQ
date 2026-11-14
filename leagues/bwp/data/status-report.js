@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-14T22:03:20.079Z",
+  "generatedAt": "2026-11-14T23:47:08.466Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -342,7 +342,7 @@ const STATUS_REPORT_DATA = {
           "name": "Devaughn Vele",
           "pos": "WR",
           "nfl": "NO",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 3.7,
@@ -1000,7 +1000,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8,
           "last3AvgPoints": 4.5,
-          "projPoints": 8.2
+          "projPoints": 8
         },
         {
           "name": "Cameron Dicker",
@@ -1321,7 +1321,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.6,
           "last3AvgPoints": 4.9,
-          "projPoints": 10.7
+          "projPoints": 10.8
         },
         {
           "name": "Devaughn Vele",
@@ -1564,7 +1564,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 0.2
+          "projPoints": null
         },
         {
           "name": "Makai Lemon",
@@ -1950,7 +1950,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 23,
           "last3AvgPoints": 12.4,
-          "projPoints": 8.7
+          "projPoints": 8.8
         },
         {
           "name": "Derrick Henry",
@@ -2005,7 +2005,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.8,
           "last3AvgPoints": 14.2,
-          "projPoints": 16.5
+          "projPoints": 16.4
         },
         {
           "name": "Breece Hall",
@@ -2083,7 +2083,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.7,
           "last3AvgPoints": 14.7,
-          "projPoints": 8.2
+          "projPoints": 8.1
         },
         {
           "name": "Rome Odunze",
@@ -2149,7 +2149,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.4,
           "last3AvgPoints": 8.8,
-          "projPoints": 12.6
+          "projPoints": 12.7
         },
         {
           "name": "Tory Horton",
@@ -2215,7 +2215,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 0.2
+          "projPoints": null
         },
         {
           "name": "Drew Allar",
@@ -3576,7 +3576,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.7,
           "last3AvgPoints": 17.3,
-          "projPoints": 17.8
+          "projPoints": 17.6
         },
         {
           "name": "Omar Cooper Jr.",
@@ -3664,7 +3664,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.8,
           "last3AvgPoints": 14.2,
-          "projPoints": 16.5
+          "projPoints": 16.4
         },
         {
           "name": "Jameson Williams",
@@ -3797,7 +3797,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.9,
           "last3AvgPoints": 10.6,
-          "projPoints": 6.5
+          "projPoints": 6.4
         },
         {
           "name": "Mike Gesicki",
@@ -3907,7 +3907,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 8.8
+          "projPoints": 8.7
         },
         {
           "name": "Malik Willis",
