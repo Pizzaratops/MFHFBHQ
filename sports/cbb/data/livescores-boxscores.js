@@ -6787,24 +6787,6 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401919847",
-      line: "Stonehill Skyhawks @ Texas Tech Red Raiders (11/14 - 1:00 PM EST)",
-      completed: false,
-      statusText: "11/14 - 1:00 PM EST",
-      away: {
-        abbr: "STO", name: "Stonehill Skyhawks", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401929362",
       line: "Northwest University Eagles @ Washington State Cougars (11/14 - 1:00 PM EST)",
       completed: false,
@@ -6853,6 +6835,24 @@ const LIVESCORES_BOXSCORES = {
       },
       home: {
         abbr: "ColSt", name: "Colorado State Rams", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401919847",
+      line: "Stonehill Skyhawks @ Texas Tech Red Raiders (11/14 - 2:00 PM EST)",
+      completed: false,
+      statusText: "11/14 - 2:00 PM EST",
+      away: {
+        abbr: "STO", name: "Stonehill Skyhawks", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
         players: [
 
         ]
