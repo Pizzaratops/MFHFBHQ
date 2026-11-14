@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-14T20:03:20.858Z",
+  "generatedAt": "2026-11-14T22:03:20.079Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -933,7 +933,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.7,
           "last3AvgPoints": 11.7,
-          "projPoints": 11.9
+          "projPoints": 12
         },
         {
           "name": "Evan Hull",
@@ -2016,7 +2016,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.7,
           "last3AvgPoints": 11.7,
-          "projPoints": 11.9
+          "projPoints": 12
         },
         {
           "name": "Jaxon Smith-Njigba",
@@ -2149,7 +2149,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.4,
           "last3AvgPoints": 8.8,
-          "projPoints": 12.7
+          "projPoints": 12.6
         },
         {
           "name": "Tory Horton",
@@ -2436,7 +2436,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.6,
           "last3AvgPoints": 11.6,
-          "projPoints": 12.2
+          "projPoints": 12.1
         },
         {
           "name": "Mike Gesicki",
@@ -2619,7 +2619,7 @@ const STATUS_REPORT_DATA = {
           "name": "Denzel Boston",
           "pos": "WR",
           "nfl": "CLE",
-          "isStarter": true,
+          "isStarter": false,
           "status": "Q",
           "flag": false,
           "lastGamePoints": 15.8,
@@ -2685,7 +2685,7 @@ const STATUS_REPORT_DATA = {
           "name": "Emmett Johnson",
           "pos": "RB",
           "nfl": "KC",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 9.4,
@@ -3852,7 +3852,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.5,
-          "projPoints": 5.5
+          "projPoints": 5.4
         },
         {
           "name": "Jerry Jeudy",
