@@ -4067,9 +4067,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909296",
-      line: "New York Knicks @ Indiana Pacers (4:58 - 2nd)",
+      line: "New York Knicks @ Indiana Pacers (49.1 - 3rd)",
       completed: false,
-      statusText: "4:58 - 2nd",
+      statusText: "49.1 - 3rd",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -4085,9 +4085,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909297",
-      line: "Milwaukee Bucks @ Orlando Magic (57.8 - 2nd)",
+      line: "Milwaukee Bucks @ Orlando Magic (8:47 - 4th)",
       completed: false,
-      statusText: "57.8 - 2nd",
+      statusText: "8:47 - 4th",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -4103,9 +4103,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909298",
-      line: "Cleveland Cavaliers @ Miami Heat (11/13 - 8:00 PM EST)",
+      line: "Cleveland Cavaliers @ Miami Heat (3:09 - 2nd)",
       completed: false,
-      statusText: "11/13 - 8:00 PM EST",
+      statusText: "3:09 - 2nd",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -4121,9 +4121,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909299",
-      line: "Atlanta Hawks @ Chicago Bulls (11/13 - 8:00 PM EST)",
+      line: "Atlanta Hawks @ Chicago Bulls (2:26 - 2nd)",
       completed: false,
-      statusText: "11/13 - 8:00 PM EST",
+      statusText: "2:26 - 2nd",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -4139,9 +4139,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909300",
-      line: "Memphis Grizzlies @ New Orleans Pelicans (11/13 - 8:00 PM EST)",
+      line: "Memphis Grizzlies @ New Orleans Pelicans (4:35 - 2nd)",
       completed: false,
-      statusText: "11/13 - 8:00 PM EST",
+      statusText: "4:35 - 2nd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4157,9 +4157,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909301",
-      line: "Utah Jazz @ Houston Rockets (11/13 - 8:30 PM EST)",
+      line: "Utah Jazz @ Houston Rockets (3:26 - 1st)",
       completed: false,
-      statusText: "11/13 - 8:30 PM EST",
+      statusText: "3:26 - 1st",
       away: {
         abbr: "UTAH", name: "Utah Jazz", score: null,
         players: [

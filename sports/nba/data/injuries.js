@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T00:27:43.910Z",
+  "updated": "2026-11-14T02:00:58.718Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-13"],
@@ -19,17 +19,14 @@ const NBA_INJURIES = {
     "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-15","Chest",0,"2026-11-13"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
-    "Charles Bassey": ["GS","Day-To-Day","GTD","2026-11-13","Toe",0,"2026-11-12"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-16","Foot",0,"2026-11-13"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-15","Ankle",0,"2026-11-09"],
     "Collin Sexton": ["LAL","Day-To-Day","GTD","2026-11-15","Head",0,"2026-11-12"],
     "Dailyn Swain": ["CHI","Out","OUT","2026-11-14","Back",0,"2026-11-14"],
-    "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-13","Hip",0,"2026-11-12"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
-    "Devin Vassell": ["SA","Day-To-Day","GTD","2026-11-13","Groin",0,"2026-11-12"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Drew Timme": ["PHX","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-13"],
