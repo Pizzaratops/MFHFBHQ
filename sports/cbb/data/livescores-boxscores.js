@@ -6770,9 +6770,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401919004",
-      line: "Tulane Green Wave @ Akron Zips (11/14 - 12:00 PM EST)",
+      line: "Tulane Green Wave @ Akron Zips (5:37 - 2nd)",
       completed: false,
-      statusText: "11/14 - 12:00 PM EST",
+      statusText: "5:37 - 2nd",
       away: {
         abbr: "Tul", name: "Tulane Green Wave", score: null,
         players: [
@@ -6788,9 +6788,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401929362",
-      line: "Northwest University Eagles @ Washington State Cougars (11/14 - 1:00 PM EST)",
+      line: "Northwest University Eagles @ Washington State Cougars (3:49 - 1st)",
       completed: false,
-      statusText: "11/14 - 1:00 PM EST",
+      statusText: "3:49 - 1st",
       away: {
         abbr: "NWWA", name: "Northwest University Eagles", score: null,
         players: [
@@ -6806,17 +6806,17 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920074",
-      line: "Bradley Braves @ George Mason Patriots (11/14 - 1:00 PM EST)",
+      line: "George Mason Patriots @ Bradley Braves (3:38 - 1st)",
       completed: false,
-      statusText: "11/14 - 1:00 PM EST",
+      statusText: "3:38 - 1st",
       away: {
-        abbr: "Brad", name: "Bradley Braves", score: null,
+        abbr: "GMas", name: "George Mason Patriots", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "GMas", name: "George Mason Patriots", score: null,
+        abbr: "Brad", name: "Bradley Braves", score: null,
         players: [
 
         ]
@@ -6824,9 +6824,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911231",
-      line: "Loyola Chicago Ramblers @ Colorado State Rams (11/14 - 1:30 PM EST)",
+      line: "Loyola Chicago Ramblers @ Colorado State Rams (14:33 - 1st)",
       completed: false,
-      statusText: "11/14 - 1:30 PM EST",
+      statusText: "14:33 - 1st",
       away: {
         abbr: "LoyIL", name: "Loyola Chicago Ramblers", score: null,
         players: [
