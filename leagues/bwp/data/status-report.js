@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-14T06:03:14.274Z",
+  "generatedAt": "2026-11-14T08:03:15.967Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -2436,7 +2436,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.1,
           "last3AvgPoints": 9.4,
-          "projPoints": 9.7
+          "projPoints": 9.8
         },
         {
           "name": "David Montgomery",
@@ -3797,7 +3797,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.1,
           "last3AvgPoints": 9.4,
-          "projPoints": 9.7
+          "projPoints": 9.8
         },
         {
           "name": "Dallas Goedert",
