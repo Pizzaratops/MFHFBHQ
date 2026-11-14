@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T15:44:51.816Z",
+  "updated": "2026-11-14T17:55:31.489Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -65,13 +65,13 @@ const NBA_INJURIES = {
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Max Christie": ["DAL","Day-To-Day","GTD","2026-11-14","Ankle",0,"2026-11-13"],
     "Maxime Raynaud": ["SAC","Out","GTD","2026-11-15","Knee",0,"2026-11-10"],
-    "Mikel Brown Jr.": ["BKN","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-13"],
+    "Mikel Brown Jr.": ["BKN","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-14"],
     "Morez Johnson Jr.": ["DAL","Day-To-Day","GTD","2026-11-14","Lower Leg",0,"2026-11-13"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-16","Back",0,"2026-10-20"],
     "Nate Bittle": ["TOR","Out","GTD","2026-11-15","Foot",0,"2026-11-08"],
-    "Noah Penda": ["ORL","Out","OUT","2026-11-18","Hamstring",0,"2026-10-17"],
+    "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-14","Calf",0,"2026-11-13"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Paul George": ["BOS","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-12"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-16","Elbow",0,"2026-11-10"],
-    "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-12"],
+    "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-14"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
