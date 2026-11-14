@@ -2,8 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-13",
   "games": [
-    "UC San Diego Tritons @ Utah State Aggies (2:07 - 2nd)",
-    "East Texas A&M Lions @ Portland Pilots (1:49 - 2nd)",
     "Merrimack Warriors 54 @ Florida Gators 83 (Final)",
     "SIU Edwardsville Cougars 47 @ Duke Blue Devils 90 (Final)",
     "Sam Houston Bearkats 86 @ Illinois Fighting Illini 108 (Final)",
@@ -44,10 +42,12 @@
     "Xavier Musketeers 81 @ Mississippi State Bulldogs 63 (Final)",
     "Mississippi Valley State Delta Devils 65 @ Oregon State Beavers 81 (Final)",
     "Chicago State Cougars 67 @ San Diego Toreros 87 (Final)",
+    "UC San Diego Tritons 82 @ Utah State Aggies 120 (Final)",
+    "East Texas A&M Lions 94 @ Portland Pilots 88 (Final/2OT)",
     "UIC Flames 61 @ Saint Mary's Gaels 84 (Final)"
   ],
   "leagueAvg": {
-    "fg": 44.8,
-    "ft": 75.5
+    "fg": 45.2,
+    "ft": 75.6
   }
 }
