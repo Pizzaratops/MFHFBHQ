@@ -71,7 +71,7 @@
       const pl = plannerId(ctx);
       return `<a class="qk-m"${pl ? ` href="${ctx.href(pl)}"` : ''}>
         <span class="qk-mt${lead === 'a' ? ' lead' : ''}" style="${M.nba.tcStyle(ta)}">${e(tName(M, m.home))}</span>
-        <span class="qk-ms">${started ? `<b>${c.w}-${c.l}${c.t ? '-' + c.t : ''}</b>` : '<span class="muted">vs</span>'}</span>
+        <span class="qk-ms">${started ? `<b title="Kategorien: ${c.w} gewonnen, ${c.l} verloren, ${c.t} unentschieden (aus Sicht des linken Teams)">${c.w} : ${c.l}</b>${c.t ? ` <small class="muted">· ${c.t} U</small>` : ''}` : '<span class="muted">vs</span>'}</span>
         <span class="qk-mt r${lead === 'b' ? ' lead' : ''}" style="${M.nba.tcStyle(tb)}">${e(tName(M, m.away))}</span></a>`;
     }).join('')}</div>`;
   }
