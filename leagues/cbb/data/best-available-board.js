@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-14T15:51:09.829Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-14T16:02:24.616Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -1161,7 +1161,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Luke Susko","nbaTeam":"SIU","pos":"G","cls":"Fr","experience":"rookie","minutesAvg":18.7,"zSeason":-0.4,"gamesSeason":3,"bestCat30":"TO","worstCat30":"STL","projZ":-2.58,"projMin":13.6,"role":"Bank","statsWindow":"season","compositeScore":-0.93,"signalsUsed":2,"rank":1155},
   {"name":"Pasha Goodarzi","nbaTeam":"SJSU","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":20,"z30":-1.4,"bestCat30":"3PM","worstCat30":"STL","lastSeasonRank":1890,"projZ":-1.52,"projMin":20,"role":"Starter","statsWindow":"last-season","compositeScore":-0.93,"signalsUsed":1,"rank":1156},
   {"name":"Ty Rodgers","nbaTeam":"Bois","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":15.9,"projZ":-1.49,"projMin":15.9,"role":"Rotation","compositeScore":-0.93,"signalsUsed":1,"rank":1157},
-  {"name":"Cameron Holmes","nbaTeam":"Ariz","pos":"Flx","cls":"Fr","experience":"rookie","nilValue":1,"minutesAvg":16.5,"z7":-2.93,"z30":-2.47,"zSeason":-2.41,"gamesSeason":4,"bestCat7":"STL","bestCat30":"TO","worstCat30":"REB","projZ":-1.79,"projMin":18.9,"role":"Starter","statsWindow":"season","compositeScore":-0.94,"signalsUsed":2,"rank":1158},
+  {"name":"Cameron Holmes","nbaTeam":"Ariz","pos":"G","cls":"Fr","experience":"rookie","nilValue":1,"minutesAvg":16.5,"z7":-2.93,"z30":-2.47,"zSeason":-2.41,"gamesSeason":4,"bestCat7":"STL","bestCat30":"TO","worstCat30":"REB","projZ":-1.79,"projMin":18.9,"role":"Starter","statsWindow":"season","compositeScore":-0.94,"signalsUsed":2,"rank":1158},
   {"name":"Dylan Grant","nbaTeam":"UNCC","pos":"F","cls":"Jr","experience":"veteran","minutesAvg":12.8,"z30":-6.21,"zSeason":-5.94,"gamesSeason":4,"bestCat30":"TO","worstCat30":"STL","lastSeasonRank":1807,"projZ":0.33,"projMin":21.3,"role":"Starter","statsWindow":"season","compositeScore":-0.94,"signalsUsed":2,"rank":1159},
   {"name":"Jamison Lynam","nbaTeam":"LaSal","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":18,"projZ":-1.53,"projMin":18,"role":"Rotation","compositeScore":-0.94,"signalsUsed":1,"rank":1160},
   {"name":"Kiyan Anthony","nbaTeam":"Syr","pos":"G","cls":"So","experience":"sophomore","minutesAvg":23,"z30":-5.51,"zSeason":2.57,"gamesSeason":3,"bestCat30":"PTS","worstCat30":"STL","lastSeasonRank":3062,"projZ":-4,"projMin":20,"role":"Starter","statsWindow":"season","compositeScore":-0.94,"signalsUsed":2,"rank":1161},
