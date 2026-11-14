@@ -4067,9 +4067,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909296",
-      line: "New York Knicks @ Indiana Pacers (9:12 - 1st)",
+      line: "New York Knicks @ Indiana Pacers (4:28 - 1st)",
       completed: false,
-      statusText: "9:12 - 1st",
+      statusText: "4:28 - 1st",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -4085,9 +4085,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909297",
-      line: "Milwaukee Bucks @ Orlando Magic (7:54 - 1st)",
+      line: "Milwaukee Bucks @ Orlando Magic (3:17 - 1st)",
       completed: false,
-      statusText: "7:54 - 1st",
+      statusText: "3:17 - 1st",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [

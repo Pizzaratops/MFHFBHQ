@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T00:01:05.639Z",
+  "updated": "2026-11-14T00:27:43.910Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-13"],
@@ -24,7 +24,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Out","OUT","2026-11-16","Foot",0,"2026-11-13"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-15","Ankle",0,"2026-11-09"],
     "Collin Sexton": ["LAL","Day-To-Day","GTD","2026-11-15","Head",0,"2026-11-12"],
-    "Dailyn Swain": ["CHI","Day-To-Day","GTD","2026-11-13","Back",0,"2026-11-12"],
+    "Dailyn Swain": ["CHI","Out","OUT","2026-11-14","Back",0,"2026-11-14"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-13","Hip",0,"2026-11-12"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
