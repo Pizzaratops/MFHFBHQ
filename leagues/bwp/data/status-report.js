@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-14T18:59:26.072Z",
+  "generatedAt": "2026-11-14T20:03:20.858Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1265,7 +1265,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.7,
           "last3AvgPoints": 6.5,
-          "projPoints": 6.1
+          "projPoints": 6.2
         },
         {
           "name": "Quentin Johnston",
@@ -1387,7 +1387,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.5,
           "last3AvgPoints": 16.3,
-          "projPoints": 20
+          "projPoints": 19.5
         },
         {
           "name": "DJ Moore",
@@ -1398,7 +1398,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.1,
           "last3AvgPoints": 9.9,
-          "projPoints": 10.4
+          "projPoints": 10.3
         },
         {
           "name": "Devin Singletary",
@@ -1961,7 +1961,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.6,
           "last3AvgPoints": 8.5,
-          "projPoints": 15.3
+          "projPoints": 15.4
         },
         {
           "name": "Josh Jacobs",
@@ -2348,7 +2348,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.8,
           "last3AvgPoints": 6.4,
-          "projPoints": 8
+          "projPoints": 8.2
         },
         {
           "name": "Colston Loveland",
@@ -3697,7 +3697,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.9,
           "last3AvgPoints": 6.7,
-          "projPoints": 3.5
+          "projPoints": 3.7
         }
       ],
       "flaggedCount": 2
@@ -3852,7 +3852,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.5,
-          "projPoints": 5.6
+          "projPoints": 5.5
         },
         {
           "name": "Jerry Jeudy",
@@ -3951,7 +3951,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.8,
           "last3AvgPoints": 6.9,
-          "projPoints": 9.7
+          "projPoints": 9.9
         },
         {
           "name": "San Francisco 49ers",
