@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T20:53:17.359Z",
+  "updated": "2026-11-14T21:22:07.035Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -17,7 +17,7 @@ const NBA_INJURIES = {
     "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-15","Groin",0,"2026-11-13"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-16","Elbow",0,"2026-11-14"],
-    "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-15","Chest",0,"2026-11-13"],
+    "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-15","Chest",0,"2026-11-14"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
@@ -99,6 +99,7 @@ const NBA_INJURIES = {
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-16","Back",0,"2026-11-14"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
     "Trayce Jackson-Davis": ["TOR","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-13"],
+    "Tre Johnson": ["WSH","Day-To-Day","GTD","2026-11-15","Back",0,"2026-11-14"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Murphy III": ["NO","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
