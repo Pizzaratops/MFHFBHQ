@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T17:55:31.489Z",
+  "updated": "2026-11-14T18:01:00.220Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -93,9 +93,9 @@ const NBA_INJURIES = {
     "Tobe Awaka": ["CHI","Day-To-Day","GTD","2026-11-14","Back",0,"2026-11-14"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
     "Trayce Jackson-Davis": ["TOR","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-13"],
-    "Trendon Watford": ["NO","Out","GTD","2026-11-14","Ankle",0,"2026-11-12"],
+    "Trendon Watford": ["NO","Out","OUT","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
-    "Trey Murphy III": ["NO","Out","GTD","2026-11-14","Knee",0,"2026-11-13"],
+    "Trey Murphy III": ["NO","Out","OUT","2026-11-16","Knee",0,"2026-11-13"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-14","Foot",0,"2026-11-11"],
