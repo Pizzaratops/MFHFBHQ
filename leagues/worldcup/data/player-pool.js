@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-14T03:02:49.100Z
+//  Stand: 2026-11-14T04:02:40.770Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -814,7 +814,7 @@ const WC_PLAYER_POOL = [
 ["07atk","Latrell Wrightsell","(N/A)","G","PG,SG,G,Flx","FA"],
 ["04azw","Lauri Markkanen","UTA","PF","SF,PF,F,Flx","T"],
 ["07232","Lawson Lovering","(N/A)","C","C,Flx","FA"],
-["06dob","Leaky Black","SAC","SF","SF,F,Flx","T"],
+["06dob","Leaky Black","SAC","SF","SF,F,Flx","FA"],
 ["05qsw","Leandro Bolmaro","(N/A)","SG","SG,G,Flx","FA"],
 ["0011e","LeBron James","PHI","SF","SF,PF,F,Flx","T"],
 ["06cei","Leonard Miller","CHI","SF","SF,F,Flx","T"],
