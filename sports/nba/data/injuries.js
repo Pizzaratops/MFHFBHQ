@@ -1,10 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T02:00:58.718Z",
+  "updated": "2026-11-14T03:01:02.945Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
-    "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-13","Ankle",0,"2026-11-13"],
+    "Ajay Mitchell": ["OKC","Out","OUT","2026-11-15","Ankle",0,"2026-11-14"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2026-11-20","Toe",0,"2026-11-12"],
@@ -43,7 +43,7 @@ const NBA_INJURIES = {
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-15","Back",0,"2026-11-11"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
-    "Jonathan Isaac": ["ORL","Out","OUT","2026-11-16","Knee",0,"2026-11-09"],
+    "Jonathan Isaac": ["ORL","Out","GTD","2026-11-16","Knee",0,"2026-11-09"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
