@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-14T01:02:50.450Z
+//  Stand: 2026-11-14T02:02:43.740Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -731,7 +731,7 @@ const WC_PLAYER_POOL = [
 ["06213","Keegan Murray","SAC","PF","SF,PF,F,Flx","T"],
 ["06pty","Keion Brooks","(N/A)","SF","SF,F,Flx","FA"],
 ["06mpg","Keisei Tominaga","(N/A)","PG","PG,G,Flx","FA"],
-["051p9","Keldon Johnson","SAS","SF","SG,G,SF,F,Flx","T"],
+["051p9","Keldon Johnson","SAS","SF","SG,G,SF,F,Flx","FA"],
 ["06mk7","Kelel Ware","MIL","C","PF,C,F,Flx","T"],
 ["062sq","Kellan Grady","(N/A)","SG","PG,SG,G,Flx","FA"],
 ["031m0","Kelly Olynyk","(N/A)","C","C,Flx","FA"],
