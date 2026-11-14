@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-14T21:40:12.942Z",
+  "updated": "2026-11-14T22:00:58.354Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -33,6 +33,7 @@ const NBA_INJURIES = {
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Drew Timme": ["PHX","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-13"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-16","Toe",0,"2026-11-14"],
+    "Fred VanVleet": ["HOU","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-14","Wrist",0,"2026-11-14"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","OUT","2026-11-17","Hip",0,"2026-11-09"],
@@ -75,7 +76,7 @@ const NBA_INJURIES = {
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-16","Back",0,"2026-10-20"],
-    "Nate Bittle": ["TOR","Out","GTD","2026-11-15","Foot",0,"2026-11-08"],
+    "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-08"],
     "Nic Claxton": ["CHI","Day-To-Day","GTD","2026-11-14","Hamstring",0,"2026-11-14"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-14","Calf",0,"2026-11-13"],
@@ -95,13 +96,12 @@ const NBA_INJURIES = {
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
-    "Steven Adams": ["HOU","Out","GTD","2026-11-15","Calf",0,"2026-11-09"],
+    "Steven Adams": ["HOU","Out","GTD","2026-11-15","Calf",0,"2026-11-14"],
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-15","Hamstring",0,"2026-11-14"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-20","Knee",0,"2026-11-13"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-16","Back",0,"2026-11-14"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
-    "Trayce Jackson-Davis": ["TOR","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-13"],
     "Tre Johnson": ["WSH","Day-To-Day","GTD","2026-11-15","Back",0,"2026-11-14"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
