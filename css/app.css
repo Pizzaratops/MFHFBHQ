@@ -653,3 +653,5 @@ tr.row-sel-3 td:first-child { box-shadow: inset 3px 0 0 var(--sel-3); }
 .table thead th.has-gloss { text-decoration: underline dotted color-mix(in srgb, currentColor 45%, transparent); text-underline-offset: 3px; }
 .team-note-mark { cursor: help; font-size: .9em; }
 .team-note { margin: 8px 0 4px; }
+.team-note-mark.warn { display: inline-flex; align-items: center; justify-content: center; width: 1.15em; height: 1.15em; border-radius: 50%; background: #d93a3a; color: #fff; font-weight: 800; font-size: .78em; line-height: 1; vertical-align: .12em; }
+.team-note.warn { border-left: 3px solid #d93a3a; }

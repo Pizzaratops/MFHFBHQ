@@ -28,7 +28,7 @@
         ${teams.map(t => `<a class="team-card" href="${href('teams', t.id)}">
           <span class="team-card-emoji">${e(t.emoji || '🏈')}</span>
           <span class="team-card-body">
-            <span class="team-name">${e(t.name)}${((ctx.league.teamNotes || {})[t.id] || []).map(n => ` <span class="team-note-mark" title="${e(n.text)}">${e(n.icon || '★')}</span>`).join('')}</span>
+            <span class="team-name">${e(t.name)}${((ctx.league.teamNotes || {})[t.id] || []).map(n => ` <span class="team-note-mark${n.cls ? ' ' + e(n.cls) : ''}" title="${e(n.text)}">${e(n.icon || '★')}</span>`).join('')}</span>
             ${t.owner ? `<span class="team-owner">${e(t.owner)}</span>` : ''}
           </span>
           <span class="team-card-meta">
@@ -152,7 +152,7 @@
         <h1 class="page-title display">${e(t.emoji || '')} ${e(t.name)}</h1>
         <div class="page-sub">${t.owner ? e(t.owner) + ' · ' : ''}${rec ? 'Record ' + e(rec) + ' · ' : ''}${players.length} Spieler</div>
       </div>
-      ${((ctx.league.teamNotes || {})[t.id] || []).map(n => `<div class="note team-note">${e(n.icon || '★')} <b>${e(n.short || '')}</b> · ${e(n.text)}${n.page ? ` <a href="${href(n.page)}">Mehr →</a>` : ''}</div>`).join('')}
+      ${((ctx.league.teamNotes || {})[t.id] || []).map(n => `<div class="note team-note${n.cls ? ' ' + e(n.cls) : ''}"><span class="team-note-mark${n.cls ? ' ' + e(n.cls) : ''}">${e(n.icon || '★')}</span> <b>${e(n.short || '')}</b> · ${e(n.text)}${n.page ? ` <a href="${href(n.page)}">Mehr →</a>` : ''}</div>`).join('')}
       <div class="chip-row" aria-label="Team wechseln">
         ${teams.map(x => `<a class="chip-link${x.id === t.id ? ' active' : ''}" href="${href('teams', x.id)}" title="${e(x.name)}">${e(x.emoji || '🏈')}</a>`).join('')}
       </div>

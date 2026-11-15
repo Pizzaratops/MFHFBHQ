@@ -218,8 +218,16 @@ const LEAGUES = [
       { title: '🎯 Der ESPN-Draft wurde zurückgesetzt <small class="muted">· 23.09.2026</small>', html: '<p>Ich weiß nicht wie, aber alle Picks weg, Liga-Status wieder "pre-draft") und kann nicht rückgängig gemacht werden. ESPN zählt die Saison danach ab der aktuellen Woche neu, Woche 1 und 2 kennt ESPN selbst nicht mehr.</p><p>Ich habe alle Spieler hoffentlich korrekt hinzugefügt.</p>' },
       { title: '✅ Was auf dieser Seite trotzdem sicher ist', html: '<ul><li>Woche 1 &amp; 2 Ergebnisse, Punkte und Bilanzen sind fest im System hinterlegt und werden durch nichts mehr überschrieben, auch wenn ESPN sie vergessen hat.</li><li>Draft-Board 2026 &amp; Keeper-Übersicht, werden auf dieser Seite ohnehin nie automatisch synchronisiert, sondern von Hand gepflegt. Davon ist also nichts betroffen.</li></ul>' },
       { title: '📈 Wie es weitergeht', html: '<p>Ab jetzt läuft der automatische Sync mit ESPN wieder normal, aber mit einer wichtigen Ausnahme: Woche 1 und 2 bleiben stehen, und alles, was ESPN ab jetzt an neuen Wochen liefert, wird einfach oben draufaddiert.</p><p>Damit stimmen auf dieser Seite Standings, PF/PA, Playoff-Seeding und die Draft-Reihenfolge fürs nächste Jahr über die komplette Saison, auch wenn ESPN selbst nur ab der neuen Startwoche zählt.</p>' },
+      { title: '🚫 Tanking-Regel & Verwarnungen <small class="muted">· 15.11.2026</small>', highlight: true, html: '<p>Tanking ist kein Problem, solange ihr ein competitives Team stellt: keine Bye-, IR- oder Out-Spieler bzw. keine Spieler, von denen wir wissen, dass sie nicht spielen werden. Alles andere ist fast egal.</p><p>Beim ersten Mal gibt es eine Verwarnung. Beim zweiten Mal rutscht ihr im nächsten Draft einen Spot nach hinten, beim nächsten Mal wieder usw.</p><p><b>Verwarnt</b> (rotes <span class="team-note-mark warn">!</span> am Team): London NoPuntsIntended (W3), Burrowhead Dancers (W7), The Lamartrix (W10).</p>' },
       { title: '⚠️ Wichtig für alle Owner', highlight: true, html: '<p><b>Maßgeblich ist ab jetzt diese Website, nicht die ESPN-App.</b> ESPN selbst zeigt intern eine falsche bzw. unvollständige Bilanz und ein falsches Playoff-Bild, weil ESPN Woche 1 und 2 nicht mehr kennt.</p>' },
     ],
+    // Verwarnungen nach der Tanking-Regel (keine Bye/IR/Out-Spieler in der Startaufstellung).
+    // Beim nächsten Mal rutscht das Team einen Draftspot nach hinten.
+    teamNotes: {
+      'london-nopunts': [{ icon: '!', cls: 'warn', short: 'Verwarnung', text: 'Verwarnung (Woche 3): leerer Startplatz. Beim nächsten Verstoß rutscht das Team im nächsten Draft einen Spot nach hinten.', page: 'erklaerung' }],
+      'burrowhead-dancers': [{ icon: '!', cls: 'warn', short: 'Verwarnung', text: 'Verwarnung (Woche 7): Stefon Diggs ohne Einsatz gestartet. Beim nächsten Verstoß rutscht das Team im nächsten Draft einen Spot nach hinten.', page: 'erklaerung' }],
+      'the-lamartrix': [{ icon: '!', cls: 'warn', short: 'Verwarnung', text: 'Verwarnung (Woche 10): Kicker und D/ST der Buccaneers in der Bye-Woche gestartet. Beim nächsten Verstoß rutscht das Team im nächsten Draft einen Spot nach hinten.', page: 'erklaerung' }],
+    },
     legacyUrl: 'https://pizzaratops.github.io/Bear-Witch-Project-HQ/?legacy=1',
     repo: 'Bear-Witch-Project-HQ',
   },
