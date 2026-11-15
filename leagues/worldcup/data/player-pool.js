@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-15T06:02:45.236Z
+//  Stand: 2026-11-15T06:52:43.168Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -864,7 +864,7 @@ const WC_PLAYER_POOL = [
 ["05wah","Marcus Garrett","(N/A)","SG","SG,G,Flx","FA"],
 ["06ccg","Marcus Sasser","DAL","PG","PG,G,Flx","FA"],
 ["03al1","Marcus Smart","HOU","PG","PG,SG,G,Flx","FA"],
-["03r7d","Mario Hezonja","CLE","PF","SG,G,SF,PF,F,Flx","T"],
+["03r7d","Mario Hezonja","CLE","PF","SG,G,SF,PF,F,Flx","FA"],
 ["0621n","MarJon Beauchamp","(N/A)","SF","SG,G,SF,F,Flx","FA"],
 ["06vxt","Mark Sears","(N/A)","PG","PG,G,Flx","FA"],
 ["0621e","Mark Williams","PHO","C","C,Flx","FA"],
