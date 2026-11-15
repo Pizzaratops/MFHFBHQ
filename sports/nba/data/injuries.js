@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T23:30:17.699Z",
+  "updated": "2026-11-15T23:55:58.642Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -50,7 +50,7 @@ const NBA_INJURIES = {
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-18","Back",0,"2026-11-15"],
     "Jaylon Tyson": ["CLE","Day-To-Day","GTD","2026-11-16","Ankle",0,"2026-11-15"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
-    "Jock Landale": ["ATL","Day-To-Day","OUT","2026-11-18","Hip",0,"2026-11-15"],
+    "Jock Landale": ["ATL","Out","OUT","2026-11-18","Hip",0,"2026-11-15"],
     "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-15"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-18","Knee",0,"2026-11-15"],
@@ -75,7 +75,7 @@ const NBA_INJURIES = {
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-18","Back",0,"2026-10-20"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
-    "Ousmane Dieng": ["MIL","Out","OUT","2026-11-18","Finger",0,"2026-11-15"],
+    "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Pelle Larsson": ["MIA","Day-To-Day","GTD","2026-11-16","Illness",0,"2026-11-15"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-16","Abdomen",0,"2026-11-15"],

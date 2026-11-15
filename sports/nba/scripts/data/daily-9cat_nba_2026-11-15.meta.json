@@ -3,17 +3,17 @@
   "date": "2026-11-15",
   "games": [
     "Indiana Pacers 124 @ Philadelphia 76ers 131 (Final)",
-    "Los Angeles Lakers @ Phoenix Suns (3:11 - 4th)",
-    "Charlotte Hornets @ LA Clippers (11:23 - 4th)",
-    "San Antonio Spurs @ Utah Jazz (6:26 - 3rd)",
-    "Dallas Mavericks @ Boston Celtics (2:06 - 1st)",
-    "New York Knicks @ Toronto Raptors (4:46 - 1st)",
+    "Los Angeles Lakers 131 @ Phoenix Suns 123 (Final)",
+    "Charlotte Hornets @ LA Clippers (18.6 - 4th)",
+    "San Antonio Spurs @ Utah Jazz (8:35 - 4th)",
+    "Dallas Mavericks @ Boston Celtics (2:27 - 2nd)",
+    "New York Knicks @ Toronto Raptors (6:59 - 2nd)",
     "Houston Rockets @ Washington Wizards (11/15 - 7:00 PM EST)",
     "Atlanta Hawks @ Milwaukee Bucks (11/15 - 8:00 PM EST)",
     "Oklahoma City Thunder @ Sacramento Kings (11/15 - 9:00 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 54,
-    "ft": 81.3
+    "fg": 51.1,
+    "ft": 80.7
   }
 }
