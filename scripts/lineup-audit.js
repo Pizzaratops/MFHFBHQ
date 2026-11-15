@@ -46,7 +46,7 @@ async function espn() {
   const pro = await getJson(`https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${SEASON}?view=proTeamSchedules_wl`);
   const bye = Object.fromEntries(pro.settings.proTeams.map(t => [t.id, t.byeWeek]));
   const proAbbr = Object.fromEntries(pro.settings.proTeams.map(t => [t.id, t.abbrev]));
-  const flags = [];
+  const flags = [], curAll = [];
   for (let w = 1; w <= cur; w++) {
     const d = await getJson(`${base}?view=mBoxscore&view=mMatchupScore&scoringPeriodId=${w}`, H);
     for (const m of d.schedule.filter(x => x.matchupPeriodId === w)) {
@@ -61,14 +61,17 @@ async function espn() {
           const st = (p.stats || []).find(x => x.scoringPeriodId === w && x.statSourceId === 0 && x.statSplitTypeId === 1);
           const pts = e.playerPoolEntry.appliedStatTotal ?? (st ? st.appliedTotal : 0);
           const base = { league: 'Foodball', week: w, team: tm.name, owner: tm.owner, slot: ESPN_SLOTS[e.lineupSlotId] || e.lineupSlotId, player: p.fullName, nfl: proAbbr[p.proTeamId], pts: Math.round((pts || 0) * 10) / 10 };
+          const noStat = !st || !st.stats || Object.keys(st.stats).length === 0;
+          if (w === cur) curAll.push({ ...base, status: p.injuryStatus, injured: p.injured, noStat, byeNow: bye[p.proTeamId] === w });
+          if (base.pts !== 0 || !noStat) { if (w === cur && bye[p.proTeamId] === w) {} else continue; }
           if (bye[p.proTeamId] === w) flags.push({ ...base, type: 'BYE' });
-          else if (w < cur && (!st || !st.stats || Object.keys(st.stats).length === 0)) flags.push({ ...base, type: 'DNP' });
-          else if (w === cur && ['OUT', 'INJURY_RESERVE', 'SUSPENSION'].includes(p.injuryStatus)) flags.push({ ...base, type: p.injuryStatus, note: 'aktueller Status' });
+          else if (w < cur) flags.push({ ...base, type: 'DNP' });
+          else if (['OUT', 'INJURY_RESERVE', 'SUSPENSION', 'DOUBTFUL'].includes(p.injuryStatus)) flags.push({ ...base, type: p.injuryStatus, note: 'aktueller Status' });
         }
       }
     }
   }
-  return { cur, flags };
+  return { cur, flags, curAll };
 }
 
 // ---------------- Sleeper ----------------
@@ -84,7 +87,7 @@ async function sleeper() {
   const sched = await getJson(`https://api.sleeper.com/schedule/nfl/regular/${SEASON}`).catch(() => []);
   const playing = {}; // week -> Set(team)
   for (const g of sched) { (playing[g.week] ||= new Set()).add(g.home); playing[g.week].add(g.away); }
-  const flags = [];
+  const flags = [], curAll = [];
   for (let w = 1; w <= cur; w++) {
     const [mus, stats] = await Promise.all([
       getJson(`${S}/league/${SLEEPER_ID}/matchups/${w}`),
@@ -101,14 +104,18 @@ async function sleeper() {
         const base = { league: 'DOPE', week: w, team: tm.name, owner: tm.owner, slot, player: nm, nfl: team, pts };
         const s = stats[pid];
         const played = s && ((s.gp || 0) > 0 || (s.gms_active || 0) > 0 || (s.off_snp || 0) > 0 || (s.st_snp || 0) > 0 || (s.def_snp || 0) > 0);
-        const byeWeek = playing[w] && playing[w].size && team && !playing[w].has(team);
-        if (byeWeek) flags.push({ ...base, type: 'BYE' });
-        else if (w < cur && !played) flags.push({ ...base, type: 'DNP' });
-        else if (w === cur && ['Out', 'IR', 'Sus', 'PUP', 'NA'].includes(p.injury_status)) flags.push({ ...base, type: p.injury_status, note: 'aktueller Status' });
+        const tm2 = p.team || (p.position === 'DEF' ? pid : null);
+        const byeWeek = playing[w] && playing[w].size && tm2 && !playing[w].has(tm2);
+        if (w === cur) curAll.push({ ...base, status: p.injury_status, byeNow: !!byeWeek });
+        if (pts || played) return;
+        if (byeWeek) flags.push({ ...base, nfl: tm2, type: 'BYE' });
+        else if (w < cur) flags.push({ ...base, nfl: tm2 || 'FA', type: 'DNP' });
+        else if (['Out', 'IR', 'Sus', 'PUP', 'NA', 'Doubtful'].includes(p.injury_status)) flags.push({ ...base, type: p.injury_status, note: 'aktueller Status' });
+        else if (!tm2) flags.push({ ...base, nfl: 'FA', type: 'NO_TEAM' });
       });
     }
   }
-  return { cur, flags };
+  return { cur, flags, curAll };
 }
 
 (async () => {
