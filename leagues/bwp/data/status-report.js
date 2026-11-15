@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-14T23:47:08.466Z",
+  "generatedAt": "2026-11-15T00:03:23.892Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -885,7 +885,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "HOU",
           "isStarter": false,
-          "status": "Q",
+          "status": "O",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -1067,7 +1067,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 4.1,
-          "projPoints": 3.3
+          "projPoints": 4.8
         },
         {
           "name": "Rome Odunze",
@@ -1261,7 +1261,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "LAC",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 7.7,
           "last3AvgPoints": 6.5,
@@ -2178,7 +2178,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "NE",
           "isStarter": false,
-          "status": "O",
+          "status": "IR",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 4.3,
@@ -2366,7 +2366,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "NE",
           "isStarter": false,
-          "status": "O",
+          "status": "IR",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 4.3,
@@ -2454,7 +2454,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "HOU",
           "isStarter": false,
-          "status": "Q",
+          "status": "O",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -3682,8 +3682,8 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "KC",
           "isStarter": true,
-          "status": "Q",
-          "flag": false,
+          "status": "O",
+          "flag": true,
           "lastGamePoints": 36.3,
           "last3AvgPoints": 19.5,
           "projPoints": null
@@ -3700,7 +3700,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 3.7
         }
       ],
-      "flaggedCount": 2
+      "flaggedCount": 3
     },
     {
       "id": "felix-sleeper-1312799736218017792",
@@ -3903,7 +3903,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "NO",
           "isStarter": false,
-          "status": "IR",
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
