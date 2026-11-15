@@ -66,6 +66,8 @@
     "player": "Brandon Aubrey",
     "nfl": "DAL",
     "pts": 0,
+    "pid": 3953687,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -78,6 +80,8 @@
     "player": "Matthew Stafford",
     "nfl": "LAR",
     "pts": 0,
+    "pid": 12483,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -90,6 +94,8 @@
     "player": "Blake Corum",
     "nfl": "LAR",
     "pts": 0,
+    "pid": 4429096,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -102,6 +108,8 @@
     "player": "A.J. Brown",
     "nfl": "NE",
     "pts": 4.7,
+    "pid": 4047646,
+    "status": "QUESTIONABLE",
     "noStat": false,
     "byeNow": false
    },
@@ -114,6 +122,8 @@
     "player": "Brock Bowers",
     "nfl": "LV",
     "pts": 0,
+    "pid": 4432665,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -126,6 +136,8 @@
     "player": "Rhamondre Stevenson",
     "nfl": "NE",
     "pts": 1.5,
+    "pid": 4569173,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -138,6 +150,8 @@
     "player": "Germie Bernard",
     "nfl": "PIT",
     "pts": 0,
+    "pid": 4685261,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -150,6 +164,7 @@
     "player": "Texans D/ST",
     "nfl": "HOU",
     "pts": 4,
+    "pid": -16034,
     "noStat": false,
     "byeNow": false
    },
@@ -162,6 +177,8 @@
     "player": "Jakobi Meyers",
     "nfl": "JAX",
     "pts": 6.4,
+    "pid": 3916433,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -174,6 +191,8 @@
     "player": "Jameson Williams",
     "nfl": "DET",
     "pts": 9,
+    "pid": 4426388,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -186,6 +205,8 @@
     "player": "Zach Charbonnet",
     "nfl": "SEA",
     "pts": 0,
+    "pid": 4426385,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -198,6 +219,8 @@
     "player": "Tony Pollard",
     "nfl": "TEN",
     "pts": 7.5,
+    "pid": 3916148,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -210,6 +233,8 @@
     "player": "Stefon Diggs",
     "nfl": "WSH",
     "pts": 20.3,
+    "pid": 2976212,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -222,6 +247,8 @@
     "player": "C.J. Stroud",
     "nfl": "HOU",
     "pts": 15.5,
+    "pid": 4432577,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -234,6 +261,8 @@
     "player": "Jalen Coker",
     "nfl": "CAR",
     "pts": 0.3,
+    "pid": 4695883,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -246,6 +275,8 @@
     "player": "Michael Mayer",
     "nfl": "LV",
     "pts": 0,
+    "pid": 4429086,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -258,6 +289,8 @@
     "player": "Jake Bates",
     "nfl": "DET",
     "pts": 5,
+    "pid": 4689936,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -270,6 +303,7 @@
     "player": "Bengals D/ST",
     "nfl": "CIN",
     "pts": 0,
+    "pid": -16004,
     "noStat": true,
     "byeNow": false
    },
@@ -282,6 +316,8 @@
     "player": "Breece Hall",
     "nfl": "NYJ",
     "pts": 8.6,
+    "pid": 4427366,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -294,6 +330,8 @@
     "player": "Trevor Lawrence",
     "nfl": "JAX",
     "pts": 16.9,
+    "pid": 4360310,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -306,6 +344,8 @@
     "player": "Derrick Henry",
     "nfl": "BAL",
     "pts": 0,
+    "pid": 3043078,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -318,6 +358,8 @@
     "player": "Amon-Ra St. Brown",
     "nfl": "DET",
     "pts": 25.8,
+    "pid": 4374302,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -330,6 +372,8 @@
     "player": "George Kittle",
     "nfl": "SF",
     "pts": 0,
+    "pid": 3040151,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -342,6 +386,7 @@
     "player": "Seahawks D/ST",
     "nfl": "SEA",
     "pts": 0,
+    "pid": -16026,
     "noStat": true,
     "byeNow": false
    },
@@ -354,6 +399,8 @@
     "player": "Bhayshul Tuten",
     "nfl": "JAX",
     "pts": 8.4,
+    "pid": 4882093,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -366,6 +413,8 @@
     "player": "KC Concepcion",
     "nfl": "CLE",
     "pts": 10,
+    "pid": 4870653,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -378,6 +427,8 @@
     "player": "Tyler Bass",
     "nfl": "BUF",
     "pts": 5,
+    "pid": 3917232,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -390,6 +441,8 @@
     "player": "Cam Skattebo",
     "nfl": "NYG",
     "pts": 27.2,
+    "pid": 4696981,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -402,6 +455,8 @@
     "player": "Jahmyr Gibbs",
     "nfl": "DET",
     "pts": 44.2,
+    "pid": 4429795,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -414,6 +469,8 @@
     "player": "Justin Jefferson",
     "nfl": "MIN",
     "pts": 6.1,
+    "pid": 4262921,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -426,6 +483,8 @@
     "player": "Chris Olave",
     "nfl": "NO",
     "pts": 2.1,
+    "pid": 4361370,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -437,7 +496,8 @@
     "slot": "D/ST",
     "player": "Vikings D/ST",
     "nfl": "MIN",
-    "pts": 20,
+    "pts": 19,
+    "pid": -16016,
     "noStat": false,
     "byeNow": false
    },
@@ -449,7 +509,9 @@
     "slot": "QB",
     "player": "Jordan Love",
     "nfl": "GB",
-    "pts": 9.8,
+    "pts": 10.8,
+    "pid": 4036378,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -462,6 +524,8 @@
     "player": "Isaiah Likely",
     "nfl": "NYG",
     "pts": 27.7,
+    "pid": 4361050,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -474,6 +538,8 @@
     "player": "Emmett Johnson",
     "nfl": "KC",
     "pts": 21.1,
+    "pid": 4832955,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -486,6 +552,8 @@
     "player": "Chris Boswell",
     "nfl": "PIT",
     "pts": 0,
+    "pid": 17372,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -498,6 +566,8 @@
     "player": "Tetairoa McMillan",
     "nfl": "CAR",
     "pts": 6.5,
+    "pid": 4685472,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -510,6 +580,8 @@
     "player": "Bijan Robinson",
     "nfl": "ATL",
     "pts": 9.2,
+    "pid": 4430807,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -522,6 +594,8 @@
     "player": "Josh Allen",
     "nfl": "BUF",
     "pts": 17.7,
+    "pid": 3918298,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -534,6 +608,8 @@
     "player": "Trey McBride",
     "nfl": "ARI",
     "pts": 0,
+    "pid": 4361307,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -545,7 +621,9 @@
     "slot": "RB",
     "player": "James Cook III",
     "nfl": "BUF",
-    "pts": 5.7,
+    "pts": 7.8,
+    "pid": 4379399,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -558,6 +636,8 @@
     "player": "Parker Washington",
     "nfl": "JAX",
     "pts": 26.8,
+    "pid": 4432620,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -570,6 +650,8 @@
     "player": "Jason Myers",
     "nfl": "SEA",
     "pts": 0,
+    "pid": 2473037,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -582,6 +664,8 @@
     "player": "Deebo Samuel Sr.",
     "nfl": "SF",
     "pts": 0,
+    "pid": 3126486,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -594,6 +678,7 @@
     "player": "Rams D/ST",
     "nfl": "LAR",
     "pts": 0,
+    "pid": -16014,
     "noStat": true,
     "byeNow": false
    },
@@ -606,6 +691,8 @@
     "player": "George Pickens",
     "nfl": "DAL",
     "pts": 0,
+    "pid": 4426354,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -618,6 +705,8 @@
     "player": "Nico Collins",
     "nfl": "HOU",
     "pts": 24.4,
+    "pid": 4258173,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -630,6 +719,8 @@
     "player": "Garrett Wilson",
     "nfl": "NYJ",
     "pts": 12.5,
+    "pid": 4569618,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -642,6 +733,8 @@
     "player": "Bryce Young",
     "nfl": "CAR",
     "pts": 5.1,
+    "pid": 4685720,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -654,6 +747,8 @@
     "player": "Tucker Kraft",
     "nfl": "GB",
     "pts": 2.8,
+    "pid": 4572680,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -666,6 +761,8 @@
     "player": "Ollie Gordon II",
     "nfl": "MIA",
     "pts": 9.3,
+    "pid": 4711533,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -678,6 +775,8 @@
     "player": "Will Reichard",
     "nfl": "MIN",
     "pts": 8,
+    "pid": 4567104,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -690,6 +789,8 @@
     "player": "Seth McGowan",
     "nfl": "IND",
     "pts": 12.5,
+    "pid": 4686468,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -702,6 +803,7 @@
     "player": "Packers D/ST",
     "nfl": "GB",
     "pts": 8,
+    "pid": -16009,
     "noStat": false,
     "byeNow": false
    },
@@ -714,6 +816,8 @@
     "player": "Drake London",
     "nfl": "ATL",
     "pts": 13.5,
+    "pid": 4426502,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -726,6 +830,8 @@
     "player": "Ashton Jeanty",
     "nfl": "LV",
     "pts": 0,
+    "pid": 4890973,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -738,6 +844,8 @@
     "player": "Drake Maye",
     "nfl": "NE",
     "pts": 3,
+    "pid": 4431452,
+    "status": "QUESTIONABLE",
     "noStat": false,
     "byeNow": false
    },
@@ -749,7 +857,9 @@
     "slot": "FLEX",
     "player": "Matthew Golden",
     "nfl": "GB",
-    "pts": 9.6,
+    "pts": 12,
+    "pid": 4701936,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -762,6 +872,8 @@
     "player": "Tyler Warren",
     "nfl": "IND",
     "pts": 0.3,
+    "pid": 4431459,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -774,6 +886,8 @@
     "player": "Tee Higgins",
     "nfl": "CIN",
     "pts": 0,
+    "pid": 4239993,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -786,6 +900,8 @@
     "player": "Cam Little",
     "nfl": "JAX",
     "pts": 13,
+    "pid": 4686361,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -798,6 +914,8 @@
     "player": "Woody Marks",
     "nfl": "HOU",
     "pts": 7.5,
+    "pid": 4429059,
+    "status": "QUESTIONABLE",
     "noStat": false,
     "byeNow": false
    },
@@ -810,6 +928,7 @@
     "player": "Chiefs D/ST",
     "nfl": "KC",
     "pts": 10,
+    "pid": -16012,
     "noStat": false,
     "byeNow": false
    },
@@ -822,6 +941,8 @@
     "player": "Zay Flowers",
     "nfl": "BAL",
     "pts": 0,
+    "pid": 4429615,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -834,6 +955,8 @@
     "player": "Javonte Williams",
     "nfl": "DAL",
     "pts": 0,
+    "pid": 4361579,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -845,7 +968,9 @@
     "slot": "WR",
     "player": "Christian Watson",
     "nfl": "GB",
-    "pts": 4.8,
+    "pts": 6.7,
+    "pid": 4248528,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -858,6 +983,8 @@
     "player": "CeeDee Lamb",
     "nfl": "DAL",
     "pts": 0,
+    "pid": 4241389,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -870,6 +997,8 @@
     "player": "Dalton Kincaid",
     "nfl": "BUF",
     "pts": 7.8,
+    "pid": 4385690,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -882,6 +1011,8 @@
     "player": "Jadarian Price",
     "nfl": "SEA",
     "pts": 0,
+    "pid": 4685512,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -894,6 +1025,8 @@
     "player": "Kirk Cousins",
     "nfl": "MIN",
     "pts": 8.2,
+    "pid": 14880,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -906,6 +1039,8 @@
     "player": "Chase McLaughlin",
     "nfl": "TB",
     "pts": 0,
+    "pid": 3150744,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": true
    },
@@ -918,6 +1053,7 @@
     "player": "Buccaneers D/ST",
     "nfl": "TB",
     "pts": 0,
+    "pid": -16027,
     "noStat": true,
     "byeNow": true
    },
@@ -930,6 +1066,8 @@
     "player": "Ja'Marr Chase",
     "nfl": "CIN",
     "pts": 0,
+    "pid": 4362628,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -942,6 +1080,8 @@
     "player": "Jayden Daniels",
     "nfl": "WSH",
     "pts": 20.8,
+    "pid": 4426348,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -954,6 +1094,8 @@
     "player": "Travis Kelce",
     "nfl": "KC",
     "pts": 5,
+    "pid": 15847,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -966,6 +1108,8 @@
     "player": "Rachaad White",
     "nfl": "WSH",
     "pts": 6.2,
+    "pid": 4697815,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -978,6 +1122,8 @@
     "player": "Harrison Butker",
     "nfl": "KC",
     "pts": 3,
+    "pid": 3055899,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -990,6 +1136,8 @@
     "player": "Tre Tucker",
     "nfl": "LV",
     "pts": 0,
+    "pid": 4428718,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1002,6 +1150,8 @@
     "player": "Bam Knight",
     "nfl": "ARI",
     "pts": 0,
+    "pid": 4427728,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1014,6 +1164,8 @@
     "player": "Mack Hollins",
     "nfl": "NE",
     "pts": 9.8,
+    "pid": 2991662,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1026,6 +1178,7 @@
     "player": "Jaguars D/ST",
     "nfl": "JAX",
     "pts": 8,
+    "pid": -16030,
     "noStat": false,
     "byeNow": false
    },
@@ -1038,6 +1191,8 @@
     "player": "Jaxon Smith-Njigba",
     "nfl": "SEA",
     "pts": 0,
+    "pid": 4430878,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1050,6 +1205,8 @@
     "player": "Jordan Mason",
     "nfl": "MIN",
     "pts": 3.4,
+    "pid": 4360569,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1062,6 +1219,8 @@
     "player": "Malik Nabers",
     "nfl": "NYG",
     "pts": 7.4,
+    "pid": 4595348,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1074,6 +1233,8 @@
     "player": "Aaron Jones Sr.",
     "nfl": "MIN",
     "pts": 9.2,
+    "pid": 3042519,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1086,6 +1247,8 @@
     "player": "Brock Purdy",
     "nfl": "SF",
     "pts": 0,
+    "pid": 4361741,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1098,6 +1261,8 @@
     "player": "Chuba Hubbard",
     "nfl": "CAR",
     "pts": 18.6,
+    "pid": 4241416,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1110,6 +1275,8 @@
     "player": "Hunter Henry",
     "nfl": "NE",
     "pts": 4.2,
+    "pid": 3046439,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1121,7 +1288,9 @@
     "slot": "K",
     "player": "Spencer Shrader",
     "nfl": "IND",
-    "pts": 3,
+    "pts": 8,
+    "pid": 4571557,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1134,6 +1303,7 @@
     "player": "Bills D/ST",
     "nfl": "BUF",
     "pts": 6,
+    "pid": -16002,
     "noStat": false,
     "byeNow": false
    },
@@ -1146,6 +1316,8 @@
     "player": "Kyren Williams",
     "nfl": "LAR",
     "pts": 0,
+    "pid": 4430737,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1158,6 +1330,8 @@
     "player": "DK Metcalf",
     "nfl": "PIT",
     "pts": 0,
+    "pid": 4047650,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1170,6 +1344,8 @@
     "player": "Chase Brown",
     "nfl": "CIN",
     "pts": 0,
+    "pid": 4362238,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1182,6 +1358,8 @@
     "player": "Xavier Worthy",
     "nfl": "KC",
     "pts": 0,
+    "pid": 4683062,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1194,6 +1372,8 @@
     "player": "Harold Fannin Jr.",
     "nfl": "CLE",
     "pts": 7.9,
+    "pid": 5083076,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1206,6 +1386,8 @@
     "player": "Dylan Sampson",
     "nfl": "CLE",
     "pts": 5.3,
+    "pid": 5081397,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1218,6 +1400,8 @@
     "player": "Matt Gay",
     "nfl": "LV",
     "pts": 0,
+    "pid": 4249087,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1230,6 +1414,8 @@
     "player": "Tyler Shough",
     "nfl": "NO",
     "pts": 3,
+    "pid": 4360689,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1242,6 +1428,7 @@
     "player": "Commanders D/ST",
     "nfl": "WSH",
     "pts": 4,
+    "pid": -16028,
     "noStat": false,
     "byeNow": false
    },
@@ -1253,7 +1440,9 @@
     "slot": "RB",
     "player": "Jonathan Taylor",
     "nfl": "IND",
-    "pts": 10.8,
+    "pts": 10.9,
+    "pid": 4242335,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1266,6 +1455,8 @@
     "player": "DJ Moore",
     "nfl": "BUF",
     "pts": 6.2,
+    "pid": 3915416,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1278,6 +1469,8 @@
     "player": "Jaylen Warren",
     "nfl": "PIT",
     "pts": 0,
+    "pid": 4569987,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1290,6 +1483,8 @@
     "player": "Sam LaPorta",
     "nfl": "DET",
     "pts": 2.6,
+    "pid": 4430027,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1302,6 +1497,8 @@
     "player": "Christian McCaffrey",
     "nfl": "SF",
     "pts": 0,
+    "pid": 3117251,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1314,6 +1511,8 @@
     "player": "Joe Burrow",
     "nfl": "CIN",
     "pts": 0,
+    "pid": 3915511,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1326,6 +1525,8 @@
     "player": "Tank Dell",
     "nfl": "HOU",
     "pts": 5.1,
+    "pid": 4366031,
+    "status": "ACTIVE",
     "noStat": false,
     "byeNow": false
    },
@@ -1338,6 +1539,8 @@
     "player": "Evan McPherson",
     "nfl": "CIN",
     "pts": 0,
+    "pid": 4360234,
+    "status": "ACTIVE",
     "noStat": true,
     "byeNow": false
    },
@@ -1350,6 +1553,7 @@
     "player": "Ravens D/ST",
     "nfl": "BAL",
     "pts": 0,
+    "pid": -16033,
     "noStat": true,
     "byeNow": false
    }
@@ -1795,7 +1999,7 @@
     "slot": "FLEX",
     "player": "Quinshon Judkins",
     "nfl": "CLE",
-    "pts": 3.3,
+    "pts": 4,
     "status": null,
     "byeNow": false
    },
@@ -1807,7 +2011,7 @@
     "slot": "FLEX",
     "player": "Christian Watson",
     "nfl": "GB",
-    "pts": 4.7,
+    "pts": 4.8,
     "status": null,
     "byeNow": false
    },
@@ -2791,7 +2995,7 @@
     "slot": "RB",
     "player": "Jonathan Taylor",
     "nfl": "IND",
-    "pts": 9,
+    "pts": 11,
     "status": null,
     "byeNow": false
    },
@@ -3421,5 +3625,5 @@
    }
   ]
  },
- "generated": "2026-11-15T20:14:17.243Z"
+ "generated": "2026-11-15T20:15:19.649Z"
 }
