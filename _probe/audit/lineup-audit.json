@@ -1,0 +1,454 @@
+{
+ "foodball": {
+  "cur": 10,
+  "flags": [
+   {
+    "league": "Foodball",
+    "week": 3,
+    "team": "London NoPuntsIntended",
+    "owner": "Dan Fre",
+    "type": "EMPTY",
+    "player": "1 leere(r) Startplatz/-plätze",
+    "pts": 0
+   },
+   {
+    "league": "Foodball",
+    "week": 5,
+    "team": "Running Bisons",
+    "owner": "Marvin Tews",
+    "slot": "WR",
+    "player": "Josh Downs",
+    "nfl": "KC",
+    "pts": 7.7,
+    "type": "BYE"
+   },
+   {
+    "league": "Foodball",
+    "week": 6,
+    "team": "The Lamartrix",
+    "owner": "Jan Schattschneider",
+    "slot": "QB",
+    "player": "Kirk Cousins",
+    "nfl": "MIN",
+    "pts": 18.5,
+    "type": "BYE"
+   },
+   {
+    "league": "Foodball",
+    "week": 7,
+    "team": "Burrowhead Dancers",
+    "owner": "Georg Tänzer",
+    "slot": "WR",
+    "player": "Stefon Diggs",
+    "nfl": "WSH",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "Foodball",
+    "week": 8,
+    "team": "Vice City Crackheads ",
+    "owner": "Rob Pa",
+    "slot": "FLEX",
+    "player": "Keenan Allen",
+    "nfl": "SF",
+    "pts": 13.7,
+    "type": "BYE"
+   },
+   {
+    "league": "Foodball",
+    "week": 9,
+    "team": "Angry Ducks",
+    "owner": "Stefan Schaper",
+    "slot": "QB",
+    "player": "Jacoby Brissett",
+    "nfl": "BAL",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "Foodball",
+    "week": 10,
+    "team": "The Lamartrix",
+    "owner": "Jan Schattschneider",
+    "slot": "K",
+    "player": "Chase McLaughlin",
+    "nfl": "TB",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "Foodball",
+    "week": 10,
+    "team": "The Lamartrix",
+    "owner": "Jan Schattschneider",
+    "slot": "D/ST",
+    "player": "Buccaneers D/ST",
+    "nfl": "TB",
+    "pts": 0,
+    "type": "BYE"
+   }
+  ]
+ },
+ "dope": {
+  "cur": 10,
+  "flags": [
+   {
+    "league": "DOPE",
+    "week": 1,
+    "team": "San José Salamancas",
+    "owner": "LovetheCheeseHead",
+    "slot": "QB",
+    "player": "Jalen Milroe",
+    "nfl": "SEA",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 2,
+    "team": "Husum Husos",
+    "owner": "R4xon",
+    "slot": "WR",
+    "player": "Puka Nacua",
+    "nfl": "LAR",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 2,
+    "team": "UnicornsRuegen",
+    "owner": "UnicornsRuegen",
+    "slot": "K",
+    "player": "Nick Folk",
+    "nfl": "650",
+    "pts": 3,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 2,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "FLEX",
+    "player": "Zay Flowers",
+    "nfl": "BAL",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 3,
+    "team": "UnicornsRuegen",
+    "owner": "UnicornsRuegen",
+    "slot": "K",
+    "player": "Nick Folk",
+    "nfl": "650",
+    "pts": 10,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 5,
+    "team": "SvenNYG",
+    "owner": "SvenNYG",
+    "slot": "WR",
+    "player": "Josh Downs",
+    "nfl": "KC",
+    "pts": 7.7,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 5,
+    "team": "RioRainRats",
+    "owner": "TeamBeermode",
+    "slot": "FLEX",
+    "player": "Stefon Diggs",
+    "nfl": "WAS",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 5,
+    "team": "RioRainRats",
+    "owner": "TeamBeermode",
+    "slot": "FLEX",
+    "player": "Jordan Addison",
+    "nfl": "MIN",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 5,
+    "team": "San José Salamancas",
+    "owner": "LovetheCheeseHead",
+    "slot": "RB",
+    "player": "Jaydon Blue",
+    "nfl": "12457",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 5,
+    "team": "San José Salamancas",
+    "owner": "LovetheCheeseHead",
+    "slot": "FLEX",
+    "player": "Dameon Pierce",
+    "nfl": "8129",
+    "pts": 3.2,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 5,
+    "team": "AmericanWildfireGrizzlies",
+    "owner": "AmericaGrizlies",
+    "slot": "RB",
+    "player": "Saquon Barkley",
+    "nfl": "PHI",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 6,
+    "team": "Berlin Lightning Sloths",
+    "owner": "jiggydee2312",
+    "slot": "RB",
+    "player": "Dameon Pierce",
+    "nfl": "8129",
+    "pts": 15,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 6,
+    "team": "dseinn",
+    "owner": "dseinn",
+    "slot": "K",
+    "player": "Nick Folk",
+    "nfl": "650",
+    "pts": 1,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 6,
+    "team": "San José Salamancas",
+    "owner": "LovetheCheeseHead",
+    "slot": "RB",
+    "player": "Jaydon Blue",
+    "nfl": "12457",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 6,
+    "team": "AmericanWildfireGrizzlies",
+    "owner": "AmericaGrizlies",
+    "slot": "RB",
+    "player": "Saquon Barkley",
+    "nfl": "PHI",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 6,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "RB",
+    "player": "David Montgomery",
+    "nfl": "HOU",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 7,
+    "team": "Berlin Lightning Sloths",
+    "owner": "jiggydee2312",
+    "slot": "RB",
+    "player": "Dameon Pierce",
+    "nfl": "8129",
+    "pts": 11.8,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 7,
+    "team": "dseinn",
+    "owner": "dseinn",
+    "slot": "K",
+    "player": "Nick Folk",
+    "nfl": "650",
+    "pts": 10,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 7,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "RB",
+    "player": "David Montgomery",
+    "nfl": "HOU",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 7,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "FLEX",
+    "player": "Ladd McConkey",
+    "nfl": "LAC",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 8,
+    "team": "SvenNYG",
+    "owner": "SvenNYG",
+    "slot": "WR",
+    "player": "Keenan Allen",
+    "nfl": "SF",
+    "pts": 13.7,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 8,
+    "team": "RioRainRats",
+    "owner": "TeamBeermode",
+    "slot": "FLEX",
+    "player": "Colby Parkinson",
+    "nfl": "LAR",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 8,
+    "team": "RioRainRats",
+    "owner": "TeamBeermode",
+    "slot": "K",
+    "player": "Ka'imi Fairbairn",
+    "nfl": "HOU",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 8,
+    "team": "San José Salamancas",
+    "owner": "LovetheCheeseHead",
+    "slot": "RB",
+    "player": "Jaydon Blue",
+    "nfl": "12457",
+    "pts": 1.9,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 8,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "RB",
+    "player": "Kyle Monangai",
+    "nfl": "CHI",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 9,
+    "team": "RioRainRats",
+    "owner": "TeamBeermode",
+    "slot": "WR",
+    "player": "Deebo Samuel Sr.",
+    "nfl": "SF",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 9,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "RB",
+    "player": "Kyle Monangai",
+    "nfl": "CHI",
+    "pts": 0,
+    "type": "DNP"
+   },
+   {
+    "league": "DOPE",
+    "week": 10,
+    "team": "Berlin Lightning Sloths",
+    "owner": "jiggydee2312",
+    "slot": "QB",
+    "player": "Drake Maye",
+    "nfl": "NE",
+    "pts": 3.02,
+    "type": "Out",
+    "note": "aktueller Status"
+   },
+   {
+    "league": "DOPE",
+    "week": 10,
+    "team": "RioRainRats",
+    "owner": "TeamBeermode",
+    "slot": "WR",
+    "player": "Jordan Addison",
+    "nfl": "MIN",
+    "pts": 0,
+    "type": "Out",
+    "note": "aktueller Status"
+   },
+   {
+    "league": "DOPE",
+    "week": 10,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "QB",
+    "player": "Bo Nix",
+    "nfl": "DEN",
+    "pts": 0,
+    "type": "BYE"
+   },
+   {
+    "league": "DOPE",
+    "week": 10,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "FLEX",
+    "player": "Ladd McConkey",
+    "nfl": "LAC",
+    "pts": 0,
+    "type": "Out",
+    "note": "aktueller Status"
+   },
+   {
+    "league": "DOPE",
+    "week": 10,
+    "team": "AngryDucks",
+    "owner": "AngryDucks",
+    "slot": "K",
+    "player": "Cairo Santos",
+    "nfl": "CHI",
+    "pts": 0,
+    "type": "BYE"
+   }
+  ]
+ },
+ "generated": "2026-11-15T20:12:56.861Z"
+}
