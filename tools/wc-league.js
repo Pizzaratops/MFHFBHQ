@@ -43,15 +43,15 @@
     if (!S.length) return ui.empty('Noch keine Tabelle', 'Der Fantrax-Sync ist noch nicht gelaufen.', '🏆');
     const byId = teamById(data), cur = currentPeriod(data), sch = data.WC_SCHEDULE || {};
     const opp = id => { const m = cur && cur.matchups.find(x => x.includes(id)); return m ? byId[m[0] === id ? m[1] : m[0]] : null; };
-    const me = league.myTeam;
+    const me = league.myTeam, po = sch.playoffTeams || 0; // Playoff-Linie: Top 8 der Division (Beyaz, 15.11.2026)
     return `<div class="page-head"><h1 class="page-title display">🏆 Tabelle</h1>
         <div class="page-sub">${e((data.FANTRAX_SYNC || {}).leagueName || 'FBI World Cup')} · Division ${e((data.FANTRAX_SYNC || {}).division || '')} · 9-Cat H2H: jede Kategorie zählt als Sieg${sch.lastRegular ? ` · Hauptrunde bis Woche ${sch.lastRegular}` : ''} · ${syncInfo(data)}</div></div>
       <div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th>Team</th><th class="num" title="Kategorien gewonnen-verloren-unentschieden">Kategorien</th><th class="num">Quote</th><th class="num" title="Rückstand auf Platz 1 (in Kategorien)">GB</th>
         <th class="num" title="Rang unter allen ${R.confTeams || 144} Teams der Conference West">Conference</th><th>Diese Woche gegen</th></tr></thead>
-      <tbody>${S.map(s => { const t = byId[s.id]; return `<tr${s.id === me ? ' class="mine"' : ''}><td class="num rank">${s.rank}</td><td>${tLink(ctx, t, s.id === me)}</td>
+      <tbody>${S.map(s => { const t = byId[s.id]; return `<tr class="${s.id === me ? 'mine' : ''}${po && s.rank === po ? ' po-cut' : ''}"><td class="num rank">${s.rank}</td><td>${tLink(ctx, t, s.id === me)}</td>
         <td class="num strong">${s.w}-${s.l}${s.t ? '-' + s.t : ''}</td><td class="num">${s.pct.toFixed(3).replace(/^0/, '')}</td><td class="num">${s.gb ? s.gb.toFixed(1).replace('.0', '') : '–'}</td>
         <td class="num">${s.confRank}.</td><td>${opp(s.id) ? tLink(ctx, opp(s.id)) : '<span class="muted">—</span>'}</td></tr>`; }).join('')}</tbody></table></div>
-      ${sch.playoffTeams ? `<p class="muted small explain">Playoffs laut Fantrax: ${sch.playoffTeams} Teams, ab Woche ${(sch.lastRegular || 0) + 1}. Wie die Plätze zwischen Division und Conference verteilt werden, liefert die Schnittstelle nicht.</p>` : ''}`;
+      ${po ? `<p class="muted small explain">Gestrichelte Linie = Playoff-Grenze: die besten ${po} Teams der Division kommen weiter, Playoffs ab Woche ${(sch.lastRegular || 0) + 1}. Bei Gleichstand: direkter Vergleich, dann meiste Siege, dann Divisionsbilanz.</p>` : ''}`;
   }
 
   function schedule(ctx) {
