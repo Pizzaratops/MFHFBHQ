@@ -1,0 +1,168 @@
+{
+  "league": "nba",
+  "date": "2026-11-15",
+  "games": [
+    {
+      "id": "401909985",
+      "line": "Indiana Pacers @ Philadelphia 76ers (11/15 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 1:00 PM EST",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909986",
+      "line": "Los Angeles Lakers @ Phoenix Suns (11/15 - 4:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 4:00 PM EST",
+      "away": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909987",
+      "line": "Charlotte Hornets @ LA Clippers (11/15 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 4:30 PM EST",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909988",
+      "line": "San Antonio Spurs @ Utah Jazz (11/15 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 5:00 PM EST",
+      "away": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909989",
+      "line": "Dallas Mavericks @ Boston Celtics (11/15 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 6:00 PM EST",
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909990",
+      "line": "New York Knicks @ Toronto Raptors (11/15 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 6:00 PM EST",
+      "away": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909991",
+      "line": "Houston Rockets @ Washington Wizards (11/15 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 7:00 PM EST",
+      "away": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909992",
+      "line": "Atlanta Hawks @ Milwaukee Bucks (11/15 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 8:00 PM EST",
+      "away": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909993",
+      "line": "Oklahoma City Thunder @ Sacramento Kings (11/15 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/15 - 9:00 PM EST",
+      "away": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
