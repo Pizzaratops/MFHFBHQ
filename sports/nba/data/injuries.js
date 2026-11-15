@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T15:50:15.154Z",
+  "updated": "2026-11-15T16:17:15.515Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -35,7 +35,7 @@ const NBA_INJURIES = {
     "Donovan Mitchell": ["CLE","Day-To-Day","GTD","2026-11-16","Knee",0,"2026-11-15"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Drew Timme": ["PHX","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-13"],
-    "Duncan Robinson": ["DET","Day-To-Day","GTD","2026-11-14","Thigh",0,"2026-11-15"],
+    "Duncan Robinson": ["DET","Day-To-Day","GTD","2026-11-17","Thigh",0,"2026-11-15"],
     "Evan Mobley": ["CLE","Day-To-Day","GTD","2026-11-16","Toe",0,"2026-11-15"],
     "Fred VanVleet": ["HOU","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
     "GG Jackson": ["MEM","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-15"],
