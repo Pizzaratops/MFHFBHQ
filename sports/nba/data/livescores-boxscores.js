@@ -4014,9 +4014,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909980",
-      line: "Denver Nuggets @ New Orleans Pelicans (2:22 - 2nd)",
+      line: "Denver Nuggets @ New Orleans Pelicans (10:37 - 4th)",
       completed: false,
-      statusText: "2:22 - 2nd",
+      statusText: "10:37 - 4th",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
@@ -4032,9 +4032,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909981",
-      line: "Dallas Mavericks @ Cleveland Cavaliers (2:45 - 1st)",
+      line: "Dallas Mavericks @ Cleveland Cavaliers (9:05 - 3rd)",
       completed: false,
-      statusText: "2:45 - 1st",
+      statusText: "9:05 - 3rd",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
@@ -4050,9 +4050,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909982",
-      line: "Detroit Pistons @ Miami Heat (11/14 - 8:00 PM EST)",
+      line: "Detroit Pistons @ Miami Heat (6:23 - 2nd)",
       completed: false,
-      statusText: "11/14 - 8:00 PM EST",
+      statusText: "6:23 - 2nd",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -4068,9 +4068,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909983",
-      line: "Brooklyn Nets @ Memphis Grizzlies (11/14 - 8:00 PM EST)",
+      line: "Brooklyn Nets @ Memphis Grizzlies (4:06 - 2nd)",
       completed: false,
-      statusText: "11/14 - 8:00 PM EST",
+      statusText: "4:06 - 2nd",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -4086,9 +4086,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909984",
-      line: "Chicago Bulls @ Minnesota Timberwolves (11/14 - 8:00 PM EST)",
+      line: "Chicago Bulls @ Minnesota Timberwolves (2:06 - 2nd)",
       completed: false,
-      statusText: "11/14 - 8:00 PM EST",
+      statusText: "2:06 - 2nd",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
