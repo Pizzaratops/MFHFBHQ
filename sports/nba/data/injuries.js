@@ -1,11 +1,11 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T20:31:21.372Z",
+  "updated": "2026-11-15T20:59:58.114Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
-    "Andrew Nembhard": ["IND","Out","OUT","2026-11-18","Hip",0,"2026-11-15"],
+    "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-15"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2026-11-20","Toe",0,"2026-11-12"],
@@ -23,7 +23,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-14"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
     "Daniel Gafford": ["DAL","Day-To-Day","GTD","2026-11-15","Shoulder",0,"2026-11-15"],
-    "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-15","Hip",0,"2026-11-15"],
+    "De'Aaron Fox": ["SA","Out","OUT","2026-11-17","Hip",0,"2026-11-15"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
