@@ -62,7 +62,7 @@ async function espn() {
           const pts = e.playerPoolEntry.appliedStatTotal ?? (st ? st.appliedTotal : 0);
           const base = { league: 'Foodball', week: w, team: tm.name, owner: tm.owner, slot: ESPN_SLOTS[e.lineupSlotId] || e.lineupSlotId, player: p.fullName, nfl: proAbbr[p.proTeamId], pts: Math.round((pts || 0) * 10) / 10 };
           const noStat = !st || !st.stats || Object.keys(st.stats).length === 0;
-          if (w === cur) curAll.push({ ...base, status: p.injuryStatus, injured: p.injured, noStat, byeNow: bye[p.proTeamId] === w });
+          if (w === cur) curAll.push({ ...base, pid: p.id, status: p.injuryStatus, injured: p.injured, noStat, byeNow: bye[p.proTeamId] === w });
           if (base.pts !== 0 || !noStat) { if (w === cur && bye[p.proTeamId] === w) {} else continue; }
           if (bye[p.proTeamId] === w) flags.push({ ...base, type: 'BYE' });
           else if (w < cur) flags.push({ ...base, type: 'DNP' });
@@ -70,6 +70,14 @@ async function espn() {
         }
       }
     }
+  }
+  // Aktueller Verletzungsstatus (mBoxscore liefert ihn nicht)
+  const rr = await getJson(`${base}?view=mRoster`, H);
+  const inj = {};
+  for (const t of rr.teams) for (const e of (t.roster || {}).entries || []) inj[e.playerId] = e.playerPoolEntry.player.injuryStatus;
+  for (const f of curAll) {
+    f.status = inj[f.pid] || f.status;
+    if (f.pts === 0 && f.noStat && !f.byeNow && ['OUT', 'INJURY_RESERVE', 'SUSPENSION', 'DOUBTFUL'].includes(f.status)) flags.push({ ...f, type: f.status, note: 'aktueller Status' });
   }
   return { cur, flags, curAll };
 }
