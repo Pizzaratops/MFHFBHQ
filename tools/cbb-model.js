@@ -54,9 +54,12 @@
     const nba = N(), byKey = new Map(), byKT = new Map();
     // Live: Projektion gemischt mit echten Spielen (build-live-projections.js), sonst Preseason
     const L = (data.CBB_PROJ_LIVE && data.CBB_PROJ_LIVE.p) || {};
+    const TG = (data.CBB_PROJ_LIVE && data.CBB_PROJ_LIVE.tg) || {};
     const list = (data.CBB_PROJECTIONS || []).map(p => {
       const l = L[p.name + '|' + p.team];
-      return l ? { ...p, ...l, pre: { z: p.z, min: p.min, pts: p.pts } } : p;
+      if (l) return { ...p, ...l, pre: { z: p.z, min: p.min, pts: p.pts } };
+      // idle = Projektion vorhanden, aber noch kein Einsatz, obwohl die Schule schon ≥ 3 Spiele hat
+      return TG[p.team] >= 3 ? { ...p, idle: TG[p.team] } : p;
     });
     Object.entries(L).forEach(([id, l]) => {
       if (!l.name) return;
@@ -77,6 +80,10 @@
     cache.set(data, out);
     return out;
   }
+  // spielt vermutlich nicht: noch kein Einsatz (idle) oder die letzten ≥ 2 Spiele der Schule gefehlt (miss)
+  const sitting = p => !!(p && (p.idle || p.miss >= 2));
+  const sitWhy = p => (p.idle ? `noch kein Einsatz in ${p.idle} Spielen der Schule` : `fehlte in den letzten ${p.miss} Spielen der Schule`);
+  const sitBadge = p => (sitting(p) ? ` <span class="down" title="${sitWhy(p)} — zählt nicht in der Prognose">⚠︎</span>` : '');
   const nowVal = (p, I) => (p ? Math.max(0, p.z - I.repl) : 0);
   const dynVal = p => (p ? p.dyn || 0 : 0);
   const confDots = c => { const n = c >= 0.6 ? 3 : c >= 0.3 ? 2 : 1; return `<span class="cbbm-conf" title="Datensicherheit ${Math.round(c * 100)} % (Minuten-Historie)">${'●'.repeat(n)}${'○'.repeat(3 - n)}</span>`; };
@@ -420,7 +427,9 @@
     const players = N().roster(data, tid).map(r => {
       const p = I.proj(r.name, r.team);
       const games = hasDates ? (GD[r.team] || []).filter(d => inWin(w, d)).length : Math.round(days / 7 * 2);
-      return { r, p, games, val: p ? games * p.z : -99 };
+      // sit: zählt mit 0 (Prognose) und wird nicht für die beste Aufstellung vorgeschlagen
+      const sit = sitting(p);
+      return { r, p, games, sit, val: p ? (sit ? 0 : games * p.z) : -99 };
     });
     let act;
     if (opt) {
@@ -434,7 +443,7 @@
       const td = today();
       const first = x => hasDates ? (GD[x.r.team] || []).filter(d => inWin(w, d)).sort()[0] : null;
       players.forEach(x => { const d = first(x); x.locked = !!(d && d < td); });
-      const order = players.filter(x => x.p && x.r.status !== 'IR' && !(x.locked && x.r.status !== 'A'))
+      const order = players.filter(x => x.p && x.r.status !== 'IR' && !(x.locked && x.r.status !== 'A') && !(x.sit && !(x.locked && x.r.status === 'A')))
         .sort((a, b) => ((b.locked && b.r.status === 'A') - (a.locked && a.r.status === 'A')) || (b.val - a.val));
       order.forEach(x => {
         const k = kind(x);
@@ -454,13 +463,13 @@
     const tot = {}, sd = {};
     CATS.filter(c => !c.pct).forEach(c => {
       let s = 0, v = 0;
-      act.forEach(x => { if (!x.p || !x.games) return; const per = x.p[c.k] || 0; s += per * x.games; v += x.games * (c.cv * per) ** 2; });
+      act.forEach(x => { if (!x.p || !x.games || x.sit) return; const per = x.p[c.k] || 0; s += per * x.games; v += x.games * (c.cv * per) ** 2; });
       tot[c.k] = s; sd[c.k] = Math.sqrt(v);
     });
-    const sum = k => act.reduce((s, x) => s + (x.p ? (x.p[k] || 0) * x.games : 0), 0);
+    const sum = k => act.reduce((s, x) => s + (x.p && !x.sit ? (x.p[k] || 0) * x.games : 0), 0);
     tot.fgPct = sum('fga') ? 100 * sum('fgm') / sum('fga') : 0; tot.ftPct = sum('fta') ? 100 * sum('ftm') / sum('fta') : 0;
     sd.fgPct = CATS.find(c => c.k === 'fgPct').sd; sd.ftPct = CATS.find(c => c.k === 'ftPct').sd;
-    return { tid, players, act, tot, sd, hasDates, games: act.reduce((s, x) => s + x.games, 0) };
+    return { tid, players, act, tot, sd, hasDates, games: act.reduce((s, x) => s + (x.sit ? 0 : x.games), 0) };
   }
   function cmp(a, b) {
     const rows = CATS.map(c => {
@@ -511,7 +520,7 @@
     const tips = opt ? [] : swapTips(T);
     const nAct = N().roster(data, tid).filter(r => r.status === 'A').length;
     const prow = x => `<tr class="${x.on ? '' : 'muted'}"><td><span class="pos nba-pos">${e(x.on ? (opt ? x.slot : x.r.slot) : x.r.status === 'IR' ? 'IR' : 'Bank')}</span>${opt && x.on !== (x.r.status === 'A') ? ` <small class="${x.on ? 'up' : 'down'}" title="${x.on ? 'In Fantrax auf Reserve — aufstellen' : 'In Fantrax aktiv — diese Woche besser auf die Bank'}">${x.on ? '▲' : '▼'}</small>` : ''}</td>
-      <td class="strong">${e(x.r.name)}${nba.injury(x.r.inj)}</td><td>${schoolLink(ctx, x.r.team)}</td><td class="num strong">${x.games}</td>
+      <td class="strong">${e(x.r.name)}${nba.injury(x.r.inj)}${sitBadge(x.p)}</td><td>${schoolLink(ctx, x.r.team)}</td><td class="num strong">${x.games}</td>
       <td class="num">${x.p ? `<span class="${x.p.z >= 0 ? 'up' : 'down'}">${sgn(x.p.z)}</span>` : '—'}</td><td class="num">${x.p ? sgn(x.val) : '—'}</td>
       <td class="num">${x.p ? r1(x.p.min) : '—'}</td></tr>`;
     const sorted = T.players.slice().sort((a, b) => (a.on ? 0 : 1) - (b.on ? 0 : 1) || b.val - a.val);
@@ -572,7 +581,7 @@
     const locked = x => x.locked;
     const deadline = [...ins, ...outs].map(x => dates(x)[0]).filter(d => d && d >= td).sort()[0];
     const gone = new Set((data.CBB_GONE || []).map(g => N().key(g[0])));
-    const why = x => (x.r.status === 'IR' ? 'auf IR' : !x.p ? (gone.has(N().key(x.r.name)) ? 'vermutlich nicht spielberechtigt (nicht im ESPN-Kader)' : 'keine Projektion — selbst prüfen') : x.games === 0 ? 'kein Spiel diese Woche' : `weniger Wochenwert (${sgn(x.val)})`);
+    const why = x => (x.r.status === 'IR' ? 'auf IR' : !x.p ? (gone.has(N().key(x.r.name)) ? 'vermutlich nicht spielberechtigt (nicht im ESPN-Kader)' : 'keine Projektion — selbst prüfen') : x.sit ? sitWhy(x.p) + ' — selbst prüfen' : x.games === 0 ? 'kein Spiel diese Woche' : `weniger Wochenwert (${sgn(x.val)})`);
     const moveRow = (x, dir) => `<li class="cbbl-move ${dir}"><span class="cbbl-arrow">${dir === 'in' ? '▲' : '▼'}</span>
       <b>${e(x.r.name)}</b>${nba.injury(x.r.inj)} <span class="muted">${e(x.r.team)}</span>
       <span class="cbbl-meta">${dir === 'in' ? `aktivieren → ${e(x.slot)} · ${x.games} Spiele` : `auf die Bank · ${why(x)}`}${locked(x) ? ' · <span class="down">schon gesperrt</span>' : ''}</span></li>`;
@@ -587,7 +596,7 @@
       const L = T.act.filter(x => x.slot === slot).sort((a, b) => b.val - a.val);
       return `<div class="card cbbl-slot"><div class="card-head"><h2>${label}</h2><span class="muted small">${L.length}/${cap}</span></div>
         <div class="cbbl-rows">${L.map(x => `<div class="cbbl-row${x.r.status !== 'A' ? ' new' : ''}">
-          <span class="cbbl-name">${x.r.status !== 'A' ? '<span class="up" title="in Fantrax noch nicht aktiv">▲</span> ' : ''}${e(x.r.name)}${nba.injury(x.r.inj)}<small class="muted">${e(x.r.team)}</small></span>
+          <span class="cbbl-name">${x.r.status !== 'A' ? '<span class="up" title="in Fantrax noch nicht aktiv">▲</span> ' : ''}${e(x.r.name)}${nba.injury(x.r.inj)}${sitBadge(x.p)}<small class="muted">${e(x.r.team)}</small></span>
           <span class="cbbl-days">${dates(x).map(dayChip).join('') || `<span class="muted small">${x.games}×</span>`}</span>
           <span class="cbbl-val ${x.val >= 0 ? 'up' : 'down'}">${sgn(x.val)}</span></div>`).join('')}</div></div>`;
     };

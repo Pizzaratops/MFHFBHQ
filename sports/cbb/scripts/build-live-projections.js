@@ -46,9 +46,9 @@ function parseCsvLine(line) {
 }
 const STATS = ['min', 'pts', 'reb', 'ast', 'stl', 'blk', 'tpm', 'tov', 'fgm', 'fga', 'ftm', 'fta'];
 const COL = { min: 'MIN', pts: 'PTS', reb: 'REB', ast: 'AST', stl: 'STL', blk: 'BLK', tpm: '3PM', tov: 'TO', fgm: 'FGM', fga: 'FGA', ftm: 'FTM', fta: 'FTA' };
-const tot = new Map(); let files = 0, last = null;
+const rows = []; let files = 0, last = null;
 if (fs.existsSync(CSV_DIR)) {
-  fs.readdirSync(CSV_DIR).filter(f => /^daily-9cat_ncaab(-postseason)?_\d{4}-\d{2}-\d{2}\.csv$/.test(f)).forEach(f => {
+  fs.readdirSync(CSV_DIR).filter(f => /^daily-9cat_ncaab(-postseason)?_\d{4}-\d{2}-\d{2}\.csv$/.test(f)).sort().forEach(f => {
     const d = f.slice(-14, -4);
     if (d < SINCE) return;
     const lines = fs.readFileSync(path.join(CSV_DIR, f), 'utf8').split('\n').filter(Boolean);
@@ -59,15 +59,54 @@ if (fs.existsSync(CSV_DIR)) {
       const r = parseCsvLine(lines[i]);
       const name = (r[ix('Name')] || '').trim(), team = (r[ix('Team')] || '').trim();
       if (!name) continue;
-      const p = byKT.get(key(name) + '|' + team) || byK.get(key(name)) || null;
-      const id = p ? p.name + '|' + p.team : name + '|' + team;
-      const t = tot.get(id) || { name: p ? p.name : name, team: p ? p.team : team, p, g: 0 };
-      t.g++;
-      STATS.forEach(k => { t[k] = (t[k] || 0) + (parseFloat(r[ix(COL[k])]) || 0); });
-      tot.set(id, t);
+      const st = {}; STATS.forEach(k => { st[k] = parseFloat(r[ix(COL[k])]) || 0; });
+      rows.push({ d, name, team, st });
     }
   });
 }
+
+// ---------- Namens-Abgleich Box Score (ESPN) → Projektion (Fantrax-Schreibweise) ----------
+// 15.11.2026: Die Projektion trägt den Fantrax-Namen („Will Berg“), der Box Score den ESPN-Namen
+// („William Berg“) — solche Spieler bekamen keine echten Spiele eingemischt und tauchten doppelt auf.
+// Ersatz-Zuordnung: gleiche Schule + gleicher Nachname, die Projektion steht NICHT unter ihrem Namen
+// im ESPN-Kader (also eine Fantrax-Schreibweise) und hat keinen eigenen Box-Score-Namensvetter.
+// Eindeutig → Treffer; bei mehreren entscheidet der gleiche Anfangsbuchstabe des Vornamens.
+let ESPN = {};
+try { ESPN = load('espn-rosters.js', 'CBB_ESPN_ROSTERS') || {}; } catch (e) { /* ohne ESPN-Kader: nur Box-Score-Namen prüfen */ }
+const espnKeys = {}; Object.entries(ESPN).forEach(([sc, l]) => { espnKeys[sc] = new Set(l.map(x => key(x[1]))); });
+const direct = (name, team) => byKT.get(key(name) + '|' + team) || byK.get(key(name)) || null;
+const taken = new Set(); rows.forEach(r => { const p = direct(r.name, r.team); if (p) taken.add(p); });
+const bySchool = {}; PROJ.forEach(p => { (bySchool[p.team] = bySchool[p.team] || []).push(p); });
+const lastName = k => k.split(' ').pop();
+const aliasCache = new Map(), aliasLog = [];
+function resolve(name, team) {
+  const p = direct(name, team);
+  if (p) return p;
+  const id = key(name) + '|' + team;
+  if (aliasCache.has(id)) return aliasCache.get(id);
+  const k = key(name);
+  let c = (bySchool[team] || []).filter(q => !taken.has(q) && lastName(key(q.name)) === lastName(k) && !(espnKeys[team] && espnKeys[team].has(key(q.name))));
+  if (c.length > 1) c = c.filter(q => key(q.name)[0] === k[0]);
+  const hit = c.length === 1 ? c[0] : null;
+  if (hit) { taken.add(hit); aliasLog.push(`${name} → ${hit.name} (${team})`); }
+  aliasCache.set(id, hit);
+  return hit;
+}
+
+const tot = new Map();
+const teamDates = {};   // Schule → sortierte Spieltage mit Box Score
+rows.forEach(r => { (teamDates[r.team] = teamDates[r.team] || new Set()).add(r.d); });
+Object.keys(teamDates).forEach(k => { teamDates[k] = Array.from(teamDates[k]).sort(); });
+rows.forEach(r => {
+  const p = resolve(r.name, r.team);
+  const id = p ? p.name + '|' + p.team : r.name + '|' + r.team;
+  const t = tot.get(id) || { name: p ? p.name : r.name, team: p ? p.team : r.team, p, g: 0, lastD: null };
+  t.g++;
+  if (r.st.min > 0 && (!t.lastD || r.d > t.lastD)) t.lastD = r.d;
+  STATS.forEach(k => { t[k] = (t[k] || 0) + r.st[k]; });
+  tot.set(id, t);
+});
+if (aliasLog.length) console.log(`Namens-Abgleich (${aliasLog.length}): ${aliasLog.join(' · ')}`);
 
 // ---------- z-Skala aus der Preseason (Pool ab 10 Min.) ----------
 const pool = PROJ.filter(p => p.min >= 10);
@@ -100,13 +139,19 @@ tot.forEach((t, id) => {
     z: +z.toFixed(2), zc, season: { pts: r2(t.pts / t.g), reb: r2(t.reb / t.g), ast: r2(t.ast / t.g), min: +(t.min / t.g).toFixed(1) },
     ...(p ? {} : { name: t.name, team: t.team }),
   };
+  // miss = Spiele der Schule seit dem letzten Einsatz (≥ 2 → vermutlich verletzt/raus aus der Rotation)
+  const miss = (teamDates[t.team] || []).filter(d => d > (t.lastD || '')).length;
+  if (miss) out[id].miss = miss;
 });
+const tg = {}; Object.entries(teamDates).forEach(([k, v]) => { tg[k] = v.length; });
 fs.writeFileSync(path.join(DATA, 'live-projections-cbb.js'), `// ============================================================
 //  CBB_PROJ_LIVE — Projektion 2026/27 gemischt mit den echten Spielen, AUTO-GENERIERT
 //  (sports/cbb/scripts/build-live-projections.js). Schlüssel "Name|Schule" wie CBB_PROJECTIONS.
-//  g = Spiele, w = Gewicht der Projektion in virtuellen Spielen, season = reiner Saisonschnitt.
+//  g = Spiele, w = Gewicht der Projektion in virtuellen Spielen, season = reiner Saisonschnitt,
+//  miss = Spiele der Schule seit dem letzten Einsatz. tg = bisherige Spiele je Schule (für Spieler
+//  mit Projektion, aber ohne Einsatz: „noch kein Spiel“).
 // ============================================================
 
-const CBB_PROJ_LIVE = ${JSON.stringify({ at: new Date().toISOString(), since: SINCE, last, files, players: Object.keys(out).length, p: out })};
+const CBB_PROJ_LIVE = ${JSON.stringify({ at: new Date().toISOString(), since: SINCE, last, files, players: Object.keys(out).length, tg, p: out })};
 `, 'utf8');
 console.log(`live-projections-cbb.js: ${files} Tages-CSVs (seit ${SINCE}), ${Object.keys(out).length} Spieler mit Spielen.`);
