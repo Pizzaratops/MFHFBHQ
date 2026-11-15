@@ -3928,9 +3928,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909985",
-      line: "Indiana Pacers @ Philadelphia 76ers (Halftime)",
+      line: "Indiana Pacers @ Philadelphia 76ers (9:26 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "9:26 - 3rd",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
