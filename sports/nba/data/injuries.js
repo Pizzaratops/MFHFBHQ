@@ -1,12 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T18:45:44.684Z",
+  "updated": "2026-11-15T19:55:58.472Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
-    "Adou Thiero": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
-    "Alex Sarr": ["WSH","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-14"],
     "Andrew Nembhard": ["IND","Out","OUT","2026-11-18","Hip",0,"2026-11-15"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
@@ -19,13 +17,11 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-19","Achilles",0,"2026-11-12"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
     "Bryce McGowens": ["NO","Day-To-Day","GTD","2026-11-16","Elbow",0,"2026-11-15"],
-    "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-15","Chest",0,"2026-11-14"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-14"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
-    "Collin Sexton": ["LAL","Day-To-Day","GTD","2026-11-15","Head",0,"2026-11-15"],
     "Daniel Gafford": ["DAL","Day-To-Day","GTD","2026-11-15","Shoulder",0,"2026-11-15"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-15","Hip",0,"2026-11-15"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
@@ -65,7 +61,6 @@ const NBA_INJURIES = {
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-11"],
-    "Keegan Murray": ["SAC","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
     "Keshon Gilbert": ["ATL","Out","OUT","2026-11-20","Knee",0,"2026-11-12"],
     "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-16","Illness",0,"2026-11-13"],
     "Kingston Flemings": ["ATL","Out","OUT","2026-11-18","Back",0,"2026-11-14"],
