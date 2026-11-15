@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-15T08:03:21.622Z",
+  "generatedAt": "2026-11-15T10:03:28.570Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -812,7 +812,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 19.4,
-          "projPoints": 14
+          "projPoints": 14.1
         },
         {
           "name": "Tory Horton",
@@ -1111,7 +1111,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.5,
           "last3AvgPoints": 11.9,
-          "projPoints": 9.8
+          "projPoints": 9.9
         },
         {
           "name": "Colston Loveland",
@@ -1144,7 +1144,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.8,
           "last3AvgPoints": 10.4,
-          "projPoints": 10.6
+          "projPoints": 10.3
         },
         {
           "name": "Eli Stowers",
@@ -1442,7 +1442,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.1,
           "last3AvgPoints": 8.1,
-          "projPoints": 12.6
+          "projPoints": 12.5
         }
       ],
       "flaggedCount": 0
@@ -1509,7 +1509,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 18.9,
-          "projPoints": 13
+          "projPoints": 13.1
         },
         {
           "name": "Quinn Ewers",
@@ -1762,7 +1762,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.1,
           "last3AvgPoints": 8.1,
-          "projPoints": 12.6
+          "projPoints": 12.5
         },
         {
           "name": "Kayshon Boutte",
@@ -1773,7 +1773,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 26.5,
           "last3AvgPoints": 14.8,
-          "projPoints": 5.2
+          "projPoints": 5
         }
       ],
       "flaggedCount": 0
@@ -2149,7 +2149,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.4,
           "last3AvgPoints": 8.8,
-          "projPoints": 12.4
+          "projPoints": 12.7
         },
         {
           "name": "Tory Horton",
@@ -2303,7 +2303,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.2,
           "last3AvgPoints": 5.9,
-          "projPoints": 10
+          "projPoints": 9.9
         },
         {
           "name": "Michael Mayer",
@@ -2403,7 +2403,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 18.8,
           "last3AvgPoints": 16.2,
-          "projPoints": 10.5
+          "projPoints": 10.2
         },
         {
           "name": "Keenan Allen",
@@ -3863,7 +3863,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 3.7
+          "projPoints": 3.6
         },
         {
           "name": "Colby Parkinson",
@@ -3940,7 +3940,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 28.5,
           "last3AvgPoints": 16,
-          "projPoints": 6.3
+          "projPoints": 6.1
         },
         {
           "name": "Jordan Addison",
