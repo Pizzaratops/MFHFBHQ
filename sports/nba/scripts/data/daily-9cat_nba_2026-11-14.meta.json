@@ -1,0 +1,15 @@
+{
+  "league": "nba",
+  "date": "2026-11-14",
+  "games": [
+    "Denver Nuggets 116 @ New Orleans Pelicans 108 (Final)",
+    "Dallas Mavericks 117 @ Cleveland Cavaliers 127 (Final)",
+    "Detroit Pistons @ Miami Heat (3:26 - 3rd)",
+    "Brooklyn Nets @ Memphis Grizzlies (10:21 - 4th)",
+    "Chicago Bulls @ Minnesota Timberwolves (8:47 - 4th)"
+  ],
+  "leagueAvg": {
+    "fg": 47,
+    "ft": 75.6
+  }
+}

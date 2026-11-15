@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T02:01:00.438Z",
+  "updated": "2026-11-15T03:01:07.616Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -27,6 +27,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-14"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
     "Collin Sexton": ["LAL","Day-To-Day","GTD","2026-11-15","Head",0,"2026-11-15"],
+    "Daniel Gafford": ["DAL","Out","OUT","2026-11-15","Face",0,"2026-11-15"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
@@ -34,8 +35,10 @@ const NBA_INJURIES = {
     "Donovan Mitchell": ["CLE","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Drew Timme": ["PHX","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-13"],
+    "Duncan Robinson": ["DET","Day-To-Day","GTD","2026-11-14","Thigh",0,"2026-11-15"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-16","Toe",0,"2026-11-14"],
     "Fred VanVleet": ["HOU","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
+    "GG Jackson": ["MEM","Out","OUT","2026-11-16","Foot",0,"2026-11-15"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","OUT","2026-11-17","Hip",0,"2026-11-09"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-18","Ankle",0,"2026-09-28"],
@@ -49,6 +52,7 @@ const NBA_INJURIES = {
     "Jarrett Allen": ["CLE","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
     "Jaxson Hayes": ["UTAH","Out","OUT","2026-11-17","Knee",0,"2026-11-15"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
+    "Jaylen Clark": ["MIN","Out","OUT","2026-11-16","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-18","Back",0,"2026-11-15"],
     "Jerami Grant": ["MEM","Out","OUT","2026-11-16","Head",0,"2026-11-15"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
