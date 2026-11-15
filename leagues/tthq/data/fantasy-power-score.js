@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-15T20:31:42.531Z",
+  "generatedAt": "2026-11-15T21:00:19.401Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 14 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -381,7 +381,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Nils",
       "values": {
         "pts": 358.6,
-        "reb": 123.9,
+        "reb": 124,
         "ast": 91.2,
         "stl": 24.75,
         "blk": 14.69,

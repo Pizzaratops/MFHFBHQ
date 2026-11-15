@@ -54,7 +54,7 @@ const DYNASTY_LIVE = [
   { name: "Davion Mitchell", baseRank: 154, liveRank: 126, delta: 28, games: 13, expRank: 169, seasonRank: 26, shift: 0.2, source: "season" },
   { name: "Neemias Queta", baseRank: 156, liveRank: 173, delta: -17, games: 12, expRank: 60, seasonRank: 155, shift: -0.1, source: "season" },
   { name: "Andrew Wiggins", baseRank: 157, liveRank: 177, delta: -20, games: 13, expRank: 69, seasonRank: 198, shift: -0.12, source: "season" },
-  { name: "Aaron Nesmith", baseRank: 162, liveRank: 176, delta: -14, games: 12, expRank: 98, seasonRank: 203, shift: -0.08, source: "season" },
+  { name: "Aaron Nesmith", baseRank: 162, liveRank: 176, delta: -14, games: 12, expRank: 98, seasonRank: 204, shift: -0.08, source: "season" },
   { name: "Gui Santos", baseRank: 169, liveRank: 190, delta: -21, games: 10, expRank: 108, seasonRank: 289, shift: -0.12, source: "season" },
   { name: "Daniss Jenkins", baseRank: 180, liveRank: 164, delta: 16, games: 12, expRank: 190, seasonRank: 95, shift: 0.09, source: "season" },
   { name: "Jalen Smith", baseRank: 197, liveRank: 174, delta: 23, games: 11, expRank: 139, seasonRank: 38, shift: 0.13, source: "season" },
