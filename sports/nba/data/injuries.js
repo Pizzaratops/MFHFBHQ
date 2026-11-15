@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T03:01:07.616Z",
+  "updated": "2026-11-15T14:41:53.286Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -66,7 +66,7 @@ const NBA_INJURIES = {
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-11"],
     "Keegan Murray": ["SAC","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
     "Keshon Gilbert": ["ATL","Out","OUT","2026-11-20","Knee",0,"2026-11-12"],
-    "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-14","Illness",0,"2026-11-13"],
+    "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-16","Illness",0,"2026-11-13"],
     "Kingston Flemings": ["ATL","Out","OUT","2026-11-18","Back",0,"2026-11-14"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
