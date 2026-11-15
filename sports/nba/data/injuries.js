@@ -1,9 +1,8 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T17:22:48.685Z",
+  "updated": "2026-11-15T17:39:34.987Z",
   "players": {
-    "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Adou Thiero": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -90,6 +89,7 @@ const NBA_INJURIES = {
     "Quinten Post": ["MEM","Out","GTD","2026-11-16","Concussion",0,"2026-11-14"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
+    "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-16","Elbow",0,"2026-11-10"],
     "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-14"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
@@ -97,7 +97,6 @@ const NBA_INJURIES = {
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "Steven Adams": ["HOU","Out","GTD","2026-11-15","Calf",0,"2026-11-14"],
-    "T.J. McConnell": ["IND","Day-To-Day","","","",0,"2026-11-14"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-20","Knee",0,"2026-11-13"],
     "Tobe Awaka": ["CHI","Day-To-Day","GTD","2026-11-16","Back",0,"2026-11-15"],
