@@ -92,7 +92,8 @@
     // 26.10.2026: Walter Clayton (DAL) und Micah Peavy (OKC) per Two-Way neu unter Vertrag → raus
     // 09.11.2026: Kevin McCullar Jr. (TOR, Two-Way) raus; Riley Minix (CLE), Enrique Freeman (MIN), Dalen Terry (OKC) gewaivt
     'bruce brown': [0, 'gewaivt'], 'kevin porter': [0, 'gewaivt'], 'ak okereke': [0, 'gewaivt'],
-    'riley minix': [0, 'gewaivt'], 'enrique freeman': [0, 'gewaivt'], 'dalen terry': [0, 'gewaivt'],
+    // 15.11.2026: Riley Minix (CLE) per Two-Way zurück → raus
+    'enrique freeman': [0, 'gewaivt'], 'dalen terry': [0, 'gewaivt'],
     'ben simmons': [0, 'Out Saison'], 'kristaps porzingis': [0, 'Karriereende'],
   };
   // Gehaltsformel von basketball.de, gelöst am 1. Update (15.11.2026): Fit über 364 Spieler
