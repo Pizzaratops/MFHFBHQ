@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T17:39:34.987Z",
+  "updated": "2026-11-15T17:57:14.048Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Adou Thiero": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -96,7 +96,6 @@ const NBA_INJURIES = {
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
-    "Steven Adams": ["HOU","Out","GTD","2026-11-15","Calf",0,"2026-11-14"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-18","Heel",0,"2026-11-11"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-20","Knee",0,"2026-11-13"],
     "Tobe Awaka": ["CHI","Day-To-Day","GTD","2026-11-16","Back",0,"2026-11-15"],
