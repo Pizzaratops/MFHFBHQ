@@ -4014,9 +4014,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909980",
-      line: "Denver Nuggets @ New Orleans Pelicans (11/14 - 7:00 PM EST)",
+      line: "Denver Nuggets @ New Orleans Pelicans (2:22 - 2nd)",
       completed: false,
-      statusText: "11/14 - 7:00 PM EST",
+      statusText: "2:22 - 2nd",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
@@ -4032,9 +4032,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909981",
-      line: "Dallas Mavericks @ Cleveland Cavaliers (11/14 - 7:30 PM EST)",
+      line: "Dallas Mavericks @ Cleveland Cavaliers (2:45 - 1st)",
       completed: false,
-      statusText: "11/14 - 7:30 PM EST",
+      statusText: "2:45 - 1st",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [

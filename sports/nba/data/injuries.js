@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T00:57:43.570Z",
+  "updated": "2026-11-15T01:01:02.946Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Pelle Larsson": ["MIA","Out","OUT","2026-11-16","Illness",0,"2026-11-14"],
     "Peyton Watson": ["CLE","Out","OUT","2026-11-16","Hamstring",0,"2026-11-14"],
-    "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-14"],
+    "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Quinten Post": ["MEM","Out","OUT","2026-11-16","Concussion",0,"2026-11-14"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
