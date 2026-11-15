@@ -3966,9 +3966,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909986",
-      line: "Los Angeles Lakers @ Phoenix Suns (11/15 - 4:00 PM EST)",
+      line: "Los Angeles Lakers @ Phoenix Suns (1:48 - 1st)",
       completed: false,
-      statusText: "11/15 - 4:00 PM EST",
+      statusText: "1:48 - 1st",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
