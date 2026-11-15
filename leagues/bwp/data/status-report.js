@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-15T18:03:20.716Z",
+  "generatedAt": "2026-11-15T19:39:36.583Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -144,7 +144,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "NYJ",
           "isStarter": false,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 12.1,
@@ -321,8 +321,8 @@ const STATUS_REPORT_DATA = {
           "pos": "?",
           "nfl": "DET",
           "isStarter": true,
-          "status": "Q",
-          "flag": false,
+          "status": "D",
+          "flag": true,
           "lastGamePoints": 2.3,
           "last3AvgPoints": 5.4,
           "projPoints": 7.6
@@ -427,7 +427,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 18.3
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 1
     },
     {
       "id": "beyaz-espn-783491558",
@@ -1243,7 +1243,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.4,
           "last3AvgPoints": 19.9,
-          "projPoints": 14.6
+          "projPoints": 14.7
         },
         {
           "name": "Sean Tucker",
@@ -1299,7 +1299,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.8,
           "last3AvgPoints": 13.9,
-          "projPoints": 10.5
+          "projPoints": 10.6
         },
         {
           "name": "Marvin Harrison Jr.",
@@ -1718,7 +1718,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.6,
           "last3AvgPoints": 4.4,
-          "projPoints": 6.3
+          "projPoints": 6.4
         },
         {
           "name": "Cade Otton",
