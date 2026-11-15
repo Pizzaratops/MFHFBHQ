@@ -2,8 +2,10 @@
 // Format je Spieler wie USM_BASE/Import: [Name, Team, Pos, Gehalt, Rookie, Saison-FP, FP/G]
 // Quelle: basketball.de/app/usmanager/top-spieler (eingeloggt, Claude-Browser). Neue Snapshots
 // hinten anhängen (Datum = Abruftag); eigene Browser-Snapshots gleichen Datums haben Vorrang.
+// through = letzter US-Spieltag, dessen FP enthalten sind (Abruf vor dem 12:00-Update: Abruftag − 2,
+// danach Abruftag − 1). Ab dem Folgetag rechnet tools/usm.js die Boxscores selbst dazu.
 const USM_SNAPSHOTS = [
- { date: "2026-11-10", note: "vor dem 1. Gehalts-Update (Gehälter = Start), FP bis 09.11.", players: [
+ { date: "2026-11-10", through: "2026-11-08", note: "vor dem 1. Gehalts-Update (Gehälter = Start), Abruf vor dem 12:00-Update", players: [
    ["Achiuwa, Precious","Sacramento Kings","C",5.05,0,176.5,17.65],
    ["Acuff Jr., Darius","Sacramento Kings","G",3.2,1,270,27],
    ["Adams, Steven","Houston Rockets","C",4.05,0,5.5,5.5],
@@ -775,7 +777,7 @@ const USM_SNAPSHOTS = [
    ["Zikarsky, Rocco","Minnesota Timberwolves","C",0.7,0,0,0],
    ["Zubac, Ivica","Indiana Pacers","C",7.46,0,70,14]
  ] },
- { date: "2026-11-15", note: "nach dem 1. Gehalts-Update (15.11. 22:00), FP bis 14.11.", players: [
+ { date: "2026-11-15", through: "2026-11-14", note: "nach dem 1. Gehalts-Update (15.11. 22:00)", players: [
    ["Achiuwa, Precious","Sacramento Kings","C",5.07,0,190,17.27],
    ["Acuff Jr., Darius","Sacramento Kings","G",8.99,1,319,26.58],
    ["Adams, Steven","Houston Rockets","C",4.05,0,5.5,5.5],
