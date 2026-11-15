@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-15T07:01:21.991Z",
+  "generatedAt": "2026-11-15T08:01:28.726Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 14 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,25 +97,25 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 318.5,
-        "reb": 122.1,
-        "ast": 75.3,
-        "stl": 22.59,
-        "blk": 14.75,
-        "tpm": 39,
-        "to": 40.9,
-        "fgPct": 46.8,
-        "ftPct": 78.5
+        "pts": 320.1,
+        "reb": 121.1,
+        "ast": 76.1,
+        "stl": 22.93,
+        "blk": 14.87,
+        "tpm": 39.3,
+        "to": 41.2,
+        "fgPct": 46.7,
+        "ftPct": 78.7
       },
       "rank": {
         "pts": 7,
         "reb": 6,
         "ast": 7,
         "stl": 7,
-        "blk": 6,
+        "blk": 5,
         "tpm": 4,
-        "fgPct": 6,
-        "ftPct": 7,
+        "fgPct": 7,
+        "ftPct": 6,
         "to": 7
       },
       "includedCount": 28,
@@ -236,7 +236,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 9,
         "ast": 11,
         "stl": 10,
-        "blk": 5,
+        "blk": 6,
         "tpm": 6,
         "fgPct": 9,
         "ftPct": 10,
@@ -397,7 +397,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 3,
         "blk": 7,
         "tpm": 5,
-        "fgPct": 7,
+        "fgPct": 6,
         "ftPct": 4,
         "to": 11
       },
@@ -429,7 +429,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12,
         "tpm": 12,
         "fgPct": 10,
-        "ftPct": 6,
+        "ftPct": 7,
         "to": 3
       },
       "includedCount": 26,
