@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-15T22:03:23.827Z",
+  "generatedAt": "2026-11-15T23:52:54.578Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -631,8 +631,8 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "LV",
           "isStarter": true,
-          "status": "Q",
-          "flag": false,
+          "status": "O",
+          "flag": true,
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": null
@@ -715,7 +715,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 1
     },
     {
       "id": "beyaz-sleeper-1312794408151687168",
@@ -2193,7 +2193,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 6.9,
-          "projPoints": 11.1
+          "projPoints": 11.2
         },
         {
           "name": "Carnell Tate",
@@ -3742,7 +3742,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 6.9,
-          "projPoints": 11.1
+          "projPoints": 11.2
         },
         {
           "name": "Jalon Daniels",
