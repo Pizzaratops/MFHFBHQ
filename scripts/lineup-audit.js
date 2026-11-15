@@ -1,0 +1,127 @@
+#!/usr/bin/env node
+// ============================================================
+//  LINEUP-AUDIT (Foodball/ESPN + DOPE/Sleeper)
+// ============================================================
+//  Prüft für jede gespielte Woche die gesetzten Starter:
+//   - BYE    : Team des Spielers hatte spielfrei
+//   - DNP    : kein Einsatz (keine Statistik für die Woche)
+//   - EMPTY  : Startplatz leer
+//   - OUT/IR : (nur laufende Woche) aktueller Status Out/IR/Suspended
+//  Ausgabe: _probe/audit/lineup-audit.json + Konsolen-Tabelle.
+//  Usage: ESPN_S2=… SWID=… node scripts/lineup-audit.js
+// ============================================================
+const fs = require('fs');
+const path = require('path');
+
+const SEASON = 2026;
+const ESPN_ID = '91260355';
+const SLEEPER_ID = '1312799736218017792';
+const OUT = path.join(__dirname, '..', '_probe', 'audit');
+
+async function getJson(url, headers = {}) {
+  for (let i = 0; i < 3; i++) {
+    try {
+      const r = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0', ...headers } });
+      if (!r.ok) throw new Error(`HTTP ${r.status} ${url}`);
+      return await r.json();
+    } catch (e) { if (i === 2) throw e; await new Promise(r => setTimeout(r, 1500)); }
+  }
+}
+
+// ---------------- ESPN ----------------
+const ESPN_SLOTS = { 0: 'QB', 2: 'RB', 4: 'WR', 6: 'TE', 16: 'D/ST', 17: 'K', 23: 'FLEX', 7: 'OP', 3: 'RB/WR', 5: 'WR/TE' };
+const BENCH = new Set([20, 21, 24, 25]);
+async function espn() {
+  const ck = [];
+  if (process.env.ESPN_S2) ck.push(`espn_s2=${process.env.ESPN_S2}`);
+  if (process.env.SWID) ck.push(`SWID=${process.env.SWID}`);
+  const H = ck.length ? { Cookie: ck.join('; '), 'x-fantasy-filter': '{}' } : {};
+  const base = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${SEASON}/segments/0/leagues/${ESPN_ID}`;
+  const lg = await getJson(`${base}?view=mTeam&view=mSettings&view=mStatus`, H);
+  const cur = lg.status.currentMatchupPeriod;
+  const slotCounts = lg.settings.rosterSettings.lineupSlotCounts;
+  const starterSlots = Object.entries(slotCounts).filter(([s, n]) => n > 0 && !BENCH.has(+s)).reduce((a, [, n]) => a + n, 0);
+  const members = Object.fromEntries((lg.members || []).map(m => [m.id, `${m.firstName || ''} ${m.lastName || ''}`.trim() || m.displayName]));
+  const teams = Object.fromEntries(lg.teams.map(t => [t.id, { name: t.name || `${t.location} ${t.nickname}`, owner: (t.owners || []).map(o => members[o]).join(', ') }]));
+  const pro = await getJson(`https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${SEASON}?view=proTeamSchedules_wl`);
+  const bye = Object.fromEntries(pro.settings.proTeams.map(t => [t.id, t.byeWeek]));
+  const proAbbr = Object.fromEntries(pro.settings.proTeams.map(t => [t.id, t.abbrev]));
+  const flags = [];
+  for (let w = 1; w <= cur; w++) {
+    const d = await getJson(`${base}?view=mBoxscore&view=mMatchupScore&scoringPeriodId=${w}`, H);
+    for (const m of d.schedule.filter(x => x.matchupPeriodId === w)) {
+      for (const side of ['home', 'away']) {
+        const s = m[side]; if (!s) continue;
+        const ros = s.rosterForCurrentScoringPeriod || s.rosterForMatchupPeriod; if (!ros) continue;
+        const starters = ros.entries.filter(e => !BENCH.has(e.lineupSlotId));
+        const tm = teams[s.teamId] || { name: `Team ${s.teamId}` };
+        if (starters.length < starterSlots) flags.push({ league: 'Foodball', week: w, team: tm.name, owner: tm.owner, type: 'EMPTY', player: `${starterSlots - starters.length} leere(r) Startplatz/-plätze`, pts: 0 });
+        for (const e of starters) {
+          const p = e.playerPoolEntry.player;
+          const st = (p.stats || []).find(x => x.scoringPeriodId === w && x.statSourceId === 0 && x.statSplitTypeId === 1);
+          const pts = e.playerPoolEntry.appliedStatTotal ?? (st ? st.appliedTotal : 0);
+          const base = { league: 'Foodball', week: w, team: tm.name, owner: tm.owner, slot: ESPN_SLOTS[e.lineupSlotId] || e.lineupSlotId, player: p.fullName, nfl: proAbbr[p.proTeamId], pts: Math.round((pts || 0) * 10) / 10 };
+          if (bye[p.proTeamId] === w) flags.push({ ...base, type: 'BYE' });
+          else if (w < cur && (!st || !st.stats || Object.keys(st.stats).length === 0)) flags.push({ ...base, type: 'DNP' });
+          else if (w === cur && ['OUT', 'INJURY_RESERVE', 'SUSPENSION'].includes(p.injuryStatus)) flags.push({ ...base, type: p.injuryStatus, note: 'aktueller Status' });
+        }
+      }
+    }
+  }
+  return { cur, flags };
+}
+
+// ---------------- Sleeper ----------------
+async function sleeper() {
+  const S = 'https://api.sleeper.app/v1';
+  const [lg, users, rosters, state] = await Promise.all([
+    getJson(`${S}/league/${SLEEPER_ID}`), getJson(`${S}/league/${SLEEPER_ID}/users`),
+    getJson(`${S}/league/${SLEEPER_ID}/rosters`), getJson(`${S}/state/nfl`)]);
+  const cur = Math.min(state.week, lg.settings.playoff_week_start ? 18 : 18);
+  const uname = Object.fromEntries(users.map(u => [u.user_id, { name: (u.metadata && u.metadata.team_name) || u.display_name, owner: u.display_name }]));
+  const rteam = Object.fromEntries(rosters.map(r => [r.roster_id, uname[r.owner_id] || { name: `Roster ${r.roster_id}`, owner: '' }]));
+  const players = await getJson(`${S}/players/nfl`);
+  const sched = await getJson(`https://api.sleeper.com/schedule/nfl/regular/${SEASON}`).catch(() => []);
+  const playing = {}; // week -> Set(team)
+  for (const g of sched) { (playing[g.week] ||= new Set()).add(g.home); playing[g.week].add(g.away); }
+  const flags = [];
+  for (let w = 1; w <= cur; w++) {
+    const [mus, stats] = await Promise.all([
+      getJson(`${S}/league/${SLEEPER_ID}/matchups/${w}`),
+      getJson(`${S}/stats/nfl/regular/${SEASON}/${w}`).catch(() => ({}))]);
+    for (const m of mus) {
+      const tm = rteam[m.roster_id];
+      (m.starters || []).forEach((pid, i) => {
+        const pts = m.starters_points ? m.starters_points[i] : 0;
+        const slot = (lg.roster_positions || [])[i];
+        if (!pid || pid === '0') { flags.push({ league: 'DOPE', week: w, team: tm.name, owner: tm.owner, slot, type: 'EMPTY', player: 'leerer Startplatz', pts: 0 }); return; }
+        const p = players[pid] || {};
+        const nm = p.full_name || (p.first_name ? `${p.first_name} ${p.last_name}` : pid);
+        const team = p.team || pid; // DEF: pid = Teamkürzel
+        const base = { league: 'DOPE', week: w, team: tm.name, owner: tm.owner, slot, player: nm, nfl: team, pts };
+        const s = stats[pid];
+        const played = s && ((s.gp || 0) > 0 || (s.gms_active || 0) > 0 || (s.off_snp || 0) > 0 || (s.st_snp || 0) > 0 || (s.def_snp || 0) > 0);
+        const byeWeek = playing[w] && playing[w].size && team && !playing[w].has(team);
+        if (byeWeek) flags.push({ ...base, type: 'BYE' });
+        else if (w < cur && !played) flags.push({ ...base, type: 'DNP' });
+        else if (w === cur && ['Out', 'IR', 'Sus', 'PUP', 'NA'].includes(p.injury_status)) flags.push({ ...base, type: p.injury_status, note: 'aktueller Status' });
+      });
+    }
+  }
+  return { cur, flags };
+}
+
+(async () => {
+  fs.mkdirSync(OUT, { recursive: true });
+  const res = {};
+  for (const [k, fn] of [['foodball', espn], ['dope', sleeper]]) {
+    try { res[k] = await fn(); } catch (e) { res[k] = { error: String(e && e.stack || e) }; }
+  }
+  res.generated = new Date().toISOString();
+  fs.writeFileSync(path.join(OUT, 'lineup-audit.json'), JSON.stringify(res, null, 1));
+  for (const k of ['foodball', 'dope']) {
+    console.log(`\n=== ${k} (aktuelle Woche ${res[k].cur}) ===`);
+    if (res[k].error) { console.log(res[k].error); continue; }
+    for (const f of res[k].flags) console.log(`W${f.week}\t${f.type}\t${f.team} (${f.owner})\t${f.slot || ''}\t${f.player} ${f.nfl || ''}\t${f.pts}`);
+  }
+})();
