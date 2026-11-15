@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-15T06:03:20.687Z",
+  "generatedAt": "2026-11-15T08:03:21.622Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -867,7 +867,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 4.1
+          "projPoints": 4.2
         },
         {
           "name": "Daniel Jones",
@@ -1332,7 +1332,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.7,
           "last3AvgPoints": 8.3,
-          "projPoints": 6.4
+          "projPoints": 6.3
         },
         {
           "name": "Omarion Hampton",
@@ -1398,7 +1398,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.1,
           "last3AvgPoints": 9.9,
-          "projPoints": 10.4
+          "projPoints": 10.3
         },
         {
           "name": "Devin Singletary",
@@ -1928,7 +1928,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 18.2,
-          "projPoints": 8.6
+          "projPoints": 8.5
         },
         {
           "name": "Makai Lemon",
@@ -1961,7 +1961,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.6,
           "last3AvgPoints": 8.5,
-          "projPoints": 15.6
+          "projPoints": 15.4
         },
         {
           "name": "Josh Jacobs",
@@ -2005,7 +2005,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.8,
           "last3AvgPoints": 14.2,
-          "projPoints": 16.4
+          "projPoints": 16.3
         },
         {
           "name": "Breece Hall",
@@ -2116,7 +2116,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 12.6,
-          "projPoints": 11.6
+          "projPoints": 11.7
         },
         {
           "name": "Ricky Pearsall",
@@ -2171,7 +2171,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 5.4,
-          "projPoints": 7.9
+          "projPoints": 7.8
         },
         {
           "name": "TreVeyon Henderson",
@@ -2436,7 +2436,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.6,
           "last3AvgPoints": 11.6,
-          "projPoints": 12.2
+          "projPoints": 12.1
         },
         {
           "name": "Mike Gesicki",
@@ -2480,7 +2480,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.4,
           "last3AvgPoints": 10.6,
-          "projPoints": 13.8
+          "projPoints": 13.9
         },
         {
           "name": "Rachaad White",
@@ -3510,7 +3510,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 12.6,
-          "projPoints": 11.6
+          "projPoints": 11.7
         },
         {
           "name": "Kimani Vidal",
@@ -3576,7 +3576,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.7,
           "last3AvgPoints": 17.3,
-          "projPoints": 17.6
+          "projPoints": 17.5
         },
         {
           "name": "Omar Cooper Jr.",
@@ -3587,7 +3587,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.8,
           "last3AvgPoints": 18.2,
-          "projPoints": 8.6
+          "projPoints": 8.5
         },
         {
           "name": "Malachi Fields",
@@ -3664,7 +3664,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.8,
           "last3AvgPoints": 14.2,
-          "projPoints": 16.4
+          "projPoints": 16.3
         },
         {
           "name": "Jameson Williams",
@@ -3852,7 +3852,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 5.5,
-          "projPoints": 5.5
+          "projPoints": 5.4
         },
         {
           "name": "Jerry Jeudy",
@@ -3907,7 +3907,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 8.7
+          "projPoints": 8.6
         },
         {
           "name": "Malik Willis",
