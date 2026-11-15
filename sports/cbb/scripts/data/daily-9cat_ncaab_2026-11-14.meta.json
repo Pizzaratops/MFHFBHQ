@@ -2,8 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-14",
   "games": [
-    "New Mexico Lobos @ Santa Clara Broncos (0:54 - 2nd)",
-    "Utah Valley Wolverines @ Nevada Wolf Pack (3:44 - 2nd)",
     "LSU Tigers 81 @ Gonzaga Bulldogs 80 (Final)",
     "Stonehill Skyhawks 37 @ Texas Tech Red Raiders 88 (Final)",
     "Tulane Green Wave 63 @ Akron Zips 65 (Final)",
@@ -38,11 +36,13 @@
     "UC Davis Aggies 75 @ Sacramento State Hornets 56 (Final)",
     "UL Monroe Warhawks 52 @ Grand Canyon Lopes 88 (Final)",
     "Furman Paladins 62 @ Belmont Bruins 72 (Final)",
+    "New Mexico Lobos 85 @ Santa Clara Broncos 90 (Final)",
+    "Utah Valley Wolverines 73 @ Nevada Wolf Pack 71 (Final)",
     "UNC Greensboro Spartans @ Cornell Big Red (Postponed)",
     "Air Force Falcons @ Pacific Tigers (Postponed)"
   ],
   "leagueAvg": {
-    "fg": 44.1,
-    "ft": 71.6
+    "fg": 43.8,
+    "ft": 71.1
   }
 }
