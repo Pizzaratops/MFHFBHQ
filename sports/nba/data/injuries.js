@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T22:00:59.846Z",
+  "updated": "2026-11-15T22:04:13.390Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -89,7 +89,7 @@ const NBA_INJURIES = {
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-18","Elbow",0,"2026-11-15"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
-    "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-14"],
+    "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-15"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],

@@ -3966,9 +3966,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909986",
-      line: "Los Angeles Lakers @ Phoenix Suns (4:41 - 2nd)",
+      line: "Los Angeles Lakers @ Phoenix Suns (3:36 - 2nd)",
       completed: false,
-      statusText: "4:41 - 2nd",
+      statusText: "3:36 - 2nd",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -3984,9 +3984,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909987",
-      line: "Charlotte Hornets @ LA Clippers (1:44 - 1st)",
+      line: "Charlotte Hornets @ LA Clippers (6.5 - 1st)",
       completed: false,
-      statusText: "1:44 - 1st",
+      statusText: "6.5 - 1st",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
