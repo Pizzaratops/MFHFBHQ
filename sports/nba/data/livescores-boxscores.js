@@ -3966,9 +3966,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909986",
-      line: "Los Angeles Lakers @ Phoenix Suns (42.6 - 3rd)",
+      line: "Los Angeles Lakers @ Phoenix Suns (10:57 - 4th)",
       completed: false,
-      statusText: "42.6 - 3rd",
+      statusText: "10:57 - 4th",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -3984,9 +3984,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909987",
-      line: "Charlotte Hornets @ LA Clippers (9:43 - 3rd)",
+      line: "Charlotte Hornets @ LA Clippers (8:28 - 3rd)",
       completed: false,
-      statusText: "9:43 - 3rd",
+      statusText: "8:28 - 3rd",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -4002,9 +4002,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909988",
-      line: "San Antonio Spurs @ Utah Jazz (1:45 - 2nd)",
+      line: "San Antonio Spurs @ Utah Jazz (Halftime)",
       completed: false,
-      statusText: "1:45 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "SA", name: "San Antonio Spurs", score: null,
         players: [
