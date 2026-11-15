@@ -308,6 +308,18 @@
       out.rank = { lo: r(lr - 0.674 * sdr), mid: r(lr), hi: r(lr + 0.674 * sdr) };
       out.expRank = out.chance * out.rank.mid + (1 - out.chance) * Math.exp(cv.a + cv.b * Math.log(260));
       out.bt = (M.backtest || {})[pos];
+      // Konsens-Override (sports/nfl/data/prospect-consensus.js, von Hand): ersetzt
+      // die Modell-Schätzung, der Modellwert bleibt in out.model für den Vergleich.
+      const k = (env.K || {})[String(me.rawId)];
+      if (k && (!k.pos || k.pos === pos)) {
+        out.model = { rank: out.rank, nfl: out.nfl, chance: out.chance };
+        out.consensus = k;
+        if (k.nfl) out.nfl = k.nfl;
+        const kr = (sf && k.rankSF) || k.rank;
+        if (kr) out.rank = kr;
+        if (k.chance != null) out.chance = k.chance;
+        out.expRank = out.chance * out.rank.mid + (1 - out.chance) * Math.exp(cv.a + cv.b * Math.log(260));
+      }
       return out;
     }
     const pickFmt = (r, T) => `${Math.ceil(r / T)}.${String(((r - 1) % T) + 1).padStart(2, '0')}`;
@@ -341,13 +353,16 @@
     if (!r.rank) return `<div class="card cs-range">${head}<div class="cs-rmeta">${e(cy)} ${elig}</div><div class="muted cs-pad">Für ${st.pos} gibt es noch kein Modell.</div></div>`;
     const rk = x => (x > maxPick ? 'nach R' + (cfg.rounds || 4) : DR.pickFmt(x, T));
     const ch = Math.round(r.chance * 100);
+    const span = (lo, hi, f) => (f(lo) === f(hi) ? f(lo) : `${f(lo)} – ${f(hi)}`);
+    const kc = r.consensus, kDate = kc && kc.asof ? kc.asof.split('-').reverse().join('.') : '';
+    const kNote = kc ? `<div class="cs-rnote"><span class="cs-tag ok" title="${e(`Von Hand gesetzter Konsens${kDate ? ' (Stand ' + kDate + ')' : ''}${kc.source ? ': ' + kc.source : ''}. Das Modell zieht Ausnahme-Prospects Richtung Durchschnitt.`)}">Konsens${kDate ? ' · ' + kDate : ''}</span> <span>Modell allein: ${span(r.model.rank.lo, r.model.rank.hi, rk)} (Mitte ${rk(r.model.rank.mid)}), NFL-Pick ${r.model.nfl.lo}–${r.model.nfl.hi}</span></div>` : '';
     return `<div class="card cs-range">${head}
       <div class="cs-rmeta"><span>${e(cy)} ${elig}</span><div class="seg cs-fmt" role="group" aria-label="Liga-Format">${[['1qb', '1QB'], ['sf', 'Superflex']].map(([v, l]) => `<button type="button" class="seg-btn${(v === 'sf') === sf ? ' active' : ''}" data-fmt="${v}">${l}</button>`).join('')}</div></div>
       <div class="cs-rgrid">
-        <div class="cs-rcell big"><small>Rookie Draft (${T} Teams)</small><b>${rk(r.rank.lo)} – ${rk(r.rank.hi)}</b><span>Mitte ${rk(r.rank.mid)} · Rookie-Rang #${r.rank.lo}–#${r.rank.hi} · falls gedraftet</span></div>
+        <div class="cs-rcell big"><small>Rookie Draft (${T} Teams)</small><b>${span(r.rank.lo, r.rank.hi, rk)}</b><span>Mitte ${rk(r.rank.mid)} · Rookie-Rang ${span(r.rank.lo, r.rank.hi, x => '#' + x)} · falls gedraftet</span></div>
         <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird überhaupt gedraftet</span></div>
         <div class="cs-rcell"><small>Erw. NFL-Draft</small><b>${DR.nflRound(r.nfl.lo)}${DR.nflRound(r.nfl.hi) !== DR.nflRound(r.nfl.lo) ? '–' + DR.nflRound(r.nfl.hi) : ''}</b><span>Pick ${r.nfl.lo}–${r.nfl.hi} (Mitte ${r.nfl.mid})</span></div>
-      </div>
+      </div>${kNote}
     </div>`;
   }
 
@@ -601,8 +616,8 @@
       const list = root.querySelector('[data-list]'), act = root.querySelector('.dna-row.active');
       if (list && act) list.scrollTop = Math.max(0, act.offsetTop - list.offsetTop - list.clientHeight / 2);
 
-      MFHFB.data.load(ctx.league, ['sport:prospect-draft-model', 'sport:rookie-draft-curve'])
-        .then(d => (d.PROSPECT_DRAFT_MODEL && d.ROOKIE_DRAFT_CURVE ? { C, M: d.PROSPECT_DRAFT_MODEL, curve: d.ROOKIE_DRAFT_CURVE } : { error: 'Draft-Range-Modell fehlt.' }))
+      MFHFB.data.load(ctx.league, ['sport:prospect-draft-model', 'sport:rookie-draft-curve', '?sport:prospect-consensus'])
+        .then(d => (d.PROSPECT_DRAFT_MODEL && d.ROOKIE_DRAFT_CURVE ? { C, M: d.PROSPECT_DRAFT_MODEL, curve: d.ROOKIE_DRAFT_CURVE, K: d.PROSPECT_CONSENSUS || {} } : { error: 'Draft-Range-Modell fehlt.' }))
         .catch(err => ({ error: 'Draft Range nicht verfügbar: ' + err.message }))
         .then(env => {
           RENV = env;
