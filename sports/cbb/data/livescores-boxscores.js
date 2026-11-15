@@ -6957,9 +6957,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401918949",
-      line: "Louisville Cardinals @ Memphis Tigers (11/15 - 1:00 PM EST)",
+      line: "Louisville Cardinals @ Memphis Tigers (17:31 - 2nd)",
       completed: false,
-      statusText: "11/15 - 1:00 PM EST",
+      statusText: "17:31 - 2nd",
       away: {
         abbr: "Lou", name: "Louisville Cardinals", score: null,
         players: [
@@ -6974,10 +6974,28 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401926063",
-      line: "Boise State Broncos @ Nebraska Cornhuskers (11/15 - 1:00 PM EST)",
+      id: "401918453",
+      line: "William & Mary Tribe @ Michigan Wolverines (11:08 - 1st)",
       completed: false,
-      statusText: "11/15 - 1:00 PM EST",
+      statusText: "11:08 - 1st",
+      away: {
+        abbr: "W&M", name: "William & Mary Tribe", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "Mich", name: "Michigan Wolverines", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401926063",
+      line: "Boise State Broncos @ Nebraska Cornhuskers (11:46 - 2nd)",
+      completed: false,
+      statusText: "11:46 - 2nd",
       away: {
         abbr: "Bois", name: "Boise State Broncos", score: null,
         players: [
@@ -6993,9 +7011,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920235",
-      line: "Dartmouth Big Green @ Boston University Terriers (11/15 - 1:00 PM EST)",
+      line: "Dartmouth Big Green @ Boston University Terriers (12:55 - 2nd)",
       completed: false,
-      statusText: "11/15 - 1:00 PM EST",
+      statusText: "12:55 - 2nd",
       away: {
         abbr: "Dart", name: "Dartmouth Big Green", score: null,
         players: [
@@ -7011,9 +7029,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401912210",
-      line: "Harvard Crimson @ American University Eagles (11/15 - 1:00 PM EST)",
+      line: "Harvard Crimson @ American University Eagles (12:46 - 2nd)",
       completed: false,
-      statusText: "11/15 - 1:00 PM EST",
+      statusText: "12:46 - 2nd",
       away: {
         abbr: "Harv", name: "Harvard Crimson", score: null,
         players: [
@@ -7029,9 +7047,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909774",
-      line: "Niagara Purple Eagles @ Iowa State Cyclones (11/15 - 1:00 PM EST)",
+      line: "Niagara Purple Eagles @ Iowa State Cyclones (11:43 - 2nd)",
       completed: false,
-      statusText: "11/15 - 1:00 PM EST",
+      statusText: "11:43 - 2nd",
       away: {
         abbr: "NIA", name: "Niagara Purple Eagles", score: null,
         players: [
@@ -7047,9 +7065,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909554",
-      line: "New Hampshire Wildcats @ Boston College Eagles (11/15 - 1:30 PM EST)",
+      line: "New Hampshire Wildcats @ Boston College Eagles (Halftime)",
       completed: false,
-      statusText: "11/15 - 1:30 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "UNH", name: "New Hampshire Wildcats", score: null,
         players: [
@@ -7064,28 +7082,10 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401918453",
-      line: "William & Mary Tribe @ Michigan Wolverines (11/15 - 2:00 PM EST)",
-      completed: false,
-      statusText: "11/15 - 2:00 PM EST",
-      away: {
-        abbr: "W&M", name: "William & Mary Tribe", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "Mich", name: "Michigan Wolverines", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401925812",
-      line: "Temple Owls @ La Salle Explorers (11/15 - 2:00 PM EST)",
+      line: "Temple Owls @ La Salle Explorers (12:13 - 1st)",
       completed: false,
-      statusText: "11/15 - 2:00 PM EST",
+      statusText: "12:13 - 1st",
       away: {
         abbr: "Tem", name: "Temple Owls", score: null,
         players: [
@@ -7101,9 +7101,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401924744",
-      line: "Emmanuel (MA) Lions @ Yale Bulldogs (11/15 - 2:00 PM EST)",
+      line: "Emmanuel (MA) Lions @ Yale Bulldogs (10:29 - 1st)",
       completed: false,
-      statusText: "11/15 - 2:00 PM EST",
+      statusText: "10:29 - 1st",
       away: {
         abbr: "ECMA", name: "Emmanuel (MA) Lions", score: null,
         players: [
@@ -7119,9 +7119,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920065",
-      line: "Princeton Tigers @ Rhode Island Rams (11/15 - 2:00 PM EST)",
+      line: "Princeton Tigers @ Rhode Island Rams (11:32 - 1st)",
       completed: false,
-      statusText: "11/15 - 2:00 PM EST",
+      statusText: "11:32 - 1st",
       away: {
         abbr: "Princ", name: "Princeton Tigers", score: null,
         players: [
