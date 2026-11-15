@@ -3966,9 +3966,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909986",
-      line: "Los Angeles Lakers @ Phoenix Suns (10:57 - 4th)",
+      line: "Los Angeles Lakers @ Phoenix Suns (5:46 - 4th)",
       completed: false,
-      statusText: "10:57 - 4th",
+      statusText: "5:46 - 4th",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -3984,9 +3984,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909987",
-      line: "Charlotte Hornets @ LA Clippers (8:28 - 3rd)",
+      line: "Charlotte Hornets @ LA Clippers (3:17 - 3rd)",
       completed: false,
-      statusText: "8:28 - 3rd",
+      statusText: "3:17 - 3rd",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -4002,9 +4002,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909988",
-      line: "San Antonio Spurs @ Utah Jazz (Halftime)",
+      line: "San Antonio Spurs @ Utah Jazz (9:54 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "9:54 - 3rd",
       away: {
         abbr: "SA", name: "San Antonio Spurs", score: null,
         players: [
@@ -4020,9 +4020,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909989",
-      line: "Dallas Mavericks @ Boston Celtics (11/15 - 6:00 PM EST)",
+      line: "Dallas Mavericks @ Boston Celtics (7:07 - 1st)",
       completed: false,
-      statusText: "11/15 - 6:00 PM EST",
+      statusText: "7:07 - 1st",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
@@ -4038,9 +4038,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909990",
-      line: "New York Knicks @ Toronto Raptors (11/15 - 6:00 PM EST)",
+      line: "New York Knicks @ Toronto Raptors (6:35 - 1st)",
       completed: false,
-      statusText: "11/15 - 6:00 PM EST",
+      statusText: "6:35 - 1st",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
