@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-15T13:02:50.513Z
+//  Stand: 2026-11-15T14:02:46.208Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -135,7 +135,7 @@ const WC_PLAYER_POOL = [
 ["06cca","Brandon Miller","CHA","SF","SG,G,SF,PF,F,Flx","T"],
 ["04xm0","Brandon Sampson","(N/A)","PG","PG,G,Flx","FA"],
 ["06mnv","Brandon Slater","(N/A)","F","SF,PF,F,Flx","FA"],
-["05y9y","Brandon Williams","GSW","PG","PG,G,Flx","T"],
+["05y9y","Brandon Williams","GSW","PG","PG,G,Flx","FA"],
 ["05ycx","Braxton Key","(N/A)","SF","SF,F,Flx","FA"],
 ["076tl","Brayden Burries","MIL","SG","SG,G,Flx","T"],
 ["05qxt","Breein Tyree","(N/A)","PG","PG,SG,G,Flx","FA"],
@@ -495,7 +495,7 @@ const WC_PLAYER_POOL = [
 ["076u9","Izaiyah Nelson","ORL","PF","PF,F,Flx","FA"],
 ["051oi","Ja Morant","POR","PG","PG,G,Flx","T"],
 ["06212","Jabari Smith","HOU","PF","SF,PF,C,F,Flx","T"],
-["0622k","Jabari Walker","PHI","SF","SF,PF,C,F,Flx","FA"],
+["0622k","Jabari Walker","PHI","SF","SF,PF,C,F,Flx","T"],
 ["076tr","Jack Kayil","(N/A)","PG","PG,G,Flx","FA"],
 ["06muu","Jack McVeigh","(N/A)","PF","PF,F,Flx","FA"],
 ["062sr","Jack White","(N/A)","SF","SF,F,Flx","FA"],
@@ -731,7 +731,7 @@ const WC_PLAYER_POOL = [
 ["06213","Keegan Murray","SAC","PF","SF,PF,F,Flx","T"],
 ["06pty","Keion Brooks","(N/A)","SF","SF,F,Flx","FA"],
 ["06mpg","Keisei Tominaga","(N/A)","PG","PG,G,Flx","FA"],
-["051p9","Keldon Johnson","SAS","SF","SG,G,SF,F,Flx","FA"],
+["051p9","Keldon Johnson","SAS","SF","SG,G,SF,F,Flx","T"],
 ["06mk7","Kelel Ware","MIL","C","PF,C,F,Flx","T"],
 ["062sq","Kellan Grady","(N/A)","SG","PG,SG,G,Flx","FA"],
 ["031m0","Kelly Olynyk","(N/A)","C","C,Flx","FA"],
@@ -1131,7 +1131,7 @@ const WC_PLAYER_POOL = [
 ["0723e","Steven Crowl","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["04qsn","Svi Mykhailiuk","UTA","SF","SF,F,Flx","FA"],
 ["04ewj","T.J. Leaf","(N/A)","PF","PF,F,Flx","FA"],
-["03wr4","T.J. McConnell","IND","PG","PG,G,Flx","FA"],
+["03wr4","T.J. McConnell","IND","PG","PG,G,Flx","T"],
 ["03bxn","T.J. Warren","(N/A)","SF","SF,F,Flx","FA"],
 ["06vxp","Taelon Peter","(N/A)","SG","SG,G,Flx","FA"],
 ["06hif","Taevion Kinsey","(N/A)","SG","PG,SG,G,Flx","FA"],
