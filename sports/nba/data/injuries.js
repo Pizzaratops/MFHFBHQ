@@ -1,14 +1,14 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T16:17:15.515Z",
+  "updated": "2026-11-15T16:55:39.953Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-14"],
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Adou Thiero": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Alex Sarr": ["WSH","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-14"],
-    "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-15","Hip",0,"2026-11-15"],
+    "Andrew Nembhard": ["IND","Out","OUT","2026-11-18","Hip",0,"2026-11-15"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2026-11-20","Toe",0,"2026-11-12"],
