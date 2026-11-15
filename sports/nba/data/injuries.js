@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T21:40:37.921Z",
+  "updated": "2026-11-15T22:00:59.846Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -32,7 +32,7 @@ const NBA_INJURIES = {
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Drew Timme": ["PHX","Day-To-Day","GTD","2026-11-15","Hand",0,"2026-11-13"],
     "Duncan Robinson": ["DET","Day-To-Day","GTD","2026-11-17","Thigh",0,"2026-11-15"],
-    "Evan Mobley": ["CLE","Day-To-Day","GTD","2026-11-16","Toe",0,"2026-11-15"],
+    "Evan Mobley": ["CLE","Out","OUT","2026-11-18","Toe",0,"2026-11-15"],
     "Fred VanVleet": ["HOU","Out","OUT","2026-11-16","Knee",0,"2026-11-14"],
     "GG Jackson": ["MEM","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-15"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
@@ -87,7 +87,7 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
-    "Sam Merrill": ["CLE","Out","GTD","2026-11-16","Elbow",0,"2026-11-10"],
+    "Sam Merrill": ["CLE","Out","OUT","2026-11-18","Elbow",0,"2026-11-15"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-14"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
