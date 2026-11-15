@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T22:44:52.157Z",
+  "updated": "2026-11-15T23:01:03.618Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Ajay Mitchell": ["OKC","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -85,7 +85,6 @@ const NBA_INJURIES = {
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-18","Elbow",0,"2026-11-15"],
     "Santi Aldama": ["DAL","Out","OUT","2026-11-18","Ankle",0,"2026-11-15"],
-    "Scottie Barnes": ["TOR","Out","","","",0,"2026-11-15"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
@@ -95,7 +94,7 @@ const NBA_INJURIES = {
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-18","Back",0,"2026-11-15"],
     "Tobias Harris": ["SA","Out","OUT","2026-11-19","Calf",0,"2026-11-10"],
     "Tre Johnson": ["WSH","Out","OUT","2026-11-16","Back",0,"2026-11-15"],
-    "Trendon Watford": ["NO","Out","OUT","2026-11-18","Ankle",0,"2026-11-14"],
+    "Trendon Watford": ["NO","Out","OUT","2026-11-18","Ankle",0,"2026-11-15"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Murphy III": ["NO","Out","OUT","2026-11-18","Knee",0,"2026-11-14"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-16","Hip",0,"2026-11-08"],
