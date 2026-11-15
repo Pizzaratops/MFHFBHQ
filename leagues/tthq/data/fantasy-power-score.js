@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-15T18:01:15.967Z",
+  "generatedAt": "2026-11-15T18:46:01.190Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 14 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -100,7 +100,7 @@ const FANTASY_POWER_SCORE = {
         "pts": 320.1,
         "reb": 121.1,
         "ast": 76.1,
-        "stl": 22.93,
+        "stl": 22.86,
         "blk": 14.87,
         "tpm": 39.2,
         "to": 41.2,
@@ -191,7 +191,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Murat Oguz",
       "values": {
         "pts": 300.4,
-        "reb": 108.7,
+        "reb": 108.8,
         "ast": 67.1,
         "stl": 19.98,
         "blk": 10.99,
@@ -240,7 +240,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 6,
         "fgPct": 9,
         "ftPct": 10,
-        "to": 2
+        "to": 3
       },
       "includedCount": 27,
       "projCount": 26,
@@ -417,7 +417,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 17.06,
         "blk": 9.17,
         "tpm": 29.7,
-        "to": 35.6,
+        "to": 35.5,
         "fgPct": 46.2,
         "ftPct": 78.6
       },
@@ -430,7 +430,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 12,
         "fgPct": 10,
         "ftPct": 7,
-        "to": 3
+        "to": 2
       },
       "includedCount": 26,
       "projCount": 26,
