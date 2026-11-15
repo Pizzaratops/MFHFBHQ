@@ -4402,7 +4402,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-15": {
-      games: ["Indiana Pacers 124 @ Philadelphia 76ers 131 (Final)","Los Angeles Lakers @ Phoenix Suns (5:46 - 4th)","Charlotte Hornets @ LA Clippers (3:17 - 3rd)","San Antonio Spurs @ Utah Jazz (9:54 - 3rd)","Dallas Mavericks @ Boston Celtics (7:07 - 1st)","New York Knicks @ Toronto Raptors (6:35 - 1st)","Houston Rockets @ Washington Wizards (11/15 - 7:00 PM EST)","Atlanta Hawks @ Milwaukee Bucks (11/15 - 8:00 PM EST)","Oklahoma City Thunder @ Sacramento Kings (11/15 - 9:00 PM EST)"],
+      games: ["Indiana Pacers 124 @ Philadelphia 76ers 131 (Final)","Los Angeles Lakers @ Phoenix Suns (3:11 - 4th)","Charlotte Hornets @ LA Clippers (11:23 - 4th)","San Antonio Spurs @ Utah Jazz (6:26 - 3rd)","Dallas Mavericks @ Boston Celtics (2:06 - 1st)","New York Knicks @ Toronto Raptors (4:46 - 1st)","Houston Rockets @ Washington Wizards (11/15 - 7:00 PM EST)","Atlanta Hawks @ Milwaukee Bucks (11/15 - 8:00 PM EST)","Oklahoma City Thunder @ Sacramento Kings (11/15 - 9:00 PM EST)"],
       leagueAvg: { fg: 54, ft: 81.3 },
       players: [
         { rank: 1, name: "Dean Wade", team: "PHI", min: 35, pts: 12, reb: 7, ast: 3, stl: 0, blk: 2, to: 0, tpm: 3, fgPct: 80, ftPct: 100, composite: 7.72, zScores: { pts: 0.048, reb: 1.525, ast: 0.081, stl: -0.913, blk: 3.212, tpm: 1.296, fgImpact: 1.163, ftImpact: 0.506, to: 0.804 } },
