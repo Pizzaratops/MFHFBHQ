@@ -5,7 +5,7 @@
 //  GitHub Action ".github/workflows/sync-espn-nfl-standings.yml".
 //  Nicht von Hand editieren — Änderungen werden beim nächsten Sync
 //  überschrieben.
-//  Zuletzt synchronisiert: 2026-11-15T15:17:59.249Z
+//  Zuletzt synchronisiert: 2026-11-15T20:04:38.793Z
 //
 //  Quelle: nflverse/nfldata (GitHub-gehostet, MIT-lizenziert), NICHT
 //  ESPN -- ESPNs öffentliche Sport-API blockt GitHub-Actions-Server
@@ -3538,11 +3538,11 @@ const NFL_STANDINGS = {
         "conference": "AFC",
         "division": "East",
         "wins": 5,
-        "losses": 4,
+        "losses": 5,
         "ties": 0,
-        "winPct": 0.5555555555555556,
-        "pf": 211,
-        "pa": 207
+        "winPct": 0.5,
+        "pf": 221,
+        "pa": 242
       },
       {
         "name": "New York Jets",
@@ -3765,12 +3765,12 @@ const NFL_STANDINGS = {
         "abbr": "DET",
         "conference": "NFC",
         "division": "North",
-        "wins": 6,
+        "wins": 7,
         "losses": 2,
         "ties": 0,
-        "winPct": 0.75,
-        "pf": 222,
-        "pa": 189
+        "winPct": 0.7777777777777778,
+        "pf": 257,
+        "pa": 199
       },
       {
         "name": "Green Bay Packers",
@@ -5379,7 +5379,7 @@ const NFL_OFFDEF = {
       {
         "abbr": "NYG",
         "off": 0.0033231336242044527,
-        "def": 0.0005846046386333849,
+        "def": 0.0005846046386333881,
         "offRank": 15,
         "defRank": 16
       },
@@ -5605,7 +5605,7 @@ const NFL_OFFDEF = {
       {
         "abbr": "NYG",
         "off": 0.0033231336242044527,
-        "def": 0.0005846046386333849,
+        "def": 0.0005846046386333881,
         "offRank": 18,
         "defRank": 16
       },
@@ -5633,7 +5633,7 @@ const NFL_OFFDEF = {
       {
         "abbr": "DET",
         "off": 0.11609985165708357,
-        "def": 0.09924855864278681,
+        "def": 0.09924855864278685,
         "offRank": 6,
         "defRank": 30
       },
@@ -5646,7 +5646,7 @@ const NFL_OFFDEF = {
       },
       {
         "abbr": "MIN",
-        "off": -0.09834762872412335,
+        "off": -0.09834762872412332,
         "def": -0.18273820648565417,
         "offRank": 29,
         "defRank": 1
@@ -5859,7 +5859,7 @@ const NFL_OFFDEF = {
       {
         "abbr": "DET",
         "off": 0.09729656741776674,
-        "def": 0.06898273630338478,
+        "def": 0.0689827363033848,
         "offRank": 7,
         "defRank": 26
       },
@@ -6085,7 +6085,7 @@ const NFL_OFFDEF = {
       {
         "abbr": "DET",
         "off": 0.09729656741776674,
-        "def": 0.06898273630338478,
+        "def": 0.0689827363033848,
         "offRank": 7,
         "defRank": 26
       },
