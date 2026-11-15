@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-15T17:57:14.048Z",
+  "updated": "2026-11-15T18:45:44.684Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Adou Thiero": ["LAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
@@ -26,7 +26,8 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-14"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
     "Collin Sexton": ["LAL","Day-To-Day","GTD","2026-11-15","Head",0,"2026-11-15"],
-    "Daniel Gafford": ["DAL","Day-To-Day","GTD","2026-11-15","Face",0,"2026-11-15"],
+    "Daniel Gafford": ["DAL","Day-To-Day","GTD","2026-11-15","Shoulder",0,"2026-11-15"],
+    "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-15","Hip",0,"2026-11-15"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-18","Foot",0,"2026-11-11"],
@@ -55,9 +56,10 @@ const NBA_INJURIES = {
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-18","Back",0,"2026-11-15"],
     "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-11-16","Head",0,"2026-11-15"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
+    "Jock Landale": ["ATL","Day-To-Day","GTD","2026-11-15","Hip",0,"2026-11-15"],
     "Joel Embiid": ["PHI","Out","OUT","2026-11-16","Foot",0,"2026-11-14"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
-    "Jonathan Isaac": ["ORL","Out","GTD","2026-11-16","Knee",0,"2026-11-09"],
+    "Jonathan Isaac": ["ORL","Out","OUT","2026-11-18","Knee",0,"2026-11-15"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
@@ -69,6 +71,7 @@ const NBA_INJURIES = {
     "Kingston Flemings": ["ATL","Out","OUT","2026-11-18","Back",0,"2026-11-14"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
+    "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-15","Knee",0,"2026-11-15"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Marcus Smart": ["HOU","Suspension","OUT","2026-11-18","Suspension",0,"2026-11-12"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
@@ -91,6 +94,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-15","Illness",0,"2026-11-15"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-16","Elbow",0,"2026-11-10"],
+    "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-15","Ankle",0,"2026-11-15"],
     "Scottie Barnes": ["TOR","Out","GTD","2026-11-15","Groin",0,"2026-11-14"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-18","Knee",0,"2026-11-11"],
