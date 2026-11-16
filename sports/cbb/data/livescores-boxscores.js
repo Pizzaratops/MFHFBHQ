@@ -7156,28 +7156,10 @@ const LIVESCORES_BOXSCORES = {
     "2026-11-16": {
     games: [
       {
-      id: "401911211",
-      line: "Ferrum Panthers @ George Washington Revolutionaries (11/16 - 12:00 PM EST)",
-      completed: false,
-      statusText: "11/16 - 12:00 PM EST",
-      away: {
-        abbr: "FC", name: "Ferrum Panthers", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "GrgWas", name: "George Washington Revolutionaries", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401929419",
-      line: "Florida A&M Rattlers @ UTEP Miners (11/16 - 2:00 PM EST)",
+      line: "Florida A&M Rattlers @ UTEP Miners (2:42 - 1st)",
       completed: false,
-      statusText: "11/16 - 2:00 PM EST",
+      statusText: "2:42 - 1st",
       away: {
         abbr: "FAMU", name: "Florida A&M Rattlers", score: null,
         players: [
@@ -7188,6 +7170,37 @@ const LIVESCORES_BOXSCORES = {
         abbr: "UTEP", name: "UTEP Miners", score: null,
         players: [
 
+        ]
+      }
+    },
+      {
+      id: "401911211",
+      line: "Ferrum Panthers 57 @ George Washington Revolutionaries 94 (Final)",
+      completed: true,
+      statusText: "Final",
+      away: {
+        abbr: "FC", name: "Ferrum Panthers", score: 57,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "GrgWas", name: "George Washington Revolutionaries", score: 94,
+        players: [
+          { name: "Lovro Urbiha", min: 11, pts: 3, reb: 3, ast: 1, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -2.59, zScores: { pts: -1.051, reb: -0.196, ast: -0.31, stl: -0.552, blk: -0.688, tpm: 0.069, fgImpact: -0.084, ftImpact: 0, to: 0.224 } },
+          { name: "Dylan James", min: 13, pts: 4, reb: 6, ast: 0, stl: 0, blk: 2, to: 2, tpm: 0, fgm: 1, fga: 1, ftm: 2, fta: 2, composite: 3, zScores: { pts: -0.768, reb: 0.978, ast: -0.854, stl: -0.552, blk: 2.524, tpm: -0.899, fgImpact: 0.42, ftImpact: 2.709, to: -0.559 } },
+          { name: "Omari Witherspoon", min: 13, pts: 12, reb: 4, ast: 2, stl: 1, blk: 0, to: 1, tpm: 2, fgm: 5, fga: 6, ftm: 0, fta: 0, composite: 4.65, zScores: { pts: 1.496, reb: 0.196, ast: 0.233, stl: 0.552, blk: -0.688, tpm: 1.038, fgImpact: 1.597, ftImpact: 0, to: 0.224 } },
+          { name: "Jean Aranguren", min: 11, pts: 2, reb: 0, ast: 5, stl: 3, blk: 1, to: 2, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: 0.79, zScores: { pts: -1.334, reb: -1.369, ast: 1.863, stl: 2.758, blk: 0.918, tpm: -0.899, fgImpact: -0.588, ftImpact: 0, to: -0.559 } },
+          { name: "Terrance Arceneaux", min: 11, pts: 0, reb: 0, ast: 1, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -4.9, zScores: { pts: -1.9, reb: -1.369, ast: -0.31, stl: -0.552, blk: 0.918, tpm: -0.899, fgImpact: -1.009, ftImpact: 0, to: 0.224 } },
+          { name: "Deng Manyang", min: 11, pts: 10, reb: 5, ast: 2, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 4, fga: 4, ftm: 1, fta: 3, composite: 1.14, zScores: { pts: 0.93, reb: 0.587, ast: 0.233, stl: -0.552, blk: -0.688, tpm: 0.069, fgImpact: 1.681, ftImpact: -2.128, to: 1.006 } },
+          { name: "Jayvon Rampersant", min: 10, pts: 8, reb: 4, ast: 0, stl: 2, blk: 0, to: 0, tpm: 0, fgm: 4, fga: 7, ftm: 0, fta: 0, composite: 0.95, zScores: { pts: 0.364, reb: 0.196, ast: -0.854, stl: 1.655, blk: -0.688, tpm: -0.899, fgImpact: 0.168, ftImpact: 0, to: 1.006 } },
+          { name: "Ryder Frost", min: 20, pts: 6, reb: 2, ast: 0, stl: 0, blk: 0, to: 0, tpm: 2, fgm: 2, fga: 8, ftm: 0, fta: 0, composite: -3.02, zScores: { pts: -0.202, reb: -0.587, ast: -0.854, stl: -0.552, blk: -0.688, tpm: 1.038, fgImpact: -2.185, ftImpact: 0, to: 1.006 } },
+          { name: "Andrija Vukovic", min: 21, pts: 10, reb: 9, ast: 3, stl: 0, blk: 1, to: 3, tpm: 0, fgm: 4, fga: 7, ftm: 2, fta: 3, composite: 3.12, zScores: { pts: 0.93, reb: 2.151, ast: 0.776, stl: -0.552, blk: 0.918, tpm: -0.899, fgImpact: 0.168, ftImpact: 0.967, to: -1.342 } },
+          { name: "Malachi Arrington", min: 7, pts: 6, reb: 1, ast: 0, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 2, fga: 2, ftm: 2, fta: 4, composite: -2.28, zScores: { pts: -0.202, reb: -0.978, ast: -0.854, stl: -0.552, blk: 0.918, tpm: -0.899, fgImpact: 0.84, ftImpact: -0.774, to: 0.224 } },
+          { name: "Promis N'Landu", min: 25, pts: 10, reb: 3, ast: 6, stl: 0, blk: 0, to: 3, tpm: 2, fgm: 3, fga: 5, ftm: 2, fta: 4, composite: 1.07, zScores: { pts: 0.93, reb: -0.196, ast: 2.406, stl: -0.552, blk: -0.688, tpm: 1.038, fgImpact: 0.252, ftImpact: -0.774, to: -1.342 } },
+          { name: "Jalen Rougier-Roane", min: 10, pts: 4, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 2, fga: 6, ftm: 0, fta: 0, composite: -4.37, zScores: { pts: -0.768, reb: -0.978, ast: -0.31, stl: -0.552, blk: -0.688, tpm: -0.899, fgImpact: -1.177, ftImpact: 0, to: 1.006 } },
+          { name: "Felix Kossaras", min: 16, pts: 10, reb: 4, ast: 0, stl: 1, blk: 0, to: 4, tpm: 2, fgm: 4, fga: 7, ftm: 0, fta: 0, composite: -0.78, zScores: { pts: 0.93, reb: 0.196, ast: -0.854, stl: 0.552, blk: -0.688, tpm: 1.038, fgImpact: 0.168, ftImpact: 0, to: -2.124 } },
+          { name: "Andrew Phillips", min: 21, pts: 9, reb: 7, ast: 1, stl: 0, blk: 0, to: 0, tpm: 3, fgm: 3, fga: 6, ftm: 0, fta: 0, composite: 3.23, zScores: { pts: 0.647, reb: 1.369, ast: -0.31, stl: -0.552, blk: -0.688, tpm: 2.006, fgImpact: -0.252, ftImpact: 0, to: 1.006 } }
         ]
       }
     },
@@ -7228,24 +7241,6 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
-      id: "401921804",
-      line: "Grambling Tigers @ Kentucky Wildcats (11/16 - 7:00 PM EST)",
-      completed: false,
-      statusText: "11/16 - 7:00 PM EST",
-      away: {
-        abbr: "GRAM", name: "Grambling Tigers", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "KY", name: "Kentucky Wildcats", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401925864",
       line: "Western Kentucky Hilltoppers @ Tulsa Golden Hurricane (11/16 - 7:00 PM EST)",
       completed: false,
@@ -7258,6 +7253,24 @@ const LIVESCORES_BOXSCORES = {
       },
       home: {
         abbr: "Tuls", name: "Tulsa Golden Hurricane", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401921804",
+      line: "Grambling Tigers @ Kentucky Wildcats (11/16 - 7:00 PM EST)",
+      completed: false,
+      statusText: "11/16 - 7:00 PM EST",
+      away: {
+        abbr: "GRAM", name: "Grambling Tigers", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "KY", name: "Kentucky Wildcats", score: null,
         players: [
 
         ]
