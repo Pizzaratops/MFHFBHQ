@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-16T23:19:16.506Z",
+  "updated": "2026-11-16T23:29:31.237Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-16","Knee",0,"2026-11-16"],
@@ -79,7 +79,6 @@ const NBA_INJURIES = {
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Pelle Larsson": ["MIA","Out","OUT","2026-11-18","Illness",0,"2026-11-16"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-16"],
-    "Quinten Post": ["MEM","Out","","","",0,"2026-11-15"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Ronald Holland II": ["DET","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
@@ -104,7 +103,6 @@ const NBA_INJURIES = {
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Out","GTD","2026-11-17","Foot",0,"2026-11-10"],
-    "Zach Edey": ["MEM","Day-To-Day","","","",0,"2026-11-15"],
     "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"]
   }
 };
