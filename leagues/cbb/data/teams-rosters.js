@@ -1,7 +1,7 @@
 // ============================================================
 //  TEAMS — Dizzle CBB Dynasty (Fantrax), AUTO-GENERIERT von
 //  leagues/cbb/scripts/sync-fantrax.js. IDs/Owner/Farben: TEAM_META im Script.
-//  Stand: 2026-11-16T18:35:24.213Z
+//  Stand: 2026-11-16T19:02:27.889Z
 // ============================================================
 
 const TEAMS = [
@@ -17,6 +17,6 @@ const TEAMS = [
   {"id":10,"name":"Point Made","short":"PM","owner":"Point Made","fx":"gvpwjhmmmpmwh0yn","record":"9-27-0","color":"#ff6584","lightColor":"#b43c64"},
   {"id":11,"name":"ShotGun","short":"SG","owner":"Shotgun","fx":"unpuy2jkmpmwh0yn","record":"12-23-1","color":"#8d6e63","lightColor":"#5d4037"},
   {"id":12,"name":"Straw Hats","short":"SH","owner":"Straw Hats","fx":"vsq657s6mpmwh0yn","record":"14-22-0","color":"#ffa726","lightColor":"#b86020"},
-  {"id":13,"name":"Van Gundy Community College","short":"VGCC","owner":"Van Gundy CC","fx":"4u4q2i3rmpmwh0ym","record":"14-21-1","color":"#78909c","lightColor":"#506070"},
-  {"id":14,"name":"Sam Merrill Elementary (W1221)","short":"SME","owner":"Weridos","fx":"bo5o1o7zmpmwh0yn","record":"22-11-3","color":"#ab47bc","lightColor":"#6a1b9a"}
+  {"id":13,"name":"Van Gundy Community College","short":"VGCC","owner":"Van Gundy CC","fx":"4u4q2i3rmpmwh0ym","record":"15-21-0","color":"#78909c","lightColor":"#506070"},
+  {"id":14,"name":"Sam Merrill Elementary (W1221)","short":"SME","owner":"Weridos","fx":"bo5o1o7zmpmwh0yn","record":"22-12-2","color":"#ab47bc","lightColor":"#6a1b9a"}
 ];
