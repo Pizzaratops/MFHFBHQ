@@ -1,7 +1,7 @@
 // ============================================================
 //  CBB_PLAYER_POOL — Spielerpool der Liga (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, Schule, Position, eligiblePos, Status (T = vergeben, FA = frei)]
-//  Stand: 2026-11-16T01:02:41.764Z
+//  Stand: 2026-11-16T02:02:49.815Z
 // ============================================================
 
 const CBB_PLAYER_POOL = [
@@ -483,7 +483,7 @@ const CBB_PLAYER_POOL = [
 ["064dr","CJ Gunn","Mizzou","G","G,Flx","FA"],
 ["06q7i","CJ Happy","Princ","F","F/C,Flx","FA"],
 ["06nj3","CJ Hyland","Denv","G","G,Flx","FA"],
-["06yra","CJ Ingram","Fla","G","G,Flx","T"],
+["06yra","CJ Ingram","Fla","G","G,Flx","FA"],
 ["079y8","CJ Jones","Pacif","G","G,Flx","FA"],
 ["071yc","CJ Shaw","UCSB","G","G,Flx","T"],
 ["06yrm","Clarence Massamba","UCDav","G","G,Flx","FA"],
@@ -1728,7 +1728,7 @@ const CBB_PLAYER_POOL = [
 ["06n7x","Max Pikaar","SIU","F","F/C,Flx","FA"],
 ["079cm","Maxim Klitschko","ECU","F","F/C,Flx","FA"],
 ["06qby","Maxim Logue","Mem","F","F/C,Flx","FA"],
-["079ei","Maxime Meyer","Duke","C","F/C,Flx","T"],
+["079ei","Maxime Meyer","Duke","C","F/C,Flx","FA"],
 ["075yn","Maximo Adams","UNC","F","F/C,Flx","T"],
 ["06h2f","Mayar Wol","Seton","F","F/C,Flx","T"],
 ["070ln","Mayo Soyoye","Baylor","C","F/C,Flx","FA"],
