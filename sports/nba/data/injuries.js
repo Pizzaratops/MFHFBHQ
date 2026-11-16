@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-16T16:56:51.681Z",
+  "updated": "2026-11-16T17:24:34.425Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-15"],
@@ -28,11 +28,10 @@ const NBA_INJURIES = {
     "Dereck Lively II": ["DAL","Out","GTD","2026-11-18","Foot",0,"2026-11-11"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Drew Timme": ["PHX","Day-To-Day","","","",0,"2026-11-13"],
     "Duncan Robinson": ["DET","Day-To-Day","GTD","2026-11-17","Thigh",0,"2026-11-15"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-18","Toe",0,"2026-11-15"],
     "Fred VanVleet": ["HOU","Day-To-Day","GTD","2026-11-16","Knee",0,"2026-11-16"],
-    "GG Jackson": ["MEM","Out","OUT","2026-11-18","Foot",0,"2026-11-15"],
+    "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-16"],
     "Gui Santos": ["GS","Day-To-Day","GTD","2026-11-16","Ankle",0,"2026-11-15"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","GTD","2026-11-17","Hip",0,"2026-11-09"],
@@ -86,7 +85,7 @@ const NBA_INJURIES = {
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"],
     "Sam Merrill": ["CLE","Out","OUT","2026-11-18","Elbow",0,"2026-11-15"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-16"],
-    "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-21","Back",0,"2026-11-10"],
+    "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","GTD","2026-11-18","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
@@ -101,7 +100,6 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","GTD","2026-11-16","Hip",0,"2026-11-08"],
     "Ty Jerome": ["MEM","Out","OUT","2026-11-18","Hip",0,"2026-11-15"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
-    "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-14","Foot",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Out","GTD","2026-11-17","Foot",0,"2026-11-10"],
     "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-16","Ankle",0,"2026-11-15"],
