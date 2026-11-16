@@ -105,5 +105,5 @@ const LEAGUE_INFO = {
  "nflWeek": 10,
  "lastScoredWeek": 9,
  "previousLeagueId": null,
- "syncedAt": "2026-11-16T20:23:39.664Z"
+ "syncedAt": "2026-11-16T22:03:43.296Z"
 };
