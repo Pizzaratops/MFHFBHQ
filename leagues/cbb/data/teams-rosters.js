@@ -1,7 +1,7 @@
 // ============================================================
 //  TEAMS — Dizzle CBB Dynasty (Fantrax), AUTO-GENERIERT von
 //  leagues/cbb/scripts/sync-fantrax.js. IDs/Owner/Farben: TEAM_META im Script.
-//  Stand: 2026-11-16T12:02:26.753Z
+//  Stand: 2026-11-16T12:06:02.928Z
 // ============================================================
 
 const TEAMS = [
