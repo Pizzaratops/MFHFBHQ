@@ -1,9 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-16T18:20:34.546Z",
+  "updated": "2026-11-16T18:50:18.682Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
+    "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-16","Knee",0,"2026-11-16"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-15"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
@@ -20,7 +21,7 @@ const NBA_INJURIES = {
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-17","Foot",0,"2026-11-15"],
-    "Clint Capela": ["HOU","Out","OUT","2026-11-18","Ankle",0,"2026-11-14"],
+    "Clint Capela": ["HOU","Out","OUT","2026-11-18","Ankle",0,"2026-11-16"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-17","Hip",0,"2026-11-16"],
     "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-16"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
@@ -30,7 +31,6 @@ const NBA_INJURIES = {
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Duncan Robinson": ["DET","Day-To-Day","GTD","2026-11-17","Thigh",0,"2026-11-15"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-18","Toe",0,"2026-11-15"],
-    "Fred VanVleet": ["HOU","Day-To-Day","","","",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-16"],
     "Gui Santos": ["GS","Day-To-Day","GTD","2026-11-16","Ankle",0,"2026-11-15"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
@@ -101,7 +101,7 @@ const NBA_INJURIES = {
     "Trendon Watford": ["NO","Out","OUT","2026-11-18","Ankle",0,"2026-11-15"],
     "Trey Alexander": ["UTAH","Out","GTD","2026-11-16","Ankle",0,"2026-11-12"],
     "Trey Murphy III": ["NO","Out","OUT","2026-11-18","Knee",0,"2026-11-15"],
-    "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-08"],
+    "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Ty Jerome": ["MEM","Out","OUT","2026-11-18","Hip",0,"2026-11-15"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-22","Hamstring",0,"2026-11-11"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
