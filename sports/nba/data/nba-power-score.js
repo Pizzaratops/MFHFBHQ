@@ -10,7 +10,7 @@
 // ============================================================
 const NBA_POWER_SCORE = {
   "season": 2027,
-  "generatedAt": "2026-11-16T00:14:38.892Z",
+  "generatedAt": "2026-11-16T18:20:35.946Z",
   "categories": [
     {
       "key": "ortg",
@@ -16459,7 +16459,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 112.3,
             "tovPg": 14.9,
-            "drebPg": 31.4
+            "drebPg": 31.5
           },
           "rank": {
             "ortg": 15,
@@ -17121,7 +17121,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 111,
             "oppPtsPg": 112,
             "tovPg": 8,
-            "drebPg": 31
+            "drebPg": 32
           },
           "rank": {
             "ortg": 16,
@@ -17129,7 +17129,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 17,
             "oppPtsPg": 13,
             "tovPg": 1,
-            "drebPg": 18
+            "drebPg": 17
           }
         },
         {
@@ -17607,7 +17607,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 24,
             "oppPtsPg": 24,
             "tovPg": 13,
-            "drebPg": 17
+            "drebPg": 18
           }
         }
       ]
@@ -17760,7 +17760,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 112.3,
             "tovPg": 14.9,
-            "drebPg": 31.4
+            "drebPg": 31.5
           },
           "rank": {
             "ortg": 15,
@@ -18725,7 +18725,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 110.9,
             "tovPg": 14.9,
-            "drebPg": 31.7
+            "drebPg": 31.8
           },
           "rank": {
             "ortg": 17,
@@ -18997,7 +18997,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 3,
             "oppPtsPg": 25,
             "tovPg": 24,
-            "drebPg": 8
+            "drebPg": 9
           }
         },
         {
@@ -19209,7 +19209,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 106.9,
             "oppPtsPg": 118.2,
             "tovPg": 17.3,
-            "drebPg": 33.4
+            "drebPg": 33.6
           },
           "rank": {
             "ortg": 29,
@@ -19217,7 +19217,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 27,
             "oppPtsPg": 24,
             "tovPg": 27,
-            "drebPg": 9
+            "drebPg": 8
           }
         },
         {
@@ -19511,7 +19511,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 10,
             "oppPtsPg": 6,
             "tovPg": 2,
-            "drebPg": 6
+            "drebPg": 7
           }
         },
         {
@@ -19593,7 +19593,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 17,
             "oppPtsPg": 12,
             "tovPg": 10,
-            "drebPg": 7
+            "drebPg": 8
           }
         },
         {
@@ -19703,7 +19703,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 100,
             "oppPtsPg": 112,
             "tovPg": 21,
-            "drebPg": 32
+            "drebPg": 33
           },
           "rank": {
             "ortg": 15,
@@ -19711,7 +19711,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 15,
             "oppPtsPg": 8,
             "tovPg": 17,
-            "drebPg": 8
+            "drebPg": 6
           }
         },
         {
@@ -19886,7 +19886,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 112.1,
             "oppPtsPg": 110.9,
             "tovPg": 14.9,
-            "drebPg": 31.7
+            "drebPg": 31.8
           },
           "rank": {
             "ortg": 17,
@@ -20158,7 +20158,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 2,
             "oppPtsPg": 26,
             "tovPg": 24,
-            "drebPg": 8
+            "drebPg": 9
           }
         },
         {
@@ -20370,7 +20370,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 106.9,
             "oppPtsPg": 118.2,
             "tovPg": 17.3,
-            "drebPg": 33.4
+            "drebPg": 33.6
           },
           "rank": {
             "ortg": 29,
@@ -20378,7 +20378,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 29,
             "oppPtsPg": 24,
             "tovPg": 28,
-            "drebPg": 9
+            "drebPg": 8
           }
         },
         {
@@ -20991,7 +20991,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 113.9,
             "oppPtsPg": 109.1,
             "tovPg": 15.4,
-            "drebPg": 31.9
+            "drebPg": 32
           },
           "rank": {
             "ortg": 12,
@@ -20999,7 +20999,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 15,
             "oppPtsPg": 9,
             "tovPg": 17,
-            "drebPg": 16
+            "drebPg": 15
           }
         },
         {
@@ -21475,7 +21475,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 106.2,
             "oppPtsPg": 117.9,
             "tovPg": 16.9,
-            "drebPg": 32.7
+            "drebPg": 32.8
           },
           "rank": {
             "ortg": 29,
@@ -21505,7 +21505,7 @@ const NBA_POWER_SCORE = {
             "ptsPg": 26,
             "oppPtsPg": 12,
             "tovPg": 5,
-            "drebPg": 15
+            "drebPg": 16
           }
         }
       ],
