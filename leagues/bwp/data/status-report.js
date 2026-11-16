@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-16T02:03:20.742Z",
+  "generatedAt": "2026-11-16T04:03:58.197Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1276,7 +1276,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.3,
           "last3AvgPoints": 10.5,
-          "projPoints": 8.3
+          "projPoints": 8.7
         }
       ],
       "flaggedCount": 2
