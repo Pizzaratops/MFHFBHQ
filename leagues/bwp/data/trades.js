@@ -79,6 +79,14 @@ const TRADES = [
     teamB: "Burrowhead Dancers",
     teamBGives: ["2027 1st"],
   },
+  {
+    date: "2026-11-16",
+    teamA: "The Bear Witch Project",
+    teamAGives: ["George Pickens", "2027 1st (spätester von BWP)", "2027 1st (zweitspätester von BWP)"],
+    teamB: "Lion Cereals",
+    teamBGives: ["Germie Bernard", "2027 1st"],
+    note: "BWP gibt die beiden spätesten seiner 2027er 1sts ab (eigener, Beastmode, Team Beermode, Burrowhead Dancers). Welche das sind, steht erst mit der Draft-Reihenfolge fest; Stand 16.11. die von Beastmode und Team Beermode.",
+  },
 ];
 
 // Getradete Picks INNERHALB des 2026er Drafts (im Gegensatz zu FUTURE_PICKS
@@ -102,12 +110,17 @@ const TRADED_PICKS_2026 = [
 // (Team besitzt seinen eigenen Pick fuer dieses Jahr/diese Runde noch).
 const FUTURE_PICKS = {
   2027: [
-    { round: "1st", from: "Beastmode",     owner: "The Bear Witch Project" },
+    // 16.11.2026: BWP gibt seine beiden SPÄTESTEN 2027er 1sts an Lion Cereals
+    // (aus: eigener, Beastmode, Team Beermode, Burrowhead). VORLÄUFIG eingetragen
+    // sind Beastmode + Team Beermode (Stand 16.11. klar die spätesten). Nach
+    // Saisonende gegen die echte Draft-Reihenfolge prüfen und ggf. umtragen.
+    { round: "1st", from: "Beastmode",     owner: "Lion Cereals" },
     { round: "2nd", from: "Beastmode",     owner: "The Bear Witch Project" },
     { round: "3rd", from: "Beastmode",     owner: "The Lamartrix" },
-    { round: "1st", from: "Team Beermode", owner: "The Bear Witch Project" },
+    { round: "1st", from: "Team Beermode", owner: "Lion Cereals" },
     { round: "3rd", from: "Team Beermode", owner: "The Bear Witch Project" },
     { round: "1st", from: "Burrowhead Dancers", owner: "The Bear Witch Project" },
+    { round: "1st", from: "Lion Cereals",  owner: "The Bear Witch Project" },
   ],
   2028: [],
   2029: [],
