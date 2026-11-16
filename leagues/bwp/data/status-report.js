@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-16T14:03:26.950Z",
+  "generatedAt": "2026-11-16T15:24:02.706Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -321,7 +321,7 @@ const STATUS_REPORT_DATA = {
           "pos": "?",
           "nfl": "DET",
           "isStarter": true,
-          "status": "D",
+          "status": "O",
           "flag": true,
           "lastGamePoints": 2.3,
           "last3AvgPoints": 5.4,
@@ -867,7 +867,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 4.9
+          "projPoints": 5
         },
         {
           "name": "Daniel Jones",
@@ -1011,7 +1011,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13,
           "last3AvgPoints": 12,
-          "projPoints": 7.2
+          "projPoints": 7.3
         },
         {
           "name": "Houston Texans",
@@ -1276,7 +1276,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.3,
           "last3AvgPoints": 10.5,
-          "projPoints": 8.7
+          "projPoints": 8.8
         }
       ],
       "flaggedCount": 2
@@ -1343,7 +1343,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 4.9,
-          "projPoints": 7.2
+          "projPoints": 7.3
         },
         {
           "name": "Colston Loveland",
@@ -2171,7 +2171,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 5.4,
-          "projPoints": 7.9
+          "projPoints": 8
         },
         {
           "name": "TreVeyon Henderson",
@@ -2480,7 +2480,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.4,
           "last3AvgPoints": 10.6,
-          "projPoints": 13.9
+          "projPoints": 14.1
         },
         {
           "name": "Rachaad White",
