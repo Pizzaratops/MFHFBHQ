@@ -2,7 +2,7 @@
   "league": "ncaab",
   "date": "2026-11-16",
   "games": [
-    "Florida A&M Rattlers @ UTEP Miners (2:42 - 1st)",
+    "Florida A&M Rattlers 46 @ UTEP Miners 79 (Final)",
     "Ferrum Panthers 57 @ George Washington Revolutionaries 94 (Final)",
     "Alcorn State Braves @ Maryland Terrapins (11/16 - 6:00 PM EST)",
     "Prairie View A&M Panthers @ Ohio State Buckeyes (11/16 - 6:30 PM EST)",
@@ -26,7 +26,7 @@
     "Portland State Vikings @ Saint Mary's Gaels (11/16 - 10:00 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 54.5,
-    "ft": 56.3
+    "fg": 48.9,
+    "ft": 65.4
   }
 }
