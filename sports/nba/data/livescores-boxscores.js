@@ -4041,9 +4041,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909988",
-      line: "San Antonio Spurs @ Utah Jazz (5:30 - 4th)",
+      line: "San Antonio Spurs @ Utah Jazz (2:30 - 4th)",
       completed: false,
-      statusText: "5:30 - 4th",
+      statusText: "2:30 - 4th",
       away: {
         abbr: "SA", name: "San Antonio Spurs", score: null,
         players: [
@@ -4077,9 +4077,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909990",
-      line: "New York Knicks @ Toronto Raptors (4:27 - 2nd)",
+      line: "New York Knicks @ Toronto Raptors (Halftime)",
       completed: false,
-      statusText: "4:27 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -4095,9 +4095,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909991",
-      line: "Houston Rockets @ Washington Wizards (11/15 - 7:00 PM EST)",
+      line: "Houston Rockets @ Washington Wizards (9:55 - 1st)",
       completed: false,
-      statusText: "11/15 - 7:00 PM EST",
+      statusText: "9:55 - 1st",
       away: {
         abbr: "HOU", name: "Houston Rockets", score: null,
         players: [

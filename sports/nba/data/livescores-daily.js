@@ -4402,7 +4402,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-15": {
-      games: ["Indiana Pacers 124 @ Philadelphia 76ers 131 (Final)","Los Angeles Lakers 131 @ Phoenix Suns 123 (Final)","Charlotte Hornets 105 @ LA Clippers 113 (Final)","San Antonio Spurs @ Utah Jazz (5:30 - 4th)","Dallas Mavericks @ Boston Celtics (Halftime)","New York Knicks @ Toronto Raptors (4:27 - 2nd)","Houston Rockets @ Washington Wizards (11/15 - 7:00 PM EST)","Atlanta Hawks @ Milwaukee Bucks (11/15 - 8:00 PM EST)","Oklahoma City Thunder @ Sacramento Kings (11/15 - 9:00 PM EST)"],
+      games: ["Indiana Pacers 124 @ Philadelphia 76ers 131 (Final)","Los Angeles Lakers 131 @ Phoenix Suns 123 (Final)","Charlotte Hornets 105 @ LA Clippers 113 (Final)","San Antonio Spurs @ Utah Jazz (2:30 - 4th)","Dallas Mavericks @ Boston Celtics (Halftime)","New York Knicks @ Toronto Raptors (Halftime)","Houston Rockets @ Washington Wizards (9:55 - 1st)","Atlanta Hawks @ Milwaukee Bucks (11/15 - 8:00 PM EST)","Oklahoma City Thunder @ Sacramento Kings (11/15 - 9:00 PM EST)"],
       leagueAvg: { fg: 49.4, ft: 80.1 },
       players: [
         { rank: 1, name: "Luka Doncic", team: "LAL", min: 36, pts: 43, reb: 3, ast: 9, stl: 1, blk: 0, to: 2, tpm: 5, fgPct: 46.4, ftPct: 85.7, composite: 8.71, zScores: { pts: 3.77, reb: -0.304, ast: 2.557, stl: 0.556, blk: -0.518, tpm: 2.426, fgImpact: -0.613, ftImpact: 1.347, to: -0.51 } },
