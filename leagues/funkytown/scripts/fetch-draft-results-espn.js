@@ -88,6 +88,21 @@ function activeSeasonDone(season) {
   } catch (e) { return false; }
 }
 
+function loadNbaRosterNames() {
+  const map = new Map();
+  const p = path.join(ROOT, '..', '..', 'sports', 'nba', 'data', 'nba-rosters.js');
+  if (!fs.existsSync(p)) return map;
+  try {
+    const sandbox = {};
+    vm.createContext(sandbox);
+    vm.runInContext(`${fs.readFileSync(p, 'utf8')}\nthis.__R__ = NBA_ROSTERS;`, sandbox);
+    Object.values((sandbox.__R__ || {}).teams || {}).forEach(list => {
+      (list || []).forEach(pl => { if (pl.id && pl.n) map.set(String(pl.id), pl.n); });
+    });
+  } catch (e) { console.warn('NBA-Kader-Fallback nicht lesbar:', e.message); }
+  return map;
+}
+
 async function main() {
   const cfg = loadConfig();
   const arg = process.argv.indexOf('--season');
@@ -122,6 +137,12 @@ async function main() {
   });
   console.log(`  ${nameById.size} Spielernamen aus aktuellen Rostern dieser Saison aufgelöst.`);
 
+  // ── 2b. Fallback: NBA-Kader (sports/nba/data/nba-rosters.js) ─
+  //     Faengt Spieler auf, die seit dem Draft von jedem Liga-Roster
+  //     geworfen wurden, aber weiter in einem NBA-Kader stehen
+  //     (gleiche ESPN-Spieler-ID). nameSource dann 'nba-roster'.
+  const nbaNameById = loadNbaRosterNames();
+
   // ── 3. Zusammenfuehren ───────────────────────────────────────
   // unresolvedCount zaehlt NUR Picks, die tatsaechlich im Ergebnis
   // landen -- ein Pick mit unbekanntem ESPN-Team wird komplett
@@ -129,14 +150,15 @@ async function main() {
   // verfaelschen.
   const picks = rawPicks.map(p => {
     const ttTeam = cfg.ESPN_TO_TT_TEAM[p.teamId];
-    const name = nameById.get(p.playerId);
+    const leagueName = nameById.get(p.playerId);
+    const name = leagueName || nbaNameById.get(String(p.playerId));
     return {
       round: p.roundId,
       overallPickNumber: p.overallPickNumber,
       teamId: ttTeam ?? null,
       playerId: p.playerId,
       playerName: name || null,
-      nameSource: name ? 'roster' : 'unresolved',
+      nameSource: leagueName ? 'roster' : name ? 'nba-roster' : 'unresolved',
     };
   }).filter(p => p.teamId !== null); // unbekanntes ESPN-Team ueberspringen, nicht raten
 
