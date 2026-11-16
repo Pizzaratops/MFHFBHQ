@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-16T22:02:48.337Z
+//  Stand: 2026-11-16T23:02:51.504Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -495,7 +495,7 @@ const WC_PLAYER_POOL = [
 ["076u9","Izaiyah Nelson","ORL","PF","PF,F,Flx","FA"],
 ["051oi","Ja Morant","POR","PG","PG,G,Flx","T"],
 ["06212","Jabari Smith","HOU","PF","SF,PF,C,F,Flx","T"],
-["0622k","Jabari Walker","PHI","SF","SF,PF,C,F,Flx","T"],
+["0622k","Jabari Walker","PHI","SF","SF,PF,C,F,Flx","WW"],
 ["076tr","Jack Kayil","(N/A)","PG","PG,G,Flx","FA"],
 ["06muu","Jack McVeigh","(N/A)","PF","PF,F,Flx","FA"],
 ["062sr","Jack White","(N/A)","SF","SF,F,Flx","FA"],
