@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-16T15:01:04.440Z",
+  "updated": "2026-11-16T15:29:30.797Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-15"],
@@ -20,7 +20,7 @@ const NBA_INJURIES = {
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-17","Foot",0,"2026-11-15"],
-    "Clint Capela": ["HOU","Out","OUT","2026-11-16","Ankle",0,"2026-11-14"],
+    "Clint Capela": ["HOU","Out","GTD","2026-11-16","Ankle",0,"2026-11-14"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-17","Hip",0,"2026-11-16"],
     "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-16"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
