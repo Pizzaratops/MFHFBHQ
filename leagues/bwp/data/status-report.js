@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-16T16:03:31.391Z",
+  "generatedAt": "2026-11-16T19:11:58.020Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1265,7 +1265,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.7,
           "last3AvgPoints": 6.5,
-          "projPoints": 6.2
+          "projPoints": 6.1
         },
         {
           "name": "Quentin Johnston",
@@ -1276,7 +1276,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.3,
           "last3AvgPoints": 10.5,
-          "projPoints": 8.8
+          "projPoints": 9
         }
       ],
       "flaggedCount": 2
@@ -1343,7 +1343,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 4.9,
-          "projPoints": 7.3
+          "projPoints": 7.2
         },
         {
           "name": "Colston Loveland",
@@ -1961,7 +1961,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.6,
           "last3AvgPoints": 8.5,
-          "projPoints": 15.6
+          "projPoints": 15.4
         },
         {
           "name": "Josh Jacobs",
@@ -2171,7 +2171,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 5.4,
-          "projPoints": 8
+          "projPoints": 7.9
         },
         {
           "name": "TreVeyon Henderson",
@@ -2480,7 +2480,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.4,
           "last3AvgPoints": 10.6,
-          "projPoints": 14.1
+          "projPoints": 14.5
         },
         {
           "name": "Rachaad White",
@@ -3432,7 +3432,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2,
           "last3AvgPoints": 0.7,
-          "projPoints": 8.4
+          "projPoints": 8.5
         },
         {
           "name": "Chicago Bears",
@@ -3454,7 +3454,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": -1,
           "last3AvgPoints": 1,
-          "projPoints": 5.7
+          "projPoints": 5.8
         },
         {
           "name": "Philadelphia Eagles",
@@ -3521,7 +3521,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.6,
           "last3AvgPoints": 4.8,
-          "projPoints": 6.8
+          "projPoints": 6.9
         },
         {
           "name": "Tyrone Tracy Jr.",
