@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-16T02:01:04.788Z",
+  "updated": "2026-11-16T04:01:01.310Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-15"],
@@ -59,7 +59,6 @@ const NBA_INJURIES = {
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-11"],
-    "Keshon Gilbert": ["ATL","Out","OUT","2026-11-20","Knee",0,"2026-11-12"],
     "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-16","Illness",0,"2026-11-13"],
     "Kingston Flemings": ["ATL","Out","OUT","2026-11-18","Back",0,"2026-11-14"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
