@@ -75,14 +75,31 @@ function loadVmObject(filePath, varName) {
   vm.runInContext(`${snippet}\nthis.__RESULT__ = ${varName};`, sandbox);
   return sandbox.__RESULT__;
 }
-function normalizeName(raw) {
+// BUGFIX (16.11.2026): Akzente wurden hier nicht entfernt und die
+// handgepflegte Alias-Liste (sports/nba/data/aliases.js) nicht genutzt.
+// Seit die Dynasty-Liste Namen mit Diakritika führt ("Luka Dončić",
+// "Nikola Jokić", "Alperen Şengün" ...), fanden diese Spieler keine
+// Stats/Projections mehr und standen nur mit dem Dynasty-Signal im Board.
+function baseNormalize(raw) {
   if (!raw) return '';
-  let s = raw.toLowerCase().trim();
+  let s = String(raw).toLowerCase().trim();
+  s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   s = s.replace(/\./g, '');
   s = s.replace(/['\u2019\u2018`]/g, '');
   s = s.replace(/\b(jr|sr|iii|ii)\b/g, '');
   s = s.replace(/\s+/g, ' ').trim();
   return s;
+}
+let __aliasByNorm = null;
+function normalizeName(raw) {
+  const s = baseNormalize(raw);
+  if (!s) return '';
+  if (!__aliasByNorm) {
+    let A = {};
+    try { A = loadVmObject(path.join(__dirname, '..', '..', '..', 'sports', 'nba', 'data', 'aliases.js'), 'NAME_ALIASES') || {}; } catch (e) { A = {}; }
+    __aliasByNorm = new Map(Object.entries(A).map(([k, v]) => [baseNormalize(k), baseNormalize(v)]));
+  }
+  return __aliasByNorm.get(s) || s;
 }
 function mean(arr) { return arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0; }
 function stdDev(arr, m) {
