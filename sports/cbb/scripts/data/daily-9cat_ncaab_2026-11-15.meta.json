@@ -2,11 +2,11 @@
   "league": "ncaab",
   "date": "2026-11-15",
   "games": [
-    "Syracuse Orange @ St. John's Red Storm (Halftime)",
-    "Arkansas-Pine Bluff Golden Lions @ USC Trojans (Halftime)",
     "Baylor Bears 72 @ Texas Longhorns 75 (Final)",
     "Louisville Cardinals 78 @ Memphis Tigers 98 (Final)",
+    "Syracuse Orange 62 @ St. John's Red Storm 79 (Final)",
     "William & Mary Tribe 79 @ Michigan Wolverines 123 (Final)",
+    "Arkansas-Pine Bluff Golden Lions 46 @ USC Trojans 122 (Final)",
     "Boise State Broncos 75 @ Nebraska Cornhuskers 102 (Final)",
     "Dartmouth Big Green 75 @ Boston University Terriers 90 (Final)",
     "Harvard Crimson 64 @ American University Eagles 70 (Final)",
@@ -24,13 +24,13 @@
     "Chicago State Cougars 49 @ Loyola Marymount Lions 86 (Final)",
     "Idaho State Bengals 70 @ Seattle U Redhawks 77 (Final)",
     "New Haven Chargers 52 @ Penn State Nittany Lions 86 (Final)",
-    "Texas State Bobcats @ UTSA Roadrunners (11/15 - 8:00 PM EST)",
-    "Coastal Carolina Chanticleers @ Wisconsin Badgers (11/15 - 8:00 PM EST)",
-    "Alabama State Hornets @ San José State Spartans (11/15 - 9:00 PM EST)",
+    "Texas State Bobcats 87 @ UTSA Roadrunners 67 (Final)",
+    "Coastal Carolina Chanticleers 81 @ Wisconsin Badgers 89 (Final)",
+    "Alabama State Hornets 68 @ San José State Spartans 80 (Final)",
     "Pepperdine Waves @ Oregon Ducks (Postponed)"
   ],
   "leagueAvg": {
-    "fg": 46.1,
-    "ft": 72.1
+    "fg": 46.7,
+    "ft": 72.6
   }
 }
