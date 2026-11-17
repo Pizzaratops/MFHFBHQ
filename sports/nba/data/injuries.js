@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T19:18:28.215Z",
+  "updated": "2026-11-17T19:45:55.696Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -21,10 +21,11 @@ const NBA_INJURIES = {
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
-    "Chris Youngblood": ["POR","Out","GTD","2026-11-17","Foot",0,"2026-11-15"],
+    "Chris Youngblood": ["POR","Out","OUT","2026-11-19","Heel",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","GTD","2026-11-18","Ankle",0,"2026-11-16"],
     "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-16"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
+    "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-17","Foot",0,"2026-11-17"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","GTD","2026-11-18","Foot",0,"2026-11-11"],
     "Dominick Barlow": ["PHI","Out","GTD","2026-11-18","Back",0,"2026-11-16"],
