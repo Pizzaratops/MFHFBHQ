@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T05:01:02.450Z",
+  "updated": "2026-11-17T06:01:07.956Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -54,12 +54,12 @@ const NBA_INJURIES = {
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-22","Knee",0,"2026-11-15"],
     "Jonathan Kuminga": ["MIN","Day-To-Day","GTD","2026-11-17","Shoulder",0,"2026-11-17"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
-    "Julian Phillips": ["HOU","Day-To-Day","GTD","2026-11-16","Wrist",0,"2026-11-16"],
+    "Julian Phillips": ["HOU","Day-To-Day","GTD","2026-11-17","Wrist",0,"2026-11-16"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-20","Foot",0,"2026-11-06"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-23","Knee",0,"2026-11-11"],
-    "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-16","Illness",0,"2026-11-13"],
+    "Kevin McCullar Jr.": ["TOR","Day-To-Day","GTD","2026-11-20","Illness",0,"2026-11-13"],
     "Kingston Flemings": ["ATL","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-16"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
