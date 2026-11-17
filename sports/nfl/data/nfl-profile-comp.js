@@ -20,7 +20,7 @@
 
 const NFL_PROFILE_COMP = {
   "meta": {
-    "builtAt": "2026-11-17T17:17:22.973Z",
+    "builtAt": "2026-11-17T18:25:16.384Z",
     "matchFeatures": {
       "QB": [
         "avgPpaPass",
