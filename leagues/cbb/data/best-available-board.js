@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-17T22:12:22.438Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-17T23:02:30.361Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2421,5 +2421,6 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rosG":26,"rank":2415},
   {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":0,"rank":2416},
   {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":23,"rank":2417},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":25,"rank":2418}
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":25,"rank":2418},
+  {"name":"Savo Drezgic","nbaTeam":"PSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":24,"rank":2419}
 ];
