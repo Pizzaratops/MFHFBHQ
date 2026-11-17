@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-17T18:03:23.985Z",
+  "generatedAt": "2026-11-17T20:03:31.141Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -801,7 +801,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12,
           "last3AvgPoints": 10.5,
-          "projPoints": 9
+          "projPoints": 8.9
         },
         {
           "name": "Bhayshul Tuten",
@@ -889,7 +889,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 14
+          "projPoints": 14.2
         },
         {
           "name": "John Metchie III",
@@ -1430,7 +1430,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3.7,
-          "projPoints": 2.2
+          "projPoints": 1.6
         },
         {
           "name": "Cooper Kupp",
@@ -1452,7 +1452,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.4,
           "last3AvgPoints": 9.1,
-          "projPoints": 10.4
+          "projPoints": 10.3
         },
         {
           "name": "Courtland Sutton",
@@ -1540,7 +1540,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 31.7,
           "last3AvgPoints": 29,
-          "projPoints": 17.6
+          "projPoints": 17.5
         },
         {
           "name": "Rashid Shaheed",
@@ -1573,7 +1573,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 26.5,
-          "projPoints": 4.4
+          "projPoints": 4.5
         }
       ],
       "flaggedCount": 0
@@ -1805,7 +1805,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 31.7,
           "last3AvgPoints": 29,
-          "projPoints": 17.6
+          "projPoints": 17.5
         },
         {
           "name": "Jordan Mason",
@@ -1883,7 +1883,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12,
           "last3AvgPoints": 10.5,
-          "projPoints": 9
+          "projPoints": 8.9
         },
         {
           "name": "Ollie Gordon II",
@@ -1960,7 +1960,7 @@ const STATUS_REPORT_DATA = {
           "flag": true,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 14
+          "projPoints": 14.2
         },
         {
           "name": "Nico Collins",
@@ -1971,7 +1971,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 24.4,
           "last3AvgPoints": 20,
-          "projPoints": 16.1
+          "projPoints": 16.2
         },
         {
           "name": "George Pickens",
@@ -2060,7 +2060,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3,
-          "projPoints": 3.4
+          "projPoints": null
         },
         {
           "name": "Jalen Coker",
@@ -2303,7 +2303,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 13.4
+          "projPoints": 13.3
         },
         {
           "name": "DJ Moore",
@@ -2336,7 +2336,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 14
+          "projPoints": 14.2
         },
         {
           "name": "CeeDee Lamb",
@@ -2425,7 +2425,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8,
           "last3AvgPoints": 8,
-          "projPoints": 7.8
+          "projPoints": 7.7
         },
         {
           "name": "Cameron Dicker",
@@ -3581,6 +3581,194 @@ const STATUS_REPORT_DATA = {
       "flaggedCount": 0
     },
     {
+      "id": "felix-sleeper-1427770891743268864",
+      "platform": "sleeper",
+      "owner": "TeamBeermode",
+      "leagueName": "Foodball",
+      "emoji": "💤",
+      "teamName": "TeamBeermode",
+      "record": "0-0-0",
+      "players": [
+        {
+          "name": "Cam Skattebo",
+          "pos": "RB",
+          "nfl": "NYG",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 27.2,
+          "last3AvgPoints": 27.2,
+          "projPoints": 16.8
+        },
+        {
+          "name": "Emeka Egbuka",
+          "pos": "WR",
+          "nfl": "TB",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": 6.9,
+          "projPoints": 10.3
+        },
+        {
+          "name": "Caleb Douglas",
+          "pos": "WR",
+          "nfl": "MIA",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 10.1,
+          "last3AvgPoints": 10.5,
+          "projPoints": 8.9
+        },
+        {
+          "name": "Emmett Johnson",
+          "pos": "RB",
+          "nfl": "KC",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 35.1,
+          "last3AvgPoints": 23.3,
+          "projPoints": 10.7
+        },
+        {
+          "name": "Denzel Boston",
+          "pos": "WR",
+          "nfl": "CLE",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 2.6,
+          "last3AvgPoints": 9.4,
+          "projPoints": null
+        },
+        {
+          "name": "Kaelon Black",
+          "pos": "RB",
+          "nfl": "SF",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 14.6,
+          "last3AvgPoints": 10.8,
+          "projPoints": 4.8
+        },
+        {
+          "name": "Chris Boswell",
+          "pos": "K",
+          "nfl": "PIT",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 5,
+          "last3AvgPoints": 6.5,
+          "projPoints": 8.3
+        },
+        {
+          "name": "D'Andre Swift",
+          "pos": "RB",
+          "nfl": "CHI",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": 15.5,
+          "projPoints": 19.4
+        },
+        {
+          "name": "Justin Jefferson",
+          "pos": "WR",
+          "nfl": "MIN",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 16.4,
+          "last3AvgPoints": 13.2,
+          "projPoints": 18.8
+        },
+        {
+          "name": "Jordan Love",
+          "pos": "QB",
+          "nfl": "GB",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 11.8,
+          "last3AvgPoints": 23.5,
+          "projPoints": null
+        },
+        {
+          "name": "Kyle Pitts Sr.",
+          "pos": "TE",
+          "nfl": "ATL",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 7,
+          "last3AvgPoints": 5,
+          "projPoints": null
+        },
+        {
+          "name": "Isaiah Likely",
+          "pos": "TE",
+          "nfl": "NYG",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 27.7,
+          "last3AvgPoints": 22,
+          "projPoints": 15
+        },
+        {
+          "name": "Chris Olave",
+          "pos": "WR",
+          "nfl": "NO",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 6,
+          "last3AvgPoints": 11.4,
+          "projPoints": 15.6
+        },
+        {
+          "name": "Jahmyr Gibbs",
+          "pos": "RB",
+          "nfl": "DET",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 44.2,
+          "last3AvgPoints": 27.5,
+          "projPoints": 23.5
+        },
+        {
+          "name": "DeMario Douglas",
+          "pos": "WR",
+          "nfl": "NE",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 1.4,
+          "last3AvgPoints": 11.1,
+          "projPoints": null
+        },
+        {
+          "name": "Minnesota Vikings",
+          "pos": "DEF",
+          "nfl": "MIN",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": 21,
+          "last3AvgPoints": 11.3,
+          "projPoints": 6.1
+        }
+      ],
+      "flaggedCount": 0
+    },
+    {
       "id": "felix-sleeper-1402417765519781888",
       "platform": "sleeper",
       "owner": "TeamBeermode",
@@ -3819,7 +4007,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 46.3,
           "last3AvgPoints": 34.5,
-          "projPoints": 19.9
+          "projPoints": 19.8
         },
         {
           "name": "Isaiah Likely",
