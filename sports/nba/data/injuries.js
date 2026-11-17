@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T21:42:13.448Z",
+  "updated": "2026-11-17T21:53:20.452Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -73,6 +73,7 @@ const NBA_INJURIES = {
     "Maxime Raynaud": ["SAC","Out","GTD","2026-11-18","Knee",0,"2026-11-15"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
+    "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
     "Nae'Qwan Tomlin": ["CLE","Out","GTD","2026-11-18","Back",0,"2026-10-20"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
     "Neemias Queta": ["BOS","Day-To-Day","GTD","2026-11-18","Rest",0,"2026-11-17"],
@@ -81,7 +82,6 @@ const NBA_INJURIES = {
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-18","Finger",0,"2026-11-17"],
-    "Pelle Larsson": ["MIA","Out","","","",0,"2026-11-16"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-18","Head",0,"2026-11-17"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-16"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
