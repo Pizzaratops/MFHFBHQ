@@ -64,6 +64,10 @@ jobs:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: node sports/nfl/scripts/sync-college-recruiting.js
 
+      - name: Prospect-Recruit-Zuordnung (offline)
+        continue-on-error: true
+        run: node sports/nfl/scripts/build-prospect-recruit-map.js
+
       - name: NFL Draft Athletic Profiles (nflverse)
         run: node sports/nfl/scripts/build-nfl-draft-athletic-profiles.js
 
@@ -74,7 +78,7 @@ jobs:
         run: |
           git config user.name "mfhfb-hq-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add sports/nfl/data/college-scouting.js sports/nfl/data/nfl-draft-athletic-profiles.js sports/nfl/data/nfl-profile-comp.js sports/nfl/data/college-recruiting.js
+          git add sports/nfl/data/college-scouting.js sports/nfl/data/nfl-draft-athletic-profiles.js sports/nfl/data/nfl-profile-comp.js sports/nfl/data/college-recruiting.js sports/nfl/data/prospect-recruit.js
           if git diff --cached --quiet; then
             echo "Keine Änderungen -- nichts zu committen."
             exit 0

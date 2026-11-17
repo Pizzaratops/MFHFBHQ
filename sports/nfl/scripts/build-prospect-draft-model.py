@@ -10,10 +10,18 @@
 #  jedes Spielers mit Ausgang bekannt (Saison ≤ aktuelle − 2).
 #  Features (im Browser identisch nachgebaut, tools/nfl-collegescouting.js):
 #   - Produktions-Features + Volumen + Größe/Gewicht, je Saison z-standardisiert
-#   - cyear  = College-Jahr (Untergrenze, ab erstem Jahr mit Mindest-Volumen, max 5)
+#   - yrs    = College-Jahr seit HS-Abschluss (Recruiting-Jahrgang, max 5);
+#              ohne Recruiting-Eintrag Untergrenze ab erster FBS-Saison
 #   - p5     = Power-Conference (SEC, Big Ten, ACC, Big 12, Pac-12)
-#   - prodYoung = Ø Produktions-z × (4 − College-Jahr): junge Produzenten
-#  Backtest (Train ≤ 2021, Test 2022–aktuell−2) steht in meta.backtest.
+#   - prodYoung2 = Ø Produktions-z × (4 − yrs): junge Produzenten
+#   - ratingZ / unrated = 247-Composite-Rating als Talent-Prior (fehlend = 0,80)
+#   - bestProd / bestVol / nSeas = Karriere: beste Saison (Produktion bzw.
+#              Volumen, z) bis inkl. dieser Saison, Anzahl erfasster Saisons
+#              (nur WR + QB: bei RB/TE verschlechterte es den Backtest)
+#  Backtest: zwei zeitliche Folds (Train ≤ 2018 → Test 2019–21, Train ≤ 2021
+#  → Test 2022–aktuell−2), Mittelwert in meta.backtest.
+#  v2 (17.11.2026) gegenüber v1 im selben Backtest: Pick-Reihenfolge ρ WR 0,44→0,57,
+#  RB 0,35→0,44, TE 0,31→0,40, QB 0,44→0,55; Draft-AUC gleich oder besser.
 #
 #  Lokal/manuell ausführen (pandas, numpy, scikit-learn), z. B. jährlich
 #  nach dem NFL-Draft:  python3 sports/nfl/scripts/build-prospect-draft-model.py
@@ -30,6 +38,8 @@ def load_js(path, name):
 
 S = load_js('sports/nfl/data/college-scouting.js', 'COLLEGE_SCOUTING')
 A = load_js('sports/nfl/data/nfl-draft-athletic-profiles.js', 'NFL_DRAFT_ATHLETIC_PROFILES')
+RM = load_js('sports/nfl/data/prospect-recruit.js', 'PROSPECT_RECRUIT')  # build-prospect-recruit-map.js
+REC = {'impute': 0.80, 'center': 0.86, 'scale': 0.05}
 cur = S['meta']['currentSeason']
 P5 = ['SEC', 'Big Ten', 'ACC', 'Big 12', 'Pac-12']
 VOL = {'WR': ['yds', 'td'], 'TE': ['yds', 'td'], 'RB': ['rushYds', 'recYds'], 'QB': ['passYds', 'rushYds']}
@@ -59,16 +69,28 @@ d['rawId'] = d.rawId.astype(str)
 first = d.groupby('rawId').year.min()
 d['cyear'] = (d.year - d.rawId.map(first) + 1).clip(upper=5)
 d['p5'] = d.conf.isin(P5).astype(int)
+d['hs'] = d.rawId.map(lambda k: (RM.get(k) or [None])[0])
+d['yrs'] = np.where(d.hs.notna(), d.year - d.hs + 1, d.cyear).clip(1, 5)
+d['rating'] = d.rawId.map(lambda k: (RM.get(k) or [None, None])[1])
+d['ratingZ'] = ((d.rating.fillna(REC['impute']) - REC['center']) / REC['scale']).clip(-3, 3)
+d['unrated'] = d.rating.isna().astype(int)
+CAREER = {'WR': True, 'RB': False, 'TE': False, 'QB': True}
 
-model = {'P5': P5, 'vol': VOL, 'pos': {}, 'backtest': {}}
+model = {'version': 2, 'P5': P5, 'vol': VOL, 'recruit': REC, 'pos': {}, 'backtest': {}}
 for pos in ['WR', 'RB', 'TE', 'QB']:
     x = d[d.pos == pos].copy()
     base = feats[pos] + VOL[pos] + ['heightIn', 'weightLb']
     for f in base:
         x[f + '_z'] = x.groupby('year')[f].transform(lambda s: (s - s.mean()) / (s.std() + 1e-9)).fillna(0)
-    x['prodYoung'] = x[[f + '_z' for f in feats[pos]]].mean(axis=1) * (4 - x.cyear.clip(1, 4))
-    F = [f + '_z' for f in base] + ['cyear', 'p5', 'prodYoung']
-    last = x.sort_values('year').groupby('rawId').tail(1).copy()
+    x['prodZ'] = x[[f + '_z' for f in feats[pos]]].mean(axis=1)
+    x['volZ'] = x[[f + '_z' for f in VOL[pos]]].mean(axis=1)
+    x['prodYoung2'] = x.prodZ * (4 - x.yrs.clip(1, 4))
+    x = x.sort_values('year')
+    x['bestProd'] = x.groupby('rawId').prodZ.cummax()
+    x['bestVol'] = x.groupby('rawId').volZ.cummax()
+    x['nSeas'] = x.groupby('rawId').cumcount() + 1
+    F = [f + '_z' for f in base] + ['yrs', 'p5', 'prodYoung2', 'ratingZ', 'unrated'] + (['bestProd', 'bestVol', 'nSeas'] if CAREER[pos] else [])
+    last = x.groupby('rawId').tail(1).copy()
     last['pick'] = last.apply(label, axis=1); last['dr'] = last.pick.notna().astype(int)
     h = last[last.year <= cur - 2]
     QS = np.linspace(0, 1, 21)
@@ -83,14 +105,18 @@ for pos in ['WR', 'RB', 'TE', 'QB']:
         cal = [list(np.quantile(pr, QS)), list(np.quantile(np.log(dd.pick), QS))]
         sd = float(np.std(np.log(dd.pick) - np.interp(pr, cal[0], cal[1])))
         return lg, rg, sd, cal
-    tr, te = h[h.year <= 2021], h[h.year >= 2022]
-    lg, rg, sd, cal = fit(tr)
-    p = lg.predict_proba(te[F])[:, 1]
-    tdd = te[te.dr == 1]
-    model['backtest'][pos] = {'test': f'{int(te.year.min())}-{int(te.year.max())}', 'n': int(len(te)), 'drafted': int(te.dr.sum()),
-                             'aucDrafted': round(float(roc_auc_score(te.dr, p)), 3),
-                             'spearmanPick': round(float(spearmanr(rg.predict(tdd[F]), tdd.pick).correlation), 3),
-                             'medAbsLogErr': round(float(np.median(np.abs(np.interp(rg.predict(tdd[F]), cal[0], cal[1]) - np.log(tdd.pick)))), 3)}
+    bt = []
+    for trmax, a, b in ((2018, 2019, 2021), (2021, 2022, cur - 2)):
+        tr, te = h[h.year <= trmax], h[(h.year >= a) & (h.year <= b)]
+        lg, rg, sd, cal = fit(tr)
+        p = lg.predict_proba(te[F])[:, 1]
+        tdd = te[te.dr == 1]
+        bt.append((roc_auc_score(te.dr, p), spearmanr(rg.predict(tdd[F]), tdd.pick).correlation,
+                   np.median(np.abs(np.interp(rg.predict(tdd[F]), cal[0], cal[1]) - np.log(tdd.pick))), len(te), int(te.dr.sum())))
+    model['backtest'][pos] = {'test': f'2019-{int(cur - 2)}', 'n': int(sum(b[3] for b in bt)), 'drafted': int(sum(b[4] for b in bt)),
+                             'aucDrafted': round(float(np.mean([b[0] for b in bt])), 3),
+                             'spearmanPick': round(float(np.mean([b[1] for b in bt])), 3),
+                             'medAbsLogErr': round(float(np.mean([b[2] for b in bt])), 3)}
     lg, rg, sd, cal = fit(h)  # final: alle Jahrgänge mit bekanntem Ausgang
     model['pos'][pos] = {'base': base, 'prod': feats[pos], 'features': F,
                          'logit': {'coef': [round(float(c), 5) for c in lg.coef_[0]], 'b': round(float(lg.intercept_[0]), 5)},
