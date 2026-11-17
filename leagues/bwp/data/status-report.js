@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-17T00:06:22.419Z",
+  "generatedAt": "2026-11-17T02:03:26.806Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -56,7 +56,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "HOU",
           "isStarter": false,
-          "status": "O",
+          "status": null,
           "flag": false,
           "lastGamePoints": 0,
           "last3AvgPoints": 0,
@@ -2502,7 +2502,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.7,
           "last3AvgPoints": 6.5,
-          "projPoints": 6.1
+          "projPoints": 6.2
         },
         {
           "name": "Quentin Johnston",
