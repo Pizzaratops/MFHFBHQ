@@ -2,9 +2,9 @@
   "league": "ncaab",
   "date": "2026-11-17",
   "games": [
-    "Rutgers Scarlet Knights @ Houston Cougars (6:16 - 2nd)",
+    "Rutgers Scarlet Knights 73 @ Houston Cougars 85 (Final)",
     "Hofstra Pride 66 @ Murray State Racers 82 (Final)",
-    "Notre Dame Fighting Irish @ Florida Gators (11/17 - 4:30 PM EST)",
+    "Notre Dame Fighting Irish @ Florida Gators (11/17 - 4:51 PM EST)",
     "Liberty Flames @ Southern Illinois Salukis (11/17 - 6:00 PM EST)",
     "Lipscomb Bisons @ Purdue Boilermakers (11/17 - 6:30 PM EST)",
     "Maine Augusta Moose @ Dartmouth Big Green (11/17 - 6:30 PM EST)",
@@ -42,13 +42,13 @@
     "UNLV Rebels @ Kansas Jayhawks (11/17 - 9:30 PM EST)",
     "Simon Fraser Red Leafs @ Washington Huskies (11/17 - 10:00 PM EST)",
     "UC Irvine Anteaters @ Stanford Cardinal (11/17 - 10:00 PM EST)",
-    "Pacific Union PACIFIC UNION @ Pacific Tigers (11/17 - 10:00 PM EST)",
+    "Pacific Union Pioneers @ Pacific Tigers (11/17 - 10:00 PM EST)",
     "Seattle U Redhawks @ California Baptist Lancers (11/17 - 10:00 PM EST)",
     "Montana State Bobcats @ Gonzaga Bulldogs (11/17 - 11:00 PM EST)",
     "West Virginia Mountaineers @ Auburn Tigers (11/17 - 11:59 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 37.3,
-    "ft": 80
+    "fg": 43.4,
+    "ft": 79.6
   }
 }
