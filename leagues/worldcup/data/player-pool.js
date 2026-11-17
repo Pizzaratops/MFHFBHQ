@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-17T20:02:52.770Z
+//  Stand: 2026-11-17T21:02:53.727Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -646,7 +646,7 @@ const WC_PLAYER_POOL = [
 ["06moy","Joirdon Nicholas","(N/A)","F","SF,PF,F,Flx","FA"],
 ["059u3","Jon Davis","(N/A)","PG","PG,G,Flx","FA"],
 ["07apm","Jon Elmore","(N/A)","PG","PG,G,Flx","FA"],
-["07aoe","Jonas Aidoo","(N/A)","C","C,Flx","FA"],
+["07aoe","Jonas Aidoo","UTA","C","C,Flx","FA"],
 ["027oo","Jonas Valanciunas","(N/A)","C","C,Flx","FA"],
 ["04ewb","Jonathan Isaac","ORL","PF","PF,F,Flx","FA"],
 ["049s7","Jonathan Jeanne","(N/A)","C","C,Flx","FA"],
@@ -749,7 +749,7 @@ const WC_PLAYER_POOL = [
 ["07ag5","Keonte Jones","(N/A)","SG","SG,G,Flx","FA"],
 ["06mm8","Keshad Johnson","MIA","SF","SF,F,Flx","FA"],
 ["06hki","Keshawn Justice","(N/A)","SF","SF,PF,F,Flx","FA"],
-["07234","Keshon Gilbert","ATL","SG","SG,G,Flx","FA"],
+["07234","Keshon Gilbert","(N/A)","SG","SG,G,Flx","FA"],
 ["05uji","Kessler Edwards","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["06mos","Keve Aluma","(N/A)","F","SF,PF,F,Flx","FA"],
 ["06mnx","Kevin Cross","(N/A)","F","SF,PF,F,Flx","FA"],
@@ -1195,7 +1195,7 @@ const WC_PLAYER_POOL = [
 ["049kg","Trevon Duval","(N/A)","PG","PG,G,Flx","FA"],
 ["06236","Trevor Hudgins","(N/A)","PG","PG,G,Flx","FA"],
 ["06225","Trevor Keels","(N/A)","SG","SG,G,Flx","FA"],
-["06mp4","Trey Alexander","UTA","SG","SG,G,Flx","FA"],
+["06mp4","Trey Alexander","(N/A)","SG","SG,G,Flx","FA"],
 ["06him","Trey Jemison","(N/A)","C","C,Flx","FA"],
 ["076ue","Trey Kaufman-Renn","(N/A)","PF","PF,F,Flx","FA"],
 ["03ad5","Trey Lyles","MIN","PF","PF,F,Flx","FA"],
