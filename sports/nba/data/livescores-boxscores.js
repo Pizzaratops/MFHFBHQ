@@ -4118,9 +4118,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909994",
-      line: "Orlando Magic @ Boston Celtics (11/16 - 7:00 PM EST)",
+      line: "Orlando Magic @ Boston Celtics (11:32 - 1st)",
       completed: false,
-      statusText: "11/16 - 7:00 PM EST",
+      statusText: "11:32 - 1st",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4154,9 +4154,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909996",
-      line: "Memphis Grizzlies @ Washington Wizards (11/16 - 7:00 PM EST)",
+      line: "Memphis Grizzlies @ Washington Wizards (11:56 - 1st)",
       completed: false,
-      statusText: "11/16 - 7:00 PM EST",
+      statusText: "11:56 - 1st",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [

@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T00:01:11.890Z",
+  "updated": "2026-11-17T00:11:22.298Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
@@ -26,7 +26,7 @@ const NBA_INJURIES = {
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","GTD","2026-11-18","Foot",0,"2026-11-11"],
-    "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
+    "Dominick Barlow": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-16"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-18","Quadriceps",0,"2026-11-16"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
