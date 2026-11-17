@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T04:01:10.830Z",
+  "updated": "2026-11-17T05:01:02.450Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -17,7 +17,7 @@ const NBA_INJURIES = {
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-19","Achilles",0,"2026-11-12"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-10"],
-    "Bryce McGowens": ["NO","Out","OUT","2026-11-18","Elbow",0,"2026-11-15"],
+    "Bryce McGowens": ["NO","Out","GTD","2026-11-18","Elbow",0,"2026-11-15"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
@@ -38,12 +38,13 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","GTD","2026-11-18","Ankle",0,"2026-09-28"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
-    "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-18","Undisclosed",0,"2026-11-17"],
+    "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-18","Head",0,"2026-11-17"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jaxson Hayes": ["UTAH","Out","OUT","2026-11-18","Knee",0,"2026-11-17"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
+    "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","GTD","2026-11-18","Back",0,"2026-11-15"],
     "Jaylon Tyson": ["CLE","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],

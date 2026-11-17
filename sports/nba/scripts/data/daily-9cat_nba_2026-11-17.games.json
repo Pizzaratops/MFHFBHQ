@@ -1,0 +1,96 @@
+{
+  "league": "nba",
+  "date": "2026-11-17",
+  "games": [
+    {
+      "id": "401910002",
+      "line": "New York Knicks @ Toronto Raptors (11/17 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:30 PM EST",
+      "away": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910003",
+      "line": "Portland Trail Blazers @ Minnesota Timberwolves (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910004",
+      "line": "Detroit Pistons @ San Antonio Spurs (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910006",
+      "line": "Utah Jazz @ LA Clippers (11/17 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 10:30 PM EST",
+      "away": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910005",
+      "line": "Charlotte Hornets @ Los Angeles Lakers (11/17 - 11:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 11:00 PM EST",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
