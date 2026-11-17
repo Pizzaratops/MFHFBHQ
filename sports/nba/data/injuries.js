@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T23:37:11.484Z",
+  "updated": "2026-11-17T23:56:32.474Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -94,7 +94,7 @@ const NBA_INJURIES = {
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-30","Heel",0,"2026-11-17"],
     "Taurean Prince": ["DET","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
-    "Thomas Sorber": ["OKC","Out","OUT","2026-11-20","Knee",0,"2026-11-13"],
+    "Thomas Sorber": ["OKC","Out","OUT","2027-01-13","Knee",0,"2026-11-13"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
     "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-18","Groin",0,"2026-11-17"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
