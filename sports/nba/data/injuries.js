@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T00:11:22.298Z",
+  "updated": "2026-11-17T00:24:22.736Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
@@ -48,7 +48,6 @@ const NBA_INJURIES = {
     "Jaylon Tyson": ["CLE","Out","OUT","2026-11-18","Ankle",0,"2026-11-16"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-16"],
-    "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-16","Foot",0,"2026-11-16"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-18","Knee",0,"2026-11-15"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],

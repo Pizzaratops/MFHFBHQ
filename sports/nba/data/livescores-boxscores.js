@@ -4118,9 +4118,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909994",
-      line: "Orlando Magic @ Boston Celtics (11:32 - 1st)",
+      line: "Orlando Magic @ Boston Celtics (5:51 - 1st)",
       completed: false,
-      statusText: "11:32 - 1st",
+      statusText: "5:51 - 1st",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4136,9 +4136,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909995",
-      line: "Chicago Bulls @ Cleveland Cavaliers (11/16 - 7:00 PM EST)",
+      line: "Chicago Bulls @ Cleveland Cavaliers (4:40 - 1st)",
       completed: false,
-      statusText: "11/16 - 7:00 PM EST",
+      statusText: "4:40 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -4154,9 +4154,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909996",
-      line: "Memphis Grizzlies @ Washington Wizards (11:56 - 1st)",
+      line: "Memphis Grizzlies @ Washington Wizards (5:44 - 1st)",
       completed: false,
-      statusText: "11:56 - 1st",
+      statusText: "5:44 - 1st",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
