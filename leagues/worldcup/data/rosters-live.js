@@ -1,7 +1,7 @@
 // ============================================================
 //  ROSTERS_LIVE — Kader aus Fantrax, AUTO-GENERIERT (sync-fantrax.js).
 //  status: A = aktiv, R = Reserve, IR = Injured Reserve · slot = Fantrax-Position
-//  Stand: 2026-11-17T21:02:53.727Z
+//  Stand: 2026-11-17T21:08:45.370Z
 // ============================================================
 
 const ROSTERS_LIVE = {
@@ -23,4 +23,4 @@ const TEAM_RECORDS_LIVE = {"season":2027,"records":{"1":"17-19-0","2":"16-19-1",
 
 const ROSTER_SETTINGS = {"positionConstraints":{"C":{"maxActive":1},"SF":{"maxActive":1},"Flx":{"maxActive":3},"SG":{"maxActive":1},"PF":{"maxActive":1},"F":{"maxActive":1},"G":{"maxActive":1},"PG":{"maxActive":1}},"maxTotalPlayers":14,"maxTotalActivePlayers":10,"maxTotalReservePlayers":4};
 
-const FANTRAX_SYNC = {"at":"2026-11-17T21:02:53.727Z","leagueId":"nq58zcxtmutve46g","division":"Seattle","leagueName":"FBI World Cup 2026-27 [WEST]","period":29,"start":"2026-10-20","end":"2027-01-31"};
+const FANTRAX_SYNC = {"at":"2026-11-17T21:08:45.370Z","leagueId":"nq58zcxtmutve46g","division":"Seattle","leagueName":"FBI World Cup 2026-27 [WEST]","period":29,"start":"2026-10-20","end":"2027-01-31"};
