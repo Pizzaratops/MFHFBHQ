@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T21:53:20.452Z",
+  "updated": "2026-11-17T22:11:23.622Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -46,7 +46,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jaxson Hayes": ["UTAH","Out","OUT","2026-11-18","Knee",0,"2026-11-17"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
-    "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
+    "Jaylen Brown": ["PHI","Out","OUT","2026-11-21","Hamstring",0,"2026-11-17"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","GTD","2026-11-18","Back",0,"2026-11-15"],
     "Jaylon Tyson": ["CLE","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
@@ -87,7 +87,7 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "Ronald Holland II": ["DET","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
-    "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"],
+    "Ryan Rollins": ["MIL","Day-To-Day","","","",0,"2026-11-16"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-18","Elbow",0,"2026-11-15"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Scottie Barnes": ["TOR","Day-To-Day","GTD","2026-11-17","Illness",0,"2026-11-17"],
