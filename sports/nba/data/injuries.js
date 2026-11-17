@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T02:35:48.442Z",
+  "updated": "2026-11-17T02:53:07.114Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-18","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
@@ -10,7 +10,7 @@ const NBA_INJURIES = {
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2026-11-20","Toe",0,"2026-11-12"],
     "Austin Reaves": ["LAL","Out","OUT","2026-11-18","Heel",0,"2026-11-17"],
-    "Bam Adebayo": ["MIA","Day-To-Day","GTD","2026-11-16","Hip",0,"2026-11-17"],
+    "Bam Adebayo": ["MIA","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-17"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-18","Foot",0,"2026-11-15"],
@@ -38,7 +38,7 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-18","Ankle",0,"2026-09-28"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
-    "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-16","Undisclosed",0,"2026-11-17"],
+    "Jalen Smith": ["CHI","Day-To-Day","OUT","2026-11-18","Undisclosed",0,"2026-11-17"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
@@ -79,7 +79,7 @@ const NBA_INJURIES = {
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-18","Finger",0,"2026-11-17"],
     "Pelle Larsson": ["MIA","Out","OUT","2026-11-18","Illness",0,"2026-11-16"],
-    "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-16","Head",0,"2026-11-17"],
+    "Peyton Watson": ["CLE","Out","OUT","2026-11-18","Head",0,"2026-11-17"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-16"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
