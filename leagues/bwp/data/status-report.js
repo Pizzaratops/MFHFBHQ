@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-17T10:03:36.014Z",
+  "generatedAt": "2026-11-17T10:27:52.232Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1143,7 +1143,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 11.9,
-          "projPoints": 5.5
+          "projPoints": 5.6
         },
         {
           "name": "Derrick Henry",
@@ -1827,7 +1827,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.9,
           "last3AvgPoints": 6.9,
-          "projPoints": 9.2
+          "projPoints": 9.1
         },
         {
           "name": "Michael Mayer",
