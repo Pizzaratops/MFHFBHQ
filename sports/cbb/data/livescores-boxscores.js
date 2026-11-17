@@ -6945,28 +6945,10 @@ const LIVESCORES_BOXSCORES = {
     "2026-11-17": {
     games: [
       {
-      id: "401927381",
-      line: "Hofstra Pride @ Murray State Racers (15:27 - 2nd)",
-      completed: false,
-      statusText: "15:27 - 2nd",
-      away: {
-        abbr: "HOF", name: "Hofstra Pride", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "Mur", name: "Murray State Racers", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401920511",
-      line: "Rutgers Scarlet Knights @ Houston Cougars (11/17 - 2:00 PM EST)",
+      line: "Rutgers Scarlet Knights @ Houston Cougars (6:16 - 2nd)",
       completed: false,
-      statusText: "11/17 - 2:00 PM EST",
+      statusText: "6:16 - 2nd",
       away: {
         abbr: "Rut", name: "Rutgers Scarlet Knights", score: null,
         players: [
@@ -6977,6 +6959,35 @@ const LIVESCORES_BOXSCORES = {
         abbr: "Hou", name: "Houston Cougars", score: null,
         players: [
 
+        ]
+      }
+    },
+      {
+      id: "401927381",
+      line: "Hofstra Pride 66 @ Murray State Racers 82 (Final)",
+      completed: true,
+      statusText: "Final",
+      away: {
+        abbr: "HOF", name: "Hofstra Pride", score: 66,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "Mur", name: "Murray State Racers", score: 82,
+        players: [
+          { name: "Brigham Rogers", min: 32, pts: 12, reb: 3, ast: 0, stl: 1, blk: 2, to: 2, tpm: 0, fgm: 6, fga: 9, ftm: 0, fta: 3, composite: 1.43, zScores: { pts: 0.636, reb: 0.207, ast: -0.768, stl: 0.271, blk: 2.941, tpm: -0.522, fgImpact: 2.338, ftImpact: -2.896, to: -0.772 } },
+          { name: "Talis Soulhac", min: 24, pts: 4, reb: 6, ast: 3, stl: 2, blk: 1, to: 2, tpm: 0, fgm: 1, fga: 7, ftm: 2, fta: 2, composite: 2.51, zScores: { pts: -0.349, reb: 1.274, ast: 1.207, stl: 1.353, blk: 1.26, tpm: -0.522, fgImpact: -1.424, ftImpact: 0.483, to: -0.772 } },
+          { name: "Roman Domon", min: 34, pts: 30, reb: 10, ast: 4, stl: 2, blk: 0, to: 4, tpm: 2, fgm: 5, fga: 17, ftm: 18, fta: 22, composite: 6.76, zScores: { pts: 2.852, reb: 2.696, ast: 1.866, stl: 1.353, blk: -0.42, tpm: 1.567, fgImpact: -1.184, ftImpact: 0.483, to: -2.457 } },
+          { name: "Brayden Shorter", min: 29, pts: 11, reb: 1, ast: 1, stl: 0, blk: 0, to: 1, tpm: 3, fgm: 4, fga: 11, ftm: 0, fta: 0, composite: 1.26, zScores: { pts: 0.513, reb: -0.504, ast: -0.11, stl: -0.812, blk: -0.42, tpm: 2.611, fgImpact: -0.09, ftImpact: 0, to: 0.07 } },
+          { name: "Lachlan Crate", min: 16, pts: 7, reb: 2, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 1, ftm: 5, fta: 5, composite: 0.02, zScores: { pts: 0.021, reb: -0.148, ast: -0.768, stl: -0.812, blk: -0.42, tpm: -0.522, fgImpact: 0.555, ftImpact: 1.207, to: 0.912 } },
+          { name: "Jonas Boulefaa", min: 8, pts: 2, reb: 3, ast: 1, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -1.96, zScores: { pts: -0.595, reb: 0.207, ast: -0.11, stl: -0.812, blk: -0.42, tpm: -0.522, fgImpact: 0.225, ftImpact: 0, to: 0.07 } },
+          { name: "Pavle Nikolic", min: 6, pts: 1, reb: 0, ast: 0, stl: 2, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 1, fta: 2, composite: -2.08, zScores: { pts: -0.718, reb: -0.859, ast: -0.768, stl: 1.353, blk: -0.42, tpm: -0.522, fgImpact: -0.33, ftImpact: -0.724, to: 0.912 } },
+          { name: "Mark Padjen", min: 5, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -3.64, zScores: { pts: -0.841, reb: -0.859, ast: -0.768, stl: -0.812, blk: -0.42, tpm: -0.522, fgImpact: -0.33, ftImpact: 0, to: 0.912 } },
+          { name: "Mathis Courbon", min: 8, pts: 6, reb: 2, ast: 0, stl: 0, blk: 0, to: 2, tpm: 0, fgm: 2, fga: 2, ftm: 2, fta: 2, composite: -1.95, zScores: { pts: -0.103, reb: -0.148, ast: -0.768, stl: -0.812, blk: -0.42, tpm: -0.522, fgImpact: 1.109, ftImpact: 0.483, to: -0.772 } },
+          { name: "Ben Shtolzberg", min: 13, pts: 0, reb: 1, ast: 1, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -3.47, zScores: { pts: -0.841, reb: -0.504, ast: -0.11, stl: -0.812, blk: -0.42, tpm: -0.522, fgImpact: -0.33, ftImpact: 0, to: 0.07 } },
+          { name: "Kaden Magwood", min: 9, pts: 9, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 2, fga: 4, ftm: 4, fta: 4, composite: 0.61, zScores: { pts: 0.267, reb: -0.504, ast: -0.768, stl: -0.812, blk: -0.42, tpm: 0.522, fgImpact: 0.45, ftImpact: 0.965, to: 0.912 } },
+          { name: "Christian Jones", min: 16, pts: 0, reb: 0, ast: 4, stl: 2, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 3, ftm: 0, fta: 0, composite: 0.5, zScores: { pts: -0.841, reb: -0.859, ast: 1.866, stl: 1.353, blk: -0.42, tpm: -0.522, fgImpact: -0.989, ftImpact: 0, to: 0.912 } }
         ]
       }
     },
