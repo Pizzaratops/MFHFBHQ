@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T17:32:43.546Z",
+  "updated": "2026-11-17T18:43:53.857Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -34,7 +34,7 @@ const NBA_INJURIES = {
     "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-16"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
-    "Isaiah Joe": ["DET","Out","GTD","2026-11-17","Hip",0,"2026-11-16"],
+    "Isaiah Joe": ["DET","Out","OUT","2026-11-18","Hip",0,"2026-11-16"],
     "Isaiah Stewart": ["MEM","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-17"],
     "Izaiyah Nelson": ["ORL","Out","GTD","2026-11-18","Ankle",0,"2026-09-28"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
@@ -89,7 +89,7 @@ const NBA_INJURIES = {
     "Ronald Holland II": ["DET","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
     "Ryan Rollins": ["MIL","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-18","Elbow",0,"2026-11-15"],
-    "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-16"],
+    "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Scottie Barnes": ["TOR","Day-To-Day","GTD","2026-11-17","Illness",0,"2026-11-17"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","GTD","2026-11-18","Knee",0,"2026-11-11"],

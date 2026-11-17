@@ -4,7 +4,7 @@
 //  Methode: Josh Lloyd (joshlloydfantasy.com/research/xstats-method)
 //  Erzeugt von scripts/xstats-pbp.py am 2026-11-17 · Saison 2026-27 · Stand 2026-11-16
 //  Wird von scripts/build-live-projections.js gelesen (3PM, FG%).
-//  META {"season": "2026-27", "assetUpdated": "Tue, 17 Nov 2026 18:13:13 GMT"}
+//  META {"season": "2026-27", "assetUpdated": "Tue, 17 Nov 2026 18:38:23 GMT"}
 // ============================================================
 const XSTATS_PBP = {
  "meta": {
@@ -13,7 +13,7 @@ const XSTATS_PBP = {
   "players": 471,
   "games": 205,
   "shots": 36116,
-  "assetUpdated": "Tue, 17 Nov 2026 18:13:13 GMT",
+  "assetUpdated": "Tue, 17 Nov 2026 18:38:23 GMT",
   "zoneRates": {
    "C3": 0.3689,
    "AB3": 0.3518,
