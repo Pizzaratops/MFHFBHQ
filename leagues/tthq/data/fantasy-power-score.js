@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-17T04:01:30.445Z",
+  "generatedAt": "2026-11-17T05:01:21.177Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 15 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,24 +97,24 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 322.9,
-        "reb": 121.3,
-        "ast": 76,
-        "stl": 23.09,
-        "blk": 14.87,
+        "pts": 322.8,
+        "reb": 121.1,
+        "ast": 75.9,
+        "stl": 23.07,
+        "blk": 14.85,
         "tpm": 40.4,
         "to": 40.8,
-        "fgPct": 46.5,
+        "fgPct": 46.6,
         "ftPct": 78.1
       },
       "rank": {
         "pts": 7,
         "reb": 6,
-        "ast": 6,
+        "ast": 7,
         "stl": 7,
         "blk": 6,
         "tpm": 4,
-        "fgPct": 8,
+        "fgPct": 7,
         "ftPct": 7,
         "to": 7
       },
@@ -128,10 +128,10 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 348.8,
-        "reb": 114.3,
+        "pts": 349.1,
+        "reb": 114.5,
         "ast": 79.8,
-        "stl": 26.33,
+        "stl": 26.29,
         "blk": 12.79,
         "tpm": 45.5,
         "to": 38.9,
@@ -160,12 +160,12 @@ const FANTASY_POWER_SCORE = {
       "owner": "Sven",
       "values": {
         "pts": 374.4,
-        "reb": 129.8,
+        "reb": 129.7,
         "ast": 84.3,
-        "stl": 23.93,
+        "stl": 24.01,
         "blk": 13.69,
         "tpm": 47.4,
-        "to": 43.8,
+        "to": 44,
         "fgPct": 46.2,
         "ftPct": 80.9
       },
@@ -176,7 +176,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 4,
         "blk": 8,
         "tpm": 1,
-        "fgPct": 11,
+        "fgPct": 10,
         "ftPct": 2,
         "to": 10
       },
@@ -190,14 +190,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Anadolu Ballers",
       "owner": "Murat Oguz",
       "values": {
-        "pts": 303.6,
-        "reb": 108.5,
+        "pts": 304.2,
+        "reb": 108.8,
         "ast": 65.5,
-        "stl": 20.16,
+        "stl": 20.24,
         "blk": 11.14,
-        "tpm": 34.1,
-        "to": 35.3,
-        "fgPct": 46.9,
+        "tpm": 34.2,
+        "to": 35.6,
+        "fgPct": 47,
         "ftPct": 81.4
       },
       "rank": {
@@ -221,14 +221,14 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 278.1,
-        "reb": 114.3,
+        "pts": 278.4,
+        "reb": 114.4,
         "ast": 58.7,
-        "stl": 20.59,
+        "stl": 20.58,
         "blk": 15.27,
-        "tpm": 35,
+        "tpm": 35.1,
         "to": 34.7,
-        "fgPct": 46.5,
+        "fgPct": 46.6,
         "ftPct": 76.2
       },
       "rank": {
@@ -238,7 +238,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 10,
         "blk": 5,
         "tpm": 6,
-        "fgPct": 9,
+        "fgPct": 8,
         "ftPct": 12,
         "to": 2
       },
@@ -254,12 +254,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 334.4,
-        "reb": 145.2,
+        "pts": 334.9,
+        "reb": 145.5,
         "ast": 80.2,
-        "stl": 23.49,
-        "blk": 19.07,
-        "tpm": 33,
+        "stl": 23.52,
+        "blk": 19.1,
+        "tpm": 33.1,
         "to": 43.3,
         "fgPct": 47.7,
         "ftPct": 76.3
@@ -300,7 +300,7 @@ const FANTASY_POWER_SCORE = {
       "rank": {
         "pts": 6,
         "reb": 2,
-        "ast": 7,
+        "ast": 6,
         "stl": 6,
         "blk": 3,
         "tpm": 8,
@@ -318,15 +318,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 287.8,
-        "reb": 107.9,
+        "pts": 286.9,
+        "reb": 107.3,
         "ast": 62.8,
-        "stl": 22.25,
-        "blk": 12.04,
-        "tpm": 29.7,
+        "stl": 22.23,
+        "blk": 11.96,
+        "tpm": 29.5,
         "to": 33.7,
-        "fgPct": 47.7,
-        "ftPct": 77.7
+        "fgPct": 47.6,
+        "ftPct": 77.8
       },
       "rank": {
         "pts": 10,
@@ -336,7 +336,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 10,
         "tpm": 12,
         "fgPct": 4,
-        "ftPct": 9,
+        "ftPct": 8,
         "to": 1
       },
       "includedCount": 28,
@@ -350,14 +350,14 @@ const FANTASY_POWER_SCORE = {
       "owner": "Jan Schattschneider",
       "values": {
         "pts": 292.9,
-        "reb": 119.2,
-        "ast": 67.4,
-        "stl": 21.07,
+        "reb": 119.3,
+        "ast": 67.3,
+        "stl": 21.05,
         "blk": 15.38,
         "tpm": 32.2,
         "to": 38.3,
         "fgPct": 46.9,
-        "ftPct": 77.9
+        "ftPct": 77.8
       },
       "rank": {
         "pts": 9,
@@ -367,7 +367,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 4,
         "tpm": 10,
         "fgPct": 6,
-        "ftPct": 8,
+        "ftPct": 9,
         "to": 5
       },
       "includedCount": 28,
@@ -397,7 +397,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 3,
         "blk": 7,
         "tpm": 5,
-        "fgPct": 7,
+        "fgPct": 9,
         "ftPct": 5,
         "to": 11
       },
@@ -411,14 +411,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 258.7,
-        "reb": 85.4,
-        "ast": 58.5,
-        "stl": 17.98,
-        "blk": 9.83,
-        "tpm": 30,
+        "pts": 258.1,
+        "reb": 85.3,
+        "ast": 58.4,
+        "stl": 17.94,
+        "blk": 9.82,
+        "tpm": 29.9,
         "to": 35,
-        "fgPct": 46.3,
+        "fgPct": 46.2,
         "ftPct": 78.4
       },
       "rank": {
@@ -428,7 +428,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 12,
         "blk": 12,
         "tpm": 11,
-        "fgPct": 10,
+        "fgPct": 11,
         "ftPct": 6,
         "to": 3
       },
