@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909994",
-      "line": "Orlando Magic @ Boston Celtics (8:49 - 2nd)",
+      "line": "Orlando Magic @ Boston Celtics (3:00 - 2nd)",
       "completed": false,
-      "statusText": "8:49 - 2nd",
+      "statusText": "3:00 - 2nd",
       "away": {
         "abbr": "ORL",
         "name": "Orlando Magic",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401909995",
-      "line": "Chicago Bulls @ Cleveland Cavaliers (7:32 - 2nd)",
+      "line": "Chicago Bulls @ Cleveland Cavaliers (1:55 - 2nd)",
       "completed": false,
-      "statusText": "7:32 - 2nd",
+      "statusText": "1:55 - 2nd",
       "away": {
         "abbr": "CHI",
         "name": "Chicago Bulls",
@@ -40,9 +40,9 @@
     },
     {
       "id": "401909996",
-      "line": "Memphis Grizzlies @ Washington Wizards (9:57 - 2nd)",
+      "line": "Memphis Grizzlies @ Washington Wizards (3:40 - 2nd)",
       "completed": false,
-      "statusText": "9:57 - 2nd",
+      "statusText": "3:40 - 2nd",
       "away": {
         "abbr": "MEM",
         "name": "Memphis Grizzlies",
@@ -58,9 +58,9 @@
     },
     {
       "id": "401909997",
-      "line": "Philadelphia 76ers @ Brooklyn Nets (9:46 - 1st)",
+      "line": "Philadelphia 76ers @ Brooklyn Nets (2:38 - 1st)",
       "completed": false,
-      "statusText": "9:46 - 1st",
+      "statusText": "2:38 - 1st",
       "away": {
         "abbr": "PHI",
         "name": "Philadelphia 76ers",
@@ -76,9 +76,9 @@
     },
     {
       "id": "401909998",
-      "line": "Houston Rockets @ Miami Heat (9:58 - 1st)",
+      "line": "Houston Rockets @ Miami Heat (2:14 - 1st)",
       "completed": false,
-      "statusText": "9:58 - 1st",
+      "statusText": "2:14 - 1st",
       "away": {
         "abbr": "HOU",
         "name": "Houston Rockets",
