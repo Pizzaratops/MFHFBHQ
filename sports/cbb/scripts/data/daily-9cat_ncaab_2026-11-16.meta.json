@@ -2,11 +2,8 @@
   "league": "ncaab",
   "date": "2026-11-16",
   "games": [
-    "Long Beach State Beach @ UCLA Bruins (2:14 - 1st)",
-    "East Texas A&M Lions @ Oregon State Beavers (14:57 - 2nd)",
-    "Colorado Colorado Springs Mountain Lions @ Denver Pioneers (Halftime)",
-    "Texas Southern Tigers @ UC San Diego Tritons (Halftime)",
-    "Portland State Vikings @ Saint Mary's Gaels (Halftime)",
+    "Long Beach State Beach @ UCLA Bruins (2:27 - 2nd)",
+    "Texas Southern Tigers @ UC San Diego Tritons (0:48 - 2nd)",
     "Ferrum Panthers 57 @ George Washington Revolutionaries 94 (Final)",
     "Florida A&M Rattlers 46 @ UTEP Miners 79 (Final)",
     "Alcorn State Braves 57 @ Maryland Terrapins 117 (Final)",
@@ -23,10 +20,13 @@
     "Central Arkansas Bears 66 @ Oklahoma State Cowboys 99 (Final)",
     "Western Illinois Leathernecks 63 @ Minnesota Golden Gophers 99 (Final)",
     "Montana Grizzlies 45 @ Kansas State Wildcats 86 (Final)",
-    "SE Louisiana Lions 69 @ Texas A&M Aggies 101 (Final)"
+    "SE Louisiana Lions 69 @ Texas A&M Aggies 101 (Final)",
+    "East Texas A&M Lions 71 @ Oregon State Beavers 109 (Final)",
+    "Colorado Colorado Springs Mountain Lions 63 @ Denver Pioneers 101 (Final)",
+    "Portland State Vikings 78 @ Saint Mary's Gaels 94 (Final)"
   ],
   "leagueAvg": {
-    "fg": 50.2,
-    "ft": 72.8
+    "fg": 51.2,
+    "ft": 74.4
   }
 }

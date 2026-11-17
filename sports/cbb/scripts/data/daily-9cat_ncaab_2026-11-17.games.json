@@ -1,0 +1,798 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-17",
+  "games": [
+    {
+      "id": "401927381",
+      "line": "Hofstra Pride @ Murray State Racers (11/17 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 12:00 PM EST",
+      "away": {
+        "abbr": "HOF",
+        "name": "Hofstra Pride",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Mur",
+        "name": "Murray State Racers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920511",
+      "line": "Rutgers Scarlet Knights @ Houston Cougars (11/17 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 2:00 PM EST",
+      "away": {
+        "abbr": "Rut",
+        "name": "Rutgers Scarlet Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Hou",
+        "name": "Houston Cougars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906773",
+      "line": "Notre Dame Fighting Irish @ Florida Gators (11/17 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 4:30 PM EST",
+      "away": {
+        "abbr": "ND",
+        "name": "Notre Dame Fighting Irish",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Fla",
+        "name": "Florida Gators",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920953",
+      "line": "Liberty Flames @ Southern Illinois Salukis (11/17 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 6:00 PM EST",
+      "away": {
+        "abbr": "LIB",
+        "name": "Liberty Flames",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SIU",
+        "name": "Southern Illinois Salukis",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920706",
+      "line": "Lipscomb Bisons @ Purdue Boilermakers (11/17 - 6:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 6:30 PM EST",
+      "away": {
+        "abbr": "LIP",
+        "name": "Lipscomb Bisons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pur",
+        "name": "Purdue Boilermakers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920236",
+      "line": "Maine Augusta Moose @ Dartmouth Big Green (11/17 - 6:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 6:30 PM EST",
+      "away": {
+        "abbr": "UMA",
+        "name": "Maine Augusta Moose",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Dart",
+        "name": "Dartmouth Big Green",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909566",
+      "line": "Illinois Fighting Illini @ Duke Blue Devils (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "Ill",
+        "name": "Illinois Fighting Illini",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Duke",
+        "name": "Duke Blue Devils",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921722",
+      "line": "Rider Broncs @ Miami Hurricanes (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "RID",
+        "name": "Rider Broncs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Mia-FL",
+        "name": "Miami Hurricanes",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925775",
+      "line": "Charlotte 49ers @ Davidson Wildcats (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "UNCC",
+        "name": "Charlotte 49ers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "David",
+        "name": "Davidson Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921756",
+      "line": "Mississippi State Bulldogs @ UCF Knights (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "MissSt",
+        "name": "Mississippi State Bulldogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCF",
+        "name": "UCF Knights",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920308",
+      "line": "Norfolk State Spartans @ Georgia Tech Yellow Jackets (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "NORF",
+        "name": "Norfolk State Spartans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GaTec",
+        "name": "Georgia Tech Yellow Jackets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920194",
+      "line": "Wagner Seahawks @ Saint Joseph's Hawks (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "WAG",
+        "name": "Wagner Seahawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StJos",
+        "name": "Saint Joseph's Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918994",
+      "line": "Tennessee State Tigers @ South Florida Bulls (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "TNST",
+        "name": "Tennessee State Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SoFL",
+        "name": "South Florida Bulls",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911198",
+      "line": "Fordham Rams @ Manhattan Jaspers (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "Ford",
+        "name": "Fordham Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MAN",
+        "name": "Manhattan Jaspers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911019",
+      "line": "Central Michigan Chippewas @ Dayton Flyers (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "CMU",
+        "name": "Central Michigan Chippewas",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Dayt",
+        "name": "Dayton Flyers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909729",
+      "line": "Monmouth Hawks @ Wake Forest Demon Deacons (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "MONM",
+        "name": "Monmouth Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wake",
+        "name": "Wake Forest Demon Deacons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909708",
+      "line": "Villanova Wildcats @ Pittsburgh Panthers (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "Vill",
+        "name": "Villanova Wildcats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pitt",
+        "name": "Pittsburgh Panthers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909697",
+      "line": "Ball State Cardinals @ Florida State Seminoles (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "BALL",
+        "name": "Ball State Cardinals",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "FSU",
+        "name": "Florida State Seminoles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909544",
+      "line": "Cleveland State Vikings @ Xavier Musketeers (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "CLE",
+        "name": "Cleveland State Vikings",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Xav",
+        "name": "Xavier Musketeers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909535",
+      "line": "Sacred Heart Pioneers @ Providence Friars (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "SHU",
+        "name": "Sacred Heart Pioneers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Prov",
+        "name": "Providence Friars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401902279",
+      "line": "Western Carolina Catamounts @ Butler Bulldogs (11/17 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:00 PM EST",
+      "away": {
+        "abbr": "WCU",
+        "name": "Western Carolina Catamounts",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Butl",
+        "name": "Butler Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906761",
+      "line": "Kennesaw State Owls @ Alabama Crimson Tide (11/17 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:30 PM EST",
+      "away": {
+        "abbr": "KENN",
+        "name": "Kennesaw State Owls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Bama",
+        "name": "Alabama Crimson Tide",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401916289",
+      "line": "Arkansas Razorbacks @ Indiana Hoosiers (11/17 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:30 PM EST",
+      "away": {
+        "abbr": "Ark",
+        "name": "Arkansas Razorbacks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ind",
+        "name": "Indiana Hoosiers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919018",
+      "line": "Florida International Panthers @ UAB Blazers (11/17 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 7:30 PM EST",
+      "away": {
+        "abbr": "FIU",
+        "name": "Florida International Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UAB",
+        "name": "UAB Blazers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921826",
+      "line": "Eastern Illinois Panthers @ Vanderbilt Commodores (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "EIU",
+        "name": "Eastern Illinois Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Vand",
+        "name": "Vanderbilt Commodores",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927388",
+      "line": "Lindenwood Lions @ Northern Iowa Panthers (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "LIN",
+        "name": "Lindenwood Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NrthIA",
+        "name": "Northern Iowa Panthers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921106",
+      "line": "Bellarmine Knights @ Illinois State Redbirds (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "BELL",
+        "name": "Bellarmine Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IlSt",
+        "name": "Illinois State Redbirds",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921097",
+      "line": "Texas A&M-Corpus Christi Islanders @ Rice Owls (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "AMCC",
+        "name": "Texas A&M-Corpus Christi Islanders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Rice",
+        "name": "Rice Owls",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919783",
+      "line": "Le Moyne Dolphins @ Evansville Purple Aces (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "LEM",
+        "name": "Le Moyne Dolphins",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Evans",
+        "name": "Evansville Purple Aces",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918970",
+      "line": "Oral Roberts Golden Eagles @ SMU Mustangs (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "ORU",
+        "name": "Oral Roberts Golden Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SMU",
+        "name": "SMU Mustangs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909504",
+      "line": "Maryland Eastern Shore Hawks @ DePaul Blue Demons (11/17 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:00 PM EST",
+      "away": {
+        "abbr": "UMES",
+        "name": "Maryland Eastern Shore Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DeP",
+        "name": "DePaul Blue Demons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925064",
+      "line": "Nicholls Colonels @ Ole Miss Rebels (11/17 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:30 PM EST",
+      "away": {
+        "abbr": "NICH",
+        "name": "Nicholls Colonels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Miss",
+        "name": "Ole Miss Rebels",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924922",
+      "line": "Sam Houston Bearkats @ Wyoming Cowboys (11/17 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:30 PM EST",
+      "away": {
+        "abbr": "SHSU",
+        "name": "Sam Houston Bearkats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wyo",
+        "name": "Wyoming Cowboys",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920720",
+      "line": "Eastern Washington Eagles @ Utah Utes (11/17 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 8:30 PM EST",
+      "away": {
+        "abbr": "EWU",
+        "name": "Eastern Washington Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Utah",
+        "name": "Utah Utes",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906851",
+      "line": "Michigan State Spartans @ Tennessee Volunteers (11/17 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 9:00 PM EST",
+      "away": {
+        "abbr": "MSU",
+        "name": "Michigan State Spartans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tenn",
+        "name": "Tennessee Volunteers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920426",
+      "line": "Old Dominion Monarchs @ Virginia Cavaliers (11/17 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 9:00 PM EST",
+      "away": {
+        "abbr": "ODU",
+        "name": "Old Dominion Monarchs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UVA",
+        "name": "Virginia Cavaliers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911521",
+      "line": "Alabama State Hornets @ UC Davis Aggies (11/17 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 9:00 PM EST",
+      "away": {
+        "abbr": "ALST",
+        "name": "Alabama State Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCDav",
+        "name": "UC Davis Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909787",
+      "line": "UNLV Rebels @ Kansas Jayhawks (11/17 - 9:30 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 9:30 PM EST",
+      "away": {
+        "abbr": "UNLV",
+        "name": "UNLV Rebels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Kan",
+        "name": "Kansas Jayhawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401934595",
+      "line": "Simon Fraser Red Leafs @ Washington Huskies (11/17 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 10:00 PM EST",
+      "away": {
+        "abbr": "SFRU",
+        "name": "Simon Fraser Red Leafs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wash",
+        "name": "Washington Huskies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921729",
+      "line": "UC Irvine Anteaters @ Stanford Cardinal (11/17 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 10:00 PM EST",
+      "away": {
+        "abbr": "UCI",
+        "name": "UC Irvine Anteaters",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Stan",
+        "name": "Stanford Cardinal",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917534",
+      "line": "Pacific Union PACIFIC UNION @ Pacific Tigers (11/17 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 10:00 PM EST",
+      "away": {
+        "abbr": "PUC",
+        "name": "Pacific Union PACIFIC UNION",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pacif",
+        "name": "Pacific Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917533",
+      "line": "Seattle U Redhawks @ California Baptist Lancers (11/17 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 10:00 PM EST",
+      "away": {
+        "abbr": "SeatU",
+        "name": "Seattle U Redhawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CBU",
+        "name": "California Baptist Lancers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925879",
+      "line": "Montana State Bobcats @ Gonzaga Bulldogs (11/17 - 11:00 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 11:00 PM EST",
+      "away": {
+        "abbr": "MTST",
+        "name": "Montana State Bobcats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Gonz",
+        "name": "Gonzaga Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920512",
+      "line": "West Virginia Mountaineers @ Auburn Tigers (11/17 - 11:59 PM EST)",
+      "completed": false,
+      "statusText": "11/17 - 11:59 PM EST",
+      "away": {
+        "abbr": "WVU",
+        "name": "West Virginia Mountaineers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Aub",
+        "name": "Auburn Tigers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
