@@ -4118,9 +4118,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909994",
-      line: "Orlando Magic @ Boston Celtics (5:51 - 1st)",
+      line: "Orlando Magic @ Boston Celtics (8:49 - 2nd)",
       completed: false,
-      statusText: "5:51 - 1st",
+      statusText: "8:49 - 2nd",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4136,9 +4136,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909995",
-      line: "Chicago Bulls @ Cleveland Cavaliers (4:40 - 1st)",
+      line: "Chicago Bulls @ Cleveland Cavaliers (7:32 - 2nd)",
       completed: false,
-      statusText: "4:40 - 1st",
+      statusText: "7:32 - 2nd",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -4154,9 +4154,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909996",
-      line: "Memphis Grizzlies @ Washington Wizards (5:44 - 1st)",
+      line: "Memphis Grizzlies @ Washington Wizards (9:57 - 2nd)",
       completed: false,
-      statusText: "5:44 - 1st",
+      statusText: "9:57 - 2nd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4172,9 +4172,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909997",
-      line: "Philadelphia 76ers @ Brooklyn Nets (11/16 - 7:30 PM EST)",
+      line: "Philadelphia 76ers @ Brooklyn Nets (9:46 - 1st)",
       completed: false,
-      statusText: "11/16 - 7:30 PM EST",
+      statusText: "9:46 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -4190,9 +4190,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909998",
-      line: "Houston Rockets @ Miami Heat (11/16 - 7:30 PM EST)",
+      line: "Houston Rockets @ Miami Heat (9:58 - 1st)",
       completed: false,
-      statusText: "11/16 - 7:30 PM EST",
+      statusText: "9:58 - 1st",
       away: {
         abbr: "HOU", name: "Houston Rockets", score: null,
         players: [
