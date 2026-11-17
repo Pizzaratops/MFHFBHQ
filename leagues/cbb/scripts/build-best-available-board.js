@@ -16,6 +16,13 @@
 //     Vorsaison + NIL, wo vorhanden (Gewicht 0,55, fällt bis 12 Spiele auf 0,22) — sie enthält
 //     beide schon, plus Team-Kontext und Minuten im neuen Kader. Auf die Vorsaison-Skala gebracht.
 //   - CBB_GONE (Senior/Grad der Vorsaison, nicht mehr im vollen ESPN-Kader) rutscht ans Ende.
+//  - seit 17.11.2026: Rest of Season (rosZ) — Reihenfolge des Boards. Echter Saison-z (aus
+//    live-projections-cbb.js zurückgerechnet) gemischt mit der Preseason-Projektion als Prior;
+//    Prior-Gewicht fest 8 Spiele (bewusst konservativ: ein Hot Start über 4 Spiele hebt den Wert
+//    nur zu einem Drittel; auch bei Neuen ohne Historie, deren Projektion niedrig ist).
+//    Beyaz will beim Waiver den besseren Spieler für den Rest der Saison, nicht den heißesten. rosG = Restspiele der Schule
+//    bis Ende der Fantasy-Saison. rosSit: kein Einsatz bei ≥ 3 Schulspielen oder zuletzt ≥ 2 verpasst
+//    → steht hinten (z − 10), bis er wieder spielt. compositeScore bleibt als Zusatz-Info.
 //  experience: Fr → rookie, So → sophomore (für den Filter der Seite), cls = Klasse.
 // ============================================================
 
@@ -43,6 +50,9 @@ const { LAST_SEASON_RANKINGS } = load(path.join(SPORT, 'last-season-rankings.js'
 const { LIVESCORES_SEASON } = load(path.join(SPORT, 'livescores-season.js'), ['LIVESCORES_SEASON']);
 const { CBB_PROJECTIONS, CBB_GONE } = load(path.join(SPORT, 'projections-cbb.js'), ['CBB_PROJECTIONS', 'CBB_GONE']);
 const GONE = new Set((CBB_GONE || []).map(([n, sc]) => key(n) + '|' + sc));
+const { CBB_PROJ_LIVE } = load(path.join(SPORT, 'live-projections-cbb.js'), ['CBB_PROJ_LIVE']);
+const { CBB_GAME_DATES } = load(path.join(SPORT, 'espn-rosters.js'), ['CBB_GAME_DATES']);
+const { CBB_SCHEDULE } = load(path.join(ROOT, 'data', 'fantasy-schedule.js'), ['CBB_SCHEDULE']);
 const { LIVESCORES_AGGREGATE } = load(path.join(SPORT, 'livescores-aggregate.js'), ['LIVESCORES_AGGREGATE']);
 if (!Array.isArray(CBB_PLAYER_POOL) || !CBB_PLAYER_POOL.length) {
   console.log('Kein player-pool.js — Fantrax-Sync zuerst laufen lassen. Board unverändert.');
@@ -89,6 +99,25 @@ const bestWorst = z => {
 };
 const r2 = x => Math.round(x * 100) / 100;
 
+// ---------- Rest of Season ----------
+const LIVE = new Map(Object.entries((CBB_PROJ_LIVE && CBB_PROJ_LIVE.p) || {}).map(([id, v]) => { const [n, sc] = id.split('|'); return [key(n) + '|' + sc, v]; }));
+const TG = (CBB_PROJ_LIVE && CBB_PROJ_LIVE.tg) || {};
+const todayET = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+const periods = (CBB_SCHEDULE && CBB_SCHEDULE.periods) || [];
+const seasonEnd = periods.length ? periods[periods.length - 1].end : '9999-12-31';
+const restGames = sc => ((CBB_GAME_DATES || {})[sc] || []).filter(d => d > todayET && d <= seasonEnd).length;
+function ros(name, school, pj) {
+  const k = key(name) + '|' + school, l = LIVE.get(k), pre = pj ? pj.z : null;
+  let z = null, act = null, sit = false;
+  if (l) {
+    act = pre != null ? (l.z * (l.w + l.g) - pre * l.w) / l.g : l.z;         // reiner Saison-z
+    const K = 8;
+    z = pre != null ? (pre * K + act * l.g) / (K + l.g) : act * l.g / (K + l.g);
+    sit = (l.miss || 0) >= 2;
+  } else if (pre != null) { z = pre; sit = (TG[school] || 0) >= 3; }
+  return { rosZ: z == null ? null : r2(z), rosG: restGames(school), rosSit: sit || null, zAct: act == null ? null : r2(act), gLive: l ? l.g : null };
+}
+
 const players = CBB_PLAYER_POOL.map(([fx, name, school, pos, elig, status]) => {
   const k = key(name);
   const s = SEASON.get(k), m = MONTH.get(k), w = WEEK.get(k), l = LAST.get(k), n = nil.get(k), pj = PROJ.get(k + '|' + school) || PROJ.get(k);
@@ -118,8 +147,12 @@ const players = CBB_PLAYER_POOL.map(([fx, name, school, pos, elig, status]) => {
     projZ: pj ? pj.z : null, projMin: pj ? pj.min : null, role: pj ? pj.role : null,
     statsWindow: s ? 'season' : l ? 'last-season' : null,
     compositeScore: r2(score), signalsUsed: sig.length, gone: gone || null,
+    ...ros(name, school, pj),
   };
-}).sort((a, b) => b.compositeScore - a.compositeScore);
+});
+// Reihenfolge = Rest of Season; ohne rosZ (keine Projektion, keine Spiele) nach Gesamtscore dahinter
+const ordKey = p => (p.rosZ == null ? -1000 + p.compositeScore : p.rosZ - (p.rosSit ? 10 : 0) - (p.gone ? 20 : 0));
+players.sort((a, b) => ordKey(b) - ordKey(a));
 players.forEach((p, i) => { p.rank = i + 1; });
 
 fs.writeFileSync(OUT, `// ============================================================
@@ -131,6 +164,7 @@ const BEST_AVAILABLE_BOARD = [
 ${players.map(p => '  ' + JSON.stringify(Object.fromEntries(Object.entries(p).filter(([, v]) => v != null && v !== '')))).join(',\n')}
 ];
 `, 'utf8');
+console.log(`ROS: ${players.filter(p => p.rosZ != null).length} mit rosZ, Restspiele bis ${seasonEnd} ab ${todayET}.`);
 console.log(`${OUT}: ${players.length} Spieler (${players.filter(p => p.signalsUsed).length} mit Signal).`);
 
 // ---------- Team-Stärke (für die Übersicht): Ø Board-Rang der 12 besten Kaderspieler ----------
