@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T06:01:07.956Z",
+  "updated": "2026-11-17T16:50:33.924Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -29,8 +29,9 @@ const NBA_INJURIES = {
     "Dereck Lively II": ["DAL","Out","GTD","2026-11-18","Foot",0,"2026-11-11"],
     "Dominick Barlow": ["PHI","Out","GTD","2026-11-18","Back",0,"2026-11-16"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Duncan Robinson": ["DET","Out","OUT","2026-11-18","Quadriceps",0,"2026-11-16"],
+    "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
+    "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-16"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","GTD","2026-11-17","Hip",0,"2026-11-16"],
