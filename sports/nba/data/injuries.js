@@ -1,14 +1,14 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T21:16:08.000Z",
+  "updated": "2026-11-17T21:42:13.448Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-15"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
-    "Asa Newell": ["ATL","Out","OUT","2027-02-25","Toe",0,"2026-11-12"],
+    "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
     "Austin Reaves": ["LAL","Out","OUT","2026-11-18","Heel",0,"2026-11-17"],
     "Bam Adebayo": ["MIA","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-17"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
@@ -22,6 +22,7 @@ const NBA_INJURIES = {
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-19","Heel",0,"2026-11-17"],
+    "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-20","Ankle",0,"2026-11-17"],
     "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-16"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
@@ -37,7 +38,7 @@ const NBA_INJURIES = {
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","OUT","2026-11-18","Hip",0,"2026-11-17"],
     "Isaiah Stewart": ["MEM","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-17"],
-    "Izaiyah Nelson": ["ORL","Out","GTD","2026-11-18","Ankle",0,"2026-09-28"],
+    "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-28","Ankle",0,"2026-11-17"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
@@ -80,7 +81,7 @@ const NBA_INJURIES = {
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-18","Finger",0,"2026-11-17"],
-    "Pelle Larsson": ["MIA","Out","GTD","2026-11-18","Illness",0,"2026-11-16"],
+    "Pelle Larsson": ["MIA","Out","","","",0,"2026-11-16"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-18","Head",0,"2026-11-17"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-16"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
