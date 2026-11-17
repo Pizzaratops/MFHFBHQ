@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T22:37:53.734Z",
+  "updated": "2026-11-17T22:51:14.842Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -66,7 +66,6 @@ const NBA_INJURIES = {
     "Kingston Flemings": ["ATL","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
-    "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-16"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Max Christie": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
@@ -91,14 +90,15 @@ const NBA_INJURIES = {
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Scottie Barnes": ["TOR","Day-To-Day","GTD","2026-11-17","Illness",0,"2026-11-17"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
-    "Sergio de Larrea": ["DAL","Out","GTD","2026-11-18","Knee",0,"2026-11-11"],
+    "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-11"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
-    "Tarik Biberovic": ["DAL","Out","GTD","2026-11-18","Heel",0,"2026-11-11"],
+    "Tarik Biberovic": ["DAL","Out","OUT","2026-11-30","Heel",0,"2026-11-17"],
     "Taurean Prince": ["DET","Out","OUT","2026-11-18","Knee",0,"2026-11-16"],
     "Thomas Sorber": ["OKC","Out","OUT","2026-11-20","Knee",0,"2026-11-13"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
+    "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-18","Groin",0,"2026-11-17"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-17"],
     "Trey Murphy III": ["NO","Out","OUT","2026-11-20","Knee",0,"2026-11-17"],
@@ -107,6 +107,7 @@ const NBA_INJURIES = {
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Walker Kessler": ["LAL","Out","OUT","2026-11-18","Lower Leg",0,"2026-11-17"],
+    "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-23","Foot",0,"2026-11-17"],
     "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"],
     "Zyon Pullin": ["MIN","Out","OUT","2026-11-19","Quadriceps",0,"2026-11-17"]
