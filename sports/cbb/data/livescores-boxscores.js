@@ -6946,9 +6946,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401927381",
-      line: "Hofstra Pride @ Murray State Racers (11/17 - 12:00 PM EST)",
+      line: "Hofstra Pride @ Murray State Racers (15:27 - 2nd)",
       completed: false,
-      statusText: "11/17 - 12:00 PM EST",
+      statusText: "15:27 - 2nd",
       away: {
         abbr: "HOF", name: "Hofstra Pride", score: null,
         players: [
