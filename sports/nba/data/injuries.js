@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-17T19:01:11.020Z",
+  "updated": "2026-11-17T19:18:28.215Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
@@ -53,7 +53,7 @@ const NBA_INJURIES = {
     "Jock Landale": ["ATL","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-16"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-22","Knee",0,"2026-11-15"],
-    "Jonathan Kuminga": ["MIN","Day-To-Day","GTD","2026-11-17","Shoulder",0,"2026-11-17"],
+    "Jonathan Kuminga": ["MIN","Out","OUT","2026-11-19","Shoulder",0,"2026-11-17"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Phillips": ["HOU","Day-To-Day","GTD","2026-11-17","Wrist",0,"2026-11-16"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
@@ -109,6 +109,7 @@ const NBA_INJURIES = {
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Walker Kessler": ["LAL","Out","OUT","2026-11-18","Lower Leg",0,"2026-11-17"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-23","Foot",0,"2026-11-17"],
-    "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"]
+    "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-16"],
+    "Zyon Pullin": ["MIN","Out","OUT","2026-11-19","Quadriceps",0,"2026-11-17"]
   }
 };
