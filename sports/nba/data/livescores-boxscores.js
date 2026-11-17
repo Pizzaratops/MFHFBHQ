@@ -4235,9 +4235,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909997",
-      line: "Philadelphia 76ers @ Brooklyn Nets (2:56 - 4th)",
+      line: "Philadelphia 76ers @ Brooklyn Nets (1:44 - 4th)",
       completed: false,
-      statusText: "2:56 - 4th",
+      statusText: "1:44 - 4th",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -4292,9 +4292,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909999",
-      line: "Portland Trail Blazers @ Minnesota Timberwolves (9:50 - 4th)",
+      line: "Portland Trail Blazers @ Minnesota Timberwolves (8:56 - 4th)",
       completed: false,
-      statusText: "9:50 - 4th",
+      statusText: "8:56 - 4th",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -4310,9 +4310,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910000",
-      line: "Golden State Warriors @ New Orleans Pelicans (End of 3rd)",
+      line: "Golden State Warriors @ New Orleans Pelicans (10:18 - 4th)",
       completed: false,
-      statusText: "End of 3rd",
+      statusText: "10:18 - 4th",
       away: {
         abbr: "GS", name: "Golden State Warriors", score: null,
         players: [
@@ -4328,9 +4328,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910001",
-      line: "Phoenix Suns @ Denver Nuggets (2:34 - 2nd)",
+      line: "Phoenix Suns @ Denver Nuggets (2:06 - 2nd)",
       completed: false,
-      statusText: "2:34 - 2nd",
+      statusText: "2:06 - 2nd",
       away: {
         abbr: "PHX", name: "Phoenix Suns", score: null,
         players: [

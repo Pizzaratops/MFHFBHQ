@@ -4607,7 +4607,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-16": {
-      games: ["Orlando Magic 115 @ Boston Celtics 105 (Final)","Chicago Bulls 115 @ Cleveland Cavaliers 126 (Final)","Memphis Grizzlies 136 @ Washington Wizards 120 (Final)","Philadelphia 76ers @ Brooklyn Nets (2:56 - 4th)","Houston Rockets 110 @ Miami Heat 128 (Final)","Portland Trail Blazers @ Minnesota Timberwolves (9:50 - 4th)","Golden State Warriors @ New Orleans Pelicans (End of 3rd)","Phoenix Suns @ Denver Nuggets (2:34 - 2nd)"],
+      games: ["Orlando Magic 115 @ Boston Celtics 105 (Final)","Chicago Bulls 115 @ Cleveland Cavaliers 126 (Final)","Memphis Grizzlies 136 @ Washington Wizards 120 (Final)","Philadelphia 76ers @ Brooklyn Nets (1:44 - 4th)","Houston Rockets 110 @ Miami Heat 128 (Final)","Portland Trail Blazers @ Minnesota Timberwolves (8:56 - 4th)","Golden State Warriors @ New Orleans Pelicans (10:18 - 4th)","Phoenix Suns @ Denver Nuggets (2:06 - 2nd)"],
       leagueAvg: { fg: 48.1, ft: 74.9 },
       players: [
         { rank: 1, name: "Donovan Mitchell", team: "CLE", min: 36, pts: 39, reb: 4, ast: 4, stl: 3, blk: 0, to: 3, tpm: 2, fgPct: 64, ftPct: 100, composite: 9.9, zScores: { pts: 3.494, reb: 0.078, ast: 0.507, stl: 2.073, blk: -0.538, tpm: 0.571, fgImpact: 2.96, ftImpact: 2.047, to: -1.285 } },
