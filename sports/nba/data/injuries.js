@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T02:33:08.482Z",
+  "updated": "2026-11-18T04:01:01.504Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -33,6 +33,7 @@ const NBA_INJURIES = {
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-17"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
+    "Dylan Harper": ["SA","Out","OUT","2026-11-19","Undisclosed",0,"2026-11-18"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
@@ -105,7 +106,7 @@ const NBA_INJURIES = {
     "Ty Jerome": ["MEM","Out","OUT","2026-11-19","Hip",0,"2026-11-17"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Walker Kessler": ["LAL","Out","OUT","2026-11-18","Lower Leg",0,"2026-11-17"],
+    "Walker Kessler": ["LAL","Out","OUT","2026-11-18","Lower Leg",0,"2026-11-18"],
     "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-23","Foot",0,"2026-11-17"],
     "Zyon Pullin": ["MIN","Out","OUT","2026-11-19","Quadriceps",0,"2026-11-17"]
