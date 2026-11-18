@@ -2,15 +2,14 @@
   "league": "ncaab",
   "date": "2026-11-17",
   "games": [
-    "UNLV Rebels 77 @ Kansas Jayhawks 102 (Final)",
-    "Montana State Bobcats @ Gonzaga Bulldogs (Halftime)",
-    "UC Irvine Anteaters @ Stanford Cardinal (2:36 - 2nd)",
-    "Seattle U Redhawks 83 @ California Baptist Lancers 54 (Final)",
+    "Montana State Bobcats 62 @ Gonzaga Bulldogs 74 (Final)",
+    "West Virginia Mountaineers @ Auburn Tigers (4:28 - 1st)",
     "Notre Dame Fighting Irish 78 @ Florida Gators 86 (Final)",
     "Michigan State Spartans 46 @ Tennessee Volunteers 61 (Final)",
     "Old Dominion Monarchs 65 @ Virginia Cavaliers 85 (Final)",
     "Illinois Fighting Illini 99 @ Duke Blue Devils 78 (Final)",
     "Rutgers Scarlet Knights 73 @ Houston Cougars 85 (Final)",
+    "UNLV Rebels 77 @ Kansas Jayhawks 102 (Final)",
     "Eastern Illinois Panthers 50 @ Vanderbilt Commodores 96 (Final)",
     "Kennesaw State Owls 91 @ Alabama Crimson Tide 109 (Final)",
     "Rider Broncs 48 @ Miami Hurricanes 95 (Final)",
@@ -44,11 +43,12 @@
     "Eastern Washington Eagles 71 @ Utah Utes 67 (Final)",
     "Alabama State Hornets 75 @ UC Davis Aggies 68 (Final)",
     "Simon Fraser Red Leafs 59 @ Washington Huskies 96 (Final)",
+    "UC Irvine Anteaters 61 @ Stanford Cardinal 65 (Final)",
     "Pacific Union Pioneers 41 @ Pacific Tigers 96 (Final)",
-    "West Virginia Mountaineers @ Auburn Tigers (11/17 - 11:59 PM EST)"
+    "Seattle U Redhawks 83 @ California Baptist Lancers 54 (Final)"
   ],
   "leagueAvg": {
-    "fg": 46.4,
-    "ft": 73.8
+    "fg": 46.1,
+    "ft": 74
   }
 }

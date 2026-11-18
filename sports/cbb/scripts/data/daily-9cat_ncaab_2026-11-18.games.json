@@ -273,6 +273,24 @@
       }
     },
     {
+      "id": "401920515",
+      "line": "Kansas Jayhawks @ TBD (11/18 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/18 - 7:30 PM EST",
+      "away": {
+        "abbr": "Kan",
+        "name": "Kansas Jayhawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      }
+    },
+    {
       "id": "401920761",
       "line": "Union Commonwealth (KY) Bulldogs @ Belmont Bruins (11/18 - 7:30 PM EST)",
       "completed": false,
@@ -718,6 +736,24 @@
       "home": {
         "abbr": "USF",
         "name": "San Francisco Dons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920516",
+      "line": "UNLV Rebels @ TBD (11/18 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/18 - 10:00 PM EST",
+      "away": {
+        "abbr": "UNLV",
+        "name": "UNLV Rebels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
         "score": null,
         "players": []
       }
