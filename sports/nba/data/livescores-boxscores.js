@@ -3857,9 +3857,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910002",
-      line: "New York Knicks @ Toronto Raptors (2:17 - 1st)",
+      line: "New York Knicks @ Toronto Raptors (9:16 - 2nd)",
       completed: false,
-      statusText: "2:17 - 1st",
+      statusText: "9:16 - 2nd",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -3875,9 +3875,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910003",
-      line: "Portland Trail Blazers @ Minnesota Timberwolves (11/17 - 8:00 PM EST)",
+      line: "Portland Trail Blazers @ Minnesota Timberwolves (9:31 - 1st)",
       completed: false,
-      statusText: "11/17 - 8:00 PM EST",
+      statusText: "9:31 - 1st",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -3893,9 +3893,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910004",
-      line: "Detroit Pistons @ San Antonio Spurs (11/17 - 8:00 PM EST)",
+      line: "Detroit Pistons @ San Antonio Spurs (10:17 - 1st)",
       completed: false,
-      statusText: "11/17 - 8:00 PM EST",
+      statusText: "10:17 - 1st",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
