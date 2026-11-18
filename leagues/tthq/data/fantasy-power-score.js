@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-18T21:49:37.378Z",
+  "generatedAt": "2026-11-18T22:01:27.440Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 15 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -111,12 +111,12 @@ const FANTASY_POWER_SCORE = {
         "pts": 6,
         "reb": 6,
         "ast": 6,
-        "stl": 7,
+        "stl": 6,
         "blk": 6,
         "tpm": 4,
         "fgPct": 7,
         "ftPct": 7,
-        "to": 7
+        "to": 8
       },
       "includedCount": 28,
       "projCount": 28,
@@ -239,7 +239,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 5,
         "tpm": 6,
         "fgPct": 8,
-        "ftPct": 10,
+        "ftPct": 11,
         "to": 2
       },
       "includedCount": 27,
@@ -272,7 +272,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 2,
         "tpm": 9,
         "fgPct": 3,
-        "ftPct": 11,
+        "ftPct": 12,
         "to": 9
       },
       "includedCount": 27,
@@ -287,29 +287,29 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 323.8,
-        "reb": 150.1,
-        "ast": 75.9,
-        "stl": 23.11,
-        "blk": 17.44,
-        "tpm": 33.9,
-        "to": 41.4,
-        "fgPct": 47.8,
-        "ftPct": 76.2
+        "pts": 320.8,
+        "reb": 148.6,
+        "ast": 74.9,
+        "stl": 22.73,
+        "blk": 17.34,
+        "tpm": 33.5,
+        "to": 40.8,
+        "fgPct": 47.9,
+        "ftPct": 76.4
       },
       "rank": {
         "pts": 7,
         "reb": 2,
         "ast": 7,
-        "stl": 6,
+        "stl": 7,
         "blk": 3,
         "tpm": 8,
         "fgPct": 2,
-        "ftPct": 12,
-        "to": 8
+        "ftPct": 10,
+        "to": 7
       },
-      "includedCount": 28,
-      "projCount": 28,
+      "includedCount": 27,
+      "projCount": 27,
       "skippedCount": 0,
       "skippedPlayers": []
     },
