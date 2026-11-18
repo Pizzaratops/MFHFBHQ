@@ -274,7 +274,7 @@
     },
     {
       "id": "401920515",
-      "line": "Kansas Jayhawks @ TBD (11/18 - 7:30 PM EST)",
+      "line": "Kansas Jayhawks @ West Virginia Mountaineers (11/18 - 7:30 PM EST)",
       "completed": false,
       "statusText": "11/18 - 7:30 PM EST",
       "away": {
@@ -284,8 +284,8 @@
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "WVU",
+        "name": "West Virginia Mountaineers",
         "score": null,
         "players": []
       }
@@ -742,7 +742,7 @@
     },
     {
       "id": "401920516",
-      "line": "UNLV Rebels @ TBD (11/18 - 10:00 PM EST)",
+      "line": "UNLV Rebels @ Auburn Tigers (11/18 - 10:00 PM EST)",
       "completed": false,
       "statusText": "11/18 - 10:00 PM EST",
       "away": {
@@ -752,8 +752,8 @@
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "Aub",
+        "name": "Auburn Tigers",
         "score": null,
         "players": []
       }

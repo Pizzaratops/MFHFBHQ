@@ -2,7 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-17",
   "games": [
-    "West Virginia Mountaineers @ Auburn Tigers (9:34 - 2nd)",
     "Notre Dame Fighting Irish 78 @ Florida Gators 86 (Final)",
     "Michigan State Spartans 46 @ Tennessee Volunteers 61 (Final)",
     "Old Dominion Monarchs 65 @ Virginia Cavaliers 85 (Final)",
@@ -45,10 +44,11 @@
     "Simon Fraser Red Leafs 59 @ Washington Huskies 96 (Final)",
     "UC Irvine Anteaters 61 @ Stanford Cardinal 65 (Final)",
     "Pacific Union Pioneers 41 @ Pacific Tigers 96 (Final)",
-    "Seattle U Redhawks 83 @ California Baptist Lancers 54 (Final)"
+    "Seattle U Redhawks 83 @ California Baptist Lancers 54 (Final)",
+    "West Virginia Mountaineers 76 @ Auburn Tigers 70 (Final)"
   ],
   "leagueAvg": {
     "fg": 46.1,
-    "ft": 74
+    "ft": 73.9
   }
 }
