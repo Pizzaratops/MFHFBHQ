@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T20:24:00.869Z",
+  "updated": "2026-11-18T21:21:25.076Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -10,7 +10,7 @@ const NBA_INJURIES = {
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
-    "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-18","Heel",0,"2026-11-18"],
+    "Austin Reaves": ["LAL","Out","OUT","2026-11-20","Heel",0,"2026-11-18"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-20","Foot",0,"2026-11-17"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-18","Finger",0,"2026-11-17"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-18"],
-    "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-18"],
+    "Precious Achiuwa": ["SAC","Day-To-Day","","","",0,"2026-11-18"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
@@ -108,7 +108,6 @@ const NBA_INJURIES = {
     "Ty Jerome": ["MEM","Out","OUT","2026-11-19","Hip",0,"2026-11-17"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Walker Kessler": ["LAL","Day-To-Day","GTD","2026-11-18","Lower Leg",0,"2026-11-18"],
     "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-23","Foot",0,"2026-11-17"],
     "Zyon Pullin": ["MIN","Day-To-Day","GTD","2026-11-19","Quadriceps",0,"2026-11-18"]
