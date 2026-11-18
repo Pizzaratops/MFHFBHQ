@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T22:55:41.207Z",
+  "updated": "2026-11-18T23:03:27.091Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -81,7 +81,7 @@ const NBA_INJURIES = {
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-18"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
-    "RJ Barrett": ["TOR","Day-To-Day","OUT","2026-11-20","Hamstring",0,"2026-11-18"],
+    "RJ Barrett": ["TOR","Out","OUT","2026-11-20","Hamstring",0,"2026-11-18"],
     "Ronald Holland II": ["DET","Out","OUT","2026-11-20","Knee",0,"2026-11-18"],
     "Ryan Rollins": ["MIL","Out","OUT","2026-11-19","Illness",0,"2026-11-18"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-18","Elbow",0,"2026-11-17"],
@@ -102,6 +102,7 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Ty Jerome": ["MEM","Out","OUT","2026-11-19","Hip",0,"2026-11-17"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
+    "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-18","Foot",0,"2026-11-18"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-23","Foot",0,"2026-11-17"],
