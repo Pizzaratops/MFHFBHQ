@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T18:45:42.785Z",
+  "updated": "2026-11-18T19:21:52.834Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -18,6 +18,7 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","GTD","2026-11-19","Achilles",0,"2026-11-12"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-18"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-20","Elbow",0,"2026-11-17"],
+    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
@@ -40,7 +41,7 @@ const NBA_INJURIES = {
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grayson Allen": ["CHA","Day-To-Day","GTD","2026-11-20","Concussion",0,"2026-11-18"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
-    "Isaiah Joe": ["DET","Out","GTD","2026-11-18","Hip",0,"2026-11-17"],
+    "Isaiah Joe": ["DET","Out","GTD","2026-11-18","Hip",0,"2026-11-18"],
     "Isaiah Stewart": ["MEM","Out","OUT","2026-11-19","Illness",0,"2026-11-17"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-28","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
@@ -86,7 +87,7 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
-    "Ronald Holland II": ["DET","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
+    "Ronald Holland II": ["DET","Out","OUT","2026-11-20","Knee",0,"2026-11-18"],
     "Ryan Rollins": ["MIL","Out","OUT","2026-11-19","Illness",0,"2026-11-18"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-18","Elbow",0,"2026-11-17"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
@@ -97,7 +98,7 @@ const NBA_INJURIES = {
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-27","Heel",0,"2026-11-17"],
-    "Taurean Prince": ["DET","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
+    "Taurean Prince": ["DET","Out","OUT","2026-11-20","Knee",0,"2026-11-18"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
     "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-18","Groin",0,"2026-11-17"],
