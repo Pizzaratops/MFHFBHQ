@@ -4796,7 +4796,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-17": {
-      games: ["New York Knicks 111 @ Toronto Raptors 102 (Final)","Portland Trail Blazers 105 @ Minnesota Timberwolves 106 (Final)","Detroit Pistons 105 @ San Antonio Spurs 93 (Final)","Utah Jazz @ LA Clippers (1:36 - 1st)","Charlotte Hornets @ Los Angeles Lakers (11/17 - 11:00 PM EST)"],
+      games: ["New York Knicks 111 @ Toronto Raptors 102 (Final)","Portland Trail Blazers 105 @ Minnesota Timberwolves 106 (Final)","Detroit Pistons 105 @ San Antonio Spurs 93 (Final)","Utah Jazz @ LA Clippers (6:18 - 3rd)","Charlotte Hornets @ Los Angeles Lakers (6:53 - 2nd)"],
       leagueAvg: { fg: 46.3, ft: 66.4 },
       players: [
         { rank: 1, name: "Ausar Thompson", team: "DET", min: 29, pts: 14, reb: 9, ast: 12, stl: 5, blk: 0, to: 2, tpm: 0, fgPct: 53.8, ftPct: 0, composite: 8.8, zScores: { pts: 0.4, reb: 1.266, ast: 3.705, stl: 4.481, blk: -0.565, tpm: -0.754, fgImpact: 0.841, ftImpact: 0, to: -0.578 } },
