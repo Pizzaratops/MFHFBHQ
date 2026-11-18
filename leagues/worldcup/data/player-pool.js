@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-18T13:02:51.745Z
+//  Stand: 2026-11-18T14:02:55.575Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -495,7 +495,7 @@ const WC_PLAYER_POOL = [
 ["076u9","Izaiyah Nelson","ORL","PF","PF,F,Flx","FA"],
 ["051oi","Ja Morant","POR","PG","PG,G,Flx","T"],
 ["06212","Jabari Smith","HOU","PF","SF,PF,C,F,Flx","T"],
-["0622k","Jabari Walker","PHI","SF","SF,PF,C,F,Flx","WW"],
+["0622k","Jabari Walker","PHI","SF","SF,PF,C,F,Flx","FA"],
 ["076tr","Jack Kayil","(N/A)","PG","PG,G,Flx","FA"],
 ["06muu","Jack McVeigh","(N/A)","PF","PF,F,Flx","FA"],
 ["062sr","Jack White","(N/A)","SF","SF,F,Flx","FA"],
@@ -582,7 +582,7 @@ const WC_PLAYER_POOL = [
 ["06304","Javante McCoy","(N/A)","SG","PG,SG,G,Flx","FA"],
 ["05qys","Javin DeLaurier","(N/A)","C","PF,C,F,Flx","FA"],
 ["062k1","Javon Freeman-Liberty","(N/A)","PG","PG,G,Flx","FA"],
-["06v8e","Javon Small","MEM","PG","PG,G,Flx","FA"],
+["06v8e","Javon Small","MEM","PG","PG,G,Flx","T"],
 ["06fzs","Javonte Cooke","(N/A)","SG","SG,G,Flx","FA"],
 ["0558v","Javonte Green","DET","SG","SG,G,SF,F,Flx","FA"],
 ["05wqq","Javonte Smart","(N/A)","PG","PG,G,Flx","FA"],
