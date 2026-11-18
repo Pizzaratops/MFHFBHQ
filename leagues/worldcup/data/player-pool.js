@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-18T16:02:55.671Z
+//  Stand: 2026-11-18T17:02:54.372Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -1035,7 +1035,7 @@ const WC_PLAYER_POOL = [
 ["06mly","Quinten Post","MEM","C","C,Flx","FA"],
 ["05qt5","R.J. Hampton","(N/A)","PG","PG,G,Flx","FA"],
 ["06mnw","RaeQuan Battle","(N/A)","SG","PG,SG,G,Flx","FA"],
-["076uq","Rafael Castro","(N/A)","C","C,Flx","FA"],
+["076uq","Rafael Castro","ATL","C","C,Flx","FA"],
 ["05ujx","RaiQuan Gray","(N/A)","PF","PF,F,Flx","FA"],
 ["07anw","Rashaun Agee","(N/A)","F","SF,PF,F,Flx","FA"],
 ["06v72","Rasheer Fleming","PHO","PF","PF,F,Flx","FA"],
@@ -1285,7 +1285,7 @@ const WC_PLAYER_POOL = [
 ["04ewc","Zach Collins","CHI","PF","PF,C,F,Flx","FA"],
 ["06mk1","Zach Edey","MEM","C","C,Flx","T"],
 ["03ams","Zach LaVine","SAC","SG","PG,SG,G,SF,F,Flx","T"],
-["0723g","Zack Austin","(N/A)","SG","SG,G,SF,PF,F,Flx","FA"],
+["0723g","Zack Austin","CLE","SG","SG,G,SF,PF,F,Flx","FA"],
 ["05qtz","Zavier Simpson","(N/A)","PG","PG,G,Flx","FA"],
 ["05quh","Zeke Nnaji","DEN","PF","PF,C,F,Flx","FA"],
 ["04qrt","Zhaire Smith","(N/A)","SG","SG,G,Flx","FA"],
