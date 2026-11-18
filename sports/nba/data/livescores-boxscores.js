@@ -3857,9 +3857,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910002",
-      line: "New York Knicks @ Toronto Raptors (4:10 - 1st)",
+      line: "New York Knicks @ Toronto Raptors (2:17 - 1st)",
       completed: false,
-      statusText: "4:10 - 1st",
+      statusText: "2:17 - 1st",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
