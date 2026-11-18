@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T17:29:28.937Z",
+  "updated": "2026-11-18T17:57:55.404Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -42,7 +42,7 @@ const NBA_INJURIES = {
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Joe": ["DET","Out","GTD","2026-11-18","Hip",0,"2026-11-17"],
     "Isaiah Stewart": ["MEM","Out","OUT","2026-11-19","Illness",0,"2026-11-17"],
-    "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-28","Ankle",0,"2026-11-17"],
+    "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-28","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
@@ -86,9 +86,11 @@ const NBA_INJURIES = {
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-18"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
+    "RJ Barrett": ["TOR","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
     "Ronald Holland II": ["DET","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-18","Elbow",0,"2026-11-17"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
+    "Scottie Barnes": ["TOR","Out","OUT","2026-11-20","Groin",0,"2026-11-18"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
