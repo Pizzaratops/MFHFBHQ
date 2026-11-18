@@ -6786,9 +6786,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909753",
-      line: "Jackson State Tigers @ Baylor Bears (11/18 - 12:00 PM EST)",
+      line: "Jackson State Tigers @ Baylor Bears (Halftime)",
       completed: false,
-      statusText: "11/18 - 12:00 PM EST",
+      statusText: "Halftime",
       away: {
         abbr: "JKST", name: "Jackson State Tigers", score: null,
         players: [
