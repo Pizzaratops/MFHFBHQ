@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T17:57:55.404Z",
+  "updated": "2026-11-18T18:20:14.010Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -11,7 +11,6 @@ const NBA_INJURIES = {
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
     "Austin Reaves": ["LAL","Day-To-Day","GTD","2026-11-18","Heel",0,"2026-11-18"],
-    "Bam Adebayo": ["MIA","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-17"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-20","Foot",0,"2026-11-17"],
@@ -26,6 +25,7 @@ const NBA_INJURIES = {
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-20","Ankle",0,"2026-11-17"],
     "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-18"],
+    "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-19","Foot",0,"2026-11-18"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
@@ -74,10 +74,9 @@ const NBA_INJURIES = {
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
-    "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-17"],
+    "Myron Gardner": ["MIA","Day-To-Day","OUT","2026-11-22","Hamstring",0,"2026-11-17"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
-    "Nikola Jovic": ["MIA","Day-To-Day","GTD","2026-11-18","Illness",0,"2026-11-17"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
@@ -88,6 +87,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
     "Ronald Holland II": ["DET","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
+    "Ryan Rollins": ["MIL","Out","OUT","2026-11-19","Illness",0,"2026-11-18"],
     "Sam Merrill": ["CLE","Out","GTD","2026-11-18","Elbow",0,"2026-11-17"],
     "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Scottie Barnes": ["TOR","Out","OUT","2026-11-20","Groin",0,"2026-11-18"],
