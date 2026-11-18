@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-18T04:03:24.015Z",
+  "generatedAt": "2026-11-18T06:03:22.979Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1154,7 +1154,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 11.4,
-          "projPoints": 15.6
+          "projPoints": 15.5
         },
         {
           "name": "Breece Hall",
@@ -1265,7 +1265,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 18.8,
           "last3AvgPoints": 18.9,
-          "projPoints": 14.3
+          "projPoints": 14.4
         },
         {
           "name": "Quinn Ewers",
@@ -1364,7 +1364,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4,
           "last3AvgPoints": 9.5,
-          "projPoints": 10.5
+          "projPoints": 10.4
         },
         {
           "name": "Hunter Henry",
@@ -1806,7 +1806,7 @@ const STATUS_REPORT_DATA = {
       "leagueName": "Foodball",
       "emoji": "💤",
       "teamName": "Milchreis",
-      "record": "0-0-0",
+      "record": "0-0-1",
       "players": [
         {
           "name": "Caleb Williams",
@@ -3543,7 +3543,7 @@ const STATUS_REPORT_DATA = {
       "leagueName": "Foodball",
       "emoji": "💤",
       "teamName": "TeamBeermode",
-      "record": "0-0-0",
+      "record": "0-0-1",
       "players": [
         {
           "name": "Cam Skattebo",
@@ -3631,7 +3631,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 15.5,
-          "projPoints": 19.4
+          "projPoints": 19.5
         },
         {
           "name": "Justin Jefferson",
@@ -3686,7 +3686,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 11.4,
-          "projPoints": 15.6
+          "projPoints": 15.5
         },
         {
           "name": "Jahmyr Gibbs",
@@ -3996,7 +3996,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 11.4,
-          "projPoints": 15.6
+          "projPoints": 15.5
         },
         {
           "name": "Jameson Williams",
@@ -4239,7 +4239,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.4,
           "last3AvgPoints": 6.4,
-          "projPoints": 8.7
+          "projPoints": 8.8
         },
         {
           "name": "Malik Willis",
