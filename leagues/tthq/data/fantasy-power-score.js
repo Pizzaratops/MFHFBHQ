@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-18T07:01:22.285Z",
+  "generatedAt": "2026-11-18T08:01:29.212Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 15 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,13 +97,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 324.1,
+        "pts": 323.9,
         "reb": 121.1,
         "ast": 76,
-        "stl": 23.11,
-        "blk": 14.96,
-        "tpm": 40.4,
-        "to": 40.8,
+        "stl": 23.07,
+        "blk": 14.95,
+        "tpm": 40.3,
+        "to": 40.9,
         "fgPct": 46.6,
         "ftPct": 78.1
       },
@@ -128,12 +128,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 348.3,
+        "pts": 347.5,
         "reb": 114.1,
-        "ast": 79.3,
-        "stl": 26.31,
+        "ast": 79.2,
+        "stl": 26.28,
         "blk": 12.83,
-        "tpm": 45.3,
+        "tpm": 45.2,
         "to": 38.5,
         "fgPct": 45.7,
         "ftPct": 79.1
@@ -176,7 +176,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 4,
         "blk": 8,
         "tpm": 1,
-        "fgPct": 11,
+        "fgPct": 10,
         "ftPct": 2,
         "to": 10
       },
@@ -221,13 +221,13 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 277.9,
-        "reb": 114.3,
-        "ast": 58.9,
-        "stl": 20.44,
-        "blk": 15.23,
-        "tpm": 35,
-        "to": 34.6,
+        "pts": 280.9,
+        "reb": 115.3,
+        "ast": 59.2,
+        "stl": 20.51,
+        "blk": 15.3,
+        "tpm": 35.6,
+        "to": 34.8,
         "fgPct": 46.6,
         "ftPct": 76.2
       },
@@ -239,7 +239,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 5,
         "tpm": 6,
         "fgPct": 8,
-        "ftPct": 11,
+        "ftPct": 10,
         "to": 2
       },
       "includedCount": 27,
@@ -272,7 +272,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 2,
         "tpm": 9,
         "fgPct": 3,
-        "ftPct": 12,
+        "ftPct": 11,
         "to": 9
       },
       "includedCount": 27,
@@ -287,15 +287,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 323.2,
-        "reb": 150,
+        "pts": 323.8,
+        "reb": 150.1,
         "ast": 75.9,
-        "stl": 23.14,
+        "stl": 23.11,
         "blk": 17.44,
-        "tpm": 33.6,
-        "to": 41.2,
-        "fgPct": 47.9,
-        "ftPct": 76.3
+        "tpm": 33.8,
+        "to": 41.4,
+        "fgPct": 47.8,
+        "ftPct": 76.2
       },
       "rank": {
         "pts": 7,
@@ -305,7 +305,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 3,
         "tpm": 8,
         "fgPct": 2,
-        "ftPct": 10,
+        "ftPct": 12,
         "to": 8
       },
       "includedCount": 28,
@@ -380,15 +380,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 350.4,
-        "reb": 121.8,
-        "ast": 89.1,
-        "stl": 25.25,
-        "blk": 14.69,
-        "tpm": 38.6,
-        "to": 45.6,
+        "pts": 350.5,
+        "reb": 121.6,
+        "ast": 89.2,
+        "stl": 25.21,
+        "blk": 14.68,
+        "tpm": 38.7,
+        "to": 45.7,
         "fgPct": 46.6,
-        "ftPct": 78.5
+        "ftPct": 78.6
       },
       "rank": {
         "pts": 3,
@@ -411,15 +411,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 258.8,
-        "reb": 85.1,
-        "ast": 58.6,
-        "stl": 17.88,
-        "blk": 9.81,
+        "pts": 258.4,
+        "reb": 84.6,
+        "ast": 58.7,
+        "stl": 18.03,
+        "blk": 9.69,
         "tpm": 30.1,
         "to": 35,
-        "fgPct": 46.3,
-        "ftPct": 78.5
+        "fgPct": 46.2,
+        "ftPct": 78.4
       },
       "rank": {
         "pts": 12,
@@ -428,7 +428,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 12,
         "blk": 12,
         "tpm": 11,
-        "fgPct": 10,
+        "fgPct": 11,
         "ftPct": 6,
         "to": 3
       },
