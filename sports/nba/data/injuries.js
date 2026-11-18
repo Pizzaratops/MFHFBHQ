@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T21:21:25.076Z",
+  "updated": "2026-11-18T21:33:48.813Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
@@ -25,7 +25,6 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Out","GTD","2026-11-19","Heel",0,"2026-11-17"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-20","Ankle",0,"2026-11-17"],
-    "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-18"],
     "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-19","Foot",0,"2026-11-18"],
@@ -82,7 +81,6 @@ const NBA_INJURIES = {
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-22","Ankle",0,"2026-10-24"],
     "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-18","Finger",0,"2026-11-17"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-18"],
-    "Precious Achiuwa": ["SAC","Day-To-Day","","","",0,"2026-11-18"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Day-To-Day","GTD","2026-11-18","Hamstring",0,"2026-11-18"],
