@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401910002",
-      "line": "New York Knicks @ Toronto Raptors (9:16 - 2nd)",
+      "line": "New York Knicks @ Toronto Raptors (39.4 - 2nd)",
       "completed": false,
-      "statusText": "9:16 - 2nd",
+      "statusText": "39.4 - 2nd",
       "away": {
         "abbr": "NY",
         "name": "New York Knicks",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401910003",
-      "line": "Portland Trail Blazers @ Minnesota Timberwolves (9:31 - 1st)",
+      "line": "Portland Trail Blazers @ Minnesota Timberwolves (1:53 - 1st)",
       "completed": false,
-      "statusText": "9:31 - 1st",
+      "statusText": "1:53 - 1st",
       "away": {
         "abbr": "POR",
         "name": "Portland Trail Blazers",
@@ -40,9 +40,9 @@
     },
     {
       "id": "401910004",
-      "line": "Detroit Pistons @ San Antonio Spurs (10:17 - 1st)",
+      "line": "Detroit Pistons @ San Antonio Spurs (2:34 - 1st)",
       "completed": false,
-      "statusText": "10:17 - 1st",
+      "statusText": "2:34 - 1st",
       "away": {
         "abbr": "DET",
         "name": "Detroit Pistons",
