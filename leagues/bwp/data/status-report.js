@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-18T00:03:32.699Z",
+  "generatedAt": "2026-11-18T02:03:26.423Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -845,7 +845,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 14.2
+          "projPoints": 14.1
         },
         {
           "name": "John Metchie III",
@@ -1529,7 +1529,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 26.5,
-          "projPoints": 4.5
+          "projPoints": 5.7
         }
       ],
       "flaggedCount": 0
@@ -1651,7 +1651,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17.5,
           "last3AvgPoints": 9.4,
-          "projPoints": 9.1
+          "projPoints": 10.3
         },
         {
           "name": "TreVeyon Henderson",
@@ -1684,7 +1684,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 12.5
+          "projPoints": 13
         },
         {
           "name": "Nicholas Singleton",
@@ -1739,7 +1739,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.5,
           "last3AvgPoints": 7.2,
-          "projPoints": 8.8
+          "projPoints": 8.7
         },
         {
           "name": "Kyler Murray",
@@ -1772,7 +1772,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.9,
           "last3AvgPoints": 4.7,
-          "projPoints": 8.9
+          "projPoints": 8.8
         },
         {
           "name": "Brenton Strange",
@@ -1916,7 +1916,7 @@ const STATUS_REPORT_DATA = {
           "flag": true,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 14.2
+          "projPoints": 14.1
         },
         {
           "name": "Nico Collins",
@@ -1927,7 +1927,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 24.4,
           "last3AvgPoints": 20,
-          "projPoints": 16.2
+          "projPoints": 16.1
         },
         {
           "name": "George Pickens",
@@ -2049,7 +2049,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17,
           "last3AvgPoints": 8.9,
-          "projPoints": 8.3
+          "projPoints": 9.5
         },
         {
           "name": "Colston Loveland",
@@ -2292,7 +2292,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 14.2
+          "projPoints": 14.1
         },
         {
           "name": "CeeDee Lamb",
@@ -2646,7 +2646,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 0.4,
           "last3AvgPoints": 4.5,
-          "projPoints": 6.7
+          "projPoints": 5.9
         },
         {
           "name": "Quentin Johnston",
@@ -3609,7 +3609,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.6,
           "last3AvgPoints": 10.8,
-          "projPoints": 4.8
+          "projPoints": 4.6
         },
         {
           "name": "Chris Boswell",
@@ -3642,7 +3642,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.4,
           "last3AvgPoints": 13.2,
-          "projPoints": 18.8
+          "projPoints": 18.5
         },
         {
           "name": "Jordan Love",
@@ -3853,7 +3853,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.4,
           "last3AvgPoints": 4.3,
-          "projPoints": 7.7
+          "projPoints": 6.9
         },
         {
           "name": "Tyrone Tracy Jr.",
@@ -4272,7 +4272,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 28.5,
-          "projPoints": 5.3
+          "projPoints": 6.7
         },
         {
           "name": "Jordan Addison",
