@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-18T01:02:23.124Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-18T02:02:21.754Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -2416,11 +2416,12 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Braeden Brenn","nbaTeam":"Marq","pos":"F","cls":"So","experience":"sophomore","minutesAvg":3.1,"projZ":-6.56,"projMin":3.1,"role":"Tiefe","compositeScore":-2.12,"signalsUsed":1,"rosZ":-7.09,"rosG":26,"rosSit":true,"zAct":-9.19,"gLive":2,"rank":2410},
   {"name":"Quin Berger","nbaTeam":"Mia-FL","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":2.4,"z30":-4.76,"bestCat30":"TO","worstCat30":"PTS","lastSeasonRank":2944,"projZ":-7.14,"projMin":2.4,"role":"Tiefe","statsWindow":"last-season","compositeScore":-2.26,"signalsUsed":1,"rosZ":-7.14,"rosG":23,"rosSit":true,"rank":2411},
   {"name":"Niccolo Kalischer-Stork","nbaTeam":"SMU","pos":"G","cls":"Jr","experience":"veteran","minutesAvg":3.8,"projZ":-6.92,"projMin":3.8,"role":"Tiefe","compositeScore":-2.21,"signalsUsed":1,"rosZ":-7.68,"rosG":25,"rosSit":true,"zAct":-13.77,"gLive":1,"rank":2412},
-  {"name":"Jeremiah Cherry","nbaTeam":"SDSU","pos":"F","cls":"–","experience":"veteran","nilValue":1,"compositeScore":0.4,"signalsUsed":1,"rosG":22,"rank":2413},
-  {"name":"Dillon Hunter","nbaTeam":"Clem","pos":"G","experience":"veteran","minutesAvg":28.6,"z30":0.68,"bestCat30":"AST","worstCat30":"BLK","lastSeasonRank":1226,"statsWindow":"last-season","compositeScore":-19.77,"signalsUsed":1,"gone":true,"rosG":23,"rank":2414},
-  {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rosG":26,"rank":2415},
-  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":0,"rank":2416},
-  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":23,"rank":2417},
-  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":25,"rank":2418},
-  {"name":"Savo Drezgic","nbaTeam":"PSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":24,"rank":2419}
+  {"name":"RJ Luis","nbaTeam":"LSU","pos":"G","cls":"G League Dropout","experience":"veteran","nilValue":18,"compositeScore":1.2,"signalsUsed":1,"rosG":26,"rank":2413},
+  {"name":"Jeremiah Cherry","nbaTeam":"SDSU","pos":"F","cls":"–","experience":"veteran","nilValue":1,"compositeScore":0.4,"signalsUsed":1,"rosG":22,"rank":2414},
+  {"name":"Dillon Hunter","nbaTeam":"Clem","pos":"G","experience":"veteran","minutesAvg":28.6,"z30":0.68,"bestCat30":"AST","worstCat30":"BLK","lastSeasonRank":1226,"statsWindow":"last-season","compositeScore":-19.77,"signalsUsed":1,"gone":true,"rosG":23,"rank":2415},
+  {"name":"Tae Davis","nbaTeam":"Okla","pos":"F","experience":"veteran","minutesAvg":29.2,"z30":0.16,"bestCat30":"REB","worstCat30":"3PM","lastSeasonRank":1399,"statsWindow":"last-season","compositeScore":-19.95,"signalsUsed":1,"gone":true,"rosG":26,"rank":2416},
+  {"name":"064ez","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":0,"rank":2417},
+  {"name":"Jason Drake","nbaTeam":"Tem","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":23,"rank":2418},
+  {"name":"Jordi Rodriguez","nbaTeam":"UNCC","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":25,"rank":2419},
+  {"name":"Savo Drezgic","nbaTeam":"PSU","pos":"G","experience":"veteran","compositeScore":-99,"signalsUsed":0,"rosG":24,"rank":2420}
 ];
