@@ -1,12 +1,12 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T21:33:48.813Z",
+  "updated": "2026-11-18T22:34:10.064Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
     "Amen Thompson": ["HOU","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-17"],
-    "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-18","Hip",0,"2026-11-17"],
+    "Andrew Nembhard": ["IND","Out","OUT","2026-11-20","Hip",0,"2026-11-18"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
@@ -50,7 +50,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
-    "Jaylen Brown": ["PHI","Out","OUT","2026-11-21","Hamstring",0,"2026-11-17"],
+    "Jaylen Brown": ["PHI","Out","OUT","2026-11-21","Hamstring",0,"2026-11-18"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","GTD","2026-11-18","Back",0,"2026-11-17"],
     "Jaylon Tyson": ["CLE","Out","OUT","2026-11-20","Ankle",0,"2026-11-18"],
