@@ -4796,7 +4796,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-17": {
-      games: ["New York Knicks 111 @ Toronto Raptors 102 (Final)","Portland Trail Blazers 105 @ Minnesota Timberwolves 106 (Final)","Detroit Pistons 105 @ San Antonio Spurs 93 (Final)","Utah Jazz 132 @ LA Clippers 107 (Final)","Charlotte Hornets @ Los Angeles Lakers (End of 3rd)"],
+      games: ["New York Knicks 111 @ Toronto Raptors 102 (Final)","Portland Trail Blazers 105 @ Minnesota Timberwolves 106 (Final)","Detroit Pistons 105 @ San Antonio Spurs 93 (Final)","Utah Jazz 132 @ LA Clippers 107 (Final)","Charlotte Hornets @ Los Angeles Lakers (8.8 - OT)"],
       leagueAvg: { fg: 47.4, ft: 69.7 },
       players: [
         { rank: 1, name: "Brice Sensabaugh", team: "UTAH", min: 35, pts: 40, reb: 11, ast: 5, stl: 0, blk: 1, to: 2, tpm: 8, fgPct: 76.2, ftPct: 0, composite: 12.65, zScores: { pts: 3.236, reb: 1.917, ast: 0.932, stl: -0.718, blk: 0.688, tpm: 3.8, fgImpact: 4.347, ftImpact: -0.911, to: -0.649 } },

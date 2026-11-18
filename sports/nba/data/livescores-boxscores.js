@@ -4002,9 +4002,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910005",
-      line: "Charlotte Hornets @ Los Angeles Lakers (End of 3rd)",
+      line: "Charlotte Hornets @ Los Angeles Lakers (8.8 - OT)",
       completed: false,
-      statusText: "End of 3rd",
+      statusText: "8.8 - OT",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
