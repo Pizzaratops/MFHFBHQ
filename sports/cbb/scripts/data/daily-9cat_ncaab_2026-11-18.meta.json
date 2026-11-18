@@ -2,8 +2,8 @@
   "league": "ncaab",
   "date": "2026-11-18",
   "games": [
-    "Rutgers Scarlet Knights @ Notre Dame Fighting Irish (0:15 - 2nd)",
     "Jackson State Tigers 55 @ Baylor Bears 104 (Final)",
+    "Rutgers Scarlet Knights 100 @ Notre Dame Fighting Irish 110 (Final/OT)",
     "Houston Cougars @ Florida Gators (11/18 - 4:30 PM EST)",
     "IU Indianapolis Jaguars @ Penn State Nittany Lions (11/18 - 6:30 PM EST)",
     "Navy Midshipmen @ Georgetown Hoyas (11/18 - 6:30 PM EST)",
@@ -48,7 +48,7 @@
     "Cal State Fullerton Titans @ UCLA Bruins (11/18 - 10:30 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 57.6,
-    "ft": 77.8
+    "fg": 58.4,
+    "ft": 73.9
   }
 }
