@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-18T21:45:32.903Z",
+  "generatedAt": "2026-11-18T22:03:23.601Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -33,7 +33,7 @@ const STATUS_REPORT_DATA = {
           "name": "Garrett Wilson",
           "pos": "WR",
           "nfl": "NYJ",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 15.6,
@@ -99,7 +99,7 @@ const STATUS_REPORT_DATA = {
           "name": "Ollie Gordon II",
           "pos": "RB",
           "nfl": "MIA",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 15.5,
@@ -132,7 +132,7 @@ const STATUS_REPORT_DATA = {
           "name": "Omar Cooper Jr.",
           "pos": "WR",
           "nfl": "NYJ",
-          "isStarter": false,
+          "isStarter": true,
           "status": "Q",
           "flag": false,
           "lastGamePoints": 0,
@@ -143,7 +143,7 @@ const STATUS_REPORT_DATA = {
           "name": "Seth McGowan",
           "pos": "RB",
           "nfl": "IND",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 13.7,
@@ -287,7 +287,7 @@ const STATUS_REPORT_DATA = {
           "name": "Rome Odunze",
           "pos": "WR",
           "nfl": "CHI",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 0,
@@ -397,7 +397,7 @@ const STATUS_REPORT_DATA = {
           "name": "Jonah Coleman",
           "pos": "RB",
           "nfl": "DEN",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -453,7 +453,7 @@ const STATUS_REPORT_DATA = {
           "name": "Tucker Kraft",
           "pos": "TE",
           "nfl": "GB",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 2.9,
@@ -2760,17 +2760,6 @@ const STATUS_REPORT_DATA = {
           "projPoints": 20
         },
         {
-          "name": "Kyle Pitts Sr.",
-          "pos": "TE",
-          "nfl": "ATL",
-          "isStarter": false,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 7,
-          "last3AvgPoints": 5,
-          "projPoints": 0
-        },
-        {
           "name": "Emeka Egbuka",
           "pos": "WR",
           "nfl": "TB",
@@ -2912,6 +2901,17 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": 20.8
+        },
+        {
+          "name": "Courtland Sutton",
+          "pos": "WR",
+          "nfl": "DEN",
+          "isStarter": false,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": null,
+          "projPoints": 10.3
         }
       ],
       "flaggedCount": 0
