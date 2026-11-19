@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T21:24:42.084Z",
+  "updated": "2026-11-19T21:46:23.893Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -18,7 +18,7 @@ const NBA_INJURIES = {
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-21","Achilles",0,"2026-11-18"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-18"],
-    "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-17"],
+    "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
     "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-20","Knee",0,"2026-11-19"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -26,7 +26,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Out","OUT","2026-11-21","Heel",0,"2026-11-19"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","GTD","2026-11-20","Ankle",0,"2026-11-17"],
-    "Collin Murray-Boyles": ["TOR","Day-To-Day","GTD","2026-11-20","Illness",0,"2026-11-19"],
+    "Collin Murray-Boyles": ["TOR","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
     "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-21","Hamstring",0,"2026-11-19"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-19","Foot",0,"2026-11-18"],
@@ -37,6 +37,7 @@ const NBA_INJURIES = {
     "Draymond Green": ["GS","Out","OUT","2026-11-22","Rest",0,"2026-11-19"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
+    "Ebuka Okorie": ["DET","Out","OUT","2026-11-22","Oblique",0,"2026-11-19"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-20","Back",0,"2026-11-17"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
@@ -86,8 +87,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
     "Robert Williams III": ["POR","Out","OUT","2026-11-21","Rest",0,"2026-11-18"],
-    "Ronald Holland II": ["DET","Day-To-Day","GTD","2026-11-20","Knee",0,"2026-11-19"],
-    "Scottie Barnes": ["TOR","Day-To-Day","GTD","2026-11-20","Groin",0,"2026-11-19"],
+    "Ronald Holland II": ["DET","Out","OUT","2026-11-22","Knee",0,"2026-11-19"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
