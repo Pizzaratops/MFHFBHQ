@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401910007",
-      "line": "Memphis Grizzlies @ Cleveland Cavaliers (5:09 - 2nd)",
+      "line": "Memphis Grizzlies @ Cleveland Cavaliers (3:32 - 2nd)",
       "completed": false,
-      "statusText": "5:09 - 2nd",
+      "statusText": "3:32 - 2nd",
       "away": {
         "abbr": "MEM",
         "name": "Memphis Grizzlies",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401910008",
-      "line": "Houston Rockets @ Indiana Pacers (1:51 - 2nd)",
+      "line": "Houston Rockets @ Indiana Pacers (7.2 - 2nd)",
       "completed": false,
-      "statusText": "1:51 - 2nd",
+      "statusText": "7.2 - 2nd",
       "away": {
         "abbr": "HOU",
         "name": "Houston Rockets",
@@ -40,9 +40,9 @@
     },
     {
       "id": "401910009",
-      "line": "Milwaukee Bucks @ Miami Heat (8:28 - 2nd)",
+      "line": "Milwaukee Bucks @ Miami Heat (7:26 - 2nd)",
       "completed": false,
-      "statusText": "8:28 - 2nd",
+      "statusText": "7:26 - 2nd",
       "away": {
         "abbr": "MIL",
         "name": "Milwaukee Bucks",
@@ -58,9 +58,9 @@
     },
     {
       "id": "401910010",
-      "line": "Philadelphia 76ers @ Orlando Magic (3:20 - 2nd)",
+      "line": "Philadelphia 76ers @ Orlando Magic (2:56 - 2nd)",
       "completed": false,
-      "statusText": "3:20 - 2nd",
+      "statusText": "2:56 - 2nd",
       "away": {
         "abbr": "PHI",
         "name": "Philadelphia 76ers",
@@ -76,9 +76,9 @@
     },
     {
       "id": "401910011",
-      "line": "Chicago Bulls @ Brooklyn Nets (2:10 - 1st)",
+      "line": "Chicago Bulls @ Brooklyn Nets (40.1 - 1st)",
       "completed": false,
-      "statusText": "2:10 - 1st",
+      "statusText": "40.1 - 1st",
       "away": {
         "abbr": "CHI",
         "name": "Chicago Bulls",
@@ -94,9 +94,9 @@
     },
     {
       "id": "401910012",
-      "line": "Washington Wizards @ Toronto Raptors (3:53 - 1st)",
+      "line": "Washington Wizards @ Toronto Raptors (3:21 - 1st)",
       "completed": false,
-      "statusText": "3:53 - 1st",
+      "statusText": "3:21 - 1st",
       "away": {
         "abbr": "WSH",
         "name": "Washington Wizards",
