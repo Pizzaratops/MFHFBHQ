@@ -10,6 +10,7 @@
 //      applies: { sport: ['nfl'], scoring: ['points'] },  // optional
 //      data: ['teams', 'weekly-scores'],                  // Datendateien (oder league => [...])
 //      when: league => !!league.x,                        // optional, Zusatzbedingung
+//      nav: false,                 // optional: nicht in der Navigation (z. B. alte Route, leitet um)
 //      title: ctx => '…',          // optional, dynamischer Seitentitel
 //      render(ctx) { return '<html>'; }                   // oder Promise
 //    });
@@ -54,7 +55,7 @@ MFHFB.pages = (function () {
   }
 
   function forLeague(league) {
-    const pages = list.filter(p => applies(p, league));
+    const pages = list.filter(p => p.nav !== false && applies(p, league)); // nav:false = nur per Link/Umleitung erreichbar
     return SECTIONS
       .map(s => ({ ...s, pages: pages.filter(p => p.section === s.key) }))
       .filter(s => s.pages.length);

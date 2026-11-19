@@ -7,7 +7,7 @@
 //  #/cbb/cbbdyn                  Dynasty-Rang (Projektion × Restjahre × NBA-Draft-Risiko)
 //  #/cbb/cbbtrade[/finder]       Trade Analyzer + Trade Finder (Dynasty- oder Jetzt-Wert)
 //  #/cbb/cbbplaner[/<Woche>]     Matchup-Planer: beide Gegner der Woche, Kategorien, Aufstellungs-Tipps
-//  #/cbb/cbbdna[/<Name|Schule>]   NBA-DNA: Chance auf NBA-Rotation/Fantasy-Top-150, NBA-Kategorie-Profil, historische Vergleiche
+//  #/cbb/cbbdna                  → leitet seit 19.11.2026 auf #/cbb/collegescouting um (NBA-DNA ist dort integriert)
 //  #/cbb/cbbradar                Fantasy Radar: 9-Cat-Perzentile + College-Kontext, Vorsaison, Vergleich, Profil-Zwillinge
 //
 //  Daten:
@@ -711,7 +711,7 @@
         ${row('Dynasty', p => `${(p.dyn || 0).toFixed(1)}${p.leave ? ` <small class="muted">Draft ${Math.round(p.leave * 100)} %</small>` : ''}`)}
         ${row('Fantasy-Team', p => (p.fx ? tLink(ctx, I.owner(p.name)) : '—'))}
       </tbody></table></div>
-      ${sel.length === 1 && data.CBB_NBA_DNA && data.CBB_NBA_DNA.p[pid(main)] ? (() => { const d = data.CBB_NBA_DNA.p[pid(main)]; const t = dnaTags(d.nz); return `<div class="note">🧬 <b>NBA-DNA:</b> ${pctS(d.rot)} NBA-Rotation, ${pctS(d.fan)} Fantasy-Top-150${t.plus.length ? ` · nimmt mit: ${t.plus.join(', ')}` : ''} · ähnlich: ${e(d.comps[0][0])} (${e(compOut(d.comps[0]))}). <a href="${ctx.href('cbbdna', pid(main))}">Details →</a></div>`; })() : ''}
+      ${sel.length === 1 && data.CBB_NBA_DNA && data.CBB_NBA_DNA.p[pid(main)] ? (() => { const d = data.CBB_NBA_DNA.p[pid(main)]; const t = dnaTags(d.nz); return `<div class="note">🧬 <b>NBA-DNA:</b> ${pctS(d.rot)} NBA-Rotation, ${pctS(d.fan)} Fantasy-Top-150${t.plus.length ? ` · nimmt mit: ${t.plus.join(', ')}` : ''} · ähnlich: ${e(d.comps[0][0])} (${e(compOut(d.comps[0]))}). <a href="${ctx.href('collegescouting', encodeURIComponent(main.name))}">Details →</a></div>`; })() : ''}
       ${sel.length === 1 ? `<div class="note">🏫 ${e(c.name || main.team)}: ${styleNotes(c).slice(0, 3).join(' ') || 'Stil nah am D-I-Schnitt.'}</div>` : ''}
       <div class="cbbm-trade"><div class="card"><div class="card-head"><h2>👯 Profil-Zwillinge (frei)</h2><span class="muted small">ähnliches Kategorie-Profil wie ${e(main.name)}</span></div>
           <div class="table-wrap"><table class="table compact"><thead><tr><th>Spieler</th><th>Schule</th><th class="num" title="100 = identisches Profil">Match</th><th class="num">z</th><th></th><th></th></tr></thead><tbody>${freeTw.map(twRow).join('') || '<tr><td colspan="6" class="muted">—</td></tr>'}</tbody></table></div></div>
@@ -758,7 +758,7 @@
     L = L.slice(0, 300);
     if (!L.length) return `<tr><td colspan="9">${ui.empty('Keine Treffer', '', '🔎')}</td></tr>`;
     return L.map((x, i) => { const t = dnaTags(x.d.nz), c = x.d.comps[0];
-      return `<tr><td class="num">${i + 1}</td><td class="strong nba-sticky"><a href="${ctx.href('cbbdna', pid(x.p))}">${e(x.p.name)}</a> ${x.p.cls ? `<span class="nba-age">${CLS[x.p.cls] || ''}</span>` : ''}</td>
+      return `<tr><td class="num">${i + 1}</td><td class="strong nba-sticky"><a href="${ctx.href('collegescouting', encodeURIComponent(x.p.name))}">${e(x.p.name)}</a> ${x.p.cls ? `<span class="nba-age">${CLS[x.p.cls] || ''}</span>` : ''}</td>
         <td>${schoolLink(ctx, x.p.team)} <small class="muted">${e(x.p.pos || '')}</small></td>
         <td class="num"><b class="${chanceCls(x.d.rot)}">${pctS(x.d.rot)}</b></td><td class="num"><b class="${chanceCls(x.d.fan * 1.6)}">${pctS(x.d.fan)}</b></td>
         <td class="small">${t.plus.map(l => `<span class="up strong">${l}</span>`).join(' ')}${t.minus.length ? ' · ' + t.minus.map(l => `<span class="down">${l}</span>`).join(' ') : ''}</td>
@@ -776,7 +776,7 @@
       const t = dnaTags(d.nz, 3);
       const bar = ([k, l]) => { const v = d.nz[k], w = Math.max(-50, Math.min(50, v * 33)); return `<div class="cbbm-bar" title="erwartetes NBA-z ${l}: ${sgn(v)} (0 = durchschnittlicher NBA-Rotationsspieler) · Translation r = ${M.catR[k]}"><span>${l}</span><div class="cbbm-track"><i class="${w >= 0 ? 'pos' : 'neg'}" style="${w >= 0 ? 'left:50%' : `left:${50 + w}%`};width:${Math.abs(w)}%"></i></div><b>${sgn(v)}</b></div>`; };
       const lastSeason = `${d.season - 1}/${String(d.season).slice(2)}`;
-      return `<a class="back" href="${ctx.href('cbbdna')}">← NBA-DNA</a>
+      return `<a class="back" href="${ctx.href('collegescouting')}">← NBA-DNA</a>
         <div class="page-head"><h1 class="page-title display">🧬 ${e(p.name)}</h1>
           <div class="page-sub">${e(((data.CBB_TEAM_CONTEXT || {})[p.team] || {}).name || p.team)} · ${e(p.pos || '')}${p.cls ? ' · ' + CLS[p.cls] : ''} · Basis: College-Saison ${lastSeason} (${d.yr}. College-Jahr, ${d.min} Min.) — „wenn er danach in die NBA ginge“</div></div>
         <div class="cbbm-dnahead">
@@ -822,7 +822,10 @@
   const D = ['teams', '?rosters-live', 'sport:projections-cbb', '?sport:live-projections-cbb'];
   MFHFB.pages.register({ id: 'cbbproj', section: 'players', label: 'Projections', icon: '🔮', applies: A, data: D.concat(['?sport:team-context']), title: () => 'Projections 2026/27', render: projPage, mount: projMount });
   MFHFB.pages.register({ id: 'cbbradar', section: 'players', label: 'Fantasy Radar', icon: '🕸️', applies: A, data: D.concat(['?sport:team-context', '?sport:last-season-rankings', '?sport:nba-dna']), title: () => 'Fantasy Radar', render: radarPage, mount: radarMount });
-  MFHFB.pages.register({ id: 'cbbdna', section: 'players', label: 'NBA-DNA', icon: '🧬', applies: A, data: D.concat(['sport:nba-dna', '?sport:team-context']), title: ({ data, params }) => (params[0] ? params[0].split('|')[0] + ' · NBA-DNA' : 'NBA-DNA'), render: dnaPage, mount: dnaMount });
+  // NBA-DNA ist seit 19.11.2026 Teil von „College Scouting“ (tools/nba-collegescouting.js, TTHQ + CBB).
+  // Alte Links #/cbb/cbbdna[/<Name|Schule>] leiten dorthin um; dnaPage/dnaMount bleiben als Referenz.
+  MFHFB.pages.register({ id: 'cbbdna', nav: false, section: 'players', label: 'NBA-DNA', icon: '🧬', applies: A, data: [], title: () => 'College Scouting',
+    render: ({ params }) => { const n = params[0] ? decodeURIComponent(params[0]).split('|')[0] : ''; setTimeout(() => location.replace('#/cbb/collegescouting' + (n ? '/' + encodeURIComponent(n) : '')), 0); return '<div class="muted cs-pad">Weiter zu College Scouting …</div>'; } });
   MFHFB.pages.register({ id: 'cbbschulen', section: 'teams', label: 'Schulen & Kontext', icon: '🏫', applies: A, data: D.concat(['sport:team-context']), title: ({ data, params }) => (params[0] && ((data.CBB_TEAM_CONTEXT || {})[params[0]] || {}).name) || 'Schulen & Kontext', render: schoolPage });
   MFHFB.pages.register({ id: 'cbbdyn', section: 'dynasty', label: 'Dynasty Rankings', icon: '🏆', applies: A, data: D.concat(['rankings']), title: () => 'Dynasty Rankings', render: dynPage, mount: dynMount });
   MFHFB.pages.register({ id: 'cbbtrade', section: 'trade', label: 'Trade Analyzer', icon: '⚖️', applies: A, data: D, title: ({ params }) => (params[0] === 'finder' ? 'Trade Finder' : 'Trade Analyzer'), render: tradePage, mount: tradeMount });

@@ -22,7 +22,9 @@ const path = require('path');
 const https = require('https');
 const zlib = require('zlib');
 
-const OUT = path.join(__dirname, 'model', 'cache', 'torvik');
+// TORVIK_DIR: anderes Ziel (CBB Sync legt die laufende Saison in ein Temp-Verzeichnis, damit das
+// Repo nicht täglich eine neue Rohdatei bekommt — committet wird nur college-prospects.js).
+const OUT = process.env.TORVIK_DIR || path.join(__dirname, 'model', 'cache', 'torvik');
 // Spaltenindex der Barttorvik-CSV (ohne Kopfzeile, Stand 11/2026) → eigener Name
 const COLS = [
   [0, 'name'], [1, 'team'], [2, 'conf'], [3, 'gp'], [4, 'minPct'], [5, 'ortg'], [6, 'usg'],

@@ -1,0 +1,216 @@
+#!/usr/bin/env node
+// ============================================================
+//  College Scouting (Basketball): aktuelle Prospects bewerten
+// ============================================================
+//  Liest  sports/cbb/scripts/model/prospect-model.json   (train-prospect-model.py, lokal/jährlich)
+//         sports/cbb/scripts/model/cache/torvik/torvik_<Saison>.csv.gz (+ Vorjahr)
+//  Schreibt sports/cbb/data/college-prospects.js → COLLEGE_PROSPECTS
+//  Läuft täglich im CBB Sync nach sync-torvik.js. Keine npm-Abhängigkeiten.
+//
+//  Je Prospect:
+//   📈 Draft Range — P(gedraftet, „wenn er nach dieser Saison ginge“) + erwarteter NBA-Pick
+//      mit Spanne (Ridge auf ln(Pick) + Residuen-Quantile aus dem Training). Zwei Modelle:
+//      Produktion (laufende Saison) und Vorsaison (Recruiting, Alter, Größe, Vorjahr), überblendet
+//      nach Saison-Minuten (Produktionsmodell voll ab model.pre.blendMin Minuten).
+//   🎓 College Production Comp — „Produziert wie …“: Mahalanobis-Distanz auf reinen
+//      Produktions-Raten, nur innerhalb der Rollen-Gruppe (Guard/Wing/Big), Pool = Saisons
+//      späterer Draftees und Top-College-Spieler 2010–heute. KEINE Erfolgsprognose.
+//  Profil = Minuten-Mix aktuelle Saison (Gewicht 1) + Vorsaison (0,5) + 150 Pseudo-Minuten
+//  Pool-Schnitt — identisch zu profiles() in train-prospect-model.py.
+// ============================================================
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const zlib = require('zlib');
+
+const ROOT = path.join(__dirname, '..', '..', '..');
+const MODEL = path.join(__dirname, 'model', 'prospect-model.json');
+const CACHE = path.join(__dirname, 'model', 'cache', 'torvik');
+const OUT = path.join(ROOT, 'sports', 'cbb', 'data', 'college-prospects.js');
+const CLS = { Fr: 1, So: 2, Jr: 3, Sr: 4 };
+const ZERO0 = ['gp', 'minPct', 'mpg', 'tpa', 'tpm', 'fta', 'ftm', 'rimM', 'rimA', 'midA', 'dunkM', 'twoPa', 'pts'];
+
+// TTHQ: NBA-Pick → typischer Slot im TTHQ-Gesamtdraft (mit Veteranen, ohne Keeper). Basis: Draft 2026,
+// 26 gezogene Rookies, Quantil-Zuordnung (k-bester Rookie nach NBA-Pick ↔ k-ter Rookie-Slot).
+// Die NBA-Picks 1–5 waren 2026 Keeper und standen nicht im Pool; kontrafaktisch auf die Slots 1–5
+// gesetzt, alle anderen Rookie-Slots dafür +5 (5 starke Spieler mehr vor ihnen). Neu befüllen nach
+// dem nächsten TTHQ-Draft.
+const TTHQ_CURVE = {
+  source: 'TTHQ-Draft 2026 (26 gezogene Rookies; die 5 Keeper-Rookies kontrafaktisch auf Slot 1–5)', teams: 12,
+  nba: [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 34, 35, 37, 52],
+  slot: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 16, 18, 19, 20, 22, 23, 24, 31, 32, 33, 34, 35, 36, 38, 43, 44, 55, 58],
+};
+
+function parseCsv(text) {
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(f); f = ''; }
+    else if (c === '\n') { row.push(f); rows.push(row); row = []; f = ''; }
+    else if (c !== '\r') f += c;
+  }
+  if (f.length || row.length) { row.push(f); rows.push(row); }
+  const head = rows.shift();
+  return rows.filter(r => r.length === head.length).map(r => Object.fromEntries(head.map((h, i) => [h, r[i]])));
+}
+const num = v => (v === '' || v == null || isNaN(+v) ? NaN : +v);
+
+// TORVIK_DIR (vom CBB Sync, frischer Abruf der laufenden Saison) hat Vorrang vor dem Repo-Cache
+function loadYear(y, M) {
+  const tmp = process.env.TORVIK_DIR && path.join(process.env.TORVIK_DIR, `torvik_${y}.csv.gz`);
+  const f = tmp && fs.existsSync(tmp) ? tmp : path.join(CACHE, `torvik_${y}.csv.gz`);
+  if (!fs.existsSync(f)) return [];
+  return parseCsv(zlib.gunzipSync(fs.readFileSync(f)).toString('utf8')).filter(r => CLS[r.cls]).map(r => derive(r, y, M));
+}
+
+// = load() in train-prospect-model.py
+function derive(r, y, M) {
+  const o = { raw: r, pid: r.pid, name: r.name, team: r.team, conf: r.conf, cls: r.cls, role: r.role, year: y };
+  for (const k of Object.keys(r)) if (!['name', 'team', 'conf', 'cls', 'ht', 'role', 'dob', 'pid'].includes(k)) o[k] = num(r[k]);
+  ZERO0.forEach(k => { if (isNaN(o[k])) o[k] = 0; });
+  o.min = o.mpg * o.gp;
+  const m = Math.max(o.min, 1);
+  o.tpa40 = 40 * o.tpa / m;
+  o.tpPct = (o.tpm + 0.33 * 40) / (o.tpa + 40);
+  o.ftPct = (o.ftm + 0.70 * 25) / (o.fta + 25);
+  o.rimPct = (o.rimM + 0.58 * 30) / (o.rimA + 30);
+  o.rimRate = (o.rimA + 0.30 * 20) / (o.twoPa + o.tpa + 20);
+  o.dunk40 = 40 * o.dunkM / m;
+  o.pts40 = 40 * o.pts * o.gp / m;
+  if (y < 2010) { o.rimPct = NaN; o.rimRate = NaN; o.dunk40 = NaN; }
+  const h = /(\d+)-(\d+)/.exec(r.ht || '');
+  o.htIn = h ? +h[1] * 12 + +h[2] : NaN;
+  o.clsN = CLS[r.cls];
+  o.power = M.power.includes(r.conf) ? 1 : 0;
+  o.bucket = M.bucket[r.role] || 'W';
+  o.realDob = !!r.dob && !r.dob.endsWith('-10-15');
+  const dob = Date.parse(r.dob + 'T00:00:00Z');
+  o.dob = r.dob;
+  o.ageReal = isNaN(dob) ? NaN : Math.floor((Date.parse(`${y}-06-25T00:00:00Z`) - dob) / 86400000) / 365.25;
+  return o;
+}
+
+// = profiles() in train-prospect-model.py
+function profile(r, p, M) {
+  const w1 = Math.max(r.min, 0), w0 = p ? 0.5 * Math.max(p.min, 0) : 0, k = M.priorMin, v = {};
+  M.rates.forEach(c => {
+    const mu = M.means[c];
+    const a = isNaN(r[c]) ? mu : r[c];
+    const b = p ? (isNaN(p[c]) ? mu : p[c]) : 0;
+    v[c] = (w1 * a + w0 * b + k * mu) / (w1 + w0 + k);
+  });
+  const has = !!p && p.min >= 100;
+  v.hasPrev = has ? 1 : 0;
+  [['bpm', 'prevBpm'], ['obpm', 'prevObpm'], ['mpg', 'prevMpg'], ['usg', 'prevUsg']].forEach(([c, k]) => { v[k] = has && !isNaN(p[c]) ? p[c] : M.means[c]; });
+  v.bpmJump = p && !isNaN(p.bpm) && !isNaN(r.bpm) ? r.bpm - p.bpm : 0;
+  v.age = r.realDob && r.ageReal > 17 && r.ageReal < 28 ? r.ageReal : M.classAge[r.cls];
+  v.cls = r.clsN;
+  v.rec = isNaN(r.rec) ? 0 : r.rec;
+  v.unrec = isNaN(r.rec) ? 1 : 0;
+  v.recTop = -Math.log(100.5 - (isNaN(r.rec) ? 0 : r.rec));
+  v.htIn = isNaN(r.htIn) ? M.means.htIn : r.htIn;
+  v.power = r.power;
+  return v;
+}
+
+// Ein Modell (Produktion = M, Vorsaison = M.pre) auswerten
+function evalModel(v, m) {
+  const z = m.feats.map((f, i) => (v[f] - m.scaler.mean[i]) / m.scaler.scale[i]);
+  const lg = m.logit.icpt + z.reduce((s, x, i) => s + x * m.logit.coef[i], 0);
+  const ln = m.ridge.icpt + z.reduce((s, x, i) => s + x * m.ridge.coef[i], 0);
+  return { p: 1 / (1 + Math.exp(-lg)), ln, resQ: m.ridge.resQ };
+}
+// Überblendung: Gewicht des Produktionsmodells = min(1, Saison-Minuten / blendMin)
+function draft(v, M, minNow) {
+  const a = evalModel(v, M), b = evalModel(v, M.pre);
+  const w = Math.min(1, Math.max(0, minNow / M.pre.blendMin));
+  const p = w * a.p + (1 - w) * b.p, ln = w * a.ln + (1 - w) * b.ln;
+  const pk = q => Math.min(60, Math.max(1, Math.exp(ln + w * a.resQ[q] + (1 - w) * b.resQ[q])));
+  return { p, ln, w, pProd: a.p, pPre: b.p, q: ['0.1', '0.25', '0.5', '0.75', '0.9'].map(q => +pk(q).toFixed(1)) };
+}
+
+const nkey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
+
+function main() {
+  const M = JSON.parse(fs.readFileSync(MODEL, 'utf8'));
+  const files = fs.existsSync(CACHE) ? fs.readdirSync(CACHE).filter(f => /^torvik_\d{4}\.csv\.gz$/.test(f)).sort() : [];
+  if (!files.length) { console.error('Kein Barttorvik-Cache — erst sync-torvik.js laufen lassen.'); process.exit(1); }
+  const tmpFiles = process.env.TORVIK_DIR && fs.existsSync(process.env.TORVIK_DIR) ? fs.readdirSync(process.env.TORVIK_DIR).filter(f => /^torvik_\d{4}\.csv\.gz$/.test(f)) : [];
+  const CUR = +process.env.CBB_SEASON || Math.max(...files.concat(tmpFiles).map(f => +f.slice(7, 11)));
+  const cur = loadYear(CUR, M), prev = loadYear(CUR - 1, M);
+  const prevBy = new Map(); prev.forEach(r => { if (!prevBy.has(r.pid)) prevBy.set(r.pid, r); });
+  console.log(`Saison ${CUR}: ${cur.length} Spieler-Saisons, Vorjahr ${prev.length}.`);
+
+  // Comp-Pool je Rollen-Gruppe vorbereiten (+ sortierte Werte für Perzentile)
+  const C = M.comp, F = C.feats;
+  const pools = {};
+  ['G', 'W', 'B'].forEach(b => {
+    const cv = C.cov[b];
+    const items = C.pool.filter(p => p[4] === b).map(p => ({ p, z: p[6].map((x, i) => (x - cv.mu[i]) / cv.sd[i]) }));
+    const sorted = F.map((_, i) => items.map(it => it.p[6][i]).sort((a, c) => a - c));
+    pools[b] = { cv, items, sorted };
+  });
+  const pctl = (sorted, x) => { let lo = 0, hi = sorted.length; while (lo < hi) { const m = (lo + hi) >> 1; if (sorted[m] < x) lo = m + 1; else hi = m; } return Math.round(100 * lo / sorted.length); };
+  const maha = (a, b, inv) => { const d = a.map((x, i) => x - b[i]); let s = 0; for (let i = 0; i < d.length; i++) { let t = 0; for (let j = 0; j < d.length; j++) t += inv[i][j] * d[j]; s += d[i] * t; } return Math.sqrt(Math.max(s, 0)); };
+
+  const out = [];
+  cur.forEach(r => {
+    if (r.gp < 1) return;
+    const p = prevBy.get(r.pid) || null;
+    const v = profile(r, p, M);
+    const minNow = Math.round(r.min), minPrev = p ? Math.round(p.min) : 0;
+    const d = draft(v, M, r.min);
+    // Aufnahme: realistische Draft-Chance ODER Top-Recruit — mit echter Rolle
+    if (!(d.p >= 0.05 || (v.rec >= 90 && r.minPct >= 5))) return;
+    const P = pools[r.bucket];
+    const me = F.map(f => v[f]);
+    const mz = me.map((x, i) => (x - P.cv.mu[i]) / P.cv.sd[i]);
+    const mk = nkey(r.name);
+    const comps = P.items.filter(it => nkey(it.p[0]) !== mk)
+      .map(it => ({ it, d: maha(mz, it.z, P.cv.inv) })).sort((a, b) => a.d - b.d).slice(0, 5)
+      .map(({ it, d: dd }) => [it.p[0], it.p[1], it.p[2], it.p[3], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), F.map((_, i) => pctl(P.sorted[i], it.p[6][i]))]);
+    const line = x => x && [Math.round(x.gp), +x.mpg.toFixed(1), +x.pts.toFixed(1), +((x.oreb || 0) + (x.dreb || 0)).toFixed(1), +(x.ast || 0).toFixed(1), +(x.stl || 0).toFixed(1), +(x.blk || 0).toFixed(1), +(x.gp ? x.tpm / x.gp : 0).toFixed(1), isNaN(x.ts) ? null : +x.ts.toFixed(1), isNaN(x.bpm) ? null : +x.bpm.toFixed(1), isNaN(x.usg) ? null : +x.usg.toFixed(1)];
+    out.push({
+      id: r.pid, n: r.name, t: r.team, c: r.conf, cl: r.cls, ht: r.raw.ht || null, role: r.role, b: r.bucket,
+      age: r.realDob && r.ageReal > 17 && r.ageReal < 28 ? +r.ageReal.toFixed(1) : null, ageEst: +v.age.toFixed(1),
+      rec: isNaN(r.rec) ? null : r.rec, min: [minNow, minPrev],
+      s: line(r), sp: line(p),
+      // Board-Score: Draft-Chance × Pick-Wert (ln-Skala, Pick 1 = 1, Pick 60 = 0) — Sortierung „Draft Range“
+      sc: +(d.p * Math.log(61 / d.q[2]) / Math.log(61)).toFixed(4),
+      dr: { p: +d.p.toFixed(4), q: d.q, w: +d.w.toFixed(2), pp: +d.pProd.toFixed(3), pv: +d.pPre.toFixed(3) },
+      pc: F.map((f, i) => pctl(P.sorted[i], me[i])),
+      comps,
+    });
+  });
+  out.sort((a, b) => b.sc - a.sc);
+  out.splice(700); // Top 700 nach Board-Score (Dateigröße)
+  out.forEach((x, i) => { x.rk = i + 1; });
+  const meta = {
+    built: new Date().toISOString(), season: CUR, model: { built: M.built, lastDraft: M.lastDraft, n: M.n, nDrafted: M.nDrafted, backtest: M.backtest, blendMin: M.pre.blendMin },
+    compFeats: F, compPool: { G: pools.G.items.length, W: pools.W.items.length, B: pools.B.items.length },
+    stat: ['GP', 'MIN', 'PTS', 'REB', 'AST', 'STL', 'BLK', '3PM', 'TS%', 'BPM', 'USG'],
+    tthq: TTHQ_CURVE,
+  };
+  const js = `// ============================================================
+//  COLLEGE_PROSPECTS — College Scouting Basketball (AUTO-GENERIERT von
+//  sports/cbb/scripts/build-college-prospects.js, täglich im CBB Sync). Nicht von Hand editieren.
+//  Quelle: Barttorvik (Saison ${CUR - 1}/${String(CUR).slice(2)} + Vorsaison), Modell sports/cbb/scripts/model/prospect-model.json.
+//  p[]: rk Board-Rang, sc Board-Score (Chance × Pick-Wert), id, n Name, t Schule, c Conference, cl Klasse, ht, role, b Gruppe (G/W/B), age (echt) / ageEst
+//  (Draft-Tag ${CUR}-06-25), rec Recruiting-Perzentil, min [Min. Saison, Min. Vorsaison], s/sp Statline
+//  (meta.stat), dr {p Draft-Chance, q Pick-Quantile 10/25/50/75/90 falls gedraftet, w Gewicht Produktions-
+//  modell (Rest Vorsaison-Modell), pp/pv Chance je Teilmodell}, pc Perzentile der
+//  Comp-Merkmale (meta.compFeats) in der Gruppe, comps [Name, Schule, Saison, Klasse, Ähnlichkeit 0–100, pc].
+//  Stand ${meta.built}
+// ============================================================
+
+const COLLEGE_PROSPECTS = ${JSON.stringify({ meta, p: out })};
+`;
+  fs.writeFileSync(OUT, js, 'utf8');
+  console.log(`${path.relative(ROOT, OUT)}: ${out.length} Prospects (${Math.round(js.length / 1024)} KB). Top 15:`);
+  out.slice(0, 15).forEach(x => console.log(`  ${x.n} (${x.t}, ${x.cl}) — Draft ${Math.round(100 * x.dr.p)} %, Pick ~${x.dr.q[2]} [${x.dr.q[1]}–${x.dr.q[3]}] · Comp: ${x.comps[0] && x.comps[0][0]} ${x.comps[0] && x.comps[0][2]}`));
+}
+
+main();

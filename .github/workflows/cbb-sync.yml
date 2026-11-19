@@ -10,6 +10,9 @@ name: CBB Sync (Dizzle CBB Dynasty)
 #     mit --dir/--out auf sports/cbb. Danach Live-Projections (Projektion + echte Spiele).
 #  3. Wöchentlich (Montag 07 Uhr oder rosters=true): ESPN-Kader, Coaches, Spielplan →
 #     Modell (sports/cbb/scripts/model/build-projections.py): Projections, Team-Kontext, Dynasty.
+#  4. Täglich (07-Uhr-Stats-Lauf oder manuell): Barttorvik laufende Saison → College Scouting
+#     (sports/cbb/data/college-prospects.js, Draft Range + Production Comps). Historie und
+#     Modell-Training: Workflow „CBB Barttorvik-Historie“ + train-prospect-model.py (lokal, jährlich).
 # Keine Secrets nötig (Fantrax + ESPN öffentlich).
 
 on:
@@ -81,6 +84,7 @@ jobs:
             H=$(printf '%02d' $(( (10#$CRON_H + 10#$OFF) % 24 )))
             echo "Geplant ${H}:17 Berlin (Cron '${SCHED}'), gestartet $(TZ=Europe/Berlin date +%H:%M)."
           fi
+          echo "hour=$H" >> "$GITHUB_OUTPUT"
           if [ "$IN_ROSTERS" = "true" ] || { [ "$DOW" = "1" ] && [ "$H" = "07" ]; }; then echo "rosters=true" >> "$GITHUB_OUTPUT"; else echo "rosters=false" >> "$GITHUB_OUTPUT"; fi
           # Nachholen: Ist der gestrige Spieltag (US-Ostküste) unvollständig — Datei fehlt oder ein Spiel
           # ist nicht „Final“ —, läuft der Stats-Teil auch im stündlichen Lauf (GitHub lässt geplante Läufe aus).
@@ -134,6 +138,16 @@ jobs:
           node $S/build-rolling-archive.js --league=ncaab --agg=$O/livescores-aggregate.js --season=$O/livescores-season.js --out=$O/rolling-rankings-2026-27.js
           node sports/cbb/scripts/build-live-projections.js
 
+      - name: College Scouting (Barttorvik → Draft Range + Production Comps, täglich 07 Uhr)
+        id: prospects
+        if: steps.gate.outputs.run == 'true' && (steps.gate.outputs.hour == '07' || github.event_name == 'workflow_dispatch')
+        continue-on-error: true
+        env:
+          TORVIK_DIR: ${{ runner.temp }}/torvik
+        run: |
+          node sports/cbb/scripts/sync-torvik.js
+          node sports/cbb/scripts/build-college-prospects.js
+
       - name: Waiver-Board
         id: board
         continue-on-error: true
@@ -165,7 +179,7 @@ jobs:
           exit 1
 
       - name: Fehlgeschlagene Schritte melden
-        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure' || steps.model.outcome == 'failure' || steps.weekstats.outcome == 'failure'
+        if: steps.espnrosters.outcome == 'failure' || steps.fantrax.outcome == 'failure' || steps.daily.outcome == 'failure' || steps.stats.outcome == 'failure' || steps.board.outcome == 'failure' || steps.model.outcome == 'failure' || steps.weekstats.outcome == 'failure' || steps.prospects.outcome == 'failure'
         run: |
           echo "Mindestens ein Schritt ist fehlgeschlagen (siehe oben)."
           exit 1

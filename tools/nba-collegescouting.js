@@ -1,0 +1,312 @@
+// ============================================================
+//  Tool: College Scouting (Basketball) — TTHQ + Dizzle CBB   (seit 19.11.2026)
+// ============================================================
+//  #/<liga>/collegescouting                 → letzte Auswahl
+//  #/<liga>/collegescouting/<id|Name>       → Prospect direkt (teilbar; Name geht auch)
+//
+//  Gegenstück zu tools/nfl-collegescouting.js. Pro Prospect, STRIKT getrennt:
+//    📈 Draft Range — Draft-Chance + erwarteter NBA-Pick (Modell, überblendet aus Vorsaison-
+//       und Produktionsmodell) → in TTHQ zusätzlich der typische Rookie-Slot im TTHQ-Draft.
+//       Konsens-Override: steht der Spieler auf dem MFHFB Big Board 2027 (draft2027.js), zählt
+//       dessen Konsens-Rang (nbaRank) als NBA-Pick; „Modell allein“ bleibt sichtbar.
+//    🎓 College Production Comp — „Produziert wie …“ (reine College-Produktion,
+//       Mahalanobis innerhalb Guard/Wing/Big). KEINE Erfolgsprognose.
+//    🧬 NBA-DNA — Chance auf NBA-Rotation/Fantasy-Top-150 + erwartetes NBA-Kategorie-Profil
+//       (sports/cbb/data/nba-dna.js, Basis: letzte volle College-Saison). Ersetzt die frühere
+//       eigene CBB-Seite „NBA-DNA“ (tools/cbb-model.js, #/cbb/cbbdna leitet hierher um).
+//  Daten (alle direkt aus dem Hub, unabhängig vom Sport der Liga):
+//    sports/cbb/data/college-prospects.js  COLLEGE_PROSPECTS (build-college-prospects.js, täglich)
+//    sports/cbb/data/nba-dna.js            CBB_NBA_DNA (nba-translation.py)
+//    sports/nba/data/draft2027.js          DRAFT_2027 (Big Board, von Hand)
+//  Nicht drin: internationale Prospects ohne College-Saison (stehen nur über das Big Board da),
+//  Combine/Messungen, Verletzungen, Scouting-Eindruck.
+// ============================================================
+
+(function () {
+  const A = { key: ['tthq', 'cbb'] };
+  const P_FILE = './sports/cbb/data/college-prospects';
+  const DATA = [P_FILE, '?./sports/nba/data/draft2027', '?./sports/cbb/data/nba-dna', '?teams', '?rosters-live'];
+  const GROUPS = [['all', 'Alle'], ['G', 'Guards'], ['W', 'Wings'], ['B', 'Bigs']];
+  const CLS = [['all', 'Alle Klassen'], ['Fr', 'Fr'], ['So', 'So'], ['Jr', 'Jr'], ['Sr', 'Sr']];
+  const SORTS = [['board', 'Draft Range'], ['konsens', 'Big Board'], ['chance', 'Draft-Chance'], ['rec', 'Recruiting'], ['bpm', 'BPM']];
+  const FEAT_LABEL = {
+    bpm: 'BPM', obpm: 'Off. BPM', dbpm: 'Def. BPM', usg: 'Usage', ts: 'True Shooting', orbPct: 'Off.-Reb %',
+    drbPct: 'Def.-Reb %', astPct: 'Assist %', toPct: 'Ballverlust %', blkPct: 'Block %', stlPct: 'Steal %',
+    ftr: 'Freiwurf-Rate', tpa40: '3er-Versuche/40', rimRate: 'Würfe am Ring', pts40: 'Punkte/40',
+  };
+  // Radar-Achsen (Teilmenge der Comp-Merkmale; Ballverluste weggelassen, da „hoch = schlecht“)
+  const RADAR = ['bpm', 'usg', 'ts', 'pts40', 'tpa40', 'rimRate', 'astPct', 'drbPct', 'stlPct', 'blkPct'];
+  const DCATS = [['pts', 'PTS'], ['tpm', '3PM'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO CTRL']];
+  const defaults = { grp: 'all', cls: 'all', sort: 'board', own: 'all', board: false, q: '', sel: null };
+  const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('bbcs', {}) });
+  const picked = { comp: null, for: null };
+
+  const nk = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
+  const tip = (label, text) => MFHFB.ui.tip(label, text);
+  const de = (x, d = 1) => (x == null || isNaN(x) ? '—' : Number(x).toFixed(d).replace('.', ','));
+  const pct = v => `${Math.round(v * 100)} %`;
+  const isTthq = ctx => ctx.league.key === 'tthq';
+
+  // ---------- Indizes (einmal je Datenobjekt) ----------
+  let IX = { data: null };
+  function index(data) {
+    if (IX.data === data) return IX;
+    const C = data.COLLEGE_PROSPECTS || { p: [], meta: {} };
+    const byId = new Map(C.p.map(p => [String(p.id), p]));
+    const byName = new Map(); C.p.forEach(p => { const k = nk(p.n); if (!byName.has(k)) byName.set(k, p); });
+    const board = new Map(); (data.DRAFT_2027 || []).forEach(b => board.set(nk(b.name), b));
+    const dna = new Map();
+    Object.entries((data.CBB_NBA_DNA || {}).p || {}).forEach(([k, v]) => {
+      const n = nk(k.split('|')[0]); if (!dna.has(n)) dna.set(n, []); dna.get(n).push({ k, v });
+    });
+    const owner = new Map();
+    const teams = new Map((data.TEAMS || []).map(t => [String(t.id), t]));
+    Object.entries(data.ROSTERS_LIVE || {}).forEach(([tid, list]) => (list || []).forEach(pl => owner.set(nk(pl.name), teams.get(String(tid)) || { name: 'Team ' + tid })));
+    IX = { data, C, byId, byName, board, dna, owner };
+    return IX;
+  }
+  // NBA-DNA-Eintrag zu einem Prospect (Name; bei Doppelungen Schule grob vergleichen)
+  function dnaOf(I, p) {
+    const c = I.dna.get(nk(p.n)); if (!c) return null;
+    if (c.length === 1) return c[0];
+    const t = nk(p.t).slice(0, 4);
+    return c.find(x => nk(x.k.split('|')[1]).startsWith(t.slice(0, 3))) || c[0];
+  }
+  const boardOf = (I, p) => I.board.get(nk(p.n)) || null;
+  const ownerOf = (ctx, I, p) => (ctx.league.key === 'cbb' ? I.owner.get(nk(p.n)) || null : null);
+
+  // ---------- Draft Range ----------
+  // TTHQ: NBA-Pick → typischer Rookie-Slot im TTHQ-Draft (Quantil-Zuordnung aus dem Draft 2026)
+  function tthqSlot(curve, pick) {
+    if (!curve || pick == null) return null;
+    const x = curve.nba, y = curve.slot;
+    if (pick <= x[0]) return y[0];
+    if (pick > x[x.length - 1]) return null;
+    for (let i = 1; i < x.length; i++) if (pick <= x[i]) return y[i - 1] + (y[i] - y[i - 1]) * (pick - x[i - 1]) / (x[i] - x[i - 1]);
+    return null;
+  }
+  const slotFmt = (o, T) => (o == null ? 'nicht gedraftet' : `R${Math.ceil(Math.round(o) / T)}.${String(((Math.round(o) - 1) % T) + 1).padStart(2, '0')}`);
+  const nbaRound = pk => (pk <= 30 ? '1. Runde' : '2. Runde');
+  // Effektiver erwarteter Pick: Konsens (Big Board) vor Modell
+  function expPick(I, p) { const b = boardOf(I, p); return b && b.nbaRank ? b.nbaRank : p.dr.q[2]; }
+
+  function rangeBox(ctx, I, p) {
+    const e = ctx.ui.esc, C = I.C, M = C.meta.model || {}, b = boardOf(I, p);
+    const bt = (M.backtest || []).map(x => `${x.test}: Draft ja/nein AUC ${de(x.aucRel, 2)} (relevante Spieler), Pick-Reihenfolge ρ ${de(x.pickRho, 2)}`).join('; ');
+    const why = `Grobe Erwartung, keine Prognose: „wenn er nach dieser Saison in den Draft ginge“. Gelernt aus ${(M.n || 0).toLocaleString('de-DE')} letzten College-Saisons 2010–${M.lastDraft} und ihrem echten Draft-Ausgang (${M.nDrafted} gedraftet, Barttorvik). Zwei Modelle: Vorsaison (Recruiting, echtes Alter am Draft-Tag, Klasse, Größe, Conference, Vorjahr) und Produktion (BPM, Usage, Wurfprofil, Rebounds, Steals/Blocks, Minuten …), überblendet nach Saison-Minuten (Produktion voll ab ${M.blendMin} Min.). Backtest ${bt}. Pick-Spanne = mittlere 50 % der Fehler im Training, gilt nur falls gedraftet. Nicht drin: Combine/Wingspan, Verletzungen, Scouting.`;
+    const head = `<div class="card-head"><h2>${tip('📈 Draft Range', why)}</h2></div>`;
+    const q = p.dr.q, ch = Math.round(p.dr.p * 100);
+    const w = Math.round((p.dr.w || 0) * 100);
+    const basis = `Gewichtung: ${100 - w} % Vorsaison-Modell · ${w} % Produktion (${p.min[0]} Min. diese Saison)`;
+    const k = b && b.nbaRank ? b.nbaRank : null;
+    const curve = C.meta.tthq, T = (curve && curve.teams) || 12;
+    let tthqCell = '';
+    if (isTthq(ctx) && curve) {
+      const mid = tthqSlot(curve, k || q[2]), lo = tthqSlot(curve, k ? Math.max(1, k - 3) : q[1]), hi = tthqSlot(curve, k ? k + 3 : q[3]);
+      const span = slotFmt(lo, T) === slotFmt(hi, T) ? slotFmt(lo, T) : `${slotFmt(lo, T)} – ${slotFmt(hi, T)}`;
+      tthqCell = `<div class="cs-rcell big"><small>${tip(`TTHQ-Draft (${T} Teams)`, `Typischer Platz im TTHQ-Gesamtdraft (mit Veteranen, ohne Keeper) für diesen NBA-Pick. Basis: ${curve.source} — der k-beste Rookie nach NBA-Pick bekam dort den k-ten Rookie-Slot; die Top-5-Rookies waren 2026 schon Keeper und sind kontrafaktisch auf Slot 1–5 gesetzt. Ein Jahrgang, also nur ein grober Anhalt. Keeper und Pick-Besitz verschieben das jedes Jahr.`)}</small><b>${span}</b><span>Mitte ${slotFmt(mid, T)}${mid == null ? '' : ` (Pick ${Math.round(mid)})`} · falls er kommt</span></div>`;
+    }
+    const kNote = k ? `<div class="cs-rnote"><span class="cs-tag ok" title="${e('MFHFB Big Board 2027 (sports/nba/data/draft2027.js): Konsens-Rang aus mehreren Boards. Ersetzt den Modell-Pick, weil das Modell Ausnahme-Prospects Richtung Mitte zieht.')}">Konsens · Big Board</span> <span>NBA #${k} · Modell allein: Pick ${q[1]}–${q[3]} (Mitte ${q[2]})</span></div>` : '';
+    return `<div class="card cs-range">${head}
+      <div class="cs-rmeta"><span>${e(basis)}</span></div>
+      <div class="cs-rgrid">
+        ${tthqCell}
+        <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird gedraftet, falls er sich anmeldet</span></div>
+        <div class="cs-rcell"><small>Erw. NBA-Draft</small><b>${k ? 'Pick ~' + k : `${nbaRound(q[1])}${nbaRound(q[3]) !== nbaRound(q[1]) ? '–' + nbaRound(q[3]).slice(0, 2) + ' Rd.' : ''}`}</b><span>${k ? 'laut Konsens' : `Pick ${q[1]}–${q[3]} (Mitte ${q[2]})`}</span></div>
+      </div>${kNote}
+    </div>`;
+  }
+
+  // ---------- 🎓 College Production Comp ----------
+  function compBox(ctx, I, p) {
+    const e = ctx.ui.esc, F = I.C.meta.compFeats || [], P = I.C.meta.compPool || {};
+    if (picked.for !== p.id) { picked.for = p.id; picked.comp = 0; }
+    const comps = p.comps || [];
+    const c = comps[picked.comp] || null;
+    const ax = RADAR.filter(k => F.includes(k));
+    const vals = arr => ax.map(k => (arr ? arr[F.indexOf(k)] / 100 : null));
+    const tipsOf = (arr, nm) => ax.map(k => `${nm} · ${FEAT_LABEL[k]}: ${arr ? arr[F.indexOf(k)] : '—'}. Perzentil`);
+    const series = [{ name: p.n, vals: vals(p.pc), tips: tipsOf(p.pc, p.n) }].concat(c ? [{ name: c[0], vals: vals(c[5]), tips: tipsOf(c[5], c[0]) }] : []);
+    const radar = MFHFB.charts.radar({ axes: ax.map(k => ({ label: FEAT_LABEL[k] })), series, size: 300, label: 'Production Comp ' + p.n });
+    const grp = { G: 'Guards', W: 'Wings', B: 'Bigs' }[p.b];
+    const sub = `„Produziert wie …“ — nächste Nachbarn nach reinem College-Produktionsprofil (Mahalanobis-Distanz über ${F.length} Raten: ${F.map(f => FEAT_LABEL[f]).join(', ')}), nur unter ${grp}. Pool: ${(P[p.b] || 0).toLocaleString('de-DE')} Saisons 2010–heute von späteren NBA-Draftees und Top-College-Spielern. Ähnlichkeit 100 = identisch. Kein Alter, keine Größe, kein späterer NBA-Erfolg — reine Produktion.`;
+    const table = `<table class="table compact cs-rtable"><thead><tr><th>Perzentil in der Gruppe</th><th class="num"><i class="cs-sw sel-1"></i>${e(p.n.split(' ').slice(-1)[0])}</th><th class="num"><i class="cs-sw sel-2"></i>${c ? e(c[0].split(' ').slice(-1)[0]) : 'Comp'}</th></tr></thead><tbody>
+      ${F.map((f, i) => `<tr><td>${e(FEAT_LABEL[f])}</td><td class="num strong">${p.pc[i]}</td><td class="num">${c ? c[5][i] : '—'}</td></tr>`).join('')}</tbody></table>`;
+    return `<div class="card cs-box"><div class="card-head"><h2>${tip('🎓 College Production Comp', sub)}</h2></div>
+      <div class="cs-radar">${MFHFB.charts.chips(series.map(s => s.name))}${radar}${table}</div>
+      ${comps.length ? `<div class="cs-list-head">Comp anklicken → ins Radar</div>${comps.map((m, i) => `<button type="button" class="dna-match cs-match${i === picked.comp ? ' on' : ''}" data-comp="${i}" aria-pressed="${i === picked.comp}">
+          <span class="dna-mscore">${m[4]}</span>
+          <span class="dna-nm">${e(m[0])} <small>${e(m[1])} · ${m[2] - 1}/${String(m[2]).slice(2)} · ${e(m[3])}</small></span>
+          <span class="dna-plus">${i === picked.comp ? '●' : '＋'}</span></button>`).join('')}`
+        : '<div class="muted cs-pad">Kein Vergleich gefunden.</div>'}
+    </div>`;
+  }
+
+  // ---------- 🧬 NBA-DNA ----------
+  function dnaBox(ctx, I, p) {
+    const e = ctx.ui.esc, D = I.data.CBB_NBA_DNA, x = dnaOf(I, p);
+    const head = `<div class="card-head"><h2>${tip('🧬 NBA-DNA', 'Setzt er sich in der NBA durch, und welche Fantasy-Kategorien nimmt er mit? Gelernt aus College-Abschlusssaisons 2009–2022 und deren ersten 4 NBA-Jahren (hoopR-Boxscores, BBM). Rotation = Saison mit 40+ Spielen und 18+ Min., Fantasy = Top-150-Saison (9-Cat). Basis: letzte VOLLE College-Saison — Freshmen haben erst nach ihrer ersten Saison eine DNA.')}</h2></div>`;
+    if (!D) return `<div class="card cs-box">${head}<div class="muted cs-pad">NBA-DNA-Daten nicht geladen.</div></div>`;
+    if (!x) return `<div class="card cs-box">${head}<div class="muted cs-pad">Noch keine NBA-DNA — erst nach seiner ersten vollen College-Saison (mind. 250 Min.).</div></div>`;
+    const d = x.v, sgn = v => (v >= 0 ? '+' : '') + de(v, 2);
+    const bar = ([k, l]) => { const v = d.nz[k], w = Math.max(-50, Math.min(50, v * 33)); return `<div class="cbbm-bar" title="erwartetes NBA-z ${l}: ${sgn(v)} (0 = Ø NBA-Rotationsspieler)"><span>${l}</span><div class="cbbm-track"><i class="${w >= 0 ? 'pos' : 'neg'}" style="${w >= 0 ? 'left:50%' : `left:${50 + w}%`};width:${Math.abs(w)}%"></i></div><b class="${v >= 0 ? 'up' : 'down'}">${sgn(v)}</b></div>`; };
+    const out = c => (c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3]);
+    return `<div class="card cs-box">${head}
+      <div class="cs-rgrid" style="grid-template-columns:1fr 1fr">
+        <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Basis ${d.season - 1}/${String(d.season).slice(2)} · ${d.min} Min.</span></div>
+        <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>in den ersten 4 NBA-Jahren</span></div>
+      </div>
+      <div class="cs-list-head">NBA-Profil, falls er es schafft (z, 0 = Ø Rotationsspieler)</div>
+      <div class="cbbm-bars">${DCATS.map(bar).join('')}</div>
+      <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
+      <div class="table-wrap"><table class="table compact"><tbody>${d.comps.slice(0, 4).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1]}</td><td class="small">${e(out(c))}</td></tr>`).join('')}</tbody></table></div>
+    </div>`;
+  }
+
+  // ---------- Big Board ----------
+  function boardBox(ctx, b) {
+    const e = ctx.ui.esc;
+    if (!b) return '';
+    const strip = s => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    return `<div class="card" style="margin-top:14px"><div class="card-head"><h2>📋 MFHFB Big Board 2027</h2><span class="muted small">Konsens NBA #${e(b.nbaRank)} · MFHFB-Fantasy-Rang #${e(b.pick)}${b.tier ? ' · ' + e(b.tier) : ''}</span></div>
+      <div class="cs-pad">${b.measurements ? `<p><b>${e(strip(b.measurements))}</b></p>` : ''}${b.fantasy ? `<p>${e(strip(b.fantasy))}</p>` : ''}${b.scouting ? `<p class="muted">${e(strip(b.scouting))}</p>` : ''}${b.link ? `<p><a href="${e(b.link)}" target="_blank" rel="noopener">Mehr zum Spieler ↗</a></p>` : ''}</div></div>`;
+  }
+
+  // ---------- Liste ----------
+  function filtered(ctx, I, st) {
+    const q = nk(st.q);
+    let L = I.C.p.filter(p => (st.grp === 'all' || p.b === st.grp) && (st.cls === 'all' || p.cl === st.cls)
+      && (!q || nk(p.n).includes(q) || nk(p.t).includes(q)) && (!st.board || boardOf(I, p)));
+    if (ctx.league.key === 'cbb' && st.own !== 'all') L = L.filter(p => (st.own === 'free') === !ownerOf(ctx, I, p));
+    const key = {
+      board: p => -p.sc, chance: p => -p.dr.p, rec: p => -(p.rec || 0), bpm: p => -((p.s && p.s[9]) || -99),
+      konsens: p => { const b = boardOf(I, p); return b ? b.nbaRank : 1000 - p.sc; },
+    }[st.sort] || (p => -p.sc);
+    return L.slice().sort((a, b) => key(a) - key(b));
+  }
+  // Big-Board-Spieler ohne College-Saison (international, noch kein Spiel)
+  function boardOnly(I) {
+    return (I.data.DRAFT_2027 || []).filter(b => !I.byName.has(nk(b.name))).sort((a, b) => a.nbaRank - b.nbaRank);
+  }
+  function listHtml(ctx, st) {
+    const e = ctx.ui.esc, I = index(ctx.data), L = filtered(ctx, I, st).slice(0, 300);
+    const curve = I.C.meta.tthq, T = (curve && curve.teams) || 12;
+    const right = p => {
+      const k = expPick(I, p), b = boardOf(I, p);
+      if (isTthq(ctx)) return `${slotFmt(tthqSlot(curve, k), T)} <small>${Math.round(p.dr.p * 100)}%</small>`;
+      return `${b ? 'K' : ''}~${Math.round(k)} <small>${Math.round(p.dr.p * 100)}%</small>`;
+    };
+    const rows = L.map((p, i) => { const b = boardOf(I, p), o = ownerOf(ctx, I, p);
+      return `<a class="dna-row${String(p.id) === String(st.sel) ? ' active' : ''}" href="${ctx.href('collegescouting', p.id)}">
+        <span class="dna-idx">${i + 1}</span>
+        <span class="dna-nm">${e(p.n)}${b ? ` <span class="cs-tag ok" title="MFHFB Big Board 2027: Konsens NBA #${b.nbaRank}">#${b.nbaRank}</span>` : ''} <small>${e(p.t)} · ${e(p.cl)}${o ? ' · ' + e(o.short || o.name) : ''}</small></span>
+        <span class="dna-avg">${right(p)}</span></a>`; }).join('');
+    const q = nk(st.q);
+    const extra = st.board ? boardOnly(I).filter(b => !q || nk(b.name).includes(q) || nk(b.school).includes(q)).map(b => `<div class="dna-row" title="Kein College-Datensatz in dieser Saison (international oder noch ohne Spiel)"><span class="dna-idx">·</span><span class="dna-nm">${e(b.name)} <span class="cs-tag ok">#${b.nbaRank}</span> <small>${e(b.school || '')} · keine College-Daten</small></span><span class="dna-avg">${isTthq(ctx) ? slotFmt(tthqSlot(curve, b.nbaRank), T) : 'K~' + b.nbaRank}</span></div>`).join('') : '';
+    return rows + extra || '<div class="muted" style="padding:12px">Keine Treffer.</div>';
+  }
+
+  function resolve(ctx) {
+    const st = getState(ctx), I = index(ctx.data);
+    const par = ctx.params[0] ? decodeURIComponent(ctx.params[0]) : null;
+    let sel = null;
+    if (par) sel = I.byId.get(String(par)) || I.byName.get(nk(par)) || null;
+    if (!sel && st.sel) sel = I.byId.get(String(st.sel)) || null;
+    if (!sel) sel = filtered(ctx, I, st)[0] || null;
+    return { ...st, sel: sel ? sel.id : null };
+  }
+
+  function mainHtml(ctx, st) {
+    const e = ctx.ui.esc, I = index(ctx.data), p = I.byId.get(String(st.sel));
+    if (!p) return ctx.ui.empty('Kein Prospect gewählt', 'Links einen Prospect auswählen.', '🎓');
+    const b = boardOf(I, p), o = ownerOf(ctx, I, p), C = I.C;
+    const age = p.age != null ? `${de(p.age)} J. am Draft-Tag` : `≈ ${de(p.ageEst)} J. (Klassen-Schnitt, kein Geburtsdatum)`;
+    const stat = C.meta.stat || [];
+    const line = (s, lbl) => (s ? `<tr><td>${lbl}</td>${s.map((v, i) => `<td class="num">${v == null ? '—' : i < 1 ? v : de(v)}</td>`).join('')}</tr>` : '');
+    const season = C.meta.season, sl = `${season - 1}/${String(season).slice(2)}`, sp = `${season - 2}/${String(season - 1).slice(2)}`;
+    return `
+      <div class="dna-head">
+        <div><h2 class="dna-title display">${e(p.n)}</h2>
+          <div class="page-sub">${e(p.t)} · ${e(p.c)} · ${e(p.cl)}${p.ht ? ' · ' + e(p.ht.replace('-', "'")) + '"' : ''} · ${e(p.role || '')} · ${e(age)}</div></div>
+        <div class="dna-badge" title="Rang nach Board-Score (Draft-Chance × Pick-Wert) unter ${C.p.length} Prospects"><b>#${p.rk}</b><small>Modell-Board</small></div>
+      </div>
+      <div class="dna-tags">${[
+        p.rec != null ? `Recruiting-Perzentil <b>${de(p.rec)}</b>` : 'ohne Recruiting-Rang',
+        b ? `Big Board: Konsens <b>#${e(b.nbaRank)}</b> · MFHFB <b>#${e(b.pick)}</b>` : null,
+        o ? `Fantasy-Team: <b>${e(o.name)}</b>` : ctx.league.key === 'cbb' ? 'Fantasy: <b>frei</b>' : null,
+      ].filter(Boolean).join(' · ')}</div>
+      <div class="table-wrap"><table class="table compact" data-nosort><thead><tr><th>Saison</th>${stat.map(s => `<th class="num">${e(s)}</th>`).join('')}</tr></thead>
+        <tbody>${line(p.s, sl + (p.min[0] < 700 ? '*' : ''))}${line(p.sp, sp)}</tbody></table></div>
+      ${p.min[0] < 700 ? `<div class="muted cs-hint">* laufende Saison, ${p.min[0]} Min. — Per-Game-Werte noch wackelig.</div>` : ''}
+      <div data-range>${rangeBox(ctx, I, p)}</div>
+      <div class="cs-grid" style="margin-top:14px">
+        <div data-comp>${compBox(ctx, I, p)}</div>
+        <div>${dnaBox(ctx, I, p)}</div>
+      </div>
+      ${boardBox(ctx, b)}`;
+  }
+
+  MFHFB.pages.register({
+    id: 'collegescouting',
+    section: 'players',
+    label: 'College Scouting',
+    icon: '🎓',
+    applies: A,
+    data: DATA,
+    title: ({ data, params }) => {
+      if (!params[0] || !data.COLLEGE_PROSPECTS) return 'College Scouting';
+      const I = index(data), par = decodeURIComponent(params[0]);
+      const p = I.byId.get(par) || I.byName.get(nk(par));
+      return p ? `${p.n} · College Scouting` : 'College Scouting';
+    },
+    render(ctx) {
+      const { ui, data } = ctx, e = ui.esc;
+      const C = data.COLLEGE_PROSPECTS;
+      if (!C || !C.p) return ui.empty('Keine College-Scouting-Daten', 'Die Datei erzeugt der CBB Sync (Schritt „College Scouting“).', '🎓');
+      const st = resolve(ctx);
+      ctx._bbcs = st;
+      const M = C.meta, stand = new Date(M.built).toLocaleDateString('de-DE');
+      const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([k, l]) => `<button type="button" class="seg-btn${String(st[key]) === k ? ' active' : ''}" data-set="${key}" data-val="${k}">${l}</button>`).join('')}</div>`;
+      return `
+        <div class="page-head">
+          <h1 class="page-title display">${tip('🎓 College Scouting', 'Basketball-Gegenstück zum NFL College Scouting: Draft Range, College Production Comp und NBA-DNA je College-Spieler. Quellen: Barttorvik (Spieler-Saisons seit 2008 inkl. späterem NBA-Pick, Geburtsdatum, Recruiting-Rang), hoopR/ESPN + BBM (NBA-DNA), MFHFB Big Board 2027. Alle Vergleiche sind Ähnlichkeits-, keine Erfolgsprognosen. Internationale Prospects ohne College-Saison stehen nur über das Big Board drin.')}</h1>
+          <div class="page-sub">Saison ${M.season - 1}/${String(M.season).slice(2)} · ${C.p.length} College-Prospects (Draft-Chance ab 5 % oder Top-Recruit) · Stand ${stand}${isTthq(ctx) ? ' · rechts: typischer TTHQ-Draft-Slot' : ''}</div>
+        </div>
+        <div class="controls">
+          ${seg('grp', GROUPS)}
+          <select class="select" data-cls aria-label="Klasse">${CLS.map(([k, l]) => `<option value="${k}"${st.cls === k ? ' selected' : ''}>${l}</option>`).join('')}</select>
+          ${ctx.league.key === 'cbb' ? seg('own', [['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']]) : ''}
+          <label class="cs-chk"><input type="checkbox" data-board${st.board ? ' checked' : ''}> nur Big Board 2027</label>
+        </div>
+        <div class="dna-layout">
+          <aside class="card dna-side">
+            <input type="search" class="search" placeholder="Spieler oder Schule …" value="${e(st.q)}" data-q aria-label="Prospect suchen">
+            <div class="cs-lctl"><select class="select" data-sort aria-label="Sortierung">${SORTS.map(([k, l]) => `<option value="${k}"${st.sort === k ? ' selected' : ''}>Sortierung: ${l}</option>`).join('')}</select></div>
+            <div class="dna-list-head"><span>Prospect</span><span title="${isTthq(ctx) ? 'Typischer TTHQ-Draft-Slot für den erwarteten NBA-Pick (Konsens vor Modell) · Draft-Chance' : 'Erwarteter NBA-Pick (K = Konsens Big Board, sonst Modell) · Draft-Chance'}">${isTthq(ctx) ? 'TTHQ · Chance' : 'NBA-Pick · Chance'}</span></div>
+            <div class="dna-list" data-list>${listHtml(ctx, st)}</div>
+          </aside>
+          <div class="dna-main" data-main>${mainHtml(ctx, st)}</div>
+        </div>`;
+    },
+    mount(root, ctx) {
+      const st = ctx._bbcs || resolve(ctx);
+      const save = (patch, full = true) => { ctx.store.setJSON('bbcs', { ...getState(ctx), ...patch }); if (full) ctx.refresh(); };
+      ctx.store.setJSON('bbcs', { ...getState(ctx), sel: st.sel });
+      root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => save({ [b.dataset.set]: b.dataset.val })));
+      const cls = root.querySelector('[data-cls]'); if (cls) cls.addEventListener('change', () => save({ cls: cls.value }));
+      const so = root.querySelector('[data-sort]'); if (so) so.addEventListener('change', () => save({ sort: so.value }));
+      const bo = root.querySelector('[data-board]'); if (bo) bo.addEventListener('change', () => save({ board: bo.checked }));
+      const q = root.querySelector('[data-q]');
+      if (q) q.addEventListener('input', () => { save({ q: q.value }, false); root.querySelector('[data-list]').innerHTML = listHtml(ctx, { ...st, q: q.value }); });
+      root.addEventListener('click', ev => {
+        const b = ev.target.closest('[data-comp]'); if (!b || b.tagName !== 'BUTTON') return;
+        picked.comp = +b.dataset.comp;
+        const I = index(ctx.data), p = I.byId.get(String(st.sel)), host = root.querySelector('div[data-comp]');
+        if (p && host) host.innerHTML = compBox(ctx, I, p);
+      });
+      const list = root.querySelector('[data-list]'), act = root.querySelector('.dna-row.active');
+      if (list && act) list.scrollTop = Math.max(0, act.offsetTop - list.offsetTop - list.clientHeight / 2);
+    },
+  });
+})();
