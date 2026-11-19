@@ -4043,9 +4043,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910007",
-      line: "Memphis Grizzlies @ Cleveland Cavaliers (11/18 - 7:00 PM EST)",
+      line: "Memphis Grizzlies @ Cleveland Cavaliers (6:43 - 1st)",
       completed: false,
-      statusText: "11/18 - 7:00 PM EST",
+      statusText: "6:43 - 1st",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4061,9 +4061,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910008",
-      line: "Houston Rockets @ Indiana Pacers (11/18 - 7:00 PM EST)",
+      line: "Houston Rockets @ Indiana Pacers (7:49 - 1st)",
       completed: false,
-      statusText: "11/18 - 7:00 PM EST",
+      statusText: "7:49 - 1st",
       away: {
         abbr: "HOU", name: "Houston Rockets", score: null,
         players: [
@@ -4097,9 +4097,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910010",
-      line: "Philadelphia 76ers @ Orlando Magic (11/18 - 7:00 PM EST)",
+      line: "Philadelphia 76ers @ Orlando Magic (8:02 - 1st)",
       completed: false,
-      statusText: "11/18 - 7:00 PM EST",
+      statusText: "8:02 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [

@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T00:01:12.289Z",
+  "updated": "2026-11-19T00:17:05.424Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Out","OUT","2026-11-19","Back",0,"2026-11-18"],
@@ -66,7 +66,6 @@ const NBA_INJURIES = {
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
-    "Max Christie": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
@@ -83,7 +82,6 @@ const NBA_INJURIES = {
     "Robert Williams III": ["POR","Out","OUT","2026-11-21","Rest",0,"2026-11-18"],
     "Ronald Holland II": ["DET","Out","OUT","2026-11-20","Knee",0,"2026-11-18"],
     "Ryan Rollins": ["MIL","Out","OUT","2026-11-19","Illness",0,"2026-11-18"],
-    "Santi Aldama": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Scottie Barnes": ["TOR","Out","OUT","2026-11-20","Groin",0,"2026-11-18"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
@@ -93,7 +91,7 @@ const NBA_INJURIES = {
     "Taurean Prince": ["DET","Out","OUT","2026-11-20","Knee",0,"2026-11-18"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
-    "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-18","Groin",0,"2026-11-17"],
+    "Tobi Lawal": ["DAL","Out","OUT","2026-11-21","Groin",0,"2026-11-18"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Toumani Camara": ["POR","Day-To-Day","GTD","2026-11-19","Rest",0,"2026-11-18"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-17"],
@@ -103,7 +101,6 @@ const NBA_INJURIES = {
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
     "Tyrese Maxey": ["PHI","Out","OUT","2026-11-21","Foot",0,"2026-11-18"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Zyon Pullin": ["MIN","Day-To-Day","GTD","2026-11-19","Quadriceps",0,"2026-11-18"]
   }
 };
