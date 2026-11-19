@@ -1,0 +1,22 @@
+{
+  "league": "nba",
+  "date": "2026-11-18",
+  "games": [
+    "Memphis Grizzlies 124 @ Cleveland Cavaliers 121 (Final)",
+    "Houston Rockets 119 @ Indiana Pacers 104 (Final)",
+    "Milwaukee Bucks 130 @ Miami Heat 137 (Final)",
+    "Philadelphia 76ers 121 @ Orlando Magic 116 (Final)",
+    "Chicago Bulls 137 @ Brooklyn Nets 107 (Final)",
+    "Washington Wizards 103 @ Toronto Raptors 99 (Final)",
+    "Detroit Pistons @ New Orleans Pelicans (10:25 - 4th)",
+    "Atlanta Hawks @ Oklahoma City Thunder (6:27 - 4th)",
+    "Golden State Warriors @ Dallas Mavericks (10:51 - 4th)",
+    "Boston Celtics @ Denver Nuggets (5:23 - 1st)",
+    "Utah Jazz @ Los Angeles Lakers (11/18 - 10:00 PM EST)",
+    "Phoenix Suns @ Sacramento Kings (11/18 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 49.3,
+    "ft": 76.6
+  }
+}
