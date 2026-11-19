@@ -2,14 +2,9 @@
   "league": "ncaab",
   "date": "2026-11-18",
   "games": [
-    "Cal State Fullerton Titans @ UCLA Bruins (11:18 - 2nd)",
-    "Texas Southern Tigers @ San Diego State Aztecs (0:39 - 2nd)",
-    "Washington State Cougars @ Hawai'i Rainbow Warriors (1:08 - 2nd)",
-    "Louisiana Ragin' Cajuns @ San Francisco Dons (1:29 - 2nd)",
-    "Idaho Vandals 74 @ Nevada Wolf Pack 91 (Final)",
-    "UNLV Rebels @ Auburn Tigers (12:06 - 2nd)",
     "Houston Cougars 86 @ Florida Gators 76 (Final)",
     "UConn Huskies 79 @ Arizona Wildcats 85 (Final)",
+    "Cal State Fullerton Titans 71 @ UCLA Bruins 75 (Final)",
     "LSU New Orleans Privateers 41 @ Texas Tech Red Raiders 86 (Final)",
     "Kansas Jayhawks 86 @ West Virginia Mountaineers 82 (Final)",
     "Siena Saints 72 @ St. John's Red Storm 119 (Final)",
@@ -45,10 +40,15 @@
     "Fresno State Bulldogs 86 @ San José State Spartans 92 (Final)",
     "Portland Pilots 77 @ Colorado Buffaloes 74 (Final)",
     "Bethune-Cookman Wildcats 65 @ Creighton Bluejays 88 (Final)",
-    "UC Riverside Highlanders 62 @ San Diego Toreros 71 (Final)"
+    "UC Riverside Highlanders 62 @ San Diego Toreros 71 (Final)",
+    "Texas Southern Tigers 51 @ San Diego State Aztecs 97 (Final)",
+    "Washington State Cougars 79 @ Hawai'i Rainbow Warriors 63 (Final)",
+    "Louisiana Ragin' Cajuns 56 @ San Francisco Dons 77 (Final)",
+    "Idaho Vandals 74 @ Nevada Wolf Pack 91 (Final)",
+    "UNLV Rebels 71 @ Auburn Tigers 86 (Final)"
   ],
   "leagueAvg": {
-    "fg": 48.2,
-    "ft": 75
+    "fg": 47.9,
+    "ft": 74.1
   }
 }
