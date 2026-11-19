@@ -1,10 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-18T23:33:35.158Z",
+  "updated": "2026-11-19T00:01:12.289Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
-    "Al Horford": ["GS","Day-To-Day","GTD","2026-11-18","Back",0,"2026-11-17"],
+    "Al Horford": ["GS","Out","OUT","2026-11-19","Back",0,"2026-11-18"],
     "Andrew Nembhard": ["IND","Out","OUT","2026-11-20","Hip",0,"2026-11-18"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
@@ -31,7 +31,6 @@ const NBA_INJURIES = {
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-17"],
     "Dominick Barlow": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-17"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-18","Elbow",0,"2026-11-18"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-11-21","Hip",0,"2026-11-18"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
@@ -51,7 +50,6 @@ const NBA_INJURIES = {
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Brown": ["PHI","Out","OUT","2026-11-21","Hamstring",0,"2026-11-18"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
-    "Jaylin Williams": ["OKC","Out","GTD","2026-11-18","Back",0,"2026-11-17"],
     "Jaylon Tyson": ["CLE","Out","OUT","2026-11-20","Ankle",0,"2026-11-18"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-20","Hip",0,"2026-11-17"],
@@ -103,7 +101,7 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Ty Jerome": ["MEM","Out","OUT","2026-11-19","Hip",0,"2026-11-17"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
-    "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-18","Foot",0,"2026-11-18"],
+    "Tyrese Maxey": ["PHI","Out","OUT","2026-11-21","Foot",0,"2026-11-18"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-18","Ankle",0,"2026-11-17"],
     "Zyon Pullin": ["MIN","Day-To-Day","GTD","2026-11-19","Quadriceps",0,"2026-11-18"]
