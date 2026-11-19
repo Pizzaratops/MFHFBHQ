@@ -1,0 +1,78 @@
+{
+  "league": "nba",
+  "date": "2026-11-19",
+  "games": [
+    {
+      "id": "401910019",
+      "line": "Golden State Warriors @ Memphis Grizzlies (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910020",
+      "line": "Portland Trail Blazers @ Milwaukee Bucks (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910021",
+      "line": "New York Knicks @ Minnesota Timberwolves (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910022",
+      "line": "LA Clippers @ San Antonio Spurs (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

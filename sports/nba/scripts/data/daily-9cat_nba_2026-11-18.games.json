@@ -6334,9 +6334,9 @@
     },
     {
       "id": "401910015",
-      "line": "Boston Celtics @ Denver Nuggets (Halftime)",
+      "line": "Boston Celtics @ Denver Nuggets (4:17 - 4th)",
       "completed": false,
-      "statusText": "Halftime",
+      "statusText": "4:17 - 4th",
       "away": {
         "abbr": "BOS",
         "name": "Boston Celtics",
@@ -6352,9 +6352,9 @@
     },
     {
       "id": "401910017",
-      "line": "Utah Jazz @ Los Angeles Lakers (4:59 - 2nd)",
+      "line": "Utah Jazz @ Los Angeles Lakers (End of 3rd)",
       "completed": false,
-      "statusText": "4:59 - 2nd",
+      "statusText": "End of 3rd",
       "away": {
         "abbr": "UTAH",
         "name": "Utah Jazz",
@@ -6370,9 +6370,9 @@
     },
     {
       "id": "401910018",
-      "line": "Phoenix Suns @ Sacramento Kings (Halftime)",
+      "line": "Phoenix Suns @ Sacramento Kings (6:53 - 4th)",
       "completed": false,
-      "statusText": "Halftime",
+      "statusText": "6:53 - 4th",
       "away": {
         "abbr": "PHX",
         "name": "Phoenix Suns",
