@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-19T18:03:25.024Z",
+  "generatedAt": "2026-11-19T20:03:25.523Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1154,7 +1154,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19,
           "last3AvgPoints": 12.9,
-          "projPoints": 15.5
+          "projPoints": 15.4
         },
         {
           "name": "Josh Jacobs",
@@ -2015,7 +2015,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.1,
           "last3AvgPoints": 13.6,
-          "projPoints": 18.2
+          "projPoints": 18.3
         },
         {
           "name": "Tucker Kraft",
@@ -2082,7 +2082,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 0.3,
           "last3AvgPoints": 4.5,
-          "projPoints": 10.6
+          "projPoints": 10.7
         },
         {
           "name": "Devaughn Vele",
@@ -2749,17 +2749,6 @@ const STATUS_REPORT_DATA = {
           "projPoints": 21.9
         },
         {
-          "name": "Justin Jefferson",
-          "pos": "WR",
-          "nfl": "MIN",
-          "isStarter": true,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 16.4,
-          "last3AvgPoints": 13.2,
-          "projPoints": 20
-        },
-        {
           "name": "Emeka Egbuka",
           "pos": "WR",
           "nfl": "TB",
@@ -2780,17 +2769,6 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": 6,
           "last3AvgPoints": 7.6,
           "projPoints": 14.1
-        },
-        {
-          "name": "D'Andre Swift",
-          "pos": "RB",
-          "nfl": "CHI",
-          "isStarter": true,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 0,
-          "last3AvgPoints": 10.3,
-          "projPoints": 16.9
         },
         {
           "name": "Jonathon Brooks",
@@ -2912,6 +2890,28 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": 10.3
+        },
+        {
+          "name": "De'Von Achane",
+          "pos": "RB",
+          "nfl": "MIA",
+          "isStarter": false,
+          "status": "IR",
+          "flag": false,
+          "lastGamePoints": 0,
+          "last3AvgPoints": 0,
+          "projPoints": 0
+        },
+        {
+          "name": "Brock Bowers",
+          "pos": "TE",
+          "nfl": "LV",
+          "isStarter": true,
+          "status": "Q",
+          "flag": false,
+          "lastGamePoints": 3.8,
+          "last3AvgPoints": 18.1,
+          "projPoints": 15.3
         }
       ],
       "flaggedCount": 0
@@ -3819,7 +3819,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4,
           "last3AvgPoints": 2.7,
-          "projPoints": 6.2
+          "projPoints": 6.1
         },
         {
           "name": "Chicago Bears",
