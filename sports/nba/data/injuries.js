@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T22:05:46.803Z",
+  "updated": "2026-11-19T22:24:46.805Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -42,7 +42,7 @@ const NBA_INJURIES = {
     "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-20","Back",0,"2026-11-17"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grant Nelson": ["BKN","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
-    "Grayson Allen": ["CHA","Day-To-Day","GTD","2026-11-20","Concussion",0,"2026-11-18"],
+    "Grayson Allen": ["CHA","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Isaiah Stewart": ["MEM","Day-To-Day","GTD","2026-11-19","Illness",0,"2026-11-19"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
@@ -54,9 +54,9 @@ const NBA_INJURIES = {
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Brown": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-18"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
-    "Jaylon Tyson": ["CLE","Day-To-Day","OUT","2026-11-23","Ankle",0,"2026-11-19"],
+    "Jaylon Tyson": ["CLE","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
-    "Jock Landale": ["ATL","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
+    "Jock Landale": ["ATL","Out","OUT","2026-11-22","Hip",0,"2026-11-19"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-22","Knee",0,"2026-11-15"],
     "Jonathan Kuminga": ["MIN","Day-To-Day","GTD","2026-11-19","Shoulder",0,"2026-11-18"],
@@ -79,6 +79,7 @@ const NBA_INJURIES = {
     "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-19"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
+    "Noa Essengue": ["CHI","Day-To-Day","GTD","2026-11-20","Wrist",0,"2026-11-19"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
@@ -92,6 +93,7 @@ const NBA_INJURIES = {
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
+    "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-20","Hamstring",0,"2026-11-19"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-27","Heel",0,"2026-11-17"],
     "Taurean Prince": ["DET","Out","OUT","2026-12-13","Knee",0,"2026-11-19"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
