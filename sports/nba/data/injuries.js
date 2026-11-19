@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T15:59:11.399Z",
+  "updated": "2026-11-19T16:30:17.768Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Day-To-Day","GTD","2026-11-19","Back",0,"2026-11-19"],
@@ -104,6 +104,7 @@ const NBA_INJURIES = {
     "Ty Jerome": ["MEM","Out","GTD","2026-11-19","Hip",0,"2026-11-17"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
     "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
+    "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Zyon Pullin": ["MIN","Day-To-Day","GTD","2026-11-19","Quadriceps",0,"2026-11-18"]
   }
