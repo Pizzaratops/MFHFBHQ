@@ -92,7 +92,8 @@ async function year(y) {
   let failed = 0;
   for (const y of years) {
     try { await year(y); } catch (e) { failed++; console.error(`Barttorvik ${y} fehlgeschlagen: ${e.message}`); }
-    await new Promise(r => setTimeout(r, 1500));
+    // Lange Pause: 20 Abrufe im 1,5-s-Takt (19.11.2026) lösten eine CloudFront-Sperre aus (HTTP 403 „Request blocked“)
+    if (years.length > 1) await new Promise(r => setTimeout(r, 12000));
   }
   // --soft (CBB Sync): Fehlschlag nur als Warnung — build-college-prospects.js nimmt dann den letzten
   // Stand aus dem Repo-Cache. Ohne --soft (Historie) bleibt es ein Fehler.
