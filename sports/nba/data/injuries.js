@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T19:27:23.098Z",
+  "updated": "2026-11-19T20:27:25.564Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -36,7 +36,7 @@ const NBA_INJURIES = {
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Draymond Green": ["GS","Out","OUT","2026-11-22","Rest",0,"2026-11-19"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
-    "Dylan Harper": ["SA","Out","OUT","2026-11-21","Hip",0,"2026-11-19"],
+    "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-20","Back",0,"2026-11-17"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
