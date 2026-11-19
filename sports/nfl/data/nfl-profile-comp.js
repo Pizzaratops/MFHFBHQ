@@ -20,7 +20,7 @@
 
 const NFL_PROFILE_COMP = {
   "meta": {
-    "builtAt": "2026-11-19T16:59:32.524Z",
+    "builtAt": "2026-11-19T18:10:24.180Z",
     "matchFeatures": {
       "QB": [
         "avgPpaPass",
@@ -304456,128 +304456,6 @@ const NFL_PROFILE_COMP = {
           "draftCapitalScore": 0.25
         }
       ],
-      "2026_5222689": [
-        {
-          "id": "nfl_2026_malikbenson",
-          "name": "Malik Benson",
-          "team": "Oregon",
-          "year": 2025,
-          "dist": 1.449,
-          "draftYear": 2026,
-          "draftRound": 6,
-          "draftPick": 195,
-          "ras": null,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2018_daeseanhamilton",
-          "name": "DaeSean Hamilton",
-          "team": "Penn State",
-          "year": 2017,
-          "dist": 1.473,
-          "draftYear": 2018,
-          "draftRound": 4,
-          "draftPick": 113,
-          "ras": 5.05,
-          "draftCapitalScore": 0.298
-        },
-        {
-          "id": "nfl_2020_freddieswain",
-          "name": "Freddie Swain",
-          "team": "Florida",
-          "year": 2019,
-          "dist": 1.513,
-          "draftYear": 2020,
-          "draftRound": 6,
-          "draftPick": 214,
-          "ras": 5.28,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2026_dezhaunstribling",
-          "name": "De'Zhaun Stribling",
-          "team": "Ole Miss",
-          "year": 2025,
-          "dist": 1.561,
-          "draftYear": 2026,
-          "draftRound": 2,
-          "draftPick": 33,
-          "ras": 7.41,
-          "draftCapitalScore": 0.593
-        },
-        {
-          "id": "nfl_2021_nicocollins",
-          "name": "Nico Collins",
-          "team": "Michigan",
-          "year": 2019,
-          "dist": 1.636,
-          "draftYear": 2021,
-          "draftRound": 3,
-          "draftPick": 89,
-          "ras": 6.65,
-          "draftCapitalScore": 0.489
-        },
-        {
-          "id": "nfl_2025_matthewgolden",
-          "name": "Matthew Golden",
-          "team": "Texas",
-          "year": 2024,
-          "dist": 1.645,
-          "draftYear": 2025,
-          "draftRound": 1,
-          "draftPick": 23,
-          "ras": 5.96,
-          "draftCapitalScore": 0.68
-        },
-        {
-          "id": "nfl_2021_jalencamp",
-          "name": "Jalen Camp",
-          "team": "Georgia Tech",
-          "year": 2020,
-          "dist": 1.652,
-          "draftYear": 2021,
-          "draftRound": 6,
-          "draftPick": 209,
-          "ras": null,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2026_cjdaniels",
-          "name": "C.J. Daniels",
-          "team": "Miami",
-          "year": 2025,
-          "dist": 1.727,
-          "draftYear": 2026,
-          "draftRound": 6,
-          "draftPick": 197,
-          "ras": 5.6,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2021_benskowronek",
-          "name": "Ben Skowronek",
-          "team": "Notre Dame",
-          "year": 2020,
-          "dist": 1.736,
-          "draftYear": 2021,
-          "draftRound": 7,
-          "draftPick": 249,
-          "ras": null,
-          "draftCapitalScore": 0.25
-        },
-        {
-          "id": "nfl_2020_henryruggs",
-          "name": "Henry Ruggs III",
-          "team": "Alabama",
-          "year": 2019,
-          "dist": 1.844,
-          "draftYear": 2020,
-          "draftRound": 1,
-          "draftPick": 12,
-          "ras": 7.06,
-          "draftCapitalScore": 0.68
-        }
-      ],
       "2026_5222752": [
         {
           "id": "nfl_2020_kjosborn",
@@ -362427,7 +362305,7 @@ const NFL_PROFILE_COMP = {
       "poolSize": 362,
       "matched": 362,
       "unmatched": 1137,
-      "targetsWithComps": 1340
+      "targetsWithComps": 1339
     },
     "TE": {
       "poolSize": 158,
@@ -389459,15 +389337,6 @@ const NFL_PROFILE_COMP = {
         "usageOverall": 4.2,
         "heightIn": 5.7,
         "weightLb": 8.8
-      },
-      "2026_5222689": {
-        "recShare": 4.2,
-        "ydShare": 9.5,
-        "tdShare": 26,
-        "avgPPA": 79,
-        "usageOverall": 1.1,
-        "heightIn": 71.4,
-        "weightLb": 80.9
       },
       "2026_5222752": {
         "recShare": 36.3,

@@ -24,7 +24,7 @@
 
 const COLLEGE_SCOUTING = {
   "meta": {
-    "lastSync": "2026-11-19T16:58:25.060Z",
+    "lastSync": "2026-11-19T18:09:18.115Z",
     "currentSeason": 2026,
     "years": [
       2013,
@@ -213133,24 +213133,6 @@ const COLLEGE_SCOUTING = {
           "weightLb": 178
         },
         {
-          "id": "2026_5222689",
-          "rawId": "5222689",
-          "name": "John Montague",
-          "team": "Boston College",
-          "conf": "ACC",
-          "year": 2026,
-          "rec": 15,
-          "yds": 241,
-          "td": 2,
-          "recShare": 10.3,
-          "ydShare": 13.9,
-          "tdShare": 20,
-          "usageOverall": 4,
-          "avgPPA": 0.978,
-          "heightIn": 74,
-          "weightLb": 210
-        },
-        {
           "id": "2026_5222752",
           "rawId": "5222752",
           "name": "Drew Wagner",
@@ -245773,24 +245755,6 @@ const COLLEGE_SCOUTING = {
         "weightLb": 178
       },
       {
-        "id": "2026_5222689",
-        "rawId": "5222689",
-        "name": "John Montague",
-        "team": "Boston College",
-        "conf": "ACC",
-        "year": 2026,
-        "rec": 15,
-        "yds": 241,
-        "td": 2,
-        "recShare": 10.3,
-        "ydShare": 13.9,
-        "tdShare": 20,
-        "usageOverall": 4,
-        "avgPPA": 0.978,
-        "heightIn": 74,
-        "weightLb": 210
-      },
-      {
         "id": "2026_5222752",
         "rawId": "5222752",
         "name": "Drew Wagner",
@@ -278329,7 +278293,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jasaiah Gathings",
           "team": "Akron",
           "year": 2023,
-          "dist": 0.546
+          "dist": 0.545
         },
         {
           "id": "2025_4575862",
@@ -278631,7 +278595,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kevin Cummings",
           "team": "Oregon State",
           "year": 2013,
-          "dist": 0.822
+          "dist": 0.821
         },
         {
           "id": "2021_4367180",
@@ -279186,7 +279150,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ihmir Smith-Marsette",
           "team": "Iowa",
           "year": 2018,
-          "dist": 0.57
+          "dist": 0.569
         },
         {
           "id": "2016_559679",
@@ -279203,17 +279167,17 @@ const COLLEGE_SCOUTING = {
           "dist": 0.59
         },
         {
-          "id": "2020_4045291",
-          "name": "Taysir Mack",
-          "team": "Pittsburgh",
-          "year": 2020,
-          "dist": 0.594
-        },
-        {
           "id": "2018_4039301",
           "name": "Courtney Lark",
           "team": "Houston",
           "year": 2018,
+          "dist": 0.594
+        },
+        {
+          "id": "2020_4045291",
+          "name": "Taysir Mack",
+          "team": "Pittsburgh",
+          "year": 2020,
           "dist": 0.594
         },
         {
@@ -279416,7 +279380,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kyle Philips",
           "team": "UCLA",
           "year": 2020,
-          "dist": 0.835
+          "dist": 0.834
         },
         {
           "id": "2021_4690143",
@@ -279481,7 +279445,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tyrone Scott",
           "team": "Central Michigan",
           "year": 2019,
-          "dist": 0.637
+          "dist": 0.636
         },
         {
           "id": "2019_3919557",
@@ -279632,7 +279596,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jordan Faison",
           "team": "Notre Dame",
           "year": 2025,
-          "dist": 0.601
+          "dist": 0.602
         },
         {
           "id": "2021_4240408",
@@ -280194,7 +280158,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malcome Kennedy",
           "team": "Texas A&M",
           "year": 2013,
-          "dist": 1.003
+          "dist": 1.002
         },
         {
           "id": "2013_503649",
@@ -280273,7 +280237,7 @@ const COLLEGE_SCOUTING = {
           "name": "Smoke Harris",
           "team": "Louisiana Tech",
           "year": 2021,
-          "dist": 0.843
+          "dist": 0.844
         },
         {
           "id": "2014_518274",
@@ -280366,7 +280330,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rickey Bradley",
           "team": "Southern Miss",
           "year": 2013,
-          "dist": 0.429
+          "dist": 0.428
         },
         {
           "id": "2015_3126281",
@@ -280633,7 +280597,7 @@ const COLLEGE_SCOUTING = {
           "name": "Samuel Denmark",
           "team": "Coastal Carolina",
           "year": 2020,
-          "dist": 0.373
+          "dist": 0.372
         },
         {
           "id": "2022_4426383",
@@ -280752,13 +280716,6 @@ const COLLEGE_SCOUTING = {
           "dist": 0.223
         },
         {
-          "id": "2026_5222689",
-          "name": "John Montague",
-          "team": "Boston College",
-          "year": 2026,
-          "dist": 0.384
-        },
-        {
           "id": "2018_3917579",
           "name": "Jarrod Jackson",
           "team": "Louisiana",
@@ -280813,6 +280770,13 @@ const COLLEGE_SCOUTING = {
           "team": "Ohio State",
           "year": 2017,
           "dist": 0.542
+        },
+        {
+          "id": "2024_4696062",
+          "name": "Antwane Wells Jr.",
+          "team": "Ole Miss",
+          "year": 2024,
+          "dist": 0.544
         }
       ],
       "2023_4427773": [
@@ -280935,7 +280899,7 @@ const COLLEGE_SCOUTING = {
           "name": "Elijah Spencer",
           "team": "Minnesota",
           "year": 2024,
-          "dist": 0.668
+          "dist": 0.667
         },
         {
           "id": "2015_535618",
@@ -281532,7 +281496,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kirby Moore",
           "team": "Boise State",
           "year": 2013,
-          "dist": 0.841
+          "dist": 0.84
         }
       ],
       "2023_4428666": [
@@ -281950,7 +281914,7 @@ const COLLEGE_SCOUTING = {
           "name": "Deshon Stoudemire",
           "team": "Troy",
           "year": 2023,
-          "dist": 0.651
+          "dist": 0.65
         },
         {
           "id": "2021_4361915",
@@ -282433,7 +282397,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jacoby Jones",
           "team": "Ohio",
           "year": 2022,
-          "dist": 0.583
+          "dist": 0.582
         },
         {
           "id": "2024_5079600",
@@ -282540,7 +282504,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kenny Bell",
           "team": "Nebraska",
           "year": 2014,
-          "dist": 0.705
+          "dist": 0.704
         }
       ],
       "2023_4429422": [
@@ -282642,7 +282606,7 @@ const COLLEGE_SCOUTING = {
           "name": "Prince Strachan",
           "team": "West Virginia",
           "year": 2026,
-          "dist": 0.89
+          "dist": 0.889
         },
         {
           "id": "2025_4709669",
@@ -282714,7 +282678,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devaughn Cooper",
           "team": "Syracuse",
           "year": 2022,
-          "dist": 0.37
+          "dist": 0.369
         },
         {
           "id": "2020_4258604",
@@ -282765,7 +282729,7 @@ const COLLEGE_SCOUTING = {
           "name": "Braydon Johnson",
           "team": "Oklahoma State",
           "year": 2019,
-          "dist": 0.746
+          "dist": 0.745
         },
         {
           "id": "2017_3139923",
@@ -282821,7 +282785,7 @@ const COLLEGE_SCOUTING = {
           "name": "Quintin Payton",
           "team": "NC State",
           "year": 2013,
-          "dist": 0.953
+          "dist": 0.952
         },
         {
           "id": "2014_534393",
@@ -283283,7 +283247,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keylon Stokes",
           "team": "Tulsa",
           "year": 2022,
-          "dist": 0.912
+          "dist": 0.911
         },
         {
           "id": "2016_550351",
@@ -283332,7 +283296,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rasean Jones",
           "team": "Boise State",
           "year": 2026,
-          "dist": 1.139
+          "dist": 1.14
         }
       ],
       "2023_4430254": [
@@ -283404,7 +283368,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cody Thompson",
           "team": "Toledo",
           "year": 2018,
-          "dist": 0.839
+          "dist": 0.838
         }
       ],
       "2023_4430270": [
@@ -283476,7 +283440,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaden Smith",
           "team": "Nevada",
           "year": 2024,
-          "dist": 0.93
+          "dist": 0.929
         }
       ],
       "2023_4430470": [
@@ -283808,7 +283772,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ray-Ray McCloud",
           "team": "Clemson",
           "year": 2016,
-          "dist": 0.606
+          "dist": 0.605
         },
         {
           "id": "2019_3915261",
@@ -283866,7 +283830,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keith Mumphery",
           "team": "Michigan State",
           "year": 2014,
-          "dist": 0.41
+          "dist": 0.409
         },
         {
           "id": "2022_4360644",
@@ -283959,7 +283923,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ezell Ruffin",
           "team": "San Diego State",
           "year": 2013,
-          "dist": 0.978
+          "dist": 0.977
         },
         {
           "id": "2024_4431618",
@@ -284161,7 +284125,7 @@ const COLLEGE_SCOUTING = {
           "name": "Makai Jackson",
           "team": "Liberty",
           "year": 2026,
-          "dist": 1.037
+          "dist": 1.038
         },
         {
           "id": "2013_483321",
@@ -284189,7 +284153,7 @@ const COLLEGE_SCOUTING = {
           "name": "Zay Flowers",
           "team": "Boston College",
           "year": 2021,
-          "dist": 1.519
+          "dist": 1.518
         },
         {
           "id": "2025_5296150",
@@ -284621,7 +284585,7 @@ const COLLEGE_SCOUTING = {
           "name": "Thomas Hennigan",
           "team": "App State",
           "year": 2021,
-          "dist": 0.988
+          "dist": 0.987
         },
         {
           "id": "2023_4373062",
@@ -284953,7 +284917,7 @@ const COLLEGE_SCOUTING = {
           "name": "Miles Marshall",
           "team": "Indiana",
           "year": 2020,
-          "dist": 0.642
+          "dist": 0.641
         },
         {
           "id": "2017_3116745",
@@ -285032,14 +284996,14 @@ const COLLEGE_SCOUTING = {
           "name": "Tre Spivey",
           "team": "Arizona",
           "year": 2026,
-          "dist": 1.055
+          "dist": 1.054
         },
         {
           "id": "2022_4431618",
           "name": "Mario Williams",
           "team": "USC",
           "year": 2022,
-          "dist": 1.057
+          "dist": 1.056
         },
         {
           "id": "2025_4714341",
@@ -285478,7 +285442,7 @@ const COLLEGE_SCOUTING = {
           "name": "Conner Floyd",
           "team": "Tulsa",
           "year": 2015,
-          "dist": 0.638
+          "dist": 0.637
         },
         {
           "id": "2022_4685183",
@@ -285868,7 +285832,7 @@ const COLLEGE_SCOUTING = {
           "name": "Travis Reynolds",
           "team": "Utah State",
           "year": 2013,
-          "dist": 0.817
+          "dist": 0.816
         },
         {
           "id": "2024_5121334",
@@ -285924,7 +285888,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Bell",
           "team": "Louisville",
           "year": 2024,
-          "dist": 0.956
+          "dist": 0.955
         }
       ],
       "2023_4433906": [
@@ -286012,7 +285976,7 @@ const COLLEGE_SCOUTING = {
           "name": "Christan Horn",
           "team": "App State",
           "year": 2024,
-          "dist": 0.825
+          "dist": 0.826
         },
         {
           "id": "2013_513075",
@@ -286191,14 +286155,14 @@ const COLLEGE_SCOUTING = {
           "name": "David Porter",
           "team": "TCU",
           "year": 2013,
-          "dist": 1.3
+          "dist": 1.299
         },
         {
           "id": "2023_4597500",
           "name": "Adonai Mitchell",
           "team": "Texas",
           "year": 2023,
-          "dist": 1.342
+          "dist": 1.343
         },
         {
           "id": "2026_5121384",
@@ -286530,7 +286494,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jalen Knox",
           "team": "Missouri",
           "year": 2019,
-          "dist": 0.467
+          "dist": 0.466
         },
         {
           "id": "2016_3924325",
@@ -286702,7 +286666,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ricky Pearsall",
           "team": "Florida",
           "year": 2022,
-          "dist": 0.699
+          "dist": 0.698
         },
         {
           "id": "2023_4429033",
@@ -286839,7 +286803,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malachi Jones",
           "team": "App State",
           "year": 2014,
-          "dist": 0.681
+          "dist": 0.68
         },
         {
           "id": "2023_4569559",
@@ -287048,7 +287012,7 @@ const COLLEGE_SCOUTING = {
           "name": "James Bostic",
           "team": "Ohio",
           "year": 2022,
-          "dist": 0.738
+          "dist": 0.737
         },
         {
           "id": "2023_4433871",
@@ -287062,7 +287026,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tauskie Dove",
           "team": "Missouri",
           "year": 2021,
-          "dist": 0.751
+          "dist": 0.75
         },
         {
           "id": "2026_4871040",
@@ -287106,7 +287070,7 @@ const COLLEGE_SCOUTING = {
           "name": "Nicholas Cenacle",
           "team": "Hawai'i",
           "year": 2024,
-          "dist": 0.684
+          "dist": 0.683
         },
         {
           "id": "2020_4240661",
@@ -287192,7 +287156,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mark Pope",
           "team": "Miami",
           "year": 2019,
-          "dist": 0.492
+          "dist": 0.491
         },
         {
           "id": "2016_3915357",
@@ -287631,7 +287595,7 @@ const COLLEGE_SCOUTING = {
           "name": "Smoke Harris",
           "team": "Louisiana Tech",
           "year": 2021,
-          "dist": 0.846
+          "dist": 0.845
         },
         {
           "id": "2020_4382578",
@@ -288042,7 +288006,7 @@ const COLLEGE_SCOUTING = {
           "name": "Corey Brown",
           "team": "Ohio State",
           "year": 2013,
-          "dist": 0.828
+          "dist": 0.827
         },
         {
           "id": "2013_487659",
@@ -288070,7 +288034,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cam Vaughn",
           "team": "Jacksonville State",
           "year": 2024,
-          "dist": 0.973
+          "dist": 0.972
         },
         {
           "id": "2013_534448",
@@ -288093,7 +288057,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeric Magnant",
           "team": "New Mexico",
           "year": 2013,
-          "dist": 0.585
+          "dist": 0.584
         },
         {
           "id": "2013_378329",
@@ -288121,7 +288085,7 @@ const COLLEGE_SCOUTING = {
           "name": "Diante Vines",
           "team": "Old Dominion",
           "year": 2024,
-          "dist": 0.872
+          "dist": 0.871
         },
         {
           "id": "2013_501564",
@@ -288156,7 +288120,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kendall Sanders",
           "team": "Texas",
           "year": 2013,
-          "dist": 1.065
+          "dist": 1.064
         }
       ],
       "2023_4575508": [
@@ -288293,7 +288257,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kameran Shanks",
           "team": "UAB",
           "year": 2024,
-          "dist": 0.601
+          "dist": 0.6
         },
         {
           "id": "2026_5121750",
@@ -288567,7 +288531,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kaedin Robinson",
           "team": "App State",
           "year": 2024,
-          "dist": 0.873
+          "dist": 0.872
         },
         {
           "id": "2023_4428532",
@@ -289403,7 +289367,7 @@ const COLLEGE_SCOUTING = {
           "name": "Louis Brown",
           "team": "San Diego State",
           "year": 2024,
-          "dist": 0.883
+          "dist": 0.882
         },
         {
           "id": "2024_4429184",
@@ -289438,7 +289402,7 @@ const COLLEGE_SCOUTING = {
           "name": "Fred Trevillion",
           "team": "San Diego State",
           "year": 2018,
-          "dist": 1.047
+          "dist": 1.046
         },
         {
           "id": "2013_531670",
@@ -289524,7 +289488,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cam Camper",
           "team": "Boise State",
           "year": 2024,
-          "dist": 1.769
+          "dist": 1.768
         }
       ],
       "2023_4607419": [
@@ -289668,7 +289632,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jordan Shipp",
           "team": "North Carolina",
           "year": 2026,
-          "dist": 0.779
+          "dist": 0.778
         }
       ],
       "2023_4612246": [
@@ -290100,7 +290064,7 @@ const COLLEGE_SCOUTING = {
           "name": "E.J. Scott",
           "team": "Wake Forest",
           "year": 2014,
-          "dist": 0.795
+          "dist": 0.794
         }
       ],
       "2023_4683151": [
@@ -290360,7 +290324,7 @@ const COLLEGE_SCOUTING = {
           "name": "La'Michael Pettway",
           "team": "Arkansas",
           "year": 2018,
-          "dist": 0.546
+          "dist": 0.545
         },
         {
           "id": "2024_5151318",
@@ -290483,7 +290447,7 @@ const COLLEGE_SCOUTING = {
           "name": "DJ England-Chisolm",
           "team": "Middle Tennessee",
           "year": 2022,
-          "dist": 0.998
+          "dist": 0.997
         },
         {
           "id": "2023_4880845",
@@ -290525,7 +290489,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jordan Duncan",
           "team": "California",
           "year": 2018,
-          "dist": 1.2
+          "dist": 1.199
         },
         {
           "id": "2021_4697844",
@@ -290778,7 +290742,7 @@ const COLLEGE_SCOUTING = {
           "name": "Trea Shropshire",
           "team": "UAB",
           "year": 2021,
-          "dist": 0.813
+          "dist": 0.812
         },
         {
           "id": "2023_4429742",
@@ -291124,7 +291088,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kevin Shaa",
           "team": "Liberty",
           "year": 2019,
-          "dist": 0.335
+          "dist": 0.334
         },
         {
           "id": "2016_3915802",
@@ -291584,7 +291548,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tyrese Chambers",
           "team": "Florida International",
           "year": 2022,
-          "dist": 0.907
+          "dist": 0.906
         },
         {
           "id": "2021_4430325",
@@ -292081,7 +292045,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mac Dalena",
           "team": "Fresno State",
           "year": 2024,
-          "dist": 0.98
+          "dist": 0.979
         },
         {
           "id": "2023_4430270",
@@ -292297,7 +292261,7 @@ const COLLEGE_SCOUTING = {
           "name": "Andrew Erickson",
           "team": "New Mexico",
           "year": 2023,
-          "dist": 0.657
+          "dist": 0.656
         },
         {
           "id": "2023_4428010",
@@ -292420,7 +292384,7 @@ const COLLEGE_SCOUTING = {
           "name": "Qua'Vez Humphreys",
           "team": "Sam Houston",
           "year": 2024,
-          "dist": 0.821
+          "dist": 0.82
         },
         {
           "id": "2014_514181",
@@ -292462,7 +292426,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ali Jennings",
           "team": "Virginia Tech",
           "year": 2024,
-          "dist": 1.342
+          "dist": 1.341
         },
         {
           "id": "2021_4360818",
@@ -292620,7 +292584,7 @@ const COLLEGE_SCOUTING = {
           "name": "Deddrick Thomas",
           "team": "Mississippi State",
           "year": 2019,
-          "dist": 0.721
+          "dist": 0.72
         }
       ],
       "2023_4691315": [
@@ -292650,7 +292614,7 @@ const COLLEGE_SCOUTING = {
           "name": "Eric Singleton Jr.",
           "team": "Georgia Tech",
           "year": 2023,
-          "dist": 0.457
+          "dist": 0.456
         },
         {
           "id": "2014_512963",
@@ -292845,7 +292809,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dylan Wright",
           "team": "Minnesota",
           "year": 2021,
-          "dist": 0.696
+          "dist": 0.695
         },
         {
           "id": "2023_4567217",
@@ -292901,7 +292865,7 @@ const COLLEGE_SCOUTING = {
           "name": "Carl Chester",
           "team": "Marshall",
           "year": 2024,
-          "dist": 1.002
+          "dist": 1.001
         },
         {
           "id": "2023_4430103",
@@ -292989,7 +292953,7 @@ const COLLEGE_SCOUTING = {
           "name": "OJ Clark",
           "team": "New Mexico State",
           "year": 2016,
-          "dist": 0.626
+          "dist": 0.625
         },
         {
           "id": "2023_4569510",
@@ -293484,7 +293448,7 @@ const COLLEGE_SCOUTING = {
           "name": "Richard Mullaney",
           "team": "Oregon State",
           "year": 2013,
-          "dist": 0.744
+          "dist": 0.743
         }
       ],
       "2023_4700453": [
@@ -293830,7 +293794,7 @@ const COLLEGE_SCOUTING = {
           "name": "Garic Wharton",
           "team": "Arizona",
           "year": 2013,
-          "dist": 0.632
+          "dist": 0.631
         },
         {
           "id": "2020_4427331",
@@ -293867,7 +293831,7 @@ const COLLEGE_SCOUTING = {
           "name": "Daniel George",
           "team": "Akron",
           "year": 2023,
-          "dist": 0.546
+          "dist": 0.545
         },
         {
           "id": "2015_3128251",
@@ -294492,7 +294456,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keon Hatcher",
           "team": "Arkansas",
           "year": 2016,
-          "dist": 0.631
+          "dist": 0.63
         }
       ],
       "2023_4718457": [
@@ -294501,7 +294465,7 @@ const COLLEGE_SCOUTING = {
           "name": "Isaiah Horton",
           "team": "Alabama",
           "year": 2025,
-          "dist": 0.416
+          "dist": 0.415
         },
         {
           "id": "2021_4373686",
@@ -294622,7 +294586,7 @@ const COLLEGE_SCOUTING = {
           "name": "K.D. Hutchinson",
           "team": "Western Kentucky",
           "year": 2024,
-          "dist": 0.445
+          "dist": 0.444
         },
         {
           "id": "2023_4431219",
@@ -294789,7 +294753,7 @@ const COLLEGE_SCOUTING = {
           "name": "Terrance Greene Jr.",
           "team": "James Madison",
           "year": 2022,
-          "dist": 0.681
+          "dist": 0.682
         },
         {
           "id": "2024_5085609",
@@ -294889,7 +294853,7 @@ const COLLEGE_SCOUTING = {
           "name": "Daniel Spencer",
           "team": "Houston",
           "year": 2013,
-          "dist": 0.53
+          "dist": 0.529
         },
         {
           "id": "2022_4569912",
@@ -295112,7 +295076,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devaughn Cooper",
           "team": "Arizona",
           "year": 2018,
-          "dist": 0.898
+          "dist": 0.897
         },
         {
           "id": "2023_4431268",
@@ -295140,7 +295104,7 @@ const COLLEGE_SCOUTING = {
           "name": "Noah Frith",
           "team": "Liberty",
           "year": 2022,
-          "dist": 0.948
+          "dist": 0.947
         }
       ],
       "2023_4869599": [
@@ -295307,7 +295271,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ronnie Bell",
           "team": "Michigan",
           "year": 2020,
-          "dist": 0.711
+          "dist": 0.71
         },
         {
           "id": "2019_4372063",
@@ -295500,7 +295464,7 @@ const COLLEGE_SCOUTING = {
           "name": "Xavier Restrepo",
           "team": "Miami",
           "year": 2021,
-          "dist": 0.437
+          "dist": 0.436
         }
       ],
       "2023_4870612": [
@@ -295565,7 +295529,7 @@ const COLLEGE_SCOUTING = {
           "name": "Braden Lenzy",
           "team": "Notre Dame",
           "year": 2021,
-          "dist": 0.689
+          "dist": 0.688
         },
         {
           "id": "2016_3676833",
@@ -295609,7 +295573,7 @@ const COLLEGE_SCOUTING = {
           "name": "Makai Lemon",
           "team": "USC",
           "year": 2025,
-          "dist": 1.06
+          "dist": 1.059
         },
         {
           "id": "2026_4923226",
@@ -296048,7 +296012,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jacob Bernard",
           "team": "Louisiana",
           "year": 2023,
-          "dist": 0.651
+          "dist": 0.65
         },
         {
           "id": "2022_4890702",
@@ -296099,7 +296063,7 @@ const COLLEGE_SCOUTING = {
           "name": "Matt Landers",
           "team": "Toledo",
           "year": 2021,
-          "dist": 1.085
+          "dist": 1.084
         },
         {
           "id": "2024_5151200",
@@ -296243,7 +296207,7 @@ const COLLEGE_SCOUTING = {
           "name": "Shazz Preston",
           "team": "Tulane",
           "year": 2025,
-          "dist": 0.438
+          "dist": 0.439
         },
         {
           "id": "2023_4698227",
@@ -296429,7 +296393,7 @@ const COLLEGE_SCOUTING = {
           "name": "Isaiah Burse",
           "team": "Fresno State",
           "year": 2013,
-          "dist": 0.687
+          "dist": 0.686
         },
         {
           "id": "2015_546817",
@@ -296796,7 +296760,7 @@ const COLLEGE_SCOUTING = {
           "name": "Garrett Brown",
           "team": "Air Force",
           "year": 2014,
-          "dist": 1.479
+          "dist": 1.48
         }
       ],
       "2023_4880734": [
@@ -296847,7 +296811,7 @@ const COLLEGE_SCOUTING = {
           "name": "Josh Malone",
           "team": "Tennessee",
           "year": 2016,
-          "dist": 0.988
+          "dist": 0.989
         },
         {
           "id": "2023_4684281",
@@ -296963,7 +296927,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kaylon Geiger",
           "team": "Texas Tech",
           "year": 2021,
-          "dist": 0.608
+          "dist": 0.607
         },
         {
           "id": "2021_4567506",
@@ -297200,7 +297164,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dillon Stoner",
           "team": "Oklahoma State",
           "year": 2017,
-          "dist": 0.667
+          "dist": 0.666
         },
         {
           "id": "2023_4701936",
@@ -297748,7 +297712,7 @@ const COLLEGE_SCOUTING = {
           "name": "John Christopher",
           "team": "Temple",
           "year": 2013,
-          "dist": 0.45
+          "dist": 0.449
         },
         {
           "id": "2018_4362430",
@@ -297906,7 +297870,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jordan Duncan",
           "team": "California",
           "year": 2019,
-          "dist": 0.439
+          "dist": 0.44
         },
         {
           "id": "2017_3917067",
@@ -297999,7 +297963,7 @@ const COLLEGE_SCOUTING = {
           "name": "Willie Johnson",
           "team": "Marshall",
           "year": 2020,
-          "dist": 0.371
+          "dist": 0.37
         },
         {
           "id": "2014_549932",
@@ -298064,7 +298028,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mekhi Shaw",
           "team": "San Diego State",
           "year": 2022,
-          "dist": 0.51
+          "dist": 0.509
         },
         {
           "id": "2015_100009",
@@ -298517,14 +298481,14 @@ const COLLEGE_SCOUTING = {
           "name": "Anthony Rice",
           "team": "Central Michigan",
           "year": 2015,
-          "dist": 0.792
+          "dist": 0.791
         },
         {
           "id": "2024_4608793",
           "name": "Jabre Barber",
           "team": "Texas A&M",
           "year": 2024,
-          "dist": 0.809
+          "dist": 0.808
         }
       ],
       "2023_5078165": [
@@ -298633,7 +298597,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeremiah Ware",
           "team": "Georgia Southern",
           "year": 2026,
-          "dist": 0.668
+          "dist": 0.667
         },
         {
           "id": "2018_4371974",
@@ -298935,7 +298899,7 @@ const COLLEGE_SCOUTING = {
           "name": "James Butler",
           "team": "Louisiana",
           "year": 2014,
-          "dist": 0.936
+          "dist": 0.937
         },
         {
           "id": "2016_547066",
@@ -299058,7 +299022,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kyle Griswould",
           "team": "Middle Tennessee",
           "year": 2013,
-          "dist": 1.127
+          "dist": 1.126
         },
         {
           "id": "2016_3123738",
@@ -299123,7 +299087,7 @@ const COLLEGE_SCOUTING = {
           "name": "Titus Davis",
           "team": "Central Michigan",
           "year": 2013,
-          "dist": 0.99
+          "dist": 0.991
         },
         {
           "id": "2024_5220680",
@@ -299288,7 +299252,7 @@ const COLLEGE_SCOUTING = {
           "name": "Daniel Braverman",
           "team": "Western Michigan",
           "year": 2014,
-          "dist": 1.073
+          "dist": 1.072
         },
         {
           "id": "2023_4571935",
@@ -299316,7 +299280,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tommy Shuler",
           "team": "Marshall",
           "year": 2014,
-          "dist": 1.264
+          "dist": 1.263
         }
       ],
       "2023_5083198": [
@@ -299346,7 +299310,7 @@ const COLLEGE_SCOUTING = {
           "name": "D.K. Metcalf",
           "team": "Ole Miss",
           "year": 2017,
-          "dist": 0.621
+          "dist": 0.62
         },
         {
           "id": "2018_4245144",
@@ -299469,7 +299433,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kole Wilson",
           "team": "Texas State",
           "year": 2023,
-          "dist": 0.551
+          "dist": 0.55
         },
         {
           "id": "2015_547232",
@@ -299727,7 +299691,7 @@ const COLLEGE_SCOUTING = {
           "name": "DJ Stubbs",
           "team": "Liberty",
           "year": 2021,
-          "dist": 0.37
+          "dist": 0.369
         },
         {
           "id": "2023_4900903",
@@ -300224,7 +300188,7 @@ const COLLEGE_SCOUTING = {
           "name": "Umari Hatcher",
           "team": "Syracuse",
           "year": 2023,
-          "dist": 0.457
+          "dist": 0.456
         },
         {
           "id": "2017_4241372",
@@ -300261,7 +300225,7 @@ const COLLEGE_SCOUTING = {
           "name": "Pofele Ashlock",
           "team": "Hawai'i",
           "year": 2023,
-          "dist": 0.551
+          "dist": 0.55
         },
         {
           "id": "2017_3123075",
@@ -300361,7 +300325,7 @@ const COLLEGE_SCOUTING = {
           "name": "Traylon Ray",
           "team": "West Virginia",
           "year": 2024,
-          "dist": 0.807
+          "dist": 0.806
         },
         {
           "id": "2024_4430577",
@@ -300426,21 +300390,21 @@ const COLLEGE_SCOUTING = {
           "name": "Corey Rucker",
           "team": "Arkansas State",
           "year": 2024,
-          "dist": 2.451
+          "dist": 2.452
         },
         {
           "id": "2023_5082289",
           "name": "Kelly Akharaiyi",
           "team": "UTEP",
           "year": 2023,
-          "dist": 2.479
+          "dist": 2.478
         },
         {
           "id": "2024_5220680",
           "name": "Ted Hurst",
           "team": "Georgia State",
           "year": 2024,
-          "dist": 2.516
+          "dist": 2.515
         },
         {
           "id": "2014_514181",
@@ -300540,7 +300504,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcus McGill",
           "team": "Buffalo",
           "year": 2014,
-          "dist": 0.493
+          "dist": 0.492
         }
       ],
       "2023_5121334": [
@@ -300577,7 +300541,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keiwone Malone",
           "team": "Memphis",
           "year": 2013,
-          "dist": 0.309
+          "dist": 0.308
         },
         {
           "id": "2014_513743",
@@ -300605,7 +300569,7 @@ const COLLEGE_SCOUTING = {
           "name": "Taywan Taylor",
           "team": "Western Kentucky",
           "year": 2014,
-          "dist": 0.407
+          "dist": 0.406
         },
         {
           "id": "2021_4427957",
@@ -300684,7 +300648,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kaleb Smith",
           "team": "Virginia Tech",
           "year": 2021,
-          "dist": 0.564
+          "dist": 0.563
         }
       ],
       "2023_5150424": [
@@ -300728,7 +300692,7 @@ const COLLEGE_SCOUTING = {
           "name": "Zack Dobson",
           "team": "Middle Tennessee",
           "year": 2023,
-          "dist": 0.764
+          "dist": 0.763
         },
         {
           "id": "2013_545582",
@@ -301009,7 +300973,7 @@ const COLLEGE_SCOUTING = {
           "name": "Nic Trujillo",
           "team": "New Mexico",
           "year": 2024,
-          "dist": 0.657
+          "dist": 0.656
         },
         {
           "id": "2021_4875726",
@@ -301506,7 +301470,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcus Washington",
           "team": "Nebraska",
           "year": 2022,
-          "dist": 0.793
+          "dist": 0.792
         },
         {
           "id": "2013_513075",
@@ -301534,7 +301498,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keagan Johnson",
           "team": "Kansas State",
           "year": 2024,
-          "dist": 0.87
+          "dist": 0.869
         },
         {
           "id": "2023_4872963",
@@ -302045,14 +302009,14 @@ const COLLEGE_SCOUTING = {
           "name": "Jake Herslow",
           "team": "Houston",
           "year": 2021,
-          "dist": 0.689
+          "dist": 0.688
         },
         {
           "id": "2014_545902",
           "name": "John Diarse",
           "team": "LSU",
           "year": 2014,
-          "dist": 0.689
+          "dist": 0.688
         }
       ],
       "2024_4427225": [
@@ -302068,7 +302032,7 @@ const COLLEGE_SCOUTING = {
           "name": "Silas Bolden",
           "team": "Oregon State",
           "year": 2023,
-          "dist": 1.132
+          "dist": 1.131
         },
         {
           "id": "2024_5081250",
@@ -302089,7 +302053,7 @@ const COLLEGE_SCOUTING = {
           "name": "Logan Loya",
           "team": "UCLA",
           "year": 2023,
-          "dist": 1.231
+          "dist": 1.23
         },
         {
           "id": "2021_4362034",
@@ -302319,7 +302283,7 @@ const COLLEGE_SCOUTING = {
           "name": "Eric McAlister",
           "team": "TCU",
           "year": 2024,
-          "dist": 1.489
+          "dist": 1.488
         },
         {
           "id": "2022_4427819",
@@ -302370,7 +302334,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jayce Brown",
           "team": "Kansas State",
           "year": 2024,
-          "dist": 1.09
+          "dist": 1.089
         },
         {
           "id": "2023_4433901",
@@ -302412,7 +302376,7 @@ const COLLEGE_SCOUTING = {
           "name": "Taylor Morin",
           "team": "Wake Forest",
           "year": 2023,
-          "dist": 1.409
+          "dist": 1.41
         }
       ],
       "2024_4428527": [
@@ -302607,14 +302571,14 @@ const COLLEGE_SCOUTING = {
           "name": "Christan Horn",
           "team": "App State",
           "year": 2024,
-          "dist": 0.981
+          "dist": 0.98
         },
         {
           "id": "2024_5125819",
           "name": "Darrell Gill Jr.",
           "team": "Syracuse",
           "year": 2024,
-          "dist": 1.068
+          "dist": 1.067
         },
         {
           "id": "2025_5146735",
@@ -302751,7 +302715,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeremiah Smith",
           "team": "Ohio State",
           "year": 2025,
-          "dist": 1.062
+          "dist": 1.061
         },
         {
           "id": "2020_4245131",
@@ -302888,7 +302852,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malachi Henry",
           "team": "Cincinnati",
           "year": 2026,
-          "dist": 1.077
+          "dist": 1.076
         },
         {
           "id": "2022_4912218",
@@ -303255,7 +303219,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaylon Redd",
           "team": "Oregon",
           "year": 2020,
-          "dist": 0.89
+          "dist": 0.889
         },
         {
           "id": "2013_511258",
@@ -303306,7 +303270,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tauskie Dove",
           "team": "Missouri",
           "year": 2021,
-          "dist": 1.441
+          "dist": 1.44
         },
         {
           "id": "2016_3122167",
@@ -303364,7 +303328,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cedric Tillman",
           "team": "Tennessee",
           "year": 2021,
-          "dist": 0.665
+          "dist": 0.664
         },
         {
           "id": "2019_3917569",
@@ -303478,7 +303442,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jabari Smith",
           "team": "Florida Atlantic",
           "year": 2024,
-          "dist": 1.092
+          "dist": 1.091
         },
         {
           "id": "2023_4362983",
@@ -303622,7 +303586,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jadon Haselwood",
           "team": "Arkansas",
           "year": 2022,
-          "dist": 1.03
+          "dist": 1.029
         },
         {
           "id": "2013_501564",
@@ -303731,7 +303695,7 @@ const COLLEGE_SCOUTING = {
           "name": "Harvey Broussard",
           "team": "Louisiana",
           "year": 2024,
-          "dist": 0.639
+          "dist": 0.638
         },
         {
           "id": "2021_4426383",
@@ -303838,7 +303802,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaden Greathouse",
           "team": "Notre Dame",
           "year": 2023,
-          "dist": 0.787
+          "dist": 0.786
         },
         {
           "id": "2022_4685472",
@@ -303924,7 +303888,7 @@ const COLLEGE_SCOUTING = {
           "name": "Daikiel Shorts",
           "team": "West Virginia",
           "year": 2016,
-          "dist": 0.842
+          "dist": 0.843
         }
       ],
       "2024_4430870": [
@@ -304458,7 +304422,7 @@ const COLLEGE_SCOUTING = {
           "name": "Steven McBride",
           "team": "Hawai'i",
           "year": 2023,
-          "dist": 0.98
+          "dist": 0.979
         },
         {
           "id": "2016_559718",
@@ -304530,7 +304494,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dylan Goffney",
           "team": "SMU",
           "year": 2022,
-          "dist": 0.606
+          "dist": 0.607
         },
         {
           "id": "2024_4594337",
@@ -304846,7 +304810,7 @@ const COLLEGE_SCOUTING = {
           "name": "Miles Cross",
           "team": "Indiana",
           "year": 2024,
-          "dist": 1.151
+          "dist": 1.15
         },
         {
           "id": "2023_5084133",
@@ -304983,7 +304947,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keontez Lewis",
           "team": "Wisconsin",
           "year": 2022,
-          "dist": 0.512
+          "dist": 0.511
         },
         {
           "id": "2022_4429981",
@@ -305020,7 +304984,7 @@ const COLLEGE_SCOUTING = {
           "name": "Samario Rudolph",
           "team": "UAB",
           "year": 2022,
-          "dist": 0.546
+          "dist": 0.545
         },
         {
           "id": "2023_4569181",
@@ -305192,7 +305156,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keith Kirkwood",
           "team": "Temple",
           "year": 2016,
-          "dist": 0.386
+          "dist": 0.385
         },
         {
           "id": "2018_4046692",
@@ -305422,7 +305386,7 @@ const COLLEGE_SCOUTING = {
           "name": "Andre Davis",
           "team": "South Florida",
           "year": 2013,
-          "dist": 1.063
+          "dist": 1.062
         },
         {
           "id": "2013_482381",
@@ -305761,7 +305725,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kelvin Harmon",
           "team": "NC State",
           "year": 2016,
-          "dist": 0.73
+          "dist": 0.731
         },
         {
           "id": "2022_4686775",
@@ -305782,7 +305746,7 @@ const COLLEGE_SCOUTING = {
           "name": "Joe Reed",
           "team": "Virginia",
           "year": 2018,
-          "dist": 0.795
+          "dist": 0.794
         },
         {
           "id": "2023_4571801",
@@ -305998,7 +305962,7 @@ const COLLEGE_SCOUTING = {
           "name": "Phillip Brooks III",
           "team": "Kansas State",
           "year": 2022,
-          "dist": 0.459
+          "dist": 0.458
         },
         {
           "id": "2021_4241888",
@@ -306265,7 +306229,7 @@ const COLLEGE_SCOUTING = {
           "name": "KD Cannon",
           "team": "Baylor",
           "year": 2015,
-          "dist": 0.931
+          "dist": 0.93
         },
         {
           "id": "2016_536320",
@@ -307013,7 +306977,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jerand Bradley",
           "team": "Texas Tech",
           "year": 2023,
-          "dist": 0.563
+          "dist": 0.562
         },
         {
           "id": "2021_4431466",
@@ -307115,7 +307079,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jahan Dotson",
           "team": "Penn State",
           "year": 2019,
-          "dist": 0.414
+          "dist": 0.413
         },
         {
           "id": "2022_4373662",
@@ -307222,7 +307186,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jerrod Means",
           "team": "Pittsburgh",
           "year": 2023,
-          "dist": 0.668
+          "dist": 0.667
         },
         {
           "id": "2023_4575348",
@@ -307640,7 +307604,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chase Lane",
           "team": "Georgia Tech",
           "year": 2024,
-          "dist": 1.024
+          "dist": 1.023
         },
         {
           "id": "2023_5084133",
@@ -307900,7 +307864,7 @@ const COLLEGE_SCOUTING = {
           "name": "Da'Quan Felton",
           "team": "Virginia Tech",
           "year": 2024,
-          "dist": 0.297
+          "dist": 0.296
         },
         {
           "id": "2023_4429503",
@@ -308072,7 +308036,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeremiah Smith",
           "team": "Ohio State",
           "year": 2024,
-          "dist": 1.159
+          "dist": 1.158
         },
         {
           "id": "2024_4431053",
@@ -308360,7 +308324,7 @@ const COLLEGE_SCOUTING = {
           "name": "Delane Hart-Johnson",
           "team": "New Mexico",
           "year": 2018,
-          "dist": 0.687
+          "dist": 0.686
         },
         {
           "id": "2023_5082505",
@@ -308514,17 +308478,17 @@ const COLLEGE_SCOUTING = {
           "dist": 0.651
         },
         {
-          "id": "2021_4382578",
-          "name": "Tyler Snead",
-          "team": "East Carolina",
-          "year": 2021,
-          "dist": 0.658
-        },
-        {
           "id": "2022_4428718",
           "name": "Tre Tucker",
           "team": "Cincinnati",
           "year": 2022,
+          "dist": 0.658
+        },
+        {
+          "id": "2021_4382578",
+          "name": "Tyler Snead",
+          "team": "East Carolina",
+          "year": 2021,
           "dist": 0.658
         },
         {
@@ -308748,7 +308712,7 @@ const COLLEGE_SCOUTING = {
           "name": "Christion Jones",
           "team": "Alabama",
           "year": 2013,
-          "dist": 0.978
+          "dist": 0.977
         }
       ],
       "2024_4608793": [
@@ -308792,7 +308756,7 @@ const COLLEGE_SCOUTING = {
           "name": "Quinshad Davis",
           "team": "North Carolina",
           "year": 2015,
-          "dist": 0.58
+          "dist": 0.581
         },
         {
           "id": "2013_522923",
@@ -308950,7 +308914,7 @@ const COLLEGE_SCOUTING = {
           "name": "Junior Vandeross",
           "team": "Toledo",
           "year": 2024,
-          "dist": 1.454
+          "dist": 1.453
         },
         {
           "id": "2024_4575558",
@@ -309224,7 +309188,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keke Chism",
           "team": "Missouri",
           "year": 2021,
-          "dist": 0.494
+          "dist": 0.493
         },
         {
           "id": "2017_4241723",
@@ -309289,7 +309253,7 @@ const COLLEGE_SCOUTING = {
           "name": "Delane Hart-Johnson",
           "team": "New Mexico",
           "year": 2015,
-          "dist": 1.936
+          "dist": 1.935
         },
         {
           "id": "2024_4869132",
@@ -309382,7 +309346,7 @@ const COLLEGE_SCOUTING = {
           "name": "Broc Thompson",
           "team": "Marshall",
           "year": 2019,
-          "dist": 0.951
+          "dist": 0.95
         },
         {
           "id": "2024_4912067",
@@ -309577,7 +309541,7 @@ const COLLEGE_SCOUTING = {
           "name": "Logan Loya",
           "team": "UCLA",
           "year": 2024,
-          "dist": 1.151
+          "dist": 1.15
         },
         {
           "id": "2021_4258409",
@@ -309591,7 +309555,7 @@ const COLLEGE_SCOUTING = {
           "name": "Reggie Brown",
           "team": "James Madison",
           "year": 2022,
-          "dist": 1.219
+          "dist": 1.218
         },
         {
           "id": "2024_4592835",
@@ -309749,7 +309713,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malcome Kennedy",
           "team": "Texas A&M",
           "year": 2013,
-          "dist": 0.898
+          "dist": 0.897
         },
         {
           "id": "2024_4608793",
@@ -310188,7 +310152,7 @@ const COLLEGE_SCOUTING = {
           "name": "DeAndre Thompkins",
           "team": "Penn State",
           "year": 2016,
-          "dist": 0.526
+          "dist": 0.525
         }
       ],
       "2024_4690461": [
@@ -310211,7 +310175,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcus Rosemy",
           "team": "Georgia",
           "year": 2022,
-          "dist": 0.469
+          "dist": 0.468
         },
         {
           "id": "2025_4682761",
@@ -310613,7 +310577,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jordan Allen",
           "team": "Georgia Tech",
           "year": 2026,
-          "dist": 0.873
+          "dist": 0.874
         },
         {
           "id": "2023_4879677",
@@ -310773,7 +310737,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kevin Austin",
           "team": "Notre Dame",
           "year": 2021,
-          "dist": 0.52
+          "dist": 0.519
         },
         {
           "id": "2013_480414",
@@ -311024,7 +310988,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keandre Lambert",
           "team": "Penn State",
           "year": 2022,
-          "dist": 0.518
+          "dist": 0.517
         },
         {
           "id": "2019_4046519",
@@ -311124,7 +311088,7 @@ const COLLEGE_SCOUTING = {
           "name": "Omar Cooper Jr.",
           "team": "Indiana",
           "year": 2023,
-          "dist": 0.445
+          "dist": 0.444
         }
       ],
       "2024_4705934": [
@@ -311751,7 +311715,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kordell David",
           "team": "New Mexico State",
           "year": 2022,
-          "dist": 0.594
+          "dist": 0.593
         },
         {
           "id": "2022_4428063",
@@ -311816,7 +311780,7 @@ const COLLEGE_SCOUTING = {
           "name": "Armani Winfield",
           "team": "Colorado State",
           "year": 2024,
-          "dist": 1.18
+          "dist": 1.179
         },
         {
           "id": "2013_487625",
@@ -312025,7 +311989,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kenny Shaw",
           "team": "Florida State",
           "year": 2013,
-          "dist": 1.144
+          "dist": 1.143
         },
         {
           "id": "2013_500915",
@@ -312190,7 +312154,7 @@ const COLLEGE_SCOUTING = {
           "name": "Zavier Betts",
           "team": "Nebraska",
           "year": 2021,
-          "dist": 0.673
+          "dist": 0.672
         },
         {
           "id": "2023_4697844",
@@ -312299,7 +312263,7 @@ const COLLEGE_SCOUTING = {
           "name": "CeeDee Lamb",
           "team": "Oklahoma",
           "year": 2018,
-          "dist": 0.709
+          "dist": 0.708
         },
         {
           "id": "2024_4877706",
@@ -312341,7 +312305,7 @@ const COLLEGE_SCOUTING = {
           "name": "Grant DuBose",
           "team": "Charlotte",
           "year": 2022,
-          "dist": 1.018
+          "dist": 1.017
         },
         {
           "id": "2021_4241004",
@@ -312550,7 +312514,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malik Williams",
           "team": "App State",
           "year": 2021,
-          "dist": 0.583
+          "dist": 0.582
         },
         {
           "id": "2023_4429994",
@@ -312868,7 +312832,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jalen Royals",
           "team": "Utah State",
           "year": 2023,
-          "dist": 1.001
+          "dist": 1
         },
         {
           "id": "2023_4428025",
@@ -313005,7 +312969,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kirk Merritt",
           "team": "Arkansas State",
           "year": 2019,
-          "dist": 0.763
+          "dist": 0.762
         },
         {
           "id": "2020_4035500",
@@ -313068,7 +313032,7 @@ const COLLEGE_SCOUTING = {
           "name": "Neil Pau'u",
           "team": "BYU",
           "year": 2021,
-          "dist": 1.305
+          "dist": 1.304
         }
       ],
       "2024_4870745": [
@@ -313242,7 +313206,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dalton Schoen",
           "team": "Kansas State",
           "year": 2017,
-          "dist": 0.48
+          "dist": 0.479
         },
         {
           "id": "2023_4431509",
@@ -313479,7 +313443,7 @@ const COLLEGE_SCOUTING = {
           "name": "Hudson Clement",
           "team": "West Virginia",
           "year": 2023,
-          "dist": 0.807
+          "dist": 0.806
         },
         {
           "id": "2021_4429033",
@@ -313509,7 +313473,7 @@ const COLLEGE_SCOUTING = {
           "name": "Lee Morris",
           "team": "Oklahoma",
           "year": 2018,
-          "dist": 0.46
+          "dist": 0.459
         },
         {
           "id": "2018_3121422",
@@ -313804,7 +313768,7 @@ const COLLEGE_SCOUTING = {
           "name": "Sam Brown",
           "team": "Houston",
           "year": 2023,
-          "dist": 0.873
+          "dist": 0.872
         },
         {
           "id": "2023_4431597",
@@ -314041,7 +314005,7 @@ const COLLEGE_SCOUTING = {
           "name": "Landon Parker",
           "team": "Troy",
           "year": 2024,
-          "dist": 1.463
+          "dist": 1.462
         },
         {
           "id": "2013_482196",
@@ -314069,7 +314033,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jake Bailey",
           "team": "SMU",
           "year": 2023,
-          "dist": 1.573
+          "dist": 1.572
         },
         {
           "id": "2013_511290",
@@ -314213,7 +314177,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jake Herslow",
           "team": "Houston",
           "year": 2021,
-          "dist": 0.594
+          "dist": 0.593
         },
         {
           "id": "2022_5084181",
@@ -314292,7 +314256,7 @@ const COLLEGE_SCOUTING = {
           "name": "Daniel McKinney",
           "team": "Florida Atlantic",
           "year": 2013,
-          "dist": 0.98
+          "dist": 0.979
         }
       ],
       "2024_4879499": [
@@ -314459,7 +314423,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brian Cobbs",
           "team": "Utah State",
           "year": 2022,
-          "dist": 1.299
+          "dist": 1.298
         },
         {
           "id": "2014_551571",
@@ -314494,7 +314458,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaivon Heiligh",
           "team": "Coastal Carolina",
           "year": 2020,
-          "dist": 1.646
+          "dist": 1.645
         },
         {
           "id": "2023_4571563",
@@ -314603,7 +314567,7 @@ const COLLEGE_SCOUTING = {
           "name": "Shavarez Smith",
           "team": "South Alabama",
           "year": 2014,
-          "dist": 1.001
+          "dist": 1
         },
         {
           "id": "2017_3931425",
@@ -314668,7 +314632,7 @@ const COLLEGE_SCOUTING = {
           "name": "Sammie Coates",
           "team": "Auburn",
           "year": 2013,
-          "dist": 1.833
+          "dist": 1.832
         },
         {
           "id": "2022_4428678",
@@ -315107,7 +315071,7 @@ const COLLEGE_SCOUTING = {
           "name": "Arian Smith",
           "team": "Georgia",
           "year": 2024,
-          "dist": 0.727
+          "dist": 0.726
         },
         {
           "id": "2017_3916204",
@@ -315156,7 +315120,7 @@ const COLLEGE_SCOUTING = {
           "name": "Damien Alford",
           "team": "Syracuse",
           "year": 2023,
-          "dist": 0.883
+          "dist": 0.882
         }
       ],
       "2024_4900879": [
@@ -315214,7 +315178,7 @@ const COLLEGE_SCOUTING = {
           "name": "Xavier White",
           "team": "Texas Tech",
           "year": 2022,
-          "dist": 0.551
+          "dist": 0.55
         },
         {
           "id": "2013_480564",
@@ -315237,7 +315201,7 @@ const COLLEGE_SCOUTING = {
           "name": "Max McCaffrey",
           "team": "Duke",
           "year": 2013,
-          "dist": 0.604
+          "dist": 0.603
         },
         {
           "id": "2023_4428666",
@@ -315251,7 +315215,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brandon Felder",
           "team": "Penn State",
           "year": 2013,
-          "dist": 0.727
+          "dist": 0.728
         },
         {
           "id": "2024_4711408",
@@ -315430,7 +315394,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaylen Hall",
           "team": "Western Michigan",
           "year": 2020,
-          "dist": 1.392
+          "dist": 1.391
         },
         {
           "id": "2024_4596596",
@@ -315704,7 +315668,7 @@ const COLLEGE_SCOUTING = {
           "name": "Talon Shumway",
           "team": "BYU",
           "year": 2019,
-          "dist": 0.56
+          "dist": 0.559
         },
         {
           "id": "2023_4683461",
@@ -315755,7 +315719,7 @@ const COLLEGE_SCOUTING = {
           "name": "Eugene Wilson",
           "team": "Florida",
           "year": 2024,
-          "dist": 0.865
+          "dist": 0.864
         },
         {
           "id": "2026_5293573",
@@ -315804,7 +315768,7 @@ const COLLEGE_SCOUTING = {
           "name": "Quinton Pedroza",
           "team": "Hawai'i",
           "year": 2015,
-          "dist": 1.197
+          "dist": 1.196
         }
       ],
       "2024_4918108": [
@@ -315906,7 +315870,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rashod Owens",
           "team": "Oklahoma State",
           "year": 2024,
-          "dist": 0.639
+          "dist": 0.638
         },
         {
           "id": "2023_4429422",
@@ -315964,7 +315928,7 @@ const COLLEGE_SCOUTING = {
           "name": "Samson Nacua",
           "team": "BYU",
           "year": 2021,
-          "dist": 0.253
+          "dist": 0.252
         },
         {
           "id": "2016_549932",
@@ -316157,7 +316121,7 @@ const COLLEGE_SCOUTING = {
           "name": "David Amador",
           "team": "UTSA",
           "year": 2024,
-          "dist": 0.865
+          "dist": 0.864
         },
         {
           "id": "2017_3921645",
@@ -316410,7 +316374,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dekel Crowdus",
           "team": "Hawai'i",
           "year": 2024,
-          "dist": 2.006
+          "dist": 2.005
         },
         {
           "id": "2018_4362301",
@@ -316561,7 +316525,7 @@ const COLLEGE_SCOUTING = {
           "name": "Makai Jackson",
           "team": "App State",
           "year": 2024,
-          "dist": 0.95
+          "dist": 0.951
         },
         {
           "id": "2024_4572655",
@@ -316698,7 +316662,7 @@ const COLLEGE_SCOUTING = {
           "name": "Heath Jackson",
           "team": "Bowling Green",
           "year": 2013,
-          "dist": 0.839
+          "dist": 0.838
         },
         {
           "id": "2019_3916911",
@@ -316798,7 +316762,7 @@ const COLLEGE_SCOUTING = {
           "name": "Antonio Williams",
           "team": "Clemson",
           "year": 2024,
-          "dist": 0.905
+          "dist": 0.904
         },
         {
           "id": "2014_546621",
@@ -316849,7 +316813,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ramel Keyton",
           "team": "Tennessee",
           "year": 2022,
-          "dist": 0.432
+          "dist": 0.431
         },
         {
           "id": "2024_4432784",
@@ -316949,7 +316913,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tevaris McCormick",
           "team": "Troy",
           "year": 2017,
-          "dist": 0.474
+          "dist": 0.473
         },
         {
           "id": "2019_4243910",
@@ -317669,7 +317633,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Finke",
           "team": "Notre Dame",
           "year": 2019,
-          "dist": 0.549
+          "dist": 0.548
         },
         {
           "id": "2024_4575348",
@@ -318131,7 +318095,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cody Latimer",
           "team": "Indiana",
           "year": 2013,
-          "dist": 0.655
+          "dist": 0.654
         },
         {
           "id": "2022_4431268",
@@ -318189,7 +318153,7 @@ const COLLEGE_SCOUTING = {
           "name": "Teddy Veal",
           "team": "Tulane",
           "year": 2015,
-          "dist": 0.348
+          "dist": 0.347
         },
         {
           "id": "2020_4240625",
@@ -318217,7 +318181,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malachi Fields",
           "team": "Virginia",
           "year": 2023,
-          "dist": 0.58
+          "dist": 0.579
         },
         {
           "id": "2022_4431479",
@@ -318426,7 +318390,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jerome Lane",
           "team": "Akron",
           "year": 2015,
-          "dist": 1.136
+          "dist": 1.135
         },
         {
           "id": "2025_5220256",
@@ -318577,7 +318541,7 @@ const COLLEGE_SCOUTING = {
           "name": "Josh Dallas",
           "team": "Georgia Southern",
           "year": 2026,
-          "dist": 0.814
+          "dist": 0.813
         },
         {
           "id": "2018_3927804",
@@ -318642,7 +318606,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ainias Smith",
           "team": "Texas A&M",
           "year": 2022,
-          "dist": 0.966
+          "dist": 0.965
         },
         {
           "id": "2020_4427209",
@@ -318872,7 +318836,7 @@ const COLLEGE_SCOUTING = {
           "name": "Noah Frith",
           "team": "Liberty",
           "year": 2022,
-          "dist": 0.83
+          "dist": 0.829
         },
         {
           "id": "2013_517333",
@@ -318916,7 +318880,7 @@ const COLLEGE_SCOUTING = {
           "name": "Darren Waller",
           "team": "Georgia Tech",
           "year": 2014,
-          "dist": 1.137
+          "dist": 1.136
         },
         {
           "id": "2024_4875613",
@@ -319348,7 +319312,7 @@ const COLLEGE_SCOUTING = {
           "name": "Nate Phillips",
           "team": "Arizona",
           "year": 2016,
-          "dist": 0.468
+          "dist": 0.467
         },
         {
           "id": "2023_4712578",
@@ -319441,7 +319405,7 @@ const COLLEGE_SCOUTING = {
           "name": "Wyatt Wieland",
           "team": "Wyoming",
           "year": 2023,
-          "dist": 0.684
+          "dist": 0.683
         },
         {
           "id": "2025_4723820",
@@ -319485,7 +319449,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dylan Wright",
           "team": "Minnesota",
           "year": 2021,
-          "dist": 0.528
+          "dist": 0.527
         },
         {
           "id": "2022_4251359",
@@ -319636,7 +319600,7 @@ const COLLEGE_SCOUTING = {
           "name": "Donovan Hamilton",
           "team": "Ball State",
           "year": 2026,
-          "dist": 0.433
+          "dist": 0.432
         },
         {
           "id": "2016_3915321",
@@ -319729,7 +319693,7 @@ const COLLEGE_SCOUTING = {
           "name": "Corey Crooms",
           "team": "Western Michigan",
           "year": 2021,
-          "dist": 1.422
+          "dist": 1.421
         },
         {
           "id": "2021_4879650",
@@ -319780,7 +319744,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kevin Cummings",
           "team": "Oregon State",
           "year": 2013,
-          "dist": 0.415
+          "dist": 0.414
         },
         {
           "id": "2013_550549",
@@ -319808,14 +319772,14 @@ const COLLEGE_SCOUTING = {
           "name": "Mykel Jones",
           "team": "Oklahoma",
           "year": 2017,
-          "dist": 0.535
+          "dist": 0.534
         },
         {
           "id": "2023_5103852",
           "name": "Dalton Carnes",
           "team": "Houston",
           "year": 2023,
-          "dist": 0.542
+          "dist": 0.541
         },
         {
           "id": "2021_4567525",
@@ -320110,7 +320074,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeff Foreman",
           "team": "Arkansas State",
           "year": 2023,
-          "dist": 1.052
+          "dist": 1.051
         },
         {
           "id": "2024_5078533",
@@ -320254,14 +320218,14 @@ const COLLEGE_SCOUTING = {
           "name": "Tony Lippett",
           "team": "Michigan State",
           "year": 2013,
-          "dist": 1.078
+          "dist": 1.077
         },
         {
           "id": "2024_4428486",
           "name": "Treon Sibley",
           "team": "Liberty",
           "year": 2024,
-          "dist": 1.09
+          "dist": 1.089
         },
         {
           "id": "2024_4683153",
@@ -320305,7 +320269,7 @@ const COLLEGE_SCOUTING = {
           "name": "Odieu Hilaire",
           "team": "Bowling Green",
           "year": 2023,
-          "dist": 0.601
+          "dist": 0.6
         },
         {
           "id": "2018_3121410",
@@ -320340,7 +320304,7 @@ const COLLEGE_SCOUTING = {
           "name": "Winston Wright",
           "team": "West Virginia",
           "year": 2021,
-          "dist": 0.667
+          "dist": 0.666
         }
       ],
       "2024_5121750": [
@@ -320391,7 +320355,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tiaquelin Mims",
           "team": "Southern Miss",
           "year": 2024,
-          "dist": 0.809
+          "dist": 0.808
         },
         {
           "id": "2023_4574730",
@@ -320579,7 +320543,7 @@ const COLLEGE_SCOUTING = {
           "name": "Prince Strachan",
           "team": "Boise State",
           "year": 2023,
-          "dist": 0.657
+          "dist": 0.656
         },
         {
           "id": "2015_530827",
@@ -320628,7 +320592,7 @@ const COLLEGE_SCOUTING = {
           "name": "Samario Rudolph",
           "team": "UAB",
           "year": 2022,
-          "dist": 0.951
+          "dist": 0.95
         }
       ],
       "2024_5125819": [
@@ -321148,7 +321112,7 @@ const COLLEGE_SCOUTING = {
           "name": "Antwan Goodley",
           "team": "Baylor",
           "year": 2013,
-          "dist": 0.634
+          "dist": 0.633
         },
         {
           "id": "2013_512339",
@@ -321183,7 +321147,7 @@ const COLLEGE_SCOUTING = {
           "name": "Christian Dremel",
           "team": "Rutgers",
           "year": 2023,
-          "dist": 0.973
+          "dist": 0.972
         },
         {
           "id": "2013_531575",
@@ -321220,7 +321184,7 @@ const COLLEGE_SCOUTING = {
           "name": "Isaiah Alston",
           "team": "Army",
           "year": 2023,
-          "dist": 0.821
+          "dist": 0.82
         },
         {
           "id": "2024_4430270",
@@ -321255,7 +321219,7 @@ const COLLEGE_SCOUTING = {
           "name": "Michael Jefferson",
           "team": "Louisiana",
           "year": 2021,
-          "dist": 1.045
+          "dist": 1.044
         },
         {
           "id": "2023_4873126",
@@ -321608,7 +321572,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devin Gentry",
           "team": "Georgia State",
           "year": 2019,
-          "dist": 0.528
+          "dist": 0.527
         },
         {
           "id": "2016_537589",
@@ -321810,7 +321774,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dylan Wright",
           "team": "Minnesota",
           "year": 2022,
-          "dist": 0.519
+          "dist": 0.518
         },
         {
           "id": "2021_4572454",
@@ -321889,7 +321853,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jonathan Brady",
           "team": "New Mexico State",
           "year": 2022,
-          "dist": 0.523
+          "dist": 0.522
         },
         {
           "id": "2023_4374391",
@@ -321968,7 +321932,7 @@ const COLLEGE_SCOUTING = {
           "name": "Travis Fulgham",
           "team": "Old Dominion",
           "year": 2018,
-          "dist": 1.019
+          "dist": 1.02
         },
         {
           "id": "2026_5149831",
@@ -322026,7 +321990,7 @@ const COLLEGE_SCOUTING = {
           "name": "Obi Obialo",
           "team": "Marshall",
           "year": 2018,
-          "dist": 0.738
+          "dist": 0.737
         },
         {
           "id": "2024_4710843",
@@ -322386,7 +322350,7 @@ const COLLEGE_SCOUTING = {
           "name": "Edward Pope",
           "team": "Texas A&M",
           "year": 2014,
-          "dist": 0.385
+          "dist": 0.384
         },
         {
           "id": "2021_4431492",
@@ -322565,7 +322529,7 @@ const COLLEGE_SCOUTING = {
           "name": "Bralon Addison",
           "team": "Oregon",
           "year": 2013,
-          "dist": 1.19
+          "dist": 1.189
         },
         {
           "id": "2024_5121750",
@@ -322630,7 +322594,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Williams",
           "team": "Troy",
           "year": 2013,
-          "dist": 0.418
+          "dist": 0.417
         },
         {
           "id": "2024_4869581",
@@ -322767,7 +322731,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chauncy Cobb",
           "team": "Arkansas State",
           "year": 2025,
-          "dist": 0.653
+          "dist": 0.654
         },
         {
           "id": "2022_4373077",
@@ -323081,13 +323045,6 @@ const COLLEGE_SCOUTING = {
       ],
       "2025_4430827": [
         {
-          "id": "2026_5222689",
-          "name": "John Montague",
-          "team": "Boston College",
-          "year": 2026,
-          "dist": 0.417
-        },
-        {
           "id": "2013_535370",
           "name": "Shaq Roland",
           "team": "South Carolina",
@@ -323149,6 +323106,13 @@ const COLLEGE_SCOUTING = {
           "team": "South Carolina",
           "year": 2017,
           "dist": 0.627
+        },
+        {
+          "id": "2013_517962",
+          "name": "Bryan Holmes",
+          "team": "Troy",
+          "year": 2013,
+          "dist": 0.633
         }
       ],
       "2025_4430903": [
@@ -323322,7 +323286,7 @@ const COLLEGE_SCOUTING = {
           "name": "Caleb Goodie",
           "team": "Cincinnati",
           "year": 2025,
-          "dist": 0.494
+          "dist": 0.493
         },
         {
           "id": "2015_3917787",
@@ -323480,7 +323444,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dominic Lovett",
           "team": "Georgia",
           "year": 2024,
-          "dist": 0.641
+          "dist": 0.642
         },
         {
           "id": "2017_4243811",
@@ -323682,7 +323646,7 @@ const COLLEGE_SCOUTING = {
           "name": "Caullin Lacy",
           "team": "South Alabama",
           "year": 2021,
-          "dist": 1.003
+          "dist": 1.002
         },
         {
           "id": "2013_552021",
@@ -323696,7 +323660,7 @@ const COLLEGE_SCOUTING = {
           "name": "Willie Byrn",
           "team": "Virginia Tech",
           "year": 2014,
-          "dist": 1.219
+          "dist": 1.218
         },
         {
           "id": "2026_5160197",
@@ -324077,7 +324041,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Tyree",
           "team": "Notre Dame",
           "year": 2021,
-          "dist": 1.349
+          "dist": 1.348
         },
         {
           "id": "2025_5125905",
@@ -324207,7 +324171,7 @@ const COLLEGE_SCOUTING = {
           "name": "Aaron Criswell",
           "team": "UNLV",
           "year": 2015,
-          "dist": 0.533
+          "dist": 0.532
         },
         {
           "id": "2020_4568992",
@@ -324409,7 +324373,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kenny Darby",
           "team": "Kentucky",
           "year": 2026,
-          "dist": 1.074
+          "dist": 1.073
         },
         {
           "id": "2014_546314",
@@ -324437,7 +324401,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brendan Jenkins",
           "team": "South Alabama",
           "year": 2026,
-          "dist": 1.181
+          "dist": 1.182
         },
         {
           "id": "2015_533196",
@@ -324625,7 +324589,7 @@ const COLLEGE_SCOUTING = {
           "name": "Noah Jennings",
           "team": "Cincinnati",
           "year": 2025,
-          "dist": 0.523
+          "dist": 0.524
         },
         {
           "id": "2017_4039055",
@@ -324820,7 +324784,7 @@ const COLLEGE_SCOUTING = {
           "name": "KJ Hamler",
           "team": "Penn State",
           "year": 2018,
-          "dist": 0.788
+          "dist": 0.787
         },
         {
           "id": "2017_3932442",
@@ -325050,7 +325014,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaylin Noel",
           "team": "Iowa State",
           "year": 2021,
-          "dist": 0.483
+          "dist": 0.482
         },
         {
           "id": "2024_4612246",
@@ -325266,7 +325230,7 @@ const COLLEGE_SCOUTING = {
           "name": "Antoine Porter",
           "team": "Eastern Michigan",
           "year": 2016,
-          "dist": 0.589
+          "dist": 0.588
         },
         {
           "id": "2021_4428331",
@@ -325287,7 +325251,7 @@ const COLLEGE_SCOUTING = {
           "name": "Travis Labhart",
           "team": "Texas A&M",
           "year": 2013,
-          "dist": 0.649
+          "dist": 0.65
         },
         {
           "id": "2024_5093837",
@@ -325438,7 +325402,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kenny Buyers",
           "team": "North Texas",
           "year": 2016,
-          "dist": 0.387
+          "dist": 0.386
         },
         {
           "id": "2017_4049787",
@@ -325712,7 +325676,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kentron Poitier",
           "team": "Florida State",
           "year": 2022,
-          "dist": 0.539
+          "dist": 0.538
         },
         {
           "id": "2014_513386",
@@ -325828,7 +325792,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ty Fryfogle",
           "team": "Indiana",
           "year": 2021,
-          "dist": 0.622
+          "dist": 0.621
         },
         {
           "id": "2022_4685565",
@@ -325907,7 +325871,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devin Gentry",
           "team": "Georgia State",
           "year": 2018,
-          "dist": 0.343
+          "dist": 0.342
         },
         {
           "id": "2019_4427101",
@@ -325921,7 +325885,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jovon Durante",
           "team": "West Virginia",
           "year": 2015,
-          "dist": 0.416
+          "dist": 0.415
         },
         {
           "id": "2015_551153",
@@ -326093,7 +326057,7 @@ const COLLEGE_SCOUTING = {
           "name": "Terrell Vaughn",
           "team": "Utah State",
           "year": 2023,
-          "dist": 2.566
+          "dist": 2.565
         },
         {
           "id": "2017_4036754",
@@ -326281,7 +326245,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tez Johnson",
           "team": "Troy",
           "year": 2021,
-          "dist": 0.587
+          "dist": 0.586
         },
         {
           "id": "2019_4382578",
@@ -326388,7 +326352,7 @@ const COLLEGE_SCOUTING = {
           "name": "Omar Cooper Jr.",
           "team": "Indiana",
           "year": 2023,
-          "dist": 0.5
+          "dist": 0.499
         }
       ],
       "2025_4685290": [
@@ -326483,7 +326447,7 @@ const COLLEGE_SCOUTING = {
           "name": "Noah Thomas",
           "team": "Texas A&M",
           "year": 2023,
-          "dist": 0.416
+          "dist": 0.415
         },
         {
           "id": "2020_4567240",
@@ -326627,7 +326591,7 @@ const COLLEGE_SCOUTING = {
           "name": "Trond Grizzell",
           "team": "California",
           "year": 2023,
-          "dist": 0.438
+          "dist": 0.439
         },
         {
           "id": "2019_4361370",
@@ -326885,7 +326849,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Dawn Jr.",
           "team": "Texas State",
           "year": 2025,
-          "dist": 0.608
+          "dist": 0.607
         },
         {
           "id": "2018_4035170",
@@ -326957,7 +326921,7 @@ const COLLEGE_SCOUTING = {
           "name": "D'Vario Montgomery",
           "team": "Iowa State",
           "year": 2015,
-          "dist": 0.539
+          "dist": 0.538
         },
         {
           "id": "2016_3914458",
@@ -327405,7 +327369,7 @@ const COLLEGE_SCOUTING = {
           "name": "Der'rikk Thompson",
           "team": "SMU",
           "year": 2013,
-          "dist": 0.565
+          "dist": 0.564
         },
         {
           "id": "2023_5081322",
@@ -327872,7 +327836,7 @@ const COLLEGE_SCOUTING = {
           "name": "Clayton Coppock",
           "team": "Coastal Carolina",
           "year": 2026,
-          "dist": 0.611
+          "dist": 0.61
         },
         {
           "id": "2019_4242169",
@@ -327981,7 +327945,7 @@ const COLLEGE_SCOUTING = {
           "name": "Christian Blake",
           "team": "Northern Illinois",
           "year": 2017,
-          "dist": 0.511
+          "dist": 0.51
         },
         {
           "id": "2016_534791",
@@ -328009,7 +327973,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tommylee Lewis",
           "team": "Northern Illinois",
           "year": 2015,
-          "dist": 0.93
+          "dist": 0.929
         },
         {
           "id": "2026_5156879",
@@ -328102,7 +328066,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rara Thomas",
           "team": "Mississippi State",
           "year": 2021,
-          "dist": 1.142
+          "dist": 1.141
         },
         {
           "id": "2019_4046564",
@@ -328383,7 +328347,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Marshall",
           "team": "Arkansas",
           "year": 2026,
-          "dist": 0.775
+          "dist": 0.774
         },
         {
           "id": "2022_4429025",
@@ -328534,14 +328498,14 @@ const COLLEGE_SCOUTING = {
           "name": "Tre Richardson",
           "team": "Louisville",
           "year": 2026,
-          "dist": 0.973
+          "dist": 0.972
         },
         {
           "id": "2021_4370348",
           "name": "Corey Gammage",
           "team": "Marshall",
           "year": 2021,
-          "dist": 0.991
+          "dist": 0.99
         },
         {
           "id": "2025_4570132",
@@ -328736,7 +328700,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cornelius Johnson",
           "team": "Michigan",
           "year": 2020,
-          "dist": 0.612
+          "dist": 0.611
         },
         {
           "id": "2020_4035387",
@@ -328757,7 +328721,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dez Fitzpatrick",
           "team": "Louisville",
           "year": 2018,
-          "dist": 0.728
+          "dist": 0.727
         },
         {
           "id": "2017_3728254",
@@ -329326,21 +329290,21 @@ const COLLEGE_SCOUTING = {
           "name": "Byron Pringle",
           "team": "Kansas State",
           "year": 2017,
-          "dist": 1.534
+          "dist": 1.535
         },
         {
           "id": "2020_4259305",
           "name": "Bo Melton",
           "team": "Rutgers",
           "year": 2020,
-          "dist": 1.619
+          "dist": 1.618
         },
         {
           "id": "2026_4711421",
           "name": "C.J. Smith",
           "team": "UAB",
           "year": 2026,
-          "dist": 1.646
+          "dist": 1.645
         }
       ],
       "2025_4838556": [
@@ -329405,7 +329369,7 @@ const COLLEGE_SCOUTING = {
           "name": "Lincoln Victor",
           "team": "Washington State",
           "year": 2021,
-          "dist": 0.55
+          "dist": 0.549
         },
         {
           "id": "2025_5102556",
@@ -329549,7 +329513,7 @@ const COLLEGE_SCOUTING = {
           "name": "Donny Navarro",
           "team": "Illinois",
           "year": 2019,
-          "dist": 0.435
+          "dist": 0.434
         },
         {
           "id": "2014_549932",
@@ -329579,7 +329543,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mario Craver",
           "team": "Texas A&M",
           "year": 2025,
-          "dist": 0.633
+          "dist": 0.632
         },
         {
           "id": "2020_4373642",
@@ -329781,7 +329745,7 @@ const COLLEGE_SCOUTING = {
           "name": "Robert Davis",
           "team": "Georgia State",
           "year": 2014,
-          "dist": 0.799
+          "dist": 0.798
         },
         {
           "id": "2026_5164749",
@@ -329802,7 +329766,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kainoa Carvalho",
           "team": "Hawai'i",
           "year": 2026,
-          "dist": 0.9
+          "dist": 0.899
         },
         {
           "id": "2016_4040501",
@@ -330118,7 +330082,7 @@ const COLLEGE_SCOUTING = {
           "name": "Austin Duke",
           "team": "Charlotte",
           "year": 2016,
-          "dist": 1.433
+          "dist": 1.432
         },
         {
           "id": "2014_502538",
@@ -330536,7 +330500,7 @@ const COLLEGE_SCOUTING = {
           "name": "Siaosi Mariner",
           "team": "Utah State",
           "year": 2019,
-          "dist": 1.111
+          "dist": 1.112
         },
         {
           "id": "2022_4880281",
@@ -330838,7 +330802,7 @@ const COLLEGE_SCOUTING = {
           "name": "DeAngelo Yancey",
           "team": "Purdue",
           "year": 2016,
-          "dist": 1.127
+          "dist": 1.126
         },
         {
           "id": "2020_4258238",
@@ -331026,7 +330990,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devonte Boyd",
           "team": "UNLV",
           "year": 2015,
-          "dist": 0.73
+          "dist": 0.729
         },
         {
           "id": "2016_547195",
@@ -331140,7 +331104,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dimitri Stanley",
           "team": "Iowa State",
           "year": 2022,
-          "dist": 0.441
+          "dist": 0.44
         }
       ],
       "2025_4870965": [
@@ -331198,7 +331162,7 @@ const COLLEGE_SCOUTING = {
           "name": "Da'Wain Lofton",
           "team": "Delaware",
           "year": 2026,
-          "dist": 0.72
+          "dist": 0.719
         },
         {
           "id": "2025_4594447",
@@ -331393,7 +331357,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jared Murphy",
           "team": "Miami (OH)",
           "year": 2014,
-          "dist": 0.51
+          "dist": 0.509
         },
         {
           "id": "2025_4596010",
@@ -331458,7 +331422,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dijon Paschal",
           "team": "Arkansas State",
           "year": 2017,
-          "dist": 0.511
+          "dist": 0.51
         },
         {
           "id": "2025_5152162",
@@ -331493,14 +331457,14 @@ const COLLEGE_SCOUTING = {
           "name": "De'Mornay Pierson-El",
           "team": "Nebraska",
           "year": 2016,
-          "dist": 0.657
+          "dist": 0.656
         },
         {
           "id": "2022_4428796",
           "name": "Casey Washington",
           "team": "Illinois",
           "year": 2022,
-          "dist": 0.671
+          "dist": 0.67
         }
       ],
       "2025_4872957": [
@@ -331609,7 +331573,7 @@ const COLLEGE_SCOUTING = {
           "name": "D'Vario Montgomery",
           "team": "Iowa State",
           "year": 2014,
-          "dist": 0.797
+          "dist": 0.798
         },
         {
           "id": "2026_5100582",
@@ -331781,7 +331745,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cayleb Jones",
           "team": "Arizona",
           "year": 2014,
-          "dist": 0.578
+          "dist": 0.577
         },
         {
           "id": "2026_5141582",
@@ -331990,7 +331954,7 @@ const COLLEGE_SCOUTING = {
           "name": "Damon Hazelton",
           "team": "Virginia Tech",
           "year": 2018,
-          "dist": 0.473
+          "dist": 0.472
         },
         {
           "id": "2025_4600418",
@@ -332041,7 +332005,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kaylon Geiger",
           "team": "Texas Tech",
           "year": 2021,
-          "dist": 0.56
+          "dist": 0.559
         },
         {
           "id": "2018_4242484",
@@ -332487,7 +332451,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ajalen Holley",
           "team": "UL Monroe",
           "year": 2015,
-          "dist": 0.818
+          "dist": 0.817
         },
         {
           "id": "2017_559719",
@@ -332747,7 +332711,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jesse Matthews",
           "team": "San Diego State",
           "year": 2021,
-          "dist": 1.903
+          "dist": 1.902
         },
         {
           "id": "2018_4240529",
@@ -332775,7 +332739,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jay Griffin IV",
           "team": "New Mexico",
           "year": 2017,
-          "dist": 2.104
+          "dist": 2.103
         },
         {
           "id": "2017_3921564",
@@ -333258,7 +333222,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cornelius McCoy",
           "team": "Georgia State",
           "year": 2019,
-          "dist": 0.604
+          "dist": 0.603
         },
         {
           "id": "2016_552748",
@@ -333481,7 +333445,7 @@ const COLLEGE_SCOUTING = {
           "name": "T.J. Chase",
           "team": "Florida Atlantic",
           "year": 2020,
-          "dist": 0.59
+          "dist": 0.589
         },
         {
           "id": "2015_511983",
@@ -333697,7 +333661,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcus Henry",
           "team": "Middle Tennessee",
           "year": 2014,
-          "dist": 0.504
+          "dist": 0.503
         },
         {
           "id": "2021_4241888",
@@ -333783,7 +333747,7 @@ const COLLEGE_SCOUTING = {
           "name": "Nyck Harbor",
           "team": "South Carolina",
           "year": 2026,
-          "dist": 0.511
+          "dist": 0.51
         },
         {
           "id": "2023_4431210",
@@ -334050,7 +334014,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dalton Schoen",
           "team": "Kansas State",
           "year": 2018,
-          "dist": 0.693
+          "dist": 0.692
         },
         {
           "id": "2018_4242433",
@@ -334190,17 +334154,17 @@ const COLLEGE_SCOUTING = {
           "dist": 0.4
         },
         {
-          "id": "2014_520522",
-          "name": "Ben Ijah",
-          "team": "Texas State",
-          "year": 2014,
-          "dist": 0.483
-        },
-        {
           "id": "2020_4044520",
           "name": "Brennon Dingle",
           "team": "UTSA",
           "year": 2020,
+          "dist": 0.483
+        },
+        {
+          "id": "2014_520522",
+          "name": "Ben Ijah",
+          "team": "Texas State",
+          "year": 2014,
           "dist": 0.483
         },
         {
@@ -334805,7 +334769,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcus Green",
           "team": "UL Monroe",
           "year": 2017,
-          "dist": 0.56
+          "dist": 0.559
         },
         {
           "id": "2015_3124964",
@@ -334928,7 +334892,7 @@ const COLLEGE_SCOUTING = {
           "name": "Isiah Cox",
           "team": "Ohio",
           "year": 2019,
-          "dist": 1.149
+          "dist": 1.148
         },
         {
           "id": "2023_4569393",
@@ -334942,7 +334906,7 @@ const COLLEGE_SCOUTING = {
           "name": "Prince Strachan",
           "team": "West Virginia",
           "year": 2026,
-          "dist": 1.168
+          "dist": 1.167
         },
         {
           "id": "2022_4426940",
@@ -335202,7 +335166,7 @@ const COLLEGE_SCOUTING = {
           "name": "Josh Meredith",
           "team": "Washington State",
           "year": 2025,
-          "dist": 0.608
+          "dist": 0.607
         },
         {
           "id": "2015_3128251",
@@ -335418,7 +335382,7 @@ const COLLEGE_SCOUTING = {
           "name": "Aveion Chenault",
           "team": "Western Michigan",
           "year": 2025,
-          "dist": 0.479
+          "dist": 0.478
         },
         {
           "id": "2014_3116165",
@@ -335648,7 +335612,7 @@ const COLLEGE_SCOUTING = {
           "name": "Braden Pegan",
           "team": "Utah State",
           "year": 2025,
-          "dist": 0.633
+          "dist": 0.632
         },
         {
           "id": "2018_3915987",
@@ -335699,7 +335663,7 @@ const COLLEGE_SCOUTING = {
           "name": "Scott Miller",
           "team": "Bowling Green",
           "year": 2016,
-          "dist": 0.836
+          "dist": 0.835
         },
         {
           "id": "2025_5080703",
@@ -335820,7 +335784,7 @@ const COLLEGE_SCOUTING = {
           "name": "George Farmer",
           "team": "USC",
           "year": 2014,
-          "dist": 0.492
+          "dist": 0.491
         }
       ],
       "2025_5079519": [
@@ -335864,7 +335828,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaden Greathouse",
           "team": "Notre Dame",
           "year": 2026,
-          "dist": 0.411
+          "dist": 0.41
         },
         {
           "id": "2017_3915251",
@@ -335957,7 +335921,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brennon Dingle",
           "team": "UTSA",
           "year": 2020,
-          "dist": 0.45
+          "dist": 0.449
         },
         {
           "id": "2016_553248",
@@ -336203,7 +336167,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dakorien Moore",
           "team": "Oregon",
           "year": 2025,
-          "dist": 0.281
+          "dist": 0.28
         },
         {
           "id": "2015_3139474",
@@ -336577,7 +336541,7 @@ const COLLEGE_SCOUTING = {
           "name": "D.K. Metcalf",
           "team": "Ole Miss",
           "year": 2018,
-          "dist": 1.048
+          "dist": 1.047
         },
         {
           "id": "2021_4243319",
@@ -336605,7 +336569,7 @@ const COLLEGE_SCOUTING = {
           "name": "Bryant Wesco Jr.",
           "team": "Clemson",
           "year": 2025,
-          "dist": 1.219
+          "dist": 1.218
         },
         {
           "id": "2014_512073",
@@ -337023,7 +336987,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jerico Richardson",
           "team": "Nevada",
           "year": 2015,
-          "dist": 2.213
+          "dist": 2.214
         },
         {
           "id": "2018_4037235",
@@ -337044,7 +337008,7 @@ const COLLEGE_SCOUTING = {
           "name": "Austin Conway",
           "team": "Wyoming",
           "year": 2017,
-          "dist": 2.29
+          "dist": 2.289
         }
       ],
       "2025_5082584": [
@@ -337067,7 +337031,7 @@ const COLLEGE_SCOUTING = {
           "name": "Taye Barber",
           "team": "TCU",
           "year": 2020,
-          "dist": 0.683
+          "dist": 0.682
         },
         {
           "id": "2014_517985",
@@ -337218,7 +337182,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cedric Byrd",
           "team": "Hawai'i",
           "year": 2019,
-          "dist": 1.236
+          "dist": 1.235
         },
         {
           "id": "2019_4037591",
@@ -337715,7 +337679,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brandon Aiyuk",
           "team": "Arizona State",
           "year": 2019,
-          "dist": 0.683
+          "dist": 0.682
         },
         {
           "id": "2025_5148787",
@@ -337743,7 +337707,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cody Thompson",
           "team": "Toledo",
           "year": 2016,
-          "dist": 0.779
+          "dist": 0.778
         },
         {
           "id": "2020_4569618",
@@ -337945,7 +337909,7 @@ const COLLEGE_SCOUTING = {
           "name": "Elijhah Badger",
           "team": "Arizona State",
           "year": 2022,
-          "dist": 0.576
+          "dist": 0.575
         },
         {
           "id": "2025_5085024",
@@ -338038,7 +338002,7 @@ const COLLEGE_SCOUTING = {
           "name": "Anthony Evans III",
           "team": "Mississippi State",
           "year": 2026,
-          "dist": 1.406
+          "dist": 1.405
         },
         {
           "id": "2021_4035912",
@@ -338075,7 +338039,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcel Williams",
           "team": "Akron",
           "year": 2025,
-          "dist": 0.653
+          "dist": 0.654
         },
         {
           "id": "2023_4710843",
@@ -338110,7 +338074,7 @@ const COLLEGE_SCOUTING = {
           "name": "Zavion Thomas",
           "team": "Mississippi State",
           "year": 2023,
-          "dist": 0.823
+          "dist": 0.822
         },
         {
           "id": "2023_4361412",
@@ -338428,7 +338392,7 @@ const COLLEGE_SCOUTING = {
           "name": "Austin Hill",
           "team": "Arizona",
           "year": 2014,
-          "dist": 0.364
+          "dist": 0.363
         },
         {
           "id": "2025_4869340",
@@ -338830,7 +338794,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rashod Bateman",
           "team": "Minnesota",
           "year": 2020,
-          "dist": 0.797
+          "dist": 0.796
         },
         {
           "id": "2013_503463",
@@ -339262,7 +339226,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jameel Gardner Jr.",
           "team": "Kent State",
           "year": 2023,
-          "dist": 0.92
+          "dist": 0.921
         },
         {
           "id": "2022_4361646",
@@ -339371,7 +339335,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kevin Stepherson",
           "team": "Notre Dame",
           "year": 2017,
-          "dist": 0.737
+          "dist": 0.736
         },
         {
           "id": "2020_4039307",
@@ -339485,7 +339449,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tamorrion Terry",
           "team": "Florida State",
           "year": 2018,
-          "dist": 1.491
+          "dist": 1.49
         },
         {
           "id": "2020_4382466",
@@ -339550,7 +339514,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jake Oliver",
           "team": "Texas",
           "year": 2016,
-          "dist": 0.621
+          "dist": 0.622
         },
         {
           "id": "2022_4429967",
@@ -339564,7 +339528,7 @@ const COLLEGE_SCOUTING = {
           "name": "Hunter Renfrow",
           "team": "Clemson",
           "year": 2018,
-          "dist": 0.652
+          "dist": 0.651
         }
       ],
       "2025_5120454": [
@@ -339580,7 +339544,7 @@ const COLLEGE_SCOUTING = {
           "name": "Romello Brinson",
           "team": "SMU",
           "year": 2025,
-          "dist": 0.494
+          "dist": 0.493
         },
         {
           "id": "2025_4682509",
@@ -339708,7 +339672,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaden Walley",
           "team": "Mississippi State",
           "year": 2020,
-          "dist": 1.334
+          "dist": 1.333
         }
       ],
       "2025_5121384": [
@@ -339868,7 +339832,7 @@ const COLLEGE_SCOUTING = {
           "name": "Quez Watkins",
           "team": "Southern Miss",
           "year": 2017,
-          "dist": 0.382
+          "dist": 0.381
         },
         {
           "id": "2026_5193277",
@@ -339910,7 +339874,7 @@ const COLLEGE_SCOUTING = {
           "name": "Lotzeir Brooks",
           "team": "Alabama",
           "year": 2025,
-          "dist": 0.431
+          "dist": 0.43
         },
         {
           "id": "2016_3918469",
@@ -339996,7 +339960,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tarik Black",
           "team": "Michigan",
           "year": 2019,
-          "dist": 0.534
+          "dist": 0.533
         }
       ],
       "2025_5121750": [
@@ -340012,7 +339976,7 @@ const COLLEGE_SCOUTING = {
           "name": "Darius Lassiter",
           "team": "Eastern Michigan",
           "year": 2022,
-          "dist": 0.417
+          "dist": 0.416
         },
         {
           "id": "2017_546121",
@@ -340077,7 +340041,7 @@ const COLLEGE_SCOUTING = {
           "name": "Micah Gilbert",
           "team": "Notre Dame",
           "year": 2026,
-          "dist": 0.311
+          "dist": 0.312
         },
         {
           "id": "2019_4362921",
@@ -340198,7 +340162,7 @@ const COLLEGE_SCOUTING = {
           "name": "Michael Woods",
           "team": "Oklahoma",
           "year": 2021,
-          "dist": 0.403
+          "dist": 0.402
         },
         {
           "id": "2019_4243247",
@@ -340242,7 +340206,7 @@ const COLLEGE_SCOUTING = {
           "name": "Romeo Doubs",
           "team": "Nevada",
           "year": 2019,
-          "dist": 0.91
+          "dist": 0.909
         },
         {
           "id": "2026_5144962",
@@ -340342,7 +340306,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brennan Presley",
           "team": "Oklahoma State",
           "year": 2022,
-          "dist": 0.983
+          "dist": 0.982
         },
         {
           "id": "2024_4879298",
@@ -340451,7 +340415,7 @@ const COLLEGE_SCOUTING = {
           "name": "Bailey Gaither",
           "team": "San José State",
           "year": 2018,
-          "dist": 0.92
+          "dist": 0.919
         },
         {
           "id": "2015_550737",
@@ -340537,7 +340501,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brett Eskildsen",
           "team": "Iowa State",
           "year": 2025,
-          "dist": 0.837
+          "dist": 0.836
         },
         {
           "id": "2016_3918230",
@@ -340581,7 +340545,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jamire Jordan",
           "team": "Fresno State",
           "year": 2015,
-          "dist": 0.583
+          "dist": 0.582
         },
         {
           "id": "2026_5152158",
@@ -340609,7 +340573,7 @@ const COLLEGE_SCOUTING = {
           "name": "McLane Mannix",
           "team": "Nevada",
           "year": 2017,
-          "dist": 0.754
+          "dist": 0.753
         },
         {
           "id": "2014_514158",
@@ -340914,17 +340878,17 @@ const COLLEGE_SCOUTING = {
           "dist": 0.736
         },
         {
-          "id": "2019_4244306",
-          "name": "Jalen Walker",
-          "team": "Miami (OH)",
-          "year": 2019,
-          "dist": 0.743
-        },
-        {
           "id": "2026_5122096",
           "name": "Kedarius Wade",
           "team": "Louisiana",
           "year": 2026,
+          "dist": 0.743
+        },
+        {
+          "id": "2019_4244306",
+          "name": "Jalen Walker",
+          "team": "Miami (OH)",
+          "year": 2019,
           "dist": 0.743
         },
         {
@@ -341034,7 +340998,7 @@ const COLLEGE_SCOUTING = {
           "name": "Grayson Tempest",
           "team": "Tulsa",
           "year": 2025,
-          "dist": 0.431
+          "dist": 0.43
         },
         {
           "id": "2019_4362308",
@@ -341092,7 +341056,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cameron Wright",
           "team": "Coastal Carolina",
           "year": 2025,
-          "dist": 0.369
+          "dist": 0.368
         },
         {
           "id": "2025_4602966",
@@ -341308,7 +341272,7 @@ const COLLEGE_SCOUTING = {
           "name": "Emmett Mosley V",
           "team": "Texas",
           "year": 2025,
-          "dist": 0.281
+          "dist": 0.28
         },
         {
           "id": "2022_4570218",
@@ -341603,7 +341567,7 @@ const COLLEGE_SCOUTING = {
           "name": "Sean Ryan",
           "team": "West Virginia",
           "year": 2020,
-          "dist": 0.318
+          "dist": 0.317
         },
         {
           "id": "2016_3921931",
@@ -341819,7 +341783,7 @@ const COLLEGE_SCOUTING = {
           "name": "DeAngelo Yancey",
           "team": "Purdue",
           "year": 2013,
-          "dist": 0.679
+          "dist": 0.678
         },
         {
           "id": "2013_517027",
@@ -342005,7 +341969,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keith Reynolds",
           "team": "Miami (OH)",
           "year": 2025,
-          "dist": 1.069
+          "dist": 1.068
         },
         {
           "id": "2020_4570219",
@@ -342035,7 +341999,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ben Skowronek",
           "team": "Northwestern",
           "year": 2017,
-          "dist": 0.758
+          "dist": 0.759
         },
         {
           "id": "2024_4683227",
@@ -342049,7 +342013,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeremy Scott",
           "team": "South Alabama",
           "year": 2025,
-          "dist": 0.837
+          "dist": 0.836
         },
         {
           "id": "2020_4374076",
@@ -342351,7 +342315,7 @@ const COLLEGE_SCOUTING = {
           "name": "Phillip Brooks III",
           "team": "Kansas State",
           "year": 2023,
-          "dist": 0.601
+          "dist": 0.602
         },
         {
           "id": "2018_3924325",
@@ -342525,7 +342489,7 @@ const COLLEGE_SCOUTING = {
           "name": "Zach D'Orazio",
           "team": "Akron",
           "year": 2014,
-          "dist": 0.631
+          "dist": 0.63
         },
         {
           "id": "2026_5224355",
@@ -342625,7 +342589,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kaelin Clay",
           "team": "Utah",
           "year": 2014,
-          "dist": 1.566
+          "dist": 1.565
         },
         {
           "id": "2026_5087747",
@@ -343287,7 +343251,7 @@ const COLLEGE_SCOUTING = {
           "name": "Eli Wood",
           "team": "Utah State",
           "year": 2026,
-          "dist": 1.953
+          "dist": 1.952
         },
         {
           "id": "2026_5084771",
@@ -343596,7 +343560,7 @@ const COLLEGE_SCOUTING = {
           "name": "DeAndre Thompkins",
           "team": "Penn State",
           "year": 2018,
-          "dist": 0.544
+          "dist": 0.543
         }
       ],
       "2025_5153994": [
@@ -343740,7 +343704,7 @@ const COLLEGE_SCOUTING = {
           "name": "Riley Neer",
           "team": "Ohio",
           "year": 2026,
-          "dist": 0.879
+          "dist": 0.878
         }
       ],
       "2025_5155519": [
@@ -343835,14 +343799,14 @@ const COLLEGE_SCOUTING = {
           "name": "Travis Fulgham",
           "team": "Old Dominion",
           "year": 2016,
-          "dist": 0.505
+          "dist": 0.504
         },
         {
           "id": "2025_5209679",
           "name": "Jeremiah Koger",
           "team": "South Florida",
           "year": 2025,
-          "dist": 0.567
+          "dist": 0.566
         },
         {
           "id": "2021_4244600",
@@ -343956,7 +343920,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Platt",
           "team": "Baylor",
           "year": 2019,
-          "dist": 0.541
+          "dist": 0.54
         }
       ],
       "2025_5157266": [
@@ -344230,7 +344194,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dylan Collie",
           "team": "Hawai'i",
           "year": 2017,
-          "dist": 0.622
+          "dist": 0.621
         },
         {
           "id": "2014_534739",
@@ -344244,7 +344208,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devin Ross",
           "team": "Colorado",
           "year": 2017,
-          "dist": 0.651
+          "dist": 0.65
         }
       ],
       "2025_5159139": [
@@ -344260,7 +344224,7 @@ const COLLEGE_SCOUTING = {
           "name": "Xavier Worthy",
           "team": "Texas",
           "year": 2022,
-          "dist": 0.886
+          "dist": 0.885
         },
         {
           "id": "2016_534884",
@@ -344353,7 +344317,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chris Durr Jr.",
           "team": "Maryland",
           "year": 2026,
-          "dist": 0.876
+          "dist": 0.875
         },
         {
           "id": "2016_534739",
@@ -344627,7 +344591,7 @@ const COLLEGE_SCOUTING = {
           "name": "Braeden Wisloski",
           "team": "James Madison",
           "year": 2025,
-          "dist": 0.479
+          "dist": 0.478
         },
         {
           "id": "2025_4693817",
@@ -344748,7 +344712,7 @@ const COLLEGE_SCOUTING = {
           "name": "Donnie Gray",
           "team": "Massachusetts",
           "year": 2025,
-          "dist": 0.523
+          "dist": 0.524
         }
       ],
       "2025_5166797": [
@@ -345159,7 +345123,7 @@ const COLLEGE_SCOUTING = {
           "name": "Shemar Thornton",
           "team": "Florida International",
           "year": 2019,
-          "dist": 0.704
+          "dist": 0.703
         },
         {
           "id": "2021_4035776",
@@ -345268,7 +345232,7 @@ const COLLEGE_SCOUTING = {
           "name": "Andre Levrone",
           "team": "Virginia",
           "year": 2017,
-          "dist": 1.182
+          "dist": 1.181
         },
         {
           "id": "2017_3916945",
@@ -345282,7 +345246,7 @@ const COLLEGE_SCOUTING = {
           "name": "C.J. Johnson",
           "team": "East Carolina",
           "year": 2020,
-          "dist": 1.383
+          "dist": 1.382
         },
         {
           "id": "2026_5148784",
@@ -345995,7 +345959,7 @@ const COLLEGE_SCOUTING = {
           "name": "Alex Taylor",
           "team": "Georgia Southern",
           "year": 2026,
-          "dist": 0.45
+          "dist": 0.449
         },
         {
           "id": "2022_4363551",
@@ -346246,7 +346210,7 @@ const COLLEGE_SCOUTING = {
           "name": "Sanfrisco Magee",
           "team": "Mississippi State",
           "year": 2026,
-          "dist": 1.001
+          "dist": 1
         },
         {
           "id": "2019_4426800",
@@ -346420,7 +346384,7 @@ const COLLEGE_SCOUTING = {
           "name": "Hardley Gilmore IV",
           "team": "Kentucky",
           "year": 2025,
-          "dist": 0.369
+          "dist": 0.368
         },
         {
           "id": "2019_3128359",
@@ -346620,7 +346584,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tre Turner",
           "team": "Virginia Tech",
           "year": 2020,
-          "dist": 0.509
+          "dist": 0.508
         }
       ],
       "2025_5224764": [
@@ -346692,7 +346656,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jerico Richardson",
           "team": "Nevada",
           "year": 2014,
-          "dist": 0.734
+          "dist": 0.733
         }
       ],
       "2025_5225416": [
@@ -346996,7 +346960,7 @@ const COLLEGE_SCOUTING = {
           "name": "Johnny Johnson III",
           "team": "Oregon",
           "year": 2017,
-          "dist": 0.375
+          "dist": 0.374
         },
         {
           "id": "2021_4575767",
@@ -347110,7 +347074,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kendrick Rogers",
           "team": "Texas A&M",
           "year": 2018,
-          "dist": 0.787
+          "dist": 0.786
         },
         {
           "id": "2025_4683114",
@@ -347168,7 +347132,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brayden Munroe",
           "team": "Kennesaw State",
           "year": 2026,
-          "dist": 0.875
+          "dist": 0.874
         },
         {
           "id": "2026_4685510",
@@ -347405,7 +347369,7 @@ const COLLEGE_SCOUTING = {
           "name": "Javon McKinley",
           "team": "Notre Dame",
           "year": 2020,
-          "dist": 0.729
+          "dist": 0.728
         },
         {
           "id": "2018_4035792",
@@ -347679,7 +347643,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jamir Tillman",
           "team": "Navy",
           "year": 2014,
-          "dist": 1.555
+          "dist": 1.554
         },
         {
           "id": "2023_4430875",
@@ -347700,7 +347664,7 @@ const COLLEGE_SCOUTING = {
           "name": "Antonio Nunn",
           "team": "Buffalo",
           "year": 2019,
-          "dist": 1.726
+          "dist": 1.725
         }
       ],
       "2025_5296407": [
@@ -347856,17 +347820,17 @@ const COLLEGE_SCOUTING = {
           "dist": 0.291
         },
         {
-          "id": "2019_4569239",
-          "name": "Trevon Clark",
-          "team": "California",
-          "year": 2019,
-          "dist": 0.419
-        },
-        {
           "id": "2026_5083103",
           "name": "Davis Bryson",
           "team": "Kennesaw State",
           "year": 2026,
+          "dist": 0.419
+        },
+        {
+          "id": "2019_4569239",
+          "name": "Trevon Clark",
+          "team": "California",
+          "year": 2019,
           "dist": 0.419
         },
         {
@@ -348125,7 +348089,7 @@ const COLLEGE_SCOUTING = {
           "name": "Aleva Hifo",
           "team": "BYU",
           "year": 2019,
-          "dist": 1.181
+          "dist": 1.18
         },
         {
           "id": "2016_531796",
@@ -348190,7 +348154,7 @@ const COLLEGE_SCOUTING = {
           "name": "Shocky Jacques-Louis",
           "team": "Pittsburgh",
           "year": 2020,
-          "dist": 0.583
+          "dist": 0.582
         },
         {
           "id": "2018_4035628",
@@ -348608,7 +348572,7 @@ const COLLEGE_SCOUTING = {
           "name": "Javon Ivory",
           "team": "Memphis",
           "year": 2020,
-          "dist": 0.388
+          "dist": 0.389
         },
         {
           "id": "2019_4035493",
@@ -348645,7 +348609,7 @@ const COLLEGE_SCOUTING = {
           "name": "Thurman Morbley",
           "team": "Texas State",
           "year": 2016,
-          "dist": 0.316
+          "dist": 0.315
         },
         {
           "id": "2026_5141711",
@@ -349249,7 +349213,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cooper Barkate",
           "team": "Duke",
           "year": 2025,
-          "dist": 0.775
+          "dist": 0.774
         },
         {
           "id": "2019_4029893",
@@ -349616,7 +349580,7 @@ const COLLEGE_SCOUTING = {
           "name": "Quinton Pedroza",
           "team": "Hawai'i",
           "year": 2014,
-          "dist": 0.733
+          "dist": 0.732
         },
         {
           "id": "2026_5218787",
@@ -349660,7 +349624,7 @@ const COLLEGE_SCOUTING = {
           "name": "Vince Mayle",
           "team": "Washington State",
           "year": 2014,
-          "dist": 1.413
+          "dist": 1.412
         },
         {
           "id": "2021_4570409",
@@ -349911,7 +349875,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ajalen Holley",
           "team": "UL Monroe",
           "year": 2016,
-          "dist": 0.487
+          "dist": 0.486
         },
         {
           "id": "2014_522923",
@@ -350027,7 +349991,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malik McClain",
           "team": "Arizona State",
           "year": 2025,
-          "dist": 0.532
+          "dist": 0.531
         },
         {
           "id": "2025_4594447",
@@ -350206,7 +350170,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jaylen Hampton",
           "team": "Charlotte",
           "year": 2026,
-          "dist": 1.454
+          "dist": 1.453
         },
         {
           "id": "2025_4594319",
@@ -350429,7 +350393,7 @@ const COLLEGE_SCOUTING = {
           "name": "Da'Mari Scott",
           "team": "Fresno State",
           "year": 2017,
-          "dist": 0.898
+          "dist": 0.897
         },
         {
           "id": "2021_4361092",
@@ -350445,7 +350409,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cataurus Hicks",
           "team": "Pittsburgh",
           "year": 2026,
-          "dist": 0.367
+          "dist": 0.366
         },
         {
           "id": "2021_4373959",
@@ -350480,7 +350444,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rico Arnold",
           "team": "Massachusetts",
           "year": 2021,
-          "dist": 0.863
+          "dist": 0.862
         },
         {
           "id": "2014_534666",
@@ -350740,7 +350704,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cameron Batson",
           "team": "Texas Tech",
           "year": 2017,
-          "dist": 0.522
+          "dist": 0.521
         },
         {
           "id": "2019_4242506",
@@ -350833,7 +350797,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dom Henry",
           "team": "Florida Atlantic",
           "year": 2025,
-          "dist": 0.511
+          "dist": 0.51
         },
         {
           "id": "2025_5144962",
@@ -350963,7 +350927,7 @@ const COLLEGE_SCOUTING = {
           "name": "James Proche",
           "team": "SMU",
           "year": 2016,
-          "dist": 0.772
+          "dist": 0.771
         },
         {
           "id": "2016_4040655",
@@ -350973,17 +350937,17 @@ const COLLEGE_SCOUTING = {
           "dist": 0.798
         },
         {
-          "id": "2014_534450",
-          "name": "Durron Neal",
-          "team": "Oklahoma",
-          "year": 2014,
-          "dist": 0.876
-        },
-        {
           "id": "2021_4569371",
           "name": "Isaiah Williams",
           "team": "Illinois",
           "year": 2021,
+          "dist": 0.876
+        },
+        {
+          "id": "2014_534450",
+          "name": "Durron Neal",
+          "team": "Oklahoma",
+          "year": 2014,
           "dist": 0.876
         },
         {
@@ -351488,7 +351452,7 @@ const COLLEGE_SCOUTING = {
           "name": "Reginald Todd",
           "team": "Troy",
           "year": 2020,
-          "dist": 0.595
+          "dist": 0.594
         },
         {
           "id": "2017_4035277",
@@ -351934,7 +351898,7 @@ const COLLEGE_SCOUTING = {
           "name": "Miles Marshall",
           "team": "Indiana",
           "year": 2021,
-          "dist": 0.7
+          "dist": 0.699
         },
         {
           "id": "2015_516956",
@@ -352496,7 +352460,7 @@ const COLLEGE_SCOUTING = {
           "name": "Chase Claypool",
           "team": "Notre Dame",
           "year": 2019,
-          "dist": 0.611
+          "dist": 0.61
         },
         {
           "id": "2014_513639",
@@ -352605,7 +352569,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kobe Paysour",
           "team": "North Carolina",
           "year": 2023,
-          "dist": 1.055
+          "dist": 1.054
         },
         {
           "id": "2020_3707332",
@@ -352705,7 +352669,7 @@ const COLLEGE_SCOUTING = {
           "name": "Spencer Tears",
           "team": "Northern Illinois",
           "year": 2018,
-          "dist": 0.933
+          "dist": 0.932
         },
         {
           "id": "2018_4260392",
@@ -352812,7 +352776,7 @@ const COLLEGE_SCOUTING = {
           "name": "Lewis Bond",
           "team": "Boston College",
           "year": 2025,
-          "dist": 1.417
+          "dist": 1.416
         }
       ],
       "2026_4896389": [
@@ -352870,7 +352834,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jalen McGaughy",
           "team": "Central Michigan",
           "year": 2022,
-          "dist": 0.42
+          "dist": 0.419
         },
         {
           "id": "2018_3125291",
@@ -353388,7 +353352,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jalen Cropper",
           "team": "Fresno State",
           "year": 2020,
-          "dist": 0.986
+          "dist": 0.985
         }
       ],
       "2026_4916941": [
@@ -353662,7 +353626,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jalen McGaughy",
           "team": "Central Michigan",
           "year": 2022,
-          "dist": 0.719
+          "dist": 0.718
         },
         {
           "id": "2026_5079627",
@@ -353676,7 +353640,7 @@ const COLLEGE_SCOUTING = {
           "name": "AJ Wilson",
           "team": "UTSA",
           "year": 2025,
-          "dist": 0.776
+          "dist": 0.775
         }
       ],
       "2026_4917172": [
@@ -353915,7 +353879,7 @@ const COLLEGE_SCOUTING = {
           "name": "David Frazier",
           "team": "Miami (OH)",
           "year": 2014,
-          "dist": 0.533
+          "dist": 0.532
         },
         {
           "id": "2014_546465",
@@ -354289,7 +354253,7 @@ const COLLEGE_SCOUTING = {
           "name": "Antonio Gandy-Golden",
           "team": "Liberty",
           "year": 2018,
-          "dist": 1.205
+          "dist": 1.204
         },
         {
           "id": "2026_5079720",
@@ -354340,7 +354304,7 @@ const COLLEGE_SCOUTING = {
           "name": "Devonte Boyd",
           "team": "UNLV",
           "year": 2014,
-          "dist": 0.483
+          "dist": 0.482
         },
         {
           "id": "2026_5156183",
@@ -354468,7 +354432,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jeff Foreman",
           "team": "Arkansas State",
           "year": 2021,
-          "dist": 1.212
+          "dist": 1.211
         }
       ],
       "2026_5031157": [
@@ -354756,7 +354720,7 @@ const COLLEGE_SCOUTING = {
           "name": "Israel Polk",
           "team": "Akron",
           "year": 2025,
-          "dist": 1.705
+          "dist": 1.704
         }
       ],
       "2026_5075962": [
@@ -355390,7 +355354,7 @@ const COLLEGE_SCOUTING = {
           "name": "Emanuel Thompson",
           "team": "Troy",
           "year": 2016,
-          "dist": 0.687
+          "dist": 0.686
         },
         {
           "id": "2025_5095360",
@@ -355462,7 +355426,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ronnel Johnson",
           "team": "Missouri State",
           "year": 2025,
-          "dist": 0.534
+          "dist": 0.533
         },
         {
           "id": "2025_4430903",
@@ -355527,7 +355491,7 @@ const COLLEGE_SCOUTING = {
           "name": "Theo Howard",
           "team": "UCLA",
           "year": 2018,
-          "dist": 0.583
+          "dist": 0.582
         },
         {
           "id": "2023_4714388",
@@ -355606,7 +355570,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marcus Green",
           "team": "UL Monroe",
           "year": 2016,
-          "dist": 0.892
+          "dist": 0.893
         },
         {
           "id": "2017_4039277",
@@ -355845,7 +355809,7 @@ const COLLEGE_SCOUTING = {
           "name": "Keshaun Singleton",
           "team": "South Florida",
           "year": 2025,
-          "dist": 0.311
+          "dist": 0.312
         },
         {
           "id": "2023_4892576",
@@ -356031,7 +355995,7 @@ const COLLEGE_SCOUTING = {
           "name": "Darius Jennings",
           "team": "Virginia",
           "year": 2014,
-          "dist": 0.918
+          "dist": 0.917
         },
         {
           "id": "2018_4255713",
@@ -356168,7 +356132,7 @@ const COLLEGE_SCOUTING = {
           "name": "Isaiah McKenzie",
           "team": "Georgia",
           "year": 2016,
-          "dist": 0.712
+          "dist": 0.711
         },
         {
           "id": "2025_4709678",
@@ -356226,7 +356190,7 @@ const COLLEGE_SCOUTING = {
           "name": "Bryce Mitchell",
           "team": "Toledo",
           "year": 2019,
-          "dist": 1.137
+          "dist": 1.136
         },
         {
           "id": "2017_4052029",
@@ -356261,7 +356225,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kaleb Smith",
           "team": "Virginia Tech",
           "year": 2022,
-          "dist": 1.247
+          "dist": 1.248
         },
         {
           "id": "2020_4361915",
@@ -356284,7 +356248,7 @@ const COLLEGE_SCOUTING = {
           "name": "Teddy Veal",
           "team": "Tulane",
           "year": 2015,
-          "dist": 0.542
+          "dist": 0.541
         },
         {
           "id": "2024_5082142",
@@ -356312,7 +356276,7 @@ const COLLEGE_SCOUTING = {
           "name": "Javen Nicholas",
           "team": "Charlotte",
           "year": 2025,
-          "dist": 0.69
+          "dist": 0.689
         },
         {
           "id": "2019_4241983",
@@ -356398,7 +356362,7 @@ const COLLEGE_SCOUTING = {
           "name": "James Price",
           "team": "Wyoming",
           "year": 2018,
-          "dist": 1.029
+          "dist": 1.028
         },
         {
           "id": "2021_4360329",
@@ -356607,7 +356571,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cam Phillips",
           "team": "Virginia Tech",
           "year": 2016,
-          "dist": 0.725
+          "dist": 0.724
         },
         {
           "id": "2026_5294063",
@@ -356628,7 +356592,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jabre Barber",
           "team": "Troy",
           "year": 2023,
-          "dist": 0.779
+          "dist": 0.778
         }
       ],
       "2026_5079714": [
@@ -356795,7 +356759,7 @@ const COLLEGE_SCOUTING = {
           "name": "Leland Smith",
           "team": "San José State",
           "year": 2025,
-          "dist": 0.45
+          "dist": 0.449
         },
         {
           "id": "2014_514158",
@@ -357162,7 +357126,7 @@ const COLLEGE_SCOUTING = {
           "name": "Deon Watson",
           "team": "Idaho",
           "year": 2015,
-          "dist": 1.158
+          "dist": 1.157
         },
         {
           "id": "2014_3123992",
@@ -357515,7 +357479,7 @@ const COLLEGE_SCOUTING = {
           "name": "Zach Wright",
           "team": "Rice",
           "year": 2015,
-          "dist": 0.792
+          "dist": 0.791
         },
         {
           "id": "2019_3864258",
@@ -357608,7 +357572,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mario Alford",
           "team": "West Virginia",
           "year": 2014,
-          "dist": 1.888
+          "dist": 1.887
         },
         {
           "id": "2019_4361598",
@@ -357996,7 +357960,7 @@ const COLLEGE_SCOUTING = {
           "name": "Anthony Miller",
           "team": "Memphis",
           "year": 2016,
-          "dist": 1.258
+          "dist": 1.257
         }
       ],
       "2026_5084802": [
@@ -358068,7 +358032,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cameron Echols-Luper",
           "team": "Arkansas State",
           "year": 2016,
-          "dist": 0.488
+          "dist": 0.487
         }
       ],
       "2026_5085354": [
@@ -358667,7 +358631,7 @@ const COLLEGE_SCOUTING = {
           "name": "Daniel Jackson",
           "team": "Minnesota",
           "year": 2023,
-          "dist": 1.037
+          "dist": 1.038
         },
         {
           "id": "2021_4429615",
@@ -358716,7 +358680,7 @@ const COLLEGE_SCOUTING = {
           "name": "Josh Huff",
           "team": "Oregon",
           "year": 2013,
-          "dist": 1.369
+          "dist": 1.368
         }
       ],
       "2026_5089003": [
@@ -358962,7 +358926,7 @@ const COLLEGE_SCOUTING = {
           "name": "Hassan Beydoun",
           "team": "Eastern Michigan",
           "year": 2021,
-          "dist": 0.739
+          "dist": 0.738
         },
         {
           "id": "2016_3124069",
@@ -359517,7 +359481,7 @@ const COLLEGE_SCOUTING = {
           "name": "Langston Lewis",
           "team": "Central Michigan",
           "year": 2026,
-          "dist": 0.367
+          "dist": 0.366
         },
         {
           "id": "2026_5216639",
@@ -359552,7 +359516,7 @@ const COLLEGE_SCOUTING = {
           "name": "Bryce Mitchell",
           "team": "Toledo",
           "year": 2019,
-          "dist": 0.795
+          "dist": 0.794
         },
         {
           "id": "2015_550190",
@@ -359573,7 +359537,7 @@ const COLLEGE_SCOUTING = {
           "name": "John Hightower",
           "team": "Boise State",
           "year": 2019,
-          "dist": 0.971
+          "dist": 0.97
         },
         {
           "id": "2013_514290",
@@ -359926,7 +359890,7 @@ const COLLEGE_SCOUTING = {
           "name": "Josh Reynolds",
           "team": "Texas A&M",
           "year": 2014,
-          "dist": 0.854
+          "dist": 0.853
         },
         {
           "id": "2017_3931397",
@@ -360293,7 +360257,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rashawn Scott",
           "team": "Miami",
           "year": 2015,
-          "dist": 0.771
+          "dist": 0.77
         },
         {
           "id": "2019_3928932",
@@ -360323,7 +360287,7 @@ const COLLEGE_SCOUTING = {
           "name": "Troy Stellato",
           "team": "Clemson",
           "year": 2023,
-          "dist": 0.546
+          "dist": 0.545
         },
         {
           "id": "2025_5157266",
@@ -361043,7 +361007,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ian Sadler",
           "team": "Texas Tech",
           "year": 2014,
-          "dist": 0.562
+          "dist": 0.563
         },
         {
           "id": "2015_550624",
@@ -361259,7 +361223,7 @@ const COLLEGE_SCOUTING = {
           "name": "CJ Windham",
           "team": "Middle Tennessee",
           "year": 2017,
-          "dist": 0.344
+          "dist": 0.343
         },
         {
           "id": "2019_4362751",
@@ -361396,7 +361360,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cameron Wright",
           "team": "Coastal Carolina",
           "year": 2024,
-          "dist": 2.796
+          "dist": 2.795
         },
         {
           "id": "2024_4723820",
@@ -361431,7 +361395,7 @@ const COLLEGE_SCOUTING = {
           "name": "Isiah Cox",
           "team": "Ohio",
           "year": 2018,
-          "dist": 2.886
+          "dist": 2.885
         },
         {
           "id": "2024_5122072",
@@ -361468,14 +361432,14 @@ const COLLEGE_SCOUTING = {
           "name": "Kenneth Womack",
           "team": "Western Michigan",
           "year": 2024,
-          "dist": 0.873
+          "dist": 0.874
         },
         {
           "id": "2025_5085496",
           "name": "Chauncy Cobb",
           "team": "Arkansas State",
           "year": 2025,
-          "dist": 0.887
+          "dist": 0.886
         },
         {
           "id": "2018_4035170",
@@ -361972,7 +361936,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malcolm Robinson",
           "team": "Buffalo",
           "year": 2016,
-          "dist": 0.356
+          "dist": 0.355
         },
         {
           "id": "2014_512786",
@@ -362037,7 +362001,7 @@ const COLLEGE_SCOUTING = {
           "name": "Deontay Greenberry",
           "team": "Houston",
           "year": 2014,
-          "dist": 0.68
+          "dist": 0.679
         },
         {
           "id": "2026_4869422",
@@ -362346,7 +362310,7 @@ const COLLEGE_SCOUTING = {
           "name": "Rashee Rice",
           "team": "SMU",
           "year": 2020,
-          "dist": 0.39
+          "dist": 0.391
         },
         {
           "id": "2025_5189530",
@@ -362713,7 +362677,7 @@ const COLLEGE_SCOUTING = {
           "name": "B.J. Farrow",
           "team": "Liberty",
           "year": 2018,
-          "dist": 0.444
+          "dist": 0.443
         },
         {
           "id": "2025_5121601",
@@ -362943,14 +362907,14 @@ const COLLEGE_SCOUTING = {
           "name": "Trevor Wilson",
           "team": "Buffalo",
           "year": 2020,
-          "dist": 0.967
+          "dist": 0.966
         },
         {
           "id": "2025_5220256",
           "name": "Donte Lee Jr",
           "team": "Liberty",
           "year": 2025,
-          "dist": 1.001
+          "dist": 1
         },
         {
           "id": "2026_5079376",
@@ -363396,7 +363360,7 @@ const COLLEGE_SCOUTING = {
           "name": "Travis Fulgham",
           "team": "Old Dominion",
           "year": 2017,
-          "dist": 0.693
+          "dist": 0.694
         }
       ],
       "2026_5148535": [
@@ -363540,7 +363504,7 @@ const COLLEGE_SCOUTING = {
           "name": "Brian Casteel",
           "team": "Arizona",
           "year": 2019,
-          "dist": 0.795
+          "dist": 0.794
         }
       ],
       "2026_5148784": [
@@ -363577,7 +363541,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mike Carrigan",
           "team": "Kent State",
           "year": 2017,
-          "dist": 0.834
+          "dist": 0.833
         },
         {
           "id": "2021_4259908",
@@ -364067,7 +364031,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dylan Collie",
           "team": "Hawai'i",
           "year": 2017,
-          "dist": 0.646
+          "dist": 0.645
         },
         {
           "id": "2016_532969",
@@ -364376,7 +364340,7 @@ const COLLEGE_SCOUTING = {
           "name": "Javian Hester",
           "team": "Oklahoma",
           "year": 2024,
-          "dist": 1.077
+          "dist": 1.076
         },
         {
           "id": "2016_3917067",
@@ -364455,7 +364419,7 @@ const COLLEGE_SCOUTING = {
           "name": "Nyqwan Murray",
           "team": "Florida State",
           "year": 2017,
-          "dist": 0.723
+          "dist": 0.722
         },
         {
           "id": "2018_3932509",
@@ -365031,7 +364995,7 @@ const COLLEGE_SCOUTING = {
           "name": "James Butler",
           "team": "Louisiana",
           "year": 2014,
-          "dist": 0.75
+          "dist": 0.749
         },
         {
           "id": "2022_4360225",
@@ -367012,7 +366976,7 @@ const COLLEGE_SCOUTING = {
           "name": "Terrill Davis",
           "team": "Oklahoma State",
           "year": 2025,
-          "dist": 0.875
+          "dist": 0.874
         },
         {
           "id": "2025_5295811",
@@ -367068,7 +367032,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kyan Mason",
           "team": "Akron",
           "year": 2026,
-          "dist": 1.267
+          "dist": 1.266
         }
       ],
       "2026_5189530": [
@@ -367091,7 +367055,7 @@ const COLLEGE_SCOUTING = {
           "name": "Nelson Spruce",
           "team": "Colorado",
           "year": 2014,
-          "dist": 0.787
+          "dist": 0.786
         },
         {
           "id": "2015_3124069",
@@ -367112,7 +367076,7 @@ const COLLEGE_SCOUTING = {
           "name": "Alfonso Onunwor",
           "team": "Idaho",
           "year": 2017,
-          "dist": 0.894
+          "dist": 0.893
         },
         {
           "id": "2019_4242540",
@@ -367126,7 +367090,7 @@ const COLLEGE_SCOUTING = {
           "name": "Antonio Gandy-Golden",
           "team": "Liberty",
           "year": 2018,
-          "dist": 0.953
+          "dist": 0.952
         },
         {
           "id": "2015_535497",
@@ -367170,7 +367134,7 @@ const COLLEGE_SCOUTING = {
           "name": "Eric Singleton Jr.",
           "team": "Georgia Tech",
           "year": 2024,
-          "dist": 0.433
+          "dist": 0.432
         },
         {
           "id": "2015_535467",
@@ -367335,7 +367299,7 @@ const COLLEGE_SCOUTING = {
           "name": "Joseph Manjack",
           "team": "Houston",
           "year": 2024,
-          "dist": 0.989
+          "dist": 0.988
         },
         {
           "id": "2020_4689988",
@@ -367465,7 +367429,7 @@ const COLLEGE_SCOUTING = {
           "name": "Spencer Tears",
           "team": "Northern Illinois",
           "year": 2019,
-          "dist": 0.388
+          "dist": 0.387
         },
         {
           "id": "2014_532969",
@@ -367674,7 +367638,7 @@ const COLLEGE_SCOUTING = {
           "name": "John Ross",
           "team": "Washington",
           "year": 2016,
-          "dist": 0.803
+          "dist": 0.802
         },
         {
           "id": "2018_3916204",
@@ -367709,7 +367673,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malachi Toney",
           "team": "Miami",
           "year": 2025,
-          "dist": 0.876
+          "dist": 0.875
         },
         {
           "id": "2016_549623",
@@ -367876,63 +367840,63 @@ const COLLEGE_SCOUTING = {
           "name": "Reed Harris",
           "team": "Boston College",
           "year": 2024,
-          "dist": 10.118
+          "dist": 10.117
         },
         {
           "id": "2024_4569372",
           "name": "Dalevon Campbell",
           "team": "South Carolina",
           "year": 2024,
-          "dist": 10.608
+          "dist": 10.607
         },
         {
           "id": "2023_5076106",
           "name": "Marquis Johnson",
           "team": "Missouri",
           "year": 2023,
-          "dist": 10.644
+          "dist": 10.643
         },
         {
           "id": "2023_4713358",
           "name": "Jayden Gibson",
           "team": "Oklahoma",
           "year": 2023,
-          "dist": 11.099
+          "dist": 11.098
         },
         {
           "id": "2018_4362301",
           "name": "Isiah Cox",
           "team": "Ohio",
           "year": 2018,
-          "dist": 11.22
+          "dist": 11.219
         },
         {
           "id": "2021_4426965",
           "name": "Blair Conwright",
           "team": "TCU",
           "year": 2021,
-          "dist": 11.25
+          "dist": 11.249
         },
         {
           "id": "2024_5122072",
           "name": "Nic Trujillo",
           "team": "New Mexico",
           "year": 2024,
-          "dist": 11.283
+          "dist": 11.282
         },
         {
           "id": "2024_4431525",
           "name": "Dekel Crowdus",
           "team": "Hawai'i",
           "year": 2024,
-          "dist": 11.327
+          "dist": 11.326
         },
         {
           "id": "2024_4431484",
           "name": "Jay Wilkerson",
           "team": "Louisiana Tech",
           "year": 2024,
-          "dist": 11.515
+          "dist": 11.514
         }
       ],
       "2026_5198318": [
@@ -368004,7 +367968,7 @@ const COLLEGE_SCOUTING = {
           "name": "Michael Thomas",
           "team": "Southern Miss",
           "year": 2015,
-          "dist": 1.289
+          "dist": 1.29
         }
       ],
       "2026_5199859": [
@@ -368171,7 +368135,7 @@ const COLLEGE_SCOUTING = {
           "name": "Kyric McGowan",
           "team": "Northwestern",
           "year": 2018,
-          "dist": 0.639
+          "dist": 0.638
         },
         {
           "id": "2026_4883774",
@@ -368501,7 +368465,7 @@ const COLLEGE_SCOUTING = {
           "name": "Maguire Anderson",
           "team": "Florida International",
           "year": 2025,
-          "dist": 0.491
+          "dist": 0.49
         },
         {
           "id": "2014_3126209",
@@ -368717,7 +368681,7 @@ const COLLEGE_SCOUTING = {
           "name": "Mathew Sexton",
           "team": "Eastern Michigan",
           "year": 2017,
-          "dist": 0.475
+          "dist": 0.474
         },
         {
           "id": "2022_4431219",
@@ -368854,7 +368818,7 @@ const COLLEGE_SCOUTING = {
           "name": "T.J. Vasher",
           "team": "Texas Tech",
           "year": 2019,
-          "dist": 0.908
+          "dist": 0.907
         },
         {
           "id": "2025_5157287",
@@ -369323,7 +369287,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cam Camper",
           "team": "Indiana",
           "year": 2022,
-          "dist": 0.986
+          "dist": 0.985
         },
         {
           "id": "2019_4039043",
@@ -369474,7 +369438,7 @@ const COLLEGE_SCOUTING = {
           "name": "Xavier Hutchinson",
           "team": "Iowa State",
           "year": 2020,
-          "dist": 0.532
+          "dist": 0.531
         },
         {
           "id": "2025_5078225",
@@ -369618,7 +369582,7 @@ const COLLEGE_SCOUTING = {
           "name": "Andrew Parchment",
           "team": "Kansas",
           "year": 2019,
-          "dist": 0.633
+          "dist": 0.632
         },
         {
           "id": "2018_3125837",
@@ -369762,7 +369726,7 @@ const COLLEGE_SCOUTING = {
           "name": "Roger Lewis",
           "team": "Bowling Green",
           "year": 2014,
-          "dist": 0.823
+          "dist": 0.822
         },
         {
           "id": "2019_4039307",
@@ -370095,78 +370059,6 @@ const COLLEGE_SCOUTING = {
           "dist": 0.413
         }
       ],
-      "2026_5222689": [
-        {
-          "id": "2023_4427331",
-          "name": "Khafre Brown",
-          "team": "South Florida",
-          "year": 2023,
-          "dist": 0.384
-        },
-        {
-          "id": "2025_4430827",
-          "name": "Troy Omeire",
-          "team": "UNLV",
-          "year": 2025,
-          "dist": 0.417
-        },
-        {
-          "id": "2021_4362669",
-          "name": "T.J. Graham",
-          "team": "Texas State",
-          "year": 2021,
-          "dist": 0.432
-        },
-        {
-          "id": "2013_535370",
-          "name": "Shaq Roland",
-          "team": "South Carolina",
-          "year": 2013,
-          "dist": 0.446
-        },
-        {
-          "id": "2013_487641",
-          "name": "Mitch Mathews",
-          "team": "BYU",
-          "year": 2013,
-          "dist": 0.552
-        },
-        {
-          "id": "2021_4428784",
-          "name": "Damon Ward Jr.",
-          "team": "North Texas",
-          "year": 2021,
-          "dist": 0.56
-        },
-        {
-          "id": "2021_4240033",
-          "name": "Ontaria Wilson",
-          "team": "Florida State",
-          "year": 2021,
-          "dist": 0.575
-        },
-        {
-          "id": "2020_4047555",
-          "name": "Jalen Williams",
-          "team": "Louisiana",
-          "year": 2020,
-          "dist": 0.61
-        },
-        {
-          "id": "2013_513120",
-          "name": "Dom Williams",
-          "team": "Washington State",
-          "year": 2013,
-          "dist": 0.611
-        },
-        {
-          "id": "2017_3121422",
-          "name": "Terry McLaurin",
-          "team": "Ohio State",
-          "year": 2017,
-          "dist": 0.618
-        }
-      ],
       "2026_5222752": [
         {
           "id": "2016_3122839",
@@ -370208,7 +370100,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tyre'oune Holmes",
           "team": "Southern Miss",
           "year": 2013,
-          "dist": 0.747
+          "dist": 0.746
         },
         {
           "id": "2018_4243811",
@@ -370229,7 +370121,7 @@ const COLLEGE_SCOUTING = {
           "name": "Corey Jones",
           "team": "Toledo",
           "year": 2015,
-          "dist": 0.811
+          "dist": 0.81
         },
         {
           "id": "2021_4240625",
@@ -370403,7 +370295,7 @@ const COLLEGE_SCOUTING = {
           "name": "John Metchie",
           "team": "Alabama",
           "year": 2020,
-          "dist": 0.371
+          "dist": 0.372
         },
         {
           "id": "2026_5219136",
@@ -370461,7 +370353,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malik Turner",
           "team": "Illinois",
           "year": 2017,
-          "dist": 0.466
+          "dist": 0.465
         },
         {
           "id": "2019_4048695",
@@ -370547,7 +370439,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tre Walker",
           "team": "San José State",
           "year": 2020,
-          "dist": 0.605
+          "dist": 0.604
         },
         {
           "id": "2014_512348",
@@ -370900,7 +370792,7 @@ const COLLEGE_SCOUTING = {
           "name": "La'Don Bryant",
           "team": "Northern Illinois",
           "year": 2026,
-          "dist": 0.842
+          "dist": 0.841
         },
         {
           "id": "2015_545269",
@@ -371028,7 +370920,7 @@ const COLLEGE_SCOUTING = {
           "name": "Danzel McKinley-Lewis",
           "team": "Toledo",
           "year": 2019,
-          "dist": 1.668
+          "dist": 1.669
         }
       ],
       "2026_5228760": [
@@ -371172,7 +371064,7 @@ const COLLEGE_SCOUTING = {
           "name": "Griffin Wilde",
           "team": "Northwestern",
           "year": 2025,
-          "dist": 0.879
+          "dist": 0.878
         }
       ],
       "2026_5228882": [
@@ -371483,7 +371375,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tevailance Hunt",
           "team": "Arkansas State",
           "year": 2021,
-          "dist": 0.546
+          "dist": 0.545
         },
         {
           "id": "2016_550624",
@@ -371497,7 +371389,7 @@ const COLLEGE_SCOUTING = {
           "name": "Tyler Vaughns",
           "team": "USC",
           "year": 2020,
-          "dist": 0.679
+          "dist": 0.678
         },
         {
           "id": "2016_530273",
@@ -372015,7 +371907,7 @@ const COLLEGE_SCOUTING = {
           "name": "Hunter Sharp",
           "team": "Utah State",
           "year": 2014,
-          "dist": 0.664
+          "dist": 0.663
         },
         {
           "id": "2021_4428811",
@@ -372245,7 +372137,7 @@ const COLLEGE_SCOUTING = {
           "name": "Jacob Sannon",
           "team": "Idaho",
           "year": 2017,
-          "dist": 0.87
+          "dist": 0.869
         },
         {
           "id": "2015_535324",
@@ -372426,7 +372318,7 @@ const COLLEGE_SCOUTING = {
           "name": "Marquez Stevenson",
           "team": "Houston",
           "year": 2018,
-          "dist": 0.695
+          "dist": 0.694
         },
         {
           "id": "2021_4241397",
@@ -372512,7 +372404,7 @@ const COLLEGE_SCOUTING = {
           "name": "Romeo Doubs",
           "team": "Nevada",
           "year": 2018,
-          "dist": 0.547
+          "dist": 0.546
         },
         {
           "id": "2020_4241362",
@@ -372828,7 +372720,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ramel Keyton",
           "team": "Tennessee",
           "year": 2023,
-          "dist": 0.704
+          "dist": 0.703
         }
       ],
       "2026_5295525": [
@@ -372893,7 +372785,7 @@ const COLLEGE_SCOUTING = {
           "name": "Ja'Marcus Bradley",
           "team": "Louisiana",
           "year": 2017,
-          "dist": 0.763
+          "dist": 0.762
         },
         {
           "id": "2020_4244600",
@@ -373060,7 +372952,7 @@ const COLLEGE_SCOUTING = {
           "name": "Malik Washington",
           "team": "Northwestern",
           "year": 2022,
-          "dist": 1.017
+          "dist": 1.016
         },
         {
           "id": "2025_5122076",
@@ -373290,7 +373182,7 @@ const COLLEGE_SCOUTING = {
           "name": "Dalton Stroman",
           "team": "App State",
           "year": 2025,
-          "dist": 0.831
+          "dist": 0.83
         },
         {
           "id": "2018_4242433",
@@ -373736,7 +373628,7 @@ const COLLEGE_SCOUTING = {
           "name": "Trea Shropshire",
           "team": "UAB",
           "year": 2020,
-          "dist": 0.553
+          "dist": 0.554
         },
         {
           "id": "2019_4259197",
@@ -373931,7 +373823,7 @@ const COLLEGE_SCOUTING = {
           "name": "John Hightower",
           "team": "Boise State",
           "year": 2019,
-          "dist": 1.037
+          "dist": 1.036
         },
         {
           "id": "2015_550190",
@@ -373959,7 +373851,7 @@ const COLLEGE_SCOUTING = {
           "name": "Cataurus Hicks",
           "team": "Pittsburgh",
           "year": 2026,
-          "dist": 1.109
+          "dist": 1.108
         },
         {
           "id": "2025_5079691",
@@ -491746,7 +491638,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 43,
         "tdShare": 29.6,
         "avgPPA": 89,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_381543": {
         "recShare": 19.3,
@@ -491786,7 +491678,7 @@ const COLLEGE_SCOUTING = {
       "2013_480564": {
         "recShare": 44.7,
         "ydShare": 42.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 86.9,
         "usageOverall": 19.8
       },
@@ -491794,11 +491686,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 60.3,
         "ydShare": 62.8,
         "tdShare": 81.6,
-        "avgPPA": 81.5,
+        "avgPPA": 81.6,
         "usageOverall": 35.3
       },
       "2013_480747": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 55.9,
         "tdShare": 68.5,
         "avgPPA": 86.9,
@@ -491872,7 +491764,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 54.6,
         "tdShare": 65.2,
         "avgPPA": 41.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2013_481478": {
         "recShare": 13.3,
@@ -491885,7 +491777,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 53.7,
         "ydShare": 57,
         "tdShare": 68.3,
-        "avgPPA": 82.2,
+        "avgPPA": 82.3,
         "usageOverall": 19.8
       },
       "2013_481541": {
@@ -491905,7 +491797,7 @@ const COLLEGE_SCOUTING = {
       "2013_481744": {
         "recShare": 32.9,
         "ydShare": 28.2,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 78,
         "usageOverall": 7.1
       },
@@ -491942,27 +491834,27 @@ const COLLEGE_SCOUTING = {
         "ydShare": 64.1,
         "tdShare": 44.4,
         "avgPPA": 19.7,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2013_482196": {
         "recShare": 57.8,
         "ydShare": 54.6,
         "tdShare": 23.4,
         "avgPPA": 91.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2013_482270": {
         "recShare": 83.8,
         "ydShare": 74.2,
         "tdShare": 62,
-        "avgPPA": 75.7,
+        "avgPPA": 75.8,
         "usageOverall": 38.2
       },
       "2013_482272": {
         "recShare": 86.8,
         "ydShare": 95.1,
         "tdShare": 97.8,
-        "avgPPA": 77.6,
+        "avgPPA": 77.7,
         "usageOverall": 40
       },
       "2013_482322": {
@@ -491976,7 +491868,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 98.7,
         "ydShare": 99.1,
         "tdShare": 85.3,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 81.6
       },
       "2013_482479": {
@@ -491998,7 +491890,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 51.5,
         "tdShare": 69.6,
         "avgPPA": 97.2,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_482745": {
         "recShare": 68.2,
@@ -492012,21 +491904,21 @@ const COLLEGE_SCOUTING = {
         "ydShare": 85.4,
         "tdShare": 88.6,
         "avgPPA": 79,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2013_482880": {
         "recShare": 35.9,
         "ydShare": 35.8,
         "tdShare": 62,
         "avgPPA": 46.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_482901": {
         "recShare": 65.4,
         "ydShare": 57.9,
         "tdShare": 46.1,
         "avgPPA": 90.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2013_482990": {
         "recShare": 3,
@@ -492082,7 +491974,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 64.1,
         "tdShare": 51.7,
         "avgPPA": 79.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2013_484843": {
         "recShare": 4.1,
@@ -492108,7 +492000,7 @@ const COLLEGE_SCOUTING = {
       "2013_487625": {
         "recShare": 43.4,
         "ydShare": 14.7,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 56.2,
         "usageOverall": 3.9
       },
@@ -492122,7 +492014,7 @@ const COLLEGE_SCOUTING = {
       "2013_487641": {
         "recShare": 16,
         "ydShare": 31.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 86.4,
         "usageOverall": 0.8
       },
@@ -492159,7 +492051,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11.5,
         "tdShare": 44.4,
         "avgPPA": 81.9,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_499814": {
         "recShare": 64.9,
@@ -492173,10 +492065,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21.5,
         "tdShare": 44.5,
         "avgPPA": 87.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_500233": {
-        "recShare": 1.4,
+        "recShare": 1.5,
         "ydShare": 1.4,
         "tdShare": 6.5,
         "avgPPA": 87.4,
@@ -492207,7 +492099,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 0.6,
         "ydShare": 6.6,
         "tdShare": 9.1,
-        "avgPPA": 74.9,
+        "avgPPA": 75,
         "usageOverall": 28.4
       },
       "2013_500496": {
@@ -492228,7 +492120,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 56.9,
         "ydShare": 62.5,
         "tdShare": 58.7,
-        "avgPPA": 82.1,
+        "avgPPA": 82.2,
         "usageOverall": 29.7
       },
       "2013_500691": {
@@ -492268,13 +492160,13 @@ const COLLEGE_SCOUTING = {
       },
       "2013_501035": {
         "recShare": 60.7,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 52.8,
         "avgPPA": 60,
         "usageOverall": 49.1
       },
       "2013_501047": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 13.6,
         "tdShare": 20.5,
         "avgPPA": 42.4,
@@ -492296,7 +492188,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_501210": {
         "recShare": 74.8,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 37.4,
         "avgPPA": 86.3,
         "usageOverall": 41.9
@@ -492317,10 +492209,10 @@ const COLLEGE_SCOUTING = {
       },
       "2013_501534": {
         "recShare": 30.6,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 32.7,
         "avgPPA": 83.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2013_501535": {
         "recShare": 87.5,
@@ -492338,7 +492230,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_501564": {
         "recShare": 77.2,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 26.3,
         "avgPPA": 74.1,
         "usageOverall": 25.2
@@ -492361,7 +492253,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 62.5,
         "ydShare": 44.9,
         "tdShare": 5.3,
-        "avgPPA": 13,
+        "avgPPA": 13.1,
         "usageOverall": 32.6
       },
       "2013_501822": {
@@ -492404,7 +492296,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 42.1,
         "tdShare": 68.5,
         "avgPPA": 86.3,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_502295": {
         "recShare": 94.1,
@@ -492425,7 +492317,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 76.4,
         "tdShare": 84.2,
         "avgPPA": 73.2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2013_502871": {
         "recShare": 0.6,
@@ -492437,7 +492329,7 @@ const COLLEGE_SCOUTING = {
       "2013_502918": {
         "recShare": 41,
         "ydShare": 39.1,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 96.4,
         "usageOverall": 54.2
       },
@@ -492451,13 +492343,13 @@ const COLLEGE_SCOUTING = {
       "2013_502956": {
         "recShare": 88.9,
         "ydShare": 94.3,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 69.5,
         "usageOverall": 70.4
       },
       "2013_503036": {
         "recShare": 87.5,
-        "ydShare": 95.7,
+        "ydShare": 95.6,
         "tdShare": 85.3,
         "avgPPA": 85.1,
         "usageOverall": 44.9
@@ -492472,9 +492364,9 @@ const COLLEGE_SCOUTING = {
       "2013_503204": {
         "recShare": 73.9,
         "ydShare": 81.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 93.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2013_503206": {
         "recShare": 10,
@@ -492484,7 +492376,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 0.2
       },
       "2013_503395": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 26.6,
         "tdShare": 44.4,
         "avgPPA": 78.8,
@@ -492502,12 +492394,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 79.5,
         "tdShare": 92.8,
         "avgPPA": 85,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2013_503463": {
         "recShare": 92.2,
         "ydShare": 83.9,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 48.5,
         "usageOverall": 95.2
       },
@@ -492521,14 +492413,14 @@ const COLLEGE_SCOUTING = {
       "2013_503482": {
         "recShare": 37.3,
         "ydShare": 58.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 95.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2013_503489": {
         "recShare": 13.3,
         "ydShare": 22.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 59.1,
         "usageOverall": 1.5
       },
@@ -492540,7 +492432,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 28.4
       },
       "2013_503727": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 12.6,
         "tdShare": 35.1,
         "avgPPA": 71.1,
@@ -492558,7 +492450,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 51.5,
         "tdShare": 55.6,
         "avgPPA": 98.5,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_503955": {
         "recShare": 67.3,
@@ -492575,7 +492467,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 32.6
       },
       "2013_504057": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 46,
         "tdShare": 40.3,
         "avgPPA": 78.7,
@@ -492607,7 +492499,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23.6,
         "tdShare": 5.3,
         "avgPPA": 88.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_504284": {
         "recShare": 25.5,
@@ -492663,14 +492555,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 0.8,
         "tdShare": 32.7,
         "avgPPA": 58.5,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_504843": {
         "recShare": 23.1,
         "ydShare": 12.6,
         "tdShare": 5.3,
         "avgPPA": 68.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2013_504872": {
         "recShare": 16.4,
@@ -492684,7 +492576,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57.9,
         "tdShare": 88.6,
         "avgPPA": 73.2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2013_504915": {
         "recShare": 90,
@@ -492726,10 +492618,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 29.5,
         "tdShare": 10.2,
         "avgPPA": 90.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_505188": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 36.2,
         "tdShare": 70.9,
         "avgPPA": 22.4,
@@ -492739,7 +492631,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 13.3,
         "ydShare": 15.2,
         "tdShare": 24.8,
-        "avgPPA": 70.5,
+        "avgPPA": 70.6,
         "usageOverall": 6.2
       },
       "2013_505233": {
@@ -492768,13 +492660,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 47.7,
         "tdShare": 32.7,
         "avgPPA": 78.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_508170": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 13,
         "tdShare": 20.5,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 2.7
       },
       "2013_509246": {
@@ -492785,7 +492677,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 3.1
       },
       "2013_511206": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 18,
         "tdShare": 11.2,
         "avgPPA": 51.9,
@@ -492793,24 +492685,24 @@ const COLLEGE_SCOUTING = {
       },
       "2013_511258": {
         "recShare": 76.2,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 33.6,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 65.2
       },
       "2013_511290": {
         "recShare": 80.7,
         "ydShare": 67.1,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 96,
         "usageOverall": 29.7
       },
       "2013_511362": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 30.8,
         "tdShare": 88.6,
         "avgPPA": 45.3,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_511422": {
         "recShare": 99.6,
@@ -492835,10 +492727,10 @@ const COLLEGE_SCOUTING = {
       },
       "2013_511594": {
         "recShare": 33.6,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 62.5,
         "avgPPA": 55.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2013_511603": {
         "recShare": 97.4,
@@ -492885,7 +492777,7 @@ const COLLEGE_SCOUTING = {
       "2013_512013": {
         "recShare": 67.8,
         "ydShare": 80.1,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 85.8,
         "usageOverall": 32.6
       },
@@ -492929,7 +492821,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57.9,
         "tdShare": 54.3,
         "avgPPA": 97.9,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_512339": {
         "recShare": 91.4,
@@ -492954,7 +492846,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_512781": {
         "recShare": 69.1,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 92.6,
         "avgPPA": 31.4,
         "usageOverall": 91.6
@@ -492964,19 +492856,19 @@ const COLLEGE_SCOUTING = {
         "ydShare": 38.3,
         "tdShare": 32.7,
         "avgPPA": 90.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_512797": {
         "recShare": 10.8,
         "ydShare": 15.6,
         "tdShare": 5.3,
         "avgPPA": 46.4,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_512839": {
         "recShare": 94.2,
         "ydShare": 94.3,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 56.2,
         "usageOverall": 82.3
       },
@@ -492988,17 +492880,17 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 82.3
       },
       "2013_512959": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 40.6,
         "tdShare": 40.3,
         "avgPPA": 55.9,
         "usageOverall": 15.5
       },
       "2013_512975": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 11.5,
         "tdShare": 16.9,
-        "avgPPA": 56.3,
+        "avgPPA": 56.4,
         "usageOverall": 16.8
       },
       "2013_513025": {
@@ -493040,7 +492932,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 46.2,
         "ydShare": 15.6,
         "tdShare": 16.9,
-        "avgPPA": 60.1,
+        "avgPPA": 60.2,
         "usageOverall": 18.3
       },
       "2013_513319": {
@@ -493055,11 +492947,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 78.4,
         "tdShare": 62,
         "avgPPA": 74.3,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2013_513398": {
         "recShare": 53.7,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 38.5,
         "avgPPA": 21.4,
         "usageOverall": 29.7
@@ -493069,7 +492961,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 16.6,
         "tdShare": 23.4,
         "avgPPA": 50.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2013_513596": {
         "recShare": 34.3,
@@ -493101,9 +492993,9 @@ const COLLEGE_SCOUTING = {
       },
       "2013_514181": {
         "recShare": 64.9,
-        "ydShare": 73.7,
-        "tdShare": 64,
-        "avgPPA": 74.9,
+        "ydShare": 73.6,
+        "tdShare": 63.9,
+        "avgPPA": 75,
         "usageOverall": 12.6
       },
       "2013_514255": {
@@ -493145,15 +493037,15 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.2,
         "ydShare": 74.2,
         "tdShare": 70.3,
-        "avgPPA": 61.4,
-        "usageOverall": 31.1
+        "avgPPA": 61.5,
+        "usageOverall": 31
       },
       "2013_514627": {
         "recShare": 27.4,
         "ydShare": 52,
         "tdShare": 53.8,
         "avgPPA": 78.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_514744": {
         "recShare": 95.3,
@@ -493290,10 +493182,10 @@ const COLLEGE_SCOUTING = {
       },
       "2013_516352": {
         "recShare": 45.7,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 70.9,
         "avgPPA": 93.4,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_516363": {
         "recShare": 96.7,
@@ -493347,7 +493239,7 @@ const COLLEGE_SCOUTING = {
       "2013_517255": {
         "recShare": 33.6,
         "ydShare": 44.9,
-        "tdShare": 20.5,
+        "tdShare": 20.6,
         "avgPPA": 92.2,
         "usageOverall": 36.7
       },
@@ -493389,8 +493281,8 @@ const COLLEGE_SCOUTING = {
       "2013_517452": {
         "recShare": 98.9,
         "ydShare": 98.1,
-        "tdShare": 84.1,
-        "avgPPA": 49.1,
+        "tdShare": 84,
+        "avgPPA": 49.2,
         "usageOverall": 91.6
       },
       "2013_517474": {
@@ -493429,7 +493321,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 1.5
       },
       "2013_517795": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 21.9,
         "tdShare": 20.5,
         "avgPPA": 32.3,
@@ -493439,7 +493331,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 14,
         "ydShare": 6.1,
         "tdShare": 5.3,
-        "avgPPA": 60.2,
+        "avgPPA": 60.3,
         "usageOverall": 7.1
       },
       "2013_517962": {
@@ -493466,13 +493358,13 @@ const COLLEGE_SCOUTING = {
       "2013_518250": {
         "recShare": 75.6,
         "ydShare": 76.8,
-        "tdShare": 58.3,
-        "avgPPA": 60.1,
+        "tdShare": 58.4,
+        "avgPPA": 60.2,
         "usageOverall": 65.2
       },
       "2013_518274": {
         "recShare": 99.4,
-        "ydShare": 95.7,
+        "ydShare": 95.6,
         "tdShare": 91.1,
         "avgPPA": 55.3,
         "usageOverall": 89
@@ -493500,7 +493392,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_519451": {
         "recShare": 54.2,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 5.3,
         "avgPPA": 80.9,
         "usageOverall": 18.3
@@ -493515,13 +493407,13 @@ const COLLEGE_SCOUTING = {
       "2013_519703": {
         "recShare": 39,
         "ydShare": 48.7,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 92.3,
         "usageOverall": 3.9
       },
       "2013_519988": {
         "recShare": 51.2,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 91.6,
         "avgPPA": 51.8,
         "usageOverall": 7.1
@@ -493538,7 +493430,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 18,
         "tdShare": 32.7,
         "avgPPA": 56,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2013_530275": {
         "recShare": 10.8,
@@ -493552,7 +493444,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 22.4,
         "tdShare": 62,
         "avgPPA": 60,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_530417": {
         "recShare": 57.8,
@@ -493573,7 +493465,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 68.3,
         "tdShare": 94.6,
         "avgPPA": 87.2,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_530859": {
         "recShare": 83.5,
@@ -493601,7 +493493,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 4.1,
         "tdShare": 5.3,
         "avgPPA": 94.3,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_531010": {
         "recShare": 79.5,
@@ -493620,7 +493512,7 @@ const COLLEGE_SCOUTING = {
       "2013_531088": {
         "recShare": 47.6,
         "ydShare": 28.8,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 71.1,
         "usageOverall": 7.1
       },
@@ -493643,14 +493535,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23,
         "tdShare": 16.9,
         "avgPPA": 2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2013_531380": {
         "recShare": 78.5,
         "ydShare": 78.4,
         "tdShare": 92.3,
         "avgPPA": 20.2,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2013_531563": {
         "recShare": 8,
@@ -493699,18 +493591,18 @@ const COLLEGE_SCOUTING = {
         "ydShare": 59.9,
         "tdShare": 74.5,
         "avgPPA": 25.5,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2013_532117": {
         "recShare": 47.6,
         "ydShare": 52.5,
         "tdShare": 37.4,
         "avgPPA": 96.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2013_532436": {
         "recShare": 32.9,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 41,
         "avgPPA": 65.5,
         "usageOverall": 19.8
@@ -493744,7 +493636,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 1.2
       },
       "2013_534203": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 29.5,
         "tdShare": 32.7,
         "avgPPA": 64,
@@ -493755,10 +493647,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 54.2,
         "tdShare": 51.7,
         "avgPPA": 83.8,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2013_534252": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 41.1,
         "tdShare": 32.7,
         "avgPPA": 95.7,
@@ -493793,10 +493685,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 41.9
       },
       "2013_534483": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 39.1,
         "tdShare": 22.7,
-        "avgPPA": 78.4,
+        "avgPPA": 78.5,
         "usageOverall": 3.9
       },
       "2013_534660": {
@@ -493825,14 +493717,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.7,
         "tdShare": 62,
         "avgPPA": 94.2,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_534842": {
         "recShare": 10.8,
         "ydShare": 34.8,
         "tdShare": 32.7,
         "avgPPA": 97.8,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2013_534884": {
         "recShare": 51.2,
@@ -493843,7 +493735,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_535145": {
         "recShare": 73.6,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 80.8,
         "avgPPA": 75.5,
         "usageOverall": 38.2
@@ -493867,7 +493759,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 69.8,
         "tdShare": 74.5,
         "avgPPA": 81.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2013_535270": {
         "recShare": 18.5,
@@ -493901,7 +493793,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 33.6,
         "ydShare": 18.5,
         "tdShare": 13.2,
-        "avgPPA": 82.2,
+        "avgPPA": 82.3,
         "usageOverall": 4.6
       },
       "2013_535831": {
@@ -493948,7 +493840,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_536229": {
         "recShare": 78.7,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 70.3,
         "avgPPA": 49.7,
         "usageOverall": 60
@@ -494004,7 +493896,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_537184": {
         "recShare": 22.4,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 90.2,
         "avgPPA": 91,
         "usageOverall": 3.9
@@ -494035,7 +493927,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.1,
         "tdShare": 5.3,
         "avgPPA": 59.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_545251": {
         "recShare": 7.2,
@@ -494056,7 +493948,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 17.3,
         "tdShare": 22.7,
         "avgPPA": 14,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2013_545371": {
         "recShare": 1.9,
@@ -494067,7 +493959,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_545480": {
         "recShare": 26.8,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 22.7,
         "avgPPA": 98.8,
         "usageOverall": 1.9
@@ -494116,7 +494008,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_546052": {
         "recShare": 41,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 84.6,
         "avgPPA": 71,
         "usageOverall": 25.2
@@ -494125,7 +494017,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 15,
         "ydShare": 9.1,
         "tdShare": 24.8,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 7.1
       },
       "2013_546244": {
@@ -494158,7 +494050,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_546536": {
         "recShare": 70.3,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 22.7,
         "avgPPA": 76,
         "usageOverall": 28.4
@@ -494168,7 +494060,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 16.6,
         "tdShare": 51.7,
         "avgPPA": 64,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_546644": {
         "recShare": 1.9,
@@ -494189,7 +494081,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 96.7,
         "tdShare": 97,
         "avgPPA": 95,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2013_547066": {
         "recShare": 28.6,
@@ -494257,7 +494149,7 @@ const COLLEGE_SCOUTING = {
       "2013_550340": {
         "recShare": 66.3,
         "ydShare": 47.7,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 51.2,
         "usageOverall": 29.7
       },
@@ -494265,7 +494157,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 22.4,
         "ydShare": 51.5,
         "tdShare": 37.4,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 25.2
       },
       "2013_550549": {
@@ -494315,7 +494207,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.1,
         "tdShare": 18.5,
         "avgPPA": 81.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2013_551092": {
         "recShare": 75.2,
@@ -494333,7 +494225,7 @@ const COLLEGE_SCOUTING = {
       },
       "2013_551571": {
         "recShare": 87.7,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 88.6,
         "avgPPA": 92.3,
         "usageOverall": 2.7
@@ -494369,14 +494261,14 @@ const COLLEGE_SCOUTING = {
       "2013_552885": {
         "recShare": 15.5,
         "ydShare": 14.2,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 48,
         "usageOverall": 18.3
       },
       "2013_552922": {
         "recShare": 56.9,
         "ydShare": 52.5,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 84,
         "usageOverall": 32.6
       },
@@ -494388,7 +494280,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 0.3
       },
       "2013_552967": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 32.3,
         "tdShare": 76.9,
         "avgPPA": 50.1,
@@ -494437,8 +494329,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2014_500412": {
-        "recShare": 51.7,
-        "ydShare": 37.1,
+        "recShare": 51.6,
+        "ydShare": 37,
         "tdShare": 37.4,
         "avgPPA": 10,
         "usageOverall": 62.6
@@ -494452,7 +494344,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_500691": {
         "recShare": 67,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 57.1,
         "avgPPA": 21.3,
         "usageOverall": 74.1
@@ -494481,7 +494373,7 @@ const COLLEGE_SCOUTING = {
       "2014_501177": {
         "recShare": 16,
         "ydShare": 28.8,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 59.1,
         "usageOverall": 49.1
       },
@@ -494489,7 +494381,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 78.7,
         "ydShare": 76.8,
         "tdShare": 88.6,
-        "avgPPA": 53.6,
+        "avgPPA": 53.7,
         "usageOverall": 77.1
       },
       "2014_501210": {
@@ -494501,7 +494393,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_501518": {
         "recShare": 39,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 49,
         "avgPPA": 24.8,
         "usageOverall": 40
@@ -494523,8 +494415,8 @@ const COLLEGE_SCOUTING = {
       "2014_501663": {
         "recShare": 15.5,
         "ydShare": 47.7,
-        "tdShare": 84.1,
-        "avgPPA": 73.7,
+        "tdShare": 84,
+        "avgPPA": 73.8,
         "usageOverall": 12.6
       },
       "2014_501822": {
@@ -494565,7 +494457,7 @@ const COLLEGE_SCOUTING = {
       "2014_502261": {
         "recShare": 65.4,
         "ydShare": 50.5,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 16.5,
         "usageOverall": 89
       },
@@ -494651,17 +494543,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 64.4,
         "tdShare": 85.6,
         "avgPPA": 93.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_503448": {
         "recShare": 89.6,
         "ydShare": 85.8,
         "tdShare": 79.1,
-        "avgPPA": 64.5,
+        "avgPPA": 64.6,
         "usageOverall": 84.2
       },
       "2014_503475": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 79.5,
         "tdShare": 51.7,
         "avgPPA": 4.6,
@@ -494671,7 +494563,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.2,
         "ydShare": 45.6,
         "tdShare": 18.5,
-        "avgPPA": 49.1,
+        "avgPPA": 49.2,
         "usageOverall": 48
       },
       "2014_503727": {
@@ -494686,7 +494578,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.4,
         "tdShare": 66.1,
         "avgPPA": 12.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2014_503821": {
         "recShare": 83.1,
@@ -494696,7 +494588,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 82.3
       },
       "2014_503960": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 45.6,
         "tdShare": 32.7,
         "avgPPA": 27.4,
@@ -494721,7 +494613,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 63.3,
         "tdShare": 74.5,
         "avgPPA": 91.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_504243": {
         "recShare": 31.9,
@@ -494753,7 +494645,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_504671": {
         "recShare": 49.3,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 41.4,
         "avgPPA": 20.4,
         "usageOverall": 44.9
@@ -494770,7 +494662,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.1,
         "tdShare": 32.9,
         "avgPPA": 68.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_504818": {
         "recShare": 5.3,
@@ -494791,7 +494683,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.3,
         "tdShare": 49.3,
         "avgPPA": 25.5,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2014_504915": {
         "recShare": 12.3,
@@ -494836,8 +494728,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 98.9
       },
       "2014_505647": {
-        "recShare": 38.6,
-        "ydShare": 73.7,
+        "recShare": 38.5,
+        "ydShare": 73.6,
         "tdShare": 62,
         "avgPPA": 43,
         "usageOverall": 43.5
@@ -494846,7 +494738,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 61.4,
         "ydShare": 82.4,
         "tdShare": 95.6,
-        "avgPPA": 71.6,
+        "avgPPA": 71.7,
         "usageOverall": 9.2
       },
       "2014_506134": {
@@ -494859,14 +494751,14 @@ const COLLEGE_SCOUTING = {
       "2014_508177": {
         "recShare": 55.4,
         "ydShare": 29.5,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 12.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_509246": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 53.4,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 68.8,
         "usageOverall": 61.2
       },
@@ -494875,7 +494767,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57.5,
         "tdShare": 29.6,
         "avgPPA": 45.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_511290": {
         "recShare": 84.9,
@@ -494889,14 +494781,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.3,
         "tdShare": 32.7,
         "avgPPA": 62.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_511421": {
         "recShare": 52.2,
         "ydShare": 43,
         "tdShare": 20.5,
         "avgPPA": 11.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_511433": {
         "recShare": 95,
@@ -494906,7 +494798,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 98
       },
       "2014_511594": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 46,
         "tdShare": 85.1,
         "avgPPA": 43.9,
@@ -494983,23 +494875,23 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 74.1
       },
       "2014_512668": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 21,
         "tdShare": 57.1,
         "avgPPA": 48.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_512786": {
         "recShare": 12.3,
         "ydShare": 8.2,
         "tdShare": 12,
         "avgPPA": 2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2014_512797": {
         "recShare": 37.3,
         "ydShare": 30.1,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 47.1,
         "usageOverall": 28.4
       },
@@ -495056,7 +494948,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.2,
         "ydShare": 1.2,
         "tdShare": 6.2,
-        "avgPPA": 10.6,
+        "avgPPA": 10.7,
         "usageOverall": 4.6
       },
       "2014_513386": {
@@ -495099,7 +494991,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 76.4,
         "tdShare": 85.1,
         "avgPPA": 84.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2014_513736": {
         "recShare": 23.1,
@@ -495117,9 +495009,9 @@ const COLLEGE_SCOUTING = {
       },
       "2014_513848": {
         "recShare": 69.5,
-        "ydShare": 43.9,
-        "tdShare": 75.4,
-        "avgPPA": 65.5,
+        "ydShare": 43.8,
+        "tdShare": 75.3,
+        "avgPPA": 65.6,
         "usageOverall": 83
       },
       "2014_513961": {
@@ -495138,7 +495030,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_514181": {
         "recShare": 34.3,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 80.8,
         "avgPPA": 99.4,
         "usageOverall": 7.1
@@ -495154,7 +495046,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 93.3,
         "ydShare": 91.6,
         "tdShare": 70.9,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 95.5
       },
       "2014_514493": {
@@ -495183,7 +495075,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 8.6,
         "tdShare": 37.8,
         "avgPPA": 89.5,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2014_514744": {
         "recShare": 71.2,
@@ -495251,13 +495143,13 @@ const COLLEGE_SCOUTING = {
       "2014_515601": {
         "recShare": 5.3,
         "ydShare": 15.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 64.2,
         "usageOverall": 11.3
       },
       "2014_515796": {
         "recShare": 69.1,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 74.5,
         "avgPPA": 56,
         "usageOverall": 83.6
@@ -495274,7 +495166,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.9,
         "tdShare": 5.3,
         "avgPPA": 59.7,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2014_515945": {
         "recShare": 83.8,
@@ -495312,7 +495204,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 79.3
       },
       "2014_516352": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 55.9,
         "tdShare": 82.9,
         "avgPPA": 72.2,
@@ -495329,15 +495221,15 @@ const COLLEGE_SCOUTING = {
         "recShare": 7.6,
         "ydShare": 12.6,
         "tdShare": 44.4,
-        "avgPPA": 50.2,
+        "avgPPA": 50.3,
         "usageOverall": 22.4
       },
       "2014_517133": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 7.9,
         "tdShare": 21.1,
         "avgPPA": 27.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_517172": {
         "recShare": 34.3,
@@ -495356,7 +495248,7 @@ const COLLEGE_SCOUTING = {
       "2014_517290": {
         "recShare": 34.3,
         "ydShare": 30.1,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 81.2,
         "usageOverall": 38.2
       },
@@ -495370,7 +495262,7 @@ const COLLEGE_SCOUTING = {
       "2014_517318": {
         "recShare": 11.3,
         "ydShare": 13.6,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 69.7,
         "usageOverall": 28.4
       },
@@ -495384,7 +495276,7 @@ const COLLEGE_SCOUTING = {
       "2014_517452": {
         "recShare": 96.3,
         "ydShare": 97.1,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 10,
         "usageOverall": 97.8
       },
@@ -495396,7 +495288,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 66.4
       },
       "2014_517803": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 28.2,
         "tdShare": 44.4,
         "avgPPA": 58.4,
@@ -495406,7 +495298,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 43.4,
         "ydShare": 58.7,
         "tdShare": 94.6,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 34
       },
       "2014_517985": {
@@ -495475,7 +495367,7 @@ const COLLEGE_SCOUTING = {
       "2014_520781": {
         "recShare": 24.8,
         "ydShare": 13,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 7,
         "usageOverall": 60
       },
@@ -495495,13 +495387,13 @@ const COLLEGE_SCOUTING = {
       },
       "2014_530347": {
         "recShare": 42.7,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 22.7,
         "avgPPA": 15.7,
         "usageOverall": 44.9
       },
       "2014_530412": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 10.5,
         "tdShare": 9.1,
         "avgPPA": 75.1,
@@ -495526,18 +495418,18 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57,
         "tdShare": 24.8,
         "avgPPA": 8.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_530827": {
         "recShare": 16,
         "ydShare": 13,
         "tdShare": 6.7,
         "avgPPA": 51.3,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2014_530877": {
         "recShare": 80.3,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 41,
         "avgPPA": 26.2,
         "usageOverall": 95.8
@@ -495554,7 +495446,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 20.3,
         "tdShare": 51.7,
         "avgPPA": 36.8,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_530981": {
         "recShare": 93.8,
@@ -495566,7 +495458,7 @@ const COLLEGE_SCOUTING = {
       "2014_531010": {
         "recShare": 97.2,
         "ydShare": 94.6,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 64.2,
         "usageOverall": 95.8
       },
@@ -495575,7 +495467,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 22.4,
         "tdShare": 18.5,
         "avgPPA": 2.4,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2014_531078": {
         "recShare": 80.7,
@@ -495603,18 +495495,18 @@ const COLLEGE_SCOUTING = {
         "ydShare": 4.4,
         "tdShare": 15.5,
         "avgPPA": 43.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2014_531453": {
         "recShare": 31.9,
         "ydShare": 12.6,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 50.4,
         "usageOverall": 11.3
       },
       "2014_531469": {
         "recShare": 72.6,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 51.7,
         "avgPPA": 4.5,
         "usageOverall": 50.8
@@ -495637,7 +495529,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 62,
         "ydShare": 62.8,
         "tdShare": 70.3,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 40
       },
       "2014_531625": {
@@ -495651,7 +495543,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 76.6,
         "ydShare": 94.6,
         "tdShare": 92.8,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 72.2
       },
       "2014_531739": {
@@ -495701,7 +495593,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.3,
         "tdShare": 5.7,
         "avgPPA": 30.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2014_532259": {
         "recShare": 44.2,
@@ -495722,7 +495614,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 41.1,
         "tdShare": 55.6,
         "avgPPA": 41.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_532637": {
         "recShare": 92.7,
@@ -495750,7 +495642,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.8,
         "tdShare": 35.1,
         "avgPPA": 28.1,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_533085": {
         "recShare": 60.3,
@@ -495768,10 +495660,10 @@ const COLLEGE_SCOUTING = {
       },
       "2014_533196": {
         "recShare": 66.3,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 67.5,
         "avgPPA": 62.8,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2014_533303": {
         "recShare": 81.7,
@@ -495781,7 +495673,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 44.9
       },
       "2014_534185": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 30.8,
         "tdShare": 28.2,
         "avgPPA": 7.1,
@@ -495791,7 +495683,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 22.4,
         "ydShare": 14.7,
         "tdShare": 15.2,
-        "avgPPA": 35.7,
+        "avgPPA": 35.8,
         "usageOverall": 18.3
       },
       "2014_534249": {
@@ -495809,11 +495701,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2014_534393": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 63.3,
         "tdShare": 62,
         "avgPPA": 84.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2014_534444": {
         "recShare": 90.2,
@@ -495855,12 +495747,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 10,
         "tdShare": 38.5,
         "avgPPA": 19,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2014_534660": {
         "recShare": 8.4,
         "ydShare": 6.1,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 35.1,
         "usageOverall": 28.4
       },
@@ -495868,7 +495760,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 60.3,
         "ydShare": 74.2,
         "tdShare": 75.9,
-        "avgPPA": 71.6,
+        "avgPPA": 71.7,
         "usageOverall": 54.2
       },
       "2014_534666": {
@@ -495907,7 +495799,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 44.9
       },
       "2014_535108": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 71.4,
         "tdShare": 44.4,
         "avgPPA": 8.2,
@@ -495922,7 +495814,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_535165": {
         "recShare": 67,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 62,
         "avgPPA": 29.3,
         "usageOverall": 56.6
@@ -495931,18 +495823,18 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.2,
         "ydShare": 4.8,
         "tdShare": 6.1,
-        "avgPPA": 80.9,
+        "avgPPA": 81,
         "usageOverall": 3.1
       },
       "2014_535181": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 38.3,
         "tdShare": 52,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 61.2
       },
       "2014_535265": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 44.9,
         "tdShare": 52,
         "avgPPA": 33.1,
@@ -495965,7 +495857,7 @@ const COLLEGE_SCOUTING = {
       "2014_535324": {
         "recShare": 82.6,
         "ydShare": 69.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 43.9,
         "usageOverall": 72.2
       },
@@ -495994,14 +495886,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 57.3,
         "ydShare": 63.7,
         "tdShare": 78.7,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 41.9
       },
       "2014_535753": {
         "recShare": 11.8,
         "ydShare": 28.2,
         "tdShare": 53.8,
-        "avgPPA": 64.5,
+        "avgPPA": 64.6,
         "usageOverall": 7.1
       },
       "2014_535831": {
@@ -496012,14 +495904,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2014_535857": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 13.6,
         "tdShare": 7.6,
         "avgPPA": 8.6,
         "usageOverall": 32.6
       },
       "2014_535869": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 21.5,
         "tdShare": 7.6,
         "avgPPA": 51.6,
@@ -496030,7 +495922,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 81.5,
         "tdShare": 88.6,
         "avgPPA": 44.3,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2014_535884": {
         "recShare": 47.6,
@@ -496044,17 +495936,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.6,
         "tdShare": 16.9,
         "avgPPA": 5.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_536028": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 68.8,
         "tdShare": 28.2,
-        "avgPPA": 57.3,
+        "avgPPA": 57.4,
         "usageOverall": 70.4
       },
       "2014_536075": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 24.7,
         "tdShare": 15.2,
         "avgPPA": 8.6,
@@ -496065,7 +495957,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 79.2,
         "tdShare": 88.6,
         "avgPPA": 49.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2014_536143": {
         "recShare": 30.6,
@@ -496096,7 +495988,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 36.7
       },
       "2014_536355": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 34.8,
         "tdShare": 15.2,
         "avgPPA": 17.1,
@@ -496148,14 +496040,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 96.2,
         "ydShare": 94.7,
         "tdShare": 75,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 98.3
       },
       "2014_537071": {
         "recShare": 24.8,
         "ydShare": 28.8,
         "tdShare": 56.2,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 40
       },
       "2014_537313": {
@@ -496170,7 +496062,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.8,
         "tdShare": 32.7,
         "avgPPA": 42.4,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_538152": {
         "recShare": 67.8,
@@ -496198,7 +496090,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 86.2,
         "tdShare": 93.8,
         "avgPPA": 43.9,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2014_545251": {
         "recShare": 37.3,
@@ -496258,7 +496150,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_545669": {
         "recShare": 21.7,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 40.3,
         "avgPPA": 68.1,
         "usageOverall": 43.5
@@ -496268,7 +496160,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 74.9,
         "tdShare": 82.9,
         "avgPPA": 66.6,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2014_545681": {
         "recShare": 24.8,
@@ -496287,7 +496179,7 @@ const COLLEGE_SCOUTING = {
       "2014_545697": {
         "recShare": 24.8,
         "ydShare": 32.3,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 66.5,
         "usageOverall": 15.5
       },
@@ -496387,7 +496279,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 13,
         "tdShare": 23.6,
         "avgPPA": 68.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_546290": {
         "recShare": 12.3,
@@ -496422,7 +496314,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 47.7,
         "tdShare": 53.8,
         "avgPPA": 36.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2014_546465": {
         "recShare": 93.7,
@@ -496462,8 +496354,8 @@ const COLLEGE_SCOUTING = {
       "2014_546644": {
         "recShare": 68.9,
         "ydShare": 90,
-        "tdShare": 75.4,
-        "avgPPA": 74.9,
+        "tdShare": 75.3,
+        "avgPPA": 75,
         "usageOverall": 76.3
       },
       "2014_546650": {
@@ -496475,7 +496367,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_546700": {
         "recShare": 42.1,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 88.6,
         "avgPPA": 52.9,
         "usageOverall": 62.6
@@ -496490,7 +496382,7 @@ const COLLEGE_SCOUTING = {
       "2014_546817": {
         "recShare": 67.3,
         "ydShare": 58.7,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 40.4,
         "usageOverall": 51.8
       },
@@ -496520,7 +496412,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 5,
         "tdShare": 5.3,
         "avgPPA": 21.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_547542": {
         "recShare": 33.6,
@@ -496590,7 +496482,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.1,
         "tdShare": 37.4,
         "avgPPA": 33.1,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2014_549962": {
         "recShare": 16.4,
@@ -496602,7 +496494,7 @@ const COLLEGE_SCOUTING = {
       "2014_549973": {
         "recShare": 50.7,
         "ydShare": 64.1,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 3.5,
         "usageOverall": 61.2
       },
@@ -496617,7 +496509,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 65.8,
         "ydShare": 55.3,
         "tdShare": 63.1,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 87.1
       },
       "2014_550110": {
@@ -496631,14 +496523,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.9,
         "ydShare": 60.9,
         "tdShare": 57.8,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 77.1
       },
       "2014_550330": {
         "recShare": 3.5,
         "ydShare": 29.5,
-        "tdShare": 64,
-        "avgPPA": 46.6,
+        "tdShare": 63.9,
+        "avgPPA": 46.7,
         "usageOverall": 16.8
       },
       "2014_550340": {
@@ -496754,7 +496646,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 18.3
       },
       "2014_551024": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 84.6,
         "tdShare": 80.8,
         "avgPPA": 96.3,
@@ -496765,14 +496657,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.5,
         "tdShare": 25.2,
         "avgPPA": 93.8,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2014_551092": {
         "recShare": 34.3,
         "ydShare": 57,
         "tdShare": 90.2,
         "avgPPA": 80,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2014_551114": {
         "recShare": 69.5,
@@ -496791,12 +496683,12 @@ const COLLEGE_SCOUTING = {
       "2014_551153": {
         "recShare": 18,
         "ydShare": 19.1,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 19.2,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2014_551571": {
-        "recShare": 98.6,
+        "recShare": 98.5,
         "ydShare": 98,
         "tdShare": 91,
         "avgPPA": 94.1,
@@ -496855,7 +496747,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 29.2,
         "ydShare": 42.6,
         "tdShare": 44.4,
-        "avgPPA": 87,
+        "avgPPA": 86.9,
         "usageOverall": 32.6
       },
       "2014_552885": {
@@ -496880,7 +496772,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 12.6
       },
       "2014_552953": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 65.9,
         "tdShare": 37.8,
         "avgPPA": 62.2,
@@ -496932,12 +496824,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 0.9,
         "ydShare": 4.5,
         "tdShare": 10.2,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 3.9
       },
       "2014_559679": {
         "recShare": 41,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 37.6,
         "avgPPA": 40,
         "usageOverall": 64
@@ -496950,7 +496842,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 58.9
       },
       "2014_559723": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 31.2,
         "tdShare": 66,
         "avgPPA": 15.8,
@@ -496958,7 +496850,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_559754": {
         "recShare": 18,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 81.6,
         "avgPPA": 11.2,
         "usageOverall": 19.8
@@ -496993,7 +496885,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_3116742": {
         "recShare": 71.2,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 8.5,
         "avgPPA": 32.8,
         "usageOverall": 61.2
@@ -497003,7 +496895,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 20.3,
         "tdShare": 51.7,
         "avgPPA": 19.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2014_3122122": {
         "recShare": 67.8,
@@ -497030,7 +496922,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.6,
         "ydShare": 1.7,
         "tdShare": 32.9,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 21.1
       },
       "2014_3122839": {
@@ -497043,7 +496935,7 @@ const COLLEGE_SCOUTING = {
       "2014_3122935": {
         "recShare": 59,
         "ydShare": 63.3,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 33.2,
         "usageOverall": 64
       },
@@ -497052,7 +496944,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 36.8,
         "tdShare": 26,
         "avgPPA": 66.9,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2014_3123674": {
         "recShare": 5.3,
@@ -497079,14 +496971,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.9,
         "ydShare": 78.6,
         "tdShare": 85.1,
-        "avgPPA": 63,
+        "avgPPA": 63.1,
         "usageOverall": 72.2
       },
       "2014_3124079": {
         "recShare": 45.7,
         "ydShare": 51.5,
-        "tdShare": 48.3,
-        "avgPPA": 56.3,
+        "tdShare": 48.4,
+        "avgPPA": 56.4,
         "usageOverall": 54.2
       },
       "2014_3124785": {
@@ -497174,7 +497066,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 19.8
       },
       "2014_3126244": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 42.6,
         "tdShare": 20.5,
         "avgPPA": 21.2,
@@ -497204,7 +497096,7 @@ const COLLEGE_SCOUTING = {
       "2014_3128348": {
         "recShare": 62.5,
         "ydShare": 68.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 44.7,
         "usageOverall": 62.6
       },
@@ -497213,20 +497105,20 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.8,
         "tdShare": 45.9,
         "avgPPA": 16.1,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2014_3139421": {
         "recShare": 3,
         "ydShare": 0.6,
         "tdShare": 19,
         "avgPPA": 91.8,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2014_3139424": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 23.6,
         "tdShare": 45.9,
-        "avgPPA": 63,
+        "avgPPA": 63.1,
         "usageOverall": 13.9
       },
       "2014_3139425": {
@@ -497238,7 +497130,7 @@ const COLLEGE_SCOUTING = {
       },
       "2014_3139474": {
         "recShare": 14,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 52.8,
         "avgPPA": 97.4,
         "usageOverall": 15.5
@@ -497247,7 +497139,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.1,
         "ydShare": 3.7,
         "tdShare": 11.1,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 49.1
       },
       "2015_100009": {
@@ -497266,9 +497158,9 @@ const COLLEGE_SCOUTING = {
       },
       "2015_503054": {
         "recShare": 59.5,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 76.9,
-        "avgPPA": 33.3,
+        "avgPPA": 33.4,
         "usageOverall": 40
       },
       "2015_511213": {
@@ -497288,8 +497180,8 @@ const COLLEGE_SCOUTING = {
       "2015_511433": {
         "recShare": 95.7,
         "ydShare": 94,
-        "tdShare": 84.1,
-        "avgPPA": 53.6,
+        "tdShare": 84,
+        "avgPPA": 53.7,
         "usageOverall": 91.6
       },
       "2015_511441": {
@@ -497332,7 +497224,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 12.6,
         "tdShare": 6.7,
         "avgPPA": 15.1,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_512073": {
         "recShare": 28.1,
@@ -497352,7 +497244,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 89.4,
         "ydShare": 65.9,
         "tdShare": 62.5,
-        "avgPPA": 57.8,
+        "avgPPA": 57.9,
         "usageOverall": 89.3
       },
       "2015_512339": {
@@ -497393,7 +497285,7 @@ const COLLEGE_SCOUTING = {
       "2015_512981": {
         "recShare": 19.9,
         "ydShare": 12.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 5.9,
         "usageOverall": 41.9
       },
@@ -497406,7 +497298,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_513138": {
         "recShare": 19.3,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 16.9,
         "avgPPA": 33.8,
         "usageOverall": 44.9
@@ -497433,11 +497325,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 86
       },
       "2015_514113": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 40.6,
         "tdShare": 67.5,
         "avgPPA": 66.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_514157": {
         "recShare": 46.2,
@@ -497455,9 +497347,9 @@ const COLLEGE_SCOUTING = {
       },
       "2015_514493": {
         "recShare": 81.5,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 74.6,
-        "avgPPA": 57.8,
+        "avgPPA": 57.9,
         "usageOverall": 91.2
       },
       "2015_514978": {
@@ -497486,7 +497378,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 26.6,
         "tdShare": 20.5,
         "avgPPA": 75.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_515815": {
         "recShare": 61.4,
@@ -497528,7 +497420,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 43,
         "tdShare": 12.2,
         "avgPPA": 69.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2015_517212": {
         "recShare": 48.8,
@@ -497549,7 +497441,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.1,
         "tdShare": 68.3,
         "avgPPA": 40.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2015_517290": {
         "recShare": 55.8,
@@ -497584,7 +497476,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 29.5,
         "tdShare": 5.3,
         "avgPPA": 57.3,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2015_518265": {
         "recShare": 75.2,
@@ -497597,18 +497489,18 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.6,
         "ydShare": 3.4,
         "tdShare": 40.3,
-        "avgPPA": 43.2,
+        "avgPPA": 43.3,
         "usageOverall": 19.8
       },
       "2015_519703": {
         "recShare": 19.3,
         "ydShare": 14.7,
         "tdShare": 16.9,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 19.8
       },
       "2015_519999": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 31.7,
         "tdShare": 41,
         "avgPPA": 19.2,
@@ -497625,13 +497517,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 11.3,
         "ydShare": 18,
         "tdShare": 44.4,
-        "avgPPA": 67.9,
+        "avgPPA": 68,
         "usageOverall": 41.9
       },
       "2015_530273": {
         "recShare": 23.1,
         "ydShare": 37.7,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 18.1,
         "usageOverall": 49.1
       },
@@ -497639,13 +497531,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 60.7,
         "ydShare": 62.5,
         "tdShare": 78.7,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 51.8
       },
       "2015_530412": {
         "recShare": 48.8,
         "ydShare": 50,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 18.2,
         "usageOverall": 51.8
       },
@@ -497666,7 +497558,7 @@ const COLLEGE_SCOUTING = {
       "2015_530827": {
         "recShare": 0.1,
         "ydShare": 3.7,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 99.7,
         "usageOverall": 0.6
       },
@@ -497710,14 +497602,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 3,
         "tdShare": 28.2,
         "avgPPA": 34.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2015_531076": {
         "recShare": 89.4,
         "ydShare": 74.9,
         "tdShare": 32.7,
         "avgPPA": 12.2,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2015_531078": {
         "recShare": 71.2,
@@ -497738,7 +497630,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 29.5,
         "tdShare": 37.6,
         "avgPPA": 46.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_531357": {
         "recShare": 8.4,
@@ -497773,7 +497665,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 81.9,
         "tdShare": 71.3,
         "avgPPA": 10.3,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2015_531575": {
         "recShare": 58.6,
@@ -497820,7 +497712,7 @@ const COLLEGE_SCOUTING = {
       "2015_531907": {
         "recShare": 48.8,
         "ydShare": 18,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 29.1,
         "usageOverall": 48
       },
@@ -497829,18 +497721,18 @@ const COLLEGE_SCOUTING = {
         "ydShare": 59.2,
         "tdShare": 74.5,
         "avgPPA": 53.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2015_532179": {
         "recShare": 34.3,
         "ydShare": 54.6,
         "tdShare": 51.7,
         "avgPPA": 62.8,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2015_532259": {
         "recShare": 37.3,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 40.3,
         "avgPPA": 17.6,
         "usageOverall": 28.4
@@ -497874,8 +497766,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 98.6
       },
       "2015_532679": {
-        "recShare": 30,
-        "ydShare": 34,
+        "recShare": 29.9,
+        "ydShare": 33.9,
         "tdShare": 74.5,
         "avgPPA": 24.2,
         "usageOverall": 38.2
@@ -497905,7 +497797,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 14.6,
         "ydShare": 19.1,
         "tdShare": 67.5,
-        "avgPPA": 61.9,
+        "avgPPA": 62,
         "usageOverall": 29.7
       },
       "2015_533297": {
@@ -497940,8 +497832,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 91.3,
         "ydShare": 92.2,
         "tdShare": 97.6,
-        "avgPPA": 49.1,
-        "usageOverall": 73.2
+        "avgPPA": 49.2,
+        "usageOverall": 73.1
       },
       "2015_534318": {
         "recShare": 67.3,
@@ -497958,9 +497850,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 29.7
       },
       "2015_534393": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 38.3,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 68.8,
         "usageOverall": 6.2
       },
@@ -497980,8 +497872,8 @@ const COLLEGE_SCOUTING = {
       },
       "2015_534450": {
         "recShare": 48.1,
-        "ydShare": 34,
-        "tdShare": 20.5,
+        "ydShare": 33.9,
+        "tdShare": 20.6,
         "avgPPA": 28.9,
         "usageOverall": 35.3
       },
@@ -497996,7 +497888,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 40.4,
         "ydShare": 41.6,
         "tdShare": 5.3,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 13.9
       },
       "2015_534578": {
@@ -498018,7 +497910,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 1.7,
         "tdShare": 13.2,
         "avgPPA": 32.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2015_534661": {
         "recShare": 4.6,
@@ -498043,7 +497935,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_534754": {
         "recShare": 64.4,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 28.2,
         "avgPPA": 4.7,
         "usageOverall": 97.3
@@ -498051,9 +497943,9 @@ const COLLEGE_SCOUTING = {
       "2015_534794": {
         "recShare": 12.3,
         "ydShare": 7.1,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 37.9,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2015_534809": {
         "recShare": 95.1,
@@ -498128,7 +498020,7 @@ const COLLEGE_SCOUTING = {
       "2015_535324": {
         "recShare": 83.1,
         "ydShare": 70.7,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 24.6,
         "usageOverall": 89
       },
@@ -498144,7 +498036,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 96.4,
         "tdShare": 96.7,
         "avgPPA": 59.5,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2015_535528": {
         "recShare": 51.2,
@@ -498183,7 +498075,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_535819": {
         "recShare": 75.6,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 67.5,
         "avgPPA": 36.1,
         "usageOverall": 57.7
@@ -498205,7 +498097,7 @@ const COLLEGE_SCOUTING = {
       "2015_535869": {
         "recShare": 54.8,
         "ydShare": 42.6,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 6.7,
         "usageOverall": 72.2
       },
@@ -498241,7 +498133,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 50.7,
         "ydShare": 63.7,
         "tdShare": 63.1,
-        "avgPPA": 67.9,
+        "avgPPA": 68,
         "usageOverall": 55.3
       },
       "2015_536118": {
@@ -498275,16 +498167,16 @@ const COLLEGE_SCOUTING = {
       "2015_536320": {
         "recShare": 72.6,
         "ydShare": 57.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 22.1,
         "usageOverall": 72.2
       },
       "2015_536355": {
         "recShare": 46.2,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 70.9,
         "avgPPA": 47.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_536467": {
         "recShare": 28.6,
@@ -498295,7 +498187,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_536497": {
         "recShare": 57.8,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 53.8,
         "avgPPA": 50.8,
         "usageOverall": 65.2
@@ -498304,7 +498196,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 71.2,
         "ydShare": 76.1,
         "tdShare": 81.6,
-        "avgPPA": 33.3,
+        "avgPPA": 33.4,
         "usageOverall": 55.3
       },
       "2015_536548": {
@@ -498361,7 +498253,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 72.4,
         "tdShare": 95.8,
         "avgPPA": 93.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2015_540210": {
         "recShare": 26.8,
@@ -498382,7 +498274,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.1,
         "tdShare": 37.8,
         "avgPPA": 64.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2015_545256": {
         "recShare": 75.2,
@@ -498396,10 +498288,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 41.6,
         "tdShare": 29.6,
         "avgPPA": 0.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_545356": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 63.3,
         "tdShare": 53.8,
         "avgPPA": 69.2,
@@ -498409,7 +498301,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 35.5,
         "ydShare": 25.9,
         "tdShare": 28.2,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 36.7
       },
       "2015_545480": {
@@ -498431,13 +498323,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46,
         "tdShare": 63.1,
         "avgPPA": 29.8,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2015_545669": {
         "recShare": 30.6,
         "ydShare": 55.3,
         "tdShare": 54.3,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 77.1
       },
       "2015_545677": {
@@ -498469,7 +498361,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 97.5
       },
       "2015_545962": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 62.5,
         "tdShare": 38.5,
         "avgPPA": 52.9,
@@ -498479,13 +498371,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 52.2,
         "ydShare": 83.9,
         "tdShare": 89,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 61.2
       },
       "2015_546045": {
         "recShare": 68.5,
         "ydShare": 44.3,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 23,
         "usageOverall": 32.6
       },
@@ -498493,7 +498385,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 24.8,
         "ydShare": 35.8,
         "tdShare": 77.2,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 48
       },
       "2015_546203": {
@@ -498536,7 +498428,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46,
         "tdShare": 57.8,
         "avgPPA": 70.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_546414": {
         "recShare": 37.3,
@@ -498546,7 +498438,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2015_546427": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 6.6,
         "tdShare": 40.3,
         "avgPPA": 15.9,
@@ -498569,13 +498461,13 @@ const COLLEGE_SCOUTING = {
       "2015_546546": {
         "recShare": 20.7,
         "ydShare": 21.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 42,
         "usageOverall": 19.8
       },
       "2015_546601": {
-        "recShare": 36.4,
-        "ydShare": 35.3,
+        "recShare": 36.3,
+        "ydShare": 35.2,
         "tdShare": 8,
         "avgPPA": 58.2,
         "usageOverall": 60
@@ -498619,7 +498511,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 78.2,
         "ydShare": 56.2,
         "tdShare": 41,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 80.2
       },
       "2015_546860": {
@@ -498631,7 +498523,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_546867": {
         "recShare": 34.3,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 80.8,
         "avgPPA": 53.4,
         "usageOverall": 61.2
@@ -498645,30 +498537,30 @@ const COLLEGE_SCOUTING = {
       },
       "2015_547066": {
         "recShare": 68.9,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 40.3,
         "avgPPA": 65.1,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2015_547195": {
         "recShare": 60.7,
         "ydShare": 70.7,
         "tdShare": 51.7,
         "avgPPA": 5.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2015_547232": {
         "recShare": 87.7,
         "ydShare": 76.8,
         "tdShare": 85.8,
         "avgPPA": 79.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2015_547253": {
         "recShare": 40.4,
         "ydShare": 46.9,
         "tdShare": 44.4,
-        "avgPPA": 80.9,
+        "avgPPA": 81,
         "usageOverall": 56.6
       },
       "2015_547542": {
@@ -498679,7 +498571,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 44.9
       },
       "2015_547556": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 50.5,
         "tdShare": 12,
         "avgPPA": 27.4,
@@ -498704,7 +498596,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.8,
         "tdShare": 13.9,
         "avgPPA": 25.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_547867": {
         "recShare": 54.2,
@@ -498759,8 +498651,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 11.8,
         "ydShare": 14.2,
         "tdShare": 5.3,
-        "avgPPA": 10.6,
-        "usageOverall": 8.2
+        "avgPPA": 10.7,
+        "usageOverall": 8.1
       },
       "2015_550014": {
         "recShare": 88.1,
@@ -498823,7 +498715,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.1,
         "tdShare": 47.3,
         "avgPPA": 22,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2015_550549": {
         "recShare": 25.5,
@@ -498840,14 +498732,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 92
       },
       "2015_550597": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 53.4,
         "tdShare": 65.2,
         "avgPPA": 6.4,
         "usageOverall": 99.9
       },
       "2015_550624": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 23,
         "tdShare": 26.3,
         "avgPPA": 39.9,
@@ -498900,7 +498792,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 49.1,
         "tdShare": 62,
         "avgPPA": 20.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_551146": {
         "recShare": 99.9,
@@ -498912,16 +498804,16 @@ const COLLEGE_SCOUTING = {
       "2015_551153": {
         "recShare": 17.6,
         "ydShare": 23.6,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 10,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2015_551307": {
         "recShare": 74.3,
         "ydShare": 64.1,
         "tdShare": 55.6,
         "avgPPA": 8.2,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2015_551567": {
         "recShare": 98.3,
@@ -498963,7 +498855,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 43,
         "tdShare": 44.9,
         "avgPPA": 32.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_552126": {
         "recShare": 90,
@@ -498975,7 +498867,7 @@ const COLLEGE_SCOUTING = {
       "2015_552223": {
         "recShare": 0.6,
         "ydShare": 11,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 85.2,
         "usageOverall": 16.8
       },
@@ -499036,11 +498928,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 36.7
       },
       "2015_552967": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 55.9,
         "tdShare": 35.1,
         "avgPPA": 63.3,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2015_553226": {
         "recShare": 53.7,
@@ -499052,7 +498944,7 @@ const COLLEGE_SCOUTING = {
       "2015_553230": {
         "recShare": 72.9,
         "ydShare": 71.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 42.7,
         "usageOverall": 99.6
       },
@@ -499074,8 +498966,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 31.9,
         "ydShare": 23.6,
         "tdShare": 20.5,
-        "avgPPA": 36.5,
-        "usageOverall": 31.1
+        "avgPPA": 36.6,
+        "usageOverall": 31
       },
       "2015_554889": {
         "recShare": 93,
@@ -499089,14 +498981,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.9,
         "tdShare": 40.3,
         "avgPPA": 0.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_559559": {
         "recShare": 34.3,
         "ydShare": 31.2,
         "tdShare": 45.9,
         "avgPPA": 7.1,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_559629": {
         "recShare": 16.4,
@@ -499115,7 +499007,7 @@ const COLLEGE_SCOUTING = {
       "2015_559718": {
         "recShare": 42.1,
         "ydShare": 42.1,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 44.6,
         "usageOverall": 34
       },
@@ -499148,7 +499040,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 96.4
       },
       "2015_3115928": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 50.9,
         "tdShare": 57.1,
         "avgPPA": 21.6,
@@ -499207,15 +499099,15 @@ const COLLEGE_SCOUTING = {
         "recShare": 54.2,
         "ydShare": 75.2,
         "tdShare": 80.8,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 80.8
       },
       "2015_3122607": {
         "recShare": 45.7,
         "ydShare": 57.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 30.9,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2015_3122667": {
         "recShare": 4.9,
@@ -499225,14 +499117,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 16.8
       },
       "2015_3122733": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 38.3,
         "tdShare": 51.7,
         "avgPPA": 28.7,
         "usageOverall": 13.9
       },
       "2015_3122763": {
-        "recShare": 1.4,
+        "recShare": 1.5,
         "ydShare": 2.5,
         "tdShare": 18.5,
         "avgPPA": 36,
@@ -499318,7 +499210,7 @@ const COLLEGE_SCOUTING = {
       "2015_3124114": {
         "recShare": 70.3,
         "ydShare": 70.7,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 10.7,
         "usageOverall": 77.1
       },
@@ -499353,7 +499245,7 @@ const COLLEGE_SCOUTING = {
       "2015_3124785": {
         "recShare": 40.4,
         "ydShare": 31.2,
-        "tdShare": 41.5,
+        "tdShare": 41.6,
         "avgPPA": 13.3,
         "usageOverall": 61.2
       },
@@ -499366,7 +499258,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_3124919": {
         "recShare": 54.8,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 20.5,
         "avgPPA": 2.1,
         "usageOverall": 62.6
@@ -499375,7 +499267,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 85.6,
         "ydShare": 80.8,
         "tdShare": 79.1,
-        "avgPPA": 33.3,
+        "avgPPA": 33.4,
         "usageOverall": 94.8
       },
       "2015_3125068": {
@@ -499387,10 +499279,10 @@ const COLLEGE_SCOUTING = {
       },
       "2015_3125093": {
         "recShare": 35.5,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 33.6,
         "avgPPA": 54.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2015_3125315": {
         "recShare": 91.4,
@@ -499451,7 +499343,7 @@ const COLLEGE_SCOUTING = {
       "2015_3126080": {
         "recShare": 11.3,
         "ydShare": 15.2,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 16.9,
         "usageOverall": 83
       },
@@ -499464,7 +499356,7 @@ const COLLEGE_SCOUTING = {
       },
       "2015_3126160": {
         "recShare": 34.8,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 57.8,
         "avgPPA": 48.4,
         "usageOverall": 72.2
@@ -499502,7 +499394,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 26.6,
         "tdShare": 21,
         "avgPPA": 74,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2015_3126325": {
         "recShare": 87,
@@ -499519,7 +499411,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 75.5
       },
       "2015_3127300": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 11,
         "tdShare": 53.8,
         "avgPPA": 77.3,
@@ -499537,7 +499429,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 83.9,
         "tdShare": 44.9,
         "avgPPA": 47.8,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2015_3128348": {
         "recShare": 77.5,
@@ -499564,13 +499456,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 84.3,
         "ydShare": 93.3,
         "tdShare": 97.6,
-        "avgPPA": 73.7,
+        "avgPPA": 73.8,
         "usageOverall": 77.1
       },
       "2015_3128451": {
         "recShare": 85.6,
         "ydShare": 92.7,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 51.1,
         "usageOverall": 87.6
       },
@@ -499585,7 +499477,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 16,
         "ydShare": 5.7,
         "tdShare": 22.8,
-        "avgPPA": 72.2,
+        "avgPPA": 72.3,
         "usageOverall": 15.5
       },
       "2015_3128852": {
@@ -499624,7 +499516,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 58.9
       },
       "2015_3139456": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 0.8,
         "tdShare": 5.7,
         "avgPPA": 27,
@@ -499649,14 +499541,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 12.6,
         "tdShare": 7.6,
         "avgPPA": 7.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2015_3139669": {
         "recShare": 25.5,
         "ydShare": 10.5,
         "tdShare": 29.6,
         "avgPPA": 14.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2015_3139946": {
         "recShare": 57.8,
@@ -499698,7 +499590,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.1,
         "tdShare": 44.4,
         "avgPPA": 80.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2015_3728262": {
         "recShare": 8.4,
@@ -499708,10 +499600,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 13.9
       },
       "2015_3892889": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 55.5,
         "tdShare": 29.6,
-        "avgPPA": 61.9,
+        "avgPPA": 62,
         "usageOverall": 49.1
       },
       "2015_3894916": {
@@ -499744,9 +499636,9 @@ const COLLEGE_SCOUTING = {
       },
       "2015_3915261": {
         "recShare": 46.8,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 32.7,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 80.8
       },
       "2015_3915403": {
@@ -499757,7 +499649,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2015_3915416": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 49.1,
         "tdShare": 62,
         "avgPPA": 20.9,
@@ -499773,7 +499665,7 @@ const COLLEGE_SCOUTING = {
       "2015_3916069": {
         "recShare": 19.3,
         "ydShare": 20.3,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 11.2,
         "usageOverall": 21.1
       },
@@ -499782,7 +499674,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 4.8,
         "tdShare": 5.3,
         "avgPPA": 88.2,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2015_3916210": {
         "recShare": 25.5,
@@ -499857,9 +499749,9 @@ const COLLEGE_SCOUTING = {
       "2015_3918014": {
         "recShare": 4.9,
         "ydShare": 10,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 35.4,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2015_3918042": {
         "recShare": 23.1,
@@ -499871,7 +499763,7 @@ const COLLEGE_SCOUTING = {
       "2015_3918087": {
         "recShare": 67.8,
         "ydShare": 70.4,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 28.5,
         "usageOverall": 71.4
       },
@@ -499939,16 +499831,16 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 44.9
       },
       "2016_508200": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 14.2,
         "tdShare": 16.9,
         "avgPPA": 27,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2016_511661": {
         "recShare": 16.4,
         "ydShare": 35.8,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 96.7,
         "usageOverall": 15.5
       },
@@ -499961,10 +499853,10 @@ const COLLEGE_SCOUTING = {
       },
       "2016_530273": {
         "recShare": 22.4,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 37.4,
         "avgPPA": 62.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2016_530649": {
         "recShare": 12.3,
@@ -499974,15 +499866,15 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 34
       },
       "2016_530669": {
-        "recShare": 39.9,
-        "ydShare": 38.8,
+        "recShare": 39.8,
+        "ydShare": 38.7,
         "tdShare": 5.3,
         "avgPPA": 6.1,
         "usageOverall": 41.9
       },
       "2016_530827": {
         "recShare": 45.2,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 47.3,
         "avgPPA": 19.8,
         "usageOverall": 22.4
@@ -499992,7 +499884,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.8,
         "tdShare": 74.5,
         "avgPPA": 47.8,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2016_530988": {
         "recShare": 8.4,
@@ -500031,8 +499923,8 @@ const COLLEGE_SCOUTING = {
       },
       "2016_531186": {
         "recShare": 50.2,
-        "ydShare": 67.9,
-        "tdShare": 48.3,
+        "ydShare": 67.8,
+        "tdShare": 48.4,
         "avgPPA": 26.2,
         "usageOverall": 56.6
       },
@@ -500045,13 +499937,13 @@ const COLLEGE_SCOUTING = {
       },
       "2016_531551": {
         "recShare": 96.9,
-        "ydShare": 95.7,
+        "ydShare": 95.6,
         "tdShare": 65.2,
         "avgPPA": 25.3,
         "usageOverall": 96.4
       },
       "2016_531563": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 29.5,
         "tdShare": 16.9,
         "avgPPA": 10.5,
@@ -500122,7 +500014,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_532637": {
         "recShare": 80.3,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 30.2,
         "avgPPA": 12.3,
         "usageOverall": 77.1
@@ -500135,7 +500027,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 58.9
       },
       "2016_532946": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 55.3,
         "tdShare": 20.5,
         "avgPPA": 21.4,
@@ -500153,7 +500045,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 22.4,
         "tdShare": 32.7,
         "avgPPA": 25,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2016_533292": {
         "recShare": 17.6,
@@ -500164,7 +500056,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_533297": {
         "recShare": 19.9,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 32.7,
         "avgPPA": 7.5,
         "usageOverall": 72.2
@@ -500208,7 +500100,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 74.3,
         "ydShare": 57,
         "tdShare": 40.3,
-        "avgPPA": 10.6,
+        "avgPPA": 10.7,
         "usageOverall": 66.4
       },
       "2016_534444": {
@@ -500250,14 +500142,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 18,
         "ydShare": 15.2,
         "tdShare": 37.4,
-        "avgPPA": 64.7,
+        "avgPPA": 64.8,
         "usageOverall": 25.2
       },
       "2016_534791": {
         "recShare": 34.8,
         "ydShare": 31.2,
         "tdShare": 35.1,
-        "avgPPA": 1.4,
+        "avgPPA": 1.5,
         "usageOverall": 66.4
       },
       "2016_534794": {
@@ -500271,7 +500163,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.2,
         "ydShare": 1.2,
         "tdShare": 13.9,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 3.1
       },
       "2016_534884": {
@@ -500292,7 +500184,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 86.6,
         "ydShare": 91.6,
         "tdShare": 89.5,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 77.1
       },
       "2016_535167": {
@@ -500304,7 +500196,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_535297": {
         "recShare": 62,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 62,
         "avgPPA": 15.3,
         "usageOverall": 57.7
@@ -500314,12 +500206,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 8.6,
         "tdShare": 9.6,
         "avgPPA": 89.6,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2016_535721": {
         "recShare": 78.2,
         "ydShare": 48.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 25.5,
         "usageOverall": 76.3
       },
@@ -500335,7 +500227,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 75.5,
         "tdShare": 44.4,
         "avgPPA": 58.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2016_535819": {
         "recShare": 78.5,
@@ -500354,7 +500246,7 @@ const COLLEGE_SCOUTING = {
       "2016_535877": {
         "recShare": 61.4,
         "ydShare": 68.3,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 72.5,
         "usageOverall": 65.2
       },
@@ -500363,7 +500255,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 54.6,
         "tdShare": 90.7,
         "avgPPA": 29.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2016_536118": {
         "recShare": 34.8,
@@ -500376,7 +500268,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 94.2,
         "ydShare": 92,
         "tdShare": 51.7,
-        "avgPPA": 35.7,
+        "avgPPA": 35.8,
         "usageOverall": 74.1
       },
       "2016_536355": {
@@ -500412,10 +500304,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 10,
         "tdShare": 18.9,
         "avgPPA": 22.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2016_537589": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 16.6,
         "tdShare": 28.7,
         "avgPPA": 82.5,
@@ -500439,7 +500331,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 57.3,
         "ydShare": 68.8,
         "tdShare": 76.9,
-        "avgPPA": 57.8,
+        "avgPPA": 57.9,
         "usageOverall": 80.8
       },
       "2016_545256": {
@@ -500482,7 +500374,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 63.7,
         "tdShare": 57.1,
         "avgPPA": 67.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_545669": {
         "recShare": 80.3,
@@ -500523,26 +500415,26 @@ const COLLEGE_SCOUTING = {
         "recShare": 15,
         "ydShare": 10.5,
         "tdShare": 44.4,
-        "avgPPA": 82.2,
+        "avgPPA": 82.3,
         "usageOverall": 6.2
       },
       "2016_546034": {
         "recShare": 59,
         "ydShare": 86.8,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 65.6,
         "usageOverall": 49.1
       },
       "2016_546045": {
         "recShare": 87.2,
         "ydShare": 82.8,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 82.4,
         "usageOverall": 66.4
       },
       "2016_546203": {
         "recShare": 77.8,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 76.9,
         "avgPPA": 35.9,
         "usageOverall": 56.6
@@ -500586,14 +500478,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 82,
         "ydShare": 84.2,
         "tdShare": 71.8,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 87.6
       },
       "2016_546670": {
         "recShare": 67,
         "ydShare": 89.8,
         "tdShare": 90.2,
-        "avgPPA": 94,
+        "avgPPA": 93.9,
         "usageOverall": 55.3
       },
       "2016_546700": {
@@ -500640,7 +500532,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_546867": {
         "recShare": 56.9,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 18.5,
         "avgPPA": 45.8,
         "usageOverall": 29.7
@@ -500662,7 +500554,7 @@ const COLLEGE_SCOUTING = {
       "2016_547071": {
         "recShare": 34.8,
         "ydShare": 41.6,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 8.8,
         "usageOverall": 40
       },
@@ -500678,11 +500570,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 59.2,
         "tdShare": 55.6,
         "avgPPA": 59.7,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_547232": {
         "recShare": 89.2,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 33.6,
         "avgPPA": 26.8,
         "usageOverall": 83.6
@@ -500695,11 +500587,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 16.8
       },
       "2016_547334": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 21.5,
         "tdShare": 5.3,
         "avgPPA": 22.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2016_547556": {
         "recShare": 73.9,
@@ -500748,19 +500640,19 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 15.2,
         "avgPPA": 18.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2016_549623": {
         "recShare": 96,
         "ydShare": 96.4,
         "tdShare": 94.2,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 97.8
       },
       "2016_549830": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 26.6,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 43.4,
         "usageOverall": 29.7
       },
@@ -500797,7 +500689,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.3,
         "tdShare": 56.2,
         "avgPPA": 15.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2016_549973": {
         "recShare": 74.8,
@@ -500830,7 +500722,7 @@ const COLLEGE_SCOUTING = {
       "2016_550110": {
         "recShare": 30.6,
         "ydShare": 23,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 4.8,
         "usageOverall": 48
       },
@@ -500859,7 +500751,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 96.5,
         "ydShare": 92.1,
         "tdShare": 90.3,
-        "avgPPA": 43.2,
+        "avgPPA": 43.3,
         "usageOverall": 96.7
       },
       "2016_550351": {
@@ -500891,7 +500783,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 91.2
       },
       "2016_550543": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 21.9,
         "tdShare": 44.4,
         "avgPPA": 26.4,
@@ -500905,9 +500797,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 62.6
       },
       "2016_550567": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 15.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 2.8,
         "usageOverall": 66.4
       },
@@ -500919,7 +500811,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 72.2
       },
       "2016_550666": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 57.5,
         "tdShare": 54.3,
         "avgPPA": 60.9,
@@ -500929,7 +500821,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 48.8,
         "ydShare": 40.6,
         "tdShare": 26,
-        "avgPPA": 57.3,
+        "avgPPA": 57.4,
         "usageOverall": 40
       },
       "2016_550737": {
@@ -500979,14 +500871,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 84.6,
         "tdShare": 70.3,
         "avgPPA": 64.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2016_551114": {
         "recShare": 37.3,
         "ydShare": 16,
         "tdShare": 5.3,
-        "avgPPA": 64.5,
-        "usageOverall": 10.4
+        "avgPPA": 64.6,
+        "usageOverall": 10.3
       },
       "2016_551146": {
         "recShare": 99.7,
@@ -501005,7 +500897,7 @@ const COLLEGE_SCOUTING = {
       "2016_551307": {
         "recShare": 72.6,
         "ydShare": 84.6,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 55.3,
         "usageOverall": 78.5
       },
@@ -501013,7 +500905,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 95,
         "ydShare": 80.4,
         "tdShare": 32.7,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 53.1
       },
       "2016_551921": {
@@ -501089,14 +500981,14 @@ const COLLEGE_SCOUTING = {
       "2016_552940": {
         "recShare": 99.8,
         "ydShare": 99.4,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 33,
         "usageOverall": 99.9
       },
       "2016_552951": {
         "recShare": 33.6,
         "ydShare": 64.1,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 66.1,
         "usageOverall": 66.4
       },
@@ -501111,15 +501003,15 @@ const COLLEGE_SCOUTING = {
         "recShare": 63.1,
         "ydShare": 48.2,
         "tdShare": 85.1,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 54.2
       },
       "2016_553248": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 8.6,
         "tdShare": 29.6,
         "avgPPA": 8.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2016_553536": {
         "recShare": 91.8,
@@ -501151,7 +501043,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_554889": {
         "recShare": 23.1,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 53.8,
         "avgPPA": 65.3,
         "usageOverall": 91.2
@@ -501160,8 +501052,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 42.7,
         "ydShare": 25.9,
         "tdShare": 20.5,
-        "avgPPA": 13.5,
-        "usageOverall": 46.4
+        "avgPPA": 13.6,
+        "usageOverall": 46.3
       },
       "2016_559559": {
         "recShare": 65.8,
@@ -501179,7 +501071,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_559629": {
         "recShare": 35.9,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 47.3,
         "avgPPA": 73.5,
         "usageOverall": 50.8
@@ -501196,7 +501088,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 91.6,
         "tdShare": 97.8,
         "avgPPA": 81.4,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2016_559718": {
         "recShare": 74.8,
@@ -501237,7 +501129,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 88.8,
         "ydShare": 83.3,
         "tdShare": 91.7,
-        "avgPPA": 67.9,
+        "avgPPA": 68,
         "usageOverall": 83.6
       },
       "2016_3116182": {
@@ -501250,9 +501142,9 @@ const COLLEGE_SCOUTING = {
       "2016_3116446": {
         "recShare": 18.5,
         "ydShare": 3.4,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 3.3,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2016_3116559": {
         "recShare": 29.2,
@@ -501269,11 +501161,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2016_3116680": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 42.1,
         "tdShare": 28.2,
         "avgPPA": 19.6,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2016_3116745": {
         "recShare": 37.3,
@@ -501313,7 +501205,7 @@ const COLLEGE_SCOUTING = {
       "2016_3121398": {
         "recShare": 17.6,
         "ydShare": 7.9,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 1.2,
         "usageOverall": 22.4
       },
@@ -501321,7 +501213,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 32.9,
         "ydShare": 36.2,
         "tdShare": 77.2,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 21.1
       },
       "2016_3122167": {
@@ -501356,7 +501248,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.9,
         "ydShare": 3.2,
         "tdShare": 10.2,
-        "avgPPA": 64.5,
+        "avgPPA": 64.6,
         "usageOverall": 1.2
       },
       "2016_3122449": {
@@ -501406,12 +501298,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46,
         "tdShare": 76.9,
         "avgPPA": 47.2,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2016_3122899": {
         "recShare": 94.7,
         "ydShare": 97.7,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 60.8,
         "usageOverall": 99.8
       },
@@ -501434,7 +501326,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 76.8,
         "tdShare": 81,
         "avgPPA": 69.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2016_3123674": {
         "recShare": 78.7,
@@ -501446,9 +501338,9 @@ const COLLEGE_SCOUTING = {
       "2016_3123738": {
         "recShare": 78.5,
         "ydShare": 65.1,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 54.1,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2016_3123935": {
         "recShare": 27.4,
@@ -501466,10 +501358,10 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3123992": {
         "recShare": 43.4,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 8.5,
         "avgPPA": 55.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_3123996": {
         "recShare": 90.2,
@@ -501487,7 +501379,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3124042": {
         "recShare": 51.2,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 81.8,
         "avgPPA": 81.1,
         "usageOverall": 44.9
@@ -501496,8 +501388,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 28.1,
         "ydShare": 18.5,
         "tdShare": 32.7,
-        "avgPPA": 56.3,
-        "usageOverall": 23.8
+        "avgPPA": 56.4,
+        "usageOverall": 23.7
       },
       "2016_3124065": {
         "recShare": 3,
@@ -501546,7 +501438,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 26.6,
         "tdShare": 5.3,
         "avgPPA": 69.7,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2016_3124613": {
         "recShare": 87,
@@ -501571,7 +501463,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3125068": {
         "recShare": 87.3,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 82.9,
         "avgPPA": 40.4,
         "usageOverall": 57.7
@@ -501598,7 +501490,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 9.2
       },
       "2016_3125123": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 28.8,
         "tdShare": 44.4,
         "avgPPA": 12.9,
@@ -501606,7 +501498,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3125291": {
         "recShare": 49.7,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 67.5,
         "avgPPA": 47.7,
         "usageOverall": 74.1
@@ -501629,7 +501521,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 91,
         "ydShare": 84.4,
         "tdShare": 93.8,
-        "avgPPA": 13.5,
+        "avgPPA": 13.6,
         "usageOverall": 95.1
       },
       "2016_3125461": {
@@ -501669,13 +501561,13 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3126080": {
         "recShare": 54.2,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 78.1,
         "avgPPA": 3.4,
         "usageOverall": 95.5
       },
       "2016_3126095": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 55.3,
         "tdShare": 66,
         "avgPPA": 92.4,
@@ -501690,7 +501582,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3126145": {
         "recShare": 52.8,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 33.6,
         "avgPPA": 9.4,
         "usageOverall": 66.4
@@ -501705,7 +501597,7 @@ const COLLEGE_SCOUTING = {
       "2016_3126227": {
         "recShare": 41,
         "ydShare": 49.1,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 78.2,
         "usageOverall": 48
       },
@@ -501714,7 +501606,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 98.1,
         "tdShare": 99.7,
         "avgPPA": 5.7,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2016_3126281": {
         "recShare": 65.8,
@@ -501801,7 +501693,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 84.2
       },
       "2016_3128626": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 32.8,
         "tdShare": 18.5,
         "avgPPA": 8.3,
@@ -501854,7 +501746,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11,
         "tdShare": 40.3,
         "avgPPA": 48,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_3138758": {
         "recShare": 19.3,
@@ -501874,8 +501766,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 51.2,
         "ydShare": 25.4,
         "tdShare": 26,
-        "avgPPA": 6,
-        "usageOverall": 46.4
+        "avgPPA": 6.1,
+        "usageOverall": 46.3
       },
       "2016_3139425": {
         "recShare": 48.8,
@@ -501936,7 +501828,7 @@ const COLLEGE_SCOUTING = {
       "2016_3676833": {
         "recShare": 18.5,
         "ydShare": 5,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 9.8,
         "usageOverall": 56.6
       },
@@ -501965,7 +501857,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 12.3,
         "ydShare": 36.2,
         "tdShare": 62,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 29.7
       },
       "2016_3728262": {
@@ -501986,7 +501878,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 17.6,
         "ydShare": 10,
         "tdShare": 22.7,
-        "avgPPA": 13,
+        "avgPPA": 13.1,
         "usageOverall": 49.1
       },
       "2016_3884173": {
@@ -502018,9 +501910,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 89.3
       },
       "2016_3894828": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 42.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 16.4,
         "usageOverall": 44.9
       },
@@ -502046,7 +501938,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 95.1
       },
       "2016_3912565": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 29.5,
         "tdShare": 5.3,
         "avgPPA": 6.2,
@@ -502056,7 +501948,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 64.9,
         "ydShare": 60.3,
         "tdShare": 75.9,
-        "avgPPA": 33.3,
+        "avgPPA": 33.4,
         "usageOverall": 85.2
       },
       "2016_3914182": {
@@ -502064,7 +501956,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.6,
         "tdShare": 7.6,
         "avgPPA": 64.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2016_3914328": {
         "recShare": 85.3,
@@ -502084,8 +501976,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 8,
         "ydShare": 3.2,
         "tdShare": 28.7,
-        "avgPPA": 33.3,
-        "usageOverall": 26.7
+        "avgPPA": 33.4,
+        "usageOverall": 26.6
       },
       "2016_3914502": {
         "recShare": 55.4,
@@ -502161,7 +502053,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.6,
         "ydShare": 8.6,
         "tdShare": 7.6,
-        "avgPPA": 83.1,
+        "avgPPA": 83.2,
         "usageOverall": 2.3
       },
       "2016_3915802": {
@@ -502173,7 +502065,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3915823": {
         "recShare": 35.5,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 44.9,
         "avgPPA": 71.3,
         "usageOverall": 60
@@ -502182,12 +502074,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 53.1,
         "ydShare": 65.1,
         "tdShare": 78.2,
-        "avgPPA": 82.2,
+        "avgPPA": 82.3,
         "usageOverall": 76.3
       },
       "2016_3915987": {
         "recShare": 42.7,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 24.8,
         "avgPPA": 27.4,
         "usageOverall": 50.8
@@ -502197,14 +502089,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11,
         "tdShare": 20.5,
         "avgPPA": 9.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2016_3916085": {
         "recShare": 68.2,
         "ydShare": 50.5,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 40,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2016_3916204": {
         "recShare": 81.2,
@@ -502218,7 +502110,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.8,
         "tdShare": 9.5,
         "avgPPA": 45.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_3916418": {
         "recShare": 23.1,
@@ -502271,7 +502163,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3917569": {
         "recShare": 19.3,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 22.7,
         "avgPPA": 29.9,
         "usageOverall": 32.6
@@ -502281,7 +502173,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.8,
         "tdShare": 98.7,
         "avgPPA": 28,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2016_3917787": {
         "recShare": 87.9,
@@ -502321,7 +502213,7 @@ const COLLEGE_SCOUTING = {
       "2016_3918087": {
         "recShare": 32.9,
         "ydShare": 21.5,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 28,
         "usageOverall": 43.5
       },
@@ -502358,7 +502250,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.7,
         "tdShare": 24.8,
         "avgPPA": 23,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2016_3919105": {
         "recShare": 9.6,
@@ -502377,7 +502269,7 @@ const COLLEGE_SCOUTING = {
       "2016_3921564": {
         "recShare": 18.5,
         "ydShare": 21.9,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 72.3,
         "usageOverall": 28.4
       },
@@ -502393,7 +502285,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23.6,
         "tdShare": 5.3,
         "avgPPA": 12.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_3922168": {
         "recShare": 67,
@@ -502407,7 +502299,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 5.7,
         "tdShare": 21,
         "avgPPA": 44.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2016_3924325": {
         "recShare": 15.5,
@@ -502427,8 +502319,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 39,
         "ydShare": 40.6,
         "tdShare": 52.8,
-        "avgPPA": 36.5,
-        "usageOverall": 73.2
+        "avgPPA": 36.6,
+        "usageOverall": 73.1
       },
       "2016_3929785": {
         "recShare": 72.9,
@@ -502453,7 +502345,7 @@ const COLLEGE_SCOUTING = {
       },
       "2016_3931391": {
         "recShare": 73.6,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 16.9,
         "avgPPA": 40.7,
         "usageOverall": 49.1
@@ -502518,7 +502410,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 15,
         "ydShare": 13.6,
         "tdShare": 10.2,
-        "avgPPA": 21,
+        "avgPPA": 21.1,
         "usageOverall": 18.3
       },
       "2016_4034964": {
@@ -502568,7 +502460,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 3.2,
         "tdShare": 23.6,
         "avgPPA": 11.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2016_4036163": {
         "recShare": 19.3,
@@ -502601,7 +502493,7 @@ const COLLEGE_SCOUTING = {
       "2016_4036509": {
         "recShare": 50.7,
         "ydShare": 48.7,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 23.7,
         "usageOverall": 66.4
       },
@@ -502638,7 +502530,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 67.1,
         "tdShare": 88.6,
         "avgPPA": 28.4,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2016_4039032": {
         "recShare": 24.8,
@@ -502701,7 +502593,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 31.2,
         "tdShare": 62,
         "avgPPA": 25.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2016_4040501": {
         "recShare": 46.8,
@@ -502714,7 +502606,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 20.7,
         "ydShare": 46.5,
         "tdShare": 44.4,
-        "avgPPA": 70.5,
+        "avgPPA": 70.6,
         "usageOverall": 36.7
       },
       "2016_4040524": {
@@ -502818,7 +502710,7 @@ const COLLEGE_SCOUTING = {
       "2017_536118": {
         "recShare": 76.6,
         "ydShare": 71.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 19.7,
         "usageOverall": 81.6
       },
@@ -502827,7 +502719,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 1.7,
         "tdShare": 22.8,
         "avgPPA": 76.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2017_545514": {
         "recShare": 23.6,
@@ -502840,7 +502732,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 11.8,
         "ydShare": 21,
         "tdShare": 23.4,
-        "avgPPA": 75.7,
+        "avgPPA": 75.8,
         "usageOverall": 28.4
       },
       "2017_545902": {
@@ -502858,7 +502750,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 13.9
       },
       "2017_546063": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 36.2,
         "tdShare": 56.2,
         "avgPPA": 55.6,
@@ -502872,11 +502764,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 57.7
       },
       "2017_546290": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 20.3,
         "tdShare": 82.9,
         "avgPPA": 28.4,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_546427": {
         "recShare": 37.3,
@@ -502886,7 +502778,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 55.3
       },
       "2017_546533": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 62.5,
         "tdShare": 88.6,
         "avgPPA": 47.1,
@@ -502915,7 +502807,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_546840": {
         "recShare": 27.4,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 13.9,
         "avgPPA": 24,
         "usageOverall": 35.3
@@ -502946,7 +502838,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 34.4,
         "tdShare": 12,
         "avgPPA": 7.6,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2017_547197": {
         "recShare": 58.6,
@@ -502966,12 +502858,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 61.4,
         "ydShare": 50.5,
         "tdShare": 85.8,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 97.4
       },
       "2017_547842": {
         "recShare": 30.6,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 8,
         "avgPPA": 30.9,
         "usageOverall": 43.5
@@ -503015,14 +502907,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 28.6,
         "ydShare": 19.1,
         "tdShare": 5.3,
-        "avgPPA": 33.3,
+        "avgPPA": 33.4,
         "usageOverall": 16.8
       },
       "2017_549973": {
         "recShare": 79.5,
         "ydShare": 52,
         "tdShare": 56.2,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 77.8
       },
       "2017_550100": {
@@ -503034,9 +502926,9 @@ const COLLEGE_SCOUTING = {
       },
       "2017_550214": {
         "recShare": 61.4,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 22.7,
-        "avgPPA": 35.5,
+        "avgPPA": 35.6,
         "usageOverall": 43.5
       },
       "2017_550282": {
@@ -503048,10 +502940,10 @@ const COLLEGE_SCOUTING = {
       },
       "2017_550356": {
         "recShare": 39,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 63.1,
         "avgPPA": 32.1,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_550364": {
         "recShare": 71.2,
@@ -503086,7 +502978,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 10,
         "tdShare": 53.8,
         "avgPPA": 46.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2017_550896": {
         "recShare": 19.3,
@@ -503098,16 +502990,16 @@ const COLLEGE_SCOUTING = {
       "2017_551091": {
         "recShare": 9.6,
         "ydShare": 3.4,
-        "tdShare": 15.2,
+        "tdShare": 15.3,
         "avgPPA": 45.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2017_551153": {
         "recShare": 3,
         "ydShare": 0.5,
         "tdShare": 6.7,
         "avgPPA": 18,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2017_551567": {
         "recShare": 100,
@@ -503148,12 +503040,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 0.4,
         "ydShare": 1,
         "tdShare": 18.9,
-        "avgPPA": 67.9,
+        "avgPPA": 68,
         "usageOverall": 2.7
       },
       "2017_552937": {
         "recShare": 67.8,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 69.3,
         "avgPPA": 73.4,
         "usageOverall": 83
@@ -503205,13 +503097,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 77.2,
         "tdShare": 70.3,
         "avgPPA": 45.5,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_559559": {
         "recShare": 84.3,
         "ydShare": 64.4,
         "tdShare": 82.9,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 80.8
       },
       "2017_559597": {
@@ -503246,7 +503138,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 99.5,
         "ydShare": 92.7,
         "tdShare": 91.1,
-        "avgPPA": 43.2,
+        "avgPPA": 43.3,
         "usageOverall": 98.8
       },
       "2017_3115915": {
@@ -503261,7 +503153,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 41.1,
         "tdShare": 5.3,
         "avgPPA": 5.7,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2017_3116155": {
         "recShare": 1.4,
@@ -503274,7 +503166,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 14,
         "ydShare": 21,
         "tdShare": 25.2,
-        "avgPPA": 82.1,
+        "avgPPA": 82.2,
         "usageOverall": 16.8
       },
       "2017_3116204": {
@@ -503289,14 +503181,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.1,
         "tdShare": 54.3,
         "avgPPA": 41.1,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_3116559": {
         "recShare": 45.7,
         "ydShare": 29.5,
         "tdShare": 15.2,
         "avgPPA": 22.1,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2017_3116574": {
         "recShare": 14.6,
@@ -503315,7 +503207,7 @@ const COLLEGE_SCOUTING = {
       "2017_3116745": {
         "recShare": 28.1,
         "ydShare": 44.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 41.1,
         "usageOverall": 50.8
       },
@@ -503327,7 +503219,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 51.8
       },
       "2017_3120074": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 64.4,
         "tdShare": 28.2,
         "avgPPA": 6.4,
@@ -503352,14 +503244,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.7,
         "tdShare": 62.1,
         "avgPPA": 92.9,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2017_3121422": {
         "recShare": 18,
         "ydShare": 21.9,
         "tdShare": 47.3,
         "avgPPA": 72.7,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2017_3122168": {
         "recShare": 76.9,
@@ -503386,20 +503278,20 @@ const COLLEGE_SCOUTING = {
         "recShare": 80.7,
         "ydShare": 90.4,
         "tdShare": 89.6,
-        "avgPPA": 73.7,
+        "avgPPA": 73.8,
         "usageOverall": 87.6
       },
       "2017_3122553": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 27.1,
         "tdShare": 12,
         "avgPPA": 47.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2017_3122607": {
         "recShare": 66.6,
         "ydShare": 61.4,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 20.8,
         "usageOverall": 64
       },
@@ -503411,9 +503303,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 21.1
       },
       "2017_3122667": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 45.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 25.6,
         "usageOverall": 57.7
       },
@@ -503428,8 +503320,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 14.6,
         "ydShare": 14.7,
         "tdShare": 5.3,
-        "avgPPA": 42.8,
-        "usageOverall": 31.1
+        "avgPPA": 42.9,
+        "usageOverall": 31
       },
       "2017_3122877": {
         "recShare": 40.4,
@@ -503456,7 +503348,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 83.8,
         "ydShare": 67.1,
         "tdShare": 89,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 77.1
       },
       "2017_3123208": {
@@ -503502,7 +503394,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 97
       },
       "2017_3124028": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 62,
         "tdShare": 62,
         "avgPPA": 9,
@@ -503523,11 +503415,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2017_3124056": {
-        "recShare": 38.6,
-        "ydShare": 35.3,
+        "recShare": 38.5,
+        "ydShare": 35.2,
         "tdShare": 37.4,
         "avgPPA": 16.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2017_3124079": {
         "recShare": 93.5,
@@ -503540,7 +503432,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 28.1,
         "ydShare": 30.8,
         "tdShare": 20.5,
-        "avgPPA": 76.2,
+        "avgPPA": 76.3,
         "usageOverall": 32.6
       },
       "2017_3124537": {
@@ -503553,7 +503445,7 @@ const COLLEGE_SCOUTING = {
       "2017_3124538": {
         "recShare": 16,
         "ydShare": 47.7,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 66.2,
         "usageOverall": 18.3
       },
@@ -503587,9 +503479,9 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3124911": {
         "recShare": 57.8,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 80.8,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 48
       },
       "2017_3124964": {
@@ -503625,7 +503517,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 62,
         "tdShare": 40.3,
         "avgPPA": 27,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_3125291": {
         "recShare": 54.8,
@@ -503681,7 +503573,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 60.3,
         "tdShare": 28.2,
         "avgPPA": 9.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_3126080": {
         "recShare": 71.7,
@@ -503782,7 +503674,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 90.7
       },
       "2017_3127325": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 64.7,
         "tdShare": 26,
         "avgPPA": 6,
@@ -503820,7 +503712,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 83.1,
         "ydShare": 82.4,
         "tdShare": 91.1,
-        "avgPPA": 35.5,
+        "avgPPA": 35.6,
         "usageOverall": 95.5
       },
       "2017_3128397": {
@@ -503848,7 +503740,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 24.2,
         "ydShare": 21.9,
         "tdShare": 29.6,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 32.6
       },
       "2017_3128626": {
@@ -503861,7 +503753,7 @@ const COLLEGE_SCOUTING = {
       "2017_3128695": {
         "recShare": 29.2,
         "ydShare": 14.7,
-        "tdShare": 20.5,
+        "tdShare": 20.6,
         "avgPPA": 45.2,
         "usageOverall": 34
       },
@@ -503910,12 +503802,12 @@ const COLLEGE_SCOUTING = {
       "2017_3139154": {
         "recShare": 51.2,
         "ydShare": 29.5,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 16.2,
         "usageOverall": 35.3
       },
       "2017_3139456": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 18,
         "tdShare": 44.4,
         "avgPPA": 10,
@@ -503923,7 +503815,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3139522": {
         "recShare": 50.2,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 32.7,
         "avgPPA": 6.8,
         "usageOverall": 58.9
@@ -503947,7 +503839,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 48.7,
         "tdShare": 47.3,
         "avgPPA": 91.6,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2017_3139946": {
         "recShare": 93.1,
@@ -503964,9 +503856,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 15.5
       },
       "2017_3159088": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 24.1,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 51.9,
         "usageOverall": 43.5
       },
@@ -503989,14 +503881,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57.5,
         "tdShare": 64.2,
         "avgPPA": 32,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_3728254": {
         "recShare": 66.3,
         "ydShare": 70.7,
         "tdShare": 89.7,
         "avgPPA": 22.4,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2017_3728262": {
         "recShare": 52.2,
@@ -504008,7 +503900,7 @@ const COLLEGE_SCOUTING = {
       "2017_3863893": {
         "recShare": 71.2,
         "ydShare": 79.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 58.9,
         "usageOverall": 81.6
       },
@@ -504031,7 +503923,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 0.4,
         "tdShare": 21.1,
         "avgPPA": 55.1,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2017_3895431": {
         "recShare": 6.3,
@@ -504041,7 +503933,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 9.2
       },
       "2017_3895828": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 73.9,
         "tdShare": 82.9,
         "avgPPA": 60.3,
@@ -504059,7 +503951,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.8,
         "tdShare": 78.1,
         "avgPPA": 93.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_3914158": {
         "recShare": 86.4,
@@ -504078,7 +503970,7 @@ const COLLEGE_SCOUTING = {
       "2017_3914366": {
         "recShare": 42.7,
         "ydShare": 59.2,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 54.9,
         "usageOverall": 49.1
       },
@@ -504107,7 +503999,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.2,
         "ydShare": 57.5,
         "tdShare": 40.3,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 64
       },
       "2017_3915174": {
@@ -504122,7 +504014,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 39.6,
         "tdShare": 28.2,
         "avgPPA": 40.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2017_3915321": {
         "recShare": 78.5,
@@ -504143,13 +504035,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 38.3,
         "tdShare": 20.5,
         "avgPPA": 22.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2017_3915802": {
         "recShare": 18.5,
         "ydShare": 32.8,
         "tdShare": 32.7,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 64
       },
       "2017_3915803": {
@@ -504168,8 +504060,8 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3915987": {
         "recShare": 59.5,
-        "ydShare": 43.9,
-        "tdShare": 34.5,
+        "ydShare": 43.8,
+        "tdShare": 34.6,
         "avgPPA": 19.6,
         "usageOverall": 44.9
       },
@@ -504184,7 +504076,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 73.6,
         "ydShare": 78.6,
         "tdShare": 85.9,
-        "avgPPA": 60.9,
+        "avgPPA": 61,
         "usageOverall": 83
       },
       "2017_3916124": {
@@ -504192,7 +504084,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.1,
         "tdShare": 57.1,
         "avgPPA": 95.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2017_3916129": {
         "recShare": 97.2,
@@ -504210,7 +504102,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3916418": {
         "recShare": 77.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 71.5,
         "avgPPA": 37.2,
         "usageOverall": 94.3
@@ -504227,7 +504119,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 34.4,
         "tdShare": 51.7,
         "avgPPA": 41.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2017_3916748": {
         "recShare": 83.5,
@@ -504245,7 +504137,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3916927": {
         "recShare": 18.5,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 57.8,
         "avgPPA": 93.7,
         "usageOverall": 7.1
@@ -504281,7 +504173,7 @@ const COLLEGE_SCOUTING = {
       "2017_3917166": {
         "recShare": 18,
         "ydShare": 15.2,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 27.9,
         "usageOverall": 29.7
       },
@@ -504342,7 +504234,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 99.5
       },
       "2017_3917940": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 59.9,
         "tdShare": 75,
         "avgPPA": 74.5,
@@ -504363,7 +504255,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 34
       },
       "2017_3918251": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 60.9,
         "tdShare": 78.1,
         "avgPPA": 90,
@@ -504379,7 +504271,7 @@ const COLLEGE_SCOUTING = {
       "2017_3918324": {
         "recShare": 19.3,
         "ydShare": 23.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 31.8,
         "usageOverall": 25.2
       },
@@ -504423,11 +504315,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 34.4,
         "tdShare": 24.8,
         "avgPPA": 32.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2017_3921564": {
         "recShare": 69.9,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 97.7,
         "avgPPA": 51.9,
         "usageOverall": 61.2
@@ -504483,7 +504375,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3921951": {
         "recShare": 63.6,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 35.1,
         "avgPPA": 1.3,
         "usageOverall": 75.5
@@ -504504,8 +504396,8 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3922168": {
         "recShare": 54.8,
-        "ydShare": 52.9,
-        "tdShare": 64,
+        "ydShare": 52.8,
+        "tdShare": 63.9,
         "avgPPA": 23.8,
         "usageOverall": 71.4
       },
@@ -504513,7 +504405,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 37.9,
         "ydShare": 63.7,
         "tdShare": 55.6,
-        "avgPPA": 89.4,
+        "avgPPA": 89.3,
         "usageOverall": 49.1
       },
       "2017_3924325": {
@@ -504521,7 +504413,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.4,
         "tdShare": 41,
         "avgPPA": 68.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2017_3925357": {
         "recShare": 95.4,
@@ -504533,9 +504425,9 @@ const COLLEGE_SCOUTING = {
       "2017_3926244": {
         "recShare": 6.7,
         "ydShare": 23,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 78.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2017_3927809": {
         "recShare": 43.4,
@@ -504574,7 +504466,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_3929831": {
         "recShare": 71.7,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 28.2,
         "avgPPA": 12.6,
         "usageOverall": 79.3
@@ -504587,11 +504479,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 50.8
       },
       "2017_3929923": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 32.8,
         "tdShare": 32.7,
         "avgPPA": 26.1,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2017_3930064": {
         "recShare": 45.2,
@@ -504625,7 +504517,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 82.6,
         "ydShare": 77.5,
         "tdShare": 85.1,
-        "avgPPA": 56.3,
+        "avgPPA": 56.4,
         "usageOverall": 48
       },
       "2017_3932354": {
@@ -504640,7 +504532,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 38.3,
         "tdShare": 65.2,
         "avgPPA": 31.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2017_3932423": {
         "recShare": 3.2,
@@ -504654,7 +504546,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57.5,
         "tdShare": 79.2,
         "avgPPA": 47.7,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2017_3932442": {
         "recShare": 63.6,
@@ -504717,12 +504609,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 49.1,
         "tdShare": 70.4,
         "avgPPA": 24.5,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2017_4030390": {
         "recShare": 47.6,
         "ydShare": 34.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 26.4,
         "usageOverall": 54.2
       },
@@ -504738,7 +504630,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.1,
         "tdShare": 62,
         "avgPPA": 78.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_4035004": {
         "recShare": 37.9,
@@ -504763,7 +504655,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_4035170": {
         "recShare": 37.3,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 96.7,
         "avgPPA": 85,
         "usageOverall": 34
@@ -504841,7 +504733,7 @@ const COLLEGE_SCOUTING = {
       "2017_4035680": {
         "recShare": 24.2,
         "ydShare": 16,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 14.6,
         "usageOverall": 13.9
       },
@@ -504850,12 +504742,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 10,
         "tdShare": 20.5,
         "avgPPA": 84.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2017_4035692": {
         "recShare": 64.4,
         "ydShare": 58.7,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 85.1,
         "usageOverall": 50.8
       },
@@ -504871,7 +504763,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52.5,
         "tdShare": 63.1,
         "avgPPA": 85.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2017_4035793": {
         "recShare": 46.2,
@@ -504888,7 +504780,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 71.4
       },
       "2017_4035853": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 42.6,
         "tdShare": 85.1,
         "avgPPA": 51.8,
@@ -504910,7 +504802,7 @@ const COLLEGE_SCOUTING = {
       },
       "2017_4036026": {
         "recShare": 53.7,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 84.2,
         "avgPPA": 69.5,
         "usageOverall": 60
@@ -504967,13 +504859,13 @@ const COLLEGE_SCOUTING = {
       "2017_4036474": {
         "recShare": 7.6,
         "ydShare": 6.1,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 56.9,
         "usageOverall": 15.5
       },
       "2017_4036486": {
         "recShare": 49.7,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 29.6,
         "avgPPA": 62.3,
         "usageOverall": 53.1
@@ -505028,8 +504920,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 19.8
       },
       "2017_4037469": {
-        "recShare": 21.2,
-        "ydShare": 34,
+        "recShare": 21.1,
+        "ydShare": 33.9,
         "tdShare": 33.6,
         "avgPPA": 38.3,
         "usageOverall": 84.2
@@ -505070,7 +504962,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 3.1
       },
       "2017_4038460": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 19.1,
         "tdShare": 49.3,
         "avgPPA": 76.2,
@@ -505087,7 +504979,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 46.8,
         "ydShare": 69.8,
         "tdShare": 37.4,
-        "avgPPA": 60.2,
+        "avgPPA": 60.3,
         "usageOverall": 13.9
       },
       "2017_4038931": {
@@ -505116,17 +505008,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.6,
         "tdShare": 74.5,
         "avgPPA": 66,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_4039043": {
         "recShare": 63.1,
         "ydShare": 72,
         "tdShare": 32.7,
         "avgPPA": 28.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_4039055": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 21.9,
         "tdShare": 5.3,
         "avgPPA": 10.4,
@@ -505135,7 +505027,7 @@ const COLLEGE_SCOUTING = {
       "2017_4039057": {
         "recShare": 34.8,
         "ydShare": 28.2,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 11,
         "usageOverall": 55.3
       },
@@ -505144,7 +505036,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46.5,
         "tdShare": 66.1,
         "avgPPA": 25.8,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2017_4039077": {
         "recShare": 67,
@@ -505164,7 +505056,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.9,
         "ydShare": 96.2,
         "tdShare": 100,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 50.8
       },
       "2017_4039244": {
@@ -505206,21 +505098,21 @@ const COLLEGE_SCOUTING = {
         "recShare": 20.7,
         "ydShare": 21.9,
         "tdShare": 57.8,
-        "avgPPA": 59.2,
-        "usageOverall": 23.8
+        "avgPPA": 59.3,
+        "usageOverall": 23.7
       },
       "2017_4039394": {
         "recShare": 84.5,
         "ydShare": 82.2,
         "tdShare": 98.7,
         "avgPPA": 32.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2017_4039604": {
         "recShare": 19.9,
         "ydShare": 25.4,
         "tdShare": 12,
-        "avgPPA": 13,
+        "avgPPA": 13.1,
         "usageOverall": 13.9
       },
       "2017_4039662": {
@@ -505233,14 +505125,14 @@ const COLLEGE_SCOUTING = {
       "2017_4039908": {
         "recShare": 33.6,
         "ydShare": 22.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 37,
         "usageOverall": 34
       },
       "2017_4039936": {
         "recShare": 1.6,
         "ydShare": 6.6,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 95.6,
         "usageOverall": 18.3
       },
@@ -505269,7 +505161,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 86.6,
         "ydShare": 91.4,
         "tdShare": 88.6,
-        "avgPPA": 70.5,
+        "avgPPA": 70.6,
         "usageOverall": 62.6
       },
       "2017_4040788": {
@@ -505287,7 +505179,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 93.7
       },
       "2017_4040845": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 42.1,
         "tdShare": 8.5,
         "avgPPA": 36.8,
@@ -505303,7 +505195,7 @@ const COLLEGE_SCOUTING = {
       "2017_4043016": {
         "recShare": 59.5,
         "ydShare": 80.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 18.3,
         "usageOverall": 38.2
       },
@@ -505311,11 +505203,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 8.8,
         "ydShare": 25.9,
         "tdShare": 52,
-        "avgPPA": 60.1,
+        "avgPPA": 60.2,
         "usageOverall": 50.8
       },
       "2017_4043606": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 34.8,
         "tdShare": 49,
         "avgPPA": 22.9,
@@ -505324,14 +505216,14 @@ const COLLEGE_SCOUTING = {
       "2017_4044081": {
         "recShare": 35.5,
         "ydShare": 17.3,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 17,
         "usageOverall": 32.6
       },
       "2017_4044095": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 13.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 16.7,
         "usageOverall": 38.2
       },
@@ -505339,8 +505231,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 54.2,
         "ydShare": 49.1,
         "tdShare": 62,
-        "avgPPA": 70.4,
-        "usageOverall": 26.7
+        "avgPPA": 70.5,
+        "usageOverall": 26.6
       },
       "2017_4044121": {
         "recShare": 60.3,
@@ -505351,8 +505243,8 @@ const COLLEGE_SCOUTING = {
       },
       "2017_4044148": {
         "recShare": 52.8,
-        "ydShare": 43.9,
-        "tdShare": 64,
+        "ydShare": 43.8,
+        "tdShare": 63.9,
         "avgPPA": 68.2,
         "usageOverall": 54.2
       },
@@ -505371,10 +505263,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 54.2
       },
       "2017_4045291": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 10,
         "tdShare": 35.1,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 44.9
       },
       "2017_4046351": {
@@ -505385,24 +505277,24 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 15.5
       },
       "2017_4046352": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 13.6,
         "tdShare": 12,
         "avgPPA": 40,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2017_4046666": {
         "recShare": 19.3,
         "ydShare": 21.5,
         "tdShare": 5.3,
         "avgPPA": 3.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_4046668": {
         "recShare": 52.2,
         "ydShare": 48.2,
         "tdShare": 44.4,
-        "avgPPA": 13.5,
+        "avgPPA": 13.6,
         "usageOverall": 71.4
       },
       "2017_4046692": {
@@ -505436,7 +505328,7 @@ const COLLEGE_SCOUTING = {
       "2017_4048099": {
         "recShare": 24.2,
         "ydShare": 7.5,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 14.7,
         "usageOverall": 21.1
       },
@@ -505450,7 +505342,7 @@ const COLLEGE_SCOUTING = {
       "2017_4048695": {
         "recShare": 16.4,
         "ydShare": 16.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 15.6,
         "usageOverall": 22.4
       },
@@ -505494,7 +505386,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 93.3,
         "tdShare": 89.7,
         "avgPPA": 54.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2017_4052236": {
         "recShare": 6.7,
@@ -505525,7 +505417,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 1
       },
       "2017_4239829": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 18,
         "tdShare": 15.2,
         "avgPPA": 7.5,
@@ -505548,7 +505440,7 @@ const COLLEGE_SCOUTING = {
       "2017_4239993": {
         "recShare": 1.2,
         "ydShare": 14.2,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 94.2,
         "usageOverall": 6.2
       },
@@ -505557,17 +505449,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 77,
         "tdShare": 74.5,
         "avgPPA": 15.5,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2017_4240591": {
         "recShare": 87.7,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 44.9,
         "avgPPA": 21.6,
         "usageOverall": 74.7
       },
       "2017_4240626": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 21.9,
         "tdShare": 20.5,
         "avgPPA": 28.5,
@@ -505619,7 +505511,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 46.8,
         "ydShare": 43,
         "tdShare": 44.9,
-        "avgPPA": 87,
+        "avgPPA": 86.9,
         "usageOverall": 50.8
       },
       "2017_4241463": {
@@ -505639,7 +505531,7 @@ const COLLEGE_SCOUTING = {
       "2017_4241723": {
         "recShare": 43.4,
         "ydShare": 52,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 79.6,
         "usageOverall": 48
       },
@@ -505661,7 +505553,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 68.2,
         "ydShare": 69.4,
         "tdShare": 78.7,
-        "avgPPA": 76.2,
+        "avgPPA": 76.3,
         "usageOverall": 61.2
       },
       "2017_4242328": {
@@ -505669,7 +505561,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 18,
         "tdShare": 16.9,
         "avgPPA": 20.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_4242330": {
         "recShare": 34.8,
@@ -505681,7 +505573,7 @@ const COLLEGE_SCOUTING = {
       "2017_4242504": {
         "recShare": 19.3,
         "ydShare": 23,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 77.8,
         "usageOverall": 6.2
       },
@@ -505697,7 +505589,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 7.5,
         "tdShare": 29.6,
         "avgPPA": 58.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2017_4243811": {
         "recShare": 83.8,
@@ -505752,7 +505644,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 86.6,
         "ydShare": 72.9,
         "tdShare": 88.6,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 76.3
       },
       "2017_4256040": {
@@ -505781,7 +505673,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.2,
         "tdShare": 35.1,
         "avgPPA": 40.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2017_4259499": {
         "recShare": 28.6,
@@ -505872,7 +505764,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.8,
         "tdShare": 26.3,
         "avgPPA": 7.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2018_3119418": {
         "recShare": 29.2,
@@ -505890,14 +505782,14 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3120074": {
         "recShare": 64.9,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 5.3,
         "avgPPA": 4.4,
         "usageOverall": 32.6
       },
       "2018_3120349": {
         "recShare": 44.2,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 57.1,
         "avgPPA": 86.9,
         "usageOverall": 53.1
@@ -505911,17 +505803,17 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3121410": {
         "recShare": 79.1,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 66.1,
         "avgPPA": 43.8,
         "usageOverall": 82.3
       },
       "2018_3121413": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 30.1,
         "tdShare": 49,
         "avgPPA": 82,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2018_3121422": {
         "recShare": 11.8,
@@ -505935,7 +505827,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 31.7,
         "tdShare": 5.3,
         "avgPPA": 30.7,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2018_3123074": {
         "recShare": 93.8,
@@ -505982,7 +505874,7 @@ const COLLEGE_SCOUTING = {
       "2018_3124537": {
         "recShare": 95.3,
         "ydShare": 95.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 46.4,
         "usageOverall": 96.1
       },
@@ -505997,7 +505889,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 73.6,
         "ydShare": 86.8,
         "tdShare": 97.4,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 92.7
       },
       "2018_3125068": {
@@ -506019,7 +505911,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50,
         "tdShare": 53.8,
         "avgPPA": 40.4,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2018_3125837": {
         "recShare": 84.9,
@@ -506089,7 +505981,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 72,
         "tdShare": 74.5,
         "avgPPA": 6.5,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2018_3126486": {
         "recShare": 80,
@@ -506141,7 +506033,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 18.3
       },
       "2018_3133996": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 49.5,
         "tdShare": 62.5,
         "avgPPA": 84.2,
@@ -506159,7 +506051,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 3.2,
         "tdShare": 11.1,
         "avgPPA": 93.4,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2018_3138759": {
         "recShare": 25.5,
@@ -506173,10 +506065,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.6,
         "tdShare": 45.9,
         "avgPPA": 23.8,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3139468": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 57.5,
         "tdShare": 44.4,
         "avgPPA": 74,
@@ -506193,12 +506085,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 17.6,
         "ydShare": 6.6,
         "tdShare": 13.9,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 29.7
       },
       "2018_3139606": {
         "recShare": 82.6,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 53.8,
         "avgPPA": 10.4,
         "usageOverall": 79.3
@@ -506227,7 +506119,7 @@ const COLLEGE_SCOUTING = {
       "2018_3676833": {
         "recShare": 19.3,
         "ydShare": 28.2,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 39.1,
         "usageOverall": 71.4
       },
@@ -506248,14 +506140,14 @@ const COLLEGE_SCOUTING = {
       "2018_3843469": {
         "recShare": 16.9,
         "ydShare": 13,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 52.1,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2018_3863893": {
         "recShare": 24.2,
-        "ydShare": 37.1,
-        "tdShare": 34.5,
+        "ydShare": 37,
+        "tdShare": 34.6,
         "avgPPA": 57.5,
         "usageOverall": 50.8
       },
@@ -506271,7 +506163,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.9,
         "tdShare": 62,
         "avgPPA": 75.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_3886809": {
         "recShare": 72.2,
@@ -506285,10 +506177,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.4,
         "tdShare": 64.2,
         "avgPPA": 36.2,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3895828": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 79.5,
         "tdShare": 44.4,
         "avgPPA": 28.4,
@@ -506306,7 +506198,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 84.8,
         "tdShare": 94,
         "avgPPA": 57.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3914182": {
         "recShare": 20.7,
@@ -506318,9 +506210,9 @@ const COLLEGE_SCOUTING = {
       "2018_3914307": {
         "recShare": 52.2,
         "ydShare": 38.3,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 31.2,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3914328": {
         "recShare": 99.3,
@@ -506369,7 +506261,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.6,
         "tdShare": 44.4,
         "avgPPA": 9,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3915333": {
         "recShare": 15.5,
@@ -506404,10 +506296,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 35.8,
         "tdShare": 16.9,
         "avgPPA": 4.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3915821": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 18.5,
         "tdShare": 12,
         "avgPPA": 22.6,
@@ -506430,7 +506322,7 @@ const COLLEGE_SCOUTING = {
       "2018_3915987": {
         "recShare": 76.2,
         "ydShare": 73.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 41.4,
         "usageOverall": 82.3
       },
@@ -506443,16 +506335,16 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3916071": {
         "recShare": 64.9,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 88.6,
         "avgPPA": 90.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2018_3916124": {
         "recShare": 67,
         "ydShare": 82.5,
         "tdShare": 51.7,
-        "avgPPA": 35.7,
+        "avgPPA": 35.8,
         "usageOverall": 56.6
       },
       "2018_3916129": {
@@ -506470,9 +506362,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 99
       },
       "2018_3916346": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 25.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 13.4,
         "usageOverall": 49.1
       },
@@ -506484,7 +506376,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 11.3
       },
       "2018_3916418": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 68.3,
         "tdShare": 28.2,
         "avgPPA": 30.1,
@@ -506509,13 +506401,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 18,
         "tdShare": 28.2,
         "avgPPA": 20.8,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2018_3916911": {
         "recShare": 45.7,
         "ydShare": 68.3,
         "tdShare": 70.3,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 38.2
       },
       "2018_3916945": {
@@ -506533,7 +506425,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 75.5
       },
       "2018_3917005": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 31.7,
         "tdShare": 22.7,
         "avgPPA": 47.2,
@@ -506604,7 +506496,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3917833": {
         "recShare": 89.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 95.6,
         "avgPPA": 37.7,
         "usageOverall": 18.3
@@ -506634,7 +506526,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 87,
         "ydShare": 99.1,
         "tdShare": 96.4,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 92
       },
       "2018_3917960": {
@@ -506646,7 +506538,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3917969": {
         "recShare": 37.3,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 78.7,
         "avgPPA": 72.1,
         "usageOverall": 38.2
@@ -506667,7 +506559,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3918324": {
         "recShare": 68.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 37.4,
         "avgPPA": 11,
         "usageOverall": 64
@@ -506684,7 +506576,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.8,
         "tdShare": 5.3,
         "avgPPA": 70.6,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2018_3919510": {
         "recShare": 47.6,
@@ -506705,12 +506597,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 72.4,
         "tdShare": 45.9,
         "avgPPA": 47,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3921632": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 57.9,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 80.2,
         "usageOverall": 43.5
       },
@@ -506761,7 +506653,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 48.2,
         "tdShare": 81.2,
         "avgPPA": 23.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_3924318": {
         "recShare": 36.8,
@@ -506792,11 +506684,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 80.2
       },
       "2018_3929645": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 23,
         "tdShare": 10.2,
         "avgPPA": 19.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_3929785": {
         "recShare": 37.3,
@@ -506835,7 +506727,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3930066": {
         "recShare": 52.8,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 65.2,
         "avgPPA": 17.3,
         "usageOverall": 62.6
@@ -506844,7 +506736,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 78.5,
         "ydShare": 58.7,
         "tdShare": 17.4,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 77.8
       },
       "2018_3931397": {
@@ -506856,7 +506748,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_3931425": {
         "recShare": 94.3,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 62.5,
         "avgPPA": 30.1,
         "usageOverall": 71.4
@@ -506901,7 +506793,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.9,
         "tdShare": 62,
         "avgPPA": 38.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2018_3932509": {
         "recShare": 60.3,
@@ -506978,7 +506870,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 47.7,
         "tdShare": 62.2,
         "avgPPA": 39.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_4035015": {
         "recShare": 63.9,
@@ -506996,7 +506888,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4035221": {
         "recShare": 61.4,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 79.1,
         "avgPPA": 35.6,
         "usageOverall": 62.6
@@ -507088,7 +506980,7 @@ const COLLEGE_SCOUTING = {
       "2018_4035693": {
         "recShare": 16.9,
         "ydShare": 7.5,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 11,
         "usageOverall": 28.4
       },
@@ -507102,21 +506994,21 @@ const COLLEGE_SCOUTING = {
       "2018_4035776": {
         "recShare": 35.5,
         "ydShare": 28.2,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 19.5,
         "usageOverall": 38.2
       },
       "2018_4035792": {
         "recShare": 62.5,
         "ydShare": 78.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 52.6,
         "usageOverall": 50.8
       },
       "2018_4035818": {
         "recShare": 75.6,
         "ydShare": 74.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 62.5,
         "usageOverall": 56.6
       },
@@ -507177,7 +507069,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 77.8
       },
       "2018_4036508": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 8.2,
         "tdShare": 5.3,
         "avgPPA": 54.6,
@@ -507194,7 +507086,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 83.1,
         "ydShare": 43,
         "tdShare": 37.4,
-        "avgPPA": 6,
+        "avgPPA": 6.1,
         "usageOverall": 60
       },
       "2018_4037124": {
@@ -507221,7 +507113,7 @@ const COLLEGE_SCOUTING = {
       "2018_4037582": {
         "recShare": 80.3,
         "ydShare": 65.6,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 60.8,
         "usageOverall": 64
       },
@@ -507230,7 +507122,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 47.7,
         "tdShare": 77.2,
         "avgPPA": 91.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2018_4037625": {
         "recShare": 55.8,
@@ -507284,14 +507176,14 @@ const COLLEGE_SCOUTING = {
       "2018_4038966": {
         "recShare": 81.7,
         "ydShare": 87.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 64.2,
         "usageOverall": 66.4
       },
       "2018_4039000": {
         "recShare": 77.5,
         "ydShare": 82.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 29.9,
         "usageOverall": 79.3
       },
@@ -507307,7 +507199,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 39.1,
         "tdShare": 44.4,
         "avgPPA": 53.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2018_4039057": {
         "recShare": 91.8,
@@ -507328,7 +507220,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11.5,
         "tdShare": 16.9,
         "avgPPA": 27.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2018_4039089": {
         "recShare": 52.8,
@@ -507345,18 +507237,18 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 75.5
       },
       "2018_4039244": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 45.6,
         "tdShare": 12,
         "avgPPA": 59.7,
         "usageOverall": 60
       },
       "2018_4039295": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 51.5,
         "tdShare": 67.5,
         "avgPPA": 29.7,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2018_4039301": {
         "recShare": 30.6,
@@ -507369,7 +507261,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 88.5,
         "ydShare": 81.9,
         "tdShare": 62,
-        "avgPPA": 49.1,
+        "avgPPA": 49.2,
         "usageOverall": 93.4
       },
       "2018_4039339": {
@@ -507381,7 +507273,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4039388": {
         "recShare": 19.3,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 24.8,
         "avgPPA": 93.1,
         "usageOverall": 6.2
@@ -507409,7 +507301,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4039935": {
         "recShare": 59,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 37.4,
         "avgPPA": 21.8,
         "usageOverall": 50.8
@@ -507481,7 +507373,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 76.6,
         "ydShare": 68.3,
         "tdShare": 89.7,
-        "avgPPA": 41.1,
+        "avgPPA": 41.2,
         "usageOverall": 90.2
       },
       "2018_4043016": {
@@ -507496,13 +507388,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 44.3,
         "tdShare": 74.5,
         "avgPPA": 67.5,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2018_4043161": {
         "recShare": 84.5,
         "ydShare": 93.8,
         "tdShare": 85.7,
-        "avgPPA": 67.9,
+        "avgPPA": 68,
         "usageOverall": 94
       },
       "2018_4044113": {
@@ -507521,7 +507413,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4044123": {
         "recShare": 58.6,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 74.5,
         "avgPPA": 48.8,
         "usageOverall": 57.7
@@ -507536,15 +507428,15 @@ const COLLEGE_SCOUTING = {
       "2018_4044148": {
         "recShare": 66.6,
         "ydShare": 63.7,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 74,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_4044520": {
         "recShare": 5.3,
         "ydShare": 2.5,
         "tdShare": 18.9,
-        "avgPPA": 21,
+        "avgPPA": 21.1,
         "usageOverall": 22.4
       },
       "2018_4044534": {
@@ -507555,7 +507447,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 35.3
       },
       "2018_4045291": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 85.6,
         "tdShare": 22.7,
         "avgPPA": 54.7,
@@ -507579,7 +507471,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 65.4,
         "ydShare": 57.9,
         "tdShare": 52.7,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 51.8
       },
       "2018_4047646": {
@@ -507632,7 +507524,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 11.3
       },
       "2018_4048659": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 50.5,
         "tdShare": 68.3,
         "avgPPA": 39.8,
@@ -507662,7 +507554,7 @@ const COLLEGE_SCOUTING = {
       "2018_4049787": {
         "recShare": 43.4,
         "ydShare": 18,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 35.1,
         "usageOverall": 15.5
       },
@@ -507682,7 +507574,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4052236": {
         "recShare": 91.7,
-        "ydShare": 95.7,
+        "ydShare": 95.6,
         "tdShare": 91.6,
         "avgPPA": 47.3,
         "usageOverall": 94
@@ -507704,14 +507596,14 @@ const COLLEGE_SCOUTING = {
       "2018_4068152": {
         "recShare": 54.2,
         "ydShare": 62.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 33.8,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2018_4239406": {
         "recShare": 20.7,
         "ydShare": 13.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 28.4,
         "usageOverall": 36.7
       },
@@ -507748,13 +507640,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 71.1,
         "tdShare": 85.9,
         "avgPPA": 65.5,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2018_4240028": {
         "recShare": 37.9,
         "ydShare": 72.4,
         "tdShare": 93.8,
-        "avgPPA": 61.9,
+        "avgPPA": 62,
         "usageOverall": 56.6
       },
       "2018_4240034": {
@@ -507783,20 +507675,20 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21,
         "tdShare": 15.2,
         "avgPPA": 57.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2018_4240251": {
         "recShare": 19.9,
         "ydShare": 2.1,
         "tdShare": 23.6,
-        "avgPPA": 6,
+        "avgPPA": 6.1,
         "usageOverall": 36.7
       },
       "2018_4240253": {
         "recShare": 3.2,
         "ydShare": 2.1,
         "tdShare": 9.1,
-        "avgPPA": 75.6,
+        "avgPPA": 75.7,
         "usageOverall": 1.5
       },
       "2018_4240380": {
@@ -507811,7 +507703,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 44.3,
         "tdShare": 55.6,
         "avgPPA": 19,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_4240432": {
         "recShare": 55.8,
@@ -507825,7 +507717,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 60.9,
         "tdShare": 98.7,
         "avgPPA": 3.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2018_4240573": {
         "recShare": 15,
@@ -507846,7 +507738,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 49.5,
         "tdShare": 56.2,
         "avgPPA": 29.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_4240600": {
         "recShare": 26.1,
@@ -507858,7 +507750,7 @@ const COLLEGE_SCOUTING = {
       "2018_4240626": {
         "recShare": 67.8,
         "ydShare": 80.8,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 69.2,
         "usageOverall": 44.9
       },
@@ -507867,7 +507759,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.3,
         "tdShare": 44.4,
         "avgPPA": 33.6,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2018_4240688": {
         "recShare": 17.6,
@@ -507900,9 +507792,9 @@ const COLLEGE_SCOUTING = {
       "2018_4241004": {
         "recShare": 46.8,
         "ydShare": 29.5,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 14.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2018_4241053": {
         "recShare": 1.2,
@@ -507930,7 +507822,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 80.1,
         "tdShare": 74.6,
         "avgPPA": 91.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2018_4241424": {
         "recShare": 93.5,
@@ -508013,13 +507905,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 29.2,
         "ydShare": 27.6,
         "tdShare": 18.5,
-        "avgPPA": 33.3,
+        "avgPPA": 33.4,
         "usageOverall": 21.1
       },
       "2018_4242270": {
         "recShare": 0.4,
         "ydShare": 4.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 34.5,
         "usageOverall": 1
       },
@@ -508034,11 +507926,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 79.8,
         "ydShare": 70.4,
         "tdShare": 75.9,
-        "avgPPA": 57.8,
-        "usageOverall": 69.3
+        "avgPPA": 57.9,
+        "usageOverall": 69.2
       },
       "2018_4242433": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 64.1,
         "tdShare": 40.3,
         "avgPPA": 24,
@@ -508054,7 +507946,7 @@ const COLLEGE_SCOUTING = {
       "2018_4242506": {
         "recShare": 49.7,
         "ydShare": 30.1,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 60,
         "usageOverall": 43.5
       },
@@ -508075,13 +507967,13 @@ const COLLEGE_SCOUTING = {
       "2018_4243168": {
         "recShare": 68.9,
         "ydShare": 68.3,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 6.6,
         "usageOverall": 77.8
       },
       "2018_4243247": {
         "recShare": 33.6,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 29.6,
         "avgPPA": 53.4,
         "usageOverall": 21.1
@@ -508091,7 +507983,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 37.7,
         "tdShare": 85.1,
         "avgPPA": 67.2,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2018_4243455": {
         "recShare": 31.1,
@@ -508154,7 +508046,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 27.6,
         "tdShare": 11.1,
         "avgPPA": 34.6,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2018_4244856": {
         "recShare": 95.6,
@@ -508179,7 +508071,7 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4245144": {
         "recShare": 43.4,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 62.1,
         "avgPPA": 16.7,
         "usageOverall": 77.8
@@ -508245,7 +508137,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 72.7,
         "tdShare": 74.5,
         "avgPPA": 86.9,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2018_4258195": {
         "recShare": 72.9,
@@ -508297,7 +508189,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 3.9
       },
       "2018_4259908": {
-        "recShare": 1.4,
+        "recShare": 1.5,
         "ydShare": 0.8,
         "tdShare": 9.5,
         "avgPPA": 58,
@@ -508328,12 +508220,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 9.6,
         "ydShare": 21,
         "tdShare": 54.3,
-        "avgPPA": 63,
+        "avgPPA": 63.1,
         "usageOverall": 41.9
       },
       "2018_4260452": {
-        "recShare": 36.4,
-        "ydShare": 34,
+        "recShare": 36.3,
+        "ydShare": 33.9,
         "tdShare": 26.3,
         "avgPPA": 74,
         "usageOverall": 32.6
@@ -508364,7 +508256,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50.5,
         "tdShare": 40.3,
         "avgPPA": 85.4,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2018_4262921": {
         "recShare": 84.5,
@@ -508392,12 +508284,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 75.8,
         "tdShare": 71.7,
         "avgPPA": 89.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_4360329": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 35.8,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 0.9,
         "usageOverall": 61.2
       },
@@ -508406,7 +508298,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 42.1,
         "tdShare": 45.9,
         "avgPPA": 71.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2018_4360522": {
         "recShare": 23.1,
@@ -508424,10 +508316,10 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4360797": {
         "recShare": 26.1,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 62,
         "avgPPA": 17.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_4360939": {
         "recShare": 90.2,
@@ -508455,10 +508347,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 48.2,
         "tdShare": 74.5,
         "avgPPA": 36.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2018_4361911": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 60.9,
         "tdShare": 16.9,
         "avgPPA": 21.6,
@@ -508473,10 +508365,10 @@ const COLLEGE_SCOUTING = {
       },
       "2018_4361960": {
         "recShare": 19.3,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 41.4,
         "avgPPA": 74.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2018_4362249": {
         "recShare": 80,
@@ -508500,9 +508392,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 83
       },
       "2018_4362430": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 18.5,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 33.5,
         "usageOverall": 16.8
       },
@@ -508538,7 +508430,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.5,
         "ydShare": 8.2,
         "tdShare": 41,
-        "avgPPA": 57,
+        "avgPPA": 57.1,
         "usageOverall": 4.6
       },
       "2018_4363523": {
@@ -508566,7 +508458,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 19.9,
         "ydShare": 39.6,
         "tdShare": 62,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 21.1
       },
       "2018_4371974": {
@@ -508588,7 +508480,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50.5,
         "tdShare": 40.4,
         "avgPPA": 92.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2018_4372039": {
         "recShare": 19.3,
@@ -508601,7 +508493,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 34.8,
         "ydShare": 9.1,
         "tdShare": 24.8,
-        "avgPPA": 13.5,
+        "avgPPA": 13.6,
         "usageOverall": 55.3
       },
       "2018_4372485": {
@@ -508671,7 +508563,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 10.8,
         "ydShare": 11,
         "tdShare": 8.5,
-        "avgPPA": 7.2,
+        "avgPPA": 7.3,
         "usageOverall": 21.1
       },
       "2019_3692942": {
@@ -508712,7 +508604,7 @@ const COLLEGE_SCOUTING = {
       "2019_3864258": {
         "recShare": 61.4,
         "ydShare": 71.4,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 15.6,
         "usageOverall": 50.8
       },
@@ -508731,7 +508623,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 43.5
       },
       "2019_3909123": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 33.4,
         "tdShare": 29.6,
         "avgPPA": 34.2,
@@ -508742,7 +508634,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.6,
         "tdShare": 5.3,
         "avgPPA": 16.2,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2019_3914307": {
         "recShare": 25.5,
@@ -508776,7 +508668,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 74.8,
         "ydShare": 50,
         "tdShare": 63.1,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 51.8
       },
       "2019_3915802": {
@@ -508797,14 +508689,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 77.5,
         "ydShare": 77.9,
         "tdShare": 78.7,
-        "avgPPA": 57,
+        "avgPPA": 57.1,
         "usageOverall": 70.4
       },
       "2019_3916124": {
         "recShare": 73.3,
         "ydShare": 77.9,
         "tdShare": 88.6,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 48
       },
       "2019_3916143": {
@@ -508858,10 +508750,10 @@ const COLLEGE_SCOUTING = {
       },
       "2019_3917282": {
         "recShare": 72.2,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 26,
         "avgPPA": 10.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2019_3917569": {
         "recShare": 79.1,
@@ -508903,7 +508795,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 47.7,
         "tdShare": 37.4,
         "avgPPA": 80.7,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2019_3918448": {
         "recShare": 74.3,
@@ -508927,7 +508819,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 35.3
       },
       "2019_3919557": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 44.3,
         "tdShare": 67.7,
         "avgPPA": 41.7,
@@ -508936,7 +508828,7 @@ const COLLEGE_SCOUTING = {
       "2019_3919609": {
         "recShare": 66.3,
         "ydShare": 68.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 12.2,
         "usageOverall": 41.9
       },
@@ -508949,7 +508841,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_3921632": {
         "recShare": 46.8,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 44.4,
         "avgPPA": 56,
         "usageOverall": 35.3
@@ -508969,7 +508861,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 5.3
       },
       "2019_3921953": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 31.7,
         "tdShare": 37.4,
         "avgPPA": 11.3,
@@ -509018,7 +508910,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 74.1
       },
       "2019_3929785": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 36.8,
         "tdShare": 63.1,
         "avgPPA": 45.3,
@@ -509077,7 +508969,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 53.7,
         "ydShare": 33.4,
         "tdShare": 30.2,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 41.9
       },
       "2019_3932906": {
@@ -509099,7 +508991,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 49.5,
         "tdShare": 67.5,
         "avgPPA": 69.3,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2019_4029893": {
         "recShare": 95.7,
@@ -509130,7 +509022,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 12.6
       },
       "2019_4034950": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 29.5,
         "tdShare": 64.2,
         "avgPPA": 66.5,
@@ -509140,7 +509032,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 7.6,
         "ydShare": 7.1,
         "tdShare": 6.2,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 9.2
       },
       "2019_4035018": {
@@ -509193,7 +509085,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 43.5
       },
       "2019_4035387": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 52,
         "tdShare": 51.7,
         "avgPPA": 67.3,
@@ -509242,11 +509134,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 74.1
       },
       "2019_4035680": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 16.6,
         "tdShare": 28.2,
         "avgPPA": 21.2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2019_4035687": {
         "recShare": 91.7,
@@ -509287,7 +509179,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 14,
         "ydShare": 9.1,
         "tdShare": 32.7,
-        "avgPPA": 64.7,
+        "avgPPA": 64.8,
         "usageOverall": 9.2
       },
       "2019_4035793": {
@@ -509358,7 +509250,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 31.7,
         "tdShare": 40.3,
         "avgPPA": 17.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4036475": {
         "recShare": 14.6,
@@ -509397,7 +509289,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4037366": {
         "recShare": 70.7,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 41,
         "avgPPA": 8.6,
         "usageOverall": 76.3
@@ -509419,7 +509311,7 @@ const COLLEGE_SCOUTING = {
       "2019_4037582": {
         "recShare": 79.1,
         "ydShare": 86.6,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 67.6,
         "usageOverall": 86
       },
@@ -509442,7 +509334,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.1,
         "tdShare": 57.8,
         "avgPPA": 68.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2019_4038818": {
         "recShare": 89.6,
@@ -509453,17 +509345,17 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4038930": {
         "recShare": 72.2,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 37.4,
         "avgPPA": 18.5,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2019_4038931": {
         "recShare": 60.7,
         "ydShare": 62.5,
         "tdShare": 63.1,
         "avgPPA": 25.6,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2019_4038966": {
         "recShare": 84,
@@ -509480,7 +509372,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 85.2
       },
       "2019_4039043": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 38.3,
         "tdShare": 25.2,
         "avgPPA": 40.7,
@@ -509490,14 +509382,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 98.2,
         "ydShare": 97,
         "tdShare": 79.2,
-        "avgPPA": 76.2,
+        "avgPPA": 76.3,
         "usageOverall": 97.2
       },
       "2019_4039077": {
         "recShare": 57.8,
         "ydShare": 59.2,
         "tdShare": 24.8,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 54.2
       },
       "2019_4039307": {
@@ -509530,7 +509422,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4039493": {
         "recShare": 65.8,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 40.3,
         "avgPPA": 23.3,
         "usageOverall": 41.9
@@ -509558,8 +509450,8 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4040546": {
         "recShare": 84.3,
-        "ydShare": 67.4,
-        "tdShare": 34.5,
+        "ydShare": 67.3,
+        "tdShare": 34.6,
         "avgPPA": 11,
         "usageOverall": 94
       },
@@ -509595,7 +509487,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 30.6,
         "ydShare": 24.7,
         "tdShare": 51.7,
-        "avgPPA": 35.5,
+        "avgPPA": 35.6,
         "usageOverall": 34
       },
       "2019_4040821": {
@@ -509622,7 +509514,7 @@ const COLLEGE_SCOUTING = {
       "2019_4044121": {
         "recShare": 54.8,
         "ydShare": 30.8,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 5.6,
         "usageOverall": 77.8
       },
@@ -509666,7 +509558,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 20.3,
         "tdShare": 51.7,
         "avgPPA": 97,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2019_4046668": {
         "recShare": 42.7,
@@ -509699,7 +509591,7 @@ const COLLEGE_SCOUTING = {
       "2019_4047555": {
         "recShare": 7.2,
         "ydShare": 4.8,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 57.5,
         "usageOverall": 12.6
       },
@@ -509733,10 +509625,10 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4048695": {
         "recShare": 61.4,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 9.5,
         "avgPPA": 2.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2019_4049294": {
         "recShare": 97.4,
@@ -509768,7 +509660,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4052238": {
         "recShare": 48.1,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 10.2,
         "avgPPA": 35.4,
         "usageOverall": 56.6
@@ -509778,12 +509670,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.8,
         "tdShare": 49,
         "avgPPA": 35.9,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2019_4055162": {
         "recShare": 49.7,
-        "ydShare": 59.7,
-        "tdShare": 41.5,
+        "ydShare": 59.6,
+        "tdShare": 41.6,
         "avgPPA": 6.2,
         "usageOverall": 88
       },
@@ -509812,7 +509704,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 70.7,
         "ydShare": 58.7,
         "tdShare": 55.6,
-        "avgPPA": 35.5,
+        "avgPPA": 35.6,
         "usageOverall": 71.4
       },
       "2019_4239968": {
@@ -509890,12 +509782,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 7.9,
         "tdShare": 44.4,
         "avgPPA": 73.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4240253": {
         "recShare": 46.2,
         "ydShare": 41.6,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 5.6,
         "usageOverall": 40
       },
@@ -509936,7 +509828,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4240625": {
         "recShare": 46.8,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 32.7,
         "avgPPA": 21.2,
         "usageOverall": 56.6
@@ -510103,7 +509995,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 79.3
       },
       "2019_4241888": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 62,
         "tdShare": 52,
         "avgPPA": 56.6,
@@ -510124,7 +510016,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 19.8
       },
       "2019_4242169": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 49.1,
         "tdShare": 70.3,
         "avgPPA": 50.8,
@@ -510147,9 +510039,9 @@ const COLLEGE_SCOUTING = {
       "2019_4242330": {
         "recShare": 31.1,
         "ydShare": 6.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 57.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2019_4242433": {
         "recShare": 57.8,
@@ -510170,7 +510062,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 27.6,
         "tdShare": 62,
         "avgPPA": 15.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2019_4242540": {
         "recShare": 97.4,
@@ -510182,7 +510074,7 @@ const COLLEGE_SCOUTING = {
       "2019_4242545": {
         "recShare": 62,
         "ydShare": 41.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 42.7,
         "usageOverall": 75.5
       },
@@ -510191,7 +510083,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 4.4,
         "tdShare": 5.3,
         "avgPPA": 2.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2019_4243001": {
         "recShare": 67.8,
@@ -510253,7 +510145,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 89.2,
         "ydShare": 89.2,
         "tdShare": 88.6,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 92
       },
       "2019_4243830": {
@@ -510265,7 +510157,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4243910": {
         "recShare": 42.7,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 69.6,
         "avgPPA": 41.6,
         "usageOverall": 53.1
@@ -510278,7 +510170,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2019_4244306": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 47.7,
         "tdShare": 55.6,
         "avgPPA": 19,
@@ -510303,7 +510195,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52,
         "tdShare": 37.4,
         "avgPPA": 73.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2019_4244727": {
         "recShare": 87.5,
@@ -510315,13 +510207,13 @@ const COLLEGE_SCOUTING = {
       "2019_4244771": {
         "recShare": 69.5,
         "ydShare": 72.7,
-        "tdShare": 48.3,
-        "avgPPA": 63,
+        "tdShare": 48.4,
+        "avgPPA": 63.1,
         "usageOverall": 66.4
       },
       "2019_4244833": {
-        "recShare": 56.3,
-        "ydShare": 52.9,
+        "recShare": 56.2,
+        "ydShare": 52.8,
         "tdShare": 67.5,
         "avgPPA": 82.9,
         "usageOverall": 55.3
@@ -510329,8 +510221,8 @@ const COLLEGE_SCOUTING = {
       "2019_4244856": {
         "recShare": 97.7,
         "ydShare": 96.6,
-        "tdShare": 84.1,
-        "avgPPA": 21,
+        "tdShare": 84,
+        "avgPPA": 21.1,
         "usageOverall": 97.9
       },
       "2019_4245105": {
@@ -510352,7 +510244,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.1,
         "tdShare": 21,
         "avgPPA": 34,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2019_4245146": {
         "recShare": 14,
@@ -510418,7 +510310,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 64
       },
       "2019_4255713": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 27.1,
         "tdShare": 32.7,
         "avgPPA": 10.5,
@@ -510443,7 +510335,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50.9,
         "tdShare": 40.3,
         "avgPPA": 34.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2019_4257253": {
         "recShare": 63.1,
@@ -510477,8 +510369,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 23.6,
         "ydShare": 11,
         "tdShare": 8,
-        "avgPPA": 13,
-        "usageOverall": 26.7
+        "avgPPA": 13.1,
+        "usageOverall": 26.6
       },
       "2019_4258173": {
         "recShare": 53.7,
@@ -510506,7 +510398,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.6,
         "tdShare": 37.4,
         "avgPPA": 54.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2019_4258409": {
         "recShare": 31.1,
@@ -510531,7 +510423,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4258577": {
         "recShare": 59.5,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 15.2,
         "avgPPA": 70.4,
         "usageOverall": 55.3
@@ -510540,7 +510432,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 24.2,
         "ydShare": 52.5,
         "tdShare": 28.7,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 29.7
       },
       "2019_4259240": {
@@ -510548,7 +510440,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.5,
         "tdShare": 5.3,
         "avgPPA": 10,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4259268": {
         "recShare": 90,
@@ -510562,7 +510454,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 69.1,
         "tdShare": 22.7,
         "avgPPA": 27.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2019_4259305": {
         "recShare": 68.9,
@@ -510583,7 +510475,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 63.1,
         "avgPPA": 7.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2019_4259634": {
         "recShare": 75.6,
@@ -510642,7 +510534,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 28.4
       },
       "2019_4360294": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 51.5,
         "tdShare": 71.7,
         "avgPPA": 85.9,
@@ -510681,7 +510573,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.7,
         "tdShare": 32.7,
         "avgPPA": 24.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4360739": {
         "recShare": 11.3,
@@ -510692,7 +510584,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4360761": {
         "recShare": 72.6,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 78.7,
         "avgPPA": 54.1,
         "usageOverall": 75.5
@@ -510709,7 +510601,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 33.4,
         "tdShare": 78.1,
         "avgPPA": 93.7,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2019_4360939": {
         "recShare": 92.7,
@@ -510754,7 +510646,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 53.1
       },
       "2019_4361409": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 48.7,
         "tdShare": 62,
         "avgPPA": 68.8,
@@ -510779,7 +510671,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.2,
         "tdShare": 16.9,
         "avgPPA": 42.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4361492": {
         "recShare": 16,
@@ -510798,7 +510690,7 @@ const COLLEGE_SCOUTING = {
       "2019_4361577": {
         "recShare": 67.8,
         "ydShare": 85.4,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 72.9,
         "usageOverall": 74.1
       },
@@ -510814,10 +510706,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 49.5,
         "tdShare": 63.1,
         "avgPPA": 77,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4361679": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 46.5,
         "tdShare": 5.3,
         "avgPPA": 24.3,
@@ -510833,13 +510725,13 @@ const COLLEGE_SCOUTING = {
       "2019_4361732": {
         "recShare": 5.3,
         "ydShare": 12.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 33.5,
         "usageOverall": 48
       },
       "2019_4361739": {
         "recShare": 59,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 11.1,
         "avgPPA": 8.3,
         "usageOverall": 67.3
@@ -510860,7 +510752,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4361915": {
         "recShare": 48.8,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 68.3,
         "avgPPA": 18.5,
         "usageOverall": 60
@@ -510943,7 +510835,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 80.2
       },
       "2019_4362430": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 39.6,
         "tdShare": 5.3,
         "avgPPA": 42.1,
@@ -510967,14 +510859,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 7.2,
         "ydShare": 13,
         "tdShare": 44.9,
-        "avgPPA": 70.4,
+        "avgPPA": 70.5,
         "usageOverall": 15.5
       },
       "2019_4362560": {
         "recShare": 34.8,
         "ydShare": 55.3,
         "tdShare": 75.9,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 60
       },
       "2019_4362628": {
@@ -511003,7 +510895,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23.6,
         "tdShare": 70.3,
         "avgPPA": 86.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2019_4362706": {
         "recShare": 53.1,
@@ -511013,7 +510905,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2019_4362749": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 24.1,
         "tdShare": 5.3,
         "avgPPA": 84.2,
@@ -511051,13 +510943,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 16,
         "ydShare": 4.5,
         "tdShare": 22.7,
-        "avgPPA": 7.2,
+        "avgPPA": 7.3,
         "usageOverall": 32.6
       },
       "2019_4363113": {
         "recShare": 33.6,
         "ydShare": 30.8,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 32.4,
         "usageOverall": 15.5
       },
@@ -511072,7 +510964,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 49.7,
         "ydShare": 69.8,
         "tdShare": 82.9,
-        "avgPPA": 75.8,
+        "avgPPA": 75.9,
         "usageOverall": 40
       },
       "2019_4363523": {
@@ -511085,9 +510977,9 @@ const COLLEGE_SCOUTING = {
       "2019_4363537": {
         "recShare": 14,
         "ydShare": 8.6,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 41.1,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4363551": {
         "recShare": 60.7,
@@ -511191,7 +511083,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 73.3,
         "ydShare": 72.7,
         "tdShare": 8,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 71.4
       },
       "2019_4372414": {
@@ -511218,7 +511110,7 @@ const COLLEGE_SCOUTING = {
       "2019_4372716": {
         "recShare": 65.4,
         "ydShare": 62,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 38.4,
         "usageOverall": 74.7
       },
@@ -511241,7 +511133,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 15.6,
         "tdShare": 22.7,
         "avgPPA": 91,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2019_4373077": {
         "recShare": 44.2,
@@ -511251,7 +511143,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 38.2
       },
       "2019_4373427": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 42.6,
         "tdShare": 5.3,
         "avgPPA": 71,
@@ -511296,8 +511188,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 42.1,
         "ydShare": 52,
         "tdShare": 51.7,
-        "avgPPA": 60.2,
-        "usageOverall": 73.2
+        "avgPPA": 60.3,
+        "usageOverall": 73.1
       },
       "2019_4374187": {
         "recShare": 34.3,
@@ -511358,14 +511250,14 @@ const COLLEGE_SCOUTING = {
       "2019_4426341": {
         "recShare": 4.6,
         "ydShare": 11,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 69.7,
         "usageOverall": 3.1
       },
       "2019_4426354": {
         "recShare": 67.8,
         "ydShare": 73.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 77,
         "usageOverall": 65.2
       },
@@ -511388,7 +511280,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 3,
         "tdShare": 6.7,
         "avgPPA": 33.8,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2019_4426800": {
         "recShare": 57.3,
@@ -511402,7 +511294,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 15.2,
         "tdShare": 44.4,
         "avgPPA": 13.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4427225": {
         "recShare": 61.4,
@@ -511413,7 +511305,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4427267": {
         "recShare": 85.2,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 51.7,
         "avgPPA": 56,
         "usageOverall": 88.5
@@ -511448,7 +511340,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4428367": {
         "recShare": 54.8,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 8.5,
         "avgPPA": 49.3,
         "usageOverall": 40
@@ -511476,7 +511368,7 @@ const COLLEGE_SCOUTING = {
       },
       "2019_4429362": {
         "recShare": 76.9,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 67.5,
         "avgPPA": 14.3,
         "usageOverall": 53.1
@@ -511489,7 +511381,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 21.1
       },
       "2019_4429615": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 38.3,
         "tdShare": 45.9,
         "avgPPA": 19.9,
@@ -511499,7 +511391,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 23.1,
         "ydShare": 63.3,
         "tdShare": 24.8,
-        "avgPPA": 80.7,
+        "avgPPA": 80.8,
         "usageOverall": 18.3
       },
       "2019_4430191": {
@@ -511517,11 +511409,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 16.8
       },
       "2019_4430681": {
-        "recShare": 1.4,
+        "recShare": 1.5,
         "ydShare": 3,
         "tdShare": 13.9,
         "avgPPA": 77.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2019_4567156": {
         "recShare": 44.2,
@@ -511534,7 +511426,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 70.7,
         "ydShare": 81.9,
         "tdShare": 55.6,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 85.2
       },
       "2019_4567470": {
@@ -511556,7 +511448,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 22.4,
         "tdShare": 23.4,
         "avgPPA": 10.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2019_4569239": {
         "recShare": 19.3,
@@ -511582,9 +511474,9 @@ const COLLEGE_SCOUTING = {
       "2019_4569618": {
         "recShare": 24.2,
         "ydShare": 21,
-        "tdShare": 28.7,
+        "tdShare": 28.8,
         "avgPPA": 40.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2019_4569953": {
         "recShare": 7.6,
@@ -511654,7 +511546,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 43,
         "tdShare": 18.5,
         "avgPPA": 60.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2019_4574730": {
         "recShare": 28.1,
@@ -511680,7 +511572,7 @@ const COLLEGE_SCOUTING = {
       "2020_3921681": {
         "recShare": 80.3,
         "ydShare": 90.3,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 51.8,
         "usageOverall": 94.3
       },
@@ -511702,7 +511594,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 40.4,
         "ydShare": 36.8,
         "tdShare": 32.7,
-        "avgPPA": 72.2,
+        "avgPPA": 72.3,
         "usageOverall": 32.6
       },
       "2020_4029728": {
@@ -511713,7 +511605,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 19.8
       },
       "2020_4035169": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 31.7,
         "tdShare": 5.3,
         "avgPPA": 2.2,
@@ -511738,7 +511630,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.4,
         "tdShare": 67.7,
         "avgPPA": 73.6,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2020_4035466": {
         "recShare": 62.5,
@@ -511773,7 +511665,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.6,
         "tdShare": 88.6,
         "avgPPA": 81.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2020_4035689": {
         "recShare": 84.5,
@@ -511794,7 +511686,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.3,
         "tdShare": 65.2,
         "avgPPA": 50.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2020_4035770": {
         "recShare": 80,
@@ -511832,7 +511724,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 65.2
       },
       "2020_4037311": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 61.4,
         "tdShare": 80.8,
         "avgPPA": 55.4,
@@ -511840,9 +511732,9 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4037377": {
         "recShare": 48.1,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 69.3,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 79.3
       },
       "2020_4037560": {
@@ -511870,7 +511762,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 99.3,
         "ydShare": 99.9,
         "tdShare": 98.7,
-        "avgPPA": 74.9,
+        "avgPPA": 75,
         "usageOverall": 98.9
       },
       "2020_4039072": {
@@ -511891,7 +511783,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 26.1,
         "ydShare": 35.8,
         "tdShare": 76.9,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 70.4
       },
       "2020_4039936": {
@@ -511903,16 +511795,16 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4040723": {
         "recShare": 11.3,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 74.5,
         "avgPPA": 55.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2020_4043016": {
         "recShare": 97.8,
         "ydShare": 99.6,
         "tdShare": 96.3,
-        "avgPPA": 73.7,
+        "avgPPA": 73.8,
         "usageOverall": 96.7
       },
       "2020_4043606": {
@@ -511920,7 +511812,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.9,
         "tdShare": 29.6,
         "avgPPA": 22,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2020_4044123": {
         "recShare": 61.4,
@@ -511941,7 +511833,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 17.3,
         "tdShare": 37.4,
         "avgPPA": 2.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2020_4045291": {
         "recShare": 14,
@@ -511968,7 +511860,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 5.7,
         "ydShare": 2.1,
         "tdShare": 15.2,
-        "avgPPA": 35.7,
+        "avgPPA": 35.8,
         "usageOverall": 64
       },
       "2020_4047728": {
@@ -512000,7 +511892,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 92
       },
       "2020_4052238": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 25.4,
         "tdShare": 5.3,
         "avgPPA": 0.5,
@@ -512023,13 +511915,13 @@ const COLLEGE_SCOUTING = {
       "2020_4239406": {
         "recShare": 90,
         "ydShare": 85.6,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 56.6,
         "usageOverall": 80.2
       },
       "2020_4239938": {
         "recShare": 27.4,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 66,
         "avgPPA": 89.2,
         "usageOverall": 35.3
@@ -512066,7 +511958,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 56.9,
         "ydShare": 48.7,
         "tdShare": 74.5,
-        "avgPPA": 75.6,
+        "avgPPA": 75.7,
         "usageOverall": 61.2
       },
       "2020_4240176": {
@@ -512084,10 +511976,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2020_4240429": {
-        "recShare": 98.6,
+        "recShare": 98.5,
         "ydShare": 96.8,
         "tdShare": 99.4,
-        "avgPPA": 83.1,
+        "avgPPA": 83.2,
         "usageOverall": 92.7
       },
       "2020_4240573": {
@@ -512156,7 +512048,7 @@ const COLLEGE_SCOUTING = {
       "2020_4241053": {
         "recShare": 93,
         "ydShare": 85.2,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 45.2,
         "usageOverall": 98.7
       },
@@ -512164,12 +512056,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 77.8,
         "ydShare": 58.2,
         "tdShare": 32.7,
-        "avgPPA": 60.2,
+        "avgPPA": 60.3,
         "usageOverall": 6.2
       },
       "2020_4241225": {
         "recShare": 67,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 65.2,
         "avgPPA": 46.1,
         "usageOverall": 79.3
@@ -512219,8 +512111,8 @@ const COLLEGE_SCOUTING = {
       "2020_4241988": {
         "recShare": 28.6,
         "ydShare": 28.2,
-        "tdShare": 58.7,
-        "avgPPA": 71.6,
+        "tdShare": 58.8,
+        "avgPPA": 71.7,
         "usageOverall": 61.2
       },
       "2020_4242178": {
@@ -512247,7 +512139,7 @@ const COLLEGE_SCOUTING = {
       "2020_4242328": {
         "recShare": 86.4,
         "ydShare": 82.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 16.1,
         "usageOverall": 96.1
       },
@@ -512260,10 +512152,10 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4242433": {
         "recShare": 64.4,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 80.8,
         "avgPPA": 30.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2020_4242504": {
         "recShare": 47.6,
@@ -512276,7 +512168,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 73.9,
         "ydShare": 48.2,
         "tdShare": 16.9,
-        "avgPPA": 60.1,
+        "avgPPA": 60.2,
         "usageOverall": 67.3
       },
       "2020_4242661": {
@@ -512333,7 +512225,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 45.6,
         "tdShare": 16.9,
         "avgPPA": 6.6,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2020_4244617": {
         "recShare": 69.5,
@@ -512361,7 +512253,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 69.1,
         "tdShare": 51.7,
         "avgPPA": 39.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2020_4244856": {
         "recShare": 68.9,
@@ -512389,7 +512281,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 64.7,
         "tdShare": 35.1,
         "avgPPA": 84,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2020_4247942": {
         "recShare": 63.1,
@@ -512408,7 +512300,7 @@ const COLLEGE_SCOUTING = {
       "2020_4249426": {
         "recShare": 48.1,
         "ydShare": 40.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 62.1,
         "usageOverall": 56.6
       },
@@ -512423,7 +512315,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 92.4,
         "ydShare": 80.1,
         "tdShare": 96.7,
-        "avgPPA": 35.7,
+        "avgPPA": 35.8,
         "usageOverall": 92.3
       },
       "2020_4257599": {
@@ -512444,7 +512336,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 78.7,
         "ydShare": 96.3,
         "tdShare": 96,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 89.3
       },
       "2020_4258412": {
@@ -512521,7 +512413,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.2,
         "ydShare": 64.1,
         "tdShare": 51.7,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 71.4
       },
       "2020_4262016": {
@@ -512532,7 +512424,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 70.4
       },
       "2020_4360073": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 34.4,
         "tdShare": 11.1,
         "avgPPA": 10.8,
@@ -512556,7 +512448,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 57.8,
         "ydShare": 79.2,
         "tdShare": 74.5,
-        "avgPPA": 71.6,
+        "avgPPA": 71.7,
         "usageOverall": 53.1
       },
       "2020_4360233": {
@@ -512571,13 +512463,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 84.2,
         "tdShare": 57.1,
         "avgPPA": 69.5,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2020_4360405": {
         "recShare": 44.2,
         "ydShare": 36.8,
         "tdShare": 24.8,
-        "avgPPA": 49.1,
+        "avgPPA": 49.2,
         "usageOverall": 35.3
       },
       "2020_4360407": {
@@ -512589,9 +512481,9 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4360575": {
         "recShare": 37.3,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 65.2,
-        "avgPPA": 56.3,
+        "avgPPA": 56.4,
         "usageOverall": 35.3
       },
       "2020_4360649": {
@@ -512651,7 +512543,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 89
       },
       "2020_4361351": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 33.4,
         "tdShare": 9.1,
         "avgPPA": 82.4,
@@ -512676,12 +512568,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 0.5,
         "tdShare": 15.5,
         "avgPPA": 42.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2020_4361432": {
         "recShare": 79.8,
         "ydShare": 94.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 55.3,
         "usageOverall": 97.9
       },
@@ -512704,10 +512596,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 35.8,
         "tdShare": 22.7,
         "avgPPA": 90.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2020_4361732": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 19.1,
         "tdShare": 5.3,
         "avgPPA": 11.2,
@@ -512715,7 +512607,7 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4361739": {
         "recShare": 76.2,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 93.8,
         "avgPPA": 29.3,
         "usageOverall": 81.6
@@ -512723,7 +512615,7 @@ const COLLEGE_SCOUTING = {
       "2020_4361778": {
         "recShare": 72.9,
         "ydShare": 64.7,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 48.8,
         "usageOverall": 54.2
       },
@@ -512738,7 +512630,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 89.2,
         "ydShare": 95.8,
         "tdShare": 92.6,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 70.4
       },
       "2020_4361936": {
@@ -512777,7 +512669,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 71.4
       },
       "2020_4362107": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 46.9,
         "tdShare": 47.5,
         "avgPPA": 35.3,
@@ -512798,7 +512690,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 80.8
       },
       "2020_4362208": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 16.6,
         "tdShare": 37.4,
         "avgPPA": 20.2,
@@ -512815,7 +512707,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 91.8,
         "ydShare": 95.5,
         "tdShare": 90.2,
-        "avgPPA": 50.2,
+        "avgPPA": 50.3,
         "usageOverall": 89.8
       },
       "2020_4362430": {
@@ -512850,7 +512742,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 15,
         "ydShare": 28.2,
         "tdShare": 22.7,
-        "avgPPA": 87,
+        "avgPPA": 86.9,
         "usageOverall": 18.3
       },
       "2020_4362664": {
@@ -512907,7 +512799,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 76.8,
         "tdShare": 88.6,
         "avgPPA": 64.9,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2020_4363537": {
         "recShare": 96.3,
@@ -512947,14 +512839,14 @@ const COLLEGE_SCOUTING = {
       "2020_4370348": {
         "recShare": 72.9,
         "ydShare": 58.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 27,
         "usageOverall": 66.4
       },
       "2020_4370350": {
         "recShare": 35.5,
         "ydShare": 36.2,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 70.7,
         "usageOverall": 48
       },
@@ -513025,7 +512917,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 87.9,
         "ydShare": 89,
         "tdShare": 71.7,
-        "avgPPA": 60.9,
+        "avgPPA": 61,
         "usageOverall": 93.4
       },
       "2020_4373644": {
@@ -513081,7 +512973,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 31.9,
         "ydShare": 18.5,
         "tdShare": 67.5,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 43.5
       },
       "2020_4382466": {
@@ -513100,7 +512992,7 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4384192": {
         "recShare": 60.3,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 57.8,
         "avgPPA": 11.8,
         "usageOverall": 79.3
@@ -513123,14 +513015,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.9,
         "ydShare": 64.4,
         "tdShare": 85.1,
-        "avgPPA": 79.8,
-        "usageOverall": 69.3
+        "avgPPA": 79.9,
+        "usageOverall": 69.2
       },
       "2020_4426459": {
         "recShare": 49.3,
         "ydShare": 53.4,
         "tdShare": 28.2,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 43.5
       },
       "2020_4426479": {
@@ -513155,7 +513047,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 78.5
       },
       "2020_4426504": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 40.1,
         "tdShare": 40.3,
         "avgPPA": 17.8,
@@ -513165,7 +513057,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 46.8,
         "ydShare": 40.1,
         "tdShare": 40.3,
-        "avgPPA": 57,
+        "avgPPA": 57.1,
         "usageOverall": 53.1
       },
       "2020_4426893": {
@@ -513179,11 +513071,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 83.8,
         "ydShare": 78.6,
         "tdShare": 90.2,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 95.5
       },
       "2020_4427095": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 35.8,
         "tdShare": 35.1,
         "avgPPA": 34.3,
@@ -513226,7 +513118,7 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4428331": {
         "recShare": 68.9,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 66,
         "avgPPA": 35.6,
         "usageOverall": 79.3
@@ -513246,7 +513138,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 65.2
       },
       "2020_4428498": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 54.6,
         "tdShare": 44.4,
         "avgPPA": 69.5,
@@ -513260,7 +513152,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 99.2
       },
       "2020_4428594": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 7.1,
         "tdShare": 5.3,
         "avgPPA": 1.1,
@@ -513295,7 +513187,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 76.3
       },
       "2020_4429025": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 79.2,
         "tdShare": 62,
         "avgPPA": 77.2,
@@ -513304,7 +513196,7 @@ const COLLEGE_SCOUTING = {
       "2020_4429033": {
         "recShare": 49.3,
         "ydShare": 44.3,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 19.7,
         "usageOverall": 55.3
       },
@@ -513317,7 +513209,7 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4429362": {
         "recShare": 60.7,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 55.6,
         "avgPPA": 1.1,
         "usageOverall": 54.2
@@ -513360,7 +513252,7 @@ const COLLEGE_SCOUTING = {
       "2020_4430656": {
         "recShare": 23.1,
         "ydShare": 18.5,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 27.4,
         "usageOverall": 48
       },
@@ -513379,7 +513271,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 12.6
       },
       "2020_4431058": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 47.7,
         "tdShare": 45.9,
         "avgPPA": 91.4,
@@ -513415,7 +513307,7 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4565889": {
         "recShare": 26.1,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 24.8,
         "avgPPA": 15.4,
         "usageOverall": 25.2
@@ -513429,7 +513321,7 @@ const COLLEGE_SCOUTING = {
       },
       "2020_4567044": {
         "recShare": 63.9,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 65.2,
         "avgPPA": 28,
         "usageOverall": 62.6
@@ -513445,7 +513337,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 92.2,
         "ydShare": 94.8,
         "tdShare": 89.5,
-        "avgPPA": 65.5,
+        "avgPPA": 65.6,
         "usageOverall": 96.7
       },
       "2020_4567240": {
@@ -513453,7 +513345,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23,
         "tdShare": 69.6,
         "avgPPA": 82.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2020_4567458": {
         "recShare": 22.4,
@@ -513564,7 +513456,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 24.2,
         "ydShare": 14.2,
         "tdShare": 25.2,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 78.5
       },
       "2020_4575558": {
@@ -513584,14 +513476,14 @@ const COLLEGE_SCOUTING = {
       "2020_4578654": {
         "recShare": 41,
         "ydShare": 69.8,
-        "tdShare": 34.5,
-        "avgPPA": 50.2,
+        "tdShare": 34.6,
+        "avgPPA": 50.3,
         "usageOverall": 87.1
       },
       "2020_4597703": {
         "recShare": 8,
         "ydShare": 21.5,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 84.9,
         "usageOverall": 40
       },
@@ -513599,7 +513491,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 94.9,
         "ydShare": 97.6,
         "tdShare": 88.6,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 94.8
       },
       "2020_4685037": {
@@ -513641,7 +513533,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 46.8,
         "ydShare": 51.5,
         "tdShare": 82.9,
-        "avgPPA": 82.2,
+        "avgPPA": 82.3,
         "usageOverall": 43.5
       },
       "2020_4689334": {
@@ -513649,7 +513541,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 8.6,
         "tdShare": 53.8,
         "avgPPA": 1.7,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2020_4689546": {
         "recShare": 37.9,
@@ -513690,7 +513582,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 24.8,
         "ydShare": 31.2,
         "tdShare": 44.4,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 18.3
       },
       "2021_136429": {
@@ -513718,7 +513610,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 76.2,
         "ydShare": 86,
         "tdShare": 90.2,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 56.6
       },
       "2021_4029728": {
@@ -513732,7 +513624,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 39,
         "ydShare": 28.8,
         "tdShare": 51.7,
-        "avgPPA": 61.9,
+        "avgPPA": 62,
         "usageOverall": 28.4
       },
       "2021_4030947": {
@@ -513831,7 +513723,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 81.1,
         "tdShare": 71.5,
         "avgPPA": 62.2,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2021_4036475": {
         "recShare": 64.9,
@@ -513851,7 +513743,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 12.8,
         "ydShare": 16.6,
         "tdShare": 5.3,
-        "avgPPA": 60.1,
+        "avgPPA": 60.2,
         "usageOverall": 19.8
       },
       "2021_4038532": {
@@ -513929,7 +513821,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 10.5,
         "tdShare": 16.9,
         "avgPPA": 97.4,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4046519": {
         "recShare": 57.8,
@@ -513949,7 +513841,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 35.9,
         "ydShare": 34.4,
         "tdShare": 5.3,
-        "avgPPA": 95.7,
+        "avgPPA": 95.6,
         "usageOverall": 25.2
       },
       "2021_4240033": {
@@ -513977,7 +513869,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 60.3,
         "ydShare": 49.5,
         "tdShare": 68.5,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 58.9
       },
       "2021_4240176": {
@@ -513992,7 +513884,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.2,
         "tdShare": 47.5,
         "avgPPA": 63.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4240408": {
         "recShare": 75.2,
@@ -514003,7 +513895,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4240429": {
         "recShare": 82.6,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 62.1,
         "avgPPA": 62.1,
         "usageOverall": 86
@@ -514020,7 +513912,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 34.4,
         "tdShare": 51.7,
         "avgPPA": 27.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2021_4240735": {
         "recShare": 83.1,
@@ -514075,7 +513967,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 30.6,
         "ydShare": 21.9,
         "tdShare": 44.4,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 4.6
       },
       "2021_4241888": {
@@ -514131,7 +514023,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 63.1,
         "ydShare": 72.9,
         "tdShare": 55.6,
-        "avgPPA": 64.7,
+        "avgPPA": 64.8,
         "usageOverall": 60
       },
       "2021_4242377": {
@@ -514145,13 +514037,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 16,
         "ydShare": 11.5,
         "tdShare": 11.1,
-        "avgPPA": 75.7,
+        "avgPPA": 75.8,
         "usageOverall": 11.3
       },
       "2021_4242505": {
         "recShare": 12.3,
         "ydShare": 25.9,
-        "tdShare": 37.4,
+        "tdShare": 37.5,
         "avgPPA": 85.6,
         "usageOverall": 28.4
       },
@@ -514171,7 +514063,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4243319": {
         "recShare": 21.7,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 76.9,
         "avgPPA": 70.9,
         "usageOverall": 55.3
@@ -514179,7 +514071,7 @@ const COLLEGE_SCOUTING = {
       "2021_4243389": {
         "recShare": 91.4,
         "ydShare": 92.5,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 78.7,
         "usageOverall": 84.6
       },
@@ -514236,7 +514128,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 62,
         "ydShare": 61.4,
         "tdShare": 85.8,
-        "avgPPA": 64.5,
+        "avgPPA": 64.6,
         "usageOverall": 72.2
       },
       "2021_4244833": {
@@ -514286,14 +514178,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 99.8,
         "tdShare": 90.7,
         "avgPPA": 81.4,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2021_4249426": {
         "recShare": 68.5,
         "ydShare": 64.1,
         "tdShare": 24.8,
         "avgPPA": 54.8,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2021_4255713": {
         "recShare": 16.9,
@@ -514306,7 +514198,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.1,
         "ydShare": 9.4,
         "tdShare": 12,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 9.2
       },
       "2021_4257188": {
@@ -514335,7 +514227,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 27.6,
         "tdShare": 40.3,
         "avgPPA": 96.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2021_4258577": {
         "recShare": 70.3,
@@ -514374,7 +514266,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4259304": {
         "recShare": 48.8,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 5.3,
         "avgPPA": 5.4,
         "usageOverall": 38.2
@@ -514391,7 +514283,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46,
         "tdShare": 68.3,
         "avgPPA": 98,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2021_4259597": {
         "recShare": 68.5,
@@ -514411,7 +514303,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 57.3,
         "ydShare": 64.1,
         "tdShare": 37.4,
-        "avgPPA": 60.1,
+        "avgPPA": 60.2,
         "usageOverall": 72.2
       },
       "2021_4260441": {
@@ -514475,7 +514367,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 22.4,
         "tdShare": 17.4,
         "avgPPA": 91.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4360306": {
         "recShare": 71.7,
@@ -514521,7 +514413,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4360603": {
         "recShare": 53.1,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 62,
         "avgPPA": 23.9,
         "usageOverall": 51.8
@@ -514531,12 +514423,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 48.7,
         "tdShare": 80.8,
         "avgPPA": 96.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2021_4360972": {
         "recShare": 10.3,
         "ydShare": 24.7,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 88.6,
         "usageOverall": 7.1
       },
@@ -514580,7 +514472,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23,
         "tdShare": 20.5,
         "avgPPA": 94.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2021_4361370": {
         "recShare": 65.4,
@@ -514600,7 +514492,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 50.2,
         "ydShare": 46.5,
         "tdShare": 32.7,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 40
       },
       "2021_4361432": {
@@ -514622,7 +514514,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.1,
         "tdShare": 62,
         "avgPPA": 38.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4361504": {
         "recShare": 20.7,
@@ -514650,11 +514542,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.4,
         "tdShare": 88.6,
         "avgPPA": 4.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2021_4361679": {
         "recShare": 21.7,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 52,
         "avgPPA": 47,
         "usageOverall": 54.2
@@ -514670,7 +514562,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 98,
         "ydShare": 94.7,
         "tdShare": 88.6,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 92.3
       },
       "2021_4361797": {
@@ -514697,7 +514589,7 @@ const COLLEGE_SCOUTING = {
       "2021_4361973": {
         "recShare": 27.4,
         "ydShare": 18.5,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 93.2,
         "usageOverall": 7.1
       },
@@ -514705,13 +514597,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 82.6,
         "ydShare": 89.3,
         "tdShare": 92.3,
-        "avgPPA": 70.5,
+        "avgPPA": 70.6,
         "usageOverall": 86.5
       },
       "2021_4362034": {
         "recShare": 86.6,
         "ydShare": 65.6,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 77.7,
         "usageOverall": 60
       },
@@ -514740,8 +514632,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.7,
         "ydShare": 42.1,
         "tdShare": 75.9,
-        "avgPPA": 53.9,
-        "usageOverall": 23.8
+        "avgPPA": 54,
+        "usageOverall": 23.7
       },
       "2021_4362249": {
         "recShare": 84.9,
@@ -514811,12 +514703,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 62,
         "avgPPA": 83.3,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2021_4362794": {
         "recShare": 47.6,
         "ydShare": 35.8,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 26.2,
         "usageOverall": 36.7
       },
@@ -514851,7 +514743,7 @@ const COLLEGE_SCOUTING = {
       "2021_4363046": {
         "recShare": 37.3,
         "ydShare": 34.8,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 62.1,
         "usageOverall": 19.8
       },
@@ -514865,7 +514757,7 @@ const COLLEGE_SCOUTING = {
       "2021_4363537": {
         "recShare": 96,
         "ydShare": 88.8,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 24,
         "usageOverall": 98.4
       },
@@ -514877,7 +514769,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 90.7
       },
       "2021_4365503": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 41.6,
         "tdShare": 55.6,
         "avgPPA": 74.1,
@@ -514902,7 +514794,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 42.1,
         "tdShare": 55.6,
         "avgPPA": 97.5,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2021_4367175": {
         "recShare": 92.9,
@@ -514922,7 +514814,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 10.8,
         "ydShare": 14.2,
         "tdShare": 9.1,
-        "avgPPA": 94,
+        "avgPPA": 93.9,
         "usageOverall": 5.3
       },
       "2021_4368341": {
@@ -514965,7 +514857,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 37.7,
         "tdShare": 5.3,
         "avgPPA": 41.1,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4372039": {
         "recShare": 9.1,
@@ -514977,7 +514869,7 @@ const COLLEGE_SCOUTING = {
       "2021_4372041": {
         "recShare": 5.7,
         "ydShare": 5.4,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 53.4,
         "usageOverall": 5.3
       },
@@ -515024,9 +514916,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 56.6
       },
       "2021_4373266": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 55.3,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 67.2,
         "usageOverall": 28.4
       },
@@ -515081,13 +514973,13 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4374187": {
         "recShare": 97.8,
-        "ydShare": 98.6,
+        "ydShare": 98.5,
         "tdShare": 71.8,
         "avgPPA": 87.9,
         "usageOverall": 89
       },
       "2021_4374298": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 53.4,
         "tdShare": 62,
         "avgPPA": 71.7,
@@ -515104,7 +514996,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 4.1,
         "ydShare": 4.4,
         "tdShare": 41,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 7.1
       },
       "2021_4379569": {
@@ -515139,20 +515031,20 @@ const COLLEGE_SCOUTING = {
         "recShare": 95.9,
         "ydShare": 91.6,
         "tdShare": 77.3,
-        "avgPPA": 60.2,
+        "avgPPA": 60.3,
         "usageOverall": 99.8
       },
       "2021_4384192": {
         "recShare": 93,
         "ydShare": 76.1,
         "tdShare": 78.1,
-        "avgPPA": 56.3,
+        "avgPPA": 56.4,
         "usageOverall": 85.2
       },
       "2021_4390104": {
         "recShare": 39,
         "ydShare": 47.7,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 81.1,
         "usageOverall": 35.3
       },
@@ -515161,14 +515053,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 18,
         "tdShare": 12,
         "avgPPA": 78.1,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4401043": {
         "recShare": 99.2,
         "ydShare": 99.9,
         "tdShare": 91.6,
         "avgPPA": 94.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4401311": {
         "recShare": 63.1,
@@ -515196,7 +515088,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50,
         "tdShare": 51.7,
         "avgPPA": 99.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2021_4426388": {
         "recShare": 73.9,
@@ -515210,7 +515102,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 13.6,
         "tdShare": 25.2,
         "avgPPA": 23.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2021_4426426": {
         "recShare": 18,
@@ -515252,7 +515144,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 74.2,
         "tdShare": 69.3,
         "avgPPA": 81.5,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2021_4426815": {
         "recShare": 48.1,
@@ -515334,9 +515226,9 @@ const COLLEGE_SCOUTING = {
       "2021_4427267": {
         "recShare": 60.3,
         "ydShare": 43,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 15.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2021_4427575": {
         "recShare": 8,
@@ -515382,7 +515274,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4428063": {
         "recShare": 44.2,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 32.7,
         "avgPPA": 61.3,
         "usageOverall": 35.3
@@ -515391,7 +515283,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 91,
         "ydShare": 98.9,
         "tdShare": 100,
-        "avgPPA": 87,
+        "avgPPA": 86.9,
         "usageOverall": 55.3
       },
       "2021_4428163": {
@@ -515413,7 +515305,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 54.6,
         "tdShare": 69.3,
         "avgPPA": 70.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2021_4428345": {
         "recShare": 76.2,
@@ -515427,7 +515319,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 77.2,
         "tdShare": 81.6,
         "avgPPA": 39.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2021_4428532": {
         "recShare": 80,
@@ -515438,7 +515330,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4428594": {
         "recShare": 42.7,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 5.7,
         "avgPPA": 38.4,
         "usageOverall": 64
@@ -515452,17 +515344,17 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4428678": {
         "recShare": 61.4,
-        "ydShare": 67.9,
-        "tdShare": 48.3,
+        "ydShare": 67.8,
+        "tdShare": 48.4,
         "avgPPA": 58.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4428718": {
         "recShare": 36.8,
         "ydShare": 25.9,
         "tdShare": 14.2,
         "avgPPA": 38.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4428753": {
         "recShare": 7.2,
@@ -515552,7 +515444,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 11.3,
         "ydShare": 17.3,
         "tdShare": 15.2,
-        "avgPPA": 42.8,
+        "avgPPA": 42.9,
         "usageOverall": 53.1
       },
       "2021_4429153": {
@@ -515560,7 +515452,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 0.3,
         "tdShare": 5.3,
         "avgPPA": 16.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2021_4429205": {
         "recShare": 91,
@@ -515578,7 +515470,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4429362": {
         "recShare": 75.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 88.6,
         "avgPPA": 50.5,
         "usageOverall": 56.6
@@ -515586,7 +515478,7 @@ const COLLEGE_SCOUTING = {
       "2021_4429479": {
         "recShare": 66.6,
         "ydShare": 73.9,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 97.3,
         "usageOverall": 32.6
       },
@@ -515612,7 +515504,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 34
       },
       "2021_4429967": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 31.2,
         "tdShare": 28.2,
         "avgPPA": 19.2,
@@ -515650,7 +515542,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.2,
         "ydShare": 67.1,
         "tdShare": 71.7,
-        "avgPPA": 43.2,
+        "avgPPA": 43.3,
         "usageOverall": 95.2
       },
       "2021_4430470": {
@@ -515664,7 +515556,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 2.3,
         "ydShare": 3.4,
         "tdShare": 9.1,
-        "avgPPA": 83,
+        "avgPPA": 83.1,
         "usageOverall": 11.3
       },
       "2021_4430656": {
@@ -515707,14 +515599,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50.5,
         "tdShare": 62,
         "avgPPA": 51.8,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2021_4430846": {
         "recShare": 8,
         "ydShare": 5.4,
         "tdShare": 5.3,
         "avgPPA": 7.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4430875": {
         "recShare": 54.8,
@@ -515726,7 +515618,7 @@ const COLLEGE_SCOUTING = {
       "2021_4430878": {
         "recShare": 91,
         "ydShare": 92.8,
-        "tdShare": 58.7,
+        "tdShare": 58.8,
         "avgPPA": 91.7,
         "usageOverall": 91.2
       },
@@ -515734,14 +515626,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.5,
         "ydShare": 14.2,
         "tdShare": 11.1,
-        "avgPPA": 57.3,
+        "avgPPA": 57.4,
         "usageOverall": 19.8
       },
       "2021_4430914": {
         "recShare": 40.4,
         "ydShare": 34.8,
         "tdShare": 62,
-        "avgPPA": 35.5,
+        "avgPPA": 35.6,
         "usageOverall": 43.5
       },
       "2021_4430993": {
@@ -515749,7 +515641,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46,
         "tdShare": 51.7,
         "avgPPA": 77.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4431210": {
         "recShare": 39,
@@ -515780,7 +515672,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 88
       },
       "2021_4431338": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 35.8,
         "tdShare": 57.8,
         "avgPPA": 85.5,
@@ -515801,7 +515693,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 5.3
       },
       "2021_4431466": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 49.5,
         "tdShare": 57.8,
         "avgPPA": 82.9,
@@ -515839,8 +515731,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 25.5,
         "ydShare": 42.1,
         "tdShare": 62,
-        "avgPPA": 81.6,
-        "usageOverall": 46.4
+        "avgPPA": 81.7,
+        "usageOverall": 46.3
       },
       "2021_4433901": {
         "recShare": 67,
@@ -515853,7 +515745,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 86.1,
         "ydShare": 94.4,
         "tdShare": 97.2,
-        "avgPPA": 65.5,
+        "avgPPA": 65.6,
         "usageOverall": 78.5
       },
       "2021_4565172": {
@@ -515868,7 +515760,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.2,
         "tdShare": 24.8,
         "avgPPA": 25.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2021_4565908": {
         "recShare": 28.1,
@@ -515889,13 +515781,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 35.8,
         "tdShare": 37.6,
         "avgPPA": 71.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4567096": {
         "recShare": 87.2,
         "ydShare": 71.4,
         "tdShare": 51.7,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 94.8
       },
       "2021_4567156": {
@@ -515908,9 +515800,9 @@ const COLLEGE_SCOUTING = {
       "2021_4567217": {
         "recShare": 4.6,
         "ydShare": 6.1,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 65.1,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4567240": {
         "recShare": 89.8,
@@ -515921,16 +515813,16 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4567458": {
         "recShare": 37.9,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 10.2,
         "avgPPA": 69.4,
         "usageOverall": 35.3
       },
       "2021_4567470": {
-        "recShare": 1.4,
+        "recShare": 1.5,
         "ydShare": 7.1,
         "tdShare": 44.4,
-        "avgPPA": 74.5,
+        "avgPPA": 74.6,
         "usageOverall": 9.2
       },
       "2021_4567506": {
@@ -515945,7 +515837,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.7,
         "tdShare": 33.6,
         "avgPPA": 91.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4567532": {
         "recShare": 34.8,
@@ -515972,7 +515864,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 93.4,
         "ydShare": 86,
         "tdShare": 5.3,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 74.1
       },
       "2021_4568992": {
@@ -515983,7 +515875,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 92.3
       },
       "2021_4569086": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 20.3,
         "tdShare": 40.3,
         "avgPPA": 46.8,
@@ -516013,12 +515905,12 @@ const COLLEGE_SCOUTING = {
       "2021_4569371": {
         "recShare": 92.9,
         "ydShare": 85.8,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 5.7,
         "usageOverall": 86
       },
       "2021_4569382": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 33.4,
         "tdShare": 28.7,
         "avgPPA": 89.4,
@@ -516054,8 +515946,8 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4569618": {
         "recShare": 71.2,
-        "ydShare": 67.4,
-        "tdShare": 75.4,
+        "ydShare": 67.3,
+        "tdShare": 75.3,
         "avgPPA": 73.6,
         "usageOverall": 96.1
       },
@@ -516067,11 +515959,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2021_4569995": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 55.9,
         "tdShare": 76.9,
         "avgPPA": 96.9,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4570190": {
         "recShare": 91.1,
@@ -516106,7 +515998,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 36.2,
         "tdShare": 32.9,
         "avgPPA": 87.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2021_4570497": {
         "recShare": 44.7,
@@ -516127,7 +516019,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 67.5,
         "avgPPA": 97.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2021_4572454": {
         "recShare": 9.1,
@@ -516140,7 +516032,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 79.1,
         "ydShare": 94.3,
         "tdShare": 96.4,
-        "avgPPA": 95.7,
+        "avgPPA": 95.6,
         "usageOverall": 74.1
       },
       "2021_4575508": {
@@ -516172,10 +516064,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 9.2
       },
       "2021_4578654": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 27.1,
         "tdShare": 49.3,
-        "avgPPA": 53.6,
+        "avgPPA": 53.7,
         "usageOverall": 57.7
       },
       "2021_4586312": {
@@ -516196,7 +516088,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 23.6,
         "ydShare": 18.5,
         "tdShare": 28.7,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 38.2
       },
       "2021_4597703": {
@@ -516204,20 +516096,20 @@ const COLLEGE_SCOUTING = {
         "ydShare": 36.8,
         "tdShare": 38.5,
         "avgPPA": 59.1,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2021_4602667": {
         "recShare": 42.7,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 44.4,
         "avgPPA": 64.2,
         "usageOverall": 50.8
       },
       "2021_4602940": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 51.5,
         "tdShare": 62,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 49.1
       },
       "2021_4603186": {
@@ -516228,11 +516120,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 34
       },
       "2021_4604004": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 76.4,
         "tdShare": 96.7,
         "avgPPA": 90,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4605951": {
         "recShare": 54.8,
@@ -516244,7 +516136,7 @@ const COLLEGE_SCOUTING = {
       "2021_4608679": {
         "recShare": 67,
         "ydShare": 79.8,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 28.1,
         "usageOverall": 79.3
       },
@@ -516253,7 +516145,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 18.5,
         "tdShare": 62,
         "avgPPA": 73.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4608810": {
         "recShare": 87.2,
@@ -516299,7 +516191,7 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4683237": {
         "recShare": 8.4,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 51.7,
         "avgPPA": 45,
         "usageOverall": 34
@@ -516362,15 +516254,15 @@ const COLLEGE_SCOUTING = {
       },
       "2021_4687555": {
         "recShare": 32.9,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 76.9,
-        "avgPPA": 10.6,
+        "avgPPA": 10.7,
         "usageOverall": 86.5
       },
       "2021_4688813": {
         "recShare": 99.7,
         "ydShare": 98.6,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 46.5,
         "usageOverall": 98.8
       },
@@ -516406,7 +516298,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 93.3,
         "ydShare": 96.9,
         "tdShare": 99.4,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 70.4
       },
       "2021_4690026": {
@@ -516414,7 +516306,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23,
         "tdShare": 51.7,
         "avgPPA": 44.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2021_4690070": {
         "recShare": 63.1,
@@ -516426,8 +516318,8 @@ const COLLEGE_SCOUTING = {
       "2021_4690117": {
         "recShare": 28.1,
         "ydShare": 30.1,
-        "tdShare": 48.3,
-        "avgPPA": 70.4,
+        "tdShare": 48.4,
+        "avgPPA": 70.5,
         "usageOverall": 11.3
       },
       "2021_4690143": {
@@ -516461,7 +516353,7 @@ const COLLEGE_SCOUTING = {
       "2021_4710714": {
         "recShare": 51.2,
         "ydShare": 34.4,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 95.7,
         "usageOverall": 25.2
       },
@@ -516489,7 +516381,7 @@ const COLLEGE_SCOUTING = {
       "2021_4875687": {
         "recShare": 55.4,
         "ydShare": 50.5,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 96.1,
         "usageOverall": 16.8
       },
@@ -516515,18 +516407,18 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 64
       },
       "2021_4879677": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 24.1,
         "tdShare": 16.9,
-        "avgPPA": 21,
+        "avgPPA": 21.1,
         "usageOverall": 43.5
       },
       "2022_4039599": {
-        "recShare": 51.7,
-        "ydShare": 43.9,
-        "tdShare": 48.3,
+        "recShare": 51.6,
+        "ydShare": 43.8,
+        "tdShare": 48.4,
         "avgPPA": 57.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2022_4055165": {
         "recShare": 10.8,
@@ -516543,7 +516435,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2022_4240033": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 34.4,
         "tdShare": 44.4,
         "avgPPA": 51.9,
@@ -516566,7 +516458,7 @@ const COLLEGE_SCOUTING = {
       "2022_4240176": {
         "recShare": 57.3,
         "ydShare": 51.5,
-        "tdShare": 41.5,
+        "tdShare": 41.6,
         "avgPPA": 67.9,
         "usageOverall": 61.2
       },
@@ -516610,7 +516502,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 83.3,
         "tdShare": 62,
         "avgPPA": 81.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4241588": {
         "recShare": 90.4,
@@ -516652,7 +516544,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 41.6,
         "tdShare": 7,
         "avgPPA": 70.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4243001": {
         "recShare": 46.2,
@@ -516665,7 +516557,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 26.8,
         "ydShare": 11,
         "tdShare": 26.3,
-        "avgPPA": 63,
+        "avgPPA": 63.1,
         "usageOverall": 22.4
       },
       "2022_4243261": {
@@ -516736,7 +516628,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 75.2,
         "tdShare": 88.6,
         "avgPPA": 62.8,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2022_4251359": {
         "recShare": 20.7,
@@ -516769,7 +516661,7 @@ const COLLEGE_SCOUTING = {
       "2022_4259174": {
         "recShare": 23.1,
         "ydShare": 50,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 94.3,
         "usageOverall": 35.3
       },
@@ -516778,7 +516670,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 67.5,
         "avgPPA": 26.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4259304": {
         "recShare": 15,
@@ -516790,7 +516682,7 @@ const COLLEGE_SCOUTING = {
       "2022_4259550": {
         "recShare": 72.6,
         "ydShare": 88.7,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 91.8,
         "usageOverall": 49.1
       },
@@ -516798,14 +516690,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 93.8,
         "ydShare": 96.1,
         "tdShare": 99.7,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 84.6
       },
       "2022_4259607": {
         "recShare": 71.2,
         "ydShare": 83.1,
         "tdShare": 98.7,
-        "avgPPA": 82.1,
+        "avgPPA": 82.2,
         "usageOverall": 38.2
       },
       "2022_4259800": {
@@ -516890,10 +516782,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46,
         "tdShare": 57.8,
         "avgPPA": 92.9,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4360644": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 38.3,
         "tdShare": 28.2,
         "avgPPA": 88.7,
@@ -516903,7 +516795,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 18.5,
         "ydShare": 23.6,
         "tdShare": 12,
-        "avgPPA": 57,
+        "avgPPA": 57.1,
         "usageOverall": 32.6
       },
       "2022_4360761": {
@@ -516915,7 +516807,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4360763": {
         "recShare": 40.4,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 62,
         "avgPPA": 81.2,
         "usageOverall": 29.7
@@ -516942,7 +516834,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 91.6
       },
       "2022_4361185": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 52,
         "tdShare": 67.5,
         "avgPPA": 69.2,
@@ -516980,7 +516872,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 36.8,
         "ydShare": 38.3,
         "tdShare": 67.5,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 54.2
       },
       "2022_4361527": {
@@ -516988,7 +516880,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 48.2,
         "tdShare": 83.2,
         "avgPPA": 82.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2022_4361556": {
         "recShare": 86.6,
@@ -516998,11 +516890,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 66.4
       },
       "2022_4361646": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 42.1,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 7.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2022_4361679": {
         "recShare": 14,
@@ -517023,7 +516915,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 18.5,
         "tdShare": 52.7,
         "avgPPA": 58.6,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2022_4361778": {
         "recShare": 2.6,
@@ -517062,7 +516954,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4362184": {
         "recShare": 27.4,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 37.4,
         "avgPPA": 94.5,
         "usageOverall": 22.4
@@ -517085,7 +516977,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 75.9,
         "ydShare": 70.1,
         "tdShare": 66,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 77.8
       },
       "2022_4362430": {
@@ -517093,7 +516985,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 41.6,
         "tdShare": 46.1,
         "avgPPA": 82.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4362477": {
         "recShare": 44.2,
@@ -517119,14 +517011,14 @@ const COLLEGE_SCOUTING = {
       "2022_4362650": {
         "recShare": 9.6,
         "ydShare": 15.2,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 98.4,
         "usageOverall": 12.6
       },
       "2022_4362668": {
         "recShare": 4.1,
         "ydShare": 12.6,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 56.6,
         "usageOverall": 19.8
       },
@@ -517141,7 +517033,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 88.3,
         "ydShare": 73.9,
         "tdShare": 74.5,
-        "avgPPA": 60.9,
+        "avgPPA": 61,
         "usageOverall": 56.6
       },
       "2022_4363528": {
@@ -517159,11 +517051,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 55.3
       },
       "2022_4363551": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 53.4,
         "tdShare": 38.5,
         "avgPPA": 17.6,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4365484": {
         "recShare": 20.7,
@@ -517176,7 +517068,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 60.3,
         "ydShare": 44.9,
         "tdShare": 26,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 64
       },
       "2022_4366031": {
@@ -517194,14 +517086,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 56.6
       },
       "2022_4366625": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 32.3,
         "tdShare": 44.9,
         "avgPPA": 96.9,
         "usageOverall": 22.4
       },
       "2022_4366633": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 15.2,
         "tdShare": 75,
         "avgPPA": 96.7,
@@ -517231,8 +517123,8 @@ const COLLEGE_SCOUTING = {
       "2022_4369863": {
         "recShare": 34.8,
         "ydShare": 10.5,
-        "tdShare": 20.5,
-        "avgPPA": 31.6,
+        "tdShare": 20.6,
+        "avgPPA": 31.7,
         "usageOverall": 92.7
       },
       "2022_4370348": {
@@ -517247,7 +517139,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.8,
         "tdShare": 40.3,
         "avgPPA": 18.8,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4372041": {
         "recShare": 97.1,
@@ -517278,11 +517170,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 77.1
       },
       "2022_4372769": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 6.6,
         "tdShare": 16.9,
         "avgPPA": 47.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4372770": {
         "recShare": 26.1,
@@ -517308,12 +517200,12 @@ const COLLEGE_SCOUTING = {
       "2022_4373266": {
         "recShare": 32.9,
         "ydShare": 55.3,
-        "tdShare": 55.6,
+        "tdShare": 55.7,
         "avgPPA": 80.5,
         "usageOverall": 70.4
       },
       "2022_4373427": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 12.6,
         "tdShare": 12,
         "avgPPA": 29.5,
@@ -517330,7 +517222,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 41.6,
         "ydShare": 50.5,
         "tdShare": 62,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 22.4
       },
       "2022_4373686": {
@@ -517393,11 +517285,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 62.5,
         "ydShare": 53.4,
         "tdShare": 23.4,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 57.7
       },
       "2022_4401311": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 50.5,
         "tdShare": 26.3,
         "avgPPA": 31.8,
@@ -517413,7 +517305,7 @@ const COLLEGE_SCOUTING = {
       "2022_4426343": {
         "recShare": 20.7,
         "ydShare": 13.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 80.6,
         "usageOverall": 22.4
       },
@@ -517421,8 +517313,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 1.6,
         "ydShare": 3.2,
         "tdShare": 9.6,
-        "avgPPA": 92.8,
-        "usageOverall": 10.4
+        "avgPPA": 92.7,
+        "usageOverall": 10.3
       },
       "2022_4426370": {
         "recShare": 87.9,
@@ -517449,7 +517341,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 98.2,
         "ydShare": 98.2,
         "tdShare": 98.9,
-        "avgPPA": 73.7,
+        "avgPPA": 73.8,
         "usageOverall": 94.3
       },
       "2022_4426410": {
@@ -517464,12 +517356,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 44.3,
         "tdShare": 22.7,
         "avgPPA": 52.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4426479": {
         "recShare": 37.9,
         "ydShare": 44.3,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 83.6,
         "usageOverall": 16.8
       },
@@ -517484,7 +517376,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 65.8,
         "ydShare": 58.7,
         "tdShare": 47.5,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 97.7
       },
       "2022_4426535": {
@@ -517496,7 +517388,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4426815": {
         "recShare": 34.8,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 5.3,
         "avgPPA": 80,
         "usageOverall": 32.6
@@ -517534,12 +517426,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 60.9,
         "tdShare": 28.2,
         "avgPPA": 44.6,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4426948": {
         "recShare": 86.4,
         "ydShare": 75.8,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 74.6,
         "usageOverall": 94.8
       },
@@ -517552,14 +517444,14 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4427037": {
         "recShare": 52.2,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 30.1,
         "avgPPA": 33.1,
         "usageOverall": 50.8
       },
       "2022_4427095": {
         "recShare": 97.9,
-        "ydShare": 95.7,
+        "ydShare": 95.6,
         "tdShare": 80.8,
         "avgPPA": 88,
         "usageOverall": 80.8
@@ -517579,14 +517471,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 92
       },
       "2022_4427569": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 1.2,
         "tdShare": 6.2,
         "avgPPA": 42.7,
         "usageOverall": 12.6
       },
       "2022_4427575": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 46.9,
         "tdShare": 28.2,
         "avgPPA": 90.5,
@@ -517625,7 +517517,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 33.4,
         "tdShare": 47.3,
         "avgPPA": 65.8,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4428025": {
         "recShare": 10,
@@ -517639,14 +517531,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 52.7,
         "avgPPA": 74.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4428163": {
         "recShare": 37.9,
         "ydShare": 38.3,
         "tdShare": 37.4,
         "avgPPA": 71.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2022_4428209": {
         "recShare": 55.8,
@@ -517709,7 +517601,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 67.1,
         "tdShare": 41,
         "avgPPA": 64.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2022_4428763": {
         "recShare": 25.5,
@@ -517741,7 +517633,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4428850": {
         "recShare": 53.7,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 80.8,
         "avgPPA": 1.1,
         "usageOverall": 93.7
@@ -517758,11 +517650,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.6,
         "tdShare": 15.5,
         "avgPPA": 61.5,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2022_4429022": {
         "recShare": 46.8,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 23.4,
         "avgPPA": 18.7,
         "usageOverall": 70.4
@@ -517813,7 +517705,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 88.5,
         "ydShare": 87.2,
         "tdShare": 92.6,
-        "avgPPA": 56.3,
+        "avgPPA": 56.4,
         "usageOverall": 87.1
       },
       "2022_4429205": {
@@ -517831,7 +517723,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 43.5
       },
       "2022_4429313": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 46,
         "tdShare": 79.1,
         "avgPPA": 80.2,
@@ -517880,9 +517772,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 15.5
       },
       "2022_4429757": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 58.2,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 71.8,
         "usageOverall": 50.8
       },
@@ -517926,14 +517818,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 25.4,
         "tdShare": 17.4,
         "avgPPA": 66.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2022_4430185": {
         "recShare": 80,
         "ydShare": 74.6,
         "tdShare": 67.5,
         "avgPPA": 55.8,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4430254": {
         "recShare": 76.6,
@@ -517958,7 +517850,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4430323": {
         "recShare": 52.8,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 13.9,
         "avgPPA": 16.9,
         "usageOverall": 90.2
@@ -517975,7 +517867,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 4.1,
         "tdShare": 44.4,
         "avgPPA": 74.9,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2022_4430637": {
         "recShare": 23.6,
@@ -517999,11 +517891,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 80.2
       },
       "2022_4430800": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 32.3,
         "tdShare": 44.4,
         "avgPPA": 43.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4430817": {
         "recShare": 67.3,
@@ -518017,7 +517909,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.7,
         "tdShare": 5.3,
         "avgPPA": 48,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4430834": {
         "recShare": 75.6,
@@ -518031,13 +517923,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21.5,
         "tdShare": 41.4,
         "avgPPA": 68.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4430875": {
         "recShare": 76.6,
         "ydShare": 74.6,
         "tdShare": 94.6,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 50.8
       },
       "2022_4430897": {
@@ -518066,7 +517958,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.1,
         "tdShare": 62,
         "avgPPA": 56.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4431058": {
         "recShare": 10.3,
@@ -518086,11 +517978,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 5.7,
         "ydShare": 19.7,
         "tdShare": 63.1,
-        "avgPPA": 78.4,
+        "avgPPA": 78.5,
         "usageOverall": 29.7
       },
       "2022_4431219": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 1.8,
         "tdShare": 5.3,
         "avgPPA": 26,
@@ -518122,7 +518014,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 39.6,
         "tdShare": 32.7,
         "avgPPA": 42,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2022_4431280": {
         "recShare": 69.9,
@@ -518142,8 +518034,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 12.3,
         "ydShare": 21.9,
         "tdShare": 15.5,
-        "avgPPA": 57.8,
-        "usageOverall": 8.2
+        "avgPPA": 57.9,
+        "usageOverall": 8.1
       },
       "2022_4431338": {
         "recShare": 40.4,
@@ -518157,7 +518049,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 71.1,
         "tdShare": 22.7,
         "avgPPA": 39.9,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4431389": {
         "recShare": 4.2,
@@ -518167,7 +518059,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 1.9
       },
       "2022_4431466": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 35.8,
         "tdShare": 24.8,
         "avgPPA": 35.1,
@@ -518191,7 +518083,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 20.7,
         "ydShare": 23.6,
         "tdShare": 52.7,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 11.3
       },
       "2022_4431497": {
@@ -518226,7 +518118,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 28.6,
         "ydShare": 30.8,
         "tdShare": 35.1,
-        "avgPPA": 60.2,
+        "avgPPA": 60.3,
         "usageOverall": 13.9
       },
       "2022_4431618": {
@@ -518237,11 +518129,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 44.9
       },
       "2022_4431646": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 28.8,
         "tdShare": 44.4,
         "avgPPA": 88.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2022_4431651": {
         "recShare": 6.3,
@@ -518254,7 +518146,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 48.8,
         "ydShare": 34.4,
         "tdShare": 57.1,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 78.5
       },
       "2022_4432387": {
@@ -518268,12 +518160,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 57.8,
         "ydShare": 55.9,
         "tdShare": 17.4,
-        "avgPPA": 57.3,
+        "avgPPA": 57.4,
         "usageOverall": 62.6
       },
       "2022_4432705": {
         "recShare": 31.9,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 63.1,
         "avgPPA": 45,
         "usageOverall": 55.3
@@ -518321,7 +518213,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 4.6
       },
       "2022_4565361": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 33.4,
         "tdShare": 28.2,
         "avgPPA": 36.8,
@@ -518337,8 +518229,8 @@ const COLLEGE_SCOUTING = {
       "2022_4567033": {
         "recShare": 31.9,
         "ydShare": 42.6,
-        "tdShare": 41.5,
-        "avgPPA": 76.2,
+        "tdShare": 41.6,
+        "avgPPA": 76.3,
         "usageOverall": 29.7
       },
       "2022_4567044": {
@@ -518360,25 +518252,25 @@ const COLLEGE_SCOUTING = {
         "ydShare": 83.3,
         "tdShare": 90.2,
         "avgPPA": 89.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2022_4567505": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 30.8,
         "tdShare": 5.3,
         "avgPPA": 47.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4567506": {
         "recShare": 44.7,
         "ydShare": 46.9,
-        "tdShare": 41.5,
+        "tdShare": 41.6,
         "avgPPA": 87.7,
         "usageOverall": 41.9
       },
       "2022_4567525": {
-        "recShare": 51.7,
-        "ydShare": 43.9,
+        "recShare": 51.6,
+        "ydShare": 43.8,
         "tdShare": 23.4,
         "avgPPA": 70.4,
         "usageOverall": 43.5
@@ -518399,14 +518291,14 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4568419": {
         "recShare": 81.5,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 30.1,
         "avgPPA": 32.7,
         "usageOverall": 84.6
       },
       "2022_4568992": {
         "recShare": 86.8,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 68.3,
         "avgPPA": 38.1,
         "usageOverall": 86.5
@@ -518437,7 +518329,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.1,
         "tdShare": 9.5,
         "avgPPA": 31.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2022_4569393": {
         "recShare": 35.5,
@@ -518507,14 +518399,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.2,
         "tdShare": 28.7,
         "avgPPA": 79.1,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2022_4570738": {
         "recShare": 35.5,
         "ydShare": 31.7,
         "tdShare": 5.4,
         "avgPPA": 77.2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2022_4571640": {
         "recShare": 99,
@@ -518535,14 +518427,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 42.1,
         "tdShare": 63.2,
         "avgPPA": 88.2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2022_4572040": {
         "recShare": 74.3,
         "ydShare": 87.6,
         "tdShare": 74.5,
         "avgPPA": 18.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4572267": {
         "recShare": 78.7,
@@ -518596,9 +518488,9 @@ const COLLEGE_SCOUTING = {
       "2022_4586312": {
         "recShare": 68.9,
         "ydShare": 59.2,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 53.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2022_4587977": {
         "recShare": 31.1,
@@ -518632,7 +518524,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 82.6,
         "ydShare": 69.1,
         "tdShare": 74.5,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 71.4
       },
       "2022_4595348": {
@@ -518640,7 +518532,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 83.6,
         "tdShare": 38.5,
         "avgPPA": 91,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4596439": {
         "recShare": 80.3,
@@ -518717,7 +518609,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 13,
         "tdShare": 28.2,
         "avgPPA": 84.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4608810": {
         "recShare": 79.1,
@@ -518734,7 +518626,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 38.2
       },
       "2022_4612266": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 25.4,
         "tdShare": 22.7,
         "avgPPA": 60.5,
@@ -518744,25 +518636,25 @@ const COLLEGE_SCOUTING = {
         "recShare": 59,
         "ydShare": 49.5,
         "tdShare": 67.7,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 58.9
       },
       "2022_4613050": {
         "recShare": 21.7,
         "ydShare": 30.1,
         "tdShare": 47.5,
-        "avgPPA": 83,
+        "avgPPA": 83.1,
         "usageOverall": 15.5
       },
       "2022_4613067": {
         "recShare": 37.9,
         "ydShare": 55.5,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 22.9,
         "usageOverall": 79.3
       },
       "2022_4613087": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 23.6,
         "tdShare": 5.3,
         "avgPPA": 9.4,
@@ -518808,7 +518700,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.1,
         "tdShare": 67.5,
         "avgPPA": 39.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4682761": {
         "recShare": 87.3,
@@ -518853,17 +518745,17 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 16.8
       },
       "2022_4685037": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 60.9,
         "tdShare": 76.9,
-        "avgPPA": 67.6,
+        "avgPPA": 67.7,
         "usageOverall": 43.5
       },
       "2022_4685144": {
         "recShare": 59,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 67.5,
-        "avgPPA": 81.6,
+        "avgPPA": 81.7,
         "usageOverall": 84.2
       },
       "2022_4685183": {
@@ -518892,12 +518784,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 58.2,
         "tdShare": 80.8,
         "avgPPA": 93.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2022_4685472": {
         "recShare": 40.4,
         "ydShare": 55.3,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 97.6,
         "usageOverall": 29.7
       },
@@ -518969,7 +518861,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50,
         "tdShare": 82.9,
         "avgPPA": 90.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2022_4686781": {
         "recShare": 25.5,
@@ -519028,7 +518920,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 16.8
       },
       "2022_4689901": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 41.6,
         "tdShare": 37.4,
         "avgPPA": 75.1,
@@ -519044,7 +518936,7 @@ const COLLEGE_SCOUTING = {
       "2022_4690070": {
         "recShare": 66.6,
         "ydShare": 51.5,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 33.6,
         "usageOverall": 62.6
       },
@@ -519086,7 +518978,7 @@ const COLLEGE_SCOUTING = {
       "2022_4696062": {
         "recShare": 84.5,
         "ydShare": 84.8,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 74.3,
         "usageOverall": 88
       },
@@ -519094,7 +518986,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 94.4,
         "ydShare": 96.1,
         "tdShare": 99.8,
-        "avgPPA": 50.2,
+        "avgPPA": 50.3,
         "usageOverall": 83.6
       },
       "2022_4697844": {
@@ -519106,7 +518998,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4698597": {
         "recShare": 79.1,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 57.8,
         "avgPPA": 18.8,
         "usageOverall": 74.7
@@ -519134,9 +519026,9 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4701936": {
         "recShare": 25.5,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 52.8,
-        "avgPPA": 89.4,
+        "avgPPA": 89.3,
         "usageOverall": 35.3
       },
       "2022_4702830": {
@@ -519149,7 +519041,7 @@ const COLLEGE_SCOUTING = {
       "2022_4708127": {
         "recShare": 37.9,
         "ydShare": 56.5,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 75.6,
         "usageOverall": 74.1
       },
@@ -519158,7 +519050,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 75.5,
         "tdShare": 51.7,
         "avgPPA": 21.5,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2022_4710344": {
         "recShare": 1.6,
@@ -519168,7 +519060,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 0.3
       },
       "2022_4710714": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 54.6,
         "tdShare": 63.1,
         "avgPPA": 89.9,
@@ -519179,14 +519071,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57.9,
         "tdShare": 20.5,
         "avgPPA": 32.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4711055": {
         "recShare": 82,
         "ydShare": 87.7,
         "tdShare": 69.3,
         "avgPPA": 94.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2022_4714388": {
         "recShare": 10.3,
@@ -519198,7 +519090,7 @@ const COLLEGE_SCOUTING = {
       "2022_4775197": {
         "recShare": 8,
         "ydShare": 18,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 30.7,
         "usageOverall": 18.3
       },
@@ -519206,15 +519098,15 @@ const COLLEGE_SCOUTING = {
         "recShare": 31.9,
         "ydShare": 48.2,
         "tdShare": 40.3,
-        "avgPPA": 83,
+        "avgPPA": 83.1,
         "usageOverall": 22.4
       },
       "2022_4832806": {
         "recShare": 41.6,
         "ydShare": 33.4,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 71.5,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2022_4869965": {
         "recShare": 24.2,
@@ -519275,7 +519167,7 @@ const COLLEGE_SCOUTING = {
       "2022_4879189": {
         "recShare": 35.9,
         "ydShare": 26.6,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 4.3,
         "usageOverall": 28.4
       },
@@ -519298,7 +519190,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 77,
         "tdShare": 88.6,
         "avgPPA": 90.1,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2022_4879677": {
         "recShare": 71.2,
@@ -519319,7 +519211,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 72,
         "tdShare": 93.8,
         "avgPPA": 89.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_4880734": {
         "recShare": 53.7,
@@ -519330,7 +519222,7 @@ const COLLEGE_SCOUTING = {
       },
       "2022_4880845": {
         "recShare": 52.8,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 15.2,
         "avgPPA": 21.5,
         "usageOverall": 16.8
@@ -519345,8 +519237,8 @@ const COLLEGE_SCOUTING = {
       "2022_4890702": {
         "recShare": 46.8,
         "ydShare": 46,
-        "tdShare": 13,
-        "avgPPA": 75.7,
+        "tdShare": 13.1,
+        "avgPPA": 75.8,
         "usageOverall": 32.6
       },
       "2022_4891852": {
@@ -519396,7 +519288,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.3,
         "tdShare": 51.7,
         "avgPPA": 20.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2022_5082032": {
         "recShare": 44.2,
@@ -519416,7 +519308,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 26.8,
         "ydShare": 15.6,
         "tdShare": 16.9,
-        "avgPPA": 10.1,
+        "avgPPA": 10.2,
         "usageOverall": 71.4
       },
       "2022_5082614": {
@@ -519427,7 +519319,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2022_5083198": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 45.6,
         "tdShare": 52.7,
         "avgPPA": 43.2,
@@ -519448,7 +519340,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 32.6
       },
       "2022_5092470": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 31.7,
         "tdShare": 45.9,
         "avgPPA": 89.2,
@@ -519469,7 +519361,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 11.3
       },
       "2023_4247578": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 54.2,
         "tdShare": 62,
         "avgPPA": 32.4,
@@ -519480,7 +519372,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52,
         "tdShare": 51.7,
         "avgPPA": 72,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2023_4258412": {
         "recShare": 74.3,
@@ -519492,8 +519384,8 @@ const COLLEGE_SCOUTING = {
       "2023_4360278": {
         "recShare": 17.6,
         "ydShare": 14.7,
-        "tdShare": 7.2,
-        "avgPPA": 75.8,
+        "tdShare": 7.3,
+        "avgPPA": 75.9,
         "usageOverall": 29.7
       },
       "2023_4360282": {
@@ -519522,12 +519414,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.1,
         "tdShare": 5.3,
         "avgPPA": 9.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2023_4361319": {
         "recShare": 60.3,
         "ydShare": 66.4,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 81.5,
         "usageOverall": 62.6
       },
@@ -519546,8 +519438,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 75.5
       },
       "2023_4361492": {
-        "recShare": 36.4,
-        "ydShare": 59.7,
+        "recShare": 36.3,
+        "ydShare": 59.6,
         "tdShare": 38.5,
         "avgPPA": 81.6,
         "usageOverall": 57.7
@@ -519585,13 +519477,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.6,
         "tdShare": 5.3,
         "avgPPA": 63.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2023_4362109": {
         "recShare": 23.6,
         "ydShare": 26.6,
         "tdShare": 40.3,
-        "avgPPA": 75.6,
+        "avgPPA": 75.7,
         "usageOverall": 44.9
       },
       "2023_4362312": {
@@ -519620,7 +519512,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52,
         "tdShare": 79.1,
         "avgPPA": 94.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_4363528": {
         "recShare": 87.3,
@@ -519651,10 +519543,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2023_4368797": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 68.3,
         "tdShare": 32.7,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 44.9
       },
       "2023_4370358": {
@@ -519662,13 +519554,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 8.6,
         "tdShare": 51.7,
         "avgPPA": 24.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2023_4370797": {
         "recShare": 87.9,
         "ydShare": 57.5,
         "tdShare": 28.2,
-        "avgPPA": 10.6,
+        "avgPPA": 10.7,
         "usageOverall": 82.3
       },
       "2023_4372769": {
@@ -519689,7 +519581,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 72.9,
         "ydShare": 56.5,
         "tdShare": 51.7,
-        "avgPPA": 77.6,
+        "avgPPA": 77.7,
         "usageOverall": 54.2
       },
       "2023_4373662": {
@@ -519697,7 +519589,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.7,
         "tdShare": 11.1,
         "avgPPA": 72.7,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_4374030": {
         "recShare": 8.4,
@@ -519729,7 +519621,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4379471": {
         "recShare": 58.6,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 62,
         "avgPPA": 30.7,
         "usageOverall": 48
@@ -519764,7 +519656,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4385438": {
         "recShare": 81.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 57.1,
         "avgPPA": 69.2,
         "usageOverall": 72.2
@@ -519784,7 +519676,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 53.1
       },
       "2023_4426449": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 31.7,
         "tdShare": 18.5,
         "avgPPA": 31.4,
@@ -519794,13 +519686,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 63.1,
         "ydShare": 56.5,
         "tdShare": 8.5,
-        "avgPPA": 60.9,
+        "avgPPA": 61,
         "usageOverall": 48
       },
       "2023_4426535": {
         "recShare": 68.5,
-        "ydShare": 59.7,
-        "tdShare": 75.4,
+        "ydShare": 59.6,
+        "tdShare": 75.3,
         "avgPPA": 86.6,
         "usageOverall": 43.5
       },
@@ -519854,7 +519746,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 28.4
       },
       "2023_4427209": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 55.3,
         "tdShare": 70.3,
         "avgPPA": 98.9,
@@ -519865,7 +519757,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.7,
         "tdShare": 56.2,
         "avgPPA": 82.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_4427575": {
         "recShare": 26.1,
@@ -519879,7 +519771,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46.5,
         "tdShare": 52.7,
         "avgPPA": 85.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2023_4427985": {
         "recShare": 76.2,
@@ -519925,7 +519817,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4428219": {
         "recShare": 31.9,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 28.2,
         "avgPPA": 43.8,
         "usageOverall": 35.3
@@ -519934,7 +519826,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 68.5,
         "ydShare": 62.5,
         "tdShare": 49,
-        "avgPPA": 75.7,
+        "avgPPA": 75.8,
         "usageOverall": 60
       },
       "2023_4428486": {
@@ -519947,16 +519839,16 @@ const COLLEGE_SCOUTING = {
       "2023_4428527": {
         "recShare": 45.2,
         "ydShare": 30.8,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 61.1,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2023_4428532": {
         "recShare": 68.2,
         "ydShare": 71.8,
         "tdShare": 22.7,
         "avgPPA": 73.6,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2023_4428666": {
         "recShare": 17.6,
@@ -519988,7 +519880,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4428753": {
         "recShare": 88.8,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 56.2,
         "avgPPA": 26.8,
         "usageOverall": 98.8
@@ -520001,7 +519893,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 60
       },
       "2023_4428784": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 30.1,
         "tdShare": 46.1,
         "avgPPA": 84.3,
@@ -520032,7 +519924,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 40.4,
         "ydShare": 40.1,
         "tdShare": 52.7,
-        "avgPPA": 78.4,
+        "avgPPA": 78.5,
         "usageOverall": 40
       },
       "2023_4429019": {
@@ -520074,14 +519966,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 86.4,
         "ydShare": 89.8,
         "tdShare": 76.9,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 82.3
       },
       "2023_4429172": {
         "recShare": 14,
         "ydShare": 8.2,
         "tdShare": 35.4,
-        "avgPPA": 64.7,
+        "avgPPA": 64.8,
         "usageOverall": 22.4
       },
       "2023_4429184": {
@@ -520120,11 +520012,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 2.3
       },
       "2023_4429479": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 62.8,
         "tdShare": 5.3,
-        "avgPPA": 77.6,
-        "usageOverall": 26.7
+        "avgPPA": 77.7,
+        "usageOverall": 26.6
       },
       "2023_4429503": {
         "recShare": 45.7,
@@ -520145,7 +520037,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 63.3,
         "tdShare": 65.2,
         "avgPPA": 95.1,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4429751": {
         "recShare": 12.3,
@@ -520159,7 +520051,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.6,
         "tdShare": 62,
         "avgPPA": 94.4,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4429963": {
         "recShare": 85.2,
@@ -520218,8 +520110,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 49.1
       },
       "2023_4430470": {
-        "recShare": 39.9,
-        "ydShare": 38.8,
+        "recShare": 39.8,
+        "ydShare": 38.7,
         "tdShare": 40.3,
         "avgPPA": 88.9,
         "usageOverall": 13.9
@@ -520288,7 +520180,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 28.4
       },
       "2023_4430834": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 15.6,
         "tdShare": 38.5,
         "avgPPA": 44.3,
@@ -520298,25 +520190,25 @@ const COLLEGE_SCOUTING = {
         "recShare": 76.6,
         "ydShare": 76.4,
         "tdShare": 40.3,
-        "avgPPA": 70.5,
+        "avgPPA": 70.6,
         "usageOverall": 57.7
       },
       "2023_4430875": {
         "recShare": 98.7,
         "ydShare": 99.5,
         "tdShare": 98.7,
-        "avgPPA": 75.8,
+        "avgPPA": 75.9,
         "usageOverall": 77.8
       },
       "2023_4430914": {
         "recShare": 78.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 74.5,
         "avgPPA": 94.5,
         "usageOverall": 50.8
       },
       "2023_4431053": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 33.4,
         "tdShare": 28.7,
         "avgPPA": 61.9,
@@ -520334,7 +520226,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 5,
         "tdShare": 12,
         "avgPPA": 68.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_4431197": {
         "recShare": 18.5,
@@ -520361,7 +520253,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 86.1,
         "ydShare": 69.8,
         "tdShare": 63.1,
-        "avgPPA": 83.1,
+        "avgPPA": 83.2,
         "usageOverall": 53.1
       },
       "2023_4431236": {
@@ -520411,7 +520303,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 9.1,
         "tdShare": 55.6,
         "avgPPA": 86.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4431342": {
         "recShare": 93.6,
@@ -520423,12 +520315,12 @@ const COLLEGE_SCOUTING = {
       "2023_4431353": {
         "recShare": 94.5,
         "ydShare": 93,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 74.9,
         "usageOverall": 93.1
       },
       "2023_4431389": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 41.1,
         "tdShare": 16.9,
         "avgPPA": 55.9,
@@ -520463,18 +520355,18 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2023_4431505": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 2.1,
         "tdShare": 33.6,
         "avgPPA": 92.5,
         "usageOverall": 40
       },
       "2023_4431509": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 55.3,
         "tdShare": 56.2,
         "avgPPA": 93.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2023_4431514": {
         "recShare": 45.2,
@@ -520514,7 +520406,7 @@ const COLLEGE_SCOUTING = {
       "2023_4431651": {
         "recShare": 65.4,
         "ydShare": 62,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 68.3,
         "usageOverall": 51.8
       },
@@ -520550,8 +520442,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 26.1,
         "ydShare": 47.7,
         "tdShare": 44.4,
-        "avgPPA": 75.8,
-        "usageOverall": 31.1
+        "avgPPA": 75.9,
+        "usageOverall": 31
       },
       "2023_4432708": {
         "recShare": 89.2,
@@ -520577,20 +520469,20 @@ const COLLEGE_SCOUTING = {
       "2023_4433871": {
         "recShare": 48.8,
         "ydShare": 66.4,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 81.7,
         "usageOverall": 36.7
       },
       "2023_4433901": {
         "recShare": 59,
         "ydShare": 76.4,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 94.6,
         "usageOverall": 34
       },
       "2023_4433906": {
         "recShare": 84.5,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 40.3,
         "avgPPA": 7.4,
         "usageOverall": 89
@@ -520600,7 +520492,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.2,
         "tdShare": 5.3,
         "avgPPA": 96.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2023_4565172": {
         "recShare": 66.3,
@@ -520621,7 +520513,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 61.4,
         "tdShare": 67.5,
         "avgPPA": 79.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4565361": {
         "recShare": 10,
@@ -520676,21 +520568,21 @@ const COLLEGE_SCOUTING = {
         "recShare": 19.9,
         "ydShare": 33.4,
         "tdShare": 22.7,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 12.6
       },
       "2023_4567596": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 37.7,
         "tdShare": 53.8,
         "avgPPA": 75.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4567750": {
         "recShare": 53.1,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 47.3,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 81.6
       },
       "2023_4567784": {
@@ -520703,7 +520595,7 @@ const COLLEGE_SCOUTING = {
       "2023_4568419": {
         "recShare": 90.4,
         "ydShare": 76.4,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 43.6,
         "usageOverall": 89.8
       },
@@ -520750,10 +520642,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 28.4
       },
       "2023_4569393": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 57.9,
         "tdShare": 8.5,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 22.4
       },
       "2023_4569507": {
@@ -520859,7 +520751,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 45.6,
         "tdShare": 65.2,
         "avgPPA": 51.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4572962": {
         "recShare": 45.2,
@@ -520870,10 +520762,10 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4573222": {
         "recShare": 74.8,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 51.7,
         "avgPPA": 67,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4574327": {
         "recShare": 66.6,
@@ -520887,7 +520779,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 41.6,
         "tdShare": 22.7,
         "avgPPA": 45,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_4574722": {
         "recShare": 85.6,
@@ -520900,7 +520792,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 63.9,
         "ydShare": 54.2,
         "tdShare": 28.2,
-        "avgPPA": 89.4,
+        "avgPPA": 89.3,
         "usageOverall": 4.6
       },
       "2023_4575348": {
@@ -520915,7 +520807,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 16.6,
         "tdShare": 38.5,
         "avgPPA": 85.5,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4575558": {
         "recShare": 62,
@@ -520929,13 +520821,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.6,
         "tdShare": 90.3,
         "avgPPA": 64.9,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2023_4578462": {
         "recShare": 75.2,
         "ydShare": 68.8,
         "tdShare": 70.3,
-        "avgPPA": 62.9,
+        "avgPPA": 63,
         "usageOverall": 78.5
       },
       "2023_4586312": {
@@ -520977,13 +520869,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 5.7,
         "ydShare": 4.1,
         "tdShare": 22.7,
-        "avgPPA": 77.6,
+        "avgPPA": 77.7,
         "usageOverall": 6.2
       },
       "2023_4590532": {
         "recShare": 84.9,
         "ydShare": 75.2,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 85.3,
         "usageOverall": 64
       },
@@ -521024,7 +520916,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4596439": {
         "recShare": 55.4,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 41.4,
         "avgPPA": 67.1,
         "usageOverall": 38.2
@@ -521037,11 +520929,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 43.5
       },
       "2023_4596596": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 54.6,
         "tdShare": 33.6,
         "avgPPA": 54.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4597248": {
         "recShare": 69.5,
@@ -521088,7 +520980,7 @@ const COLLEGE_SCOUTING = {
       "2023_4602667": {
         "recShare": 71.2,
         "ydShare": 64.1,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 49,
         "usageOverall": 57.7
       },
@@ -521097,7 +520989,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 64.7,
         "tdShare": 69.3,
         "avgPPA": 64.4,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2023_4603746": {
         "recShare": 72.2,
@@ -521137,7 +521029,7 @@ const COLLEGE_SCOUTING = {
       "2023_4608793": {
         "recShare": 89.6,
         "ydShare": 83.1,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 47.5,
         "usageOverall": 81.6
       },
@@ -521166,7 +521058,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.7,
         "ydShare": 56.5,
         "tdShare": 22.7,
-        "avgPPA": 87,
+        "avgPPA": 86.9,
         "usageOverall": 38.2
       },
       "2023_4613087": {
@@ -521220,7 +521112,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4683062": {
         "recShare": 83.1,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 62,
         "avgPPA": 38.8,
         "usageOverall": 78.5
@@ -521240,7 +521132,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2023_4683153": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 13.6,
         "tdShare": 18.5,
         "avgPPA": 4.9,
@@ -521275,7 +521167,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 43.5
       },
       "2023_4683461": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 62,
         "tdShare": 76.9,
         "avgPPA": 80.5,
@@ -521293,7 +521185,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.5,
         "tdShare": 26,
         "avgPPA": 81.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4684281": {
         "recShare": 37.9,
@@ -521306,7 +521198,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 85.8,
         "ydShare": 88.7,
         "tdShare": 82.9,
-        "avgPPA": 82.2,
+        "avgPPA": 82.3,
         "usageOverall": 62.6
       },
       "2023_4685144": {
@@ -521318,7 +521210,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4685183": {
         "recShare": 44.2,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 32.7,
         "avgPPA": 74.2,
         "usageOverall": 50.8
@@ -521327,7 +521219,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 69.5,
         "ydShare": 71.8,
         "tdShare": 84.6,
-        "avgPPA": 83,
+        "avgPPA": 83.1,
         "usageOverall": 64
       },
       "2023_4685261": {
@@ -521361,7 +521253,7 @@ const COLLEGE_SCOUTING = {
       "2023_4685415": {
         "recShare": 60.3,
         "ydShare": 63.7,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 88.5,
         "usageOverall": 85.2
       },
@@ -521415,7 +521307,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 62.6
       },
       "2023_4686104": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 51.5,
         "tdShare": 21,
         "avgPPA": 77.8,
@@ -521433,7 +521325,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 4.8,
         "tdShare": 20.5,
         "avgPPA": 83.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4686343": {
         "recShare": 69.5,
@@ -521466,7 +521358,7 @@ const COLLEGE_SCOUTING = {
       "2023_4686612": {
         "recShare": 75.2,
         "ydShare": 82.4,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 95.9,
         "usageOverall": 67.3
       },
@@ -521475,7 +521367,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 2.6,
         "tdShare": 22.7,
         "avgPPA": 66.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4686781": {
         "recShare": 43.4,
@@ -521489,13 +521381,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.1,
         "tdShare": 14.2,
         "avgPPA": 92.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4687561": {
         "recShare": 55.4,
         "ydShare": 29.5,
         "tdShare": 65.2,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 35.3
       },
       "2023_4689855": {
@@ -521516,7 +521408,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 35.9,
         "ydShare": 32.3,
         "tdShare": 52.7,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 35.3
       },
       "2023_4691003": {
@@ -521528,9 +521420,9 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4691315": {
         "recShare": 56.9,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 53.8,
-        "avgPPA": 83.1,
+        "avgPPA": 83.2,
         "usageOverall": 62.6
       },
       "2023_4692022": {
@@ -521538,10 +521430,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 94.4,
         "tdShare": 81.2,
         "avgPPA": 98.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2023_4693740": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 4.1,
         "tdShare": 11.1,
         "avgPPA": 49.7,
@@ -521550,7 +521442,7 @@ const COLLEGE_SCOUTING = {
       "2023_4693798": {
         "recShare": 27.4,
         "ydShare": 7.1,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 54.6,
         "usageOverall": 21.1
       },
@@ -521622,7 +521514,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21.5,
         "tdShare": 5.3,
         "avgPPA": 85.4,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2023_4700453": {
         "recShare": 75.6,
@@ -521633,7 +521525,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4701936": {
         "recShare": 45.7,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 74.5,
         "avgPPA": 70.7,
         "usageOverall": 55.3
@@ -521654,7 +521546,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4708486": {
         "recShare": 62.5,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 62.5,
         "avgPPA": 48.2,
         "usageOverall": 70.4
@@ -521734,21 +521626,21 @@ const COLLEGE_SCOUTING = {
         "ydShare": 3,
         "tdShare": 9.5,
         "avgPPA": 51.1,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4714388": {
         "recShare": 67.3,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 81.6,
         "avgPPA": 67.5,
         "usageOverall": 61.2
       },
       "2023_4718457": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 12.6,
         "tdShare": 63.1,
         "avgPPA": 80.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2023_4723820": {
         "recShare": 9.6,
@@ -521780,21 +521672,21 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4831976": {
         "recShare": 34.3,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 15.2,
         "avgPPA": 98.6,
         "usageOverall": 13.9
       },
       "2023_4832806": {
         "recShare": 53.7,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 44.4,
         "avgPPA": 78.3,
         "usageOverall": 28.4
       },
       "2023_4837200": {
         "recShare": 72.2,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 47.3,
         "avgPPA": 38.1,
         "usageOverall": 57.7
@@ -521902,7 +521794,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 39.6,
         "tdShare": 6.7,
         "avgPPA": 80.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2023_4873126": {
         "recShare": 26.8,
@@ -521915,7 +521807,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 79.5,
         "ydShare": 74.9,
         "tdShare": 81.6,
-        "avgPPA": 80.9,
+        "avgPPA": 81,
         "usageOverall": 62.6
       },
       "2023_4875272": {
@@ -521923,7 +521815,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.1,
         "tdShare": 68.3,
         "avgPPA": 84.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2023_4875613": {
         "recShare": 34.3,
@@ -521955,7 +521847,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4876678": {
         "recShare": 42.1,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 13.9,
         "avgPPA": 23.8,
         "usageOverall": 34
@@ -521970,7 +521862,7 @@ const COLLEGE_SCOUTING = {
       "2023_4877706": {
         "recShare": 78.2,
         "ydShare": 90.9,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 96.1,
         "usageOverall": 64
       },
@@ -521979,12 +521871,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.1,
         "tdShare": 22.7,
         "avgPPA": 12.4,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_4879499": {
         "recShare": 39,
         "ydShare": 42.1,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 18.5,
         "usageOverall": 41.9
       },
@@ -522010,7 +521902,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 38.2
       },
       "2023_4880845": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 7.5,
         "tdShare": 74.5,
         "avgPPA": 88.8,
@@ -522021,11 +521913,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 96.4,
         "tdShare": 99.2,
         "avgPPA": 92.5,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2023_4883774": {
         "recShare": 55.8,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 5.3,
         "avgPPA": 25.8,
         "usageOverall": 62.6
@@ -522049,7 +521941,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 79.5,
         "tdShare": 80.8,
         "avgPPA": 74.3,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2023_4896389": {
         "recShare": 48.1,
@@ -522066,11 +521958,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 18.3
       },
       "2023_4907573": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 40.1,
         "tdShare": 20.5,
-        "avgPPA": 79.8,
-        "usageOverall": 46.4
+        "avgPPA": 79.9,
+        "usageOverall": 46.3
       },
       "2023_4910239": {
         "recShare": 44.7,
@@ -522083,7 +521975,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 80,
         "ydShare": 92,
         "tdShare": 44.4,
-        "avgPPA": 89.4,
+        "avgPPA": 89.3,
         "usageOverall": 64
       },
       "2023_4912130": {
@@ -522094,7 +521986,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2023_4912218": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 78.2,
         "tdShare": 74.5,
         "avgPPA": 93.5,
@@ -522123,7 +522015,7 @@ const COLLEGE_SCOUTING = {
       },
       "2023_4916941": {
         "recShare": 34.3,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 22.7,
         "avgPPA": 42,
         "usageOverall": 54.2
@@ -522201,9 +522093,9 @@ const COLLEGE_SCOUTING = {
       "2023_5081322": {
         "recShare": 7.6,
         "ydShare": 18,
-        "tdShare": 13,
-        "avgPPA": 51.4,
-        "usageOverall": 46.4
+        "tdShare": 13.1,
+        "avgPPA": 51.5,
+        "usageOverall": 46.3
       },
       "2023_5081368": {
         "recShare": 88.3,
@@ -522251,7 +522143,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 67.3,
         "ydShare": 69.1,
         "tdShare": 62,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 35.3
       },
       "2023_5082614": {
@@ -522273,18 +522165,18 @@ const COLLEGE_SCOUTING = {
         "ydShare": 37.7,
         "tdShare": 70.3,
         "avgPPA": 29.8,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2023_5084133": {
         "recShare": 4.6,
         "ydShare": 3,
         "tdShare": 32.7,
         "avgPPA": 97.9,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_5084135": {
         "recShare": 85.6,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 88.6,
         "avgPPA": 73.6,
         "usageOverall": 78.5
@@ -522293,7 +522185,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 6.7,
         "ydShare": 6.1,
         "tdShare": 7,
-        "avgPPA": 64.5,
+        "avgPPA": 64.6,
         "usageOverall": 4.6
       },
       "2023_5086233": {
@@ -522334,7 +522226,7 @@ const COLLEGE_SCOUTING = {
       "2023_5092477": {
         "recShare": 3.8,
         "ydShare": 1.7,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 13.6,
         "usageOverall": 11.3
       },
@@ -522362,7 +522254,7 @@ const COLLEGE_SCOUTING = {
       "2023_5095360": {
         "recShare": 68.5,
         "ydShare": 74.6,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 80.9,
         "usageOverall": 67.3
       },
@@ -522374,11 +522266,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 71.4
       },
       "2023_5100582": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 53.4,
         "tdShare": 67.5,
         "avgPPA": 99.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2023_5103004": {
         "recShare": 77.5,
@@ -522392,7 +522284,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 7.5,
         "tdShare": 8.5,
         "avgPPA": 90.3,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2023_5121334": {
         "recShare": 20.7,
@@ -522402,7 +522294,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 21.1
       },
       "2023_5122006": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 11,
         "tdShare": 35.4,
         "avgPPA": 86.6,
@@ -522420,18 +522312,18 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11.5,
         "tdShare": 37.8,
         "avgPPA": 96.5,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2023_5151145": {
         "recShare": 15.5,
         "ydShare": 33.4,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 60.4,
         "usageOverall": 74.7
       },
       "2023_5151199": {
-        "recShare": 32.5,
-        "ydShare": 43.9,
+        "recShare": 32.4,
+        "ydShare": 43.8,
         "tdShare": 16.9,
         "avgPPA": 39.7,
         "usageOverall": 54.2
@@ -522458,7 +522350,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 38.2
       },
       "2023_5151976": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 60.9,
         "tdShare": 45.9,
         "avgPPA": 98.9,
@@ -522481,7 +522373,7 @@ const COLLEGE_SCOUTING = {
       "2023_5155179": {
         "recShare": 83.8,
         "ydShare": 53.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 30.2,
         "usageOverall": 79.3
       },
@@ -522518,7 +522410,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 45.6,
         "tdShare": 26,
         "avgPPA": 40,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_4426357": {
         "recShare": 7.2,
@@ -522584,11 +522476,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 82.3
       },
       "2024_4427601": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 39.6,
         "tdShare": 62,
         "avgPPA": 99.4,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2024_4427819": {
         "recShare": 56.9,
@@ -522615,7 +522507,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 16,
         "ydShare": 15.2,
         "tdShare": 44.4,
-        "avgPPA": 75.7,
+        "avgPPA": 75.8,
         "usageOverall": 19.8
       },
       "2024_4428594": {
@@ -522643,14 +522535,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 87,
         "ydShare": 90.4,
         "tdShare": 91.6,
-        "avgPPA": 80.7,
+        "avgPPA": 80.8,
         "usageOverall": 97.5
       },
       "2024_4429053": {
         "recShare": 92.2,
         "ydShare": 83.6,
         "tdShare": 99.4,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 71.4
       },
       "2024_4429056": {
@@ -522679,13 +522571,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 54.6,
         "tdShare": 51.7,
         "avgPPA": 94.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_4429184": {
         "recShare": 66.3,
         "ydShare": 84.8,
         "tdShare": 67.5,
-        "avgPPA": 78.4,
+        "avgPPA": 78.5,
         "usageOverall": 61.2
       },
       "2024_4429284": {
@@ -522693,7 +522585,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 58.7,
         "tdShare": 71.3,
         "avgPPA": 92,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_4429885": {
         "recShare": 23.6,
@@ -522713,7 +522605,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 74.3,
         "ydShare": 58.7,
         "tdShare": 14.2,
-        "avgPPA": 77.6,
+        "avgPPA": 77.7,
         "usageOverall": 64
       },
       "2024_4429994": {
@@ -522739,7 +522631,7 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4430288": {
         "recShare": 76.2,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 85.7,
         "avgPPA": 88.4,
         "usageOverall": 62.6
@@ -522760,13 +522652,13 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4430512": {
         "recShare": 64.4,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 5.3,
         "avgPPA": 35.1,
         "usageOverall": 55.3
       },
       "2024_4430577": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 44.3,
         "tdShare": 55.6,
         "avgPPA": 98.8,
@@ -522837,7 +522729,7 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4431002": {
         "recShare": 45.2,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 66,
         "avgPPA": 95.4,
         "usageOverall": 18.3
@@ -522850,7 +522742,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 67.3
       },
       "2024_4431068": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 15.2,
         "tdShare": 7,
         "avgPPA": 98.2,
@@ -522875,7 +522767,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 13.6,
         "tdShare": 26,
         "avgPPA": 95.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_4431210": {
         "recShare": 41,
@@ -522906,7 +522798,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 50.8
       },
       "2024_4431309": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 24.1,
         "tdShare": 45.9,
         "avgPPA": 69.9,
@@ -522956,9 +522848,9 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4431487": {
         "recShare": 64.4,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 62.5,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 98.5
       },
       "2024_4431505": {
@@ -523012,17 +522904,17 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4432267": {
         "recShare": 82.6,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 74.8,
         "avgPPA": 68.8,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2024_4432387": {
         "recShare": 19.9,
         "ydShare": 8.6,
         "tdShare": 5.3,
-        "avgPPA": 57,
-        "usageOverall": 23.8
+        "avgPPA": 57.1,
+        "usageOverall": 23.7
       },
       "2024_4432775": {
         "recShare": 23.6,
@@ -523043,7 +522935,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 84.8,
         "tdShare": 93.8,
         "avgPPA": 88.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2024_4433855": {
         "recShare": 64.9,
@@ -523118,7 +523010,7 @@ const COLLEGE_SCOUTING = {
       "2024_4565879": {
         "recShare": 64.9,
         "ydShare": 48.7,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 86.7,
         "usageOverall": 19.8
       },
@@ -523146,7 +523038,7 @@ const COLLEGE_SCOUTING = {
       "2024_4567044": {
         "recShare": 88.1,
         "ydShare": 81.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 52.6,
         "usageOverall": 62.6
       },
@@ -523155,13 +523047,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23.6,
         "tdShare": 9.1,
         "avgPPA": 97.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_4567750": {
         "recShare": 86.4,
         "ydShare": 76.1,
         "tdShare": 77.3,
-        "avgPPA": 71.6,
+        "avgPPA": 71.7,
         "usageOverall": 80.8
       },
       "2024_4567784": {
@@ -523169,7 +523061,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46.5,
         "tdShare": 58.7,
         "avgPPA": 86,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_4569001": {
         "recShare": 52.8,
@@ -523188,7 +523080,7 @@ const COLLEGE_SCOUTING = {
       "2024_4569452": {
         "recShare": 74.3,
         "ydShare": 44.3,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 73.1,
         "usageOverall": 70.4
       },
@@ -523230,7 +523122,7 @@ const COLLEGE_SCOUTING = {
       "2024_4570270": {
         "recShare": 6.7,
         "ydShare": 5.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 90.8,
         "usageOverall": 2.3
       },
@@ -523251,14 +523143,14 @@ const COLLEGE_SCOUTING = {
       "2024_4571114": {
         "recShare": 65.4,
         "ydShare": 70.1,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 78.1,
         "usageOverall": 32.6
       },
       "2024_4571194": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 57,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 90.4,
         "usageOverall": 32.6
       },
@@ -523274,7 +523166,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 61.4,
         "tdShare": 69.3,
         "avgPPA": 69,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_4572267": {
         "recShare": 67,
@@ -523335,9 +523227,9 @@ const COLLEGE_SCOUTING = {
       "2024_4577541": {
         "recShare": 14,
         "ydShare": 12.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 69.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_4578436": {
         "recShare": 98.7,
@@ -523432,7 +523324,7 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4596539": {
         "recShare": 57.3,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 49,
         "avgPPA": 52.6,
         "usageOverall": 36.7
@@ -523466,10 +523358,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 67.3
       },
       "2024_4602185": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 56.2,
-        "tdShare": 52.2,
-        "avgPPA": 98.6,
+        "tdShare": 52.3,
+        "avgPPA": 98.5,
         "usageOverall": 36.7
       },
       "2024_4602667": {
@@ -523505,7 +523397,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 76.1,
         "tdShare": 62,
         "avgPPA": 74.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_4603185": {
         "recShare": 57.3,
@@ -523540,7 +523432,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21.5,
         "tdShare": 5.3,
         "avgPPA": 69.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_4607419": {
         "recShare": 28.6,
@@ -523558,7 +523450,7 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4608679": {
         "recShare": 39,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 49.3,
         "avgPPA": 68.8,
         "usageOverall": 44.9
@@ -523582,7 +523474,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.2,
         "tdShare": 30.1,
         "avgPPA": 34.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_4613050": {
         "recShare": 42.7,
@@ -523601,7 +523493,7 @@ const COLLEGE_SCOUTING = {
       "2024_4635009": {
         "recShare": 10,
         "ydShare": 15.6,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 86.2,
         "usageOverall": 29.7
       },
@@ -523652,17 +523544,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 58.2,
         "tdShare": 88.6,
         "avgPPA": 44.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_4683237": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 28.8,
         "tdShare": 8,
         "avgPPA": 85.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_4683425": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 62.5,
         "tdShare": 51.7,
         "avgPPA": 97.6,
@@ -523672,7 +523564,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 31.1,
         "ydShare": 46,
         "tdShare": 47.3,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 35.3
       },
       "2024_4684173": {
@@ -523680,19 +523572,19 @@ const COLLEGE_SCOUTING = {
         "ydShare": 88.7,
         "tdShare": 99.3,
         "avgPPA": 99.2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_4684281": {
         "recShare": 21.7,
         "ydShare": 41.1,
         "tdShare": 5.3,
         "avgPPA": 95.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2024_4685087": {
         "recShare": 92.5,
         "ydShare": 87.3,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 62.3,
         "usageOverall": 78.5
       },
@@ -523720,7 +523612,7 @@ const COLLEGE_SCOUTING = {
       "2024_4685261": {
         "recShare": 78.5,
         "ydShare": 80.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 73.3,
         "usageOverall": 65.2
       },
@@ -523729,7 +523621,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 72.4,
         "tdShare": 95.6,
         "avgPPA": 75.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2024_4685297": {
         "recShare": 27.4,
@@ -523746,7 +523638,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 86.5
       },
       "2024_4685383": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 31.7,
         "tdShare": 35.4,
         "avgPPA": 76.9,
@@ -523756,7 +523648,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 41.6,
         "ydShare": 21,
         "tdShare": 54.3,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 18.3
       },
       "2024_4685415": {
@@ -523811,8 +523703,8 @@ const COLLEGE_SCOUTING = {
       "2024_4686767": {
         "recShare": 31.9,
         "ydShare": 28.2,
-        "tdShare": 7.2,
-        "avgPPA": 56.3,
+        "tdShare": 7.3,
+        "avgPPA": 56.4,
         "usageOverall": 22.4
       },
       "2024_4687189": {
@@ -523826,7 +523718,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 33.6,
         "ydShare": 32.8,
         "tdShare": 8,
-        "avgPPA": 61.9,
+        "avgPPA": 62,
         "usageOverall": 19.8
       },
       "2024_4690143": {
@@ -523845,10 +523737,10 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4691138": {
         "recShare": 61.4,
-        "ydShare": 67.4,
-        "tdShare": 52.2,
+        "ydShare": 67.3,
+        "tdShare": 52.3,
         "avgPPA": 64.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2024_4691315": {
         "recShare": 0.2,
@@ -523860,7 +523752,7 @@ const COLLEGE_SCOUTING = {
       "2024_4692972": {
         "recShare": 26.8,
         "ydShare": 24.1,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 88.4,
         "usageOverall": 4.6
       },
@@ -523881,7 +523773,7 @@ const COLLEGE_SCOUTING = {
       "2024_4695910": {
         "recShare": 14.6,
         "ydShare": 14.7,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 81.3,
         "usageOverall": 4.6
       },
@@ -523895,8 +523787,8 @@ const COLLEGE_SCOUTING = {
       "2024_4696147": {
         "recShare": 64.4,
         "ydShare": 71.1,
-        "tdShare": 13,
-        "avgPPA": 73.7,
+        "tdShare": 13.1,
+        "avgPPA": 73.8,
         "usageOverall": 60
       },
       "2024_4698597": {
@@ -523952,7 +523844,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 60.3,
         "ydShare": 69.4,
         "tdShare": 67.5,
-        "avgPPA": 65.5,
+        "avgPPA": 65.6,
         "usageOverall": 32.6
       },
       "2024_4702908": {
@@ -523988,13 +523880,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 34.4,
         "tdShare": 49.2,
         "avgPPA": 91.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2024_4708486": {
         "recShare": 20.7,
         "ydShare": 15.2,
         "tdShare": 5.8,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 44.9
       },
       "2024_4709678": {
@@ -524008,7 +523900,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 22.4,
         "ydShare": 11.9,
         "tdShare": 13.9,
-        "avgPPA": 71.6,
+        "avgPPA": 71.7,
         "usageOverall": 28.4
       },
       "2024_4710714": {
@@ -524029,20 +523921,20 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.2,
         "ydShare": 21.9,
         "tdShare": 35.1,
-        "avgPPA": 73.7,
-        "usageOverall": 10.4
+        "avgPPA": 73.8,
+        "usageOverall": 10.3
       },
       "2024_4710855": {
         "recShare": 59,
         "ydShare": 74.2,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 94.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_4710860": {
         "recShare": 88.1,
         "ydShare": 72.4,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 59.4,
         "usageOverall": 66.4
       },
@@ -524050,22 +523942,22 @@ const COLLEGE_SCOUTING = {
         "recShare": 89.8,
         "ydShare": 88.3,
         "tdShare": 11.1,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 67.3
       },
       "2024_4711408": {
         "recShare": 51.2,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 70.3,
         "avgPPA": 85.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_4712579": {
         "recShare": 34.3,
         "ydShare": 21.5,
         "tdShare": 41.4,
-        "avgPPA": 31.6,
-        "usageOverall": 73.2
+        "avgPPA": 31.7,
+        "usageOverall": 73.1
       },
       "2024_4713196": {
         "recShare": 76.9,
@@ -524079,7 +523971,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 99.2,
         "tdShare": 98.7,
         "avgPPA": 98.7,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2024_4714388": {
         "recShare": 82,
@@ -524121,7 +524013,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 55.5,
         "tdShare": 62,
         "avgPPA": 88.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_4808839": {
         "recShare": 15.5,
@@ -524138,7 +524030,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 9.2
       },
       "2024_4819228": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 17.3,
         "tdShare": 5.3,
         "avgPPA": 73.3,
@@ -524162,7 +524054,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 25.5,
         "ydShare": 16,
         "tdShare": 57.1,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 32.6
       },
       "2024_4837200": {
@@ -524177,7 +524069,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 74.6,
         "tdShare": 65.2,
         "avgPPA": 82,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_4838527": {
         "recShare": 52.2,
@@ -524201,7 +524093,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 21.1
       },
       "2024_4869581": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 7.9,
         "tdShare": 13.9,
         "avgPPA": 58.2,
@@ -524212,13 +524104,13 @@ const COLLEGE_SCOUTING = {
         "ydShare": 97.4,
         "tdShare": 98.7,
         "avgPPA": 94.6,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2024_4869603": {
         "recShare": 59.8,
         "ydShare": 53.4,
         "tdShare": 20.5,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 77.1
       },
       "2024_4869645": {
@@ -524237,7 +524129,7 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4869961": {
         "recShare": 52.2,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 47.3,
         "avgPPA": 96.3,
         "usageOverall": 29.7
@@ -524253,7 +524145,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 73.9,
         "ydShare": 39.6,
         "tdShare": 80.8,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 87.6
       },
       "2024_4870745": {
@@ -524289,7 +524181,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.8,
         "tdShare": 94.3,
         "avgPPA": 99.1,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2024_4870858": {
         "recShare": 68.2,
@@ -524306,31 +524198,31 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2024_4870912": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 41.6,
         "tdShare": 62,
         "avgPPA": 99.1,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2024_4870922": {
         "recShare": 4.1,
         "ydShare": 13.6,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 99.4,
         "usageOverall": 3.1
       },
       "2024_4870929": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 42.6,
         "tdShare": 10.2,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 16.8
       },
       "2024_4871023": {
         "recShare": 52.8,
         "ydShare": 50.5,
         "tdShare": 30.2,
-        "avgPPA": 81.5,
+        "avgPPA": 81.6,
         "usageOverall": 43.5
       },
       "2024_4872836": {
@@ -524341,7 +524233,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 21.1
       },
       "2024_4872957": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 46.5,
         "tdShare": 45.9,
         "avgPPA": 82.3,
@@ -524390,7 +524282,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 1.2
       },
       "2024_4877558": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 23,
         "tdShare": 62.5,
         "avgPPA": 73.3,
@@ -524401,7 +524293,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21,
         "tdShare": 57.1,
         "avgPPA": 93.5,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2024_4877706": {
         "recShare": 95.9,
@@ -524426,10 +524318,10 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4879298": {
         "recShare": 75.2,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 5.3,
         "avgPPA": 45.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_4879499": {
         "recShare": 68.5,
@@ -524439,7 +524331,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 36.7
       },
       "2024_4879562": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 16.6,
         "tdShare": 5.3,
         "avgPPA": 81.1,
@@ -524527,7 +524419,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.2,
         "tdShare": 41.4,
         "avgPPA": 92.7,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2024_4892576": {
         "recShare": 98.7,
@@ -524547,7 +524439,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 31.9,
         "ydShare": 24.7,
         "tdShare": 18.5,
-        "avgPPA": 80.9,
+        "avgPPA": 81,
         "usageOverall": 7.1
       },
       "2024_4900903": {
@@ -524569,7 +524461,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 33.4,
         "tdShare": 90.2,
         "avgPPA": 98.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_4912067": {
         "recShare": 36.8,
@@ -524587,14 +524479,14 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4914830": {
         "recShare": 61.4,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 44.4,
         "avgPPA": 75.5,
         "usageOverall": 62.6
       },
       "2024_4916306": {
         "recShare": 36.8,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 15.2,
         "avgPPA": 79.6,
         "usageOverall": 34
@@ -524609,7 +524501,7 @@ const COLLEGE_SCOUTING = {
       "2024_4917054": {
         "recShare": 16.4,
         "ydShare": 12.6,
-        "tdShare": 7.2,
+        "tdShare": 7.3,
         "avgPPA": 52.1,
         "usageOverall": 84.2
       },
@@ -524622,10 +524514,10 @@ const COLLEGE_SCOUTING = {
       },
       "2024_4918412": {
         "recShare": 26.8,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 41,
         "avgPPA": 98.7,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_4918417": {
         "recShare": 15,
@@ -524639,12 +524531,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 50.9,
         "tdShare": 16.9,
         "avgPPA": 55.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_4921154": {
         "recShare": 12.8,
         "ydShare": 7.5,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 34.4,
         "usageOverall": 77.1
       },
@@ -524681,14 +524573,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.6,
         "tdShare": 55.6,
         "avgPPA": 92.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2024_5075390": {
         "recShare": 69.5,
         "ydShare": 78.2,
         "tdShare": 78.7,
         "avgPPA": 98.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_5076106": {
         "recShare": 17.6,
@@ -524712,14 +524604,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 74.1
       },
       "2024_5077266": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 35.8,
         "tdShare": 44.4,
         "avgPPA": 85.1,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2024_5077873": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 22.4,
         "tdShare": 58.7,
         "avgPPA": 34,
@@ -524730,7 +524622,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52,
         "tdShare": 44.4,
         "avgPPA": 86,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2024_5078225": {
         "recShare": 36.8,
@@ -524757,7 +524649,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 37.3,
         "ydShare": 20.3,
         "tdShare": 44.4,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 13.9
       },
       "2024_5079345": {
@@ -524807,14 +524699,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.3,
         "tdShare": 15.2,
         "avgPPA": 69.7,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_5081250": {
         "recShare": 69.9,
         "ydShare": 50.9,
         "tdShare": 15.2,
         "avgPPA": 94.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_5081322": {
         "recShare": 78.7,
@@ -524846,15 +524738,15 @@ const COLLEGE_SCOUTING = {
       },
       "2024_5081517": {
         "recShare": 63.6,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 76.9,
         "avgPPA": 25.2,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2024_5081997": {
         "recShare": 80.3,
         "ydShare": 81.9,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 84.9,
         "usageOverall": 54.2
       },
@@ -524867,7 +524759,7 @@ const COLLEGE_SCOUTING = {
       },
       "2024_5082289": {
         "recShare": 29.2,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 32.7,
         "avgPPA": 95.2,
         "usageOverall": 9.2
@@ -524919,7 +524811,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.2,
         "tdShare": 33.6,
         "avgPPA": 97.3,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2024_5083748": {
         "recShare": 33.6,
@@ -524930,15 +524822,15 @@ const COLLEGE_SCOUTING = {
       },
       "2024_5084135": {
         "recShare": 75.9,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 71.3,
         "avgPPA": 91.2,
         "usageOverall": 61.2
       },
       "2024_5084771": {
-        "recShare": 36.4,
-        "ydShare": 43.9,
-        "tdShare": 13,
+        "recShare": 36.3,
+        "ydShare": 43.8,
+        "tdShare": 13.1,
         "avgPPA": 96.6,
         "usageOverall": 7.1
       },
@@ -524982,7 +524874,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 86.2,
         "tdShare": 71.7,
         "avgPPA": 98.5,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_5089539": {
         "recShare": 2.6,
@@ -524996,7 +524888,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 20.3,
         "tdShare": 26,
         "avgPPA": 14.3,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2024_5092470": {
         "recShare": 70.3,
@@ -525059,10 +524951,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 5.7,
         "tdShare": 14.2,
         "avgPPA": 93.2,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_5112674": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 54.2,
         "tdShare": 40.4,
         "avgPPA": 47.1,
@@ -525090,7 +524982,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 6.2
       },
       "2024_5120971": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 14.2,
         "tdShare": 47.3,
         "avgPPA": 95.9,
@@ -525107,7 +524999,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 77.5,
         "ydShare": 65.6,
         "tdShare": 74.5,
-        "avgPPA": 61.4,
+        "avgPPA": 61.5,
         "usageOverall": 77.1
       },
       "2024_5121750": {
@@ -525160,9 +525052,9 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 22.4
       },
       "2024_5127885": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 21.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 28.4,
         "usageOverall": 41.9
       },
@@ -525198,7 +525090,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 18,
         "ydShare": 18,
         "tdShare": 8.5,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 28.4
       },
       "2024_5150904": {
@@ -525239,7 +525131,7 @@ const COLLEGE_SCOUTING = {
       "2024_5152158": {
         "recShare": 44.7,
         "ydShare": 33.4,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 82.6,
         "usageOverall": 21.1
       },
@@ -525269,7 +525161,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.8,
         "tdShare": 35.1,
         "avgPPA": 49.7,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2024_5155519": {
         "recShare": 16,
@@ -525289,7 +525181,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 64.4,
         "ydShare": 89,
         "tdShare": 96,
-        "avgPPA": 83.1,
+        "avgPPA": 83.2,
         "usageOverall": 75.5
       },
       "2024_5160110": {
@@ -525321,7 +525213,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 58.9
       },
       "2024_5193298": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 40.6,
         "tdShare": 24.8,
         "avgPPA": 92.1,
@@ -525338,12 +525230,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 39,
         "ydShare": 46.9,
         "tdShare": 40.4,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 40
       },
       "2024_5218787": {
         "recShare": 45.2,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 18.5,
         "avgPPA": 46.4,
         "usageOverall": 40
@@ -525381,7 +525273,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11.5,
         "tdShare": 11.1,
         "avgPPA": 60,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2024_5221079": {
         "recShare": 16,
@@ -525395,7 +525287,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 77.2,
         "tdShare": 28.2,
         "avgPPA": 54.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2025_4429125": {
         "recShare": 9.1,
@@ -525409,7 +525301,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 47.7,
         "tdShare": 44.4,
         "avgPPA": 27.2,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2025_4429967": {
         "recShare": 76.2,
@@ -525443,7 +525335,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 65.4,
         "ydShare": 53.4,
         "tdShare": 38.5,
-        "avgPPA": 13,
+        "avgPPA": 13.1,
         "usageOverall": 66.4
       },
       "2025_4431197": {
@@ -525479,7 +525371,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 30.8,
         "tdShare": 63.1,
         "avgPPA": 73,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_4431632": {
         "recShare": 67,
@@ -525498,7 +525390,7 @@ const COLLEGE_SCOUTING = {
       "2025_4432506": {
         "recShare": 7.2,
         "ydShare": 12.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 75.4,
         "usageOverall": 18.3
       },
@@ -525514,12 +525406,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 21.5,
         "tdShare": 37.4,
         "avgPPA": 4.7,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2025_4433855": {
         "recShare": 6.7,
         "ydShare": 8.2,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 9.5,
         "usageOverall": 93.1
       },
@@ -525547,14 +525439,14 @@ const COLLEGE_SCOUTING = {
       "2025_4567033": {
         "recShare": 11.8,
         "ydShare": 30.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 40,
         "usageOverall": 21.1
       },
       "2025_4568687": {
         "recShare": 20.7,
         "ydShare": 41.1,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 29.3,
         "usageOverall": 19.8
       },
@@ -525575,7 +525467,7 @@ const COLLEGE_SCOUTING = {
       "2025_4570507": {
         "recShare": 96.2,
         "ydShare": 96.1,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 7.6,
         "usageOverall": 92
       },
@@ -525597,13 +525489,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 28.1,
         "ydShare": 61.4,
         "tdShare": 52.7,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 43.5
       },
       "2025_4594319": {
         "recShare": 67,
         "ydShare": 73.3,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 3,
         "usageOverall": 83.6
       },
@@ -525617,7 +525509,7 @@ const COLLEGE_SCOUTING = {
       "2025_4596010": {
         "recShare": 63.9,
         "ydShare": 59.9,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 41.1,
         "usageOverall": 76.3
       },
@@ -525668,10 +525560,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 38.3,
         "tdShare": 22.7,
         "avgPPA": 14.5,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_4603746": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 40.1,
         "tdShare": 57.1,
         "avgPPA": 75.4,
@@ -525699,7 +525591,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2025_4612246": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 27.1,
         "tdShare": 53.8,
         "avgPPA": 41.7,
@@ -525710,7 +525602,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.7,
         "tdShare": 9.1,
         "avgPPA": 63.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2025_4613132": {
         "recShare": 6.3,
@@ -525723,11 +525615,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 26.8,
         "ydShare": 46,
         "tdShare": 51.7,
-        "avgPPA": 51.4,
+        "avgPPA": 51.5,
         "usageOverall": 38.2
       },
       "2025_4682509": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 39.6,
         "tdShare": 11.1,
         "avgPPA": 5,
@@ -525762,7 +525654,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 86
       },
       "2025_4683114": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 24.7,
         "tdShare": 71.3,
         "avgPPA": 34.4,
@@ -525779,7 +525671,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 97.4,
         "ydShare": 95.1,
         "tdShare": 95.7,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 99.5
       },
       "2025_4683159": {
@@ -525793,8 +525685,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 44.2,
         "ydShare": 40.6,
         "tdShare": 28.2,
-        "avgPPA": 36.5,
-        "usageOverall": 69.3
+        "avgPPA": 36.6,
+        "usageOverall": 69.2
       },
       "2025_4683237": {
         "recShare": 88.5,
@@ -525807,7 +525699,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 16.4,
         "ydShare": 18,
         "tdShare": 53.8,
-        "avgPPA": 13,
+        "avgPPA": 13.1,
         "usageOverall": 28.4
       },
       "2025_4683461": {
@@ -525828,13 +525720,13 @@ const COLLEGE_SCOUTING = {
         "recShare": 54.2,
         "ydShare": 41.6,
         "tdShare": 5.3,
-        "avgPPA": 35.7,
+        "avgPPA": 35.8,
         "usageOverall": 54.2
       },
       "2025_4683886": {
         "recShare": 45.2,
         "ydShare": 47.7,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 43.4,
         "usageOverall": 36.7
       },
@@ -525842,7 +525734,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 85.8,
         "ydShare": 76.4,
         "tdShare": 68.3,
-        "avgPPA": 71.6,
+        "avgPPA": 71.7,
         "usageOverall": 80.2
       },
       "2025_4685110": {
@@ -525870,7 +525762,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 9.1,
         "ydShare": 27.1,
         "tdShare": 33.6,
-        "avgPPA": 50.2,
+        "avgPPA": 50.3,
         "usageOverall": 7.1
       },
       "2025_4685307": {
@@ -525884,7 +525776,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 75.9,
         "ydShare": 87.9,
         "tdShare": 66,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 80.2
       },
       "2025_4685383": {
@@ -525947,7 +525839,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 2.7,
         "ydShare": 11,
         "tdShare": 67.5,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 6.2
       },
       "2025_4686093": {
@@ -525955,12 +525847,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 19.1,
         "tdShare": 38.5,
         "avgPPA": 44.9,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_4687189": {
         "recShare": 77.5,
         "ydShare": 82.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 44.1,
         "usageOverall": 78.5
       },
@@ -525973,9 +525865,9 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4690461": {
         "recShare": 37.9,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 5.3,
-        "avgPPA": 21,
+        "avgPPA": 21.1,
         "usageOverall": 29.7
       },
       "2025_4691138": {
@@ -525986,16 +525878,16 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 70.4
       },
       "2025_4692796": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 48.2,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 49.7,
         "usageOverall": 21.1
       },
       "2025_4693817": {
         "recShare": 21.7,
         "ydShare": 24.7,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 5.2,
         "usageOverall": 29.7
       },
@@ -526008,7 +525900,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4697844": {
         "recShare": 50.2,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 74.5,
         "avgPPA": 8.4,
         "usageOverall": 60
@@ -526025,7 +525917,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 61.4,
         "tdShare": 47.3,
         "avgPPA": 58.3,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2025_4701951": {
         "recShare": 69.1,
@@ -526080,7 +525972,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 57.3,
         "ydShare": 62,
         "tdShare": 20.5,
-        "avgPPA": 72.2,
+        "avgPPA": 72.3,
         "usageOverall": 34
       },
       "2025_4709678": {
@@ -526107,7 +525999,7 @@ const COLLEGE_SCOUTING = {
       "2025_4710843": {
         "recShare": 49.3,
         "ydShare": 38.3,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 0.2,
         "usageOverall": 82.3
       },
@@ -526119,11 +526011,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 40
       },
       "2025_4713277": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 60.3,
         "tdShare": 37.4,
         "avgPPA": 28.6,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2025_4714341": {
         "recShare": 6.7,
@@ -526155,7 +526047,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4723820": {
         "recShare": 84,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 79.3,
         "avgPPA": 67.7,
         "usageOverall": 70.4
@@ -526165,7 +526057,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.4,
         "tdShare": 44.4,
         "avgPPA": 27.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2025_4804878": {
         "recShare": 76.2,
@@ -526179,7 +526071,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 8.6,
         "tdShare": 11.1,
         "avgPPA": 4.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_4808759": {
         "recShare": 83.5,
@@ -526206,7 +526098,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 37.9,
         "ydShare": 32.8,
         "tdShare": 46.1,
-        "avgPPA": 27.5,
+        "avgPPA": 27.6,
         "usageOverall": 35.3
       },
       "2025_4831976": {
@@ -526235,10 +526127,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 12.6,
         "tdShare": 5.3,
         "avgPPA": 8.7,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2025_4834817": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 51.5,
         "tdShare": 54.3,
         "avgPPA": 36.6,
@@ -526263,12 +526155,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 93,
         "tdShare": 93.9,
         "avgPPA": 42.1,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2025_4837269": {
         "recShare": 46.8,
-        "ydShare": 38.8,
-        "tdShare": 13,
+        "ydShare": 38.7,
+        "tdShare": 13.1,
         "avgPPA": 52.9,
         "usageOverall": 25.2
       },
@@ -526291,7 +526183,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.8,
         "tdShare": 55.6,
         "avgPPA": 23.2,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2025_4869340": {
         "recShare": 45.7,
@@ -526303,7 +526195,7 @@ const COLLEGE_SCOUTING = {
       "2025_4869422": {
         "recShare": 86.1,
         "ydShare": 87.6,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 37.7,
         "usageOverall": 93.7
       },
@@ -526319,7 +526211,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 59.2,
         "tdShare": 57.1,
         "avgPPA": 19.6,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_4869520": {
         "recShare": 48.1,
@@ -526343,10 +526235,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 61.2
       },
       "2025_4869645": {
-        "recShare": 56.3,
-        "ydShare": 67.4,
+        "recShare": 56.2,
+        "ydShare": 67.3,
         "tdShare": 64.2,
-        "avgPPA": 21,
+        "avgPPA": 21.1,
         "usageOverall": 75.5
       },
       "2025_4869694": {
@@ -526359,7 +526251,7 @@ const COLLEGE_SCOUTING = {
       "2025_4869730": {
         "recShare": 88.5,
         "ydShare": 95.9,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 34.2,
         "usageOverall": 88.5
       },
@@ -526414,10 +526306,10 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4870656": {
         "recShare": 72.6,
-        "ydShare": 67.4,
-        "tdShare": 34.5,
+        "ydShare": 67.3,
+        "tdShare": 34.6,
         "avgPPA": 29.9,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2025_4870713": {
         "recShare": 26.1,
@@ -526452,12 +526344,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 1.9,
         "tdShare": 24.8,
         "avgPPA": 30.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_4870842": {
         "recShare": 49.3,
         "ydShare": 63.3,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 52.1,
         "usageOverall": 72.2
       },
@@ -526491,7 +526383,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4870922": {
         "recShare": 92.2,
-        "ydShare": 95.7,
+        "ydShare": 95.6,
         "tdShare": 82.9,
         "avgPPA": 58.9,
         "usageOverall": 87.1
@@ -526511,7 +526403,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 57.7
       },
       "2025_4871010": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 80.4,
         "tdShare": 98.7,
         "avgPPA": 43.2,
@@ -526528,7 +526420,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 54.2,
         "ydShare": 73.9,
         "tdShare": 78.1,
-        "avgPPA": 91.1,
+        "avgPPA": 91,
         "usageOverall": 79.3
       },
       "2025_4871062": {
@@ -526543,7 +526435,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 3.7,
         "tdShare": 5.3,
         "avgPPA": 2.6,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2025_4872957": {
         "recShare": 60.7,
@@ -526553,7 +526445,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 67.3
       },
       "2025_4875272": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 69.8,
         "tdShare": 11.1,
         "avgPPA": 44.4,
@@ -526570,19 +526462,19 @@ const COLLEGE_SCOUTING = {
         "recShare": 81.5,
         "ydShare": 85.6,
         "tdShare": 89,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 86.5
       },
       "2025_4877021": {
         "recShare": 45.2,
         "ydShare": 37.7,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 0.3,
         "usageOverall": 53.1
       },
       "2025_4877024": {
         "recShare": 11.8,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 5.3,
         "avgPPA": 65.1,
         "usageOverall": 2.3
@@ -526592,7 +526484,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 65.1,
         "tdShare": 71.5,
         "avgPPA": 28.8,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2025_4877664": {
         "recShare": 59.5,
@@ -526640,7 +526532,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 16,
         "ydShare": 11.5,
         "tdShare": 11.1,
-        "avgPPA": 10.1,
+        "avgPPA": 10.2,
         "usageOverall": 19.8
       },
       "2025_4880281": {
@@ -526659,7 +526551,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4885466": {
         "recShare": 43.4,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 62.5,
         "avgPPA": 44.3,
         "usageOverall": 58.9
@@ -526673,7 +526565,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4888723": {
         "recShare": 24.2,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 33.6,
         "avgPPA": 41.4,
         "usageOverall": 41.9
@@ -526724,7 +526616,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 21.7,
         "ydShare": 17.3,
         "tdShare": 62,
-        "avgPPA": 82.1,
+        "avgPPA": 82.2,
         "usageOverall": 12.6
       },
       "2025_4900879": {
@@ -526737,8 +526629,8 @@ const COLLEGE_SCOUTING = {
       "2025_4907543": {
         "recShare": 63.9,
         "ydShare": 78.2,
-        "tdShare": 58.3,
-        "avgPPA": 53.6,
+        "tdShare": 58.4,
+        "avgPPA": 53.7,
         "usageOverall": 71.4
       },
       "2025_4907573": {
@@ -526814,16 +526706,16 @@ const COLLEGE_SCOUTING = {
       "2025_4917054": {
         "recShare": 48.1,
         "ydShare": 32.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 24.3,
         "usageOverall": 57.7
       },
       "2025_4917349": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 65.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 63.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_4918108": {
         "recShare": 93.4,
@@ -526851,17 +526743,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 28.2,
         "tdShare": 40.3,
         "avgPPA": 3.1,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_4921306": {
         "recShare": 44.2,
-        "ydShare": 43.9,
+        "ydShare": 43.8,
         "tdShare": 40.3,
         "avgPPA": 4.1,
         "usageOverall": 64
       },
       "2025_4922992": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 62,
         "tdShare": 93.8,
         "avgPPA": 13.3,
@@ -526869,7 +526761,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_4923226": {
         "recShare": 41,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 66,
         "avgPPA": 30.7,
         "usageOverall": 50.8
@@ -526877,7 +526769,7 @@ const COLLEGE_SCOUTING = {
       "2025_4923295": {
         "recShare": 54.2,
         "ydShare": 55.5,
-        "tdShare": 52.2,
+        "tdShare": 52.3,
         "avgPPA": 38.6,
         "usageOverall": 65.2
       },
@@ -526899,7 +526791,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 49.7,
         "ydShare": 92.4,
         "tdShare": 97,
-        "avgPPA": 77.4,
+        "avgPPA": 77.5,
         "usageOverall": 40
       },
       "2025_5075390": {
@@ -526970,7 +526862,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23,
         "tdShare": 47.3,
         "avgPPA": 4.6,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_5078312": {
         "recShare": 55.4,
@@ -526983,7 +526875,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 2.6,
         "ydShare": 7.1,
         "tdShare": 35.1,
-        "avgPPA": 56.3,
+        "avgPPA": 56.4,
         "usageOverall": 1.5
       },
       "2025_5079345": {
@@ -526997,7 +526889,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 88.1,
         "ydShare": 90.6,
         "tdShare": 96.7,
-        "avgPPA": 13.5,
+        "avgPPA": 13.6,
         "usageOverall": 86
       },
       "2025_5079501": {
@@ -527030,7 +526922,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_5079580": {
         "recShare": 63.6,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 47.3,
         "avgPPA": 59.4,
         "usageOverall": 60
@@ -527068,7 +526960,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 93.6,
         "tdShare": 90.7,
         "avgPPA": 81.4,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2025_5080703": {
         "recShare": 85.8,
@@ -527081,7 +526973,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.5,
         "ydShare": 30.8,
         "tdShare": 66,
-        "avgPPA": 60.9,
+        "avgPPA": 61,
         "usageOverall": 60
       },
       "2025_5081131": {
@@ -527123,7 +527015,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 100,
         "ydShare": 100,
         "tdShare": 98.7,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 99.6
       },
       "2025_5081997": {
@@ -527166,7 +527058,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.8,
         "tdShare": 92.6,
         "avgPPA": 39.6,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2025_5083370": {
         "recShare": 59,
@@ -527193,14 +527085,14 @@ const COLLEGE_SCOUTING = {
         "recShare": 77.2,
         "ydShare": 69.4,
         "tdShare": 76.9,
-        "avgPPA": 35.5,
+        "avgPPA": 35.6,
         "usageOverall": 93.4
       },
       "2025_5084658": {
         "recShare": 41,
         "ydShare": 60.3,
-        "tdShare": 58.3,
-        "avgPPA": 75.8,
+        "tdShare": 58.4,
+        "avgPPA": 75.9,
         "usageOverall": 38.2
       },
       "2025_5084771": {
@@ -527220,7 +527112,7 @@ const COLLEGE_SCOUTING = {
       "2025_5084802": {
         "recShare": 18,
         "ydShare": 44.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 32.3,
         "usageOverall": 36.7
       },
@@ -527253,14 +527145,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 75.5
       },
       "2025_5086096": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 30.1,
         "tdShare": 45.9,
         "avgPPA": 78.7,
         "usageOverall": 22.4
       },
       "2025_5088153": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 56.5,
         "tdShare": 45.9,
         "avgPPA": 72.5,
@@ -527284,7 +527176,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 17.6,
         "ydShare": 5.4,
         "tdShare": 28.2,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 16.8
       },
       "2025_5089545": {
@@ -527320,7 +527212,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 20.3,
         "tdShare": 8,
         "avgPPA": 53.4,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2025_5092787": {
         "recShare": 18.5,
@@ -527333,7 +527225,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 19.9,
         "ydShare": 43,
         "tdShare": 69.3,
-        "avgPPA": 49.1,
+        "avgPPA": 49.2,
         "usageOverall": 40
       },
       "2025_5093183": {
@@ -527362,7 +527254,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.8,
         "tdShare": 10.2,
         "avgPPA": 0.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_5096863": {
         "recShare": 42.7,
@@ -527393,7 +527285,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 83
       },
       "2025_5110019": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 54.6,
         "tdShare": 74.5,
         "avgPPA": 34.6,
@@ -527404,7 +527296,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.6,
         "tdShare": 78.1,
         "avgPPA": 79.7,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2025_5114311": {
         "recShare": 41.6,
@@ -527425,7 +527317,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 44.3,
         "tdShare": 17.4,
         "avgPPA": 5.5,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2025_5121334": {
         "recShare": 71.2,
@@ -527443,7 +527335,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_5121601": {
         "recShare": 36.8,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 62,
         "avgPPA": 6.8,
         "usageOverall": 62.6
@@ -527465,7 +527357,7 @@ const COLLEGE_SCOUTING = {
       "2025_5121750": {
         "recShare": 60.7,
         "ydShare": 50,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 57.3,
         "usageOverall": 64
       },
@@ -527473,18 +527365,18 @@ const COLLEGE_SCOUTING = {
         "recShare": 65.4,
         "ydShare": 77.2,
         "tdShare": 71.7,
-        "avgPPA": 73.7,
-        "usageOverall": 68.4
+        "avgPPA": 73.8,
+        "usageOverall": 68.3
       },
       "2025_5122006": {
         "recShare": 20.7,
         "ydShare": 11.9,
         "tdShare": 6.1,
         "avgPPA": 33.1,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_5122072": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 58.2,
         "tdShare": 76.9,
         "avgPPA": 3,
@@ -527514,7 +527406,7 @@ const COLLEGE_SCOUTING = {
       "2025_5126534": {
         "recShare": 25.5,
         "ydShare": 58.2,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 41.1,
         "usageOverall": 18.3
       },
@@ -527537,7 +527429,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 32.3,
         "tdShare": 74.5,
         "avgPPA": 35.1,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2025_5132629": {
         "recShare": 82,
@@ -527549,7 +527441,7 @@ const COLLEGE_SCOUTING = {
       "2025_5139057": {
         "recShare": 16,
         "ydShare": 38.3,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 33.5,
         "usageOverall": 9.2
       },
@@ -527572,7 +527464,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 27.6,
         "tdShare": 16.9,
         "avgPPA": 6.9,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_5141572": {
         "recShare": 79.1,
@@ -527582,7 +527474,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 66.4
       },
       "2025_5141582": {
-        "recShare": 36.4,
+        "recShare": 36.3,
         "ydShare": 45.6,
         "tdShare": 40.3,
         "avgPPA": 20.7,
@@ -527626,8 +527518,8 @@ const COLLEGE_SCOUTING = {
       "2025_5144962": {
         "recShare": 24.8,
         "ydShare": 48.7,
-        "tdShare": 64,
-        "avgPPA": 31.6,
+        "tdShare": 63.9,
+        "avgPPA": 31.7,
         "usageOverall": 62.6
       },
       "2025_5146719": {
@@ -527642,7 +527534,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52,
         "tdShare": 23.4,
         "avgPPA": 95.2,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_5146753": {
         "recShare": 29.2,
@@ -527687,17 +527579,17 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 56.6
       },
       "2025_5150247": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 57,
         "tdShare": 58.7,
-        "avgPPA": 72.2,
+        "avgPPA": 72.3,
         "usageOverall": 35.3
       },
       "2025_5150424": {
         "recShare": 80,
         "ydShare": 65.6,
         "tdShare": 49,
-        "avgPPA": 65.2,
+        "avgPPA": 65.3,
         "usageOverall": 67.3
       },
       "2025_5150460": {
@@ -527726,7 +527618,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 80.1,
         "tdShare": 78.1,
         "avgPPA": 0.1,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2025_5151339": {
         "recShare": 9.1,
@@ -527739,8 +527631,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 14,
         "ydShare": 15.2,
         "tdShare": 32.7,
-        "avgPPA": 46.6,
-        "usageOverall": 31.1
+        "avgPPA": 46.7,
+        "usageOverall": 31
       },
       "2025_5151662": {
         "recShare": 43.4,
@@ -527752,7 +527644,7 @@ const COLLEGE_SCOUTING = {
       "2025_5151941": {
         "recShare": 50.2,
         "ydShare": 64.4,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 80.1,
         "usageOverall": 7.1
       },
@@ -527822,7 +527714,7 @@ const COLLEGE_SCOUTING = {
       "2025_5153994": {
         "recShare": 52.8,
         "ydShare": 66.4,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 91.8,
         "usageOverall": 28.4
       },
@@ -527858,12 +527750,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 3.2,
         "ydShare": 7.1,
         "tdShare": 9.1,
-        "avgPPA": 10.6,
+        "avgPPA": 10.7,
         "usageOverall": 19.8
       },
       "2025_5157266": {
         "recShare": 53.1,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 37.4,
         "avgPPA": 4.2,
         "usageOverall": 54.2
@@ -527922,11 +527814,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 26.6,
         "tdShare": 16.9,
         "avgPPA": 7.9,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2025_5164351": {
-        "recShare": 32.5,
-        "ydShare": 35.3,
+        "recShare": 32.4,
+        "ydShare": 35.2,
         "tdShare": 62,
         "avgPPA": 9.3,
         "usageOverall": 25.2
@@ -527963,20 +527855,20 @@ const COLLEGE_SCOUTING = {
         "recShare": 48.8,
         "ydShare": 62,
         "tdShare": 62,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 60
       },
       "2025_5193274": {
         "recShare": 28.1,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 89.5,
-        "avgPPA": 52.4,
+        "avgPPA": 52.5,
         "usageOverall": 50.8
       },
       "2025_5193298": {
         "recShare": 76.2,
         "ydShare": 74.2,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 23.8,
         "usageOverall": 72.2
       },
@@ -528019,11 +527911,11 @@ const COLLEGE_SCOUTING = {
         "recShare": 24.2,
         "ydShare": 39.6,
         "tdShare": 56.2,
-        "avgPPA": 31.6,
-        "usageOverall": 26.7
+        "avgPPA": 31.7,
+        "usageOverall": 26.6
       },
       "2025_5217700": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 7.1,
         "tdShare": 17.4,
         "avgPPA": 17.4,
@@ -528041,7 +527933,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 76.1,
         "tdShare": 55.6,
         "avgPPA": 34.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2025_5218787": {
         "recShare": 66.3,
@@ -528058,7 +527950,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 19.8
       },
       "2025_5219086": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 64.1,
         "tdShare": 53.8,
         "avgPPA": 14.2,
@@ -528080,7 +527972,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_5220256": {
         "recShare": 64.4,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 96.7,
         "avgPPA": 44.4,
         "usageOverall": 43.5
@@ -528088,7 +527980,7 @@ const COLLEGE_SCOUTING = {
       "2025_5220596": {
         "recShare": 76.9,
         "ydShare": 71.8,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 29.5,
         "usageOverall": 87.6
       },
@@ -528100,7 +527992,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 97.2
       },
       "2025_5221074": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 50.9,
         "tdShare": 45.9,
         "avgPPA": 68.5,
@@ -528111,20 +528003,20 @@ const COLLEGE_SCOUTING = {
         "ydShare": 24.7,
         "tdShare": 15.2,
         "avgPPA": 11.4,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2025_5221381": {
         "recShare": 73.6,
-        "ydShare": 67.9,
-        "tdShare": 48.3,
+        "ydShare": 67.8,
+        "tdShare": 48.4,
         "avgPPA": 27.9,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2025_5222394": {
         "recShare": 71.7,
-        "ydShare": 67.4,
+        "ydShare": 67.3,
         "tdShare": 62,
-        "avgPPA": 49.1,
+        "avgPPA": 49.2,
         "usageOverall": 54.2
       },
       "2025_5224764": {
@@ -528143,7 +528035,7 @@ const COLLEGE_SCOUTING = {
       },
       "2025_5226313": {
         "recShare": 57.3,
-        "ydShare": 79,
+        "ydShare": 78.9,
         "tdShare": 80.8,
         "avgPPA": 79.6,
         "usageOverall": 66.4
@@ -528153,7 +528045,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 6.1,
         "tdShare": 11.1,
         "avgPPA": 25.6,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2025_5231354": {
         "recShare": 55.4,
@@ -528163,22 +528055,22 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 53.1
       },
       "2025_5238876": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 38.3,
         "tdShare": 20.5,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 11.3
       },
       "2025_5265446": {
         "recShare": 22.4,
         "ydShare": 7.5,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 10.1,
         "usageOverall": 40
       },
       "2025_5279633": {
         "recShare": 40.4,
-        "ydShare": 52.9,
+        "ydShare": 52.8,
         "tdShare": 5.3,
         "avgPPA": 7.3,
         "usageOverall": 64
@@ -528191,7 +528083,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 89
       },
       "2025_5295811": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 67.1,
         "tdShare": 5.3,
         "avgPPA": 36.2,
@@ -528209,7 +528101,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 79.8,
         "tdShare": 70.9,
         "avgPPA": 27.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2025_5295981": {
         "recShare": 57.3,
@@ -528237,7 +528129,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 99.3,
         "tdShare": 91.6,
         "avgPPA": 46.4,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2025_5296407": {
         "recShare": 37.9,
@@ -528275,7 +528167,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 64
       },
       "2026_4429804": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 25.9,
         "tdShare": 62,
         "avgPPA": 5,
@@ -528303,14 +528195,14 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 74.1
       },
       "2026_4685396": {
-        "recShare": 6,
+        "recShare": 6.1,
         "ydShare": 31.2,
         "tdShare": 5.3,
         "avgPPA": 18.5,
         "usageOverall": 11.3
       },
       "2026_4685510": {
-        "recShare": 21.2,
+        "recShare": 21.1,
         "ydShare": 34.8,
         "tdShare": 5.3,
         "avgPPA": 6.7,
@@ -528341,8 +528233,8 @@ const COLLEGE_SCOUTING = {
         "recShare": 93.6,
         "ydShare": 97.6,
         "tdShare": 93.8,
-        "avgPPA": 37.4,
-        "usageOverall": 95.7
+        "avgPPA": 37.5,
+        "usageOverall": 95.6
       },
       "2026_4702790": {
         "recShare": 42.1,
@@ -528362,7 +528254,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 53.7,
         "ydShare": 52.5,
         "tdShare": 75.9,
-        "avgPPA": 36.5,
+        "avgPPA": 36.6,
         "usageOverall": 54.2
       },
       "2026_4711421": {
@@ -528432,7 +528324,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 64.4,
         "ydShare": 69.1,
         "tdShare": 20.5,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 98.9
       },
       "2026_4832952": {
@@ -528459,7 +528351,7 @@ const COLLEGE_SCOUTING = {
       "2026_4838527": {
         "recShare": 69.9,
         "ydShare": 41.6,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 14.5,
         "usageOverall": 77.8
       },
@@ -528510,7 +528402,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 84.2,
         "tdShare": 74.5,
         "avgPPA": 30.3,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2026_4869730": {
         "recShare": 77.8,
@@ -528552,7 +528444,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 31.7,
         "tdShare": 22.7,
         "avgPPA": 48.8,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2026_4870770": {
         "recShare": 82.3,
@@ -528570,8 +528462,8 @@ const COLLEGE_SCOUTING = {
       },
       "2026_4870850": {
         "recShare": 82.8,
-        "ydShare": 67.4,
-        "tdShare": 48.3,
+        "ydShare": 67.3,
+        "tdShare": 48.4,
         "avgPPA": 1.7,
         "usageOverall": 89.3
       },
@@ -528646,8 +528538,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 48
       },
       "2026_4871040": {
-        "recShare": 39.9,
-        "ydShare": 52.9,
+        "recShare": 39.8,
+        "ydShare": 52.8,
         "tdShare": 8.5,
         "avgPPA": 58.9,
         "usageOverall": 41.9
@@ -528670,7 +528562,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 14.6,
         "ydShare": 24.1,
         "tdShare": 16.9,
-        "avgPPA": 46.6,
+        "avgPPA": 46.7,
         "usageOverall": 21.1
       },
       "2026_4876642": {
@@ -528691,7 +528583,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 46.8,
         "ydShare": 49.1,
         "tdShare": 16.9,
-        "avgPPA": 59.2,
+        "avgPPA": 59.3,
         "usageOverall": 34
       },
       "2026_4879567": {
@@ -528704,7 +528596,7 @@ const COLLEGE_SCOUTING = {
       "2026_4879999": {
         "recShare": 86.1,
         "ydShare": 88.5,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 55.8,
         "usageOverall": 89.3
       },
@@ -528720,11 +528612,11 @@ const COLLEGE_SCOUTING = {
         "ydShare": 10,
         "tdShare": 51.7,
         "avgPPA": 87,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2026_4895711": {
         "recShare": 54.2,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 84.6,
         "avgPPA": 2.6,
         "usageOverall": 83.6
@@ -528776,12 +528668,12 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11,
         "tdShare": 11.1,
         "avgPPA": 40.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2026_4912067": {
         "recShare": 72.2,
         "ydShare": 84.4,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 68.4,
         "usageOverall": 79.3
       },
@@ -528795,7 +528687,7 @@ const COLLEGE_SCOUTING = {
       "2026_4916941": {
         "recShare": 35.9,
         "ydShare": 22.4,
-        "tdShare": 48.3,
+        "tdShare": 48.4,
         "avgPPA": 21.8,
         "usageOverall": 22.4
       },
@@ -528838,7 +528730,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 8.8,
         "ydShare": 23.6,
         "tdShare": 26,
-        "avgPPA": 45.9,
+        "avgPPA": 46,
         "usageOverall": 19.8
       },
       "2026_4920163": {
@@ -528853,7 +528745,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 37.7,
         "tdShare": 20.5,
         "avgPPA": 4.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2026_4921110": {
         "recShare": 83.5,
@@ -528930,17 +528822,17 @@ const COLLEGE_SCOUTING = {
         "ydShare": 52,
         "tdShare": 76.9,
         "avgPPA": 12.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2026_5076106": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 42.6,
         "tdShare": 23.4,
         "avgPPA": 15.3,
         "usageOverall": 50.8
       },
       "2026_5076952": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 23.6,
         "tdShare": 30.1,
         "avgPPA": 0.8,
@@ -528956,9 +528848,9 @@ const COLLEGE_SCOUTING = {
       "2026_5077266": {
         "recShare": 21.7,
         "ydShare": 15.2,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 2.7,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5077803": {
         "recShare": 29.2,
@@ -528970,7 +528862,7 @@ const COLLEGE_SCOUTING = {
       "2026_5077873": {
         "recShare": 88.3,
         "ydShare": 74.6,
-        "tdShare": 75.4,
+        "tdShare": 75.3,
         "avgPPA": 10.4,
         "usageOverall": 85.2
       },
@@ -528999,7 +528891,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 71.2,
         "ydShare": 71.1,
         "tdShare": 78.7,
-        "avgPPA": 50.2,
+        "avgPPA": 50.3,
         "usageOverall": 65.2
       },
       "2026_5079345": {
@@ -529041,7 +528933,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 13.3,
         "ydShare": 27.6,
         "tdShare": 12,
-        "avgPPA": 10.6,
+        "avgPPA": 10.7,
         "usageOverall": 18.3
       },
       "2026_5079499": {
@@ -529133,10 +529025,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 12.6,
         "tdShare": 5.3,
         "avgPPA": 29.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2026_5079772": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 48.7,
         "tdShare": 88.6,
         "avgPPA": 65.8,
@@ -529172,7 +529064,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5081213": {
         "recShare": 12.8,
-        "ydShare": 37.1,
+        "ydShare": 37,
         "tdShare": 32.7,
         "avgPPA": 11.8,
         "usageOverall": 32.6
@@ -529222,8 +529114,8 @@ const COLLEGE_SCOUTING = {
       "2026_5083370": {
         "recShare": 71.7,
         "ydShare": 75.2,
-        "tdShare": 48.3,
-        "avgPPA": 37.4,
+        "tdShare": 48.4,
+        "avgPPA": 37.5,
         "usageOverall": 79.3
       },
       "2026_5083747": {
@@ -529252,7 +529144,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 39.1,
         "tdShare": 51.7,
         "avgPPA": 6.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2026_5085496": {
         "recShare": 77.2,
@@ -529269,7 +529161,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 74.7
       },
       "2026_5085972": {
-        "recShare": 58.2,
+        "recShare": 58.1,
         "ydShare": 52,
         "tdShare": 5.3,
         "avgPPA": 6.6,
@@ -529294,7 +529186,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 40.1,
         "tdShare": 94.2,
         "avgPPA": 50,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2026_5088153": {
         "recShare": 70.3,
@@ -529318,11 +529210,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 83
       },
       "2026_5089539": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 15.6,
         "tdShare": 55.6,
         "avgPPA": 3.8,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5089549": {
         "recShare": 10.8,
@@ -529355,7 +529247,7 @@ const COLLEGE_SCOUTING = {
       "2026_5092483": {
         "recShare": 92.7,
         "ydShare": 92,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 35.4,
         "usageOverall": 97.4
       },
@@ -529367,7 +529259,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 50.8
       },
       "2026_5094032": {
-        "recShare": 51.7,
+        "recShare": 51.6,
         "ydShare": 44.3,
         "tdShare": 80.8,
         "avgPPA": 37.2,
@@ -529480,7 +529372,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5121750": {
         "recShare": 79.5,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 65.2,
         "avgPPA": 64.7,
         "usageOverall": 76.3
@@ -529509,7 +529401,7 @@ const COLLEGE_SCOUTING = {
       "2026_5122082": {
         "recShare": 83.1,
         "ydShare": 86.6,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 56.2,
         "usageOverall": 89.8
       },
@@ -529566,7 +529458,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 18.5,
         "ydShare": 47.7,
         "tdShare": 66,
-        "avgPPA": 66.4,
+        "avgPPA": 66.5,
         "usageOverall": 25.2
       },
       "2026_5138293": {
@@ -529591,7 +529483,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 56.6
       },
       "2026_5141445": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 21,
         "tdShare": 5.3,
         "avgPPA": 40.7,
@@ -529602,7 +529494,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 37.7,
         "tdShare": 29.6,
         "avgPPA": 98.4,
-        "usageOverall": 69.3
+        "usageOverall": 69.2
       },
       "2026_5141559": {
         "recShare": 81.2,
@@ -529630,7 +529522,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 14.7,
         "tdShare": 26,
         "avgPPA": 2,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5141586": {
         "recShare": 82,
@@ -529662,10 +529554,10 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5141723": {
         "recShare": 67,
-        "ydShare": 67.9,
+        "ydShare": 67.8,
         "tdShare": 69.3,
         "avgPPA": 44.6,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2026_5141795": {
         "recShare": 41.6,
@@ -529682,11 +529574,11 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 36.7
       },
       "2026_5142600": {
-        "recShare": 32.5,
+        "recShare": 32.4,
         "ydShare": 28.8,
         "tdShare": 37.4,
         "avgPPA": 8.8,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2026_5144962": {
         "recShare": 28.6,
@@ -529704,7 +529596,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5146728": {
         "recShare": 23.1,
-        "ydShare": 35.3,
+        "ydShare": 35.2,
         "tdShare": 56.2,
         "avgPPA": 20,
         "usageOverall": 32.6
@@ -529714,7 +529606,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 98.3,
         "tdShare": 94.6,
         "avgPPA": 73.4,
-        "usageOverall": 95.7
+        "usageOverall": 95.6
       },
       "2026_5146736": {
         "recShare": 35.5,
@@ -529728,7 +529620,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 26.6,
         "tdShare": 5.3,
         "avgPPA": 12.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5146747": {
         "recShare": 82,
@@ -529742,10 +529634,10 @@ const COLLEGE_SCOUTING = {
         "ydShare": 23,
         "tdShare": 26,
         "avgPPA": 82.8,
-        "usageOverall": 10.4
+        "usageOverall": 10.3
       },
       "2026_5147046": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 30.8,
         "tdShare": 32.7,
         "avgPPA": 60.9,
@@ -529804,7 +529696,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 7.2,
         "ydShare": 10.5,
         "tdShare": 33.6,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 11.3
       },
       "2026_5149831": {
@@ -529840,7 +529732,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 53.4,
         "tdShare": 22.7,
         "avgPPA": 6.9,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2026_5151342": {
         "recShare": 26.1,
@@ -529854,14 +529746,14 @@ const COLLEGE_SCOUTING = {
         "ydShare": 46.5,
         "tdShare": 5.3,
         "avgPPA": 58.3,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2026_5152045": {
         "recShare": 12.8,
         "ydShare": 55.9,
-        "tdShare": 34.5,
+        "tdShare": 34.6,
         "avgPPA": 93.3,
-        "usageOverall": 8.2
+        "usageOverall": 8.1
       },
       "2026_5152158": {
         "recShare": 77.8,
@@ -529910,7 +529802,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 57,
         "tdShare": 62,
         "avgPPA": 92.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5153399": {
         "recShare": 83.1,
@@ -529920,7 +529812,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 89.3
       },
       "2026_5153408": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 52,
         "tdShare": 5.3,
         "avgPPA": 2.5,
@@ -529977,7 +529869,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5157266": {
         "recShare": 47.6,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 22.7,
         "avgPPA": 6.6,
         "usageOverall": 61.2
@@ -529987,7 +529879,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 34.4,
         "tdShare": 5.3,
         "avgPPA": 3.3,
-        "usageOverall": 46.4
+        "usageOverall": 46.3
       },
       "2026_5158759": {
         "recShare": 49.3,
@@ -529997,7 +529889,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 57.7
       },
       "2026_5158829": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 42.6,
         "tdShare": 51.7,
         "avgPPA": 1,
@@ -530092,7 +529984,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 11.9,
         "tdShare": 15.2,
         "avgPPA": 32.4,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5164749": {
         "recShare": 60.7,
@@ -530104,7 +529996,7 @@ const COLLEGE_SCOUTING = {
       "2026_5165803": {
         "recShare": 53.1,
         "ydShare": 62,
-        "tdShare": 58.3,
+        "tdShare": 58.4,
         "avgPPA": 45.8,
         "usageOverall": 65.2
       },
@@ -530120,7 +530012,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 62.8,
         "tdShare": 5.3,
         "avgPPA": 23.2,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2026_5189530": {
         "recShare": 95.7,
@@ -530131,7 +530023,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5191056": {
         "recShare": 69.1,
-        "ydShare": 73.7,
+        "ydShare": 73.6,
         "tdShare": 47.3,
         "avgPPA": 62.4,
         "usageOverall": 72.2
@@ -530151,7 +530043,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 36.7
       },
       "2026_5193168": {
-        "recShare": 39.9,
+        "recShare": 39.8,
         "ydShare": 36.2,
         "tdShare": 66,
         "avgPPA": 2.4,
@@ -530165,7 +530057,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 34
       },
       "2026_5193284": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 50,
         "tdShare": 18.5,
         "avgPPA": 49.7,
@@ -530176,7 +530068,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 66.4,
         "tdShare": 28.2,
         "avgPPA": 2.4,
-        "usageOverall": 73.2
+        "usageOverall": 73.1
       },
       "2026_5193298": {
         "recShare": 97,
@@ -530214,10 +530106,10 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 77.1
       },
       "2026_5199859": {
-        "recShare": 56.3,
+        "recShare": 56.2,
         "ydShare": 70.1,
         "tdShare": 47.3,
-        "avgPPA": 40.1,
+        "avgPPA": 40.2,
         "usageOverall": 62.6
       },
       "2026_5200108": {
@@ -530238,21 +530130,21 @@ const COLLEGE_SCOUTING = {
         "recShare": 71.7,
         "ydShare": 75.5,
         "tdShare": 47.3,
-        "avgPPA": 43.2,
+        "avgPPA": 43.3,
         "usageOverall": 77.8
       },
       "2026_5201871": {
         "recShare": 18.5,
         "ydShare": 28.8,
         "tdShare": 55.6,
-        "avgPPA": 37.4,
+        "avgPPA": 37.5,
         "usageOverall": 22.4
       },
       "2026_5207842": {
         "recShare": 41,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 18.5,
-        "avgPPA": 31.6,
+        "avgPPA": 31.7,
         "usageOverall": 49.1
       },
       "2026_5207931": {
@@ -530307,7 +530199,7 @@ const COLLEGE_SCOUTING = {
       "2026_5214940": {
         "recShare": 34.3,
         "ydShare": 28.8,
-        "tdShare": 13,
+        "tdShare": 13.1,
         "avgPPA": 10.3,
         "usageOverall": 28.4
       },
@@ -530356,7 +530248,7 @@ const COLLEGE_SCOUTING = {
       "2026_5218633": {
         "recShare": 85.3,
         "ydShare": 81.5,
-        "tdShare": 64,
+        "tdShare": 63.9,
         "avgPPA": 23.9,
         "usageOverall": 86
       },
@@ -530390,7 +530282,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5219136": {
         "recShare": 36.8,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 38.5,
         "avgPPA": 76.7,
         "usageOverall": 51.8
@@ -530411,17 +530303,10 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5222654": {
         "recShare": 31.9,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 37.4,
         "avgPPA": 50.5,
         "usageOverall": 35.3
-      },
-      "2026_5222689": {
-        "recShare": 19.3,
-        "ydShare": 33.4,
-        "tdShare": 62,
-        "avgPPA": 83.7,
-        "usageOverall": 7.1
       },
       "2026_5222752": {
         "recShare": 68.2,
@@ -530431,8 +530316,8 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 65.2
       },
       "2026_5222761": {
-        "recShare": 36.4,
-        "ydShare": 38.8,
+        "recShare": 36.3,
+        "ydShare": 38.7,
         "tdShare": 69.3,
         "avgPPA": 1.5,
         "usageOverall": 60
@@ -530448,7 +530333,7 @@ const COLLEGE_SCOUTING = {
         "recShare": 45.2,
         "ydShare": 51.5,
         "tdShare": 35.1,
-        "avgPPA": 79.8,
+        "avgPPA": 79.9,
         "usageOverall": 56.6
       },
       "2026_5224355": {
@@ -530498,7 +530383,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 60.9,
         "tdShare": 28.2,
         "avgPPA": 0.9,
-        "usageOverall": 68.4
+        "usageOverall": 68.3
       },
       "2026_5228002": {
         "recShare": 91,
@@ -530518,15 +530403,15 @@ const COLLEGE_SCOUTING = {
         "recShare": 96.5,
         "ydShare": 95.8,
         "tdShare": 93.8,
-        "avgPPA": 53.9,
+        "avgPPA": 54,
         "usageOverall": 89.8
       },
       "2026_5228882": {
-        "recShare": 38.6,
+        "recShare": 38.5,
         "ydShare": 31.2,
         "tdShare": 28.2,
         "avgPPA": 15.3,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5229489": {
         "recShare": 74.3,
@@ -530579,7 +530464,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5264658": {
         "recShare": 66.6,
-        "ydShare": 43.5,
+        "ydShare": 43.4,
         "tdShare": 51.7,
         "avgPPA": 46.4,
         "usageOverall": 50.8
@@ -530615,7 +530500,7 @@ const COLLEGE_SCOUTING = {
       "2026_5290573": {
         "recShare": 91.7,
         "ydShare": 96,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 86.6,
         "usageOverall": 91.2
       },
@@ -530644,12 +530529,12 @@ const COLLEGE_SCOUTING = {
         "recShare": 89.8,
         "ydShare": 86.8,
         "tdShare": 57.1,
-        "avgPPA": 57.3,
+        "avgPPA": 57.4,
         "usageOverall": 92.7
       },
       "2026_5294137": {
         "recShare": 35.5,
-        "ydShare": 38.8,
+        "ydShare": 38.7,
         "tdShare": 16.9,
         "avgPPA": 6.9,
         "usageOverall": 62.6
@@ -530659,7 +530544,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 58.2,
         "tdShare": 69.6,
         "avgPPA": 89,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5295064": {
         "recShare": 54.2,
@@ -530669,16 +530554,16 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 34
       },
       "2026_5295436": {
-        "recShare": 36.4,
-        "ydShare": 43.5,
+        "recShare": 36.3,
+        "ydShare": 43.4,
         "tdShare": 5.3,
         "avgPPA": 2.7,
-        "usageOverall": 23.8
+        "usageOverall": 23.7
       },
       "2026_5295460": {
         "recShare": 50.7,
         "ydShare": 65.9,
-        "tdShare": 84.1,
+        "tdShare": 84,
         "avgPPA": 44.9,
         "usageOverall": 62.6
       },
@@ -530726,10 +530611,10 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5296407": {
         "recShare": 18,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 51.7,
         "avgPPA": 39.6,
-        "usageOverall": 26.7
+        "usageOverall": 26.6
       },
       "2026_5296438": {
         "recShare": 41,
@@ -530740,7 +530625,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5296832": {
         "recShare": 25.5,
-        "ydShare": 59.7,
+        "ydShare": 59.6,
         "tdShare": 57.1,
         "avgPPA": 66.3,
         "usageOverall": 53.1
@@ -530778,7 +530663,7 @@ const COLLEGE_SCOUTING = {
         "ydShare": 68.8,
         "tdShare": 82.9,
         "avgPPA": 39.6,
-        "usageOverall": 31.1
+        "usageOverall": 31
       },
       "2026_5382869": {
         "recShare": 71.2,
@@ -530803,7 +530688,7 @@ const COLLEGE_SCOUTING = {
       },
       "2026_5387611": {
         "recShare": 47.6,
-        "ydShare": 34,
+        "ydShare": 33.9,
         "tdShare": 5.3,
         "avgPPA": 15.6,
         "usageOverall": 22.4
@@ -530816,7 +530701,7 @@ const COLLEGE_SCOUTING = {
         "usageOverall": 55.3
       },
       "2026_5388762": {
-        "recShare": 30,
+        "recShare": 29.9,
         "ydShare": 37.7,
         "tdShare": 55.6,
         "avgPPA": 25.2,
