@@ -1,11 +1,11 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T01:28:06.991Z",
+  "updated": "2026-11-19T01:50:43.378Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Out","OUT","2026-11-19","Back",0,"2026-11-18"],
-    "Alperen Sengun": ["HOU","Day-To-Day","GTD","2026-11-18","Face",0,"2026-11-19"],
+    "Alperen Sengun": ["HOU","Day-To-Day","GTD","2026-11-20","Eye",0,"2026-11-19"],
     "Andrew Nembhard": ["IND","Out","OUT","2026-11-20","Hip",0,"2026-11-18"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
@@ -25,6 +25,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Out","GTD","2026-11-19","Heel",0,"2026-11-17"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-20","Ankle",0,"2026-11-17"],
+    "Collin Murray-Boyles": ["TOR","Day-To-Day","GTD","2026-11-20","Illness",0,"2026-11-19"],
     "Dean Wade": ["PHI","Out","OUT","2026-11-21","Hamstring",0,"2026-11-18"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-20","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-19","Foot",0,"2026-11-18"],
