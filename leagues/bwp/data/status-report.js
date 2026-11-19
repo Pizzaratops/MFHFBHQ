@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-19T12:42:58.290Z",
+  "generatedAt": "2026-11-19T14:03:24.135Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -867,7 +867,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 9,
-          "projPoints": 10.4
+          "projPoints": 10.5
         },
         {
           "name": "David Montgomery",
@@ -1584,7 +1584,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 26.5,
-          "projPoints": 5.6
+          "projPoints": 5.7
         }
       ],
       "flaggedCount": 0
@@ -1960,7 +1960,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 13.7,
           "last3AvgPoints": 9.3,
-          "projPoints": 6.1
+          "projPoints": 6.2
         },
         {
           "name": "David Montgomery",
@@ -1982,7 +1982,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 24.4,
           "last3AvgPoints": 20,
-          "projPoints": 16
+          "projPoints": 16.1
         },
         {
           "name": "George Pickens",
@@ -4217,7 +4217,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 9,
-          "projPoints": 10.4
+          "projPoints": 10.5
         },
         {
           "name": "Deebo Samuel Sr.",
