@@ -1,0 +1,48 @@
+name: CBB Barttorvik-Historie (manuell)
+
+# Holt Barttorvik-Spielersaisons (College Basketball) nach
+# sports/cbb/scripts/model/cache/torvik/ — Grundlage für das College-Scouting-
+# Modell (Draft Range, Alter, Recruiting). Die laufende Saison holt der CBB Sync
+# täglich selbst; dieser Workflow ist für die Historie (einmalig bzw. jährlich
+# vor dem Neu-Trainieren). Keine Secrets nötig.
+
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: "Jahr oder Bereich, z. B. 2027 oder 2008-2027 (Jahr = Frühjahr der Saison)"
+        required: true
+        default: "2008-2027"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cbb-data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Barttorvik abrufen
+        run: node sports/cbb/scripts/sync-torvik.js "${{ github.event.inputs.years }}"
+      - name: Commit & Push
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sports/cbb/scripts/model/cache/torvik/
+          if git diff --cached --quiet; then echo "Keine Änderungen."; exit 0; fi
+          git commit -m "chore: cbb barttorvik ${{ github.event.inputs.years }}"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; sleep $((RANDOM % 6 + 3))
+          done
+          exit 1
