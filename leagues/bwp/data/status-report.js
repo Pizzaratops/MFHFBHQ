@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-19T00:03:32.308Z",
+  "generatedAt": "2026-11-19T02:03:23.740Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -790,7 +790,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12,
           "last3AvgPoints": 10.5,
-          "projPoints": 8.9
+          "projPoints": 9
         },
         {
           "name": "Bhayshul Tuten",
@@ -1463,7 +1463,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.4,
           "last3AvgPoints": 9.1,
-          "projPoints": 10.2
+          "projPoints": 10.3
         },
         {
           "name": "Courtland Sutton",
@@ -1551,7 +1551,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 31.7,
           "last3AvgPoints": 29,
-          "projPoints": 17.6
+          "projPoints": 17.8
         },
         {
           "name": "Rashid Shaheed",
@@ -1794,7 +1794,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.5,
           "last3AvgPoints": 7.2,
-          "projPoints": 8.7
+          "projPoints": 8.8
         },
         {
           "name": "Kyler Murray",
@@ -1816,7 +1816,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 31.7,
           "last3AvgPoints": 29,
-          "projPoints": 17.6
+          "projPoints": 17.8
         },
         {
           "name": "Jordan Mason",
@@ -1894,7 +1894,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12,
           "last3AvgPoints": 10.5,
-          "projPoints": 8.9
+          "projPoints": 9
         },
         {
           "name": "Ollie Gordon II",
@@ -2314,7 +2314,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 13.2
+          "projPoints": 13.3
         },
         {
           "name": "DJ Moore",
@@ -2436,7 +2436,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8,
           "last3AvgPoints": 8,
-          "projPoints": 7.7
+          "projPoints": 7.8
         },
         {
           "name": "Cameron Dicker",
@@ -2480,7 +2480,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 21,
           "last3AvgPoints": 11.3,
-          "projPoints": 6
+          "projPoints": 6.1
         }
       ],
       "flaggedCount": 0
@@ -3409,7 +3409,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 20.2,
-          "last3AvgPoints": 16.5,
+          "last3AvgPoints": 22.2,
           "projPoints": 22.5
         },
         {
@@ -3420,7 +3420,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 8.7,
-          "last3AvgPoints": 14.5,
+          "last3AvgPoints": 13.8,
           "projPoints": 12.9
         },
         {
@@ -3431,7 +3431,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 7.7,
-          "last3AvgPoints": 7.2,
+          "last3AvgPoints": 12.3,
           "projPoints": 19.5
         },
         {
@@ -3442,7 +3442,7 @@ const STATUS_REPORT_DATA = {
           "status": "Q",
           "flag": false,
           "lastGamePoints": 0,
-          "last3AvgPoints": 7.5,
+          "last3AvgPoints": 6,
           "projPoints": 12.5
         },
         {
@@ -3453,7 +3453,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 0,
-          "last3AvgPoints": 14,
+          "last3AvgPoints": 10.3,
           "projPoints": 16.9
         },
         {
@@ -3475,7 +3475,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 1.5,
-          "last3AvgPoints": 6.8,
+          "last3AvgPoints": 9.4,
           "projPoints": 0
         },
         {
@@ -3486,7 +3486,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 9.1,
-          "last3AvgPoints": 15.2,
+          "last3AvgPoints": 10.1,
           "projPoints": 15.7
         },
         {
@@ -3497,7 +3497,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 26.8,
-          "last3AvgPoints": 23.1,
+          "last3AvgPoints": 19.9,
           "projPoints": 19.5
         },
         {
@@ -3519,7 +3519,7 @@ const STATUS_REPORT_DATA = {
           "status": "Q",
           "flag": false,
           "lastGamePoints": 7.8,
-          "last3AvgPoints": 13.2,
+          "last3AvgPoints": 10.7,
           "projPoints": 8.6
         },
         {
@@ -3530,7 +3530,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 2.6,
-          "last3AvgPoints": 6.1,
+          "last3AvgPoints": 9.4,
           "projPoints": 0
         },
         {
@@ -3541,7 +3541,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 5.6,
-          "last3AvgPoints": 14.5,
+          "last3AvgPoints": 11.4,
           "projPoints": 7.5
         },
         {
@@ -3552,7 +3552,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 12,
-          "last3AvgPoints": 6,
+          "last3AvgPoints": 7,
           "projPoints": 10.1
         },
         {
@@ -3563,7 +3563,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 10.8,
-          "last3AvgPoints": 16.2,
+          "last3AvgPoints": 22.8,
           "projPoints": 0
         },
         {
@@ -3574,7 +3574,7 @@ const STATUS_REPORT_DATA = {
           "status": null,
           "flag": false,
           "lastGamePoints": 0,
-          "last3AvgPoints": 0,
+          "last3AvgPoints": 9.4,
           "projPoints": 19.4
         },
         {
@@ -3697,7 +3697,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.4,
           "last3AvgPoints": 13.2,
-          "projPoints": 18.4
+          "projPoints": 18.6
         },
         {
           "name": "Jordan Love",
@@ -3774,7 +3774,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 21,
           "last3AvgPoints": 11.3,
-          "projPoints": 6
+          "projPoints": 6.1
         }
       ],
       "flaggedCount": 0
@@ -4018,7 +4018,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 46.3,
           "last3AvgPoints": 34.5,
-          "projPoints": 19.8
+          "projPoints": 19.9
         },
         {
           "name": "Isaiah Likely",
@@ -4228,7 +4228,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 25.9,
           "last3AvgPoints": 25.9,
-          "projPoints": 8.8
+          "projPoints": 8.9
         },
         {
           "name": "Ty Johnson",
@@ -4283,7 +4283,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3.1,
-          "projPoints": 3.4
+          "projPoints": 3.5
         },
         {
           "name": "Travis Etienne Jr.",
@@ -4349,7 +4349,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4,
           "last3AvgPoints": 11.5,
-          "projPoints": 6.5
+          "projPoints": 6.6
         }
       ],
       "flaggedCount": 0
