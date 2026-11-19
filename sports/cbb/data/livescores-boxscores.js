@@ -7084,9 +7084,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920517",
-      line: "Florida Gators @ West Virginia Mountaineers (11:10 - 2nd)",
+      line: "Florida Gators @ West Virginia Mountaineers (1:08 - 2nd)",
       completed: false,
-      statusText: "11:10 - 2nd",
+      statusText: "1:08 - 2nd",
       away: {
         abbr: "Fla", name: "Florida Gators", score: null,
         players: [
