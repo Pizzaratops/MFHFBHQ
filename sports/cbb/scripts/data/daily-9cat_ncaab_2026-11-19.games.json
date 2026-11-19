@@ -1,0 +1,420 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-19",
+  "games": [
+    {
+      "id": "401920517",
+      "line": "Florida Gators @ West Virginia Mountaineers (11/19 - 2:30 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 2:30 PM EST",
+      "away": {
+        "abbr": "Fla",
+        "name": "Florida Gators",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WVU",
+        "name": "West Virginia Mountaineers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920519",
+      "line": "Notre Dame Fighting Irish @ TBD (11/19 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 5:00 PM EST",
+      "away": {
+        "abbr": "ND",
+        "name": "Notre Dame Fighting Irish",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918959",
+      "line": "NC State Wolfpack @ Murray State Racers (11/19 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 6:00 PM EST",
+      "away": {
+        "abbr": "NCSU",
+        "name": "NC State Wolfpack",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Mur",
+        "name": "Murray State Racers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401916318",
+      "line": "UMBC Retrievers @ Ohio State Buckeyes (11/19 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 7:00 PM EST",
+      "away": {
+        "abbr": "UMBC",
+        "name": "UMBC Retrievers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OhSt",
+        "name": "Ohio State Buckeyes",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911021",
+      "line": "Buffalo Bulls @ St. Bonaventure Bonnies (11/19 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 7:00 PM EST",
+      "away": {
+        "abbr": "BUF",
+        "name": "Buffalo Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StBon",
+        "name": "St. Bonaventure Bonnies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401902280",
+      "line": "Northeastern Huskies @ Butler Bulldogs (11/19 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 7:00 PM EST",
+      "away": {
+        "abbr": "NE",
+        "name": "Northeastern Huskies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Butl",
+        "name": "Butler Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401926814",
+      "line": "Charleston Cougars @ Drake Bulldogs (11/19 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 7:30 PM EST",
+      "away": {
+        "abbr": "COFC",
+        "name": "Charleston Cougars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Drake",
+        "name": "Drake Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919005",
+      "line": "Tulane Green Wave @ Louisiana Tech Bulldogs (11/19 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 7:30 PM EST",
+      "away": {
+        "abbr": "Tul",
+        "name": "Tulane Green Wave",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LT",
+        "name": "Louisiana Tech Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906867",
+      "line": "Southern Utah Thunderbirds @ Texas Longhorns (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "SUU",
+        "name": "Southern Utah Thunderbirds",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tex",
+        "name": "Texas Longhorns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918950",
+      "line": "Stetson Hatters @ Louisville Cardinals (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "STET",
+        "name": "Stetson Hatters",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Lou",
+        "name": "Louisville Cardinals",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927375",
+      "line": "Eureka Red Devils @ Illinois State Redbirds (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "ERKA",
+        "name": "Eureka Red Devils",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IlSt",
+        "name": "Illinois State Redbirds",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919050",
+      "line": "Texas A&M Aggies @ TCU Horned Frogs (11/19 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:00 PM EST",
+      "away": {
+        "abbr": "TAMU",
+        "name": "Texas A&M Aggies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TCU",
+        "name": "TCU Horned Frogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920888",
+      "line": "Seton Hall Pirates @ Wisconsin Badgers (11/19 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:30 PM EST",
+      "away": {
+        "abbr": "Seton",
+        "name": "Seton Hall Pirates",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wisc",
+        "name": "Wisconsin Badgers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920520",
+      "line": "Rutgers Scarlet Knights @ TBD (11/19 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 8:30 PM EST",
+      "away": {
+        "abbr": "Rut",
+        "name": "Rutgers Scarlet Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401930884",
+      "line": "Oregon State Beavers @ Oregon Ducks (11/19 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 9:00 PM EST",
+      "away": {
+        "abbr": "OrSt",
+        "name": "Oregon State Beavers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Oreg",
+        "name": "Oregon Ducks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401928354",
+      "line": "UC Santa Barbara Gauchos @ Pepperdine Waves (11/19 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 9:00 PM EST",
+      "away": {
+        "abbr": "UCSB",
+        "name": "UC Santa Barbara Gauchos",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pepp",
+        "name": "Pepperdine Waves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925941",
+      "line": "Utah Tech Trailblazers @ Washington Huskies (11/19 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 9:00 PM EST",
+      "away": {
+        "abbr": "UTU",
+        "name": "Utah Tech Trailblazers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wash",
+        "name": "Washington Huskies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911534",
+      "line": "UTEP Miners @ New Mexico State Aggies (11/19 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 9:00 PM EST",
+      "away": {
+        "abbr": "UTEP",
+        "name": "UTEP Miners",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NMSU",
+        "name": "New Mexico State Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920349",
+      "line": "Sacramento State Hornets @ Stanford Cardinal (11/19 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 10:00 PM EST",
+      "away": {
+        "abbr": "SAC",
+        "name": "Sacramento State Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Stan",
+        "name": "Stanford Cardinal",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918056",
+      "line": "East Texas A&M Lions @ California Golden Bears (11/19 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 10:00 PM EST",
+      "away": {
+        "abbr": "ETAM",
+        "name": "East Texas A&M Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cal",
+        "name": "California Golden Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917536",
+      "line": "VCU Rams @ Santa Clara Broncos (11/19 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 10:30 PM EST",
+      "away": {
+        "abbr": "VCU",
+        "name": "VCU Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SCla",
+        "name": "Santa Clara Broncos",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920518",
+      "line": "Houston Cougars @ Kansas Jayhawks (11/19 - 11:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 11:00 PM EST",
+      "away": {
+        "abbr": "Hou",
+        "name": "Houston Cougars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Kan",
+        "name": "Kansas Jayhawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401926773",
+      "line": "Tarleton State Texans @ USC Trojans (11/19 - 11:00 PM EST)",
+      "completed": false,
+      "statusText": "11/19 - 11:00 PM EST",
+      "away": {
+        "abbr": "TAR",
+        "name": "Tarleton State Texans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USC",
+        "name": "USC Trojans",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
