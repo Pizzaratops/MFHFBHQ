@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T00:42:23.765Z",
+  "updated": "2026-11-19T01:01:04.548Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Out","OUT","2026-11-19","Back",0,"2026-11-18"],
@@ -38,7 +38,6 @@ const NBA_INJURIES = {
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grayson Allen": ["CHA","Day-To-Day","GTD","2026-11-20","Concussion",0,"2026-11-18"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
-    "Isaiah Joe": ["DET","Out","GTD","2026-11-18","Hip",0,"2026-11-18"],
     "Isaiah Stewart": ["MEM","Out","OUT","2026-11-19","Illness",0,"2026-11-17"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-28","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
