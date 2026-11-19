@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T00:17:05.424Z",
+  "updated": "2026-11-19T00:42:23.765Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-21","Back",0,"2026-11-12"],
     "Al Horford": ["GS","Out","OUT","2026-11-19","Back",0,"2026-11-18"],
@@ -17,7 +17,7 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-19","Achilles",0,"2026-11-18"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-22","Hamstring",0,"2026-11-18"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-20","Elbow",0,"2026-11-17"],
-    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-18","Knee",0,"2026-11-18"],
+    "Cade Cunningham": ["DET","Out","OUT","2026-11-20","Knee",0,"2026-11-19"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
