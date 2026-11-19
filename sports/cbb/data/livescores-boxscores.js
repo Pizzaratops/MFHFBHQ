@@ -7102,7 +7102,7 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920519",
-      line: "Notre Dame Fighting Irish @ TBD (11/19 - 5:00 PM EST)",
+      line: "Notre Dame Fighting Irish @ Auburn Tigers (11/19 - 5:00 PM EST)",
       completed: false,
       statusText: "11/19 - 5:00 PM EST",
       away: {
@@ -7112,7 +7112,7 @@ const LIVESCORES_BOXSCORES = {
         ]
       },
       home: {
-        abbr: "TBD", name: "TBD", score: null,
+        abbr: "Aub", name: "Auburn Tigers", score: null,
         players: [
 
         ]
@@ -7318,7 +7318,7 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920520",
-      line: "Rutgers Scarlet Knights @ TBD (11/19 - 8:30 PM EST)",
+      line: "Rutgers Scarlet Knights @ UNLV Rebels (11/19 - 8:30 PM EST)",
       completed: false,
       statusText: "11/19 - 8:30 PM EST",
       away: {
@@ -7328,7 +7328,7 @@ const LIVESCORES_BOXSCORES = {
         ]
       },
       home: {
-        abbr: "TBD", name: "TBD", score: null,
+        abbr: "UNLV", name: "UNLV Rebels", score: null,
         players: [
 
         ]

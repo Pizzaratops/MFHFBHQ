@@ -22,7 +22,7 @@
     },
     {
       "id": "401920519",
-      "line": "Notre Dame Fighting Irish @ TBD (11/19 - 5:00 PM EST)",
+      "line": "Notre Dame Fighting Irish @ Auburn Tigers (11/19 - 5:00 PM EST)",
       "completed": false,
       "statusText": "11/19 - 5:00 PM EST",
       "away": {
@@ -32,8 +32,8 @@
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "Aub",
+        "name": "Auburn Tigers",
         "score": null,
         "players": []
       }
@@ -238,7 +238,7 @@
     },
     {
       "id": "401920520",
-      "line": "Rutgers Scarlet Knights @ TBD (11/19 - 8:30 PM EST)",
+      "line": "Rutgers Scarlet Knights @ UNLV Rebels (11/19 - 8:30 PM EST)",
       "completed": false,
       "statusText": "11/19 - 8:30 PM EST",
       "away": {
@@ -248,8 +248,8 @@
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "UNLV",
+        "name": "UNLV Rebels",
         "score": null,
         "players": []
       }
