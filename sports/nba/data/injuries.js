@@ -1,10 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T18:01:02.310Z",
+  "updated": "2026-11-19T18:56:35.640Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
-    "Al Horford": ["GS","Day-To-Day","GTD","2026-11-19","Back",0,"2026-11-19"],
+    "Al Horford": ["GS","Day-To-Day","","","",0,"2026-11-19"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
     "Alperen Sengun": ["HOU","Day-To-Day","GTD","2026-11-20","Eye",0,"2026-11-19"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -69,6 +69,7 @@ const NBA_INJURIES = {
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
+    "LJ Cryer": ["GS","Day-To-Day","GTD","2026-11-19","Back",0,"2026-11-19"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
@@ -105,7 +106,6 @@ const NBA_INJURIES = {
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
     "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
-    "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Zyon Pullin": ["MIN","Day-To-Day","GTD","2026-11-19","Quadriceps",0,"2026-11-18"]
+    "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"]
   }
 };
