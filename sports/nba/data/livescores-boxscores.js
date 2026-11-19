@@ -4043,9 +4043,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910007",
-      line: "Memphis Grizzlies @ Cleveland Cavaliers (3:32 - 2nd)",
+      line: "Memphis Grizzlies @ Cleveland Cavaliers (Halftime)",
       completed: false,
-      statusText: "3:32 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4061,9 +4061,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910008",
-      line: "Houston Rockets @ Indiana Pacers (7.2 - 2nd)",
+      line: "Houston Rockets @ Indiana Pacers (8:17 - 3rd)",
       completed: false,
-      statusText: "7.2 - 2nd",
+      statusText: "8:17 - 3rd",
       away: {
         abbr: "HOU", name: "Houston Rockets", score: null,
         players: [
@@ -4079,9 +4079,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910009",
-      line: "Milwaukee Bucks @ Miami Heat (7:26 - 2nd)",
+      line: "Milwaukee Bucks @ Miami Heat (21.4 - 2nd)",
       completed: false,
-      statusText: "7:26 - 2nd",
+      statusText: "21.4 - 2nd",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -4097,9 +4097,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910010",
-      line: "Philadelphia 76ers @ Orlando Magic (2:56 - 2nd)",
+      line: "Philadelphia 76ers @ Orlando Magic (12:00 - 3rd)",
       completed: false,
-      statusText: "2:56 - 2nd",
+      statusText: "12:00 - 3rd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -4115,9 +4115,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910011",
-      line: "Chicago Bulls @ Brooklyn Nets (40.1 - 1st)",
+      line: "Chicago Bulls @ Brooklyn Nets (2:47 - 2nd)",
       completed: false,
-      statusText: "40.1 - 1st",
+      statusText: "2:47 - 2nd",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -4133,9 +4133,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910012",
-      line: "Washington Wizards @ Toronto Raptors (3:21 - 1st)",
+      line: "Washington Wizards @ Toronto Raptors (2:50 - 2nd)",
       completed: false,
-      statusText: "3:21 - 1st",
+      statusText: "2:50 - 2nd",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4151,9 +4151,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910013",
-      line: "Detroit Pistons @ New Orleans Pelicans (11/18 - 8:00 PM EST)",
+      line: "Detroit Pistons @ New Orleans Pelicans (5:06 - 1st)",
       completed: false,
-      statusText: "11/18 - 8:00 PM EST",
+      statusText: "5:06 - 1st",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -4169,9 +4169,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910014",
-      line: "Atlanta Hawks @ Oklahoma City Thunder (11/18 - 8:00 PM EST)",
+      line: "Atlanta Hawks @ Oklahoma City Thunder (4:04 - 1st)",
       completed: false,
-      statusText: "11/18 - 8:00 PM EST",
+      statusText: "4:04 - 1st",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -4187,9 +4187,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910016",
-      line: "Golden State Warriors @ Dallas Mavericks (11/18 - 8:00 PM EST)",
+      line: "Golden State Warriors @ Dallas Mavericks (4:01 - 1st)",
       completed: false,
-      statusText: "11/18 - 8:00 PM EST",
+      statusText: "4:01 - 1st",
       away: {
         abbr: "GS", name: "Golden State Warriors", score: null,
         players: [
