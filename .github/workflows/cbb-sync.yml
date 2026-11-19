@@ -145,7 +145,7 @@ jobs:
         env:
           TORVIK_DIR: ${{ runner.temp }}/torvik
         run: |
-          node sports/cbb/scripts/sync-torvik.js
+          node sports/cbb/scripts/sync-torvik.js --soft
           node sports/cbb/scripts/build-college-prospects.js
 
       - name: Waiver-Board

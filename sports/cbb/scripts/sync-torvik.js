@@ -39,7 +39,7 @@ const COLS = [
 
 function get(url, tries = 4) {
   return new Promise((resolve, reject) => {
-    const req = https.get(url, { headers: { 'User-Agent': 'Mozilla/5.0 (MFHFB HQ; College Scouting)' }, timeout: 90000 }, res => {
+    const req = https.get(url, { headers: { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36', 'Accept': 'text/csv,text/plain,*/*' }, timeout: 90000 }, res => {
       if (res.statusCode !== 200) { res.resume(); return reject(new Error(`HTTP ${res.statusCode}`)); }
       const chunks = []; res.on('data', c => chunks.push(c)); res.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     });
@@ -86,7 +86,7 @@ async function year(y) {
 }
 
 (async () => {
-  const arg = process.argv[2] || String(new Date().getUTCMonth() >= 6 ? new Date().getUTCFullYear() + 1 : new Date().getUTCFullYear());
+  const arg = process.argv.slice(2).find(a => !a.startsWith('--')) || String(new Date().getUTCMonth() >= 6 ? new Date().getUTCFullYear() + 1 : new Date().getUTCFullYear());
   const [a, b] = arg.split('-').map(Number);
   const years = []; for (let y = a; y <= (b || a); y++) years.push(y);
   let failed = 0;
@@ -94,5 +94,10 @@ async function year(y) {
     try { await year(y); } catch (e) { failed++; console.error(`Barttorvik ${y} fehlgeschlagen: ${e.message}`); }
     await new Promise(r => setTimeout(r, 1500));
   }
-  if (failed === years.length) process.exit(1);
+  // --soft (CBB Sync): Fehlschlag nur als Warnung — build-college-prospects.js nimmt dann den letzten
+  // Stand aus dem Repo-Cache. Ohne --soft (Historie) bleibt es ein Fehler.
+  if (failed === years.length) {
+    if (process.argv.includes('--soft')) console.log('::warning title=Barttorvik::Abruf fehlgeschlagen — College Scouting nutzt den letzten Stand aus dem Cache.');
+    else process.exit(1);
+  }
 })();
