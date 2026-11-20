@@ -7391,9 +7391,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401919019",
-      line: "UAB Blazers @ George Washington Revolutionaries (0:02 - 2nd)",
+      line: "UAB Blazers @ George Washington Revolutionaries (0:00 - 2nd)",
       completed: false,
-      statusText: "0:02 - 2nd",
+      statusText: "0:00 - 2nd",
       away: {
         abbr: "UAB", name: "UAB Blazers", score: null,
         players: [
