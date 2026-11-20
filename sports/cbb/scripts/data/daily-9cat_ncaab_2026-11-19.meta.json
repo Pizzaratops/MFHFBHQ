@@ -1,0 +1,33 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-19",
+  "games": [
+    "Southern Utah Thunderbirds @ Texas Longhorns (14:30 - 2nd)",
+    "Stetson Hatters @ Louisville Cardinals (17:38 - 2nd)",
+    "Charleston Cougars @ Drake Bulldogs (1:39 - 2nd)",
+    "Tulane Green Wave @ Louisiana Tech Bulldogs (2:26 - 2nd)",
+    "Eureka Red Devils @ Illinois State Redbirds (9:03 - 2nd)",
+    "Texas A&M Aggies @ TCU Horned Frogs (17:20 - 2nd)",
+    "Seton Hall Pirates @ Wisconsin Badgers (7:47 - 1st)",
+    "Rutgers Scarlet Knights @ UNLV Rebels (3:17 - 1st)",
+    "Oregon State Beavers @ Oregon Ducks (15:13 - 1st)",
+    "UC Santa Barbara Gauchos @ Pepperdine Waves (12:18 - 1st)",
+    "Utah Tech Trailblazers @ Washington Huskies (10:42 - 1st)",
+    "UTEP Miners @ New Mexico State Aggies (13:50 - 1st)",
+    "Florida Gators 85 @ West Virginia Mountaineers 72 (Final)",
+    "Notre Dame Fighting Irish 78 @ Auburn Tigers 73 (Final)",
+    "Murray State Racers 83 @ NC State Wolfpack 93 (Final)",
+    "UMBC Retrievers 62 @ Ohio State Buckeyes 101 (Final)",
+    "Buffalo Bulls 69 @ St. Bonaventure Bonnies 78 (Final)",
+    "Northeastern Huskies 77 @ Butler Bulldogs 84 (Final)",
+    "Sacramento State Hornets @ Stanford Cardinal (11/19 - 10:00 PM EST)",
+    "East Texas A&M Lions @ California Golden Bears (11/19 - 10:00 PM EST)",
+    "VCU Rams @ Santa Clara Broncos (11/19 - 10:30 PM EST)",
+    "Houston Cougars @ Kansas Jayhawks (11/19 - 11:00 PM EST)",
+    "Tarleton State Texans @ USC Trojans (11/19 - 11:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 48.5,
+    "ft": 71.6
+  }
+}
