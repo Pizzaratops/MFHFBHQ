@@ -456,6 +456,7 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-rmeta { padding: 10px 14px 0; font-size: 12.5px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .cs-tag { font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 20px; background: var(--surface2); color: var(--muted); }
 .cs-tag.ok { background: rgba(46,157,98,.15); color: #2e9d62; }
+.cs-tag.warn { background: rgba(214,140,20,.16); color: #b8740c; }
 .cs-rgrid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 10px; padding: 12px 14px; }
 .cs-rcell { background: var(--surface2); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .cs-rcell small { font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }

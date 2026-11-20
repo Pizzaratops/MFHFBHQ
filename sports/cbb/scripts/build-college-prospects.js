@@ -79,6 +79,13 @@ function derive(r, y, M) {
   o.rimRate = (o.rimA + 0.30 * 20) / (o.twoPa + o.tpa + 20);
   o.dunk40 = 40 * o.dunkM / m;
   o.pts40 = 40 * o.pts * o.gp / m;
+  ['oreb', 'dreb', 'ast', 'stl', 'blk'].forEach(k => { if (isNaN(o[k])) o[k] = 0; });
+  o.reb40 = 40 * (o.oreb + o.dreb) * o.gp / m;
+  o.ast40 = 40 * o.ast * o.gp / m;
+  o.stl40 = 40 * o.stl * o.gp / m;
+  o.blk40 = 40 * o.blk * o.gp / m;
+  o.tpm40 = 40 * o.tpm / m;
+  o.fta40 = 40 * o.fta / m;
   if (y < 2010) { o.rimPct = NaN; o.rimRate = NaN; o.dunk40 = NaN; }
   const h = /(\d+)-(\d+)/.exec(r.ht || '');
   o.htIn = h ? +h[1] * 12 + +h[2] : NaN;
@@ -131,6 +138,17 @@ function draft(v, M, minNow) {
   return { p, ln, w, pProd: a.p, pPre: b.p, q: ['0.1', '0.25', '0.5', '0.75', '0.9'].map(q => +pk(q).toFixed(1)) };
 }
 
+// 🧬 NBA-DNA (Barttorvik-Version aus train-prospect-model.py → build_dna): rot/fan überblendet wie der
+// Draft (Vorsaison ↔ Produktion nach Minuten), Kategorie-Profil nz nur aus dem Produktionsprofil.
+const lin = (v, feats, m) => m.icpt + feats.reduce((s, f, i) => s + ((v[f] - m.mean[i]) / m.scale[i]) * m.coef[i], 0);
+const sig = x => 1 / (1 + Math.exp(-x));
+function dnaOf(v, M, minNow) {
+  const G = M.dna, w = Math.min(1, Math.max(0, minNow / M.pre.blendMin));
+  const pr = t => w * sig(lin(v, M.feats, G.models[t + '_prod'])) + (1 - w) * sig(lin(v, M.pre.feats, G.models[t + '_pre']));
+  const nz = {}; Object.entries(G.cat).forEach(([c, m]) => { nz[c] = +lin(v, G.catFeats, m).toFixed(2); });
+  return { rot: +pr('rot').toFixed(3), fan: +pr('fan').toFixed(3), nz };
+}
+
 const nkey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
 
@@ -153,6 +171,8 @@ function main() {
     const sorted = F.map((_, i) => items.map(it => it.p[6][i]).sort((a, c) => a - c));
     pools[b] = { cv, items, sorted };
   });
+  const dnaPools = {};
+  ['G', 'W', 'B'].forEach(b => { const cv = C.cov[b]; dnaPools[b] = M.dna.pool.filter(p => p[2] === b).map(p => ({ p, z: p[5].map((x, i) => (x - cv.mu[i]) / cv.sd[i]) })); });
   const pctl = (sorted, x) => { let lo = 0, hi = sorted.length; while (lo < hi) { const m = (lo + hi) >> 1; if (sorted[m] < x) lo = m + 1; else hi = m; } return Math.round(100 * lo / sorted.length); };
   const maha = (a, b, inv) => { const d = a.map((x, i) => x - b[i]); let s = 0; for (let i = 0; i < d.length; i++) { let t = 0; for (let j = 0; j < d.length; j++) t += inv[i][j] * d[j]; s += d[i] * t; } return Math.sqrt(Math.max(s, 0)); };
 
@@ -172,6 +192,9 @@ function main() {
     const comps = P.items.filter(it => nkey(it.p[0]) !== mk)
       .map(it => ({ it, d: maha(mz, it.z, P.cv.inv) })).sort((a, b) => a.d - b.d).slice(0, 5)
       .map(({ it, d: dd }) => [it.p[0], it.p[1], it.p[2], it.p[3], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), F.map((_, i) => pctl(P.sorted[i], it.p[6][i]))]);
+    const dn = dnaOf(v, M, r.min);
+    dn.comps = dnaPools[r.bucket].filter(it => nkey(it.p[0]) !== mk).map(it => ({ it, d: maha(mz, it.z, P.cv.inv) })).sort((a, b) => a.d - b.d).slice(0, 4)
+      .map(({ it, d: dd }) => [it.p[0], it.p[1], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), it.p[3], it.p[4]]);
     const line = x => x && [Math.round(x.gp), +x.mpg.toFixed(1), +x.pts.toFixed(1), +((x.oreb || 0) + (x.dreb || 0)).toFixed(1), +(x.ast || 0).toFixed(1), +(x.stl || 0).toFixed(1), +(x.blk || 0).toFixed(1), +(x.gp ? x.tpm / x.gp : 0).toFixed(1), isNaN(x.ts) ? null : +x.ts.toFixed(1), isNaN(x.bpm) ? null : +x.bpm.toFixed(1), isNaN(x.usg) ? null : +x.usg.toFixed(1)];
     out.push({
       id: r.pid, n: r.name, t: r.team, c: r.conf, cl: r.cls, ht: r.raw.ht || null, role: r.role, b: r.bucket,
@@ -182,6 +205,7 @@ function main() {
       sc: +(d.p * Math.log(61 / d.q[2]) / Math.log(61)).toFixed(4),
       dr: { p: +d.p.toFixed(4), q: d.q, w: +d.w.toFixed(2), pp: +d.pProd.toFixed(3), pv: +d.pPre.toFixed(3) },
       pc: F.map((f, i) => pctl(P.sorted[i], me[i])),
+      dn,
       comps,
     });
   });
@@ -193,6 +217,7 @@ function main() {
     compFeats: F, compPool: { G: pools.G.items.length, W: pools.W.items.length, B: pools.B.items.length },
     stat: ['GP', 'MIN', 'PTS', 'REB', 'AST', 'STL', 'BLK', '3PM', 'TS%', 'BPM', 'USG'],
     tthq: TTHQ_CURVE,
+    dna: { auc: M.dna.auc, catR: M.dna.catR, base: M.dna.base, n: M.dna.n, nNba: M.dna.nNba, nRot: M.dna.nRot, nFan: M.dna.nFan, years: M.dna.years, reliableMin: M.dna.reliableMin },
   };
   const js = `// ============================================================
 //  COLLEGE_PROSPECTS — College Scouting Basketball (AUTO-GENERIERT von
@@ -202,7 +227,9 @@ function main() {
 //  (Draft-Tag ${CUR}-06-25), rec Recruiting-Perzentil, min [Min. Saison, Min. Vorsaison], s/sp Statline
 //  (meta.stat), dr {p Draft-Chance, q Pick-Quantile 10/25/50/75/90 falls gedraftet, w Gewicht Produktions-
 //  modell (Rest Vorsaison-Modell), pp/pv Chance je Teilmodell}, pc Perzentile der
-//  Comp-Merkmale (meta.compFeats) in der Gruppe, comps [Name, Schule, Saison, Klasse, Ähnlichkeit 0–100, pc].
+//  Comp-Merkmale (meta.compFeats) in der Gruppe, comps [Name, Schule, Saison, Klasse, Ähnlichkeit 0–100, pc],
+//  dn NBA-DNA {rot P(Rotation), fan P(Fantasy-Top-150), nz NBA-z je Kategorie, comps [Name, letzte
+//  College-Saison, Ähnlichkeit, NBA-Ergebnis, bester BBM-Wert]} — verlässlich ab meta.dna.reliableMin Min.
 //  Stand ${meta.built}
 // ============================================================
 

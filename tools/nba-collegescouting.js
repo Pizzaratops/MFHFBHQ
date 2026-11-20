@@ -11,12 +11,14 @@
 //       dessen Konsens-Rang (nbaRank) als NBA-Pick; „Modell allein“ bleibt sichtbar.
 //    🎓 College Production Comp — „Produziert wie …“ (reine College-Produktion,
 //       Mahalanobis innerhalb Guard/Wing/Big). KEINE Erfolgsprognose.
-//    🧬 NBA-DNA — Chance auf NBA-Rotation/Fantasy-Top-150 + erwartetes NBA-Kategorie-Profil
-//       (sports/cbb/data/nba-dna.js, Basis: letzte volle College-Saison). Ersetzt die frühere
-//       eigene CBB-Seite „NBA-DNA“ (tools/cbb-model.js, #/cbb/cbbdna leitet hierher um).
+//    🧬 NBA-DNA — Chance auf NBA-Rotation/Fantasy-Top-150 + erwartetes NBA-Kategorie-Profil.
+//       Seit 20.11.2026 aus dem College-Scouting-Modell (Barttorvik, train-prospect-model.py →
+//       build_dna), rechnet auf der LAUFENDEN Saison (auch Freshmen) mit Minutenhinweis:
+//       verlässlich ab meta.dna.reliableMin (250) Saison-Minuten, darunter „kleiner Datensatz“.
+//       Ersetzt die frühere CBB-Seite „NBA-DNA“ (#/cbb/cbbdna leitet hierher um); die alte
+//       hoopR-Version sports/cbb/data/nba-dna.js nutzt nur noch der Fantasy Radar.
 //  Daten (alle direkt aus dem Hub, unabhängig vom Sport der Liga):
 //    sports/cbb/data/college-prospects.js  COLLEGE_PROSPECTS (build-college-prospects.js, täglich)
-//    sports/cbb/data/nba-dna.js            CBB_NBA_DNA (nba-translation.py)
 //    sports/nba/data/draft2027.js          DRAFT_2027 (Big Board, von Hand)
 //  Nicht drin: internationale Prospects ohne College-Saison (stehen nur über das Big Board da),
 //  Combine/Messungen, Verletzungen, Scouting-Eindruck.
@@ -25,7 +27,7 @@
 (function () {
   const A = { key: ['tthq', 'cbb'] };
   const P_FILE = './sports/cbb/data/college-prospects';
-  const DATA = [P_FILE, '?./sports/nba/data/draft2027', '?./sports/cbb/data/nba-dna', '?teams', '?rosters-live'];
+  const DATA = [P_FILE, '?./sports/nba/data/draft2027', '?teams', '?rosters-live'];
   const GROUPS = [['all', 'Alle'], ['G', 'Guards'], ['W', 'Wings'], ['B', 'Bigs']];
   const CLS = [['all', 'Alle Klassen'], ['Fr', 'Fr'], ['So', 'So'], ['Jr', 'Jr'], ['Sr', 'Sr']];
   const SORTS = [['board', 'Draft Range'], ['konsens', 'Big Board'], ['chance', 'Draft-Chance'], ['rec', 'Recruiting'], ['bpm', 'BPM']];
@@ -56,22 +58,11 @@
     const byId = new Map(C.p.map(p => [String(p.id), p]));
     const byName = new Map(); C.p.forEach(p => { const k = nk(p.n); if (!byName.has(k)) byName.set(k, p); });
     const board = new Map(); (data.DRAFT_2027 || []).forEach(b => board.set(nk(b.name), b));
-    const dna = new Map();
-    Object.entries((data.CBB_NBA_DNA || {}).p || {}).forEach(([k, v]) => {
-      const n = nk(k.split('|')[0]); if (!dna.has(n)) dna.set(n, []); dna.get(n).push({ k, v });
-    });
     const owner = new Map();
     const teams = new Map((data.TEAMS || []).map(t => [String(t.id), t]));
     Object.entries(data.ROSTERS_LIVE || {}).forEach(([tid, list]) => (list || []).forEach(pl => owner.set(nk(pl.name), teams.get(String(tid)) || { name: 'Team ' + tid })));
-    IX = { data, C, byId, byName, board, dna, owner };
+    IX = { data, C, byId, byName, board, owner };
     return IX;
-  }
-  // NBA-DNA-Eintrag zu einem Prospect (Name; bei Doppelungen Schule grob vergleichen)
-  function dnaOf(I, p) {
-    const c = I.dna.get(nk(p.n)); if (!c) return null;
-    if (c.length === 1) return c[0];
-    const t = nk(p.t).slice(0, 4);
-    return c.find(x => nk(x.k.split('|')[1]).startsWith(t.slice(0, 3))) || c[0];
   }
   const boardOf = (I, p) => I.board.get(nk(p.n)) || null;
   const ownerOf = (ctx, I, p) => (ctx.league.key === 'cbb' ? I.owner.get(nk(p.n)) || null : null);
@@ -145,22 +136,29 @@
 
   // ---------- 🧬 NBA-DNA ----------
   function dnaBox(ctx, I, p) {
-    const e = ctx.ui.esc, D = I.data.CBB_NBA_DNA, x = dnaOf(I, p);
-    const head = `<div class="card-head"><h2>${tip('🧬 NBA-DNA', 'Setzt er sich in der NBA durch, und welche Fantasy-Kategorien nimmt er mit? Gelernt aus College-Abschlusssaisons 2009–2022 und deren ersten 4 NBA-Jahren (hoopR-Boxscores, BBM). Rotation = Saison mit 40+ Spielen und 18+ Min., Fantasy = Top-150-Saison (9-Cat). Basis: letzte VOLLE College-Saison — Freshmen haben erst nach ihrer ersten Saison eine DNA.')}</h2></div>`;
-    if (!D) return `<div class="card cs-box">${head}<div class="muted cs-pad">NBA-DNA-Daten nicht geladen.</div></div>`;
-    if (!x) return `<div class="card cs-box">${head}<div class="muted cs-pad">Noch keine NBA-DNA — erst nach seiner ersten vollen College-Saison (mind. 250 Min.).</div></div>`;
-    const d = x.v, sgn = v => (v >= 0 ? '+' : '') + de(v, 2);
-    const bar = ([k, l]) => { const v = d.nz[k], w = Math.max(-50, Math.min(50, v * 33)); return `<div class="cbbm-bar" title="erwartetes NBA-z ${l}: ${sgn(v)} (0 = Ø NBA-Rotationsspieler)"><span>${l}</span><div class="cbbm-track"><i class="${w >= 0 ? 'pos' : 'neg'}" style="${w >= 0 ? 'left:50%' : `left:${50 + w}%`};width:${Math.abs(w)}%"></i></div><b class="${v >= 0 ? 'up' : 'down'}">${sgn(v)}</b></div>`; };
-    const out = c => (c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3]);
+    const e = ctx.ui.esc, d = p.dn, G = I.C.meta.dna || {}, RM = G.reliableMin || 250;
+    const auc = G.auc || {}, cr = G.catR || {};
+    const why = `Setzt er sich in der NBA durch, und welche Fantasy-Kategorien nimmt er mit? Gelernt aus ${(G.n || 0).toLocaleString('de-DE')} letzten College-Saisons ${(G.years || [])[0]}–${(G.years || [])[1]} (Barttorvik) und den ersten 4 NBA-Jahren (BBM): ${G.nRot} schafften eine Rotations-Saison (40+ Spiele, 18+ Min.), ${G.nFan} eine Top-150-Saison (9-Cat). Backtest 2017–22: AUC ${de(auc.rot_prod, 2)} (Rotation) bzw. ${de(auc.fan_prod, 2)} (Fantasy). Rechnet auf der laufenden Saison (plus halbe Vorsaison): früh in der Saison tragen Recruiting, Alter und Größe, ab ${RM} Saison-Minuten ist das Bild verlässlich. Kategorie-Profil = erwartetes NBA-z, falls er es schafft (0 = Ø Rotationsspieler); wie gut sich jede Kategorie übersetzt: ${DCATS.map(([k, l]) => `${l} r ${de(cr[k], 2)}`).join(', ')}.`;
+    const head = `<div class="card-head"><h2>${tip('🧬 NBA-DNA', why)}</h2></div>`;
+    if (!d) return `<div class="card cs-box">${head}<div class="muted cs-pad">Keine NBA-DNA berechnet.</div></div>`;
+    const ok = p.min[0] >= RM, prev = p.min[1] >= RM;
+    const sl = `${I.C.meta.season - 1}/${String(I.C.meta.season).slice(2)}`;
+    const minLine = `Hat ${sl} bisher <b>${p.min[0]} Min.</b> gespielt${p.min[1] ? ` · Vorsaison ${p.min[1]} Min. fließt zur Hälfte mit ein` : ' · keine Vorsaison'}.`;
+    const flag = ok
+      ? `<span class="cs-tag ok" title="Ab ${RM} Saison-Minuten gilt die DNA als verlässlich.">verlässlich (ab ${RM} Min.)</span>`
+      : `<span class="cs-tag warn" title="Unter ${RM} Saison-Minuten ist die Produktion ein kleiner Datensatz. Das Modell stützt sich dann vor allem auf Recruiting, Alter, Größe${prev ? ' und die Vorsaison' : ''}.">kleiner Datensatz · ab ${RM} Min. verlässlich</span>`;
+    const sgn = v => (v >= 0 ? '+' : '') + de(v, 2);
+    const bar = ([k, l]) => { const v = d.nz[k], w = Math.max(-50, Math.min(50, v * 33)); return `<div class="cbbm-bar" title="erwartetes NBA-z ${l}: ${sgn(v)} (0 = Ø NBA-Rotationsspieler) · Übersetzung r ${de(cr[k], 2)}"><span>${l}</span><div class="cbbm-track"><i class="${w >= 0 ? 'pos' : 'neg'}" style="${w >= 0 ? 'left:50%' : `left:${50 + w}%`};width:${Math.abs(w)}%"></i></div><b class="${v >= 0 ? 'up' : 'down'}">${sgn(v)}</b></div>`; };
     return `<div class="card cs-box">${head}
+      <div class="cs-box-sub">${flag} ${minLine}</div>
       <div class="cs-rgrid" style="grid-template-columns:1fr 1fr">
-        <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Basis ${d.season - 1}/${String(d.season).slice(2)} · ${d.min} Min.</span></div>
+        <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Saison mit 40+ Spielen, 18+ Min.</span></div>
         <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>in den ersten 4 NBA-Jahren</span></div>
       </div>
       <div class="cs-list-head">NBA-Profil, falls er es schafft (z, 0 = Ø Rotationsspieler)</div>
       <div class="cbbm-bars">${DCATS.map(bar).join('')}</div>
       <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
-      <div class="table-wrap"><table class="table compact"><tbody>${d.comps.slice(0, 4).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1]}</td><td class="small">${e(out(c))}</td></tr>`).join('')}</tbody></table></div>
+      <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
     </div>`;
   }
 
@@ -236,14 +234,14 @@
         b ? `Big Board: Konsens <b>#${e(b.nbaRank)}</b> · MFHFB <b>#${e(b.pick)}</b>` : null,
         o ? `Fantasy-Team: <b>${e(o.name)}</b>` : ctx.league.key === 'cbb' ? 'Fantasy: <b>frei</b>' : null,
       ].filter(Boolean).join(' · ')}</div>
+      <div class="cs-grid" style="margin-bottom:14px">
+        <div data-comp>${compBox(ctx, I, p)}</div>
+        <div>${dnaBox(ctx, I, p)}</div>
+      </div>
       <div class="table-wrap"><table class="table compact" data-nosort><thead><tr><th>Saison</th>${stat.map(s => `<th class="num">${e(s)}</th>`).join('')}</tr></thead>
         <tbody>${line(p.s, sl + (p.min[0] < 700 ? '*' : ''))}${line(p.sp, sp)}</tbody></table></div>
       ${p.min[0] < 700 ? `<div class="muted cs-hint">* laufende Saison, ${p.min[0]} Min. — Per-Game-Werte noch wackelig.</div>` : ''}
       <div data-range>${rangeBox(ctx, I, p)}</div>
-      <div class="cs-grid" style="margin-top:14px">
-        <div data-comp>${compBox(ctx, I, p)}</div>
-        <div>${dnaBox(ctx, I, p)}</div>
-      </div>
       ${boardBox(ctx, b)}`;
   }
 
@@ -270,7 +268,7 @@
       const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([k, l]) => `<button type="button" class="seg-btn${String(st[key]) === k ? ' active' : ''}" data-set="${key}" data-val="${k}">${l}</button>`).join('')}</div>`;
       return `
         <div class="page-head">
-          <h1 class="page-title display">${tip('🎓 College Scouting', 'Basketball-Gegenstück zum NFL College Scouting: Draft Range, College Production Comp und NBA-DNA je College-Spieler. Quellen: Barttorvik (Spieler-Saisons seit 2008 inkl. späterem NBA-Pick, Geburtsdatum, Recruiting-Rang), hoopR/ESPN + BBM (NBA-DNA), MFHFB Big Board 2027. Alle Vergleiche sind Ähnlichkeits-, keine Erfolgsprognosen. Internationale Prospects ohne College-Saison stehen nur über das Big Board drin.')}</h1>
+          <h1 class="page-title display">${tip('🎓 College Scouting', 'Basketball-Gegenstück zum NFL College Scouting: College Production Comp, NBA-DNA und Draft Range je College-Spieler. Quellen: Barttorvik (Spieler-Saisons seit 2008 inkl. späterem NBA-Pick, Geburtsdatum, Recruiting-Rang), BBM (NBA-Saisons für die NBA-DNA), MFHFB Big Board 2027. Alle Vergleiche sind Ähnlichkeits-, keine Erfolgsprognosen. Internationale Prospects ohne College-Saison stehen nur über das Big Board drin.')}</h1>
           <div class="page-sub">Saison ${M.season - 1}/${String(M.season).slice(2)} · ${C.p.length} College-Prospects (Draft-Chance ab 5 % oder Top-Recruit) · Stand ${stand}${isTthq(ctx) ? ' · rechts: typischer TTHQ-Draft-Slot' : ''}</div>
         </div>
         <div class="controls">

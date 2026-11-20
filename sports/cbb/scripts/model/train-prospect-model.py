@@ -43,7 +43,10 @@ BUCKET = {'Pure PG': 'G', 'Scoring PG': 'G', 'Combo G': 'G', 'Wing G': 'W', 'Win
           'Stretch 4': 'B', 'PF/C': 'B', 'C': 'B'}
 # Rate-Werte, die zwischen Saisons Minuten-gewichtet gemischt werden
 RATES = ['bpm', 'obpm', 'dbpm', 'usg', 'ts', 'orbPct', 'drbPct', 'astPct', 'toPct', 'blkPct',
-         'stlPct', 'ftr', 'tpa40', 'tpPct', 'ftPct', 'rimPct', 'rimRate', 'dunk40', 'pts40', 'mpg', 'minPct']
+         'stlPct', 'ftr', 'tpa40', 'tpPct', 'ftPct', 'rimPct', 'rimRate', 'dunk40', 'pts40', 'mpg', 'minPct',
+         'reb40', 'ast40', 'stl40', 'blk40', 'tpm40', 'fta40']
+# Zusätzliche Merkmale nur fürs NBA-DNA-Kategorie-Profil (absolute Per-40-Werte)
+CATF_EXTRA = ['pts40', 'reb40', 'ast40', 'stl40', 'blk40', 'tpm40', 'fta40', 'rimRate']
 # Merkmale des Draft-Modells
 FEATS = ['age', 'cls', 'rec', 'recTop', 'unrec', 'htIn', 'power', 'bpm', 'obpm', 'dbpm', 'usg', 'ts',
          'orbPct', 'drbPct', 'astPct', 'toPct', 'blkPct', 'stlPct', 'ftr', 'tpa40', 'tpPct',
@@ -75,6 +78,14 @@ def load():
     D['rimRate'] = (D.rimA + 0.30 * 20) / (fga + 20)
     D['dunk40'] = 40 * D.dunkM / m
     D['pts40'] = 40 * D.pts * D.gp / m
+    for c in ['oreb', 'dreb', 'ast', 'stl', 'blk']:
+        D[c] = pd.to_numeric(D[c], errors='coerce').fillna(0)
+    D['reb40'] = 40 * (D.oreb + D.dreb) * D.gp / m
+    D['ast40'] = 40 * D.ast * D.gp / m
+    D['stl40'] = 40 * D.stl * D.gp / m
+    D['blk40'] = 40 * D.blk * D.gp / m
+    D['tpm40'] = 40 * D.tpm / m
+    D['fta40'] = 40 * D.fta / m
     ht = D.ht.fillna('').str.extract(r'(\d+)-(\d+)').astype(float)
     D['htIn'] = ht[0] * 12 + ht[1]
     D['clsN'] = D.cls.map(CLS)
@@ -208,6 +219,8 @@ def main():
                   'inv': np.linalg.inv(np.cov(Z.T) + 1e-6 * np.eye(len(COMP))).round(6).tolist(), 'n': int(len(M))}
     print(f'Production-Comp-Pool: {len(comp_pool)} Saisons (G {cov["G"]["n"]}, W {cov["W"]["n"]}, B {cov["B"]["n"]})')
 
+    dna = build_dna(D, T, PR, means)
+
     model = {
         'built': pd.Timestamp.now().strftime('%Y-%m-%d'), 'lastDraft': LAST_DRAFT, 'n': int(len(T)), 'nDrafted': int(T.drafted.sum()),
         'backtest': bt, 'classAge': cage, 'means': {k: round(v, 5) for k, v in means.items()}, 'priorMin': PRIOR_MIN,
@@ -218,7 +231,7 @@ def main():
                 'logit': {'coef': lgp.coef_[0].round(6).tolist(), 'icpt': round(float(lgp.intercept_[0]), 6)},
                 'ridge': {'coef': rgp.coef_.round(6).tolist(), 'icpt': round(float(rgp.intercept_), 6),
                           'resQ': {str(q): round(float(np.quantile(resp, q)), 4) for q in [0.1, 0.25, 0.5, 0.75, 0.9]}}},
-        'power': sorted(POWER), 'bucket': BUCKET, 'comp': {'feats': COMP, 'cov': cov, 'pool': comp_pool},
+        'power': sorted(POWER), 'bucket': BUCKET, 'comp': {'feats': COMP, 'cov': cov, 'pool': comp_pool}, 'dna': dna,
     }
     with open(OUT, 'w') as f: json.dump(model, f, separators=(',', ':'), ensure_ascii=False)
     print(f'→ {os.path.relpath(OUT)} ({os.path.getsize(OUT) // 1024} KB)')
@@ -228,6 +241,116 @@ def main():
     xs = sc.transform(X.loc[t26.index])
     t26['p'] = lg.predict_proba(xs)[:, 1]; t26['ePick'] = np.exp(rg.predict(xs))
     print(t26.sort_values('p', ascending=False).head(15)[['name', 'team', 'cls', 'p', 'ePick', 'pick']].to_string(index=False))
+
+
+# ============================================================
+#  🧬 NBA-DNA auf Barttorvik-Basis (ersetzt im College Scouting die hoopR-Version nba-translation.py,
+#  damit sie auch für die LAUFENDE Saison und Freshmen rechnet — mit Minutenhinweis im UI)
+#  Ziel je letzter College-Saison 2010–2022 → NBA-Saisons 1–4 (BBM-Exporte im Repo):
+#   rot = Saison mit ≥ 40 Spielen und ≥ 18 Min. · fan = Top-150-Saison (9-Cat, BBM-Wert, ≥ 40 Spiele)
+#   nz  = mittleres NBA-z je Kategorie (Saisons ≥ 30 Spiele), nur wer es in die NBA schaffte
+#  rot/fan: Vorsaison- und Produktionsmodell wie beim Draft (Überblendung nach Minuten),
+#  nz: nur Produktionsprofil. Comps: nächste NBA-Spieler (Mahalanobis, gleiche Gruppe).
+# ============================================================
+CATS = ['pts', 'tpm', 'reb', 'ast', 'stl', 'blk', 'fgImpact', 'ftImpact', 'to']
+
+
+def nkey(n):
+    import unicodedata, re
+    n = unicodedata.normalize('NFKD', str(n)).encode('ascii', 'ignore').decode().lower()
+    n = re.sub(r'\b(jr|sr|ii|iii|iv|v)\b\.?', '', n)
+    return re.sub(r'[^a-z]', '', n)
+
+
+def load_nba():
+    import re
+    repo = os.path.abspath(os.path.join(HERE, '..', '..', '..', '..'))
+    out = {}
+    for f in sorted(glob.glob(os.path.join(repo, 'sports', 'nba', 'data', 'last-season-stats-*.js'))):
+        y = int(re.search(r'(\d{4})-(\d{2})\.js$', f).group(1)) + 1
+        txt = open(f, encoding='utf8').read()
+        body = txt[txt.index('= [') + 2: txt.rindex(']') + 1]
+        body = re.sub(r'([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:', r'\1"\2":', body)
+        body = re.sub(r',\s*([\]}])', r'\1', body)
+        out[y] = json.loads(body)
+    return out
+
+
+def build_dna(D, T, PR, means):
+    NBA = load_nba()
+    first, seas = {}, {}
+    for y in sorted(NBA):
+        rows = [r for r in NBA[y] if r.get('games')]
+        elig = sorted([r for r in rows if r['games'] >= 40], key=lambda r: -(r.get('composite') or -99))
+        rk = {nkey(r['name']): i + 1 for i, r in enumerate(elig)}
+        for r in rows:
+            k = nkey(r['name']); first.setdefault(k, y); seas.setdefault(k, {})[y] = dict(r, rank=rk.get(k))
+    years = sorted(NBA)
+    print(f'NBA-DNA: BBM-Saisons {years[0]}–{years[-1]} ({len(years)} Dateien, fehlende Jahre: {sorted(set(range(years[0], years[-1] + 1)) - set(years))})')
+
+    def outcome(k, L):
+        if k not in first or first[k] <= L: return None
+        S = [seas[k][y] for y in range(L + 1, L + 5) if y in seas[k]]
+        if not S: return None
+        zs = [s['zScores'] for s in S if s['games'] >= 30 and s.get('zScores')]
+        best = min([s['rank'] for s in S if s['rank']] or [999])
+        bs = min(S, key=lambda s: s['rank'] or 999)
+        return dict(rot=any(s['games'] >= 40 and s['min'] >= 18 for s in S),
+                    fan=any(s['games'] >= 40 and s['rank'] and s['rank'] <= 150 for s in S),
+                    nz={c: float(np.mean([z.get(c, 0) for z in zs])) for c in CATS} if zs else None,
+                    best=best, c=bs.get('composite'))
+
+    R = T[T.year.between(2010, 2022) & (T['min'] >= 200)].copy()
+    R['k'] = R['name'].map(nkey)
+    R = R[R.groupby(['k', 'year']).pid.transform('count') == 1]
+    O = [outcome(k, L) for k, L in zip(R.k, R.year)]
+    R['rot'] = [bool(o and o['rot']) for o in O]; R['fan'] = [bool(o and o['fan']) for o in O]
+    R['ok'] = [o is not None for o in O]
+    X = PR.loc[R.index]
+    print(f'NBA-DNA: {len(R)} letzte Saisons 2010–2022 · NBA erreicht {int(R.ok.sum())} · Rotation {int(R.rot.sum())} · Fantasy-Top-150 {int(R.fan.sum())}')
+
+    def logit(cols, y, tr):
+        sc = StandardScaler().fit(X.loc[tr, cols]); m = LogisticRegression(C=0.3, max_iter=4000).fit(sc.transform(X.loc[tr, cols]), y[tr]); return sc, m
+
+    rel = (R.bpm >= 3) | (R.rec >= 80) | R.ok
+    res = {}
+    tr, te = R.year <= 2016, R.year >= 2017
+    for tgt in ['rot', 'fan']:
+        for nm, cols in [('prod', FEATS), ('pre', PRE)]:
+            sc, m = logit(cols, R[tgt], tr)
+            p = m.predict_proba(sc.transform(X.loc[te, cols]))[:, 1]
+            res[f'{tgt}_{nm}'] = round(roc_auc_score(R[tgt][te], p), 3)
+            res[f'{tgt}_{nm}_rel'] = round(roc_auc_score(R[tgt][te & rel], m.predict_proba(sc.transform(X.loc[te & rel, cols]))[:, 1]), 3)
+    print('NBA-DNA Backtest (≤2016 → 2017–22), AUC alle / relevante:', ', '.join(f'{k} {v}' for k, v in res.items()))
+    allr = pd.Series(True, index=R.index)
+    mods = {}
+    for tgt in ['rot', 'fan']:
+        for nm, cols in [('prod', FEATS), ('pre', PRE)]:
+            sc, m = logit(cols, R[tgt], allr)
+            mods[f'{tgt}_{nm}'] = {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist(), 'coef': m.coef_[0].round(6).tolist(), 'icpt': round(float(m.intercept_[0]), 6)}
+    # Kategorie-Profil (nur Produktionsprofil), Test-r je Kategorie
+    Z = R[[o is not None and o['nz'] is not None for o in O]].copy()
+    NZ = pd.DataFrame([o['nz'] for o in O if o is not None and o['nz'] is not None], index=Z.index)
+    CATF = FEATS + [f for f in CATF_EXTRA if f not in FEATS]
+    XZ = X.loc[Z.index, CATF]
+    catR, cat = {}, {}
+    for c in CATS:
+        trz, tez = Z.year <= 2016, Z.year >= 2017
+        sc = StandardScaler().fit(XZ[trz]); rg = Ridge(alpha=10).fit(sc.transform(XZ[trz]), NZ.loc[trz, c])
+        catR[c] = round(float(np.corrcoef(rg.predict(sc.transform(XZ[tez])), NZ.loc[tez, c])[0, 1]), 2)
+        sc = StandardScaler().fit(XZ); rg = Ridge(alpha=10).fit(sc.transform(XZ), NZ[c])
+        cat[c] = {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist(), 'coef': rg.coef_.round(6).tolist(), 'icpt': round(float(rg.intercept_), 6)}
+    print('NBA-DNA Kategorie-Übersetzung r (Test 2017–22):', catR)
+    # Comps: Spieler mit NBA-Saisons, Produktionsprofil, je Gruppe
+    H = R[R.ok]
+    pool = []
+    for i, r in H.iterrows():
+        o = O[R.index.get_loc(i)]
+        lab = f'Top {int(o["best"])}' if o['best'] <= 150 else ('Rotation' if o['rot'] else 'kurz in der NBA')
+        pool.append([r['name'], int(r.year), r.bucket, lab, None if o['c'] is None else round(float(o['c']), 1), [round(float(PR.at[i, f]), 4) for f in COMP]])
+    print(f'NBA-DNA Comp-Pool: {len(pool)} Spieler mit NBA-Karriere')
+    return {'models': mods, 'cat': cat, 'catFeats': CATF, 'catR': catR, 'auc': res, 'pool': pool, 'n': int(len(R)), 'nNba': int(R.ok.sum()), 'nRot': int(R.rot.sum()), 'nFan': int(R.fan.sum()),
+            'base': {'rot': round(float(R.rot.mean()), 4), 'fan': round(float(R.fan.mean()), 4)}, 'years': [2010, 2022], 'reliableMin': 250}
 
 
 if __name__ == '__main__':
