@@ -1,0 +1,526 @@
+{
+ "n": 13326,
+ "nNba": 946,
+ "nImpact": 201,
+ "nStarter": 81,
+ "nFan": 230,
+ "overlap": {
+  "both": 162,
+  "onlyImpact": 39,
+  "onlyFan": 68
+ },
+ "univariate": [
+  {
+   "feat": "age",
+   "rVorp": -0.046,
+   "rBestBpm": -0.1,
+   "rFantasy": -0.213,
+   "diff": 0.168
+  },
+  {
+   "feat": "cls",
+   "rVorp": -0.028,
+   "rBestBpm": -0.107,
+   "rFantasy": -0.197,
+   "diff": 0.169
+  },
+  {
+   "feat": "rec",
+   "rVorp": -0.007,
+   "rBestBpm": 0.031,
+   "rFantasy": 0.103,
+   "diff": -0.11
+  },
+  {
+   "feat": "recTop",
+   "rVorp": -0.007,
+   "rBestBpm": 0.031,
+   "rFantasy": 0.103,
+   "diff": -0.11
+  },
+  {
+   "feat": "unrec",
+   "rVorp": 0.105,
+   "rBestBpm": 0.133,
+   "rFantasy": 0.029,
+   "diff": 0.076
+  },
+  {
+   "feat": "htIn",
+   "rVorp": 0.133,
+   "rBestBpm": 0.155,
+   "rFantasy": 0.101,
+   "diff": 0.032
+  },
+  {
+   "feat": "power",
+   "rVorp": 0.008,
+   "rBestBpm": 0.017,
+   "rFantasy": 0.059,
+   "diff": -0.051
+  },
+  {
+   "feat": "bpm",
+   "rVorp": 0.42,
+   "rBestBpm": 0.393,
+   "rFantasy": 0.352,
+   "diff": 0.068
+  },
+  {
+   "feat": "obpm",
+   "rVorp": 0.233,
+   "rBestBpm": 0.173,
+   "rFantasy": 0.21,
+   "diff": 0.023
+  },
+  {
+   "feat": "dbpm",
+   "rVorp": 0.312,
+   "rBestBpm": 0.317,
+   "rFantasy": 0.269,
+   "diff": 0.043
+  },
+  {
+   "feat": "usg",
+   "rVorp": -0.049,
+   "rBestBpm": -0.063,
+   "rFantasy": 0.005,
+   "diff": -0.055
+  },
+  {
+   "feat": "ts",
+   "rVorp": 0.247,
+   "rBestBpm": 0.197,
+   "rFantasy": 0.169,
+   "diff": 0.077
+  },
+  {
+   "feat": "orbPct",
+   "rVorp": 0.17,
+   "rBestBpm": 0.158,
+   "rFantasy": 0.134,
+   "diff": 0.036
+  },
+  {
+   "feat": "drbPct",
+   "rVorp": 0.195,
+   "rBestBpm": 0.206,
+   "rFantasy": 0.122,
+   "diff": 0.074
+  },
+  {
+   "feat": "astPct",
+   "rVorp": 0.038,
+   "rBestBpm": 0.019,
+   "rFantasy": 0.02,
+   "diff": 0.018
+  },
+  {
+   "feat": "toPct",
+   "rVorp": -0.026,
+   "rBestBpm": -0.02,
+   "rFantasy": 0.008,
+   "diff": -0.033
+  },
+  {
+   "feat": "blkPct",
+   "rVorp": 0.192,
+   "rBestBpm": 0.206,
+   "rFantasy": 0.172,
+   "diff": 0.019
+  },
+  {
+   "feat": "stlPct",
+   "rVorp": 0.172,
+   "rBestBpm": 0.135,
+   "rFantasy": 0.153,
+   "diff": 0.019
+  },
+  {
+   "feat": "ftr",
+   "rVorp": 0.067,
+   "rBestBpm": 0.07,
+   "rFantasy": 0.061,
+   "diff": 0.006
+  },
+  {
+   "feat": "tpa40",
+   "rVorp": -0.108,
+   "rBestBpm": -0.126,
+   "rFantasy": -0.043,
+   "diff": -0.065
+  },
+  {
+   "feat": "tpPct",
+   "rVorp": -0.032,
+   "rBestBpm": -0.06,
+   "rFantasy": -0.031,
+   "diff": -0.001
+  },
+  {
+   "feat": "ftPct",
+   "rVorp": -0.007,
+   "rBestBpm": -0.013,
+   "rFantasy": -0.014,
+   "diff": 0.008
+  },
+  {
+   "feat": "rimPct",
+   "rVorp": 0.259,
+   "rBestBpm": 0.226,
+   "rFantasy": 0.195,
+   "diff": 0.065
+  },
+  {
+   "feat": "dunk40",
+   "rVorp": 0.142,
+   "rBestBpm": 0.133,
+   "rFantasy": 0.152,
+   "diff": -0.011
+  },
+  {
+   "feat": "mpg",
+   "rVorp": 0.072,
+   "rBestBpm": 0.043,
+   "rFantasy": 0.047,
+   "diff": 0.025
+  },
+  {
+   "feat": "minPct",
+   "rVorp": 0.052,
+   "rBestBpm": 0.029,
+   "rFantasy": 0.006,
+   "diff": 0.047
+  },
+  {
+   "feat": "bpmJump",
+   "rVorp": 0.034,
+   "rBestBpm": -0.017,
+   "rFantasy": -0.022,
+   "diff": 0.056
+  },
+  {
+   "feat": "pts40",
+   "rVorp": 0.011,
+   "rBestBpm": 0.016,
+   "rFantasy": 0.06,
+   "diff": -0.049
+  },
+  {
+   "feat": "reb40",
+   "rVorp": 0.191,
+   "rBestBpm": 0.206,
+   "rFantasy": 0.138,
+   "diff": 0.053
+  },
+  {
+   "feat": "ast40",
+   "rVorp": 0.036,
+   "rBestBpm": 0.031,
+   "rFantasy": 0.016,
+   "diff": 0.019
+  },
+  {
+   "feat": "stl40",
+   "rVorp": 0.16,
+   "rBestBpm": 0.133,
+   "rFantasy": 0.148,
+   "diff": 0.011
+  },
+  {
+   "feat": "blk40",
+   "rVorp": 0.194,
+   "rBestBpm": 0.216,
+   "rFantasy": 0.176,
+   "diff": 0.017
+  },
+  {
+   "feat": "tpm40",
+   "rVorp": -0.098,
+   "rBestBpm": -0.119,
+   "rFantasy": -0.036,
+   "diff": -0.062
+  },
+  {
+   "feat": "fta40",
+   "rVorp": 0.01,
+   "rBestBpm": 0.01,
+   "rFantasy": 0.053,
+   "diff": -0.043
+  },
+  {
+   "feat": "rimRate",
+   "rVorp": 0.139,
+   "rBestBpm": 0.165,
+   "rFantasy": 0.095,
+   "diff": 0.044
+  },
+  {
+   "feat": "astTo",
+   "rVorp": 0.047,
+   "rBestBpm": 0.021,
+   "rFantasy": 0.011,
+   "diff": 0.036
+  }
+ ],
+ "weights": [
+  {
+   "feat": "age",
+   "impact": -0.578,
+   "fantasy": -0.573,
+   "diff": -0.005
+  },
+  {
+   "feat": "cls",
+   "impact": -0.477,
+   "fantasy": -0.421,
+   "diff": -0.055
+  },
+  {
+   "feat": "rec",
+   "impact": -0.201,
+   "fantasy": -0.272,
+   "diff": 0.072
+  },
+  {
+   "feat": "recTop",
+   "impact": -0.027,
+   "fantasy": 0.145,
+   "diff": -0.172
+  },
+  {
+   "feat": "unrec",
+   "impact": -0.121,
+   "fantasy": -0.21,
+   "diff": 0.089
+  },
+  {
+   "feat": "htIn",
+   "impact": 0.392,
+   "fantasy": 0.555,
+   "diff": -0.163
+  },
+  {
+   "feat": "power",
+   "impact": 0.156,
+   "fantasy": 0.13,
+   "diff": 0.026
+  },
+  {
+   "feat": "bpm",
+   "impact": 0.816,
+   "fantasy": 0.764,
+   "diff": 0.052
+  },
+  {
+   "feat": "obpm",
+   "impact": 0.732,
+   "fantasy": 0.685,
+   "diff": 0.047
+  },
+  {
+   "feat": "dbpm",
+   "impact": 0.542,
+   "fantasy": 0.508,
+   "diff": 0.034
+  },
+  {
+   "feat": "usg",
+   "impact": 0.015,
+   "fantasy": 0.037,
+   "diff": -0.022
+  },
+  {
+   "feat": "ts",
+   "impact": -0.126,
+   "fantasy": -0.116,
+   "diff": -0.01
+  },
+  {
+   "feat": "orbPct",
+   "impact": -0.177,
+   "fantasy": 0.115,
+   "diff": -0.292
+  },
+  {
+   "feat": "drbPct",
+   "impact": 0.105,
+   "fantasy": -0.241,
+   "diff": 0.346
+  },
+  {
+   "feat": "astPct",
+   "impact": -0.246,
+   "fantasy": -0.156,
+   "diff": -0.09
+  },
+  {
+   "feat": "toPct",
+   "impact": 0.057,
+   "fantasy": 0.226,
+   "diff": -0.169
+  },
+  {
+   "feat": "blkPct",
+   "impact": -0.14,
+   "fantasy": -0.177,
+   "diff": 0.037
+  },
+  {
+   "feat": "stlPct",
+   "impact": 0.097,
+   "fantasy": 0.042,
+   "diff": 0.055
+  },
+  {
+   "feat": "ftr",
+   "impact": -0.011,
+   "fantasy": -0.258,
+   "diff": 0.247
+  },
+  {
+   "feat": "tpa40",
+   "impact": -0.108,
+   "fantasy": 0.072,
+   "diff": -0.18
+  },
+  {
+   "feat": "tpPct",
+   "impact": -0.147,
+   "fantasy": -0.183,
+   "diff": 0.035
+  },
+  {
+   "feat": "ftPct",
+   "impact": 0.14,
+   "fantasy": 0.086,
+   "diff": 0.054
+  },
+  {
+   "feat": "rimPct",
+   "impact": 0.155,
+   "fantasy": 0.124,
+   "diff": 0.031
+  },
+  {
+   "feat": "dunk40",
+   "impact": 0.271,
+   "fantasy": 0.35,
+   "diff": -0.078
+  },
+  {
+   "feat": "mpg",
+   "impact": 1.001,
+   "fantasy": 0.931,
+   "diff": 0.069
+  },
+  {
+   "feat": "minPct",
+   "impact": -0.21,
+   "fantasy": -0.007,
+   "diff": -0.204
+  },
+  {
+   "feat": "bpmJump",
+   "impact": -0.073,
+   "fantasy": -0.07,
+   "diff": -0.003
+  },
+  {
+   "feat": "pts40",
+   "impact": 0.15,
+   "fantasy": 0.328,
+   "diff": -0.179
+  },
+  {
+   "feat": "reb40",
+   "impact": 0.047,
+   "fantasy": 0.109,
+   "diff": -0.062
+  },
+  {
+   "feat": "ast40",
+   "impact": 0.222,
+   "fantasy": 0.26,
+   "diff": -0.038
+  },
+  {
+   "feat": "stl40",
+   "impact": 0.023,
+   "fantasy": 0.134,
+   "diff": -0.111
+  },
+  {
+   "feat": "blk40",
+   "impact": 0.018,
+   "fantasy": -0.018,
+   "diff": 0.036
+  },
+  {
+   "feat": "tpm40",
+   "impact": 0.185,
+   "fantasy": 0.198,
+   "diff": -0.012
+  },
+  {
+   "feat": "fta40",
+   "impact": 0.035,
+   "fantasy": 0.131,
+   "diff": -0.096
+  },
+  {
+   "feat": "rimRate",
+   "impact": -0.275,
+   "fantasy": -0.278,
+   "diff": 0.004
+  },
+  {
+   "feat": "astTo",
+   "impact": 0.085,
+   "fantasy": -0.09,
+   "diff": 0.176
+  }
+ ],
+ "backtest": {
+  "impact": {
+   "auc": 0.972,
+   "aucRel": 0.901
+  },
+  "starter": {
+   "auc": 0.967,
+   "aucRel": 0.902
+  },
+  "fan": {
+   "auc": 0.978,
+   "aucRel": 0.919
+  },
+  "nba": {
+   "auc": 0.97,
+   "aucRel": 0.885
+  },
+  "fan→impact": {
+   "auc": 0.974,
+   "aucRel": 0.909
+  },
+  "impact→fan": {
+   "auc": 0.977,
+   "aucRel": 0.913
+  }
+ },
+ "rankVorp": {
+  "impactModel": 0.202,
+  "fantasyModel": 0.208
+ },
+ "rankFantasy": {
+  "impactModel": 0.52,
+  "fantasyModel": 0.53
+ },
+ "gapHiImpact": {
+  "impactRate": 0.267,
+  "fanRate": 0.2
+ },
+ "gapHiFan": {
+  "impactRate": 0.333,
+  "fanRate": 0.4
+ }
+}

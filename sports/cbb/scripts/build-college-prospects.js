@@ -142,11 +142,57 @@ function draft(v, M, minNow) {
 // Draft (Vorsaison ↔ Produktion nach Minuten), Kategorie-Profil nz nur aus dem Produktionsprofil.
 const lin = (v, feats, m) => m.icpt + feats.reduce((s, f, i) => s + ((v[f] - m.mean[i]) / m.scale[i]) * m.coef[i], 0);
 const sig = x => 1 / (1 + Math.exp(-x));
+// Treiber-Texte mit Richtung: [hoch, niedrig] — je nachdem, ob der Spieler über/unter dem Schnitt liegt
+const FLABEL = {
+  age: ['älter', 'jünger'], cls: ['späteres College-Jahr', 'frühes College-Jahr'], htIn: ['groß', 'klein'],
+  power: ['Power-Conference', 'kleinere Conference'], bpm: ['hohe BPM', 'niedrige BPM'], obpm: ['hohe Off. BPM', 'niedrige Off. BPM'],
+  dbpm: ['hohe Def. BPM', 'niedrige Def. BPM'], usg: ['hohe Usage', 'niedrige Usage'], ts: ['effizient (TS%)', 'ineffizient (TS%)'],
+  orbPct: ['viele Off.-Rebounds', 'wenige Off.-Rebounds'], drbPct: ['viele Def.-Rebounds', 'wenige Def.-Rebounds'],
+  astPct: ['hohe Assist-Quote', 'niedrige Assist-Quote'], toPct: ['viele Ballverluste', 'wenige Ballverluste'],
+  blkPct: ['viele Blocks', 'wenige Blocks'], stlPct: ['viele Steals', 'wenige Steals'], ftr: ['zieht viele Fouls', 'zieht wenige Fouls'],
+  tpa40: ['viele Dreier-Versuche', 'wenige Dreier-Versuche'], tpPct: ['hohe Dreier-Quote', 'niedrige Dreier-Quote'],
+  ftPct: ['hohe FW-Quote', 'niedrige FW-Quote'], rimPct: ['trifft am Ring', 'schwach am Ring'], dunk40: ['viele Dunks', 'wenige Dunks'],
+  mpg: ['viele Minuten', 'wenige Minuten'], minPct: ['hoher Minuten-Anteil', 'niedriger Minuten-Anteil'],
+  bpmJump: ['großer Sprung zum Vorjahr', 'Rückschritt zum Vorjahr'], pts40: ['viele Punkte/40', 'wenige Punkte/40'],
+  reb40: ['viele Rebounds/40', 'wenige Rebounds/40'], ast40: ['viele Assists/40', 'wenige Assists/40'], stl40: ['viele Steals/40', 'wenige Steals/40'],
+  blk40: ['viele Blocks/40', 'wenige Blocks/40'], tpm40: ['viele Dreier/40', 'wenige Dreier/40'], fta40: ['viele Freiwürfe/40', 'wenige Freiwürfe/40'],
+  rimRate: ['viele Würfe am Ring', 'wenige Würfe am Ring'], astTo: ['gutes Assist/TO-Verhältnis', 'schwaches Assist/TO-Verhältnis'],
+};
+const REC_GROUP = ['rec', 'recTop', 'unrec']; // gemeinsam ein Treiber „Recruiting“ (sonst gegenläufige Teilgewichte)
 function dnaOf(v, M, minNow) {
   const G = M.dna, w = Math.min(1, Math.max(0, minNow / M.pre.blendMin));
-  const pr = t => w * sig(lin(v, M.feats, G.models[t + '_prod'])) + (1 - w) * sig(lin(v, M.pre.feats, G.models[t + '_pre']));
+  // Überblenden, dann Platt-Nachkalibrierung aus dem Backtest (rohe Chancen waren zu optimistisch)
+  const pr = t => {
+    const p = w * sig(lin(v, M.feats, G.models[t + '_prod'])) + (1 - w) * sig(lin(v, M.pre.feats, G.models[t + '_pre']));
+    const c = (G.calib || {})[t]; if (!c) return p;
+    const q = Math.min(1 - 1e-6, Math.max(1e-6, p));
+    return sig(c.a * Math.log(q / (1 - q)) + c.b);
+  };
   const nz = {}; Object.entries(G.cat).forEach(([c, m]) => { nz[c] = +lin(v, G.catFeats, m).toFixed(2); });
-  return { rot: +pr('rot').toFixed(3), fan: +pr('fan').toFixed(3), nz };
+  const out = { rot: +pr('rot').toFixed(3), fan: +pr('fan').toFixed(3), imp: +pr('impact').toFixed(3), nz };
+  if (G.typ) {
+    const vv = { ...v, astTo: v.astPct / Math.max(v.toPct, 1) };
+    const T = G.typ.typ, F = G.typFeats;
+    const zz = F.map((f, i) => (vv[f] - T.mean[i]) / T.scale[i]);
+    const contrib = [];
+    let recC = 0;
+    F.forEach((f, i) => {
+      const c = zz[i] * T.coef[i];
+      if (REC_GROUP.includes(f)) { recC += c; return; }
+      if (f === 'rimPct') return; // Artefakt (gegenläufig zu Würfe am Ring) — zählt im Modell, nicht als Treiber angezeigt
+      const l = FLABEL[f]; contrib.push([l ? l[zz[i] >= 0 ? 0 : 1] : f, c]);
+    });
+    contrib.push([vv.unrec ? 'ohne Recruiting-Rang' : vv.rec >= 98 ? 'Top-Recruit' : vv.rec >= 90 ? 'guter Recruiting-Rang' : 'wenig Recruiting-Hype', recC]);
+    const srt = contrib.slice().sort((a, b) => b[1] - a[1]);
+    out.typ = {
+      v: +lin(vv, F, T).toFixed(2),                         // BPM-Punkte mehr (+) / weniger (−) als sein Fantasy-Wert erwarten lässt
+      sd: T.sd,
+      plus: srt.filter(x => x[1] > 0.05).slice(0, 3).map(x => [x[0], +x[1].toFixed(2)]),
+      minus: srt.filter(x => x[1] < -0.05).slice(-3).reverse().map(x => [x[0], +x[1].toFixed(2)]),
+    };
+    out.bpm = +lin(vv, F, G.typ.bpmW).toFixed(1);       // erwartete NBA-BPM (minutengewichtet, falls 1000+ Min.)
+  }
+  return out;
 }
 
 const nkey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
@@ -217,7 +263,8 @@ function main() {
     compFeats: F, compPool: { G: pools.G.items.length, W: pools.W.items.length, B: pools.B.items.length },
     stat: ['GP', 'MIN', 'PTS', 'REB', 'AST', 'STL', 'BLK', '3PM', 'TS%', 'BPM', 'USG'],
     tthq: TTHQ_CURVE,
-    dna: { auc: M.dna.auc, catR: M.dna.catR, base: M.dna.base, n: M.dna.n, nNba: M.dna.nNba, nRot: M.dna.nRot, nFan: M.dna.nFan, years: M.dna.years, reliableMin: M.dna.reliableMin },
+    dna: { auc: M.dna.auc, catR: M.dna.catR, base: M.dna.base, n: M.dna.n, nNba: M.dna.nNba, nRot: M.dna.nRot, nFan: M.dna.nFan, nImpact: M.dna.nImpact,
+      typCross: M.dna.typCross, typN: M.dna.typN, years: M.dna.years, reliableMin: M.dna.reliableMin },
   };
   const js = `// ============================================================
 //  COLLEGE_PROSPECTS — College Scouting Basketball (AUTO-GENERIERT von
@@ -228,7 +275,9 @@ function main() {
 //  (meta.stat), dr {p Draft-Chance, q Pick-Quantile 10/25/50/75/90 falls gedraftet, w Gewicht Produktions-
 //  modell (Rest Vorsaison-Modell), pp/pv Chance je Teilmodell}, pc Perzentile der
 //  Comp-Merkmale (meta.compFeats) in der Gruppe, comps [Name, Schule, Saison, Klasse, Ähnlichkeit 0–100, pc],
-//  dn NBA-DNA {rot P(Rotation), fan P(Fantasy-Top-150), nz NBA-z je Kategorie, comps [Name, letzte
+//  dn NBA-DNA {rot P(Rotation), fan P(Fantasy-Top-150), imp P(Real-Life-Impact: Saison 1000+ Min. & BPM ≥ 0),
+//  typ {v BPM-Punkte mehr/weniger Impact als der Fantasy-Wert erwarten lässt, sd, plus/minus Treiber}, bpm erwartete
+//  NBA-BPM, nz NBA-z je Kategorie, comps [Name, letzte
 //  College-Saison, Ähnlichkeit, NBA-Ergebnis, bester BBM-Wert]} — verlässlich ab meta.dna.reliableMin Min.
 //  Stand ${meta.built}
 // ============================================================

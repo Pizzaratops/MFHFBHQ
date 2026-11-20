@@ -11,7 +11,8 @@
 //       dessen Konsens-Rang (nbaRank) als NBA-Pick; „Modell allein“ bleibt sichtbar.
 //    🎓 College Production Comp — „Produziert wie …“ (reine College-Produktion,
 //       Mahalanobis innerhalb Guard/Wing/Big). KEINE Erfolgsprognose.
-//    🧬 NBA-DNA — Chance auf NBA-Rotation/Fantasy-Top-150 + erwartetes NBA-Kategorie-Profil.
+//    🧬 NBA-DNA — Chance auf NBA-Rotation, Real-Life-Impact (Saison 1.000+ Min. & BPM ≥ 0, bbref) und
+//       Fantasy-Top-150; Typ-Regler „Fantasy-Typ ↔ Impact-Typ“ (seit 20.11.2026) + Fantasy-Profil (9-Cat-Radar).
 //       Seit 20.11.2026 aus dem College-Scouting-Modell (Barttorvik, train-prospect-model.py →
 //       build_dna), rechnet auf der LAUFENDEN Saison (auch Freshmen) mit Minutenhinweis:
 //       verlässlich ab meta.dna.reliableMin (250) Saison-Minuten, darunter „kleiner Datensatz“.
@@ -138,6 +139,9 @@
   function dnaBox(ctx, I, p) {
     const e = ctx.ui.esc, d = p.dn, G = I.C.meta.dna || {}, RM = G.reliableMin || 250;
     const auc = G.auc || {}, cr = G.catR || {};
+    const cx = G.typCross || {};
+    const whyImp = `Real-Life-Impact = mind. eine NBA-Saison mit 1.000+ Minuten und BPM ≥ 0 (mindestens Liga-Schnitt bei echter Rolle; Basketball-Reference) in den ersten 4 Jahren — ${G.nImpact} von ${(G.n || 0).toLocaleString('de-DE')} College-Abschlusssaisons 2010–22. Backtest 2017–22: AUC ${de(auc.impact_prod, 2)}. Chancen nachkalibriert (roh waren sie im Backtest zu optimistisch).`;
+    const whyTyp = `FALLS er es in die NBA schafft: bringt er mehr Real-Life-Impact (BPM) oder mehr Fantasy-Wert (9-Cat)? Gemessen an ${G.typN} NBA-Spielern mit 1.000+ Min.: ihre minutengewichtete NBA-BPM minus der BPM, die ihr Fantasy-Wert erwarten ließ. Wert = BPM-Punkte darüber (+, Impact-Typ) oder darunter (−, Fantasy-Typ). Backtest 2017–22: trifft den Typ mit ρ ${de((cx.typ || {}).typ, 2)} (schwaches bis mittleres Signal) und sagt den Fantasy-Wert selbst nicht voraus (ρ ${de((cx.typ || {}).fanAvg, 2)}) — misst also wirklich etwas anderes. Historisch eher Impact-Typ: hohe College-BPM, Effizienz, Defense/Def.-Rebounds, viele Würfe am Ring, gutes Assist/TO, ältere/unbekanntere Spieler (z. B. Robert Williams, Kyle Anderson). Eher Fantasy-Typ: hohe Usage, Punkte- und Dreier-Volumen, Blocks, Recruiting-Pedigree (z. B. Collin Sexton, Dillon Brooks).`;
     const why = `Setzt er sich in der NBA durch, und welche Fantasy-Kategorien nimmt er mit? Gelernt aus ${(G.n || 0).toLocaleString('de-DE')} letzten College-Saisons ${(G.years || [])[0]}–${(G.years || [])[1]} (Barttorvik) und den ersten 4 NBA-Jahren (BBM): ${G.nRot} schafften eine Rotations-Saison (40+ Spiele, 18+ Min.), ${G.nFan} eine Top-150-Saison (9-Cat). Backtest 2017–22: AUC ${de(auc.rot_prod, 2)} (Rotation) bzw. ${de(auc.fan_prod, 2)} (Fantasy). Rechnet auf der laufenden Saison (plus halbe Vorsaison): früh in der Saison tragen Recruiting, Alter und Größe, ab ${RM} Saison-Minuten ist das Bild verlässlich. Kategorie-Profil = erwartetes NBA-z, falls er es schafft (0 = Ø Rotationsspieler); wie gut sich jede Kategorie übersetzt: ${DCATS.map(([k, l]) => `${l} r ${de(cr[k], 2)}`).join(', ')}.`;
     const head = `<div class="card-head"><h2>${tip('🧬 NBA-DNA', why)}</h2></div>`;
     if (!d) return `<div class="card cs-box">${head}<div class="muted cs-pad">Keine NBA-DNA berechnet.</div></div>`;
@@ -161,15 +165,33 @@
     });
     return `<div class="card cs-box">${head}
       <div class="cs-box-sub">${flag} ${minLine}</div>
-      <div class="cs-rgrid" style="grid-template-columns:1fr 1fr">
+      <div class="cs-rgrid" style="grid-template-columns:1fr 1fr 1fr">
         <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Saison mit 40+ Spielen, 18+ Min.</span></div>
-        <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>in den ersten 4 NBA-Jahren</span></div>
+        <div class="cs-rcell"><small>${tip('Real-Life-Impact', whyImp)}</small><b class="cs-ev ${(d.imp || 0) >= 0.4 ? 'hoch' : (d.imp || 0) >= 0.15 ? 'mittel' : 'niedrig'}">${d.imp == null ? '—' : pct(d.imp)}</b><span>Saison 1.000+ Min. mit BPM ≥ 0</span></div>
+        <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>9-Cat, ersten 4 NBA-Jahre</span></div>
       </div>
-      <div class="cs-list-head">NBA-Profil, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
+      ${typBlock(ctx, d, whyTyp)}
+      <div class="cs-list-head">Fantasy-Profil 9-Cat, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
       <div class="cs-radar">${MFHFB.charts.chips([p.n, 'Ø NBA-Rotationsspieler'])}${radar}</div>
       <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
       <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
     </div>`;
+  }
+
+  // Typ-Regler: Fantasy-Typ ◀ ● ▶ Impact-Typ (±2 BPM-Punkte) + Treiber + erwartete NBA-BPM
+  function typBlock(ctx, d, why) {
+    const e = ctx.ui.esc, t = d.typ;
+    if (!t) return '';
+    const pos = Math.max(2, Math.min(98, 50 + t.v * 25));
+    const word = t.v >= 0.5 ? 'eher Impact-Typ' : t.v <= -0.5 ? 'eher Fantasy-Typ' : 'ausgeglichen';
+    const sg = v => (v >= 0 ? '+' : '−') + de(Math.abs(v));
+    const list = arr => arr.map(x => e(x[0])).join(', ') || '—';
+    return `<div class="cs-list-head">${tip('Real-Life-Impact ↔ Fantasy-Wert', why)}</div>
+      <div class="cs-typ">
+        <div class="cs-typ-scale" role="img" aria-label="${e(word)}, ${sg(t.v)} BPM-Punkte"><span>Fantasy-Typ</span><div class="cs-typ-track"><i style="left:${pos}%"></i></div><span>Impact-Typ</span></div>
+        <div class="cs-typ-txt"><b>${e(word)}</b> · ${sg(t.v)} BPM-Punkte ${t.v >= 0 ? 'mehr' : 'weniger'} Real-Life-Impact, als sein Fantasy-Wert erwarten lässt${d.bpm != null ? ` · erwartete NBA-BPM ${sg(d.bpm)} <small class="muted">(falls 1.000+ Min.; 0 = Liga-Schnitt)</small>` : ''}</div>
+        <div class="cs-typ-why"><span class="up">▶ Impact-Typ:</span> ${list(t.plus)}<br><span class="down">◀ Fantasy-Typ:</span> ${list(t.minus)}</div>
+      </div>`;
   }
 
   // ---------- Big Board ----------

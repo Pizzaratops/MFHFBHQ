@@ -584,3 +584,11 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 
 /* Playoff-Linie in der Standings-Tabelle (11.11.2026) */
 .table tr.po-cut > td { border-bottom: 2px dashed var(--accent, #e84a0c); }
+/* College Scouting Basketball: Typ-Regler Fantasy ↔ Impact (tools/nba-collegescouting.js) */
+.cs-typ { padding: 4px 14px 10px; font-size: 12.5px; }
+.cs-typ-scale { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; font-size: 10.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.cs-typ-track { position: relative; height: 10px; border-radius: 5px; background: linear-gradient(90deg, color-mix(in srgb, var(--sel-2) 45%, transparent), var(--surface2) 50%, color-mix(in srgb, var(--sel-1) 45%, transparent)); }
+.cs-typ-track::after { content: ''; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--border); }
+.cs-typ-track i { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--text); border: 2px solid var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+.cs-typ-txt { margin-top: 8px; line-height: 1.45; }
+.cs-typ-why { margin-top: 6px; color: var(--muted); line-height: 1.5; }

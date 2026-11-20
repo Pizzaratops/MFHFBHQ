@@ -276,6 +276,36 @@ def load_nba():
     return out
 
 
+# ---------- Real-Life-Impact (Basketball-Reference: cache/nba-advanced.csv.gz, aus dem öffentlichen
+# Datensatz github.com/sumitrodatta/bball-reference-datasets, getrimmt ab 2008) ----------
+TYPF_EXTRA = ['astTo']
+
+
+def nba_adv():
+    A = pd.read_csv(os.path.join(HERE, 'cache', 'nba-advanced.csv.gz'))
+    A = A.sort_values('mp').drop_duplicates(['player_id', 'season'], keep='last')  # 2TM/3TM = Gesamtzeile
+    A['k'] = A.player.map(nkey)
+    return A
+
+
+def adv_outcomes(R, A):
+    """Erste 4 NBA-Saisons nach der letzten College-Saison L. Zuordnung über den Namen, nur wenn
+    genau eine bbref-ID ihre erste NBA-Saison in L+1…L+3 hat."""
+    first = A.groupby('player_id').season.min()
+    ids = A.groupby('k').player_id.unique().to_dict()
+    by = {pid: g.set_index('season') for pid, g in A.groupby('player_id')}
+    out = []
+    for k, L in zip(R.k, R.year):
+        cand = [q for q in ids.get(k, []) if L < first[q] <= L + 3]
+        if len(cand) != 1: out.append(None); continue
+        g = by[cand[0]]; S = g[(g.index > L) & (g.index <= L + 4)]
+        mp = float(S.mp.sum())
+        out.append(dict(mp=mp, vorp=float(S.vorp.sum()),
+                        bpmW=float((S.bpm * S.mp).sum() / mp) if mp >= 1000 else None,
+                        impact=bool(((S.mp >= 1000) & (S.bpm >= 0)).any())))
+    return out
+
+
 def build_dna(D, T, PR, means):
     NBA = load_nba()
     first, seas = {}, {}
@@ -306,7 +336,18 @@ def build_dna(D, T, PR, means):
     O = [outcome(k, L) for k, L in zip(R.k, R.year)]
     R['rot'] = [bool(o and o['rot']) for o in O]; R['fan'] = [bool(o and o['fan']) for o in O]
     R['ok'] = [o is not None for o in O]
-    X = PR.loc[R.index]
+    AO = adv_outcomes(R, nba_adv())
+    R['impact'] = [bool(o and o['impact']) for o in AO]
+    R['bpmW'] = [o['bpmW'] if o and o['bpmW'] is not None else np.nan for o in AO]
+    R['vorp'] = [o['vorp'] if o else 0.0 for o in AO]
+    # Ø Fantasy-Wert (BBM composite) der NBA-Saisons mit ≥ 30 Spielen
+    def fan_avg(k, L):
+        S = [seas[k][y] for y in range(L + 1, L + 5) if k in seas and y in seas[k] and seas[k][y]['games'] >= 30]
+        return float(np.mean([q['composite'] for q in S])) if S else np.nan
+    R['fanAvg'] = [fan_avg(k, L) for k, L in zip(R.k, R.year)]
+    X = PR.loc[R.index].copy()
+    X['astTo'] = X.astPct / X.toPct.clip(lower=1)
+    print(f'NBA-DNA: Real-Life-Impact (Saison ≥ 1000 Min. & BPM ≥ 0, bbref) {int(R.impact.sum())} Spieler')
     print(f'NBA-DNA: {len(R)} letzte Saisons 2010–2022 · NBA erreicht {int(R.ok.sum())} · Rotation {int(R.rot.sum())} · Fantasy-Top-150 {int(R.fan.sum())}')
 
     def logit(cols, y, tr):
@@ -315,19 +356,51 @@ def build_dna(D, T, PR, means):
     rel = (R.bpm >= 3) | (R.rec >= 80) | R.ok
     res = {}
     tr, te = R.year <= 2016, R.year >= 2017
-    for tgt in ['rot', 'fan']:
+    calib = {}
+    for tgt in ['rot', 'fan', 'impact']:
         for nm, cols in [('prod', FEATS), ('pre', PRE)]:
             sc, m = logit(cols, R[tgt], tr)
             p = m.predict_proba(sc.transform(X.loc[te, cols]))[:, 1]
             res[f'{tgt}_{nm}'] = round(roc_auc_score(R[tgt][te], p), 3)
             res[f'{tgt}_{nm}_rel'] = round(roc_auc_score(R[tgt][te & rel], m.predict_proba(sc.transform(X.loc[te & rel, cols]))[:, 1]), 3)
+            if nm == 'prod':
+                # Nachkalibrierung (Platt) auf den Testjahren: die rohen Chancen waren im Backtest zu
+                # optimistisch (z. B. Impact 0,5–0,7 → real 26 %). p_kal = σ(a·logit(p) + b)
+                lp = np.log(np.clip(p, 1e-6, 1 - 1e-6) / (1 - np.clip(p, 1e-6, 1 - 1e-6)))
+                pl = LogisticRegression(C=1e6, max_iter=4000).fit(lp.reshape(-1, 1), R[tgt][te])
+                calib[tgt] = {'a': round(float(pl.coef_[0][0]), 5), 'b': round(float(pl.intercept_[0]), 5)}
+                pc = pl.predict_proba(lp.reshape(-1, 1))[:, 1]
+                t_ = pd.DataFrame({'p': pc, 'y': R[tgt][te].values}); t_['bin'] = pd.cut(t_.p, [0, .05, .15, .3, .5, .7, 1])
+                print(f'  Kalibrierung {tgt} (nachkalibriert, 2017–22):', ', '.join(f'{i}: {g.p.mean():.2f}→{g.y.mean():.2f} (n {len(g)})' for i, g in t_.groupby('bin', observed=True)))
     print('NBA-DNA Backtest (≤2016 → 2017–22), AUC alle / relevante:', ', '.join(f'{k} {v}' for k, v in res.items()))
     allr = pd.Series(True, index=R.index)
     mods = {}
-    for tgt in ['rot', 'fan']:
+    for tgt in ['rot', 'fan', 'impact']:
         for nm, cols in [('prod', FEATS), ('pre', PRE)]:
             sc, m = logit(cols, R[tgt], allr)
             mods[f'{tgt}_{nm}'] = {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist(), 'coef': m.coef_[0].round(6).tolist(), 'icpt': round(float(m.intercept_[0]), 6)}
+    # ---------- Typ: mehr Real-Life-Impact oder mehr Fantasy-Wert, FALLS er es schafft ----------
+    # Unter NBA-Spielern (≥ 1000 Min. in 4 J.): Rest der minutengewichteten NBA-BPM gegenüber dem, was
+    # sein Fantasy-Ø erwarten lässt (lineare Regression BPM ~ Fantasy-Ø). > 0 = mehr Impact als Fantasy.
+    TYPF = list(dict.fromkeys(FEATS + CATF_EXTRA + TYPF_EXTRA))
+    N = R[R.bpmW.notna() & R.fanAvg.notna()].copy()
+    sl = np.polyfit(N.fanAvg, N.bpmW, 1)
+    N['typ'] = N.bpmW - np.polyval(sl, N.fanAvg)
+    XN = X.loc[N.index, TYPF]
+    trn, ten = N.year <= 2016, N.year >= 2017
+    typ = {}
+    cross = {}
+    for tgt in ['typ', 'bpmW', 'fanAvg']:
+        sc = StandardScaler().fit(XN[trn]); rg = Ridge(alpha=30).fit(sc.transform(XN[trn]), N.loc[trn, tgt])
+        pr_ = rg.predict(sc.transform(XN[ten]))
+        cross[tgt] = {t2: round(float(spearmanr(pr_, N.loc[ten, t2]).correlation), 3) for t2 in ['typ', 'bpmW', 'fanAvg']}
+        sc = StandardScaler().fit(XN); rg = Ridge(alpha=30).fit(sc.transform(XN), N[tgt])
+        typ[tgt] = {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist(), 'coef': rg.coef_.round(6).tolist(), 'icpt': round(float(rg.intercept_), 6),
+                    'sd': round(float(N[tgt].std()), 4)}
+    print(f'NBA-DNA Typ-Modell (n {len(N)}, Test 2017–22) ρ — trainiert auf → getestet gegen:', cross)
+    tw = sorted(zip(TYPF, typ['typ']['coef']), key=lambda x: -abs(x[1]))
+    print('  Typ-Gewichte (+ = Impact-Typ):', ', '.join(f'{f} {c:+.2f}' for f, c in tw[:12]))
+
     # Kategorie-Profil (nur Produktionsprofil), Test-r je Kategorie
     Z = R[[o is not None and o['nz'] is not None for o in O]].copy()
     NZ = pd.DataFrame([o['nz'] for o in O if o is not None and o['nz'] is not None], index=Z.index)
@@ -349,8 +422,9 @@ def build_dna(D, T, PR, means):
         lab = f'Top {int(o["best"])}' if o['best'] <= 150 else ('Rotation' if o['rot'] else 'kurz in der NBA')
         pool.append([r['name'], int(r.year), r.bucket, lab, None if o['c'] is None else round(float(o['c']), 1), [round(float(PR.at[i, f]), 4) for f in COMP]])
     print(f'NBA-DNA Comp-Pool: {len(pool)} Spieler mit NBA-Karriere')
-    return {'models': mods, 'cat': cat, 'catFeats': CATF, 'catR': catR, 'auc': res, 'pool': pool, 'n': int(len(R)), 'nNba': int(R.ok.sum()), 'nRot': int(R.rot.sum()), 'nFan': int(R.fan.sum()),
-            'base': {'rot': round(float(R.rot.mean()), 4), 'fan': round(float(R.fan.mean()), 4)}, 'years': [2010, 2022], 'reliableMin': 250}
+    return {'models': mods, 'calib': calib, 'cat': cat, 'catFeats': CATF, 'catR': catR, 'auc': res, 'pool': pool, 'n': int(len(R)), 'nNba': int(R.ok.sum()), 'nRot': int(R.rot.sum()), 'nFan': int(R.fan.sum()),
+            'nImpact': int(R.impact.sum()), 'typ': typ, 'typFeats': TYPF, 'typCross': cross, 'typN': int(len(N)), 'typSlope': [round(float(x), 5) for x in sl],
+            'base': {'rot': round(float(R.rot.mean()), 4), 'fan': round(float(R.fan.mean()), 4), 'impact': round(float(R.impact.mean()), 4)}, 'years': [2010, 2022], 'reliableMin': 250}
 
 
 if __name__ == '__main__':
