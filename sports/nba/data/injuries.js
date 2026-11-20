@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T22:13:42.553Z",
+  "updated": "2026-11-20T22:19:22.334Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -28,6 +28,7 @@ const NBA_INJURIES = {
     "Clint Capela": ["HOU","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
     "Collin Murray-Boyles": ["TOR","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
     "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-20"],
+    "Dean Wade": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-20"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-20"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
