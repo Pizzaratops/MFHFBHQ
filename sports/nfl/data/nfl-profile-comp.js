@@ -20,7 +20,7 @@
 
 const NFL_PROFILE_COMP = {
   "meta": {
-    "builtAt": "2026-11-20T09:04:43.669Z",
+    "builtAt": "2026-11-20T16:33:45.463Z",
     "matchFeatures": {
       "QB": [
         "avgPpaPass",
@@ -42760,128 +42760,6 @@ const NFL_PROFILE_COMP = {
           "draftPick": 239,
           "ras": 4.89,
           "draftCapitalScore": 0.37
-        }
-      ],
-      "2026_5177084": [
-        {
-          "id": "nfl_2024_joemilton",
-          "name": "Joe Milton",
-          "team": "Tennessee",
-          "year": 2023,
-          "dist": 1.965,
-          "draftYear": 2024,
-          "draftRound": 6,
-          "draftPick": 193,
-          "ras": 8.69,
-          "draftCapitalScore": 0.614
-        },
-        {
-          "id": "nfl_2023_seanclifford",
-          "name": "Sean Clifford",
-          "team": "Penn State",
-          "year": 2022,
-          "dist": 2.127,
-          "draftYear": 2023,
-          "draftRound": 5,
-          "draftPick": 149,
-          "ras": null,
-          "draftCapitalScore": 0.373
-        },
-        {
-          "id": "nfl_2018_alexmcgough",
-          "name": "Alex McGough",
-          "team": "Florida International",
-          "year": 2017,
-          "dist": 2.301,
-          "draftYear": 2018,
-          "draftRound": 7,
-          "draftPick": 220,
-          "ras": null,
-          "draftCapitalScore": 0.614
-        },
-        {
-          "id": "nfl_2026_drewallar",
-          "name": "Drew Allar",
-          "team": "Penn State",
-          "year": 2024,
-          "dist": 2.46,
-          "draftYear": 2026,
-          "draftRound": 3,
-          "draftPick": 76,
-          "ras": 7.87,
-          "draftCapitalScore": 0.609
-        },
-        {
-          "id": "nfl_2026_behrenmorton",
-          "name": "Behren Morton",
-          "team": "Texas Tech",
-          "year": 2025,
-          "dist": 2.608,
-          "draftYear": 2026,
-          "draftRound": 7,
-          "draftPick": 234,
-          "ras": 3.5,
-          "draftCapitalScore": 0.37
-        },
-        {
-          "id": "nfl_2019_willgrier",
-          "name": "Will Grier",
-          "team": "West Virginia",
-          "year": 2018,
-          "dist": 2.62,
-          "draftYear": 2019,
-          "draftRound": 3,
-          "draftPick": 100,
-          "ras": 4.91,
-          "draftCapitalScore": 0.609
-        },
-        {
-          "id": "nfl_2018_lukefalk",
-          "name": "Luke Falk",
-          "team": "Washington State",
-          "year": 2017,
-          "dist": 2.916,
-          "draftYear": 2018,
-          "draftRound": 6,
-          "draftPick": 199,
-          "ras": 2.77,
-          "draftCapitalScore": 0.614
-        },
-        {
-          "id": "nfl_2023_hendonhooker",
-          "name": "Hendon Hooker",
-          "team": "Tennessee",
-          "year": 2022,
-          "dist": 3.1,
-          "draftYear": 2023,
-          "draftRound": 3,
-          "draftPick": 68,
-          "ras": 4.03,
-          "draftCapitalScore": 0.609
-        },
-        {
-          "id": "nfl_2025_jalenmilroe",
-          "name": "Jalen Milroe",
-          "team": "Alabama",
-          "year": 2024,
-          "dist": 3.14,
-          "draftYear": 2025,
-          "draftRound": 3,
-          "draftPick": 92,
-          "ras": 2.74,
-          "draftCapitalScore": 0.609
-        },
-        {
-          "id": "nfl_2024_jordantravis",
-          "name": "Jordan Travis",
-          "team": "Florida State",
-          "year": 2023,
-          "dist": 3.155,
-          "draftYear": 2024,
-          "draftRound": 5,
-          "draftPick": 171,
-          "ras": 0.68,
-          "draftCapitalScore": 0.373
         }
       ],
       "2026_5191162": [
@@ -119378,128 +119256,6 @@ const NFL_PROFILE_COMP = {
           "draftPick": 250,
           "ras": null,
           "draftCapitalScore": 0.165
-        }
-      ],
-      "2026_4612624": [
-        {
-          "id": "nfl_2021_kenenwangwu",
-          "name": "Kene Nwangwu",
-          "team": "Iowa State",
-          "year": 2020,
-          "dist": 1.972,
-          "draftYear": 2021,
-          "draftRound": 4,
-          "draftPick": 119,
-          "ras": null,
-          "draftCapitalScore": 0.246
-        },
-        {
-          "id": "nfl_2026_demondclaiborne",
-          "name": "Demond Claiborne",
-          "team": "Wake Forest",
-          "year": 2025,
-          "dist": 3.175,
-          "draftYear": 2026,
-          "draftRound": 6,
-          "draftPick": 198,
-          "ras": 6.14,
-          "draftCapitalScore": 0.149
-        },
-        {
-          "id": "nfl_2021_garybrightwell",
-          "name": "Gary Brightwell",
-          "team": "Arizona",
-          "year": 2020,
-          "dist": 3.61,
-          "draftYear": 2021,
-          "draftRound": 6,
-          "draftPick": 196,
-          "ras": 3.03,
-          "draftCapitalScore": 0.149
-        },
-        {
-          "id": "nfl_2019_travishomer",
-          "name": "Travis Homer",
-          "team": "Miami",
-          "year": 2018,
-          "dist": 3.704,
-          "draftYear": 2019,
-          "draftRound": 6,
-          "draftPick": 204,
-          "ras": 5.29,
-          "draftCapitalScore": 0.149
-        },
-        {
-          "id": "nfl_2023_tankbigsby",
-          "name": "Tank Bigsby",
-          "team": "Auburn",
-          "year": 2022,
-          "dist": 3.83,
-          "draftYear": 2023,
-          "draftRound": 3,
-          "draftPick": 88,
-          "ras": 4.68,
-          "draftCapitalScore": 0.372
-        },
-        {
-          "id": "nfl_2025_jaydonblue",
-          "name": "Jaydon Blue",
-          "team": "Texas",
-          "year": 2024,
-          "dist": 3.863,
-          "draftYear": 2025,
-          "draftRound": 5,
-          "draftPick": 149,
-          "ras": null,
-          "draftCapitalScore": 0.249
-        },
-        {
-          "id": "nfl_2018_kalenballage",
-          "name": "Kalen Ballage",
-          "team": "Arizona State",
-          "year": 2017,
-          "dist": 3.899,
-          "draftYear": 2018,
-          "draftRound": 4,
-          "draftPick": 131,
-          "ras": 5.73,
-          "draftCapitalScore": 0.246
-        },
-        {
-          "id": "nfl_2020_anthonymcfarland",
-          "name": "Anthony McFarland",
-          "team": "Maryland",
-          "year": 2019,
-          "dist": 3.97,
-          "draftYear": 2020,
-          "draftRound": 4,
-          "draftPick": 124,
-          "ras": 3.95,
-          "draftCapitalScore": 0.246
-        },
-        {
-          "id": "nfl_2020_lamicalperine",
-          "name": "Lamical Perine",
-          "team": "Florida",
-          "year": 2019,
-          "dist": 4.004,
-          "draftYear": 2020,
-          "draftRound": 4,
-          "draftPick": 120,
-          "ras": 4.73,
-          "draftCapitalScore": 0.246
-        },
-        {
-          "id": "nfl_2018_nyheimhines",
-          "name": "Nyheim Hines",
-          "team": "NC State",
-          "year": 2017,
-          "dist": 4.014,
-          "draftYear": 2018,
-          "draftRound": 4,
-          "draftPick": 104,
-          "ras": 4.75,
-          "draftCapitalScore": 0.372
         }
       ],
       "2026_4683234": [
@@ -281642,128 +281398,6 @@ const NFL_PROFILE_COMP = {
           "draftCapitalScore": 0.593
         }
       ],
-      "2026_5079745": [
-        {
-          "id": "nfl_2023_jalenbrooks",
-          "name": "Jalen Brooks",
-          "team": "South Carolina",
-          "year": 2022,
-          "dist": 1.457,
-          "draftYear": 2023,
-          "draftRound": 7,
-          "draftPick": 244,
-          "ras": 3.56,
-          "draftCapitalScore": 0.25
-        },
-        {
-          "id": "nfl_2020_tyriecleveland",
-          "name": "Tyrie Cleveland",
-          "team": "Florida",
-          "year": 2019,
-          "dist": 1.483,
-          "draftYear": 2020,
-          "draftRound": 7,
-          "draftPick": 252,
-          "ras": 6.13,
-          "draftCapitalScore": 0.25
-        },
-        {
-          "id": "nfl_2026_barionbrown",
-          "name": "Barion Brown",
-          "team": "LSU",
-          "year": 2025,
-          "dist": 1.706,
-          "draftYear": 2026,
-          "draftRound": 6,
-          "draftPick": 190,
-          "ras": 4.82,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2019_juwannwinfree",
-          "name": "Juwann Winfree",
-          "team": "Colorado",
-          "year": 2018,
-          "dist": 1.783,
-          "draftYear": 2019,
-          "draftRound": 6,
-          "draftPick": 187,
-          "ras": null,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2021_trenixon",
-          "name": "Tre Nixon",
-          "team": "UCF",
-          "year": 2020,
-          "dist": 1.794,
-          "draftYear": 2021,
-          "draftRound": 7,
-          "draftPick": 242,
-          "ras": 5.82,
-          "draftCapitalScore": 0.25
-        },
-        {
-          "id": "nfl_2019_hunterrenfrow",
-          "name": "Hunter Renfrow",
-          "team": "Clemson",
-          "year": 2018,
-          "dist": 1.814,
-          "draftYear": 2019,
-          "draftRound": 5,
-          "draftPick": 149,
-          "ras": 2.64,
-          "draftCapitalScore": 0.331
-        },
-        {
-          "id": "nfl_2018_rayraymccloud",
-          "name": "Ray-Ray McCloud",
-          "team": "Clemson",
-          "year": 2017,
-          "dist": 1.886,
-          "draftYear": 2018,
-          "draftRound": 6,
-          "draftPick": 187,
-          "ras": 2.63,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2024_jordanwhittington",
-          "name": "Jordan Whittington",
-          "team": "Texas",
-          "year": 2023,
-          "dist": 1.954,
-          "draftYear": 2024,
-          "draftRound": 6,
-          "draftPick": 213,
-          "ras": 6.31,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2026_colbieyoung",
-          "name": "Colbie Young",
-          "team": "Georgia",
-          "year": 2025,
-          "dist": 1.967,
-          "draftYear": 2026,
-          "draftRound": 4,
-          "draftPick": 140,
-          "ras": 7.44,
-          "draftCapitalScore": 0.298
-        },
-        {
-          "id": "nfl_2025_jimmyhorn",
-          "name": "Jimmy Horn Jr.",
-          "team": "Colorado",
-          "year": 2024,
-          "dist": 1.969,
-          "draftYear": 2025,
-          "draftRound": 6,
-          "draftPick": 208,
-          "ras": 4.11,
-          "draftCapitalScore": 0.261
-        }
-      ],
       "2026_5079772": [
         {
           "id": "nfl_2021_frankdarby",
@@ -283104,128 +282738,6 @@ const NFL_PROFILE_COMP = {
           "draftPick": 105,
           "ras": 5.05,
           "draftCapitalScore": 0.489
-        }
-      ],
-      "2026_5083205": [
-        {
-          "id": "nfl_2018_russellgage",
-          "name": "Russell Gage",
-          "team": "LSU",
-          "year": 2017,
-          "dist": 1.781,
-          "draftYear": 2018,
-          "draftRound": 6,
-          "draftPick": 194,
-          "ras": null,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2023_dontayvionwicks",
-          "name": "Dontayvion Wicks",
-          "team": "Virginia",
-          "year": 2022,
-          "dist": 1.834,
-          "draftYear": 2023,
-          "draftRound": 5,
-          "draftPick": 159,
-          "ras": 5.13,
-          "draftCapitalScore": 0.331
-        },
-        {
-          "id": "nfl_2023_deriusdavis",
-          "name": "Derius Davis",
-          "team": "TCU",
-          "year": 2022,
-          "dist": 2.099,
-          "draftYear": 2023,
-          "draftRound": 4,
-          "draftPick": 125,
-          "ras": 3.72,
-          "draftCapitalScore": 0.298
-        },
-        {
-          "id": "nfl_2024_devontezwalker",
-          "name": "Devontez Walker",
-          "team": "North Carolina",
-          "year": 2023,
-          "dist": 2.203,
-          "draftYear": 2024,
-          "draftRound": 4,
-          "draftPick": 113,
-          "ras": 7.77,
-          "draftCapitalScore": 0.298
-        },
-        {
-          "id": "nfl_2018_deoncain",
-          "name": "Deon Cain",
-          "team": "Clemson",
-          "year": 2017,
-          "dist": 2.213,
-          "draftYear": 2018,
-          "draftRound": 6,
-          "draftPick": 185,
-          "ras": 4.39,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2019_mecolehardman",
-          "name": "Mecole Hardman",
-          "team": "Georgia",
-          "year": 2018,
-          "dist": 2.243,
-          "draftYear": 2019,
-          "draftRound": 2,
-          "draftPick": 56,
-          "ras": 5.57,
-          "draftCapitalScore": 0.593
-        },
-        {
-          "id": "nfl_2026_calebdouglas",
-          "name": "Caleb Douglas",
-          "team": "Texas Tech",
-          "year": 2025,
-          "dist": 2.274,
-          "draftYear": 2026,
-          "draftRound": 3,
-          "draftPick": 75,
-          "ras": 6.85,
-          "draftCapitalScore": 0.489
-        },
-        {
-          "id": "nfl_2021_trenixon",
-          "name": "Tre Nixon",
-          "team": "UCF",
-          "year": 2020,
-          "dist": 2.278,
-          "draftYear": 2021,
-          "draftRound": 7,
-          "draftPick": 242,
-          "ras": 5.82,
-          "draftCapitalScore": 0.25
-        },
-        {
-          "id": "nfl_2019_juwannwinfree",
-          "name": "Juwann Winfree",
-          "team": "Colorado",
-          "year": 2018,
-          "dist": 2.286,
-          "draftYear": 2019,
-          "draftRound": 6,
-          "draftPick": 187,
-          "ras": null,
-          "draftCapitalScore": 0.261
-        },
-        {
-          "id": "nfl_2026_barionbrown",
-          "name": "Barion Brown",
-          "team": "LSU",
-          "year": 2025,
-          "dist": 2.318,
-          "draftYear": 2026,
-          "draftRound": 6,
-          "draftPick": 190,
-          "ras": 4.82,
-          "draftCapitalScore": 0.261
         }
       ],
       "2026_5083370": [
@@ -354722,128 +354234,6 @@ const NFL_PROFILE_COMP = {
           "draftCapitalScore": 0.39
         }
       ],
-      "2026_5130407": [
-        {
-          "id": "nfl_2021_tommytremble",
-          "name": "Tommy Tremble",
-          "team": "Notre Dame",
-          "year": 2020,
-          "dist": 1.498,
-          "draftYear": 2021,
-          "draftRound": 3,
-          "draftPick": 83,
-          "ras": 5.6,
-          "draftCapitalScore": 0.39
-        },
-        {
-          "id": "nfl_2022_cadeotton",
-          "name": "Cade Otton",
-          "team": "Washington",
-          "year": 2021,
-          "dist": 1.664,
-          "draftYear": 2022,
-          "draftRound": 4,
-          "draftPick": 106,
-          "ras": 4.02,
-          "draftCapitalScore": 0.338
-        },
-        {
-          "id": "nfl_2026_jackendries",
-          "name": "Jack Endries",
-          "team": "Texas",
-          "year": 2025,
-          "dist": 1.706,
-          "draftYear": 2026,
-          "draftRound": 7,
-          "draftPick": 221,
-          "ras": 6.47,
-          "draftCapitalScore": 0.174
-        },
-        {
-          "id": "nfl_2023_cameronlatu",
-          "name": "Cameron Latu",
-          "team": "Alabama",
-          "year": 2022,
-          "dist": 2.017,
-          "draftYear": 2023,
-          "draftRound": 3,
-          "draftPick": 101,
-          "ras": 1.84,
-          "draftCapitalScore": 0.39
-        },
-        {
-          "id": "nfl_2026_oscardelp",
-          "name": "Oscar Delp",
-          "team": "Georgia",
-          "year": 2025,
-          "dist": 2.117,
-          "draftYear": 2026,
-          "draftRound": 3,
-          "draftPick": 73,
-          "ras": 3.66,
-          "draftCapitalScore": 0.39
-        },
-        {
-          "id": "nfl_2022_nickmuse",
-          "name": "Nick Muse",
-          "team": "South Carolina",
-          "year": 2021,
-          "dist": 2.127,
-          "draftYear": 2022,
-          "draftRound": 7,
-          "draftPick": 227,
-          "ras": null,
-          "draftCapitalScore": 0.174
-        },
-        {
-          "id": "nfl_2026_bauersharp",
-          "name": "Bauer Sharp",
-          "team": "LSU",
-          "year": 2025,
-          "dist": 2.22,
-          "draftYear": 2026,
-          "draftRound": 6,
-          "draftPick": 185,
-          "ras": 6.01,
-          "draftCapitalScore": 0.209
-        },
-        {
-          "id": "nfl_2026_maxklare",
-          "name": "Max Klare",
-          "team": "Ohio State",
-          "year": 2025,
-          "dist": 2.269,
-          "draftYear": 2026,
-          "draftRound": 2,
-          "draftPick": 61,
-          "ras": 2.43,
-          "draftCapitalScore": 0.511
-        },
-        {
-          "id": "nfl_2019_alizemack",
-          "name": "Alize Mack",
-          "team": "Notre Dame",
-          "year": 2018,
-          "dist": 2.481,
-          "draftYear": 2019,
-          "draftRound": 7,
-          "draftPick": 231,
-          "ras": 5.61,
-          "draftCapitalScore": 0.174
-        },
-        {
-          "id": "nfl_2026_marlinklein",
-          "name": "Marlin Klein",
-          "team": "Michigan",
-          "year": 2025,
-          "dist": 2.489,
-          "draftYear": 2026,
-          "draftRound": 2,
-          "draftPick": 59,
-          "ras": 5.63,
-          "draftCapitalScore": 0.511
-        }
-      ],
       "2026_5136838": [
         {
           "id": "nfl_2021_hunterlong",
@@ -361805,25 +361195,25 @@ const NFL_PROFILE_COMP = {
       "poolSize": 132,
       "matched": 132,
       "unmatched": 432,
-      "targetsWithComps": 361
+      "targetsWithComps": 360
     },
     "RB": {
       "poolSize": 217,
       "matched": 217,
       "unmatched": 1047,
-      "targetsWithComps": 849
+      "targetsWithComps": 848
     },
     "WR": {
       "poolSize": 362,
       "matched": 362,
       "unmatched": 1137,
-      "targetsWithComps": 1338
+      "targetsWithComps": 1336
     },
     "TE": {
       "poolSize": 158,
       "matched": 158,
       "unmatched": 575,
-      "targetsWithComps": 417
+      "targetsWithComps": 416
     }
   },
   "feats": {
@@ -365805,15 +365195,6 @@ const NFL_PROFILE_COMP = {
         "compPct": 59.8,
         "heightIn": 40.2,
         "weightLb": 14.1
-      },
-      "2026_5177084": {
-        "avgPpaPass": 38,
-        "avgPpaRush": 47.8,
-        "usagePass": 2.2,
-        "usageRush": 59.8,
-        "compPct": 46.7,
-        "heightIn": 83.7,
-        "weightLb": 91.3
       },
       "2026_5191162": {
         "avgPpaPass": 2.2,
@@ -372836,15 +372217,6 @@ const NFL_PROFILE_COMP = {
         "usageRush": 25.5,
         "heightIn": 81,
         "weightLb": 28.1
-      },
-      "2026_4612624": {
-        "rushCarShare": 2.6,
-        "recYdShare": 0,
-        "avgPpaRush": 0,
-        "avgPpaPass": 0,
-        "usageRush": 1.3,
-        "heightIn": 81,
-        "weightLb": 19.6
       },
       "2026_4683234": {
         "rushCarShare": 7.8,
@@ -387167,15 +386539,6 @@ const NFL_PROFILE_COMP = {
         "heightIn": 71.4,
         "weightLb": 56.9
       },
-      "2026_5079745": {
-        "recShare": 1.9,
-        "ydShare": 1.9,
-        "tdShare": 0.4,
-        "avgPPA": 13.7,
-        "usageOverall": 10.7,
-        "heightIn": 55.7,
-        "weightLb": 28.2
-      },
       "2026_5079772": {
         "recShare": 9.5,
         "ydShare": 16,
@@ -387273,15 +386636,6 @@ const NFL_PROFILE_COMP = {
         "avgPPA": 0.8,
         "usageOverall": 13.4,
         "heightIn": 5.7,
-        "weightLb": 37
-      },
-      "2026_5083205": {
-        "recShare": 5,
-        "ydShare": 3.8,
-        "tdShare": 13.4,
-        "avgPPA": 0.8,
-        "usageOverall": 51.1,
-        "heightIn": 55.7,
         "weightLb": 37
       },
       "2026_5083370": {
@@ -393630,15 +392984,6 @@ const NFL_PROFILE_COMP = {
         "usageOverall": 10.1,
         "heightIn": 98.3,
         "weightLb": 62.2
-      },
-      "2026_5130407": {
-        "recShare": 4.2,
-        "ydShare": 6.7,
-        "tdShare": 6.7,
-        "avgPPA": 2.5,
-        "usageOverall": 26.1,
-        "heightIn": 38.7,
-        "weightLb": 5.9
       },
       "2026_5136838": {
         "recShare": 91.6,
