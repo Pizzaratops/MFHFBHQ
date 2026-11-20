@@ -148,15 +148,25 @@
       ? `<span class="cs-tag ok" title="Ab ${RM} Saison-Minuten gilt die DNA als verlässlich.">verlässlich (ab ${RM} Min.)</span>`
       : `<span class="cs-tag warn" title="Unter ${RM} Saison-Minuten ist die Produktion ein kleiner Datensatz. Das Modell stützt sich dann vor allem auf Recruiting, Alter, Größe${prev ? ' und die Vorsaison' : ''}.">kleiner Datensatz · ab ${RM} Min. verlässlich</span>`;
     const sgn = v => (v >= 0 ? '+' : '') + de(v, 2);
-    const bar = ([k, l]) => { const v = d.nz[k], w = Math.max(-50, Math.min(50, v * 33)); return `<div class="cbbm-bar" title="erwartetes NBA-z ${l}: ${sgn(v)} (0 = Ø NBA-Rotationsspieler) · Übersetzung r ${de(cr[k], 2)}"><span>${l}</span><div class="cbbm-track"><i class="${w >= 0 ? 'pos' : 'neg'}" style="${w >= 0 ? 'left:50%' : `left:${50 + w}%`};width:${Math.abs(w)}%"></i></div><b class="${v >= 0 ? 'up' : 'down'}">${sgn(v)}</b></div>`; };
+    // Spinnennetz: z → 0..1 mit z = 0 (Ø NBA-Rotationsspieler) auf dem Mittelring, ±1,5 z am Rand.
+    // Die 9 Kategorien ordnet MFHFB.charts.radar automatisch im Hub-Standard (STL oben …).
+    const toR = z => Math.max(0, Math.min(1, 0.5 + z / 3));
+    const radar = MFHFB.charts.radar({
+      axes: DCATS.map(([k, l]) => ({ label: `${l} ${sgn(d.nz[k])}` })),
+      series: [
+        { name: p.n, vals: DCATS.map(([k]) => toR(d.nz[k])), tips: DCATS.map(([k, l]) => `${p.n} · ${l}: erwartetes NBA-z ${sgn(d.nz[k])} · Übersetzung r ${de(cr[k], 2)}`) },
+        { name: 'Ø NBA-Rotationsspieler', vals: DCATS.map(() => 0.5), tips: DCATS.map(([, l]) => `Ø NBA-Rotationsspieler · ${l}: z 0`) },
+      ],
+      size: 300, label: 'NBA-DNA ' + p.n,
+    });
     return `<div class="card cs-box">${head}
       <div class="cs-box-sub">${flag} ${minLine}</div>
       <div class="cs-rgrid" style="grid-template-columns:1fr 1fr">
         <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Saison mit 40+ Spielen, 18+ Min.</span></div>
         <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>in den ersten 4 NBA-Jahren</span></div>
       </div>
-      <div class="cs-list-head">NBA-Profil, falls er es schafft (z, 0 = Ø Rotationsspieler)</div>
-      <div class="cbbm-bars">${DCATS.map(bar).join('')}</div>
+      <div class="cs-list-head">NBA-Profil, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
+      <div class="cs-radar">${MFHFB.charts.chips([p.n, 'Ø NBA-Rotationsspieler'])}${radar}</div>
       <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
       <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
     </div>`;
