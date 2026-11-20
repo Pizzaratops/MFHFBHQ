@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T17:58:06.210Z",
+  "updated": "2026-11-20T19:59:30.809Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -31,7 +31,7 @@ const NBA_INJURIES = {
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-20"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
-    "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-17"],
+    "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
     "Dominick Barlow": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-20"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-20"],
