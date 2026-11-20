@@ -87,6 +87,13 @@ const TRADES = [
     teamBGives: ["Germie Bernard", "2027 1st"],
     note: "BWP gibt die beiden spätesten seiner 2027er 1sts ab (eigener, Beastmode, Team Beermode, Burrowhead Dancers). Welche das sind, steht erst mit der Draft-Reihenfolge fest; Stand 16.11. die von Beastmode und Team Beermode.",
   },
+  {
+    date: "2026-11-19",
+    teamA: "The Bear Witch Project",
+    teamAGives: ["Caleb Williams", "Ollie Gordon II"],
+    teamB: "Charged UP",
+    teamBGives: ["Drake Maye", "Matthew Golden"],
+  },
 ];
 
 // Getradete Picks INNERHALB des 2026er Drafts (im Gegensatz zu FUTURE_PICKS
