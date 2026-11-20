@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-20T02:03:21.023Z",
+  "generatedAt": "2026-11-20T04:03:22.697Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -144,8 +144,8 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "IND",
           "isStarter": true,
-          "status": null,
-          "flag": false,
+          "status": "O",
+          "flag": true,
           "lastGamePoints": 13.7,
           "last3AvgPoints": 9.3,
           "projPoints": 5.3
@@ -206,7 +206,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 7.5
         }
       ],
-      "flaggedCount": 0
+      "flaggedCount": 1
     },
     {
       "id": "beyaz-espn-320102468",
@@ -1077,7 +1077,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.8,
           "last3AvgPoints": 12.8,
-          "projPoints": 10.5
+          "projPoints": 10.4
         },
         {
           "name": "Tory Horton",
@@ -2159,7 +2159,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17.4,
           "last3AvgPoints": 12.4,
-          "projPoints": 10.6
+          "projPoints": 10.5
         },
         {
           "name": "Devin Singletary",
@@ -2325,7 +2325,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.4,
           "last3AvgPoints": 14.2,
-          "projPoints": 12.4
+          "projPoints": 12.3
         },
         {
           "name": "Mike Gesicki",
@@ -2884,7 +2884,7 @@ const STATUS_REPORT_DATA = {
           "name": "Courtland Sutton",
           "pos": "WR",
           "nfl": "DEN",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -3631,7 +3631,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.1,
           "last3AvgPoints": 10.5,
-          "projPoints": 8.9
+          "projPoints": 8.8
         },
         {
           "name": "Emmett Johnson",
