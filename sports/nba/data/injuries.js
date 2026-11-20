@@ -1,9 +1,9 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T17:44:29.123Z",
+  "updated": "2026-11-20T17:58:06.210Z",
   "players": {
-    "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
+    "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
     "Alperen Sengun": ["HOU","Day-To-Day","GTD","2026-11-20","Eye",0,"2026-11-19"],
     "Andrew Nembhard": ["IND","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -48,6 +48,7 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
+    "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-20","Illness",0,"2026-11-20"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
@@ -89,7 +90,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
     "Robert Williams III": ["POR","Day-To-Day","GTD","2026-11-21","Rest",0,"2026-11-20"],
-    "Ronald Holland II": ["DET","Out","GTD","2026-11-20","Knee",0,"2026-11-19"],
+    "Ronald Holland II": ["DET","Day-To-Day","GTD","2026-11-20","Knee",0,"2026-11-20"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
@@ -107,7 +108,7 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Ty Jerome": ["MEM","Out","GTD","2026-11-21","Hip",0,"2026-11-19"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-17"],
-    "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
+    "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-20"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-21","Ankle",0,"2026-11-20"]
