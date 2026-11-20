@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T01:26:12.394Z",
+  "updated": "2026-11-20T01:44:59.302Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -83,6 +83,7 @@ const NBA_INJURIES = {
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Peyton Watson": ["CLE","Day-To-Day","GTD","2026-11-20","Back",0,"2026-11-19"],
+    "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-20","Lower Leg",0,"2026-11-20"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
