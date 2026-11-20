@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-20T12:03:22.798Z",
+  "generatedAt": "2026-11-20T14:03:29.230Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -4206,7 +4206,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 8.6,
-          "projPoints": 9.9
+          "projPoints": 9.8
         },
         {
           "name": "Daniel Jones",
