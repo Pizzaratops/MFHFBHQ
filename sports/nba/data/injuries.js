@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T00:01:04.258Z",
+  "updated": "2026-11-20T00:34:40.319Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -29,7 +29,7 @@ const NBA_INJURIES = {
     "Collin Murray-Boyles": ["TOR","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
     "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-21","Hamstring",0,"2026-11-19"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
-    "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-19","Foot",0,"2026-11-18"],
+    "Deni Avdija": ["POR","Out","OUT","2026-11-21","Foot",0,"2026-11-20"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-17"],
     "Dominick Barlow": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-17"],
@@ -45,7 +45,6 @@ const NBA_INJURIES = {
     "Grant Williams": ["CHA","Out","OUT","2026-11-23","Hamstring",0,"2026-11-19"],
     "Grayson Allen": ["CHA","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
-    "Isaiah Stewart": ["MEM","Day-To-Day","GTD","2026-11-19","Illness",0,"2026-11-19"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-24","Hamstring",0,"2026-11-08"],
@@ -60,11 +59,11 @@ const NBA_INJURIES = {
     "Jock Landale": ["ATL","Out","OUT","2026-11-22","Hip",0,"2026-11-19"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-22","Knee",0,"2026-11-15"],
-    "Jonathan Kuminga": ["MIN","Day-To-Day","GTD","2026-11-19","Shoulder",0,"2026-11-18"],
+    "Jonathan Kuminga": ["MIN","Day-To-Day","","","",0,"2026-11-18"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
-    "Jusuf Nurkic": ["UTAH","Out","GTD","2026-11-20","Foot",0,"2026-11-06"],
+    "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Kingston Flemings": ["ATL","Day-To-Day","GTD","2026-11-20","Back",0,"2026-11-19"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
@@ -101,7 +100,6 @@ const NBA_INJURIES = {
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
     "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-21","Groin",0,"2026-11-19"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
-    "Toumani Camara": ["POR","Day-To-Day","GTD","2026-11-19","Rest",0,"2026-11-18"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-19"],
     "Trey Murphy III": ["NO","Out","GTD","2026-11-20","Knee",0,"2026-11-19"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
