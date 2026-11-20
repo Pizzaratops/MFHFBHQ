@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-19T23:30:28.381Z",
+  "updated": "2026-11-20T00:01:04.258Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -71,7 +71,6 @@ const NBA_INJURIES = {
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Kyle Kuzma": ["MIL","Out","OUT","2026-11-21","Shoulder",0,"2026-11-19"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
-    "LJ Cryer": ["GS","Day-To-Day","GTD","2026-11-19","Back",0,"2026-11-19"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
