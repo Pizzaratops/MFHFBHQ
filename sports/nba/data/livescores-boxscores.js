@@ -3975,9 +3975,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910019",
-      line: "Golden State Warriors @ Memphis Grizzlies (9:44 - 2nd)",
+      line: "Golden State Warriors @ Memphis Grizzlies (7:02 - 2nd)",
       completed: false,
-      statusText: "9:44 - 2nd",
+      statusText: "7:02 - 2nd",
       away: {
         abbr: "GS", name: "Golden State Warriors", score: null,
         players: [
@@ -3993,9 +3993,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910020",
-      line: "Portland Trail Blazers @ Milwaukee Bucks (10:36 - 2nd)",
+      line: "Portland Trail Blazers @ Milwaukee Bucks (7:45 - 2nd)",
       completed: false,
-      statusText: "10:36 - 2nd",
+      statusText: "7:45 - 2nd",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -4011,9 +4011,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910021",
-      line: "New York Knicks @ Minnesota Timberwolves (0.0 - 2nd)",
+      line: "New York Knicks @ Minnesota Timberwolves (5:40 - 2nd)",
       completed: false,
-      statusText: "0.0 - 2nd",
+      statusText: "5:40 - 2nd",
       away: {
         abbr: "NY", name: "New York Knicks", score: null,
         players: [
@@ -4029,9 +4029,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910022",
-      line: "LA Clippers @ San Antonio Spurs (8:36 - 2nd)",
+      line: "LA Clippers @ San Antonio Spurs (5:53 - 2nd)",
       completed: false,
-      statusText: "8:36 - 2nd",
+      statusText: "5:53 - 2nd",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
