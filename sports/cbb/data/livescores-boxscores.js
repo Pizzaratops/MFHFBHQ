@@ -7391,9 +7391,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909698",
-      line: "Green Bay Phoenix @ Florida State Seminoles (11/20 - 12:00 PM EST)",
+      line: "Green Bay Phoenix @ Florida State Seminoles (2:25 - 1st)",
       completed: false,
-      statusText: "11/20 - 12:00 PM EST",
+      statusText: "2:25 - 1st",
       away: {
         abbr: "GB", name: "Green Bay Phoenix", score: null,
         players: [
@@ -7409,9 +7409,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401921418",
-      line: "Oklahoma State Cowboys @ Minnesota Golden Gophers (11/20 - 12:30 PM EST)",
+      line: "Oklahoma State Cowboys @ Minnesota Golden Gophers (11:07 - 1st)",
       completed: false,
-      statusText: "11/20 - 12:30 PM EST",
+      statusText: "11:07 - 1st",
       away: {
         abbr: "OkSt", name: "Oklahoma State Cowboys", score: null,
         players: [
@@ -7427,9 +7427,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401916122",
-      line: "Temple Owls @ Middle Tennessee Blue Raiders (11/20 - 12:30 PM EST)",
+      line: "Temple Owls @ Middle Tennessee Blue Raiders (12:34 - 1st)",
       completed: false,
-      statusText: "11/20 - 12:30 PM EST",
+      statusText: "12:34 - 1st",
       away: {
         abbr: "Tem", name: "Temple Owls", score: null,
         players: [
