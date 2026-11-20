@@ -1,0 +1,14 @@
+{
+  "league": "nba",
+  "date": "2026-11-19",
+  "games": [
+    "Golden State Warriors 98 @ Memphis Grizzlies 126 (Final)",
+    "Portland Trail Blazers 124 @ Milwaukee Bucks 114 (Final)",
+    "New York Knicks 102 @ Minnesota Timberwolves 99 (Final)",
+    "LA Clippers 112 @ San Antonio Spurs 124 (Final)"
+  ],
+  "leagueAvg": {
+    "fg": 47.8,
+    "ft": 85.1
+  }
+}
