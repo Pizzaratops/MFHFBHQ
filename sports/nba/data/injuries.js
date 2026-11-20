@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T04:01:04.647Z",
+  "updated": "2026-11-20T05:01:06.152Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -16,7 +16,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
     "Braden Smith": ["IND","Day-To-Day","GTD","2026-11-20","Ankle",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
-    "Brandon Ingram": ["LAC","Out","OUT","2026-11-21","Achilles",0,"2026-11-18"],
+    "Brandon Ingram": ["LAC","Out","GTD","2026-11-21","Achilles",0,"2026-11-18"],
     "Brandon Williams": ["GS","Out","GTD","2026-11-22","Hamstring",0,"2026-11-18"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
     "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-20","Knee",0,"2026-11-19"],
@@ -35,7 +35,7 @@ const NBA_INJURIES = {
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-17"],
     "Dominick Barlow": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-17"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Draymond Green": ["GS","Out","GTD","2026-11-22","Rest",0,"2026-11-19"],
+    "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-20"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-11-22","Oblique",0,"2026-11-19"],

@@ -1,0 +1,168 @@
+{
+  "league": "nba",
+  "date": "2026-11-20",
+  "games": [
+    {
+      "id": "401909305",
+      "line": "Charlotte Hornets @ Atlanta Hawks (11/20 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 7:00 PM EST",
+      "away": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ATL",
+        "name": "Atlanta Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909306",
+      "line": "Orlando Magic @ Brooklyn Nets (11/20 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 7:30 PM EST",
+      "away": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BKN",
+        "name": "Brooklyn Nets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909307",
+      "line": "Indiana Pacers @ Cleveland Cavaliers (11/20 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 7:30 PM EST",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CLE",
+        "name": "Cleveland Cavaliers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909308",
+      "line": "Toronto Raptors @ Detroit Pistons (11/20 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 7:30 PM EST",
+      "away": {
+        "abbr": "TOR",
+        "name": "Toronto Raptors",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909309",
+      "line": "Washington Wizards @ Chicago Bulls (11/20 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 8:00 PM EST",
+      "away": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909310",
+      "line": "New Orleans Pelicans @ Oklahoma City Thunder (11/20 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 8:00 PM EST",
+      "away": {
+        "abbr": "NO",
+        "name": "New Orleans Pelicans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909311",
+      "line": "Phoenix Suns @ Utah Jazz (11/20 - 9:30 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 9:30 PM EST",
+      "away": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTAH",
+        "name": "Utah Jazz",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909312",
+      "line": "Houston Rockets @ Denver Nuggets (11/20 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 10:00 PM EST",
+      "away": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DEN",
+        "name": "Denver Nuggets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909313",
+      "line": "Sacramento Kings @ Los Angeles Lakers (11/20 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/20 - 10:00 PM EST",
+      "away": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAL",
+        "name": "Los Angeles Lakers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
