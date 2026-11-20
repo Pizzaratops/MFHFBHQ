@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-20T13:02:51.413Z
+//  Stand: 2026-11-20T14:02:55.938Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -61,13 +61,13 @@ const WC_PLAYER_POOL = [
 ["059g0","Amir Coffey","(N/A)","SG","SG,G,SF,PF,F,Flx","FA"],
 ["059ck","Amir Hinton","(N/A)","PG","PG,G,Flx","FA"],
 ["073y0","Andersson Garcia","(N/A)","PF","PF,F,Flx","FA"],
-["02nf9","Andre Drummond","NYK","C","C,Flx","T"],
+["02nf9","Andre Drummond","NYK","C","C,Flx","FA"],
 ["06cdd","Andre Jackson","(N/A)","SG","SG,G,Flx","FA"],
 ["06hdv","Andrew Funk","(N/A)","SG","SG,G,Flx","FA"],
 ["07ape","Andrew Holifield","(N/A)","SF","SF,F,Flx","FA"],
 ["0621u","Andrew Nembhard","IND","SG","PG,SG,G,Flx","T"],
 ["02ym0","Andrew Wiggins","MIA","SF","SG,G,SF,F,Flx","T"],
-["04qs1","Anfernee Simons","PHI","SG","PG,SG,G,Flx","T"],
+["04qs1","Anfernee Simons","PHI","SG","PG,SG,G,Flx","FA"],
 ["07atl","Aniwaniwa Tait-Jones","(N/A)","G","PG,SG,G,Flx","FA"],
 ["042ni","Ante Zizic","(N/A)","C","C,Flx","FA"],
 ["06cc5","Anthony Black","ORL","PG","PG,SG,G,Flx","T"],
@@ -469,13 +469,13 @@ const WC_PLAYER_POOL = [
 ["04xlp","Isaac Humphries","(N/A)","PF","PF,F,Flx","FA"],
 ["06mmh","Isaac Jones","DET","PF","PF,F,Flx","FA"],
 ["07apr","Isaac McKneely","(N/A)","G","PG,SG,G,Flx","FA"],
-["05qsk","Isaac Okoro","CHI","SG","SG,G,SF,F,Flx","FA"],
+["05qsk","Isaac Okoro","CHI","SG","SG,G,SF,F,Flx","T"],
 ["06mkl","Isaiah Collier","UTA","PG","PG,SG,G,Flx","T"],
 ["06mmg","Isaiah Crawford","HOU","SF","SF,F,Flx","FA"],
 ["076ud","Isaiah Evans","MIN","SG","SG,G,Flx","FA"],
 ["04ex6","Isaiah Hartenstein","OKC","C","C,Flx","T"],
 ["05uiw","Isaiah Jackson","LAC","C","C,Flx","T"],
-["05qsp","Isaiah Joe","DET","SG","PG,SG,G,Flx","FA"],
+["05qsp","Isaiah Joe","DET","SG","PG,SG,G,Flx","T"],
 ["05ujg","Isaiah Livers","(N/A)","PF","PF,F,Flx","FA"],
 ["05wy4","Isaiah Miller","(N/A)","SG","SG,G,Flx","FA"],
 ["0622c","Isaiah Mobley","(N/A)","PF","PF,F,Flx","FA"],
@@ -720,7 +720,7 @@ const WC_PLAYER_POOL = [
 ["076t3","Karim Lopez","MEM","SF","SF,F,Flx","FA"],
 ["05qy9","Karim Mane","(N/A)","PG","PG,G,Flx","FA"],
 ["03ad3","Karl-Anthony Towns","NYK","C","PF,C,F,Flx","T"],
-["0622f","Karlo Matkovic","NOR","PF","PF,C,F,Flx","T"],
+["0622f","Karlo Matkovic","NOR","PF","PF,C,F,Flx","FA"],
 ["06v55","Kasparas Jakucionis","MIL","SG","SG,G,Flx","T"],
 ["059vm","Kavion Pippen","(N/A)","C","C,Flx","FA"],
 ["027oz","Kawhi Leonard","TOR","SF","SF,PF,F,Flx","T"],
@@ -741,7 +741,7 @@ const WC_PLAYER_POOL = [
 ["06221","Kennedy Chandler","(N/A)","PG","PG,G,Flx","FA"],
 ["06235","Kenneth Lofton","(N/A)","PF","PF,F,Flx","FA"],
 ["059cn","Kenny Wooten","(N/A)","PF","PF,F,Flx","FA"],
-["04t8w","Kenrich Williams","OKC","PF","PF,F,Flx","FA"],
+["04t8w","Kenrich Williams","OKC","PF","PF,F,Flx","T"],
 ["031lv","Kentavious Caldwell-Pope","PHI","SG","SG,G,SF,F,Flx","FA"],
 ["05qym","Kenyon Martin","(N/A)","SF","SF,F,Flx","FA"],
 ["0623m","Keon Ellis","BKN","SG","PG,SG,G,Flx","FA"],
@@ -864,7 +864,7 @@ const WC_PLAYER_POOL = [
 ["05wah","Marcus Garrett","(N/A)","SG","SG,G,Flx","FA"],
 ["06ccg","Marcus Sasser","DAL","PG","PG,G,Flx","FA"],
 ["03al1","Marcus Smart","HOU","PG","PG,SG,G,Flx","FA"],
-["03r7d","Mario Hezonja","CLE","PF","SG,G,SF,PF,F,Flx","FA"],
+["03r7d","Mario Hezonja","CLE","PF","SG,G,SF,PF,F,Flx","T"],
 ["0621n","MarJon Beauchamp","(N/A)","SF","SG,G,SF,F,Flx","FA"],
 ["06vxt","Mark Sears","(N/A)","PG","PG,G,Flx","FA"],
 ["0621e","Mark Williams","PHO","C","C,Flx","FA"],
@@ -1131,7 +1131,7 @@ const WC_PLAYER_POOL = [
 ["0723e","Steven Crowl","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["04qsn","Svi Mykhailiuk","UTA","SF","SF,F,Flx","FA"],
 ["04ewj","T.J. Leaf","(N/A)","PF","PF,F,Flx","FA"],
-["03wr4","T.J. McConnell","IND","PG","PG,G,Flx","FA"],
+["03wr4","T.J. McConnell","IND","PG","PG,G,Flx","T"],
 ["03bxn","T.J. Warren","(N/A)","SF","SF,F,Flx","FA"],
 ["0558u","Tacko Fall","PHI","C","C,Flx","FA"],
 ["06vxp","Taelon Peter","(N/A)","SG","SG,G,Flx","FA"],
