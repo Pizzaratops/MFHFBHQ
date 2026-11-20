@@ -2,11 +2,10 @@
   "league": "ncaab",
   "date": "2026-11-19",
   "games": [
-    "Houston Cougars @ Kansas Jayhawks (7:55 - 2nd)",
-    "Tarleton State Texans @ USC Trojans (1:42 - 2nd)",
-    "VCU Rams @ Santa Clara Broncos (0:11 - OT)",
     "Florida Gators 85 @ West Virginia Mountaineers 72 (Final)",
     "Southern Utah Thunderbirds 68 @ Texas Longhorns 92 (Final)",
+    "Houston Cougars 92 @ Kansas Jayhawks 83 (Final)",
+    "Tarleton State Texans 51 @ USC Trojans 96 (Final)",
     "Stetson Hatters 69 @ Louisville Cardinals 83 (Final)",
     "Notre Dame Fighting Irish 78 @ Auburn Tigers 73 (Final)",
     "Murray State Racers 83 @ NC State Wolfpack 93 (Final)",
@@ -24,10 +23,11 @@
     "Utah Tech Trailblazers 69 @ Washington Huskies 82 (Final)",
     "UTEP Miners 84 @ New Mexico State Aggies 69 (Final)",
     "Sacramento State Hornets 65 @ Stanford Cardinal 78 (Final)",
-    "East Texas A&M Lions 54 @ California Golden Bears 86 (Final)"
+    "East Texas A&M Lions 54 @ California Golden Bears 86 (Final)",
+    "VCU Rams 83 @ Santa Clara Broncos 77 (Final/OT)"
   ],
   "leagueAvg": {
-    "fg": 48.6,
-    "ft": 72.4
+    "fg": 48.1,
+    "ft": 73.6
   }
 }
