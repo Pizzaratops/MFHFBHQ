@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-20T00:52:56.804Z",
+  "updated": "2026-11-20T01:26:12.394Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-12"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-19"],
@@ -10,7 +10,7 @@ const NBA_INJURIES = {
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
-    "Austin Reaves": ["LAL","Out","GTD","2026-11-20","Heel",0,"2026-11-19"],
+    "Austin Reaves": ["LAL","Out","OUT","2026-11-23","Heel",0,"2026-11-20"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
@@ -27,6 +27,7 @@ const NBA_INJURIES = {
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
     "Collin Murray-Boyles": ["TOR","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
+    "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-20"],
     "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-21","Hamstring",0,"2026-11-19"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Out","OUT","2026-11-21","Foot",0,"2026-11-20"],
