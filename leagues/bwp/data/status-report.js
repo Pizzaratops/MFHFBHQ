@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-20T16:52:31.101Z",
+  "generatedAt": "2026-11-20T18:03:29.747Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1044,7 +1044,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 7.6,
-          "projPoints": 6.7
+          "projPoints": 6.6
         },
         {
           "name": "Tyrone Tracy Jr.",
@@ -2148,7 +2148,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 35.4,
           "last3AvgPoints": 25.8,
-          "projPoints": 22.6
+          "projPoints": 22.5
         },
         {
           "name": "DJ Moore",
@@ -2237,7 +2237,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 7.6,
-          "projPoints": 6.7
+          "projPoints": 6.6
         },
         {
           "name": "Colston Loveland",
@@ -2613,7 +2613,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.4,
           "last3AvgPoints": 12.9,
-          "projPoints": 16.9
+          "projPoints": 16.8
         },
         {
           "name": "Chris Godwin Jr.",
@@ -2679,7 +2679,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 13.8,
-          "projPoints": 13.7
+          "projPoints": 13.9
         },
         {
           "name": "Sean Tucker",
@@ -3752,7 +3752,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 44.2,
           "last3AvgPoints": 27.5,
-          "projPoints": 23.5
+          "projPoints": 23.4
         },
         {
           "name": "DeMario Douglas",
