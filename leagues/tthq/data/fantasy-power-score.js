@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-21T17:17:30.585Z",
+  "generatedAt": "2026-11-21T17:45:17.347Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 17 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,15 +66,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 442.1,
-        "reb": 163.6,
-        "ast": 106.8,
-        "stl": 30.01,
-        "blk": 19.07,
+        "pts": 430.9,
+        "reb": 161.2,
+        "ast": 101.1,
+        "stl": 28.66,
+        "blk": 18.89,
         "tpm": 41,
-        "to": 56.3,
+        "to": 54.1,
         "fgPct": 48,
-        "ftPct": 78.7
+        "ftPct": 78.5
       },
       "rank": {
         "pts": 1,
@@ -84,11 +84,11 @@ const FANTASY_POWER_SCORE = {
         "blk": 2,
         "tpm": 3,
         "fgPct": 1,
-        "ftPct": 4,
+        "ftPct": 5,
         "to": 12
       },
       "includedCount": 28,
-      "projCount": 27,
+      "projCount": 28,
       "skippedCount": 0,
       "skippedPlayers": []
     },
@@ -222,9 +222,9 @@ const FANTASY_POWER_SCORE = {
       "owner": "Patrick & Bennet",
       "values": {
         "pts": 277.7,
-        "reb": 115.2,
+        "reb": 115.1,
         "ast": 59.2,
-        "stl": 19.96,
+        "stl": 20,
         "blk": 15.38,
         "tpm": 35,
         "to": 35,
@@ -324,7 +324,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 22.23,
         "blk": 11.96,
         "tpm": 29.9,
-        "to": 33.9,
+        "to": 34,
         "fgPct": 47.8,
         "ftPct": 77.7
       },
@@ -429,7 +429,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 12,
         "tpm": 11,
         "fgPct": 11,
-        "ftPct": 5,
+        "ftPct": 4,
         "to": 2
       },
       "includedCount": 26,
