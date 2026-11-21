@@ -34,6 +34,9 @@ tools/home.js         Übersicht (alle Ligen)
 ghost-screen/         Ghost Screen – Basketball-Taktikboard (eigene Seite, keine Liga; Kachel über HUB_TOOLS in js/leagues.js)
                       engine.js (Bewegung/Verteidigung), plays.js (Aktionen + Glossar), app.js (Oberfläche),
                       check.js (Prüfscript: node ghost-screen/check.js — misst Abstände bei Pass/Wurf, Zusammenstöße)
+                      editor.js + customs.js: eigene Plays zeichnen (gespeichert im Browser unter mfhfb:ghost:plays),
+                      teilen per Link (#/p/<Code>) oder .ghost.json-Export/Import;
+                      vereins-plays.js (GS.VEREIN): Plays, die alle sehen („Unser Playbook“)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
 css/nfl.css, nba.css, cbb.css, usm.css  sportspezifische Styles

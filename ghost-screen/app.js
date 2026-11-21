@@ -33,7 +33,7 @@
   const svg = $('court');
   const L = {};
 
-  function drawCourt() {
+  function courtBase(svg) {
     svg.innerHTML = '';
     const defs = el('defs', {}, svg);
     [['arrO', 'arr-o'], ['arrD', 'arr-d'], ['arrP', 'arr-o']].forEach(([id, cls]) => {
@@ -52,6 +52,9 @@
     [1.75, 2.6, 3.45, 4.3].forEach(y => { el('path', { d: `M -2.45 ${y} h -0.15 M 2.45 ${y} h 0.15`, class: 'line thin' }, g); });
     el('path', { d: 'M -0.9 1.2 H 0.9', class: 'board-line' }, g);
     el('circle', { cx: 0, cy: 1.575, r: 0.225, class: 'rim' }, g);
+  }
+  function drawCourt() {
+    courtBase(svg);
     L.diagram = el('g', { class: 'diagram' }, svg);
     L.live = el('g', { class: 'live' }, svg);
     L.rings = el('g', {}, svg);
@@ -250,20 +253,40 @@
   document.addEventListener('focusin', e => { const t = e.target.closest('.term'); if (t) showTip(t); });
   document.addEventListener('focusout', e => { if (e.target.closest('.term')) tip.hidden = true; });
 
+  // ---------- Alle Aktionen (fest + Vereins-Playbook + eigene) ----------
+  function vereinPlays() { return (GS.VEREIN || []).filter(GS.validCustom).map(cp => GS.customToPlay(GS.cleanCustom(cp), { id: 'verein-' + cp.id, cat: 'Unser Playbook', level: 'Vereins-Play', source: 'verein' })); }
+  function ownPlays() { return GS.loadCustoms().map(cp => GS.customToPlay(cp)); }
+  function allPlays() { return GS.PLAYS.concat(vereinPlays(), ownPlays()); }
+
   // ---------- Panels ----------
-  function renderLib() {
-    $('lib').innerHTML = `<div class="gs-lib-intro"><b>Aktionen</b><span>Such Dir eine Aktion aus. Jede hat Stufen: erst ohne Verteidigung, dann mit – und was Du tust, wenn die Verteidigung anders reagiert.</span></div>` +
-      GS.CATS.map(cat => `<div class="gs-lib-cat"><h3>${esc(cat)}</h3>${GS.PLAYS.filter(p => p.cat === cat).map(p => `
-        <a class="gs-lib-item${S.play && S.play.id === p.id ? ' on' : ''}" href="#/${p.id}/1">
+  function libItem(p) {
+    return `<a class="gs-lib-item${S.play && S.play.id === p.id ? ' on' : ''}" href="#/${p.id}/1">
           <b>${esc(p.name)}</b><span>${esc(p.short)}</span>
           <em>${esc(p.level)} · ${p.stages.length} Stufen</em>
-        </a>`).join('')}</div>`).join('');
+        </a>`;
+  }
+  function renderLib() {
+    const verein = vereinPlays(), own = ownPlays();
+    $('lib').innerHTML = `<div class="gs-lib-intro"><b>Aktionen</b><span>Such Dir eine Aktion aus. Jede hat Stufen: erst ohne Verteidigung, dann mit – und was Du tust, wenn die Verteidigung anders reagiert.</span></div>` +
+      GS.CATS.map(cat => `<div class="gs-lib-cat"><h3>${esc(cat)}</h3>${GS.PLAYS.filter(p => p.cat === cat).map(libItem).join('')}</div>`).join('') +
+      (verein.length ? `<div class="gs-lib-cat"><h3>Unser Playbook</h3>${verein.map(libItem).join('')}</div>` : '') +
+      `<div class="gs-lib-cat"><h3>Eigene Plays</h3>
+        <div class="gs-lib-actions"><a class="gs-btn-primary" href="#/edit/new">✏️ Neues Play zeichnen</a><button type="button" class="gs-btn-ghost" data-act="import">📥 Importieren</button></div>
+        ${own.length ? own.map(libItem).join('') : '<p class="gs-lib-empty">Noch keine eigenen Plays. Gezeichnete Plays werden nur in diesem Browser gespeichert – zum Teilen gibt es Link und Export.</p>'}
+        ${own.length ? '<button type="button" class="gs-lib-link" data-act="export-all">⬇ Alle eigenen Plays exportieren</button>' : ''}
+      </div>`;
   }
   function renderHead() {
     const p = S.play;
     $('head').innerHTML = `<div class="gs-chips"><span class="chip">${esc(p.cat)}</span><span class="chip">${esc(p.level)}</span></div>
-      <h1>${esc(p.name)}</h1><p>${linkTerms(p.short)}</p>`;
+      <h1>${esc(p.name)}</h1><p>${linkTerms(p.short)}</p>` + (p.custom ? `<div class="gs-head-actions">
+        ${p.source === 'local' ? '<button type="button" class="gs-btn-ghost" data-act="edit">✏️ Bearbeiten</button>' : '<button type="button" class="gs-btn-ghost" data-act="edit-copy">✏️ Als Kopie bearbeiten</button>'}
+        <button type="button" class="gs-btn-ghost" data-act="share">🔗 Link teilen</button>
+        <button type="button" class="gs-btn-ghost" data-act="export">⬇ Export</button>
+        ${p.source === 'local' ? '<button type="button" class="gs-btn-ghost danger" data-act="delete">🗑 Löschen</button>' : ''}
+      </div>` : '');
   }
+  function stageHref(p, i) { return p.source === 'shared' ? `#/p/${GS.encodeCustom(p.custom)}/${i + 1}` : `#/${p.id}/${i + 1}`; }
   function stageLabel(st, i) {
     if (i === 0) return '1 · Ohne Verteidigung';
     if (i === 1) return '2 · Mit Verteidigung';
@@ -273,12 +296,13 @@
     const p = S.play;
     $('stages').innerHTML = p.stages.map((st, i) =>
       (i === 2 ? '<span class="gs-stage-sep">Wenn die Verteidigung anders reagiert:</span>' : '') +
-      `<a class="gs-stage${i === S.si ? ' on' : ''}${i >= 2 ? ' var' : ''}" href="#/${p.id}/${i + 1}">${esc(stageLabel(st, i))}</a>`).join('');
+      `<a class="gs-stage${i === S.si ? ' on' : ''}${i >= 2 ? ' var' : ''}" href="${stageHref(p, i)}">${esc(stageLabel(st, i))}</a>`).join('');
   }
   function renderStageInfo() {
     const st = S.c.stage, i = S.si;
     let h;
-    if (i === 0) h = `<p><b>Stufe 1 – ohne Verteidigung.</b> Schau Dir erst nur die Laufwege an: Wer läuft wohin, wer passt wann?</p>`;
+    if (S.play.custom && i === 1) h = `<p><b>Stufe 2 – mit Verteidigung.</b> Jeder Verteidiger deckt automatisch seinen Gegenspieler (Mann-Deckung). Wird jemand frei (grüner Ring), funktioniert Dein Play.</p>`;
+    else if (i === 0) h = `<p><b>Stufe 1 – ohne Verteidigung.</b> Schau Dir erst nur die Laufwege an: Wer läuft wohin, wer passt wann?</p>`;
     else if (i === 1) h = `<p><b>Stufe 2 – mit Verteidigung.</b> So reagiert die Verteidigung normalerweise – und darum funktioniert die Aktion.</p>`;
     else {
       h = `<p><b>🛡️ Die Verteidigung:</b> ${linkTerms(st.defenseText || '')}</p>`;
@@ -325,7 +349,7 @@
   function showEnd() {
     const p = S.play, nextStage = S.si + 1 < p.stages.length;
     const idx = GS.PLAYS.indexOf(p), nextPlay = GS.PLAYS[idx + 1];
-    const next = nextStage ? `<a class="gs-btn-primary" href="#/${p.id}/${S.si + 2}">Weiter: ${esc(stageLabel(p.stages[S.si + 1], S.si + 1))} →</a>`
+    const next = nextStage ? `<a class="gs-btn-primary" href="${stageHref(p, S.si + 1)}">Weiter: ${esc(stageLabel(p.stages[S.si + 1], S.si + 1))} →</a>`
       : nextPlay ? `<a class="gs-btn-primary" href="#/${nextPlay.id}/1">Nächste Aktion: ${esc(nextPlay.name)} →</a>` : '';
     overlay(`<div class="gs-end"><button type="button" class="gs-btn-ghost" data-act="restart">↺ Nochmal</button>${next}</div>`);
   }
@@ -360,20 +384,46 @@
   }
 
   // ---------- Laden ----------
-  function load(playId, stageNo) {
-    const p = GS.PLAYS.find(x => x.id === playId) || GS.PLAYS[0];
+  function load(playId, stageNo, playObj) {
+    showViewer();
+    const p = playObj || allPlays().find(x => x.id === playId) || GS.PLAYS[0];
     const si = Math.max(0, Math.min(p.stages.length - 1, (stageNo || 1) - 1));
     const samePlay = S.play === p;
     S.play = p; S.si = si; S.c = GS.compile(p.stages[si]);
-    S.t = 0; S.playing = false; S.asked = false; S.askOpen = false; S.solved = false; S.curStep = -1;
+    S.t = 0; S.playing = false; S.asked = false; S.askOpen = false; S.solved = false; S.curStep = -1; S.shared = null;
+    $('banner').hidden = true;
     document.title = `${p.name} · Ghost Screen`;
     buildPlayers(); renderLib(); renderHead(); renderStages(); renderStageInfo(); renderSteps(); renderExplain();
     askBox(null); render(); syncPlay(); showStart();
     if (!samePlay) window.scrollTo({ top: 0 });
     document.body.classList.remove('lib-open'); document.querySelector('[data-act="lib"]').setAttribute('aria-expanded', 'false');
   }
+  function showViewer() { $('viewer').hidden = false; $('editor').hidden = true; document.body.classList.remove('editing'); }
   function route() {
-    const m = location.hash.match(/^#\/([\w-]+)(?:\/(\d+))?/);
+    const h = location.hash;
+    const ed = h.match(/^#\/edit\/([\w-]+)/);
+    if (ed) {
+      pause(); S.play = null; renderLib();
+      $('viewer').hidden = true; $('editor').hidden = false; document.body.classList.add('editing');
+      document.body.classList.remove('lib-open');
+      GS.editor.open(ed[1] === 'new' ? null : ed[1]);
+      return;
+    }
+    const sh = h.match(/^#\/p\/([\w-]+)(?:\/(\d+))?/);
+    if (sh) {
+      const cp = GS.decodeCustom(sh[1]);
+      if (cp) {
+        const exists = GS.loadCustoms().some(x => x.id === cp.id);
+        const play = GS.customToPlay(cp, { id: 'p-' + cp.id, source: 'shared', cat: 'Geteilt', level: 'Geteiltes Play' });
+        load(null, sh[2] ? Number(sh[2]) : 1, play);
+        S.shared = cp;
+        const b = $('banner'); b.hidden = false;
+        b.innerHTML = exists ? `🔗 Geteiltes Play – eine Version davon ist schon in Deinen eigenen Plays.` : `🔗 Das ist ein geteiltes Play. <button type="button" class="gs-btn-primary" data-act="save-shared">💾 In meine Plays speichern</button>`;
+        return;
+      }
+      toast('Der Link ist kaputt oder unvollständig.');
+    }
+    const m = h.match(/^#\/([\w-]+)(?:\/(\d+))?/);
     load(m ? m[1] : null, m && m[2] ? Number(m[2]) : 1);
   }
 
@@ -398,6 +448,17 @@
         (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => toast('Link kopiert – direkt zu dieser Stufe.'), () => toast(url));
         break;
       }
+      case 'edit': location.hash = '#/edit/' + S.play.custom.id; break;
+      case 'edit-copy': { const cp = Object.assign(GS.cleanCustom(S.play.custom), { id: 'u' + Date.now().toString(36) }); cp.name = cp.name + ' (Kopie)'; GS.upsertCustom(cp); location.hash = '#/edit/' + cp.id; break; }
+      case 'share': sharePlay(S.play.custom); break;
+      case 'export': exportPlays([S.play.custom], S.play.custom.name); break;
+      case 'export-all': exportPlays(GS.loadCustoms(), 'eigene-plays'); break;
+      case 'delete': if (confirm(`„${S.play.name}“ wirklich löschen? Das geht nicht rückgängig.`)) { GS.deleteCustom(S.play.custom.id); toast('Gelöscht.'); location.hash = '#/'; } break;
+      case 'save-shared': if (S.shared) { GS.upsertCustom(S.shared); toast('In Deinen eigenen Plays gespeichert.'); location.hash = '#/eigen-' + S.shared.id + '/1'; } break;
+      case 'import': openImport(); break;
+      case 'import-file': $('importFile').click(); break;
+      case 'import-go': doImport($('importText').value); break;
+      case 'modal-close': modal(null); break;
       case 'theme': {
         const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         const nx = cur === 'dark' ? 'light' : 'dark';
@@ -409,7 +470,7 @@
   });
   $('scrub').addEventListener('input', e => { pause(); seek(Number(e.target.value) / 1000 * S.c.dur); });
   document.addEventListener('keydown', e => {
-    if (e.target.closest('input,textarea,select') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.target.closest('input,textarea,select') || e.metaKey || e.ctrlKey || e.altKey || document.body.classList.contains('editing')) return;
     if (e.key === ' ') { e.preventDefault(); if (!S.askOpen) (S.playing ? pause() : play()); }
     else if (e.key === 'ArrowRight') { e.preventDefault(); document.querySelector('[data-act="next"]').click(); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); document.querySelector('[data-act="prev"]').click(); }
@@ -421,8 +482,51 @@
   let toastT;
   function toast(msg) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2600); }
 
+  // ---------- Teilen, Export, Import ----------
+  function shareUrl(cp) { return location.origin + location.pathname + '#/p/' + GS.encodeCustom(cp) + '/1'; }
+  function sharePlay(cp) {
+    const url = shareUrl(cp);
+    if (navigator.share && matchMedia('(pointer: coarse)').matches) { navigator.share({ title: cp.name + ' · Ghost Screen', url }).catch(() => {}); return; }
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => toast('Link kopiert – wer ihn öffnet, sieht das Play und kann es speichern.'), () => modal(`<h3>Link zum Play</h3><textarea readonly class="gs-code">${esc(url)}</textarea><div class="gs-modal-actions"><button type="button" class="gs-btn-primary" data-act="modal-close">Fertig</button></div>`));
+  }
+  function exportPlays(list, name) {
+    const data = list.length === 1 ? GS.cleanCustom(list[0]) : list.map(GS.cleanCustom);
+    const blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = String(name || 'play').toLowerCase().replace(/[^a-z0-9äöüß]+/g, '-').replace(/^-|-$/g, '') + '.ghost.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    toast('Datei gespeichert. Zum Teilen verschicken – oder für alle ins Vereins-Playbook.');
+  }
+  function modal(html) { const m = $('modal'); if (!html) { m.hidden = true; m.innerHTML = ''; return; } m.innerHTML = `<div class="gs-modal-box">${html}</div>`; m.hidden = false; }
+  function openImport() {
+    modal(`<h3>Play importieren</h3><p>Wähle eine exportierte Datei (.ghost.json) oder füge einen geteilten Link ein.</p>
+      <button type="button" class="gs-btn-ghost" data-act="import-file">📁 Datei auswählen</button>
+      <textarea id="importText" class="gs-code" placeholder="Link oder Code hier einfügen …"></textarea>
+      <div class="gs-modal-actions"><button type="button" class="gs-btn-ghost" data-act="modal-close">Abbrechen</button><button type="button" class="gs-btn-primary" data-act="import-go">Importieren</button></div>`);
+  }
+  function doImport(text) {
+    const r = GS.parseImport(text);
+    if (!r) { toast('Das konnte ich nicht lesen – ist es ein Ghost-Screen-Link oder eine .ghost.json-Datei?'); return; }
+    const list = Array.isArray(r) ? r : [r];
+    const have = new Set(GS.loadCustoms().map(x => x.id));
+    list.forEach(cp => { if (have.has(cp.id)) cp.id = 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5); GS.upsertCustom(cp); });
+    modal(null);
+    toast(list.length === 1 ? `„${list[0].name}“ importiert.` : `${list.length} Plays importiert.`);
+    location.hash = '#/eigen-' + list[0].id + '/1';
+    if (location.hash === '#/eigen-' + list[0].id + '/1') route();
+  }
+  $('importFile').addEventListener('change', e => {
+    const f = e.target.files && e.target.files[0]; if (!f) return;
+    const rd = new FileReader(); rd.onload = () => doImport(String(rd.result)); rd.readAsText(f); e.target.value = '';
+  });
+  $('modal').addEventListener('click', e => { if (e.target.id === 'modal') modal(null); });
+
+  GS.ui = { courtBase, el, esc, linkTerms, toast, modal, route, renderLib, sharePlay, exportPlays };
+
   drawCourt(); syncSegs();
   window.addEventListener('hashchange', route);
-  route();
+  window.addEventListener('DOMContentLoaded', route);
   requestAnimationFrame(tick);
 })();

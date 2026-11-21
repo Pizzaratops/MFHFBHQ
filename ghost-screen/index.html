@@ -31,6 +31,8 @@
 <div class="gs-layout">
   <aside class="gs-lib" id="lib" aria-label="Aktionen"></aside>
   <main class="gs-main" id="main" tabindex="-1">
+   <div id="viewer">
+    <div class="gs-banner" id="banner" hidden></div>
     <section class="gs-head" id="head"></section>
     <nav class="gs-stages" id="stages" aria-label="Stufen"></nav>
     <div class="gs-stage-info" id="stageInfo"></div>
@@ -75,6 +77,8 @@
         <li><svg viewBox="-0.6 -0.6 1.2 1.2"><circle r="0.48" class="leg-open"/></svg> Grüner Ring = frei (kein Verteidiger nah)</li>
       </ul>
     </section>
+   </div>
+   <div id="editor" hidden></div>
   </main>
 </div>
 
@@ -85,9 +89,14 @@
 </footer>
 
 <div class="gs-toast" id="toast" hidden></div>
+<div class="gs-modal" id="modal" hidden></div>
+<input type="file" id="importFile" accept=".json,application/json" hidden>
 
 <script src="engine.js"></script>
 <script src="plays.js"></script>
+<script src="customs.js"></script>
+<script src="vereins-plays.js"></script>
 <script src="app.js"></script>
+<script src="editor.js"></script>
 </body>
 </html>

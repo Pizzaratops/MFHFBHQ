@@ -113,7 +113,7 @@
     };
 
     function build() {
-      const dpos = {}, viaIdx = {}, lastRule = {};
+      const dpos = {}, viaIdx = {}, lastRule = {}, stuck = {};
       const frames = new Array(nF);
       for (let f = 0; f < nF; f++) {
         const t = Math.min(dur, f * DT);
@@ -157,7 +157,8 @@
           const want = desired(r, id);
           if (!dpos[id]) dpos[id] = want.slice();
           else {
-            const sp = (r.o.speed || 6.0) * DT;
+            const sp = (r.o.speed || 6.0) * DT * (stuck[id] > 0 ? 0.3 : 1);
+            if (stuck[id] > 0) stuck[id] -= DT;
             const cur = dpos[id];
             const dd = hyp(cur, want);
             if (dd <= sp) dpos[id] = want.slice();
@@ -170,7 +171,12 @@
             if (dd < r && dd > 1e-6) { const u = toward(q, me); me[0] = q[0] + u[0] * r; me[1] = q[1] + u[1] * r; }
             else if (dd <= 1e-6) { me[0] += r; }
           };
-          for (const k in o) push(o[k], 0.68);
+          for (const k in o) {
+            const before = hyp(me, o[k]);
+            push(o[k], 0.68);
+            // Eigene Plays: Wer gegen einen Angreifer läuft (Screen), hängt kurz fest
+            if (stage.screenDrag && before < 0.66 && !(r.m === 'man' && r.a === k)) stuck[id] = 0.35;
+          }
           for (const k in d) push(d[k], 0.62);
           d[id] = me.slice();
         });
