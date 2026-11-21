@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T05:01:08.053Z",
+  "updated": "2026-11-21T08:01:03.428Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
@@ -80,7 +80,7 @@ const NBA_INJURIES = {
     "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
     "Nikola Topic": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
-    "Nolan Traore": ["BKN","Out","OUT","2026-11-20","Hamstring",0,"2026-11-21"],
+    "Nolan Traore": ["BKN","Out","OUT","2026-11-23","Hamstring",0,"2026-11-21"],
     "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-21","Calf",0,"2026-11-20"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-21","Shoulder",0,"2026-11-20"],
