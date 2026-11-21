@@ -2,17 +2,17 @@
   "league": "ncaab",
   "date": "2026-11-21",
   "games": [
-    "Queens University Royals 75 @ LSU Tigers 106 (Final)",
-    "Denver Pioneers 68 @ Eastern Michigan Eagles 70 (Final)",
-    "Cornell Big Red @ Morgan State Bears (16:53 - 2nd)",
-    "New Mexico Lobos @ Wichita State Shockers (Halftime)",
-    "Fordham Rams @ Portland Pilots (Halftime)",
-    "Western Carolina Catamounts @ Wake Forest Demon Deacons (0:00 - 1st)",
-    "Lafayette Leopards @ Syracuse Orange (Halftime)",
+    "New Mexico Lobos 60 @ Wichita State Shockers 85 (Final)",
+    "Fordham Rams @ Portland Pilots (3:04 - 2nd)",
+    "Western Carolina Catamounts @ Wake Forest Demon Deacons (1:12 - 2nd)",
+    "Lafayette Leopards @ Syracuse Orange (4:59 - 2nd)",
+    "Drake Bulldogs @ Missouri State Bears (16:56 - 2nd)",
+    "Middle Tennessee Blue Raiders @ Indiana State Sycamores (Halftime)",
     "Detroit Mercy Titans 70 @ Michigan State Spartans 91 (Final)",
+    "Queens University Royals 75 @ LSU Tigers 106 (Final)",
     "Columbia Lions 80 @ Boston University Terriers 71 (Final/OT)",
-    "Drake Bulldogs @ Missouri State Bears (17:14 - 1st)",
-    "Middle Tennessee Blue Raiders @ Indiana State Sycamores (18:52 - 1st)",
+    "Denver Pioneers 68 @ Eastern Michigan Eagles 70 (Final)",
+    "Cornell Big Red 84 @ Morgan State Bears 63 (Final)",
     "Pennsylvania Quakers @ La Salle Explorers (11/21 - 4:00 PM EST)",
     "South Florida Bulls @ George Mason Patriots (11/21 - 4:00 PM EST)",
     "UC Irvine Anteaters @ San Diego Toreros (11/21 - 4:30 PM EST)",
@@ -27,7 +27,7 @@
     "Washington State Cougars @ Duke Blue Devils (11/21 - 11:00 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 51.3,
-    "ft": 72.5
+    "fg": 48.7,
+    "ft": 73.6
   }
 }
