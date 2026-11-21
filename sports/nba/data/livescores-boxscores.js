@@ -4044,9 +4044,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909305",
-      line: "Charlotte Hornets @ Atlanta Hawks (4:57 - 2nd)",
+      line: "Charlotte Hornets @ Atlanta Hawks (2:30 - 2nd)",
       completed: false,
-      statusText: "4:57 - 2nd",
+      statusText: "2:30 - 2nd",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -4062,9 +4062,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909306",
-      line: "Orlando Magic @ Brooklyn Nets (4:58 - 1st)",
+      line: "Orlando Magic @ Brooklyn Nets (2:10 - 1st)",
       completed: false,
-      statusText: "4:58 - 1st",
+      statusText: "2:10 - 1st",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4080,9 +4080,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909307",
-      line: "Indiana Pacers @ Cleveland Cavaliers (4:29 - 1st)",
+      line: "Indiana Pacers @ Cleveland Cavaliers (3:07 - 1st)",
       completed: false,
-      statusText: "4:29 - 1st",
+      statusText: "3:07 - 1st",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
@@ -4098,9 +4098,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909308",
-      line: "Toronto Raptors @ Detroit Pistons (5:54 - 1st)",
+      line: "Toronto Raptors @ Detroit Pistons (3:57 - 1st)",
       completed: false,
-      statusText: "5:54 - 1st",
+      statusText: "3:57 - 1st",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
