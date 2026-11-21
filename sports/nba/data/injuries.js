@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T00:56:14.128Z",
+  "updated": "2026-11-21T01:24:16.643Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
@@ -32,6 +32,7 @@ const NBA_INJURIES = {
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-20"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
+    "Derrick White": ["BOS","Day-To-Day","GTD","2026-11-21","Shoulder",0,"2026-11-21"],
     "Dominick Barlow": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-20"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-20"],
@@ -57,6 +58,7 @@ const NBA_INJURIES = {
     "Jaylen Brown": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-20"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylon Tyson": ["CLE","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
+    "Jayson Tatum": ["BOS","Day-To-Day","GTD","2026-11-21","Rest",0,"2026-11-21"],
     "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-11-21","Calf",0,"2026-11-20"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-22","Hip",0,"2026-11-19"],
