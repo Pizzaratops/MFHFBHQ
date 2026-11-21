@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-21T12:03:20.160Z",
+  "generatedAt": "2026-11-21T14:03:23.607Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -3232,7 +3232,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 16.9
+          "projPoints": 17
         },
         {
           "name": "Cameron Dicker",
