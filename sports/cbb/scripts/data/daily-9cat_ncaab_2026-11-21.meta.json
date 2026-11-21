@@ -1,0 +1,33 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-21",
+  "games": [
+    "Queens University Royals 75 @ LSU Tigers 106 (Final)",
+    "Denver Pioneers 68 @ Eastern Michigan Eagles 70 (Final)",
+    "Cornell Big Red @ Morgan State Bears (16:53 - 2nd)",
+    "New Mexico Lobos @ Wichita State Shockers (Halftime)",
+    "Fordham Rams @ Portland Pilots (Halftime)",
+    "Western Carolina Catamounts @ Wake Forest Demon Deacons (0:00 - 1st)",
+    "Lafayette Leopards @ Syracuse Orange (Halftime)",
+    "Detroit Mercy Titans 70 @ Michigan State Spartans 91 (Final)",
+    "Columbia Lions 80 @ Boston University Terriers 71 (Final/OT)",
+    "Drake Bulldogs @ Missouri State Bears (17:14 - 1st)",
+    "Middle Tennessee Blue Raiders @ Indiana State Sycamores (18:52 - 1st)",
+    "Pennsylvania Quakers @ La Salle Explorers (11/21 - 4:00 PM EST)",
+    "South Florida Bulls @ George Mason Patriots (11/21 - 4:00 PM EST)",
+    "UC Irvine Anteaters @ San Diego Toreros (11/21 - 4:30 PM EST)",
+    "Air Force Falcons @ UTSA Roadrunners (11/21 - 5:00 PM EST)",
+    "Southern Illinois Salukis @ East Carolina Pirates (11/21 - 5:30 PM EST)",
+    "Coppin State Eagles @ Georgetown Hoyas (11/21 - 6:00 PM EST)",
+    "Michigan Wolverines @ Villanova Wildcats (11/21 - 7:00 PM EST)",
+    "California Baptist Lancers @ Loyola Marymount Lions (11/21 - 7:00 PM EST)",
+    "Brown Bears @ Vermont Catamounts (11/21 - 7:00 PM EST)",
+    "Troy Trojans @ Valparaiso Beacons (11/21 - 8:00 PM EST)",
+    "Bradley Braves @ Pacific Tigers (11/21 - 10:00 PM EST)",
+    "Washington State Cougars @ Duke Blue Devils (11/21 - 11:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 51.3,
+    "ft": 72.5
+  }
+}
