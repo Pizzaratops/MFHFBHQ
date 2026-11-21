@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T16:44:10.670Z",
+  "updated": "2026-11-21T17:44:57.375Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -30,7 +30,6 @@ const NBA_INJURIES = {
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
     "Derrick White": ["BOS","Day-To-Day","GTD","2026-11-21","Shoulder",0,"2026-11-21"],
-    "Dominick Barlow": ["PHI","Out","GTD","2026-11-21","Back",0,"2026-11-20"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-20"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
@@ -107,7 +106,6 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Ty Jerome": ["MEM","Out","GTD","2026-11-21","Hip",0,"2026-11-20"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
-    "Tyrese Maxey": ["PHI","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-21"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-21","Knee",0,"2026-11-20"]
