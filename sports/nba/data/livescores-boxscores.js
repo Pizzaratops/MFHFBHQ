@@ -4044,9 +4044,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909305",
-      line: "Charlotte Hornets @ Atlanta Hawks (55.7 - 3rd)",
+      line: "Charlotte Hornets @ Atlanta Hawks (6:21 - 4th)",
       completed: false,
-      statusText: "55.7 - 3rd",
+      statusText: "6:21 - 4th",
       away: {
         abbr: "CHA", name: "Charlotte Hornets", score: null,
         players: [
@@ -4062,9 +4062,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909306",
-      line: "Orlando Magic @ Brooklyn Nets (1:45 - 2nd)",
+      line: "Orlando Magic @ Brooklyn Nets (11:57 - 3rd)",
       completed: false,
-      statusText: "1:45 - 2nd",
+      statusText: "11:57 - 3rd",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4080,9 +4080,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909307",
-      line: "Indiana Pacers @ Cleveland Cavaliers (Halftime)",
+      line: "Indiana Pacers @ Cleveland Cavaliers (9:19 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "9:19 - 3rd",
       away: {
         abbr: "IND", name: "Indiana Pacers", score: null,
         players: [
@@ -4098,9 +4098,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909308",
-      line: "Toronto Raptors @ Detroit Pistons (Halftime)",
+      line: "Toronto Raptors @ Detroit Pistons (7:50 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "7:50 - 3rd",
       away: {
         abbr: "TOR", name: "Toronto Raptors", score: null,
         players: [
@@ -4116,9 +4116,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909309",
-      line: "Washington Wizards @ Chicago Bulls (11:13 - 2nd)",
+      line: "Washington Wizards @ Chicago Bulls (1:57 - 2nd)",
       completed: false,
-      statusText: "11:13 - 2nd",
+      statusText: "1:57 - 2nd",
       away: {
         abbr: "WSH", name: "Washington Wizards", score: null,
         players: [
@@ -4134,9 +4134,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909310",
-      line: "New Orleans Pelicans @ Oklahoma City Thunder (9:55 - 2nd)",
+      line: "New Orleans Pelicans @ Oklahoma City Thunder (2:38 - 2nd)",
       completed: false,
-      statusText: "9:55 - 2nd",
+      statusText: "2:38 - 2nd",
       away: {
         abbr: "NO", name: "New Orleans Pelicans", score: null,
         players: [
