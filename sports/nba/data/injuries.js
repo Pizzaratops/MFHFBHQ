@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T00:43:49.615Z",
+  "updated": "2026-11-21T00:56:14.128Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
@@ -15,6 +15,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-23","Achilles",0,"2026-11-20"],
+    "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-20","Ankle",0,"2026-11-21"],
     "Brandon Williams": ["GS","Out","GTD","2026-11-22","Hamstring",0,"2026-11-18"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
@@ -38,7 +39,7 @@ const NBA_INJURIES = {
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-11-22","Oblique",0,"2026-11-19"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
-    "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-20","Back",0,"2026-11-17"],
+    "Felix Okpara": ["WSH","Out","OUT","2026-11-22","Back",0,"2026-11-21"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grant Nelson": ["BKN","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
     "Grant Williams": ["CHA","Out","OUT","2026-11-23","Hamstring",0,"2026-11-19"],
