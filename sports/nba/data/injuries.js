@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T19:42:00.799Z",
+  "updated": "2026-11-21T20:52:48.508Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -37,6 +37,7 @@ const NBA_INJURIES = {
     "Ebuka Okorie": ["DET","Day-To-Day","GTD","2026-11-22","Oblique",0,"2026-11-21"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
+    "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-22","Groin",0,"2026-11-21"],
     "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-21"],
     "Grant Williams": ["CHA","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
     "Grayson Allen": ["CHA","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-21"],
@@ -74,7 +75,7 @@ const NBA_INJURIES = {
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
-    "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-19"],
+    "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-21"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
     "Nate Bittle": ["TOR","Out","GTD","2026-11-23","Foot",0,"2026-11-14"],
     "Nikola Topic": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
