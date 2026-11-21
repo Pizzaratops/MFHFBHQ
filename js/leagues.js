@@ -376,3 +376,21 @@ const LEAGUES = [
     sheet: { id: '18Mv6nb029xyrk9W5tM8e0tYCbVqfMNANIUDnY1xyT-A', gid: 0, tzOffsetMin: 0, hours: 24 },
   },
 ];
+
+// ------------------------------------------------------------
+//  Eigenständige Seiten im HQ (keine Liga): erscheinen auf der
+//  Startseite unter „Werkzeuge“. href relativ zur Hub-Wurzel.
+// ------------------------------------------------------------
+const HUB_TOOLS = [
+  {
+    // Basketball-Taktikboard für die Vereinskinder (seit 21.11.2026), Ordner ghost-screen/
+    key: 'ghost-screen',
+    name: 'Ghost Screen',
+    short: 'Basketball-Taktikboard',
+    emoji: '👻',
+    href: 'ghost-screen/',
+    chips: ['Aktionen lernen', 'Ohne & mit Verteidigung'],
+    accent: '#e84a0c',
+    accent2: '#13294b',
+  },
+];

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghost Screen · Basketball-Taktikboard</title>
+<meta name="description" content="Ghost Screen: Basketball-Aktionen Schritt für Schritt – ohne Verteidigung, mit Verteidigung und was Du tust, wenn die Verteidigung anders reagiert.">
+<meta name="theme-color" content="#13294b">
+<link rel="icon" type="image/png" href="../icons/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ghost.css">
+<script>
+  try { var t = localStorage.getItem('mfhfb:theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<header class="gs-top">
+  <a class="gs-brand" href="#/" aria-label="Ghost Screen – Start">
+    <span class="gs-logo" aria-hidden="true">👻</span>
+    <span class="gs-brand-text"><b>Ghost Screen</b><small class="hide-xs">Basketball-Taktikboard</small></span>
+  </a>
+  <span class="gs-spacer"></span>
+  <button class="gs-icon-btn gs-lib-toggle" type="button" data-act="lib" aria-expanded="false" title="Alle Aktionen">📚 <span class="hide-xs">Aktionen</span></button>
+  <button class="gs-icon-btn" type="button" data-act="copy" title="Link zu dieser Stufe kopieren – zum Verschicken an die Mannschaft">🔗 <span class="hide-sm">Link kopieren</span></button>
+  <button class="gs-icon-btn" type="button" data-act="theme" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel">🌓</button>
+  <a class="gs-icon-btn hide-sm" href="../" title="Zum MFHFB HQ">MFHFB <b>HQ</b></a>
+</header>
+
+<div class="gs-layout">
+  <aside class="gs-lib" id="lib" aria-label="Aktionen"></aside>
+  <main class="gs-main" id="main" tabindex="-1">
+    <section class="gs-head" id="head"></section>
+    <nav class="gs-stages" id="stages" aria-label="Stufen"></nav>
+    <div class="gs-stage-info" id="stageInfo"></div>
+    <div class="gs-stagearea">
+      <div class="gs-board-wrap">
+        <div class="gs-board" id="board">
+          <svg id="court" viewBox="-7.6 -0.45 15.2 10.95" role="img" aria-label="Halbes Basketballfeld mit Spielern"></svg>
+          <div class="gs-overlay" id="overlay" hidden></div>
+        </div>
+        <div class="gs-caption" id="caption" aria-live="polite"></div>
+        <div class="gs-askbox" id="askBox" hidden></div>
+        <div class="gs-controls" id="controls">
+          <button class="gs-btn" type="button" data-act="restart" title="Von vorne">↺</button>
+          <button class="gs-btn" type="button" data-act="prev" title="Schritt zurück (←)">⏮</button>
+          <button class="gs-btn gs-play" type="button" data-act="play" title="Abspielen / Pause (Leertaste)">▶</button>
+          <button class="gs-btn" type="button" data-act="next" title="Nächster Schritt (→)">⏭</button>
+          <input class="gs-scrub" id="scrub" type="range" min="0" max="1000" value="0" aria-label="Zeit">
+          <span class="gs-time" id="time">0,0 s</span>
+          <div class="gs-seg" role="group" aria-label="Tempo">
+            <button type="button" data-speed="0.5" title="Halbe Geschwindigkeit">½×</button>
+            <button type="button" data-speed="1" class="on" title="Normale Geschwindigkeit">1×</button>
+          </div>
+          <div class="gs-seg" role="group" aria-label="Linien">
+            <button type="button" data-lines="step" class="on" title="Laufwege des aktuellen Schritts zeigen">Linien: Schritt</button>
+            <button type="button" data-lines="all" title="Alle Laufwege der Stufe zeigen">Alle</button>
+            <button type="button" data-lines="off" title="Keine Linien">Aus</button>
+          </div>
+        </div>
+      </div>
+      <aside class="gs-side"><h3>Schritt für Schritt</h3><ol class="gs-steps" id="steps"></ol></aside>
+    </div>
+    <section class="gs-explain" id="explain"></section>
+    <section class="gs-legend">
+      <h3>So liest Du das Board</h3>
+      <ul>
+        <li><svg viewBox="-0.6 -0.6 1.2 1.2"><circle r="0.45" class="leg-o"/><text class="leg-t" y="0.17">1</text></svg> Angriff (1–5)</li>
+        <li><svg viewBox="-0.6 -0.6 1.2 1.2"><circle r="0.45" class="leg-d"/><text class="leg-t" y="0.13" style="font-size:.36px">X1</text></svg> Verteidigung (X1 deckt 1 …)</li>
+        <li><svg viewBox="0 -0.5 2 1"><path d="M0.1 0 H1.6" class="leg-line"/><path d="M1.5 -0.22 L1.9 0 L1.5 0.22 Z" class="leg-arrow"/></svg> Laufweg</li>
+        <li><svg viewBox="0 -0.5 2 1"><path d="M0.1 0 l0.2 -0.16 l0.25 0.32 l0.25 -0.32 l0.25 0.32 l0.25 -0.32 l0.2 0.16 H1.6" class="leg-line"/><path d="M1.5 -0.22 L1.9 0 L1.5 0.22 Z" class="leg-arrow"/></svg> Dribbling</li>
+        <li><svg viewBox="0 -0.5 2 1"><path d="M0.1 0 H1.6" class="leg-line leg-pass"/><path d="M1.5 -0.22 L1.9 0 L1.5 0.22 Z" class="leg-arrow"/></svg> Pass</li>
+        <li><svg viewBox="0 -0.5 2 1"><path d="M0.2 0 H1.5 M1.5 -0.4 V0.4" class="leg-line"/></svg> Screen (Block)</li>
+        <li><svg viewBox="-0.6 -0.6 1.2 1.2"><circle r="0.48" class="leg-open"/></svg> Grüner Ring = frei (kein Verteidiger nah)</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer class="gs-foot">
+  <p><b>Ideen: MFHFB · Code: Claude.</b> Vorbild für die Idee: <a href="https://four-verts.com/" target="_blank" rel="noopener">Four Verts</a> (Football-Play-Calling).
+  Aktionen und Begriffe u. a. nach <a href="https://www.coachesclipboard.net/basketball-ghost-screens.html" target="_blank" rel="noopener">Coach's Clipboard – Ghost Screens</a>
+  und der <a href="https://basketball-bund.de/wp-content/uploads/sites/2/2022/12/SPIELKONZEPTION-ZUR-ENTWICKLUNG-VON-NATIONALSPIELERN-NATIONALSPIELERIN....pdf" target="_blank" rel="noopener">DBB-Spielkonzeption</a>; alle Erklärungen und Laufwege sind eigene Darstellungen. Feldmaße nach FIBA.</p>
+</footer>
+
+<div class="gs-toast" id="toast" hidden></div>
+
+<script src="engine.js"></script>
+<script src="plays.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

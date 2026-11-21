@@ -102,7 +102,29 @@
           <h2 class="sport-title">${SPORTS[sport].emoji} ${esc(SPORTS[sport].label)}</h2>
           <div class="league-grid">${leagues.map(leagueCard).join('')}</div>
         </section>`;
-    }).join('');
+    }).join('') + (typeof HUB_TOOLS !== 'undefined' && HUB_TOOLS.length ? `
+        <section class="sport-group">
+          <h2 class="sport-title">🧰 Werkzeuge</h2>
+          <div class="league-grid">${HUB_TOOLS.map(toolCard).join('')}</div>
+        </section>` : '');
+  }
+
+  function toolCard(t) {
+    return `
+      <a class="league-card" href="${esc(t.href)}" style="--card-accent:${t.accent};--card-accent2:${t.accent2}">
+        <div class="league-card-head">
+          <div class="league-emoji" aria-hidden="true">${t.emoji}</div>
+          <div>
+            <div class="league-name display">${esc(t.name)}</div>
+            <div class="league-short">${esc(t.short)}</div>
+          </div>
+        </div>
+        <div class="chips">${(t.chips || []).map(c => `<span class="chip">${esc(c)}</span>`).join('')}</div>
+        <div class="league-card-foot">
+          <span class="status native">Im HQ</span>
+          <span class="go">Öffnen →</span>
+        </div>
+      </a>`;
   }
 
   function showLanding() {

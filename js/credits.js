@@ -47,6 +47,10 @@
       `${A('https://collegefootballdata.com', 'CollegeFootballData.com')}: College Scouting, Comps, Draft Range.`,
       '<b>Bootleg Power Score:</b> Idee von Brett Kollmann und EJ Snyder (NFL Bootleg), übernommen und abgeändert (NFL-Teams und Fantasy-Positionen).',
     ]],
+    ['👻 Ghost Screen (Basketball-Taktikboard)', [
+      `Idee nach ${A('https://four-verts.com/', 'Four Verts')} (Football-Play-Calling mit Play Builder), übertragen auf Basketball als Lernwerkzeug.`,
+      `Aktionen und Begriffe u. a. nach ${A('https://www.coachesclipboard.net/basketball-ghost-screens.html', 'Coach\'s Clipboard')} (Ghost Screens, Zipper- und Iverson-Cuts) und der ${A('https://basketball-bund.de/wp-content/uploads/sites/2/2022/12/SPIELKONZEPTION-ZUR-ENTWICKLUNG-VON-NATIONALSPIELERN-NATIONALSPIELERIN....pdf', 'DBB-Spielkonzeption')}. Laufwege, Erklärungen und Varianten sind eigene Darstellungen; Feldmaße nach FIBA.`,
+    ]],
     ['🛠️ Technik', [
       `${A('https://html2canvas.hertzen.com', 'html2canvas')} (Niklas von Hertzen, MIT-Lizenz): Bilder zum Teilen.`,
       `${A('https://fonts.google.com', 'Google Fonts')}: Barlow Condensed, DM Sans.`,

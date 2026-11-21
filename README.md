@@ -31,6 +31,9 @@ tools/usm.js          basketball.de US-Manager: Draft & Value (Auffüll-Optimier
                       — Daten leagues/usm/data/usm-base.js + usm-snapshots.js (Repo), eigene Snapshots im Browser (mfhfb:usm:*),
                         Verletzungen sports/nba/data/injuries.js (ESPN, nba-sync), Gehaltsprognose + Marktwert im Trade-Finder
 tools/home.js         Übersicht (alle Ligen)
+ghost-screen/         Ghost Screen – Basketball-Taktikboard (eigene Seite, keine Liga; Kachel über HUB_TOOLS in js/leagues.js)
+                      engine.js (Bewegung/Verteidigung), plays.js (Aktionen + Glossar), app.js (Oberfläche),
+                      check.js (Prüfscript: node ghost-screen/check.js — misst Abstände bei Pass/Wurf, Zusammenstöße)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
 css/nfl.css, nba.css, cbb.css, usm.css  sportspezifische Styles
