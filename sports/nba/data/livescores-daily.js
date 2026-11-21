@@ -5283,7 +5283,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-20": {
-      games: ["Charlotte Hornets 97 @ Atlanta Hawks 111 (Final)","Orlando Magic 113 @ Brooklyn Nets 111 (Final)","Indiana Pacers 119 @ Cleveland Cavaliers 128 (Final)","Toronto Raptors 105 @ Detroit Pistons 102 (Final)","Washington Wizards 98 @ Chicago Bulls 94 (Final)","New Orleans Pelicans 120 @ Oklahoma City Thunder 126 (Final)","Phoenix Suns @ Utah Jazz (9:24 - 3rd)","Houston Rockets @ Denver Nuggets (4:26 - 2nd)","Sacramento Kings @ Los Angeles Lakers (2:26 - 2nd)"],
+      games: ["Charlotte Hornets 97 @ Atlanta Hawks 111 (Final)","Orlando Magic 113 @ Brooklyn Nets 111 (Final)","Indiana Pacers 119 @ Cleveland Cavaliers 128 (Final)","Toronto Raptors 105 @ Detroit Pistons 102 (Final)","Washington Wizards 98 @ Chicago Bulls 94 (Final)","New Orleans Pelicans 120 @ Oklahoma City Thunder 126 (Final)","Phoenix Suns @ Utah Jazz (18.3 - 4th)","Houston Rockets @ Denver Nuggets (End of 3rd)","Sacramento Kings @ Los Angeles Lakers (5:52 - 4th)"],
       leagueAvg: { fg: 47, ft: 75 },
       players: [
         { rank: 1, name: "James Harden", team: "CLE", min: 40, pts: 51, reb: 6, ast: 6, stl: 1, blk: 0, to: 2, tpm: 7, fgPct: 57.7, ftPct: 100, composite: 15.91, zScores: { pts: 4.433, reb: 0.57, ast: 1.456, stl: 0.216, blk: -0.61, tpm: 3.73, fgImpact: 1.831, ftImpact: 4.828, to: -0.54 } },

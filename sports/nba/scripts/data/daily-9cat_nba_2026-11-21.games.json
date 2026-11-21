@@ -1,0 +1,114 @@
+{
+  "league": "nba",
+  "date": "2026-11-21",
+  "games": [
+    {
+      "id": "401910023",
+      "line": "Milwaukee Bucks @ Philadelphia 76ers (11/21 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 1:00 PM EST",
+      "away": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910024",
+      "line": "Portland Trail Blazers @ New York Knicks (11/21 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 7:30 PM EST",
+      "away": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910025",
+      "line": "LA Clippers @ Dallas Mavericks (11/21 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 8:00 PM EST",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910026",
+      "line": "Memphis Grizzlies @ Minnesota Timberwolves (11/21 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 8:00 PM EST",
+      "away": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910027",
+      "line": "New Orleans Pelicans @ San Antonio Spurs (11/21 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 8:00 PM EST",
+      "away": {
+        "abbr": "NO",
+        "name": "New Orleans Pelicans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910028",
+      "line": "Boston Celtics @ Sacramento Kings (11/21 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 10:00 PM EST",
+      "away": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
