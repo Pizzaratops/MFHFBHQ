@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T20:52:48.508Z",
+  "updated": "2026-11-21T21:01:03.783Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -29,7 +29,7 @@ const NBA_INJURIES = {
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-20"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
-    "Derrick White": ["BOS","Day-To-Day","GTD","2026-11-21","Shoulder",0,"2026-11-21"],
+    "Derrick White": ["BOS","Out","OUT","2026-11-22","Shoulder",0,"2026-11-21"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-20"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
@@ -54,7 +54,7 @@ const NBA_INJURIES = {
     "Jaylen Brown": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-20"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-19"],
-    "Jayson Tatum": ["BOS","Day-To-Day","GTD","2026-11-21","Rest",0,"2026-11-21"],
+    "Jayson Tatum": ["BOS","Out","OUT","2026-11-22","Rest",0,"2026-11-21"],
     "Jerami Grant": ["MEM","Out","OUT","2026-11-23","Calf",0,"2026-11-21"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","GTD","2026-11-22","Hip",0,"2026-11-19"],
@@ -73,6 +73,7 @@ const NBA_INJURIES = {
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
+    "Mitchell Robinson": ["BOS","Out","OUT","2026-11-22","Illness",0,"2026-11-21"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-21"],
