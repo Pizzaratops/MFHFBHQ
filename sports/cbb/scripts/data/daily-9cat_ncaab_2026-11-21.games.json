@@ -1,0 +1,420 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-21",
+  "games": [
+    {
+      "id": "401925756",
+      "line": "Detroit Mercy Titans @ Michigan State Spartans (11/21 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 12:00 PM EST",
+      "away": {
+        "abbr": "DETM",
+        "name": "Detroit Mercy Titans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MSU",
+        "name": "Michigan State Spartans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401923402",
+      "line": "Columbia Lions @ Boston University Terriers (11/21 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 12:00 PM EST",
+      "away": {
+        "abbr": "Colum",
+        "name": "Columbia Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BU",
+        "name": "Boston University Terriers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921811",
+      "line": "Queens University Royals @ LSU Tigers (11/21 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 1:00 PM EST",
+      "away": {
+        "abbr": "QUC",
+        "name": "Queens University Royals",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LSU",
+        "name": "LSU Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920948",
+      "line": "Denver Pioneers @ Eastern Michigan Eagles (11/21 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 1:00 PM EST",
+      "away": {
+        "abbr": "Denv",
+        "name": "Denver Pioneers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "EMU",
+        "name": "Eastern Michigan Eagles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924722",
+      "line": "Cornell Big Red @ Morgan State Bears (11/21 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 2:00 PM EST",
+      "away": {
+        "abbr": "Corn",
+        "name": "Cornell Big Red",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MORG",
+        "name": "Morgan State Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919031",
+      "line": "New Mexico Lobos @ Wichita State Shockers (11/21 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 2:00 PM EST",
+      "away": {
+        "abbr": "NM",
+        "name": "New Mexico Lobos",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WichSt",
+        "name": "Wichita State Shockers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911199",
+      "line": "Fordham Rams @ Portland Pilots (11/21 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 2:00 PM EST",
+      "away": {
+        "abbr": "Ford",
+        "name": "Fordham Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Portl",
+        "name": "Portland Pilots",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909730",
+      "line": "Western Carolina Catamounts @ Wake Forest Demon Deacons (11/21 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 2:00 PM EST",
+      "away": {
+        "abbr": "WCU",
+        "name": "Western Carolina Catamounts",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wake",
+        "name": "Wake Forest Demon Deacons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909719",
+      "line": "Lafayette Leopards @ Syracuse Orange (11/21 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 2:00 PM EST",
+      "away": {
+        "abbr": "LAF",
+        "name": "Lafayette Leopards",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Syr",
+        "name": "Syracuse Orange",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401927365",
+      "line": "Drake Bulldogs @ Missouri State Bears (11/21 - 3:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 3:00 PM EST",
+      "away": {
+        "abbr": "Drake",
+        "name": "Drake Bulldogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MOST",
+        "name": "Missouri State Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920569",
+      "line": "Middle Tennessee Blue Raiders @ Indiana State Sycamores (11/21 - 3:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 3:00 PM EST",
+      "away": {
+        "abbr": "MTSU",
+        "name": "Middle Tennessee Blue Raiders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IndSt",
+        "name": "Indiana State Sycamores",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921183",
+      "line": "Pennsylvania Quakers @ La Salle Explorers (11/21 - 4:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 4:00 PM EST",
+      "away": {
+        "abbr": "Penn",
+        "name": "Pennsylvania Quakers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LaSal",
+        "name": "La Salle Explorers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918995",
+      "line": "South Florida Bulls @ George Mason Patriots (11/21 - 4:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 4:00 PM EST",
+      "away": {
+        "abbr": "SoFL",
+        "name": "South Florida Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GMas",
+        "name": "George Mason Patriots",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917538",
+      "line": "UC Irvine Anteaters @ San Diego Toreros (11/21 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 4:30 PM EST",
+      "away": {
+        "abbr": "UCI",
+        "name": "UC Irvine Anteaters",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USD",
+        "name": "San Diego Toreros",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911337",
+      "line": "Air Force Falcons @ UTSA Roadrunners (11/21 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 5:00 PM EST",
+      "away": {
+        "abbr": "AF",
+        "name": "Air Force Falcons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTSA",
+        "name": "UTSA Roadrunners",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920570",
+      "line": "Southern Illinois Salukis @ Utah Valley Wolverines (11/21 - 5:30 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 5:30 PM EST",
+      "away": {
+        "abbr": "SIU",
+        "name": "Southern Illinois Salukis",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UVU",
+        "name": "Utah Valley Wolverines",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909517",
+      "line": "Coppin State Eagles @ Georgetown Hoyas (11/21 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 6:00 PM EST",
+      "away": {
+        "abbr": "COPP",
+        "name": "Coppin State Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GTown",
+        "name": "Georgetown Hoyas",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921776",
+      "line": "Michigan Wolverines @ Villanova Wildcats (11/21 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 7:00 PM EST",
+      "away": {
+        "abbr": "Mich",
+        "name": "Michigan Wolverines",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Vill",
+        "name": "Villanova Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917539",
+      "line": "California Baptist Lancers @ Loyola Marymount Lions (11/21 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 7:00 PM EST",
+      "away": {
+        "abbr": "CBU",
+        "name": "California Baptist Lancers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LoyMa",
+        "name": "Loyola Marymount Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911310",
+      "line": "Brown Bears @ Vermont Catamounts (11/21 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 7:00 PM EST",
+      "away": {
+        "abbr": "Brown",
+        "name": "Brown Bears",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UVM",
+        "name": "Vermont Catamounts",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401928998",
+      "line": "Troy Trojans @ Valparaiso Beacons (11/21 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 8:00 PM EST",
+      "away": {
+        "abbr": "TROY",
+        "name": "Troy Trojans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Valpa",
+        "name": "Valparaiso Beacons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917537",
+      "line": "Bradley Braves @ Pacific Tigers (11/21 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 10:00 PM EST",
+      "away": {
+        "abbr": "Brad",
+        "name": "Bradley Braves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pacif",
+        "name": "Pacific Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909567",
+      "line": "Washington State Cougars @ Duke Blue Devils (11/21 - 11:00 PM EST)",
+      "completed": false,
+      "statusText": "11/21 - 11:00 PM EST",
+      "away": {
+        "abbr": "WaSt",
+        "name": "Washington State Cougars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Duke",
+        "name": "Duke Blue Devils",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
