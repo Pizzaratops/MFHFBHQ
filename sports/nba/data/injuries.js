@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T09:01:04.994Z",
+  "updated": "2026-11-21T14:53:28.317Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
@@ -40,8 +40,8 @@ const NBA_INJURIES = {
     "Felix Okpara": ["WSH","Out","OUT","2026-11-22","Back",0,"2026-11-21"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grant Nelson": ["BKN","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
-    "Grant Williams": ["CHA","Out","OUT","2026-11-23","Hamstring",0,"2026-11-19"],
-    "Grayson Allen": ["CHA","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
+    "Grant Williams": ["CHA","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
+    "Grayson Allen": ["CHA","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-21"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
@@ -77,7 +77,7 @@ const NBA_INJURIES = {
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-19"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
-    "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
+    "Nate Bittle": ["TOR","Out","GTD","2026-11-23","Foot",0,"2026-11-14"],
     "Nikola Topic": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Out","OUT","2026-11-23","Hamstring",0,"2026-11-21"],
