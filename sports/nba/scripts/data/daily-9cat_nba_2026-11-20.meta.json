@@ -1,0 +1,19 @@
+{
+  "league": "nba",
+  "date": "2026-11-20",
+  "games": [
+    "Charlotte Hornets 97 @ Atlanta Hawks 111 (Final)",
+    "Orlando Magic @ Brooklyn Nets (1:24 - 4th)",
+    "Indiana Pacers 119 @ Cleveland Cavaliers 128 (Final)",
+    "Toronto Raptors @ Detroit Pistons (49.6 - 4th)",
+    "Washington Wizards @ Chicago Bulls (5:42 - 4th)",
+    "New Orleans Pelicans @ Oklahoma City Thunder (8:10 - 4th)",
+    "Phoenix Suns @ Utah Jazz (4:38 - 1st)",
+    "Houston Rockets @ Denver Nuggets (11/20 - 10:00 PM EST)",
+    "Sacramento Kings @ Los Angeles Lakers (11/20 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 47,
+    "ft": 74.4
+  }
+}

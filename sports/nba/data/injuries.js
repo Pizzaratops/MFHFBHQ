@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T01:41:40.191Z",
+  "updated": "2026-11-21T03:01:04.844Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
@@ -14,7 +14,6 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-23","Achilles",0,"2026-11-20"],
-    "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-20","Ankle",0,"2026-11-21"],
     "Brandon Williams": ["GS","Out","GTD","2026-11-22","Hamstring",0,"2026-11-18"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
@@ -25,7 +24,6 @@ const NBA_INJURIES = {
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","OUT","2026-11-23","Ankle",0,"2026-11-19"],
     "Collin Murray-Boyles": ["TOR","Out","OUT","2026-11-23","Concussion",0,"2026-11-19"],
-    "De'Andre Hunter": ["SAC","Day-To-Day","GTD","2026-11-20","Hip",0,"2026-11-20"],
     "Dean Wade": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-20"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Deni Avdija": ["POR","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-20"],
@@ -82,6 +80,7 @@ const NBA_INJURIES = {
     "Nate Bittle": ["TOR","Out","OUT","2026-11-23","Foot",0,"2026-11-14"],
     "Nikola Topic": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-22","Hamstring",0,"2026-11-14"],
+    "Nolan Traore": ["BKN","Out","OUT","2026-11-20","Hamstring",0,"2026-11-21"],
     "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-21","Calf",0,"2026-11-20"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-21","Shoulder",0,"2026-11-20"],
