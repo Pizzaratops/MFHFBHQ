@@ -90,8 +90,15 @@ async function login() {
   const user = process.env.USM_USER, pass = process.env.USM_PASS;
   if (!user || !pass) throw new Error('Secrets USM_USER / USM_PASS fehlen (Repo → Settings → Secrets and variables → Actions).');
   await req('/app/auth/login');
+  // Das Login-Formular schickt per jQuery.post an /app/auth/logon und bekommt JSON {status, notactivated}
   const body = new URLSearchParams({ username: user, password: pass }).toString();
-  await req('/app/auth/login', { method: 'POST', body, headers: { 'Content-Type': 'application/x-www-form-urlencoded', Referer: BASE + '/app/auth/login' } });
+  const r = await req('/app/auth/logon', { method: 'POST', body, headers: {
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8', 'X-Requested-With': 'XMLHttpRequest',
+    Accept: 'application/json, text/javascript, */*; q=0.01', Origin: BASE, Referer: BASE + '/app/auth/login' } });
+  let js = null;
+  try { js = JSON.parse(r.html.trim()); } catch (e) { /* kein JSON */ }
+  if (!js) throw new Error(`Login: unerwartete Antwort (HTTP ${r.status}, ${r.html.length} Zeichen, Anfang: ${r.html.slice(0, 80).replace(/\s+/g, ' ')})`);
+  if (!js.status) throw new Error(js.notactivated ? 'Login: Konto nicht aktiviert' : 'Login: Falsche Logindaten (USM_USER / USM_PASS prüfen)');
   const t = await req('/app/usmanager/team');
   if (!/FP PS|FP LS/.test(t.html)) throw new Error('Login fehlgeschlagen (Team-Seite ohne Kader). Benutzername/Passwort prüfen.');
   return t.html;
