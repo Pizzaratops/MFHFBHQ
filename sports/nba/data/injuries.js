@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T17:56:15.388Z",
+  "updated": "2026-11-21T19:01:04.325Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -101,7 +101,8 @@ const NBA_INJURIES = {
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
     "Tobi Lawal": ["DAL","Out","OUT","2026-11-22","Groin",0,"2026-11-21"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
-    "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-19"],
+    "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-21"],
+    "Trey Murphy III": ["NO","Out","OUT","2026-11-23","Knee",0,"2026-11-21"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Ty Jerome": ["MEM","Out","GTD","2026-11-21","Hip",0,"2026-11-20"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
