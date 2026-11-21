@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-21T08:03:29.345Z",
+  "generatedAt": "2026-11-21T10:03:24.059Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -735,7 +735,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.8,
           "last3AvgPoints": 17.5,
-          "projPoints": 21.6
+          "projPoints": 21.5
         },
         {
           "name": "Brock Bowers",
@@ -1000,7 +1000,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.8,
           "last3AvgPoints": 17.5,
-          "projPoints": 21.6
+          "projPoints": 21.5
         },
         {
           "name": "Blake Corum",
@@ -1154,7 +1154,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19,
           "last3AvgPoints": 12.9,
-          "projPoints": 15.4
+          "projPoints": 15.5
         },
         {
           "name": "Josh Jacobs",
@@ -1717,7 +1717,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1,
           "last3AvgPoints": 4.5,
-          "projPoints": 6.5
+          "projPoints": 6.4
         },
         {
           "name": "Carnell Tate",
@@ -1938,7 +1938,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.2,
           "last3AvgPoints": 9.4,
-          "projPoints": 8.2
+          "projPoints": 8.1
         },
         {
           "name": "Seth McGowan",
@@ -3875,7 +3875,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.8,
           "last3AvgPoints": 17.5,
-          "projPoints": 21.6
+          "projPoints": 21.5
         },
         {
           "name": "Blake Corum",
@@ -4129,7 +4129,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1,
           "last3AvgPoints": 4.5,
-          "projPoints": 6.5
+          "projPoints": 6.4
         },
         {
           "name": "Jalon Daniels",
@@ -4162,7 +4162,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 20.3,
           "last3AvgPoints": 13.7,
-          "projPoints": 13.4
+          "projPoints": 13.3
         },
         {
           "name": "Ka'imi Fairbairn",
@@ -4206,7 +4206,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 8.6,
-          "projPoints": 9.9
+          "projPoints": 9.8
         },
         {
           "name": "Daniel Jones",
