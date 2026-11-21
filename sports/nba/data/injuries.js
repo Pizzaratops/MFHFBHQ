@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T22:01:02.663Z",
+  "updated": "2026-11-21T22:20:28.744Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -57,7 +57,7 @@ const NBA_INJURIES = {
     "Jayson Tatum": ["BOS","Out","OUT","2026-11-22","Rest",0,"2026-11-21"],
     "Jerami Grant": ["MEM","Out","OUT","2026-11-23","Calf",0,"2026-11-21"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
-    "Jock Landale": ["ATL","Out","GTD","2026-11-22","Hip",0,"2026-11-19"],
+    "Jock Landale": ["ATL","Out","OUT","2026-11-27","Hip",0,"2026-11-19"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","GTD","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","OUT","2026-11-22","Foot",0,"2026-11-20"],
