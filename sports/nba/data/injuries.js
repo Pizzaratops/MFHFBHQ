@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T17:44:57.375Z",
+  "updated": "2026-11-21T17:56:15.388Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -36,7 +36,6 @@ const NBA_INJURIES = {
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Ebuka Okorie": ["DET","Day-To-Day","GTD","2026-11-22","Oblique",0,"2026-11-21"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
-    "Felix Okpara": ["WSH","Day-To-Day","GTD","2026-11-22","Back",0,"2026-11-21"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-21"],
     "Grant Williams": ["CHA","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
