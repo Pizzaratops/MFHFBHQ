@@ -1,0 +1,16 @@
+{
+  "league": "nba",
+  "date": "2026-11-21",
+  "games": [
+    "Milwaukee Bucks 129 @ Philadelphia 76ers 132 (Final)",
+    "Portland Trail Blazers @ New York Knicks (11/21 - 7:30 PM EST)",
+    "LA Clippers @ Dallas Mavericks (11/21 - 8:00 PM EST)",
+    "Memphis Grizzlies @ Minnesota Timberwolves (11/21 - 8:00 PM EST)",
+    "New Orleans Pelicans @ San Antonio Spurs (11/21 - 8:00 PM EST)",
+    "Boston Celtics @ Sacramento Kings (11/21 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 49.2,
+    "ft": 90.9
+  }
+}
