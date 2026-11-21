@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T00:09:32.670Z",
+  "updated": "2026-11-21T00:43:49.615Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-22","Hip",0,"2026-11-20"],
@@ -17,7 +17,6 @@ const NBA_INJURIES = {
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-23","Achilles",0,"2026-11-20"],
     "Brandon Williams": ["GS","Out","GTD","2026-11-22","Hamstring",0,"2026-11-18"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
-    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-20","Knee",0,"2026-11-19"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Out","OUT","2026-11-23","Ankle",0,"2026-11-20"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -89,7 +88,7 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
-    "Ronald Holland II": ["DET","Day-To-Day","GTD","2026-11-20","Knee",0,"2026-11-20"],
+    "Ronald Holland II": ["DET","Out","OUT","2026-11-22","Knee",0,"2026-11-21"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
