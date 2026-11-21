@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T19:05:22.538Z",
+  "updated": "2026-11-21T19:42:00.799Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
     "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-21","Calf",0,"2026-11-21"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
-    "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-21","Shoulder",0,"2026-11-20"],
+    "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-21","Illness",0,"2026-11-21"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Precious Achiuwa": ["SAC","Day-To-Day","GTD","2026-11-21","Lower Leg",0,"2026-11-21"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
@@ -104,7 +104,6 @@ const NBA_INJURIES = {
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-21"],
     "Trey Murphy III": ["NO","Out","OUT","2026-11-23","Knee",0,"2026-11-21"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
-    "Ty Jerome": ["MEM","Out","","","",0,"2026-11-20"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
