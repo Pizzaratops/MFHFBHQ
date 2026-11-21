@@ -1,0 +1,68 @@
+name: US-Manager Sync (basketball.de)
+
+# Tägliche Übersicht für den basketball.de US-Manager (Kenora Hoops):
+# Kader mit Spielerpunkten, komplette Manager-Rangliste, Tagesrang, Verlauf.
+# basketball.de aktualisiert die Fantasy-Punkte täglich um 12:00 → Lauf um
+# 12:35 Berlin. Beide Crons stehen für Sommer-/Winterzeit im Plan; das Skript
+# überspringt Läufe vor 12:00 Berlin selbst (manuell: immer).
+# Montags zusätzlich Gehalts-Snapshot (nach dem Sonntags-Update) → usm-snapshots.js.
+#
+# Secrets (legt Beyaz selbst an, Repo → Settings → Secrets and variables → Actions):
+#   USM_USER  Benutzername bei basketball.de
+#   USM_PASS  Passwort bei basketball.de
+
+on:
+  schedule:
+    - cron: '35 10 * * *'   # 12:35 Berlin (Sommer) / 11:35 Berlin (Winter, wird übersprungen)
+    - cron: '35 11 * * *'   # 12:35 Berlin (Winter) / 13:35 Berlin (Sommer, harmlos: gleicher Tag wird überschrieben)
+  workflow_dispatch:
+    inputs:
+      snapshot:
+        description: 'Gehalts-Snapshot erzwingen'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: usm-data
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: basketball.de lesen
+        env:
+          USM_USER: ${{ secrets.USM_USER }}
+          USM_PASS: ${{ secrets.USM_PASS }}
+        run: |
+          ARGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then ARGS="--force"; fi
+          if [ "${{ inputs.snapshot }}" = "true" ]; then ARGS="$ARGS --snapshot"; fi
+          node leagues/usm/scripts/sync-usm.js $ARGS
+
+      - name: Commit & Push falls geändert
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add leagues/usm/data/
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen -- nichts zu committen."
+            exit 0
+          fi
+          git commit -m "chore: usm sync"
+          for i in 1 2 3 4 5 6 7 8; do
+            if git push; then exit 0; fi
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            sleep $((RANDOM % 8 + 3))
+          done
+          exit 1

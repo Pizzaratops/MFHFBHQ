@@ -739,6 +739,136 @@
     },
   });
 
+  // ======================= ÜBERSICHT (täglich, aus basketball.de) =======================
+  // Daten: leagues/usm/data/usm-live.js + usm-ranking.js, erzeugt von
+  // leagues/usm/scripts/sync-usm.js (GitHub Action usm-sync.yml, täglich 12:35 Berlin,
+  // kurz nach dem FP-Update von basketball.de um 12:00).
+  const de = (x, d = 1) => (x == null || !isFinite(x)) ? '–' : Number(x).toLocaleString('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const deInt = x => (x == null || !isFinite(x)) ? '–' : Number(x).toLocaleString('de-DE');
+  const sgn = (x, d = 1) => (x == null || !isFinite(x)) ? '–' : (x > 0 ? '+' : '') + de(x, d);
+  const arrow = d => d > 0 ? `<span class="up">▲ ${d}</span>` : d < 0 ? `<span class="down">▼ ${-d}</span>` : '<span class="muted">±0</span>';
+
+  // Kleine SVG-Diagramme: Tagespunkte (Balken, Ø aller Manager als Linie) und Rang (Linie, oben = besser)
+  function liveCharts(hist) {
+    if (hist.length < 2) return '<p class="muted usm-small">Der Verlauf füllt sich ab dem zweiten Tag.</p>';
+    const W = 640, H = 170, P = { l: 38, r: 10, t: 12, b: 26 };
+    const n = hist.length, iw = W - P.l - P.r, ih = H - P.t - P.b;
+    const x = i => P.l + (n === 1 ? iw / 2 : i * iw / (n - 1));
+    const lbl = h => h.g.slice(8, 10) + '.' + h.g.slice(5, 7) + '.';
+    const step = Math.max(1, Math.ceil(n / 10));
+    const xAxis = hist.map((h, i) => i % step && i !== n - 1 ? '' : `<text x="${x(i)}" y="${H - 8}" text-anchor="middle" class="usm-ch-t">${lbl(h)}</text>`).join('');
+    // Tagespunkte
+    const maxD = Math.max(...hist.map(h => Math.max(h.day || 0, h.dayBest || 0, h.avgDay || 0)), 1);
+    const yD = v => P.t + ih - (v / maxD) * ih;
+    const bw = Math.max(4, Math.min(26, iw / n * 0.6));
+    const bars = hist.map((h, i) => `<rect x="${x(i) - bw / 2}" y="${yD(h.day)}" width="${bw}" height="${P.t + ih - yD(h.day)}" rx="2" class="usm-ch-bar"><title>${lbl(h)}: ${de(h.day)} FP (Tagesrang ${deInt(h.dayRank)})</title></rect>`).join('');
+    const avg = hist.filter(h => h.avgDay != null).map(h => `${x(hist.indexOf(h))},${yD(h.avgDay)}`).join(' ');
+    const gridD = [0, 0.5, 1].map(f => `<line x1="${P.l}" x2="${W - P.r}" y1="${yD(maxD * f)}" y2="${yD(maxD * f)}" class="usm-ch-grid"/><text x="${P.l - 6}" y="${yD(maxD * f) + 4}" text-anchor="end" class="usm-ch-t">${Math.round(maxD * f)}</text>`).join('');
+    const c1 = `<svg viewBox="0 0 ${W} ${H}" class="usm-ch" role="img" aria-label="Tagespunkte je Spieltag">${gridD}${bars}<polyline points="${avg}" class="usm-ch-avg"/>${xAxis}</svg>`;
+    // Rang
+    const ranks = hist.map(h => h.rank), lo = Math.min(...ranks), hi = Math.max(...ranks);
+    const pad = Math.max(3, Math.round((hi - lo) * 0.15)), top = Math.max(1, lo - pad), bot = hi + pad;
+    const yR = v => P.t + ((v - top) / Math.max(1, bot - top)) * ih;
+    const line = hist.map((h, i) => `${x(i)},${yR(h.rank)}`).join(' ');
+    const dots = hist.map((h, i) => `<circle cx="${x(i)}" cy="${yR(h.rank)}" r="3.2" class="usm-ch-dot"><title>${lbl(h)}: Rang ${h.rank} von ${deInt(h.n)}</title></circle>`).join('');
+    const gridR = [top, Math.round((top + bot) / 2), bot].map(v => `<line x1="${P.l}" x2="${W - P.r}" y1="${yR(v)}" y2="${yR(v)}" class="usm-ch-grid"/><text x="${P.l - 6}" y="${yR(v) + 4}" text-anchor="end" class="usm-ch-t">${v}</text>`).join('');
+    const c2 = `<svg viewBox="0 0 ${W} ${H}" class="usm-ch" role="img" aria-label="Gesamtrang je Spieltag">${gridR}<polyline points="${line}" class="usm-ch-line"/>${dots}${xAxis}</svg>`;
+    return `<div class="usm-ch-wrap"><div><div class="usm-ch-h">Tagespunkte <span class="muted">· Linie = Ø aller Manager</span></div>${c1}</div><div><div class="usm-ch-h">Gesamtrang <span class="muted">· oben = besser</span></div>${c2}</div></div>`;
+  }
+
+  const rankRow = (r, me, watch) => {
+    const cls = r.team === me ? ' class="usm-me"' : watch.has(r.team) ? ' class="usm-watch"' : '';
+    return `<tr${cls}><td class="num">${r.rank}</td><td class="num">${arrow(r.diff)}</td><td class="strong">${e(r.team)}</td><td class="muted">${e(r.mgr)}</td><td class="num">${de(r.pts)}</td><td class="num">${sgn(r.day)}</td><td class="num">${deInt(r.dayRank)}</td></tr>`;
+  };
+  const rankHead = '<thead><tr><th class="num">Rang</th><th class="num">+/-</th><th>Team</th><th>Manager</th><th class="num">Punkte</th><th class="num">Spieltag</th><th class="num">Tagesrang</th></tr></thead>';
+
+  MFHFB.pages.register({
+    id: 'usmlive', section: 'home', label: 'Übersicht', icon: '🏠', applies: { sport: ['nba'] },
+    when: l => l.key === 'usm', data: ['?usm-live', '?usm-ranking'],
+    render({ data }) {
+      const L = data.USM_LIVE, H = data.USM_HISTORY || [];
+      if (!L) {
+        return head('Übersicht', 'Tabelle, Tagespunkte und Spielerpunkte – täglich um 12:35 aus basketball.de')
+          + `<section class="card"><div class="usm-pad"><p>Noch keine Daten. Die Übersicht füllt sich nach dem ersten Lauf der GitHub Action <b>usm-sync.yml</b>.</p>
+            <p class="muted usm-small">Dafür braucht das Repo die Secrets <code>USM_USER</code> und <code>USM_PASS</code> (basketball.de-Login), Repo → Settings → Secrets and variables → Actions.</p></div></section>`;
+      }
+      const me = L.me, watch = new Set((L.watch || []).map(w => w.team));
+      const upd = new Date(L.updated).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+      const prev = H.filter(h => h.d < L.date).slice(-1)[0];
+      const players = L.players.slice().sort((a, b) => (b.today ?? -1) - (a.today ?? -1) || b.last - a.last);
+      const haveToday = players.some(p => p.today != null);
+      const sumToday = players.reduce((s, p) => s + (p.today || 0), 0);
+      const teamDay = me.day;
+      const avgDay = H.length ? H[H.length - 1].avgDay : null;
+      const stale = (Date.now() - new Date(L.updated)) > 36 * 3600e3;
+
+      const stats = `<div class="stat-row usm-row">
+        ${stat('Gesamtrang', `#${me.rank} <span class="usm-sv-s">${arrow(me.diff)}</span>`)}
+        ${stat('Punkte gesamt', de(me.pts))}
+        ${stat(`Spieltag ${fmtDate(L.gameday).slice(0, 6)}`, sgn(teamDay), teamDay >= (avgDay || 0) ? 'up' : '')}
+        ${stat('Tagesrang', `#${deInt(me.dayRank)}`)}
+        ${stat('Cash · Trades', `${de(L.team.budget, 2)} <span class="usm-sv-s">Mio · ${L.team.trades ?? '–'}</span>`)}
+      </div>`;
+
+      const pRows = players.map(p => {
+        const notPlayed = haveToday && (p.played === 0);
+        const today = p.today == null ? `<span class="muted" title="Erster Tag: Punkte des letzten Spiels">${de(p.last)}*</span>` : notPlayed ? '<span class="muted">–</span>' : `<b>${de(p.today)}</b>`;
+        return `<tr><td>${p.pos}</td><td class="strong usm-name">${e(p.name)}${p.rookie ? ' <span class="usm-tag r">R</span>' : ''}</td><td class="muted">${e(p.team)}</td>
+          <td class="num">${today}</td><td class="num">${de(p.last)}</td><td class="num">${de(p.fpg, 2)}</td><td class="num">${p.gp}</td><td class="num">${de(p.fp)}</td><td class="num">${de(p.sal, 2)}</td></tr>`;
+      }).join('');
+      const soldRows = (L.sold || []).map(p => `<tr class="muted"><td>–</td><td class="usm-name">${e(p.name)} <span class="usm-tag est">verkauft</span></td><td>${e(p.team)}</td><td class="num">–</td><td class="num">${de(p.last)}</td><td class="num">${de(p.fpg, 2)}</td><td class="num">${p.gp}</td><td class="num">${de(p.fp)}</td><td class="num">${de(p.sal, 2)}</td></tr>`).join('');
+      const pFoot = haveToday
+        ? `Spieler zusammen ${de(sumToday)} FP, Team am Spieltag ${de(teamDay)} FP${Math.abs(sumToday - teamDay) > 0.6 ? ' (Unterschied: Punkte von Spielern, die am Spieltag noch bzw. nicht mehr im Kader waren, oder nachträgliche Korrekturen)' : ''}.`
+        : '* Erster Tag mit Daten: Spalte zeigt die Punkte des letzten Spiels. Ab morgen stehen hier die Punkte des Spieltags.';
+
+      const around = L.around || [];
+      const tableTop = (L.top || []).slice(0, 10);
+      const showAround = around.length && me.rank > 13;
+      const watchRows = (L.watch || []).filter(w => !tableTop.some(t => t.team === w.team) && !around.some(t => t.team === w.team));
+
+      const myDay = { ...me };
+      const dayTop = (L.dayTop || []).slice(0, 10);
+
+      return head('Übersicht', `Spieltag ${fmtDate(L.gameday)} (Nacht auf ${fmtDate(L.date)}) · aktualisiert ${upd} · täglich 12:35 nach dem basketball.de-Update`)
+        + (stale ? '<div class="usm-warn">Die Daten sind älter als 36 Stunden – die GitHub Action <b>usm-sync.yml</b> ist vermutlich fehlgeschlagen.</div>' : '')
+        + stats
+        + `<div class="usm-grid usm-live-grid">
+          <section class="card usm-main"><div class="card-head"><h2>Spielerpunkte am Spieltag</h2><span class="muted usm-small">${L.team.name}</span></div>
+            <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>NBA-Team</th><th class="num">Spieltag</th><th class="num">letztes Spiel</th><th class="num">FP/G</th><th class="num">GP</th><th class="num">FP ges.</th><th class="num">Wert</th></tr></thead>
+            <tbody>${pRows}${soldRows}</tbody></table></div>
+            <div class="usm-pad"><p class="muted usm-small">${pFoot}</p></div></section>
+          <section class="card"><div class="card-head"><h2>Tagesranking</h2><span class="muted usm-small">${fmtDate(L.gameday)}</span></div>
+            <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Spieltag</th><th class="num">Gesamt</th></tr></thead><tbody>
+            ${dayTop.map(r => `<tr${r.team === me.team ? ' class="usm-me"' : watch.has(r.team) ? ' class="usm-watch"' : ''}><td class="num">${r.dayRank}</td><td class="strong">${e(r.team)}</td><td class="num">${sgn(r.day)}</td><td class="num">${r.rank}</td></tr>`).join('')}
+            ${dayTop.some(r => r.team === me.team) ? '' : `<tr class="usm-gap"><td colspan="4">…</td></tr><tr class="usm-me"><td class="num">${deInt(myDay.dayRank)}</td><td class="strong">${e(me.team)}</td><td class="num">${sgn(me.day)}</td><td class="num">${me.rank}</td></tr>`}
+            ${(L.watch || []).filter(w => !dayTop.some(r => r.team === w.team)).map(w => `<tr class="usm-watch"><td class="num">${deInt(w.dayRank)}</td><td class="strong">${e(w.team)}</td><td class="num">${sgn(w.day)}</td><td class="num">${w.rank}</td></tr>`).join('')}
+            </tbody></table></div>
+            <div class="usm-pad"><p class="muted usm-small">Ø aller ${deInt(L.managers)} Manager: ${de(avgDay)} FP${prev ? ` · Vortag du: ${sgn(prev.day)} (Tagesrang ${deInt(prev.dayRank)})` : ''}</p></div></section>
+        </div>
+        <section class="card usm-mt"><div class="card-head"><h2>Verlauf</h2></div><div class="usm-pad">${liveCharts(H)}</div></section>
+        <section class="card usm-mt"><div class="card-head"><h2>Tabelle</h2><span class="muted usm-small">${deInt(L.managers)} Manager</span></div>
+          <div class="usm-tbl"><table class="table compact usm-table">${rankHead}<tbody>
+            ${tableTop.map(r => rankRow(r, me.team, watch)).join('')}
+            ${showAround ? '<tr class="usm-gap"><td colspan="7">…</td></tr>' + around.filter(r => r.rank > 10).map(r => rankRow(r, me.team, watch)).join('') : ''}
+            ${watchRows.length ? '<tr class="usm-gap"><td colspan="7">…</td></tr>' + watchRows.map(r => rankRow(r, me.team, watch)).join('') : ''}
+          </tbody></table></div>
+          <div class="usm-pad"><div class="usm-filters"><input type="search" class="usm-input" id="usmRkQ" placeholder="Team oder Manager in der ganzen Rangliste suchen…"></div><div id="usmRkHits"></div>
+          <p class="muted usm-small">Hervorgehoben: dein Team und Vergleichs-Teams (leagues/usm/usm-config.json). Spieltag = Punkte des letzten Spieltags, Tagesrang = Platz nach diesen Punkten unter allen Managern.</p></div></section>`;
+    },
+    mount(root, ctx) {
+      const R = ctx.data.USM_RANKING, L = ctx.data.USM_LIVE;
+      const q = root.querySelector('#usmRkQ'); if (!q || !R || !L) return;
+      const watch = new Set((L.watch || []).map(w => w.team));
+      q.addEventListener('input', () => {
+        const s = q.value.trim().toLowerCase(), out = root.querySelector('#usmRkHits');
+        if (s.length < 2) { out.innerHTML = ''; return; }
+        const hits = R.rows.filter(r => (r[2] + ' ' + r[3]).toLowerCase().includes(s)).slice(0, 15)
+          .map(r => ({ rank: r[0], diff: r[1], team: r[2], mgr: r[3], pts: r[4], day: r[5], dayRank: r[7] }));
+        out.innerHTML = hits.length ? `<div class="usm-tbl"><table class="table compact usm-table">${rankHead}<tbody>${hits.map(r => rankRow(r, L.me.team, watch)).join('')}</tbody></table></div>` : '<p class="muted usm-small">Kein Treffer.</p>';
+      });
+    },
+  });
+
   // ======================= IMPORT =======================
   const BOOKMARKLET = `(async()=>{try{
 if(!/basketball\\.de$/.test(location.hostname)){alert('Bitte auf basketball.de (eingeloggt) ausführen.');return;}

@@ -94,3 +94,24 @@
 
 /* Zeitraum-Umschalter (Trade-Lock / 7 Tage / Rest-Saison / pro Spiel) */
 .usm-hz { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+
+/* Übersicht (usmlive) */
+.usm-live-grid { grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); }
+.usm-live-grid > .usm-main { order: 0; }
+.usm-sv-s { font-size: 14px; font-weight: 700; }
+.usm-table tr.usm-me td { background: color-mix(in srgb, var(--league-accent) 14%, transparent); font-weight: 700; }
+.usm-table tr.usm-watch td { background: color-mix(in srgb, var(--league-accent2) 12%, transparent); }
+.usm-table tr.usm-gap td { text-align: center; color: var(--muted); padding: 2px; }
+.usm-warn { background: #c8a0201f; color: #a6831a; border: 1px solid #c8a02055; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 13.5px; }
+.usm-ch-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.usm-ch-h { font-size: 12.5px; font-weight: 700; margin-bottom: 4px; }
+.usm-ch { width: 100%; height: auto; display: block; }
+.usm-ch-t { font-size: 10px; fill: var(--muted); }
+.usm-ch-grid { stroke: var(--border); stroke-width: 1; }
+.usm-ch-bar { fill: var(--league-accent); opacity: .85; }
+.usm-ch-avg { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.usm-ch-line { fill: none; stroke: var(--league-accent2); stroke-width: 2; }
+.usm-ch-dot { fill: var(--league-accent2); }
+@media (max-width: 900px) {
+  .usm-live-grid, .usm-ch-wrap { grid-template-columns: 1fr; }
+}

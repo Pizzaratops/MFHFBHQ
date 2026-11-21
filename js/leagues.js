@@ -330,10 +330,11 @@ const LEAGUES = [
   },
   {
     // basketball.de US-Manager (Salary-Cap-Spiel, seit 19.10.2026): 15 Spieler
-    // (min. 5 G / 5 F / 2 C), 63 Mio Budget, alle 15 punkten. Kein Liga-Sync —
-    // Gehälter-Basis in leagues/usm/data/usm-base.js (Stand 18.10.2026), wöchentliche
-    // Updates per Bookmarklet (tools/usm.js, Seite „Import“), Spielerwerte aus den
-    // sportweiten NBA-Projections.
+    // (min. 5 G / 5 F / 2 C), 63 Mio Budget, alle 15 punkten. Liga-Sync seit 21.11.2026:
+    // leagues/usm/scripts/sync-usm.js (Action usm-sync.yml, täglich 12:35, Secrets
+    // USM_USER/USM_PASS) → usm-live.js, usm-ranking.js, montags Gehalts-Snapshot.
+    // Gehälter-Basis in leagues/usm/data/usm-base.js (Stand 18.10.2026), Spielerwerte
+    // aus den sportweiten NBA-Projections.
     key: 'usm',
     name: 'basketball.de US-Manager',
     short: 'US-Manager',
@@ -346,7 +347,7 @@ const LEAGUES = [
     accent2: '#3b82f6',
     mode: 'native',
     dataBase: 'leagues/usm/data/',
-    pages: ['usmdraft', 'usmteam', 'usmsalary', 'usmimport'],
+    pages: ['usmlive', 'usmdraft', 'usmteam', 'usmsalary', 'usmimport'],
   },
   {
     // College Basketball (Dizzles Liga) — ganze Liga seit 16.10.2026 (tools/cbb-league.js + NBA-Tools),
