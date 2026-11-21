@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-21T15:16:41.068Z",
+  "updated": "2026-11-21T15:34:56.377Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
@@ -100,7 +100,7 @@ const NBA_INJURIES = {
     "Taurean Prince": ["DET","Out","OUT","2026-12-13","Knee",0,"2026-11-20"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
     "Tobe Awaka": ["CHI","Out","OUT","2026-11-25","Back",0,"2026-11-17"],
-    "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-21","Groin",0,"2026-11-19"],
+    "Tobi Lawal": ["DAL","Out","OUT","2026-11-22","Groin",0,"2026-11-21"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-19"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
