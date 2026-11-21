@@ -4025,9 +4025,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910023",
-      line: "Milwaukee Bucks @ Philadelphia 76ers (3:51 - 4th)",
+      line: "Milwaukee Bucks @ Philadelphia 76ers (12.1 - 4th)",
       completed: false,
-      statusText: "3:51 - 4th",
+      statusText: "12.1 - 4th",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
