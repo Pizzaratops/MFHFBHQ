@@ -16,7 +16,7 @@
 //  lässt Verteidiger nicht durch Screener laufen, dadurch wirken Screens.
 //
 //  Speicher: localStorage 'mfhfb:ghost:plays' (nur dieser Browser).
-//  Teilen: #/p/<Code> (Base64 des JSON), Export/Import als .json-Datei.
+//  Teilen: #/p/<Code> (kompakte Bytes, siehe Link-Code), Export/Import als .json-Datei.
 //  Für alle sichtbar: Plays in vereins-plays.js (GS.VEREIN) eintragen.
 // ============================================================
 (function (root) {
@@ -158,29 +158,103 @@
     });
     return out;
   };
-  GS.encodeCustom = function (cp) {
-    const json = JSON.stringify(GS.cleanCustom(cp));
-    const bytes = new TextEncoder().encode(json);
-    let bin = ''; bytes.forEach(b => { bin += String.fromCharCode(b); });
-    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  // ---------- Link-Code ----------
+  // Version 2 (seit 21.11.2026): kompakte Bytes statt JSON.
+  //   Koordinaten in Dezimetern (x+128, y) je 1 Byte, Spieler als Zahl 0–4,
+  //   Texte UTF-8 mit Längenangabe. „2.“ = Bytes direkt, „3.“ = zusätzlich
+  //   mit deflate komprimiert (lohnt sich bei langen Erklärtexten).
+  //   Alte Links (Base64-JSON, beginnen mit „eyJ“) funktionieren weiter.
+  const b64 = bytes => { let bin = ''; bytes.forEach(x => { bin += String.fromCharCode(x); }); return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+  const unb64 = str => { const b = str.replace(/-/g, '+').replace(/_/g, '/'); const bin = atob(b + '='.repeat((4 - b.length % 4) % 4)); return Uint8Array.from(bin, c => c.charCodeAt(0)); };
+  const idx = id => OIDS.indexOf(id);
+  function pack(cp0) {
+    const cp = GS.cleanCustom(cp0), out = [];
+    const vint = n => { while (n > 127) { out.push((n & 127) | 128); n >>>= 7; } out.push(n); };
+    const str = t => { const u = new TextEncoder().encode(t || ''); vint(u.length); u.forEach(x => out.push(x)); };
+    const pt = p => { out.push(Math.max(0, Math.min(255, Math.round(p[0] * 10) + 128)), Math.max(0, Math.min(255, Math.round(p[1] * 10)))); };
+    out.push(2);
+    str(cp.name); str(cp.short);
+    out.push(idx(cp.ball));
+    OIDS.forEach(id => pt(cp.start[id]));
+    vint(cp.steps.length);
+    cp.steps.forEach(st => {
+      str(st.text);
+      const mv = OIDS.filter(id => st.moves[id]);
+      out.push((st.pass ? 1 : 0) | (st.shot ? 2 : 0) | (mv.length << 2));
+      if (st.pass) out.push(idx(st.pass[0]) * 5 + idx(st.pass[1]));
+      if (st.shot) out.push(idx(st.shot));
+      mv.forEach(id => { const m = st.moves[id]; out.push(idx(id) | (m.screen ? 8 : 0)); out.push(m.pts.length); m.pts.forEach(pt); });
+    });
+    return Uint8Array.from(out);
+  }
+  function unpack(bytes) {
+    let i = 0;
+    const byte = () => { if (i >= bytes.length) throw new Error('kurz'); return bytes[i++]; };
+    const vint = () => { let n = 0, sh = 0, x; do { x = byte(); n |= (x & 127) << sh; sh += 7; } while (x & 128); return n; };
+    const str = () => { const n = vint(); if (i + n > bytes.length) throw new Error('kurz'); const t = new TextDecoder().decode(bytes.slice(i, i + n)); i += n; return t; };
+    const pt = () => { const x = byte(), y = byte(); return [(x - 128) / 10, y / 10]; };
+    if (byte() !== 2) throw new Error('Version');
+    const cp = { v: 1, name: str(), short: str(), ball: OIDS[byte()], start: {}, steps: [] };
+    OIDS.forEach(id => { cp.start[id] = pt(); });
+    const n = vint();
+    for (let k = 0; k < n; k++) {
+      const st = { text: str(), moves: {}, pass: null, shot: null };
+      const f = byte();
+      if (f & 1) { const v = byte(); st.pass = [OIDS[Math.floor(v / 5)], OIDS[v % 5]]; }
+      if (f & 2) st.shot = OIDS[byte()];
+      for (let m = 0; m < (f >> 2); m++) {
+        const h = byte(), id = OIDS[h & 7], np = byte(), pts = [];
+        for (let q = 0; q < np; q++) pts.push(pt());
+        st.moves[id] = (h & 8) ? { pts, screen: true } : { pts };
+      }
+      cp.steps.push(st);
+    }
+    // gleiche Bytes → gleiche ID (so erkennt die Seite, ob das Play schon gespeichert ist)
+    let hsh = 2166136261; bytes.forEach(x => { hsh ^= x; hsh = Math.imul(hsh, 16777619); });
+    cp.id = 'u' + (hsh >>> 0).toString(36);
+    return cp;
+  }
+  async function deflate(bytes, mode) {
+    const cs = mode === 'in' ? new DecompressionStream('deflate-raw') : new CompressionStream('deflate-raw');
+    const buf = await new Response(new Blob([bytes]).stream().pipeThrough(cs)).arrayBuffer();
+    return new Uint8Array(buf);
+  }
+  const canZip = typeof CompressionStream !== 'undefined' && typeof DecompressionStream !== 'undefined';
+
+  // sofort verfügbar (ohne Komprimierung)
+  GS.encodeCustom = function (cp) { return '2.' + b64(pack(cp)); };
+  // kürzeste Variante (mit Komprimierung, wenn kürzer)
+  GS.encodeCustomShort = async function (cp) {
+    const raw = pack(cp), plain = '2.' + b64(raw);
+    if (!canZip) return plain;
+    try { const z = '3.' + b64(await deflate(raw, 'out')); return z.length < plain.length ? z : plain; } catch (e) { return plain; }
   };
+  const finish = cp => (cp && GS.validCustom(cp) ? GS.cleanCustom(cp) : null);
+  function decodeV1(code) {
+    const cp = JSON.parse(new TextDecoder().decode(unb64(code)));
+    return finish(cp);
+  }
+  // synchron: alte Links und „2.“; „3.“ braucht decodeCustomAsync
   GS.decodeCustom = function (code) {
     try {
-      const b = code.replace(/-/g, '+').replace(/_/g, '/');
-      const bin = atob(b + '='.repeat((4 - b.length % 4) % 4));
-      const cp = JSON.parse(new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0))));
-      return GS.validCustom(cp) ? GS.cleanCustom(cp) : null;
+      if (code.startsWith('2.')) { const cp = unpack(unb64(code.slice(2))); const c = finish(cp); if (c) c.id = cp.id; return c; }
+      if (code.startsWith('3.')) return null;
+      return decodeV1(code);
     } catch (e) { return null; }
   };
+  GS.decodeCustomAsync = async function (code) {
+    if (!code.startsWith('3.')) return GS.decodeCustom(code);
+    try { const cp = unpack(await deflate(unb64(code.slice(2)), 'in')); const c = finish(cp); if (c) c.id = cp.id; return c; } catch (e) { return null; }
+  };
   // Import: JSON-Text, Link oder Code
-  GS.parseImport = function (text) {
+  GS.parseImport = async function (text) {
     const t = String(text || '').trim();
     if (!t) return null;
-    const m = t.match(/#\/p\/([\w-]+)/);
-    if (m) return GS.decodeCustom(m[1]);
+    const m = t.match(/#\/p\/([\w.-]+)/);
+    if (m) return GS.decodeCustomAsync(m[1]);
     if (t[0] === '{' || t[0] === '[') {
       try { const j = JSON.parse(t); const arr = Array.isArray(j) ? j : [j]; const ok = arr.filter(GS.validCustom).map(GS.cleanCustom); return ok.length ? (Array.isArray(j) ? ok : ok[0]) : null; } catch (e) { return null; }
     }
-    return GS.decodeCustom(t);
+    return GS.decodeCustomAsync(t);
   };
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -20,7 +20,7 @@
   const S = {
     play: null, si: 0, c: null, t: 0, playing: false,
     speed: Number(store.get('speed')) || 1, lines: store.get('lines') || 'step',
-    asked: false, askOpen: false, solved: false, lastTs: 0,
+    asked: false, askOpen: false, solved: false, lastTs: 0, routeToken: 0,
   };
 
   // ---------- SVG-Helfer ----------
@@ -286,7 +286,7 @@
         ${p.source === 'local' ? '<button type="button" class="gs-btn-ghost danger" data-act="delete">🗑 Löschen</button>' : ''}
       </div>` : '');
   }
-  function stageHref(p, i) { return p.source === 'shared' ? `#/p/${GS.encodeCustom(p.custom)}/${i + 1}` : `#/${p.id}/${i + 1}`; }
+  function stageHref(p, i) { return p.source === 'shared' ? `#/p/${p.shareCode || GS.encodeCustom(p.custom)}/${i + 1}` : `#/${p.id}/${i + 1}`; }
   function stageLabel(st, i) {
     if (i === 0) return '1 · Ohne Verteidigung';
     if (i === 1) return '2 · Mit Verteidigung';
@@ -395,12 +395,14 @@
     document.title = `${p.name} · Ghost Screen`;
     buildPlayers(); renderLib(); renderHead(); renderStages(); renderStageInfo(); renderSteps(); renderExplain();
     askBox(null); render(); syncPlay(); showStart();
+    if (p.custom) { S.shareCode = p.shareCode || GS.encodeCustom(p.custom); const want = p; GS.encodeCustomShort(p.custom).then(c => { if (S.play === want) S.shareCode = c; }); } else S.shareCode = null;
     if (!samePlay) window.scrollTo({ top: 0 });
     document.body.classList.remove('lib-open'); document.querySelector('[data-act="lib"]').setAttribute('aria-expanded', 'false');
   }
   function showViewer() { $('viewer').hidden = false; $('editor').hidden = true; document.body.classList.remove('editing'); }
   function route() {
     const h = location.hash;
+    S.routeToken++;
     const ed = h.match(/^#\/edit\/([\w-]+)/);
     if (ed) {
       pause(); S.play = null; renderLib();
@@ -409,22 +411,28 @@
       GS.editor.open(ed[1] === 'new' ? null : ed[1]);
       return;
     }
-    const sh = h.match(/^#\/p\/([\w-]+)(?:\/(\d+))?/);
+    const sh = h.match(/^#\/p\/([\w.-]+?)(?:\/(\d+))?$/);
     if (sh) {
-      const cp = GS.decodeCustom(sh[1]);
-      if (cp) {
+      const token = ++S.routeToken;
+      GS.decodeCustomAsync(sh[1]).then(cp => { if (token === S.routeToken) showShared(cp, sh[1], sh[2]); });
+      return;
+    }
+    const m = h.match(/^#\/([\w-]+)(?:\/(\d+))?/);
+    load(m ? m[1] : null, m && m[2] ? Number(m[2]) : 1);
+  }
+  function showShared(cp, code, stageNo) {
+    if (cp) {
         const exists = GS.loadCustoms().some(x => x.id === cp.id);
         const play = GS.customToPlay(cp, { id: 'p-' + cp.id, source: 'shared', cat: 'Geteilt', level: 'Geteiltes Play' });
-        load(null, sh[2] ? Number(sh[2]) : 1, play);
+        play.shareCode = code;
+        load(null, stageNo ? Number(stageNo) : 1, play);
         S.shared = cp;
         const b = $('banner'); b.hidden = false;
         b.innerHTML = exists ? `🔗 Geteiltes Play – eine Version davon ist schon in Deinen eigenen Plays.` : `🔗 Das ist ein geteiltes Play. <button type="button" class="gs-btn-primary" data-act="save-shared">💾 In meine Plays speichern</button>`;
         return;
-      }
-      toast('Der Link ist kaputt oder unvollständig.');
     }
-    const m = h.match(/^#\/([\w-]+)(?:\/(\d+))?/);
-    load(m ? m[1] : null, m && m[2] ? Number(m[2]) : 1);
+    toast('Der Link ist kaputt oder unvollständig.');
+    load(null, 1);
   }
 
   // ---------- Ereignisse ----------
@@ -444,6 +452,7 @@
       case 'skip': S.askOpen = false; S.solved = true; renderStageInfo(); askBox(null); play(); break;
       case 'lib': { const open = !document.body.classList.contains('lib-open'); document.body.classList.toggle('lib-open', open); b.setAttribute('aria-expanded', String(open)); break; }
       case 'copy': {
+        if (S.play && S.play.custom && !$('viewer').hidden) { sharePlay(S.play.custom); break; }
         const url = location.href;
         (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => toast('Link kopiert – direkt zu dieser Stufe.'), () => toast(url));
         break;
@@ -483,7 +492,7 @@
   function toast(msg) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2600); }
 
   // ---------- Teilen, Export, Import ----------
-  function shareUrl(cp) { return location.origin + location.pathname + '#/p/' + GS.encodeCustom(cp) + '/1'; }
+  function shareUrl(cp) { return location.origin + location.pathname + '#/p/' + (S.play && S.play.custom === cp && S.shareCode ? S.shareCode : GS.encodeCustom(cp)) + '/' + (S.si + 1); }
   function sharePlay(cp) {
     const url = shareUrl(cp);
     if (navigator.share && matchMedia('(pointer: coarse)').matches) { navigator.share({ title: cp.name + ' · Ghost Screen', url }).catch(() => {}); return; }
@@ -506,8 +515,8 @@
       <textarea id="importText" class="gs-code" placeholder="Link oder Code hier einfügen …"></textarea>
       <div class="gs-modal-actions"><button type="button" class="gs-btn-ghost" data-act="modal-close">Abbrechen</button><button type="button" class="gs-btn-primary" data-act="import-go">Importieren</button></div>`);
   }
-  function doImport(text) {
-    const r = GS.parseImport(text);
+  async function doImport(text) {
+    const r = await GS.parseImport(text);
     if (!r) { toast('Das konnte ich nicht lesen – ist es ein Ghost-Screen-Link oder eine .ghost.json-Datei?'); return; }
     const list = Array.isArray(r) ? r : [r];
     const have = new Set(GS.loadCustoms().map(x => x.id));
