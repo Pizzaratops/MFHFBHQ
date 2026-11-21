@@ -274,7 +274,7 @@
     },
     {
       "id": "401920570",
-      "line": "Southern Illinois Salukis @ Utah Valley Wolverines (11/21 - 5:30 PM EST)",
+      "line": "Southern Illinois Salukis @ East Carolina Pirates (11/21 - 5:30 PM EST)",
       "completed": false,
       "statusText": "11/21 - 5:30 PM EST",
       "away": {
@@ -284,8 +284,8 @@
         "players": []
       },
       "home": {
-        "abbr": "UVU",
-        "name": "Utah Valley Wolverines",
+        "abbr": "ECU",
+        "name": "East Carolina Pirates",
         "score": null,
         "players": []
       }

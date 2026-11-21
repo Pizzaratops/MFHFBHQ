@@ -2,9 +2,7 @@
   "league": "ncaab",
   "date": "2026-11-20",
   "games": [
-    "Seton Hall Pirates @ NC State Wolfpack (1:10 - OT)",
-    "Alabama State Hornets @ Fresno State Bulldogs (1:45 - 2nd)",
-    "Saint Louis Billikens @ Saint Mary's Gaels (Halftime)",
+    "Saint Louis Billikens @ Saint Mary's Gaels (3:52 - 2nd)",
     "Loyola Maryland Greyhounds 61 @ Virginia Cavaliers 103 (Final)",
     "Eastern Illinois Panthers 52 @ Illinois Fighting Illini 114 (Final)",
     "Coastal Carolina Chanticleers 51 @ Tennessee Volunteers 78 (Final)",
@@ -39,10 +37,12 @@
     "Campbell Fighting Camels 80 @ Kansas State Wildcats 70 (Final)",
     "Georgia Bulldogs 88 @ Georgia Tech Yellow Jackets 82 (Final)",
     "Sam Houston Bearkats 83 @ Boise State Broncos 69 (Final)",
-    "Marshall Thundering Herd 72 @ North Carolina Tar Heels 88 (Final)"
+    "Marshall Thundering Herd 72 @ North Carolina Tar Heels 88 (Final)",
+    "Seton Hall Pirates 87 @ NC State Wolfpack 81 (Final/OT)",
+    "Alabama State Hornets 68 @ Fresno State Bulldogs 80 (Final)"
   ],
   "leagueAvg": {
-    "fg": 46.2,
-    "ft": 72.4
+    "fg": 46.5,
+    "ft": 73.3
   }
 }
