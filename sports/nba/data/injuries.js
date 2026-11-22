@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T21:43:35.660Z",
+  "updated": "2026-11-22T21:57:10.902Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -52,7 +52,7 @@ const NBA_INJURIES = {
     "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-23","Back",0,"2026-11-21"],
-    "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-19"],
+    "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-22"],
     "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-11-23","Calf",0,"2026-11-22"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-27","Hip",0,"2026-11-21"],
@@ -94,7 +94,7 @@ const NBA_INJURIES = {
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
-    "Shai Gilgeous-Alexander": ["OKC","Day-To-Day","OUT","2026-11-23","Back",0,"2026-11-21"],
+    "Shai Gilgeous-Alexander": ["OKC","Out","OUT","2026-11-23","Back",0,"2026-11-22"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "T.J. McConnell": ["IND","Out","OUT","2026-11-23","Hamstring",0,"2026-11-21"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-27","Heel",0,"2026-11-17"],
