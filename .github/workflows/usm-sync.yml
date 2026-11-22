@@ -16,6 +16,8 @@ on:
   schedule:
     - cron: '35 10 * * *'   # 12:35 Berlin (Sommer) / 11:35 Berlin (Winter, wird übersprungen)
     - cron: '35 11 * * *'   # 12:35 Berlin (Winter) / 13:35 Berlin (Sommer, harmlos: gleicher Tag wird überschrieben)
+    - cron: '5 13 * * *'    # Reserve 14:05 Berlin (GitHub lässt geplante Läufe manchmal ausfallen)
+    - cron: '5 16 * * *'    # Reserve 17:05 Berlin
   workflow_dispatch:
     inputs:
       snapshot:

@@ -249,6 +249,7 @@ function appendSnapshot(date, through, players) {
     top: ranking.slice(0, 25),
     around: ranking.filter(r => Math.abs(r.rank - me.rank) <= 5),
     watch,
+    labels: CONFIG.labels || {},
     dayTop: ranking.slice().sort((a, b) => a.dayRank - b.dayRank || a.rank - b.rank).slice(0, 15),
   };
   // Verlauf: ein Eintrag je Berlin-Tag (gleicher Tag wird überschrieben)

@@ -1041,7 +1041,8 @@
       if (C.length > 1) {
         // Vergleichsteams: Platz 1, du, Mücke, Dan – Verlauf aus USM_HISTORY (täglich), aktueller Stand aus USM_LIVE
         const Hist = (data.USM_HISTORY || []).filter(h => h.g);
-        const watchNames = { MueckeHGW: 'Mücke', MagicBallers: 'Dan' };
+        const watchNames = { MueckeHGW: 'Mücke', MagicBallers: 'Dan', Hoopies: 'Hoopies', ...((L && L.labels) || {}) };
+        ((L && L.watch) || []).forEach(w => { if (!watchNames[w.team]) watchNames[w.team] = w.team; });
         const leader = L && L.top && L.top[0];
         const S = [
           { key: 'top', cls: 'top', label: `👑 ${leader ? (leader.team.length > 11 ? leader.team.slice(0, 10) + '…' : leader.team) : 'Platz 1'}`, tip: leader ? `Platz 1: ${leader.team} (${leader.mgr})` : 'Platz 1', pts: h => h.top, now: leader ? leader.pts : top && top.pts },
@@ -1091,7 +1092,7 @@
             ${stat('Platz 1', top ? `${deInt(Math.round(top.pts))} <span class="usm-sv-s">${pct(top.pts, perfAt)}</span>` : '–')}
             ${stat('Draft-Kosten', `${de(H.draftCost, 2)} <span class="usm-sv-s">von 63</span>`)}
           </div>
-          <section class="card"><div class="card-head"><h2>Verlauf</h2><span class="muted usm-small">kumulierte Punkte · blaue Linie = perfekt, blaue Punkte = Trades · 👑 Platz 1, du, Mücke, Dan · Hover zeigt Werte · % = Anteil am perfekten Wert bis ${fmtDate(gd).slice(0, 6)} (${deInt(perfAt)})</span></div><div class="usm-pad">${chart}</div></section>
+          <section class="card"><div class="card-head"><h2>Verlauf</h2><span class="muted usm-small">kumulierte Punkte · blaue Linie = perfekt, blaue Punkte = Trades · 👑 Platz 1, du, Mücke, Dan, Hoopies · Hover zeigt Werte · % = Anteil am perfekten Wert bis ${fmtDate(gd).slice(0, 6)} (${deInt(perfAt)})</span></div><div class="usm-pad">${chart}</div></section>
           <div class="usm-grid usm-live-grid usm-mt">
             <section class="card usm-main"><div class="card-head"><h2>Perfekter Draft</h2><span class="muted usm-small">Startgehälter · Punkte bis ${fmtDate(H.through).slice(0, 6)}</span></div>
               <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Startgehalt</th><th class="num">Verkauft für</th><th class="num">Spiele</th><th class="num">FP/G</th><th class="num">FP</th></tr></thead><tbody>

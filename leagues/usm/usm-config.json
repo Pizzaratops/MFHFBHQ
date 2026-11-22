@@ -2,7 +2,13 @@
   "myTeam": "Kenora Hoops",
   "watch": [
     "MueckeHGW",
-    "MagicBallers"
+    "MagicBallers",
+    "Hoopies"
   ],
-  "_comment": "watch = Teamnamen (wie in der basketball.de-Rangliste), die in der Übersicht als Vergleich erscheinen: Mücke (MueckeHGW), Dan (MagicBallers)."
+  "_comment": "watch = Teamnamen (wie in der basketball.de-Rangliste), die in Übersicht und Perfekter Verlauf als Vergleich erscheinen; labels = Anzeigenamen.",
+  "labels": {
+    "MueckeHGW": "Mücke",
+    "MagicBallers": "Dan",
+    "Hoopies": "Hoopies"
+  }
 }
