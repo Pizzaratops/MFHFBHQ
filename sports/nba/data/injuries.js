@@ -1,9 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T22:24:46.838Z",
+  "updated": "2026-11-22T22:45:23.878Z",
   "players": {
-    "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
+    "Aday Mara": ["OKC","Out","OUT","2026-11-23","Lower Leg",0,"2026-11-22"],
+    "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-22"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
@@ -47,7 +48,6 @@ const NBA_INJURIES = {
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
-    "Javon Small": ["MEM","Day-To-Day","GTD","2026-11-23","Personal",0,"2026-11-22"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
     "OG Anunoby": ["NY","Out","OUT","2026-11-25","Calf",0,"2026-11-22"],
     "Ousmane Dieng": ["MIL","Out","GTD","2026-11-23","Finger",0,"2026-11-22"],
-    "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
+    "P.J. Washington": ["DAL","Out","OUT","2026-11-24","Illness",0,"2026-11-22"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Pascal Siakam": ["IND","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
     "Paul George": ["BOS","Out","OUT","2026-11-24","Rest",0,"2026-11-22"],
@@ -106,7 +106,6 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-22","Knee",0,"2026-11-22"],
     "Zion Williamson": ["NO","Day-To-Day","GTD","2026-11-23","Thigh",0,"2026-11-22"]
   }
 };
