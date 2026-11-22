@@ -2,8 +2,8 @@
   "league": "ncaab",
   "date": "2026-11-21",
   "games": [
-    "Washington State Cougars @ Duke Blue Devils (7:53 - 2nd)",
     "Detroit Mercy Titans 70 @ Michigan State Spartans 91 (Final)",
+    "Washington State Cougars 74 @ Duke Blue Devils 78 (Final)",
     "Michigan Wolverines 73 @ Villanova Wildcats 79 (Final)",
     "Queens University Royals 75 @ LSU Tigers 106 (Final)",
     "Columbia Lions 80 @ Boston University Terriers 71 (Final/OT)",
@@ -27,7 +27,7 @@
     "Bradley Braves 62 @ Pacific Tigers 63 (Final)"
   ],
   "leagueAvg": {
-    "fg": 44.5,
-    "ft": 75.6
+    "fg": 44.2,
+    "ft": 75.7
   }
 }
