@@ -6102,9 +6102,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909567",
-      line: "Washington State Cougars @ Duke Blue Devils (1:46 - 1st)",
+      line: "Washington State Cougars @ Duke Blue Devils (7:53 - 2nd)",
       completed: false,
-      statusText: "1:46 - 1st",
+      statusText: "7:53 - 2nd",
       away: {
         abbr: "WaSt", name: "Washington State Cougars", score: null,
         players: [
