@@ -145,9 +145,10 @@
     </div>`;
   }
 
+  // Seit 22.11.2026 zentral (nba.nextDraftYear): nach dem Draft-Termin ist das Folgejahr dran
   function nextDraftYear(data, picks) {
-    const years = [...new Set(picks.map(p => p.year))].sort();
-    return (data.PICKS_LIVE && data.PICKS_LIVE.ttYear) || years[0];
+    const y = N().nextDraftYear(data);
+    return y || [...new Set(picks.map(p => p.year))].sort()[0];
   }
 
   function teamPage(ctx) {
@@ -165,7 +166,7 @@
       body = `<div class="controls">${cols.length ? `<div class="seg" role="group"><button type="button" class="seg-btn${sortBy === 'pos' ? ' active' : ''}" data-sort="pos">Nach Position</button><button type="button" class="seg-btn${sortBy === 'rank' ? ' active' : ''}" data-sort="rank">Nach Rang (${e(cols[0].label)})</button></div>` : ''}</div>
         <div class="table-wrap"><table class="table nba-roster"><thead><tr><th class="pos-col">Pos</th><th>Spieler</th><th>NBA</th>${cols.map(c => `<th class="num" title="${c.title}">${c.label}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
     } else if (tab === 'picks') {
-      const picks = nba.picks(data);
+      const picks = nba.openPicks(data); // nur künftige Drafts
       const mine = picks.filter(p => p.currentOwner === tid);
       const rounds = [...new Set(picks.map(p => p.round))].sort((a, b) => a - b);
       body = mine.length ? [...new Set(mine.map(p => p.year))].sort().map(y => pickBlock(ctx, y, mine.filter(p => p.year === y), rounds)).join('') : ui.empty('Keine Picks', 'Dieses Team hält aktuell keine Picks.', '🎟️');
@@ -200,9 +201,9 @@
     const teams = nba.leagueTeams(data, true);
     const byId = {}; teams.forEach(t => { byId[t.id] = t; });
     const short = t => (t ? t.name.split(' ')[0] : '?');
-    const years = [...new Set(picks.map(p => p.year))].sort();
-    const rounds = [...new Set(picks.map(p => p.round))].sort((a, b) => a - b);
     const draftYear = nextDraftYear(data, picks);
+    const years = [...new Set(picks.map(p => p.year))].filter(y => y >= draftYear).sort(); // gelaufene Drafts → Draft Results
+    const rounds = [...new Set(picks.map(p => p.round))].sort((a, b) => a - b);
     const slots = (data.DRAFT_2026_SLOT_ORDER || []).filter(s => s.round === 1).sort((a, b) => a.slot - b.slot);
     const yearHtml = year => {
       const moved = picks.filter(p => p.year === year && p.currentOwner !== p.originalOwner);
@@ -227,7 +228,7 @@
       ${data.MAX_ROSTER_SIZE ? `<div class="card nba-keepers"><div class="card-head"><h2>🔑 Picks & Keeper ${draftYear}</h2>${lock ? `<span class="muted" style="font-size:12px">🔒 Keeper Lock: ${fmt(lock)} Uhr</span>` : ''}</div>
         <div class="page-sub" style="padding:10px 14px 0"><span class="explain">Kadergröße ${data.MAX_ROSTER_SIZE} = Picks + Keeper. Weniger Picks = mehr mögliche Keeper.</span>${data.KEEPERS ? ` Keeper-Stand ${new Date(data.KEEPERS.stand).toLocaleDateString('de-DE')} (${e(data.KEEPERS.quelle)}).` : ''}</div>
         <div class="nba-kgrid">${teams.filter(t => !t.inactive).map(t => keeperCard(ctx, t, draftYear, picks)).join('')}</div></div>` : ''}
-      ${slots.length ? `<div class="card nba-lottery"><div class="card-head"><h2>🎰 2026 Lottery-Reihenfolge (R1)</h2></div><div class="table-wrap"><table class="table compact"><thead><tr><th class="num">Slot</th><th>NBA-Team</th><th>Herkunft</th><th>Besitzer</th><th>Notiz</th></tr></thead><tbody>
+      ${slots.length && draftYear === 2026 ? `<div class="card nba-lottery"><div class="card-head"><h2>🎰 2026 Lottery-Reihenfolge (R1)</h2></div><div class="table-wrap"><table class="table compact"><thead><tr><th class="num">Slot</th><th>NBA-Team</th><th>Herkunft</th><th>Besitzer</th><th>Notiz</th></tr></thead><tbody>
         ${slots.map(s => `<tr><td class="num strong">#${s.slot}</td><td>${e(s.nbaTeam || '')}</td><td>${e((byId[s.originalOwner] || {}).name || '?')}</td><td class="${s.currentOwner !== s.originalOwner ? 'strong' : ''}">${e((byId[s.currentOwner] || {}).name || '?')}</td><td class="muted">${e(s.note || '—')}</td></tr>`).join('')}
       </tbody></table></div></div>` : ''}
       ${years.map(yearHtml).join('')}`;

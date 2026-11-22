@@ -284,6 +284,24 @@ MFHFB.nba = (function () {
     return base;
   }
 
+  //  Draft-Jahre (TTHQ): Ist DRAFT_EVENT_DATE (data/picks.js) vorbei, gilt dieser Draft als
+  //  gelaufen (Jahr = PICKS_LIVE.ttYear bzw. Jahr des Termins) → nächster Draft = Jahr + 1.
+  //  Seit 22.11.2026: vorher blieb 2026 nach dem Draft vom 01.10. „bevorstehend“, und die
+  //  verbrauchten 2026er Picks tauchten im Trade Analyzer/Finder als handelbar auf.
+  function lastDraftDone(data) {
+    const d = data.DRAFT_EVENT_DATE ? Date.parse(data.DRAFT_EVENT_DATE) : NaN;
+    if (isNaN(d) || Date.now() < d) return null;
+    return (data.PICKS_LIVE && data.PICKS_LIVE.ttYear) || new Date(d).getFullYear();
+  }
+  function nextDraftYear(data) {
+    const done = lastDraftDone(data);
+    if (done) return done + 1;
+    const years = (data.PICKS || []).map(p => p.year);
+    return (data.PICKS_LIVE && data.PICKS_LIVE.ttYear) || (years.length ? Math.min(...years) : null);
+  }
+  // Nur Picks künftiger Drafts (handelbar)
+  const openPicks = data => { const y = nextDraftYear(data); return picks(data).filter(p => !y || p.year >= y); };
+
   // ---------- Ränge ----------
   //  Projections-Rang: LIVE_PROJECTIONS nach z (absteigend). Liefert null,
   //  wenn alle z gleich sind (TTHQ-Baseline vom 19.08. hat überall z:0 —
@@ -370,7 +388,7 @@ MFHFB.nba = (function () {
 
   const api = {
     ESPN_PRO, canonTeam, NBA_ABBRS, CATS, Z_KEYS, MP_WEIGHTS, init, key, teamName, TEAM_NAMES, leagueTeams, roster, ownerIndex, preDraft, unicorn, unicornBadge, record, initials, teamColor, injury,
-    tcStyle, picks, projRanks, dynastyIndex, dobIndex, age, teamAge, periodDays, rankTier, rankBadge,
+    tcStyle, picks, openPicks, nextDraftYear, lastDraftDone, projRanks, dynastyIndex, dobIndex, age, teamAge, periodDays, rankTier, rankBadge,
     MODES, getMode, setMode, modeControl, bindModeControl, fromCatZ, fmtScore, scorePositive, scoreLabel, percentileOf, heat,
   };
   return api;

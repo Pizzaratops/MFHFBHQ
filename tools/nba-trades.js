@@ -120,21 +120,26 @@
     if (slot <= 8) return 'mid';
     return 'late';
   }
+  // Seit 22.11.2026: PICK_VALUES und Jahres-Faktoren gelten RELATIV zum nächsten Draft — die Zeile
+  // „2026“ ist der nächste Draft, „2027“ der übernächste usw. Nach dem Draft 2026 rückt alles
+  // ein Jahr auf (2027er Picks bekommen die bisherigen 2026er Werte). NEXT wird in model() gesetzt.
+  let NEXT = 2026;
+  const valYear = y => 2026 + Math.max(0, Math.min(3, y - NEXT));
   // slotAwarePickValue (trade-analyzer.js): ohne Fallback auf "mid"
   function slotAwarePickValue(pick) {
     if (!pick || !pick.year || !pick.round) return 0;
-    const key = `${String(pick.year)}_R${pick.round}_${slotRange(pick.slot)}`;
+    const key = `${valYear(pick.year)}_R${pick.round}_${slotRange(pick.slot)}`;
     return PICK_VALUES[key] || 0;
   }
   // pickTradeValue (data/stats.js)
   function pickTradeValue(pick, mode) {
     let val = pick.baseValue;
     if (mode === 'winnow') {
-      const m = { 2026: 1.15, 2027: 1.00, 2028: 0.85, 2029: 0.70 };
-      val = Math.round(val * (m[pick.year] || 0.65));
+      const m = { 0: 1.15, 1: 1.00, 2: 0.85, 3: 0.70 }; // Jahre bis zum Draft
+      val = Math.round(val * (m[pick.year - NEXT] || 0.65));
     } else if (mode === 'dynasty') {
-      const m = { 2026: 0.95, 2027: 1.00, 2028: 1.05, 2029: 1.08 };
-      val = Math.round(val * (m[pick.year] || 1.00));
+      const m = { 0: 0.95, 1: 1.00, 2: 1.05, 3: 1.08 };
+      val = Math.round(val * (m[pick.year - NEXT] || 1.00));
     }
     return val;
   }
@@ -184,7 +189,8 @@
     });
     if (LV && LV.size) players.sort((a, b) => a.rank - b.rank || a.baseRank - b.baseRank);
     const byName = new Map(players.map(p => [p.name, p]));
-    const picks = nba.picks(data).map(p => {
+    NEXT = nba.nextDraftYear(data) || NEXT;
+    const picks = nba.openPicks(data).map(p => {
       const orig = team(p.originalOwner), curr = team(p.currentOwner);
       return {
         isPick: true, pickKey: `${p.year}_R${p.round}_T${p.originalOwner}`, year: p.year, round: p.round, slot: p.slot || null,
@@ -407,7 +413,7 @@
         <div class="tr-nba-vs">vs</div>
         ${breakdownSide(m, selB, 'Seite B', valB, mode)}
       </div>
-      <div class="tr-nba-explain"><b>${MODES.find(x => x.key === mode).label.replace(/^\S+\s/, '')}: so wird gerechnet.</b> Jeder Spieler bekommt den Wert seines MFHFB-Dynasty-Rangs aus dem Trade-Sheet (nur Ränge 1–${Object.keys(TRADE_VALUE_TABLE).length}, danach 0)${selA.concat(selB).some(p => p.live) ? ' — bei „Live #“ zählt der Live-Rang (Saison-Form gegen Erwartung)' : ''}, multipliziert mit dem Alters-Faktor. ${ageNote} Picks: fester Wert je Jahr/Runde/Slot (early 1–4, mid 5–8, late 9–12; ohne Slot „mid“) mit Jahres-Faktor je Modus. Pro Seite zählt das wertvollste Asset voll, jedes weitere mit ×0,8, ×0,8², … (Paket-Abschlag).</div>
+      <div class="tr-nba-explain"><b>${MODES.find(x => x.key === mode).label.replace(/^\S+\s/, '')}: so wird gerechnet.</b> Jeder Spieler bekommt den Wert seines MFHFB-Dynasty-Rangs aus dem Trade-Sheet (nur Ränge 1–${Object.keys(TRADE_VALUE_TABLE).length}, danach 0)${selA.concat(selB).some(p => p.live) ? ' — bei „Live #“ zählt der Live-Rang (Saison-Form gegen Erwartung)' : ''}, multipliziert mit dem Alters-Faktor. ${ageNote} Picks: fester Wert je Runde/Slot (early 1–4, mid 5–8, late 9–12; ohne Slot „mid“) und Abstand zum nächsten Draft (${NEXT}), mit Jahres-Faktor je Modus. Bereits gedraftete Jahrgänge sind nicht handelbar. Pro Seite zählt das wertvollste Asset voll, jedes weitere mit ×0,8, ×0,8², … (Paket-Abschlag).</div>
       <div class="tr-nba-actions"><button type="button" class="seg-btn" data-copy>📋 Als Text kopieren</button><button type="button" class="seg-btn" data-reset>↺ Neuer Trade</button></div>
     </div>`;
   }
@@ -511,9 +517,9 @@
 
   function buildTFPickPool(m, mode) {
     return m.picks
-      .filter(p => p.year >= 2026 && p.round <= 2) // only valuable picks
+      .filter(p => p.year >= NEXT && p.round <= 2) // nur künftige R1/R2-Picks
       .map(p => {
-        const baseVal = PICK_VALUES[`${p.year}_R${p.round}_mid`] || 0;
+        const baseVal = PICK_VALUES[`${valYear(p.year)}_R${p.round}_mid`] || 0;
         return { ...p, baseValue: baseVal, dynVal: pickTradeValue({ baseValue: baseVal, year: p.year }, mode) };
       })
       .filter(p => p.dynVal > 0)
