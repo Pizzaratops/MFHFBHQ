@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-22T18:03:20.703Z",
+  "generatedAt": "2026-11-22T20:03:26.497Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -620,7 +620,7 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "LV",
           "isStarter": false,
-          "status": "Q",
+          "status": "O",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -696,6 +696,17 @@ const STATUS_REPORT_DATA = {
           "name": "Colston Loveland",
           "pos": "TE",
           "nfl": "CHI",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": null,
+          "projPoints": null
+        },
+        {
+          "name": "Deebo Samuel Sr.",
+          "pos": "WR",
+          "nfl": "SF",
           "isStarter": true,
           "status": null,
           "flag": false,
@@ -2115,7 +2126,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17,
           "last3AvgPoints": 8.9,
-          "projPoints": 9.5
+          "projPoints": 9.6
         },
         {
           "name": "Colston Loveland",
@@ -2918,7 +2929,7 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "LV",
           "isStarter": false,
-          "status": "Q",
+          "status": "O",
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 18.1,
