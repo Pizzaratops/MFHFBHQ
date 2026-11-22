@@ -6823,9 +6823,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401902281",
-      line: "Nebraska Cornhuskers @ Butler Bulldogs (11/22 - 12:00 PM EST)",
+      line: "Nebraska Cornhuskers @ Butler Bulldogs (15:01 - 1st)",
       completed: false,
-      statusText: "11/22 - 12:00 PM EST",
+      statusText: "15:01 - 1st",
       away: {
         abbr: "Nebras", name: "Nebraska Cornhuskers", score: null,
         players: [
@@ -6841,9 +6841,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401911024",
-      line: "Miami (OH) RedHawks @ UIC Flames (11/22 - 12:00 PM EST)",
+      line: "Miami (OH) RedHawks @ UIC Flames (15:38 - 1st)",
       completed: false,
-      statusText: "11/22 - 12:00 PM EST",
+      statusText: "15:38 - 1st",
       away: {
         abbr: "M-OH", name: "Miami (OH) RedHawks", score: null,
         players: [
