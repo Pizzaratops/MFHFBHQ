@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T20:39:59.901Z",
+  "updated": "2026-11-22T20:49:25.331Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -38,7 +38,7 @@ const NBA_INJURIES = {
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-22","Groin",0,"2026-11-21"],
-    "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-21"],
+    "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-22"],
     "Grant Williams": ["CHA","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
     "Grayson Allen": ["CHA","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-21"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Nic Claxton": ["CHI","Out","OUT","2026-11-23","Illness",0,"2026-11-22"],
     "Nikola Topic": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
-    "Nolan Traore": ["BKN","Day-To-Day","OUT","2026-11-25","Hamstring",0,"2026-11-21"],
+    "Nolan Traore": ["BKN","Out","OUT","2026-11-25","Hamstring",0,"2026-11-22"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
     "OG Anunoby": ["NY","Out","OUT","2026-11-25","Calf",0,"2026-11-22"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],

@@ -3983,9 +3983,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910029",
-      line: "Detroit Pistons @ Atlanta Hawks (11/22 - 3:30 PM EST)",
+      line: "Detroit Pistons @ Atlanta Hawks (6:38 - 1st)",
       completed: false,
-      statusText: "11/22 - 3:30 PM EST",
+      statusText: "6:38 - 1st",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
