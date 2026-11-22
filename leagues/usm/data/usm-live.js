@@ -1,7 +1,7 @@
 // US-Manager (basketball.de) — tägliche Übersicht, erzeugt von leagues/usm/scripts/sync-usm.js
 // (GitHub Action usm-sync.yml, täglich 12:30 Berlin nach dem FP-Update von basketball.de). Nicht von Hand bearbeiten.
 const USM_LIVE = {
- "updated": "2026-11-22T12:31:17.452Z",
+ "updated": "2026-11-22T18:01:02.223Z",
  "date": "2026-11-22",
  "gameday": "2026-11-21",
  "team": {
@@ -12,15 +12,15 @@ const USM_LIVE = {
   "value": 89.37
  },
  "me": {
-  "rank": 40,
-  "diff": 4,
+  "rank": 37,
+  "diff": 7,
   "team": "Kenora Hoops",
   "mgr": "MFHFB",
-  "pts": 4522,
-  "day": 137.5,
-  "avg": 20.46,
+  "pts": 4523,
+  "day": 138.5,
+  "avg": 20.47,
   "premium": 0,
-  "dayRank": 237
+  "dayRank": 229
  },
  "managers": 1279,
  "players": [
@@ -188,9 +188,9 @@ const USM_LIVE = {
    "sal": 3.52,
    "gp": 7,
    "last": 25,
-   "fp": 122.5,
-   "fpg": 17.5,
-   "today": 25,
+   "fp": 123.5,
+   "fpg": 17.64,
+   "today": 26,
    "played": 1
   },
   {
@@ -231,7 +231,7 @@ const USM_LIVE = {
    "day": 81.5,
    "avg": 21.14,
    "premium": 0,
-   "dayRank": 875
+   "dayRank": 873
   },
   {
    "rank": 2,
@@ -242,7 +242,7 @@ const USM_LIVE = {
    "day": 134,
    "avg": 20.84,
    "premium": 0,
-   "dayRank": 261
+   "dayRank": 259
   },
   {
    "rank": 3,
@@ -260,22 +260,22 @@ const USM_LIVE = {
    "diff": 1,
    "team": "el.corruptos",
    "mgr": "el.corrupto",
-   "pts": 4744.5,
-   "day": 154.5,
-   "avg": 20.1,
+   "pts": 4745.5,
+   "day": 155.5,
+   "avg": 20.11,
    "premium": 0,
-   "dayRank": 138
+   "dayRank": 133
   },
   {
    "rank": 5,
    "diff": 3,
    "team": "HE4T B4SKETB4LL",
    "mgr": "HEAT Basketball",
-   "pts": 4737.5,
-   "day": 177,
-   "avg": 20.87,
+   "pts": 4735.5,
+   "day": 175,
+   "avg": 20.86,
    "premium": 0,
-   "dayRank": 70
+   "dayRank": 81
   },
   {
    "rank": 6,
@@ -286,51 +286,51 @@ const USM_LIVE = {
    "day": 99.5,
    "avg": 20.38,
    "premium": 0,
-   "dayRank": 629
+   "dayRank": 631
   },
   {
    "rank": 7,
    "diff": 19,
    "team": "Goon Squad",
    "mgr": "BumpetyBoo",
-   "pts": 4691,
-   "day": 246.5,
-   "avg": 20.4,
+   "pts": 4688,
+   "day": 243.5,
+   "avg": 20.38,
    "premium": 1,
-   "dayRank": 4
+   "dayRank": 5
   },
   {
    "rank": 8,
    "diff": 6,
    "team": "SuperTrooper",
    "mgr": "Super Trooper",
-   "pts": 4686,
-   "day": 187.5,
-   "avg": 20.37,
+   "pts": 4687,
+   "day": 188.5,
+   "avg": 20.38,
    "premium": 0,
-   "dayRank": 51
+   "dayRank": 49
   },
   {
    "rank": 9,
-   "diff": 20,
-   "team": "Hoopies",
-   "mgr": "QuintoD",
-   "pts": 4683,
-   "day": 260,
-   "avg": 20.91,
+   "diff": -3,
+   "team": "MortyJerks",
+   "mgr": "MortyJerks",
+   "pts": 4682,
+   "day": 101.5,
+   "avg": 20.63,
    "premium": 0,
-   "dayRank": 2
+   "dayRank": 602
   },
   {
    "rank": 10,
-   "diff": -4,
-   "team": "MortyJerks",
-   "mgr": "MortyJerks",
+   "diff": 19,
+   "team": "Hoopies",
+   "mgr": "QuintoD",
    "pts": 4681,
-   "day": 100.5,
-   "avg": 20.62,
+   "day": 258,
+   "avg": 20.9,
    "premium": 0,
-   "dayRank": 615
+   "dayRank": 2
   },
   {
    "rank": 11,
@@ -352,7 +352,7 @@ const USM_LIVE = {
    "day": 176.5,
    "avg": 20.31,
    "premium": 0,
-   "dayRank": 72
+   "dayRank": 73
   },
   {
    "rank": 13,
@@ -361,7 +361,7 @@ const USM_LIVE = {
    "mgr": "Felickzdadamaja 1.0",
    "pts": 4664,
    "day": 179,
-   "avg": 21.69,
+   "avg": 21.59,
    "premium": 0,
    "dayRank": 61
   },
@@ -374,40 +374,40 @@ const USM_LIVE = {
    "day": 146.5,
    "avg": 20.6,
    "premium": 0,
-   "dayRank": 184
+   "dayRank": 180
   },
   {
    "rank": 15,
-   "diff": 0,
-   "team": "Isotopes",
-   "mgr": "Lennart",
-   "pts": 4655,
-   "day": 157,
-   "avg": 19.81,
+   "diff": -8,
+   "team": "DetlefsErben",
+   "mgr": "DetlefsErbe",
+   "pts": 4654,
+   "day": 80,
+   "avg": 20.41,
    "premium": 0,
-   "dayRank": 128
+   "dayRank": 887
   },
   {
    "rank": 16,
-   "diff": -9,
-   "team": "DetlefsErben",
-   "mgr": "DetlefsErbe",
-   "pts": 4652,
-   "day": 78,
-   "avg": 20.4,
+   "diff": -1,
+   "team": "Isotopes",
+   "mgr": "Lennart",
+   "pts": 4654,
+   "day": 156,
+   "avg": 19.8,
    "premium": 0,
-   "dayRank": 908
+   "dayRank": 127
   },
   {
    "rank": 17,
    "diff": 4,
    "team": "Kellerkinder",
    "mgr": "DerKeller",
-   "pts": 4632,
-   "day": 160.5,
+   "pts": 4634,
+   "day": 162.5,
    "avg": 20.32,
    "premium": 1,
-   "dayRank": 116
+   "dayRank": 109
   },
   {
    "rank": 18,
@@ -416,20 +416,20 @@ const USM_LIVE = {
    "mgr": "Goatdirk86",
    "pts": 4631,
    "day": 119.5,
-   "avg": 20.77,
+   "avg": 20.67,
    "premium": 0,
-   "dayRank": 387
+   "dayRank": 386
   },
   {
    "rank": 19,
    "diff": -9,
    "team": "dwightmare",
    "mgr": "dwightmare",
-   "pts": 4623.5,
-   "day": 83.5,
+   "pts": 4624.5,
+   "day": 84.5,
    "avg": 19.93,
    "premium": 0,
-   "dayRank": 851
+   "dayRank": 830
   },
   {
    "rank": 20,
@@ -440,18 +440,18 @@ const USM_LIVE = {
    "day": 199.5,
    "avg": 20.45,
    "premium": 1,
-   "dayRank": 29
+   "dayRank": 30
   },
   {
    "rank": 21,
    "diff": 12,
    "team": "FStoffers",
    "mgr": "FStoffers",
-   "pts": 4619,
-   "day": 205,
-   "avg": 19.91,
+   "pts": 4620,
+   "day": 206,
+   "avg": 19.83,
    "premium": 1,
-   "dayRank": 24
+   "dayRank": 20
   },
   {
    "rank": 22,
@@ -462,7 +462,7 @@ const USM_LIVE = {
    "day": 76.5,
    "avg": 20.08,
    "premium": 0,
-   "dayRank": 923
+   "dayRank": 922
   },
   {
    "rank": 23,
@@ -473,7 +473,7 @@ const USM_LIVE = {
    "day": 100,
    "avg": 20.37,
    "premium": 0,
-   "dayRank": 621
+   "dayRank": 620
   },
   {
    "rank": 24,
@@ -484,7 +484,7 @@ const USM_LIVE = {
    "day": 113,
    "avg": 20.28,
    "premium": 0,
-   "dayRank": 456
+   "dayRank": 453
   },
   {
    "rank": 25,
@@ -495,10 +495,43 @@ const USM_LIVE = {
    "day": 113,
    "avg": 20.13,
    "premium": 1,
-   "dayRank": 456
+   "dayRank": 453
   }
  ],
  "around": [
+  {
+   "rank": 32,
+   "diff": -9,
+   "team": "retired",
+   "mgr": "Curry",
+   "pts": 4545.5,
+   "day": 89.5,
+   "avg": 19.43,
+   "premium": 1,
+   "dayRank": 760
+  },
+  {
+   "rank": 33,
+   "diff": 20,
+   "team": "Chris Paulizei",
+   "mgr": "B-Ball-Zwerg",
+   "pts": 4542,
+   "day": 176.5,
+   "avg": 20.65,
+   "premium": 0,
+   "dayRank": 73
+  },
+  {
+   "rank": 34,
+   "diff": 24,
+   "team": "Oklahoma City Mavericks",
+   "mgr": "roddybucket",
+   "pts": 4540.5,
+   "day": 189,
+   "avg": 19.66,
+   "premium": 1,
+   "dayRank": 46
+  },
   {
    "rank": 35,
    "diff": -10,
@@ -508,7 +541,7 @@ const USM_LIVE = {
    "day": 84.5,
    "avg": 19.37,
    "premium": 0,
-   "dayRank": 832
+   "dayRank": 830
   },
   {
    "rank": 36,
@@ -519,18 +552,18 @@ const USM_LIVE = {
    "day": 124,
    "avg": 19.77,
    "premium": 0,
-   "dayRank": 339
+   "dayRank": 337
   },
   {
    "rank": 37,
-   "diff": 31,
-   "team": "Blankicz",
-   "mgr": "Blankicz",
-   "pts": 4525,
-   "day": 188,
-   "avg": 19.85,
-   "premium": 1,
-   "dayRank": 50
+   "diff": 7,
+   "team": "Kenora Hoops",
+   "mgr": "MFHFB",
+   "pts": 4523,
+   "day": 138.5,
+   "avg": 20.47,
+   "premium": 0,
+   "dayRank": 229
   },
   {
    "rank": 38,
@@ -541,7 +574,7 @@ const USM_LIVE = {
    "day": 123,
    "avg": 20.1,
    "premium": 1,
-   "dayRank": 348
+   "dayRank": 350
   },
   {
    "rank": 39,
@@ -550,20 +583,20 @@ const USM_LIVE = {
    "mgr": "Pheno",
    "pts": 4522,
    "day": 205.5,
-   "avg": 20.01,
+   "avg": 19.92,
    "premium": 1,
-   "dayRank": 23
+   "dayRank": 24
   },
   {
    "rank": 40,
-   "diff": 4,
-   "team": "Kenora Hoops",
-   "mgr": "MFHFB",
-   "pts": 4522,
-   "day": 137.5,
-   "avg": 20.46,
-   "premium": 0,
-   "dayRank": 237
+   "diff": 28,
+   "team": "Blankicz",
+   "mgr": "Blankicz",
+   "pts": 4521.5,
+   "day": 184.5,
+   "avg": 19.83,
+   "premium": 1,
+   "dayRank": 52
   },
   {
    "rank": 41,
@@ -574,7 +607,7 @@ const USM_LIVE = {
    "day": 118,
    "avg": 19.65,
    "premium": 0,
-   "dayRank": 404
+   "dayRank": 400
   },
   {
    "rank": 42,
@@ -585,40 +618,7 @@ const USM_LIVE = {
    "day": 117.5,
    "avg": 19.81,
    "premium": 0,
-   "dayRank": 411
-  },
-  {
-   "rank": 43,
-   "diff": 23,
-   "team": "The_Bronnies",
-   "mgr": "The_Bronnies",
-   "pts": 4512.5,
-   "day": 174,
-   "avg": 20.7,
-   "premium": 0,
-   "dayRank": 84
-  },
-  {
-   "rank": 44,
-   "diff": -9,
-   "team": "Frankly the Best",
-   "mgr": "Frank",
-   "pts": 4511.5,
-   "day": 106.5,
-   "avg": 20.14,
-   "premium": 0,
-   "dayRank": 527
-  },
-  {
-   "rank": 45,
-   "diff": 25,
-   "team": "The Incredible Highlight Show Deluxe SE",
-   "mgr": "Questbert und das magische Team",
-   "pts": 4511.5,
-   "day": 181,
-   "avg": 19.96,
-   "premium": 0,
-   "dayRank": 60
+   "dayRank": 408
   }
  ],
  "watch": [
@@ -627,31 +627,31 @@ const USM_LIVE = {
    "diff": 55,
    "team": "MueckeHGW",
    "mgr": "Muecke",
-   "pts": 4380,
-   "day": 195,
-   "avg": 19.91,
+   "pts": 4379,
+   "day": 194,
+   "avg": 19.9,
    "premium": 0,
    "dayRank": 36
   },
   {
-   "rank": 59,
-   "diff": 3,
+   "rank": 56,
+   "diff": 6,
    "team": "MagicBallers",
    "mgr": "QuattroD",
-   "pts": 4485.5,
-   "day": 142.5,
-   "avg": 20.02,
+   "pts": 4487.5,
+   "day": 144.5,
+   "avg": 20.03,
    "premium": 1,
-   "dayRank": 207
+   "dayRank": 198
   },
   {
-   "rank": 9,
-   "diff": 20,
+   "rank": 10,
+   "diff": 19,
    "team": "Hoopies",
    "mgr": "QuintoD",
-   "pts": 4683,
-   "day": 260,
-   "avg": 20.91,
+   "pts": 4681,
+   "day": 258,
+   "avg": 20.9,
    "premium": 0,
    "dayRank": 2
   }
@@ -669,18 +669,18 @@ const USM_LIVE = {
    "mgr": "RobG",
    "pts": 4385,
    "day": 281,
-   "avg": 19.4,
+   "avg": 19.23,
    "premium": 1,
    "dayRank": 1
   },
   {
-   "rank": 9,
-   "diff": 20,
+   "rank": 10,
+   "diff": 19,
    "team": "Hoopies",
    "mgr": "QuintoD",
-   "pts": 4683,
-   "day": 260,
-   "avg": 20.91,
+   "pts": 4681,
+   "day": 258,
+   "avg": 20.9,
    "premium": 0,
    "dayRank": 2
   },
@@ -691,42 +691,42 @@ const USM_LIVE = {
    "mgr": "Steff DiSpirito",
    "pts": 4344.5,
    "day": 252,
-   "avg": 20.59,
+   "avg": 20.3,
    "premium": 0,
    "dayRank": 3
-  },
-  {
-   "rank": 7,
-   "diff": 19,
-   "team": "Goon Squad",
-   "mgr": "BumpetyBoo",
-   "pts": 4691,
-   "day": 246.5,
-   "avg": 20.4,
-   "premium": 1,
-   "dayRank": 4
   },
   {
    "rank": 936,
    "diff": 77,
    "team": "Fritten und Bier",
    "mgr": "chaosmatze",
-   "pts": 3510,
-   "day": 245.5,
-   "avg": 17.04,
+   "pts": 3511,
+   "day": 246.5,
+   "avg": 16.96,
    "premium": 0,
+   "dayRank": 4
+  },
+  {
+   "rank": 7,
+   "diff": 19,
+   "team": "Goon Squad",
+   "mgr": "BumpetyBoo",
+   "pts": 4688,
+   "day": 243.5,
+   "avg": 20.38,
+   "premium": 1,
    "dayRank": 5
   },
   {
-   "rank": 29,
-   "diff": 45,
+   "rank": 28,
+   "diff": 46,
    "team": "Tragic",
    "mgr": "charlesbarkley",
-   "pts": 4566.5,
-   "day": 242.5,
-   "avg": 20.03,
+   "pts": 4567.5,
+   "day": 243.5,
+   "avg": 19.95,
    "premium": 0,
-   "dayRank": 6
+   "dayRank": 5
   },
   {
    "rank": 11,
@@ -762,24 +762,24 @@ const USM_LIVE = {
    "dayRank": 9
   },
   {
-   "rank": 53,
-   "diff": 51,
-   "team": "DasTeamOhneNamen",
-   "mgr": "PKneis",
-   "pts": 4492.5,
-   "day": 220.5,
-   "avg": 20.15,
-   "premium": 0,
-   "dayRank": 10
-  },
-  {
    "rank": 89,
    "diff": 75,
    "team": "Ozzyballerz",
    "mgr": "Ozzy Ozzball",
-   "pts": 4416.5,
-   "day": 219,
+   "pts": 4417.5,
+   "day": 220,
    "avg": 20.08,
+   "premium": 0,
+   "dayRank": 10
+  },
+  {
+   "rank": 54,
+   "diff": 50,
+   "team": "DasTeamOhneNamen",
+   "mgr": "PKneis",
+   "pts": 4489.5,
+   "day": 217.5,
+   "avg": 20.13,
    "premium": 0,
    "dayRank": 11
   },
@@ -799,37 +799,37 @@ const USM_LIVE = {
    "diff": 93,
    "team": "Kult-Sport",
    "mgr": "Daddy Saud",
-   "pts": 3722.5,
-   "day": 213,
-   "avg": 19.09,
+   "pts": 3723.5,
+   "day": 214,
+   "avg": 19,
    "premium": 0,
    "dayRank": 13
   },
   {
-   "rank": 241,
-   "diff": 125,
-   "team": "Gotham Knights",
-   "mgr": "BatmanlovesGotham",
-   "pts": 4233,
-   "day": 212.5,
-   "avg": 19.51,
+   "rank": 239,
+   "diff": 128,
+   "team": "Wat is los hier",
+   "mgr": "C.Neuber",
+   "pts": 4232.5,
+   "day": 213.5,
+   "avg": 19.78,
    "premium": 0,
    "dayRank": 14
   },
   {
-   "rank": 245,
-   "diff": 122,
-   "team": "Wat is los hier",
-   "mgr": "C.Neuber",
-   "pts": 4231.5,
+   "rank": 490,
+   "diff": 110,
+   "team": "OGs",
+   "mgr": "og22rookie",
+   "pts": 4017.5,
    "day": 212.5,
-   "avg": 19.77,
+   "avg": 19.13,
    "premium": 0,
-   "dayRank": 14
+   "dayRank": 15
   }
  ]
 };
 const USM_HISTORY = [
  {"d":"2026-11-21","g":"2026-11-20","rank":44,"pts":4384.5,"day":114.5,"dayRank":726,"n":1279,"top":4705.5,"dayBest":260,"avgDay":121.6,"roster":{"Acuff Jr., Darius":[388,15],"Harper, Dylan":[376.5,15],"Burries, Brayden":[233.5,16],"Shannon Jr., Terrence":[193.5,13],"Demin, Egor":[94.5,9],"Mitchell, Davion":[411.5,15],"Grimes, Quentin":[235,15],"Lendeborg, Yaxel":[385.5,16],"Murray-Boyles, Collin":[191.5,14],"Boozer, Cameron":[409.5,16],"Randle, Julius":[354,15],"Flagg, Cooper":[476,14],"Missi, Yves":[97.5,6],"Sharpe, Day'Ron":[290.5,15],"Beringer, Joan":[192,16]},"watch":{"MueckeHGW":[176,4185,136.5],"MagicBallers":[62,4343,133.5]}},
- {"d":"2026-11-22","g":"2026-11-21","rank":40,"pts":4522,"day":137.5,"dayRank":237,"n":1279,"top":4777.5,"dayBest":281,"avgDay":102.2,"roster":{"Acuff Jr., Darius":[415,16,8.99],"Harper, Dylan":[376.5,15,8.14],"Burries, Brayden":[267,17,3.64],"Shannon Jr., Terrence":[209.5,14,3.35],"Demin, Egor":[94.5,9,2.24],"Mitchell, Davion":[411.5,15,9.13],"Grimes, Quentin":[235,15,2.66],"Lendeborg, Yaxel":[385.5,16,7.81],"Murray-Boyles, Collin":[191.5,14,3.89],"Boozer, Cameron":[409.5,16,7.91],"Randle, Julius":[354,15,6.93],"Flagg, Cooper":[502,15,12.16],"Missi, Yves":[122.5,7,3.52],"Sharpe, Day'Ron":[290.5,15,5.76],"Beringer, Joan":[202,17,3.24]},"watch":{"MueckeHGW":[121,4380,195],"MagicBallers":[59,4485.5,142.5],"Hoopies":[9,4683,260]}}
+ {"d":"2026-11-22","g":"2026-11-21","rank":37,"pts":4523,"day":138.5,"dayRank":229,"n":1279,"top":4777.5,"dayBest":281,"avgDay":102,"roster":{"Acuff Jr., Darius":[415,16,8.99],"Harper, Dylan":[376.5,15,8.14],"Burries, Brayden":[267,17,3.64],"Shannon Jr., Terrence":[209.5,14,3.35],"Demin, Egor":[94.5,9,2.24],"Mitchell, Davion":[411.5,15,9.13],"Grimes, Quentin":[235,15,2.66],"Lendeborg, Yaxel":[385.5,16,7.81],"Murray-Boyles, Collin":[191.5,14,3.89],"Boozer, Cameron":[409.5,16,7.91],"Randle, Julius":[354,15,6.93],"Flagg, Cooper":[502,15,12.16],"Missi, Yves":[123.5,7,3.52],"Sharpe, Day'Ron":[290.5,15,5.76],"Beringer, Joan":[202,17,3.24]},"watch":{"MueckeHGW":[121,4379,194],"MagicBallers":[56,4487.5,144.5],"Hoopies":[10,4681,258]}}
 ];
