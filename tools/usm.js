@@ -287,7 +287,19 @@
       // (echte FP + Projection × erwartete Spiele). Unter 6 Spielen wird nicht neu berechnet.
       const eg = (sd && sd[0] === 0) || av === 0 ? 0 : gamesToUpdate(data, inj.get(k), abbr, upd, box.from);
       const gpN = gp + eg, fpgN = gpN > 0 ? ((fpAct || 0) + (fpg > 0 ? fpg : fpgAct || 0) * eg) / gpN : 0;
-      const tgt = gpN > 0 ? targetSal(fit, fpgN) : null, frozen = gpN < MIN_GAMES - 0.01;
+      const tgtF = gpN > 0 ? targetSal(fit, fpgN) : null, frozen = gpN < MIN_GAMES - 0.01;
+      // Nachfrage-Effekt (Snapshot 22.11. kalibriert, Listen „meist verpflichtet/abgegeben“):
+      // offensichtliche Wertsprung-Ziele (Formel ≥ +0,8) werden massenhaft gekauft → +0,15…0,3;
+      // frisch verletzte Stammspieler (Out über das nächste Update, gemeldet seit dem letzten Gehalts-Update) werden abgestoßen → −0,3.
+      let dem = 0;
+      if (tgtF != null && !frozen && gp >= MIN_GAMES - 1) {
+        const j = tgtF - sal;
+        if (j >= 0.8) dem = Math.min(0.3, 0.08 + 0.09 * j);
+        const ij = inj.get(k);
+        if (ij && /out/i.test(ij[1] || '') && ij[3] && new Date(ij[3] + 'T12:00:00Z') > upd && ij[6]
+          && Date.parse(ij[6] + 'T12:00:00Z') >= Date.parse(cur.date + 'T12:00:00Z') - 864e5 && fpgAct >= 15 && sal >= 4) dem = -0.3;
+      }
+      const tgt = tgtF == null ? null : Math.max(0.5, tgtF + dem);
       const now = gp > 0 ? (gp < MIN_GAMES ? sal : targetSal(fit, fpgAct)) : null;
       const gap = tgt == null ? 0 : tgt - sal, next = frozen || tgt == null ? sal : tgt;
       const ng = horizon === 'game' ? null : gamesIn(data, abbr, horizon);
@@ -297,7 +309,7 @@
         fpm, src, min, minSet: o.min != null, av, avSet: o.av != null, status, fpg, evg, ng, ev, value: sal > 0 ? ev / sal : 0,
         gp, fpgAct: fpgAct || 0, prevSal: prevSal.has(k) ? prevSal.get(k) : null, firstSal: firstSal.has(k) ? firstSal.get(k) : null,
         fp26: s26 && s26[0] ? s26[2] / s26[0] : null,
-        tgt, gap, frozen, next, eg, fpgN, now, gpSnap,
+        tgt, tgtF, dem, gap, frozen, next, eg, fpgN, now, gpSnap,
       });
     }
     const withG = [...out.values()].filter(p => p.ng != null && p.team !== 'Free Agents');
@@ -685,7 +697,7 @@
           <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Gehalt</th><th class="num">Δ Woche</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num" title="Erwartetes Gehalt beim nächsten Update (Formel mit echten FP + Projection bis dahin)">Ziel</th><th class="num">Δ Ziel</th><th class="num">FP/G proj</th>${pool.horizon === 'game' ? '' : '<th class="num">Sp.</th>'}<th class="num">EV</th><th class="num">FP/Mio</th></tr></thead><tbody>
           ${ps.slice().sort((a, b) => a.pos.localeCompare(b.pos) || b.sal - a.sal).map(p => `<tr><td>${p.pos}</td><td class="strong usm-name">${e(p.short)}${tags(p)}</td><td>${p.abbr}</td>
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${dc(p.prevSal != null ? p.sal - p.prevSal : null)}</td><td class="num">${dc(p.firstSal != null ? p.sal - p.firstSal : null)}</td>
-            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${p.tgt == null ? '–' : f1(p.tgt, 2)}</td><td class="num">${zc(p)}</td><td class="num">${f1(p.fpg)}</td>${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td></tr>`).join('')}
+            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num"${p.dem ? ` title="Formel ${f1(p.tgtF, 2)} ${p.dem > 0 ? '+' : ''}${f1(p.dem, 2)} Nachfrage (${p.dem > 0 ? 'Massenkauf erwartet' : 'Massenverkauf erwartet'})"` : ''}>${p.tgt == null ? '–' : f1(p.tgt, 2) + (p.dem ? (p.dem > 0 ? '↑' : '↓') : '')}</td><td class="num">${zc(p)}</td><td class="num">${f1(p.fpg)}</td>${pool.horizon === 'game' ? '' : `<td class="num">${p.ng ?? '–'}</td>`}<td class="num">${f1(p.ev)}</td><td class="num strong" style="${valueStyle(p.value, pool)}">${f1(p.value)}</td></tr>`).join('')}
           ${miss ? `<tr><td colspan="13" class="down">${miss} Spieler fehlen im aktuellen Snapshot.</td></tr>` : ''}</tbody></table></div>
           <p class="muted usm-small usm-pad">Ziel = erwartetes Gehalt beim nächsten Update (Stichzeit ${pool.upd.toLocaleString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}): max(0,5; ${f1(pool.fit.a, 3)} + ${f1(pool.fit.b, 4)}·x + ${f1(pool.fit.c, 6)}·x²), x = FP pro gespieltem Spiel (echte FP + Projection für die Spiele bis dahin). Jede Woche komplette Neuberechnung, das alte Gehalt spielt keine Rolle; Verletzte behalten ihren Wert. * = dann noch unter ${MIN_GAMES} Spielen, Gehalt bleibt vorerst. ${pool.boxLast ? `GP und FP/G real enthalten die Boxscores bis ${fmtDate(pool.boxLast)} (Fouls geschätzt, FP-Korrekturen von basketball.de fehlen) – aktualisiert sich jeden Morgen.` : `GP und FP/G real: Stand Snapshot ${fmtDate(pool.date)}.`} Formel am Update vom 15.11.2026 gelöst (364 Spieler, mittlerer Fehler 0,08 Mio).${pool.injDate ? ` Verletzungen: ESPN, Stand ${new Date(pool.injDate).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}.` : ''}</p>
         </section>
@@ -763,7 +775,7 @@
         $('usmSalTbl').innerHTML = `<thead><tr><th>Spieler</th><th>Team</th><th>Pos</th><th class="num">Gehalt</th><th class="num">Vorwoche</th><th class="num">Δ Woche</th><th class="num">Start</th><th class="num">Δ Start</th><th class="num">GP</th><th class="num">FP/G real</th><th class="num">Ziel</th><th class="num">Δ Ziel</th><th class="num">FP/G proj</th></tr></thead><tbody>`
           + l.slice(0, 200).map(p => `<tr><td class="strong usm-name">${e(p.short)}${mine.has(p.key) ? ' <span class="usm-tag r">Team</span>' : ''}</td><td>${p.abbr}</td><td>${p.pos}</td>
             <td class="num">${f1(p.sal, 2)}</td><td class="num">${f1(p.prevSal, 2)}</td><td class="num">${dc(d1(p))}</td><td class="num">${f1(p.firstSal, 2)}</td><td class="num">${dc(d0(p))}</td>
-            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num">${p.tgt == null ? '–' : f1(p.tgt, 2)}</td><td class="num">${p.tgt == null ? '–' : p.frozen ? `<span class="muted" title="Am nächsten Update noch unter ${MIN_GAMES} Spielen: Gehalt bleibt vorerst">${p.gap > 0 ? '+' : ''}${f1(p.gap, 2)}*</span>` : dc(p.gap)}</td><td class="num">${f1(p.fpg)}</td></tr>`).join('') + '</tbody>';
+            <td class="num">${p.gp || '–'}</td><td class="num">${p.fpgAct ? f1(p.fpgAct) : '–'}</td><td class="num"${p.dem ? ` title="Formel ${f1(p.tgtF, 2)} ${p.dem > 0 ? '+' : ''}${f1(p.dem, 2)} Nachfrage (${p.dem > 0 ? 'Massenkauf erwartet' : 'Massenverkauf erwartet'})"` : ''}>${p.tgt == null ? '–' : f1(p.tgt, 2) + (p.dem ? (p.dem > 0 ? '↑' : '↓') : '')}</td><td class="num">${p.tgt == null ? '–' : p.frozen ? `<span class="muted" title="Am nächsten Update noch unter ${MIN_GAMES} Spielen: Gehalt bleibt vorerst">${p.gap > 0 ? '+' : ''}${f1(p.gap, 2)}*</span>` : dc(p.gap)}</td><td class="num">${f1(p.fpg)}</td></tr>`).join('') + '</tbody>';
       }
       // Solange es noch kein Gehalts-Update gab (alle Δ = 0), nach Δ Ziel sortieren statt nach einer Spalte voller Nullen
       if (!pool.players.some(p => Math.abs(d1(p)) > 0.004)) $('usmSalSort').value = 'gap';
