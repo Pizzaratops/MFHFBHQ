@@ -1,0 +1,474 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-22",
+  "games": [
+    {
+      "id": "401902281",
+      "line": "Nebraska Cornhuskers @ Butler Bulldogs (11/22 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 12:00 PM EST",
+      "away": {
+        "abbr": "Nebras",
+        "name": "Nebraska Cornhuskers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Butl",
+        "name": "Butler Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911024",
+      "line": "Miami (OH) RedHawks @ UIC Flames (11/22 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 12:00 PM EST",
+      "away": {
+        "abbr": "M-OH",
+        "name": "Miami (OH) RedHawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UIC",
+        "name": "UIC Flames",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920736",
+      "line": "Dayton Flyers @ Northwestern Wildcats (11/22 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 1:00 PM EST",
+      "away": {
+        "abbr": "Dayt",
+        "name": "Dayton Flyers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NW",
+        "name": "Northwestern Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909527",
+      "line": "Chicago State Cougars @ Marquette Golden Eagles (11/22 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 1:00 PM EST",
+      "away": {
+        "abbr": "CHST",
+        "name": "Chicago State Cougars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Marq",
+        "name": "Marquette Golden Eagles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401928802",
+      "line": "George Washington Revolutionaries @ Western Kentucky Hilltoppers (11/22 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 2:00 PM EST",
+      "away": {
+        "abbr": "GrgWas",
+        "name": "George Washington Revolutionaries",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WKU",
+        "name": "Western Kentucky Hilltoppers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921748",
+      "line": "UMass Lowell River Hawks @ Cincinnati Bearcats (11/22 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 2:00 PM EST",
+      "away": {
+        "abbr": "UML",
+        "name": "UMass Lowell River Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cin",
+        "name": "Cincinnati Bearcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921706",
+      "line": "Wyoming Cowboys @ Duquesne Dukes (11/22 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 2:00 PM EST",
+      "away": {
+        "abbr": "Wyo",
+        "name": "Wyoming Cowboys",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Duques",
+        "name": "Duquesne Dukes",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918988",
+      "line": "Evansville Purple Aces @ Memphis Tigers (11/22 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 2:00 PM EST",
+      "away": {
+        "abbr": "Evans",
+        "name": "Evansville Purple Aces",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Mem",
+        "name": "Memphis Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911200",
+      "line": "San Diego Toreros @ Fordham Rams (11/22 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 2:00 PM EST",
+      "away": {
+        "abbr": "USD",
+        "name": "San Diego Toreros",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ford",
+        "name": "Fordham Rams",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906868",
+      "line": "Southern Indiana Screaming Eagles @ Texas Longhorns (11/22 - 3:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 3:00 PM EST",
+      "away": {
+        "abbr": "USI",
+        "name": "Southern Indiana Screaming Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tex",
+        "name": "Texas Longhorns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929202",
+      "line": "McNeese Cowboys @ Texas State Bobcats (11/22 - 3:30 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 3:30 PM EST",
+      "away": {
+        "abbr": "MCN",
+        "name": "McNeese Cowboys",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TxSt",
+        "name": "Texas State Bobcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920381",
+      "line": "Virginia Tech Hokies @ Oklahoma State Cowboys (11/22 - 3:30 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 3:30 PM EST",
+      "away": {
+        "abbr": "VaTec",
+        "name": "Virginia Tech Hokies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OkSt",
+        "name": "Oklahoma State Cowboys",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401926795",
+      "line": "Richmond Spiders @ Liberty Flames (11/22 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 4:30 PM EST",
+      "away": {
+        "abbr": "Rich",
+        "name": "Richmond Spiders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LIB",
+        "name": "Liberty Flames",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917540",
+      "line": "UC Irvine Anteaters @ Loyola Marymount Lions (11/22 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 4:30 PM EST",
+      "away": {
+        "abbr": "UCI",
+        "name": "UC Irvine Anteaters",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LoyMa",
+        "name": "Loyola Marymount Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925013",
+      "line": "Rice Owls @ Lamar Cardinals (11/22 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 5:00 PM EST",
+      "away": {
+        "abbr": "Rice",
+        "name": "Rice Owls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LAM",
+        "name": "Lamar Cardinals",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909556",
+      "line": "NJIT Highlanders @ Boston College Eagles (11/22 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 5:00 PM EST",
+      "away": {
+        "abbr": "NJIT",
+        "name": "NJIT Highlanders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BC",
+        "name": "Boston College Eagles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921205",
+      "line": "Temple Owls @ Stephen F. Austin Lumberjacks (11/22 - 5:30 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 5:30 PM EST",
+      "away": {
+        "abbr": "Tem",
+        "name": "Temple Owls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SFA",
+        "name": "Stephen F. Austin Lumberjacks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401928999",
+      "line": "Southern Miss Golden Eagles @ Valparaiso Beacons (11/22 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 6:00 PM EST",
+      "away": {
+        "abbr": "USM",
+        "name": "Southern Miss Golden Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Valpa",
+        "name": "Valparaiso Beacons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921420",
+      "line": "Utah Utes @ Minnesota Golden Gophers (11/22 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 6:00 PM EST",
+      "away": {
+        "abbr": "Utah",
+        "name": "Utah Utes",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Minn",
+        "name": "Minnesota Golden Gophers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920905",
+      "line": "Delaware Blue Hens @ UCLA Bruins (11/22 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 7:00 PM EST",
+      "away": {
+        "abbr": "DEL",
+        "name": "Delaware Blue Hens",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCLA",
+        "name": "UCLA Bruins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919020",
+      "line": "Rhode Island Rams @ UAB Blazers (11/22 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 7:00 PM EST",
+      "away": {
+        "abbr": "URI",
+        "name": "Rhode Island Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UAB",
+        "name": "UAB Blazers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917541",
+      "line": "California Baptist Lancers @ Portland Pilots (11/22 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 7:00 PM EST",
+      "away": {
+        "abbr": "CBU",
+        "name": "California Baptist Lancers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Portl",
+        "name": "Portland Pilots",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401926774",
+      "line": "Louisiana Ragin' Cajuns @ USC Trojans (11/22 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 8:00 PM EST",
+      "away": {
+        "abbr": "UL",
+        "name": "Louisiana Ragin' Cajuns",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USC",
+        "name": "USC Trojans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929595",
+      "line": "Menlo Oaks @ Saint Mary's Gaels (11/22 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 8:00 PM EST",
+      "away": {
+        "abbr": "MNLO",
+        "name": "Menlo Oaks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StMar",
+        "name": "Saint Mary's Gaels",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917542",
+      "line": "Seattle U Redhawks @ UC San Diego Tritons (11/22 - 9:30 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 9:30 PM EST",
+      "away": {
+        "abbr": "SeatU",
+        "name": "Seattle U Redhawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCSD",
+        "name": "UC San Diego Tritons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911233",
+      "line": "San José State Spartans @ Loyola Chicago Ramblers (11/22 - 11:59 PM EST)",
+      "completed": false,
+      "statusText": "11/22 - 11:59 PM EST",
+      "away": {
+        "abbr": "SJSU",
+        "name": "San José State Spartans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LoyIL",
+        "name": "Loyola Chicago Ramblers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

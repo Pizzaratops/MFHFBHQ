@@ -2,11 +2,9 @@
   "league": "ncaab",
   "date": "2026-11-21",
   "games": [
-    "Michigan Wolverines @ Villanova Wildcats (15:30 - 2nd)",
-    "Loyola Marymount Lions @ California Baptist Lancers (18:44 - 2nd)",
-    "Brown Bears @ Vermont Catamounts (13:25 - 2nd)",
-    "Valparaiso Beacons @ Troy Trojans (10:43 - 1st)",
+    "Washington State Cougars @ Duke Blue Devils (1:46 - 1st)",
     "Detroit Mercy Titans 70 @ Michigan State Spartans 91 (Final)",
+    "Michigan Wolverines 73 @ Villanova Wildcats 79 (Final)",
     "Queens University Royals 75 @ LSU Tigers 106 (Final)",
     "Columbia Lions 80 @ Boston University Terriers 71 (Final/OT)",
     "Denver Pioneers 68 @ Eastern Michigan Eagles 70 (Final)",
@@ -23,11 +21,13 @@
     "Air Force Falcons 68 @ UTSA Roadrunners 90 (Final)",
     "Southern Illinois Salukis 85 @ East Carolina Pirates 69 (Final)",
     "Coppin State Eagles 60 @ Georgetown Hoyas 84 (Final)",
-    "Bradley Braves @ Pacific Tigers (11/21 - 10:00 PM EST)",
-    "Washington State Cougars @ Duke Blue Devils (11/21 - 11:00 PM EST)"
+    "Loyola Marymount Lions 80 @ California Baptist Lancers 73 (Final)",
+    "Brown Bears 71 @ Vermont Catamounts 84 (Final)",
+    "Valparaiso Beacons 77 @ Troy Trojans 72 (Final)",
+    "Bradley Braves 62 @ Pacific Tigers 63 (Final)"
   ],
   "leagueAvg": {
-    "fg": 44.8,
-    "ft": 76.1
+    "fg": 44.5,
+    "ft": 75.6
   }
 }
