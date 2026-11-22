@@ -2,18 +2,18 @@
   "league": "ncaab",
   "date": "2026-11-22",
   "games": [
-    "Southern Indiana Screaming Eagles @ Texas Longhorns (11:39 - 1st)",
-    "George Washington Revolutionaries @ Western Kentucky Hilltoppers (16:13 - 2nd)",
-    "UMass Lowell River Hawks @ Cincinnati Bearcats (15:19 - 2nd)",
-    "Wyoming Cowboys @ Duquesne Dukes (12:22 - 2nd)",
-    "Evansville Purple Aces @ Memphis Tigers (14:54 - 2nd)",
-    "Fordham Rams @ San Diego Toreros (13:24 - 2nd)",
+    "Southern Indiana Screaming Eagles @ Texas Longhorns (Halftime)",
+    "George Washington Revolutionaries @ Western Kentucky Hilltoppers (4:30 - 2nd)",
+    "UMass Lowell River Hawks 68 @ Cincinnati Bearcats 78 (Final)",
+    "Evansville Purple Aces @ Memphis Tigers (1:02 - 2nd)",
+    "Fordham Rams 58 @ San Diego Toreros 80 (Final)",
+    "McNeese Cowboys @ Texas State Bobcats (10:38 - 1st)",
+    "Virginia Tech Hokies @ Oklahoma State Cowboys (5:55 - 1st)",
     "Nebraska Cornhuskers 76 @ Butler Bulldogs 74 (Final)",
     "Miami (OH) RedHawks 71 @ UIC Flames 60 (Final)",
     "Dayton Flyers 55 @ Northwestern Wildcats 79 (Final)",
     "Chicago State Cougars 62 @ Marquette Golden Eagles 106 (Final)",
-    "McNeese Cowboys @ Texas State Bobcats (11/22 - 3:30 PM EST)",
-    "Virginia Tech Hokies @ Oklahoma State Cowboys (11/22 - 3:30 PM EST)",
+    "Wyoming Cowboys 79 @ Duquesne Dukes 61 (Final)",
     "Richmond Spiders @ Liberty Flames (11/22 - 4:30 PM EST)",
     "UC Irvine Anteaters @ Loyola Marymount Lions (11/22 - 4:30 PM EST)",
     "Rice Owls @ Lamar Cardinals (11/22 - 5:00 PM EST)",
@@ -30,7 +30,7 @@
     "San José State Spartans @ Loyola Chicago Ramblers (11/22 - 11:59 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 48.5,
-    "ft": 73
+    "fg": 47.6,
+    "ft": 72.9
   }
 }
