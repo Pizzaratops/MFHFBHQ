@@ -945,6 +945,47 @@
           </div>
         </section>`).join('');
 
+      const R = P.road;
+      const roadCard = () => {
+        if (!R) return '';
+        const lead = L && L.top && L.top[0], meL = L && L.me;
+        const gapNow = lead && meL ? lead.pts - meL.pts : R.basis.top - R.basis.me;
+        const gdNow = (L && L.gameday) || R.basis.gameday;
+        const gNow = lead && meL && lead.avg && meL.avg ? Math.round(lead.pts / lead.avg - meL.pts / meL.avg) : R.basis.topG - R.basis.meG;
+        // Soll für heute: linear zwischen den Soll-Punkten
+        const T = d => Date.parse(d + 'T12:00:00Z'), t = T(gdNow);
+        let soll = R.soll[R.soll.length - 1].gap;
+        for (let i = 1; i < R.soll.length; i++) { const a = R.soll[i - 1], b = R.soll[i]; if (t <= T(b.d)) { soll = a.gap + (b.gap - a.gap) * Math.max(0, (t - T(a.d)) / (T(b.d) - T(a.d))); break; } }
+        const ok = gapNow <= soll;
+        const gapTxt = g => g > 0 ? `${deInt(Math.round(g))} hinten` : g < 0 ? `${deInt(Math.round(-g))} vorn` : 'gleichauf';
+        // Verlauf des Rückstands aus USM_HISTORY
+        const hist = (data.USM_HISTORY || []).filter(h => h.top).map(h => [h.g, h.top - h.pts]);
+        const trend = hist.length > 1 ? hist.slice(-7).map(([d, g]) => `${d.slice(8, 10)}.${d.slice(5, 7)}. ${deInt(Math.round(g))}`).join(' · ') : 'Ab morgen hier: Rückstand Tag für Tag.';
+        return `<section class="card usm-mt usm-road"><div class="card-head"><h2>👑 Road to #1</h2><span class="muted usm-small">${lead ? `Platz 1: ${e(lead.team)} (${e(lead.mgr)})` : ''} · Spieltag ${fmtDate(gdNow).slice(0, 6)}</span></div>
+          <div class="stat-row usm-row usm-pad">
+            ${stat('Rückstand', `${deInt(Math.round(gapNow))} <span class="usm-sv-s">FP</span>`)}
+            ${stat('Soll heute', `${gapTxt(soll)}`)}
+            ${stat('Status', ok ? '<span class="up">im Soll</span>' : `<span class="down">${deInt(Math.round(gapNow - soll))} über Soll</span>`)}
+            ${stat('Spiele-Differenz', `${gNow > 0 ? '−' : '+'}${Math.abs(gNow)} <span class="usm-sv-s">Spiele</span>`)}
+            ${stat('FP/G du / er', meL && lead ? `${de(meL.avg)} / ${de(lead.avg)}` : `${de(R.basis.meFpg)} / ${de(R.basis.topFpg)}`)}
+          </div>
+          <div class="usm-pad">
+            <p><b>Kern:</b> ${e(R.kern)}</p>
+            <div class="usm-lbl usm-mt">Der Weg</div>
+            ${R.weg.map(w => `<div class="usm-pf-tr"><div class="usm-lbl">${e(w.wann)}</div><div><b>${e(w.was)}</b></div><div class="usm-m">${e(w.warum)}</div></div>`).join('')}
+            <div class="usm-grid usm-live-grid usm-mt">
+              <div><div class="usm-lbl">Soll-Pfad (höchstens so viel Rückstand)</div>
+                <table class="table compact usm-table"><tbody>${R.soll.map(s => `<tr${t >= T(s.d) ? ' class="muted"' : ''}><td>${fmtDate(s.d)}</td><td class="num">${gapTxt(s.gap)}</td></tr>`).join('')}</tbody></table>
+                <p class="muted usm-small">Rückstand zuletzt: ${e(trend)}</p></div>
+              <div><div class="usm-lbl">Was laufen muss</div><ul class="usm-plan-ul">${R.bedingungen.map(x => `<li>${e(x)}</li>`).join('')}</ul></div>
+            </div>
+            <div class="usm-lbl usm-mt">Szenarien bis Saisonende (11.04.)</div>
+            <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Annahme</th><th>Überholen</th><th class="num">du</th><th class="num">Platz 1</th><th class="num">Abstand</th></tr></thead><tbody>
+              ${R.szenarien.map(s => `<tr${s.ziel ? ' class="usm-me"' : ''}><td>${e(s.name)}</td><td>${e(s.ueber)}</td><td class="num">${deInt(s.me)}</td><td class="num">${deInt(s.top)}</td><td class="num">${sg(s.me - s.top)}</td></tr>`).join('')}
+            </tbody></table></div>
+            <p class="muted usm-small">Hervorgehoben = Grundlage des Soll-Pfads. ${e(R.grenzen)}</p>
+          </div></section>`;
+      };
       const V = P.werte;
       const valTable = `<div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Spieler</th><th>Pos</th><th>Team</th><th class="num">FP/G real</th><th class="num">Proj.</th>${V.tage.map(t => `<th class="num">${t}</th>`).join('')}<th class="num">Δ</th><th>Hinweis</th></tr></thead><tbody>
         ${V.spieler.map(p => `<tr><td class="strong">${e(p.name)}</td><td>${p.pos}</td><td>${p.team}</td><td class="num">${p.real == null ? '–' : de(p.real)}</td><td class="num">${de(p.proj)}</td>
@@ -965,6 +1006,7 @@
           </div>
           <p class="muted usm-small usm-pad">Ziel: ${e(P.ziel)} Vergleich jeweils gegen „keine Trades“ (${deInt(B.fp)} FP bis 20.12., ${deInt(B.rest)} danach, Teamwert ${de(B.wert, 2)}).</p>
           ${stepCards}
+          ${roadCard()}
           <section class="card usm-mt"><div class="card-head"><h2>Szenarien</h2><span class="muted usm-small">Δ gegenüber „keine Trades“</span></div>${scen}</section>
           <section class="card usm-mt"><div class="card-head"><h2>Werte-Verlauf</h2><span class="muted usm-small">erwartetes Gehalt ab So 22:00</span></div>${valTable}
             <p class="muted usm-small usm-pad">Spieler unter 6 Spielen bleiben beim Startgehalt, bis sie 6 Spiele haben (Beal, Lively, Niederhauser). Werte nach Formel mit echten FP + Projection; Formel-Ungenauigkeit ±0,1–0,2.</p></section>
@@ -990,6 +1032,8 @@
       // Vergleich am selben Spieltag (dein Stand stammt aus dem letzten Sync)
       const gd = (me && me.gameday) || H.through;
       const perfAt = ((H.curve || []).filter(c => c[0] <= gd).pop() || [null, H.fp])[1];
+      const soldMap = new Map((H.trades || []).map(t => [t.out, t]));
+      const sold = n => { const t = soldMap.get(n); if (!t) return '<span class="muted">behalten</span>'; const d = t.outSal - (H.draft.find(p => p.name === n) || {}).sal; return `${de(t.outSal, 2)} <span class="usm-m">${fmtDate(t.date).slice(0, 6)}${isFinite(d) && Math.abs(d) >= 0.005 ? ` · ${d > 0 ? '+' : ''}${de(d, 2)}` : ''}</span>`; };
       const mark = n => mine.has(n) ? ' <span class="usm-tag r" title="Auch in deinem Kader">dein</span>' : '';
       // Verlauf (kumuliert)
       const C = H.curve || [];
@@ -1050,8 +1094,8 @@
           <section class="card"><div class="card-head"><h2>Verlauf</h2><span class="muted usm-small">kumulierte Punkte · blaue Linie = perfekt, blaue Punkte = Trades · 👑 Platz 1, du, Mücke, Dan · Hover zeigt Werte · % = Anteil am perfekten Wert bis ${fmtDate(gd).slice(0, 6)} (${deInt(perfAt)})</span></div><div class="usm-pad">${chart}</div></section>
           <div class="usm-grid usm-live-grid usm-mt">
             <section class="card usm-main"><div class="card-head"><h2>Perfekter Draft</h2><span class="muted usm-small">Startgehälter · Punkte bis ${fmtDate(H.through).slice(0, 6)}</span></div>
-              <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Startgehalt</th><th class="num">Spiele</th><th class="num">FP/G</th><th class="num">FP</th></tr></thead><tbody>
-              ${H.draft.map(p => `<tr><td>${p.pos}</td><td class="strong">${e(flip(p.name))}${mark(p.name)}</td><td class="muted">${e(p.team)}</td><td class="num">${de(p.sal, 2)}</td><td class="num">${p.gp}</td><td class="num">${de(p.fpg)}</td><td class="num">${deInt(p.fp)}</td></tr>`).join('')}
+              <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Startgehalt</th><th class="num">Verkauft für</th><th class="num">Spiele</th><th class="num">FP/G</th><th class="num">FP</th></tr></thead><tbody>
+              ${H.draft.map(p => `<tr><td>${p.pos}</td><td class="strong">${e(flip(p.name))}${mark(p.name)}</td><td class="muted">${e(p.team)}</td><td class="num">${de(p.sal, 2)}</td><td class="num">${sold(p.name)}</td><td class="num">${p.gp}</td><td class="num">${de(p.fpg)}</td><td class="num">${deInt(p.fp)}</td></tr>`).join('')}
               </tbody></table></div></section>
             <section class="card"><div class="card-head"><h2>Perfekte Trades</h2><span class="muted usm-small">${H.trades.length}</span></div>
               <div class="usm-pad">${H.trades.length ? H.trades.map(t => `<div class="usm-pf-tr"><div class="usm-lbl">${fmtDate(t.date).slice(0, 6)} · ${e(t.type)}</div>

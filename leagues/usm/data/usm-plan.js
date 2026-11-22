@@ -59,6 +59,47 @@ const USM_PLAN = {
       trades: '22.11. Harper → Doncic · 29.11. Grimes → Beal · 06.12. Shannon → Ausar Thompson · 13.12. Beringer → Lively',
       urteil: 'Fast so viele Punkte wie a), doppelter Wertzuwachs, Puffer bleibt, keine Kaufkosten.' },
   ],
+  // Road to #1 — Unterplan (Rechnung 22.11.: Plan-c-Kader, Projection je Spiel, Spielplan bis 11.04.,
+  // Spitzenreiter mit seinem bisherigen FP/G; beide mit 93 % der möglichen Spiele, wenn nicht anders angegeben).
+  road: {
+    basis: { gameday: '2026-11-20', me: 4384.5, top: 4705.5, meG: 215, topG: 237, meFpg: 20.39, topFpg: 19.85 },
+    kern: 'Der Rückstand ist ein Volumen-Problem, kein Qualitäts-Problem: Du holst pro gespieltem Spiel mehr (20,39 FP/G) als der Spitzenreiter (19,85), hattest aber 22 Spiele weniger (215 gegen 237). Mit seinen 237 Spielen stündest du bei ~4.832 FP – 126 vor ihm. Die fehlenden Spiele (Harper, Boozer, Murray-Boyles, Missi-Start) kosten ~450 FP, mehr als der ganze Rückstand.',
+    weg: [
+      { wann: 'So 22.11.', was: 'Harper → Doncic', warum: 'Harper fehlt bis ~13.12. noch ~10 Spiele (0 FP). Doncic bringt in der Zeit ~9 Spiele × ~42 FP ≈ 380 FP. Größter einzelner Schritt Richtung Platz 1.' },
+      { wann: '23.11.–20.12.', was: 'Plan-Schritte 2–4 (Beal, Ausar Thompson, Lively)', warum: 'Hebt die Kader-Projection von ~20,6 auf ~22,6 FP/G. Ziel bis 20.12.: Rückstand unter ~180.' },
+      { wann: 'ab Dezember', was: 'Geld in Punkte umwandeln', warum: 'Die Wertgewinne (Beal, Lively, Thompson) nacheinander in 20+-FP/G-Spieler tauschen. Schwächste Plätze zuerst: Demin (10,6), Beringer (11,8), Grimes (~11 mit Reaves), Murray-Boyles (13,8), Shannon (15,1).' },
+      { wann: 'laufend', was: 'Volumen halten', warum: 'Kein Spieler länger als ~1 Woche verletzt im Kader. Dafür ist der Puffer von 1,5 Mio da: Ein gekaufter Trade lohnt sich auf dem Weg zu Platz 1, wenn er über die Restsaison mehr als ~150–200 FP bringt.' },
+      { wann: 'laufend', was: 'Spielplan nutzen', warum: 'In Wochen mit vielen Spielen Spieler mit 4 Spielen bevorzugen; Trades so legen, dass kein Spiel verloren geht (So-Trades wirken erst Mo 22:00).' },
+      { wann: '~Januar', was: 'Überholen', warum: 'Steigert sich der Spitzenreiter auf ~21,0–21,5 FP/G, gehst du nach dieser Rechnung zwischen Ende Dezember und Mitte Januar vorbei.' },
+    ],
+    // Soll-Pfad: höchstens so viel Rückstand (negativ = Vorsprung). Etwas vorsichtiger als das Szenario „er steigert sich auf 21,0“.
+    soll: [
+      { d: '2026-11-20', gap: 321 },
+      { d: '2026-12-20', gap: 180 },
+      { d: '2027-01-08', gap: 0 },
+      { d: '2027-01-31', gap: -300 },
+      { d: '2027-03-15', gap: -650 },
+      { d: '2027-04-11', gap: -1000 },
+    ],
+    szenarien: [
+      { name: 'Er bleibt bei 19,85 FP/G, Plan voll', ueber: '~20.12.', me: 24884, top: 22501 },
+      { name: 'Er steigert sich auf 21,0 FP/G', ueber: '~29.12.', me: 24884, top: 23532, ziel: true },
+      { name: 'Er steigert sich auf 21,5 FP/G', ueber: '~08.01.', me: 24884, top: 23981 },
+      { name: 'Er steigert sich auf 22,0 FP/G', ueber: '~31.01.', me: 24884, top: 24429 },
+      { name: 'Er erreicht ≥ 22,5 FP/G', ueber: 'nicht', me: 24884, top: 24967 },
+      { name: 'Plan nur halb, er 21,0', ueber: '~04.03.', me: 23796, top: 23532 },
+      { name: 'Keine Trades, er 19,85', ueber: '~15.03.', me: 22708, top: 22501 },
+      { name: 'Du 90 % Spiele, er 95 %, er 21,0', ueber: '~02.03.', me: 24223, top: 23937 },
+      { name: 'Du 88 % Spiele, er 95 %, er 21,0', ueber: 'nicht', me: 23782, top: 23937 },
+    ],
+    bedingungen: [
+      'Doncic heute holen (Harper-Loch schließen).',
+      'Boozer und Murray-Boyles sind ab ~23.11. wieder da; Beal (~29.11.) und Lively (~27.11.) kommen ohne Rückschlag zurück.',
+      'Dein Spiel-Volumen bleibt mindestens auf seinem Niveau (~93–95 % der möglichen Spiele).',
+      'Sein Schnitt über die Restsaison bleibt unter ~22 FP/G. Dafür müsste er jeden Kaderplatz um ~2,5 FP/G verbessern – möglich, aber viel.',
+    ],
+    grenzen: 'Sein Kader ist nicht einsehbar (Rangliste ohne Team-Links); seine Trades und Verletzungen sind unbekannt, daher Szenarien über seinen FP/G-Schnitt. Deine Werte beruhen auf Projections pro Spiel und dem Spielplan; Verletzungen nach heutigem ESPN-Stand.',
+  },
   // Erwartete Werte zu den Stichtagen (Gehalt ab So 22:00), Projection und ESPN-Status
   werte: {
     tage: ['22.11.', '29.11.', '06.12.', '13.12.', '20.12.'],
