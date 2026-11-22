@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T04:01:04.905Z",
+  "updated": "2026-11-22T07:01:05.947Z",
   "players": {
     "Adem Bona": ["PHI","Out","OUT","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -14,7 +14,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","OUT","2026-11-23","Achilles",0,"2026-11-20"],
-    "Brandon Williams": ["GS","Out","GTD","2026-11-22","Hamstring",0,"2026-11-18"],
+    "Brandon Williams": ["GS","Out","OUT","2026-11-25","Hamstring",0,"2026-11-22"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
     "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-22","Knee",0,"2026-11-21"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
@@ -31,7 +31,6 @@ const NBA_INJURIES = {
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
     "Derrick White": ["BOS","Out","OUT","2026-11-22","Shoulder",0,"2026-11-21"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
-    "Draymond Green": ["GS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-20"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-11-24","Oblique",0,"2026-11-21"],
@@ -60,7 +59,7 @@ const NBA_INJURIES = {
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-27","Hip",0,"2026-11-21"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
-    "Jonathan Isaac": ["ORL","Out","GTD","2026-11-29","Knee",0,"2026-11-21"],
+    "Jonathan Isaac": ["ORL","Out","OUT","2026-11-28","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Day-To-Day","GTD","2026-11-22","Foot",0,"2026-11-22"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
@@ -89,6 +88,7 @@ const NBA_INJURIES = {
     "P.J. Washington": ["DAL","Out","OUT","2026-11-22","Illness",0,"2026-11-21"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Pascal Siakam": ["IND","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
+    "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-22","Thumb",0,"2026-11-22"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
