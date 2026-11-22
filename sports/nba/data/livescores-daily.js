@@ -5470,7 +5470,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-21": {
-      games: ["Milwaukee Bucks 129 @ Philadelphia 76ers 132 (Final)","Portland Trail Blazers 96 @ New York Knicks 97 (Final)","LA Clippers 100 @ Dallas Mavericks 110 (Final)","Memphis Grizzlies 95 @ Minnesota Timberwolves 104 (Final)","New Orleans Pelicans 91 @ San Antonio Spurs 114 (Final)","Boston Celtics @ Sacramento Kings (2:17 - 2nd)"],
+      games: ["Milwaukee Bucks 129 @ Philadelphia 76ers 132 (Final)","Portland Trail Blazers 96 @ New York Knicks 97 (Final)","LA Clippers 100 @ Dallas Mavericks 110 (Final)","Memphis Grizzlies 95 @ Minnesota Timberwolves 104 (Final)","New Orleans Pelicans 91 @ San Antonio Spurs 114 (Final)","Boston Celtics @ Sacramento Kings (11:13 - 4th)"],
       leagueAvg: { fg: 44.4, ft: 77.3 },
       players: [
         { rank: 1, name: "Victor Wembanyama", team: "SA", min: 32, pts: 50, reb: 19, ast: 1, stl: 4, blk: 5, to: 3, tpm: 5, fgPct: 69, ftPct: 83.3, composite: 21.3, zScores: { pts: 4.19, reb: 3.873, ast: -0.541, stl: 3.443, blk: 4.619, tpm: 2.448, fgImpact: 4.069, ftImpact: 0.51, to: -1.316 } },
