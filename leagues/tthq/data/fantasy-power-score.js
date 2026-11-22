@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-22T02:01:27.473Z",
+  "generatedAt": "2026-11-22T03:01:23.018Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 17 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -97,13 +97,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 324.5,
+        "pts": 325.1,
         "reb": 119,
-        "ast": 74.8,
-        "stl": 22.77,
+        "ast": 74.9,
+        "stl": 22.75,
         "blk": 14.69,
-        "tpm": 40.6,
-        "to": 40.9,
+        "tpm": 40.8,
+        "to": 40.8,
         "fgPct": 46.8,
         "ftPct": 78.2
       },
@@ -159,13 +159,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 376.4,
-        "reb": 129.6,
-        "ast": 85.8,
-        "stl": 24.46,
-        "blk": 13.56,
-        "tpm": 47.6,
-        "to": 44.1,
+        "pts": 377.1,
+        "reb": 130.3,
+        "ast": 86.1,
+        "stl": 24.59,
+        "blk": 13.58,
+        "tpm": 47.7,
+        "to": 44.2,
         "fgPct": 46.3,
         "ftPct": 81
       },
@@ -209,7 +209,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 7,
         "fgPct": 6,
         "ftPct": 1,
-        "to": 4
+        "to": 3
       },
       "includedCount": 26,
       "projCount": 26,
@@ -221,13 +221,13 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 277.7,
-        "reb": 115.1,
-        "ast": 59.2,
+        "pts": 278.1,
+        "reb": 115.4,
+        "ast": 59.3,
         "stl": 20,
-        "blk": 15.38,
-        "tpm": 35,
-        "to": 35,
+        "blk": 15.43,
+        "tpm": 35.1,
+        "to": 35.1,
         "fgPct": 46.5,
         "ftPct": 76.1
       },
@@ -240,7 +240,7 @@ const FANTASY_POWER_SCORE = {
         "tpm": 6,
         "fgPct": 9,
         "ftPct": 12,
-        "to": 3
+        "to": 4
       },
       "includedCount": 27,
       "projCount": 26,
@@ -254,12 +254,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 337,
-        "reb": 145.2,
-        "ast": 81.3,
-        "stl": 23.07,
-        "blk": 19.17,
-        "tpm": 33.4,
+        "pts": 336.9,
+        "reb": 145.1,
+        "ast": 81.1,
+        "stl": 23.03,
+        "blk": 19.14,
+        "tpm": 33.6,
         "to": 43.9,
         "fgPct": 47.8,
         "ftPct": 76.2
@@ -287,11 +287,11 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 319.6,
-        "reb": 146.6,
+        "pts": 319.4,
+        "reb": 146.7,
         "ast": 74,
-        "stl": 22.2,
-        "blk": 16.94,
+        "stl": 22.16,
+        "blk": 16.98,
         "tpm": 33.1,
         "to": 41.5,
         "fgPct": 48,
@@ -318,11 +318,11 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 289.6,
+        "pts": 289.7,
         "reb": 107,
         "ast": 62.9,
-        "stl": 22.23,
-        "blk": 11.96,
+        "stl": 22.21,
+        "blk": 11.99,
         "tpm": 29.9,
         "to": 34,
         "fgPct": 47.8,
@@ -349,14 +349,14 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 297.4,
-        "reb": 117,
-        "ast": 67.9,
+        "pts": 297.2,
+        "reb": 116.9,
+        "ast": 67.7,
         "stl": 21.82,
-        "blk": 15.09,
+        "blk": 15.06,
         "tpm": 32.9,
         "to": 38.3,
-        "fgPct": 47.1,
+        "fgPct": 47,
         "ftPct": 77.8
       },
       "rank": {
@@ -411,12 +411,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 259.7,
+        "pts": 259.5,
         "reb": 84.5,
         "ast": 58.7,
-        "stl": 18.14,
-        "blk": 9.49,
-        "tpm": 30.2,
+        "stl": 18.11,
+        "blk": 9.51,
+        "tpm": 30.1,
         "to": 34.5,
         "fgPct": 46.1,
         "ftPct": 78.6
