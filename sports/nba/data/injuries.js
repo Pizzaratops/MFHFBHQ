@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T17:43:30.435Z",
+  "updated": "2026-11-22T18:25:28.543Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -61,7 +61,7 @@ const NBA_INJURIES = {
     "Jock Landale": ["ATL","Out","OUT","2026-11-27","Hip",0,"2026-11-21"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-28","Knee",0,"2026-11-21"],
-    "Jordan Clarkson": ["NY","Day-To-Day","GTD","2026-11-22","Foot",0,"2026-11-22"],
+    "Jordan Clarkson": ["NY","Out","OUT","2026-11-25","Foot",0,"2026-11-22"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
@@ -85,7 +85,7 @@ const NBA_INJURIES = {
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
-    "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-22","Calf",0,"2026-11-22"],
+    "OG Anunoby": ["NY","Out","OUT","2026-11-25","Calf",0,"2026-11-22"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
