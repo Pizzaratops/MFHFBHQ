@@ -1,19 +1,19 @@
 // US-Manager — „Perfekter Verlauf“ (Rückblick), erzeugt von leagues/usm/scripts/build-hindsight.js. Nicht von Hand bearbeiten.
 const USM_HINDSIGHT = {
- "updated": "2026-11-22T12:31:27.837Z",
+ "updated": "2026-11-22T21:14:42.999Z",
  "through": "2026-11-21",
  "days": 32,
- "calibratedOn": "2026-11-15",
- "calibrated": 463,
+ "calibratedOn": "2026-11-22",
+ "calibrated": 468,
  "rules": "Draft 63 Mio, 15 Spieler (min. 5 G / 5 F / 2 C), Startgehälter · Helpside Trade ab 01.11. · 3 Start-Trades ab 15.11. · 1 Gratis-Trade je Sonntag ab 22.11. · keine gekauften Trades · ein Trade je Tag, wirksam ab dem Spieltag",
- "variant": "Zufallsstart 3",
+ "variant": "Zufallsstart 12",
  "draft": [
   {
    "name": "Wembanyama, Victor",
    "team": "San Antonio Spurs",
    "pos": "C",
    "sal": 13.85,
-   "fp": 792,
+   "fp": 793,
    "gp": 17,
    "fpg": 46.6
   },
@@ -31,9 +31,9 @@ const USM_HINDSIGHT = {
    "team": "Minnesota Timberwolves",
    "pos": "F",
    "sal": 5.88,
-   "fp": 404,
+   "fp": 405,
    "gp": 17,
-   "fpg": 23.7
+   "fpg": 23.8
   },
   {
    "name": "Coward, Cedric",
@@ -42,7 +42,7 @@ const USM_HINDSIGHT = {
    "sal": 5.53,
    "fp": 388,
    "gp": 16,
-   "fpg": 24.3
+   "fpg": 24.2
   },
   {
    "name": "Boozer, Cameron",
@@ -58,7 +58,7 @@ const USM_HINDSIGHT = {
    "team": "Atlanta Hawks",
    "pos": "F",
    "sal": 3.12,
-   "fp": 267,
+   "fp": 268,
    "gp": 16,
    "fpg": 16.7
   },
@@ -67,18 +67,18 @@ const USM_HINDSIGHT = {
    "team": "Golden State Warriors",
    "pos": "F",
    "sal": 2.6,
-   "fp": 383,
+   "fp": 385,
    "gp": 16,
-   "fpg": 24
+   "fpg": 24.1
   },
   {
    "name": "Hezonja, Mario",
    "team": "Cleveland Cavaliers",
    "pos": "F",
    "sal": 1.7,
-   "fp": 242,
+   "fp": 241,
    "gp": 17,
-   "fpg": 14.2
+   "fpg": 14.1
   },
   {
    "name": "Mitchell, Davion",
@@ -94,9 +94,9 @@ const USM_HINDSIGHT = {
    "team": "San Antonio Spurs",
    "pos": "G",
    "sal": 4.97,
-   "fp": 375,
+   "fp": 376,
    "gp": 15,
-   "fpg": 25
+   "fpg": 25.1
   },
   {
    "name": "Fears, Jeremiah",
@@ -112,25 +112,25 @@ const USM_HINDSIGHT = {
    "team": "Sacramento Kings",
    "pos": "G",
    "sal": 3.2,
-   "fp": 412,
+   "fp": 415,
    "gp": 16,
-   "fpg": 25.8
+   "fpg": 25.9
   },
   {
    "name": "Burries, Brayden",
    "team": "Milwaukee Bucks",
    "pos": "G",
    "sal": 2.7,
-   "fp": 269,
+   "fp": 267,
    "gp": 17,
-   "fpg": 15.9
+   "fpg": 15.7
   },
   {
    "name": "Proctor, Tyrese",
    "team": "Cleveland Cavaliers",
    "pos": "G",
    "sal": 1.09,
-   "fp": 218,
+   "fp": 217,
    "gp": 16,
    "fpg": 13.6
   },
@@ -139,9 +139,9 @@ const USM_HINDSIGHT = {
    "team": "Minnesota Timberwolves",
    "pos": "G",
    "sal": 0.71,
-   "fp": 211,
+   "fp": 210,
    "gp": 14,
-   "fpg": 15.1
+   "fpg": 15
   }
  ],
  "draftCost": 62.94,
@@ -153,7 +153,7 @@ const USM_HINDSIGHT = {
    "in": "Bamba, Mo",
    "inSal": 2.03,
    "type": "Helpside Trade",
-   "gain": 82
+   "gain": 83
   },
   {
    "date": "2026-11-15",
@@ -185,22 +185,16 @@ const USM_HINDSIGHT = {
  ],
  "final": [
   {
-   "name": "Wembanyama, Victor",
-   "team": "San Antonio Spurs",
-   "pos": "C",
-   "fp": 792
-  },
-  {
    "name": "Embiid, Joel",
    "team": "Philadelphia 76ers",
    "pos": "C",
    "fp": 381
   },
   {
-   "name": "Mara, Aday",
-   "team": "Oklahoma City Thunder",
+   "name": "Wembanyama, Victor",
+   "team": "San Antonio Spurs",
    "pos": "C",
-   "fp": 277
+   "fp": 793
   },
   {
    "name": "Bamba, Mo",
@@ -209,22 +203,28 @@ const USM_HINDSIGHT = {
    "fp": 233
   },
   {
+   "name": "Mara, Aday",
+   "team": "Oklahoma City Thunder",
+   "pos": "C",
+   "fp": 277
+  },
+  {
    "name": "Lendeborg, Yaxel",
    "team": "Golden State Warriors",
    "pos": "F",
-   "fp": 383
-  },
-  {
-   "name": "Boozer, Cameron",
-   "team": "Memphis Grizzlies",
-   "pos": "F",
-   "fp": 409
+   "fp": 385
   },
   {
    "name": "McDaniels, Jaden",
    "team": "Minnesota Timberwolves",
    "pos": "F",
-   "fp": 404
+   "fp": 405
+  },
+  {
+   "name": "Hezonja, Mario",
+   "team": "Cleveland Cavaliers",
+   "pos": "F",
+   "fp": 241
   },
   {
    "name": "Coward, Cedric",
@@ -233,56 +233,56 @@ const USM_HINDSIGHT = {
    "fp": 388
   },
   {
-   "name": "Hezonja, Mario",
-   "team": "Cleveland Cavaliers",
+   "name": "Boozer, Cameron",
+   "team": "Memphis Grizzlies",
    "pos": "F",
-   "fp": 242
+   "fp": 409
   },
   {
    "name": "Shannon Jr., Terrence",
    "team": "Minnesota Timberwolves",
    "pos": "G",
-   "fp": 211
-  },
-  {
-   "name": "Acuff Jr., Darius",
-   "team": "Sacramento Kings",
-   "pos": "G",
-   "fp": 412
+   "fp": 210
   },
   {
    "name": "Grimes, Quentin",
    "team": "Los Angeles Lakers",
    "pos": "G",
-   "fp": 234
+   "fp": 235
   },
   {
-   "name": "Burries, Brayden",
-   "team": "Milwaukee Bucks",
+   "name": "Acuff Jr., Darius",
+   "team": "Sacramento Kings",
    "pos": "G",
-   "fp": 269
+   "fp": 415
   },
   {
    "name": "Herro, Tyler",
    "team": "Milwaukee Bucks",
    "pos": "G",
-   "fp": 393
+   "fp": 392
   },
   {
    "name": "Fears, Jeremiah",
    "team": "New Orleans Pelicans",
    "pos": "G",
    "fp": 372
+  },
+  {
+   "name": "Burries, Brayden",
+   "team": "Milwaukee Bucks",
+   "pos": "G",
+   "fp": 267
   }
  ],
- "fp": 5776,
- "fpNoTrades": 5432,
+ "fp": 5780,
+ "fpNoTrades": 5435,
  "cash": 4.22,
  "compare": {
   "me": {
    "team": "Kenora Hoops",
-   "pts": 4522,
-   "rank": 40,
+   "pts": 4523,
+   "rank": 37,
    "date": "2026-11-22",
    "gameday": "2026-11-21"
   },
@@ -307,7 +307,7 @@ const USM_HINDSIGHT = {
   ],
   [
    "2026-10-23",
-   441
+   442
   ],
   [
    "2026-10-24",
@@ -315,111 +315,111 @@ const USM_HINDSIGHT = {
   ],
   [
    "2026-10-25",
-   742
+   743
   ],
   [
    "2026-10-26",
-   935
+   936
   ],
   [
    "2026-10-27",
-   1032
+   1033
   ],
   [
    "2026-10-28",
-   1243
+   1244
   ],
   [
    "2026-10-29",
-   1463
+   1464
   ],
   [
    "2026-10-30",
-   1535
+   1536
   ],
   [
    "2026-10-31",
-   1838
+   1839
   ],
   [
    "2026-11-01",
-   1881
+   1882
   ],
   [
    "2026-11-02",
-   2145
+   2147
   ],
   [
    "2026-11-04",
-   2471
+   2473
   ],
   [
    "2026-11-05",
-   2525
+   2527
   ],
   [
    "2026-11-06",
-   2800
+   2802
   ],
   [
    "2026-11-07",
-   2954
+   2957
   ],
   [
    "2026-11-08",
-   3105
+   3108
   ],
   [
    "2026-11-09",
-   3316
+   3319
   ],
   [
    "2026-11-10",
-   3421
+   3423
   ],
   [
    "2026-11-11",
-   3653
+   3656
   ],
   [
    "2026-11-12",
-   3685
+   3688
   ],
   [
    "2026-11-13",
-   3956
+   3959
   ],
   [
    "2026-11-14",
-   4184
+   4187
   ],
   [
    "2026-11-15",
-   4378
+   4381
   ],
   [
    "2026-11-16",
-   4650
+   4653
   ],
   [
    "2026-11-17",
-   4811
+   4814
   ],
   [
    "2026-11-18",
-   5131
+   5135
   ],
   [
    "2026-11-19",
-   5312
+   5316
   ],
   [
    "2026-11-20",
-   5432
+   5435
   ],
   [
    "2026-11-21",
-   5776
+   5780
   ]
  ]
 };
