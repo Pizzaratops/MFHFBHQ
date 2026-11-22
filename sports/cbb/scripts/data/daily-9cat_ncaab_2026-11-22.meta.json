@@ -1,0 +1,36 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-22",
+  "games": [
+    "Southern Indiana Screaming Eagles @ Texas Longhorns (11:39 - 1st)",
+    "George Washington Revolutionaries @ Western Kentucky Hilltoppers (16:13 - 2nd)",
+    "UMass Lowell River Hawks @ Cincinnati Bearcats (15:19 - 2nd)",
+    "Wyoming Cowboys @ Duquesne Dukes (12:22 - 2nd)",
+    "Evansville Purple Aces @ Memphis Tigers (14:54 - 2nd)",
+    "Fordham Rams @ San Diego Toreros (13:24 - 2nd)",
+    "Nebraska Cornhuskers 76 @ Butler Bulldogs 74 (Final)",
+    "Miami (OH) RedHawks 71 @ UIC Flames 60 (Final)",
+    "Dayton Flyers 55 @ Northwestern Wildcats 79 (Final)",
+    "Chicago State Cougars 62 @ Marquette Golden Eagles 106 (Final)",
+    "McNeese Cowboys @ Texas State Bobcats (11/22 - 3:30 PM EST)",
+    "Virginia Tech Hokies @ Oklahoma State Cowboys (11/22 - 3:30 PM EST)",
+    "Richmond Spiders @ Liberty Flames (11/22 - 4:30 PM EST)",
+    "UC Irvine Anteaters @ Loyola Marymount Lions (11/22 - 4:30 PM EST)",
+    "Rice Owls @ Lamar Cardinals (11/22 - 5:00 PM EST)",
+    "NJIT Highlanders @ Boston College Eagles (11/22 - 5:00 PM EST)",
+    "Temple Owls @ Stephen F. Austin Lumberjacks (11/22 - 5:30 PM EST)",
+    "Southern Miss Golden Eagles @ Valparaiso Beacons (11/22 - 6:00 PM EST)",
+    "Utah Utes @ Minnesota Golden Gophers (11/22 - 6:00 PM EST)",
+    "Delaware Blue Hens @ UCLA Bruins (11/22 - 7:00 PM EST)",
+    "Rhode Island Rams @ UAB Blazers (11/22 - 7:00 PM EST)",
+    "California Baptist Lancers @ Portland Pilots (11/22 - 7:00 PM EST)",
+    "Louisiana Ragin' Cajuns @ USC Trojans (11/22 - 8:00 PM EST)",
+    "Menlo Oaks @ Saint Mary's Gaels (11/22 - 8:00 PM EST)",
+    "Seattle U Redhawks @ UC San Diego Tritons (11/22 - 9:30 PM EST)",
+    "San José State Spartans @ Loyola Chicago Ramblers (11/22 - 11:59 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 48.5,
+    "ft": 73
+  }
+}
