@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T15:13:32.965Z",
+  "updated": "2026-11-22T15:38:30.503Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -25,11 +25,11 @@ const NBA_INJURIES = {
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","GTD","2026-11-23","Ankle",0,"2026-11-19"],
     "Collin Murray-Boyles": ["TOR","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-21"],
-    "Dean Wade": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-20"],
+    "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
-    "Derrick White": ["BOS","Out","OUT","2026-11-22","Shoulder",0,"2026-11-21"],
+    "Derrick White": ["BOS","Day-To-Day","GTD","2026-11-22","Shoulder",0,"2026-11-22"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
@@ -50,7 +50,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Javon Small": ["MEM","Day-To-Day","GTD","2026-11-23","Personal",0,"2026-11-22"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
-    "Jaylen Brown": ["PHI","Out","OUT","2026-11-23","Hamstring",0,"2026-11-20"],
+    "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-23","Back",0,"2026-11-21"],
     "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-19"],
@@ -73,7 +73,7 @@ const NBA_INJURIES = {
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
-    "Mitchell Robinson": ["BOS","Out","OUT","2026-11-22","Illness",0,"2026-11-21"],
+    "Mitchell Robinson": ["BOS","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-21"],
@@ -82,7 +82,7 @@ const NBA_INJURIES = {
     "Nikola Topic": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-21"],
-    "Norman Powell": ["CHI","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-22"],
+    "Norman Powell": ["CHI","Out","OUT","2026-11-25","Hamstring",0,"2026-11-22"],
     "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-22","Calf",0,"2026-11-22"],
     "Ousmane Dieng": ["MIL","Out","OUT","2026-12-14","Finger",0,"2026-11-15"],
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
@@ -107,11 +107,11 @@ const NBA_INJURIES = {
     "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-22","Groin",0,"2026-11-22"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-21"],
-    "Trey Murphy III": ["NO","Out","OUT","2026-11-23","Knee",0,"2026-11-21"],
+    "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-23","Knee",0,"2026-11-22"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Ugonna Onyenso": ["DET","Day-To-Day","GTD","2026-11-21","Foot",0,"2026-11-19"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Zion Williamson": ["NO","Out","OUT","2026-11-23","Thigh",0,"2026-11-22"]
+    "Zion Williamson": ["NO","Day-To-Day","GTD","2026-11-23","Thigh",0,"2026-11-22"]
   }
 };
