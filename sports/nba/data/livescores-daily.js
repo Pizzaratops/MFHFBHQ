@@ -5470,7 +5470,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-21": {
-      games: ["Milwaukee Bucks 129 @ Philadelphia 76ers 132 (Final)","Portland Trail Blazers @ New York Knicks (11/21 - 7:30 PM EST)","LA Clippers @ Dallas Mavericks (11/21 - 8:00 PM EST)","Memphis Grizzlies @ Minnesota Timberwolves (11/21 - 8:00 PM EST)","New Orleans Pelicans @ San Antonio Spurs (11/21 - 8:00 PM EST)","Boston Celtics @ Sacramento Kings (11/21 - 10:00 PM EST)"],
+      games: ["Milwaukee Bucks 129 @ Philadelphia 76ers 132 (Final)","Portland Trail Blazers @ New York Knicks (48.6 - 1st)","LA Clippers @ Dallas Mavericks (11/21 - 8:00 PM EST)","Memphis Grizzlies @ Minnesota Timberwolves (11/21 - 8:00 PM EST)","New Orleans Pelicans @ San Antonio Spurs (11/21 - 8:00 PM EST)","Boston Celtics @ Sacramento Kings (11/21 - 10:00 PM EST)"],
       leagueAvg: { fg: 49.2, ft: 90.9 },
       players: [
         { rank: 1, name: "Tyler Herro", team: "MIL", min: 40, pts: 50, reb: 11, ast: 7, stl: 1, blk: 0, to: 2, tpm: 7, fgPct: 65.2, ftPct: 100, composite: 12.72, zScores: { pts: 3.276, reb: 1.523, ast: 1.585, stl: 0.75, blk: -0.655, tpm: 3.221, fgImpact: 2.063, ftImpact: 2.704, to: -1.75 } },

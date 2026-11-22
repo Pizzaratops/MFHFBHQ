@@ -4061,9 +4061,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910024",
-      line: "Portland Trail Blazers @ New York Knicks (11/21 - 7:30 PM EST)",
+      line: "Portland Trail Blazers @ New York Knicks (48.6 - 1st)",
       completed: false,
-      statusText: "11/21 - 7:30 PM EST",
+      statusText: "48.6 - 1st",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
