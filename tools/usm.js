@@ -906,6 +906,75 @@
     },
   });
 
+  // ======================= PLAN (Trade-Pfad) =======================
+  // Daten: leagues/usm/data/usm-plan.js (von Claude aus einer Pfad-Suche erzeugt, sonntags neu).
+  // Status je Schritt gegen den echten Kader aus usm-live.js: erledigt / nächster / offen.
+  MFHFB.pages.register({
+    id: 'usmplan', section: 'home', label: 'Plan', icon: '🗺️', applies: { sport: ['nba'] },
+    when: l => l.key === 'usm', data: ['?usm-plan', '?usm-live'],
+    render({ data }) {
+      const P = data.USM_PLAN, L = data.USM_LIVE;
+      if (!P) return head('Plan', 'Trade-Plan für die nächsten Wochen') + MFHFB.ui.empty('Noch kein Plan', 'leagues/usm/data/usm-plan.js fehlt.', '🗺️');
+      const roster = new Set(((L && L.players) || []).map(p => p.name));
+      const status = s => (roster.has(s.in) && !roster.has(s.out)) ? 'done' : 'open';
+      let nextMarked = false;
+      const steps = P.steps.map(s => { let st = status(s); if (st === 'open' && !nextMarked) { st = 'next'; nextMarked = true; } return { ...s, st }; });
+      const stLabel = { done: '<span class="usm-plan-st done">✓ erledigt</span>', next: '<span class="usm-plan-st next">als Nächstes</span>', open: '<span class="usm-plan-st">offen</span>' };
+      const stand = new Date(P.stand).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+      const delta = (a, b, d = 0) => { const x = a - b; return `<span class="${x >= 0 ? 'up' : 'down'}">${x >= 0 ? '+' : ''}${de(x, d)}</span>`; };
+      const sg = (x, d = 0) => `<span class="${x >= 0 ? 'up' : 'down'}">${x >= 0 ? '+' : ''}${de(x, d)}</span>`;
+      const E = P.ergebnis, B = P.basis;
+
+      const stepCards = steps.map((s, i) => `
+        <section class="card usm-plan-step ${s.st}">
+          <div class="card-head"><h2>${i + 1}. ${e(s.label)}</h2>${stLabel[s.st]}</div>
+          <div class="usm-pad">
+            <div class="usm-plan-trade">
+              <div><div class="usm-lbl">Raus</div><b>${e(flip(s.out))}</b> <span class="usm-m">${de(s.outSal, 2)}</span></div>
+              <div class="usm-plan-arrow">→</div>
+              <div><div class="usm-lbl">Rein</div><b>${e(flip(s.in))}</b> <span class="usm-m">${de(s.inSal, 2)}</span></div>
+              <div><div class="usm-lbl">Cash danach</div><b>${de(s.cashAfter, 2)}</b> <span class="usm-m">${e(s.trade)}</span></div>
+            </div>
+            <dl class="usm-plan-dl">
+              <dt>Wirksam</dt><dd>${e(s.wirksam)}</dd>
+              <dt>Spiele</dt><dd>${e(s.spiele)}</dd>
+              <dt>Warum</dt><dd>${e(s.warum)}</dd>
+              <dt>Alternativen</dt><dd>${e(s.alternativen)}</dd>
+              <dt>Risiko</dt><dd>${e(s.risiko)}</dd>
+            </dl>
+          </div>
+        </section>`).join('');
+
+      const V = P.werte;
+      const valTable = `<div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Spieler</th><th>Pos</th><th>Team</th><th class="num">FP/G real</th><th class="num">Proj.</th>${V.tage.map(t => `<th class="num">${t}</th>`).join('')}<th class="num">Δ</th><th>Hinweis</th></tr></thead><tbody>
+        ${V.spieler.map(p => `<tr><td class="strong">${e(p.name)}</td><td>${p.pos}</td><td>${p.team}</td><td class="num">${p.real == null ? '–' : de(p.real)}</td><td class="num">${de(p.proj)}</td>
+          ${p.val.map(v => `<td class="num">${de(v, 2)}</td>`).join('')}<td class="num">${sg(p.val[p.val.length - 1] - p.val[0], 2)}</td><td class="muted usm-small">${e(p.inj)}</td></tr>`).join('')}
+        </tbody></table></div>`;
+
+      const scen = `<div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Szenario</th><th class="num">FP bis 20.12.</th><th class="num">FP danach</th><th class="num">Teamwert</th><th class="num">Cash</th><th class="num">gekauft</th><th>Trades</th><th>Urteil</th></tr></thead><tbody>
+        ${P.szenarien.map(s => `<tr${/Plan/.test(s.name) ? ' class="usm-me"' : ''}><td class="strong">${e(s.name)}</td><td class="num">${sg(s.fp)}</td><td class="num">${sg(s.rest)}</td><td class="num">${sg(s.wert, 2)}</td><td class="num">${de(s.cash, 2)}</td><td class="num">${s.gekauft}</td><td class="usm-small">${e(s.trades)}</td><td class="muted usm-small">${e(s.urteil)}</td></tr>`).join('')}
+        </tbody></table></div>`;
+
+      return head('Plan', `Trade-Pfad bis 20.12. · Stand ${stand} · ${e(P.daten)}`)
+        + `<div class="stat-row usm-row">
+            ${stat('FP bis 20.12.', `${deInt(E.fp)} <span class="usm-sv-s">${delta(E.fp, B.fp)}</span>`)}
+            ${stat('FP danach (Rest)', `${deInt(E.rest)} <span class="usm-sv-s">${delta(E.rest, B.rest)}</span>`)}
+            ${stat('Teamwert 20.12.', `${de(E.wert, 2)} <span class="usm-sv-s">${delta(E.wert, B.wert, 2)}</span>`)}
+            ${stat('Cash 20.12.', de(E.cash, 2))}
+            ${stat('Schritte', `${steps.filter(s => s.st === 'done').length}/${steps.length}`)}
+          </div>
+          <p class="muted usm-small usm-pad">Ziel: ${e(P.ziel)} Vergleich jeweils gegen „keine Trades“ (${deInt(B.fp)} FP bis 20.12., ${deInt(B.rest)} danach, Teamwert ${de(B.wert, 2)}).</p>
+          ${stepCards}
+          <section class="card usm-mt"><div class="card-head"><h2>Szenarien</h2><span class="muted usm-small">Δ gegenüber „keine Trades“</span></div>${scen}</section>
+          <section class="card usm-mt"><div class="card-head"><h2>Werte-Verlauf</h2><span class="muted usm-small">erwartetes Gehalt ab So 22:00</span></div>${valTable}
+            <p class="muted usm-small usm-pad">Spieler unter 6 Spielen bleiben beim Startgehalt, bis sie 6 Spiele haben (Beal, Lively, Niederhauser). Werte nach Formel mit echten FP + Projection; Formel-Ungenauigkeit ±0,1–0,2.</p></section>
+          <div class="usm-grid usm-live-grid usm-mt">
+            <section class="card"><div class="card-head"><h2>Beobachten</h2></div><div class="usm-pad"><ul class="usm-plan-ul">${P.beobachten.map(x => `<li>${e(x)}</li>`).join('')}</ul></div></section>
+            <section class="card"><div class="card-head"><h2>Regeln</h2></div><div class="usm-pad"><ul class="usm-plan-ul">${P.regeln.map(x => `<li>${e(x)}</li>`).join('')}</ul><p class="muted usm-small">${e(P.next)}</p></div></section>
+          </div>`;
+    },
+  });
+
   // ======================= IMPORT =======================
   const BOOKMARKLET = `(async()=>{try{
 if(!/basketball\\.de$/.test(location.hostname)){alert('Bitte auf basketball.de (eingeloggt) ausführen.');return;}

@@ -115,3 +115,24 @@
 @media (max-width: 900px) {
   .usm-live-grid, .usm-ch-wrap { grid-template-columns: 1fr; }
 }
+
+/* Plan (usmplan) */
+.usm-plan-step { margin-top: 14px; }
+.usm-plan-step.done { opacity: .62; }
+.usm-plan-step.next { border-color: var(--league-accent); box-shadow: 0 0 0 1px var(--league-accent), var(--shadow); }
+.usm-plan-st { font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--surface2); color: var(--muted); }
+.usm-plan-st.done { background: #2e9d621f; color: #2e9d62; }
+.usm-plan-st.next { background: color-mix(in srgb, var(--league-accent) 18%, transparent); color: var(--league-accent); }
+.usm-plan-trade { display: grid; grid-template-columns: 1fr auto 1fr 1fr; gap: 12px; align-items: center; margin-bottom: 10px; }
+.usm-plan-arrow { font-size: 22px; color: var(--league-accent); font-weight: 800; }
+.usm-plan-dl { display: grid; grid-template-columns: 110px 1fr; gap: 6px 12px; margin: 0; font-size: 13.5px; }
+.usm-plan-dl dt { color: var(--muted); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; padding-top: 2px; }
+.usm-plan-dl dd { margin: 0; }
+.usm-plan-ul { margin: 0; padding-left: 18px; font-size: 13.5px; }
+.usm-plan-ul li { margin-bottom: 6px; }
+@media (max-width: 700px) {
+  .usm-plan-trade { grid-template-columns: 1fr auto 1fr; }
+  .usm-plan-trade > div:last-child { grid-column: 1 / -1; }
+  .usm-plan-dl { grid-template-columns: 1fr; }
+  .usm-plan-dl dt { padding-top: 6px; }
+}

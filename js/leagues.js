@@ -347,7 +347,7 @@ const LEAGUES = [
     accent2: '#3b82f6',
     mode: 'native',
     dataBase: 'leagues/usm/data/',
-    pages: ['usmlive', 'usmdraft', 'usmteam', 'usmsalary', 'usmimport'],
+    pages: ['usmlive', 'usmplan', 'usmdraft', 'usmteam', 'usmsalary', 'usmimport'],
   },
   {
     // College Basketball (Dizzles Liga) — ganze Liga seit 16.10.2026 (tools/cbb-league.js + NBA-Tools),
