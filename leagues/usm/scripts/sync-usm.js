@@ -231,6 +231,15 @@ function appendSnapshot(date, through, players) {
     return { ...p, today, played };
   });
 
+  // Kaderwechsel gegenüber dem Vortag = Trades (wirksam am Vortag 22:00)
+  let moves = [];
+  if (prev && prev.roster) {
+    const now = new Set(players.map(p => p.name)), before = Object.keys(prev.roster);
+    const outs = before.filter(n => !now.has(n)), ins = players.filter(p => !prev.roster[p.name]);
+    const salOf = n => { const s = team.sold.find(x => x.name === n); return s ? s.sal : (prev.roster[n][2] ?? null); };
+    moves = ins.map((p, i) => ({ out: outs[i] || null, outSal: outs[i] ? salOf(outs[i]) : null, in: p.name, inSal: p.sal }));
+    outs.slice(ins.length).forEach(n => moves.push({ out: n, outSal: salOf(n), in: null, inSal: null }));
+  }
   const watch = (CONFIG.watch || []).map(t => ranking.find(r => r.team === t)).filter(Boolean);
   const live = {
     updated: new Date().toISOString(), date: now.date, gameday,
@@ -247,12 +256,14 @@ function appendSnapshot(date, through, players) {
     d: now.date, g: gameday, rank: me.rank, pts: me.pts, day: me.day, dayRank: me.dayRank, n: ranking.length,
     top: ranking[0] ? ranking[0].pts : null, dayBest: live.dayTop[0] ? live.dayTop[0].day : null,
     avgDay: Math.round(ranking.reduce((s, r) => s + r.day, 0) / ranking.length * 10) / 10,
-    roster: Object.fromEntries(players.map(p => [p.name, [p.fp, p.gp]])),
+    roster: Object.fromEntries(players.map(p => [p.name, [p.fp, p.gp, p.sal]])),
+    ...(moves.length ? { moves } : {}),
     watch: Object.fromEntries(watch.map(r => [r.team, [r.rank, r.pts, r.day]])),
   };
   const hist = history.filter(h => h.d !== now.date).concat(entry).sort((a, b) => a.d < b.d ? -1 : 1);
 
   console.log(`${team.name}: Rang ${me.rank}/${ranking.length} (${me.diff >= 0 ? '+' : ''}${me.diff}), ${me.pts} Punkte, Spieltag ${gameday}: +${me.day} (Tagesrang ${me.dayRank})`);
+  moves.forEach(m => console.log(`  Trade: ${m.out} → ${m.in}`));
   players.forEach(p => console.log(`  ${p.pos} ${p.name.padEnd(26)} LS ${String(p.last).padStart(6)}  heute ${p.today == null ? '–' : p.today}`));
 
   // Montags (nach dem Sonntags-Gehaltsupdate) Snapshot der Gehälter

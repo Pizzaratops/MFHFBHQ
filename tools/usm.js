@@ -117,6 +117,30 @@
     draft: st => st.getJSON('draft', []) || [],
     team: st => st.getJSON('team', null),
   };
+  // Mein Team: Standard ist der echte Kader aus dem täglichen Sync (usm-live.js). Ein im Tool
+  // geändertes Team (Trade „Ausführen“, Restbudget) gilt nur, solange es neuer ist als der Sync.
+  const liveTeam = data => {
+    const L = data && data.USM_LIVE;
+    if (!L || !L.players || !L.players.length) return null;
+    return { keys: L.players.map(p => squash(nkey(flip(p.name)))), cash: L.team.budget || 0, synced: L.updated, live: true };
+  };
+  const myTeam = (st, data) => {
+    const local = S.team(st), live = liveTeam(data);
+    if (live && (!local || !local.ts || new Date(local.ts) <= new Date(live.synced))) return live;
+    return local;
+  };
+  // Trade-Historie: von Hand nachgetragene (leagues/usm/data/usm-trades.js) + vom Sync
+  // erkannte Kaderwechsel (USM_HISTORY[].moves), nach Datum, doppelte zusammengeführt.
+  function tradeLog(data) {
+    const out = [], seen = new Set();
+    const add = t => { const k = t.date + '|' + t.out + '|' + t.in; if (seen.has(k)) return; seen.add(k); out.push(t); };
+    (data.USM_TRADES || []).forEach(add);
+    (data.USM_HISTORY || []).forEach(h => (h.moves || []).forEach(m => add({ date: h.g, auto: true, ...m })));
+    // Nachgetragene und erkannte Trades mit gleichem Spielerpaar nur einmal zeigen
+    const pair = new Map();
+    out.forEach(t => { const k = t.out + '|' + t.in; if (!pair.has(k) || !t.auto) pair.set(k, t); });
+    return [...pair.values()].sort((a, b) => b.date.localeCompare(a.date));
+  }
 
   // ---------------- Gehaltsmodell ----------------
   const SAL_FIT = { a: -1.024, b: 0.3247, c: 0.001717 };
@@ -619,7 +643,7 @@
         if (!validFull(s.ps)) return alert('Positionsregeln nicht erfüllt (5 G / 5 F / 2 C).');
         if (s.rest < -1e-9) return alert('Budget überschritten.');
         if (S.team(st) && !confirm('Bestehendes „Mein Team“ überschreiben?')) return;
-        st.setJSON('team', { keys: draft.slice(), cash: +s.rest.toFixed(2) });
+        st.setJSON('team', { keys: draft.slice(), cash: +s.rest.toFixed(2), ts: new Date().toISOString() });
         location.hash = ctx.href('usmteam');
       });
       paint();
@@ -629,9 +653,9 @@
   // ======================= MEIN TEAM & TRADES =======================
   MFHFB.pages.register({
     id: 'usmteam', section: 'trade', label: 'Mein Team & Trades', icon: '⚖️', applies: { sport: ['nba'] },
-    when: l => l.key === 'usm', data: DATA,
+    when: l => l.key === 'usm', data: [...DATA, '?usm-live', '?usm-trades'],
     render({ data, store, href }) {
-      const pool = buildPool(data, store), team = S.team(store);
+      const pool = buildPool(data, store), team = myTeam(store, data);
       if (!team || !team.keys || !team.keys.length) {
         return head('Mein Team &amp; Trades', 'Teamwert, Gehaltsentwicklung und Trade-Finder.')
           + MFHFB.ui.empty('Noch kein Team gespeichert', 'Unter „Draft & Value“ 15 Spieler wählen und „Als Mein Team speichern“ tippen.', '🧺')
@@ -641,7 +665,17 @@
       const cash = team.cash || 0, salSum = sum(ps, p => p.sal), val = salSum + cash, start = sum(ps, p => p.firstSal ?? p.sal) + cash, dv = val - start;
       const dc = d => d == null ? '–' : `<span class="${d > 0.004 ? 'up' : d < -0.004 ? 'down' : 'muted'}">${d > 0 ? '+' : ''}${f1(d, 2)}</span>`;
       const zc = p => p.tgt == null ? '–' : p.frozen ? `<span class="muted" title="Am nächsten Update noch unter ${MIN_GAMES} Spielen: Gehalt bleibt vorerst">${p.gap > 0 ? '+' : ''}${f1(p.gap, 2)}*</span>` : dc(p.gap);
-      return head('Mein Team &amp; Trades', `Gehälter vom ${fmtDate(pool.date)} · ${pool.snapshots.length} Snapshot${pool.snapshots.length > 1 ? 's' : ''}`)
+      const trades = tradeLog(data);
+      const srcNote = team.live
+        ? `Kader und Restbudget von basketball.de (Sync ${new Date(team.synced).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })})`
+        : `Im Tool geändertes Team <button type="button" class="usm-btn" id="usmTeamReset">Zurück zum basketball.de-Kader</button>`;
+      const tradeCard = trades.length ? `<section class="card usm-mt"><div class="card-head"><h2>Trades</h2><span class="muted usm-small">${trades.length} bisher</span></div>
+          <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>wirksam</th><th>Raus</th><th class="num">Gehalt</th><th>Rein</th><th class="num">Gehalt</th><th class="num">Δ Cash</th><th>Notiz</th></tr></thead><tbody>
+          ${trades.map(t => `<tr><td>${fmtDate(t.date).slice(0, 6)}</td><td class="strong">${e(t.out)}</td><td class="num">${f1(t.outSal, 2)}</td><td class="strong">${e(t.in)}</td><td class="num">${f1(t.inSal, 2)}</td>
+            <td class="num">${t.outSal != null && t.inSal != null ? `<span class="${t.outSal - t.inSal >= 0 ? 'up' : 'down'}">${t.outSal - t.inSal >= 0 ? '+' : ''}${f1(t.outSal - t.inSal, 2)}</span>` : '–'}</td>
+            <td class="muted usm-small">${e(t.note || (t.auto ? 'vom Sync erkannt' : ''))}</td></tr>`).join('')}
+          </tbody></table></div></section>` : '';
+      return head('Mein Team &amp; Trades', `Gehälter vom ${fmtDate(pool.date)} · ${pool.snapshots.length} Snapshot${pool.snapshots.length > 1 ? 's' : ''} · ${srcNote}`)
         + `<div class="stat-row usm-row">${stat('Teamwert', f1(val, 2))}${stat('Δ seit Start', `<span class="${dv >= 0 ? 'up' : 'down'}">${dv >= 0 ? '+' : ''}${f1(dv, 2)}</span>`)}${stat('Gehälter', f1(salSum, 2))}${stat('Restbudget', f1(cash, 2))}${stat(pool.unit, f1(sum(ps, p => p.ev)))}${stat('Δ Ziel (Kader)', dc(sum(ps, p => p.frozen ? 0 : p.gap)))}</div>`
         + horizonSeg(store) + `
         <section class="card" data-share="Mein US-Manager-Team">
@@ -656,13 +690,16 @@
         <section class="card usm-mt">
           <div class="card-head"><h2>Trade-Finder</h2><span class="usm-opts usm-inline"><label>Min. Minuten <input type="number" id="usmTrMin" value="14" min="0" max="40"></label><label class="usm-small"><input type="checkbox" id="usmTrMw" checked> Marktwert einbeziehen</label><button class="usm-btn primary" id="usmTrBtn">Trades suchen</button></span></div>
           <div class="usm-pad"><p class="explain">Δ = Gewinn an erwarteten Punkten im gewählten Zeitraum (${HORIZONS[pool.horizon].label}), inkl. Spielplan und ESPN-Verletzungen. ΔMW = erwarteter Marktwert-Gewinn beim nächsten Update (Ziel-Gehalt rein minus raus; wer dann noch unter 6 Spielen liegt, halb gewichtet). Mit „Marktwert einbeziehen“ zählt 1 Mio ΔMW wie ${f1(0.5 / pool.fit.slope * (pool.horizon === 'game' ? 1 : pool.scale), 1)} ${pool.unit}. Der <b>Helpside Trade</b> ist gratis (1×, verfällt nicht); in der Trade-Phase 3 Start-Trades + 1 gratis pro Sonntag, jeder weitere kostet ${TRADE_COST} Mio. „Ausführen“ trägt den Trade nur hier ein – auf basketball.de musst du ihn selbst bestätigen.</p><div id="usmTrOut" class="muted usm-small">„Trades suchen“ antippen.</div></div>
-        </section>`;
+        </section>` + tradeCard;
     },
     mount(root, ctx) {
-      const st = ctx.store, team = S.team(st);
+      const st = ctx.store, team = myTeam(st, ctx.data);
       if (!team) return;
+      const saveLocal = () => st.setJSON('team', { keys: team.keys, cash: team.cash, ts: new Date().toISOString() });
+      const reset = root.querySelector('#usmTeamReset');
+      if (reset) reset.addEventListener('click', () => { st.setJSON('team', null); ctx.refresh(); });
       const cashEl = root.querySelector('#usmCash');
-      cashEl.addEventListener('change', () => { team.cash = +cashEl.value || 0; st.setJSON('team', team); ctx.refresh(); });
+      cashEl.addEventListener('change', () => { team.cash = +cashEl.value || 0; saveLocal(); ctx.refresh(); });
       mountHorizon(root, ctx);
       let last = [];
       root.querySelector('#usmTrBtn').addEventListener('click', ev => {
@@ -690,7 +727,7 @@
         const out = new Set(tr.out.map(p => p.key));
         team.keys = team.keys.filter(k => !out.has(k)).concat(tr.in.map(p => p.key));
         team.cash = +tr.cashAfter.toFixed(2);
-        st.setJSON('team', team); ctx.refresh();
+        saveLocal(); ctx.refresh();
       });
     },
   });
