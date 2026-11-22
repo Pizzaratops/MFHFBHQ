@@ -140,4 +140,13 @@
 /* Perfekter Verlauf (usmperfect) */
 .usm-pf-tr { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
 .usm-pf-tr:last-of-type { border-bottom: 0; }
-.usm-ch-ref { fill: var(--league-accent); }
+.usm-ch-ref { fill: var(--league-accent); cursor: default; }
+.usm-ch-ref.top { fill: #f5c542; }
+.usm-ch-ref.me { fill: var(--league-accent); stroke: var(--text, #fff); stroke-width: 1.5; }
+.usm-ch-ref.w { fill: var(--muted); }
+.usm-ch-hit { fill: transparent; }
+.usm-ch-l2 { fill: none; stroke-width: 1.5; stroke-dasharray: 4 3; }
+.usm-ch-l2.top { stroke: #f5c542; } .usm-ch-l2.me { stroke: var(--league-accent); stroke-dasharray: none; stroke-width: 2; } .usm-ch-l2.w { stroke: var(--muted); }
+.usm-ch-lead { stroke: var(--border); stroke-width: 1; }
+.usm-ch-lab { font-size: 11px; }
+.usm-ch-lab.top { fill: #f5c542; font-weight: 600; } .usm-ch-lab.me { fill: var(--league-accent); font-weight: 700; } .usm-ch-lab.perf { fill: var(--text, #ddd); }

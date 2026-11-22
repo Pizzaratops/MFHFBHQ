@@ -995,18 +995,49 @@
       const C = H.curve || [];
       let chart = '';
       if (C.length > 1) {
-        const W = 640, Hh = 170, Pd = { l: 44, r: 10, t: 10, b: 24 }, iw = W - Pd.l - Pd.r, ih = Hh - Pd.t - Pd.b;
-        const max = Math.max(...C.map(c => c[1]), (me && me.pts) || 0, (top && top.pts) || 0);
-        const x = i => Pd.l + i * iw / (C.length - 1), y = v => Pd.t + ih - v / max * ih;
-        const line = C.map((c, i) => `${x(i)},${y(c[1])}`).join(' ');
+        // Vergleichsteams: Platz 1, du, Mücke, Dan – Verlauf aus USM_HISTORY (täglich), aktueller Stand aus USM_LIVE
+        const Hist = (data.USM_HISTORY || []).filter(h => h.g);
+        const watchNames = { MueckeHGW: 'Mücke', MagicBallers: 'Dan' };
+        const leader = L && L.top && L.top[0];
+        const S = [
+          { key: 'top', cls: 'top', label: `👑 ${leader ? (leader.team.length > 11 ? leader.team.slice(0, 10) + '…' : leader.team) : 'Platz 1'}`, tip: leader ? `Platz 1: ${leader.team} (${leader.mgr})` : 'Platz 1', pts: h => h.top, now: leader ? leader.pts : top && top.pts },
+          { key: 'me', cls: 'me', label: 'du', tip: `Du (${(L && L.me && L.me.team) || 'Kenora Hoops'}, Rang ${(L && L.me && L.me.rank) || '–'})`, pts: h => h.pts, now: L && L.me ? L.me.pts : me && me.pts },
+          ...Object.keys(watchNames).map(t => {
+            const w = ((L && L.watch) || []).find(x => x.team === t);
+            return { key: t, cls: 'w', label: watchNames[t], tip: `${watchNames[t]} (${t}${w ? ', Rang ' + w.rank : ''})`, pts: h => h.watch && h.watch[t] ? h.watch[t][1] : null, now: w ? w.pts : null };
+          }),
+        ];
+        // Datumsachse = Verlauf des perfekten Wegs + Sync-Spieltage
+        const dates = [...new Set([...C.map(c => c[0]), ...Hist.map(h => h.g), ...(L && L.gameday ? [L.gameday] : [])])].sort();
+        const di = Object.fromEntries(dates.map((d, i) => [d, i]));
+        S.forEach(s => {
+          const pts = Hist.map(h => [h.g, s.pts(h)]).filter(p => p[1] != null);
+          if (L && L.gameday && s.now != null) { const k = pts.findIndex(p => p[0] === L.gameday); k >= 0 ? (pts[k][1] = s.now) : pts.push([L.gameday, s.now]); }
+          s.series = pts.sort((u, v) => u[0] < v[0] ? -1 : 1);
+        });
+        const W = 640, Hh = 190, Pd = { l: 44, r: 132, t: 12, b: 24 }, iw = W - Pd.l - Pd.r, ih = Hh - Pd.t - Pd.b;
+        const max = Math.max(...C.map(c => c[1]), ...S.flatMap(s => s.series.map(p => p[1])));
+        const x = d => Pd.l + di[d] * iw / Math.max(1, dates.length - 1), y = v => Pd.t + ih - v / max * ih;
+        const line = C.map(c => `${x(c[0])},${y(c[1])}`).join(' ');
         const tr = new Set((H.trades || []).map(t => t.date));
-        const dots = C.map((c, i) => tr.has(c[0]) ? `<circle cx="${x(i)}" cy="${y(c[1])}" r="4" class="usm-ch-dot"><title>${fmtDate(c[0]).slice(0, 6)}: Trade</title></circle>` : '').join('');
-        const step = Math.ceil(C.length / 8);
-        const xl = C.map((c, i) => i % step && i !== C.length - 1 ? '' : `<text x="${x(i)}" y="${Hh - 6}" text-anchor="middle" class="usm-ch-t">${c[0].slice(8, 10)}.${c[0].slice(5, 7)}.</text>`).join('');
-        const gi = Math.max(0, C.findIndex(c => c[0] === gd) >= 0 ? C.findIndex(c => c[0] === gd) : C.length - 1);
-        const ref = [[top && top.pts, 'Platz 1', -6], [me && me.pts, 'du', 14]].filter(r => r[0]).map(([v, t, dy]) => `<circle cx="${x(gi)}" cy="${y(v)}" r="4" class="usm-ch-ref"/><text x="${x(gi) - 8}" y="${y(v) + dy}" text-anchor="end" class="usm-ch-t">${t} ${deInt(Math.round(v))}</text>`).join('');
+        const dots = C.map(c => `<circle cx="${x(c[0])}" cy="${y(c[1])}" r="${tr.has(c[0]) ? 4 : 7}" class="${tr.has(c[0]) ? 'usm-ch-dot' : 'usm-ch-hit'}"><title>${fmtDate(c[0]).slice(0, 6)}: perfekt ${deInt(Math.round(c[1]))} FP${tr.has(c[0]) ? ' · Trade' : ''}</title></circle>`).join('');
+        const step = Math.ceil(dates.length / 8);
+        const xl = dates.map((d, i) => i % step && i !== dates.length - 1 ? '' : `<text x="${x(d)}" y="${Hh - 6}" text-anchor="middle" class="usm-ch-t">${d.slice(8, 10)}.${d.slice(5, 7)}.</text>`).join('');
+        // Linien + Punkte der Vergleichsteams; Labels rechts, ohne Überlappung
+        const perfOn = d => ((C.filter(c => c[0] <= d).pop()) || [null, 0])[1];
+        const refs = S.filter(s => s.series.length).map(s => {
+          const lp = s.series[s.series.length - 1];
+          const pl = s.series.length > 1 ? `<polyline points="${s.series.map(p => `${x(p[0])},${y(p[1])}`).join(' ')}" class="usm-ch-l2 ${s.cls}"/>` : '';
+          const pts = s.series.map(p => `<circle cx="${x(p[0])}" cy="${y(p[1])}" r="${s.cls === 'me' ? 5 : 4}" class="usm-ch-ref ${s.cls}"><title>${e(s.tip)} · ${fmtDate(p[0]).slice(0, 6)}: ${deInt(Math.round(p[1]))} FP (${pct(p[1], perfOn(p[0]))} vom Perfekten)</title></circle>`).join('');
+          return { s, lp, svg: pl + pts, ly: y(lp[1]) };
+        }).sort((u, v) => u.ly - v.ly);
+        for (let i = 1; i < refs.length; i++) refs[i].ly = Math.max(refs[i].ly, refs[i - 1].ly + 12);
+        const lx = W - Pd.r + 8;
+        const labels = refs.map(r => `<line x1="${x(r.lp[0]) + 5}" y1="${y(r.lp[1])}" x2="${lx - 2}" y2="${r.ly}" class="usm-ch-lead"/><text x="${lx}" y="${r.ly + 3.5}" class="usm-ch-t usm-ch-lab ${r.s.cls}"><title>${e(r.s.tip)}</title>${e(r.s.label)} ${deInt(Math.round(r.lp[1]))}</text>`).join('');
         const grid = [0, 0.5, 1].map(fq => `<line x1="${Pd.l}" x2="${W - Pd.r}" y1="${y(max * fq)}" y2="${y(max * fq)}" class="usm-ch-grid"/><text x="${Pd.l - 6}" y="${y(max * fq) + 4}" text-anchor="end" class="usm-ch-t">${deInt(Math.round(max * fq))}</text>`).join('');
-        chart = `<svg viewBox="0 0 ${W} ${Hh}" class="usm-ch" role="img" aria-label="Kumulierte Punkte des perfekten Verlaufs">${grid}${ref}<polyline points="${line}" class="usm-ch-line"/>${dots}${xl}</svg>`;
+        const pl = C[C.length - 1];
+        const perfLab = `<text x="${lx}" y="${Math.min(y(pl[1]) + 3.5, (refs[0] ? refs[0].ly : 1e9) - 9)}" class="usm-ch-t usm-ch-lab perf">perfekt ${deInt(Math.round(pl[1]))}</text>`;
+        chart = `<svg viewBox="0 0 ${W} ${Hh}" class="usm-ch" role="img" aria-label="Kumulierte Punkte des perfekten Verlaufs im Vergleich">${grid}<polyline points="${line}" class="usm-ch-line"/>${refs.map(r => r.svg).join('')}${dots}${labels}${perfLab}${xl}</svg>`;
       }
       return head('Perfekter Verlauf', `Wen man hätte draften und traden müssen – mit Wissen von heute · bis Spieltag ${fmtDate(H.through)} · aktualisiert ${upd} (montags)`)
         + `<div class="stat-row usm-row">
@@ -1016,7 +1047,7 @@
             ${stat('Platz 1', top ? `${deInt(Math.round(top.pts))} <span class="usm-sv-s">${pct(top.pts, perfAt)}</span>` : '–')}
             ${stat('Draft-Kosten', `${de(H.draftCost, 2)} <span class="usm-sv-s">von 63</span>`)}
           </div>
-          <section class="card"><div class="card-head"><h2>Verlauf</h2><span class="muted usm-small">kumulierte Punkte · blaue Punkte = Trades · % = Anteil am perfekten Wert bis ${fmtDate(gd).slice(0, 6)} (${deInt(perfAt)})</span></div><div class="usm-pad">${chart}</div></section>
+          <section class="card"><div class="card-head"><h2>Verlauf</h2><span class="muted usm-small">kumulierte Punkte · blaue Linie = perfekt, blaue Punkte = Trades · 👑 Platz 1, du, Mücke, Dan · Hover zeigt Werte · % = Anteil am perfekten Wert bis ${fmtDate(gd).slice(0, 6)} (${deInt(perfAt)})</span></div><div class="usm-pad">${chart}</div></section>
           <div class="usm-grid usm-live-grid usm-mt">
             <section class="card usm-main"><div class="card-head"><h2>Perfekter Draft</h2><span class="muted usm-small">Startgehälter · Punkte bis ${fmtDate(H.through).slice(0, 6)}</span></div>
               <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Startgehalt</th><th class="num">Spiele</th><th class="num">FP/G</th><th class="num">FP</th></tr></thead><tbody>
