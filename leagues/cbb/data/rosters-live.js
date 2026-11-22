@@ -1,7 +1,7 @@
 // ============================================================
 //  ROSTERS_LIVE — Kader aus Fantrax, AUTO-GENERIERT (sync-fantrax.js).
 //  status: A = aktiv, R = Reserve, IR = Injured Reserve · slot = Fantrax-Position
-//  Stand: 2026-11-22T21:02:45.301Z
+//  Stand: 2026-11-22T22:02:24.060Z
 // ============================================================
 
 const ROSTERS_LIVE = {
@@ -25,4 +25,4 @@ const TEAM_RECORDS_LIVE = {"season":2027,"records":{"1":"25-11-0","2":"20-16-0",
 
 const ROSTER_SETTINGS = {"positionConstraints":{"Flx":{"maxActive":4},"G":{"maxActive":8},"F/C":{"maxActive":8}},"maxTotalPlayers":40,"maxTotalActivePlayers":20,"maxTotalReservePlayers":20};
 
-const FANTRAX_SYNC = {"at":"2026-11-22T21:02:45.301Z","leagueId":"z8gwfku2mpmwh0xe","leagueName":"Dizzle CBB Dynasty","period":3,"start":"2026-11-01","end":"2027-02-28"};
+const FANTRAX_SYNC = {"at":"2026-11-22T22:02:24.060Z","leagueId":"z8gwfku2mpmwh0xe","leagueName":"Dizzle CBB Dynasty","period":3,"start":"2026-11-01","end":"2027-02-28"};
