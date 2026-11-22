@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T20:49:25.331Z",
+  "updated": "2026-11-22T21:11:27.019Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -15,7 +15,7 @@ const NBA_INJURIES = {
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Ingram": ["LAC","Out","GTD","2026-11-23","Achilles",0,"2026-11-20"],
     "Brandon Williams": ["GS","Out","OUT","2026-11-25","Hamstring",0,"2026-11-22"],
-    "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
+    "Bryce McGowens": ["NO","Out","GTD","2026-11-23","Elbow",0,"2026-11-22"],
     "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-22"],
@@ -30,7 +30,6 @@ const NBA_INJURIES = {
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
-    "Derrick White": ["BOS","Day-To-Day","GTD","2026-11-22","Shoulder",0,"2026-11-22"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
@@ -55,7 +54,6 @@ const NBA_INJURIES = {
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-23","Back",0,"2026-11-21"],
     "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-19"],
-    "Jayson Tatum": ["BOS","Day-To-Day","GTD","2026-11-22","Rest",0,"2026-11-22"],
     "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-11-23","Calf",0,"2026-11-22"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-27","Hip",0,"2026-11-21"],
@@ -73,7 +71,7 @@ const NBA_INJURIES = {
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-11-25","Knee",0,"2026-11-18"],
-    "Mitchell Robinson": ["BOS","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
+    "Mitchell Robinson": ["BOS","Out","OUT","2026-11-24","Illness",0,"2026-11-22"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Myron Gardner": ["MIA","Day-To-Day","GTD","2026-11-22","Hamstring",0,"2026-11-21"],
@@ -90,6 +88,7 @@ const NBA_INJURIES = {
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Pascal Siakam": ["IND","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
     "Patrick Williams": ["CHI","Day-To-Day","GTD","2026-11-22","Thumb",0,"2026-11-22"],
+    "Paul George": ["BOS","Out","OUT","2026-11-24","Rest",0,"2026-11-22"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
