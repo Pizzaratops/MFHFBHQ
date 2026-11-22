@@ -94,6 +94,8 @@
     'bruce brown': [0, 'gewaivt'], 'kevin porter': [0, 'gewaivt'], 'ak okereke': [0, 'gewaivt'],
     // 15.11.2026: Riley Minix (CLE) per Two-Way zurück → raus
     'enrique freeman': [0, 'gewaivt'], 'dalen terry': [0, 'gewaivt'],
+    // 22.11.2026: Trey Alexander (UTA), Keshon Gilbert (ATL) am 16.11., Riley Minix (CLE) am 18.11. gewaivt
+    'trey alexander': [0, 'gewaivt'], 'keshon gilbert': [0, 'gewaivt'], 'riley minix': [0, 'gewaivt'],
     'ben simmons': [0, 'Out Saison'], 'kristaps porzingis': [0, 'Karriereende'],
   };
   // Gehaltsformel von basketball.de, gelöst am 1. Update (15.11.2026): Fit über 364 Spieler
