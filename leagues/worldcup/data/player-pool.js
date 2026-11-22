@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-22T13:02:51.897Z
+//  Stand: 2026-11-22T14:02:47.136Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -426,7 +426,7 @@ const WC_PLAYER_POOL = [
 ["06cdh","GG Jackson","MEM","PF","SF,PF,F,Flx","FA"],
 ["031m2","Giannis Antetokounmpo","MIA","PF","PF,C,F,Flx","T"],
 ["05xo5","Giorgi Bezhanishvili","(N/A)","PF","PF,F,Flx","FA"],
-["051oy","Goga Bitadze","ORL","C","C,Flx","FA"],
+["051oy","Goga Bitadze","ORL","C","C,Flx","T"],
 ["048zq","Gracin Bakumanya","(N/A)","C","C,Flx","FA"],
 ["06cc2","Gradey Dick","LAC","SG","SG,G,SF,F,Flx","FA"],
 ["07ag3","Graham Ike","GSW","F","SF,PF,F,Flx","FA"],
@@ -475,7 +475,7 @@ const WC_PLAYER_POOL = [
 ["076ud","Isaiah Evans","MIN","SG","SG,G,Flx","FA"],
 ["04ex6","Isaiah Hartenstein","OKC","C","C,Flx","T"],
 ["05uiw","Isaiah Jackson","LAC","C","C,Flx","T"],
-["05qsp","Isaiah Joe","DET","SG","PG,SG,G,Flx","T"],
+["05qsp","Isaiah Joe","DET","SG","PG,SG,G,Flx","FA"],
 ["05ujg","Isaiah Livers","(N/A)","PF","PF,F,Flx","FA"],
 ["05wy4","Isaiah Miller","(N/A)","SG","SG,G,Flx","FA"],
 ["0622c","Isaiah Mobley","(N/A)","PF","PF,F,Flx","FA"],
@@ -833,7 +833,7 @@ const WC_PLAYER_POOL = [
 ["051oz","Luka Samanic","(N/A)","PF","PF,F,Flx","FA"],
 ["06mod","Luke Avdalovic","(N/A)","PG","PG,G,Flx","FA"],
 ["04ewd","Luke Kennard","PHO","SG","PG,SG,G,Flx","FA"],
-["04jwb","Luke Kornet","SAS","C","C,Flx","T"],
+["04jwb","Luke Kornet","SAS","C","C,Flx","FA"],
 ["055c6","Luke Maye","(N/A)","PF","PF,F,Flx","FA"],
 ["0622j","Luke Travers","(N/A)","SG","SG,G,Flx","FA"],
 ["079ys","M.J. Iraldi","(N/A)","F","SF,PF,F,Flx","FA"],
@@ -1087,7 +1087,7 @@ const WC_PLAYER_POOL = [
 ["059cb","Sagaba Konate","(N/A)","SF","SF,F,Flx","FA"],
 ["07245","Saint Thomas","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["06va2","Saliou Niang","(N/A)","SF","SF,PF,F,Flx","FA"],
-["05uug","Sam Hauser","BOS","PF","SF,PF,F,Flx","FA"],
+["05uug","Sam Hauser","BOS","PF","SF,PF,F,Flx","T"],
 ["05qtb","Sam Merrill","CLE","SG","SG,G,SF,F,Flx","FA"],
 ["06mop","Samson Froling","(N/A)","C","C,Flx","FA"],
 ["05ujs","Sandro Mamukelashvili","LAL","PF","PF,C,F,Flx","T"],
