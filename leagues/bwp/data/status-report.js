@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-22T22:03:22.641Z",
+  "generatedAt": "2026-11-22T23:28:20.895Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -631,7 +631,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "PHI",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -1474,7 +1474,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.4,
           "last3AvgPoints": 9.1,
-          "projPoints": 10.3
+          "projPoints": 10.2
         },
         {
           "name": "Courtland Sutton",
@@ -1562,7 +1562,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 31.7,
           "last3AvgPoints": 29,
-          "projPoints": 17.7
+          "projPoints": 17.6
         },
         {
           "name": "Rashid Shaheed",
@@ -1827,7 +1827,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 31.7,
           "last3AvgPoints": 29,
-          "projPoints": 17.7
+          "projPoints": 17.6
         },
         {
           "name": "Jordan Mason",
@@ -2325,7 +2325,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.1,
           "last3AvgPoints": 10.5,
-          "projPoints": 5.7
+          "projPoints": 5.6
         },
         {
           "name": "Mike Evans",
@@ -2458,7 +2458,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8,
           "last3AvgPoints": 8,
-          "projPoints": 7.8
+          "projPoints": 7.7
         },
         {
           "name": "Cameron Dicker",
@@ -3719,7 +3719,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.4,
           "last3AvgPoints": 13.2,
-          "projPoints": 18.2
+          "projPoints": 18.1
         },
         {
           "name": "Jordan Love",
@@ -4040,7 +4040,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 46.3,
           "last3AvgPoints": 34.5,
-          "projPoints": 20
+          "projPoints": 19.9
         },
         {
           "name": "Isaiah Likely",
@@ -4250,7 +4250,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 25.9,
           "last3AvgPoints": 25.9,
-          "projPoints": 9.1
+          "projPoints": 9
         },
         {
           "name": "Ty Johnson",
@@ -4305,7 +4305,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3.1,
-          "projPoints": 5
+          "projPoints": 4.9
         },
         {
           "name": "Travis Etienne Jr.",
