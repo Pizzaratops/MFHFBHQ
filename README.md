@@ -37,6 +37,7 @@ ghost-screen/         Ghost Screen – Basketball-Taktikboard (eigene Seite, kei
                       editor.js + customs.js: eigene Plays zeichnen (gespeichert im Browser unter mfhfb:ghost:plays),
                       teilen per Link (#/p/<Code>) oder .ghost.json-Export/Import;
                       vereins-plays.js (GS.VEREIN): Plays, die alle sehen („Unser Playbook“)
+                      pixel.js: Pixel-Ansicht im Retro-Look (Umschalter „Taktik / 👾 Pixel“, gleiche Simulation)
 css/hub.css           Shell (MFHFB-Navy/Orange, Barlow Condensed, Hell/Dunkel)
 css/app.css           Basis der nativen Ansicht (Layout, Navigation, Tabellen, Karten, Charts, Teilen)
 css/nfl.css, nba.css, cbb.css, usm.css  sportspezifische Styles

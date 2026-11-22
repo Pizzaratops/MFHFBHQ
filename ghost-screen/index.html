@@ -40,6 +40,7 @@
       <div class="gs-board-wrap">
         <div class="gs-board" id="board">
           <svg id="court" viewBox="-7.6 -0.45 15.2 10.95" role="img" aria-label="Halbes Basketballfeld mit Spielern"></svg>
+            <canvas id="pixel" width="256" height="184" hidden aria-label="Pixel-Ansicht des Spielzugs"></canvas>
           <div class="gs-overlay" id="overlay" hidden></div>
         </div>
         <div class="gs-caption" id="caption" aria-live="polite"></div>
@@ -54,6 +55,10 @@
           <div class="gs-seg" role="group" aria-label="Tempo">
             <button type="button" data-speed="0.5" title="Halbe Geschwindigkeit">½×</button>
             <button type="button" data-speed="1" class="on" title="Normale Geschwindigkeit">1×</button>
+          </div>
+          <div class="gs-seg" role="group" aria-label="Ansicht">
+            <button type="button" data-view="board" class="on" title="Taktik-Ansicht wie auf dem Taktikblatt">Taktik</button>
+            <button type="button" data-view="pixel" title="Pixel-Ansicht im Retro-Spiel-Look">👾 Pixel</button>
           </div>
           <div class="gs-seg" role="group" aria-label="Linien">
             <button type="button" data-lines="step" class="on" title="Laufwege des aktuellen Schritts zeigen">Linien: Schritt</button>
@@ -96,6 +101,7 @@
 <script src="plays.js"></script>
 <script src="customs.js"></script>
 <script src="vereins-plays.js"></script>
+<script src="pixel.js"></script>
 <script src="app.js"></script>
 <script src="editor.js"></script>
 </body>

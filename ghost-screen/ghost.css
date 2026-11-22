@@ -88,6 +88,8 @@ h1, h3, .gs-brand b, .gs-stage, .gs-btn, .chip, .gs-ask-k { font-family: 'Barlow
 .gs-board-wrap { border-radius: 14px; overflow: hidden; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .gs-board { position: relative; }
 #court { display: block; width: 100%; height: auto; max-height: 72vh; touch-action: manipulation; }
+#pixel { display: block; width: 100%; height: auto; max-height: 72vh; aspect-ratio: 256 / 184; object-fit: contain; image-rendering: pixelated; image-rendering: crisp-edges; background: #24324f; }
+.gs-board.pixel-mode { background: #24324f; }
 .court .floor { fill: var(--floor); }
 .court .paint { fill: var(--paint); }
 .court .line { fill: none; stroke: var(--court-line); stroke-width: .06; }

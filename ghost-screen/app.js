@@ -19,7 +19,7 @@
 
   const S = {
     play: null, si: 0, c: null, t: 0, playing: false,
-    speed: Number(store.get('speed')) || 1, lines: store.get('lines') || 'step',
+    speed: Number(store.get('speed')) || 1, lines: store.get('lines') || 'step', view: store.get('view') === 'pixel' ? 'pixel' : 'board',
     asked: false, askOpen: false, solved: false, lastTs: 0, routeToken: 0,
   };
 
@@ -100,9 +100,23 @@
     return { t, o, d, ball };
   }
 
+  function renderPixel(fr) {
+    const c = S.c;
+    let lines = null;
+    if (S.lines !== 'off') { const cur = stepIndex(S.t); if (cur !== S.curStep) { S.curStep = cur; markStep(); } lines = stepWindow(); }
+    GS.pixel.render($('pixel'), { c, fr, t: S.t, prevFr: frameAt(Math.max(0, S.t - 0.08)), actors: S.actors, lines });
+  }
   function render() {
     const c = S.c; if (!c) return;
     const fr = frameAt(S.t);
+    if (S.view === 'pixel') {
+      renderPixel(fr);
+      $('scrub').value = Math.round(S.t / c.dur * 1000);
+      $('time').textContent = fmt(S.t);
+      const cur = stepIndex(S.t);
+      if (cur !== S.curStep) { S.curStep = cur; markStep(); }
+      return;
+    }
     for (const id in fr.o) L.p[id].setAttribute('transform', `translate(${fr.o[id][0].toFixed(3)} ${fr.o[id][1].toFixed(3)})`);
     for (const id in fr.d) L.p[id].setAttribute('transform', `translate(${fr.d[id][0].toFixed(3)} ${fr.d[id][1].toFixed(3)})`);
     // frei-Ringe
@@ -437,12 +451,13 @@
 
   // ---------- Ereignisse ----------
   document.addEventListener('click', e => {
-    const b = e.target.closest('[data-act],[data-opt],[data-seek],[data-speed],[data-lines]');
+    const b = e.target.closest('[data-act],[data-opt],[data-seek],[data-speed],[data-lines],[data-view]');
     if (!b) { if (document.body.classList.contains('lib-open') && !e.target.closest('#lib')) document.body.classList.remove('lib-open'); return; }
     if (b.dataset.opt !== undefined) return answer(Number(b.dataset.opt));
     if (b.dataset.seek !== undefined) { const wasPlaying = S.playing; seek(Number(b.dataset.seek) + 0.001); if (wasPlaying) play(); return; }
     if (b.dataset.speed) { S.speed = Number(b.dataset.speed); store.set('speed', S.speed); syncSegs(); return; }
-    if (b.dataset.lines) { S.lines = b.dataset.lines; store.set('lines', S.lines); syncSegs(); drawDiagram(); return; }
+    if (b.dataset.lines) { S.lines = b.dataset.lines; store.set('lines', S.lines); syncSegs(); drawDiagram(); render(); return; }
+    if (b.dataset.view) { S.view = b.dataset.view; store.set('view', S.view); syncSegs(); applyView(); S.curStep = -1; render(); return; }
     switch (b.dataset.act) {
       case 'play': S.playing ? pause() : play(); break;
       case 'restart': S.asked = false; S.askOpen = false; seek(0); play(); break;
@@ -484,7 +499,13 @@
     else if (e.key === 'ArrowRight') { e.preventDefault(); document.querySelector('[data-act="next"]').click(); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); document.querySelector('[data-act="prev"]').click(); }
   });
+  function applyView() {
+    const px = S.view === 'pixel';
+    $('pixel').hidden = !px; svg.style.display = px ? 'none' : '';
+    $('board').classList.toggle('pixel-mode', px);
+  }
   function syncSegs() {
+    document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('on', b.dataset.view === S.view));
     document.querySelectorAll('[data-speed]').forEach(b => b.classList.toggle('on', Number(b.dataset.speed) === S.speed));
     document.querySelectorAll('[data-lines]').forEach(b => b.classList.toggle('on', b.dataset.lines === S.lines));
   }
@@ -534,7 +555,7 @@
 
   GS.ui = { courtBase, el, esc, linkTerms, toast, modal, route, renderLib, sharePlay, exportPlays };
 
-  drawCourt(); syncSegs();
+  drawCourt(); syncSegs(); applyView();
   window.addEventListener('hashchange', route);
   window.addEventListener('DOMContentLoaded', route);
   requestAnimationFrame(tick);
