@@ -5,7 +5,8 @@ name: US-Manager Sync (basketball.de)
 # basketball.de aktualisiert die Fantasy-Punkte täglich um 12:00 → Lauf um
 # 12:35 Berlin. Beide Crons stehen für Sommer-/Winterzeit im Plan; das Skript
 # überspringt Läufe vor 12:00 Berlin selbst (manuell: immer).
-# Montags zusätzlich Gehalts-Snapshot (nach dem Sonntags-Update) → usm-snapshots.js.
+# Montags zusätzlich Gehalts-Snapshot (nach dem Sonntags-Update) → usm-snapshots.js
+# und „Perfekter Verlauf“ (leagues/usm/scripts/build-hindsight.js → usm-hindsight.js).
 #
 # Secrets (legt Beyaz selbst an, Repo → Settings → Secrets and variables → Actions):
 #   USM_USER  Benutzername bei basketball.de
@@ -48,6 +49,12 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then ARGS="--force"; fi
           if [ "${{ inputs.snapshot }}" = "true" ]; then ARGS="$ARGS --snapshot"; fi
           node leagues/usm/scripts/sync-usm.js $ARGS
+
+      - name: Perfekter Verlauf (montags oder manuell)
+        run: |
+          if [ "$(TZ=Europe/Berlin date +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            node leagues/usm/scripts/build-hindsight.js || echo "Perfekter Verlauf fehlgeschlagen (nicht kritisch)"
+          fi
 
       - name: Commit & Push falls geändert
         run: |

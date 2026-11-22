@@ -136,3 +136,8 @@
   .usm-plan-dl { grid-template-columns: 1fr; }
   .usm-plan-dl dt { padding-top: 6px; }
 }
+
+/* Perfekter Verlauf (usmperfect) */
+.usm-pf-tr { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.usm-pf-tr:last-of-type { border-bottom: 0; }
+.usm-ch-ref { fill: var(--league-accent); }

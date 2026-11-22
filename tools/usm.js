@@ -975,6 +975,64 @@
     },
   });
 
+  // ======================= PERFEKTER VERLAUF (Rückblick) =======================
+  // Daten: leagues/usm/data/usm-hindsight.js (leagues/usm/scripts/build-hindsight.js, montags).
+  MFHFB.pages.register({
+    id: 'usmperfect', section: 'home', label: 'Perfekter Verlauf', icon: '🏆', applies: { sport: ['nba'] },
+    when: l => l.key === 'usm', data: ['?usm-hindsight', '?usm-live'],
+    render({ data }) {
+      const H = data.USM_HINDSIGHT, L = data.USM_LIVE;
+      if (!H) return head('Perfekter Verlauf', 'Rückblick mit Wissen von heute') + MFHFB.ui.empty('Noch keine Daten', 'leagues/usm/data/usm-hindsight.js fehlt.', '🏆');
+      const mine = new Set(((L && L.players) || []).map(p => p.name));
+      const upd = new Date(H.updated).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+      const me = H.compare && H.compare.me, top = H.compare && H.compare.top;
+      const pct = (a, b) => b ? Math.round(a / b * 100) + ' %' : '–';
+      // Vergleich am selben Spieltag (dein Stand stammt aus dem letzten Sync)
+      const gd = (me && me.gameday) || H.through;
+      const perfAt = ((H.curve || []).filter(c => c[0] <= gd).pop() || [null, H.fp])[1];
+      const mark = n => mine.has(n) ? ' <span class="usm-tag r" title="Auch in deinem Kader">dein</span>' : '';
+      // Verlauf (kumuliert)
+      const C = H.curve || [];
+      let chart = '';
+      if (C.length > 1) {
+        const W = 640, Hh = 170, Pd = { l: 44, r: 10, t: 10, b: 24 }, iw = W - Pd.l - Pd.r, ih = Hh - Pd.t - Pd.b;
+        const max = Math.max(...C.map(c => c[1]), (me && me.pts) || 0, (top && top.pts) || 0);
+        const x = i => Pd.l + i * iw / (C.length - 1), y = v => Pd.t + ih - v / max * ih;
+        const line = C.map((c, i) => `${x(i)},${y(c[1])}`).join(' ');
+        const tr = new Set((H.trades || []).map(t => t.date));
+        const dots = C.map((c, i) => tr.has(c[0]) ? `<circle cx="${x(i)}" cy="${y(c[1])}" r="4" class="usm-ch-dot"><title>${fmtDate(c[0]).slice(0, 6)}: Trade</title></circle>` : '').join('');
+        const step = Math.ceil(C.length / 8);
+        const xl = C.map((c, i) => i % step && i !== C.length - 1 ? '' : `<text x="${x(i)}" y="${Hh - 6}" text-anchor="middle" class="usm-ch-t">${c[0].slice(8, 10)}.${c[0].slice(5, 7)}.</text>`).join('');
+        const gi = Math.max(0, C.findIndex(c => c[0] === gd) >= 0 ? C.findIndex(c => c[0] === gd) : C.length - 1);
+        const ref = [[top && top.pts, 'Platz 1', -6], [me && me.pts, 'du', 14]].filter(r => r[0]).map(([v, t, dy]) => `<circle cx="${x(gi)}" cy="${y(v)}" r="4" class="usm-ch-ref"/><text x="${x(gi) - 8}" y="${y(v) + dy}" text-anchor="end" class="usm-ch-t">${t} ${deInt(Math.round(v))}</text>`).join('');
+        const grid = [0, 0.5, 1].map(fq => `<line x1="${Pd.l}" x2="${W - Pd.r}" y1="${y(max * fq)}" y2="${y(max * fq)}" class="usm-ch-grid"/><text x="${Pd.l - 6}" y="${y(max * fq) + 4}" text-anchor="end" class="usm-ch-t">${deInt(Math.round(max * fq))}</text>`).join('');
+        chart = `<svg viewBox="0 0 ${W} ${Hh}" class="usm-ch" role="img" aria-label="Kumulierte Punkte des perfekten Verlaufs">${grid}${ref}<polyline points="${line}" class="usm-ch-line"/>${dots}${xl}</svg>`;
+      }
+      return head('Perfekter Verlauf', `Wen man hätte draften und traden müssen – mit Wissen von heute · bis Spieltag ${fmtDate(H.through)} · aktualisiert ${upd} (montags)`)
+        + `<div class="stat-row usm-row">
+            ${stat('Perfekt', deInt(H.fp))}
+            ${stat('davon durch Trades', `<span class="up">+${deInt(H.fp - H.fpNoTrades)}</span>`)}
+            ${stat(`Du (bis ${fmtDate(gd).slice(0, 6)})`, me ? `${deInt(Math.round(me.pts))} <span class="usm-sv-s">${pct(me.pts, perfAt)}</span>` : '–')}
+            ${stat('Platz 1', top ? `${deInt(Math.round(top.pts))} <span class="usm-sv-s">${pct(top.pts, perfAt)}</span>` : '–')}
+            ${stat('Draft-Kosten', `${de(H.draftCost, 2)} <span class="usm-sv-s">von 63</span>`)}
+          </div>
+          <section class="card"><div class="card-head"><h2>Verlauf</h2><span class="muted usm-small">kumulierte Punkte · blaue Punkte = Trades · % = Anteil am perfekten Wert bis ${fmtDate(gd).slice(0, 6)} (${deInt(perfAt)})</span></div><div class="usm-pad">${chart}</div></section>
+          <div class="usm-grid usm-live-grid usm-mt">
+            <section class="card usm-main"><div class="card-head"><h2>Perfekter Draft</h2><span class="muted usm-small">Startgehälter · Punkte bis ${fmtDate(H.through).slice(0, 6)}</span></div>
+              <div class="usm-tbl"><table class="table compact usm-table"><thead><tr><th>Pos</th><th>Spieler</th><th>Team</th><th class="num">Startgehalt</th><th class="num">Spiele</th><th class="num">FP/G</th><th class="num">FP</th></tr></thead><tbody>
+              ${H.draft.map(p => `<tr><td>${p.pos}</td><td class="strong">${e(flip(p.name))}${mark(p.name)}</td><td class="muted">${e(p.team)}</td><td class="num">${de(p.sal, 2)}</td><td class="num">${p.gp}</td><td class="num">${de(p.fpg)}</td><td class="num">${deInt(p.fp)}</td></tr>`).join('')}
+              </tbody></table></div></section>
+            <section class="card"><div class="card-head"><h2>Perfekte Trades</h2><span class="muted usm-small">${H.trades.length}</span></div>
+              <div class="usm-pad">${H.trades.length ? H.trades.map(t => `<div class="usm-pf-tr"><div class="usm-lbl">${fmtDate(t.date).slice(0, 6)} · ${e(t.type)}</div>
+                <div><b>${e(flip(t.out))}</b> <span class="usm-m">${de(t.outSal, 2)}</span> → <b>${e(flip(t.in))}</b> <span class="usm-m">${de(t.inSal, 2)}</span></div>
+                <div class="usm-m">+${deInt(t.gain)} FP bis heute</div></div>`).join('') : '<p class="muted">Keine Trades nötig.</p>'}
+              <div class="usm-lbl usm-mt">Kader heute</div><p class="usm-small">${H.final.map(p => `${p.pos} ${e(flip(p.name))}${mine.has(p.name) ? ' ✓' : ''}`).join(' · ')}</p>
+              <p class="muted usm-small">✓ / „dein“ = auch in deinem Kader.</p></div></section>
+          </div>
+          <p class="muted usm-small usm-pad">Regeln: ${e(H.rules)}. Punkte je Spiel aus den NBA-Tagesdaten mit dem US-Manager-Scoring, Fouls je Spieler gegen die offiziellen Saison-FP kalibriert (Snapshot ${fmtDate(H.calibratedOn)}, ${H.calibrated} Spieler) – Abweichung meist unter 1 FP pro Spiel. Bestmöglicher gefundener Verlauf (Suche über viele Draft-Startpunkte und alle Trade-Tage), keine mathematische Garantie. Restbudget am Ende: ${de(H.cash, 2)} Mio.</p>`;
+    },
+  });
+
   // ======================= IMPORT =======================
   const BOOKMARKLET = `(async()=>{try{
 if(!/basketball\\.de$/.test(location.hostname)){alert('Bitte auf basketball.de (eingeloggt) ausführen.');return;}
