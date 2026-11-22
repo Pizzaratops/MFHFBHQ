@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T17:04:03.036Z",
+  "updated": "2026-11-22T17:19:54.251Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -24,7 +24,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Out","OUT","2026-11-27","Heel",0,"2026-11-20"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Clint Capela": ["HOU","Out","GTD","2026-11-23","Ankle",0,"2026-11-19"],
-    "Collin Murray-Boyles": ["TOR","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-21"],
+    "Collin Murray-Boyles": ["TOR","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-22"],
     "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
@@ -110,7 +110,6 @@ const NBA_INJURIES = {
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-23","Knee",0,"2026-11-22"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
-    "Ugonna Onyenso": ["DET","Day-To-Day","","","",0,"2026-11-19"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Zion Williamson": ["NO","Day-To-Day","GTD","2026-11-23","Thigh",0,"2026-11-22"]
   }
