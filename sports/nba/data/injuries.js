@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T19:01:04.931Z",
+  "updated": "2026-11-22T19:27:52.555Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -94,7 +94,6 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
-    "Ronald Holland II": ["DET","Out","","","",0,"2026-11-21"],
     "Ryan Dunn": ["PHX","Day-To-Day","GTD","2026-11-23","Quadriceps",0,"2026-11-22"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
@@ -105,13 +104,14 @@ const NBA_INJURIES = {
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-27","Heel",0,"2026-11-17"],
     "Taurean Prince": ["DET","Out","OUT","2026-12-13","Knee",0,"2026-11-20"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
-    "Tobi Lawal": ["DAL","Day-To-Day","GTD","2026-11-22","Groin",0,"2026-11-22"],
+    "Tobi Lawal": ["DAL","Out","OUT","2026-11-24","Groin",0,"2026-11-22"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-21"],
     "Trey Murphy III": ["NO","Day-To-Day","GTD","2026-11-23","Knee",0,"2026-11-22"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-24","Hip",0,"2026-11-16"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
+    "Walter Clayton Jr.": ["DAL","Day-To-Day","GTD","2026-11-22","Knee",0,"2026-11-22"],
     "Zion Williamson": ["NO","Day-To-Day","GTD","2026-11-23","Thigh",0,"2026-11-22"]
   }
 };
