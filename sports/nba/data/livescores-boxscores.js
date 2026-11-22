@@ -4061,9 +4061,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910024",
-      line: "Portland Trail Blazers @ New York Knicks (48.6 - 1st)",
+      line: "Portland Trail Blazers @ New York Knicks (7:25 - 3rd)",
       completed: false,
-      statusText: "48.6 - 1st",
+      statusText: "7:25 - 3rd",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -4079,9 +4079,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910025",
-      line: "LA Clippers @ Dallas Mavericks (11/21 - 8:00 PM EST)",
+      line: "LA Clippers @ Dallas Mavericks (2:45 - 2nd)",
       completed: false,
-      statusText: "11/21 - 8:00 PM EST",
+      statusText: "2:45 - 2nd",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
@@ -4097,9 +4097,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910026",
-      line: "Memphis Grizzlies @ Minnesota Timberwolves (11/21 - 8:00 PM EST)",
+      line: "Memphis Grizzlies @ Minnesota Timberwolves (1:05 - 2nd)",
       completed: false,
-      statusText: "11/21 - 8:00 PM EST",
+      statusText: "1:05 - 2nd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -4115,9 +4115,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910027",
-      line: "New Orleans Pelicans @ San Antonio Spurs (11/21 - 8:00 PM EST)",
+      line: "New Orleans Pelicans @ San Antonio Spurs (3:49 - 2nd)",
       completed: false,
-      statusText: "11/21 - 8:00 PM EST",
+      statusText: "3:49 - 2nd",
       away: {
         abbr: "NO", name: "New Orleans Pelicans", score: null,
         players: [
