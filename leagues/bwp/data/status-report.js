@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-22T08:03:22.541Z",
+  "generatedAt": "2026-11-22T10:03:23.269Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1662,7 +1662,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 0.3,
           "last3AvgPoints": 5.5,
-          "projPoints": 12.7
+          "projPoints": 12.8
         },
         {
           "name": "Woody Marks",
@@ -2525,7 +2525,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 0.3,
           "last3AvgPoints": 5.5,
-          "projPoints": 12.7
+          "projPoints": 12.8
         },
         {
           "name": "Pat Bryant",
@@ -2679,7 +2679,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 13.8,
-          "projPoints": 14.3
+          "projPoints": 14.4
         },
         {
           "name": "Sean Tucker",
@@ -3158,17 +3158,6 @@ const STATUS_REPORT_DATA = {
           "projPoints": 10.3
         },
         {
-          "name": "Denzel Boston",
-          "pos": "WR",
-          "nfl": "CLE",
-          "isStarter": true,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 2.6,
-          "last3AvgPoints": 9.4,
-          "projPoints": 0
-        },
-        {
           "name": "Puka Nacua",
           "pos": "WR",
           "nfl": "LAR",
@@ -3255,6 +3244,17 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": 11.5,
           "projPoints": 5.9
+        },
+        {
+          "name": "Aaron Jones Sr.",
+          "pos": "RB",
+          "nfl": "MIN",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": 6,
+          "projPoints": 8.4
         }
       ],
       "flaggedCount": 0
@@ -3697,7 +3697,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.4,
           "last3AvgPoints": 13.2,
-          "projPoints": 18.5
+          "projPoints": 18.4
         },
         {
           "name": "Jordan Love",
@@ -4228,7 +4228,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 25.9,
           "last3AvgPoints": 25.9,
-          "projPoints": 9.2
+          "projPoints": 9.1
         },
         {
           "name": "Ty Johnson",
