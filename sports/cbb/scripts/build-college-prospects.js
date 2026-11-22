@@ -30,15 +30,15 @@ const OUT = path.join(ROOT, 'sports', 'cbb', 'data', 'college-prospects.js');
 const CLS = { Fr: 1, So: 2, Jr: 3, Sr: 4 };
 const ZERO0 = ['gp', 'minPct', 'mpg', 'tpa', 'tpm', 'fta', 'ftm', 'rimM', 'rimA', 'midA', 'dunkM', 'twoPa', 'pts'];
 
-// TTHQ: NBA-Pick → typischer Slot im TTHQ-Gesamtdraft (mit Veteranen, ohne Keeper). Basis: Draft 2026,
-// 26 gezogene Rookies, Quantil-Zuordnung (k-bester Rookie nach NBA-Pick ↔ k-ter Rookie-Slot).
-// Die NBA-Picks 1–5 waren 2026 Keeper und standen nicht im Pool; kontrafaktisch auf die Slots 1–5
-// gesetzt, alle anderen Rookie-Slots dafür +5 (5 starke Spieler mehr vor ihnen). Neu befüllen nach
-// dem nächsten TTHQ-Draft.
+// TTHQ: NBA-Pick → typischer Slot im TTHQ-Draft (Gesamtdraft mit Veteranen, ohne Keeper). Basis: das
+// echte Live-Draft-Board 2026 (#/tthq/livedraft; gedraftet wird über die Webseite, ESPN-Offline-
+// Reihenfolge ist NICHT die echte). 31 Rookies, Quantil-Zuordnung: k-bester Rookie nach NBA-Pick ↔
+// k-ter Rookie-Slot. Korrigiert 22.11.2026 (vorher ESPN-Reihenfolge + falsche Keeper-Annahme).
+// Neu befüllen nach dem nächsten TTHQ-Draft.
 const TTHQ_CURVE = {
-  source: 'TTHQ-Draft 2026 (26 gezogene Rookies; die 5 Keeper-Rookies kontrafaktisch auf Slot 1–5)', teams: 12,
-  nba: [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 34, 35, 37, 52],
-  slot: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 16, 18, 19, 20, 22, 23, 24, 31, 32, 33, 34, 35, 36, 38, 43, 44, 55, 58],
+  source: 'Live-Draft-Board TTHQ 2026 (31 Rookies im echten Draft)', teams: 12,
+  nba: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 34, 35, 37, 52],
+  slot: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 17, 18, 19, 23, 24, 25, 26, 29, 30, 31, 33, 35, 38, 39, 40, 45, 47],
 };
 
 function parseCsv(text) {
