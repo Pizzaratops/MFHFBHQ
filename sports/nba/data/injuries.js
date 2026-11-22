@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-22T19:27:52.555Z",
+  "updated": "2026-11-22T20:17:41.608Z",
   "players": {
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-20"],
     "Alex Caruso": ["OKC","Out","OUT","2026-11-23","Hip",0,"2026-11-21"],
@@ -17,7 +17,6 @@ const NBA_INJURIES = {
     "Brandon Williams": ["GS","Out","OUT","2026-11-25","Hamstring",0,"2026-11-22"],
     "Bryce McGowens": ["NO","Out","OUT","2026-11-27","Elbow",0,"2026-11-19"],
     "Bub Carrington": ["WSH","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
-    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-22","Knee",0,"2026-11-21"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-22"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
