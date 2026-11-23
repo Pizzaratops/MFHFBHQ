@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T21:38:32.074Z",
+  "updated": "2026-11-23T22:11:42.240Z",
   "players": {
     "Aaron Nesmith": ["IND","Out","OUT","2026-11-27","Foot",0,"2026-11-23"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-25","Lower Leg",0,"2026-11-23"],
@@ -42,7 +42,7 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jaden Bradley": ["TOR","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-23"],
-    "Jalen Duren": ["DET","Out","GTD","2026-11-24","Hamstring",0,"2026-11-08"],
+    "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-08"],
     "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-23","Illness",0,"2026-11-23"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
@@ -100,7 +100,7 @@ const NBA_INJURIES = {
     "Tobi Lawal": ["DAL","Out","GTD","2026-11-24","Groin",0,"2026-11-22"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-21"],
-    "Tristan Vukcevic": ["WSH","Out","GTD","2026-11-24","Hip",0,"2026-11-16"],
+    "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-16"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Victor Wembanyama": ["SA","Day-To-Day","GTD","2026-11-23","Back",0,"2026-11-23"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
