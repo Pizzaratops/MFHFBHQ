@@ -4017,9 +4017,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910030",
-      line: "Oklahoma City Thunder @ Miami Heat (6:56 - 2nd)",
+      line: "Oklahoma City Thunder @ Miami Heat (1:20 - 2nd)",
       completed: false,
-      statusText: "6:56 - 2nd",
+      statusText: "1:20 - 2nd",
       away: {
         abbr: "OKC", name: "Oklahoma City Thunder", score: null,
         players: [
