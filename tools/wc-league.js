@@ -105,7 +105,7 @@
         const inside = l.rank <= l.playoffTeams;
         poCell = `<td class="num" data-sort-value="${inside ? l.poGap : -l.poGap}" title="Top ${l.playoffTeams} kommen in die Playoffs · ${inside ? 'Vorsprung auf den ersten Platz außerhalb' : 'Rückstand auf den letzten Playoff-Platz'} (in Kategorien-Siegen)">${inside ? `✅ +${de(l.poGap)}` : `<span class="muted">−${de(l.poGap)}</span>`}</td>`;
       }
-      return `<tr><td>${liga}</td><td>${e(l.team)}</td>${rankCell}${score}${behind}${poCell}<td class="muted">${l.leader ? e(l.leader) : '<span class="strong">— du</span>'}</td></tr>`;
+      return `<tr><td>${liga}</td><td>${e(l.team)}</td>${rankCell}${score}${behind}${poCell}<td class="muted">${!l.leader ? '<span class="strong">— du</span>' : l.rank === 1 ? `<span class="strong">— du</span>, geteilt mit ${e(l.leader)}` : e(l.leader)}</td></tr>`;
     };
     const sorted = [...L].sort((a, b) => (a.rank || 99) / (a.teams || 12) - (b.rank || 99) / (b.teams || 12) || String(a.short).localeCompare(String(b.short), 'de', { numeric: true }));
     return `<div class="page-head"><h1 class="page-title display">📋 Draft Only</h1>

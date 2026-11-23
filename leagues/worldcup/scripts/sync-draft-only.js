@@ -21,7 +21,7 @@ const path = require('path');
 
 const BASE = 'https://www.fantrax.com/fxea/general';
 const OUT = path.join(__dirname, '..', 'data', 'draft-only.js');
-const MY_NAMES = ['hawkward', 'pizzaratops', 'steakosaurus', 'mfhfb'];
+const MY_NAMES = ['hawkward', 'pizzaratops', 'p1zzaratops', 'steakosaurus', 'mfhfb'];
 
 // Liste von Beyaz (23.11.2026). Neue Liga: Zeile ergänzen, Rest passiert automatisch.
 // Optional dritter Eintrag = Kurzname (sonst „FBI Draft Only “ vom Namen abgeschnitten).
