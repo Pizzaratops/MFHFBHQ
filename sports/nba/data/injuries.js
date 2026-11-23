@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T17:01:15.523Z",
+  "updated": "2026-11-23T17:52:17.109Z",
   "players": {
     "Aday Mara": ["OKC","Day-To-Day","GTD","2026-11-23","Lower Leg",0,"2026-11-23"],
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-22"],
@@ -36,12 +36,12 @@ const NBA_INJURIES = {
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-25","Groin",0,"2026-11-23"],
-    "Grant Nelson": ["BKN","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-22"],
     "Grant Williams": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-22"],
     "Grayson Allen": ["CHA","Out","OUT","2026-11-25","Concussion",0,"2026-11-22"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
+    "Jaden Bradley": ["TOR","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-23"],
     "Jalen Duren": ["DET","Out","GTD","2026-11-24","Hamstring",0,"2026-11-08"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
