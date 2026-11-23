@@ -5602,7 +5602,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-22": {
-      games: ["Detroit Pistons 97 @ Atlanta Hawks 107 (Final)","Oklahoma City Thunder @ Miami Heat (7:17 - 3rd)","Orlando Magic @ Washington Wizards (3:41 - 1st)","Denver Nuggets @ Chicago Bulls (2:21 - 1st)","Dallas Mavericks @ Utah Jazz (2:56 - 1st)","Indiana Pacers @ New York Knicks (11/22 - 8:00 PM EST)","Boston Celtics @ Golden State Warriors (11/22 - 8:30 PM EST)"],
+      games: ["Detroit Pistons 97 @ Atlanta Hawks 107 (Final)","Oklahoma City Thunder @ Miami Heat (2:22 - 3rd)","Orlando Magic @ Washington Wizards (8:33 - 2nd)","Denver Nuggets @ Chicago Bulls (6:32 - 2nd)","Dallas Mavericks @ Utah Jazz (6:57 - 2nd)","Indiana Pacers @ New York Knicks (11/22 - 8:00 PM EST)","Boston Celtics @ Golden State Warriors (11/22 - 8:30 PM EST)"],
       leagueAvg: { fg: 39.1, ft: 91.9 },
       players: [
         { rank: 1, name: "Ausar Thompson", team: "DET", min: 38, pts: 18, reb: 11, ast: 5, stl: 1, blk: 2, to: 1, tpm: 0, fgPct: 70, ftPct: 100, composite: 7.17, zScores: { pts: 0.968, reb: 1.58, ast: 0.569, stl: -0.181, blk: 1.737, tpm: -0.846, fgImpact: 2.035, ftImpact: 0.834, to: 0.464 } },

@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T00:28:00.153Z",
+  "updated": "2026-11-23T00:46:13.274Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-23","Lower Leg",0,"2026-11-22"],
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-22"],
@@ -60,7 +60,6 @@ const NBA_INJURIES = {
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-29","Foot",0,"2026-11-20"],
-    "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-22","Illness",0,"2026-11-22"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-20"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
@@ -82,7 +81,6 @@ const NBA_INJURIES = {
     "Ousmane Dieng": ["MIL","Out","GTD","2026-11-23","Finger",0,"2026-11-22"],
     "P.J. Washington": ["DAL","Out","OUT","2026-11-24","Illness",0,"2026-11-22"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
-    "Pascal Siakam": ["IND","Day-To-Day","GTD","2026-11-22","Hip",0,"2026-11-21"],
     "Paul George": ["BOS","Out","OUT","2026-11-24","Rest",0,"2026-11-22"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
