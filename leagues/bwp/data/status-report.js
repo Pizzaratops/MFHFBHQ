@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-23T20:03:27.626Z",
+  "generatedAt": "2026-11-23T22:03:28.491Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -188,8 +188,8 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "WSH",
           "isStarter": true,
-          "status": "IR",
-          "flag": true,
+          "status": null,
+          "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 0,
           "projPoints": 7.5
@@ -206,7 +206,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 5.9
         }
       ],
-      "flaggedCount": 2
+      "flaggedCount": 1
     },
     {
       "id": "beyaz-espn-320102468",
