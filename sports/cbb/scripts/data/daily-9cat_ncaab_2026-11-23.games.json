@@ -364,12 +364,12 @@
     },
     {
       "id": "401921663",
-      "line": "TBD @ Seattle U Redhawks (11/23 - 9:30 PM EST)",
+      "line": "Loyola Chicago Ramblers @ Seattle U Redhawks (11/23 - 9:30 PM EST)",
       "completed": false,
       "statusText": "11/23 - 9:30 PM EST",
       "away": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "LoyIL",
+        "name": "Loyola Chicago Ramblers",
         "score": null,
         "players": []
       },
@@ -436,12 +436,12 @@
     },
     {
       "id": "401921664",
-      "line": "TBD @ UC San Diego Tritons (11/23 - 11:59 PM EST)",
+      "line": "San José State Spartans @ UC San Diego Tritons (11/23 - 11:59 PM EST)",
       "completed": false,
       "statusText": "11/23 - 11:59 PM EST",
       "away": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "SJSU",
+        "name": "San José State Spartans",
         "score": null,
         "players": []
       },

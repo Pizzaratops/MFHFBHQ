@@ -2,7 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-22",
   "games": [
-    "Loyola Chicago Ramblers @ San José State Spartans (2:08 - 2nd)",
     "Southern Indiana Screaming Eagles 61 @ Texas Longhorns 97 (Final)",
     "Delaware Blue Hens 48 @ UCLA Bruins 85 (Final)",
     "Louisiana Ragin' Cajuns 56 @ USC Trojans 82 (Final)",
@@ -27,10 +26,11 @@
     "Portland Pilots 71 @ California Baptist Lancers 79 (Final/OT)",
     "Rhode Island Rams 79 @ UAB Blazers 64 (Final)",
     "Menlo Oaks 78 @ Saint Mary's Gaels 94 (Final)",
-    "UC San Diego Tritons 64 @ Seattle U Redhawks 90 (Final)"
+    "UC San Diego Tritons 64 @ Seattle U Redhawks 90 (Final)",
+    "Loyola Chicago Ramblers 72 @ San José State Spartans 63 (Final)"
   ],
   "leagueAvg": {
-    "fg": 47.6,
-    "ft": 70.6
+    "fg": 47.3,
+    "ft": 71.1
   }
 }
