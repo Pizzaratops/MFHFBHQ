@@ -6014,9 +6014,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401911233",
-      line: "Loyola Chicago Ramblers @ San José State Spartans (Halftime)",
+      line: "Loyola Chicago Ramblers @ San José State Spartans (2:08 - 2nd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "2:08 - 2nd",
       away: {
         abbr: "LoyIL", name: "Loyola Chicago Ramblers", score: null,
         players: [
