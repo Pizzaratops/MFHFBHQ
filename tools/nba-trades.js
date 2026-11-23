@@ -891,23 +891,19 @@
     .replace(/^Slight Edge: Side ([AB])$/, 'Leichter Vorteil: Seite $1')
     .replace(/^Side ([AB]) Wins Big$/, 'Seite $1 gewinnt deutlich');
 
-  function historyPage(ctx) {
-    const { data, ui } = ctx, e = esc, nba = N().init(data);
-    const trades = data.TRADE_HISTORY_BASE || [];
-    const mode = modeOk((ctx.store.getJSON(HKEY, {}) || {}).mode);
-    const head = `<div class="page-head"><h1 class="page-title display">📜 Trade-Historie</h1>
-      <div class="page-sub">${trades.length} Trades<span class="explain"> · Werte eingefroren zum Zeitpunkt des Trades</span> · neu bewerten im <a href="${ctx.href('trade')}">Trade Analyzer</a></div></div>`;
-    if (!trades.length) return head + ui.empty('Noch keine Trades', 'data/trade-history.js ist leer oder fehlt für diese Liga.', '📋');
+  // Eine Trade-Karte (Historie + Popup in Teams/Pick-Übersicht)
+  function historyCard(t, mode, nba, hlKey) {
+    const e = esc;
     const savedLbl = { dynasty: '🏗️ Dynasty', raw: '📊 Raw', winnow: '🏆 Win-Now' };
     const pctFmt = x => String(x).replace('.', ',');
     const sideOwner = players => { const n = [...new Set(players.filter(p => !p.isPick).map(p => p.ownerName).filter(Boolean))]; return n.length === 1 ? n[0] : ''; };
     const renderSide = (players, label, val) => `<div class="tr-nba-hside">
       <div class="tr-nba-bdhead"><span>${label}${sideOwner(players) ? ` · <small>von ${e(sideOwner(players))}</small>` : ''}</span><b>${fmt(val)}</b></div>
       ${players.map(p => (p.isPick
-        ? `<div class="tr-nba-grprow"><span class="tr-nba-note">📋 R${p.round}</span><div class="tr-nba-main"><div class="tr-nba-name">${e(p.year)} · Runde ${e(p.round)}</div><div class="tr-nba-detail">${p.traded ? '→ von ' + e(p.origName) : e(p.currName)}</div></div><span class="tr-nba-val pk">~${fmt(p.baseValue || 0)}</span></div>`
+        ? `<div class="tr-nba-grprow${hlKey && p.pickKey === hlKey ? ' hl' : ''}"><span class="tr-nba-note">📋 R${p.round}</span><div class="tr-nba-main"><div class="tr-nba-name">${e(p.year)} · Runde ${e(p.round)}</div><div class="tr-nba-detail">${p.traded ? '→ von ' + e(p.origName) : e(p.currName)}</div></div><span class="tr-nba-val pk">~${fmt(p.baseValue || 0)}</span></div>`
         : `<div class="tr-nba-grprow">${nba.rankBadge(p.rank ?? null)}<div class="tr-nba-main"><div class="tr-nba-name">${e(p.name)}</div><div class="tr-nba-detail">${e(p.nba)} · ${e(p.ownerName)}</div></div></div>`)).join('')}
     </div>`;
-    const cards = trades.map(t => {
+    const card = t => {
       const d = (t.frozen && t.frozen[mode]) || { valA: t.valA || 0, valB: t.valB || 0, verdict: t.verdict || '', cls: t.cls || 'fair', pctA: t.pctA || '50', pctB: t.pctB || '50' };
       const cls = ['fair', 'slight', 'lopsided'].includes(d.cls) ? d.cls : 'fair';
       const src = t.source === 'espn-sync' || t.source === 'espn-sync-auto' ? '<span class="tr-nba-src">🔄 ESPN Auto</span>' : '';
@@ -919,7 +915,18 @@
         <div class="tr-nba-barlbl small"><span>Seite A <b>${fmt(d.valA)}</b> (${pctFmt(d.pctA)} %)</span><span><b>${fmt(d.valB)}</b> Seite B (${pctFmt(d.pctB)} %)</span></div>
         <div class="tr-nba-hsides">${renderSide(t.sideA || [], 'Seite A', d.valA)}<div class="tr-nba-vs">⟷</div>${renderSide(t.sideB || [], 'Seite B', d.valB)}</div>
       </div>`;
-    }).join('');
+    };
+    return card(t);
+  }
+
+  function historyPage(ctx) {
+    const { data, ui } = ctx, e = esc, nba = N().init(data);
+    const trades = data.TRADE_HISTORY_BASE || [];
+    const mode = modeOk((ctx.store.getJSON(HKEY, {}) || {}).mode);
+    const head = `<div class="page-head"><h1 class="page-title display">📜 Trade-Historie</h1>
+      <div class="page-sub">${trades.length} Trades<span class="explain"> · Werte eingefroren zum Zeitpunkt des Trades</span> · neu bewerten im <a href="${ctx.href('trade')}">Trade Analyzer</a></div></div>`;
+    if (!trades.length) return head + ui.empty('Noch keine Trades', 'data/trade-history.js ist leer oder fehlt für diese Liga.', '📋');
+    const cards = trades.map(t => historyCard(t, mode, nba)).join('');
     return `<div class="tr-nba" data-trhist>${head}
       <div class="controls">${modeSeg(mode, 'data-hmode')}</div>
       <div class="note explain">ℹ️ Nur zum Nachlesen: Die Historie wird in <code>data/trade-history.js</code> im Repo gepflegt (täglicher ESPN-Sync bzw. von Hand). Speichern, Löschen und Export im Browser gibt es hier nicht mehr.</div>
@@ -952,5 +959,5 @@
   });
 
   // Für Tests (Node/VM): reine Rechenfunktionen
-  MFHFB.nbaTrades = { TRADE_VALUE_TABLE, PICK_VALUES, SLOT_VALUES, LOTTERY_P, compareVals, compareSides, slotDist, playerAgeToday, ageMultiplier, slotAwarePickValue, pickTradeValue, dynastyValue, tradeSideValue, verdictOf, runCore, buildTFPlayerPool, buildTFPickPool, giveTotalOf, model };
+  MFHFB.nbaTrades = { historyCard, TRADE_VALUE_TABLE, PICK_VALUES, SLOT_VALUES, LOTTERY_P, compareVals, compareSides, slotDist, playerAgeToday, ageMultiplier, slotAwarePickValue, pickTradeValue, dynastyValue, tradeSideValue, verdictOf, runCore, buildTFPlayerPool, buildTFPickPool, giveTotalOf, model };
 })();

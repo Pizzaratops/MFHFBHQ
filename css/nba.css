@@ -1316,3 +1316,8 @@ tr.cbb-cut td { border-bottom: 2px dashed var(--league-accent); }
 .qk-rk { color: var(--muted); font-weight: 800; font-size: 12px; text-align: right; }
 .qk-pn { min-width: 0; } .qk-pn b { display: block; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .qk-pn small { color: var(--muted); font-size: 11px; }
 .qk-sc { font-weight: 800; font-size: 13px; font-variant-numeric: tabular-nums; }
+/* Getradete Picks → Popup mit Trade (Teams-Picks-Tab, Pick-Übersicht) */
+.nba-picklink { border: 0; cursor: pointer; font-family: inherit; text-align: left; line-height: 1.35; }
+.nba-picklink:hover, .nba-picklink:focus-visible { outline: 2px solid var(--league-accent); outline-offset: 1px; }
+.nba-ptmodal .tr-nba-hcard { margin-bottom: 12px; }
+.tr-nba-grprow.hl { background: color-mix(in srgb, var(--league-accent) 16%, transparent); border-radius: 8px; box-shadow: inset 3px 0 0 var(--league-accent); }

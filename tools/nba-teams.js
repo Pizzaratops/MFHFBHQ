@@ -117,7 +117,7 @@
     const teams = {}; (ctx.data.TEAMS || []).forEach(t => { teams[t.id] = t; });
     const rows = rounds.flatMap(r => yearPicks.filter(p => p.round === r).sort((a, b) => a.originalOwner - b.originalOwner).map((p, i) => {
       const traded = p.originalOwner !== p.currentOwner;
-      return `<tr><td class="strong">${i === 0 ? 'R' + r : ''}</td><td>${e((teams[p.originalOwner] || {}).name || '?')}</td><td><span class="nba-pickst${traded ? ' traded' : ''}">${traded ? 'Getradet' + (p.note ? ' (' + e(p.note) + ')' : '') : 'Eigener'}</span></td></tr>`;
+      return `<tr><td class="strong">${i === 0 ? 'R' + r : ''}</td><td>${e((teams[p.originalOwner] || {}).name || '?')}</td><td>${traded ? `<button type="button" class="nba-pickst traded nba-picklink" data-pick="${pickKey(p)}" title="Trade anzeigen">Getradet${p.note ? ' (' + e(p.note) + ')' : ''} ›</button>` : '<span class="nba-pickst">Eigener</span>'}</td></tr>`;
     }));
     return `<div class="card nba-pyear"><div class="card-head"><h2>${year}</h2><span class="muted" style="font-size:12px">${yearPicks.length} Pick${yearPicks.length === 1 ? '' : 's'}</span></div>
       <div class="table-wrap"><table class="table compact"><thead><tr><th>Runde</th><th>Herkunft</th><th>Status</th></tr></thead><tbody>${rows.join('')}</tbody></table></div></div>`;
@@ -212,6 +212,7 @@
         const p = picks.find(x => x.year === year && x.round === round && x.originalOwner === c.id);
         if (!p) return '<td><span class="muted">—</span></td>';
         const traded = p.currentOwner !== p.originalOwner;
+        if (traded) return `<td><button type="button" class="nba-pcell traded nba-picklink" data-pick="${pickKey(p)}" title="${e(byId[p.currentOwner] ? byId[p.currentOwner].name : '')}${p.note ? ' · ' + e(p.note) : ''} — Trade anzeigen">→ ${e(short(byId[p.currentOwner]))}${c.slot ? `<small>${round}.${c.slot}</small>` : ''}</button></td>`;
         return `<td><span class="nba-pcell${traded ? ' traded' : ''}" title="${e(byId[p.currentOwner] ? byId[p.currentOwner].name : '')}${p.note ? ' · ' + e(p.note) : ''}">${traded ? '→ ' + e(short(byId[p.currentOwner])) : 'Eigener'}${c.slot ? `<small>${round}.${c.slot}</small>` : ''}</span></td>`;
       };
       return `<div class="card nba-pboard"><div class="card-head"><h2>${year} Draft</h2>${moved.length ? `<span class="muted" style="font-size:12px">${moved.length} getradet</span>` : ''}</div>
@@ -254,22 +255,55 @@
       <div class="page-sub" style="margin-top:8px">${rounds.length} Runden · ${order.length} Picks</div>`;
   }
 
+  // ---------- Getradete Picks: Klick → Popup mit dem/den Trade(s) aus der Trade-Historie ----------
+  const pickKey = p => `${p.year}_R${p.round}_T${p.originalOwner}`;
+  function showPickTrades(ctx, key) {
+    const { data } = ctx, e = ctx.ui.esc, nba = N().init(data);
+    const byId = {}; (data.TEAMS || []).forEach(t => { byId[t.id] = t; });
+    const p = nba.picks(data).find(x => pickKey(x) === key) || {};
+    const trades = (data.TRADE_HISTORY_BASE || []).filter(t => (t.sideA || []).concat(t.sideB || []).some(x => x.isPick && x.pickKey === key));
+    const T = MFHFB.nbaTrades;
+    // Pick-Journal (scripts/data/pick-trades-manual.txt → PICKS_LIVE.manuell): Datum + Notiz je Weitergabe
+    const fmtD = d => { const m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(d || ''); return m ? `${m[3]}.${m[2]}.${m[1]}` : (d || ''); };
+    const journal = ((data.PICKS_LIVE || {}).manuell || []).filter(j => j.year === p.year && j.round === p.round && j.originalOwner === p.originalOwner);
+    const journalHtml = journal.length ? `<div class="note" style="margin-top:10px">📒 Pick-Journal:<br>${journal.map(j => `<b>${e(fmtD(j.datum))}</b> → ${e((byId[j.currentOwner] || {}).name || '?')}${j.notiz ? ' · ' + e(j.notiz.replace(/\s--\s/g, ' – ')) : ''}`).join('<br>')}</div>` : '';
+    const title = `${p.year || ''} R${p.round || ''} · ${e((byId[p.originalOwner] || {}).name || '?')}`;
+    const sub = p.currentOwner != null ? `heute bei <b>${e((byId[p.currentOwner] || {}).name || '?')}</b>${p.note ? ' · ' + e(p.note) : ''}` : '';
+    const body = trades.length && T && T.historyCard
+      ? `<div class="muted small" style="margin-bottom:10px">${trades.length === 1 ? 'Der Trade' : trades.length + ' Trades mit diesem Pick'} · Werte eingefroren zum Trade-Zeitpunkt · Pick markiert</div>` + trades.map(t => T.historyCard(t, 'dynasty', nba, key)).join('')
+      : (() => {
+        // Kein Eintrag in der Historie → passende Sätze aus den Draft-Notizen des Jahres
+        const nm = (byId[p.originalOwner] || {}).name || '';
+        const alt = [nm, nm.split(/\s+/)[0]].filter(x => x.length >= 4).map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        const re = alt.length ? new RegExp(`(${alt.join('|')})[’']?s?\\s+R${p.round}\\b`, 'i') : null;
+        const notes = re ? String((data.DRAFT_NOTES || {})[p.year] || '').split(/(?<=\.)\s+/).filter(x => re.test(x)) : [];
+        return `<div class="note">Zu diesem Pick steht kein Trade in der Trade-Historie (älterer oder nur in ESPN eingetragener Trade).${p.note ? `<br>Pick-Liste: <b>${e(p.note)}</b>` : ''}${notes.length ? `<br>Draft-Notiz ${p.year}: ${notes.map(e).join(' ')}` : ''}</div>`;
+      })();
+    MFHFB.ui.modal('pickTradeModal', `<div class="dna-modal-box tr-nba nba-ptmodal">
+      <div class="dna-modal-head"><div><h2 class="display" style="margin:0">🔄 ${title}</h2><div class="muted small">${sub}</div></div>
+        <button type="button" class="dna-modal-x" data-close aria-label="Schließen">✕</button></div>
+      ${body}${journalHtml}
+      <div style="margin-top:12px"><a href="${ctx.href('tradehistory')}" data-close>📜 Ganze Trade-Historie</a></div></div>`);
+  }
+  const mountPickLinks = (root, ctx) => root.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => showPickTrades(ctx, b.dataset.pick)));
+
   const TEAM_DATA = ['teams', '?rosters-live', '?sport:aliases', '?sport:live-projections'];
   // Seit 26.10.2026 ist die Startseite die Schnell-Übersicht (tools/nba-quick.js);
   // die Team-Kacheln stehen unter „Teams & Kader“ (gleiche Funktion home()).
   MFHFB.pages.register({
     id: 'teams', section: 'teams', label: 'Teams & Kader', icon: '🧍', applies: A,
-    data: TEAM_DATA.concat(['?rankings', '?hashtag', '?players', '?picks', '?picks-live']),
+    data: TEAM_DATA.concat(['?rankings', '?hashtag', '?players', '?picks', '?picks-live', '?trade-history']),
     title: ({ data, params }) => { const t = (data.TEAMS || []).find(x => x.id === Number(params[0])); return t ? t.name : 'Teams'; },
     render: ctx => (ctx.params[0] ? teamPage(ctx) : home(ctx)),
     mount(root, ctx) {
       root.querySelectorAll('[data-sort]').forEach(b => b.addEventListener('click', () => { ctx.store.set('rostersort', b.dataset.sort); ctx.refresh(); }));
       if (MFHFB.ui.mountCountdowns) MFHFB.ui.mountCountdowns(root);
+      mountPickLinks(root, ctx);
     },
   });
   MFHFB.pages.register({
     id: 'picks', section: 'draft', label: 'Pick-Übersicht', icon: '🎟️', applies: { sport: ['nba'], keepers: [true] },
-    data: ['teams', '?rosters-live', '?picks', '?picks-live'], render: picksPage,
+    data: ['teams', '?rosters-live', '?picks', '?picks-live', '?trade-history'], render: picksPage, mount: mountPickLinks,
   });
   MFHFB.pages.register({
     id: 'draftresults', section: 'draft', label: 'Draft Results', icon: '🏆', applies: A,
