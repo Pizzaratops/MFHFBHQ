@@ -1,0 +1,35 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-23",
+  "games": [
+    "Indiana State Sycamores @ East Carolina Pirates (4:16 - 1st)",
+    "St. Bonaventure Bonnies 71 @ App State Mountaineers 65 (Final)",
+    "Northern Iowa Panthers 48 @ Davidson Wildcats 79 (Final)",
+    "Charlotte 49ers @ Florida Gulf Coast Eagles (11/23 - 1:30 PM EST)",
+    "Tulsa Golden Hurricane @ Oregon State Beavers (11/23 - 2:00 PM EST)",
+    "Ole Miss Rebels @ Clemson Tigers (11/23 - 2:30 PM EST)",
+    "Middle Tennessee Blue Raiders @ Southern Illinois Salukis (11/23 - 3:00 PM EST)",
+    "Yale Bulldogs @ Belmont Bruins (11/23 - 4:00 PM EST)",
+    "Tulane Green Wave @ Georgia State Panthers (11/23 - 4:00 PM EST)",
+    "Nevada Wolf Pack @ San Francisco Dons (11/23 - 4:30 PM EST)",
+    "Washington Huskies @ BYU Cougars (11/23 - 5:00 PM EST)",
+    "Temple Owls @ UT Martin Skyhawks (11/23 - 5:30 PM EST)",
+    "Penn State Brandywine Lions @ La Salle Explorers (11/23 - 7:00 PM EST)",
+    "Illinois State Redbirds @ Santa Clara Broncos (11/23 - 7:00 PM EST)",
+    "Texas A&M-Corpus Christi Islanders @ Wichita State Shockers (11/23 - 7:30 PM EST)",
+    "Winthrop Eagles @ Illinois Fighting Illini (11/23 - 8:00 PM EST)",
+    "Denver Pioneers @ Kansas Jayhawks (11/23 - 8:00 PM EST)",
+    "Monmouth Hawks @ North Carolina Tar Heels (11/23 - 8:00 PM EST)",
+    "VCU Rams @ Providence Friars (11/23 - 9:00 PM EST)",
+    "UNC Greensboro Spartans @ Pepperdine Waves (11/23 - 9:30 PM EST)",
+    "Loyola Chicago Ramblers @ Seattle U Redhawks (11/23 - 9:30 PM EST)",
+    "Eastern Washington Eagles @ UNLV Rebels (11/23 - 10:00 PM EST)",
+    "Alabama State Hornets @ California Golden Bears (11/23 - 10:00 PM EST)",
+    "Colorado State Rams @ Arizona Wildcats (11/23 - 11:30 PM EST)",
+    "San José State Spartans @ UC San Diego Tritons (11/23 - 11:59 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 48.4,
+    "ft": 58
+  }
+}
