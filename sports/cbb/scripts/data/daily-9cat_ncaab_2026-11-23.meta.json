@@ -2,15 +2,15 @@
   "league": "ncaab",
   "date": "2026-11-23",
   "games": [
-    "Indiana State Sycamores @ East Carolina Pirates (4:16 - 1st)",
+    "Tulsa Golden Hurricane @ Oregon State Beavers (0:20 - 2nd)",
+    "Ole Miss Rebels @ Clemson Tigers (11:28 - 2nd)",
+    "Middle Tennessee Blue Raiders @ Southern Illinois Salukis (4:42 - 1st)",
     "St. Bonaventure Bonnies 71 @ App State Mountaineers 65 (Final)",
     "Northern Iowa Panthers 48 @ Davidson Wildcats 79 (Final)",
-    "Charlotte 49ers @ Florida Gulf Coast Eagles (11/23 - 1:30 PM EST)",
-    "Tulsa Golden Hurricane @ Oregon State Beavers (11/23 - 2:00 PM EST)",
-    "Ole Miss Rebels @ Clemson Tigers (11/23 - 2:30 PM EST)",
-    "Middle Tennessee Blue Raiders @ Southern Illinois Salukis (11/23 - 3:00 PM EST)",
-    "Yale Bulldogs @ Belmont Bruins (11/23 - 4:00 PM EST)",
-    "Tulane Green Wave @ Georgia State Panthers (11/23 - 4:00 PM EST)",
+    "Indiana State Sycamores 77 @ East Carolina Pirates 76 (Final/OT)",
+    "Charlotte 49ers 71 @ Florida Gulf Coast Eagles 58 (Final)",
+    "Yale Bulldogs @ Belmont Bruins (11/23 - 4:15 PM EST)",
+    "Tulane Green Wave @ Georgia State Panthers (19:02 - 1st)",
     "Nevada Wolf Pack @ San Francisco Dons (11/23 - 4:30 PM EST)",
     "Washington Huskies @ BYU Cougars (11/23 - 5:00 PM EST)",
     "Temple Owls @ UT Martin Skyhawks (11/23 - 5:30 PM EST)",
@@ -29,7 +29,7 @@
     "San José State Spartans @ UC San Diego Tritons (11/23 - 11:59 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 48.4,
-    "ft": 58
+    "fg": 49.2,
+    "ft": 60.6
   }
 }
