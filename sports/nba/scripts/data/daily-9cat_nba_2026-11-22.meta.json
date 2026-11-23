@@ -3,15 +3,15 @@
   "date": "2026-11-22",
   "games": [
     "Detroit Pistons 97 @ Atlanta Hawks 107 (Final)",
-    "Oklahoma City Thunder @ Miami Heat (7:21 - 4th)",
-    "Orlando Magic @ Washington Wizards (1:03 - 2nd)",
-    "Denver Nuggets @ Chicago Bulls (Halftime)",
-    "Dallas Mavericks @ Utah Jazz (Halftime)",
-    "Indiana Pacers @ New York Knicks (11/22 - 8:00 PM EST)",
-    "Boston Celtics @ Golden State Warriors (11/22 - 8:30 PM EST)"
+    "Oklahoma City Thunder 113 @ Miami Heat 123 (Final)",
+    "Orlando Magic @ Washington Wizards (7:20 - 4th)",
+    "Denver Nuggets @ Chicago Bulls (7:34 - 4th)",
+    "Dallas Mavericks @ Utah Jazz (6:08 - 4th)",
+    "Indiana Pacers @ New York Knicks (3:39 - 2nd)",
+    "Boston Celtics @ Golden State Warriors (3:01 - 1st)"
   ],
   "leagueAvg": {
-    "fg": 39.1,
-    "ft": 91.9
+    "fg": 44,
+    "ft": 84.4
   }
 }

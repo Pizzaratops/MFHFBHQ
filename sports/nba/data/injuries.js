@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T01:32:19.125Z",
+  "updated": "2026-11-23T02:01:03.359Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-23","Lower Leg",0,"2026-11-22"],
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-22"],
@@ -24,6 +24,7 @@ const NBA_INJURIES = {
     "Chris Youngblood": ["POR","Out","OUT","2026-11-27","Heel",0,"2026-11-20"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Collin Murray-Boyles": ["TOR","Day-To-Day","GTD","2026-11-23","Concussion",0,"2026-11-22"],
+    "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-23","Lower Leg",0,"2026-11-23"],
     "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],
@@ -57,6 +58,7 @@ const NBA_INJURIES = {
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-28","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","OUT","2026-11-25","Foot",0,"2026-11-22"],
+    "Jordan McLaughlin": ["SA","Day-To-Day","GTD","2026-11-23","Shoulder",0,"2026-11-23"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Strawther": ["DEN","Out","OUT","2026-11-29","Knee",0,"2026-10-17"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
