@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-23T04:03:23.788Z",
+  "generatedAt": "2026-11-23T06:03:24.811Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1960,7 +1960,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.2,
           "last3AvgPoints": 9.4,
-          "projPoints": 8.2
+          "projPoints": 8.1
         },
         {
           "name": "Seth McGowan",
@@ -2413,7 +2413,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 28.3,
           "last3AvgPoints": 18.3,
-          "projPoints": 14.9
+          "projPoints": 15
         },
         {
           "name": "Zach Charbonnet",
