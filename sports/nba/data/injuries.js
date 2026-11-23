@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T22:11:42.240Z",
+  "updated": "2026-11-23T22:33:22.511Z",
   "players": {
     "Aaron Nesmith": ["IND","Out","OUT","2026-11-27","Foot",0,"2026-11-23"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-25","Lower Leg",0,"2026-11-23"],
@@ -15,8 +15,8 @@ const NBA_INJURIES = {
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
-    "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-23","Knee",0,"2026-11-22"],
     "Brandon Williams": ["GS","Out","GTD","2026-11-25","Hamstring",0,"2026-11-23"],
+    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-24","Knee",0,"2026-11-23"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Out","OUT","2026-11-25","Ankle",0,"2026-11-22"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -32,7 +32,7 @@ const NBA_INJURIES = {
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-04-02","Achilles",0,"2026-10-05"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-17"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
-    "Ebuka Okorie": ["DET","Day-To-Day","GTD","2026-11-24","Oblique",0,"2026-11-22"],
+    "Ebuka Okorie": ["DET","Out","OUT","2026-11-30","Oblique",0,"2026-11-23"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-25","Groin",0,"2026-11-23"],
@@ -42,7 +42,7 @@ const NBA_INJURIES = {
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jaden Bradley": ["TOR","Day-To-Day","GTD","2026-11-23","Ankle",0,"2026-11-23"],
-    "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-08"],
+    "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-23"],
     "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-23","Illness",0,"2026-11-23"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
@@ -100,7 +100,7 @@ const NBA_INJURIES = {
     "Tobi Lawal": ["DAL","Out","GTD","2026-11-24","Groin",0,"2026-11-22"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-21"],
-    "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-16"],
+    "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Victor Wembanyama": ["SA","Day-To-Day","GTD","2026-11-23","Back",0,"2026-11-23"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
