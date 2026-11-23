@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T19:10:54.329Z",
+  "updated": "2026-11-23T21:14:50.135Z",
   "players": {
     "Aaron Nesmith": ["IND","Out","OUT","2026-11-27","Foot",0,"2026-11-23"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-25","Lower Leg",0,"2026-11-23"],
@@ -16,7 +16,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Miller": ["CHA","Day-To-Day","GTD","2026-11-23","Knee",0,"2026-11-22"],
-    "Brandon Williams": ["GS","Out","GTD","2026-11-25","Hamstring",0,"2026-11-22"],
+    "Brandon Williams": ["GS","Out","GTD","2026-11-25","Hamstring",0,"2026-11-23"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Out","OUT","2026-11-25","Ankle",0,"2026-11-22"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -47,7 +47,7 @@ const NBA_INJURIES = {
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
-    "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-23","Knee",0,"2026-11-23"],
+    "Jaxson Hayes": ["UTAH","Out","OUT","2026-11-27","Knee",0,"2026-11-23"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
@@ -86,7 +86,6 @@ const NBA_INJURIES = {
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-24","Illness",0,"2026-11-23"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Pascal Siakam": ["IND","Day-To-Day","GTD","2026-11-23","Hip",0,"2026-11-23"],
-    "Paul George": ["BOS","Day-To-Day","GTD","2026-11-24","Rest",0,"2026-11-23"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
