@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-23T03:01:28.276Z",
+  "generatedAt": "2026-11-23T04:01:23.182Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 18 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,14 +66,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 438.4,
-        "reb": 163.7,
-        "ast": 104.3,
-        "stl": 28.27,
-        "blk": 19.18,
+        "pts": 438.9,
+        "reb": 164,
+        "ast": 104.5,
+        "stl": 28.39,
+        "blk": 19.19,
         "tpm": 41.7,
-        "to": 54.8,
-        "fgPct": 48,
+        "to": 54.9,
+        "fgPct": 48.1,
         "ftPct": 78.6
       },
       "rank": {
@@ -97,10 +97,10 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 327.3,
+        "pts": 327.7,
         "reb": 118.8,
-        "ast": 75.6,
-        "stl": 23.35,
+        "ast": 75.7,
+        "stl": 23.37,
         "blk": 14.36,
         "tpm": 40.9,
         "to": 40.9,
@@ -128,15 +128,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 343.8,
-        "reb": 112.5,
+        "pts": 344,
+        "reb": 112.7,
         "ast": 79.6,
-        "stl": 26.41,
-        "blk": 12.34,
-        "tpm": 45.3,
-        "to": 38.9,
-        "fgPct": 45.5,
-        "ftPct": 79.1
+        "stl": 26.32,
+        "blk": 12.33,
+        "tpm": 45.4,
+        "to": 39.2,
+        "fgPct": 45.4,
+        "ftPct": 79
       },
       "rank": {
         "pts": 4,
@@ -146,7 +146,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 9,
         "tpm": 2,
         "fgPct": 12,
-        "ftPct": 3,
+        "ftPct": 4,
         "to": 5
       },
       "includedCount": 28,
@@ -159,15 +159,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Leaveland Cavaliers",
       "owner": "Sven",
       "values": {
-        "pts": 383,
+        "pts": 382.4,
         "reb": 131.6,
         "ast": 87.4,
-        "stl": 24.25,
-        "blk": 13.59,
-        "tpm": 48.6,
-        "to": 45.5,
-        "fgPct": 46.4,
-        "ftPct": 81.3
+        "stl": 24.24,
+        "blk": 13.54,
+        "tpm": 48.3,
+        "to": 45.3,
+        "fgPct": 46.3,
+        "ftPct": 81.4
       },
       "rank": {
         "pts": 2,
@@ -190,14 +190,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Anadolu Ballers",
       "owner": "Murat Oguz",
       "values": {
-        "pts": 303.8,
-        "reb": 108.3,
-        "ast": 67.4,
-        "stl": 19.43,
+        "pts": 302.6,
+        "reb": 108.1,
+        "ast": 67.2,
+        "stl": 19.48,
         "blk": 11.12,
-        "tpm": 34.3,
+        "tpm": 34.2,
         "to": 35.6,
-        "fgPct": 46.7,
+        "fgPct": 46.6,
         "ftPct": 81.9
       },
       "rank": {
@@ -207,7 +207,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 11,
         "blk": 11,
         "tpm": 7,
-        "fgPct": 7,
+        "fgPct": 9,
         "ftPct": 1,
         "to": 4
       },
@@ -221,14 +221,14 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 277,
-        "reb": 113.5,
-        "ast": 59.1,
-        "stl": 19.95,
-        "blk": 15.01,
-        "tpm": 35.3,
+        "pts": 277.3,
+        "reb": 113.2,
+        "ast": 59.2,
+        "stl": 19.96,
+        "blk": 14.93,
+        "tpm": 35.5,
         "to": 35.1,
-        "fgPct": 46.7,
+        "fgPct": 46.8,
         "ftPct": 76.4
       },
       "rank": {
@@ -238,7 +238,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 10,
         "blk": 5,
         "tpm": 6,
-        "fgPct": 8,
+        "fgPct": 7,
         "ftPct": 11,
         "to": 3
       },
@@ -254,15 +254,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Always Money In The BananaStand",
       "owner": "KraftPaket Knödel",
       "values": {
-        "pts": 335.6,
-        "reb": 145.7,
-        "ast": 81.8,
-        "stl": 23.46,
-        "blk": 19.11,
-        "tpm": 33.3,
+        "pts": 336.1,
+        "reb": 146,
+        "ast": 81.7,
+        "stl": 23.45,
+        "blk": 19.06,
+        "tpm": 33.4,
         "to": 44.1,
-        "fgPct": 47.7,
-        "ftPct": 76.2
+        "fgPct": 47.6,
+        "ftPct": 76.1
       },
       "rank": {
         "pts": 5,
@@ -287,13 +287,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 320,
+        "pts": 319.8,
         "reb": 148.3,
-        "ast": 75.3,
-        "stl": 22.59,
-        "blk": 17,
-        "tpm": 33,
-        "to": 41.4,
+        "ast": 75.6,
+        "stl": 22.64,
+        "blk": 16.99,
+        "tpm": 32.9,
+        "to": 41.5,
         "fgPct": 48,
         "ftPct": 76.5
       },
@@ -318,13 +318,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 289.9,
-        "reb": 106.3,
-        "ast": 63.2,
-        "stl": 22.11,
+        "pts": 289.8,
+        "reb": 106.7,
+        "ast": 63.4,
+        "stl": 22.08,
         "blk": 11.84,
-        "tpm": 30.2,
-        "to": 33.9,
+        "tpm": 30.1,
+        "to": 34.2,
         "fgPct": 47.8,
         "ftPct": 78.3
       },
@@ -349,13 +349,13 @@ const FANTASY_POWER_SCORE = {
       "name": "S-Town Grizzlies",
       "owner": "Jan Schattschneider",
       "values": {
-        "pts": 302.4,
-        "reb": 118.4,
-        "ast": 68.6,
-        "stl": 22.47,
-        "blk": 15.02,
+        "pts": 302,
+        "reb": 118.3,
+        "ast": 68.7,
+        "stl": 22.45,
+        "blk": 15.01,
         "tpm": 33.8,
-        "to": 39.1,
+        "to": 39.2,
         "fgPct": 47.1,
         "ftPct": 78
       },
@@ -380,13 +380,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 357,
-        "reb": 122.2,
+        "pts": 357.4,
+        "reb": 122.4,
         "ast": 91.4,
-        "stl": 24.91,
-        "blk": 14.5,
-        "tpm": 39,
-        "to": 46.1,
+        "stl": 24.92,
+        "blk": 14.49,
+        "tpm": 39.1,
+        "to": 46.2,
         "fgPct": 46.7,
         "ftPct": 79.1
       },
@@ -397,8 +397,8 @@ const FANTASY_POWER_SCORE = {
         "stl": 3,
         "blk": 6,
         "tpm": 5,
-        "fgPct": 9,
-        "ftPct": 4,
+        "fgPct": 8,
+        "ftPct": 3,
         "to": 11
       },
       "includedCount": 28,
