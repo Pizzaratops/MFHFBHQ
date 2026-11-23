@@ -3,7 +3,7 @@
 // ============================================================
 //  AUTO-GENERIERT von scripts/sync-espn-rosters.js über die
 //  "Daily 9cat Live Scores" GitHub Action. Nicht von Hand editieren.
-//  Zuletzt synchronisiert: 2026-11-23T07:01:30.591Z
+//  Zuletzt synchronisiert: 2026-11-23T08:01:25.887Z
 //
 //  Wird von js/admin.js beim Seitenstart als Basis für ROSTERS geladen
 //  (ersetzt die statischen Rosters aus data/teams-rosters.js), bevor
@@ -37,5 +37,5 @@ const LEAGUE_DRAFT_INFO = {"drafted":true,"inProgress":false,"type":"AUCTION","b
 // (anfangs plausibel 0-0-0, bis der Spielbetrieb im Oktober beginnt).
 const TEAM_RECORDS_LIVE = {
   season: 2027,
-  records: {"1":"14-20-2","2":"13-22-1","3":"17-19-0","4":"22-12-2","5":"14-22-0","6":"18-18-0","7":"21-15-0","8":"22-14-0","9":"21-14-1","10":"15-21-0"}
+  records: {"1":"18-25-2","2":"14-30-1","3":"23-22-0","4":"30-13-2","5":"22-23-0","6":"19-26-0","7":"26-19-0","8":"25-20-0","9":"29-15-1","10":"16-29-0"}
 };
