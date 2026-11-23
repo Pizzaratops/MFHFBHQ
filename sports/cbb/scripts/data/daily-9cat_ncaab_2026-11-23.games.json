@@ -1,0 +1,456 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-23",
+  "games": [
+    {
+      "id": "401927397",
+      "line": "St. Bonaventure Bonnies @ App State Mountaineers (11/23 - 11:00 AM EST)",
+      "completed": false,
+      "statusText": "11/23 - 11:00 AM EST",
+      "away": {
+        "abbr": "StBon",
+        "name": "St. Bonaventure Bonnies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "APP",
+        "name": "App State Mountaineers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921700",
+      "line": "Northern Iowa Panthers @ Davidson Wildcats (11/23 - 11:00 AM EST)",
+      "completed": false,
+      "statusText": "11/23 - 11:00 AM EST",
+      "away": {
+        "abbr": "NrthIA",
+        "name": "Northern Iowa Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "David",
+        "name": "Davidson Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921209",
+      "line": "Indiana State Sycamores @ East Carolina Pirates (11/23 - 12:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 12:30 PM EST",
+      "away": {
+        "abbr": "IndSt",
+        "name": "Indiana State Sycamores",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ECU",
+        "name": "East Carolina Pirates",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921701",
+      "line": "Charlotte 49ers @ Florida Gulf Coast Eagles (11/23 - 1:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 1:30 PM EST",
+      "away": {
+        "abbr": "UNCC",
+        "name": "Charlotte 49ers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "FGCU",
+        "name": "Florida Gulf Coast Eagles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921658",
+      "line": "Tulsa Golden Hurricane @ Oregon State Beavers (11/23 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 2:00 PM EST",
+      "away": {
+        "abbr": "Tuls",
+        "name": "Tulsa Golden Hurricane",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OrSt",
+        "name": "Oregon State Beavers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918076",
+      "line": "Ole Miss Rebels @ Clemson Tigers (11/23 - 2:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 2:30 PM EST",
+      "away": {
+        "abbr": "Miss",
+        "name": "Ole Miss Rebels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Clem",
+        "name": "Clemson Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921207",
+      "line": "Middle Tennessee Blue Raiders @ Southern Illinois Salukis (11/23 - 3:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 3:00 PM EST",
+      "away": {
+        "abbr": "MTSU",
+        "name": "Middle Tennessee Blue Raiders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SIU",
+        "name": "Southern Illinois Salukis",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929286",
+      "line": "Yale Bulldogs @ Belmont Bruins (11/23 - 4:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 4:00 PM EST",
+      "away": {
+        "abbr": "Yale",
+        "name": "Yale Bulldogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Belm",
+        "name": "Belmont Bruins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919006",
+      "line": "Tulane Green Wave @ Georgia State Panthers (11/23 - 4:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 4:00 PM EST",
+      "away": {
+        "abbr": "Tul",
+        "name": "Tulane Green Wave",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GAST",
+        "name": "Georgia State Panthers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911457",
+      "line": "Nevada Wolf Pack @ San Francisco Dons (11/23 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 4:30 PM EST",
+      "away": {
+        "abbr": "Nev",
+        "name": "Nevada Wolf Pack",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USF",
+        "name": "San Francisco Dons",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921708",
+      "line": "Washington Huskies @ BYU Cougars (11/23 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 5:00 PM EST",
+      "away": {
+        "abbr": "Wash",
+        "name": "Washington Huskies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "BYU",
+        "name": "BYU Cougars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921210",
+      "line": "Temple Owls @ UT Martin Skyhawks (11/23 - 5:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 5:30 PM EST",
+      "away": {
+        "abbr": "Tem",
+        "name": "Temple Owls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTM",
+        "name": "UT Martin Skyhawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925813",
+      "line": "Penn State Brandywine Lions @ La Salle Explorers (11/23 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 7:00 PM EST",
+      "away": {
+        "abbr": "PSBW",
+        "name": "Penn State Brandywine Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LaSal",
+        "name": "La Salle Explorers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917543",
+      "line": "Illinois State Redbirds @ Santa Clara Broncos (11/23 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 7:00 PM EST",
+      "away": {
+        "abbr": "IlSt",
+        "name": "Illinois State Redbirds",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SCla",
+        "name": "Santa Clara Broncos",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919032",
+      "line": "Texas A&M-Corpus Christi Islanders @ Wichita State Shockers (11/23 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 7:30 PM EST",
+      "away": {
+        "abbr": "AMCC",
+        "name": "Texas A&M-Corpus Christi Islanders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WichSt",
+        "name": "Wichita State Shockers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401913530",
+      "line": "Winthrop Eagles @ Illinois Fighting Illini (11/23 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 8:00 PM EST",
+      "away": {
+        "abbr": "WIN",
+        "name": "Winthrop Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ill",
+        "name": "Illinois Fighting Illini",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909788",
+      "line": "Denver Pioneers @ Kansas Jayhawks (11/23 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 8:00 PM EST",
+      "away": {
+        "abbr": "Denv",
+        "name": "Denver Pioneers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Kan",
+        "name": "Kansas Jayhawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401913102",
+      "line": "Monmouth Hawks @ North Carolina Tar Heels (11/23 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 8:00 PM EST",
+      "away": {
+        "abbr": "MONM",
+        "name": "Monmouth Hawks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UNC",
+        "name": "North Carolina Tar Heels",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909536",
+      "line": "VCU Rams @ Providence Friars (11/23 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 9:00 PM EST",
+      "away": {
+        "abbr": "VCU",
+        "name": "VCU Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Prov",
+        "name": "Providence Friars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401926183",
+      "line": "UNC Greensboro Spartans @ Pepperdine Waves (11/23 - 9:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 9:30 PM EST",
+      "away": {
+        "abbr": "UNCG",
+        "name": "UNC Greensboro Spartans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pepp",
+        "name": "Pepperdine Waves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921663",
+      "line": "TBD @ Seattle U Redhawks (11/23 - 9:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 9:30 PM EST",
+      "away": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "SeatU",
+        "name": "Seattle U Redhawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920721",
+      "line": "Eastern Washington Eagles @ UNLV Rebels (11/23 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 10:00 PM EST",
+      "away": {
+        "abbr": "EWU",
+        "name": "Eastern Washington Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UNLV",
+        "name": "UNLV Rebels",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918057",
+      "line": "Alabama State Hornets @ California Golden Bears (11/23 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 10:00 PM EST",
+      "away": {
+        "abbr": "ALST",
+        "name": "Alabama State Hornets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cal",
+        "name": "California Golden Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909743",
+      "line": "Colorado State Rams @ Arizona Wildcats (11/23 - 11:30 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 11:30 PM EST",
+      "away": {
+        "abbr": "ColSt",
+        "name": "Colorado State Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ariz",
+        "name": "Arizona Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921664",
+      "line": "TBD @ UC San Diego Tritons (11/23 - 11:59 PM EST)",
+      "completed": false,
+      "statusText": "11/23 - 11:59 PM EST",
+      "away": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCSD",
+        "name": "UC San Diego Tritons",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

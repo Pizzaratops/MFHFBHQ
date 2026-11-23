@@ -2,12 +2,9 @@
   "league": "ncaab",
   "date": "2026-11-22",
   "games": [
-    "Delaware Blue Hens @ UCLA Bruins (2:23 - 2nd)",
-    "Louisiana Ragin' Cajuns @ USC Trojans (2:46 - 1st)",
-    "Portland Pilots @ California Baptist Lancers (6:05 - 2nd)",
-    "Rhode Island Rams @ UAB Blazers (16:21 - 2nd)",
-    "Menlo Oaks @ Saint Mary's Gaels (Halftime)",
     "Southern Indiana Screaming Eagles 61 @ Texas Longhorns 97 (Final)",
+    "Delaware Blue Hens 48 @ UCLA Bruins 85 (Final)",
+    "Louisiana Ragin' Cajuns 56 @ USC Trojans 82 (Final)",
     "Nebraska Cornhuskers 76 @ Butler Bulldogs 74 (Final)",
     "Miami (OH) RedHawks 71 @ UIC Flames 60 (Final)",
     "Dayton Flyers 55 @ Northwestern Wildcats 79 (Final)",
@@ -26,11 +23,14 @@
     "Temple Owls 70 @ Stephen F. Austin Lumberjacks 72 (Final)",
     "Southern Miss Golden Eagles 99 @ Valparaiso Beacons 89 (Final)",
     "Utah Utes 62 @ Minnesota Golden Gophers 77 (Final)",
-    "UC San Diego Tritons @ Seattle U Redhawks (11/22 - 9:30 PM EST)",
+    "Portland Pilots 71 @ California Baptist Lancers 79 (Final/OT)",
+    "Rhode Island Rams 79 @ UAB Blazers 64 (Final)",
+    "Menlo Oaks 78 @ Saint Mary's Gaels 94 (Final)",
+    "UC San Diego Tritons 64 @ Seattle U Redhawks 90 (Final)",
     "Loyola Chicago Ramblers @ San José State Spartans (11/22 - 11:59 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 47.5,
-    "ft": 71
+    "fg": 47.6,
+    "ft": 70.6
   }
 }
