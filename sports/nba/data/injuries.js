@@ -1,9 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T17:52:17.109Z",
+  "updated": "2026-11-23T18:39:56.182Z",
   "players": {
-    "Aday Mara": ["OKC","Day-To-Day","GTD","2026-11-23","Lower Leg",0,"2026-11-23"],
+    "Aaron Nesmith": ["IND","Out","OUT","2026-11-27","Foot",0,"2026-11-23"],
+    "Aday Mara": ["OKC","Day-To-Day","OUT","2026-11-25","Lower Leg",0,"2026-11-23"],
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-22"],
     "Alex Caruso": ["OKC","Day-To-Day","GTD","2026-11-23","Hip",0,"2026-11-23"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -82,9 +83,9 @@ const NBA_INJURIES = {
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
     "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-25","Calf",0,"2026-11-23"],
-    "Ousmane Dieng": ["MIL","Out","GTD","2026-11-23","Finger",0,"2026-11-22"],
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-24","Illness",0,"2026-11-23"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
+    "Pascal Siakam": ["IND","Day-To-Day","GTD","2026-11-23","Hip",0,"2026-11-23"],
     "Paul George": ["BOS","Day-To-Day","GTD","2026-11-24","Rest",0,"2026-11-23"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
@@ -93,9 +94,9 @@ const NBA_INJURIES = {
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
-    "Shai Gilgeous-Alexander": ["OKC","Day-To-Day","GTD","2026-11-23","Back",0,"2026-11-23"],
+    "Shai Gilgeous-Alexander": ["OKC","Day-To-Day","","","",0,"2026-11-23"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
-    "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-23"],
+    "T.J. McConnell": ["IND","Out","OUT","2026-11-27","Hamstring",0,"2026-11-23"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-27","Heel",0,"2026-11-17"],
     "Taurean Prince": ["DET","Out","OUT","2026-12-13","Knee",0,"2026-11-20"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
