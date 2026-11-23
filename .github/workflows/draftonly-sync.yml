@@ -1,0 +1,42 @@
+name: Draft-Only Sync (Fantrax, Beyaz' Plätze)
+
+# Beyaz' FBI-Draft-Only-Ligen auf Fantrax (seit 23.11.2026): Rang, Bilanz bzw. Punkte
+# seines Teams je Liga → leagues/worldcup/data/draft-only.js
+# (leagues/worldcup/scripts/sync-draft-only.js). Angezeigt in der World Cup auf der
+# Seite „Draft Only“. Viermal täglich reicht (Draft-Only = keine Moves, Tabelle
+# ändert sich nur durch die Spieltage). Keine Secrets nötig (Fantrax öffentlich).
+
+on:
+  schedule:
+    - cron: "47 5,11,17,23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldcup-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Draft-Only-Tabellen
+        run: node leagues/worldcup/scripts/sync-draft-only.js
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add leagues/worldcup/data/draft-only.js
+          if git diff --cached --quiet; then echo "Keine Änderungen."; exit 0; fi
+          git commit -m "World Cup: Draft-Only-Sync"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && exit 0; sleep 5; done
+          exit 1

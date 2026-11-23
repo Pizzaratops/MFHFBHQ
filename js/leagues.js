@@ -326,7 +326,7 @@ const LEAGUES = [
     myTeam: 1, // flyingillini (Beyaz)
     // Best-Available-Board ist ligaunabhängig (gegen die Kader wird erst im Browser gefiltert)
     files: { teams: 'teams-rosters', 'best-available-board': './leagues/funkytown/data/best-available-board' },
-    pages: ['home', 'wctable', 'wcschedule', 'livescores', 'teams', 'waiver', 'players', 'projections', 'rolling', 'catweb', 'insights', 'nbateams'],
+    pages: ['home', 'wctable', 'wcdraftonly', 'wcschedule', 'livescores', 'teams', 'waiver', 'players', 'projections', 'rolling', 'catweb', 'insights', 'nbateams'],
   },
   {
     // basketball.de US-Manager (Salary-Cap-Spiel, seit 19.10.2026): 15 Spieler

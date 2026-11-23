@@ -4,6 +4,8 @@
 //  #/worldcup/wctable               Tabelle der Division (Kategorien W-L-T, wie Fantrax
 //                                   wertet) + Rang in der ganzen Conference West
 //  #/worldcup/wcschedule[/<id>]     Spielplan: 14 Perioden, Division-Matchups
+//  #/worldcup/wcdraftonly            Beyaz' Platz in seinen FBI-Draft-Only-Ligen (seit 23.11.2026,
+//                                   Daten: draft-only.js aus scripts/sync-draft-only.js)
 //
 //  Daten (leagues/worldcup/data, aus Fantrax: leagues/worldcup/scripts/sync-fantrax.js):
 //   TEAMS, ROSTERS_LIVE, TEAM_RECORDS_LIVE (records, standings mit confRank), WC_SCHEDULE
@@ -72,7 +74,62 @@
       <div class="cbb-weeks">${P.map(card).join('')}</div>`;
   }
 
+
+  // ---------- Draft-Only-Ligen: eine Zeile je Liga mit Beyaz' Platz ----------
+  function draftOnly(ctx) {
+    const { data, ui } = ctx, e = ui.esc;
+    const D = data.WC_DRAFT_ONLY;
+    if (!D || !(D.leagues || []).length) return ui.empty('Noch keine Daten', 'Der Draft-Only-Sync ist noch nicht gelaufen.', '📋');
+    const de = (x, d = 1) => (x == null ? '' : Number(x).toFixed(d).replace('.', ','));
+    const L = D.leagues, ok = L.filter(l => l.rank);
+    const po = ok.filter(l => l.type === 'h2h' && l.playoffTeams);
+    const inPo = po.filter(l => l.rank <= l.playoffTeams).length;
+    const avg = ok.length ? ok.reduce((a, l) => a + l.rank, 0) / ok.length : 0;
+    const stat = (v, label, tip) => `<div class="stat" title="${e(tip)}"><div class="stat-label">${label}</div><div class="stat-value display">${v}</div></div>`;
+    const when = D.updated ? new Date(D.updated).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+    const row = l => {
+      const url = `https://www.fantrax.com/fantasy/league/${encodeURIComponent(l.id)}/standings`;
+      const liga = `<a href="${url}" target="_blank" rel="noopener" title="${e(l.name)} auf Fantrax öffnen">${e(l.short || l.name)}</a>${l.stale ? ' <span class="muted small" title="Letzter Abruf fehlgeschlagen, Stand vom vorherigen Sync">⚠</span>' : ''}`;
+      if (!l.rank) {
+        const why = l.error ? `Fehler: ${l.error}` : `Kein Team mit Hawkward/Pizzaratops/Steakosaurus/MFHFB gefunden. Teams: ${(l.teamsSeen || []).join(', ')}`;
+        return `<tr><td>${liga}</td><td colspan="6" class="muted" title="${e(why)}">${l.error ? 'Abruf fehlgeschlagen' : 'eigenes Team nicht gefunden'}</td></tr>`;
+      }
+      const top = l.rank <= 3;
+      const rankCell = `<td class="num${top ? ' strong' : ''}" data-sort-value="${l.rank}" title="${l.tied ? 'Platz geteilt · ' : ''}${l.teams} Teams">${l.rank === 1 ? '🥇 ' : l.rank === 2 ? '🥈 ' : l.rank === 3 ? '🥉 ' : ''}${l.tied ? 'T-' : ''}${l.rank}.<span class="muted small">/${l.teams}</span></td>`;
+      const score = l.type === 'h2h'
+        ? `<td class="num" data-sort-value="${l.pct}" title="Kategorien gewonnen-verloren-unentschieden · Quote ${de(l.pct, 3)}">${e(l.record)}</td>`
+        : `<td class="num" data-sort-value="${l.points}" title="${l.toNext != null ? `${de(l.toNext)} Pkt. bis zum Platz darüber` : 'Spitze'}${l.overNext != null ? ` · ${de(l.overNext)} Pkt. vor dem Platz darunter` : ''}">${de(l.points)} Pkt.</td>`;
+      const behind = l.behind ? `<td class="num" data-sort-value="${l.behind}">${de(l.behind)}</td>` : '<td class="num" data-sort-value="0">–</td>';
+      let poCell = '<td class="num muted" data-sort-value="">—</td>';
+      if (l.type === 'h2h' && l.playoffTeams && l.poGap != null) {
+        const inside = l.rank <= l.playoffTeams;
+        poCell = `<td class="num" data-sort-value="${inside ? l.poGap : -l.poGap}" title="Top ${l.playoffTeams} kommen in die Playoffs · ${inside ? 'Vorsprung auf den ersten Platz außerhalb' : 'Rückstand auf den letzten Playoff-Platz'} (in Kategorien-Siegen)">${inside ? `✅ +${de(l.poGap)}` : `<span class="muted">−${de(l.poGap)}</span>`}</td>`;
+      }
+      return `<tr><td>${liga}</td><td>${e(l.team)}</td>${rankCell}${score}${behind}${poCell}<td class="muted">${l.leader ? e(l.leader) : '<span class="strong">— du</span>'}</td></tr>`;
+    };
+    const sorted = [...L].sort((a, b) => (a.rank || 99) / (a.teams || 12) - (b.rank || 99) / (b.teams || 12) || String(a.short).localeCompare(String(b.short), 'de', { numeric: true }));
+    return `<div class="page-head"><h1 class="page-title display">📋 Draft Only</h1>
+        <div class="page-sub">${L.length} Draft-Only-Ligen auf Fantrax · nur draften, danach keine Moves · Stand ${when} · Liga anklicken öffnet die Fantrax-Tabelle</div></div>
+      <div class="stat-row" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+        ${stat(ok.length, 'Ligen mit Team', 'Ligen, in denen eines deiner Teams (Hawkward, Pizzaratops, Steakosaurus, MFHFB) gefunden wurde')}
+        ${stat(de(avg), 'Ø Platz', 'Durchschnittlicher Tabellenplatz über alle Ligen')}
+        ${stat(ok.filter(l => l.rank === 1).length, 'auf Platz 1', 'Ligen, die du gerade anführst')}
+        ${stat(ok.filter(l => l.rank <= 3).length, 'in den Top 3', 'Ligen mit Platz 1 bis 3')}
+        ${po.length ? stat(`${inPo}/${po.length}`, 'auf Playoff-Kurs', 'H2H-Ligen, in denen du aktuell einen Playoff-Platz hast (nur Ligen, für die Fantrax die Playoff-Größe liefert)') : ''}
+      </div>
+      <div class="table-wrap"><table class="table compact"><thead><tr>
+        <th title="Liga (H2H = Head-to-Head nach Kategorien, Roto = Punkte je Kategorie-Rang)">Liga</th><th>Team</th>
+        <th class="num" title="Aktueller Tabellenplatz / Anzahl Teams (T- = geteilt)">Platz</th>
+        <th class="num" title="H2H: Kategorien gewonnen-verloren-unentschieden · Roto: Gesamtpunkte">Bilanz / Punkte</th>
+        <th class="num" title="Rückstand auf Platz 1 · H2H in Kategorien-Siegen (Games Back), Roto in Punkten">Rückstand</th>
+        <th class="num" title="Nur H2H: Vorsprung auf den ersten Nicht-Playoff-Platz (✅) bzw. Rückstand auf den letzten Playoff-Platz">Playoffs</th>
+        <th title="Wer die Liga gerade anführt">Spitzenreiter</th></tr></thead>
+      <tbody>${sorted.map(row).join('')}</tbody></table></div>
+      <p class="muted small explain">Daten: Fantrax (öffentliche Schnittstelle), viermal täglich aktualisiert. Sortierung ab Werk nach relativem Platz (Platz ÷ Teams); jede Spalte per Klick sortierbar.</p>`;
+  }
+
   const D = ['teams', '?rosters-live', '?fantasy-schedule'];
   MFHFB.pages.register({ id: 'wctable', section: 'standings', label: 'Tabelle', icon: '🏆', applies: A, when: WHEN, data: D, render: table });
   MFHFB.pages.register({ id: 'wcschedule', section: 'matchups', label: 'Spielplan', icon: '📅', applies: A, when: WHEN, data: D, render: schedule });
+  MFHFB.pages.register({ id: 'wcdraftonly', section: 'standings', label: 'Draft Only', icon: '📋', applies: A, when: WHEN, data: ['?draft-only'], render: draftOnly });
 })();
