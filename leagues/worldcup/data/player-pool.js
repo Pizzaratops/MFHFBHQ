@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-23T21:02:50.721Z
+//  Stand: 2026-11-23T22:02:50.288Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -114,7 +114,7 @@ const WC_PLAYER_POOL = [
 ["04rvz","Billy Preston","(N/A)","PF","SF,PF,F,Flx","FA"],
 ["027oq","Bismack Biyombo","(N/A)","C","C,Flx","FA"],
 ["06mmd","Blake Hinson","(N/A)","SF","SF,F,Flx","FA"],
-["0621o","Blake Wesley","LAC","SG","PG,SG,G,Flx","FA"],
+["0621o","Blake Wesley","(N/A)","SG","PG,SG,G,Flx","FA"],
 ["03nwn","Bobby Portis","MIA","PF","PF,C,F,Flx","T"],
 ["06mlj","Bobi Klintman","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["03e6u","Bogdan Bogdanovic","HOU","SG","SG,G,SF,F,Flx","FA"],
@@ -603,7 +603,7 @@ const WC_PLAYER_POOL = [
 ["06kv0","Jaylin Galloway","(N/A)","SF","SF,F,Flx","FA"],
 ["076ur","Jaylin Sellers","CHI","PG","PG,G,Flx","FA"],
 ["06ps6","Jaylin Williams","(N/A)","F","SF,PF,F,Flx","FA"],
-["0621x","Jaylin Williams","OKC","PF","PF,C,F,Flx","T"],
+["0621x","Jaylin Williams","OKC","PF","PF,C,F,Flx","FA"],
 ["06mkc","Jaylon Tyson","CLE","SG","SG,G,SF,F,Flx","FA"],
 ["073rx","Jayson Kent","POR","SF","SF,F,Flx","FA"],
 ["03xmv","Jayson Tatum","BOS","PF","SF,PF,F,Flx","T"],
