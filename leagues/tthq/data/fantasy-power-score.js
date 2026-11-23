@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-23T12:01:30.181Z",
+  "generatedAt": "2026-11-23T13:01:51.456Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 18 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -73,7 +73,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 19.19,
         "tpm": 41.7,
         "to": 54.9,
-        "fgPct": 48.1,
+        "fgPct": 48,
         "ftPct": 78.6
       },
       "rank": {
@@ -102,7 +102,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 75.7,
         "stl": 23.37,
         "blk": 14.36,
-        "tpm": 40.9,
+        "tpm": 41.1,
         "to": 40.9,
         "fgPct": 46.8,
         "ftPct": 78.6
@@ -228,7 +228,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 14.93,
         "tpm": 35.5,
         "to": 35.1,
-        "fgPct": 46.8,
+        "fgPct": 46.7,
         "ftPct": 76.4
       },
       "rank": {
@@ -259,7 +259,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 81.7,
         "stl": 23.45,
         "blk": 19.06,
-        "tpm": 33.4,
+        "tpm": 33.6,
         "to": 44.1,
         "fgPct": 47.6,
         "ftPct": 76.1
@@ -416,9 +416,9 @@ const FANTASY_POWER_SCORE = {
         "ast": 58.4,
         "stl": 17.91,
         "blk": 8.94,
-        "tpm": 30.1,
+        "tpm": 30,
         "to": 34.9,
-        "fgPct": 46.2,
+        "fgPct": 46.1,
         "ftPct": 79
       },
       "rank": {
