@@ -7,14 +7,13 @@
 //
 //  Port von TTHQ js/trade-analyzer.js, js/trade-finder.js,
 //  js/trade-history.js + den Pick-Helfern aus data/stats.js
-//  (PICK_VALUES, buildPickPool, pickTradeValue). Die Bewertungs-Mathematik
-//  ist UNVERÄNDERT übernommen:
-//   - TRADE_VALUE_TABLE (Rang → Wert, MFHFB-Sheet) wörtlich kopiert
-//   - Alters-Multiplikator je Modus (dynasty | raw | winnow), ohne
-//     Geburtsdatum gilt Alter 26 (wie playerAgeToday)
-//   - Picks: slot-abhängig early/mid/late (Analyzer) bzw. immer "mid"
-//     (Finder), Jahres-Faktor je Modus (pickTradeValue)
-//   - Analyzer: Paket-Abschlag 0.80^i, Finder: 0.70^i (wie im Original)
+//  (PICK_VALUES, buildPickPool, pickTradeValue). Bewertung seit 23.11.2026
+//  neu (Backtest, sports/nba/scripts/trade-backtest/):
+//   - TRADE_VALUE_TABLE = √(Matt-Sheet × historisch realisierter Wert)
+//   - Dynasty ohne Alters-Faktor (steckt im Ranking), Win-Now mit Alters-Kurve
+//   - Picks: Wert je Slot (SLOT_VALUES) × 0,9 je Jahr; ohne Slot Erwartungswert
+//     über die TTHQ-Lottery (LOTTERY_P), nächster Draft aus der Tabelle projiziert
+//   - Konsolidierung: KTC-Raw-Adjustment (compareVals) statt Paket-Abschlag
 //   - Urteil: < 5 %-Punkte von 50/50 fair, < 12 leicht, sonst deutlich
 //
 //  Neu (16.10.2026): „Live-Form“ — mit DYNASTY_LIVE (Saison gegen Erwartung)
@@ -29,7 +28,7 @@
 (function () {
   const N = () => MFHFB.nba;
   const APPLIES = { sport: ['nba'], keepers: [true] };
-  const DATA = ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?picks', '?picks-live', '?dynasty-live'];
+  const DATA = ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?picks', '?picks-live', '?dynasty-live', '?season-matchups'];
   // Live-Form (seit 16.10.2026): Live-Rang aus DYNASTY_LIVE (Saison gegen Erwartung, nur
   // signifikante Abweichungen) ersetzt den Dynasty-Rang für den Wert. Ligaweiter Schalter.
   const liveOn = ctx => ctx.store.getJSON('dynlive', true) !== false;
@@ -41,37 +40,32 @@
   }
 
   // Trade values from MFHFBs spreadsheet (rank → value lookup) — wörtlich aus trade-analyzer.js
-  const TRADE_VALUE_TABLE = {"1": 1590, "2": 1375, "3": 1350, "4": 1325, "5": 1050, "6": 970, "7": 930, "8": 860, "9": 840, "10": 780, "11": 770, "12": 760, "13": 750, "14": 740, "15": 730, "16": 690, "17": 680, "18": 670, "19": 660, "20": 650, "21": 640, "22": 630, "23": 620, "24": 610, "25": 600, "26": 590, "27": 560, "28": 530, "29": 490, "30": 475, "31": 460, "32": 445, "33": 430, "34": 415, "35": 400, "36": 395, "37": 390, "38": 385, "39": 380, "40": 375, "41": 370, "42": 365, "43": 360, "44": 355, "45": 350, "46": 345, "47": 340, "48": 335, "49": 330, "50": 325, "51": 320, "52": 315, "53": 295, "54": 290, "55": 285, "56": 280, "57": 275, "58": 270, "59": 265, "60": 260, "61": 255, "62": 250, "63": 245, "64": 240, "65": 235, "66": 230, "67": 225, "68": 199, "69": 197, "70": 195, "71": 193, "72": 191, "73": 189, "74": 187, "75": 185, "76": 183, "77": 181, "78": 179, "79": 177, "80": 175, "81": 173, "82": 171, "83": 150, "84": 149, "85": 148, "86": 147, "87": 146, "88": 145, "89": 144, "90": 143, "91": 142, "92": 141, "93": 140, "94": 139, "95": 138, "96": 137, "97": 136, "98": 135, "99": 134, "100": 133, "101": 132, "102": 131, "103": 130, "104": 129, "105": 128, "106": 127, "107": 126, "108": 125, "109": 124, "110": 123, "111": 122, "112": 120, "113": 119.5, "114": 119, "115": 118.5, "116": 118, "117": 117.5, "118": 117, "119": 116.5, "120": 116, "121": 115.5, "122": 115, "123": 114.5, "124": 114, "125": 113.5, "126": 113, "127": 112.5, "128": 112, "129": 111.5, "130": 111, "131": 110.5, "132": 110, "133": 109.5, "134": 109, "135": 108.5, "136": 108, "137": 107.5, "138": 107, "139": 106.5, "140": 106, "141": 105.5, "142": 105, "143": 104.5, "144": 104, "145": 103.5, "146": 103, "147": 102.5, "148": 102, "149": 101.5, "150": 101, "151": 100.5, "152": 100, "153": 99.5, "154": 99, "155": 98.5, "156": 98, "157": 97.5, "158": 97, "159": 96.5, "160": 96, "161": 95.5, "162": 95, "163": 94.5, "164": 94, "165": 93.5, "166": 93, "167": 92.5, "168": 92, "169": 91.5, "170": 91, "171": 90.5, "172": 90, "173": 89.5, "174": 89, "175": 88.5, "176": 88, "177": 87.5, "178": 87, "179": 86.5, "180": 86, "181": 85.5, "182": 85, "183": 84.5, "184": 84, "185": 83.5, "186": 83, "187": 82.5, "188": 82, "189": 81.5, "190": 81, "191": 80.5, "192": 80, "193": 79.5, "194": 79, "195": 78.5, "196": 78, "197": 77.5, "198": 77, "199": 76.5, "200": 76, "201": 75.5, "202": 75, "203": 74.5, "204": 74, "205": 73.5, "206": 73, "207": 72.5, "208": 72, "209": 71.5, "210": 71, "211": 70.5, "212": 70, "213": 69.5, "214": 69, "215": 68.5, "216": 68, "217": 67.5, "218": 67, "219": 66.5, "220": 66, "221": 65.5, "222": 65, "223": 64.5, "224": 64, "225": 63.5, "226": 63, "227": 62.5, "228": 62, "229": 61.5, "230": 61, "231": 60.5, "232": 60, "233": 59.5, "234": 59, "235": 58.8, "236": 58.6, "237": 58.4, "238": 58.2, "239": 58, "240": 57.8, "241": 57.6, "242": 57.4, "243": 57.2, "244": 57, "245": 56.8, "246": 56.6, "247": 56.4, "248": 56.2, "249": 56, "250": 55.8, "251": 55.6, "252": 55.4, "253": 55.2, "254": 55, "255": 54.8, "256": 54.6, "257": 54.4, "258": 54.2, "259": 54, "260": 53.8, "261": 53.6, "262": 53.4, "263": 53.2, "264": 53, "265": 52.8, "266": 52.6, "267": 52.4, "268": 52.2, "269": 52, "270": 51.8, "271": 51.6, "272": 51.4, "273": 51.2, "274": 51, "275": 50.8, "276": 50.6, "277": 50.4, "278": 50.2, "279": 50, "280": 49.8, "281": 49.6, "282": 49.4, "283": 49.2, "284": 49, "285": 48.8, "286": 48.6, "287": 48.4, "288": 48.2, "289": 48, "290": 47.8, "291": 47.6, "292": 47.4, "293": 47.2, "294": 47, "295": 46.8, "296": 46.6, "297": 46.4, "298": 46.2, "299": 46, "300": 45.8, "301": 45.6, "302": 45.4, "303": 45.2, "304": 45, "305": 44.8, "306": 44.6, "307": 44.4, "308": 44.2, "309": 44, "310": 43.8, "311": 43.6, "312": 43.4, "313": 43.2, "314": 43, "315": 42.8, "316": 42.6, "317": 42.4, "318": 42.2, "319": 42, "320": 41.8, "321": 41.6, "322": 41.4, "323": 41.2, "324": 41, "325": 40.8, "326": 40.6, "327": 40.4, "328": 40.2, "329": 40, "330": 39.8, "331": 39.6, "332": 39.4, "333": 39.2, "334": 39, "335": 38.8, "336": 38.6, "337": 38.4, "338": 38.2, "339": 38, "340": 37.8, "341": 37.6, "342": 37.4, "343": 37.2, "344": 37, "345": 36.8, "346": 36.6, "347": 36.4, "348": 36.2, "349": 36, "350": 35.8, "351": 35.6, "352": 35.4, "353": 35.2, "354": 35, "355": 34.8, "356": 34.6, "357": 34.4, "358": 34.2, "359": 34, "360": 33.8, "361": 33.6, "362": 33.4, "363": 33.2, "364": 33, "365": 32.8, "366": 32.6, "367": 32.4, "368": 32.2, "369": 32, "370": 31.8, "371": 31.6, "372": 31.4, "373": 31.2, "374": 31, "375": 30.8, "376": 30.6, "377": 30.4, "378": 30.2, "379": 30, "380": 29.8, "381": 29.6, "382": 29.4, "383": 29.2, "384": 29, "385": 28.8, "386": 28.6, "387": 28.4, "388": 28.2, "389": 28, "390": 27.8, "391": 27.6, "392": 27.4, "393": 27.2, "394": 27, "395": 26.8, "396": 26.6, "397": 26.4, "398": 26.2, "399": 26, "400": 25.8, "401": 25.6, "402": 25.4, "403": 25.2, "404": 25, "405": 24.8, "406": 24.6, "407": 24.4, "408": 24.2, "409": 24, "410": 23.8, "411": 23.6, "412": 23.4, "413": 23.2, "414": 23, "415": 22.8, "416": 22.6, "417": 22.4, "418": 22.2, "419": 22, "420": 21.8, "421": 21.6, "422": 21.4, "423": 21.2, "424": 21, "425": 20.8, "426": 20.6, "427": 20.4, "428": 20.2, "429": 20, "430": 19.8, "431": 19.6, "432": 19.4, "433": 19.2, "434": 19, "435": 18.8, "436": 18.6, "437": 18.4, "438": 18.2, "439": 18, "440": 17.8, "441": 17.6, "442": 17.4, "443": 17.2, "444": 17, "445": 16.8, "446": 16.6, "447": 16.4, "448": 16.2, "449": 16, "450": 15.8, "451": 15.6, "452": 15.4, "453": 15.2, "454": 15, "455": 14.8, "456": 14.6, "457": 14.4, "458": 14.2, "459": 14, "460": 13.8, "461": 13.6, "462": 13.4, "463": 13.2, "464": 13, "465": 12.8, "466": 12.6, "467": 12.4, "468": 12.2, "469": 12, "470": 11.8, "471": 11.6, "472": 11.4, "473": 11.2, "474": 11, "475": 10.8, "476": 10.6, "477": 10.4, "478": 10.2, "479": 10, "480": 9.8, "481": 9.6, "482": 9.4, "483": 9.2, "484": 9, "485": 8.8, "486": 8.6, "487": 8.4, "488": 8.2, "489": 8, "490": 7.8, "491": 7.6, "492": 7.4, "493": 7.2, "494": 7, "495": 6.8, "496": 6.6, "497": 6.4, "498": 6.2, "499": 6, "500": 5.8, "501": 5.6, "502": 5.4, "503": 5.2, "504": 5, "505": 4.8, "506": 4.6, "507": 4.4, "508": 4.2, "509": 4, "510": 3.8, "511": 3.6, "512": 3.4, "513": 3.2, "514": 3, "515": 2.8, "516": 2.6, "517": 2.4, "518": 2.2, "519": 2, "520": 1.8, "521": 1.6, "522": 1.4, "523": 1.2, "524": 1, "525": 0.8, "526": 0.6, "527": 0.4, "528": 0, "529": 0, "530": 0, "531": 0, "532": 0, "533": 0, "534": 0, "535": 0, "536": 0, "537": 0, "538": 0, "539": 0, "540": 0, "541": 0, "542": 0, "543": 0, "544": 0, "545": 0, "546": 0, "547": 0, "548": 0, "549": 0, "550": 0, "551": 0, "552": 0, "553": 0, "554": 0, "555": 0, "556": 0, "557": 0, "558": 0, "559": 0, "560": 0, "561": 0, "562": 0, "563": 0, "564": 0, "565": 0, "566": 0, "567": 0, "568": 0, "569": 0, "570": 0, "571": 0, "572": 0, "573": 0, "574": 0, "575": 0, "576": 0, "577": 0, "578": 0, "579": 0, "580": 0, "581": 0, "582": 0, "583": 0, "584": 0, "585": 0, "586": 0, "587": 0, "588": 0, "589": 0, "590": 0, "591": 0, "592": 0, "593": 0, "594": 0, "595": 0, "596": 0, "597": 0, "598": 0, "599": 0, "600": 0, "601": 0, "602": 0, "603": 0, "604": 0, "605": 0, "606": 0, "607": 0, "608": 0, "609": 0, "610": 0, "611": 0, "612": 0, "613": 0, "614": 0, "615": 0, "616": 0, "617": 0, "618": 0, "619": 0, "620": 0, "621": 0, "622": 0, "623": 0, "624": 0, "625": 0, "626": 0, "627": 0, "628": 0, "629": 0, "630": 0, "631": 0, "632": 0, "633": 0, "634": 0, "635": 0, "636": 0, "637": 0, "638": 0, "639": 0, "640": 0, "641": 0, "642": 0, "643": 0, "644": 0, "645": 0, "646": 0, "647": 0, "648": 0, "649": 0, "650": 0, "651": 0, "652": 0, "653": 0, "654": 0, "655": 0, "656": 0, "657": 0};
+  const TRADE_VALUE_TABLE = {"1": 1590, "2": 1464, "3": 1373, "4": 1279, "5": 1115, "6": 1051, "7": 992, "8": 905, "9": 855, "10": 827, "11": 795, "12": 783, "13": 740, "14": 735, "15": 703, "16": 678, "17": 678, "18": 661, "19": 661, "20": 661, "21": 661, "22": 636, "23": 609, "24": 602, "25": 580, "26": 567, "27": 547, "28": 534, "29": 507, "30": 503, "31": 501, "32": 482, "33": 468, "34": 459, "35": 445, "36": 442, "37": 431, "38": 429, "39": 419, "40": 409, "41": 401, "42": 394, "43": 384, "44": 377, "45": 370, "46": 368, "47": 365, "48": 360, "49": 353, "50": 351, "51": 342, "52": 342, "53": 338, "54": 332, "55": 332, "56": 332, "57": 331, "58": 330, "59": 330, "60": 326, "61": 315, "62": 309, "63": 309, "64": 305, "65": 300, "66": 293, "67": 285, "68": 263, "69": 260, "70": 256, "71": 247, "72": 242, "73": 234, "74": 230, "75": 227, "76": 226, "77": 221, "78": 218, "79": 212, "80": 207, "81": 203, "82": 201, "83": 187, "84": 183, "85": 176, "86": 172, "87": 169, "88": 169, "89": 168, "90": 168, "91": 168, "92": 165, "93": 163, "94": 161, "95": 159, "96": 158, "97": 156, "98": 155, "99": 152, "100": 149, "101": 148, "102": 148, "103": 145, "104": 144, "105": 142, "106": 140, "107": 140, "108": 138, "109": 138, "110": 137, "111": 136, "112": 135, "113": 135, "114": 135, "115": 135, "116": 135, "117": 135, "118": 135, "119": 133, "120": 133, "121": 131, "122": 129, "123": 128, "124": 128, "125": 127, "126": 126, "127": 125, "128": 124, "129": 123, "130": 122, "131": 122, "132": 122, "133": 122, "134": 121, "135": 119, "136": 119, "137": 118, "138": 116, "139": 115, "140": 114, "141": 113, "142": 111, "143": 111, "144": 109, "145": 109, "146": 109, "147": 109, "148": 108, "149": 108, "150": 107, "151": 106, "152": 105, "153": 102, "154": 102, "155": 102, "156": 100, "157": 99, "158": 97, "159": 97, "160": 96, "161": 95, "162": 94, "163": 93, "164": 93, "165": 93, "166": 92, "167": 90, "168": 89, "169": 88, "170": 87, "171": 87, "172": 86, "173": 86, "174": 86, "175": 85, "176": 85, "177": 83, "178": 83, "179": 83, "180": 82, "181": 81, "182": 81, "183": 80, "184": 79, "185": 78, "186": 77, "187": 77, "188": 77, "189": 76, "190": 75, "191": 74, "192": 74, "193": 73, "194": 73, "195": 72, "196": 71, "197": 70, "198": 69, "199": 68, "200": 67, "201": 67, "202": 66, "203": 65, "204": 65, "205": 64, "206": 64, "207": 62, "208": 62, "209": 62, "210": 61, "211": 60, "212": 60, "213": 59, "214": 58, "215": 58, "216": 58, "217": 58, "218": 58, "219": 57, "220": 57, "221": 57, "222": 57, "223": 56, "224": 56, "225": 56, "226": 56, "227": 55, "228": 55, "229": 54, "230": 54, "231": 53, "232": 52, "233": 52, "234": 51, "235": 51, "236": 50, "237": 50, "238": 50, "239": 50, "240": 50, "241": 49, "242": 49, "243": 49, "244": 49, "245": 49, "246": 48, "247": 48, "248": 48, "249": 48, "250": 48, "251": 48, "252": 48, "253": 48, "254": 48, "255": 48, "256": 48, "257": 48, "258": 48, "259": 48, "260": 48, "261": 48, "262": 48, "263": 48, "264": 48, "265": 48, "266": 48, "267": 47, "268": 47, "269": 47, "270": 46, "271": 46, "272": 46, "273": 45, "274": 45, "275": 45, "276": 44, "277": 43, "278": 43, "279": 43, "280": 43, "281": 42, "282": 42, "283": 41, "284": 41, "285": 41, "286": 41, "287": 40, "288": 40, "289": 40, "290": 39, "291": 39, "292": 38, "293": 37, "294": 37, "295": 37, "296": 37, "297": 36, "298": 36, "299": 35, "300": 35, "301": 35, "302": 35, "303": 35, "304": 35, "305": 35, "306": 35, "307": 35, "308": 35, "309": 35, "310": 35, "311": 35, "312": 34, "313": 34, "314": 34, "315": 34, "316": 33, "317": 33, "318": 33, "319": 32, "320": 32, "321": 31, "322": 31, "323": 31, "324": 30, "325": 30, "326": 30, "327": 30, "328": 30, "329": 30, "330": 29, "331": 29, "332": 29, "333": 28, "334": 28, "335": 28, "336": 27, "337": 27, "338": 26, "339": 24, "340": 23, "341": 23, "342": 23, "343": 23, "344": 23, "345": 23, "346": 22, "347": 22, "348": 22, "349": 22, "350": 22, "351": 22, "352": 21, "353": 21, "354": 21, "355": 21, "356": 21, "357": 20, "358": 20, "359": 20, "360": 19.7, "361": 19.6, "362": 19.6, "363": 19.6, "364": 19.6, "365": 19.5, "366": 19.3, "367": 19.3, "368": 19.3, "369": 19.3, "370": 19.3, "371": 19.3, "372": 19.2, "373": 19.1, "374": 19.1, "375": 19.1, "376": 19.1, "377": 19.1, "378": 18.9, "379": 18.9, "380": 18.9, "381": 18.8, "382": 18.8, "383": 18.8, "384": 18.8, "385": 18.8, "386": 18.8, "387": 18.8, "388": 18.8, "389": 18.4, "390": 18.4, "391": 18.4, "392": 18.3, "393": 18.3, "394": 18.3, "395": 18.2, "396": 18.2, "397": 18.0, "398": 18.0, "399": 17.7, "400": 17.3, "401": 17.1, "402": 17.0, "403": 16.9, "404": 16.7, "405": 16.6, "406": 16.5, "407": 16.3, "408": 16.2, "409": 16.1, "410": 15.9, "411": 15.8, "412": 15.7, "413": 15.5, "414": 15.4, "415": 15.3, "416": 15.1, "417": 15.0, "418": 14.9, "419": 14.7, "420": 14.6, "421": 14.4, "422": 14.3, "423": 14.2, "424": 14.0, "425": 13.9, "426": 13.8, "427": 13.6, "428": 13.5, "429": 13.4, "430": 13.2, "431": 13.1, "432": 13.0, "433": 12.8, "434": 12.7, "435": 12.6, "436": 12.4, "437": 12.3, "438": 12.2, "439": 12.0, "440": 11.9, "441": 11.8, "442": 11.6, "443": 11.5, "444": 11.4, "445": 11.2, "446": 11.1, "447": 11.0, "448": 10.8, "449": 10.7, "450": 10.5, "451": 10.4, "452": 10.3, "453": 10.1, "454": 10.0, "455": 9.9, "456": 9.7, "457": 9.6, "458": 9.5, "459": 9.3, "460": 9.2, "461": 9.1, "462": 8.9, "463": 8.8, "464": 8.7, "465": 8.5, "466": 8.4, "467": 8.3, "468": 8.1, "469": 8.0, "470": 7.9, "471": 7.7, "472": 7.6, "473": 7.5, "474": 7.3, "475": 7.2, "476": 7.1, "477": 6.9, "478": 6.8, "479": 6.7, "480": 6.5, "481": 6.4, "482": 6.2, "483": 6.1, "484": 6.0, "485": 5.8, "486": 5.7, "487": 5.6, "488": 5.4, "489": 5.3, "490": 5.2, "491": 5.0, "492": 4.9, "493": 4.8, "494": 4.6, "495": 4.5, "496": 4.4, "497": 4.2, "498": 4.1, "499": 4.0, "500": 3.8, "501": 3.7, "502": 3.6, "503": 3.4, "504": 3.3, "505": 3.2, "506": 3.0, "507": 2.9, "508": 2.8, "509": 2.6, "510": 2.5, "511": 2.4, "512": 2.2, "513": 2.1, "514": 1.9, "515": 1.8, "516": 1.7, "517": 1.5, "518": 1.4, "519": 1.3, "520": 1.1, "521": 1.0, "522": 0.9, "523": 0.7, "524": 0.6, "525": 0.5, "526": 0.3, "527": 0.2, "528": 0.0, "529": 0.0, "530": 0.0, "531": 0.0, "532": 0.0, "533": 0.0, "534": 0.0, "535": 0.0, "536": 0.0, "537": 0.0, "538": 0.0, "539": 0.0, "540": 0.0, "541": 0.0, "542": 0.0, "543": 0.0, "544": 0.0, "545": 0.0, "546": 0.0, "547": 0.0, "548": 0.0, "549": 0.0, "550": 0.0, "551": 0.0, "552": 0.0, "553": 0.0, "554": 0.0, "555": 0.0, "556": 0.0, "557": 0.0, "558": 0.0, "559": 0.0, "560": 0.0, "561": 0.0, "562": 0.0, "563": 0.0, "564": 0.0, "565": 0.0, "566": 0.0, "567": 0.0, "568": 0.0, "569": 0.0, "570": 0.0, "571": 0.0, "572": 0.0, "573": 0.0, "574": 0.0, "575": 0.0, "576": 0.0, "577": 0.0, "578": 0.0, "579": 0.0, "580": 0.0, "581": 0.0, "582": 0.0, "583": 0.0, "584": 0.0, "585": 0.0, "586": 0.0, "587": 0.0, "588": 0.0, "589": 0.0, "590": 0.0, "591": 0.0, "592": 0.0, "593": 0.0, "594": 0.0, "595": 0.0, "596": 0.0, "597": 0.0, "598": 0.0, "599": 0.0, "600": 0.0, "601": 0.0, "602": 0.0, "603": 0.0, "604": 0.0, "605": 0.0, "606": 0.0, "607": 0.0, "608": 0.0, "609": 0.0, "610": 0.0, "611": 0.0, "612": 0.0, "613": 0.0, "614": 0.0, "615": 0.0, "616": 0.0, "617": 0.0, "618": 0.0, "619": 0.0, "620": 0.0, "621": 0.0, "622": 0.0, "623": 0.0, "624": 0.0, "625": 0.0, "626": 0.0, "627": 0.0, "628": 0.0, "629": 0.0, "630": 0.0, "631": 0.0, "632": 0.0, "633": 0.0, "634": 0.0, "635": 0.0, "636": 0.0, "637": 0.0, "638": 0.0, "639": 0.0, "640": 0.0, "641": 0.0, "642": 0.0, "643": 0.0, "644": 0.0, "645": 0.0, "646": 0.0, "647": 0.0, "648": 0.0, "649": 0.0, "650": 0.0, "651": 0.0, "652": 0.0, "653": 0.0, "654": 0.0, "655": 0.0, "656": 0.0, "657": 0.0};
 
-  // Pick-Werte — ursprünglich aus data/stats.js. Zeilen gelten RELATIV zum nächsten Draft (siehe NEXT):
-  // „2026“ = nächster Draft, „2027“ = übernächster usw.
-  // 22.11.2026 nachjustiert (Abgleich mit dem echten TTHQ-Draft 2026, Live-Draft-Board, und dem
-  // heutigen Wert der dort gezogenen Spieler): R1 passte (früh 678 ↔ 660, Mitte 266 ↔ 262, spät
-  // 112 ↔ 128), R2 spät und R3/R4 waren zu niedrig (Spieler dort heute ~50–70) → angehoben;
-  // Zukunftsjahre mit dem bisherigen R2-Jahresabschlag (0,917 / 0,833 / 0,767).
-  const PICK_VALUES = {
-    "2026_R1_early":  678, "2026_R1_mid":  266, "2026_R1_late":  112,
-    "2026_R2_early":   88, "2026_R2_mid":   60, "2026_R2_late":   55,
-    "2026_R3_early":   55, "2026_R3_mid":   50, "2026_R3_late":   45,
-    "2026_R4_early":   40, "2026_R4_mid":   35, "2026_R4_late":   30,
-    "2027_R1_early":  550, "2027_R1_mid":  200, "2027_R1_late":  100,
-    "2027_R2_early":   85, "2027_R2_mid":   55, "2027_R2_late":   50,
-    "2027_R3_early":   50, "2027_R3_mid":   46, "2027_R3_late":   41,
-    "2027_R4_early":   37, "2027_R4_mid":   32, "2027_R4_late":   28,
-    "2028_R1_early":  506, "2028_R1_mid":  184, "2028_R1_late":   92,
-    "2028_R2_early":   78, "2028_R2_mid":   50, "2028_R2_late":   46,
-    "2028_R3_early":   46, "2028_R3_mid":   42, "2028_R3_late":   37,
-    "2028_R4_early":   33, "2028_R4_mid":   29, "2028_R4_late":   25,
-    "2029_R1_early":  467, "2029_R1_mid":  170, "2029_R1_late":   85,
-    "2029_R2_early":   72, "2029_R2_mid":   46, "2029_R2_late":   42,
-    "2029_R3_early":   42, "2029_R3_mid":   38, "2029_R3_late":   35,
-    "2029_R4_early":   31, "2029_R4_mid":   27, "2029_R4_late":   23,
-  };
+  // Seit 23.11.2026 (Backtest, siehe sports/nba/scripts/trade-backtest/ + Projekt-Doc
+  // claude/trade-values-research.md):
+  //  - TRADE_VALUE_TABLE = geometrisches Mittel aus Matt-Sheet und historisch realisiertem Wert
+  //    (BBM 2004–2026, 7 Jahre, Abzinsung 0,85, Ersatzniveau Rang 156), monoton geglättet.
+  //  - SLOT_VALUES: Wert je TTHQ-Slot 1–48 für den NÄCHSTEN Draft = Wert des Dynasty-Rangs, den ein
+  //    NBA-Pick dieser Position historisch erreicht hat (#1 ≈ Rang 46, #5 ≈ 75, #12 ≈ 119).
+  //    Jedes weitere Jahr bis zum Draft ×0,9. Kein Rookie-Faktor mehr.
+  //  - LOTTERY_P[k][s]: P(TTHQ-Slot s | k-te Wahl im NBA-Team-Picking), k=0 = Letzter. Regel: der
+  //    Letzte wählt zuerst ein NBA-Team und bekommt dessen Lottery-Ergebnis (200k Simulationen).
+  //    Champion = Slot 12. Alle Runden in derselben Reihenfolge.
+  const SLOT_VALUES = [368, 332, 315, 263, 227, 201, 169, 159, 148, 140, 135, 133, 129, 127, 123, 121, 118, 111, 108, 107, 105, 102, 102, 95, 92, 86, 86, 85, 83, 79, 76, 74, 72, 67, 62, 62, 61, 60, 48, 48, 48, 48, 48, 48, 48, 35, 22, 22];
+  const LOTTERY_P = [[0.145, 0.138, 0.134, 0.185, 0.398, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.144, 0.138, 0.134, 0.147, 0.279, 0.159, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.145, 0.139, 0.132, 0.123, 0.18, 0.23, 0.051, 0.0, 0.0, 0.0, 0.0, 0.0], [0.129, 0.127, 0.122, 0.108, 0.104, 0.261, 0.135, 0.014, 0.0, 0.0, 0.0, 0.0], [0.108, 0.109, 0.109, 0.095, 0.039, 0.229, 0.244, 0.062, 0.003, 0.0, 0.0, 0.0], [0.092, 0.095, 0.097, 0.086, 0.0, 0.121, 0.317, 0.169, 0.022, 0.0, 0.0, 0.0], [0.077, 0.081, 0.085, 0.076, 0.0, 0.0, 0.252, 0.333, 0.09, 0.006, 0.0, 0.0], [0.061, 0.066, 0.07, 0.065, 0.0, 0.0, 0.0, 0.422, 0.279, 0.036, 0.001, 0.0], [0.047, 0.05, 0.055, 0.052, 0.0, 0.0, 0.0, 0.0, 0.606, 0.183, 0.008, 0.0], [0.031, 0.034, 0.037, 0.037, 0.0, 0.0, 0.0, 0.0, 0.0, 0.776, 0.085, 0.0], [0.021, 0.023, 0.025, 0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.906, 0.0]];
+  const YEAR_DISC = 0.9;
+  // Kompatibilität (Export/Tests): Ø früh/mitte/spät je Runde für den nächsten Draft
+  const PICK_VALUES = {};
+  for (let r = 1; r <= 4; r++) [['early', 1, 4], ['mid', 5, 8], ['late', 9, 12]].forEach(([k, lo, hi]) => {
+    let t = 0; for (let sl = lo; sl <= hi; sl++) t += SLOT_VALUES[(r - 1) * 12 + sl - 1];
+    PICK_VALUES[`R${r}_${k}`] = Math.round(t / (hi - lo + 1));
+  });
+
 
 
   const MODES = [
-    { key: 'dynasty', label: '🏗️ Dynasty', desc: '<b>Dynasty:</b> altersbereinigt für den langfristigen Wert. Junge Spieler bekommen einen deutlichen Boost, Veteranen werden abgewertet. Ideal für Rebuild-Teams.' },
-    { key: 'raw', label: '📊 Raw', desc: '<b>Raw:</b> reiner Rang-Wert ohne Altersanpassung. Neutrale Konsens-Sicht, gut als Baseline, wenn sich beide Seiten uneinig sind.' },
+    { key: 'dynasty', label: '🏗️ Dynasty', desc: '<b>Dynasty:</b> reiner Wert des Dynasty-Rangs (Alter steckt schon im Ranking) — die neutrale Konsens-Sicht für langfristige Trades.' },
     { key: 'winnow', label: '🏆 Win-Now', desc: '<b>Win-Now:</b> Veteranen bekommen einen Bonus, unerprobte Youngster einen Abschlag. Ideal für Contender mit Blick auf die nächsten 2–3 Saisons.' },
   ];
   const modeOk = m => MODES.some(x => x.key === m) ? m : 'dynasty';
@@ -91,21 +85,11 @@
   }
 
   function ageMultiplier(dobStr, mode) {
-    if (mode === 'raw') return 1.0;
+    // Seit 23.11.2026: Dynasty = Rang-Wert ohne Alters-Faktor (das Alter steckt schon im Dynasty-Ranking;
+    // Matt, Hashtag und KTC rechnen auch so). Nur Win-Now gewichtet um.
+    if (mode !== 'winnow') return 1.0;
     const age = playerAgeToday(dobStr);
-    if (mode === 'dynasty') {
-      if (age <= 19) return 1.50;
-      if (age <= 21) return 1.35;
-      if (age <= 23) return 1.20;
-      if (age <= 25) return 1.08;
-      if (age <= 27) return 1.00;
-      if (age <= 29) return 0.82;
-      if (age <= 31) return 0.62;
-      if (age <= 33) return 0.42;
-      if (age <= 35) return 0.22;
-      return 0.08;
-    }
-    if (mode === 'winnow') {
+    {
       if (age <= 19) return 0.70;
       if (age <= 21) return 0.82;
       if (age <= 23) return 0.92;
@@ -120,36 +104,44 @@
     return 1.0;
   }
 
+  let NEXT = 2026; // nächster Draft, in model() gesetzt
+  let PROJ = new Map(); // teamId → P(Wahl-Position 0..11) für den nächsten Draft (aus der laufenden Saison)
+  const slotValue = (round, slot) => SLOT_VALUES[(round - 1) * 12 + slot - 1] || 0;
+  // Verteilung über Slot 1..12 (Index 0..11)
+  function slotDist(pick) {
+    if (pick.slot) {
+      const sl = Math.min(12, ((pick.slot - 1) % 12) + 1);
+      return Array.from({ length: 12 }, (_, i) => (i === sl - 1 ? 1 : 0));
+    }
+    const pos = pick.year === NEXT ? PROJ.get(pick.originalOwner) : null;
+    if (!pos) return Array(12).fill(1 / 12);
+    const d = Array(12).fill(0);
+    pos.forEach((pp, k) => {
+      if (!pp) return;
+      if (k >= 11) { d[11] += pp; return; } // Champion
+      LOTTERY_P[k].forEach((q, sl) => { d[sl] += pp * q; });
+    });
+    const tot = d.reduce((x, y) => x + y, 0) || 1;
+    return d.map(x => x / tot);
+  }
+  const expSlot = pick => slotDist(pick).reduce((t, q, i) => t + q * (i + 1), 0);
   function slotRange(slot) {
     if (slot == null) return 'mid';
     if (slot <= 4) return 'early';
     if (slot <= 8) return 'mid';
     return 'late';
   }
-  // Seit 22.11.2026: PICK_VALUES und Jahres-Faktoren gelten RELATIV zum nächsten Draft — die Zeile
-  // „2026“ ist der nächste Draft, „2027“ der übernächste usw. Nach dem Draft 2026 rückt alles
-  // ein Jahr auf (2027er Picks bekommen die bisherigen 2026er Werte). NEXT wird in model() gesetzt.
-  let NEXT = 2026;
-  const valYear = y => 2026 + Math.max(0, Math.min(3, y - NEXT));
-  // slotAwarePickValue (trade-analyzer.js): ohne Fallback auf "mid"
+  // Grundwert eines Picks: Erwartungswert über die Slot-Verteilung × 0,9 je Jahr bis zum Draft
   function slotAwarePickValue(pick) {
-    if (!pick || !pick.year || !pick.round) return 0;
-    const key = `${valYear(pick.year)}_R${pick.round}_${slotRange(pick.slot)}`;
-    return PICK_VALUES[key] || 0;
+    if (!pick || !pick.year || !pick.round || pick.round > 4) return 0;
+    const ev = slotDist(pick).reduce((t, q, i) => t + q * slotValue(pick.round, i + 1), 0);
+    return Math.round(ev * Math.pow(YEAR_DISC, Math.max(0, pick.year - NEXT)));
   }
-  // pickTradeValue (data/stats.js)
   function pickTradeValue(pick, mode) {
     let val = pick.baseValue;
     if (mode === 'winnow') {
-      const m = { 0: 1.15, 1: 1.00, 2: 0.85, 3: 0.70 }; // Jahre bis zum Draft
-      val = Math.round(val * (m[pick.year - NEXT] || 0.65));
-    } else if (mode === 'dynasty') {
-      // Seit 22.11.2026: R1/R2 mit Rookie-Faktor ×1,3 (gezogen werden dort fast nur 19–21-Jährige, die
-      // danach ×1,35–1,5 bekommen — vorher war ein Pick vor dem Draft deutlich billiger als der Spieler
-      // danach). Weiter hinten im Jahr steigt der Faktor wie bisher leicht (Dynasty mag Zukunft).
-      const rookie = pick.round && pick.round <= 2 ? 1.3 / 0.95 : 1;
-      const m = { 0: 0.95, 1: 1.00, 2: 1.05, 3: 1.08 };
-      val = Math.round(val * (m[pick.year - NEXT] || 1.00) * rookie);
+      const m = { 0: 1.00, 1: 0.85, 2: 0.72, 3: 0.60 }; // Contender: Zukunft zusätzlich abwerten
+      val = Math.round(val * (m[pick.year - NEXT] ?? 0.55));
     }
     return val;
   }
@@ -159,13 +151,39 @@
     return Math.round(v * ageMultiplier(dob, mode));
   }
   const itemValue = (p, mode) => (p.isPick ? pickTradeValue(p, mode) : dynastyValue(p.rank, p.dob, mode));
-  // tradeSideValue: Paket-Abschlag 0.80 je weiterem Asset
+
+  // ---------- Konsolidierung: KTC-Raw-Adjustment (rekonstruiert, Backtest 23.11.2026) ----------
+  // Jedes Asset bekommt einen „Rohwert“ RA = v·(0,10 + 0,076·(v/Gmax)^8 + c·(v/tmax)^1,3),
+  // tmax = bestes Asset im ganzen Trade. Fair = gleiche RA-Summen. Die Seite mit der höheren
+  // RA-Summe bekommt einen Wertausgleich x (der Wert, dessen RA die Differenz schließt) —
+  // drei Mittelklasse-Spieler kaufen so keinen Star, ein Star ist mehr als die Summe seiner Teile.
+  // KTC_C: KTC selbst ≈ 0,24; an den echten TTHQ-Mehrfach-Trades kalibriert 0,18 (Fehler ±11 % statt ±26 % beim Paket-Abschlag)
+  const KTC_C = 0.18;
+  const GMAX = TRADE_VALUE_TABLE[1];
+  const ra = (v, t) => (v <= 0 || t <= 0 ? 0 : v * (0.10 + 0.076 * Math.pow(v / GMAX, 8) + KTC_C * Math.pow(Math.min(v / t, 1.5), 1.3)));
+  function solveX(d, t) {
+    if (d <= 0) return 0;
+    let lo = 0, hi = Math.max(t, 1);
+    while (ra(hi, t) < d && hi < 1e6) hi *= 2;
+    for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; if (ra(mid, t) < d) lo = mid; else hi = mid; }
+    return (lo + hi) / 2;
+  }
+  // vals: Zahlenlisten je Seite → Summen, Wertausgleich, effektive Werte für das Urteil
+  function compareVals(valsA, valsB) {
+    const sumA = valsA.reduce((x, y) => x + y, 0), sumB = valsB.reduce((x, y) => x + y, 0);
+    const t = Math.max(0, ...valsA, ...valsB);
+    const raA = valsA.reduce((x, v) => x + ra(v, t), 0), raB = valsB.reduce((x, v) => x + ra(v, t), 0);
+    let adjA = 0, adjB = 0, effA = sumA, effB = sumB;
+    if (raA >= raB) { const x = solveX(raA - raB, t); effA = sumB + x; effB = sumB; adjA = Math.max(0, effA - sumA); }
+    else { const x = solveX(raB - raA, t); effB = sumA + x; effA = sumA; adjB = Math.max(0, effB - sumB); }
+    return { sumA, sumB, effA: Math.round(effA), effB: Math.round(effB), adjA: Math.round(adjA), adjB: Math.round(adjB) };
+  }
+  function compareSides(itemsA, itemsB, mode) {
+    return compareVals(itemsA.map(p => itemValue(p, mode)), itemsB.map(p => itemValue(p, mode)));
+  }
+  // Summe der Einzelwerte (ohne Ausgleich) — für Anzeigen/Export
   function tradeSideValue(items, mode) {
-    if (!items.length) return 0;
-    const vals = items.map(p => itemValue(p, mode)).sort((a, b) => b - a);
-    let total = 0;
-    vals.forEach((v, i) => { total += v * Math.pow(0.80, i); });
-    return Math.round(total);
+    return Math.round(items.reduce((t, p) => t + itemValue(p, mode), 0));
   }
   function verdictOf(valA, valB) {
     const total = valA + valB;
@@ -177,6 +195,55 @@
     if (diff < 5) return { cls: 'fair', pctA, pctB, aWins, label: 'Fairer Trade', share: '✅ Fair Trade', sub: 'Beide Seiten bekommen ungefähr gleich viel Dynasty-Wert.' };
     if (diff < 12) return { cls: 'slight', pctA, pctB, aWins, label: `Leichter Vorteil: Seite ${w}`, share: `🟡 Leichter Edge: Side ${w}`, sub: `Das Paket von Seite ${w} ist etwas mehr wert, aber es ist recht knapp.` };
     return { cls: 'lopsided', pctA, pctB, aWins, label: `Seite ${w} gewinnt deutlich`, share: `🔥 Side ${w} gewinnt deutlich`, sub: `Das Paket von Seite ${w} hat deutlich mehr Dynasty-Wert.` };
+  }
+
+
+  // Projektion der Wahl-Position für den nächsten Draft aus der laufenden Saison
+  // (Monte Carlo über die Rest-Wochen; Stärke = Kategorie-Quote, mit 36 Kategorien à 50 % eingemittelt;
+  // Champion aus den Top 4 ∝ Stärke³). Ergebnis: teamId → [P(Pos 0 = Letzter) … P(Pos 10), P(Champion)].
+  function projectPositions(data) {
+    const S = (data.SEASON_MATCHUPS || []).find(x => x.current);
+    const out = new Map();
+    if (!S || Number(S.espnSeason) !== NEXT) return out;
+    const tot = {};
+    Object.keys(S.teams || {}).forEach(k => { const id = S.teams[k].teamId; if (id != null) tot[k] = { id, cw: 0, cl: 0, mw: 0, wk: 0 }; });
+    let played = 0;
+    Object.keys(S.weeks || {}).forEach(w => {
+      let any = false;
+      (S.weeks[w] || []).forEach(x => {
+        if (x.playoff || !x.res || !tot[x.team]) return; any = true;
+        const t = tot[x.team]; t.cw += x.w; t.cl += x.l; t.wk++; if (x.res === 'W') t.mw++; else if (x.res === 'T') t.mw += 0.5;
+      });
+      if (any) played++;
+    });
+    const T = Object.values(tot); const n = T.length;
+    if (n < 4 || !played) return out;
+    const rem = Math.max(0, (S.regularSeasonWeeks || 17) - played);
+    const pr = T.map(t => (t.cw + 18) / (t.cw + t.cl + 36));
+    let seed = 20271; const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let z = Math.imul(seed ^ seed >>> 15, 1 | seed); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
+    const gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(2 * Math.PI * rnd());
+    const cnt = T.map(() => Array(12).fill(0)); const SIMS = 3000;
+    for (let sim = 0; sim < SIMS; sim++) {
+      const ps = pr.map(x => Math.min(0.8, Math.max(0.2, x + 0.04 * gauss())));
+      const w = T.map(t => t.mw);
+      for (let k = 0; k < rem; k++) {
+        const idx = T.map((_, i) => i).sort(() => rnd() - 0.5);
+        for (let j = 0; j + 1 < n; j += 2) {
+          const a = idx[j], b = idx[j + 1], pa = ps[a] / (ps[a] + ps[b]);
+          let ca = 0; for (let c = 0; c < 9; c++) if (rnd() < pa) ca++;
+          if (ca >= 5) w[a]++; else w[b]++;
+        }
+      }
+      const order = T.map((_, i) => i).sort((a, b) => (w[b] - w[a]) || (rnd() - 0.5)); // bester zuerst
+      const top = order.slice(0, 4), sw = top.map(i => Math.pow(ps[i], 3)), sum = sw.reduce((x, y) => x + y, 0);
+      let r = rnd() * sum, champ = top[3];
+      for (let q = 0; q < 4; q++) { r -= sw[q]; if (r <= 0) { champ = top[q]; break; } }
+      const rest = order.filter(i => i !== champ).reverse(); // schlechtester zuerst
+      rest.forEach((i, k) => { cnt[i][Math.min(k, 10)]++; });
+      cnt[champ][11]++;
+    }
+    T.forEach((t, i) => out.set(t.id, cnt[i].map(c => c / SIMS)));
+    return out;
   }
 
   // ============================================================
@@ -200,12 +267,14 @@
     if (LV && LV.size) players.sort((a, b) => a.rank - b.rank || a.baseRank - b.baseRank);
     const byName = new Map(players.map(p => [p.name, p]));
     NEXT = nba.nextDraftYear(data) || NEXT;
+    PROJ = projectPositions(data);
     const picks = nba.openPicks(data).map(p => {
       const orig = team(p.originalOwner), curr = team(p.currentOwner);
       return {
         isPick: true, pickKey: `${p.year}_R${p.round}_T${p.originalOwner}`, year: p.year, round: p.round, slot: p.slot || null,
         originalOwner: p.originalOwner, currentOwner: p.currentOwner, traded: p.originalOwner !== p.currentOwner,
-        note: p.note || null, orig, curr, name: `${p.year} R${p.round} · ${orig.name}`, pickRange: slotRange(p.slot),
+        note: p.note || null, orig, curr, name: `${p.year} R${p.round} · ${orig.name}`, pickRange: slotRange(p.slot), expSlot: p.slot ? null : expSlot(p),
+        projected: !p.slot && p.year === NEXT && PROJ.has(p.originalOwner),
         baseValue: slotAwarePickValue(p), owner: curr, ownerId: p.currentOwner,
       };
     }).sort((a, b) => a.year - b.year || a.round - b.round || a.originalOwner - b.originalOwner);
@@ -346,29 +415,29 @@
     </div>`;
   }
 
-  function breakdownSide(m, items, label, sideVal, mode) {
+  function breakdownSide(m, items, label, sideVal, adj, mode) {
     const sorted = [...items].sort((a, b) => itemValue(b, mode) - itemValue(a, mode));
     const rows = sorted.map((p, i) => {
-      const raw = itemValue(p, mode);
-      const eff = Math.round(raw * Math.pow(0.80, i));
+      const eff = itemValue(p, mode);
       let badges, detail;
       if (p.isPick) {
-        badges = `<span class="tr-nba-note">📋 ${{ early: 'Early', mid: 'Mid', late: 'Late' }[p.pickRange]} · ${p.year}</span> ${teamTag(p.curr)}${p.traded ? ' <small class="muted">(via Trade)</small>' : ''}`;
+        badges = `<span class="tr-nba-note">📋 ${p.slot ? 'Slot ' + p.slot : (p.projected ? 'proj. Ø Slot ' : 'Ø Slot ') + String(p.expSlot.toFixed(1)).replace('.', ',')} · ${p.year}</span> ${teamTag(p.curr)}${p.traded ? ' <small class="muted">(via Trade)</small>' : ''}`;
         detail = `📋 Draft Pick · ${esc(p.curr.name)}`;
       } else {
         const mult = ageMultiplier(p.dob, mode);
         const age = p.dob ? playerAgeToday(p.dob) : null;
         const cls = mult >= 1.20 ? 'a-hi' : mult >= 1.05 ? 'a-up' : mult <= 0.50 ? 'a-lo' : mult <= 0.80 ? 'a-dn' : '';
-        const ageLbl = mode !== 'raw' && age ? `<span class="tr-nba-age ${cls}">${age} J. · ${mult >= 1 ? '+' : ''}${Math.round((mult - 1) * 100)} %</span>` : '';
+        const ageLbl = mode === 'winnow' && age ? `<span class="tr-nba-age ${cls}">${age} J. · ${mult >= 1 ? '+' : ''}${Math.round((mult - 1) * 100)} %</span>` : '';
         badges = `${rankBadges(m, p)}${ageLbl}`;
         detail = `${esc(p.nba)} · ${p.owner ? esc(p.owner.name) : 'frei'}`;
       }
       return `<div class="tr-nba-bdrow">
         <div class="tr-nba-main"><div class="tr-nba-name">${esc(p.name)}</div><div class="tr-nba-detail">${detail}</div><div class="tr-nba-badges">${badges}</div></div>
-        <div class="tr-nba-eff"><b>${fmt(eff)}</b>${i > 0 ? `<small>×0,8${i > 1 ? '<sup>' + i + '</sup>' : ''} Tiefe</small>` : ''}</div>
+        <div class="tr-nba-eff"><b>${fmt(eff)}</b></div>
       </div>`;
     }).join('');
-    return `<div class="tr-nba-bdside"><div class="tr-nba-bdhead"><span>${label}</span><b>${fmt(sideVal)}</b></div>${rows}</div>`;
+    const adjRow = adj > 0 ? `<div class="tr-nba-bdrow"><div class="tr-nba-main"><div class="tr-nba-name">⭐ Star-Ausgleich</div><div class="tr-nba-detail">bestes Asset im Trade — Konsolidierungs-Bonus (KTC-Methode)</div></div><div class="tr-nba-eff"><b>+${fmt(adj)}</b></div></div>` : '';
+    return `<div class="tr-nba-bdside"><div class="tr-nba-bdhead"><span>${label}</span><b>${fmt(sideVal + adj)}</b></div>${rows}${adjRow}</div>`;
   }
 
   // buildTradeShareText (unverändert bis auf den Liga-Namen im Kopf)
@@ -403,12 +472,12 @@
       return `<div class="card tr-nba-result is-empty">${(selA.length || selB.length) ? 'Jetzt noch die andere Seite befüllen …' : 'Wähle auf beiden Seiten mindestens einen Spieler oder Pick aus, um den Trade zu bewerten.'}</div>`;
     }
     const mode = st.mode;
-    const valA = tradeSideValue(selA, mode), valB = tradeSideValue(selB, mode);
+    const c = compareSides(selA, selB, mode);
+    const valA = c.effA, valB = c.effB;
     const v = verdictOf(valA, valB);
     const ageNote = {
-      dynasty: 'Junge Spieler (≤ 21) bekommen bis zu +50 %, ab 28 wird abgewertet, ab 32 stark.',
-      raw: 'Keine Altersanpassung, nur der reine Rang-Wert.',
-      winnow: 'Spieler zwischen 26 und 31 bekommen einen Bonus, Teenager und Spieler ab 34 einen deutlichen Abschlag.',
+      dynasty: 'Kein Alters-Faktor — das Alter steckt schon im Dynasty-Ranking.',
+      winnow: 'Spieler zwischen 26 und 31 bekommen einen Bonus, Teenager und Spieler ab 34 einen deutlichen Abschlag; Zukunfts-Picks zusätzlich abgewertet.',
     }[mode];
     return `<div class="card tr-nba-result ${v.cls}">
       <div class="tr-nba-verdict">${v.label}</div>
@@ -419,11 +488,11 @@
         <div class="tr-nba-barlbl small"><span class="${v.aWins ? 'tr-nba-w' : ''}">${v.pctA.toFixed(1).replace('.', ',')} %${v.aWins ? ' ← Seite A vorne' : ''}</span><span class="${!v.aWins ? 'tr-nba-w' : ''}">${!v.aWins ? 'Seite B vorne → ' : ''}${v.pctB.toFixed(1).replace('.', ',')} %</span></div>
       </div>
       <div class="tr-nba-bd">
-        ${breakdownSide(m, selA, 'Seite A', valA, mode)}
+        ${breakdownSide(m, selA, 'Seite A', c.sumA, c.adjA, mode)}
         <div class="tr-nba-vs">vs</div>
-        ${breakdownSide(m, selB, 'Seite B', valB, mode)}
+        ${breakdownSide(m, selB, 'Seite B', c.sumB, c.adjB, mode)}
       </div>
-      <div class="tr-nba-explain"><b>${MODES.find(x => x.key === mode).label.replace(/^\S+\s/, '')}: so wird gerechnet.</b> Jeder Spieler bekommt den Wert seines MFHFB-Dynasty-Rangs aus dem Trade-Sheet (nur Ränge 1–${Object.keys(TRADE_VALUE_TABLE).length}, danach 0)${selA.concat(selB).some(p => p.live) ? ' — bei „Live #“ zählt der Live-Rang (Saison-Form gegen Erwartung)' : ''}, multipliziert mit dem Alters-Faktor. ${ageNote} Picks: fester Wert je Runde/Slot (early 1–4, mid 5–8, late 9–12; ohne Slot „mid“) und Abstand zum nächsten Draft (${NEXT}), mit Jahres-Faktor je Modus (Dynasty: R1/R2 zusätzlich Rookie-Faktor ×1,3). Bereits gedraftete Jahrgänge sind nicht handelbar. Pro Seite zählt das wertvollste Asset voll, jedes weitere mit ×0,8, ×0,8², … (Paket-Abschlag).</div>
+      <div class="tr-nba-explain"><b>${MODES.find(x => x.key === mode).label.replace(/^\S+\s/, '')}: so wird gerechnet.</b> Jeder Spieler bekommt den Wert seines MFHFB-Dynasty-Rangs (Kurve aus Matt-Sheet × historischem Backtest, Ränge 1–${Object.keys(TRADE_VALUE_TABLE).length}, danach 0)${selA.concat(selB).some(p => p.live) ? ' — bei „Live #“ zählt der Live-Rang (Saison-Form gegen Erwartung)' : ''}. ${ageNote} Picks: Wert je Slot aus dem Backtest (was NBA-Picks dieser Position historisch wert wurden), ×0,9 je Jahr bis zum Draft. Ohne festen Slot zählt der Erwartungswert über die TTHQ-Lottery (Letzter wählt zuerst ein NBA-Team); für den nächsten Draft (${NEXT}) aus der aktuellen Tabelle hochgerechnet. Konsolidierung nach KTC: Die Seite mit dem besten Asset bekommt einen Star-Ausgleich — mehrere Mittelklasse-Assets ergeben keinen Star. Hintergrund: Projekt-Doc „trade-values-research“.</div>
       <div class="tr-nba-actions"><button type="button" class="seg-btn" data-copy>📋 Als Text kopieren</button><button type="button" class="seg-btn" data-reset>↺ Neuer Trade</button></div>
     </div>`;
   }
@@ -475,7 +544,7 @@
       if (b.hasAttribute('data-copy')) {
         const selA = st.A.sel.map(r => resolve(m, r)).filter(Boolean), selB = st.B.sel.map(r => resolve(m, r)).filter(Boolean);
         if (!selA.length || !selB.length) return;
-        const valA = tradeSideValue(selA, st.mode), valB = tradeSideValue(selB, st.mode);
+        const c = compareSides(selA, selB, st.mode), valA = c.effA, valB = c.effB;
         copyText(buildTradeShareText(ctx.league, selA, selB, valA, valB, verdictOf(valA, valB).share), b);
       }
     });
@@ -529,8 +598,7 @@
     return m.picks
       .filter(p => p.year >= NEXT && p.round <= 2) // nur künftige R1/R2-Picks
       .map(p => {
-        const baseVal = PICK_VALUES[`${valYear(p.year)}_R${p.round}_mid`] || 0;
-        return { ...p, baseValue: baseVal, dynVal: pickTradeValue({ baseValue: baseVal, year: p.year, round: p.round }, mode) };
+        return { ...p, dynVal: pickTradeValue(p, mode) };
       })
       .filter(p => p.dynVal > 0)
       .sort((a, b) => a.year - b.year || a.round - b.round || a.originalOwner - b.originalOwner);
@@ -541,7 +609,7 @@
       .map(p => ({ ...p, dynVal: dynastyValue(p.rank, p.dob, mode) }))
       .filter(p => p.dynVal > 0);
   }
-  const giveTotalOf = give => [...give].sort((a, b) => b.dynVal - a.dynVal).reduce((s, p, i) => s + Math.round(p.dynVal * Math.pow(0.70, i)), 0);
+  const giveTotalOf = give => give.reduce((t, p) => t + p.dynVal, 0);
 
   function giveItems(m, st) {
     const players = buildTFPlayerPool(m, st.mode), picks = buildTFPickPool(m, st.mode);
@@ -550,164 +618,69 @@
   }
 
   function runCore(m, st, give) {
-    const fmtG = { give: st.nGive, get: st.nGet };
     const giveNames = new Set(give.filter(p => !p.isPick).map(p => p.name));
     const giveKeys = new Set(give.filter(p => p.isPick).map(p => p.pickKey));
+    const gVals = give.map(p => p.dynVal);
     const giveTotal = giveTotalOf(give);
-    const tol = 0.13;
-    const minVal = Math.round(giveTotal * (1 - tol));
-    const maxVal = Math.round(giveTotal * (1 + tol));
-    const pickMode = st.pickMode;
+    const gMax = Math.max(0, ...gVals);
+    const TOL = 13; // % Abweichung (effektiv, inkl. Star-Ausgleich)
+    const k = st.nGet, pickMode = st.pickMode;
     const target = st.target, giveTeam = st.giveTeam, sameTeam = st.sameTeam;
-    const pctOf = tot => Math.round(Math.abs(tot - giveTotal) / Math.max(giveTotal, 1) * 100);
 
-    const allPlayers = buildTFPlayerPool(m, st.mode).filter(p => {
+    const players = pickMode === 'for_picks' ? [] : buildTFPlayerPool(m, st.mode).filter(p => {
       if (giveNames.has(p.name)) return false;
       if (target) return p.ownerId === target;
       if (giveTeam && p.ownerId === giveTeam) return false;
       return true;
-    }).sort((a, b) => b.dynVal - a.dynVal);
-    const allPicks = (pickMode === 'for_picks' || pickMode === 'with_picks')
-      ? buildTFPickPool(m, st.mode).filter(p => {
-        if (giveKeys.has(p.pickKey)) return false;
-        if (target) return p.currentOwner === target;
-        if (giveTeam && p.currentOwner === giveTeam) return false;
-        return true;
-      }).sort((a, b) => b.dynVal - a.dynVal)
-      : [];
+    });
+    const picks = (pickMode === 'for_picks' || pickMode === 'with_picks') ? buildTFPickPool(m, st.mode).filter(p => {
+      if (giveKeys.has(p.pickKey)) return false;
+      if (target) return p.currentOwner === target;
+      if (giveTeam && p.currentOwner === giveTeam) return false;
+      return true;
+    }) : [];
+    const pool = [...players, ...picks].sort((a, b) => b.dynVal - a.dynVal);
+    const keyOf = p => (p.isPick ? p.pickKey : p.name);
 
     const results = [];
+    let steps = 0;
+    // Suche nach Kombis mit genau k Assets; RA-Schranken zum Abschneiden, exakte Prüfung am Ende
+    function rec(start, chosen, raSum, t, raG) {
+      if (results.length >= 400 || steps > 6e5) return;
+      if (chosen.length === k) {
+        const c = compareVals(gVals, chosen.map(p => p.dynVal));
+        const diffPct = Math.round(Math.abs(c.effB - c.effA) / Math.max(c.effA, c.effB, 1) * 100);
+        if (diffPct <= TOL) results.push({ players: chosen.slice(), total: c.effB, giveEff: c.effA, diffPct });
+        return;
+      }
+      const left = k - chosen.length;
+      const lvl0 = !chosen.length;
+      const ttOf = v => (lvl0 ? Math.max(gMax, v) : t);
+      const rgOf = tt => (lvl0 ? gVals.reduce((x, v) => x + ra(v, tt), 0) : raG);
+      const tooBig = j => { const v = pool[j].dynVal, tt = ttOf(v); return raSum + ra(v, tt) > rgOf(tt) * 1.25; };
+      // erstes passendes Element per Binärsuche (Pool absteigend sortiert → „zu groß“ ist monoton)
+      let lo = start, hi = pool.length;
+      while (lo < hi) { const mid = (lo + hi) >> 1; if (tooBig(mid)) lo = mid + 1; else hi = mid; }
+      for (let j = lo; j < pool.length; j++) {
+        steps++;
+        const p = pool[j];
+        if (sameTeam && !p.isPick && chosen.some(q => !q.isPick && q.ownerId !== p.ownerId)) continue;
+        const tt = ttOf(p.dynVal), rg = rgOf(tt), r = ra(p.dynVal, tt);
+        if (raSum + r * left < rg * 0.85) break;        // Rest ist kleiner → reicht nicht mehr
+        if (raSum + r > rg * 1.25) continue;
+        chosen.push(p); rec(j + 1, chosen, raSum + r, tt, rg); chosen.pop();
+        if (results.length >= 400) return;
+      }
+    }
+    if (give.length) rec(0, [], 0, 0, 0);
     const seen = new Set();
-
-    function playersOnly(pool) {
-      if (fmtG.get === 1) {
-        for (const p of pool) {
-          if (p.dynVal < minVal) continue;
-          if (p.dynVal > maxVal) continue;
-          if (!seen.has(p.name)) { seen.add(p.name); results.push({ players: [p], total: p.dynVal, diffPct: pctOf(p.dynVal) }); }
-        }
-      } else if (fmtG.get === 2) {
-        const n = pool.length;
-        for (let i = 0; i < n && results.length < 200; i++) {
-          const a = pool[i];
-          if (a.dynVal > maxVal) continue;
-          for (let j = i + 1; j < n; j++) {
-            const b = pool[j];
-            if (sameTeam && a.ownerId !== b.ownerId) continue;
-            const tot = Math.round(a.dynVal + b.dynVal * 0.70);
-            if (tot < minVal) break;
-            if (tot <= maxVal) {
-              const key = [a.name, b.name].sort().join('|');
-              if (!seen.has(key)) { seen.add(key); results.push({ players: [a, b], total: tot, diffPct: pctOf(tot) }); }
-            }
-          }
-        }
-      } else if (fmtG.get === 3) {
-        const n = pool.length;
-        outer: for (let i = 0; i < n; i++) {
-          const a = pool[i];
-          if (a.dynVal > maxVal) continue;
-          for (let j = i + 1; j < n; j++) {
-            const b = pool[j];
-            if (sameTeam && a.ownerId !== b.ownerId) continue;
-            const partial = Math.round(a.dynVal + b.dynVal * 0.70);
-            if (partial < minVal * 0.25) break;
-            for (let k = j + 1; k < n; k++) {
-              const c = pool[k];
-              if (sameTeam && c.ownerId !== a.ownerId) continue;
-              const tot = partial + Math.round(c.dynVal * 0.49);
-              if (tot < minVal) break;
-              if (tot <= maxVal) {
-                const key = [a.name, b.name, c.name].sort().join('|');
-                if (!seen.has(key)) { seen.add(key); results.push({ players: [a, b, c], total: tot, diffPct: pctOf(tot) }); }
-              }
-              if (results.length > 300) break outer;
-            }
-          }
-        }
-      }
-    }
-
-    if (pickMode === 'for_picks') {
-      const pool = allPicks;
-      if (fmtG.get === 1) {
-        for (const p of pool) {
-          if (p.dynVal < minVal || p.dynVal > maxVal) continue;
-          if (!seen.has(p.pickKey)) { seen.add(p.pickKey); results.push({ players: [p], total: p.dynVal, diffPct: pctOf(p.dynVal) }); }
-        }
-      } else if (fmtG.get === 2) {
-        const n = pool.length;
-        for (let i = 0; i < n && results.length < 200; i++) {
-          const a = pool[i];
-          if (a.dynVal > maxVal) continue;
-          for (let j = i + 1; j < n; j++) {
-            const b = pool[j];
-            const tot = Math.round(a.dynVal + b.dynVal * 0.70);
-            if (tot < minVal) break;
-            if (tot <= maxVal) {
-              const key = [a.pickKey, b.pickKey].sort().join('|');
-              if (!seen.has(key)) { seen.add(key); results.push({ players: [a, b], total: tot, diffPct: pctOf(tot) }); }
-            }
-          }
-        }
-      } else if (fmtG.get === 3) {
-        const n = pool.length;
-        outer: for (let i = 0; i < n; i++) {
-          const a = pool[i];
-          if (a.dynVal > maxVal) continue;
-          for (let j = i + 1; j < n; j++) {
-            const b = pool[j];
-            const partial = Math.round(a.dynVal + b.dynVal * 0.70);
-            if (partial < minVal * 0.25) break;
-            for (let k = j + 1; k < n; k++) {
-              const c = pool[k];
-              const tot = partial + Math.round(c.dynVal * 0.49);
-              if (tot < minVal) break;
-              if (tot <= maxVal) {
-                const key = [a.pickKey, b.pickKey, c.pickKey].sort().join('|');
-                if (!seen.has(key)) { seen.add(key); results.push({ players: [a, b, c], total: tot, diffPct: pctOf(tot) }); }
-              }
-              if (results.length > 300) break outer;
-            }
-          }
-        }
-      }
-    } else if (pickMode === 'with_picks') {
-      if (fmtG.get === 1) {
-        for (const p of [...allPlayers, ...allPicks]) {
-          const v = p.dynVal;
-          if (v < minVal || v > maxVal) continue;
-          const key = p.isPick ? p.pickKey : p.name;
-          if (!seen.has(key)) { seen.add(key); results.push({ players: [p], total: v, diffPct: pctOf(v) }); }
-        }
-      } else if (fmtG.get === 2) {
-        const combined = [...allPlayers, ...allPicks];
-        const n = combined.length;
-        for (let i = 0; i < n && results.length < 300; i++) {
-          const a = combined[i];
-          if (a.dynVal > maxVal) continue;
-          for (let j = i + 1; j < n; j++) {
-            const b = combined[j];
-            if (sameTeam && !a.isPick && !b.isPick && a.ownerId !== b.ownerId) continue;
-            const tot = Math.round(a.dynVal + b.dynVal * 0.70);
-            if (tot < minVal) break;
-            if (tot <= maxVal) {
-              const ka = a.isPick ? a.pickKey : a.name;
-              const kb = b.isPick ? b.pickKey : b.name;
-              const key = [ka, kb].sort().join('|');
-              if (!seen.has(key)) { seen.add(key); results.push({ players: [a, b], total: tot, diffPct: pctOf(tot) }); }
-            }
-          }
-        }
-      } else {
-        playersOnly(allPlayers);
-      }
-    } else {
-      playersOnly(allPlayers);
-    }
-
-    results.sort((a, b) => a.diffPct - b.diffPct);
-    return { top: results.slice(0, 10), giveTotal };
+    results.sort((a, b) => a.diffPct - b.diffPct || b.total - a.total);
+    const anchor = new Map(); // Vielfalt: dasselbe Top-Asset höchstens 2× in der Liste
+    const uniq = results.filter(r => {
+      const key = r.players.map(keyOf).sort().join('|'); if (seen.has(key)) return false; seen.add(key);
+      const a = keyOf(r.players[0]), c = anchor.get(a) || 0; if (k > 1 && c >= 2) return false; anchor.set(a, c + 1); return true;
+    });
+    return { top: uniq.slice(0, 10), giveTotal };
   }
 
   let lastFinder = null; // { give, top } für „Im Trade Analyzer öffnen“
@@ -781,7 +754,7 @@
         <summary>
           <span class="tr-nba-ring">${diff} %</span>
           <span class="tr-nba-main"><span class="tr-nba-reslbl">${lbl} · Du bekommst</span><span class="tr-nba-chips">${chips}</span></span>
-          <span class="tr-nba-restot"><b>${fmt(r.total)}</b><small>vs ${fmt(res.giveTotal)}</small><span class="tr-nba-chev" aria-hidden="true">▾</span></span>
+          <span class="tr-nba-restot"><b>${fmt(r.total)}</b><small>vs ${fmt(r.giveEff ?? res.giveTotal)}</small><span class="tr-nba-chev" aria-hidden="true">▾</span></span>
         </summary>
         <div class="tr-nba-resbody">${detail}
           <button type="button" class="seg-btn tr-nba-load" data-load="${idx}">⚖️ Im Trade Analyzer öffnen</button></div>
@@ -966,5 +939,5 @@
   });
 
   // Für Tests (Node/VM): reine Rechenfunktionen
-  MFHFB.nbaTrades = { TRADE_VALUE_TABLE, PICK_VALUES, playerAgeToday, ageMultiplier, slotAwarePickValue, pickTradeValue, dynastyValue, tradeSideValue, verdictOf, runCore, buildTFPlayerPool, buildTFPickPool, giveTotalOf, model };
+  MFHFB.nbaTrades = { TRADE_VALUE_TABLE, PICK_VALUES, SLOT_VALUES, LOTTERY_P, compareVals, compareSides, slotDist, playerAgeToday, ageMultiplier, slotAwarePickValue, pickTradeValue, dynastyValue, tradeSideValue, verdictOf, runCore, buildTFPlayerPool, buildTFPickPool, giveTotalOf, model };
 })();
