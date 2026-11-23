@@ -592,3 +592,12 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-typ-track i { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--text); border: 2px solid var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
 .cs-typ-txt { margin-top: 8px; line-height: 1.45; }
 .cs-typ-why { margin-top: 6px; color: var(--muted); line-height: 1.5; }
+
+/* College Scouting: Experten-Tiers (prospect-tiers.js) */
+.cs-tier { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 1px 7px; border-radius: 20px; white-space: nowrap; vertical-align: 1px; background: var(--surface2); color: var(--muted); }
+.cs-tier small { font-weight: 700; opacity: .8; }
+.cs-tier.t-elite   { background: rgba(212,160,23,.20); color: #b8860b; }
+.cs-tier.t-high1   { background: rgba(46,157,98,.18);  color: #2e9d62; }
+.cs-tier.t-clear1  { background: rgba(52,120,206,.16); color: #2f6fbf; }
+.cs-tier.t-fringe1 { background: rgba(130,90,200,.16); color: #7a52c2; }
+.cs-tier.t-high2   { background: rgba(214,140,20,.16); color: #b8740c; }
