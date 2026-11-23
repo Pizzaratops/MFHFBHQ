@@ -4017,9 +4017,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910030",
-      line: "Oklahoma City Thunder @ Miami Heat (9:19 - 4th)",
+      line: "Oklahoma City Thunder @ Miami Heat (7:21 - 4th)",
       completed: false,
-      statusText: "9:19 - 4th",
+      statusText: "7:21 - 4th",
       away: {
         abbr: "OKC", name: "Oklahoma City Thunder", score: null,
         players: [
@@ -4035,9 +4035,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910031",
-      line: "Orlando Magic @ Washington Wizards (2:34 - 2nd)",
+      line: "Orlando Magic @ Washington Wizards (1:03 - 2nd)",
       completed: false,
-      statusText: "2:34 - 2nd",
+      statusText: "1:03 - 2nd",
       away: {
         abbr: "ORL", name: "Orlando Magic", score: null,
         players: [
@@ -4053,9 +4053,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910032",
-      line: "Denver Nuggets @ Chicago Bulls (1:33 - 2nd)",
+      line: "Denver Nuggets @ Chicago Bulls (Halftime)",
       completed: false,
-      statusText: "1:33 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
@@ -4071,9 +4071,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910033",
-      line: "Dallas Mavericks @ Utah Jazz (1:52 - 2nd)",
+      line: "Dallas Mavericks @ Utah Jazz (Halftime)",
       completed: false,
-      statusText: "1:52 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
