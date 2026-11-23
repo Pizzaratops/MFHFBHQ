@@ -24,7 +24,8 @@ const OUT = path.join(__dirname, '..', 'data', 'draft-only.js');
 const MY_NAMES = ['hawkward', 'pizzaratops', 'p1zzaratops', 'steakosaurus', 'mfhfb'];
 
 // Liste von Beyaz (23.11.2026). Neue Liga: Zeile ergänzen, Rest passiert automatisch.
-// Optional dritter Eintrag = Kurzname (sonst „FBI Draft Only “ vom Namen abgeschnitten).
+// Optional dritter Eintrag = Kurzname (sonst „FBI Draft Only “ vom Namen abgeschnitten),
+// vierter = exakter Teamname, wenn er keinem der MY_NAMES ähnelt.
 const LEAGUES = [
   ['kzsdzgcrmrtq3iro', 'FBI Draft Only H2H 21'],
   ['hfw2srjjmrtq935q', 'FBI Draft Only H2H 23'],
@@ -39,7 +40,7 @@ const LEAGUES = [
   ['tw4cwsbjmsmppmmr', 'FBI Draft Only H2H 42'],
   ['sus8zcbdmsmpsd5b', 'FBI Draft Only H2H 43'],
   ['16x1go6gmsmpvpou', 'FBI Draft Only H2H 44'],
-  ['3igozgbhmsmpyzis', 'FBI Draft Only H2H 45'],
+  ['3igozgbhmsmpyzis', 'FBI Draft Only H2H 45', null, 'Appreciate the DO45s'],
   ['gm5sa9z3msq27wua', 'FBI Draft Only H2H 49'],
   ['sz2gds61msq2g4l4', 'FBI Draft Only H2H 51'],
   ['5ldlhzt8mt45ivfy', 'FBI Draft Only H2H 59'],
@@ -92,7 +93,7 @@ function loadOld() {
 }
 
 const shortOf = (name, short) => short || name.replace(/^FBI Draft Only /, '');
-async function syncLeague(id, name, short) {
+async function syncLeague(id, name, short, myTeam) {
   const st = await getJson(`${BASE}/getStandings?leagueId=${id}`);
   if (!Array.isArray(st) || !st.length) throw new Error('leere Tabelle');
   const h2h = st.some(s => /^\d+(\.\d+)?-\d+(\.\d+)?(-\d+(\.\d+)?)?$/.test(String(s.points)));
@@ -108,7 +109,7 @@ async function syncLeague(id, name, short) {
   if (h2h) {
     try { const info = await getJson(`${BASE}/getLeagueInfo?leagueId=${id}`); playoffTeams = ((info || {}).playoffs || {}).numPlayoffTeams || null; } catch (e) { /* optional */ }
   }
-  const mine = rows.filter(r => isMine(r.name));
+  const mine = rows.filter(r => (myTeam ? r.name === myTeam : isMine(r.name)));
   const me = mine[0] || null;
   const L = { id, name, short: shortOf(name, short), type: h2h ? 'h2h' : 'roto', teams: rows.length, playoffTeams };
   if (mine.length > 1) L.note = `mehrere Treffer: ${mine.map(r => r.name).join(', ')}`;
@@ -135,9 +136,9 @@ async function main() {
   const oldById = new Map(((old && old.leagues) || []).map(l => [l.id, l]));
   const out = [];
   let ok = 0;
-  for (const [id, name, short] of LEAGUES) {
+  for (const [id, name, short, myTeam] of LEAGUES) {
     try {
-      const L = await syncLeague(id, name, short);
+      const L = await syncLeague(id, name, short, myTeam);
       out.push(L); ok++;
       console.log(`  ✓ ${L.short.padEnd(8)} ${L.rank ? `${L.rank}./${L.teams} ${L.team}` : `kein eigenes Team gefunden (${(L.teamsSeen || []).join(', ')})`}`);
     } catch (e) {
