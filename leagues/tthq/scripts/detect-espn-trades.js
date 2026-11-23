@@ -59,42 +59,30 @@ function normalizeName(raw) {
   return NAME_FIRST_ALIASES[s] || s;
 }
 
-// ── Wertlogik 1:1 aus js/trade-analyzer.js portiert ──
-// (dynastyValue ignoriert TRADE_MODE bewusst -- siehe Kommentar dort;
-// reine Spieler-Trades haben deshalb identische dynasty/raw/winnow-
-// Werte, exakt wie im Browser-Pfad.)
-const TRADE_VALUE_TABLE = loadVmObjectFromTradeAnalyzer();
-function loadVmObjectFromTradeAnalyzer() {
-  const code = fs.readFileSync(path.join(ROOT, 'js', 'trade-analyzer.js'), 'utf8');
-  const sandbox = {};
+// ── Wertlogik: seit 23.11.2026 direkt aus dem Hub-Tool tools/nba-trades.js ──
+// (dieselbe Rechnung wie im Trade Analyzer: Rang-Kurve aus dem Backtest, Dynasty
+// ohne Alters-Faktor, Win-Now mit Alters-Kurve, KTC-Konsolidierung). Das Tool wird
+// in einer VM mit Minimal-Stubs geladen; genutzt werden nur reine Rechenfunktionen.
+const HUB_ROOT = path.join(__dirname, '..', '..', '..');
+const TRADES = loadHubTrades();
+function loadHubTrades() {
+  const sandbox = { console, Math, JSON, Map, Set, WeakMap, Date };
+  sandbox.window = sandbox;
+  sandbox.MFHFB = { pages: { register() {} }, ui: { esc: x => String(x) } };
   vm.createContext(sandbox);
-  // Nur die Konstante extrahieren, ohne den ganzen Datei-Kontext (DOM-Aufrufe
-  // etc.) auszufuehren -- daher ueber Regex statt vollem vm-Run.
-  const m = code.match(/const TRADE_VALUE_TABLE = (\{[^;]*\});/);
-  if (!m) throw new Error('TRADE_VALUE_TABLE nicht in js/trade-analyzer.js gefunden');
-  return JSON.parse(m[1]);
-}
-function dynastyValue(rank) {
-  const v = TRADE_VALUE_TABLE[String(rank)];
-  return v !== undefined ? Math.round(v) : 0;
-}
-function tradeSideValue(players) {
-  if (!players.length) return 0;
-  const vals = players.map(p => dynastyValue(p.rank)).sort((a, b) => b - a);
-  let total = 0;
-  vals.forEach((v, i) => { total += v * Math.pow(0.80, i); });
-  return Math.round(total);
+  vm.runInContext(fs.readFileSync(path.join(HUB_ROOT, 'tools', 'nba-trades.js'), 'utf8'), sandbox, { filename: 'tools/nba-trades.js' });
+  if (!sandbox.MFHFB.nbaTrades) throw new Error('MFHFB.nbaTrades nicht geladen (tools/nba-trades.js)');
+  return sandbox.MFHFB.nbaTrades;
 }
 function computeFrozen(playersA, playersB) {
-  const vA = tradeSideValue(playersA), vB = tradeSideValue(playersB);
-  const tot = vA + vB, pA = tot > 0 ? vA / tot * 100 : 50;
-  const d = Math.abs(pA - 50);
-  let verdict, cls;
-  if (d < 5) { verdict = 'Fair Trade'; cls = 'fair'; }
-  else if (d < 12) { verdict = vA > vB ? 'Slight Edge: Side A' : 'Slight Edge: Side B'; cls = 'slight'; }
-  else { verdict = vA > vB ? 'Side A Wins Big' : 'Side B Wins Big'; cls = 'lopsided'; }
-  const single = { valA: vA, valB: vB, verdict, cls, pctA: pA.toFixed(1), pctB: (100 - pA).toFixed(1) };
-  return { dynasty: single, raw: single, winnow: single }; // s.o.: fuer Spieler identisch
+  const one = mode => {
+    const vals = side => side.map(p => (p.rank ? TRADES.dynastyValue(p.rank, p.dob, mode) : 0));
+    const c = TRADES.compareVals(vals(playersA), vals(playersB));
+    const v = TRADES.verdictOf(c.effA, c.effB);
+    return { valA: c.effA, valB: c.effB, verdict: v.label, cls: v.cls, pctA: v.pctA.toFixed(1), pctB: v.pctB.toFixed(1) };
+  };
+  const dynasty = one('dynasty');
+  return { dynasty, raw: dynasty, winnow: one('winnow') };
 }
 
 function detectAndSaveTrades(oldRosters, newRosters, { root = ROOT } = {}) {

@@ -165,7 +165,7 @@
     if (d <= 0) return 0;
     let lo = 0, hi = Math.max(t, 1);
     while (ra(hi, t) < d && hi < 1e6) hi *= 2;
-    for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; if (ra(mid, t) < d) lo = mid; else hi = mid; }
+    for (let i = 0; i < 28; i++) { const mid = (lo + hi) / 2; if (ra(mid, t) < d) lo = mid; else hi = mid; }
     return (lo + hi) / 2;
   }
   // vals: Zahlenlisten je Seite → Summen, Wertausgleich, effektive Werte für das Urteil
@@ -222,7 +222,7 @@
     const pr = T.map(t => (t.cw + 18) / (t.cw + t.cl + 36));
     let seed = 20271; const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let z = Math.imul(seed ^ seed >>> 15, 1 | seed); z = z + Math.imul(z ^ z >>> 7, 61 | z) ^ z; return ((z ^ z >>> 14) >>> 0) / 4294967296; };
     const gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(2 * Math.PI * rnd());
-    const cnt = T.map(() => Array(12).fill(0)); const SIMS = 3000;
+    const cnt = T.map(() => Array(12).fill(0)); const SIMS = 1500;
     for (let sim = 0; sim < SIMS; sim++) {
       const ps = pr.map(x => Math.min(0.8, Math.max(0.2, x + 0.04 * gauss())));
       const w = T.map(t => t.mw);
@@ -644,10 +644,23 @@
 
     const results = [];
     let steps = 0;
+    // RA-Werte je tmax zwischenspeichern (Pool fix, tmax meist = bestes abgegebenes Asset)
+    const raCache = new Map();
+    const raAt = (j, tt) => {
+      let arr = raCache.get(tt);
+      if (!arr) { arr = new Float64Array(pool.length).fill(-1); raCache.set(tt, arr); }
+      if (arr[j] < 0) arr[j] = ra(pool[j].dynVal, tt);
+      return arr[j];
+    };
+    const rgCache = new Map();
+    const rgAt = tt => { let v = rgCache.get(tt); if (v === undefined) { v = gVals.reduce((x, g) => x + ra(g, tt), 0); rgCache.set(tt, v); } return v; };
     // Suche nach Kombis mit genau k Assets; RA-Schranken zum Abschneiden, exakte Prüfung am Ende
     function rec(start, chosen, raSum, t, raG) {
-      if (results.length >= 400 || steps > 6e5) return;
+      if (results.length >= 400 || steps > 3e6) return;
       if (chosen.length === k) {
+        // Schnellfilter: Abweichung ≥ x/(M+x) mit M = größere Summe → x > TOL·M/(1−TOL) ist sicher zu weit weg
+        const cs = chosen.reduce((x, p) => x + p.dynVal, 0), q = TOL / 100;
+        if (Math.abs(raSum - raG) > ra(q * Math.max(giveTotal, cs) / (1 - q), t)) return;
         const c = compareVals(gVals, chosen.map(p => p.dynVal));
         const diffPct = Math.round(Math.abs(c.effB - c.effA) / Math.max(c.effA, c.effB, 1) * 100);
         if (diffPct <= TOL) results.push({ players: chosen.slice(), total: c.effB, giveEff: c.effA, diffPct });
@@ -656,8 +669,8 @@
       const left = k - chosen.length;
       const lvl0 = !chosen.length;
       const ttOf = v => (lvl0 ? Math.max(gMax, v) : t);
-      const rgOf = tt => (lvl0 ? gVals.reduce((x, v) => x + ra(v, tt), 0) : raG);
-      const tooBig = j => { const v = pool[j].dynVal, tt = ttOf(v); return raSum + ra(v, tt) > rgOf(tt) * 1.25; };
+      const rgOf = tt => (lvl0 ? rgAt(tt) : raG);
+      const tooBig = j => { const tt = ttOf(pool[j].dynVal); return raSum + raAt(j, tt) > rgOf(tt) * 1.25; };
       // erstes passendes Element per Binärsuche (Pool absteigend sortiert → „zu groß“ ist monoton)
       let lo = start, hi = pool.length;
       while (lo < hi) { const mid = (lo + hi) >> 1; if (tooBig(mid)) lo = mid + 1; else hi = mid; }
@@ -665,7 +678,7 @@
         steps++;
         const p = pool[j];
         if (sameTeam && !p.isPick && chosen.some(q => !q.isPick && q.ownerId !== p.ownerId)) continue;
-        const tt = ttOf(p.dynVal), rg = rgOf(tt), r = ra(p.dynVal, tt);
+        const tt = ttOf(p.dynVal), rg = rgOf(tt), r = raAt(j, tt);
         if (raSum + r * left < rg * 0.85) break;        // Rest ist kleiner → reicht nicht mehr
         if (raSum + r > rg * 1.25) continue;
         chosen.push(p); rec(j + 1, chosen, raSum + r, tt, rg); chosen.pop();
