@@ -119,6 +119,16 @@ function normalizeName(n) {
 // WICHTIG: Keys sind die Form NACH normalizeName() (Suffixe wie "II"
 // sind zu diesem Zeitpunkt schon entfernt) -- "ronald holland ii" wird
 // zu "ronald holland", nicht "ronald holland ii".
+// Seit 23.11.2026 zusätzlich die hub-weite, handgepflegte Alias-Liste (sports/nba/data/aliases.js):
+// beide Schreibweisen werden auf denselben Schlüssel (Form nach normalizeName) gebracht.
+let HUB_ALIAS = new Map();
+try {
+  const A = loadConst(path.join('..', '..', 'sports', 'nba', 'data', 'aliases.js'), 'NAME_ALIASES') || {};
+  HUB_ALIAS = new Map(Object.entries(A).map(([k, v]) => [normalizeName(stripAccentsA(k)), normalizeName(stripAccentsA(v))]));
+} catch (e) { console.warn('aliases.js nicht geladen:', e.message); }
+function stripAccentsA(n) { return String(n || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, ''); }
+const canonKey = n => { const k = normalizeName(stripAccentsA(n)); const h = HUB_ALIAS.get(k) || k; return NAME_ALIASES[h] || h; };
+
 const NAME_ALIASES = {
   'ronald holland': 'ron holland',
   'alex sarr': 'alexandre sarr',
@@ -132,7 +142,7 @@ function indexRows(rows) {
   const exact = new Map(rows.map(p => [p.name, p]));
   const norm = new Map();
   rows.forEach(p => {
-    const k = normalizeName(stripAccents(p.name));
+    const k = canonKey(p.name);
     if (!norm.has(k)) norm.set(k, []);
     norm.get(k).push(p);
   });
@@ -143,8 +153,7 @@ const IDX_LAST = indexRows(LAST_SEASON_STATS_2025_26);
 
 function lookup(idx, rosterPlayer) {
   if (idx.exact.has(rosterPlayer.name)) return idx.exact.get(rosterPlayer.name);
-  let norm = normalizeName(stripAccents(rosterPlayer.name));
-  norm = NAME_ALIASES[norm] || norm;
+  const norm = canonKey(rosterPlayer.name);
   const candidates = idx.norm.get(norm) || [];
   if (!candidates.length) return null;
   if (candidates.length === 1) return candidates[0];
