@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-23T01:04:34.456Z",
+  "updated": "2026-11-23T01:32:19.125Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-23","Lower Leg",0,"2026-11-22"],
     "Adem Bona": ["PHI","Out","GTD","2026-11-23","Back",0,"2026-11-22"],
@@ -9,7 +9,7 @@ const NBA_INJURIES = {
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
-    "Austin Reaves": ["LAL","Out","GTD","2026-11-23","Heel",0,"2026-11-22"],
+    "Austin Reaves": ["LAL","Out","OUT","2026-11-27","Heel",0,"2026-11-23"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-27","Foot",0,"2026-11-19"],
@@ -45,13 +45,13 @@ const NBA_INJURIES = {
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-10-28"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
-    "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-22","Knee",0,"2026-11-23"],
+    "Jaxson Hayes": ["UTAH","Out","OUT","2026-11-23","Knee",0,"2026-11-23"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-23","Hamstring",0,"2026-11-22"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-23","Back",0,"2026-11-21"],
     "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-22"],
-    "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-11-23","Calf",0,"2026-11-22"],
+    "Jerami Grant": ["MEM","Day-To-Day","GTD","2026-12-12","Calf",0,"2026-11-23"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","GTD","2026-11-27","Hip",0,"2026-11-21"],
     "Johnny Furphy": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-30"],
