@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-23T08:03:24.230Z",
+  "generatedAt": "2026-11-23T10:03:27.923Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -4184,7 +4184,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 20.3,
           "last3AvgPoints": 13.7,
-          "projPoints": 13.4
+          "projPoints": 13.3
         },
         {
           "name": "Ka'imi Fairbairn",
