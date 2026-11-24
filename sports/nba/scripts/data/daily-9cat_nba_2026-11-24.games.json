@@ -1,0 +1,60 @@
+{
+  "league": "nba",
+  "date": "2026-11-24",
+  "games": [
+    {
+      "id": "401909314",
+      "line": "Detroit Pistons @ Orlando Magic (11/24 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/24 - 7:00 PM EST",
+      "away": {
+        "abbr": "DET",
+        "name": "Detroit Pistons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909315",
+      "line": "Boston Celtics @ Washington Wizards (11/24 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/24 - 8:00 PM EST",
+      "away": {
+        "abbr": "BOS",
+        "name": "Boston Celtics",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909316",
+      "line": "Dallas Mavericks @ Denver Nuggets (11/24 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/24 - 10:00 PM EST",
+      "away": {
+        "abbr": "DAL",
+        "name": "Dallas Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "DEN",
+        "name": "Denver Nuggets",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

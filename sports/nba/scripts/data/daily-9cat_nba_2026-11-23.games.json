@@ -5504,9 +5504,9 @@
     },
     {
       "id": "401910044",
-      "line": "Utah Jazz @ Los Angeles Lakers (35.1 - 3rd)",
+      "line": "Utah Jazz @ Los Angeles Lakers (11:40 - 4th)",
       "completed": false,
-      "statusText": "35.1 - 3rd",
+      "statusText": "11:40 - 4th",
       "away": {
         "abbr": "UTAH",
         "name": "Utah Jazz",
@@ -5522,9 +5522,9 @@
     },
     {
       "id": "401910045",
-      "line": "San Antonio Spurs @ Sacramento Kings (10:12 - 4th)",
+      "line": "San Antonio Spurs @ Sacramento Kings (8:29 - 4th)",
       "completed": false,
-      "statusText": "10:12 - 4th",
+      "statusText": "8:29 - 4th",
       "away": {
         "abbr": "SA",
         "name": "San Antonio Spurs",

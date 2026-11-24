@@ -5757,7 +5757,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-23": {
-      games: ["Memphis Grizzlies 117 @ Charlotte Hornets 111 (Final)","Portland Trail Blazers 128 @ Philadelphia 76ers 111 (Final)","Oklahoma City Thunder 120 @ Indiana Pacers 125 (Final)","Milwaukee Bucks 116 @ Toronto Raptors 111 (Final)","Brooklyn Nets 116 @ Minnesota Timberwolves 142 (Final)","Cleveland Cavaliers 108 @ Chicago Bulls 122 (Final)","Phoenix Suns 123 @ New Orleans Pelicans 119 (Final/OT)","LA Clippers 104 @ Houston Rockets 116 (Final)","Utah Jazz @ Los Angeles Lakers (35.1 - 3rd)","San Antonio Spurs @ Sacramento Kings (10:12 - 4th)"],
+      games: ["Memphis Grizzlies 117 @ Charlotte Hornets 111 (Final)","Portland Trail Blazers 128 @ Philadelphia 76ers 111 (Final)","Oklahoma City Thunder 120 @ Indiana Pacers 125 (Final)","Milwaukee Bucks 116 @ Toronto Raptors 111 (Final)","Brooklyn Nets 116 @ Minnesota Timberwolves 142 (Final)","Cleveland Cavaliers 108 @ Chicago Bulls 122 (Final)","Phoenix Suns 123 @ New Orleans Pelicans 119 (Final/OT)","LA Clippers 104 @ Houston Rockets 116 (Final)","Utah Jazz @ Los Angeles Lakers (11:40 - 4th)","San Antonio Spurs @ Sacramento Kings (8:29 - 4th)"],
       leagueAvg: { fg: 47.5, ft: 81.4 },
       players: [
         { rank: 1, name: "Jaden McDaniels", team: "MIN", min: 34, pts: 34, reb: 10, ast: 6, stl: 2, blk: 0, to: 1, tpm: 4, fgPct: 75, ftPct: 75, composite: 11.03, zScores: { pts: 2.699, reb: 1.99, ast: 1.458, stl: 1.327, blk: -0.533, tpm: 1.765, fgImpact: 3.003, ftImpact: -0.829, to: 0.141 } },
