@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T23:37:04.356Z",
+  "updated": "2026-11-24T23:51:14.526Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -14,7 +14,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","GTD","2026-11-27","Foot",0,"2026-11-19"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Brandon Williams": ["GS","Out","GTD","2026-11-25","Hamstring",0,"2026-11-24"],
-    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-24","Knee",0,"2026-11-23"],
+    "Cade Cunningham": ["DET","Out","OUT","2026-11-27","Knee",0,"2026-11-24"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Out","OUT","2026-12-21","Ankle",0,"2026-11-23"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -69,7 +69,7 @@ const NBA_INJURIES = {
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-27","Foot",0,"2026-11-22"],
-    "Nikola Topic": ["OKC","Out","GTD","2026-11-25","Hip",0,"2026-11-23"],
+    "Nikola Topic": ["OKC","Out","OUT","2026-11-28","Hip",0,"2026-11-24"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
