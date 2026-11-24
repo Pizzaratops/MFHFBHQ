@@ -3971,9 +3971,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910036",
-      line: "Memphis Grizzlies @ Charlotte Hornets (9:04 - 2nd)",
+      line: "Memphis Grizzlies @ Charlotte Hornets (1:47 - 2nd)",
       completed: false,
-      statusText: "9:04 - 2nd",
+      statusText: "1:47 - 2nd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -3989,9 +3989,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910037",
-      line: "Portland Trail Blazers @ Philadelphia 76ers (10:01 - 2nd)",
+      line: "Portland Trail Blazers @ Philadelphia 76ers (3:49 - 2nd)",
       completed: false,
-      statusText: "10:01 - 2nd",
+      statusText: "3:49 - 2nd",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -4007,9 +4007,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910038",
-      line: "Oklahoma City Thunder @ Indiana Pacers (8:46 - 1st)",
+      line: "Oklahoma City Thunder @ Indiana Pacers (3:09 - 1st)",
       completed: false,
-      statusText: "8:46 - 1st",
+      statusText: "3:09 - 1st",
       away: {
         abbr: "OKC", name: "Oklahoma City Thunder", score: null,
         players: [
@@ -4025,9 +4025,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910039",
-      line: "Milwaukee Bucks @ Toronto Raptors (10:52 - 1st)",
+      line: "Milwaukee Bucks @ Toronto Raptors (2:33 - 1st)",
       completed: false,
-      statusText: "10:52 - 1st",
+      statusText: "2:33 - 1st",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -4043,9 +4043,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910040",
-      line: "Brooklyn Nets @ Minnesota Timberwolves (9:39 - 1st)",
+      line: "Brooklyn Nets @ Minnesota Timberwolves (3:30 - 1st)",
       completed: false,
-      statusText: "9:39 - 1st",
+      statusText: "3:30 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
