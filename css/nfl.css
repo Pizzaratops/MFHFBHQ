@@ -598,3 +598,11 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-board.r1 { background: rgba(46,157,98,.18);  color: #2e9d62; }
 .cs-board.r2 { background: rgba(52,120,206,.16); color: #2f6fbf; }
 .cs-board.r3 { background: rgba(214,140,20,.16); color: #b8740c; }
+/* College Scouting Basketball: auf-/zuklappbare Blöcke (24.11.2026) */
+.cs-fold { margin-top: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface2); }
+.cs-fold > summary { cursor: pointer; list-style: none; padding: 9px 12px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.cs-fold > summary::-webkit-details-marker { display: none; }
+.cs-fold > summary::before { content: '▸ '; }
+.cs-fold[open] > summary::before { content: '▾ '; }
+.cs-fold > summary:hover { color: var(--text); }
+.cs-fold-body { padding: 0 10px 10px; }

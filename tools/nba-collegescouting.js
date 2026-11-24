@@ -159,13 +159,20 @@
     const table = `<table class="table compact cs-rtable"><thead><tr><th>Perzentil in der Gruppe</th><th class="num"><i class="cs-sw sel-1"></i>${e(p.n.split(' ').slice(-1)[0])}</th><th class="num"><i class="cs-sw sel-2"></i>${c ? e(c[0].split(' ').slice(-1)[0]) : 'Comp'}</th></tr></thead><tbody>
       ${F.map((f, i) => `<tr><td>${e(FEAT_LABEL[f])}</td><td class="num strong">${p.pc[i]}</td><td class="num">${c ? c[5][i] : '—'}</td></tr>`).join('')}</tbody></table>`;
     return `<div class="card cs-box"><div class="card-head"><h2>${tip('🎓 College Production Comp', sub)}</h2></div>
-      <div class="cs-radar">${MFHFB.charts.chips(series.map(s => s.name))}${radar}${table}</div>
+      <div class="cs-radar">${MFHFB.charts.chips(series.map(s => s.name))}${radar}</div>
       ${comps.length ? `<div class="cs-list-head">Comp anklicken → ins Radar</div>${comps.map((m, i) => `<button type="button" class="dna-match cs-match${i === picked.comp ? ' on' : ''}" data-comp="${i}" aria-pressed="${i === picked.comp}">
           <span class="dna-mscore">${m[4]}</span>
           <span class="dna-nm">${e(m[0])} <small>${e(m[1])} · ${m[2] - 1}/${String(m[2]).slice(2)} · ${e(m[3])}</small></span>
           <span class="dna-plus">${i === picked.comp ? '●' : '＋'}</span></button>`).join('')}`
         : '<div class="muted cs-pad">Kein Vergleich gefunden.</div>'}
+      ${fold(ctx, 'pct', `📊 Perzentile in der Gruppe${c ? ' · Vergleich mit ' + e(c[0]) : ''}`, table)}
     </div>`;
+  }
+
+  // Auf-/zuklappbare Blöcke (Stats-Tabelle, Prognose); Zustand je Block im Store gemerkt, Standard zu
+  function fold(ctx, key, summary, inner) {
+    const open = !!(ctx.store.getJSON('bbcs_fold', {}) || {})[key];
+    return `<details class="cs-fold" data-fold="${key}"${open ? ' open' : ''}><summary>${summary}</summary><div class="cs-fold-body">${inner}</div></details>`;
   }
 
   // ---------- 🧬 NBA-DNA ----------
@@ -200,15 +207,16 @@
     return `<div class="card cs-box">${head}
       <div class="cs-radar">${MFHFB.charts.chips([p.n, 'Ø NBA-Rotationsspieler'])}${radar}</div>
       <div class="cs-list-head" style="margin-top:0">Fantasy-Profil 9-Cat, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
+      <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
+      <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
+      ${fold(ctx, 'dna', `🔮 Prognose · Rotation ${pct(d.rot)} · Impact ${d.imp == null ? '—' : pct(d.imp)} · Top-150 ${pct(d.fan)}${ok ? '' : ' · <span class="cs-tag warn">kleiner Datensatz</span>'}`, `
       <div class="cs-box-sub">${flag} ${minLine}</div>
       <div class="cs-rgrid" style="grid-template-columns:1fr 1fr 1fr">
         <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Saison mit 40+ Spielen, 18+ Min.</span></div>
         <div class="cs-rcell"><small>${tip('Real-Life-Impact', whyImp)}</small><b class="cs-ev ${(d.imp || 0) >= 0.4 ? 'hoch' : (d.imp || 0) >= 0.15 ? 'mittel' : 'niedrig'}">${d.imp == null ? '—' : pct(d.imp)}</b><span>Saison 1.000+ Min. mit BPM ≥ 0</span></div>
         <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>9-Cat, ersten 4 NBA-Jahre</span></div>
       </div>
-      ${typBlock(ctx, d, whyTyp)}
-      <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
-      <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
+      ${typBlock(ctx, d, whyTyp)}`)}
     </div>`;
   }
 
@@ -364,6 +372,10 @@
       const bo = root.querySelector('[data-board]'); if (bo) bo.addEventListener('change', () => save({ board: bo.checked }));
       const q = root.querySelector('[data-q]');
       if (q) q.addEventListener('input', () => { save({ q: q.value }, false); root.querySelector('[data-list]').innerHTML = listHtml(ctx, { ...st, q: q.value }); });
+      root.addEventListener('toggle', ev => {
+        const f = ev.target; if (!f.matches || !f.matches('details[data-fold]')) return;
+        ctx.store.setJSON('bbcs_fold', { ...(ctx.store.getJSON('bbcs_fold', {}) || {}), [f.dataset.fold]: f.open });
+      }, true);
       root.addEventListener('click', ev => {
         const b = ev.target.closest('[data-comp]'); if (!b || b.tagName !== 'BUTTON') return;
         picked.comp = +b.dataset.comp;
