@@ -4277,9 +4277,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910044",
-      line: "Utah Jazz @ Los Angeles Lakers (6:38 - 3rd)",
+      line: "Utah Jazz @ Los Angeles Lakers (35.1 - 3rd)",
       completed: false,
-      statusText: "6:38 - 3rd",
+      statusText: "35.1 - 3rd",
       away: {
         abbr: "UTAH", name: "Utah Jazz", score: null,
         players: [
@@ -4295,9 +4295,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910045",
-      line: "San Antonio Spurs @ Sacramento Kings (3:39 - 3rd)",
+      line: "San Antonio Spurs @ Sacramento Kings (10:12 - 4th)",
       completed: false,
-      statusText: "3:39 - 3rd",
+      statusText: "10:12 - 4th",
       away: {
         abbr: "SA", name: "San Antonio Spurs", score: null,
         players: [
