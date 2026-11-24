@@ -12,7 +12,7 @@
 //   - snap_counts_<saison>.csv       : Offense-Snap-Anteil (= wer gespielt hat)
 //   - injuries_<saison>.csv          : offizieller Injury Report der Woche
 //  Saisons: laufende + Vorsaison (für „mit/ohne“-Vergleiche bei Ausfällen).
-//  Nur RB/WR/TE (QB optional über ihre Läufe nicht nötig).
+//  RB/WR/TE + QB (QB nur für die Rookie-Ampel; Rushing-Yards je Woche).
 //
 //   - draft_picks.csv                : Draftjahr + Pick (nur Jahr-1/2-Spieler,
 //                                      für die 🚦 Rookie-Ampel, 24.11.2026)
@@ -33,7 +33,7 @@ const { httpsGetText, parseCsv, normTeam } = require('./lib/nflverse');
 
 const OUT = path.join(__dirname, '..', 'data', 'opportunity.js');
 const REL = 'https://github.com/nflverse/nflverse-data/releases/download';
-const POS = new Set(['RB', 'WR', 'TE', 'FB']);
+const POS = new Set(['RB', 'WR', 'TE', 'FB', 'QB']); // QB seit 24.11.2026 (Rookie-Ampel); Radar-Blöcke filtern QBs raus
 const num = v => (v === '' || v == null || v === 'NA' ? 0 : Number(v) || 0);
 const r3 = v => Math.round(v * 1000) / 1000;
 const key = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()

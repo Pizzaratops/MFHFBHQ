@@ -51,7 +51,7 @@
 
     const carShareP = r => { const tt = ((O.teams || {})[S - 1] || {})[r[W.team]] || {}; const c = (tt[r[W.wk]] || [0, 0])[1]; return c ? r[W.car] / c : 0; };
     const carShare = (r, s) => { const tt = ((O.teams || {})[s] || {})[r[W.team]] || {}; const c = (tt[r[W.wk]] || [0, 0])[1]; return c ? r[W.car] / c : 0; };
-    const players = O.players.map(p => {
+    const all = O.players.map(p => {
       const rows = (p.w[S] || []).filter(r => r[W.team] === p.t);
       const tw = teamWeeks(p.t);
       const recentWeeks = tw.slice(-2), earlierWeeks = tw.slice(0, -2);
@@ -72,6 +72,7 @@
       const inj = injById.get(p.id) || injByName.get(k + '|' + p.t) || null;
       return { ...p, k, rows, season, recent, earlier, prev, full, owner: owner.get(k) || null, rstatus: rstatus.get(k) || null, inj, playedLast, lastTeamWeek };
     }).filter(p => p.season || p.prev);
+    const players = all.filter(p => p.pos !== 'QB'); // QBs nur in der Rookie-Ampel
 
     // Rolle je Position (WR/TE: WOPR, RB: Touch-Anteil mit Targets doppelt)
     const role = x => (x ? (x.pos === 'RB' ? x.cs + 2 * x.ts : wopr(x.ts, x.ay)) : 0);
@@ -82,7 +83,7 @@
       const rv = list.map(p => roleOf(p, 'recent')), pv = list.map(p => p.recent.ppr);
       list.forEach(p => { p.roleP = rank(rv, roleOf(p, 'recent')); p.ptsP = rank(pv, p.recent.ppr); p.role = roleOf(p, 'recent'); });
     });
-    return { O, S, players, role, roleOf, teamWeeks };
+    return { O, S, players, all, role, roleOf, teamWeeks };
   }
 
   // ---------- 🚑 Ausfälle ----------
@@ -233,19 +234,25 @@
     TE: { base: 27, snap: [[25, 7, 'r'], [50, 33, 'y'], [999, 38, 'y']],
           ts: [[10, 19, 'o'], [999, 50, 'y']],
           ppg: [[5.5, 15, 'o'], [999, 41, 'y']] },
+    // QB (Top-12, Basis 23 %): Rushing in Jahr 1 ist das stärkste Signal (p < 0,001, beide Zeiträume)
+    QB: { base: 23, rush: [[10, 6, 'r'], [25, 20, 'y'], [999, 67, 'g']],
+          ppg: [[10, 14, 'o'], [15, 21, 'y'], [18, 43, 'y'], [999, 50, 'g']] },
   };
-  const GOOD_Y1 = { WR: 9.9, RB: 10, TE: 8 };
+  const GOOD_Y1 = { WR: 9.9, RB: 10, TE: 8, QB: 15 };
+  const TOPN = { WR: 'Top-24', RB: 'Top-24', TE: 'Top-12', QB: 'Top-12' };
   const bandOf = (bands, v) => bands.find(b => v < b[0]);
   function yearAgg(p, season) {
     const rs = (p.w[season] || []);
     if (!rs.length) return null;
     const snaps = rs.map(r => r[W.snap]).filter(v => v != null);
     return { g: rs.length, snap: avg(snaps), ts: avg(rs.map(r => r[W.ts])), ppg: avg(rs.map(r => r[W.ppr])),
-             car17: rs.reduce((t, r) => t + r[W.car], 0) / rs.length * 17, team: rs[rs.length - 1][W.team] };
+             car17: rs.reduce((t, r) => t + r[W.car], 0) / rs.length * 17, rushPg: rs.reduce((t, r) => t + r[W.rushYd], 0) / rs.length,
+             team: rs[rs.length - 1][W.team] };
   }
   function ampel(pos, a) {
     const A = AMP[pos]; if (!A || !a) return null;
-    const sig = [['Snaps', A.snap, a.snap == null ? null : a.snap, v => Math.round(v) + ' %']];
+    const sig = A.snap ? [['Snaps', A.snap, a.snap == null ? null : a.snap, v => Math.round(v) + ' %']] : [];
+    if (A.rush) sig.push(['Rush-Yds/Spiel', A.rush, a.rushPg, v => Math.round(v)]);
     if (A.ts) sig.push(['Target Share', A.ts, a.ts * 100, v => Math.round(v) + ' %']);
     if (A.car) sig.push(['Carries/17 Sp.', A.car, a.car17, v => Math.round(v)]);
     sig.push(['PPR/Spiel', A.ppg, a.ppg, v => v.toFixed(1).replace('.', ',')]);
@@ -258,36 +265,37 @@
   function ampCell(e, pos, am, games) {
     if (!am) return '—';
     if (games < 3) return `<span class="muted small" title="Erst ab 3 Spielen">zu früh</span>`;
-    const tip = `Historisch (NFL-Runde 1–3, Drafts 2015–2023), Anteil mit ${pos === 'TE' ? 'Top-12' : 'Top-24'}-Saison in Jahr 2–3: ` + am.parts.map(x => `${x.l} ${x.v} → ${x.q} %`).join(' · ') + ` (Schnitt ${am.base} %).`;
+    const tip = `Historisch (NFL-Runde 1–3, Drafts 2015–2023), Anteil mit ${TOPN[pos]}-Saison in Jahr 2–3: ` + am.parts.map(x => `${x.l} ${x.v} → ${x.q} %`).join(' · ') + ` (Schnitt ${am.base} %).`;
     return `<span class="op-amp ${am.color}" title="${e(tip)}">${AMP_LABEL[am.color]}</span> ` + am.parts.map(x => `<span class="op-ampq ${x.c}" title="${e(x.l + ' ' + x.v)}">${x.q} %</span>`).join('');
   }
   function rookieAmpel(ctx, M, st) {
     const e = ctx.ui.esc, O = M.O, S = M.S, HC = O.coaches || {};
-    const pl = M.players.filter(p => p.dy && p.pk && p.pk <= 105 && (st.pos === 'ALL' || p.pos === st.pos));
+    const pl = M.all.filter(p => p.dy && p.pk && p.pk <= 105 && (st.pos === 'ALL' || p.pos === st.pos));
     if (!pl.length) return '';
     const name = p => `<div class="strong">${e(p.n)} ${statusTag(p)}</div><div class="muted small">${e(p.pos)} · ${e(p.t)} · Pick ${p.pk} · ${ownerTag(ctx, p)}</div>`;
     const y1 = pl.filter(p => p.dy === S).sort((a, b) => a.pk - b.pk);
     const y2 = pl.filter(p => p.dy === S - 1).sort((a, b) => a.pk - b.pk);
     const fmt = (v, f) => (v == null ? '—' : f(v));
+    const vol = (p, a) => (a ? (p.pos === 'RB' ? Math.round(a.car17) : p.pos === 'QB' ? Math.round(a.rushPg) + ' Rush-Yds' : pct(a.ts)) : '—');
     const row1 = p => { const a = yearAgg(p, S); const am = ampel(p.pos, a);
       return `<tr><td>${name(p)}</td><td class="num">${a ? a.g : 0}</td><td class="num">${fmt(a && a.snap, v => Math.round(v) + ' %')}</td>
-        <td class="num">${a ? (p.pos === 'RB' ? Math.round(a.car17) : pct(a.ts)) : '—'}</td><td class="num">${fmt(a && a.ppg, v => v.toFixed(1))}</td><td>${ampCell(e, p.pos, am, a ? a.g : 0)}</td></tr>`; };
+        <td class="num">${vol(p, a)}</td><td class="num">${fmt(a && a.ppg, v => v.toFixed(1))}</td><td>${ampCell(e, p.pos, am, a ? a.g : 0)}</td></tr>`; };
     const row2 = p => {
       const a1 = yearAgg(p, S - 1), a2 = yearAgg(p, S), am = ampel(p.pos, a1);
       const t1 = a1 ? a1.team : p.t, c1 = (HC[S - 1] || {})[t1], c2 = (HC[S] || {})[p.t];
       const good = a1 && a1.g >= 8 && a1.ppg >= GOOD_Y1[p.pos];
       const notes = [];
-      if (c1 && c2 && c1 !== c2 && good) notes.push(`<span class="op-st bad" title="${e(`Head Coach ${t1}: ${c1} → ${p.t}: ${c2}. Backtest: nach guter Rookie-Saison mit HC-Wechsel hatten 42 % (n = 12) noch eine Top-Saison in Jahr 2–3, ohne Wechsel 72 % (n = 53). Kleine Stichprobe, BTJ-Muster.`)}">⚠️ HC-Wechsel</span>`);
+      if (c1 && c2 && c1 !== c2 && good) notes.push(`<span class="op-st bad" title="${e(`Head Coach ${t1}: ${c1} → ${p.t}: ${c2}. ${p.pos === 'QB' ? 'Backtest QBs (≥ 15 PPR/Spiel als Rookie): mit HC-Wechsel 20 % (n = 5) Top-12 in Jahr 2–3, ohne 75 % (n = 4). Sehr kleine Stichprobe.' : 'Backtest WR/RB/TE: nach guter Rookie-Saison mit HC-Wechsel hatten 42 % (n = 12) noch eine Top-Saison in Jahr 2–3, ohne Wechsel 72 % (n = 53). Kleine Stichprobe, BTJ-Muster.'}`)}">⚠️ HC-Wechsel</span>`);
       else if (c1 && c2 && c1 !== c2) notes.push(`<span class="op-st warn" title="${e(`Head Coach ${t1}: ${c1} → ${p.t}: ${c2}.`)}">neuer HC</span>`);
       if (a1 && t1 !== p.t) notes.push(`<span class="op-st warn" title="${e(`Rookie-Jahr bei ${t1}`)}">Teamwechsel</span>`);
       return `<tr><td>${name(p)}</td><td class="num">${a1 ? a1.g : 0}</td><td class="num">${fmt(a1 && a1.snap, v => Math.round(v) + ' %')}</td>
-        <td class="num">${a1 ? (p.pos === 'RB' ? Math.round(a1.car17) : pct(a1.ts)) : '—'}</td><td class="num">${fmt(a1 && a1.ppg, v => v.toFixed(1))}</td><td>${ampCell(e, p.pos, am, a1 ? a1.g : 0)}</td>
+        <td class="num">${vol(p, a1)}</td><td class="num">${fmt(a1 && a1.ppg, v => v.toFixed(1))}</td><td>${ampCell(e, p.pos, am, a1 ? a1.g : 0)}</td>
         <td class="num">${fmt(a2 && a2.ppg, v => v.toFixed(1))}</td><td>${notes.join(' ')}</td></tr>`; };
-    const head = `<th>Spieler</th><th class="num">Sp.</th><th class="num" title="Offense-Snap-Anteil (Ø der Spiele)">Snaps</th><th class="num" title="WR/TE: Target Share · RB: Carries hochgerechnet auf 17 Spiele">TS / Car.</th><th class="num">PPR/Sp.</th><th title="Ampel + historische Trefferquote je Signal">Ampel (hist. Quote)</th>`;
+    const head = `<th>Spieler</th><th class="num">Sp.</th><th class="num" title="Offense-Snap-Anteil (Ø der Spiele)">Snaps</th><th class="num" title="WR/TE: Target Share · RB: Carries hochgerechnet auf 17 Spiele · QB: Rushing-Yards pro Spiel">TS / Car. / Rush</th><th class="num">PPR/Sp.</th><th title="Ampel + historische Trefferquote je Signal">Ampel (hist. Quote)</th>`;
     return `<details class="card op-rook"${st.rook === false ? '' : ' open'}><summary class="card-head"><h2>🚦 Rookie-Ampel</h2><span class="muted small">NFL-Runde 1–3 · Jahr 1: ${y1.length} · Jahr 2: ${y2.length}</span></summary>
       ${y1.length ? `<h3 class="op-sub">Jahr 1 (Draft ${S})</h3><div class="table-wrap"><table class="table compact op-table"><thead><tr>${head}</tr></thead><tbody>${y1.map(row1).join('')}</tbody></table></div>` : ''}
       ${y2.length ? `<h3 class="op-sub">Jahr 2 (Draft ${S - 1}) · Ampel aus der Rookie-Saison ${S - 1}</h3><div class="table-wrap"><table class="table compact op-table"><thead><tr>${head}<th class="num">PPR/Sp. ${S}</th><th>Hinweis</th></tr></thead><tbody>${y2.map(row2).join('')}</tbody></table></div>` : ''}
-      <div class="explain">Wie oft Spieler mit diesen Werten in Jahr 1 in Jahr 2–3 eine Top-Saison hatten (WR/RB: Top-24, TE: Top-12, PPR), gemessen an den NFL-Draftrunden 1–3 der Jahrgänge 2015–2023. 🟢 = mindestens ein starkes und kein schwaches Signal, 🔴 = schwache Signale ohne starkes, sonst 🟡. Bei WRs trennen Snap Share und Target Share sehr klar (unter 25 % Snaps: 3 %, ab 20 % Target Share: 82 %). Bei RBs zählt fast nur Volumen (200+ Carries oder 14+ PPR/Spiel), bei TEs ist die Stichprobe klein. Hochrechnung während der Saison, Schwellen gelten für die ganze Saison. HC-Wechsel = anderer Head Coach als im letzten Spiel der Rookie-Saison.</div></details>`;
+      <div class="explain">Wie oft Spieler mit diesen Werten in Jahr 1 in Jahr 2–3 eine Top-Saison hatten (WR/RB: Top-24, TE: Top-12, PPR), gemessen an den NFL-Draftrunden 1–3 der Jahrgänge 2015–2023. 🟢 = mindestens ein starkes und kein schwaches Signal, 🔴 = schwache Signale ohne starkes, sonst 🟡. Bei WRs trennen Snap Share und Target Share sehr klar (unter 25 % Snaps: 3 %, ab 20 % Target Share: 82 %). Bei RBs zählt fast nur Volumen (200+ Carries oder 14+ PPR/Spiel), bei TEs ist die Stichprobe klein. QBs (Top-12): Rushing entscheidet, 25+ Rushing-Yards pro Spiel als Rookie → 67 %, unter 10 → 6 % (Lamar, Allen, Murray, Fields, Hurts vs. die Pocket-QBs). Hochrechnung während der Saison, Schwellen gelten für die ganze Saison. HC-Wechsel = anderer Head Coach als im letzten Spiel der Rookie-Saison.</div></details>`;
   }
 
   function render(ctx) {

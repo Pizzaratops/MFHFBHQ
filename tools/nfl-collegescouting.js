@@ -378,7 +378,7 @@
     // Breakout = erstes College-Jahr mit Ø Produktions-z > 0,5; „spät“ = ab College-Jahr 3 oder nie.
     function riskFlags(env, pos, rec) {
       const { C, M } = env, P = M.pos[pos];
-      if (!P || (pos !== 'RB' && pos !== 'WR')) return null;
+      if (!P || !['RB', 'WR', 'QB'].includes(pos)) return null;
       const me = rec.mix ? rec.latest : rec;
       const yi = yearsInfo(env.R, C, me);
       const mean = (zz, fs) => fs.reduce((t, f) => t + (zz[f] || 0), 0) / (fs.length || 1);
@@ -394,13 +394,18 @@
         const sh = me.recYdShare;
         if (sh != null && sh < 5) add('rec', true, 'Wenig Receiving', `Receiving-Yard-Share ${String(sh).replace('.', ',')} % in der Saison ${me.year} (< 5 %). Backtest Drafts 2015–2023 (RBs Runde 1–3, Pick kontrolliert): 0 von 13 mit Top-12-Saison in Jahr 1–3, ohne Flag 50 %. Hielt in beiden Zeiträumen.`);
         if (late) add('late', false, 'Später Breakout', `${boTxt}. Allein schwach (Top-12 31 % vs. 48 %), zählt im Stapel.`);
+      } else if (pos === 'QB') {
+        // QB-Backtest (n = 47, Runde 1–3): wenig Rushing → Top-6 7 % vs. 35 % (p = 0,02, beide Zeiträume);
+        // früher Breakout (≤ J2) → 6 von 7 Top-12, ohne 15 %. Beide zusammen: Top-6 4 % (n = 24).
+        if (me.rushYds != null && me.rushYds < 250) add('rush', false, 'Wenig Rushing', `${me.rushYds} Rushing-Yards in ${me.year} (< 250, NCAA zieht Sacks ab). Backtest QBs Runde 1–3: Top-6-Saison in J1–3 7 % vs. 35 % (Pick kontrolliert p = 0,02), Top-12 19 % vs. 35 %. Hielt in beiden Zeiträumen.`);
+        if (late) add('late', false, 'Kein früher Breakout', `${boTxt}. Früher Breakout (bis J2) war bei QBs ein starkes Plus: 6 von 7 Top-12 (Mahomes, Watson, Lamar, Lawrence, Fields, Herbert). Ohne: 15 %, aber auch Allen, Burrow, Murray, Hurts und Stroud trafen (Transfers/kurze Startzeit messen wir schlecht).`);
       } else {
         if (yi.yrs != null && yi.yrs >= 4) add('ed', false, 'Kein Early Declare', `${yi.yrs}. College-Jahr${yi.exact ? '' : ' (Untergrenze aus FBS-Daten)'}. Backtest: Top-24-Saison 23 % vs. 45 % (Pick kontrolliert), aber nur in den Drafts 2015–19 deutlich, 2020–23 kein Unterschied (Corona-Zusatzjahr).`);
         if (late) add('late', false, 'Später Breakout', `${boTxt}. Allein schwach (Top-24 27 % vs. 44 %), zählt im Stapel.`);
         if (me.avgPPA != null && me.avgPPA < 0.56) add('eff', false, 'Schwache Effizienz', `EPA pro Target (avgPPA) ${String(me.avgPPA).replace('.', ',')} in ${me.year}, unteres Viertel der gedrafteten WRs (< 0,56).`);
       }
       const level = flags.some(f => f.hard) ? 'hart' : flags.length >= 2 ? 'fragil' : flags.length ? 'info' : 'ok';
-      return { flags, level, n: flags.length, speedPending: pos === 'RB' };
+      return { flags, level, n: flags.length, speedPending: pos === 'RB', earlyBo: !late && boYrs != null ? boYrs : null };
     }
     const pickFmt = (r, T) => `${Math.ceil(r / T)}.${String(((r - 1) % T) + 1).padStart(2, '0')}`;
     const nflRound = p => (p <= 32 ? 'R1' : p <= 64 ? 'R2' : p <= 100 ? 'R3' : p <= 140 ? 'R4' : p <= 180 ? 'R5' : p <= 220 ? 'R6' : 'R7');
@@ -419,6 +424,7 @@
   const RISK_TXT = {
     RB: { hart: 'Wenig Receiving ist das stärkste Signal im Backtest (0 von 13 mit Top-12-Saison in J1–3). Gestapelt bei Rookie-Erstrunden-Picks 2015–2023: 0 Flags 85 %, 1 Flag 43 %, ≥ 2 Flags 0 von 5 (Edwards-Helaire, Walker, Sanders, Abdullah, Kendre Miller).',
           fragil: 'Gestapelte Flags bei Rookie-Erstrunden-RBs 2015–2023: 0 Flags 85 % mit Top-12-Saison in J1–3, 1 Flag 43 %, ≥ 2 Flags 0 von 5.' },
+    QB: { fragil: 'Beide QB-Flags (wenig Rushing + kein früher Breakout), QBs Runde 1–3, Drafts 2015–2023: Top-6-Saison in J1–3 4 % (n = 24), Top-12 12 %. 1 Flag: Top-12 26 %, 0 Flags: 4 von 4. Erstrunden-QBs mit beiden Flags: 3 von 12 Top-12 (Goff, Stroud, Allen).' },
     WR: { fragil: 'Gestapelte Flags bei WRs (NFL-Erstrundenpicks 2015–2023): 0 Flags 69 % mit Top-24-Saison in J1–3, 1 Flag 58 %, 2 Flags 27 %. Aber DeVonta Smith, Pittman und M. Brown hatten 2 Flags und trafen trotzdem. Hinweis auf Fragilität, keine Prognose.' },
   };
   function riskRow(e, rf, pos) {
@@ -426,8 +432,9 @@
     const head = rf.level === 'hart' ? '<span class="cs-risk hart">🚩 Bust-Risiko</span>' : rf.level === 'fragil' ? '<span class="cs-risk fragil">⚠️ Fragil</span>' : rf.level === 'info' ? '<span class="cs-risk info">Risiko-Check</span>' : '<span class="cs-risk ok">✓ Keine Red Flags</span>';
     const t = (RISK_TXT[pos] || {})[rf.level] || 'Risiko-Flags aus dem Bust-Backtest (Drafts 2015–2023). Getrennt von der Pick-Prognose: Draft Capital bleibt das stärkste Signal.';
     const chips = rf.flags.map(f => `<span class="cs-tag${f.hard ? ' bad' : ' warn'}" title="${e(f.tip)}">${f.hard ? '🚩 ' : ''}${e(f.label)}</span>`).join(' ');
+    const eb = rf.earlyBo ? ` <span class="cs-tag ok" title="Breakout im ${rf.earlyBo}. College-Jahr. QBs mit Breakout bis J2: 6 von 7 mit Top-12-Saison in Jahr 1–3.">✓ Früher Breakout</span>` : '';
     const sp = rf.speedPending ? ' <span class="cs-tag" title="Speed Score (Gewicht × 200 / 40-Zeit⁴) < 100 ist der dritte RB-Flag. Kommt erst mit dem Combine (Ende Februar).">Speed Score: nach Combine</span>' : '';
-    return `<div class="cs-rnote cs-riskrow"><span title="${e(t)}">${head}</span> ${chips}${sp}</div>`;
+    return `<div class="cs-rnote cs-riskrow"><span title="${e(t)}">${head}</span> ${chips}${eb}${sp}</div>`;
   }
   function rangeBox(ctx, st, me, env) {
     const e = MFHFB.ui.esc;
@@ -575,7 +582,7 @@
   }
 
   function riskIcon(pos, pl) {
-    if (!RENV || RENV.error || (pos !== 'RB' && pos !== 'WR')) return '';
+    if (!RENV || RENV.error || !['RB', 'WR', 'QB'].includes(pos)) return '';
     const rf = DR.riskFlags(RENV, pos, pl.mix || pl.latest);
     if (!rf || (rf.level !== 'hart' && rf.level !== 'fragil')) return '';
     return rf.level === 'hart' ? ` <span class="cs-riskic" title="Bust-Risiko: ${MFHFB.ui.esc(rf.flags.map(f => f.label).join(', '))}">🚩</span>` : ` <span class="cs-riskic" title="Fragil: ${MFHFB.ui.esc(rf.flags.map(f => f.label).join(', '))}">⚠️</span>`;
