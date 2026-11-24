@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-24T13:02:49.498Z
+//  Stand: 2026-11-24T14:01:45.806Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -1129,7 +1129,7 @@ const WC_PLAYER_POOL = [
 ["0729d","Steve Settle","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["031lz","Steven Adams","HOU","C","C,Flx","FA"],
 ["0723e","Steven Crowl","(N/A)","SF","SF,PF,F,Flx","FA"],
-["04qsn","Svi Mykhailiuk","UTA","SF","SF,F,Flx","T"],
+["04qsn","Svi Mykhailiuk","UTA","SF","SF,F,Flx","FA"],
 ["04ewj","T.J. Leaf","(N/A)","PF","PF,F,Flx","FA"],
 ["03wr4","T.J. McConnell","IND","PG","PG,G,Flx","FA"],
 ["03bxn","T.J. Warren","(N/A)","SF","SF,F,Flx","FA"],
