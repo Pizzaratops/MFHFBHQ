@@ -18,7 +18,7 @@ const DYNASTY_LIVE_META = {"mode":"season","date":"2026-11-23","pool":352,"expec
 
 const DYNASTY_LIVE = [
   { name: "Alperen Şengün", baseRank: 14, liveRank: 12, delta: 2, games: 16, expRank: 56, seasonRank: 13, shift: 0.18, source: "season" },
-  { name: "Amen Thompson", baseRank: 17, liveRank: 20, delta: -3, games: 17, expRank: 17, seasonRank: 63, shift: -0.17, source: "season" },
+  { name: "Amen Thompson", baseRank: 17, liveRank: 20, delta: -3, games: 17, expRank: 17, seasonRank: 62, shift: -0.17, source: "season" },
   { name: "Donovan Mitchell", baseRank: 20, liveRank: 22, delta: -2, games: 17, expRank: 8, seasonRank: 23, shift: -0.09, source: "season" },
   { name: "Darryn Peterson", baseRank: 21, liveRank: 19, delta: 2, games: 18, expRank: 160, seasonRank: 99, shift: 0.09, source: "season" },
   { name: "Trey Murphy III", baseRank: 25, liveRank: 28, delta: -3, games: 11, expRank: 14, seasonRank: 64, shift: -0.13, source: "season" },
