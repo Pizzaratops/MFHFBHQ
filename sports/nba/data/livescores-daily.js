@@ -5757,7 +5757,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-23": {
-      games: ["Memphis Grizzlies 117 @ Charlotte Hornets 111 (Final)","Portland Trail Blazers 128 @ Philadelphia 76ers 111 (Final)","Oklahoma City Thunder @ Indiana Pacers (8:27 - 4th)","Milwaukee Bucks @ Toronto Raptors (9:19 - 4th)","Brooklyn Nets @ Minnesota Timberwolves (11:39 - 4th)","Cleveland Cavaliers @ Chicago Bulls (9:12 - 3rd)","Phoenix Suns @ New Orleans Pelicans (8:34 - 3rd)","LA Clippers @ Houston Rockets (1:32 - 2nd)","Utah Jazz @ Los Angeles Lakers (11/23 - 10:00 PM EST)","San Antonio Spurs @ Sacramento Kings (11/23 - 10:00 PM EST)"],
+      games: ["Memphis Grizzlies 117 @ Charlotte Hornets 111 (Final)","Portland Trail Blazers 128 @ Philadelphia 76ers 111 (Final)","Oklahoma City Thunder @ Indiana Pacers (7.4 - 4th)","Milwaukee Bucks @ Toronto Raptors (3:05 - 4th)","Brooklyn Nets @ Minnesota Timberwolves (3:23 - 4th)","Cleveland Cavaliers @ Chicago Bulls (43.7 - 3rd)","Phoenix Suns @ New Orleans Pelicans (51.7 - 3rd)","LA Clippers @ Houston Rockets (11:25 - 3rd)","Utah Jazz @ Los Angeles Lakers (11/23 - 10:00 PM EST)","San Antonio Spurs @ Sacramento Kings (11/23 - 10:00 PM EST)"],
       leagueAvg: { fg: 46.6, ft: 83.9 },
       players: [
         { rank: 1, name: "Christian Anderson", team: "CHA", min: 25, pts: 25, reb: 2, ast: 3, stl: 1, blk: 1, to: 1, tpm: 6, fgPct: 75, ftPct: 100, composite: 7.92, zScores: { pts: 1.708, reb: -0.464, ast: 0.448, stl: 0.376, blk: 0.749, tpm: 2.57, fgImpact: 2.245, ftImpact: 0.233, to: 0.048 } },
