@@ -196,7 +196,10 @@
       ],
       size: 300, label: 'NBA-DNA ' + p.n,
     });
+    // Netz ganz oben, damit es auf Höhe des Production-Comp-Netzes links steht (Beyaz, 24.11.)
     return `<div class="card cs-box">${head}
+      <div class="cs-radar">${MFHFB.charts.chips([p.n, 'Ø NBA-Rotationsspieler'])}${radar}</div>
+      <div class="cs-list-head" style="margin-top:0">Fantasy-Profil 9-Cat, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
       <div class="cs-box-sub">${flag} ${minLine}</div>
       <div class="cs-rgrid" style="grid-template-columns:1fr 1fr 1fr">
         <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Saison mit 40+ Spielen, 18+ Min.</span></div>
@@ -204,8 +207,6 @@
         <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>9-Cat, ersten 4 NBA-Jahre</span></div>
       </div>
       ${typBlock(ctx, d, whyTyp)}
-      <div class="cs-list-head">Fantasy-Profil 9-Cat, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
-      <div class="cs-radar">${MFHFB.charts.chips([p.n, 'Ø NBA-Rotationsspieler'])}${radar}</div>
       <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
       <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
     </div>`;
