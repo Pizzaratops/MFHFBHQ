@@ -1,7 +1,7 @@
 // ============================================================
 //  TEAMS — FBI World Cup [WEST], Division Seattle (Fantrax), AUTO-GENERIERT von
 //  leagues/worldcup/scripts/sync-fantrax.js. IDs/Farben: TEAM_META im Script.
-//  Stand: 2026-11-24T11:02:57.637Z
+//  Stand: 2026-11-24T12:02:49.906Z
 // ============================================================
 
 const TEAMS = [
