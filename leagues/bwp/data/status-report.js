@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-23T22:03:28.491Z",
+  "generatedAt": "2026-11-24T00:03:30.703Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -564,7 +564,7 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "PHI",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 7.2,
@@ -746,7 +746,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.8,
           "last3AvgPoints": 17.5,
-          "projPoints": 21.9
+          "projPoints": 21.8
         },
         {
           "name": "Brock Bowers",
@@ -808,7 +808,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "JAX",
           "isStarter": false,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 20.3,
           "last3AvgPoints": 19.7,
@@ -1011,7 +1011,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.8,
           "last3AvgPoints": 17.5,
-          "projPoints": 21.9
+          "projPoints": 21.8
         },
         {
           "name": "Blake Corum",
@@ -1283,7 +1283,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "SEA",
           "isStarter": false,
-          "status": "O",
+          "status": "IR",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 0.9,
@@ -1305,7 +1305,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "JAX",
           "isStarter": false,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 18.8,
           "last3AvgPoints": 18.9,
@@ -1448,7 +1448,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "SF",
           "isStarter": false,
-          "status": null,
+          "status": "O",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3.7,
@@ -2332,7 +2332,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "SF",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -2387,7 +2387,7 @@ const STATUS_REPORT_DATA = {
           "pos": "QB",
           "nfl": "LAC",
           "isStarter": false,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 16.3,
           "last3AvgPoints": 12.5,
@@ -2398,7 +2398,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "WAS",
           "isStarter": false,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 6.2,
           "last3AvgPoints": 9,
@@ -2413,7 +2413,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 28.3,
           "last3AvgPoints": 18.3,
-          "projPoints": 14.9
+          "projPoints": 15
         },
         {
           "name": "Zach Charbonnet",
@@ -3826,7 +3826,7 @@ const STATUS_REPORT_DATA = {
           "pos": "K",
           "nfl": "JAX",
           "isStarter": false,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 19,
           "last3AvgPoints": 14,
@@ -3897,7 +3897,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.8,
           "last3AvgPoints": 17.5,
-          "projPoints": 21.9
+          "projPoints": 21.8
         },
         {
           "name": "Blake Corum",
@@ -4058,7 +4058,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "WAS",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 6.2,
           "last3AvgPoints": 9,
@@ -4125,7 +4125,7 @@ const STATUS_REPORT_DATA = {
           "pos": "RB",
           "nfl": "SEA",
           "isStarter": false,
-          "status": "O",
+          "status": "IR",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 0.9,
@@ -4184,7 +4184,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 20.3,
           "last3AvgPoints": 13.7,
-          "projPoints": 13.5
+          "projPoints": 13.4
         },
         {
           "name": "Ka'imi Fairbairn",
@@ -4224,7 +4224,7 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "PHI",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 8.6,
