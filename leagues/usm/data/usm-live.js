@@ -1,7 +1,7 @@
 // US-Manager (basketball.de) — tägliche Übersicht, erzeugt von leagues/usm/scripts/sync-usm.js
 // (GitHub Action usm-sync.yml, täglich 12:30 Berlin nach dem FP-Update von basketball.de). Nicht von Hand bearbeiten.
 const USM_LIVE = {
- "updated": "2026-11-24T20:51:49.621Z",
+ "updated": "2026-11-24T21:30:28.380Z",
  "date": "2026-11-24",
  "gameday": "2026-11-23",
  "team": {
@@ -220,18 +220,7 @@ const USM_LIVE = {
    "played": 1
   }
  ],
- "sold": [
-  {
-   "name": "Harper, Dylan",
-   "team": "San Antonio Spurs",
-   "rookie": 0,
-   "sal": 7.89,
-   "gp": 15,
-   "last": 19.5,
-   "fp": 376.5,
-   "fpg": 25.1
-  }
- ],
+ "sold": [],
  "top": [
   {
    "rank": 1,
