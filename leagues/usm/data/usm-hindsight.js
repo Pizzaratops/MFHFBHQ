@@ -1,6 +1,6 @@
 // US-Manager — „Perfekter Verlauf“ (Rückblick), erzeugt von leagues/usm/scripts/build-hindsight.js. Nicht von Hand bearbeiten.
 const USM_HINDSIGHT = {
- "updated": "2026-11-24T07:44:33.040Z",
+ "updated": "2026-11-24T19:38:11.492Z",
  "through": "2026-11-23",
  "days": 34,
  "calibratedOn": "2026-11-22",
@@ -290,14 +290,14 @@ const USM_HINDSIGHT = {
  "compare": {
   "me": {
    "team": "Kenora Hoops",
-   "pts": 4570,
-   "rank": 66,
+   "pts": 4771,
+   "rank": 47,
    "date": "2026-11-24",
    "gameday": "2026-11-23"
   },
   "top": {
    "team": "Gugiligugiligu",
-   "pts": 4917.5,
+   "pts": 5111.5,
    "gameday": "2026-11-23"
   }
  },
