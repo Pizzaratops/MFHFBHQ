@@ -2,15 +2,15 @@
   "league": "ncaab",
   "date": "2026-11-24",
   "games": [
-    "Belmont Bruins @ Akron Zips (17:01 - 1st)",
+    "Ole Miss Rebels @ BYU Cougars (5:47 - 1st)",
+    "UIC Flames @ Rice Owls (8:43 - 2nd)",
+    "Oklahoma Sooners @ Pittsburgh Panthers (11:23 - 2nd)",
+    "San Francisco Dons @ Oregon State Beavers (20:00 - 2nd)",
     "Wright State Raiders 70 @ St. Bonaventure Bonnies 72 (Final/OT)",
-    "UIC Flames @ Rice Owls (11/24 - 1:30 PM EST)",
-    "Oklahoma Sooners @ Pittsburgh Panthers (11/24 - 1:30 PM EST)",
-    "San Francisco Dons @ Oregon State Beavers (11/24 - 2:00 PM EST)",
-    "Ole Miss Rebels @ BYU Cougars (11/24 - 2:30 PM EST)",
-    "Tennessee Volunteers @ Maryland Terrapins (11/24 - 3:00 PM EST)",
-    "Miami Hurricanes @ TCU Horned Frogs (11/24 - 3:00 PM EST)",
-    "App State Mountaineers @ Yale Bulldogs (11/24 - 3:00 PM EST)",
+    "Belmont Bruins 64 @ Akron Zips 87 (Final)",
+    "Tennessee Volunteers @ Maryland Terrapins (15:40 - 1st)",
+    "Miami Hurricanes @ TCU Horned Frogs (15:32 - 1st)",
+    "App State Mountaineers @ Yale Bulldogs (15:19 - 1st)",
     "Tulsa Golden Hurricane @ Illinois State Redbirds (11/24 - 4:30 PM EST)",
     "Providence Friars @ Arizona Wildcats (11/24 - 5:00 PM EST)",
     "Wyoming Cowboys @ Kent State Golden Flashes (11/24 - 5:30 PM EST)",
@@ -51,7 +51,7 @@
     "Gonzaga Bulldogs @ Kansas State Wildcats (11/25 - 12:30 AM EST)"
   ],
   "leagueAvg": {
-    "fg": 46,
-    "ft": 58.3
+    "fg": 45.5,
+    "ft": 52.2
   }
 }
