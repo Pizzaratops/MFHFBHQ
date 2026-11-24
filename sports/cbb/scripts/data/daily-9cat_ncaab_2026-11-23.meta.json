@@ -2,8 +2,8 @@
   "league": "ncaab",
   "date": "2026-11-23",
   "games": [
-    "Colorado State Rams @ Arizona Wildcats (18:53 - 2nd)",
-    "San José State Spartans @ UC San Diego Tritons (Halftime)",
+    "Colorado State Rams 83 @ Arizona Wildcats 96 (Final)",
+    "San José State Spartans @ UC San Diego Tritons (0:44 - 2nd)",
     "Winthrop Eagles 83 @ Illinois Fighting Illini 133 (Final)",
     "Denver Pioneers 67 @ Kansas Jayhawks 84 (Final)",
     "Washington Huskies 77 @ BYU Cougars 83 (Final)",
@@ -29,7 +29,7 @@
     "Alabama State Hornets 54 @ California Golden Bears 96 (Final)"
   ],
   "leagueAvg": {
-    "fg": 48.1,
-    "ft": 69.3
+    "fg": 48.3,
+    "ft": 70.1
   }
 }

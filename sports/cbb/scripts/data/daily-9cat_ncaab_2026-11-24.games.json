@@ -796,7 +796,7 @@
     },
     {
       "id": "401921712",
-      "line": "VCU Rams @ TBD (11/24 - 10:30 PM EST)",
+      "line": "VCU Rams @ Colorado State Rams (11/24 - 10:30 PM EST)",
       "completed": false,
       "statusText": "11/24 - 10:30 PM EST",
       "away": {
@@ -806,8 +806,8 @@
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "ColSt",
+        "name": "Colorado State Rams",
         "score": null,
         "players": []
       }
