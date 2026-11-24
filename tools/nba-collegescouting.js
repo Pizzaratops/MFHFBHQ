@@ -7,8 +7,9 @@
 //  Gegenstück zu tools/nfl-collegescouting.js. Pro Prospect, STRIKT getrennt:
 //    📈 Draft Range — Draft-Chance + erwarteter NBA-Pick (Modell, überblendet aus Vorsaison-
 //       und Produktionsmodell) → in TTHQ zusätzlich der typische Rookie-Slot im TTHQ-Draft.
-//       Konsens-Override: steht der Spieler auf dem MFHFB Big Board 2027 (draft2027.js), zählt
-//       dessen Konsens-Rang (nbaRank) als NBA-Pick; „Modell allein“ bleibt sichtbar.
+//       Seit 24.11.2026 KEIN Konsens-Override mehr (wie NFL): das Konsens-Board steht daneben,
+//       das Modell bleibt Modell (keine Doppelzählung). In TTHQ zusätzlich der Trade-Wert des
+//       Slots (Brücke zum Trade Analyzer: SLOT_VALUES / TRADE_VALUE_TABLE).
 //    🎓 College Production Comp — „Produziert wie …“ (reine College-Produktion,
 //       Mahalanobis innerhalb Guard/Wing/Big). KEINE Erfolgsprognose.
 //    🧬 NBA-DNA — Chance auf NBA-Rotation, Real-Life-Impact (Saison 1.000+ Min. & BPM ≥ 0, bbref) und
@@ -20,7 +21,9 @@
 //       hoopR-Version sports/cbb/data/nba-dna.js nutzt nur noch der Fantasy Radar.
 //  Daten (alle direkt aus dem Hub, unabhängig vom Sport der Liga):
 //    sports/cbb/data/college-prospects.js  COLLEGE_PROSPECTS (build-college-prospects.js, täglich)
-//    sports/nba/data/draft2027.js          DRAFT_2027 (Big Board, von Hand)
+//    sports/nba/data/prospect-board-nba.js PROSPECT_BOARD_NBA (Konsens aus Tankathon, ESPN, B/R, FanSided;
+//                                          sync-nba-prospect-board.js, dienstags)
+//    sports/nba/data/draft2027.js          DRAFT_2027 (MFHFB-Fantasy-Board, von Hand) — nur noch Karte „MFHFB Big Board“
 //  Nicht drin: internationale Prospects ohne College-Saison (stehen nur über das Big Board da),
 //  Combine/Messungen, Verletzungen, Scouting-Eindruck.
 // ============================================================
@@ -28,10 +31,10 @@
 (function () {
   const A = { key: ['tthq', 'cbb'] };
   const P_FILE = './sports/cbb/data/college-prospects';
-  const DATA = [P_FILE, '?./sports/nba/data/draft2027', '?teams', '?rosters-live'];
+  const DATA = [P_FILE, '?./sports/nba/data/prospect-board-nba', '?./sports/nba/data/draft2027', '?teams', '?rosters-live'];
   const GROUPS = [['all', 'Alle'], ['G', 'Guards'], ['W', 'Wings'], ['B', 'Bigs']];
   const CLS = [['all', 'Alle Klassen'], ['Fr', 'Fr'], ['So', 'So'], ['Jr', 'Jr'], ['Sr', 'Sr']];
-  const SORTS = [['board', 'Draft Range'], ['konsens', 'Big Board'], ['chance', 'Draft-Chance'], ['rec', 'Recruiting'], ['bpm', 'BPM']];
+  const SORTS = [['board', 'Draft Range'], ['konsens', 'Konsens-Board'], ['chance', 'Draft-Chance'], ['rec', 'Recruiting'], ['bpm', 'BPM']];
   const FEAT_LABEL = {
     bpm: 'BPM', obpm: 'Off. BPM', dbpm: 'Def. BPM', usg: 'Usage', ts: 'True Shooting', orbPct: 'Off.-Reb %',
     drbPct: 'Def.-Reb %', astPct: 'Assist %', toPct: 'Ballverlust %', blkPct: 'Block %', stlPct: 'Steal %',
@@ -44,8 +47,11 @@
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('bbcs', {}) });
   const picked = { comp: null, for: null };
 
-  const nk = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  const nk0 = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
+  // Schreibvarianten zwischen Boards und Barttorvik (wie im Sync-Script)
+  const NK_ALIAS = { davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
+  const nk = s => { const k = nk0(s); return NK_ALIAS[k] || k; };
   const tip = (label, text) => MFHFB.ui.tip(label, text);
   const de = (x, d = 1) => (x == null || isNaN(x) ? '—' : Number(x).toFixed(d).replace('.', ','));
   const pct = v => `${Math.round(v * 100)} %`;
@@ -59,13 +65,32 @@
     const byId = new Map(C.p.map(p => [String(p.id), p]));
     const byName = new Map(); C.p.forEach(p => { const k = nk(p.n); if (!byName.has(k)) byName.set(k, p); });
     const board = new Map(); (data.DRAFT_2027 || []).forEach(b => board.set(nk(b.name), b));
+    const KB = data.PROSPECT_BOARD_NBA || null;
+    const kons = new Map(); ((KB && KB.players) || []).forEach(k => kons.set(nk(k.name), k));
     const owner = new Map();
     const teams = new Map((data.TEAMS || []).map(t => [String(t.id), t]));
     Object.entries(data.ROSTERS_LIVE || {}).forEach(([tid, list]) => (list || []).forEach(pl => owner.set(nk(pl.name), teams.get(String(tid)) || { name: 'Team ' + tid })));
-    IX = { data, C, byId, byName, board, owner };
+    IX = { data, C, byId, byName, board, owner, KB, kons };
     return IX;
   }
-  const boardOf = (I, p) => I.board.get(nk(p.n)) || null;
+  const boardOf = (I, p) => I.board.get(nk(p.n)) || null;      // MFHFB-Fantasy-Board (draft2027.js)
+  const konsOf = (I, p) => I.kons.get(nk(p.n)) || null;        // Konsens-Board (prospect-board-nba.js)
+  const SRC_SHORT = { tk: 'Tankathon', espn: 'ESPN', br: 'B/R', fs: 'FanSided' };
+  const fmtD = d => (d ? d.split('-').reverse().join('.') : '');
+  function konsTitle(I, k) {
+    const S = (I.KB && I.KB.sources) || [];
+    return `Konsens-Big-Board (Stand ${fmtD(I.KB.asof)}): #${k.rank} · ` + S.map(x => `${SRC_SHORT[x.key] || x.key} ${k.src[x.key] != null ? '#' + k.src[x.key] : '—'}`).join(' · ')
+      + (k.move ? ` · Woche ${k.move > 0 ? '+' : ''}${k.move}` : '') + '. Nur Anzeige, fließt nicht ins Modell.';
+  }
+  const konsTag = (e, I, k) => (k ? `<span class="cs-board ${k.rank <= 14 ? 'r1' : k.rank <= 30 ? 'r2' : k.rank <= 60 ? 'r3' : 'rx'}" title="${e(konsTitle(I, k))}">#${k.rank}</span>` : '');
+  // Brücke zum Trade Analyzer: Wert eines TTHQ-Slots (nächster Draft) + Dynasty-Rang mit gleichem Wert
+  function slotTrade(slot) {
+    const T = MFHFB.nbaTrades; if (!T || !T.SLOT_VALUES || slot == null) return null;
+    const v = T.SLOT_VALUES[Math.min(T.SLOT_VALUES.length, Math.max(1, Math.round(slot))) - 1];
+    if (!v) return null;
+    let r = 1; const TV = T.TRADE_VALUE_TABLE; while (TV[r + 1] != null && TV[r + 1] >= v) r++;
+    return { v, r };
+  }
   const ownerOf = (ctx, I, p) => (ctx.league.key === 'cbb' ? I.owner.get(nk(p.n)) || null : null);
 
   // ---------- Draft Range ----------
@@ -80,32 +105,40 @@
   }
   const slotFmt = (o, T) => (o == null ? 'nicht gedraftet' : `R${Math.ceil(Math.round(o) / T)}.${String(((Math.round(o) - 1) % T) + 1).padStart(2, '0')}`);
   const nbaRound = pk => (pk <= 30 ? '1. Runde' : '2. Runde');
-  // Effektiver erwarteter Pick: Konsens (Big Board) vor Modell
-  function expPick(I, p) { const b = boardOf(I, p); return b && b.nbaRank ? b.nbaRank : p.dr.q[2]; }
+  // Erwarteter Pick = Modell (seit 24.11.2026 kein Konsens-Override mehr)
+  function expPick(I, p) { return p.dr.q[2]; }
 
   function rangeBox(ctx, I, p) {
-    const e = ctx.ui.esc, C = I.C, M = C.meta.model || {}, b = boardOf(I, p);
+    const e = ctx.ui.esc, C = I.C, M = C.meta.model || {}, kb = konsOf(I, p);
     const bt = (M.backtest || []).map(x => `${x.test}: Draft ja/nein AUC ${de(x.aucRel, 2)} (relevante Spieler), Pick-Reihenfolge ρ ${de(x.pickRho, 2)}`).join('; ');
     const why = `Grobe Erwartung, keine Prognose: „wenn er nach dieser Saison in den Draft ginge“. Gelernt aus ${(M.n || 0).toLocaleString('de-DE')} letzten College-Saisons 2010–${M.lastDraft} und ihrem echten Draft-Ausgang (${M.nDrafted} gedraftet, Barttorvik). Zwei Modelle: Vorsaison (Recruiting, echtes Alter am Draft-Tag, Klasse, Größe, Conference, Vorjahr) und Produktion (BPM, Usage, Wurfprofil, Rebounds, Steals/Blocks, Minuten …), überblendet nach Saison-Minuten (Produktion voll ab ${M.blendMin} Min.). Backtest ${bt}. Pick-Spanne = mittlere 50 % der Fehler im Training, gilt nur falls gedraftet. Nicht drin: Combine/Wingspan, Verletzungen, Scouting.`;
     const head = `<div class="card-head"><h2>${tip('📈 Draft Range', why)}</h2></div>`;
     const q = p.dr.q, ch = Math.round(p.dr.p * 100);
     const w = Math.round((p.dr.w || 0) * 100);
     const basis = `Gewichtung: ${100 - w} % Vorsaison-Modell · ${w} % Produktion (${p.min[0]} Min. diese Saison)`;
-    const k = b && b.nbaRank ? b.nbaRank : null;
     const curve = C.meta.tthq, T = (curve && curve.teams) || 12;
-    let tthqCell = '';
+    let tthqCell = '', tradeCell = '';
     if (isTthq(ctx) && curve) {
-      const mid = tthqSlot(curve, k || q[2]), lo = tthqSlot(curve, k ? Math.max(1, k - 3) : q[1]), hi = tthqSlot(curve, k ? k + 3 : q[3]);
+      const mid = tthqSlot(curve, q[2]), lo = tthqSlot(curve, q[1]), hi = tthqSlot(curve, q[3]);
       const span = slotFmt(lo, T) === slotFmt(hi, T) ? slotFmt(lo, T) : `${slotFmt(lo, T)} – ${slotFmt(hi, T)}`;
-      tthqCell = `<div class="cs-rcell big"><small>${tip(`TTHQ-Draft (${T} Teams)`, `Typischer Platz im TTHQ-Gesamtdraft (mit Veteranen, ohne Keeper) für diesen NBA-Pick. Basis: ${curve.source} — der k-beste Rookie nach NBA-Pick bekam dort den k-ten Rookie-Slot. Ein Jahrgang, also nur ein grober Anhalt. Keeper und Pick-Besitz verschieben das jedes Jahr.`)}</small><b>${span}</b><span>Mitte ${slotFmt(mid, T)}${mid == null ? '' : ` (Pick ${Math.round(mid)})`} · falls er kommt</span></div>`;
+      tthqCell = `<div class="cs-rcell big"><small>${tip(`TTHQ-Draft (${T} Teams)`, `Typischer Platz im TTHQ-Gesamtdraft (mit Veteranen, ohne Keeper) für diesen NBA-Pick. Basis: ${curve.source} — der k-beste Rookie nach NBA-Pick bekam dort den k-ten Rookie-Slot. Ein Jahrgang, also nur ein grober Anhalt. Keeper und Pick-Besitz verschieben das jedes Jahr.`)}</small><b>${span}</b><span>Mitte ${slotFmt(mid, T)}${mid == null ? '' : ` (Pick ${Math.round(mid)})`} · Modell · falls er kommt</span></div>`;
+      const ks = kb ? tthqSlot(curve, kb.rank) : null;
+      const tm = slotTrade(mid), tk = slotTrade(ks);
+      if (tm || tk) {
+        const fmtT = (x, s) => `${slotFmt(s, T)} = <b>${x.v}</b> (≈ Dynasty-Rang ${x.r})`;
+        tradeCell = `<div class="cs-rcell"><small>${tip('Trade-Wert (TTHQ)', 'Wert dieses Slots im Trade Analyzer (Slot-Werte aus dem Backtest: was NBA-Picks dieser Position historisch wert wurden) und der Dynasty-Rang mit gleichem Wert. Gilt für den nächsten Draft; Picks in späteren Jahren ×0,9 je Jahr.')}</small><b>${(tm || tk).v}</b><span>${tm ? 'Modell ' + fmtT(tm, mid) : ''}${tm && tk ? '<br>' : ''}${tk ? 'Konsens ' + fmtT(tk, ks) : ''}</span></div>`;
+      }
     }
-    const kNote = k ? `<div class="cs-rnote"><span class="cs-tag ok" title="${e('MFHFB Big Board 2027 (sports/nba/data/draft2027.js): Konsens-Rang aus mehreren Boards. Ersetzt den Modell-Pick, weil das Modell Ausnahme-Prospects Richtung Mitte zieht.')}">Konsens · Big Board</span> <span>NBA #${k} · Modell allein: Pick ${q[1]}–${q[3]} (Mitte ${q[2]})</span></div>` : '';
+    const S = (I.KB && I.KB.sources) || [];
+    const kNote = kb ? `<div class="cs-rnote">${konsTag(e, I, kb)} <span>Konsens-Board <b>#${kb.rank}</b> (${S.map(x => `${SRC_SHORT[x.key] || x.key} ${kb.src[x.key] != null ? '#' + kb.src[x.key] : '—'}`).join(' · ')})${kb.move ? ` · Woche ${kb.move > 0 ? '+' : ''}${kb.move}` : ''}${isTthq(ctx) && curve ? ` · TTHQ-Slot laut Konsens ${slotFmt(tthqSlot(curve, kb.rank), T)}` : ''} <small class="muted">· Stand ${fmtD(I.KB.asof)} · nur Anzeige</small></span></div>`
+      : (I.KB ? `<div class="cs-rnote"><span class="muted">Nicht auf dem Konsens-Board (Top ${I.KB.players.length}).</span></div>` : '');
     return `<div class="card cs-range">${head}
       <div class="cs-rmeta"><span>${e(basis)}</span></div>
       <div class="cs-rgrid">
         ${tthqCell}
         <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird gedraftet, falls er sich anmeldet</span></div>
-        <div class="cs-rcell"><small>Erw. NBA-Draft</small><b>${k ? 'Pick ~' + k : `${nbaRound(q[1])}${nbaRound(q[3]) !== nbaRound(q[1]) ? '–' + nbaRound(q[3]).slice(0, 2) + ' Rd.' : ''}`}</b><span>${k ? 'laut Konsens' : `Pick ${q[1]}–${q[3]} (Mitte ${q[2]})`}</span></div>
+        <div class="cs-rcell"><small>Erw. NBA-Draft</small><b>${nbaRound(q[1])}${nbaRound(q[3]) !== nbaRound(q[1]) ? '–' + nbaRound(q[3]).slice(0, 2) + ' Rd.' : ''}</b><span>Modell: Pick ${q[1]}–${q[3]} (Mitte ${q[2]})</span></div>
+        ${tradeCell}
       </div>${kNote}
     </div>`;
   }
@@ -199,7 +232,7 @@
     const e = ctx.ui.esc;
     if (!b) return '';
     const strip = s => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    return `<div class="card" style="margin-top:14px"><div class="card-head"><h2>📋 MFHFB Big Board 2027</h2><span class="muted small">Konsens NBA #${e(b.nbaRank)} · MFHFB-Fantasy-Rang #${e(b.pick)}${b.tier ? ' · ' + e(b.tier) : ''}</span></div>
+    return `<div class="card" style="margin-top:14px"><div class="card-head"><h2>📋 MFHFB Big Board 2027</h2><span class="muted small">MFHFB-Fantasy-Rang #${e(b.pick)}${b.tier ? ' · ' + e(b.tier) : ''} · Stand Sommer 2026</span></div>
       <div class="cs-pad">${b.measurements ? `<p><b>${e(strip(b.measurements))}</b></p>` : ''}${b.fantasy ? `<p>${e(strip(b.fantasy))}</p>` : ''}${b.scouting ? `<p class="muted">${e(strip(b.scouting))}</p>` : ''}${b.link ? `<p><a href="${e(b.link)}" target="_blank" rel="noopener">Mehr zum Spieler ↗</a></p>` : ''}</div></div>`;
   }
 
@@ -207,33 +240,33 @@
   function filtered(ctx, I, st) {
     const q = nk(st.q);
     let L = I.C.p.filter(p => (st.grp === 'all' || p.b === st.grp) && (st.cls === 'all' || p.cl === st.cls)
-      && (!q || nk(p.n).includes(q) || nk(p.t).includes(q)) && (!st.board || boardOf(I, p)));
+      && (!q || nk(p.n).includes(q) || nk(p.t).includes(q)) && (!st.board || konsOf(I, p)));
     if (ctx.league.key === 'cbb' && st.own !== 'all') L = L.filter(p => (st.own === 'free') === !ownerOf(ctx, I, p));
     const key = {
       board: p => -p.sc, chance: p => -p.dr.p, rec: p => -(p.rec || 0), bpm: p => -((p.s && p.s[9]) || -99),
-      konsens: p => { const b = boardOf(I, p); return b ? b.nbaRank : 1000 - p.sc; },
+      konsens: p => { const k = konsOf(I, p); return k ? k.rank : 1000 - p.sc; },
     }[st.sort] || (p => -p.sc);
     return L.slice().sort((a, b) => key(a) - key(b));
   }
-  // Big-Board-Spieler ohne College-Saison (international, noch kein Spiel)
+  // Konsens-Spieler ohne College-Datensatz (international, noch kein Spiel)
   function boardOnly(I) {
-    return (I.data.DRAFT_2027 || []).filter(b => !I.byName.has(nk(b.name))).sort((a, b) => a.nbaRank - b.nbaRank);
+    return ((I.KB && I.KB.players) || []).filter(k => !I.byName.has(nk(k.name)));
   }
   function listHtml(ctx, st) {
     const e = ctx.ui.esc, I = index(ctx.data), L = filtered(ctx, I, st).slice(0, 300);
     const curve = I.C.meta.tthq, T = (curve && curve.teams) || 12;
     const right = p => {
-      const k = expPick(I, p), b = boardOf(I, p);
+      const k = expPick(I, p);
       if (isTthq(ctx)) return `${slotFmt(tthqSlot(curve, k), T)} <small>${Math.round(p.dr.p * 100)}%</small>`;
-      return `${b ? 'K' : ''}~${Math.round(k)} <small>${Math.round(p.dr.p * 100)}%</small>`;
+      return `~${Math.round(k)} <small>${Math.round(p.dr.p * 100)}%</small>`;
     };
-    const rows = L.map((p, i) => { const b = boardOf(I, p), o = ownerOf(ctx, I, p);
+    const rows = L.map((p, i) => { const kb = konsOf(I, p), o = ownerOf(ctx, I, p);
       return `<a class="dna-row${String(p.id) === String(st.sel) ? ' active' : ''}" href="${ctx.href('collegescouting', p.id)}">
         <span class="dna-idx">${i + 1}</span>
-        <span class="dna-nm">${e(p.n)}${b ? ` <span class="cs-tag ok" title="MFHFB Big Board 2027: Konsens NBA #${b.nbaRank}">#${b.nbaRank}</span>` : ''} <small>${e(p.t)} · ${e(p.cl)}${o ? ' · ' + e(o.short || o.name) : ''}</small></span>
+        <span class="dna-nm">${e(p.n)} ${konsTag(e, I, kb)} <small>${e(p.t)} · ${e(p.cl)}${o ? ' · ' + e(o.short || o.name) : ''}</small></span>
         <span class="dna-avg">${right(p)}</span></a>`; }).join('');
     const q = nk(st.q);
-    const extra = st.board ? boardOnly(I).filter(b => !q || nk(b.name).includes(q) || nk(b.school).includes(q)).map(b => `<div class="dna-row" title="Kein College-Datensatz in dieser Saison (international oder noch ohne Spiel)"><span class="dna-idx">·</span><span class="dna-nm">${e(b.name)} <span class="cs-tag ok">#${b.nbaRank}</span> <small>${e(b.school || '')} · keine College-Daten</small></span><span class="dna-avg">${isTthq(ctx) ? slotFmt(tthqSlot(curve, b.nbaRank), T) : 'K~' + b.nbaRank}</span></div>`).join('') : '';
+    const extra = st.board ? boardOnly(I).filter(k => !q || nk(k.name).includes(q) || nk(k.school).includes(q)).map(k => `<div class="dna-row" title="Kein College-Datensatz in dieser Saison (international oder noch ohne Spiel)"><span class="dna-idx">·</span><span class="dna-nm">${e(k.name)} ${konsTag(e, I, k)} <small>${e(k.school || '')} · keine College-Daten</small></span><span class="dna-avg">${isTthq(ctx) ? slotFmt(tthqSlot(curve, k.rank), T) + ' <small>K</small>' : 'K~' + k.rank}</span></div>`).join('') : '';
     return rows + extra || '<div class="muted" style="padding:12px">Keine Treffer.</div>';
   }
 
@@ -250,7 +283,7 @@
   function mainHtml(ctx, st) {
     const e = ctx.ui.esc, I = index(ctx.data), p = I.byId.get(String(st.sel));
     if (!p) return ctx.ui.empty('Kein Prospect gewählt', 'Links einen Prospect auswählen.', '🎓');
-    const b = boardOf(I, p), o = ownerOf(ctx, I, p), C = I.C;
+    const b = boardOf(I, p), kb = konsOf(I, p), o = ownerOf(ctx, I, p), C = I.C;
     const age = p.age != null ? `${de(p.age)} J. am Draft-Tag` : `≈ ${de(p.ageEst)} J. (Klassen-Schnitt, kein Geburtsdatum)`;
     const stat = C.meta.stat || [];
     const line = (s, lbl) => (s ? `<tr><td>${lbl}</td>${s.map((v, i) => `<td class="num">${v == null ? '—' : i < 1 ? v : de(v)}</td>`).join('')}</tr>` : '');
@@ -263,7 +296,8 @@
       </div>
       <div class="dna-tags">${[
         p.rec != null ? `Recruiting-Perzentil <b>${de(p.rec)}</b>` : 'ohne Recruiting-Rang',
-        b ? `Big Board: Konsens <b>#${e(b.nbaRank)}</b> · MFHFB <b>#${e(b.pick)}</b>` : null,
+        kb ? `Konsens-Board <b>#${kb.rank}</b>` : null,
+        b ? `MFHFB-Fantasy-Board <b>#${e(b.pick)}</b>` : null,
         o ? `Fantasy-Team: <b>${e(o.name)}</b>` : ctx.league.key === 'cbb' ? 'Fantasy: <b>frei</b>' : null,
       ].filter(Boolean).join(' · ')}</div>
       <div class="cs-grid" style="margin-bottom:14px">
@@ -300,20 +334,20 @@
       const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([k, l]) => `<button type="button" class="seg-btn${String(st[key]) === k ? ' active' : ''}" data-set="${key}" data-val="${k}">${l}</button>`).join('')}</div>`;
       return `
         <div class="page-head">
-          <h1 class="page-title display">${tip('🎓 College Scouting', 'Basketball-Gegenstück zum NFL College Scouting: College Production Comp, NBA-DNA und Draft Range je College-Spieler. Quellen: Barttorvik (Spieler-Saisons seit 2008 inkl. späterem NBA-Pick, Geburtsdatum, Recruiting-Rang), BBM (NBA-Saisons für die NBA-DNA), MFHFB Big Board 2027. Alle Vergleiche sind Ähnlichkeits-, keine Erfolgsprognosen. Internationale Prospects ohne College-Saison stehen nur über das Big Board drin.')}</h1>
+          <h1 class="page-title display">${tip('🎓 College Scouting', 'Basketball-Gegenstück zum NFL College Scouting: College Production Comp, NBA-DNA und Draft Range je College-Spieler. Quellen: Barttorvik (Spieler-Saisons seit 2008 inkl. späterem NBA-Pick, Geburtsdatum, Recruiting-Rang), BBM (NBA-Saisons für die NBA-DNA), Konsens-Board (Tankathon, ESPN, Bleacher Report, FanSided; wöchentlich gemittelt, nur Anzeige), MFHFB-Fantasy-Board 2027. Alle Vergleiche sind Ähnlichkeits-, keine Erfolgsprognosen. Internationale Prospects ohne College-Saison stehen nur über das Konsens-Board drin.')}</h1>
           <div class="page-sub">Saison ${M.season - 1}/${String(M.season).slice(2)} · ${C.p.length} College-Prospects (Draft-Chance ab 5 % oder Top-Recruit) · Stand ${stand}${isTthq(ctx) ? ' · rechts: typischer TTHQ-Draft-Slot' : ''}</div>
         </div>
         <div class="controls">
           ${seg('grp', GROUPS)}
           <select class="select" data-cls aria-label="Klasse">${CLS.map(([k, l]) => `<option value="${k}"${st.cls === k ? ' selected' : ''}>${l}</option>`).join('')}</select>
           ${ctx.league.key === 'cbb' ? seg('own', [['all', 'Alle'], ['free', 'Frei'], ['owned', 'Gerostert']]) : ''}
-          <label class="cs-chk"><input type="checkbox" data-board${st.board ? ' checked' : ''}> nur Big Board 2027</label>
+          <label class="cs-chk"><input type="checkbox" data-board${st.board ? ' checked' : ''}> nur Konsens-Board (inkl. international)</label>
         </div>
         <div class="dna-layout">
           <aside class="card dna-side">
             <input type="search" class="search" placeholder="Spieler oder Schule …" value="${e(st.q)}" data-q aria-label="Prospect suchen">
             <div class="cs-lctl"><select class="select" data-sort aria-label="Sortierung">${SORTS.map(([k, l]) => `<option value="${k}"${st.sort === k ? ' selected' : ''}>Sortierung: ${l}</option>`).join('')}</select></div>
-            <div class="dna-list-head"><span>Prospect</span><span title="${isTthq(ctx) ? 'Typischer TTHQ-Draft-Slot für den erwarteten NBA-Pick (Konsens vor Modell) · Draft-Chance' : 'Erwarteter NBA-Pick (K = Konsens Big Board, sonst Modell) · Draft-Chance'}">${isTthq(ctx) ? 'TTHQ · Chance' : 'NBA-Pick · Chance'}</span></div>
+            <div class="dna-list-head"><span>Prospect</span><span title="${isTthq(ctx) ? 'Typischer TTHQ-Draft-Slot für den erwarteten NBA-Pick (Modell; K = laut Konsens bei Spielern ohne College-Daten) · Draft-Chance' : 'Erwarteter NBA-Pick (Modell; K = Konsens bei Spielern ohne College-Daten) · Draft-Chance'}">${isTthq(ctx) ? 'TTHQ · Chance' : 'NBA-Pick · Chance'}</span></div>
             <div class="dna-list" data-list>${listHtml(ctx, st)}</div>
           </aside>
           <div class="dna-main" data-main>${mainHtml(ctx, st)}</div>

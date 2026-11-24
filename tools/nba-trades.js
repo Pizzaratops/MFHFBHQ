@@ -28,7 +28,7 @@
 (function () {
   const N = () => MFHFB.nba;
   const APPLIES = { sport: ['nba'], keepers: [true] };
-  const DATA = ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?picks', '?picks-live', '?dynasty-live', '?season-matchups'];
+  const DATA = ['teams', '?rosters-live', '?sport:aliases', 'rankings', '?hashtag', '?picks', '?picks-live', '?dynasty-live', '?season-matchups', '?./sports/nba/data/prospect-board-nba'];
   // Live-Form (seit 16.10.2026): Live-Rang aus DYNASTY_LIVE (Saison gegen Erwartung, nur
   // signifikante Abweichungen) ersetzt den Dynasty-Rang für den Wert. Ligaweiter Schalter.
   const liveOn = ctx => ctx.store.getJSON('dynlive', true) !== false;
@@ -105,6 +105,23 @@
   }
 
   let NEXT = 2026; // nächster Draft, in model() gesetzt
+  let BOARD = null; // Konsens-Board NBA-Draft (prospect-board-nba.js) → Prospects je Pick-Slot
+  // Welche Prospects landen (laut Konsens-Board + TTHQ-Kurve) etwa auf dem Slot dieses Picks?
+  function prospectsFor(pick, max = 3) {
+    const B = BOARD;
+    if (!B || !B.tthq || !B.players || pick.year !== B.draft || pick.round > 3) return [];
+    const x = B.tthq.nba, y = B.tthq.slot;
+    const slotOf = r => { if (r <= x[0]) return y[0]; if (r > x[x.length - 1]) return null; for (let i = 1; i < x.length; i++) if (r <= x[i]) return y[i - 1] + (y[i] - y[i - 1]) * (r - x[i - 1]) / (x[i] - x[i - 1]); return null; };
+    const within = pick.slot ? ((pick.slot - 1) % 12) + 1 : pick.expSlot;
+    if (within == null) return [];
+    const target = (pick.round - 1) * 12 + within;
+    const tol = pick.slot ? 1 : 1.5;
+    const L = B.players.map(p => ({ p, s: slotOf(p.rank) })).filter(o => o.s != null);
+    let hit = L.filter(o => Math.abs(o.s - target) <= tol);
+    if (!hit.length) hit = L.sort((a, b) => Math.abs(a.s - target) - Math.abs(b.s - target)).slice(0, 2);
+    return hit.slice(0, max).map(o => o.p);
+  }
+  const prospectsLine = pick => { const L = prospectsFor(pick); return L.length ? `<span class="tr-nba-prosp" title="Laut Konsens-Board ${BOARD.draft} (Stand ${BOARD.asof.split('-').reverse().join('.')}) und TTHQ-Draft-Kurve typischerweise auf diesem Slot">🎓 z. B. ${L.map(p => esc(p.name) + ' <small>#' + p.rank + '</small>').join(', ')}</span>` : ''; };
   let PROJ = new Map(); // teamId → P(Wahl-Position 0..11) für den nächsten Draft (aus der laufenden Saison)
   const slotValue = (round, slot) => SLOT_VALUES[(round - 1) * 12 + slot - 1] || 0;
   // Verteilung über Slot 1..12 (Index 0..11)
@@ -268,6 +285,7 @@
     const byName = new Map(players.map(p => [p.name, p]));
     NEXT = nba.nextDraftYear(data) || NEXT;
     PROJ = projectPositions(data);
+    BOARD = data.PROSPECT_BOARD_NBA || null;
     const picks = nba.openPicks(data).map(p => {
       const orig = team(p.originalOwner), curr = team(p.currentOwner);
       return {
@@ -422,7 +440,7 @@
       let badges, detail;
       if (p.isPick) {
         badges = `<span class="tr-nba-note">📋 ${p.slot ? 'Slot ' + p.slot : (p.projected ? 'proj. Ø Slot ' : 'Ø Slot ') + String(p.expSlot.toFixed(1)).replace('.', ',')} · ${p.year}</span> ${teamTag(p.curr)}${p.traded ? ' <small class="muted">(via Trade)</small>' : ''}`;
-        detail = `📋 Draft Pick · ${esc(p.curr.name)}`;
+        detail = `📋 Draft Pick · ${esc(p.curr.name)} ${prospectsLine(p)}`;
       } else {
         const mult = ageMultiplier(p.dob, mode);
         const age = p.dob ? playerAgeToday(p.dob) : null;

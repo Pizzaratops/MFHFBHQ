@@ -1,0 +1,983 @@
+{
+ "_comment": "Feste (nicht mehr aktualisierte) Big Boards für den NBA-Konsens. Einträge: [Rang, Name, Position, Schule]. Gewicht im Konsens sinkt mit dem Alter (Halbwertszeit im Sync-Script). Neue Boards hier ergänzen.",
+ "boards": [
+  {
+   "key": "br",
+   "label": "Bleacher Report (Wasserman) Top 100",
+   "by": "Jonathan Wasserman",
+   "date": "2026-08-25",
+   "url": "https://bleacherreport.com/articles/25474454-2027-nba-draft-big-board-top-100-player-rankings",
+   "players": [
+    [
+     1,
+     "Tyran Stokes",
+     "SF",
+     "Kansas"
+    ],
+    [
+     2,
+     "Jordan Smith Jr.",
+     "PG/SG",
+     "Arkansas"
+    ],
+    [
+     3,
+     "Caleb Holt",
+     "SG",
+     "Arizona"
+    ],
+    [
+     4,
+     "Stefan Joksimovic",
+     "SG",
+     "Baskonia"
+    ],
+    [
+     5,
+     "JJ Andrews",
+     "SF",
+     "Arkansas"
+    ],
+    [
+     6,
+     "Anthony Thompson",
+     "SF",
+     "Ohio State"
+    ],
+    [
+     7,
+     "Braylon Mullins",
+     "SG",
+     "Connecticut"
+    ],
+    [
+     8,
+     "Bruce Branch III",
+     "SF",
+     "BYU"
+    ],
+    [
+     9,
+     "Motiejus Krivas",
+     "C",
+     "Arizona"
+    ],
+    [
+     10,
+     "Bryson Howard",
+     "SG/SF",
+     "Duke"
+    ],
+    [
+     11,
+     "Colben Landrew",
+     "SG/SF",
+     "Connecticut"
+    ],
+    [
+     12,
+     "Amari Allen",
+     "SG/SF",
+     "Alabama"
+    ],
+    [
+     13,
+     "Patrick Ngongba II",
+     "C",
+     "Duke"
+    ],
+    [
+     14,
+     "Jason Crowe Jr.",
+     "SG",
+     "Missouri"
+    ],
+    [
+     15,
+     "Dylan Mingo",
+     "PG",
+     "Baylor"
+    ],
+    [
+     16,
+     "Ivan Kharchenkov",
+     "SG/SF",
+     "Arizona"
+    ],
+    [
+     17,
+     "Luigi Suigo",
+     "C",
+     "Villanova"
+    ],
+    [
+     18,
+     "Baba Oladotun",
+     "SF",
+     "Maryland"
+    ],
+    [
+     19,
+     "Quentin Coleman",
+     "PG/SG",
+     "Illinois"
+    ],
+    [
+     20,
+     "Brandon McCoy",
+     "PG/SG",
+     "Michigan"
+    ],
+    [
+     21,
+     "Hugo Yimga-Moukouri",
+     "SF/PF",
+     "Nanterre 92"
+    ],
+    [
+     22,
+     "Miikka Muurinen",
+     "PF/C",
+     "Arkansas"
+    ],
+    [
+     23,
+     "Cameron Williams",
+     "C",
+     "Duke"
+    ],
+    [
+     24,
+     "Najai Hines",
+     "C",
+     "Connecticut"
+    ],
+    [
+     25,
+     "Abdou Toure",
+     "SG/SF",
+     "Arkansas"
+    ],
+    [
+     26,
+     "Caleb Gaskins",
+     "SF/PF",
+     "Miami"
+    ],
+    [
+     27,
+     "Thomas Haugh",
+     "SF/PF",
+     "Florida"
+    ],
+    [
+     28,
+     "Alijah Arenas",
+     "SG",
+     "USC"
+    ],
+    [
+     29,
+     "Davis Fogle",
+     "SF",
+     "Gonzaga"
+    ],
+    [
+     30,
+     "Maximo Adams",
+     "SG/SF",
+     "North Carolina"
+    ],
+    [
+     31,
+     "Tyler Tanner",
+     "PG",
+     "Vanderbilt"
+    ],
+    [
+     32,
+     "Tounde Yessoufou",
+     "SG/SF",
+     "St. John's"
+    ],
+    [
+     33,
+     "Malachi Moreno",
+     "C",
+     "Kentucky"
+    ],
+    [
+     34,
+     "Arafan Diane",
+     "C",
+     "Houston"
+    ],
+    [
+     35,
+     "Massamba Diop",
+     "C",
+     "Gonzaga"
+    ],
+    [
+     36,
+     "Alex Condon",
+     "C",
+     "Florida"
+    ],
+    [
+     37,
+     "Cameron Houindo",
+     "PF",
+     "Cedevita"
+    ],
+    [
+     38,
+     "Klark Reithauser",
+     "SG",
+     "Chalon"
+    ],
+    [
+     39,
+     "Juke Harris",
+     "SG/SF",
+     "Tennessee"
+    ],
+    [
+     40,
+     "Dame Sarr",
+     "SF",
+     "Duke"
+    ],
+    [
+     41,
+     "Pryce Sandfort",
+     "SF",
+     "Nebraska"
+    ],
+    [
+     42,
+     "David Mirkovic",
+     "PF",
+     "Illinois"
+    ],
+    [
+     43,
+     "Stefan Vaaks",
+     "SG/SF",
+     "Illinois"
+    ],
+    [
+     44,
+     "Trey McKenney",
+     "SF",
+     "Michigan"
+    ],
+    [
+     45,
+     "Matt Able",
+     "SG",
+     "North Carolina"
+    ],
+    [
+     46,
+     "Sayon Keita",
+     "C",
+     "North Carolina"
+    ],
+    [
+     47,
+     "Milan Momcilovic",
+     "SF",
+     "Kentucky"
+    ],
+    [
+     48,
+     "Flory Bidunga",
+     "C",
+     "Louisville"
+    ],
+    [
+     49,
+     "Adam Atamna",
+     "SG",
+     "Ratiopharm Ulm"
+    ],
+    [
+     50,
+     "Roman Domon",
+     "SF",
+     "Murray State"
+    ],
+    [
+     51,
+     "Nigel James",
+     "PG",
+     "Marquette"
+    ],
+    [
+     52,
+     "Rueben Chinyelu",
+     "C",
+     "Florida"
+    ],
+    [
+     53,
+     "Neoklis Avdalas",
+     "SG/SF",
+     "North Carolina"
+    ],
+    [
+     54,
+     "Billy Richmond III",
+     "SG/SF",
+     "Arkansas"
+    ],
+    [
+     55,
+     "Moustapha Thiam",
+     "C",
+     "Michigan"
+    ],
+    [
+     56,
+     "Shelton Henderson",
+     "SG/SF",
+     "Miami"
+    ],
+    [
+     57,
+     "Paul McNeil",
+     "SG",
+     "NC State"
+    ],
+    [
+     58,
+     "Johann Grunloh",
+     "C",
+     "Virginia"
+    ],
+    [
+     59,
+     "Mason Falslev",
+     "SG",
+     "Utah State"
+    ],
+    [
+     60,
+     "Daniel Jacobsen",
+     "C",
+     "Purdue"
+    ],
+    [
+     61,
+     "Lucas Morillo",
+     "SF/PF",
+     "Illinois"
+    ],
+    [
+     62,
+     "Dash Daniels",
+     "PG/SG",
+     "SE Melbourne"
+    ],
+    [
+     63,
+     "JT Toppin",
+     "PF",
+     "Texas Tech"
+    ],
+    [
+     64,
+     "Joseph Tugler",
+     "PF",
+     "Houston"
+    ],
+    [
+     65,
+     "Thijs De Ridder",
+     "PF",
+     "Virginia"
+    ],
+    [
+     66,
+     "Nikolas Khamenia",
+     "SF/PF",
+     "Connecticut"
+    ],
+    [
+     67,
+     "Arrinten Page",
+     "C",
+     "Providence"
+    ],
+    [
+     68,
+     "Matas Vokietaitis",
+     "C",
+     "Texas"
+    ],
+    [
+     69,
+     "Kellen Thames",
+     "SF",
+     "Saint Louis"
+    ],
+    [
+     70,
+     "Elyjah Freeman",
+     "SF/PF",
+     "Texas"
+    ],
+    [
+     71,
+     "Nolan Winter",
+     "PF/C",
+     "Wisconsin"
+    ],
+    [
+     72,
+     "Braden Frager",
+     "SF",
+     "Nebraska"
+    ],
+    [
+     73,
+     "Jeremy Fears Jr.",
+     "PG",
+     "Michigan State"
+    ],
+    [
+     74,
+     "Jacob Cofie",
+     "C",
+     "USC"
+    ],
+    [
+     75,
+     "Andrej Stojakovic",
+     "SF",
+     "Illinois"
+    ],
+    [
+     76,
+     "Amani Hansberry",
+     "PF",
+     "Virginia Tech"
+    ],
+    [
+     77,
+     "John Blackwell",
+     "SG",
+     "Duke"
+    ],
+    [
+     78,
+     "Zoom Diallo",
+     "PG",
+     "Kentucky"
+    ],
+    [
+     79,
+     "Finley Bizjack",
+     "SG",
+     "West Virginia"
+    ],
+    [
+     80,
+     "Alvaro Folgueiras",
+     "PF",
+     "Louisville"
+    ],
+    [
+     81,
+     "Ruben Prey",
+     "C",
+     "St. John's"
+    ],
+    [
+     82,
+     "Paulius Murauskas",
+     "PF",
+     "Arizona State"
+    ],
+    [
+     83,
+     "Jordan Scott",
+     "SF",
+     "Michigan State"
+    ],
+    [
+     84,
+     "Miles Byrd",
+     "SG/SF",
+     "Providence"
+    ],
+    [
+     85,
+     "Amael L'Etang",
+     "C",
+     "Dayton"
+    ],
+    [
+     86,
+     "Killyan Toure",
+     "PG/SG",
+     "Iowa State"
+    ],
+    [
+     87,
+     "Tahaad Pettiford",
+     "PG",
+     "Auburn"
+    ],
+    [
+     88,
+     "Collin Chandler",
+     "SG",
+     "BYU"
+    ],
+    [
+     89,
+     "Zvonimir Ivisic",
+     "C",
+     "Illinois"
+    ],
+    [
+     90,
+     "Jalen Haralson",
+     "SF/PF",
+     "Tennessee"
+    ],
+    [
+     91,
+     "Aiden Sherrell",
+     "PF/C",
+     "Indiana"
+    ],
+    [
+     92,
+     "Tomislav Ivisic",
+     "C",
+     "Illinois"
+    ],
+    [
+     93,
+     "Xavier Edmonds",
+     "SF",
+     "TCU"
+    ],
+    [
+     94,
+     "Dillan Shaw",
+     "SF",
+     "Arizona State"
+    ],
+    [
+     95,
+     "Bryson Tiller",
+     "PF",
+     "Missouri"
+    ],
+    [
+     96,
+     "Blue Cain",
+     "PG/SG",
+     "Georgia"
+    ],
+    [
+     97,
+     "Trent Pierce",
+     "PF",
+     "Missouri"
+    ],
+    [
+     98,
+     "Coen Carr",
+     "SF",
+     "Michigan State"
+    ],
+    [
+     99,
+     "Kanon Catchings",
+     "SF",
+     "Georgia"
+    ],
+    [
+     100,
+     "Teagan Moore",
+     "SG",
+     "Western Kentucky"
+    ]
+   ]
+  },
+  {
+   "key": "fs",
+   "label": "FanSided (Kline) Top 60",
+   "by": "Christopher Kline",
+   "date": "2026-07-09",
+   "url": "https://fansided.com/nba/2027-nba-draft-big-board-top-60-prospects-for-the-new-cycle",
+   "players": [
+    [
+     1,
+     "Tyran Stokes",
+     "G-F",
+     "Kansas"
+    ],
+    [
+     2,
+     "Stefan Joksimovic",
+     "G",
+     "Slovenia"
+    ],
+    [
+     3,
+     "Tyler Tanner",
+     "G",
+     "Vanderbilt"
+    ],
+    [
+     4,
+     "Jordan Smith Jr.",
+     "G",
+     "Arkansas"
+    ],
+    [
+     5,
+     "Caleb Holt",
+     "G-F",
+     "Arizona"
+    ],
+    [
+     6,
+     "Motiejus Krivas",
+     "C",
+     "Arizona"
+    ],
+    [
+     7,
+     "Patrick Ngongba II",
+     "C",
+     "Duke"
+    ],
+    [
+     8,
+     "Quentin Coleman",
+     "G",
+     "Illinois"
+    ],
+    [
+     9,
+     "Brandon McCoy Jr.",
+     "G",
+     "Michigan"
+    ],
+    [
+     10,
+     "Colben Landrew",
+     "F",
+     "Connecticut"
+    ],
+    [
+     11,
+     "Dylan Mingo",
+     "G",
+     "Baylor"
+    ],
+    [
+     12,
+     "Bryson Howard",
+     "G-F",
+     "Duke"
+    ],
+    [
+     13,
+     "Anthony Thompson",
+     "F",
+     "Ohio State"
+    ],
+    [
+     14,
+     "Bruce Branch III",
+     "F",
+     "Brigham Young"
+    ],
+    [
+     15,
+     "Ivan Kharchenkov",
+     "F",
+     "Arizona"
+    ],
+    [
+     16,
+     "Najai Hines",
+     "C",
+     "Connecticut"
+    ],
+    [
+     17,
+     "Malachi Moreno",
+     "C",
+     "Kentucky"
+    ],
+    [
+     18,
+     "JJ Andrews",
+     "F",
+     "Arkansas"
+    ],
+    [
+     19,
+     "Abdou Toure",
+     "G-F",
+     "Arkansas"
+    ],
+    [
+     20,
+     "Amari Allen",
+     "F",
+     "Alabama"
+    ],
+    [
+     21,
+     "Arafan Diane",
+     "C",
+     "Houston"
+    ],
+    [
+     22,
+     "Jason Crowe Jr.",
+     "G",
+     "Missouri"
+    ],
+    [
+     23,
+     "Austin Goosby",
+     "G",
+     "Texas"
+    ],
+    [
+     24,
+     "David Mirkovic",
+     "F",
+     "Illinois"
+    ],
+    [
+     25,
+     "Matt Able",
+     "G-F",
+     "North Carolina"
+    ],
+    [
+     26,
+     "Caleb Gaskins",
+     "F",
+     "Miami FL"
+    ],
+    [
+     27,
+     "Miles Sadler",
+     "G",
+     "West Virginia"
+    ],
+    [
+     28,
+     "Hugo Yimga-Moukouri",
+     "F",
+     "France"
+    ],
+    [
+     29,
+     "Braylon Mullins",
+     "G-F",
+     "Connecticut"
+    ],
+    [
+     30,
+     "Shelton Henderson",
+     "F",
+     "Miami FL"
+    ],
+    [
+     31,
+     "Maximo Adams",
+     "F",
+     "North Carolina"
+    ],
+    [
+     32,
+     "Luigi Suigo",
+     "C",
+     "Villanova"
+    ],
+    [
+     33,
+     "Deron Rippey Jr.",
+     "G",
+     "Duke"
+    ],
+    [
+     34,
+     "Massamba Diop",
+     "C",
+     "Gonzaga"
+    ],
+    [
+     35,
+     "Jaxon Richardson",
+     "G-F",
+     "Alabama"
+    ],
+    [
+     36,
+     "Sayon Keita",
+     "C",
+     "North Carolina"
+    ],
+    [
+     37,
+     "Pryce Sandfort",
+     "F",
+     "Nebraska"
+    ],
+    [
+     38,
+     "Daniel Jacobsen",
+     "C",
+     "Purdue"
+    ],
+    [
+     39,
+     "Junior County",
+     "G",
+     "Connecticut"
+    ],
+    [
+     40,
+     "Cameron Williams",
+     "F-C",
+     "Duke"
+    ],
+    [
+     41,
+     "Christian Collins",
+     "F",
+     "USC"
+    ],
+    [
+     42,
+     "Thomas Haugh",
+     "F",
+     "Florida"
+    ],
+    [
+     43,
+     "Rueben Chinyelu",
+     "C",
+     "Florida"
+    ],
+    [
+     44,
+     "Alvaro Folgueiras",
+     "F",
+     "Louisville"
+    ],
+    [
+     45,
+     "Flory Bidunga",
+     "C",
+     "Louisville"
+    ],
+    [
+     46,
+     "Joseph Tugler",
+     "F-C",
+     "Houston"
+    ],
+    [
+     47,
+     "Zvonimir Ivisic",
+     "C",
+     "Illinois"
+    ],
+    [
+     48,
+     "Billy Richmond III",
+     "F",
+     "Arkansas"
+    ],
+    [
+     49,
+     "Jeremy Fears Jr.",
+     "G",
+     "Michigan State"
+    ],
+    [
+     50,
+     "Jordan Scott",
+     "F",
+     "Michigan State"
+    ],
+    [
+     51,
+     "Davis Fogle",
+     "G-F",
+     "Gonzaga"
+    ],
+    [
+     52,
+     "Johann Grunloh",
+     "C",
+     "Virginia"
+    ],
+    [
+     53,
+     "Baba Oladotun",
+     "F",
+     "Maryland"
+    ],
+    [
+     54,
+     "Kayden Mingo",
+     "G",
+     "Baylor"
+    ],
+    [
+     55,
+     "Miles Byrd",
+     "G-F",
+     "Providence"
+    ],
+    [
+     56,
+     "Juke Harris",
+     "G-F",
+     "Tennessee"
+    ],
+    [
+     57,
+     "Tounde Yessoufou",
+     "F",
+     "St. John's"
+    ],
+    [
+     58,
+     "Alijah Arenas",
+     "G",
+     "USC"
+    ],
+    [
+     59,
+     "Fred Smith Jr.",
+     "F",
+     "Memphis"
+    ],
+    [
+     60,
+     "Trey McKenney Jr.",
+     "G",
+     "Michigan"
+    ]
+   ]
+  }
+ ]
+}

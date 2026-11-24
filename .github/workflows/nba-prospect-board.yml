@@ -1,0 +1,39 @@
+name: NBA Prospect Board (Konsens-Big-Board)
+
+# Seit 24.11.2026: mittelt Tankathon + ESPN (live) mit festen Boards
+# (sports/nba/scripts/data/prospect-boards-static.json) zum Konsens-Board
+# sports/nba/data/prospect-board-nba.js. Wöchentlich dienstags 10 Uhr
+# (Berlin) + manuell. Commit nur bei Änderung.
+
+on:
+  schedule:
+    - cron: '0 9 * * 2'   # Winterzeit 10:00 Berlin
+    - cron: '0 8 * * 2'   # Sommerzeit 10:00 Berlin (im Winter 09:00, schadet nicht)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nba-prospect-board
+  cancel-in-progress: false
+
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Board holen + mitteln
+        run: node sports/nba/scripts/sync-nba-prospect-board.js
+      - name: Commit
+        run: |
+          git config user.name "mfhfb-hq-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sports/nba/data/prospect-board-nba.js
+          git commit -m "chore: NBA Prospect Board" || exit 0
+          for i in 1 2 3; do git push && exit 0; git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
+          exit 1
