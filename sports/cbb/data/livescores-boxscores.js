@@ -6166,9 +6166,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920721",
-      line: "Eastern Washington Eagles @ UNLV Rebels (2:25 - 2nd)",
+      line: "Eastern Washington Eagles @ UNLV Rebels (1:08 - 2nd)",
       completed: false,
-      statusText: "2:25 - 2nd",
+      statusText: "1:08 - 2nd",
       away: {
         abbr: "EWU", name: "Eastern Washington Eagles", score: null,
         players: [
@@ -6875,9 +6875,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909743",
-      line: "Colorado State Rams @ Arizona Wildcats (17:44 - 1st)",
+      line: "Colorado State Rams @ Arizona Wildcats (15:57 - 1st)",
       completed: false,
-      statusText: "17:44 - 1st",
+      statusText: "15:57 - 1st",
       away: {
         abbr: "ColSt", name: "Colorado State Rams", score: null,
         players: [
