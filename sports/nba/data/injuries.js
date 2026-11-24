@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T02:59:50.530Z",
+  "updated": "2026-11-24T04:25:44.241Z",
   "players": {
     "Aaron Nesmith": ["IND","Out","OUT","2026-11-27","Foot",0,"2026-11-23"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-25","Lower Leg",0,"2026-11-23"],
@@ -22,7 +22,6 @@ const NBA_INJURIES = {
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-27","Heel",0,"2026-11-20"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
-    "Collin Gillespie": ["PHX","Day-To-Day","GTD","2026-11-23","Undisclosed",0,"2026-11-24"],
     "De'Aaron Fox": ["SA","Out","OUT","2026-11-25","Lower Leg",0,"2026-11-24"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-27","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-11-25","Hamstring",0,"2026-11-08"],

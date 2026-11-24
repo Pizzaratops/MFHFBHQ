@@ -4295,9 +4295,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910045",
-      line: "San Antonio Spurs @ Sacramento Kings (Halftime)",
+      line: "San Antonio Spurs @ Sacramento Kings (9:48 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "9:48 - 3rd",
       away: {
         abbr: "SA", name: "San Antonio Spurs", score: null,
         players: [
