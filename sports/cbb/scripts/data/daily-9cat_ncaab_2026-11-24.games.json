@@ -184,7 +184,7 @@
     },
     {
       "id": "401921710",
-      "line": "Providence Friars @ TBD (11/24 - 5:00 PM EST)",
+      "line": "Providence Friars @ Arizona Wildcats (11/24 - 5:00 PM EST)",
       "completed": false,
       "statusText": "11/24 - 5:00 PM EST",
       "away": {
@@ -194,8 +194,8 @@
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "Ariz",
+        "name": "Arizona Wildcats",
         "score": null,
         "players": []
       }

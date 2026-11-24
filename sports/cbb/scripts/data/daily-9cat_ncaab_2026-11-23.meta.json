@@ -2,9 +2,8 @@
   "league": "ncaab",
   "date": "2026-11-23",
   "games": [
-    "Colorado State Rams 83 @ Arizona Wildcats 96 (Final)",
-    "San José State Spartans @ UC San Diego Tritons (0:44 - 2nd)",
     "Winthrop Eagles 83 @ Illinois Fighting Illini 133 (Final)",
+    "Colorado State Rams 83 @ Arizona Wildcats 96 (Final)",
     "Denver Pioneers 67 @ Kansas Jayhawks 84 (Final)",
     "Washington Huskies 77 @ BYU Cougars 83 (Final)",
     "St. Bonaventure Bonnies 71 @ App State Mountaineers 65 (Final)",
@@ -26,10 +25,11 @@
     "UNC Greensboro Spartans 62 @ Pepperdine Waves 89 (Final)",
     "Loyola Chicago Ramblers 63 @ Seattle U Redhawks 76 (Final)",
     "Eastern Washington Eagles 61 @ UNLV Rebels 82 (Final)",
-    "Alabama State Hornets 54 @ California Golden Bears 96 (Final)"
+    "Alabama State Hornets 54 @ California Golden Bears 96 (Final)",
+    "San José State Spartans 88 @ UC San Diego Tritons 79 (Final)"
   ],
   "leagueAvg": {
-    "fg": 48.3,
-    "ft": 70.1
+    "fg": 48.4,
+    "ft": 70.3
   }
 }
