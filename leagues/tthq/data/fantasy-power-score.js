@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-24T19:04:30.523Z",
+  "generatedAt": "2026-11-24T19:28:24.593Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 19 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,12 +66,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 446.1,
-        "reb": 165.7,
-        "ast": 109.9,
-        "stl": 30.05,
-        "blk": 19.62,
-        "tpm": 41,
+        "pts": 444.5,
+        "reb": 166.6,
+        "ast": 109.6,
+        "stl": 29.61,
+        "blk": 19.65,
+        "tpm": 40.4,
         "to": 56.7,
         "fgPct": 48.1,
         "ftPct": 78.8
@@ -82,7 +82,7 @@ const FANTASY_POWER_SCORE = {
         "ast": 1,
         "stl": 1,
         "blk": 1,
-        "tpm": 4,
+        "tpm": 3,
         "fgPct": 1,
         "ftPct": 6,
         "to": 12
@@ -97,24 +97,24 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 327.7,
-        "reb": 118.8,
-        "ast": 75.5,
-        "stl": 23.26,
-        "blk": 14.3,
-        "tpm": 41.1,
-        "to": 40.8,
-        "fgPct": 46.9,
+        "pts": 321.2,
+        "reb": 120.3,
+        "ast": 74.8,
+        "stl": 23.16,
+        "blk": 14.82,
+        "tpm": 39.3,
+        "to": 40.6,
+        "fgPct": 47,
         "ftPct": 78.6
       },
       "rank": {
         "pts": 6,
-        "reb": 7,
+        "reb": 6,
         "ast": 7,
         "stl": 6,
-        "blk": 7,
-        "tpm": 3,
-        "fgPct": 6,
+        "blk": 6,
+        "tpm": 4,
+        "fgPct": 5,
         "ftPct": 7,
         "to": 7
       },
@@ -361,12 +361,12 @@ const FANTASY_POWER_SCORE = {
       },
       "rank": {
         "pts": 9,
-        "reb": 6,
+        "reb": 7,
         "ast": 8,
         "stl": 8,
         "blk": 4,
         "tpm": 9,
-        "fgPct": 5,
+        "fgPct": 6,
         "ftPct": 9,
         "to": 6
       },
@@ -395,7 +395,7 @@ const FANTASY_POWER_SCORE = {
         "reb": 5,
         "ast": 2,
         "stl": 3,
-        "blk": 6,
+        "blk": 7,
         "tpm": 5,
         "fgPct": 7,
         "ftPct": 3,
