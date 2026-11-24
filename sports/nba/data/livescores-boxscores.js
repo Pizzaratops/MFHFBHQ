@@ -3971,9 +3971,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401910036",
-      line: "Memphis Grizzlies @ Charlotte Hornets (7:58 - 1st)",
+      line: "Memphis Grizzlies @ Charlotte Hornets (9:04 - 2nd)",
       completed: false,
-      statusText: "7:58 - 1st",
+      statusText: "9:04 - 2nd",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
@@ -3989,9 +3989,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910037",
-      line: "Portland Trail Blazers @ Philadelphia 76ers (10:08 - 1st)",
+      line: "Portland Trail Blazers @ Philadelphia 76ers (10:01 - 2nd)",
       completed: false,
-      statusText: "10:08 - 1st",
+      statusText: "10:01 - 2nd",
       away: {
         abbr: "POR", name: "Portland Trail Blazers", score: null,
         players: [
@@ -4007,9 +4007,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910038",
-      line: "Oklahoma City Thunder @ Indiana Pacers (11/23 - 7:30 PM EST)",
+      line: "Oklahoma City Thunder @ Indiana Pacers (8:46 - 1st)",
       completed: false,
-      statusText: "11/23 - 7:30 PM EST",
+      statusText: "8:46 - 1st",
       away: {
         abbr: "OKC", name: "Oklahoma City Thunder", score: null,
         players: [
@@ -4025,9 +4025,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910039",
-      line: "Milwaukee Bucks @ Toronto Raptors (11/23 - 7:30 PM EST)",
+      line: "Milwaukee Bucks @ Toronto Raptors (10:52 - 1st)",
       completed: false,
-      statusText: "11/23 - 7:30 PM EST",
+      statusText: "10:52 - 1st",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -4043,9 +4043,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401910040",
-      line: "Brooklyn Nets @ Minnesota Timberwolves (11/23 - 7:30 PM EST)",
+      line: "Brooklyn Nets @ Minnesota Timberwolves (9:39 - 1st)",
       completed: false,
-      statusText: "11/23 - 7:30 PM EST",
+      statusText: "9:39 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [

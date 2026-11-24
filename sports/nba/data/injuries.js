@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T00:16:00.334Z",
+  "updated": "2026-11-24T00:44:56.703Z",
   "players": {
     "Aaron Nesmith": ["IND","Out","OUT","2026-11-27","Foot",0,"2026-11-23"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-25","Lower Leg",0,"2026-11-23"],
@@ -46,7 +46,7 @@ const NBA_INJURIES = {
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-25","Back",0,"2026-11-23"],
-    "Jaylon Tyson": ["CLE","Out","GTD","2026-11-23","Ankle",0,"2026-11-22"],
+    "Jaylon Tyson": ["CLE","Out","","","",0,"2026-11-22"],
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","GTD","2026-11-27","Hip",0,"2026-11-21"],
@@ -94,7 +94,6 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-20"],
     "Victor Wembanyama": ["SA","Day-To-Day","GTD","2026-11-23","Back",0,"2026-11-23"],
-    "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Zion Williamson": ["NO","Day-To-Day","GTD","2026-11-23","Thigh",0,"2026-11-22"]
+    "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"]
   }
 };
