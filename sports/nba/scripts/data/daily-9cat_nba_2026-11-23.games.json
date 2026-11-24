@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401910036",
-      "line": "Memphis Grizzlies @ Charlotte Hornets (11/23 - 7:00 PM EST)",
+      "line": "Memphis Grizzlies @ Charlotte Hornets (7:58 - 1st)",
       "completed": false,
-      "statusText": "11/23 - 7:00 PM EST",
+      "statusText": "7:58 - 1st",
       "away": {
         "abbr": "MEM",
         "name": "Memphis Grizzlies",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401910037",
-      "line": "Portland Trail Blazers @ Philadelphia 76ers (11/23 - 7:00 PM EST)",
+      "line": "Portland Trail Blazers @ Philadelphia 76ers (10:08 - 1st)",
       "completed": false,
-      "statusText": "11/23 - 7:00 PM EST",
+      "statusText": "10:08 - 1st",
       "away": {
         "abbr": "POR",
         "name": "Portland Trail Blazers",
