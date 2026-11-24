@@ -1,0 +1,20 @@
+{
+  "league": "nba",
+  "date": "2026-11-23",
+  "games": [
+    "Memphis Grizzlies 117 @ Charlotte Hornets 111 (Final)",
+    "Portland Trail Blazers 128 @ Philadelphia 76ers 111 (Final)",
+    "Oklahoma City Thunder @ Indiana Pacers (8:27 - 4th)",
+    "Milwaukee Bucks @ Toronto Raptors (9:19 - 4th)",
+    "Brooklyn Nets @ Minnesota Timberwolves (11:39 - 4th)",
+    "Cleveland Cavaliers @ Chicago Bulls (9:12 - 3rd)",
+    "Phoenix Suns @ New Orleans Pelicans (8:34 - 3rd)",
+    "LA Clippers @ Houston Rockets (1:32 - 2nd)",
+    "Utah Jazz @ Los Angeles Lakers (11/23 - 10:00 PM EST)",
+    "San Antonio Spurs @ Sacramento Kings (11/23 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 46.6,
+    "ft": 83.9
+  }
+}
