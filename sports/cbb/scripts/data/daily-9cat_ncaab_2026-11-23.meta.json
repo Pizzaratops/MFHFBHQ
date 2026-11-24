@@ -2,21 +2,21 @@
   "league": "ncaab",
   "date": "2026-11-23",
   "games": [
-    "Ole Miss Rebels @ Clemson Tigers (1:55 - 2nd)",
-    "Middle Tennessee Blue Raiders @ Southern Illinois Salukis (0:00 - 1st)",
-    "Tulane Green Wave @ Georgia State Panthers (7:23 - 1st)",
-    "Yale Bulldogs @ Belmont Bruins (5:06 - 1st)",
+    "Temple Owls @ UT Martin Skyhawks (6:19 - 2nd)",
+    "Penn State Brandywine Lions @ La Salle Explorers (3:29 - 1st)",
+    "Santa Clara Broncos @ Illinois State Redbirds (3:13 - 1st)",
+    "Texas A&M-Corpus Christi Islanders @ Wichita State Shockers (11:33 - 1st)",
+    "Washington Huskies 77 @ BYU Cougars 83 (Final)",
     "St. Bonaventure Bonnies 71 @ App State Mountaineers 65 (Final)",
     "Northern Iowa Panthers 48 @ Davidson Wildcats 79 (Final)",
     "Indiana State Sycamores 77 @ East Carolina Pirates 76 (Final/OT)",
     "Charlotte 49ers 71 @ Florida Gulf Coast Eagles 58 (Final)",
     "Tulsa Golden Hurricane 66 @ Oregon State Beavers 69 (Final)",
-    "San Francisco Dons @ Nevada Wolf Pack (11/23 - 4:30 PM EST)",
-    "Washington Huskies @ BYU Cougars (11/23 - 5:00 PM EST)",
-    "Temple Owls @ UT Martin Skyhawks (11/23 - 5:30 PM EST)",
-    "Penn State Brandywine Lions @ La Salle Explorers (11/23 - 7:00 PM EST)",
-    "Illinois State Redbirds @ Santa Clara Broncos (11/23 - 7:00 PM EST)",
-    "Texas A&M-Corpus Christi Islanders @ Wichita State Shockers (11/23 - 7:30 PM EST)",
+    "Ole Miss Rebels 82 @ Clemson Tigers 62 (Final)",
+    "Middle Tennessee Blue Raiders 77 @ Southern Illinois Salukis 76 (Final)",
+    "Tulane Green Wave 63 @ Georgia State Panthers 73 (Final)",
+    "Yale Bulldogs 60 @ Belmont Bruins 68 (Final)",
+    "San Francisco Dons 62 @ Nevada Wolf Pack 71 (Final)",
     "Winthrop Eagles @ Illinois Fighting Illini (11/23 - 8:00 PM EST)",
     "Denver Pioneers @ Kansas Jayhawks (11/23 - 8:00 PM EST)",
     "Monmouth Hawks @ North Carolina Tar Heels (11/23 - 8:00 PM EST)",
@@ -29,7 +29,7 @@
     "San José State Spartans @ UC San Diego Tritons (11/23 - 11:59 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 46.7,
-    "ft": 60.4
+    "fg": 45.5,
+    "ft": 64.3
   }
 }
