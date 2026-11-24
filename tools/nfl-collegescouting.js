@@ -9,14 +9,17 @@
 //  claude/college-scouting-concept.md):
 //    🎓 College Production Comp — „Produziert wie …“ (reine On-Field-
 //       Produktion, sport:college-scouting → COLLEGE_SCOUTING.comps)
-//    🏈 NFL Profile Comp — „Profiliert wie …“ (Pre-Draft-Rollenarchetyp,
-//       KEINE Erfolgsprognose; sport:nfl-profile-comp → NFL_PROFILE_COMP)
-//  NIEMALS „wird so gut wie“ o.ä. — beides sind Ähnlichkeits-, keine
-//  Erfolgsvergleiche.
+//    🏈 NFL Comps (seit 25.11.2026, ersetzt den NFL Profile Comp) —
+//       gedraftete Spieler mit ähnlicher Entwicklung + Produktion und was
+//       aus ihnen wurde (sport:prospect-comp → PROSPECT_COMP, gebaut von
+//       sports/nfl/scripts/build-prospect-comp.py). Gewichte per Backtest
+//       gewählt: Breakout-Jahr ×2, College-Jahr, Karriere-Bestwert,
+//       Produktion/Volumen ×½; Größe/Gewicht raus (sagten nichts voraus).
+//       Comps zeigen den Ausgang ähnlicher Spieler, keine Prognose.
 //
-//  Datenmenge: college-scouting ≈ 12 MB, nfl-profile-comp ≈ 4 MB. Die Seite
-//  wartet nur auf die erste Datei; der NFL Profile Comp wird in mount()
-//  nachgeladen. Beides ist sportweit gecacht (einmal für alle NFL-Ligen).
+//  Datenmenge: college-scouting ≈ 14 MB, prospect-comp ≈ 160 KB. Die Seite
+//  wartet nur auf die erste Datei; Comps + Draft Range werden in mount()
+//  nachgeladen. Alles sportweit gecacht (einmal für alle NFL-Ligen).
 // ============================================================
 
 (function () {
@@ -370,11 +373,14 @@
       }
       return out;
     }
-    // Risiko-Flags (Bust-Backtest 24.11.2026, Drafts 2015–2023, Draftpick kontrolliert;
+    // Risiko-Flags (Bust-Backtest 24./25.11.2026, Drafts 2015–2023, Draftpick kontrolliert;
     // Projekt-Doku claude/bust-backtest-2026-11.md). Getrennt von der Pick-Prognose.
-    //  RB hart: Receiving-Yard-Share der letzten Saison < 5 % → 0/13 mit Top-12-Saison in J1–3 (sonst 50 %).
-    //  RB weich (Stapel): wenig Receiving + später/kein Breakout (Speed Score < 100 erst nach dem Combine, nicht in den Daten).
-    //  WR weich (Stapel): kein Early Declare (College-Jahr ≥ 4) + später/kein Breakout + Effizienz (avgPPA < 0,56).
+    //  RB 🚩 hart: Receiving-Yard-Share Karriere-Bestwert < 5 % → 0/10 mit Top-12-Saison in J1–3 (sonst 48 %).
+    //  RB Hinweis: später/kein Breakout (Speed Score < 100 erst nach dem Combine, nicht in den Daten).
+    //  QB ⚠️: Rushing-Yards pro Pass-Versuch, Karriere-Bestwert < 0,6 → 0/18 mit Top-6-Saison (sonst 31 %).
+    //        Plus: „✓ Früher Breakout“ (bis College-Jahr 2: 6 von 7 Top-12).
+    //  WR Hinweise: kein Early Declare (College-Jahr ≥ 4), später/kein Breakout; ⚠️ nur wenn beide, kein Listen-Icon
+    //        (trifft fast die Hälfte, schwach). Effizienz (avgPPA) sagte nichts voraus → entfernt (25.11.).
     // Breakout = erstes College-Jahr mit Ø Produktions-z > 0,5; „spät“ = ab College-Jahr 3 oder nie.
     function riskFlags(env, pos, rec) {
       const { C, M } = env, P = M.pos[pos];
@@ -391,25 +397,56 @@
       const add = (key, hard, label, tip) => flags.push({ key, hard, label, tip });
       const boTxt = boYrs == null ? 'kein Breakout (nie Ø Produktions-z > 0,5)' : `Breakout erst im ${boYrs}. College-Jahr`;
       if (pos === 'RB') {
-        const sh = me.recYdShare;
-        if (sh != null && sh < 5) add('rec', true, 'Wenig Receiving', `Receiving-Yard-Share ${String(sh).replace('.', ',')} % in der Saison ${me.year} (< 5 %). Backtest Drafts 2015–2023 (RBs Runde 1–3, Pick kontrolliert): 0 von 13 mit Top-12-Saison in Jahr 1–3, ohne Flag 50 %. Hielt in beiden Zeiträumen.`);
+        // Karriere-Bestwert statt nur letzte Saison (25.11.2026): trifft 18 % statt 23 % der gedrafteten RBs,
+        // 0 von 10 mit Top-12 (sonst 48 %), p = 0,007, beide Zeiträume (0/6, 0/4). Letzte Saison < 5 % allein
+        // markierte gut die Hälfte aller College-RBs (Schwelle ≈ Median) und auch Spieler, die schon mal gefangen hatten.
+        const sh = seas.map(s => ({ y: s.year, v: s.recYdShare })).filter(x => x.v != null);
+        if (sh.length) {
+          const best = sh.reduce((a, b) => (b.v > a.v ? b : a));
+          const fmt = v => String(Math.round(v * 10) / 10).replace('.', ',');
+          if (best.v < 5) add('rec', true, 'Wenig Receiving', `Receiving-Yard-Share nie über 5 % (Karriere-Bestwert ${fmt(best.v)} % in ${best.y}${sh.length > 1 ? `, Saisons: ${sh.map(x => x.y + ' ' + fmt(x.v) + ' %').join(', ')}` : ''}). Backtest Drafts 2015–2023 (RBs Runde 1–3, Pick kontrolliert): 0 von 10 mit Top-12-Saison in Jahr 1–3, ohne Flag 48 % (p = 0,007), in beiden Zeiträumen. Betroffen waren u. a. Derrick Henry (später doch Star), Kenneth Walker, Miles Sanders, Derrius Guice.`);
+        }
         if (late) add('late', false, 'Später Breakout', `${boTxt}. Allein schwach (Top-12 31 % vs. 48 %), zählt im Stapel.`);
       } else if (pos === 'QB') {
-        // QB-Backtest (n = 47, Runde 1–3): wenig Rushing → Top-6 7 % vs. 35 % (p = 0,02, beide Zeiträume);
-        // früher Breakout (≤ J2) → 6 von 7 Top-12, ohne 15 %. Beide zusammen: Top-6 4 % (n = 24).
-        if (me.rushYds != null && me.rushYds < 250) add('rush', false, 'Wenig Rushing', `${me.rushYds} Rushing-Yards in ${me.year} (< 250, NCAA zieht Sacks ab). Backtest QBs Runde 1–3: Top-6-Saison in J1–3 7 % vs. 35 % (Pick kontrolliert p = 0,02), Top-12 19 % vs. 35 %. Hielt in beiden Zeiträumen.`);
-        if (late) add('late', false, 'Kein früher Breakout', `${boTxt}. Früher Breakout (bis J2) war bei QBs ein starkes Plus: 6 von 7 Top-12 (Mahomes, Watson, Lamar, Lawrence, Fields, Herbert). Ohne: 15 %, aber auch Allen, Burrow, Murray, Hurts und Stroud trafen (Transfers/kurze Startzeit messen wir schlecht).`);
+        // QB (25.11.2026): Rushing-Yards pro Pass-Versuch, Karriere-Bestwert < 0,6 → 0 von 18 mit Top-6-Saison in J1–3
+        // (sonst 31 %, p = 0,002, beide Zeiträume), Top-12 11 % vs. 34 %. Saisonlänge spielt keine Rolle (laufende Saison!).
+        // „Kein früher Breakout“ ist kein Warnsignal (85 % der gedrafteten QBs), nur „✓ Früher Breakout“ als Plus.
+        const rr = seas.filter(s => s.rushYds != null && s.passAtt).map(s => ({ y: s.year, v: s.rushYds / s.passAtt, ry: s.rushYds, pa: s.passAtt }));
+        if (rr.length) {
+          const best = rr.reduce((a, b) => (b.v > a.v ? b : a));
+          const f2 = v => String(Math.round(v * 100) / 100).replace('.', ',');
+          if (best.v < 0.6) add('rush', false, 'Wenig Rushing', `Rushing-Yards pro Pass-Versuch nie über 0,6 (Bestwert ${f2(best.v)} in ${best.y}: ${best.ry} Rush-Yds bei ${best.pa} Pass-Versuchen; NCAA zieht Sacks ab). Backtest QBs Runde 1–3, Drafts 2015–2023: 0 von 18 mit Top-6-Saison in Jahr 1–3 (sonst 31 %, p = 0,002), Top-12 11 % vs. 34 %, in beiden Zeiträumen. Pocket-QBs, die trotzdem Top-12 wurden: Goff, Stroud, Herbert.`);
+        }
       } else {
-        if (yi.yrs != null && yi.yrs >= 4) add('ed', false, 'Kein Early Declare', `${yi.yrs}. College-Jahr${yi.exact ? '' : ' (Untergrenze aus FBS-Daten)'}. Backtest: Top-24-Saison 23 % vs. 45 % (Pick kontrolliert), aber nur in den Drafts 2015–19 deutlich, 2020–23 kein Unterschied (Corona-Zusatzjahr).`);
+        if (yi.yrs != null && yi.yrs >= 4) add('ed', false, 'Kein Early Declare', `${yi.yrs}. College-Jahr${yi.exact ? '' : ' (Untergrenze aus FBS-Daten)'}. Backtest WRs Runde 1–3: Top-24-Saison 23 % vs. 45 % (Pick kontrolliert, p = 0,03), in den Drafts 2015–19 deutlich (21 % vs. 63 %), 2020–23 schwächer (26 % vs. 35 %, Corona-Zusatzjahr).`);
         if (late) add('late', false, 'Später Breakout', `${boTxt}. Allein schwach (Top-24 27 % vs. 44 %), zählt im Stapel.`);
-        if (me.avgPPA != null && me.avgPPA < 0.56) add('eff', false, 'Schwache Effizienz', `EPA pro Target (avgPPA) ${String(me.avgPPA).replace('.', ',')} in ${me.year}, unteres Viertel der gedrafteten WRs (< 0,56).`);
       }
-      const level = flags.some(f => f.hard) ? 'hart' : flags.length >= 2 ? 'fragil' : flags.length ? 'info' : 'ok';
-      return { flags, level, n: flags.length, speedPending: pos === 'RB', earlyBo: !late && boYrs != null ? boYrs : null };
+      // RB: 🚩 bei wenig Receiving; QB: ⚠️ bei wenig Rushing; WR: ⚠️ nur wenn beide Hinweise zutreffen
+      const level = flags.some(f => f.hard) ? 'hart' : pos === 'QB' ? (flags.length ? 'fragil' : 'ok') : flags.length >= 2 ? 'fragil' : flags.length ? 'info' : 'ok';
+      return { flags, level, n: flags.length, speedPending: pos === 'RB', earlyBo: pos === 'QB' && !late && boYrs != null ? boYrs : null };
+    }
+    // Comp-Vektor wie build-prospect-comp.py: [Produktions-z…, Volumen-z…, Breakout-Jahr, College-Jahr, Karriere-Bestwert]
+    function compVec(env, pos, rec, PC) {
+      const { C, M } = env, P = M.pos[pos], cfg = PC && PC.pos[pos];
+      if (!P || !cfg) return null;
+      const me = rec.mix ? rec.latest : rec;
+      let z;
+      if (rec.mix) {
+        const zs = rec.seasons.map(s => zOf(C, M, pos, s));
+        z = {}; P.base.forEach(f => { z[f] = zs.reduce((t, zz, i) => t + rec.w[i] * zz[f], 0); });
+      } else z = zOf(C, M, pos, me);
+      const yi = yearsInfo(env.R, C, me);
+      const mean = (zz, fs) => fs.reduce((t, f) => t + (zz[f] || 0), 0) / (fs.length || 1);
+      const seas = seasonsOf(C, pos, me.rawId).filter(s => s.year <= me.year).sort((a, b) => a.year - b.year);
+      const yrsOf = s => (yi.hs ? s.year - yi.hs + 1 : (collegeYear(C, s) || 1));
+      const bo = seas.find(s => mean(zOf(C, M, pos, s), P.prod) > 0.5);
+      const pz = seas.map(s => mean(zOf(C, M, pos, s), P.prod));
+      const bestProd = pz.length ? Math.max(...pz) : mean(z, P.prod);
+      return [...cfg.prod.map(f => z[f] || 0), ...cfg.vol.map(f => z[f] || 0), bo ? yrsOf(bo) : PC.boNever, yi.yrs != null ? yi.yrs : 1, bestProd];
     }
     const pickFmt = (r, T) => `${Math.ceil(r / T)}.${String(((r - 1) % T) + 1).padStart(2, '0')}`;
     const nflRound = p => (p <= 32 ? 'R1' : p <= 64 ? 'R2' : p <= 100 ? 'R3' : p <= 140 ? 'R4' : p <= 180 ? 'R5' : p <= 220 ? 'R6' : 'R7');
-    return { estimate, riskFlags, pickFmt, nflRound, collegeYear, eligible, yearsInfo };
+    return { estimate, riskFlags, compVec, pickFmt, nflRound, collegeYear, eligible, yearsInfo };
   })();
 
   // Erklärtexte nur noch beim Hovern/Antippen der Überschrift (ⓘ)
@@ -422,10 +459,11 @@
   function rookieCfg(ctx) { return ctx.league.rookieDraft || { teams: 12, rounds: 4 }; }
 
   const RISK_TXT = {
-    RB: { hart: 'Wenig Receiving ist das stärkste Signal im Backtest (0 von 13 mit Top-12-Saison in J1–3). Gestapelt bei Rookie-Erstrunden-Picks 2015–2023: 0 Flags 85 %, 1 Flag 43 %, ≥ 2 Flags 0 von 5 (Edwards-Helaire, Walker, Sanders, Abdullah, Kendre Miller).',
-          fragil: 'Gestapelte Flags bei Rookie-Erstrunden-RBs 2015–2023: 0 Flags 85 % mit Top-12-Saison in J1–3, 1 Flag 43 %, ≥ 2 Flags 0 von 5.' },
-    QB: { fragil: 'Beide QB-Flags (wenig Rushing + kein früher Breakout), QBs Runde 1–3, Drafts 2015–2023: Top-6-Saison in J1–3 4 % (n = 24), Top-12 12 %. 1 Flag: Top-12 26 %, 0 Flags: 4 von 4. Erstrunden-QBs mit beiden Flags: 3 von 12 Top-12 (Goff, Stroud, Allen).' },
-    WR: { fragil: 'Gestapelte Flags bei WRs (NFL-Erstrundenpicks 2015–2023): 0 Flags 69 % mit Top-24-Saison in J1–3, 1 Flag 58 %, 2 Flags 27 %. Aber DeVonta Smith, Pittman und M. Brown hatten 2 Flags und trafen trotzdem. Hinweis auf Fragilität, keine Prognose.' },
+    RB: { hart: 'Wenig Receiving (Karriere-Bestwert < 5 %) ist das stärkste RB-Signal im Backtest: 0 von 10 mit Top-12-Saison in J1–3. Zusammen mit spätem Breakout (RBs Runde 1–3, 2015–2023): 0 Flags 52 %, 1 Flag 39 %, beide 0 von 8.',
+          fragil: 'Gestapelte Flags bei RBs Runde 1–3, 2015–2023: 0 Flags 52 % mit Top-12-Saison in J1–3, 1 Flag 39 %, beide 0 von 8.' },
+    QB: { fragil: 'Wenig Rushing (Rushing-Yards pro Pass-Versuch nie über 0,6): QBs Runde 1–3, Drafts 2015–2023, 0 von 18 mit Top-6-Saison in Jahr 1–3 (sonst 31 %), Top-12 11 % vs. 34 %. Für Superflex und Top-QB-Hoffnungen ein klares Warnsignal; als QB2 in 1QB-Ligen weniger relevant.' },
+    WR: { fragil: 'Später Breakout + kein Early Declare (WRs Runde 1–3, 2015–2023): 23 % mit Top-24-Saison in J1–3 vs. 43 % ohne diese Kombination, bei NFL-Erstrundenpicks 25 % vs. 64 %. Trifft aber fast die Hälfte der gedrafteten WRs (u. a. trafen DeVonta Smith, Pittman, M. Brown trotzdem) — bei WRs gibt es vor dem Draft kein seltenes, starkes Warnsignal. Deshalb kein Icon in der Liste. Effizienz (PPA) sagte nichts voraus und zählt nicht mehr.',
+          info: 'Einzelner Hinweis, allein schwach. Bei WRs gibt es vor dem Draft kein seltenes, starkes Warnsignal; Draft Capital und ab Jahr 1 Snap- und Target-Share (🚦 Rookie-Ampel) sagen viel mehr.' },
   };
   function riskRow(e, rf, pos) {
     if (!rf) return '';
@@ -508,12 +546,12 @@
       ${table}`;
   }
 
-  function compBox(kind, title, sub, comps, feats, axes, me, pickedId, extra, emptyText, foot) {
+  function compBox(kind, title, sub, comps, feats, axes, me, pickedId, extra, emptyText, foot, lead) {
     const e = MFHFB.ui.esc;
     const compObj = comps.find(c => c.id === pickedId);
     const meVals = feats[me.id];
     return `<div class="card cs-box" data-box="${kind}">
-      <div class="card-head"><h2>${tip(title, sub + (foot ? ' ' + foot : ''))}</h2></div>
+      <div class="card-head"><h2>${tip(title, sub + (foot ? ' ' + foot : ''))}</h2></div>${lead || ''}
       ${meVals && axes.length >= 3
         ? `<div class="cs-radar">${radar(axes, meVals, compObj ? feats[compObj.id] : null, me.name, compObj ? compObj.name : null)}</div>`
         : `<div class="muted cs-pad">Keine Perzentil-Daten für diesen Prospect (zu wenige vollständige Feature-Werte).</div>`}
@@ -541,24 +579,100 @@
       'Kein vergleichbares Produktionsprofil gefunden (zu wenige vollständige Datensätze im Pool).');
   }
 
+  // ---------- 🏈 NFL Comps (PROSPECT_COMP, Backtest 25.11.2026) ----------
+  const CP_AX = {
+    vol: 'Volumen', boY: 'Früher Breakout', yrs: 'Jugend', bestProd: 'Karriere-Best', pick: 'Erw. Draftpick',
+  };
+  // Erwarteter NFL-Pick (Draft-Range-Modell, beim Prospect inkl. Konsens-Override) als zusätzliche Dimension.
+  // Backtest (ρ Ø-Ausgang der Comps ↔ eigener Ausgang): WR 0,29 → 0,34, RB 0,28 → 0,39, QB 0,44 → 0,46, TE ×1 0,22 → 0,25.
+  // Pool-Spieler: Modellschätzung aus ihrer letzten College-Saison (Modell kennt diese Jahrgänge → eher optimistisch).
+  const CP_PICK_W = { WR: 2, RB: 2, QB: 2, TE: 1 };
+  function cpPoolPicks(PC, pos) {
+    const cache = PC._lp || (PC._lp = {});
+    if (cache[pos]) return cache[pos];
+    const C = RENV.C, vals = PC.pool[pos].map(p => {
+      const rec = ((C.seasons[p.yr] || {})[pos] || []).find(r => String(r.rawId) === p.id);
+      if (!rec) return null;
+      const r = DR.estimate({ ...RENV, K: {} }, pos, rec, false);
+      return r.nfl ? Math.log(r.nfl.mid) : null;
+    });
+    const ok = vals.filter(v => v != null), mu = ok.reduce((t, v) => t + v, 0) / ok.length;
+    const sd = Math.sqrt(ok.reduce((t, v) => t + (v - mu) ** 2, 0) / ok.length) || 1;
+    return (cache[pos] = { vals: vals.map(v => (v == null ? mu : v)), mu, sd, sorted: vals.map(v => (v == null ? mu : v)).sort((a, b) => a - b) });
+  }
+  function cpAxes(PC, pos) {
+    const cfg = PC.pos[pos];
+    return [...cfg.prod.map(f => ({ key: f, label: FEATURE_LABELS[f] || f })), { key: 'vol', label: CP_AX.vol }, { key: 'boY', label: CP_AX.boY }, { key: 'yrs', label: CP_AX.yrs }, { key: 'bestProd', label: CP_AX.bestProd }, { key: 'pick', label: CP_AX.pick }];
+  }
+  // Perzentil-Werte eines Vektors gegen den Pool (Breakout-Jahr + College-Jahr umgedreht: früher/jünger = höher)
+  function cpPerc(PC, pos, v, lp) {
+    const cfg = PC.pos[pos], pool = PC.pool[pos], np = cfg.prod.length, nv = cfg.vol.length;
+    const col = k => pool.map(p => p.v[k] == null ? 0 : p.v[k]);
+    const cache = PC._sorted || (PC._sorted = {});
+    const sorted = cache[pos] || (cache[pos] = {
+      prod: cfg.prod.map((_, i) => col(i).sort((a, b) => a - b)),
+      vol: pool.map(p => ((p.v[np] || 0) + (p.v[np + 1] || 0)) / 2).sort((a, b) => a - b),
+      boY: col(np + nv).sort((a, b) => a - b), yrs: col(np + nv + 1).sort((a, b) => a - b), best: col(np + nv + 2).sort((a, b) => a - b),
+    });
+    const le = (arr, x) => { let lo = 0, hi = arr.length; while (lo < hi) { const m = (lo + hi) >> 1; if (arr[m] <= x) lo = m + 1; else hi = m; } return lo; };
+    const lt = (arr, x) => { let lo = 0, hi = arr.length; while (lo < hi) { const m = (lo + hi) >> 1; if (arr[m] < x) lo = m + 1; else hi = m; } return lo; };
+    const pc = (arr, x) => Math.round(100 * le(arr, x) / arr.length);
+    const inv = (arr, x) => Math.round(100 * (arr.length - lt(arr, x)) / arr.length);
+    const out = {};
+    cfg.prod.forEach((f, i) => { out[f] = pc(sorted.prod[i], v[i] == null ? 0 : v[i]); });
+    out.vol = pc(sorted.vol, ((v[np] || 0) + (v[np + 1] || 0)) / 2);
+    out.boY = inv(sorted.boY, v[np + nv]); out.yrs = inv(sorted.yrs, v[np + nv + 1]); out.bestProd = pc(sorted.best, v[np + nv + 2]);
+    if (lp != null) out.pick = inv(cpPoolPicks(PC, pos).sorted, lp); // früherer Pick = höher
+    return out;
+  }
+  function cpComps(PC, pos, vec, selfId, lp, n = 10) {
+    const cfg = PC.pos[pos];
+    const zv = x => x.map((v, i) => ((v == null ? 0 : v) - cfg.mu[i]) / cfg.sd[i] * Math.sqrt(cfg.w[i]));
+    const me = zv(vec);
+    const LP = lp != null && RENV && RENV.C ? cpPoolPicks(PC, pos) : null, wp = Math.sqrt(CP_PICK_W[pos] || 0);
+    const mlp = LP ? (lp - LP.mu) / LP.sd * wp : 0;
+    return PC.pool[pos].map((p, i) => ({ p, i })).filter(({ p }) => p.id !== String(selfId))
+      .map(({ p, i }) => {
+        const pz = p._z || (p._z = zv(p.v)); let d = 0; for (let k = 0; k < me.length; k++) d += (me[k] - pz[k]) ** 2;
+        if (LP) d += (mlp - (LP.vals[i] - LP.mu) / LP.sd * wp) ** 2;
+        return { p, i, d: Math.sqrt(d) };
+      })
+      .sort((a, b) => a.d - b.d).slice(0, n)
+      .map(({ p, i, d }) => ({ id: 'pc_' + p.id + '_' + p.dy, name: p.n, team: p.t, year: p.yr, pk: p.pk, dy: p.dy, b: p.b, k: p.k, done: p.d, v: p.v, lp: LP ? LP.vals[i] : null, dist: Math.round(d * 100) / 100 }));
+  }
+  const cpOutcome = (pos, m, top) => {
+    const tag = m.b == null ? 'keine Fantasy-Saison' : `bestes Jahr ${pos}${m.b}`;
+    const hits = m.k ? `${m.k}× Top-${top}` : `keine Top-${top}`;
+    return m.done ? `<span class="cs-out ${m.k ? 'hit' : 'miss'}">${m.k ? '✓' : '✗'} ${hits}</span> <span class="muted">${tag}</span>` : `<span class="cs-out open">bisher: ${hits}</span> <span class="muted">${tag}</span>`;
+  };
+
   function nflBox(ctx, st, me, N) {
     const e = MFHFB.ui.esc;
-    if (!N) return `<div class="card cs-box" data-box="nfl"><div class="card-head"><h2>🏈 NFL Profile Comp</h2></div><div class="muted cs-pad">Lade …</div></div>`;
-    if (N.error) return `<div class="card cs-box" data-box="nfl"><div class="card-head"><h2>🏈 NFL Profile Comp</h2></div><div class="muted cs-pad">${e(N.error)}</div></div>`;
-    let comps, feats = (N.feats || {})[st.pos] || {}, note = '';
-    if (me.mix) {
-      const R = MX.nfl(N, st.pos, me);
-      if (R) { comps = R.comps; if (R.perc) { feats = Object.create(feats); feats[me.id] = R.perc; } note = ' Basis: gewichteter Saison-Mix.'; }
-      else { comps = (N.comps[st.pos] || {})[me.latest.id] || []; if (feats[me.latest.id]) { feats = Object.create(feats); feats[me.id] = feats[me.latest.id]; } note = ` Für den Mix fehlt der Vergleichspool — angezeigt: Saison ${me.latest.year}.`; }
-    } else comps = (N.comps[st.pos] || {})[me.id] || [];
-    const stats = N.stats[st.pos] || {};
+    const head = t => `<div class="card cs-box" data-box="nfl"><div class="card-head"><h2>🏈 NFL Comps</h2></div><div class="muted cs-pad">${t}</div></div>`;
+    if (!N) return head('Lade …');
+    if (N.error) return head(e(N.error));
+    if (!RENV) return head('Lade …');
+    if (RENV.error) return head(e(RENV.error));
+    const PC = N, pos = st.pos, cfg = PC.pos[pos];
+    if (!cfg) return head(`Für ${pos} gibt es keinen Comp-Pool.`);
+    const vec = DR.compVec(RENV, pos, me, PC);
+    if (!vec) return head('Für diesen Prospect fehlen Daten.');
+    const est = DR.estimate(RENV, pos, me, false);
+    const lp = est && est.nfl ? Math.log(est.nfl.mid) : null;
+    const comps = cpComps(PC, pos, vec, (me.mix ? me.latest : me).rawId, lp);
+    const feats = { [me.id]: cpPerc(PC, pos, vec, lp) };
+    comps.forEach(m => { feats[m.id] = cpPerc(PC, pos, m.v, m.lp); });
+    if (picked.for !== me.id) { picked.for = me.id; picked.prod = null; picked.nfl = null; }
     if (!picked.nfl || !comps.some(c => c.id === picked.nfl)) picked.nfl = (comps[0] || {}).id || null;
-    const axes = ((N.meta.matchFeatures || {})[st.pos] || []).map(k => ({ key: k, label: FEATURE_LABELS[k] || k }));
-    const extra = m => `${m.draftRound != null ? `Rd. ${m.draftRound} Pick ${m.draftPick}` : 'undrafted'} (${e(m.draftYear)}) · RAS ${m.ras != null ? e(m.ras) : '?'}`;
-    return compBox('nfl', '🏈 NFL Profile Comp', '„Profiliert wie …“ — Pre-Draft-Rollenarchetyp gegen tatsächlich gedraftete Spieler mit ähnlichem Produktions- + Größen-Profil. <b>Keine Erfolgs- oder Talentprognose.</b>' + note,
-      comps, feats, axes, me, picked.nfl, extra,
-      'Kein Vergleich möglich (Produktions- oder Größen-Daten für diesen Prospect unvollständig).',
-      `Vergleichsbasis: ${stats.matched || 0} historisch gedraftete ${st.pos}s mit vollständigem Profil. RAS = an ras.football angelehnter Athletik-Score (0–10) <b>des Comps</b>, nicht des Prospects — der hat Combine/Draft noch vor sich. Radar-Achsen = Matching-Features (Produktion + Größe/Gewicht), nicht RAS/Draft.`);
+    const top = PC.top[pos];
+    const done = comps.filter(m => m.done), hits = done.filter(m => m.k > 0);
+    const avgPick = comps.length ? Math.round(comps.reduce((t, m) => t + m.pk, 0) / comps.length) : null;
+    const bt = (PC.backtest || {})[pos];
+    const lead = `<div class="cs-cpsum"><b>${hits.length} von ${done.length}</b> Comps mit Top-${top}-Saison in Jahr 1–3${done.length < comps.length ? ` <span class="muted">(${comps.length - done.length} noch offen)</span>` : ''} · Ø echter NFL-Pick der Comps ${avgPick}${est && est.nfl ? ` · erwarteter Pick ${e(me.name)}: ${est.nfl.mid}${est.consensus ? ' (Konsens)' : ''}` : ''}</div>`;
+    const extra = m => `Pick ${m.pk} (${e(m.dy)})</small><small class="cs-cpout">${cpOutcome(pos, m, top)}`;
+    const sub = `„Entwickelt + produziert wie …“: die 10 gedrafteten ${pos}s (Drafts ${PC.pool[pos].reduce((a, p) => Math.min(a, p.dy), 9999)}–${PC.pool[pos].reduce((a, p) => Math.max(a, p.dy), 0)}) mit dem ähnlichsten Profil und was in der NFL aus ihnen wurde. Gewichte aus dem Backtest: Breakout-Jahr doppelt, College-Jahr und Karriere-Bestwert einfach, Produktion und Volumen der letzten Saison halb, dazu der erwartete NFL-Pick (Draft Range, beim Prospect inkl. Konsens; ${pos === 'TE' ? 'einfach' : 'doppelt'}). Größe und Gewicht zählen nicht mehr: Sie sagten im Backtest nichts voraus (WR-Gewicht sogar negativ).${bt ? ` Backtest (Drafts ${bt.classes}, Comps nur aus anderen Jahrgängen): Zusammenhang Ø-Ausgang der Comps ↔ eigener Ausgang ρ = ${String(bt.rhoNew).replace('.', ',')} (alter Profile Comp: ${{ WR: '0,08', RB: '0,19', TE: '0,11', QB: '0,25' }[pos]}; Draftpick allein ≈ 0,55–0,6).` : ''} Mit dem erwarteten Pick stieg der Backtest-Zusammenhang bei WR auf 0,34, RB 0,39, QB 0,46, TE 0,25 (Modell kennt die Pool-Jahrgänge, daher eher optimistisch). Comps zeigen, was aus ähnlichen Spielern wurde, keine Prognose.${me.mix ? ' Basis: gewichteter Saison-Mix.' : ''}`;
+    return compBox('nfl', '🏈 NFL Comps', sub, comps, feats, cpAxes(PC, pos), me, picked.nfl, extra,
+      'Keine Comps gefunden.', `Radar: Perzentile im Pool der gedrafteten ${pos}s. „Früher Breakout“, „Jugend“ und „Erw. Draftpick“ umgedreht (früher/jünger/höherer Pick = höher). Ausgang = bester PPR-Positionsrang in Jahr 1–3 (nflverse); Top-${top} zählt als Treffer.`, lead);
   }
 
   // Konsens-Big-Board (sports/nfl/data/prospect-board.js, Sync aus Stick to the Model)
@@ -584,7 +698,7 @@
   function riskIcon(pos, pl) {
     if (!RENV || RENV.error || !['RB', 'WR', 'QB'].includes(pos)) return '';
     const rf = DR.riskFlags(RENV, pos, pl.mix || pl.latest);
-    if (!rf || (rf.level !== 'hart' && rf.level !== 'fragil')) return '';
+    if (!rf || !(rf.level === 'hart' || (rf.level === 'fragil' && pos === 'QB'))) return ''; // WR: kein Listen-Icon (zu häufig, schwach)
     return rf.level === 'hart' ? ` <span class="cs-riskic" title="Bust-Risiko: ${MFHFB.ui.esc(rf.flags.map(f => f.label).join(', '))}">🚩</span>` : ` <span class="cs-riskic" title="Fragil: ${MFHFB.ui.esc(rf.flags.map(f => f.label).join(', '))}">⚠️</span>`;
   }
 
@@ -687,7 +801,7 @@
       const yOpts = [...new Set((C.recent[st.pos] || []).map(r => r.year))].sort((a, b) => b - a);
       return `
         <div class="page-head">
-          <h1 class="page-title display">${tip('🎓 College Scouting', 'Bekannte Grenzen: CFBD erfasst keine Slot/Outside-Alignment- oder Route-Tree-Daten — zwei Receiver mit gleicher Target Share können völlig unterschiedliche NFL-Rollen bekommen. Beide Comps sind Ähnlichkeits-, keine Erfolgs- oder Talentvergleiche. Quellen: CollegeFootballData, nflverse, FantasyPros (über DynastyProcess).')}</h1>
+          <h1 class="page-title display">${tip('🎓 College Scouting', 'Bekannte Grenzen: CFBD erfasst keine Slot/Outside-Alignment- oder Route-Tree-Daten — zwei Receiver mit gleicher Target Share können völlig unterschiedliche NFL-Rollen bekommen. College Production Comp = reine Ähnlichkeit der Produktion. NFL Comps = gedraftete Spieler mit ähnlicher Entwicklung + Produktion samt ihrem NFL-Ausgang (Gewichte per Backtest gewählt) — Orientierung, keine Prognose. Quellen: CollegeFootballData, nflverse, FantasyPros (über DynastyProcess).')}</h1>
           <div class="page-sub">Aktuelle College-Spieler (keine Draftees/UDFAs) · ${shown.length} ${st.pos}-Prospects mit Mindest-Volumen${nInact ? ` (${nInact} inaktive 💤 ausgeblendet)` : ''} · ${tip(st.only ? `Saison ${st.only}` : st.win > 1 ? `Saison-Mix ${years.join('/')}` : `Saison ${cur}`, 'Eine Zeile pro Spieler. Der Zeitraum bestimmt, welche Saisons in seinen Mix einfließen: Gewichte 50/30/20/10 % nach Aktualität, die laufende Saison anteilig nach Saisonfortschritt. Gemittelt werden Shares, PPA und Usage (keine Volumenwerte). Einzelne Saisons sind im Detailbereich umschaltbar.')}</div>
         </div>
         <div class="controls">
@@ -762,12 +876,14 @@
           if (st.sort !== 'stat' || (env && env.BO)) { const l = root.querySelector('[data-list]'); if (l && l.isConnected) l.innerHTML = listHtml(ctx, { ...st, q: (getState(ctx).q || '') }); }
           const host = root.querySelector('[data-range]');
           if (host && host.isConnected && me) host.innerHTML = rangeBox(ctx, st, me, env);
+          const nh = root.querySelector('[data-nfl]');
+          if (nh && nh.isConnected && me && N) nh.innerHTML = nflBox(ctx, st, me, N); // Comps brauchen das Modell (z-Werte)
         });
 
       if (!me) return;
-      MFHFB.data.load(ctx.league, ['sport:nfl-profile-comp'])
-        .then(d => { N = d.NFL_PROFILE_COMP || { error: 'Keine NFL-Profile-Comp-Daten.' }; })
-        .catch(err => { N = { error: err.message + ' — die Datei erzeugt der „NFL Profile Comp“-Build.' }; })
+      MFHFB.data.load(ctx.league, ['sport:prospect-comp'])
+        .then(d => { N = d.PROSPECT_COMP || { error: 'Keine Comp-Daten.' }; })
+        .catch(err => { N = { error: err.message + ' — die Datei erzeugt build-prospect-comp.py.' }; })
         .then(() => {
           const host = root.querySelector('[data-nfl]');
           if (host && host.isConnected) host.innerHTML = nflBox(ctx, st, me, N);

@@ -223,15 +223,17 @@
 
   // ---------- 🚦 Rookie-Ampel ----------
   // Bänder: [obere Grenze (exklusiv), hist. Quote Top-Saison J2–3, Farbe g/y/o/r]
-  // WR/RB: Top-24, TE: Top-12 (PPR). Basis Runde 1–3: WR 32 %, RB 59 %, TE 27 %.
+  // WR/RB: Top-24, TE/QB: Top-12 (PPR). Basis Runde 1–3: WR 32 %, RB 59 %, TE 27 %, QB 23 %.
+  // Definitionen wie hier angezeigt (25.11.2026 nachgerechnet): Snap Share = Ø der gespielten Spiele,
+  // Carries = hochgerechnet auf 17 Spiele, Target Share = Wochenschnitt (≈ Saisonwert, r = 0,99).
   const AMP = {
-    WR: { base: 32, snap: [[25, 3, 'r'], [50, 13, 'o'], [70, 49, 'y'], [999, 79, 'g']],
+    WR: { base: 32, snap: [[25, 6, 'r'], [50, 12, 'o'], [70, 32, 'y'], [999, 70, 'g']],
           ts: [[10, 11, 'r'], [15, 33, 'y'], [20, 35, 'y'], [999, 82, 'g']],
           ppg: [[5.5, 7, 'r'], [8, 29, 'o'], [10, 35, 'y'], [14, 59, 'y'], [999, 86, 'g']] },
-    RB: { base: 59, snap: [[25, 43, 'o'], [50, 64, 'y'], [70, 73, 'y'], [999, 100, 'y']],
-          car: [[50, 38, 'o'], [120, 56, 'y'], [200, 53, 'y'], [999, 92, 'g']],
+    RB: { base: 59, snap: [[25, 29, 'o'], [50, 65, 'y'], [70, 73, 'y'], [999, 80, 'y']],
+          car: [[120, 44, 'o'], [200, 50, 'y'], [250, 60, 'y'], [999, 92, 'g']],
           ppg: [[5.5, 46, 'y'], [14, 41, 'y'], [999, 100, 'g']] },
-    TE: { base: 27, snap: [[25, 7, 'r'], [50, 33, 'y'], [999, 38, 'y']],
+    TE: { base: 27, snap: [[25, 0, 'r'], [50, 26, 'y'], [999, 41, 'y']],
           ts: [[10, 19, 'o'], [999, 50, 'y']],
           ppg: [[5.5, 15, 'o'], [999, 41, 'y']] },
     // QB (Top-12, Basis 23 %): Rushing in Jahr 1 ist das stärkste Signal (p < 0,001, beide Zeiträume)
@@ -295,7 +297,7 @@
     return `<details class="card op-rook"${st.rook === false ? '' : ' open'}><summary class="card-head"><h2>🚦 Rookie-Ampel</h2><span class="muted small">NFL-Runde 1–3 · Jahr 1: ${y1.length} · Jahr 2: ${y2.length}</span></summary>
       ${y1.length ? `<h3 class="op-sub">Jahr 1 (Draft ${S})</h3><div class="table-wrap"><table class="table compact op-table"><thead><tr>${head}</tr></thead><tbody>${y1.map(row1).join('')}</tbody></table></div>` : ''}
       ${y2.length ? `<h3 class="op-sub">Jahr 2 (Draft ${S - 1}) · Ampel aus der Rookie-Saison ${S - 1}</h3><div class="table-wrap"><table class="table compact op-table"><thead><tr>${head}<th class="num">PPR/Sp. ${S}</th><th>Hinweis</th></tr></thead><tbody>${y2.map(row2).join('')}</tbody></table></div>` : ''}
-      <div class="explain">Wie oft Spieler mit diesen Werten in Jahr 1 in Jahr 2–3 eine Top-Saison hatten (WR/RB: Top-24, TE: Top-12, PPR), gemessen an den NFL-Draftrunden 1–3 der Jahrgänge 2015–2023. 🟢 = mindestens ein starkes und kein schwaches Signal, 🔴 = schwache Signale ohne starkes, sonst 🟡. Bei WRs trennen Snap Share und Target Share sehr klar (unter 25 % Snaps: 3 %, ab 20 % Target Share: 82 %). Bei RBs zählt fast nur Volumen (200+ Carries oder 14+ PPR/Spiel), bei TEs ist die Stichprobe klein. QBs (Top-12): Rushing entscheidet, 25+ Rushing-Yards pro Spiel als Rookie → 67 %, unter 10 → 6 % (Lamar, Allen, Murray, Fields, Hurts vs. die Pocket-QBs). Hochrechnung während der Saison, Schwellen gelten für die ganze Saison. HC-Wechsel = anderer Head Coach als im letzten Spiel der Rookie-Saison.</div></details>`;
+      <div class="explain">Wie oft Spieler mit diesen Werten in Jahr 1 in Jahr 2–3 eine Top-Saison hatten (WR/RB: Top-24, TE: Top-12, PPR), gemessen an den NFL-Draftrunden 1–3 der Jahrgänge 2015–2023. 🟢 = mindestens ein starkes und kein schwaches Signal, 🔴 = schwache Signale ohne starkes, sonst 🟡. Bei WRs trennen Snap Share und Target Share sehr klar (unter 25 % Snaps: 6 %, ab 70 %: 70 %; ab 20 % Target Share: 82 %). Bei RBs zählt fast nur Volumen (250+ Carries auf 17 Spiele: 92 %, 14+ PPR/Spiel: 100 %), bei TEs ist die Stichprobe klein. QBs (Top-12): Rushing entscheidet, 25+ Rushing-Yards pro Spiel als Rookie → 67 %, unter 10 → 6 % (Lamar, Allen, Murray, Fields, Hurts vs. die Pocket-QBs). Snap Share = Ø der gespielten Spiele (verpasste Spiele zählen nicht), Carries hochgerechnet auf 17 Spiele, Quoten mit genau diesen Definitionen nachgerechnet. HC-Wechsel = anderer Head Coach als im letzten Spiel der Rookie-Saison.</div></details>`;
   }
 
   function render(ctx) {
