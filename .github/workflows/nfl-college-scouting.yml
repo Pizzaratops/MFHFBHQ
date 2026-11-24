@@ -8,6 +8,8 @@ name: NFL College Scouting Sync
 #      (nflverse, kein Key)
 #   3. build-nfl-profile-comp.js          -> nfl-profile-comp.js
 #      (offline aus 1 + 2)
+#   + sync-prospect-board.js -> prospect-board.js (Konsens-Big-Board von
+#     sticktothemodel.com, nur geschrieben, wenn sich das Board ändert)
 #
 # WICHTIG: Repository-Secret CFBD_API_KEY anlegen (Settings -> Secrets and
 # variables -> Actions -> New repository secret, Name GENAU "CFBD_API_KEY").
@@ -68,6 +70,10 @@ jobs:
         continue-on-error: true
         run: node sports/nfl/scripts/build-prospect-recruit-map.js
 
+      - name: Konsens-Big-Board (Stick to the Model)
+        continue-on-error: true
+        run: node sports/nfl/scripts/sync-prospect-board.js
+
       - name: NFL Draft Athletic Profiles (nflverse)
         run: node sports/nfl/scripts/build-nfl-draft-athletic-profiles.js
 
@@ -78,7 +84,7 @@ jobs:
         run: |
           git config user.name "mfhfb-hq-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add sports/nfl/data/college-scouting.js sports/nfl/data/nfl-draft-athletic-profiles.js sports/nfl/data/nfl-profile-comp.js sports/nfl/data/college-recruiting.js sports/nfl/data/prospect-recruit.js
+          git add sports/nfl/data/college-scouting.js sports/nfl/data/nfl-draft-athletic-profiles.js sports/nfl/data/nfl-profile-comp.js sports/nfl/data/college-recruiting.js sports/nfl/data/prospect-recruit.js sports/nfl/data/prospect-board.js
           if git diff --cached --quiet; then
             echo "Keine Änderungen -- nichts zu committen."
             exit 0

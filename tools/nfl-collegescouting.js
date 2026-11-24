@@ -417,7 +417,7 @@
         <div class="cs-rcell big"><small>Rookie Draft (${T} Teams)</small><b>${span(r.rank.lo, r.rank.hi, rk)}</b><span>Mitte ${rk(r.rank.mid)} · Rookie-Rang ${span(r.rank.lo, r.rank.hi, x => '#' + x)} · falls gedraftet</span></div>
         <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird überhaupt gedraftet</span></div>
         <div class="cs-rcell"><small>Erw. NFL-Draft</small><b>${DR.nflRound(r.nfl.lo)}${DR.nflRound(r.nfl.hi) !== DR.nflRound(r.nfl.lo) ? '–' + DR.nflRound(r.nfl.hi) : ''}</b><span>Pick ${r.nfl.lo}–${r.nfl.hi} (Mitte ${r.nfl.mid})</span></div>
-      </div>${kNote}${(() => { const x = tierOf(me.rawId); if (!x) return ''; const TI = env.TI; return `<div class="cs-rnote">${tierTag(e, x, true)} <span>${e(TI.sources.bru.label)} <b>#${x.bru}</b>${x.t.rookie ? ` · Richtwert Rookie Draft ${e(x.t.rookie)} (12 Teams, 1QB)` : ''}${x.note ? ` · ${e(x.note)}` : ''}</span></div>`; })()}
+      </div>${kNote}${(() => { const x = boardOf(me.rawId); if (!x) return ''; const B = env.BO; return `<div class="cs-rnote">${boardTag(e, x)} <span><a href="${e(B.url)}" target="_blank" rel="noopener">Konsens-Board</a> <b>#${x.rank}</b> (${e(x.pos)}${x.posRank})${x.tier ? ` · Projektion ${e(x.tier)}` : ''}${x.model != null ? ` · Modell-Score ${deNum(x.model)}` : ''}${x.move ? ` · Woche ${x.move > 0 ? '+' : ''}${x.move}` : ''}${x.start != null ? ` · Starter-Chance ${x.start} %` : ''}${x.comp ? ` · Comp ${e(x.comp)}` : ''} <small class="muted">· Stand ${fmtDate(B.asof)}</small></span></div>`; })()}
     </div>`;
   }
 
@@ -509,18 +509,24 @@
       `Vergleichsbasis: ${stats.matched || 0} historisch gedraftete ${st.pos}s mit vollständigem Profil. RAS = an ras.football angelehnter Athletik-Score (0–10) <b>des Comps</b>, nicht des Prospects — der hat Combine/Draft noch vor sich. Radar-Achsen = Matching-Features (Produktion + Größe/Gewicht), nicht RAS/Draft.`);
   }
 
-  // Experten-Tiers (sports/nfl/data/prospect-tiers.js, von Hand): Brugler-Rang + Freel-Tier
-  function tierOf(id) {
-    const TI = RENV && RENV.TI; if (!TI || !TI.players) return null;
-    const p = TI.players[String(id)]; if (!p) return null;
-    const idx = TI.tiers.findIndex(t => t.key === p.tier);
-    return { ...p, idx, t: TI.tiers[idx] || { key: p.tier, label: p.tier, short: p.tier } };
+  // Konsens-Big-Board (sports/nfl/data/prospect-board.js, Sync aus Stick to the Model)
+  function boardOf(id) {
+    const B = RENV && RENV.BO; if (!B || !B.players) return null;
+    return B.players[String(id)] || null;
   }
-  function tierTag(e, x, long) {
+  const fmtDate = s => (s ? s.split('-').reverse().join('.') : '');
+  const deNum = v => String(v).replace('.', ',');
+  function boardTitle(x) {
+    const B = RENV.BO;
+    return `Konsens-Big-Board (${B.source.replace(/ — .*/, '')}, Stand ${fmtDate(B.asof)}): #${x.rank} gesamt, ${x.pos}${x.posRank}`
+      + (x.model != null ? ` · Modell-Score ${deNum(x.model)}` : '') + (x.tier ? ` · Projektion: ${x.tier}` : '')
+      + (x.move ? ` · Woche ${x.move > 0 ? '+' : ''}${x.move}` : '') + (x.start != null ? ` · Starter-Chance ${x.start} %` : '')
+      + (x.comp ? ` · Comp: ${x.comp}` : '');
+  }
+  function boardTag(e, x) {
     if (!x) return '';
-    const TI = RENV.TI, d = s => (s ? s.split('-').reverse().join('.') : '');
-    const tt = `${x.t.label} (${TI.sources.freel.by}, ${d(TI.sources.freel.asof)}) · ${TI.sources.bru.label} #${x.bru} (Stand ${d(TI.sources.bru.asof)})${x.t.rookie ? ' · Richtwert Rookie Draft (12 Teams, 1QB): ' + x.t.rookie : ''}${x.note ? ' · ' + x.note : ''}`;
-    return `<span class="cs-tier t-${e(x.t.key)}" title="${e(tt)}">${e(long ? x.t.label : x.t.short)}${long ? '' : ` <small>#${x.bru}</small>`}</span>`;
+    const cls = x.rank <= 32 ? 'r1' : x.rank <= 64 ? 'r2' : x.rank <= 100 ? 'r3' : 'rx';
+    return `<span class="cs-board ${cls}" title="${e(boardTitle(x))}">#${x.rank}</span>`;
   }
 
   function listHtml(ctx, st) {
@@ -535,15 +541,15 @@
       .filter(pl => st.inact || !pl.inactive || pl.rawId === st.sel);
     const byTier = st.sort === 'tier' && RENV && !RENV.error;
     if (byTier) {
-      list = list.map(pl => ({ pl, r: DR.estimate(RENV, st.pos, pl.mix || pl.latest, isSF(ctx, st)), x: tierOf(pl.rawId) }))
-        .sort((a, b) => (a.x ? a.x.idx : 99) - (b.x ? b.x.idx : 99) || (a.x && b.x ? a.x.bru - b.x.bru : (a.r.expRank || 999) - (b.r.expRank || 999)));
+      list = list.map(pl => ({ pl, r: DR.estimate(RENV, st.pos, pl.mix || pl.latest, isSF(ctx, st)), x: boardOf(pl.rawId) }))
+        .sort((a, b) => (a.x ? a.x.rank : 9999) - (b.x ? b.x.rank : 9999) || (a.r.expRank || 999) - (b.r.expRank || 999));
     } else if (byRange) {
       list = list.map(pl => ({ pl, r: DR.estimate(RENV, st.pos, pl.mix || pl.latest, isSF(ctx, st)) }))
         .sort((a, b) => (a.r.expRank || 999) - (b.r.expRank || 999));
     } else list = list.map(pl => ({ pl, v: bestStat(pl, stat) })).sort((a, b) => b.v - a.v);
     return list.length ? list.map(({ pl, r, v }, i) => `<a class="dna-row${pl.rawId === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, pl.rawId)}">
         <span class="dna-idx">${i + 1}</span>
-        <span class="dna-nm">${e(pl.latest.name)} ${tierTag(e, tierOf(pl.rawId))}${pl.inactive ? ` <span class="cs-gone" title="${e(goneText(pl))}">💤</span>` : ''} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
+        <span class="dna-nm">${e(pl.latest.name)} ${boardTag(e, boardOf(pl.rawId))}${pl.inactive ? ` <span class="cs-gone" title="${e(goneText(pl))}">💤</span>` : ''} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
         <span class="dna-avg">${byRange || byTier ? (r && r.rank ? `${DR.pickFmt(r.rank.mid, T)} <small>${Math.round(r.chance * 100)}%</small>` : '—') : (v ? Math.round(v).toLocaleString('de-DE') : '—')}</span></a>`).join('')
       : '<div class="muted" style="padding:12px">Keine Treffer.</div>';
   }
@@ -634,7 +640,7 @@
           <aside class="card dna-side">
             <input type="search" class="search" placeholder="Prospect suchen …" value="${e(st.q)}" data-q aria-label="Prospect suchen">
             <div class="cs-lctl">
-              <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' && st.sort !== 'tier' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range, aus dem Saison-Mix)">Draft Range</button><button type="button" class="seg-btn${st.sort === 'tier' ? ' active' : ''}" data-sort="tier" title="Experten-Tiers (C.J. Freel auf Basis von Bruglers Big Board), im Tier nach Brugler-Rang; danach alle übrigen nach Draft Range">Tiers</button></div>
+              <div class="seg" role="group" aria-label="Sortierung"><button type="button" class="seg-btn${st.sort !== 'range' && st.sort !== 'tier' ? ' active' : ''}" data-sort="stat">${PRIMARY_LABEL[st.pos]}</button><button type="button" class="seg-btn${st.sort === 'range' ? ' active' : ''}" data-sort="range" title="Nach erwartetem Rookie-Draft-Pick (Mitte der Draft Range, aus dem Saison-Mix)">Draft Range</button><button type="button" class="seg-btn${st.sort === 'tier' ? ' active' : ''}" data-sort="tier" title="Nach Konsens-Big-Board (Stick to the Model, täglich synchronisiert); Spieler ohne Board-Eintrag danach nach Draft Range">Konsens</button></div>
               <label class="cs-chk" title="NFL-Regel: 3 Jahre nach dem High-School-Abschluss (Recruiting-Jahrgang). Ohne Recruiting-Eintrag: mindestens 3. FBS-Saison."><input type="checkbox" data-elig${st.elig ? ' checked' : ''}> nur sicher draftberechtigt ${C.meta.currentSeason + 1}</label>
               <label class="cs-chk" title="Spieler ohne Saison seit ${C.meta.currentSeason - 2} (kein Draft/UDFA erfasst) — vermutlich nicht mehr am College"><input type="checkbox" data-inact${st.inact ? ' checked' : ''}> auch inaktive zeigen 💤</label>
             </div>
@@ -689,12 +695,12 @@
       const list = root.querySelector('[data-list]'), act = root.querySelector('.dna-row.active');
       if (list && act) list.scrollTop = Math.max(0, act.offsetTop - list.offsetTop - list.clientHeight / 2);
 
-      MFHFB.data.load(ctx.league, ['sport:prospect-draft-model', 'sport:rookie-draft-curve', '?sport:prospect-consensus', '?sport:prospect-tiers'])
-        .then(d => (d.PROSPECT_DRAFT_MODEL && d.ROOKIE_DRAFT_CURVE ? { C, M: d.PROSPECT_DRAFT_MODEL, curve: d.ROOKIE_DRAFT_CURVE, K: d.PROSPECT_CONSENSUS || {}, TI: d.PROSPECT_TIERS || null, R: ctx.data.PROSPECT_RECRUIT || null } : { error: 'Draft-Range-Modell fehlt.' }))
+      MFHFB.data.load(ctx.league, ['sport:prospect-draft-model', 'sport:rookie-draft-curve', '?sport:prospect-consensus', '?sport:prospect-board'])
+        .then(d => (d.PROSPECT_DRAFT_MODEL && d.ROOKIE_DRAFT_CURVE ? { C, M: d.PROSPECT_DRAFT_MODEL, curve: d.ROOKIE_DRAFT_CURVE, K: d.PROSPECT_CONSENSUS || {}, BO: d.PROSPECT_BOARD || null, R: ctx.data.PROSPECT_RECRUIT || null } : { error: 'Draft-Range-Modell fehlt.' }))
         .catch(err => ({ error: 'Draft Range nicht verfügbar: ' + err.message }))
         .then(env => {
           RENV = env;
-          if (st.sort !== 'stat' || (env && env.TI)) { const l = root.querySelector('[data-list]'); if (l && l.isConnected) l.innerHTML = listHtml(ctx, { ...st, q: (getState(ctx).q || '') }); }
+          if (st.sort !== 'stat' || (env && env.BO)) { const l = root.querySelector('[data-list]'); if (l && l.isConnected) l.innerHTML = listHtml(ctx, { ...st, q: (getState(ctx).q || '') }); }
           const host = root.querySelector('[data-range]');
           if (host && host.isConnected && me) host.innerHTML = rangeBox(ctx, st, me, env);
         });
