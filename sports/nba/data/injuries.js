@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T21:28:50.026Z",
+  "updated": "2026-11-24T22:01:01.933Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Day-To-Day","GTD","2026-11-25","Lower Leg",0,"2026-11-24"],
@@ -54,8 +54,10 @@ const NBA_INJURIES = {
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","GTD","2026-11-25","Foot",0,"2026-11-24"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
+    "Josh Hart": ["NY","Day-To-Day","GTD","2026-11-25","Shoulder",0,"2026-11-24"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-29","Foot",0,"2026-11-20"],
+    "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-24"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
@@ -63,7 +65,7 @@ const NBA_INJURIES = {
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","GTD","2026-11-25","Knee",0,"2026-11-18"],
-    "Miles McBride": ["NY","Day-To-Day","GTD","2026-11-25","Abdomen",0,"2026-11-24"],
+    "Miles McBride": ["NY","Day-To-Day","GTD","2026-11-25","Groin",0,"2026-11-24"],
     "Mitchell Robinson": ["BOS","Out","OUT","2026-11-27","Illness",0,"2026-11-23"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
@@ -73,7 +75,7 @@ const NBA_INJURIES = {
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
-    "OG Anunoby": ["NY","Day-To-Day","GTD","2026-11-25","Calf",0,"2026-11-24"],
+    "OG Anunoby": ["NY","Out","OUT","2026-11-27","Calf",0,"2026-11-24"],
     "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-24","Illness",0,"2026-11-23"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
