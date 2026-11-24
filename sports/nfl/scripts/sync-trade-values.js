@@ -11,8 +11,10 @@
 //  .github/workflows/web-probe.yml; die Sandbox der Hub-Entwicklung kommt
 //  nicht direkt dran):
 //   - KTC: https://keeptradecut.com/dynasty-rankings (1QB, format=1).
-//     Die Seite bettet alle Spieler + Rookie-Picks als JSON ein
-//     (<script id="ktc-players">), Wert = oneQBValues.value.
+//     Bis Nov. 2026 steckten alle Spieler + Rookie-Picks als JSON im HTML
+//     (<script id="ktc-players">). Seit 24.11.2026 lädt die Seite sie aus
+//     /dynasty-rankings/player-pool (mit Cookie der Seite, s. loadKtcPool).
+//     Wert = oneQBValues.value.
 //   - Dynasty Daddy: Öffentliche API /api/v1/player/all/today?market=N,
 //     Wert = trade_value (1QB). market 0 spiegelt nur KTC; market 3 passt
 //     zu den bisherigen DD-Werten (r = 0,945 gegen den Upload vom 12.08.,
@@ -22,6 +24,10 @@
 //  „Mid“-Picks je Runde/Jahr (Schnitt KTC/DD); Early/Late zusätzlich in
 //  PICK_TIERS. Jahre ohne Wert fallen im Analyzer auf das letzte bekannte
 //  Jahr zurück.
+//
+//  Fällt eine Quelle aus, werden ihre Werte (und die Pick-Werte) vom letzten
+//  erfolgreichen Lauf übernommen; TRADE_VALUES_META.asof zeigt den Stand je
+//  Quelle. Der Lauf endet trotzdem mit Exit 2 (Mail von GitHub).
 //
 //  Schutz: Weniger als 300 Spieler aus beiden Quellen → Abbruch ohne
 //  Schreiben (lieber alte Werte als eine halbe Liste).
@@ -60,23 +66,59 @@ async function get(url) {
 
 // ---------- KTC ----------
 function parseKtc(html) {
-  const tag = '<script type="application/json" id="ktc-players">';
-  let i = html.indexOf(tag), start;
-  if (i >= 0) start = i + tag.length;
-  else { i = html.indexOf('id="ktc-players">'); if (i < 0) throw new Error('KTC: ktc-players-Block nicht gefunden'); start = i + 'id="ktc-players">'.length; }
-  const end = html.indexOf('</script>', start);
+  // Format A (bis Nov. 2026): <script type="application/json" id="ktc-players">[…]</script>
+  const tag = 'id="ktc-players">';
+  let i = html.indexOf(tag);
+  if (i >= 0) {
+    const start = i + tag.length, end = html.indexOf('</script>', start);
+    return JSON.parse(html.slice(start, end));
+  }
+  // Format B (ab 24.11.2026): var oneQBPlayers = […]; (älter: var playersArray = […];)  → Array per Klammerzählung ausschneiden
+  i = html.search(/(?:var|let|const)\s+(?:oneQBPlayers|playersArray)\s*=\s*\[\s*\{/);
+  if (i < 0) throw new Error('KTC: weder ktc-players-Block noch oneQBPlayers/playersArray gefunden (Seitenstruktur geändert?)');
+  const start = html.indexOf('[', i);
+  let depth = 0, inStr = false, esc = false, end = -1;
+  for (let k = start; k < html.length; k++) {
+    const c = html[k];
+    if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue; }
+    if (c === '"') inStr = true;
+    else if (c === '[' || c === '{') depth++;
+    else if (c === ']' || c === '}') { depth--; if (depth === 0) { end = k + 1; break; } }
+  }
+  if (end < 0) throw new Error('KTC: playersArray nicht vollständig');
   return JSON.parse(html.slice(start, end));
+}
+// Seit 24.11.2026 bettet KTC nur noch eine Handvoll Spieler ins HTML ein; der Rest kommt
+// aus /dynasty-rankings/player-pool?v=<playersVersion>&sr=2. Der Endpunkt antwortet nur mit dem
+// Affinity-Cookie der Instanz, die die Seite gerendert hat (sonst 403) → erst Seite laden,
+// Set-Cookie + playersVersion merken, dann den Pool mit diesem Cookie holen.
+async function loadKtcPool() {
+  const page = 'https://keeptradecut.com/dynasty-rankings?page=0&filters=QB|WR|RB|TE|RDP&format=1';
+  const res = await fetch(page, { headers: { 'user-agent': UA, accept: 'text/html' } });
+  if (!res.ok) throw new Error(`Rankings-Seite HTTP ${res.status}`);
+  const html = await res.text();
+  const cookies = (res.headers.getSetCookie ? res.headers.getSetCookie() : [res.headers.get('set-cookie') || ''])
+    .map(c => c.split(';')[0]).filter(Boolean).join('; ');
+  const ver = (html.match(/playersVersion\s*=\s*'([^']+)'/) || html.match(/playersVersion\s*=\s*"([^"]+)"/) || [])[1];
+  const rev = (html.match(/KTC_DATA_CACHE_SCHEMA_REV\s*=\s*'([^']+)'/) || [])[1] || '2';
+  // Alte Variante: alles steckt noch im HTML
+  try { const a = parseKtc(html); if (a.length >= 200) return a; } catch (_) { /* weiter mit Pool */ }
+  if (!ver) throw new Error('playersVersion nicht gefunden');
+  const url = `https://keeptradecut.com/dynasty-rankings/player-pool?v=${encodeURIComponent(ver)}&sr=${rev}`;
+  const r2 = await fetch(url, { headers: { 'user-agent': UA, accept: 'application/json, */*', referer: page, ...(cookies ? { cookie: cookies } : {}) } });
+  if (!r2.ok) throw new Error(`player-pool HTTP ${r2.status} (Cookie ${cookies ? 'gesetzt' : 'fehlt'})`);
+  const data = await r2.json();
+  const arr = Array.isArray(data) ? data : (data.players || data.pool || data.data || null);
+  if (!Array.isArray(arr) || !arr.length) throw new Error('player-pool: unbekanntes Format, Schlüssel: ' + Object.keys(data || {}).slice(0, 10).join(','));
+  const s0 = arr[0];
+  if (!s0 || !s0.playerName || !s0.oneQBValues) throw new Error('player-pool: Felder unbekannt: ' + JSON.stringify(s0).slice(0, 300));
+  return arr;
 }
 async function loadKtc() {
   if (process.env.KTC_HTML) return parseKtc(fs.readFileSync(process.env.KTC_HTML, 'utf8'));
-  const all = new Map();
-  for (let page = 0; page < 6; page++) {
-    const html = await get(`https://keeptradecut.com/dynasty-rankings?page=${page}&filters=QB|WR|RB|TE|RDP&format=1`);
-    let added = 0;
-    parseKtc(html).forEach(p => { if (!all.has(p.playerID)) { all.set(p.playerID, p); added++; } });
-    if (!added) break; // Seite liefert nur Bekanntes → Ende
-  }
-  return [...all.values()];
+  const pool = await loadKtcPool();
+  // nur Spieler + Rookie-Picks
+  return pool.filter(p => POS.has(p.position) || p.position === 'RDP');
 }
 
 // ---------- Dynasty Daddy ----------
@@ -102,6 +144,12 @@ function pickOf(name) {
   ]);
   errors.forEach(m => console.error('⚠️ ' + m));
 
+  // Fällt eine Quelle aus, bleiben ihre letzten Werte erhalten (statt sie zu löschen).
+  let prev = null;
+  try { prev = new Function(fs.readFileSync(OUT, 'utf8') + ';return { meta: TRADE_VALUES_META, list: TRADE_VALUES, pv: PICK_VALUES, pt: PICK_TIERS };')(); } catch (_) { /* erste Ausführung */ }
+  const stale = {}; // Quelle → Stand der übernommenen Werte
+  const prevAsof = src => (prev && prev.meta && (prev.meta.asof && prev.meta.asof[src])) || (prev && prev.meta && prev.meta.updated) || null;
+
   const players = new Map(); // normKey → Eintrag
   const picks = {};          // round → year → tier → { ktc, dd }
   const addPick = (pk, src, v) => {
@@ -116,6 +164,18 @@ function pickOf(name) {
     if (!POS.has(p.position) || !v) return;
     players.set(normKey(p.playerName), { name: p.playerName, team: team(p.team), pos: p.position, age: p.age || null, ktc: v });
   });
+  if (!ktc.length && prev) {
+    let n = 0;
+    prev.list.forEach(p => { if (p.ktc == null) return; const k = normKey(p.name); const cur = players.get(k);
+      if (cur) cur.ktc = p.ktc; else players.set(k, { name: p.name, team: p.team, pos: p.pos, age: p.age, ktc: p.ktc }); n++; });
+    if (n) { stale.ktc = prevAsof('ktc'); console.error(`⚠️ KTC: ${n} Werte vom letzten erfolgreichen Lauf übernommen (${stale.ktc}).`); }
+  }
+  if (!dd.length && prev) {
+    let n = 0;
+    prev.list.forEach(p => { if (p.dd == null) return; const k = normKey(p.name); const cur = players.get(k);
+      if (cur) cur.dd = p.dd; else players.set(k, { name: p.name, team: p.team, pos: p.pos, age: p.age, dd: p.dd }); n++; });
+    if (n) { stale.dd = prevAsof('dd'); console.error(`⚠️ Dynasty Daddy: ${n} Werte vom letzten erfolgreichen Lauf übernommen (${stale.dd}).`); }
+  }
   dd.forEach(p => {
     const v = p.trade_value;
     if (p.position === 'PI') { addPick(pickOf(p.full_name), 'dd', v); return; }
@@ -140,7 +200,7 @@ function pickOf(name) {
   }
 
   const avgOf = t => { const v = [t.ktc, t.dd].filter(x => x != null); return v.length ? Math.round(v.reduce((a, b) => a + b, 0) / v.length) : null; };
-  const PICK_VALUES = {}, PICK_TIERS = {};
+  let PICK_VALUES = {}, PICK_TIERS = {};
   Object.entries(picks).forEach(([round, years]) => {
     Object.entries(years).forEach(([year, tiers]) => {
       const tv = {}; ['early', 'mid', 'late'].forEach(t => { if (tiers[t]) tv[t] = avgOf(tiers[t]); });
@@ -151,7 +211,11 @@ function pickOf(name) {
     });
   });
 
+  // Picks: fehlt eine Quelle, die alten Pick-Werte komplett behalten (sie sind KTC/DD-Mischwerte)
+  if ((stale.ktc || stale.dd) && prev && prev.pv) { PICK_VALUES = prev.pv; PICK_TIERS = prev.pt || {}; }
+
   const now = new Date().toISOString();
+  const asof = { ktc: stale.ktc || (ktc.length ? now : null), dd: stale.dd || (dd.length ? now : null) };
   const nK = list.filter(p => p.ktc != null).length, nD = list.filter(p => p.dd != null).length;
   const out = `// ============================================================
 //  TRADE_VALUES — für den Trade Analyzer (Football)
@@ -168,7 +232,7 @@ function pickOf(name) {
 //  early/mid/late. Fehlende Jahre → Analyzer nimmt das letzte bekannte.
 // ============================================================
 
-const TRADE_VALUES_META = ${JSON.stringify({ updated: now, ktc: nK, dd: nD, ddMarket: Number(DD_MARKET), errors })};
+const TRADE_VALUES_META = ${JSON.stringify({ updated: now, ktc: nK, dd: nD, ddMarket: Number(DD_MARKET), asof, errors })};
 
 const TRADE_VALUES = ${JSON.stringify(list)};
 
