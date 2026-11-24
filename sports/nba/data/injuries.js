@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T22:18:42.955Z",
+  "updated": "2026-11-24T22:42:55.174Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Day-To-Day","GTD","2026-11-25","Lower Leg",0,"2026-11-24"],
@@ -24,7 +24,7 @@ const NBA_INJURIES = {
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-25","Lower Leg",0,"2026-11-24"],
     "Dejounte Murray": ["NO","Out","GTD","2026-11-27","Ankle",0,"2026-11-13"],
-    "Dennis Schroder": ["CHA","Out","GTD","2026-11-25","Hamstring",0,"2026-11-08"],
+    "Dennis Schroder": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-24"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-01-03","Achilles",0,"2026-11-24"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-24"],
@@ -33,8 +33,7 @@ const NBA_INJURIES = {
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Giannis Antetokounmpo": ["MIA","Day-To-Day","GTD","2026-11-25","Groin",0,"2026-11-24"],
-    "Grant Williams": ["CHA","Day-To-Day","GTD","2026-11-25","Hamstring",0,"2026-11-24"],
-    "Grayson Allen": ["CHA","Out","GTD","2026-11-25","Concussion",0,"2026-11-22"],
+    "Grayson Allen": ["CHA","Out","GTD","2026-11-25","Concussion",0,"2026-11-24"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
@@ -85,6 +84,7 @@ const NBA_INJURIES = {
     "Scotty Pippen Jr.": ["MEM","Out","GTD","2026-11-25","Back",0,"2026-11-16"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
+    "Sion James": ["CHA","Day-To-Day","GTD","2026-11-25","Undisclosed",0,"2026-11-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-27","Hamstring",0,"2026-11-24"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-11-27","Heel",0,"2026-11-17"],
