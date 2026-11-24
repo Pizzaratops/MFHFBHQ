@@ -1,10 +1,10 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T23:14:46.384Z",
+  "updated": "2026-11-24T23:26:54.543Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
-    "Aday Mara": ["OKC","Day-To-Day","GTD","2026-11-25","Lower Leg",0,"2026-11-24"],
+    "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alex Caruso": ["OKC","Out","GTD","2026-11-25","Hip",0,"2026-11-23"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
@@ -45,7 +45,7 @@ const NBA_INJURIES = {
     "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-24"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
-    "Jaylin Williams": ["OKC","Day-To-Day","GTD","2026-11-25","Back",0,"2026-11-24"],
+    "Jaylin Williams": ["OKC","Day-To-Day","OUT","2026-11-28","Back",0,"2026-11-24"],
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","GTD","2026-11-27","Hip",0,"2026-11-21"],
@@ -81,7 +81,7 @@ const NBA_INJURIES = {
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
     "Ryan Kalkbrenner": ["CHA","Day-To-Day","GTD","2026-11-25","Hip",0,"2026-11-24"],
-    "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-12-12","Back",0,"2026-11-16"],
+    "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-12-12","Back",0,"2026-11-24"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Sion James": ["CHA","Day-To-Day","GTD","2026-11-25","Undisclosed",0,"2026-11-24"],
