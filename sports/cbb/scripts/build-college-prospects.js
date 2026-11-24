@@ -240,7 +240,7 @@ function main() {
       .map(({ it, d: dd }) => [it.p[0], it.p[1], it.p[2], it.p[3], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), F.map((_, i) => pctl(P.sorted[i], it.p[6][i]))]);
     const dn = dnaOf(v, M, r.min);
     dn.comps = dnaPools[r.bucket].filter(it => nkey(it.p[0]) !== mk).map(it => ({ it, d: maha(mz, it.z, P.cv.inv) })).sort((a, b) => a.d - b.d).slice(0, 4)
-      .map(({ it, d: dd }) => [it.p[0], it.p[1], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), it.p[3], it.p[4]]);
+      .map(({ it, d: dd }) => [it.p[0], it.p[1], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), it.p[3], it.p[4], it.p[6] || null]); // [6]: NBA-9-Cat-z (Ø ersten 4 Jahre)
     const line = x => x && [Math.round(x.gp), +x.mpg.toFixed(1), +x.pts.toFixed(1), +((x.oreb || 0) + (x.dreb || 0)).toFixed(1), +(x.ast || 0).toFixed(1), +(x.stl || 0).toFixed(1), +(x.blk || 0).toFixed(1), +(x.gp ? x.tpm / x.gp : 0).toFixed(1), isNaN(x.ts) ? null : +x.ts.toFixed(1), isNaN(x.bpm) ? null : +x.bpm.toFixed(1), isNaN(x.usg) ? null : +x.usg.toFixed(1)];
     out.push({
       id: r.pid, n: r.name, t: r.team, c: r.conf, cl: r.cls, ht: r.raw.ht || null, role: r.role, b: r.bucket,
@@ -278,7 +278,7 @@ function main() {
 //  dn NBA-DNA {rot P(Rotation), fan P(Fantasy-Top-150), imp P(Real-Life-Impact: Saison 1000+ Min. & BPM ≥ 0),
 //  typ {v BPM-Punkte mehr/weniger Impact als der Fantasy-Wert erwarten lässt, sd, plus/minus Treiber}, bpm erwartete
 //  NBA-BPM, nz NBA-z je Kategorie, comps [Name, letzte
-//  College-Saison, Ähnlichkeit, NBA-Ergebnis, bester BBM-Wert]} — verlässlich ab meta.dna.reliableMin Min.
+//  College-Saison, Ähnlichkeit, NBA-Ergebnis, bester BBM-Wert, NBA-9-Cat-z]} — verlässlich ab meta.dna.reliableMin Min.
 //  Stand ${meta.built}
 // ============================================================
 

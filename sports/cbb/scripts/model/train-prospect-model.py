@@ -420,7 +420,9 @@ def build_dna(D, T, PR, means):
     for i, r in H.iterrows():
         o = O[R.index.get_loc(i)]
         lab = f'Top {int(o["best"])}' if o['best'] <= 150 else ('Rotation' if o['rot'] else 'kurz in der NBA')
-        pool.append([r['name'], int(r.year), r.bucket, lab, None if o['c'] is None else round(float(o['c']), 1), [round(float(PR.at[i, f]), 4) for f in COMP]])
+        pool.append([r['name'], int(r.year), r.bucket, lab, None if o['c'] is None else round(float(o['c']), 1), [round(float(PR.at[i, f]), 4) for f in COMP],
+                     # NBA-9-Cat-Profil (Ø z der ersten 4 NBA-Jahre, CATS-Reihenfolge) fürs DNA-Netz (seit 24.11.2026)
+                     None if o['nz'] is None else [round(o['nz'][c], 2) for c in CATS]])
     print(f'NBA-DNA Comp-Pool: {len(pool)} Spieler mit NBA-Karriere')
     return {'models': mods, 'calib': calib, 'cat': cat, 'catFeats': CATF, 'catR': catR, 'auc': res, 'pool': pool, 'n': int(len(R)), 'nNba': int(R.ok.sum()), 'nRot': int(R.rot.sum()), 'nFan': int(R.fan.sum()),
             'nImpact': int(R.impact.sum()), 'typ': typ, 'typFeats': TYPF, 'typCross': cross, 'typN': int(len(N)), 'typSlope': [round(float(x), 5) for x in sl],

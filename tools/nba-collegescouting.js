@@ -45,7 +45,7 @@
   const DCATS = [['pts', 'PTS'], ['tpm', '3PM'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK'], ['fgImpact', 'FG%'], ['ftImpact', 'FT%'], ['to', 'TO CTRL']];
   const defaults = { grp: 'all', cls: 'all', sort: 'board', own: 'all', board: false, q: '', sel: null };
   const getState = ctx => ({ ...defaults, ...ctx.store.getJSON('bbcs', {}) });
-  const picked = { comp: null, for: null };
+  const picked = { comp: null, for: null, dna: 0, dnaFor: null };
 
   const nk0 = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
@@ -195,20 +195,36 @@
     // Spinnennetz: z → 0..1 mit z = 0 (Ø NBA-Rotationsspieler) auf dem Mittelring, ±1,5 z am Rand.
     // Die 9 Kategorien ordnet MFHFB.charts.radar automatisch im Hub-Standard (STL oben …).
     const toR = z => Math.max(0, Math.min(1, 0.5 + z / 3));
+    // Vergleich im Netz: 1. der Prospect, 2. der gewählte Ex-College-Spieler mit seinem ECHTEN NBA-Profil,
+    // 3. Ø NBA-Rotationsspieler (Mittelring) als letzter Bezugspunkt (Beyaz, 24.11.)
+    if (picked.dnaFor !== p.id) { picked.dnaFor = p.id; picked.dna = 0; }
+    const comps = d.comps || [];
+    const cc = comps[picked.dna] || null, cz = cc && Array.isArray(cc[5]) ? cc[5] : null;
+    const season = y => `${y - 1}/${String(y).slice(2)}`;
+    const resTxt = c => (c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)} (9-Cat)` : c[3]);
+    const compTip = c => `${c[0]}: ähnlichstes College-Produktionsprofil (Abschlusssaison ${season(c[1])}, Ähnlichkeit ${c[2]}). Im Netz: sein tatsächliches NBA-Fantasy-Profil, Ø z der ersten 4 NBA-Jahre (Saisons mit 30+ Spielen). NBA-Ergebnis: ${resTxt(c)}.${Array.isArray(c[5]) ? '' : ' Kein NBA-Profil fürs Netz (keine Saison mit 30+ Spielen).'}`;
+    const rotTip = 'Ø NBA-Rotationsspieler = Mittelring (z 0): ein durchschnittlicher Spieler mit echter NBA-Rolle in jeder Kategorie. Außen = besser (bis +1,5 z), innen = schwächer (bis −1,5 z).';
+    const meTip = `${p.n}: erwartetes NBA-Fantasy-Profil, FALLS er es in die NBA schafft (aus seiner College-Produktion übersetzt).`;
+    const series = [
+      { name: p.n, vals: DCATS.map(([k]) => toR(d.nz[k])), tips: DCATS.map(([k, l]) => `${p.n} · ${l}: erwartetes NBA-z ${sgn(d.nz[k])} · Übersetzung r ${de(cr[k], 2)}`) },
+    ];
+    if (cz) series.push({ name: cc[0], vals: DCATS.map((_, i) => toR(cz[i])), tips: DCATS.map(([, l], i) => `${cc[0]} · ${l}: echtes NBA-z ${sgn(cz[i])} (Ø erste 4 Jahre)`) });
+    series.push({ name: 'Ø NBA-Rotationsspieler', vals: DCATS.map(() => 0.5), tips: DCATS.map(([, l]) => `Ø NBA-Rotationsspieler · ${l}: z 0`) });
     const radar = MFHFB.charts.radar({
       axes: DCATS.map(([k, l]) => ({ label: `${l} ${sgn(d.nz[k])}` })),
-      series: [
-        { name: p.n, vals: DCATS.map(([k]) => toR(d.nz[k])), tips: DCATS.map(([k, l]) => `${p.n} · ${l}: erwartetes NBA-z ${sgn(d.nz[k])} · Übersetzung r ${de(cr[k], 2)}`) },
-        { name: 'Ø NBA-Rotationsspieler', vals: DCATS.map(() => 0.5), tips: DCATS.map(([, l]) => `Ø NBA-Rotationsspieler · ${l}: z 0`) },
-      ],
-      size: 300, label: 'NBA-DNA ' + p.n,
+      series, size: 300, label: 'NBA-DNA ' + p.n,
     });
+    const chipTips = [meTip].concat(cz ? [compTip(cc)] : []).concat([rotTip]);
+    const chipsHtml = `<div class="dna-chips">${series.map((x, i) => `<span class="dna-chip sel-${i + 1}" title="${e(chipTips[i])}"><i></i>${e(x.name)}</span>`).join('')}</div>`;
     // Netz ganz oben, damit es auf Höhe des Production-Comp-Netzes links steht (Beyaz, 24.11.)
     return `<div class="card cs-box">${head}
-      <div class="cs-radar">${MFHFB.charts.chips([p.n, 'Ø NBA-Rotationsspieler'])}${radar}</div>
+      <div class="cs-radar">${chipsHtml}${radar}</div>
       <div class="cs-list-head" style="margin-top:0">Fantasy-Profil 9-Cat, falls er es schafft (z · Mittelring = Ø Rotationsspieler)</div>
-      <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere</div>
-      <div class="table-wrap"><table class="table compact"><tbody>${(d.comps || []).map(c => `<tr><td class="strong">${e(c[0])}</td><td class="num">${c[1] - 1}/${String(c[1]).slice(2)}</td><td class="small">${e(c[3].startsWith('Top') ? `beste NBA-Saison #${c[3].slice(4)}` : c[3])}</td></tr>`).join('')}</tbody></table></div>
+      <div class="cs-list-head">Ähnliche Ex-College-Spieler mit NBA-Karriere · anklicken → ins Netz</div>
+      ${comps.map((c, i) => `<button type="button" class="dna-match cs-match${i === picked.dna ? ' on' : ''}" data-dcomp="${i}" aria-pressed="${i === picked.dna}" title="${e(compTip(c))}">
+          <span class="dna-mscore">${c[2]}</span>
+          <span class="dna-nm">${e(c[0])} <small>${season(c[1])} · ${e(resTxt(c))}${Array.isArray(c[5]) ? '' : ' · ohne NBA-Profil'}</small></span>
+          <span class="dna-plus">${i === picked.dna ? '●' : '＋'}</span></button>`).join('')}
       ${fold(ctx, 'dna', `🔮 Prognose · Rotation ${pct(d.rot)} · Impact ${d.imp == null ? '—' : pct(d.imp)} · Top-150 ${pct(d.fan)}${ok ? '' : ' · <span class="cs-tag warn">kleiner Datensatz</span>'}`, `
       <div class="cs-box-sub">${flag} ${minLine}</div>
       <div class="cs-rgrid" style="grid-template-columns:1fr 1fr 1fr">
@@ -377,6 +393,13 @@
         ctx.store.setJSON('bbcs_fold', { ...(ctx.store.getJSON('bbcs_fold', {}) || {}), [f.dataset.fold]: f.open });
       }, true);
       root.addEventListener('click', ev => {
+        const dc = ev.target.closest('[data-dcomp]');
+        if (dc) {
+          picked.dna = +dc.dataset.dcomp;
+          const I = index(ctx.data), p = I.byId.get(String(st.sel)), box = dc.closest('.cs-box'), host = box && box.parentElement;
+          if (p && host) host.innerHTML = dnaBox(ctx, I, p);
+          return;
+        }
         const b = ev.target.closest('[data-comp]'); if (!b || b.tagName !== 'BUTTON') return;
         picked.comp = +b.dataset.comp;
         const I = index(ctx.data), p = I.byId.get(String(st.sel)), host = root.querySelector('div[data-comp]');
