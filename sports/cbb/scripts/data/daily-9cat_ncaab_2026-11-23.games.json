@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909743",
-      "line": "Colorado State Rams @ Arizona Wildcats (8:58 - 1st)",
+      "line": "Colorado State Rams @ Arizona Wildcats (18:53 - 2nd)",
       "completed": false,
-      "statusText": "8:58 - 1st",
+      "statusText": "18:53 - 2nd",
       "away": {
         "abbr": "ColSt",
         "name": "Colorado State Rams",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401921664",
-      "line": "San José State Spartans @ UC San Diego Tritons (15:07 - 1st)",
+      "line": "San José State Spartans @ UC San Diego Tritons (Halftime)",
       "completed": false,
-      "statusText": "15:07 - 1st",
+      "statusText": "Halftime",
       "away": {
         "abbr": "SJSU",
         "name": "San José State Spartans",

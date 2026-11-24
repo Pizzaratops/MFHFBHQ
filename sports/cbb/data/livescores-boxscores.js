@@ -6166,9 +6166,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909743",
-      line: "Colorado State Rams @ Arizona Wildcats (8:58 - 1st)",
+      line: "Colorado State Rams @ Arizona Wildcats (18:53 - 2nd)",
       completed: false,
-      statusText: "8:58 - 1st",
+      statusText: "18:53 - 2nd",
       away: {
         abbr: "ColSt", name: "Colorado State Rams", score: null,
         players: [
@@ -6184,9 +6184,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401921664",
-      line: "San José State Spartans @ UC San Diego Tritons (15:07 - 1st)",
+      line: "San José State Spartans @ UC San Diego Tritons (Halftime)",
       completed: false,
-      statusText: "15:07 - 1st",
+      statusText: "Halftime",
       away: {
         abbr: "SJSU", name: "San José State Spartans", score: null,
         players: [
@@ -7106,6 +7106,24 @@ const LIVESCORES_BOXSCORES = {
       }
     },
       {
+      id: "401921710",
+      line: "Providence Friars @ TBD (11/24 - 5:00 PM EST)",
+      completed: false,
+      statusText: "11/24 - 5:00 PM EST",
+      away: {
+        abbr: "Prov", name: "Providence Friars", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "TBD", name: "TBD", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
       id: "401921707",
       line: "Wyoming Cowboys @ Kent State Golden Flashes (11/24 - 5:30 PM EST)",
       completed: false,
@@ -7694,6 +7712,24 @@ const LIVESCORES_BOXSCORES = {
       },
       home: {
         abbr: "StJon", name: "St. John's Red Storm", score: null,
+        players: [
+
+        ]
+      }
+    },
+      {
+      id: "401921712",
+      line: "VCU Rams @ TBD (11/24 - 10:30 PM EST)",
+      completed: false,
+      statusText: "11/24 - 10:30 PM EST",
+      away: {
+        abbr: "VCU", name: "VCU Rams", score: null,
+        players: [
+
+        ]
+      },
+      home: {
+        abbr: "TBD", name: "TBD", score: null,
         players: [
 
         ]

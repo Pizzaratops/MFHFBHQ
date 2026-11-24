@@ -183,6 +183,24 @@
       }
     },
     {
+      "id": "401921710",
+      "line": "Providence Friars @ TBD (11/24 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/24 - 5:00 PM EST",
+      "away": {
+        "abbr": "Prov",
+        "name": "Providence Friars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      }
+    },
+    {
       "id": "401921707",
       "line": "Wyoming Cowboys @ Kent State Golden Flashes (11/24 - 5:30 PM EST)",
       "completed": false,
@@ -772,6 +790,24 @@
       "home": {
         "abbr": "StJon",
         "name": "St. John's Red Storm",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921712",
+      "line": "VCU Rams @ TBD (11/24 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/24 - 10:30 PM EST",
+      "away": {
+        "abbr": "VCU",
+        "name": "VCU Rams",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
         "score": null,
         "players": []
       }
