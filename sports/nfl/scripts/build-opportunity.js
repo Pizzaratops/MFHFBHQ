@@ -14,11 +14,16 @@
 //  Saisons: laufende + Vorsaison (für „mit/ohne“-Vergleiche bei Ausfällen).
 //  Nur RB/WR/TE (QB optional über ihre Läufe nicht nötig).
 //
+//   - draft_picks.csv                : Draftjahr + Pick (nur Jahr-1/2-Spieler,
+//                                      für die 🚦 Rookie-Ampel, 24.11.2026)
+//   - schedules/games.csv            : Head Coach je Team (letztes Spiel der Saison)
 //  Output: sports/nfl/data/opportunity.js → OPPORTUNITY
 //   { season, lastWeek, updatedAt,
 //     teams: { [saison]: { [team]: { [woche]: [tgt, car] } } },   // Team-Summen
 //     players: [ { id, n, pos, t, w: { [saison]: [[woche, team, tgt, tgtSh, aySh, car, snap%, ppr, recYd, rushYd], …] } } ],
-//     injuries: [ { id, n, pos, t, st, inj, wk } ] }               // aktuelle Woche
+//     injuries: [ { id, n, pos, t, st, inj, wk } ],                // aktuelle Woche
+//     coaches: { [saison]: { [team]: Head Coach im letzten Spiel } } }
+//   Spieler aus den Drafts der laufenden und der Vorsaison bekommen dy (Draftjahr) + pk (Pick).
 //  Läuft im NFL-Sync (.github/workflows/nfl-sync.yml). Nicht fatal.
 // ============================================================
 
@@ -114,7 +119,27 @@ async function main() {
   // Nur Spieler mit Daten in der laufenden oder Vorsaison behalten; Vorsaison nur, wenn er dieses Jahr auch auftaucht
   // oder für Mit/Ohne-Vergleiche relevant ist (Team-Kollegen) -- einfach: alle mit ≥1 Target/Carry.
   const list = [...players.values()].filter(p => Object.values(p.w).some(ws => ws.some(x => x[2] + x[5] > 0)));
-  const out = { season: cur, lastWeek, injuryWeek: maxWk, updatedAt: new Date().toISOString(), teams, players: list, injuries };
+
+  // Draftjahr + Pick für Jahr-1/2-Spieler (🚦 Rookie-Ampel)
+  const dp = (await csv(`${REL}/draft_picks/draft_picks.csv`)) || [];
+  const dmap = new Map();
+  dp.forEach(r => { const y = num(r.season); if ((y === cur || y === cur - 1) && r.gsis_id) dmap.set(r.gsis_id, [y, num(r.pick)]); });
+  let nDraft = 0;
+  list.forEach(p => { const d = dmap.get(p.id); if (d) { p.dy = d[0]; p.pk = d[1]; nDraft++; } });
+
+  // Head Coach je Team: Coach im letzten gespielten Spiel der Saison (erfasst auch Entlassungen während der Saison)
+  const games = (await csv(`${REL}/schedules/games.csv`)) || [];
+  const coaches = {};
+  [cur - 1, cur].forEach(s => {
+    const C = coaches[s] = {}, last = {};
+    games.filter(g => num(g.season) === s && g.game_type === 'REG' && g.home_score !== '' && g.home_score !== 'NA' && g.home_score != null).forEach(g => {
+      const wk = num(g.week);
+      [[g.home_team, g.home_coach], [g.away_team, g.away_coach]].forEach(([t, hc]) => {
+        t = normTeam(t); if (hc && (!(t in last) || wk >= last[t])) { last[t] = wk; C[t] = hc; }
+      });
+    });
+  });
+  const out = { season: cur, lastWeek, injuryWeek: maxWk, updatedAt: new Date().toISOString(), teams, players: list, injuries, coaches };
   const body = JSON.stringify(out);
   if (fs.existsSync(OUT)) {
     try {
@@ -124,7 +149,7 @@ async function main() {
     } catch (e) { /* neu schreiben */ }
   }
   fs.writeFileSync(OUT, `// AUTO-GENERIERT von sports/nfl/scripts/build-opportunity.js (NFL-Sync). Nicht von Hand editieren.\n// Spalten je Woche: [woche, team, targets, targetShare, airYardsShare, carries, snap%, pprPunkte, recYds, rushYds]\nconst OPPORTUNITY = ${body};\n`, 'utf8');
-  console.log(`Opportunity: ${list.length} Spieler, Saison ${cur} bis Woche ${lastWeek}, ${injuries.length} Injury-Report-Einträge (Woche ${maxWk}).`);
+  console.log(`Opportunity: ${list.length} Spieler, Saison ${cur} bis Woche ${lastWeek}, ${injuries.length} Injury-Report-Einträge (Woche ${maxWk}), ${nDraft} Jahr-1/2-Spieler mit Draftdaten, Coaches für ${Object.keys(coaches[cur] || {}).length} Teams.`);
 }
 
 main().then(() => process.exit(0)).catch(e => { console.warn('Opportunity-Build fehlgeschlagen (nicht kritisch):', e.message); process.exit(0); });

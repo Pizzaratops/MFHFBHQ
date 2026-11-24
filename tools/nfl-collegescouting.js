@@ -370,9 +370,41 @@
       }
       return out;
     }
+    // Risiko-Flags (Bust-Backtest 24.11.2026, Drafts 2015–2023, Draftpick kontrolliert;
+    // Projekt-Doku claude/bust-backtest-2026-11.md). Getrennt von der Pick-Prognose.
+    //  RB hart: Receiving-Yard-Share der letzten Saison < 5 % → 0/13 mit Top-12-Saison in J1–3 (sonst 50 %).
+    //  RB weich (Stapel): wenig Receiving + später/kein Breakout (Speed Score < 100 erst nach dem Combine, nicht in den Daten).
+    //  WR weich (Stapel): kein Early Declare (College-Jahr ≥ 4) + später/kein Breakout + Effizienz (avgPPA < 0,56).
+    // Breakout = erstes College-Jahr mit Ø Produktions-z > 0,5; „spät“ = ab College-Jahr 3 oder nie.
+    function riskFlags(env, pos, rec) {
+      const { C, M } = env, P = M.pos[pos];
+      if (!P || (pos !== 'RB' && pos !== 'WR')) return null;
+      const me = rec.mix ? rec.latest : rec;
+      const yi = yearsInfo(env.R, C, me);
+      const mean = (zz, fs) => fs.reduce((t, f) => t + (zz[f] || 0), 0) / (fs.length || 1);
+      const seas = seasonsOf(C, pos, me.rawId).filter(s => s.year <= me.year).sort((a, b) => a.year - b.year);
+      const yrsOf = s => (yi.hs ? s.year - yi.hs + 1 : (collegeYear(C, s) || 1));
+      const bo = seas.find(s => mean(zOf(C, M, pos, s), P.prod) > 0.5);
+      const boYrs = bo ? yrsOf(bo) : null;
+      const late = boYrs == null || boYrs >= 3;
+      const flags = [];
+      const add = (key, hard, label, tip) => flags.push({ key, hard, label, tip });
+      const boTxt = boYrs == null ? 'kein Breakout (nie Ø Produktions-z > 0,5)' : `Breakout erst im ${boYrs}. College-Jahr`;
+      if (pos === 'RB') {
+        const sh = me.recYdShare;
+        if (sh != null && sh < 5) add('rec', true, 'Wenig Receiving', `Receiving-Yard-Share ${String(sh).replace('.', ',')} % in der Saison ${me.year} (< 5 %). Backtest Drafts 2015–2023 (RBs Runde 1–3, Pick kontrolliert): 0 von 13 mit Top-12-Saison in Jahr 1–3, ohne Flag 50 %. Hielt in beiden Zeiträumen.`);
+        if (late) add('late', false, 'Später Breakout', `${boTxt}. Allein schwach (Top-12 31 % vs. 48 %), zählt im Stapel.`);
+      } else {
+        if (yi.yrs != null && yi.yrs >= 4) add('ed', false, 'Kein Early Declare', `${yi.yrs}. College-Jahr${yi.exact ? '' : ' (Untergrenze aus FBS-Daten)'}. Backtest: Top-24-Saison 23 % vs. 45 % (Pick kontrolliert), aber nur in den Drafts 2015–19 deutlich, 2020–23 kein Unterschied (Corona-Zusatzjahr).`);
+        if (late) add('late', false, 'Später Breakout', `${boTxt}. Allein schwach (Top-24 27 % vs. 44 %), zählt im Stapel.`);
+        if (me.avgPPA != null && me.avgPPA < 0.56) add('eff', false, 'Schwache Effizienz', `EPA pro Target (avgPPA) ${String(me.avgPPA).replace('.', ',')} in ${me.year}, unteres Viertel der gedrafteten WRs (< 0,56).`);
+      }
+      const level = flags.some(f => f.hard) ? 'hart' : flags.length >= 2 ? 'fragil' : flags.length ? 'info' : 'ok';
+      return { flags, level, n: flags.length, speedPending: pos === 'RB' };
+    }
     const pickFmt = (r, T) => `${Math.ceil(r / T)}.${String(((r - 1) % T) + 1).padStart(2, '0')}`;
     const nflRound = p => (p <= 32 ? 'R1' : p <= 64 ? 'R2' : p <= 100 ? 'R3' : p <= 140 ? 'R4' : p <= 180 ? 'R5' : p <= 220 ? 'R6' : 'R7');
-    return { estimate, pickFmt, nflRound, collegeYear, eligible, yearsInfo };
+    return { estimate, riskFlags, pickFmt, nflRound, collegeYear, eligible, yearsInfo };
   })();
 
   // Erklärtexte nur noch beim Hovern/Antippen der Überschrift (ⓘ)
@@ -384,6 +416,19 @@
 
   function rookieCfg(ctx) { return ctx.league.rookieDraft || { teams: 12, rounds: 4 }; }
 
+  const RISK_TXT = {
+    RB: { hart: 'Wenig Receiving ist das stärkste Signal im Backtest (0 von 13 mit Top-12-Saison in J1–3). Gestapelt bei Rookie-Erstrunden-Picks 2015–2023: 0 Flags 85 %, 1 Flag 43 %, ≥ 2 Flags 0 von 5 (Edwards-Helaire, Walker, Sanders, Abdullah, Kendre Miller).',
+          fragil: 'Gestapelte Flags bei Rookie-Erstrunden-RBs 2015–2023: 0 Flags 85 % mit Top-12-Saison in J1–3, 1 Flag 43 %, ≥ 2 Flags 0 von 5.' },
+    WR: { fragil: 'Gestapelte Flags bei WRs (NFL-Erstrundenpicks 2015–2023): 0 Flags 69 % mit Top-24-Saison in J1–3, 1 Flag 58 %, 2 Flags 27 %. Aber DeVonta Smith, Pittman und M. Brown hatten 2 Flags und trafen trotzdem. Hinweis auf Fragilität, keine Prognose.' },
+  };
+  function riskRow(e, rf, pos) {
+    if (!rf) return '';
+    const head = rf.level === 'hart' ? '<span class="cs-risk hart">🚩 Bust-Risiko</span>' : rf.level === 'fragil' ? '<span class="cs-risk fragil">⚠️ Fragil</span>' : rf.level === 'info' ? '<span class="cs-risk info">Risiko-Check</span>' : '<span class="cs-risk ok">✓ Keine Red Flags</span>';
+    const t = (RISK_TXT[pos] || {})[rf.level] || 'Risiko-Flags aus dem Bust-Backtest (Drafts 2015–2023). Getrennt von der Pick-Prognose: Draft Capital bleibt das stärkste Signal.';
+    const chips = rf.flags.map(f => `<span class="cs-tag${f.hard ? ' bad' : ' warn'}" title="${e(f.tip)}">${f.hard ? '🚩 ' : ''}${e(f.label)}</span>`).join(' ');
+    const sp = rf.speedPending ? ' <span class="cs-tag" title="Speed Score (Gewicht × 200 / 40-Zeit⁴) < 100 ist der dritte RB-Flag. Kommt erst mit dem Combine (Ende Februar).">Speed Score: nach Combine</span>' : '';
+    return `<div class="cs-rnote cs-riskrow"><span title="${e(t)}">${head}</span> ${chips}${sp}</div>`;
+  }
   function rangeBox(ctx, st, me, env) {
     const e = MFHFB.ui.esc;
     const why = env && env.curve ? `Grobe Erwartung, keine Prognose. Gerechnet aus der gewählten Ansicht (Saison-Mix oder einzelne Saison) „als wäre es die letzte College-Saison“; beim Mix zählt das gewichtete Mittel der Saison-z-Werte: Produktion (aktuell + beste Saison), Größe, College-Jahr seit dem HS-Abschluss, Recruiting-Rating und Conference → Draft-Chance + erwarteter NFL-Pick (gelernt aus allen College-Spielern seit 2013 und ihrem echten Draft-Ausgang) → typischer Dynasty-Rookie-Rang für diesen NFL-Pick (${isSF(ctx, st) && env.curve.posSF ? `FantasyPros-Dynasty-Superflex-Rankings ${env.curve.yearsSF[0]}–${env.curve.yearsSF[env.curve.yearsSF.length - 1]}, nur Rookies` : `FantasyPros-Rookie-Rankings ${env.curve.years[0]}–${env.curve.years[env.curve.years.length - 1]}, 1QB`}). Format oben rechts umschaltbar (Standard: 1QB${ctx.league.superflex ? ', diese Liga: Superflex' : ''}). ${(() => { const b = (env.M.backtest || {})[st.pos]; return b ? `Backtest ${st.pos} (Saisons ${b.test}): Draft ja/nein AUC ${String(b.aucDrafted).replace('.', ',')}, Pick-Reihenfolge ρ ${String(b.spearmanPick).replace('.', ',')} (1 = perfekt, 0 = Zufall).` : ''; })()} Nicht drin: echtes Alter, Combine, Verletzungen, Landing Spot, Scouting-Eindruck. College-Jahr und Draft-Berechtigung aus dem Recruiting-Jahrgang (CFBD); ohne Recruiting-Eintrag Untergrenze aus den FBS-Daten.` : 'Grobe Erwartung, keine Prognose.';
@@ -417,7 +462,7 @@
         <div class="cs-rcell big"><small>Rookie Draft (${T} Teams)</small><b>${span(r.rank.lo, r.rank.hi, rk)}</b><span>Mitte ${rk(r.rank.mid)} · Rookie-Rang ${span(r.rank.lo, r.rank.hi, x => '#' + x)} · falls gedraftet</span></div>
         <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird überhaupt gedraftet</span></div>
         <div class="cs-rcell"><small>Erw. NFL-Draft</small><b>${DR.nflRound(r.nfl.lo)}${DR.nflRound(r.nfl.hi) !== DR.nflRound(r.nfl.lo) ? '–' + DR.nflRound(r.nfl.hi) : ''}</b><span>Pick ${r.nfl.lo}–${r.nfl.hi} (Mitte ${r.nfl.mid})</span></div>
-      </div>${kNote}${(() => { const x = boardOf(me.rawId); if (!x) return ''; const B = env.BO; return `<div class="cs-rnote">${boardTag(e, x)} <span><a href="${e(B.url)}" target="_blank" rel="noopener">Konsens-Board</a> <b>#${x.rank}</b> (${e(x.pos)}${x.posRank})${x.tier ? ` · Projektion ${e(x.tier)}` : ''}${x.model != null ? ` · Modell-Score ${deNum(x.model)}` : ''}${x.move ? ` · Woche ${x.move > 0 ? '+' : ''}${x.move}` : ''}${x.start != null ? ` · Starter-Chance ${x.start} %` : ''}${x.comp ? ` · Comp ${e(x.comp)}` : ''} <small class="muted">· Stand ${fmtDate(B.asof)}</small></span></div>`; })()}
+      </div>${kNote}${riskRow(e, DR.riskFlags(env, st.pos, me), st.pos)}${(() => { const x = boardOf(me.rawId); if (!x) return ''; const B = env.BO; return `<div class="cs-rnote">${boardTag(e, x)} <span><a href="${e(B.url)}" target="_blank" rel="noopener">Konsens-Board</a> <b>#${x.rank}</b> (${e(x.pos)}${x.posRank})${x.tier ? ` · Projektion ${e(x.tier)}` : ''}${x.model != null ? ` · Modell-Score ${deNum(x.model)}` : ''}${x.move ? ` · Woche ${x.move > 0 ? '+' : ''}${x.move}` : ''}${x.start != null ? ` · Starter-Chance ${x.start} %` : ''}${x.comp ? ` · Comp ${e(x.comp)}` : ''} <small class="muted">· Stand ${fmtDate(B.asof)}</small></span></div>`; })()}
     </div>`;
   }
 
@@ -529,6 +574,13 @@
     return `<span class="cs-board ${cls}" title="${e(boardTitle(x))}">#${x.rank}</span>`;
   }
 
+  function riskIcon(pos, pl) {
+    if (!RENV || RENV.error || (pos !== 'RB' && pos !== 'WR')) return '';
+    const rf = DR.riskFlags(RENV, pos, pl.mix || pl.latest);
+    if (!rf || (rf.level !== 'hart' && rf.level !== 'fragil')) return '';
+    return rf.level === 'hart' ? ` <span class="cs-riskic" title="Bust-Risiko: ${MFHFB.ui.esc(rf.flags.map(f => f.label).join(', '))}">🚩</span>` : ` <span class="cs-riskic" title="Fragil: ${MFHFB.ui.esc(rf.flags.map(f => f.label).join(', '))}">⚠️</span>`;
+  }
+
   function listHtml(ctx, st) {
     const e = ctx.ui.esc;
     const C = ctx.data.COLLEGE_SCOUTING;
@@ -549,7 +601,7 @@
     } else list = list.map(pl => ({ pl, v: bestStat(pl, stat) })).sort((a, b) => b.v - a.v);
     return list.length ? list.map(({ pl, r, v }, i) => `<a class="dna-row${pl.rawId === st.sel ? ' active' : ''}" href="${ctx.href('collegescouting', st.pos, pl.rawId)}">
         <span class="dna-idx">${i + 1}</span>
-        <span class="dna-nm">${e(pl.latest.name)} ${boardTag(e, boardOf(pl.rawId))}${pl.inactive ? ` <span class="cs-gone" title="${e(goneText(pl))}">💤</span>` : ''} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
+        <span class="dna-nm">${e(pl.latest.name)} ${boardTag(e, boardOf(pl.rawId))}${riskIcon(st.pos, pl)}${pl.inactive ? ` <span class="cs-gone" title="${e(goneText(pl))}">💤</span>` : ''} <small>${e(pl.latest.team)} · ${e(yrsLabel(pl))}</small></span>
         <span class="dna-avg">${byRange || byTier ? (r && r.rank ? `${DR.pickFmt(r.rank.mid, T)} <small>${Math.round(r.chance * 100)}%</small>` : '—') : (v ? Math.round(v).toLocaleString('de-DE') : '—')}</span></a>`).join('')
       : '<div class="muted" style="padding:12px">Keine Treffer.</div>';
   }

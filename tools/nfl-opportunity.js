@@ -16,6 +16,11 @@
 //   2. 🔎 Ausreißer unter den freien Spielern: Rolle (WOPR bzw. Touch-
 //      Anteil) deutlich besser als die Punkte, steigende Rolle, Effizienz.
 //   3. 💤 Gerostert, aber wenig Rolle (Trade-/Drop-Kandidaten).
+//   4. 🚦 Rookie-Ampel (24.11.2026): Jahr-1- und Jahr-2-Spieler aus NFL-Runde 1–3.
+//      Schwellen + historische Trefferquoten aus dem Bust-Backtest (Drafts
+//      2015–2023, Projekt-Doku claude/bust-backtest-2026-11.md): Snap Share,
+//      Target Share bzw. Carries, PPR/Spiel in Jahr 1 → Top-Saison in Jahr 2–3.
+//      Jahr 2: Warnung bei Head-Coach-Wechsel nach starker Rookie-Saison.
 // ============================================================
 
 (function () {
@@ -215,6 +220,76 @@
       <div class="explain">Rolle der letzten 2 Wochen im unteren Drittel seiner Position, obwohl er auf einem Kader steht und gesund ist. Kandidaten für Trade oder Drop — Talent und Dynasty-Wert sind hier nicht berücksichtigt.</div></details>`;
   }
 
+  // ---------- 🚦 Rookie-Ampel ----------
+  // Bänder: [obere Grenze (exklusiv), hist. Quote Top-Saison J2–3, Farbe g/y/o/r]
+  // WR/RB: Top-24, TE: Top-12 (PPR). Basis Runde 1–3: WR 32 %, RB 59 %, TE 27 %.
+  const AMP = {
+    WR: { base: 32, snap: [[25, 3, 'r'], [50, 13, 'o'], [70, 49, 'y'], [999, 79, 'g']],
+          ts: [[10, 11, 'r'], [15, 33, 'y'], [20, 35, 'y'], [999, 82, 'g']],
+          ppg: [[5.5, 7, 'r'], [8, 29, 'o'], [10, 35, 'y'], [14, 59, 'y'], [999, 86, 'g']] },
+    RB: { base: 59, snap: [[25, 43, 'o'], [50, 64, 'y'], [70, 73, 'y'], [999, 100, 'y']],
+          car: [[50, 38, 'o'], [120, 56, 'y'], [200, 53, 'y'], [999, 92, 'g']],
+          ppg: [[5.5, 46, 'y'], [14, 41, 'y'], [999, 100, 'g']] },
+    TE: { base: 27, snap: [[25, 7, 'r'], [50, 33, 'y'], [999, 38, 'y']],
+          ts: [[10, 19, 'o'], [999, 50, 'y']],
+          ppg: [[5.5, 15, 'o'], [999, 41, 'y']] },
+  };
+  const GOOD_Y1 = { WR: 9.9, RB: 10, TE: 8 };
+  const bandOf = (bands, v) => bands.find(b => v < b[0]);
+  function yearAgg(p, season) {
+    const rs = (p.w[season] || []);
+    if (!rs.length) return null;
+    const snaps = rs.map(r => r[W.snap]).filter(v => v != null);
+    return { g: rs.length, snap: avg(snaps), ts: avg(rs.map(r => r[W.ts])), ppg: avg(rs.map(r => r[W.ppr])),
+             car17: rs.reduce((t, r) => t + r[W.car], 0) / rs.length * 17, team: rs[rs.length - 1][W.team] };
+  }
+  function ampel(pos, a) {
+    const A = AMP[pos]; if (!A || !a) return null;
+    const sig = [['Snaps', A.snap, a.snap == null ? null : a.snap, v => Math.round(v) + ' %']];
+    if (A.ts) sig.push(['Target Share', A.ts, a.ts * 100, v => Math.round(v) + ' %']);
+    if (A.car) sig.push(['Carries/17 Sp.', A.car, a.car17, v => Math.round(v)]);
+    sig.push(['PPR/Spiel', A.ppg, a.ppg, v => v.toFixed(1).replace('.', ',')]);
+    const parts = sig.filter(x => x[2] != null).map(([l, bands, v, f]) => { const b = bandOf(bands, v); return { l, v: f(v), q: b[1], c: b[2] }; });
+    const n = c => parts.filter(x => x.c === c).length;
+    const color = n('g') && !n('r') ? 'g' : (n('r') || n('o') >= 2) && !n('g') ? 'r' : 'y';
+    return { color, parts, base: A.base };
+  }
+  const AMP_LABEL = { g: '🟢', y: '🟡', r: '🔴' };
+  function ampCell(e, pos, am, games) {
+    if (!am) return '—';
+    if (games < 3) return `<span class="muted small" title="Erst ab 3 Spielen">zu früh</span>`;
+    const tip = `Historisch (NFL-Runde 1–3, Drafts 2015–2023), Anteil mit ${pos === 'TE' ? 'Top-12' : 'Top-24'}-Saison in Jahr 2–3: ` + am.parts.map(x => `${x.l} ${x.v} → ${x.q} %`).join(' · ') + ` (Schnitt ${am.base} %).`;
+    return `<span class="op-amp ${am.color}" title="${e(tip)}">${AMP_LABEL[am.color]}</span> ` + am.parts.map(x => `<span class="op-ampq ${x.c}" title="${e(x.l + ' ' + x.v)}">${x.q} %</span>`).join('');
+  }
+  function rookieAmpel(ctx, M, st) {
+    const e = ctx.ui.esc, O = M.O, S = M.S, HC = O.coaches || {};
+    const pl = M.players.filter(p => p.dy && p.pk && p.pk <= 105 && (st.pos === 'ALL' || p.pos === st.pos));
+    if (!pl.length) return '';
+    const name = p => `<div class="strong">${e(p.n)} ${statusTag(p)}</div><div class="muted small">${e(p.pos)} · ${e(p.t)} · Pick ${p.pk} · ${ownerTag(ctx, p)}</div>`;
+    const y1 = pl.filter(p => p.dy === S).sort((a, b) => a.pk - b.pk);
+    const y2 = pl.filter(p => p.dy === S - 1).sort((a, b) => a.pk - b.pk);
+    const fmt = (v, f) => (v == null ? '—' : f(v));
+    const row1 = p => { const a = yearAgg(p, S); const am = ampel(p.pos, a);
+      return `<tr><td>${name(p)}</td><td class="num">${a ? a.g : 0}</td><td class="num">${fmt(a && a.snap, v => Math.round(v) + ' %')}</td>
+        <td class="num">${a ? (p.pos === 'RB' ? Math.round(a.car17) : pct(a.ts)) : '—'}</td><td class="num">${fmt(a && a.ppg, v => v.toFixed(1))}</td><td>${ampCell(e, p.pos, am, a ? a.g : 0)}</td></tr>`; };
+    const row2 = p => {
+      const a1 = yearAgg(p, S - 1), a2 = yearAgg(p, S), am = ampel(p.pos, a1);
+      const t1 = a1 ? a1.team : p.t, c1 = (HC[S - 1] || {})[t1], c2 = (HC[S] || {})[p.t];
+      const good = a1 && a1.g >= 8 && a1.ppg >= GOOD_Y1[p.pos];
+      const notes = [];
+      if (c1 && c2 && c1 !== c2 && good) notes.push(`<span class="op-st bad" title="${e(`Head Coach ${t1}: ${c1} → ${p.t}: ${c2}. Backtest: nach guter Rookie-Saison mit HC-Wechsel hatten 42 % (n = 12) noch eine Top-Saison in Jahr 2–3, ohne Wechsel 72 % (n = 53). Kleine Stichprobe, BTJ-Muster.`)}">⚠️ HC-Wechsel</span>`);
+      else if (c1 && c2 && c1 !== c2) notes.push(`<span class="op-st warn" title="${e(`Head Coach ${t1}: ${c1} → ${p.t}: ${c2}.`)}">neuer HC</span>`);
+      if (a1 && t1 !== p.t) notes.push(`<span class="op-st warn" title="${e(`Rookie-Jahr bei ${t1}`)}">Teamwechsel</span>`);
+      return `<tr><td>${name(p)}</td><td class="num">${a1 ? a1.g : 0}</td><td class="num">${fmt(a1 && a1.snap, v => Math.round(v) + ' %')}</td>
+        <td class="num">${a1 ? (p.pos === 'RB' ? Math.round(a1.car17) : pct(a1.ts)) : '—'}</td><td class="num">${fmt(a1 && a1.ppg, v => v.toFixed(1))}</td><td>${ampCell(e, p.pos, am, a1 ? a1.g : 0)}</td>
+        <td class="num">${fmt(a2 && a2.ppg, v => v.toFixed(1))}</td><td>${notes.join(' ')}</td></tr>`; };
+    const head = `<th>Spieler</th><th class="num">Sp.</th><th class="num" title="Offense-Snap-Anteil (Ø der Spiele)">Snaps</th><th class="num" title="WR/TE: Target Share · RB: Carries hochgerechnet auf 17 Spiele">TS / Car.</th><th class="num">PPR/Sp.</th><th title="Ampel + historische Trefferquote je Signal">Ampel (hist. Quote)</th>`;
+    return `<details class="card op-rook"${st.rook === false ? '' : ' open'}><summary class="card-head"><h2>🚦 Rookie-Ampel</h2><span class="muted small">NFL-Runde 1–3 · Jahr 1: ${y1.length} · Jahr 2: ${y2.length}</span></summary>
+      ${y1.length ? `<h3 class="op-sub">Jahr 1 (Draft ${S})</h3><div class="table-wrap"><table class="table compact op-table"><thead><tr>${head}</tr></thead><tbody>${y1.map(row1).join('')}</tbody></table></div>` : ''}
+      ${y2.length ? `<h3 class="op-sub">Jahr 2 (Draft ${S - 1}) · Ampel aus der Rookie-Saison ${S - 1}</h3><div class="table-wrap"><table class="table compact op-table"><thead><tr>${head}<th class="num">PPR/Sp. ${S}</th><th>Hinweis</th></tr></thead><tbody>${y2.map(row2).join('')}</tbody></table></div>` : ''}
+      <div class="explain">Wie oft Spieler mit diesen Werten in Jahr 1 in Jahr 2–3 eine Top-Saison hatten (WR/RB: Top-24, TE: Top-12, PPR), gemessen an den NFL-Draftrunden 1–3 der Jahrgänge 2015–2023. 🟢 = mindestens ein starkes und kein schwaches Signal, 🔴 = schwache Signale ohne starkes, sonst 🟡. Bei WRs trennen Snap Share und Target Share sehr klar (unter 25 % Snaps: 3 %, ab 20 % Target Share: 82 %). Bei RBs zählt fast nur Volumen (200+ Carries oder 14+ PPR/Spiel), bei TEs ist die Stichprobe klein. Hochrechnung während der Saison, Schwellen gelten für die ganze Saison. HC-Wechsel = anderer Head Coach als im letzten Spiel der Rookie-Saison.</div></details>`;
+  }
+
   function render(ctx) {
     const { ui } = ctx, e = ui.esc;
     const O = ctx.data.OPPORTUNITY;
@@ -237,7 +312,8 @@
         <div class="table-wrap"><table class="table compact op-table"><thead><tr><th>Spieler</th><th class="num" title="Offense-Snap-Anteil, letzte 2 Spiele">Snaps</th><th class="num" title="Target Share, letzte 2 Spiele">Target Share</th><th class="num" title="Air Yards Share, letzte 2 Spiele">Air Yds</th><th class="num" title="RB: Carry-Anteil · WR/TE: WOPR">Carries / WOPR</th><th class="num" title="PPR-Punkte pro Spiel, letzte 2 Spiele">PPR/Sp.</th><th class="num" title="Rolle im Vergleich zur Position (Perzentil)">Rolle</th><th>Signal</th></tr></thead>
         <tbody>${outlierRows(ctx, M, st)}</tbody></table></div>
         <div class="explain">Rolle > Punkte = Rolle mindestens 25 Perzentil-Punkte besser als die Punkte (Pickup vor dem Ausschlag). Rolle steigt = letzte 2 Spiele mind. +5 % Target Share, +12 % Carries oder +15 % Snaps gegenüber den Wochen davor. Effizient = ≥ 10 Yards pro Target bei wenig Volumen (spekulativ). Sortiert nach Anzahl Signale, dann Rolle.</div></div>
-      ${lowRole(ctx, M)}`;
+      ${lowRole(ctx, M)}
+      ${rookieAmpel(ctx, M, st)}`;
   }
 
   function mount(root, ctx) {

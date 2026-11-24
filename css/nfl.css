@@ -606,3 +606,22 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-fold[open] > summary::before { content: '▾ '; }
 .cs-fold > summary:hover { color: var(--text); }
 .cs-fold-body { padding: 0 10px 10px; }
+
+/* College Scouting: Risiko-Flags (Bust-Backtest 24.11.2026) */
+.cs-tag.bad { background: rgba(214,60,60,.15); color: #c43c3c; }
+.cs-riskrow { flex-wrap: wrap; gap: 6px; }
+.cs-risk { font-size: 11.5px; font-weight: 800; white-space: nowrap; }
+.cs-risk.hart { color: #c43c3c; }
+.cs-risk.fragil { color: #b8740c; }
+.cs-risk.ok { color: #2e9d62; }
+.cs-risk.info { color: var(--muted); }
+.cs-riskic { font-size: 11px; vertical-align: 1px; }
+
+/* Opportunity Radar: 🚦 Rookie-Ampel (24.11.2026) */
+.op-rook .op-sub { font-size: 13px; margin: 10px 0 4px; color: var(--muted); }
+.op-amp { font-size: 13px; }
+.op-ampq { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 1px 6px; border-radius: 20px; margin-right: 3px; background: var(--surface2); color: var(--muted); }
+.op-ampq.g { background: rgba(46,157,98,.16); color: #2e9d62; }
+.op-ampq.y { background: rgba(212,170,23,.18); color: #a8840c; }
+.op-ampq.o { background: rgba(214,120,20,.18); color: #c0620c; }
+.op-ampq.r { background: rgba(214,60,60,.15); color: #c43c3c; }
