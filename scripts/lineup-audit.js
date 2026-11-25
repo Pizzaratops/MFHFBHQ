@@ -47,8 +47,29 @@ async function espn() {
   const bye = Object.fromEntries(pro.settings.proTeams.map(t => [t.id, t.byeWeek]));
   const proAbbr = Object.fromEntries(pro.settings.proTeams.map(t => [t.id, t.abbrev]));
   const flags = [], curAll = [];
+  // Max PF (25.11.2026): optimale Aufstellung je Team und Woche aus Startern + Bank
+  // (ohne IR-Slot). Pflichtpositionen zuerst, Flex-Slots zuletzt — bei
+  // QB/RB/WR/TE/FLEX/K/DST ist diese Reihenfolge optimal.
+  const maxpf = {};
+  const lineupSlots = Object.entries(slotCounts).filter(([s, n]) => n > 0 && !BENCH.has(+s)).map(([s, n]) => [+s, n]);
+  const optimal = entries => {
+    const pool = entries.filter(e => e.lineupSlotId !== 21).map(e => ({ slots: e.playerPoolEntry.player.eligibleSlots || [], pts: e.playerPoolEntry.appliedStatTotal || 0, used: false }));
+    const order = lineupSlots.slice().sort((x, y) => pool.filter(p => p.slots.includes(x[0])).length - pool.filter(p => p.slots.includes(y[0])).length);
+    let tot = 0;
+    for (const [slot, n] of order) for (let k = 0; k < n; k++) {
+      const best = pool.filter(p => !p.used && p.slots.includes(slot)).sort((a, b) => b.pts - a.pts)[0];
+      if (best) { best.used = true; tot += best.pts; }
+    }
+    return Math.round(tot * 100) / 100;
+  };
   for (let w = 1; w <= cur; w++) {
     const d = await getJson(`${base}?view=mBoxscore&view=mMatchupScore&scoringPeriodId=${w}`, H);
+    for (const m of d.schedule.filter(x => x.matchupPeriodId === w)) for (const side of ['home', 'away']) {
+      const s = m[side]; if (!s) continue;
+      const ros = s.rosterForCurrentScoringPeriod || s.rosterForMatchupPeriod; if (!ros) continue;
+      const act = ros.entries.filter(e => !BENCH.has(e.lineupSlotId)).reduce((t, e) => t + (e.playerPoolEntry.appliedStatTotal || 0), 0);
+      (maxpf[w] ||= {})[(teams[s.teamId] || {}).name || s.teamId] = { act: Math.round(act * 100) / 100, max: optimal(ros.entries), score: s.totalPoints };
+    }
     for (const m of d.schedule.filter(x => x.matchupPeriodId === w)) {
       for (const side of ['home', 'away']) {
         const s = m[side]; if (!s) continue;
@@ -79,7 +100,7 @@ async function espn() {
     f.status = inj[f.pid] || f.status;
     if (f.pts === 0 && f.noStat && !f.byeNow && ['OUT', 'INJURY_RESERVE', 'SUSPENSION', 'DOUBTFUL'].includes(f.status)) flags.push({ ...f, type: f.status, note: 'aktueller Status' });
   }
-  return { cur, flags, curAll };
+  return { cur, flags, curAll, maxpf };
 }
 
 // ---------------- Sleeper ----------------
