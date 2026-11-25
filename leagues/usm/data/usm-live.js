@@ -1,14 +1,14 @@
 // US-Manager (basketball.de) — tägliche Übersicht, erzeugt von leagues/usm/scripts/sync-usm.js
 // (GitHub Action usm-sync.yml, täglich 12:30 Berlin nach dem FP-Update von basketball.de). Nicht von Hand bearbeiten.
 const USM_LIVE = {
- "updated": "2026-11-25T20:38:25.148Z",
+ "updated": "2026-11-25T22:24:56.345Z",
  "date": "2026-11-25",
  "gameday": "2026-11-24",
  "team": {
   "name": "Kenora Hoops",
   "manager": "MFHFB",
-  "trades": 0,
-  "budget": 0.88,
+  "trades": 1,
+  "budget": 0.13,
   "value": 102.81
  },
  "me": {
