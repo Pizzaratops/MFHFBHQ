@@ -4081,9 +4081,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909315",
-      line: "Boston Celtics @ Washington Wizards (4:19 - 3rd)",
+      line: "Boston Celtics @ Washington Wizards (End of 3rd)",
       completed: false,
-      statusText: "4:19 - 3rd",
+      statusText: "End of 3rd",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
