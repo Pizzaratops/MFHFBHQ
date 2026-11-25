@@ -654,9 +654,9 @@
     },
     {
       "id": "401909315",
-      "line": "Boston Celtics @ Washington Wizards (End of 3rd)",
+      "line": "Boston Celtics @ Washington Wizards (8:06 - 4th)",
       "completed": false,
-      "statusText": "End of 3rd",
+      "statusText": "8:06 - 4th",
       "away": {
         "abbr": "BOS",
         "name": "Boston Celtics",
