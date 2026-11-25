@@ -4121,9 +4121,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909316",
-      line: "Dallas Mavericks @ Denver Nuggets (End of 1st)",
+      line: "Dallas Mavericks @ Denver Nuggets (3:19 - 2nd)",
       completed: false,
-      statusText: "End of 1st",
+      statusText: "3:19 - 2nd",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
