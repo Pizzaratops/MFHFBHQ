@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T17:55:30.283Z",
+  "updated": "2026-11-25T18:01:01.915Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -36,6 +36,7 @@ const NBA_INJURIES = {
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
+    "Jalen Brunson": ["NY","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-25"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-24"],
     "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-24"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
@@ -56,7 +57,7 @@ const NBA_INJURIES = {
     "Julian Reese": ["NO","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-29","Foot",0,"2026-11-20"],
-    "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-24"],
+    "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-25"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
@@ -64,7 +65,7 @@ const NBA_INJURIES = {
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
-    "Miles McBride": ["NY","Day-To-Day","GTD","2026-11-25","Groin",0,"2026-11-24"],
+    "Miles McBride": ["NY","Out","OUT","2026-11-27","Groin",0,"2026-11-25"],
     "Mitchell Robinson": ["BOS","Out","OUT","2026-11-27","Illness",0,"2026-11-23"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
