@@ -4081,9 +4081,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909315",
-      line: "Boston Celtics @ Washington Wizards (8:06 - 4th)",
+      line: "Boston Celtics @ Washington Wizards (1:34 - 4th)",
       completed: false,
-      statusText: "8:06 - 4th",
+      statusText: "1:34 - 4th",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
@@ -4099,9 +4099,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909316",
-      line: "Dallas Mavericks @ Denver Nuggets (11/24 - 10:00 PM EST)",
+      line: "Dallas Mavericks @ Denver Nuggets (4:59 - 1st)",
       completed: false,
-      statusText: "11/24 - 10:00 PM EST",
+      statusText: "4:59 - 1st",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [

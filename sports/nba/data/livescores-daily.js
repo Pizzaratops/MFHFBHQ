@@ -5989,7 +5989,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-24": {
-      games: ["Detroit Pistons 104 @ Orlando Magic 86 (Final)","Boston Celtics @ Washington Wizards (8:06 - 4th)","Dallas Mavericks @ Denver Nuggets (11/24 - 10:00 PM EST)"],
+      games: ["Detroit Pistons 104 @ Orlando Magic 86 (Final)","Boston Celtics @ Washington Wizards (1:34 - 4th)","Dallas Mavericks @ Denver Nuggets (4:59 - 1st)"],
       leagueAvg: { fg: 45.1, ft: 73.9 },
       players: [
         { rank: 1, name: "Ausar Thompson", team: "DET", min: 31, pts: 6, reb: 10, ast: 7, stl: 1, blk: 4, to: 2, tpm: 0, fgPct: 100, ftPct: 0, composite: 7.1, zScores: { pts: -0.456, reb: 1.722, ast: 1.677, stl: 0.042, blk: 3.682, tpm: -0.831, fgImpact: 1.452, ftImpact: 0.002, to: -0.188 } },
