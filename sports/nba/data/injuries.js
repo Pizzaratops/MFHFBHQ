@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T23:03:30.275Z",
+  "updated": "2026-11-25T23:16:09.801Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -35,7 +35,6 @@ const NBA_INJURIES = {
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
-    "Jalen Brunson": ["NY","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-25"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-24"],
     "Jalen Smith": ["CHI","Out","OUT","2026-11-28","Illness",0,"2026-11-25"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
@@ -52,11 +51,9 @@ const NBA_INJURIES = {
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","OUT","2026-11-27","Foot",0,"2026-11-24"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
-    "Josh Hart": ["NY","Day-To-Day","GTD","2026-11-25","Shoulder",0,"2026-11-25"],
     "Julian Reese": ["NO","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-29","Foot",0,"2026-11-20"],
-    "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-25"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
