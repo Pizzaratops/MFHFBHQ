@@ -10,6 +10,8 @@
 //      tk    Tankathon Big Board (tankathon.com/big_board, laufend gepflegt)
 //      espn  ESPN Big Board (Jeremy Woo), über die öffentliche ABC7-Kopie;
 //            neue ESPN-Ausgabe → URL unten in LIVE anpassen
+//      cbs   CBS Sports Prospect Rankings (Adam Finkelstein, Top 80); die Seite
+//            hat kein Datum → Datum = Tag, an dem sich die Liste zuletzt änderte
 //    fest (sports/nba/scripts/data/prospect-boards-static.json):
 //      br    Bleacher Report (Wasserman), fs FanSided (Kline), …
 //
@@ -42,6 +44,7 @@ const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
 const LIVE = [
   { key: 'tk', label: 'Tankathon Big Board', by: 'Tankathon', url: 'https://www.tankathon.com/big_board', parse: parseTankathon, rolling: true },
   { key: 'espn', label: 'ESPN Big Board (Woo) Top 100', by: 'Jeremy Woo, ESPN', url: 'https://abc7.com/post/2027-nba-draft-big-board-rankings-top-100-prospects/20017483/', parse: parseEspn },
+  { key: 'cbs', label: 'CBS Sports Prospect Rankings (Finkelstein)', by: 'Adam Finkelstein, CBS Sports', url: 'https://www.cbssports.com/nba/draft/prospect-rankings/', parse: parseCbs, stamp: true, min: 40 },
 ];
 
 const decode = s => String(s || '')
@@ -52,7 +55,7 @@ const decode = s => String(s || '')
 const nk = s => decode(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
 // bekannte Schreibvarianten zwischen den Boards
-const ALIAS = { klarkriethauser: 'klarkreithauser', davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
+const ALIAS = { klarkriethauser: 'klarkreithauser', milonmomcilovic: 'milanmomcilovic', davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
 const key = s => { const k = nk(s); return ALIAS[k] || k; };
 
 function parseTankathon(html) {
@@ -83,6 +86,20 @@ function parseEspn(html) {
   return { players: out, date: d ? d.slice(0, 10) : null };
 }
 
+function parseCbs(html) {
+  const re = /<td[^>]*>\s*(\d{1,3})\s*<\/td>\s*<td[^>]*cell-player[^>]*>[\s\S]*?<span class="PlayerName">[\s\S]*?<a[^>]*>\s*([^<]+?)\s*<\/a>[\s\S]*?<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>\s*<td[^>]*>[\s\S]*?<\/td>\s*<td[^>]*>([\s\S]*?)<\/td>/g;
+  const cl = x => decode(x.replace(/<[^>]+>/g, '').replace(/\s+/g, ' '));
+  const out = [], seen = new Set();
+  let m;
+  while ((m = re.exec(html))) {
+    if (seen.has(+m[1])) continue;
+    seen.add(+m[1]);
+    out.push({ rank: +m[1], name: decode(m[2]), pos: cl(m[4]), school: cl(m[3]), age: null });
+  }
+  out.sort((a, b) => a.rank - b.rank);
+  return { players: out, date: null };
+}
+
 async function fetchText(url) {
   const r = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'text/html' } });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -105,15 +122,21 @@ async function main() {
     try {
       let html;
       if (fromArg) {
-        const f = fs.readdirSync(fromArg).find(x => x.startsWith(src.key === 'tk' ? 'tankathon' : 'espn'));
+        const f = fs.readdirSync(fromArg).find(x => x.startsWith({ tk: 'tankathon', espn: 'espn', cbs: 'cbs' }[src.key]));
         if (!f) throw new Error('keine Testdatei');
         html = fs.readFileSync(path.join(fromArg, f), 'utf8');
       } else html = await fetchText(src.url);
       res = src.parse(html);
-      if (res.players.length < (src.key === 'tk' ? 60 : 40)) throw new Error(`nur ${res.players.length} Einträge erkannt — Seitenstruktur geändert?`);
+      if (res.players.length < (src.min || (src.key === 'tk' ? 60 : 40))) throw new Error(`nur ${res.players.length} Einträge erkannt — Seitenstruktur geändert?`);
     } catch (e) { err = e.message; }
     if (res) {
-      boards.push({ key: src.key, label: src.label, by: src.by, url: src.url, date: src.rolling ? today : (res.date || today), rolling: !!src.rolling, players: res.players.map(p => [p.rank, p.name, p.pos, p.school, p.age]) });
+      let date = src.rolling ? today : (res.date || today);
+      if (src.stamp) { // kein Datum auf der Seite: altes Datum behalten, solange die Liste gleich bleibt
+        const old = prev && (prev.sources || []).find(s => s.key === src.key);
+        const now = JSON.stringify(res.players.map(p => [p.rank, p.name]));
+        if (old && old.players && JSON.stringify(old.players.map(p => [p[0], p[1]])) === now) date = old.date;
+      }
+      boards.push({ key: src.key, label: src.label, by: src.by, url: src.url, date, rolling: !!src.rolling, players: res.players.map(p => [p.rank, p.name, p.pos, p.school, p.age]) });
       console.log(`${src.key}: ${res.players.length} Einträge`);
     } else {
       const old = prev && (prev.sources || []).find(s => s.key === src.key);

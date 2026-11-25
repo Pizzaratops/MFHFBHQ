@@ -75,7 +75,7 @@
   }
   const boardOf = (I, p) => I.board.get(nk(p.n)) || null;      // MFHFB-Fantasy-Board (draft2027.js)
   const konsOf = (I, p) => I.kons.get(nk(p.n)) || null;        // Konsens-Board (prospect-board-nba.js)
-  const SRC_SHORT = { tk: 'Tankathon', espn: 'ESPN', br: 'B/R', fs: 'FanSided' };
+  const SRC_SHORT = { tk: 'Tankathon', espn: 'ESPN', br: 'B/R', fs: 'FanSided', cbs: 'CBS', ndr: 'NBA Draft Room' };
   const fmtD = d => (d ? d.split('-').reverse().join('.') : '');
   function konsTitle(I, k) {
     const S = (I.KB && I.KB.sources) || [];

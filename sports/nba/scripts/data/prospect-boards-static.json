@@ -978,6 +978,435 @@
      "Michigan"
     ]
    ]
+  },
+  {
+   "key": "ndr",
+   "label": "NBA Draft Room Big Board 2.0 Top 70",
+   "by": "NBA Draft Room",
+   "date": "2026-11-23",
+   "url": "https://nbadraftroom.com/2027-nba-draft-big-board-2-0/",
+   "players": [
+    [
+     1,
+     "Quentin Coleman",
+     "SG",
+     "Illinois"
+    ],
+    [
+     2,
+     "Tyran Stokes",
+     "SF",
+     "Kansas"
+    ],
+    [
+     3,
+     "Stefan Joksimovic",
+     "PG/SF",
+     "Baskonia (Slovenia)"
+    ],
+    [
+     4,
+     "Bruce Branch III",
+     "SF",
+     "BYU"
+    ],
+    [
+     5,
+     "Alijah Arenas",
+     "SG",
+     "USC"
+    ],
+    [
+     6,
+     "Ivan Kharchenkov",
+     "SF",
+     "Arizona (Germany)"
+    ],
+    [
+     7,
+     "Caleb Holt",
+     "SG",
+     "Arizona"
+    ],
+    [
+     8,
+     "Jordan Smith Jr.",
+     "SG",
+     "Arkansas"
+    ],
+    [
+     9,
+     "Thomas Haugh",
+     "PF",
+     "Florida"
+    ],
+    [
+     10,
+     "Amari Allen",
+     "SF",
+     "Alabama"
+    ],
+    [
+     11,
+     "Hugo Yimga Moukouri",
+     "SF",
+     "France"
+    ],
+    [
+     12,
+     "Obinna Ekezie Jr.",
+     "C",
+     "Louisville"
+    ],
+    [
+     13,
+     "Colben Landrew",
+     "SG",
+     "UConn"
+    ],
+    [
+     14,
+     "Motiejus Krivas",
+     "C",
+     "Arizona (Lithuania)"
+    ],
+    [
+     15,
+     "Braylon Mullins",
+     "SG",
+     "UConn"
+    ],
+    [
+     16,
+     "Davis Fogle",
+     "SG",
+     "Gonzaga"
+    ],
+    [
+     17,
+     "Andrej Stojakovic",
+     "SF",
+     "Illinois"
+    ],
+    [
+     18,
+     "Daniel Jacobsen",
+     "C",
+     "Purdue"
+    ],
+    [
+     19,
+     "David Mirkovic",
+     "PF",
+     "Illinois (Montenegro)"
+    ],
+    [
+     20,
+     "Jason Crowe Jr.",
+     "PG",
+     "Missouri"
+    ],
+    [
+     21,
+     "Dylan Mingo",
+     "PG",
+     "Baylor"
+    ],
+    [
+     22,
+     "Malachi Moreno",
+     "C",
+     "Kentucky"
+    ],
+    [
+     23,
+     "Thijs De Ridder",
+     "PF",
+     "Virginia (Belgium)"
+    ],
+    [
+     24,
+     "Adonis Ratliff",
+     "PF",
+     "USC"
+    ],
+    [
+     25,
+     "Trey McKenney",
+     "SG",
+     "Michigan"
+    ],
+    [
+     26,
+     "Dash Daniels",
+     "SG",
+     "Melbourne (Australia)"
+    ],
+    [
+     27,
+     "Brady Koehler",
+     "PF",
+     "Notre Dame"
+    ],
+    [
+     28,
+     "Matas Vokietaitis",
+     "C",
+     "Texas (Lithuania)"
+    ],
+    [
+     29,
+     "Abdou Toure",
+     "SF",
+     "Arkansas"
+    ],
+    [
+     30,
+     "Cheickh Niang",
+     "SF",
+     "Italy (Senegal)"
+    ],
+    [
+     31,
+     "Luigi Suigo",
+     "C",
+     "Villanova (Italy)"
+    ],
+    [
+     32,
+     "Tounde Yessoufou",
+     "SF",
+     "St. John's (Benin)"
+    ],
+    [
+     33,
+     "Christian Collins",
+     "SF",
+     "USC"
+    ],
+    [
+     34,
+     "Cameron Houindo",
+     "PF",
+     "France"
+    ],
+    [
+     35,
+     "Shelton Henderson",
+     "SF",
+     "Miami"
+    ],
+    [
+     36,
+     "Tim Ibukunoluwa",
+     "PF",
+     "Siena (Australia)"
+    ],
+    [
+     37,
+     "Austin Goosby",
+     "SG",
+     "Texas"
+    ],
+    [
+     38,
+     "Anthony Thompson",
+     "SF",
+     "Ohio State"
+    ],
+    [
+     39,
+     "Milon Momcilovic",
+     "SF",
+     "Kentucky"
+    ],
+    [
+     40,
+     "Cameron Williams",
+     "PF",
+     "Duke"
+    ],
+    [
+     41,
+     "Brandon McCoy",
+     "PG/SG",
+     "Michigan"
+    ],
+    [
+     42,
+     "Miles Sadler",
+     "PG",
+     "West Virginia"
+    ],
+    [
+     43,
+     "Billy Richmond",
+     "SG",
+     "Arkansas"
+    ],
+    [
+     44,
+     "Joe Philon III",
+     "SF",
+     "UCLA"
+    ],
+    [
+     45,
+     "Sayon Keita",
+     "C",
+     "North Carolina (Mali)"
+    ],
+    [
+     46,
+     "Michael Ruzic",
+     "PF",
+     "LSU (Croatia)"
+    ],
+    [
+     47,
+     "Hamad Mousa",
+     "SF",
+     "Cal Poly (Qatar)"
+    ],
+    [
+     48,
+     "Patrick Ngongba II",
+     "C",
+     "Duke"
+    ],
+    [
+     49,
+     "Jeremy Fears Jr.",
+     "PG",
+     "Michigan State"
+    ],
+    [
+     50,
+     "Klark Riethauser",
+     "SF",
+     "Chalon (Switzerland)"
+    ],
+    [
+     51,
+     "Caleb Gaskins",
+     "PF",
+     "Miami"
+    ],
+    [
+     52,
+     "Ian Jackson",
+     "SF",
+     "St. John's"
+    ],
+    [
+     53,
+     "Pryce Sandfort",
+     "SF",
+     "Nebraska"
+    ],
+    [
+     54,
+     "Jordan Scott",
+     "SG/SF",
+     "Michigan State"
+    ],
+    [
+     55,
+     "Alex Condon",
+     "C",
+     "Florida (Australia)"
+    ],
+    [
+     56,
+     "Rueben Chinyelu",
+     "C",
+     "Florida (Senegal)"
+    ],
+    [
+     57,
+     "Marcus Ponder",
+     "C",
+     "Florida State"
+    ],
+    [
+     58,
+     "Moustapha Thiam",
+     "C",
+     "Michigan (Dakar)"
+    ],
+    [
+     59,
+     "Neoklis Avdalas",
+     "SF",
+     "North Carolina (Greece)"
+    ],
+    [
+     60,
+     "Pavle Backo",
+     "C",
+     "Serbia"
+    ],
+    [
+     61,
+     "Na’Jai Hines",
+     "C",
+     "UConn"
+    ],
+    [
+     62,
+     "Sebastian Rancik",
+     "SF",
+     "Florida State (Slovakia)"
+    ],
+    [
+     63,
+     "Tyler Betsey",
+     "SF",
+     "BYU"
+    ],
+    [
+     64,
+     "Tomislav Ivisic",
+     "C",
+     "Illinois (Croatia)"
+    ],
+    [
+     65,
+     "Matt Able",
+     "SG",
+     "North Carolina"
+    ],
+    [
+     66,
+     "Johann Grunloh",
+     "PF",
+     "Virginia (Germany)"
+    ],
+    [
+     67,
+     "Mantas Juzenas",
+     "SG",
+     "St. Mary's (Lithuania)"
+    ],
+    [
+     68,
+     "Collin Chandler",
+     "SG",
+     "BYU"
+    ],
+    [
+     69,
+     "Adam Atamna",
+     "SG",
+     "Ratiopharm Ulm (France)"
+    ],
+    [
+     70,
+     "Dame Sarr",
+     "SG",
+     "Duke (Italy)"
+    ]
+   ]
   }
  ]
 }
