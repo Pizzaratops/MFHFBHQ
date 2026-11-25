@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-25T02:20:34.714Z",
+  "generatedAt": "2026-11-25T02:45:28.230Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 19 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -98,7 +98,7 @@ const FANTASY_POWER_SCORE = {
       "owner": "Möwe",
       "values": {
         "pts": 322.5,
-        "reb": 120.6,
+        "reb": 120.5,
         "ast": 75,
         "stl": 23.23,
         "blk": 14.82,
