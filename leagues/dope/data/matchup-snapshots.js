@@ -7,7 +7,7 @@
 //  schreibt NUR neue, noch nicht gespielte Wochen dazu. Einmal gesetzte
 //  Einträge werden nie überschrieben, damit sie eine echte "vorher"-
 //  Momentaufnahme bleiben.
-//  Zuletzt synchronisiert: 2026-11-25T09:04:08.457Z
+//  Zuletzt synchronisiert: 2026-11-25T18:20:05.759Z
 //
 //  Struktur: MATCHUP_SNAPSHOTS[season][week][teamId] = {
 //    capturedAt, lineup, mode, teamMean, starters: [{slot,name,pos,mean}]
