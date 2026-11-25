@@ -1,14 +1,14 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T20:26:30.950Z",
+  "updated": "2026-11-25T21:01:03.425Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
-    "Austin Reaves": ["LAL","Out","GTD","2026-11-27","Heel",0,"2026-11-24"],
+    "Austin Reaves": ["LAL","Out","GTD","2026-11-27","Heel",0,"2026-11-25"],
     "Ben Sheppard": ["IND","Out","OUT","2027-01-02","Knee",0,"2026-10-28"],
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","GTD","2026-11-27","Foot",0,"2026-11-19"],
@@ -97,6 +97,7 @@ const NBA_INJURIES = {
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-24"],
     "Victor Wembanyama": ["SA","Day-To-Day","GTD","2026-11-25","Back",0,"2026-11-25"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Yaxel Lendeborg": ["GS","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-24"]
+    "Yaxel Lendeborg": ["GS","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-24"],
+    "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-25"]
   }
 };
