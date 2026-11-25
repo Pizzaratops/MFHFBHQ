@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T22:42:39.767Z",
+  "updated": "2026-11-25T23:01:04.512Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -35,7 +35,6 @@ const NBA_INJURIES = {
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
-    "Jalen Brunson": ["NY","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-25"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-24"],
     "Jalen Smith": ["CHI","Out","OUT","2026-11-28","Illness",0,"2026-11-25"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
@@ -96,6 +95,6 @@ const NBA_INJURIES = {
     "Victor Wembanyama": ["SA","Day-To-Day","GTD","2026-11-25","Back",0,"2026-11-25"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yaxel Lendeborg": ["GS","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-24"],
-    "Zach LaVine": ["SAC","Day-To-Day","OUT","2026-11-29","Knee",0,"2026-11-25"]
+    "Zach LaVine": ["SAC","Out","OUT","2026-11-29","Knee",0,"2026-11-25"]
   }
 };
