@@ -9,7 +9,7 @@
 // ============================================================
 const NBA_POWER_RANKINGS = {
   "season": 2027,
-  "generatedAt": "2026-11-25T03:41:14.739Z",
+  "generatedAt": "2026-11-25T18:36:16.567Z",
   "weeks": [
     {
       "matchupPeriodId": 1,
@@ -383,9 +383,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 0,
           "losses": 0,
           "winPct": 0,
-          "off": 110.7,
+          "off": 111.8,
           "def": 97.2,
-          "net": 13.5,
+          "net": 14.6,
           "rank": {
             "league": null,
             "conference": null,
@@ -492,8 +492,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 0,
           "winPct": 0,
           "off": 97.2,
-          "def": 110.7,
-          "net": -13.5,
+          "def": 111.8,
+          "net": -14.6,
           "rank": {
             "league": null,
             "conference": null,
@@ -865,7 +865,7 @@ const NBA_POWER_RANKINGS = {
             "league": 13,
             "conference": 11,
             "division": 3,
-            "off": 14,
+            "off": 15,
             "def": 26
           }
         },
@@ -930,14 +930,14 @@ const NBA_POWER_RANKINGS = {
           "wins": 1,
           "losses": 0,
           "winPct": 1,
-          "off": 110.7,
+          "off": 111.8,
           "def": 97.2,
-          "net": 13.5,
+          "net": 14.6,
           "rank": {
             "league": 5,
             "conference": 2,
             "division": 2,
-            "off": 15,
+            "off": 14,
             "def": 5
           }
         },
@@ -1039,14 +1039,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 1,
           "winPct": 0,
           "off": 97.2,
-          "def": 110.7,
-          "net": -13.5,
+          "def": 111.8,
+          "net": -14.6,
           "rank": {
             "league": 16,
             "conference": 3,
             "division": 1,
             "off": 24,
-            "def": 14
+            "def": 15
           }
         },
         {
@@ -1100,7 +1100,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 6,
             "division": 3,
             "off": 3,
-            "def": 15
+            "def": 14
           }
         }
       ]
@@ -1178,7 +1178,7 @@ const NBA_POWER_RANKINGS = {
             "league": 2,
             "conference": 2,
             "division": 2,
-            "off": 17,
+            "off": 18,
             "def": 9
           }
         },
@@ -1232,7 +1232,7 @@ const NBA_POWER_RANKINGS = {
             "league": 19,
             "conference": 8,
             "division": 3,
-            "off": 16,
+            "off": 17,
             "def": 30
           }
         },
@@ -1477,14 +1477,14 @@ const NBA_POWER_RANKINGS = {
           "wins": 1,
           "losses": 0,
           "winPct": 1,
-          "off": 105,
+          "off": 105.5,
           "def": 93.2,
-          "net": 11.8,
+          "net": 12.3,
           "rank": {
             "league": 10,
             "conference": 6,
             "division": 2,
-            "off": 18,
+            "off": 16,
             "def": 4
           }
         },
@@ -1586,14 +1586,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 1,
           "winPct": 0,
           "off": 97.2,
-          "def": 110.7,
-          "net": -13.5,
+          "def": 111.8,
+          "net": -14.6,
           "rank": {
             "league": 28,
             "conference": 13,
             "division": 5,
             "off": 24,
-            "def": 16
+            "def": 17
           }
         },
         {
@@ -1647,7 +1647,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 7,
             "division": 3,
             "off": 3,
-            "def": 17
+            "def": 16
           }
         }
       ]
@@ -2024,9 +2024,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 2,
           "losses": 0,
           "winPct": 1,
-          "off": 105,
+          "off": 105.5,
           "def": 93.2,
-          "net": 11.8,
+          "net": 12.3,
           "rank": {
             "league": 8,
             "conference": 6,
@@ -2133,8 +2133,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 1,
           "winPct": 0,
           "off": 101.4,
-          "def": 113.1,
-          "net": -11.6,
+          "def": 113.6,
+          "net": -12.2,
           "rank": {
             "league": 29,
             "conference": 14,
@@ -2308,7 +2308,7 @@ const NBA_POWER_RANKINGS = {
             "league": 14,
             "conference": 8,
             "division": 3,
-            "off": 23,
+            "off": 24,
             "def": 8
           }
         },
@@ -2571,14 +2571,14 @@ const NBA_POWER_RANKINGS = {
           "wins": 2,
           "losses": 0,
           "winPct": 1,
-          "off": 105,
+          "off": 105.5,
           "def": 93.2,
-          "net": 11.8,
+          "net": 12.3,
           "rank": {
             "league": 7,
             "conference": 5,
             "division": 2,
-            "off": 24,
+            "off": 22,
             "def": 2
           }
         },
@@ -2614,7 +2614,7 @@ const NBA_POWER_RANKINGS = {
             "league": 8,
             "conference": 3,
             "division": 1,
-            "off": 22,
+            "off": 23,
             "def": 5
           }
         },
@@ -2680,8 +2680,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0,
           "off": 106.3,
-          "def": 110.5,
-          "net": -4.2,
+          "def": 110.9,
+          "net": -4.6,
           "rank": {
             "league": 30,
             "conference": 15,
@@ -3118,9 +3118,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 3,
           "losses": 0,
           "winPct": 1,
-          "off": 105.1,
+          "off": 105.5,
           "def": 94.1,
-          "net": 11.1,
+          "net": 11.4,
           "rank": {
             "league": 6,
             "conference": 5,
@@ -3227,8 +3227,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.333,
           "off": 106.3,
-          "def": 110.5,
-          "net": -4.2,
+          "def": 110.9,
+          "net": -4.6,
           "rank": {
             "league": 22,
             "conference": 11,
@@ -3665,9 +3665,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 3,
           "losses": 0,
           "winPct": 1,
-          "off": 109.3,
+          "off": 109.6,
           "def": 98.9,
-          "net": 10.3,
+          "net": 10.6,
           "rank": {
             "league": 5,
             "conference": 4,
@@ -3774,8 +3774,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.333,
           "off": 106.3,
-          "def": 110.5,
-          "net": -4.2,
+          "def": 110.9,
+          "net": -4.6,
           "rank": {
             "league": 21,
             "conference": 11,
@@ -4212,9 +4212,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 0,
           "winPct": 1,
-          "off": 109.3,
+          "off": 109.6,
           "def": 98.9,
-          "net": 10.3,
+          "net": 10.6,
           "rank": {
             "league": 5,
             "conference": 4,
@@ -4321,8 +4321,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.333,
           "off": 111.4,
-          "def": 109,
-          "net": 2.4,
+          "def": 109.3,
+          "net": 2.1,
           "rank": {
             "league": 21,
             "conference": 11,
@@ -4759,9 +4759,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 0,
           "winPct": 1,
-          "off": 107.1,
+          "off": 107.3,
           "def": 103.6,
-          "net": 3.5,
+          "net": 3.7,
           "rank": {
             "league": 3,
             "conference": 3,
@@ -4868,8 +4868,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.5,
           "off": 111.1,
-          "def": 107.8,
-          "net": 3.3,
+          "def": 108,
+          "net": 3.1,
           "rank": {
             "league": 14,
             "conference": 8,
@@ -5306,9 +5306,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 1,
           "winPct": 0.8,
-          "off": 107.1,
+          "off": 107.3,
           "def": 103.6,
-          "net": 3.5,
+          "net": 3.7,
           "rank": {
             "league": 6,
             "conference": 5,
@@ -5415,8 +5415,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.6,
           "off": 111.1,
-          "def": 107.8,
-          "net": 3.3,
+          "def": 108,
+          "net": 3.1,
           "rank": {
             "league": 14,
             "conference": 8,
@@ -5853,9 +5853,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 1,
           "winPct": 0.8,
-          "off": 107.1,
+          "off": 107.3,
           "def": 103.6,
-          "net": 3.5,
+          "net": 3.7,
           "rank": {
             "league": 7,
             "conference": 4,
@@ -5962,8 +5962,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.6,
           "off": 111.1,
-          "def": 107.8,
-          "net": 3.3,
+          "def": 108,
+          "net": 3.1,
           "rank": {
             "league": 12,
             "conference": 8,
@@ -6066,7 +6066,7 @@ const NBA_POWER_RANKINGS = {
             "conference": 3,
             "division": 2,
             "off": 5,
-            "def": 11
+            "def": 10
           }
         },
         {
@@ -6400,9 +6400,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 1,
           "winPct": 0.8,
-          "off": 106.5,
+          "off": 106.7,
           "def": 106.6,
-          "net": -0.1,
+          "net": 0,
           "rank": {
             "league": 6,
             "conference": 3,
@@ -6509,14 +6509,14 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.6,
           "off": 112.8,
-          "def": 107.4,
-          "net": 5.4,
+          "def": 107.6,
+          "net": 5.2,
           "rank": {
             "league": 13,
             "conference": 9,
             "division": 4,
             "off": 12,
-            "def": 10
+            "def": 11
           }
         },
         {
@@ -6947,9 +6947,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 2,
           "winPct": 0.667,
-          "off": 106.5,
+          "off": 106.7,
           "def": 106.6,
-          "net": -0.1,
+          "net": 0,
           "rank": {
             "league": 10,
             "conference": 6,
@@ -7056,8 +7056,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.667,
           "off": 112.8,
-          "def": 107.4,
-          "net": 5.4,
+          "def": 107.6,
+          "net": 5.2,
           "rank": {
             "league": 11,
             "conference": 7,
@@ -7494,9 +7494,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 4,
           "losses": 2,
           "winPct": 0.667,
-          "off": 107.8,
+          "off": 108,
           "def": 107.9,
-          "net": -0.1,
+          "net": 0.1,
           "rank": {
             "league": 10,
             "conference": 6,
@@ -7603,8 +7603,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.667,
           "off": 112.5,
-          "def": 106,
-          "net": 6.5,
+          "def": 106.1,
+          "net": 6.4,
           "rank": {
             "league": 11,
             "conference": 7,
@@ -8041,9 +8041,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 5,
           "losses": 2,
           "winPct": 0.714,
-          "off": 107.8,
+          "off": 108,
           "def": 107.9,
-          "net": -0.1,
+          "net": 0.1,
           "rank": {
             "league": 8,
             "conference": 5,
@@ -8150,8 +8150,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.714,
           "off": 112.5,
-          "def": 106,
-          "net": 6.5,
+          "def": 106.1,
+          "net": 6.4,
           "rank": {
             "league": 9,
             "conference": 6,
@@ -8588,9 +8588,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 5,
           "losses": 2,
           "winPct": 0.714,
-          "off": 109.1,
+          "off": 109.3,
           "def": 108.5,
-          "net": 0.6,
+          "net": 0.8,
           "rank": {
             "league": 8,
             "conference": 5,
@@ -8697,8 +8697,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.714,
           "off": 112.4,
-          "def": 106.2,
-          "net": 6.3,
+          "def": 106.3,
+          "net": 6.1,
           "rank": {
             "league": 9,
             "conference": 6,
@@ -9052,7 +9052,7 @@ const NBA_POWER_RANKINGS = {
             "league": 20,
             "conference": 9,
             "division": 3,
-            "off": 19,
+            "off": 20,
             "def": 26
           }
         },
@@ -9135,14 +9135,14 @@ const NBA_POWER_RANKINGS = {
           "wins": 6,
           "losses": 2,
           "winPct": 0.75,
-          "off": 109.1,
+          "off": 109.3,
           "def": 108.5,
-          "net": 0.6,
+          "net": 0.8,
           "rank": {
             "league": 8,
             "conference": 5,
             "division": 2,
-            "off": 20,
+            "off": 19,
             "def": 9
           }
         },
@@ -9244,8 +9244,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.75,
           "off": 112.4,
-          "def": 106.2,
-          "net": 6.3,
+          "def": 106.3,
+          "net": 6.1,
           "rank": {
             "league": 9,
             "conference": 6,
@@ -9682,9 +9682,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 6,
           "losses": 2,
           "winPct": 0.75,
-          "off": 110.6,
+          "off": 110.7,
           "def": 106.4,
-          "net": 4.2,
+          "net": 4.3,
           "rank": {
             "league": 8,
             "conference": 5,
@@ -9791,8 +9791,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.75,
           "off": 114.2,
-          "def": 107.1,
-          "net": 7.1,
+          "def": 107.2,
+          "net": 7,
           "rank": {
             "league": 9,
             "conference": 6,
@@ -10229,9 +10229,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 7,
           "losses": 2,
           "winPct": 0.778,
-          "off": 110.9,
+          "off": 111,
           "def": 103.3,
-          "net": 7.7,
+          "net": 7.8,
           "rank": {
             "league": 5,
             "conference": 3,
@@ -10338,8 +10338,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.778,
           "off": 114.7,
-          "def": 106.1,
-          "net": 8.6,
+          "def": 106.2,
+          "net": 8.5,
           "rank": {
             "league": 6,
             "conference": 4,
@@ -10776,9 +10776,9 @@ const NBA_POWER_RANKINGS = {
           "wins": 8,
           "losses": 2,
           "winPct": 0.8,
-          "off": 110.9,
+          "off": 111,
           "def": 103.3,
-          "net": 7.7,
+          "net": 7.8,
           "rank": {
             "league": 3,
             "conference": 2,
@@ -10885,8 +10885,8 @@ const NBA_POWER_RANKINGS = {
           "losses": 2,
           "winPct": 0.8,
           "off": 114.7,
-          "def": 106.1,
-          "net": 8.6,
+          "def": 106.2,
+          "net": 8.5,
           "rank": {
             "league": 4,
             "conference": 3,
