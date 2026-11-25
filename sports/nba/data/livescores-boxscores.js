@@ -4044,9 +4044,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909314",
-      line: "Detroit Pistons @ Orlando Magic (17.3 - 1st)",
+      line: "Detroit Pistons @ Orlando Magic (3:16 - 2nd)",
       completed: false,
-      statusText: "17.3 - 1st",
+      statusText: "3:16 - 2nd",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [

@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-24T23:51:14.526Z",
+  "updated": "2026-11-25T00:59:31.207Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -91,7 +91,6 @@ const NBA_INJURIES = {
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
     "Tobi Lawal": ["DAL","Out","OUT","2026-11-27","Groin",0,"2026-11-23"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
-    "Tre Mann": ["WSH","Day-To-Day","GTD","2026-11-24","Illness",0,"2026-11-24"],
     "Trendon Watford": ["NO","Out","GTD","2026-11-27","Ankle",0,"2026-11-21"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-24"],
