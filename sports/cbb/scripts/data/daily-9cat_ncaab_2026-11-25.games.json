@@ -634,18 +634,18 @@
     },
     {
       "id": "401921671",
-      "line": "Grand Canyon Lopes @ TBD (11/25 - 9:30 PM EST)",
+      "line": "TBD @ Grand Canyon Lopes (11/25 - 9:30 PM EST)",
       "completed": false,
       "statusText": "11/25 - 9:30 PM EST",
       "away": {
-        "abbr": "GrCan",
-        "name": "Grand Canyon Lopes",
+        "abbr": "TBD",
+        "name": "TBD",
         "score": null,
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "GrCan",
+        "name": "Grand Canyon Lopes",
         "score": null,
         "players": []
       }
@@ -706,18 +706,18 @@
     },
     {
       "id": "401921672",
-      "line": "Saint Louis Billikens @ TBD (11/25 - 11:59 PM EST)",
+      "line": "TBD @ Saint Louis Billikens (11/25 - 11:59 PM EST)",
       "completed": false,
       "statusText": "11/25 - 11:59 PM EST",
       "away": {
-        "abbr": "StLou",
-        "name": "Saint Louis Billikens",
+        "abbr": "TBD",
+        "name": "TBD",
         "score": null,
         "players": []
       },
       "home": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "StLou",
+        "name": "Saint Louis Billikens",
         "score": null,
         "players": []
       }
