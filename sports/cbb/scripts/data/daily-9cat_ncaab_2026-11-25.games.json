@@ -1,0 +1,708 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-25",
+  "games": [
+    {
+      "id": "401927399",
+      "line": "St. Bonaventure Bonnies @ Belmont Bruins (11/25 - 10:00 AM EST)",
+      "completed": false,
+      "statusText": "11/25 - 10:00 AM EST",
+      "away": {
+        "abbr": "StBon",
+        "name": "St. Bonaventure Bonnies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Belm",
+        "name": "Belmont Bruins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401928845",
+      "line": "Rice Owls @ Ohio Bobcats (11/25 - 11:00 AM EST)",
+      "completed": false,
+      "statusText": "11/25 - 11:00 AM EST",
+      "away": {
+        "abbr": "Rice",
+        "name": "Rice Owls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OHIO",
+        "name": "Ohio Bobcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921702",
+      "line": "Northern Iowa Panthers @ Charlotte 49ers (11/25 - 11:00 AM EST)",
+      "completed": false,
+      "statusText": "11/25 - 11:00 AM EST",
+      "away": {
+        "abbr": "NrthIA",
+        "name": "Northern Iowa Panthers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UNCC",
+        "name": "Charlotte 49ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911201",
+      "line": "Mercy Mavericks @ Fordham Rams (11/25 - 11:00 AM EST)",
+      "completed": false,
+      "statusText": "11/25 - 11:00 AM EST",
+      "away": {
+        "abbr": "MRCY",
+        "name": "Mercy Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ford",
+        "name": "Fordham Rams",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920428",
+      "line": "Virginia Cavaliers @ Marquette Golden Eagles (11/25 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 12:00 PM EST",
+      "away": {
+        "abbr": "UVA",
+        "name": "Virginia Cavaliers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Marq",
+        "name": "Marquette Golden Eagles",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920196",
+      "line": "Penn State Abington Nittany Lions @ Saint Joseph's Hawks (11/25 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 12:00 PM EST",
+      "away": {
+        "abbr": "PSAB",
+        "name": "Penn State Abington Nittany Lions",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StJos",
+        "name": "Saint Joseph's Hawks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401928831",
+      "line": "Yale Bulldogs @ Wright State Raiders (11/25 - 12:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 12:30 PM EST",
+      "away": {
+        "abbr": "Yale",
+        "name": "Yale Bulldogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WRST",
+        "name": "Wright State Raiders",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920067",
+      "line": "American International Yellow Jackets @ Rhode Island Rams (11/25 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 1:00 PM EST",
+      "away": {
+        "abbr": "AIC",
+        "name": "American International Yellow Jackets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "URI",
+        "name": "Rhode Island Rams",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919007",
+      "line": "Tulane Green Wave @ Davidson Wildcats (11/25 - 1:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 1:30 PM EST",
+      "away": {
+        "abbr": "Tul",
+        "name": "Tulane Green Wave",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "David",
+        "name": "Davidson Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921669",
+      "line": "Arizona State Sun Devils @ LSU Tigers (11/25 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 2:00 PM EST",
+      "away": {
+        "abbr": "AzSt",
+        "name": "Arizona State Sun Devils",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LSU",
+        "name": "LSU Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924705",
+      "line": "Saint Peter's Peacocks @ Columbia Lions (11/25 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 2:00 PM EST",
+      "away": {
+        "abbr": "SPU",
+        "name": "Saint Peter's Peacocks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Colum",
+        "name": "Columbia Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911311",
+      "line": "Johnson & Wales Griffins @ Brown Bears (11/25 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 2:00 PM EST",
+      "away": {
+        "abbr": "JWU",
+        "name": "Johnson & Wales Griffins",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Brown",
+        "name": "Brown Bears",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921715",
+      "line": "Ole Miss Rebels @ Arizona Wildcats (11/25 - 2:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 2:30 PM EST",
+      "away": {
+        "abbr": "Miss",
+        "name": "Ole Miss Rebels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Ariz",
+        "name": "Arizona Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920809",
+      "line": "Texas A&M Aggies @ Xavier Musketeers (11/25 - 2:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 2:30 PM EST",
+      "away": {
+        "abbr": "TAMU",
+        "name": "Texas A&M Aggies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Xav",
+        "name": "Xavier Musketeers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401919042",
+      "line": "Jackson State Tigers @ Oklahoma State Cowboys (11/25 - 3:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 3:00 PM EST",
+      "away": {
+        "abbr": "JKST",
+        "name": "Jackson State Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OkSt",
+        "name": "Oklahoma State Cowboys",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924737",
+      "line": "Princeton Tigers @ Liberty Flames (11/25 - 4:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 4:00 PM EST",
+      "away": {
+        "abbr": "Princ",
+        "name": "Princeton Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LIB",
+        "name": "Liberty Flames",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921670",
+      "line": "South Carolina Gamecocks @ USC Trojans (11/25 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 4:30 PM EST",
+      "away": {
+        "abbr": "SouthCar",
+        "name": "South Carolina Gamecocks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USC",
+        "name": "USC Trojans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401926065",
+      "line": "Southern Jaguars @ Nebraska Cornhuskers (11/25 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 5:00 PM EST",
+      "away": {
+        "abbr": "SOU",
+        "name": "Southern Jaguars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Nebras",
+        "name": "Nebraska Cornhuskers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917182",
+      "line": "Memphis Tigers @ Penn State Nittany Lions (11/25 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 5:00 PM EST",
+      "away": {
+        "abbr": "Mem",
+        "name": "Memphis Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PSU",
+        "name": "Penn State Nittany Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925688",
+      "line": "Alcorn State Braves @ Texas State Bobcats (11/25 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 5:00 PM EST",
+      "away": {
+        "abbr": "ALCN",
+        "name": "Alcorn State Braves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TxSt",
+        "name": "Texas State Bobcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920237",
+      "line": "Holy Cross Crusaders @ Dartmouth Big Green (11/25 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 5:00 PM EST",
+      "away": {
+        "abbr": "HC",
+        "name": "Holy Cross Crusaders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Dart",
+        "name": "Dartmouth Big Green",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921716",
+      "line": "BYU Cougars @ Providence Friars (11/25 - 5:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 5:30 PM EST",
+      "away": {
+        "abbr": "BYU",
+        "name": "BYU Cougars",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Prov",
+        "name": "Providence Friars",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911241",
+      "line": "Bethune-Cookman Wildcats @ Richmond Spiders (11/25 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 6:00 PM EST",
+      "away": {
+        "abbr": "BCU",
+        "name": "Bethune-Cookman Wildcats",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Rich",
+        "name": "Richmond Spiders",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909720",
+      "line": "UAlbany Great Danes @ Syracuse Orange (11/25 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 6:00 PM EST",
+      "away": {
+        "abbr": "UALB",
+        "name": "UAlbany Great Danes",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Syr",
+        "name": "Syracuse Orange",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909568",
+      "line": "UConn Huskies @ Duke Blue Devils (11/25 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:00 PM EST",
+      "away": {
+        "abbr": "UConn",
+        "name": "UConn Huskies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Duke",
+        "name": "Duke Blue Devils",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920076",
+      "line": "Longwood Lancers @ George Mason Patriots (11/25 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:00 PM EST",
+      "away": {
+        "abbr": "LONG",
+        "name": "Longwood Lancers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GMas",
+        "name": "George Mason Patriots",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918971",
+      "line": "SMU Mustangs @ Utah State Aggies (11/25 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:00 PM EST",
+      "away": {
+        "abbr": "SMU",
+        "name": "SMU Mustangs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UtSt",
+        "name": "Utah State Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918960",
+      "line": "Norfolk State Spartans @ NC State Wolfpack (11/25 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:00 PM EST",
+      "away": {
+        "abbr": "NORF",
+        "name": "Norfolk State Spartans",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NCSU",
+        "name": "NC State Wolfpack",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911028",
+      "line": "Northeastern Huskies @ Wisconsin Badgers (11/25 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:00 PM EST",
+      "away": {
+        "abbr": "NE",
+        "name": "Northeastern Huskies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Wisc",
+        "name": "Wisconsin Badgers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929287",
+      "line": "Wake Forest Demon Deacons @ Mississippi State Bulldogs (11/25 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:30 PM EST",
+      "away": {
+        "abbr": "Wake",
+        "name": "Wake Forest Demon Deacons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MissSt",
+        "name": "Mississippi State Bulldogs",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920138",
+      "line": "Cal State Bakersfield Roadrunners @ Pepperdine Waves (11/25 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 8:00 PM EST",
+      "away": {
+        "abbr": "CSUB",
+        "name": "Cal State Bakersfield Roadrunners",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pepp",
+        "name": "Pepperdine Waves",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911522",
+      "line": "Omaha Mavericks @ UC Davis Aggies (11/25 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 8:00 PM EST",
+      "away": {
+        "abbr": "OMA",
+        "name": "Omaha Mavericks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCDav",
+        "name": "UC Davis Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920550",
+      "line": "Eastern Michigan Eagles @ UTEP Miners (11/25 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 8:30 PM EST",
+      "away": {
+        "abbr": "EMU",
+        "name": "Eastern Michigan Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTEP",
+        "name": "UTEP Miners",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401924897",
+      "line": "Mississippi Valley State Delta Devils @ New Mexico Lobos (11/25 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 9:00 PM EST",
+      "away": {
+        "abbr": "MVSU",
+        "name": "Mississippi Valley State Delta Devils",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NM",
+        "name": "New Mexico Lobos",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917545",
+      "line": "Eastern Washington Eagles @ Loyola Marymount Lions (11/25 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 9:00 PM EST",
+      "away": {
+        "abbr": "EWU",
+        "name": "Eastern Washington Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LoyMa",
+        "name": "Loyola Marymount Lions",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921713",
+      "line": "Washington Huskies @ TBD (11/25 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 10:00 PM EST",
+      "away": {
+        "abbr": "Wash",
+        "name": "Washington Huskies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917544",
+      "line": "Pacific Tigers @ Jacksonville State Gamecocks (11/25 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 10:30 PM EST",
+      "away": {
+        "abbr": "Pacif",
+        "name": "Pacific Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "JXST",
+        "name": "Jacksonville State Gamecocks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929005",
+      "line": "Incarnate Word Cardinals @ Hawai'i Rainbow Warriors (11/25 - 11:59 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 11:59 PM EST",
+      "away": {
+        "abbr": "UIW",
+        "name": "Incarnate Word Cardinals",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "HI",
+        "name": "Hawai'i Rainbow Warriors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921714",
+      "line": "Clemson Tigers @ TBD (11/26 - 12:30 AM EST)",
+      "completed": false,
+      "statusText": "11/26 - 12:30 AM EST",
+      "away": {
+        "abbr": "Clem",
+        "name": "Clemson Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "TBD",
+        "name": "TBD",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

@@ -2,15 +2,10 @@
   "league": "ncaab",
   "date": "2026-11-24",
   "games": [
-    "Baylor Bears @ Alabama Crimson Tide (Halftime)",
-    "Sam Houston Bearkats 73 @ Washington State Cougars 80 (Final)",
-    "UNC Greensboro Spartans 65 @ UC Santa Barbara Gauchos 85 (Final)",
-    "Idaho State Bengals 71 @ Boise State Broncos 88 (Final)",
-    "Evansville Purple Aces @ Missouri Tigers (End of 2nd)",
-    "UTEP Miners 80 @ Charleston Cougars 69 (Final)",
-    "UNC Asheville Bulldogs 61 @ Florida State Seminoles 97 (Final)",
-    "Saint Louis Billikens @ Grand Canyon Lopes (Halftime)",
-    "VCU Rams @ Colorado State Rams (8:12 - 1st)",
+    "Oregon Ducks @ St. John's Red Storm (5:02 - 1st)",
+    "Baylor Bears @ Alabama Crimson Tide (3:06 - 2nd)",
+    "Saint Louis Billikens @ Grand Canyon Lopes (5:08 - 2nd)",
+    "VCU Rams @ Colorado State Rams (15:55 - 2nd)",
     "Milwaukee Panthers 67 @ Florida Gators 76 (Final)",
     "Texas Tech Red Raiders 64 @ Louisville Cardinals 72 (Final)",
     "Providence Friars 66 @ Arizona Wildcats 84 (Final)",
@@ -46,12 +41,17 @@
     "Central Michigan Chippewas 70 @ Notre Dame Fighting Irish 88 (Final)",
     "Bucknell Bison 71 @ Cornell Big Red 92 (Final)",
     "Duquesne Dukes 70 @ High Point Panthers 75 (Final)",
-    "Oregon Ducks @ St. John's Red Storm (11/24 - 11:18 PM EST)",
+    "Sam Houston Bearkats 73 @ Washington State Cougars 80 (Final)",
+    "UNC Greensboro Spartans 65 @ UC Santa Barbara Gauchos 85 (Final)",
+    "Idaho State Bengals 71 @ Boise State Broncos 88 (Final)",
+    "Evansville Purple Aces 67 @ Missouri Tigers 78 (Final)",
+    "UTEP Miners 80 @ Charleston Cougars 69 (Final)",
+    "UNC Asheville Bulldogs 61 @ Florida State Seminoles 97 (Final)",
     "Colorado Buffaloes @ Stanford Cardinal (11/24 - 11:59 PM EST)",
     "Gonzaga Bulldogs @ Kansas State Wildcats (11/25 - 12:30 AM EST)"
   ],
   "leagueAvg": {
-    "fg": 46.4,
-    "ft": 75.2
+    "fg": 46.5,
+    "ft": 75
   }
 }
