@@ -11,7 +11,7 @@
 //  Transparenz-Flag, niedrige Werte = weniger belastbarer Score.
 //
 //  nameKey = normalisierter Name (lowercase, Suffixe/Satzzeichen entfernt)
-//  fuer das Matching in scripts/build-nfl-profile-comp.js gegen die echte
+//  fuer das Matching (heute build-prospect-*.py) gegen die echte
 //  CFBD-Produktion aus data/college-scouting.js.
 //
 //  NFL_DRAFT_ATHLETIC_PROFILES[Pos] = [{ nameKey, name, college, draftYear,
