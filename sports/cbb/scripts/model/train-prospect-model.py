@@ -50,11 +50,11 @@ CATF_EXTRA = ['pts40', 'reb40', 'ast40', 'stl40', 'blk40', 'tpm40', 'fta40', 'ri
 # Merkmale des Draft-Modells
 FEATS = ['age', 'cls', 'rec', 'recTop', 'unrec', 'htIn', 'power', 'bpm', 'obpm', 'dbpm', 'usg', 'ts',
          'orbPct', 'drbPct', 'astPct', 'toPct', 'blkPct', 'stlPct', 'ftr', 'tpa40', 'tpPct',
-         'ftPct', 'rimPct', 'dunk40', 'mpg', 'minPct', 'bpmJump']
+         'ftPct', 'rimPct', 'dunk40', 'mpg', 'minPct', 'bpmJump', 'confStr']
 # Merkmale des VORSAISON-Modells (ohne Produktion der laufenden Saison): früh in der Saison
 # ist die Produktion ein winziges Sample — dann tragen Recruiting, Alter, Größe und Vorjahr.
 # build-college-prospects.js blendet: Gewicht Produktionsmodell = min(1, Saison-Minuten / BLEND_MIN).
-PRE = ['age', 'cls', 'rec', 'recTop', 'unrec', 'htIn', 'power', 'hasPrev', 'prevBpm', 'prevObpm', 'prevMpg', 'prevUsg']
+PRE = ['age', 'cls', 'rec', 'recTop', 'unrec', 'htIn', 'power', 'hasPrev', 'prevBpm', 'prevObpm', 'prevMpg', 'prevUsg', 'confStr']
 BLEND_MIN = 700.0
 # Merkmale des College Production Comp (nur Produktion, kein Alter/Größe/Recruiting)
 COMP = ['bpm', 'obpm', 'dbpm', 'usg', 'ts', 'orbPct', 'drbPct', 'astPct', 'toPct', 'blkPct',
@@ -90,6 +90,14 @@ def load():
     D['htIn'] = ht[0] * 12 + ht[1]
     D['clsN'] = D.cls.map(CLS)
     D['power'] = D.conf.isin(POWER).astype(float)
+    # Konferenz-Stärke (seit 25.11.2026, Idee: Engelmann „How to adjust college stats“ — Gegnerstärke):
+    # minutengewichteter Ø-BPM aller Spieler der Konferenz in der Saison (Barttorvik-BPM ist gegner-bereinigt,
+    # stärkere Konferenzen haben im Schnitt höhere BPM). Backtest: Vorsaison-Modell Pick-ρ 0,580→0,590 /
+    # 0,438→0,455, Typ-Modell 0,333→0,340, sonst unverändert.
+    w = D['min'].clip(lower=0)
+    cs = D.assign(_w=w, _b=pd.to_numeric(D.bpm, errors='coerce').fillna(0) * w).groupby(['year', 'conf'])[['_b', '_w']].sum()
+    cs = (cs._b / cs._w.clip(lower=1)).rename('confStr')
+    D = D.join(cs, on=['year', 'conf'])
     D['bucket'] = D.role.map(BUCKET).fillna('W')
     # Wurfzonen (Ring, Dunks) erst ab 2010 erfasst — davor als fehlend behandeln (→ Pool-Schnitt)
     D.loc[D.year < 2010, ['rimPct', 'rimRate', 'dunk40']] = np.nan
@@ -132,6 +140,7 @@ def profiles(D, rows, cage, means):
         v['recTop'] = -math.log(100.5 - (float(r.rec) if pd.notna(r.rec) else 0.0))
         v['htIn'] = float(r.htIn) if pd.notna(r.htIn) else means['htIn']
         v['power'] = float(r.power)
+        v['confStr'] = float(r.confStr) if pd.notna(r.confStr) else 0.0
         out.append(v)
     return pd.DataFrame(out, index=rows.index)
 

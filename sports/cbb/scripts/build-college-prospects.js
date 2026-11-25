@@ -119,6 +119,7 @@ function profile(r, p, M) {
   v.recTop = -Math.log(100.5 - (isNaN(r.rec) ? 0 : r.rec));
   v.htIn = isNaN(r.htIn) ? M.means.htIn : r.htIn;
   v.power = r.power;
+  v.confStr = isNaN(r.confStr) ? 0 : r.confStr;
   return v;
 }
 
@@ -145,7 +146,7 @@ const sig = x => 1 / (1 + Math.exp(-x));
 // Treiber-Texte mit Richtung: [hoch, niedrig] — je nachdem, ob der Spieler über/unter dem Schnitt liegt
 const FLABEL = {
   age: ['älter', 'jünger'], cls: ['späteres College-Jahr', 'frühes College-Jahr'], htIn: ['groß', 'klein'],
-  power: ['Power-Conference', 'kleinere Conference'], bpm: ['hohe BPM', 'niedrige BPM'], obpm: ['hohe Off. BPM', 'niedrige Off. BPM'],
+  power: ['Power-Conference', 'kleinere Conference'], confStr: ['starke Conference', 'schwache Conference'], bpm: ['hohe BPM', 'niedrige BPM'], obpm: ['hohe Off. BPM', 'niedrige Off. BPM'],
   dbpm: ['hohe Def. BPM', 'niedrige Def. BPM'], usg: ['hohe Usage', 'niedrige Usage'], ts: ['effizient (TS%)', 'ineffizient (TS%)'],
   orbPct: ['viele Off.-Rebounds', 'wenige Off.-Rebounds'], drbPct: ['viele Def.-Rebounds', 'wenige Def.-Rebounds'],
   astPct: ['hohe Assist-Quote', 'niedrige Assist-Quote'], toPct: ['viele Ballverluste', 'wenige Ballverluste'],
@@ -205,6 +206,14 @@ function main() {
   const tmpFiles = process.env.TORVIK_DIR && fs.existsSync(process.env.TORVIK_DIR) ? fs.readdirSync(process.env.TORVIK_DIR).filter(f => /^torvik_\d{4}\.csv\.gz$/.test(f)) : [];
   const CUR = +process.env.CBB_SEASON || Math.max(...files.concat(tmpFiles).map(f => +f.slice(7, 11)));
   const cur = loadYear(CUR, M), prev = loadYear(CUR - 1, M);
+  // Konferenz-Stärke (= train-prospect-model.py: minutengewichteter Ø-BPM je Konferenz und Saison).
+  // Laufende Saison: früh noch dünn → Vorsaison mit halbem Gewicht dazu (Konferenzen sind stabil).
+  const confAgg = (rows, wf) => rows.reduce((m, r) => { const w = Math.max(r.min, 0) * wf, b = isNaN(r.bpm) ? 0 : r.bpm; const a = m[r.conf] || (m[r.conf] = { b: 0, w: 0 }); a.b += b * w; a.w += w; return m; }, {});
+  const cA = confAgg(cur, 1), pA = confAgg(prev, 0.5);
+  const confStr = c => { const a = cA[c] || { b: 0, w: 0 }, q = pA[c] || { b: 0, w: 0 }; const w = a.w + q.w; return w > 0 ? (a.b + q.b) / w : 0; };
+  const pOnly = confAgg(prev, 1), confPrev = c => { const a = pOnly[c]; return a && a.w > 0 ? a.b / a.w : 0; };
+  cur.forEach(r => { r.confStr = confStr(r.conf); });
+  prev.forEach(r => { r.confStr = confPrev(r.conf); });
   const prevBy = new Map(); prev.forEach(r => { if (!prevBy.has(r.pid)) prevBy.set(r.pid, r); });
   console.log(`Saison ${CUR}: ${cur.length} Spieler-Saisons, Vorjahr ${prev.length}.`);
 
