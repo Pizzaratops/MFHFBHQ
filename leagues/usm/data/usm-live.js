@@ -1,7 +1,7 @@
 // US-Manager (basketball.de) — tägliche Übersicht, erzeugt von leagues/usm/scripts/sync-usm.js
 // (GitHub Action usm-sync.yml, täglich 12:30 Berlin nach dem FP-Update von basketball.de). Nicht von Hand bearbeiten.
 const USM_LIVE = {
- "updated": "2026-11-25T20:09:49.710Z",
+ "updated": "2026-11-25T20:38:25.148Z",
  "date": "2026-11-25",
  "gameday": "2026-11-24",
  "team": {
