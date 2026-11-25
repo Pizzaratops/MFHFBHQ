@@ -4044,9 +4044,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909314",
-      line: "Detroit Pistons @ Orlando Magic (6:50 - 3rd)",
+      line: "Detroit Pistons @ Orlando Magic (8:14 - 4th)",
       completed: false,
-      statusText: "6:50 - 3rd",
+      statusText: "8:14 - 4th",
       away: {
         abbr: "DET", name: "Detroit Pistons", score: null,
         players: [
@@ -4062,9 +4062,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909315",
-      line: "Boston Celtics @ Washington Wizards (3:42 - 1st)",
+      line: "Boston Celtics @ Washington Wizards (4:42 - 2nd)",
       completed: false,
-      statusText: "3:42 - 1st",
+      statusText: "4:42 - 2nd",
       away: {
         abbr: "BOS", name: "Boston Celtics", score: null,
         players: [
