@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-25T00:03:23.820Z",
+  "generatedAt": "2026-11-25T02:03:20.115Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -541,7 +541,7 @@ const STATUS_REPORT_DATA = {
           "name": "Emmett Johnson",
           "pos": "RB",
           "nfl": "KC",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 24.3,
@@ -563,7 +563,7 @@ const STATUS_REPORT_DATA = {
           "name": "Dallas Goedert",
           "pos": "TE",
           "nfl": "PHI",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 4.8,
@@ -735,7 +735,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.3,
           "last3AvgPoints": 16.1,
-          "projPoints": 21.4
+          "projPoints": 21.5
         },
         {
           "name": "Jayden Daniels",
@@ -889,7 +889,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.4,
           "last3AvgPoints": 15.4,
-          "projPoints": 10.6
+          "projPoints": 10.7
         },
         {
           "name": "John Metchie III",
@@ -944,7 +944,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 0.8
+          "projPoints": 1.1
         },
         {
           "name": "Jaxon Smith-Njigba",
@@ -1000,7 +1000,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.3,
           "last3AvgPoints": 16.1,
-          "projPoints": 21.4
+          "projPoints": 21.5
         },
         {
           "name": "Jayden Daniels",
@@ -1088,7 +1088,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4,
           "last3AvgPoints": 8.4,
-          "projPoints": 13.5
+          "projPoints": 13.4
         },
         {
           "name": "Tory Horton",
@@ -1143,7 +1143,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 13.8,
-          "projPoints": 10.8
+          "projPoints": 10.7
         },
         {
           "name": "Makai Lemon",
@@ -1518,7 +1518,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
-          "projPoints": 0.2
+          "projPoints": null
         },
         {
           "name": "Colby Parkinson",
@@ -1595,7 +1595,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11,
           "last3AvgPoints": 18.8,
-          "projPoints": 4.1
+          "projPoints": 4.2
         }
       ],
       "flaggedCount": 0
@@ -1618,7 +1618,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.3,
           "last3AvgPoints": 16.1,
-          "projPoints": 21.4
+          "projPoints": 21.5
         },
         {
           "name": "Audric Estime",
@@ -1695,7 +1695,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 8,
-          "projPoints": 8.6
+          "projPoints": 8.7
         },
         {
           "name": "Tory Horton",
@@ -1883,7 +1883,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.3,
           "last3AvgPoints": 16.1,
-          "projPoints": 21.4
+          "projPoints": 21.5
         },
         {
           "name": "Adonai Mitchell",
@@ -1894,7 +1894,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5,
           "last3AvgPoints": 7,
-          "projPoints": 9
+          "projPoints": 8.9
         },
         {
           "name": "Will Reichard",
@@ -1938,7 +1938,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 13.8,
-          "projPoints": 10.8
+          "projPoints": 10.7
         },
         {
           "name": "Jeremiyah Love",
@@ -1982,7 +1982,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.4,
           "last3AvgPoints": 15.4,
-          "projPoints": 10.6
+          "projPoints": 10.7
         },
         {
           "name": "Nico Collins",
@@ -1993,7 +1993,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.8,
           "last3AvgPoints": 18.2,
-          "projPoints": 17.3
+          "projPoints": 17.5
         },
         {
           "name": "George Pickens",
@@ -2015,7 +2015,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.9,
           "last3AvgPoints": 11.3,
-          "projPoints": 15.5
+          "projPoints": 15.4
         },
         {
           "name": "Bryce Young",
@@ -2093,7 +2093,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3,
-          "projPoints": 2.9
+          "projPoints": 3
         },
         {
           "name": "Jalen Coker",
@@ -2292,7 +2292,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1.8,
           "last3AvgPoints": 1.8,
-          "projPoints": 7.1
+          "projPoints": 7.2
         },
         {
           "name": "Jeremiyah Love",
@@ -2358,7 +2358,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 8.4
+          "projPoints": 8.3
         },
         {
           "name": "David Montgomery",
@@ -2369,7 +2369,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 15.4,
           "last3AvgPoints": 15.4,
-          "projPoints": 10.6
+          "projPoints": 10.7
         },
         {
           "name": "CeeDee Lamb",
@@ -2413,7 +2413,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.6,
           "last3AvgPoints": 15.8,
-          "projPoints": 16.1
+          "projPoints": 14.4
         },
         {
           "name": "Zach Charbonnet",
@@ -2558,7 +2558,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.2,
           "last3AvgPoints": 10.9,
-          "projPoints": 8.2
+          "projPoints": 8.1
         },
         {
           "name": "Quinshon Judkins",
@@ -3653,7 +3653,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5,
           "last3AvgPoints": 9.4,
-          "projPoints": 9.7
+          "projPoints": 9.6
         },
         {
           "name": "Emmett Johnson",
@@ -3708,7 +3708,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 11.9,
           "last3AvgPoints": 7.5,
-          "projPoints": 16.5
+          "projPoints": 15.2
         },
         {
           "name": "Justin Jefferson",
@@ -3963,7 +3963,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.5,
           "last3AvgPoints": 4.2,
-          "projPoints": 7.1
+          "projPoints": 7
         },
         {
           "name": "Emeka Egbuka",
@@ -3996,7 +3996,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 13.8,
-          "projPoints": 10.8
+          "projPoints": 10.7
         },
         {
           "name": "Malachi Fields",
@@ -4217,7 +4217,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 8.4
+          "projPoints": 8.3
         },
         {
           "name": "Dallas Goedert",
@@ -4349,7 +4349,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12,
           "last3AvgPoints": 20.3,
-          "projPoints": 4.8
+          "projPoints": 4.9
         },
         {
           "name": "Jordan Addison",
