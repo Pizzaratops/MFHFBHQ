@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T23:16:09.801Z",
+  "updated": "2026-11-25T23:35:06.871Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -42,6 +42,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-24"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
+    "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-25","Hamstring",0,"2026-11-25"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-28","Back",0,"2026-11-24"],
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
