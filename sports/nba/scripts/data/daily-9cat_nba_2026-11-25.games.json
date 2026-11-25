@@ -1,0 +1,168 @@
+{
+  "league": "nba",
+  "date": "2026-11-25",
+  "games": [
+    {
+      "id": "401909317",
+      "line": "Miami Heat @ Philadelphia 76ers (11/25 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 5:00 PM EST",
+      "away": {
+        "abbr": "MIA",
+        "name": "Miami Heat",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909318",
+      "line": "Chicago Bulls @ Charlotte Hornets (11/25 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:00 PM EST",
+      "away": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909319",
+      "line": "Cleveland Cavaliers @ New York Knicks (11/25 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:30 PM EST",
+      "away": {
+        "abbr": "CLE",
+        "name": "Cleveland Cavaliers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "NY",
+        "name": "New York Knicks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909320",
+      "line": "Minnesota Timberwolves @ Oklahoma City Thunder (11/25 - 7:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 7:30 PM EST",
+      "away": {
+        "abbr": "MIN",
+        "name": "Minnesota Timberwolves",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909321",
+      "line": "LA Clippers @ Memphis Grizzlies (11/25 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 8:00 PM EST",
+      "away": {
+        "abbr": "LAC",
+        "name": "LA Clippers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MEM",
+        "name": "Memphis Grizzlies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909322",
+      "line": "Brooklyn Nets @ Milwaukee Bucks (11/25 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 8:00 PM EST",
+      "away": {
+        "abbr": "BKN",
+        "name": "Brooklyn Nets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909323",
+      "line": "Phoenix Suns @ Houston Rockets (11/25 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 8:30 PM EST",
+      "away": {
+        "abbr": "PHX",
+        "name": "Phoenix Suns",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909324",
+      "line": "Sacramento Kings @ Golden State Warriors (11/25 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 10:00 PM EST",
+      "away": {
+        "abbr": "SAC",
+        "name": "Sacramento Kings",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "GS",
+        "name": "Golden State Warriors",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909325",
+      "line": "San Antonio Spurs @ Portland Trail Blazers (11/25 - 10:00 PM EST)",
+      "completed": false,
+      "statusText": "11/25 - 10:00 PM EST",
+      "away": {
+        "abbr": "SA",
+        "name": "San Antonio Spurs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "POR",
+        "name": "Portland Trail Blazers",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}

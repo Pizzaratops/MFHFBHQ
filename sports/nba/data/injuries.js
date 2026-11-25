@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T02:45:06.523Z",
+  "updated": "2026-11-25T05:01:03.869Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -62,7 +62,7 @@ const NBA_INJURIES = {
     "Larry Nance Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-24"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
-    "Maxime Raynaud": ["SAC","Out","GTD","2026-11-25","Knee",0,"2026-11-18"],
+    "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
     "Miles McBride": ["NY","Day-To-Day","GTD","2026-11-25","Groin",0,"2026-11-24"],
     "Mitchell Robinson": ["BOS","Out","OUT","2026-11-27","Illness",0,"2026-11-23"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],

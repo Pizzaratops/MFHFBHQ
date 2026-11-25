@@ -5989,7 +5989,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-24": {
-      games: ["Detroit Pistons 104 @ Orlando Magic 86 (Final)","Boston Celtics 131 @ Washington Wizards 116 (Final)","Dallas Mavericks @ Denver Nuggets (3:19 - 2nd)"],
+      games: ["Detroit Pistons 104 @ Orlando Magic 86 (Final)","Boston Celtics 131 @ Washington Wizards 116 (Final)","Dallas Mavericks @ Denver Nuggets (10:10 - 4th)"],
       leagueAvg: { fg: 45.2, ft: 75.7 },
       players: [
         { rank: 1, name: "Anthony Davis", team: "WSH", min: 37, pts: 33, reb: 13, ast: 1, stl: 2, blk: 1, to: 2, tpm: 1, fgPct: 57.1, ftPct: 80, composite: 8.74, zScores: { pts: 2.407, reb: 2.655, ast: -0.427, stl: 1.364, blk: 0.72, tpm: -0.211, fgImpact: 1.897, ftImpact: 0.855, to: -0.524 } },
