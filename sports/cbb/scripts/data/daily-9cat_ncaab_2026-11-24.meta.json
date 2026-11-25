@@ -2,8 +2,7 @@
   "league": "ncaab",
   "date": "2026-11-24",
   "games": [
-    "Gonzaga Bulldogs @ Kansas State Wildcats (15:29 - 2nd)",
-    "Colorado Buffaloes @ Stanford Cardinal (Halftime)",
+    "Colorado Buffaloes 70 @ Stanford Cardinal 65 (Final)",
     "Milwaukee Panthers 67 @ Florida Gators 76 (Final)",
     "Texas Tech Red Raiders 64 @ Louisville Cardinals 72 (Final)",
     "Providence Friars 66 @ Arizona Wildcats 84 (Final)",
@@ -13,6 +12,7 @@
     "Baylor Bears 68 @ Alabama Crimson Tide 63 (Final)",
     "Miami Hurricanes 71 @ TCU Horned Frogs 84 (Final)",
     "Ole Miss Rebels 73 @ BYU Cougars 63 (Final)",
+    "Gonzaga Bulldogs 101 @ Kansas State Wildcats 61 (Final)",
     "Jacksonville Dolphins 64 @ Indiana Hoosiers 82 (Final)",
     "Wright State Raiders 70 @ St. Bonaventure Bonnies 72 (Final/OT)",
     "Belmont Bruins 64 @ Akron Zips 87 (Final)",
@@ -51,7 +51,7 @@
     "VCU Rams 84 @ Colorado State Rams 81 (Final)"
   ],
   "leagueAvg": {
-    "fg": 46.6,
-    "ft": 74.6
+    "fg": 46.5,
+    "ft": 74.7
   }
 }
