@@ -177,7 +177,8 @@ async function main() {
 
   // nur bei Änderung schreiben (Reihenfolge + Quellenränge)
   const sig = x => JSON.stringify((x || []).map(p => [p.name, p.rank, p.src]));
-  if (prev && sig(prev.players) === sig(players)) { console.log('unverändert — nichts geschrieben'); return; }
+  const ssig = x => JSON.stringify((x || []).map(b => [b.key, b.date, !!b.stale]));
+  if (prev && sig(prev.players) === sig(players) && ssig(prev.sources) === ssig(boards)) { console.log('unverändert — nichts geschrieben'); return; }
   // move gegenüber der VORHERIGEN Datei (gleicher Tag: alte move-Werte behalten)
   if (prev && prev.asof === today) { const pm = new Map(prev.players.map(p => [key(p.name), p.move])); players.forEach(p => { if (pm.has(key(p.name))) p.move = pm.get(key(p.name)); }); }
 
