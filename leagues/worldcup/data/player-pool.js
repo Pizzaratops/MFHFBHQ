@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-25T13:02:53.770Z
+//  Stand: 2026-11-25T14:02:55.559Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -295,7 +295,7 @@ const WC_PLAYER_POOL = [
 ["07241","Dawson Garcia","(N/A)","SF","SF,PF,C,F,Flx","FA"],
 ["05uj3","DayRon Sharpe","BKN","C","C,Flx","T"],
 ["049kb","DeAaron Fox","SAS","PG","PG,SG,G,Flx","T"],
-["0529c","Dean Wade","PHI","PF","PF,F,Flx","FA"],
+["0529c","Dean Wade","PHI","PF","PF,F,Flx","T"],
 ["049kd","Deandre Ayton","WAS","C","C,Flx","FA"],
 ["051ok","DeAndre Hunter","SAC","SF","SF,PF,F,Flx","T"],
 ["005l3","DeAndre Jordan","NOR","C","C,Flx","FA"],
@@ -742,7 +742,7 @@ const WC_PLAYER_POOL = [
 ["06235","Kenneth Lofton","(N/A)","PF","PF,F,Flx","FA"],
 ["059cn","Kenny Wooten","(N/A)","PF","PF,F,Flx","FA"],
 ["04t8w","Kenrich Williams","OKC","PF","PF,F,Flx","T"],
-["031lv","Kentavious Caldwell-Pope","PHI","SG","SG,G,SF,F,Flx","FA"],
+["031lv","Kentavious Caldwell-Pope","PHI","SG","SG,G,SF,F,Flx","T"],
 ["05qym","Kenyon Martin","(N/A)","SF","SF,F,Flx","FA"],
 ["0623m","Keon Ellis","BKN","SG","PG,SG,G,Flx","FA"],
 ["05uiv","Keon Johnson","(N/A)","SG","PG,SG,G,Flx","FA"],
@@ -791,7 +791,7 @@ const WC_PLAYER_POOL = [
 ["076wf","Kylan Boswell","CHA","PG","PG,G,Flx","FA"],
 ["052h3","Kyle Alexander","(N/A)","PF","PF,F,Flx","FA"],
 ["03aq3","Kyle Anderson","TOR","SF","SF,PF,F,Flx","FA"],
-["06mle","Kyle Filipowski","UTA","C","PF,C,F,Flx","FA"],
+["06mle","Kyle Filipowski","UTA","C","PF,C,F,Flx","T"],
 ["051pz","Kyle Guy","(N/A)","SG","SG,G,Flx","FA"],
 ["04ewr","Kyle Kuzma","MIL","PF","SF,PF,F,Flx","T"],
 ["06hpm","Kyle Mangas","(N/A)","PG","PG,G,Flx","FA"],
@@ -1087,7 +1087,7 @@ const WC_PLAYER_POOL = [
 ["059cb","Sagaba Konate","(N/A)","SF","SF,F,Flx","FA"],
 ["07245","Saint Thomas","(N/A)","SF","SF,PF,F,Flx","FA"],
 ["06va2","Saliou Niang","(N/A)","SF","SF,PF,F,Flx","FA"],
-["05uug","Sam Hauser","BOS","PF","SF,PF,F,Flx","T"],
+["05uug","Sam Hauser","BOS","PF","SF,PF,F,Flx","FA"],
 ["05qtb","Sam Merrill","CLE","SG","SG,G,SF,F,Flx","FA"],
 ["06mop","Samson Froling","(N/A)","C","C,Flx","FA"],
 ["05ujs","Sandro Mamukelashvili","LAL","PF","PF,C,F,Flx","T"],
