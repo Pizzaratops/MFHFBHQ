@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401909317",
-      "line": "Miami Heat @ Philadelphia 76ers (11/25 - 5:00 PM EST)",
+      "line": "Miami Heat @ Philadelphia 76ers (3:55 - 1st)",
       "completed": false,
-      "statusText": "11/25 - 5:00 PM EST",
+      "statusText": "3:55 - 1st",
       "away": {
         "abbr": "MIA",
         "name": "Miami Heat",

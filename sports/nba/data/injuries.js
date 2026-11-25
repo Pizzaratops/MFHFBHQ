@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T21:35:16.197Z",
+  "updated": "2026-11-25T22:26:19.886Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -37,7 +37,7 @@ const NBA_INJURIES = {
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Brunson": ["NY","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-25"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-24"],
-    "Jalen Smith": ["CHI","Day-To-Day","GTD","2026-11-25","Illness",0,"2026-11-24"],
+    "Jalen Smith": ["CHI","Out","OUT","2026-11-28","Illness",0,"2026-11-25"],
     "Jalen Williams": ["OKC","Out","OUT","2027-03-02","Leg",0,"2026-11-23"],
     "Jamir Watkins": ["WSH","Out","OUT","2027-04-02","Knee",0,"2026-07-30"],
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
@@ -83,7 +83,7 @@ const NBA_INJURIES = {
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-12-12","Back",0,"2026-11-24"],
     "Sergio de Larrea": ["DAL","Out","GTD","2026-11-27","Knee",0,"2026-11-17"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
-    "Sion James": ["CHA","Day-To-Day","GTD","2026-11-25","Undisclosed",0,"2026-11-24"],
+    "Sion James": ["CHA","Day-To-Day","","","",0,"2026-11-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-12"],
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-27","Hamstring",0,"2026-11-24"],
     "Tarik Biberovic": ["DAL","Out","GTD","2026-11-27","Heel",0,"2026-11-17"],
