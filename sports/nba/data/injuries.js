@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T02:01:02.610Z",
+  "updated": "2026-11-25T02:45:06.523Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -74,7 +74,6 @@ const NBA_INJURIES = {
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
     "OG Anunoby": ["NY","Out","OUT","2026-11-27","Calf",0,"2026-11-24"],
-    "P.J. Washington": ["DAL","Day-To-Day","GTD","2026-11-24","Illness",0,"2026-11-23"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
