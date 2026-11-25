@@ -136,7 +136,7 @@
       <div class="cs-rmeta"><span>${e(basis)}</span></div>
       <div class="cs-rgrid">
         ${tthqCell}
-        <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b><span>wird gedraftet, falls er sich anmeldet</span></div>
+        <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ch >= 60 ? 'hoch' : ch >= 30 ? 'mittel' : 'niedrig'}">${ch} %</b>${ciTxt(p.dr.ci)}<span>wird gedraftet, falls er sich anmeldet</span></div>
         <div class="cs-rcell"><small>Erw. NBA-Draft</small><b>${nbaRound(q[1])}${nbaRound(q[3]) !== nbaRound(q[1]) ? '–' + nbaRound(q[3]).slice(0, 2) + ' Rd.' : ''}</b><span>Modell: Pick ${q[1]}–${q[3]} (Mitte ${q[2]})</span></div>
         ${tradeCell}
       </div>${kNote}
@@ -168,6 +168,10 @@
       ${fold(ctx, 'pct', `📊 Perzentile in der Gruppe${c ? ' · Vergleich mit ' + e(c[0]) : ''}`, table)}
     </div>`;
   }
+
+  // 80-%-Spanne einer Chance (Monte Carlo: Modell-Bootstrap × Stichproben-Rauschen, build-college-prospects.js)
+  const CI_TIP = '80-%-Spanne: so sicher ist die Zahl selbst. Berechnet aus der Modell-Unsicherheit (Modell 40-mal auf zufällig neu gezogenen Trainingsspielern geschätzt) und dem Stichproben-Rauschen seiner College-Zahlen (wenige Minuten → mehr Rauschen). Idee: Jeremias Engelmann, „Standard errors for box-score metrics“.';
+  const ciTxt = c => (c ? `<small class="cs-ci" title="${CI_TIP}">80 %: ${Math.round(c[0] * 100)}–${Math.round(c[1] * 100)} %</small>` : '');
 
   // Auf-/zuklappbare Blöcke (Stats-Tabelle, Prognose); Zustand je Block im Store gemerkt, Standard zu
   function fold(ctx, key, summary, inner) {
@@ -228,9 +232,9 @@
       ${fold(ctx, 'dna', `🔮 Prognose · Rotation ${pct(d.rot)} · Impact ${d.imp == null ? '—' : pct(d.imp)} · Top-150 ${pct(d.fan)}${ok ? '' : ' · <span class="cs-tag warn">kleiner Datensatz</span>'}`, `
       <div class="cs-box-sub">${flag} ${minLine}</div>
       <div class="cs-rgrid" style="grid-template-columns:1fr 1fr 1fr">
-        <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b><span>Saison mit 40+ Spielen, 18+ Min.</span></div>
-        <div class="cs-rcell"><small>${tip('Real-Life-Impact', whyImp)}</small><b class="cs-ev ${(d.imp || 0) >= 0.4 ? 'hoch' : (d.imp || 0) >= 0.15 ? 'mittel' : 'niedrig'}">${d.imp == null ? '—' : pct(d.imp)}</b><span>Saison 1.000+ Min. mit BPM ≥ 0</span></div>
-        <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b><span>9-Cat, ersten 4 NBA-Jahre</span></div>
+        <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${d.rot >= 0.5 ? 'hoch' : d.rot >= 0.2 ? 'mittel' : 'niedrig'}">${pct(d.rot)}</b>${ciTxt(d.ci && d.ci.rot)}<span>Saison mit 40+ Spielen, 18+ Min.</span></div>
+        <div class="cs-rcell"><small>${tip('Real-Life-Impact', whyImp)}</small><b class="cs-ev ${(d.imp || 0) >= 0.4 ? 'hoch' : (d.imp || 0) >= 0.15 ? 'mittel' : 'niedrig'}">${d.imp == null ? '—' : pct(d.imp)}</b>${ciTxt(d.ci && d.ci.imp)}<span>Saison 1.000+ Min. mit BPM ≥ 0</span></div>
+        <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${d.fan >= 0.4 ? 'hoch' : d.fan >= 0.15 ? 'mittel' : 'niedrig'}">${pct(d.fan)}</b>${ciTxt(d.ci && d.ci.fan)}<span>9-Cat, ersten 4 NBA-Jahre</span></div>
       </div>
       ${typBlock(ctx, d, whyTyp)}`)}
     </div>`;

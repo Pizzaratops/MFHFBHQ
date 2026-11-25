@@ -644,3 +644,4 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-match .dna-nm { white-space: normal; overflow: visible; text-overflow: clip; }
 .cs-match .dna-nm small { white-space: normal; }
 .cs-match .cs-cpout { display: block; margin-top: 2px; font-size: 11.5px; }
+.cs-rcell .cs-ci { display: block; font-size: 11px; color: var(--muted); margin: 1px 0 2px; cursor: help; text-transform: none; letter-spacing: 0; }

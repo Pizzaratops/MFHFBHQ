@@ -107,6 +107,42 @@ def load():
     return D
 
 
+# ---------- Unsicherheit (seit 25.11.2026, Idee: Engelmann „Standard errors for box-score metrics“) ----------
+# 1) Stichproben-Rauschen der College-Raten: bei Spielern mit zwei aufeinanderfolgenden Saisons (je ≥ 100 Min.)
+#    gilt E[Δ²] ≈ a + b·(1/m1 + 1/m2); b = Rauschvarianz pro Minute (a = echte Entwicklung).
+NOISE_SKIP = {'mpg', 'minPct'}  # Rolle, kein Stichproben-Rauschen
+N_BOOT = 40
+
+
+def noise_per_min(D):
+    d = D[D['min'] >= 100].sort_values('year')
+    nxt = d.copy(); nxt['year'] = nxt['year'] - 1
+    m = d.merge(nxt, on=['pid', 'year'], suffixes=('', '_n'))
+    out = {}
+    for c in RATES:
+        if c in NOISE_SKIP: continue
+        x = (1 / m['min'] + 1 / m['min_n']).values
+        y = (m[c + '_n'] - m[c]).values
+        ok = np.isfinite(x) & np.isfinite(y)
+        if ok.sum() < 200: continue
+        A = np.vstack([np.ones(ok.sum()), x[ok]]).T
+        a, b = np.linalg.lstsq(A, y[ok] ** 2, rcond=None)[0]
+        out[c] = round(float(max(b, 0.0)), 5)
+    return out
+
+
+# 2) Modell-Unsicherheit: Logit-Modelle N_BOOT-mal auf Bootstrap-Stichproben neu schätzen (fester Scaler)
+def boot_logit(Z, y, C, seed=7):
+    rng = np.random.default_rng(seed)
+    Z = np.asarray(Z); y = np.asarray(y); out = []
+    for _ in range(N_BOOT):
+        i = rng.integers(0, len(y), len(y))
+        if y[i].min() == y[i].max(): continue
+        m = LogisticRegression(C=C, max_iter=4000).fit(Z[i], y[i])
+        out.append([round(float(m.intercept_[0]), 4)] + [round(float(c), 4) for c in m.coef_[0]])
+    return out
+
+
 def class_age(D):
     r = D[D.realDob & D.ageReal.between(17, 28)]
     return {c: round(float(r[r.clsN == n].ageReal.median()), 3) for c, n in CLS.items()}
@@ -229,15 +265,20 @@ def main():
     print(f'Production-Comp-Pool: {len(comp_pool)} Saisons (G {cov["G"]["n"]}, W {cov["W"]["n"]}, B {cov["B"]["n"]})')
 
     dna = build_dna(D, T, PR, means)
+    noise = noise_per_min(D)
+    print('Rauschen je Minute (Auswahl):', ', '.join(f'{k} {v}' for k, v in list(noise.items())[:8]))
+    boot_d = boot_logit(sc.transform(X), T.drafted, 0.5)
+    boot_dp = boot_logit(scp.transform(XP), T.drafted, 0.5, seed=8)
 
     model = {
         'built': pd.Timestamp.now().strftime('%Y-%m-%d'), 'lastDraft': LAST_DRAFT, 'n': int(len(T)), 'nDrafted': int(T.drafted.sum()),
         'backtest': bt, 'classAge': cage, 'means': {k: round(v, 5) for k, v in means.items()}, 'priorMin': PRIOR_MIN,
         'rates': RATES, 'feats': FEATS, 'scaler': {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist()},
-        'logit': {'coef': lg.coef_[0].round(6).tolist(), 'icpt': round(float(lg.intercept_[0]), 6)},
+        'logit': {'coef': lg.coef_[0].round(6).tolist(), 'icpt': round(float(lg.intercept_[0]), 6), 'boot': boot_d},
         'ridge': {'coef': rg.coef_.round(6).tolist(), 'icpt': round(float(rg.intercept_), 6), 'resQ': qs},
+        'noise': noise,
         'pre': {'feats': PRE, 'blendMin': BLEND_MIN, 'scaler': {'mean': scp.mean_.round(6).tolist(), 'scale': scp.scale_.round(6).tolist()},
-                'logit': {'coef': lgp.coef_[0].round(6).tolist(), 'icpt': round(float(lgp.intercept_[0]), 6)},
+                'logit': {'coef': lgp.coef_[0].round(6).tolist(), 'icpt': round(float(lgp.intercept_[0]), 6), 'boot': boot_dp},
                 'ridge': {'coef': rgp.coef_.round(6).tolist(), 'icpt': round(float(rgp.intercept_), 6),
                           'resQ': {str(q): round(float(np.quantile(resp, q)), 4) for q in [0.1, 0.25, 0.5, 0.75, 0.9]}}},
         'power': sorted(POWER), 'bucket': BUCKET, 'comp': {'feats': COMP, 'cov': cov, 'pool': comp_pool}, 'dna': dna,
@@ -387,7 +428,8 @@ def build_dna(D, T, PR, means):
     for tgt in ['rot', 'fan', 'impact']:
         for nm, cols in [('prod', FEATS), ('pre', PRE)]:
             sc, m = logit(cols, R[tgt], allr)
-            mods[f'{tgt}_{nm}'] = {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist(), 'coef': m.coef_[0].round(6).tolist(), 'icpt': round(float(m.intercept_[0]), 6)}
+            mods[f'{tgt}_{nm}'] = {'mean': sc.mean_.round(6).tolist(), 'scale': sc.scale_.round(6).tolist(), 'coef': m.coef_[0].round(6).tolist(), 'icpt': round(float(m.intercept_[0]), 6),
+                                   'boot': boot_logit(sc.transform(X.loc[allr, cols]), R[tgt], 0.3, seed=sum(map(ord, tgt + nm)))}
     # ---------- Typ: mehr Real-Life-Impact oder mehr Fantasy-Wert, FALLS er es schafft ----------
     # Unter NBA-Spielern (≥ 1000 Min. in 4 J.): Rest der minutengewichteten NBA-BPM gegenüber dem, was
     # sein Fantasy-Ø erwarten lässt (lineare Regression BPM ~ Fantasy-Ø). > 0 = mehr Impact als Fantasy.

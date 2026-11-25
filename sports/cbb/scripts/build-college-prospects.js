@@ -196,6 +196,49 @@ function dnaOf(v, M, minNow) {
   return out;
 }
 
+
+// ---------- Unsicherheit (seit 25.11.2026, Idee: Engelmann „Standard errors for box-score metrics“) ----------
+// Monte Carlo: Modell-Unsicherheit (Bootstrap-Koeffizienten aus train-prospect-model.py) × Stichproben-Rauschen
+// der College-Raten (Rauschvarianz pro Minute M.noise; im Profil: Var = σ²·(w1 + w0/2) / W²).
+// Ergebnis: 80-%-Spanne (10.–90. Perzentil) für Draft-Chance und die drei NBA-DNA-Chancen.
+const UNC_INPUT_DRAWS = 5;
+function mulberry(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+function uncertainty(v, r, p, M, seedStr) {
+  const noise = M.noise || {}; if (!M.logit.boot || !M.logit.boot.length) return null;
+  let seed = 0; for (const ch of String(seedStr)) seed = (seed * 31 + ch.charCodeAt(0)) | 0;
+  const rnd = mulberry(seed), gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(2 * Math.PI * rnd());
+  const w1 = Math.max(r.min, 0), w0 = p ? 0.5 * Math.max(p.min, 0) : 0, W = w1 + w0 + M.priorMin;
+  const sdF = {}; Object.entries(noise).forEach(([c, b]) => { sdF[c] = Math.sqrt(b * (w1 + w0 / 2)) / W; });
+  const wB = Math.min(1, Math.max(0, r.min / M.pre.blendMin));
+  const linB = (vv, feats, mean, scale, bc) => bc[0] + feats.reduce((s, f, i) => s + ((vv[f] - mean[i]) / scale[i]) * bc[i + 1], 0);
+  const G = M.dna, nB = M.logit.boot.length;
+  const out = { dr: [], rot: [], fan: [], imp: [] };
+  for (let b = 0; b < nB; b++) {
+    for (let j = 0; j < UNC_INPUT_DRAWS; j++) {
+      const vv = { ...v };
+      Object.keys(sdF).forEach(c => { if (vv[c] != null && !isNaN(vv[c])) vv[c] += sdF[c] * gauss(); });
+      // Draft-Chance
+      const pa = sig(linB(vv, M.feats, M.scaler.mean, M.scaler.scale, M.logit.boot[b % M.logit.boot.length]));
+      const pb = sig(linB(vv, M.pre.feats, M.pre.scaler.mean, M.pre.scaler.scale, M.pre.logit.boot[b % M.pre.logit.boot.length]));
+      out.dr.push(wB * pa + (1 - wB) * pb);
+      // NBA-DNA (gleiche Überblendung + Platt wie dnaOf)
+      [['rot', 'rot'], ['fan', 'fan'], ['imp', 'impact']].forEach(([k, t]) => {
+        const mp = G.models[t + '_prod'], mq = G.models[t + '_pre'];
+        if (!mp.boot || !mq.boot) return;
+        const q1 = sig(linB(vv, M.feats, mp.mean, mp.scale, mp.boot[b % mp.boot.length]));
+        const q2 = sig(linB(vv, M.pre.feats, mq.mean, mq.scale, mq.boot[b % mq.boot.length]));
+        let q = wB * q1 + (1 - wB) * q2;
+        const c = (G.calib || {})[t];
+        if (c) { const z = Math.min(1 - 1e-6, Math.max(1e-6, q)); q = sig(c.a * Math.log(z / (1 - z)) + c.b); }
+        out[k].push(q);
+      });
+    }
+  }
+  const qt = (a, x) => { const s = a.slice().sort((m, n) => m - n); const i = (s.length - 1) * x, lo = Math.floor(i); return s[lo] + (s[Math.min(lo + 1, s.length - 1)] - s[lo]) * (i - lo); };
+  const band = a => (a.length ? [+qt(a, 0.1).toFixed(3), +qt(a, 0.9).toFixed(3)] : null);
+  return { dr: band(out.dr), rot: band(out.rot), fan: band(out.fan), imp: band(out.imp) };
+}
+
 const nkey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
 
@@ -248,6 +291,8 @@ function main() {
       .map(it => ({ it, d: maha(mz, it.z, P.cv.inv) })).sort((a, b) => a.d - b.d).slice(0, 5)
       .map(({ it, d: dd }) => [it.p[0], it.p[1], it.p[2], it.p[3], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), F.map((_, i) => pctl(P.sorted[i], it.p[6][i]))]);
     const dn = dnaOf(v, M, r.min);
+    const U = uncertainty(v, r, p, M, r.pid + ':' + CUR);
+    if (U) dn.ci = { rot: U.rot, fan: U.fan, imp: U.imp };
     dn.comps = dnaPools[r.bucket].filter(it => nkey(it.p[0]) !== mk).map(it => ({ it, d: maha(mz, it.z, P.cv.inv) })).sort((a, b) => a.d - b.d).slice(0, 4)
       .map(({ it, d: dd }) => [it.p[0], it.p[1], Math.round(100 * Math.exp(-dd * dd / (2 * F.length))), it.p[3], it.p[4], it.p[6] || null]); // [6]: NBA-9-Cat-z (Ø ersten 4 Jahre)
     const line = x => x && [Math.round(x.gp), +x.mpg.toFixed(1), +x.pts.toFixed(1), +((x.oreb || 0) + (x.dreb || 0)).toFixed(1), +(x.ast || 0).toFixed(1), +(x.stl || 0).toFixed(1), +(x.blk || 0).toFixed(1), +(x.gp ? x.tpm / x.gp : 0).toFixed(1), isNaN(x.ts) ? null : +x.ts.toFixed(1), isNaN(x.bpm) ? null : +x.bpm.toFixed(1), isNaN(x.usg) ? null : +x.usg.toFixed(1)];
@@ -258,7 +303,7 @@ function main() {
       s: line(r), sp: line(p),
       // Board-Score: Draft-Chance × Pick-Wert (ln-Skala, Pick 1 = 1, Pick 60 = 0) — Sortierung „Draft Range“
       sc: +(d.p * Math.log(61 / d.q[2]) / Math.log(61)).toFixed(4),
-      dr: { p: +d.p.toFixed(4), q: d.q, w: +d.w.toFixed(2), pp: +d.pProd.toFixed(3), pv: +d.pPre.toFixed(3) },
+      dr: { p: +d.p.toFixed(4), q: d.q, w: +d.w.toFixed(2), pp: +d.pProd.toFixed(3), pv: +d.pPre.toFixed(3), ci: U ? U.dr : null },
       pc: F.map((f, i) => pctl(P.sorted[i], me[i])),
       dn,
       comps,
