@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-25T16:01:28.154Z",
+  "generatedAt": "2026-11-25T17:01:35.317Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 19 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,15 +66,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 444.4,
-        "reb": 166.9,
-        "ast": 110.2,
-        "stl": 29.46,
-        "blk": 19.69,
-        "tpm": 40.4,
-        "to": 56.8,
-        "fgPct": 48.2,
-        "ftPct": 78.8
+        "pts": 446.5,
+        "reb": 166.8,
+        "ast": 111.2,
+        "stl": 30.3,
+        "blk": 19.59,
+        "tpm": 40.9,
+        "to": 57.1,
+        "fgPct": 48.1,
+        "ftPct": 78.6
       },
       "rank": {
         "pts": 1,
