@@ -2,15 +2,14 @@
   "league": "ncaab",
   "date": "2026-11-24",
   "games": [
-    "Oregon Ducks @ St. John's Red Storm (5:02 - 1st)",
-    "Baylor Bears @ Alabama Crimson Tide (3:06 - 2nd)",
-    "Saint Louis Billikens @ Grand Canyon Lopes (5:08 - 2nd)",
-    "VCU Rams @ Colorado State Rams (15:55 - 2nd)",
+    "Oregon Ducks @ St. John's Red Storm (9:51 - 2nd)",
+    "Gonzaga Bulldogs @ Kansas State Wildcats (13:31 - 1st)",
     "Milwaukee Panthers 67 @ Florida Gators 76 (Final)",
     "Texas Tech Red Raiders 64 @ Louisville Cardinals 72 (Final)",
     "Providence Friars 66 @ Arizona Wildcats 84 (Final)",
     "Tennessee Volunteers 72 @ Maryland Terrapins 64 (Final)",
     "Vanderbilt Commodores 72 @ Ohio State Buckeyes 66 (Final)",
+    "Baylor Bears 68 @ Alabama Crimson Tide 63 (Final)",
     "Miami Hurricanes 71 @ TCU Horned Frogs 84 (Final)",
     "Ole Miss Rebels 73 @ BYU Cougars 63 (Final)",
     "Jacksonville Dolphins 64 @ Indiana Hoosiers 82 (Final)",
@@ -47,11 +46,12 @@
     "Evansville Purple Aces 67 @ Missouri Tigers 78 (Final)",
     "UTEP Miners 80 @ Charleston Cougars 69 (Final)",
     "UNC Asheville Bulldogs 61 @ Florida State Seminoles 97 (Final)",
-    "Colorado Buffaloes @ Stanford Cardinal (11/24 - 11:59 PM EST)",
-    "Gonzaga Bulldogs @ Kansas State Wildcats (11/25 - 12:30 AM EST)"
+    "Saint Louis Billikens 88 @ Grand Canyon Lopes 91 (Final)",
+    "VCU Rams 84 @ Colorado State Rams 81 (Final)",
+    "Colorado Buffaloes @ Stanford Cardinal (19:02 - 1st)"
   ],
   "leagueAvg": {
-    "fg": 46.5,
-    "ft": 75
+    "fg": 46.4,
+    "ft": 74.4
   }
 }
