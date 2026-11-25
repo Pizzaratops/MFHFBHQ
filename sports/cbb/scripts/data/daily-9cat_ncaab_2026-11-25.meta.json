@@ -2,10 +2,14 @@
   "league": "ncaab",
   "date": "2026-11-25",
   "games": [
-    "Ole Miss Rebels @ Arizona Wildcats (13:54 - 2nd)",
-    "LSU Tigers @ Arizona State Sun Devils (2:24 - 2nd)",
-    "Jackson State Tigers @ Oklahoma State Cowboys (Halftime)",
+    "Southern Jaguars @ Nebraska Cornhuskers (6:22 - 1st)",
+    "Princeton Tigers @ Liberty Flames (8:15 - 2nd)",
+    "Texas A&M Aggies @ Xavier Musketeers (16:17 - 2nd)",
+    "Alcorn State Braves @ Texas State Bobcats (6:52 - 1st)",
+    "Holy Cross Crusaders @ Dartmouth Big Green (6:59 - 1st)",
     "Virginia Cavaliers 60 @ Marquette Golden Eagles 54 (Final)",
+    "Ole Miss Rebels 73 @ Arizona Wildcats 84 (Final)",
+    "LSU Tigers 94 @ Arizona State Sun Devils 92 (Final/2OT)",
     "St. Bonaventure Bonnies 71 @ Belmont Bruins 68 (Final)",
     "Rice Owls 82 @ Ohio Bobcats 74 (Final)",
     "Northern Iowa Panthers 72 @ Charlotte 49ers 85 (Final)",
@@ -16,16 +20,12 @@
     "Tulane Green Wave 47 @ Davidson Wildcats 74 (Final)",
     "Saint Peter's Peacocks 44 @ Columbia Lions 65 (Final)",
     "Johnson & Wales Griffins 52 @ Brown Bears 98 (Final)",
-    "Princeton Tigers @ Liberty Flames (11/25 - 4:00 PM EST)",
-    "Texas A&M Aggies @ Xavier Musketeers (11/25 - 4:13 PM EST)",
-    "South Carolina Gamecocks @ USC Trojans (11/25 - 4:30 PM EST)",
-    "Southern Jaguars @ Nebraska Cornhuskers (11/25 - 5:00 PM EST)",
-    "Memphis Tigers @ Penn State Nittany Lions (11/25 - 5:00 PM EST)",
-    "Alcorn State Braves @ Texas State Bobcats (11/25 - 5:00 PM EST)",
-    "Holy Cross Crusaders @ Dartmouth Big Green (11/25 - 5:00 PM EST)",
+    "Jackson State Tigers 58 @ Oklahoma State Cowboys 93 (Final)",
+    "South Carolina Gamecocks @ USC Trojans (12:44 - 1st)",
     "BYU Cougars @ Providence Friars (11/25 - 5:30 PM EST)",
     "Bethune-Cookman Wildcats @ Richmond Spiders (11/25 - 6:00 PM EST)",
     "UAlbany Great Danes @ Syracuse Orange (11/25 - 6:00 PM EST)",
+    "Memphis Tigers @ Penn State Nittany Lions (11/25 - 6:35 PM EST)",
     "UConn Huskies @ Duke Blue Devils (11/25 - 7:00 PM EST)",
     "Longwood Lancers @ George Mason Patriots (11/25 - 7:00 PM EST)",
     "SMU Mustangs @ Utah State Aggies (11/25 - 7:00 PM EST)",
@@ -45,7 +45,7 @@
     "Clemson Tigers @ Colorado State Rams (11/26 - 12:30 AM EST)"
   ],
   "leagueAvg": {
-    "fg": 45.6,
-    "ft": 73.3
+    "fg": 45.9,
+    "ft": 73.5
   }
 }
