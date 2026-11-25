@@ -83,7 +83,10 @@ MFHFB.charts = (function () {
   //         sel: [id …] (max. 3, farbig), width, maxRank, label })
   //  Lücken (null) unterbrechen die Linie. Beschriftung am ersten und
   //  letzten vorhandenen Punkt; schmal (<640px) links nur Ränge.
-  function bump({ cols, rows, sel = [], width = 900, maxRank, label = 'Rangverlauf' }) {
+  //  fx (optional): Effekte über den Linien, z. B. für große Sprünge
+  //    [{ id, kind: 'rocket'|'chute'|'hot', i: Ziel-Spalte, from: Start-Spalte, badge, tip }]
+  //    rocket = 🚀 mit Kondensstreifen, chute = 🪂 mit Abwärtsspur, hot = 🔥-Glut-Spur
+  function bump({ cols, rows, sel = [], width = 900, maxRank, label = 'Rangverlauf', fx = [] }) {
     const e = MFHFB.ui.esc;
     const n = maxRank || Math.max(1, ...rows.flatMap(r => r.ranks.filter(x => x != null)));
     const W = cols.length;
@@ -131,12 +134,46 @@ MFHFB.charts = (function () {
       if (side === 'l' && narrow) return `<text class="bump-label${k > -1 ? ' on' : ''}" x="${tx}" y="${y(rk) + 4}" text-anchor="end" data-team="${e(r.id)}">${rk}</text>`;
       return `<text class="bump-label${k > -1 ? ' on' : ''}" x="${f1(tx)}" y="${y(rk) + 4}" text-anchor="${side === 'l' ? 'end' : 'start'}" data-team="${e(r.id)}">${side === 'l' ? `${rk}. ` : dot}${r.emoji ? e(r.emoji) + ' ' : ''}${e(short(r.name))}${side === 'l' && k > -1 ? ` <tspan class="bump-dot ${SEL[k]}">●</tspan>` : ''}</text>`;
     };
+    // ---------- Effekte (Raketen, Fallschirme, heißer Lauf) ----------
+    const byId = {}; rows.forEach(r => { byId[r.id] = r; });
+    const seg = (r, a, b) => path({ ranks: r.ranks.map((rk, i) => (i >= a && i <= b ? rk : null)) });
+    const emo = narrow ? 15 : 19;
+    const fxSvg = fx.map((f, n) => {
+      const r = byId[f.id];
+      if (!r || r.ranks[f.i] == null || r.ranks[f.from] == null) return '';
+      const x0 = x(f.from), y0 = y(r.ranks[f.from]), x1 = x(f.i), y1 = y(r.ranks[f.i]);
+      const d = seg(r, f.from, f.i);
+      const tip = e(f.tip || '');
+      const badge = f.badge ? `<text class="fx-badge fx-${f.kind}" x="${f1(x1 - 6)}" y="${f1(y1 - emo * 0.62)}" text-anchor="end">${e(f.badge)}</text>` : '';
+      const delay = `animation-delay:${(0.15 + n * 0.12).toFixed(2)}s`;
+      if (f.kind === 'hot') {
+        // Heißester Lauf: Glutspur über die ganze Serie + große Hero-Rakete am Ende
+        const r2 = r.ranks[f.i - 1] != null ? y(r.ranks[f.i - 1]) : y0, xp = x(f.i - 1);
+        const ang = Math.atan2(y1 - r2, x1 - xp) * 180 / Math.PI + 45;
+        const big = Math.round(emo * 1.55);
+        return `<g class="fx fx-hotrun" data-team="${e(f.id)}"><path class="fx-hot-glow" d="${d}"/><path class="fx-hot-draw" pathLength="100" d="${d}"/><path class="fx-hot" d="${d}"/>
+          ${f.badge ? `<text class="fx-badge fx-hotb" x="${f1(x1 - big * 0.55)}" y="${f1(y1 - big * 0.6)}" text-anchor="end">${e(f.badge)}</text>` : ''}
+          <g transform="translate(${f1(x1)},${f1(y1)})"><g class="fx-fly fx-hero" style="--dx:${f1(xp - x1)}px;--dy:${f1(r2 - y1)}px"><g transform="rotate(${f1(ang)})">
+          <text class="fx-emoji fx-wiggle" y="${f1(big * 0.35)}" font-size="${big}" text-anchor="middle" data-team="${e(f.id)}" data-tip="${tip}">🚀</text></g></g></g></g>`;
+      }
+      if (f.kind === 'chute') {
+        return `<g class="fx fx-chute-g" data-team="${e(f.id)}"><path class="fx-drop" d="${d}"/>${badge}
+          <g transform="translate(${f1(x1)},${f1(y1)})"><g class="fx-fall" style="--dy:${f1(y0 - y1)}px;${delay}"><g class="fx-sway">
+          <text class="fx-emoji" y="${f1(emo * 0.35)}" font-size="${emo}" text-anchor="middle" data-team="${e(f.id)}" data-tip="${tip}">🪂</text></g></g></g></g>`;
+      }
+      // 🚀 zeigt im Glyph nach rechts oben (−45°) → auf die Flugrichtung (Sehne) drehen
+      const ang = Math.atan2(y1 - y0, x1 - x0) * 180 / Math.PI + 45;
+      return `<g class="fx fx-rocket-g" data-team="${e(f.id)}"><path class="fx-trail-glow" pathLength="100" d="${d}" style="${delay}"/><path class="fx-trail" d="${d}"/>${badge}
+        <g transform="translate(${f1(x1)},${f1(y1)})"><g class="fx-fly" style="--dx:${f1(x0 - x1)}px;--dy:${f1(y0 - y1)}px;${delay}"><g transform="rotate(${f1(ang)})">
+        <text class="fx-emoji fx-wiggle" y="${f1(emo * 0.35)}" font-size="${emo}" text-anchor="middle" data-team="${e(f.id)}" data-tip="${tip}">🚀</text></g></g></g></g>`;
+    }).join('');
+
     const tight = W > 1 && innerW / (W - 1) < 38; // eng: Jahreszahlen kürzen (2019 → '19)
-    const colLabel = c => (tight && /^\d{4}$/.test(c) ? "'" + c.slice(2) : c);
+    const colLabel = (c, i) => (!tight ? c : /^\d{4}$/.test(c) ? "'" + c.slice(2) : i > 0 && /^W\d+$/.test(c) ? c.slice(1) : c); // eng: W1 2 3 …
     const grid = cols.map((c, i) => `<line class="bump-grid" x1="${x(i)}" x2="${x(i)}" y1="${top - 6}" y2="${height - bottom}"/>
-      <text class="bump-week" x="${x(i)}" y="${top - 12}" text-anchor="middle">${e(colLabel(c))}</text>`).join('');
+      <text class="bump-week" x="${x(i)}" y="${top - 12}" text-anchor="middle">${e(colLabel(c, i))}</text>`).join('');
     return `<svg class="bump" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${e(label)}">
-      ${grid}${lines}${rows.map(r => lbl(r, 'l')).join('')}${rows.map(r => lbl(r, 'r')).join('')}</svg>`;
+      ${grid}${lines}${fxSvg ? `<g class="bump-fx">${fxSvg}</g>` : ''}${rows.map(r => lbl(r, 'l')).join('')}${rows.map(r => lbl(r, 'r')).join('')}</svg>`;
   }
 
   // Hover-Tooltip + Hervorheben + Klick (onPick(id)) für ein gezeichnetes Bump-Chart
@@ -146,7 +183,7 @@ MFHFB.charts = (function () {
       const svg = wrap.querySelector('svg');
       if (!svg) return;
       svg.classList.toggle('hovering', !!hit);
-      svg.querySelectorAll('.bump-line').forEach(g => g.classList.toggle('hot', !!hit && g.dataset.team === hit.dataset.team));
+      svg.querySelectorAll('.bump-line, .fx').forEach(g => g.classList.toggle('hot', !!hit && g.dataset.team === hit.dataset.team));
       if (hit && hit.dataset.tip && tip) {
         tip.textContent = hit.dataset.tip;
         const r = wrap.getBoundingClientRect(), p = hit.getBoundingClientRect();
