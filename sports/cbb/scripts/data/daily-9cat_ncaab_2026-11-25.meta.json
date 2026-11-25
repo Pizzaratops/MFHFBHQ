@@ -2,22 +2,22 @@
   "league": "ncaab",
   "date": "2026-11-25",
   "games": [
-    "Virginia Cavaliers @ Marquette Golden Eagles (Delayed)",
-    "LSU Tigers @ Arizona State Sun Devils (12:03 - 1st)",
-    "Yale Bulldogs @ Wright State Raiders (1:56 - 2nd)",
-    "American International Yellow Jackets @ Rhode Island Rams (15:08 - 2nd)",
-    "Tulane Green Wave @ Davidson Wildcats (0:59 - 1st)",
-    "Saint Peter's Peacocks @ Columbia Lions (11:05 - 1st)",
-    "Johnson & Wales Griffins @ Brown Bears (11:40 - 1st)",
+    "Ole Miss Rebels @ Arizona Wildcats (13:54 - 2nd)",
+    "LSU Tigers @ Arizona State Sun Devils (2:24 - 2nd)",
+    "Jackson State Tigers @ Oklahoma State Cowboys (Halftime)",
+    "Virginia Cavaliers 60 @ Marquette Golden Eagles 54 (Final)",
     "St. Bonaventure Bonnies 71 @ Belmont Bruins 68 (Final)",
     "Rice Owls 82 @ Ohio Bobcats 74 (Final)",
     "Northern Iowa Panthers 72 @ Charlotte 49ers 85 (Final)",
     "Mercy Mavericks 56 @ Fordham Rams 104 (Final)",
     "Penn State Abington Nittany Lions 48 @ Saint Joseph's Hawks 104 (Final)",
-    "Ole Miss Rebels @ Arizona Wildcats (11/25 - 2:30 PM EST)",
-    "Texas A&M Aggies @ Xavier Musketeers (11/25 - 2:30 PM EST)",
-    "Jackson State Tigers @ Oklahoma State Cowboys (11/25 - 3:00 PM EST)",
+    "Yale Bulldogs 72 @ Wright State Raiders 70 (Final)",
+    "American International Yellow Jackets 89 @ Rhode Island Rams 98 (Final)",
+    "Tulane Green Wave 47 @ Davidson Wildcats 74 (Final)",
+    "Saint Peter's Peacocks 44 @ Columbia Lions 65 (Final)",
+    "Johnson & Wales Griffins 52 @ Brown Bears 98 (Final)",
     "Princeton Tigers @ Liberty Flames (11/25 - 4:00 PM EST)",
+    "Texas A&M Aggies @ Xavier Musketeers (11/25 - 4:13 PM EST)",
     "South Carolina Gamecocks @ USC Trojans (11/25 - 4:30 PM EST)",
     "Southern Jaguars @ Nebraska Cornhuskers (11/25 - 5:00 PM EST)",
     "Memphis Tigers @ Penn State Nittany Lions (11/25 - 5:00 PM EST)",
@@ -45,7 +45,7 @@
     "Clemson Tigers @ Colorado State Rams (11/26 - 12:30 AM EST)"
   ],
   "leagueAvg": {
-    "fg": 49,
-    "ft": 71.7
+    "fg": 45.6,
+    "ft": 73.3
   }
 }
