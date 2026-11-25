@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T05:01:03.869Z",
+  "updated": "2026-11-25T17:01:13.241Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -53,6 +53,7 @@ const NBA_INJURIES = {
     "Jordan Clarkson": ["NY","Out","OUT","2026-11-27","Foot",0,"2026-11-24"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Josh Hart": ["NY","Day-To-Day","GTD","2026-11-25","Shoulder",0,"2026-11-24"],
+    "Julian Reese": ["NO","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Jusuf Nurkic": ["UTAH","Out","OUT","2026-11-29","Foot",0,"2026-11-20"],
     "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-25","Knee",0,"2026-11-24"],
