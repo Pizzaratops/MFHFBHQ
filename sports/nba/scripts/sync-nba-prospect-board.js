@@ -52,7 +52,7 @@ const decode = s => String(s || '')
 const nk = s => decode(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
 // bekannte Schreibvarianten zwischen den Boards
-const ALIAS = { davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
+const ALIAS = { klarkriethauser: 'klarkreithauser', davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
 const key = s => { const k = nk(s); return ALIAS[k] || k; };
 
 function parseTankathon(html) {

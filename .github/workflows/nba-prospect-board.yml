@@ -29,11 +29,19 @@ jobs:
           node-version: 20
       - name: Board holen + mitteln
         run: node sports/nba/scripts/sync-nba-prospect-board.js
+      # Seit 25.11.2026: Statlines internationaler Prospects (EuroLeague/EuroCup laufende + Vorsaison, NBL)
+      - name: Intl-Statlines
+        continue-on-error: true
+        run: |
+          Y=$(date -u +%Y); M=$(date -u +%m); if [ "$M" -lt 8 ]; then Y=$((Y-1)); fi
+          node sports/nba/scripts/sync-intl-history.js "$((Y-1))-$Y"
+          curl -sSL -o /tmp/box_player.csv https://github.com/JaseZiv/nblr_data/releases/download/box_player/box_player.csv || true
+          node sports/nba/scripts/build-intl-stats.js /tmp/box_player.csv
       - name: Commit
         run: |
           git config user.name "mfhfb-hq-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add sports/nba/data/prospect-board-nba.js
+          git add sports/nba/data/prospect-board-nba.js sports/nba/data/intl-stats.js sports/cbb/scripts/model/cache/intl
           git commit -m "chore: NBA Prospect Board" || exit 0
           for i in 1 2 3; do git push && exit 0; git fetch origin "${GITHUB_REF_NAME}"; git rebase "origin/${GITHUB_REF_NAME}"; done
           exit 1

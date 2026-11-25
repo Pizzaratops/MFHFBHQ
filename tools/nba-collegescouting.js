@@ -31,7 +31,7 @@
 (function () {
   const A = { key: ['tthq', 'cbb'] };
   const P_FILE = './sports/cbb/data/college-prospects';
-  const DATA = [P_FILE, '?./sports/nba/data/prospect-board-nba', '?./sports/nba/data/draft2027', '?teams', '?rosters-live'];
+  const DATA = [P_FILE, '?./sports/nba/data/prospect-board-nba', '?./sports/cbb/data/intl-model', '?./sports/nba/data/intl-stats', '?./sports/nba/data/draft2027', '?teams', '?rosters-live'];
   const GROUPS = [['all', 'Alle'], ['G', 'Guards'], ['W', 'Wings'], ['B', 'Bigs']];
   const CLS = [['all', 'Alle Klassen'], ['Fr', 'Fr'], ['So', 'So'], ['Jr', 'Jr'], ['Sr', 'Sr']];
   const SORTS = [['board', 'Draft Range'], ['konsens', 'Konsens-Board'], ['chance', 'Draft-Chance'], ['rec', 'Recruiting'], ['bpm', 'BPM']];
@@ -50,7 +50,7 @@
   const nk0 = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g, '').replace(/[^a-z]/g, '');
   // Schreibvarianten zwischen Boards und Barttorvik (wie im Sync-Script)
-  const NK_ALIAS = { davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
+  const NK_ALIAS = { klarkriethauser: 'klarkreithauser', davisfogel: 'davisfogle', malachmoreno: 'malachimoreno', arfandiane: 'arafandiane', neoavdalas: 'neoklisavdalas', nikkhamenia: 'nikolaskhamenia' };
   const nk = s => { const k = nk0(s); return NK_ALIAS[k] || k; };
   const tip = (label, text) => MFHFB.ui.tip(label, text);
   const de = (x, d = 1) => (x == null || isNaN(x) ? '—' : Number(x).toFixed(d).replace('.', ','));
@@ -295,7 +295,7 @@
         <span class="dna-nm">${e(p.n)} ${konsTag(e, I, kb)} <small>${e(p.t)} · ${e(p.cl)}${o ? ' · ' + e(o.short || o.name) : ''}</small></span>
         <span class="dna-avg">${right(p)}</span></a>`; }).join('');
     const q = nk(st.q);
-    const extra = st.board ? boardOnly(I).filter(k => !q || nk(k.name).includes(q) || nk(k.school).includes(q)).map(k => `<div class="dna-row" title="Kein College-Datensatz in dieser Saison (international oder noch ohne Spiel)"><span class="dna-idx">·</span><span class="dna-nm">${e(k.name)} ${konsTag(e, I, k)} <small>${e(k.school || '')} · keine College-Daten</small></span><span class="dna-avg">${isTthq(ctx) ? slotFmt(tthqSlot(curve, k.rank), T) + ' <small>K</small>' : 'K~' + k.rank}</span></div>`).join('') : '';
+    const extra = st.board ? boardOnly(I).filter(k => !q || nk(k.name).includes(q) || nk(k.school).includes(q)).map(k => `<a class="dna-row${st.intl && nk(st.intl) === nk(k.name) ? ' active' : ''}" href="${ctx.href('collegescouting', 'intl:' + encodeURIComponent(k.name))}" title="Kein College-Datensatz in dieser Saison (international oder noch ohne Spiel) → Intl-Modell"><span class="dna-idx">🌍</span><span class="dna-nm">${e(k.name)} ${konsTag(e, I, k)} <small>${e(k.school || '')} · ohne College-Daten</small></span><span class="dna-avg">${isTthq(ctx) ? slotFmt(tthqSlot(curve, k.rank), T) + ' <small>K</small>' : 'K~' + k.rank}</span></a>`).join('') : '';
     return rows + extra || '<div class="muted" style="padding:12px">Keine Treffer.</div>';
   }
 
@@ -303,14 +303,100 @@
     const st = getState(ctx), I = index(ctx.data);
     const par = ctx.params[0] ? decodeURIComponent(ctx.params[0]) : null;
     let sel = null;
+    if (par && par.startsWith('intl:')) return { ...st, sel: null, intl: par.slice(5) };
     if (par) sel = I.byId.get(String(par)) || I.byName.get(nk(par)) || null;
     if (!sel && st.sel) sel = I.byId.get(String(st.sel)) || null;
     if (!sel) sel = filtered(ctx, I, st)[0] || null;
     return { ...st, sel: sel ? sel.id : null };
   }
 
+  // ---------- 🌍 Internationale Prospects (seit 25.11.2026, sports/cbb/scripts/model/train-intl-model.py) ----------
+  // Backtest (Draftees 2008–2022): Draft-Position trägt; bei gleicher Position schaffen es Spieler ohne College
+  // seltener; EuroLeague/EuroCup/NBL-Produktion bringt darüber hinaus nichts Belastbares → Statline nur Anzeige.
+  // Erwarteter Pick = Konsens-Rang mit Streuung (ln-Normal, σ = INTL_MODEL.pickSigma, Annahme — Konsens-Boards
+  // vergangener Jahrgänge haben wir nicht).
+  // Board-Spieler ohne Barttorvik-Datensatz: College-Team (Schreibvarianten) oder international?
+  const SCHOOL_ALIAS = { uconn: 'connecticut', stjohns: 'stjohns', nebraska: 'nebraska' };
+  const schoolKey = s => { let k = String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\bstate\b/g, 'st').replace(/[^a-z]/g, ''); return SCHOOL_ALIAS[k] || k; };
+  function isCollegeSchool(I, school) {
+    if (!I._schools) I._schools = new Set(I.C.p.map(p => schoolKey(p.t)));
+    return I._schools.has(schoolKey(school));
+  }
+  function intlCalc(IM, rank, key, flag = 1) {
+    let seed = 0; for (const ch of String(key)) seed = (seed * 31 + ch.charCodeAt(0)) | 0;
+    let a = seed >>> 0; const rnd = () => { a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    const gauss = () => Math.sqrt(-2 * Math.log(rnd() + 1e-12)) * Math.cos(2 * Math.PI * rnd());
+    const sg = x => 1 / (1 + Math.exp(-x));
+    // Platt-Nachkalibrierung gilt nur für die Gruppe ohne College (dort war das Modell zu optimistisch)
+    const prob = (c, t, lnp) => { const eta = c[0] + c[1] * lnp + c[2] * flag; const k = flag ? (IM.calib || {})[t] : null; return k ? sg(k.a * eta + k.b) : sg(eta); };
+    const T = ['rot', 'imp', 'fan'], draws = { rot: [], imp: [], fan: [] }, main = { rot: 0, imp: 0, fan: 0 }, picks = [];
+    const NP = 400;
+    for (let i = 0; i < NP; i++) {
+      const lnp = Math.log(Math.max(1, rank)) + IM.pickSigma * gauss(); picks.push(Math.exp(lnp));
+      T.forEach(t => { const m = IM.models[t]; main[t] += prob([m.icpt, ...m.coef], t, lnp) / NP; const b = m.boot[i % m.boot.length]; draws[t].push(prob(b, t, lnp)); });
+    }
+    const qt = (arr, x) => { const s = arr.slice().sort((m, n) => m - n); return s[Math.min(s.length - 1, Math.max(0, Math.round((s.length - 1) * x)))]; };
+    const out = { drafted: picks.filter(p => p <= 60.5).length / NP, pick: [qt(picks, 0.25), qt(picks, 0.5), qt(picks, 0.75)].map(x => Math.round(x)) };
+    T.forEach(t => { out[t] = main[t]; out[t + 'Ci'] = [qt(draws[t], 0.1), qt(draws[t], 0.9)]; });
+    return out;
+  }
+
+  function intlHtml(ctx, I, name) {
+    const e = ctx.ui.esc, IM = ctx.data.INTL_MODEL, kb = I.kons.get(nk(name));
+    if (!kb) return ctx.ui.empty('Nicht auf dem Konsens-Board', name, '🌍');
+    const st = ((ctx.data.INTL_STATS || {}).players || {})[nk(name)] || [];
+    const S = (I.KB && I.KB.sources) || [];
+    const col = isCollegeSchool(I, kb.school);
+    const head = `<div class="dna-head"><div><h2 class="dna-title display">${e(kb.name)}</h2>
+        <div class="page-sub">${e(kb.school || '')} · ${e(kb.pos || '')}${kb.age ? ` · ${de(kb.age)} J.` : ''} · ${col ? '🎓 College, aber ohne Barttorvik-Zuordnung (Pick-Modell als College-Spieler)' : '🌍 international / ohne College'}</div></div>
+        <div class="dna-badge" title="${e(konsTitle(I, kb))}"><b>#${kb.rank}</b><small>Konsens</small></div></div>
+      <div class="dna-tags">Konsens-Board <b>#${kb.rank}</b> (${S.map(x => `${SRC_SHORT[x.key] || x.key} ${kb.src[x.key] != null ? '#' + kb.src[x.key] : '—'}`).join(' · ')})${kb.move ? ` · Woche ${kb.move > 0 ? '+' : ''}${kb.move}` : ''}</div>`;
+    if (!IM) return head + '<div class="note">Intl-Modell nicht geladen.</div>';
+    const r = intlCalc(IM, kb.rank, kb.name, col ? 0 : 1);
+    const pc = x => Math.round(x * 100) + ' %';
+    const ev = (x, hi, mid) => (x >= hi ? 'hoch' : x >= mid ? 'mittel' : 'niedrig');
+    const bt = IM.backtest, nI = (bt.imp['pick+intl'] || {}).nIntl;
+    const why = `Backtest auf ${IM.n} Draftees 2008–${IM.lastLabelDraft} (davon ${IM.nIntl} ohne College), zeitlich getrennt (≤2014 → 2015–18, ≤2018 → 2019–22). Trennschärfe bei internationalen Draftees (AUC): Rotation ${bt.rot['pick+intl'].aucIntl}, Impact ${bt.imp['pick+intl'].aucIntl}, Fantasy ${bt.fan['pick+intl'].aucIntl} (n ${nI}). Roh war das Modell für sie zu optimistisch (z. B. Impact ${Math.round(bt.imp['pick+intl'].predIntl * 100)} % vorhergesagt, ${Math.round(bt.imp['pick+intl'].realIntl * 100)} % eingetreten) → nachkalibriert. EuroLeague-/EuroCup-/NBL-Zahlen verbesserten die Vorhersage über die Draft-Position hinaus nicht und stehen nur als Statline da.`;
+    const curve = (I.KB && I.KB.tthq) || (I.C.meta && I.C.meta.tthq), T = (curve && curve.teams) || 12;
+    let tthq = '';
+    if (isTthq(ctx) && curve) {
+      const sl = tthqSlot(curve, kb.rank), tr = slotTrade(sl);
+      tthq = `<div class="cs-rcell"><small>TTHQ-Slot (Konsens)</small><b>${slotFmt(sl, T)}</b><span>${tr ? `Trade-Wert <b>${tr.v}</b> (≈ Dynasty-Rang ${tr.r})` : 'falls er kommt'}</span></div>`;
+    }
+    const box = `<div class="card cs-box"><div class="cs-box-head"><h3>${tip('🌍 Intl-Modell', why)}</h3><span class="muted small">Draft-Position${col ? ' (College)' : ' + „ohne College“'} · backtestet</span></div>
+      <div class="cs-rgrid">
+        <div class="cs-rcell"><small>Draft-Chance</small><b class="cs-ev ${ev(r.drafted, 0.6, 0.3)}">${pc(r.drafted)}</b><span>Pick ~${r.pick[1]} (${r.pick[0]}–${r.pick[2]}) laut Konsens-Rang</span></div>
+        ${tthq}
+      </div>
+      <div class="cs-rgrid" style="grid-template-columns:1fr 1fr 1fr;margin-top:8px">
+        <div class="cs-rcell"><small>NBA-Rotation</small><b class="cs-ev ${ev(r.rot, 0.5, 0.2)}">${pc(r.rot)}</b>${ciTxt(r.rotCi)}<span>Saison mit 40+ Spielen, 18+ Min.</span></div>
+        <div class="cs-rcell"><small>Real-Life-Impact</small><b class="cs-ev ${ev(r.imp, 0.4, 0.15)}">${pc(r.imp)}</b>${ciTxt(r.impCi)}<span>Saison 1.000+ Min. mit BPM ≥ 0</span></div>
+        <div class="cs-rcell"><small>Fantasy-Top-150</small><b class="cs-ev ${ev(r.fan, 0.4, 0.15)}">${pc(r.fan)}</b>${ciTxt(r.fanCi)}<span>9-Cat, ersten 4 NBA-Jahre</span></div>
+      </div>
+      <div class="muted cs-hint">Spanne: Modell-Unsicherheit (200 Bootstrap-Modelle) × Unsicherheit, wo er wirklich gedraftet wird (Konsens-Rang ± Streuung, Annahme σ ${IM.pickSigma} auf ln-Skala).</div>
+    </div>`;
+    const band = (IM.bands || []).find(b => { const [lo, hi] = b.band.split('–').map(Number); return r.pick[1] >= lo && r.pick[1] <= hi; });
+    const bandHtml = band ? `<div class="card cs-box"><div class="cs-box-head"><h3>📊 Historisch bei Pick ${e(band.band)}</h3><span class="muted small">Draftees 2008–${IM.lastLabelDraft}</span></div>
+      <div class="table-wrap"><table class="table compact" data-nosort><thead><tr><th></th><th class="num">n</th><th class="num">Rotation</th><th class="num">Impact</th><th class="num">Top-150</th></tr></thead><tbody>
+      <tr><td class="strong">ohne College (international u. a.)</td><td class="num">${band.intl.n}</td><td class="num">${pc(band.intl.rot)}</td><td class="num">${pc(band.intl.imp)}</td><td class="num">${pc(band.intl.fan)}</td></tr>
+      <tr><td>College</td><td class="num">${band.col.n}</td><td class="num">${pc(band.col.rot)}</td><td class="num">${pc(band.col.imp)}</td><td class="num">${pc(band.col.fan)}</td></tr></tbody></table></div></div>` : '';
+    // Vergleichbare internationale Picks: nächste nach ln(Pick)
+    const lp = Math.log(Math.max(1, kb.rank));
+    const comps = col ? [] : (IM.hist || []).filter(h => h[3] !== 'zu früh').map(h => ({ h, d: Math.abs(Math.log(h[2]) - lp) + 0.002 * Math.abs(2026 - h[1]) })).sort((a, b) => a.d - b.d).slice(0, 8).map(x => x.h);
+    const compHtml = `<div class="card cs-box"><div class="cs-box-head"><h3>${tip('🔁 Vergleichbare internationale Picks', 'Spieler ohne College, die 2008–' + IM.lastLabelDraft + ' an ähnlicher Position gedraftet wurden, und was aus ihnen wurde (ersten 4 NBA-Jahre). Kein Ähnlichkeits-Vergleich des Spielstils.')}</h3></div>
+      <div class="table-wrap"><table class="table compact" data-nosort><thead><tr><th>Spieler</th><th class="num">Draft</th><th class="num">Pick</th><th>Ergebnis</th><th class="num">Bester 9-Cat-Rang</th></tr></thead><tbody>
+      ${comps.map(h => `<tr><td class="strong">${e(h[0])}</td><td class="num">${h[1]}</td><td class="num">${h[2]}</td><td>${e(h[3])}</td><td class="num">${h[4] != null ? '#' + h[4] : '—'}</td></tr>`).join('')}</tbody></table></div></div>`;
+    const statHtml = `<div class="card cs-box"><div class="cs-box-head"><h3>${tip('📋 Profi-Statline', 'EuroLeague/EuroCup (öffentliche EuroLeague-Feeds) und NBL (nblR-Daten), wöchentlich mit dem Konsens-Board. Andere Ligen (LNB, ACB, ABA …) sind nicht frei abrufbar. Nur Anzeige — im Backtest kein Zusatznutzen über die Draft-Position hinaus.')}</h3><span class="muted small">pro Spiel</span></div>
+      ${st.length ? `<div class="table-wrap"><table class="table compact" data-nosort><thead><tr><th>Saison</th><th>Liga</th><th>Team</th><th class="num">SP</th><th class="num">Min</th><th class="num">PTS</th><th class="num">REB</th><th class="num">AST</th><th class="num">STL</th><th class="num">BLK</th><th class="num">3PM</th><th class="num">TS%</th></tr></thead><tbody>
+      ${st.map(s => `<tr>${s.map((v, i) => `<td class="${i >= 3 ? 'num' : ''}">${v == null ? '—' : i >= 4 ? de(v) : e(String(v))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`
+      : '<div class="muted cs-pad">Keine Statline: Liga nicht frei abrufbar (z. B. LNB, ACB, ABA) oder noch keine Einsätze.</div>'}</div>`;
+    return head + `<div class="cs-grid" style="margin-bottom:14px"><div>${box}${bandHtml}</div><div>${col ? '' : statHtml + compHtml}</div></div>`;
+  }
+
   function mainHtml(ctx, st) {
-    const e = ctx.ui.esc, I = index(ctx.data), p = I.byId.get(String(st.sel));
+    const e = ctx.ui.esc, I = index(ctx.data);
+    if (st.intl) return intlHtml(ctx, I, st.intl);
+    const p = I.byId.get(String(st.sel));
     if (!p) return ctx.ui.empty('Kein Prospect gewählt', 'Links einen Prospect auswählen.', '🎓');
     const b = boardOf(I, p), kb = konsOf(I, p), o = ownerOf(ctx, I, p), C = I.C;
     const age = p.age != null ? `${de(p.age)} J. am Draft-Tag` : `≈ ${de(p.ageEst)} J. (Klassen-Schnitt, kein Geburtsdatum)`;
@@ -350,6 +436,7 @@
     title: ({ data, params }) => {
       if (!params[0] || !data.COLLEGE_PROSPECTS) return 'College Scouting';
       const I = index(data), par = decodeURIComponent(params[0]);
+      if (par.startsWith('intl:')) return `${par.slice(5)} · College Scouting`;
       const p = I.byId.get(par) || I.byName.get(nk(par));
       return p ? `${p.n} · College Scouting` : 'College Scouting';
     },
@@ -385,7 +472,7 @@
     mount(root, ctx) {
       const st = ctx._bbcs || resolve(ctx);
       const save = (patch, full = true) => { ctx.store.setJSON('bbcs', { ...getState(ctx), ...patch }); if (full) ctx.refresh(); };
-      ctx.store.setJSON('bbcs', { ...getState(ctx), sel: st.sel });
+      if (!st.intl) ctx.store.setJSON('bbcs', { ...getState(ctx), sel: st.sel });
       root.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => save({ [b.dataset.set]: b.dataset.val })));
       const cls = root.querySelector('[data-cls]'); if (cls) cls.addEventListener('change', () => save({ cls: cls.value }));
       const so = root.querySelector('[data-sort]'); if (so) so.addEventListener('change', () => save({ sort: so.value }));
