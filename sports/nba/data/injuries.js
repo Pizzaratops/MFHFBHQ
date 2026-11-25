@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-25T18:36:15.507Z",
+  "updated": "2026-11-25T19:09:43.923Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -24,9 +24,9 @@ const NBA_INJURIES = {
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-25","Lower Leg",0,"2026-11-25"],
     "Dejounte Murray": ["NO","Out","GTD","2026-11-27","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-24"],
-    "Dereck Lively II": ["DAL","Out","OUT","2026-11-27","Foot",0,"2026-11-20"],
+    "Dereck Lively II": ["DAL","Out","GTD","2026-11-27","Foot",0,"2026-11-20"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-01-03","Achilles",0,"2026-11-24"],
-    "Duncan Robinson": ["DET","Out","OUT","2026-11-27","Quadriceps",0,"2026-11-24"],
+    "Duncan Robinson": ["DET","Out","GTD","2026-11-27","Quadriceps",0,"2026-11-24"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-12-13","Oblique",0,"2026-11-24"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
