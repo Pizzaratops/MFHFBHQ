@@ -241,8 +241,8 @@ const round = (x, d = 2) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** 
 
 // Baut aus den Rohdatensaetzen eines Jahres die WR/TE/RB/QB-Spielerlisten.
 // Exportiert fuer Tests -- macht selbst keine API-Calls.
-// rosterRaw liefert Groesse/Gewicht (fuer das spaetere NFL Profile Comp,
-// siehe scripts/build-nfl-profile-comp.js) -- optional, faellt bei Bedarf
+// rosterRaw liefert Groesse/Gewicht (Profilkopf im College Scouting;
+// der alte NFL Profile Comp ist seit 25.11.2026 entfernt) -- optional, faellt bei Bedarf
 // auf ein leeres Array zurueck (aeltere Cache-Eintraege ohne Groesse/Gewicht
 // bleiben dadurch abwaertskompatibel funktionsfaehig).
 // Mindest-Volumen für die LAUFENDE Saison anteilig zur gespielten Zeit

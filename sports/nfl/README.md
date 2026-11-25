@@ -13,7 +13,7 @@ diese Dateien mit `sport:<datei>` an (siehe `core/data.js`, `js/leagues.js` → 
 | player-style.js | sync-player-style.js | nfl-sync.yml | Player DNA |
 | college-scouting.js | sync-college-scouting.js (Secret `CFBD_API_KEY`) | nfl-college-scouting.yml | College Scouting |
 | nfl-draft-athletic-profiles.js | build-nfl-draft-athletic-profiles.js | nfl-college-scouting.yml | (Zwischenstufe) |
-| nfl-profile-comp.js | build-nfl-profile-comp.js | nfl-college-scouting.yml | College Scouting |
+| prospect-comp.js | build-prospect-comp.py (lokal) | – (manuell, jährlich nach dem Draft) | College Scouting: 🏈 NFL Comps |
 | draft-capital-curve.js | build-draft-capital-curve.js | – (einmalig, bei Bedarf lokal) | Athletic Profiles |
 
 Scripts lokal starten: `node sports/nfl/scripts/<script>.js` (aus dem Repo-Root).

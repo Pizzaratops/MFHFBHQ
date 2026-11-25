@@ -8,7 +8,8 @@
 //  CFBD-Key noetig, keine Egress-Sperre in der Cloud-Sandbox -- kann hier
 //  gebaut UND getestet werden, im Unterschied zu allem CFBD-Abhaengigen).
 //
-//  Baustein 2 (scripts/build-nfl-profile-comp.js) laeuft beim Nutzer lokal,
+//  Baustein 2 war build-nfl-profile-comp.js (am 25.11.2026 entfernt; heute
+//  nutzen build-prospect-draft-model.py und build-prospect-comp.py diese Daten),
 //  matcht dieses File per Name gegen die echte CFBD-Produktion aus
 //  data/college-scouting.js und berechnet die eigentlichen Comps.
 //
@@ -269,7 +270,7 @@ async function main() {
 //  Transparenz-Flag, niedrige Werte = weniger belastbarer Score.
 //
 //  nameKey = normalisierter Name (lowercase, Suffixe/Satzzeichen entfernt)
-//  fuer das Matching in scripts/build-nfl-profile-comp.js gegen die echte
+//  fuer das Matching (heute build-prospect-*.py) gegen die echte
 //  CFBD-Produktion aus data/college-scouting.js.
 //
 //  NFL_DRAFT_ATHLETIC_PROFILES[Pos] = [{ nameKey, name, college, draftYear,

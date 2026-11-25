@@ -27,8 +27,7 @@
   const WINDOWS = [1, 2, 3, 4];
   const PRIMARY = { WR: 'yds', TE: 'yds', RB: 'rushYds', QB: 'passYds' };
   const PRIMARY_LABEL = { WR: 'Rec-Yds', TE: 'Rec-Yds', RB: 'Rush-Yds', QB: 'Pass-Yds' };
-  // Anzeige-Labels für FEATURES (sync-college-scouting.js) und MATCH_FEATURES
-  // (build-nfl-profile-comp.js) — rein präsentational.
+  // Anzeige-Labels für FEATURES (sync-college-scouting.js) — rein präsentational.
   const FEATURE_LABELS = {
     recShare: 'Target Share', ydShare: 'Yard Share', tdShare: 'TD Share',
     avgPPA: 'PPA/Play', usageOverall: 'Usage',
@@ -66,8 +65,8 @@
   //  Rate-/Share-Features (Volumen über Saisons zu mitteln wäre bei einer halb
   //  gespielten Saison unfair). Comps für den Mix werden hier live gerechnet:
   //  Mahalanobis auf denselben z-standardisierten Features wie im Sync-Script
-  //  (Production Comp: kompletter CFBD-Pool, NFL Profile Comp:
-  //  NFL_PROFILE_COMP.pool). Draft Range: gewichtetes Mittel der Saison-z-Werte.
+  //  (Production Comp: kompletter CFBD-Pool). 🏈 NFL Comps: eigener Pool
+  //  (PROSPECT_COMP, gewichtet euklidisch, siehe nflBox). Draft Range: gewichtetes Mittel der Saison-z-Werte.
   const RECENCY_W = [0.5, 0.3, 0.2, 0.1];
   const MX = (() => {
     const cache = {}, spaces = {};
@@ -178,17 +177,7 @@
       const S = spaces['p' + pos];
       return (memo[me.id + '|p'] = S ? nearest(S, feats, me, x => x.rawId === me.rawId) : { comps: [], perc: null });
     }
-    function nfl(N, pos, me) {
-      if (memo[me.id + '|n']) return memo[me.id + '|n'];
-      const feats = (N.meta.matchFeatures || {})[pos] || [];
-      if (!spaces['n' + pos]) {
-        const items = ((N.pool || {})[pos] || []).map(r => ({ v: r.v, meta: { id: r.id, name: r.name, team: r.team, year: r.year, draftYear: r.draftYear, draftRound: r.draftRound, draftPick: r.draftPick, ras: r.ras } }));
-        spaces['n' + pos] = items.length >= 30 ? space(items) : null;
-      }
-      const S = spaces['n' + pos];
-      return (memo[me.id + '|n'] = S ? nearest(S, feats, me, () => false) : null);
-    }
-    return { players, prod, nfl, progress };
+    return { players, prod, progress };
   })();
 
   // Ausgewählte Ansicht: 'mix' oder ein Saison-Jahr
