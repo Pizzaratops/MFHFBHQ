@@ -634,18 +634,18 @@
     },
     {
       "id": "401921671",
-      "line": "TBD @ Grand Canyon Lopes (11/25 - 9:30 PM EST)",
+      "line": "Grand Canyon Lopes @ Colorado Buffaloes (11/25 - 9:30 PM EST)",
       "completed": false,
       "statusText": "11/25 - 9:30 PM EST",
       "away": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "GrCan",
+        "name": "Grand Canyon Lopes",
         "score": null,
         "players": []
       },
       "home": {
-        "abbr": "GrCan",
-        "name": "Grand Canyon Lopes",
+        "abbr": "Col",
+        "name": "Colorado Buffaloes",
         "score": null,
         "players": []
       }
@@ -706,12 +706,12 @@
     },
     {
       "id": "401921672",
-      "line": "TBD @ Saint Louis Billikens (11/25 - 11:59 PM EST)",
+      "line": "Stanford Cardinal @ Saint Louis Billikens (11/25 - 11:59 PM EST)",
       "completed": false,
       "statusText": "11/25 - 11:59 PM EST",
       "away": {
-        "abbr": "TBD",
-        "name": "TBD",
+        "abbr": "Stan",
+        "name": "Stanford Cardinal",
         "score": null,
         "players": []
       },

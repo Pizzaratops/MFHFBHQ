@@ -2,7 +2,6 @@
   "league": "ncaab",
   "date": "2026-11-24",
   "games": [
-    "Colorado Buffaloes 70 @ Stanford Cardinal 65 (Final)",
     "Milwaukee Panthers 67 @ Florida Gators 76 (Final)",
     "Texas Tech Red Raiders 64 @ Louisville Cardinals 72 (Final)",
     "Providence Friars 66 @ Arizona Wildcats 84 (Final)",
@@ -48,7 +47,8 @@
     "UTEP Miners 80 @ Charleston Cougars 69 (Final)",
     "UNC Asheville Bulldogs 61 @ Florida State Seminoles 97 (Final)",
     "Saint Louis Billikens 88 @ Grand Canyon Lopes 91 (Final)",
-    "VCU Rams 84 @ Colorado State Rams 81 (Final)"
+    "VCU Rams 84 @ Colorado State Rams 81 (Final)",
+    "Colorado Buffaloes 70 @ Stanford Cardinal 65 (Final)"
   ],
   "leagueAvg": {
     "fg": 46.5,
