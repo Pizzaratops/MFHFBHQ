@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First Down · Play-Call-Spiel &amp; Quiz</title>
+<meta name="description" content="First Down Spiel: Du callst Offense oder Defense, die CPU antwortet wie die Bears oder Lions. Mit 8-bit-Retro-Ansicht und Quiz „Was jetzt?“.">
+<meta name="theme-color" content="#13294b">
+<link rel="icon" type="image/png" href="../icons/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fd.css">
+<script>
+  try { var t = localStorage.getItem('mfhfb:theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<header class="fd-top">
+  <a class="fd-brand" href="index.html" aria-label="First Down – Lernen">
+    <span class="fd-logo" aria-hidden="true">🏈</span>
+    <span class="fd-brand-text"><b>First Down</b><small class="hide-xs">Spiel &amp; Quiz</small></span>
+  </a>
+  <span class="fd-spacer"></span>
+  <nav class="fd-side" aria-label="Bereich">
+    <a href="index.html" title="Lernbereich: Offense und Defense erklärt">📖<span class="hide-xs"> Lernen</span></a>
+    <a href="#/spiel" data-tab="spiel" title="Play-Call-Spiel">🎮<span class="hide-xs"> Spiel</span></a>
+    <a href="#/quiz" data-tab="quiz" title="Quiz: Was jetzt?">❓<span class="hide-xs"> Quiz</span></a>
+  </nav>
+  <button class="fd-icon-btn" type="button" id="themeBtn" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel">🌓</button>
+  <a class="fd-icon-btn hide-sm" href="../" title="Zum MFHFB HQ">MFHFB <b>HQ</b></a>
+</header>
+
+<main class="fd-main">
+  <div id="spielArea">
+    <section id="setup" class="g-setup">
+      <h1 class="g-h1">Play-Call-Spiel</h1>
+      <p>Du bist der Play Caller. Mit dem Ball callst du die Offense, ohne Ball die Defense. Die CPU antwortet gleichzeitig, mit den Tendenzen des anderen Teams. Dann siehst du, was passiert.</p>
+      <h4>Dein Team</h4>
+      <div class="g-teams" id="setupTeams"></div>
+      <h4>Modus</h4>
+      <div class="g-modes">
+        <label><input type="radio" name="mode" value="game" checked><span><b>Ganzes Spiel</b> Je 3 Drives, abwechselnd Offense und Defense</span></label>
+        <label><input type="radio" name="mode" value="off"><span><b>Ein Drive Offense</b> Schaffst du den Touchdown?</span></label>
+        <label><input type="radio" name="mode" value="def"><span><b>Ein Drive Defense</b> Kannst du den Gegner stoppen?</span></label>
+      </div>
+      <button class="fd-btn fd-play g-start" data-act="start">Kickoff ▶</button>
+      <p class="g-note">Jeder Drive startet an der eigenen 25 (keine Spieluhr). Der Ausgang ist ein vereinfachtes Modell mit Zufall: Welche Calls gut zusammenpassen, ist an echte Football-Logik angelehnt, die Teamprofile an die Saisonzahlen aus dem Bericht Bears @ Lions (Stand 26.11.2026). Keine Prognose.</p>
+    </section>
+
+    <section id="game" class="g-game" hidden>
+      <div class="g-score" id="gScore"></div>
+      <div class="g-grid">
+        <div class="g-viewer">
+          <div class="g-screen">
+            <canvas id="gPix" class="pix" aria-label="8-bit-Ansicht des Spielzugs"></canvas>
+            <canvas id="gTop" hidden aria-label="Taktik-Ansicht von oben"></canvas>
+            <div class="g-label" id="gLabel" hidden></div>
+          </div>
+          <div class="g-ctrl">
+            <div class="fd-seg" role="group" aria-label="Ansicht">
+              <button type="button" data-view="pixel" class="on" title="8-bit-Retro-Ansicht von der Seite">👾 8-bit</button>
+              <button type="button" data-view="top" title="Taktik-Ansicht von oben">Taktik</button>
+            </div>
+            <div class="fd-seg" id="gSpeed" role="group" aria-label="Tempo">
+              <button type="button" data-s="0.5" title="Halbe Geschwindigkeit">½×</button>
+              <button type="button" data-s="1" class="on" title="Normale Geschwindigkeit">1×</button>
+            </div>
+          </div>
+          <div class="g-panel" id="gPanel"></div>
+        </div>
+        <aside class="g-side">
+          <h4>Spielverlauf</h4>
+          <ol class="g-log" id="gLog"></ol>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <section id="quiz" class="g-quiz" hidden></section>
+</main>
+
+<footer class="fd-foot">
+  <p><b>Ideen: MFHFB · Code: Claude.</b> Idee nach <a href="https://four-verts.com/" target="_blank" rel="noopener">Four Verts</a> (Football-Play-Calling).
+  Pixel-Spieler und Feld sind selbst gezeichnet; Teamfarben ohne Logos. Schrift „Press Start 2P“ von CodeMan38 (<a href="https://fonts.google.com/specimen/Press+Start+2P" target="_blank" rel="noopener">Google Fonts</a>, OFL).
+  Teamprofile nach dem MFHFB-Bericht Bears @ Lions (26.11.2026), siehe Quellen im <a href="index.html">Lernbereich</a>.</p>
+</footer>
+
+<script src="tree.js"></script>
+<script src="sim.js"></script>
+<script src="game.js"></script>
+<script>
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var nx = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nx);
+    try { localStorage.setItem('mfhfb:theme', nx); } catch (e) {}
+  });
+</script>
+</body>
+</html>

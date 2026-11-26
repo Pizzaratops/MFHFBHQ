@@ -294,7 +294,8 @@
       <div class="fd-choices">${(n.choices || []).map(c => `
         <a class="fd-choice${c.ghost ? ' ghost' : ''}${parent[c.to] === id ? ' fwd' : ''}" href="#/${c.to}"><b>${esc(c.label)}</b><span>${esc(c.sub || '')}</span></a>`).join('')}
       </div>
-      ${n.see ? `<a class="fd-see" href="#/${n.see}">${seeLab}</a>` : ''}`;
+      ${n.see ? `<a class="fd-see" href="#/${n.see}">${seeLab}</a>` : ''}
+      ${id === 'o-start' || id === 'd-start' ? '<div><a class="fd-cta" href="spiel.html#/spiel">🎮 Selbst callen</a><a class="fd-cta" href="spiel.html#/quiz">❓ Quiz</a></div>' : ''}`;
     renderDiagram(n.diagram || { off: 'gun11', def: 'nickel' });
     if (window.innerWidth < 900) window.scrollTo({ top: 0 });
   }
