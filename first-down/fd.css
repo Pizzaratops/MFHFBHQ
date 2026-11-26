@@ -40,9 +40,9 @@ h1, h4, .fd-brand b, .fd-btn, .fd-choice b, .fd-kicker, .fd-side button { font-f
 .fd-icon-btn:hover { background: rgba(255, 255, 255, .1); }
 .fd-icon-btn b { color: var(--orange); }
 .fd-side { display: inline-flex; border-radius: 9px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .3); }
-.fd-side button { border: 0; background: transparent; color: #fff; padding: 6px 12px; font-size: 16px; font-weight: 700; cursor: pointer; letter-spacing: .02em; }
+.fd-side button { white-space: nowrap; border: 0; background: transparent; color: #fff; padding: 6px 12px; font-size: 16px; font-weight: 700; cursor: pointer; letter-spacing: .02em; }
 .fd-side button.on { background: var(--orange); }
-@media (max-width: 460px) { .fd-side button { padding: 6px 8px; font-size: 15px; } .fd-top { padding: 8px 10px; gap: 6px; } .fd-brand-text b { font-size: 19px; } }
+@media (max-width: 460px) { .fd-side button { padding: 6px 8px; font-size: 15px; } .fd-side .em { display: none; } .fd-top { padding: 8px 10px; gap: 6px; } .fd-brand-text b { font-size: 19px; } }
 
 /* Layout */
 .fd-main { max-width: 1380px; margin: 0 auto; padding: 14px 16px 8px; }
