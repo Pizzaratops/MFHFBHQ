@@ -22,7 +22,7 @@ const DYNASTY_LIVE = [
   { name: "Donovan Mitchell", baseRank: 20, liveRank: 22, delta: -2, games: 18, expRank: 8, seasonRank: 22, shift: -0.09, source: "season" },
   { name: "Darryn Peterson", baseRank: 21, liveRank: 19, delta: 2, games: 19, expRank: 160, seasonRank: 105, shift: 0.09, source: "season" },
   { name: "Trey Murphy III", baseRank: 25, liveRank: 28, delta: -3, games: 11, expRank: 14, seasonRank: 63, shift: -0.12, source: "season" },
-  { name: "Trae Young", baseRank: 33, liveRank: 37, delta: -4, games: 19, expRank: 27, seasonRank: 66, shift: -0.11, source: "season" },
+  { name: "Trae Young", baseRank: 33, liveRank: 37, delta: -4, games: 19, expRank: 27, seasonRank: 67, shift: -0.11, source: "season" },
   { name: "LaMelo Ball", baseRank: 34, liveRank: 39, delta: -5, games: 19, expRank: 33, seasonRank: 86, shift: -0.15, source: "season" },
   { name: "Brandon Miller", baseRank: 35, liveRank: 40, delta: -5, games: 15, expRank: 41, seasonRank: 111, shift: -0.14, source: "season" },
   { name: "Josh Giddey", baseRank: 36, liveRank: 43, delta: -7, games: 18, expRank: 53, seasonRank: 156, shift: -0.18, source: "season" },
