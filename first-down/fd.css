@@ -196,7 +196,7 @@ body[data-side="def"] .fd-choice.fwd b::after { color: #3b82f6; }
 @media (max-width: 960px) { .g-grid { grid-template-columns: minmax(0, 1fr); } }
 .g-screen { position: relative; border-radius: 12px; overflow: hidden; border: 4px solid #222; background: #1b1f3a; box-shadow: var(--shadow); }
 .g-screen canvas { display: block; width: 100%; height: auto; }
-canvas.pix { image-rendering: pixelated; image-rendering: crisp-edges; aspect-ratio: 256 / 160; }
+canvas.pix { image-rendering: pixelated; image-rendering: crisp-edges; aspect-ratio: 384 / 240; }
 .g-label { position: absolute; left: 50%; top: 26%; transform: translateX(-50%); padding: 10px 14px; background: rgba(0, 0, 0, .78); color: #fff; font-size: clamp(11px, 2.6vw, 20px); border: 3px solid #fff; white-space: nowrap; animation: pop .25s steps(3) both; }
 .g-label.td { color: #ffd84d; border-color: #ffd84d; }
 .g-label.bad { color: #ff6b5a; border-color: #ff6b5a; }
@@ -315,7 +315,7 @@ canvas.pix { image-rendering: pixelated; image-rendering: crisp-edges; aspect-ra
 @keyframes blink { 50% { border-color: #ffd84d; } }
 .c-pick { position: absolute; transform: translate(-50%, -50%); width: clamp(38px, 6vw, 56px); height: clamp(38px, 6vw, 56px); border-radius: 50%; border: 4px solid #fff; background: rgba(0, 0, 0, .35); color: #fff; cursor: pointer; display: grid; place-items: center; box-shadow: 0 0 0 3px rgba(0, 0, 0, .4); animation: pulse 1s ease-in-out infinite; }
 .c-pick span { font: 400 clamp(7px, 1.3vw, 10px) 'Press Start 2P', monospace; text-shadow: 1px 1px 0 #000; }
-.c-pick.lane { border-radius: 10px; width: clamp(54px, 9vw, 80px); height: clamp(30px, 4.5vw, 40px); }
+.c-pick.lane { border-radius: 10px; width: clamp(54px, 9vw, 80px); height: clamp(24px, 3.4vw, 34px); }
 .c-pick.open { border-color: #2ee66b; } .c-pick.mid { border-color: #ffd84d; } .c-pick.shut { border-color: #ff4d4d; }
 .c-pick:hover { background: rgba(255, 255, 255, .25); }
 @keyframes pulse { 50% { transform: translate(-50%, -50%) scale(1.08); } }

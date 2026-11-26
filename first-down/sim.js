@@ -321,101 +321,190 @@
   function yardLabel(y) { return y > 0 ? '+' + y + ' YARDS' : y === 0 ? 'KEIN RAUMGEWINN' : y + ' YARDS'; }
 
   // ============================================================
-  //  Renderer 1: 8-bit-Seitenansicht (NES-Look)
+  //  Renderer 1: Retro-Seitenansicht (16-bit-Look, v2)
   // ============================================================
-  const PW = 256, PH = 160, FT = 46, FB = 152, PX = 4.4;
+  //  Spieler als selbst gezeichnete Sprites mit dunklem Umriss und
+  //  mehreren Schattierungen (Helm mit Glanzlicht, Schulterpolster,
+  //  Rückennummer), Feld vorgerendert mit Rasentextur, Tribüne mit
+  //  Parallaxe, Flutlicht, Ball mit Flugspur, Konfetti, Staub.
+  const PW = 384, PH = 240, FT = 84, FB = 228, PX = 7, LS = 4.4, MARG = 26;
   const DIG = { 0: '111101101101111', 1: '010110010010111', 2: '111001111100111', 3: '111001111001111', 4: '101101111001001', 5: '111100111001111', 6: '111100111101111', 7: '111001001001001', 8: '111101111101111', 9: '111101111001111' };
+  const BODY = [
+    '....ooooo......',
+    '...oHHSHHo.....',
+    '..oHHHSHLHo....',
+    '..oHHHHSHHMo...',
+    '..ohHHHHHKMo...',
+    '..ohhHHHKKMo...',
+    '...oohhoKko....',
+    '.oooTTTTTTooo..',
+    'oTTJJJJJJJJTTo.',
+    'oTJJJNNJJJJJKo.',
+    '.ojJJNNJJJjKKo.',
+    '.ojjJJJJJjjoKo.',
+    '..ojJJJJJjo.oo.',
+    '..oTTTTTTTo....',
+    '..oPPPPPPpo....',
+    '..oPPPpPPPo....',
+  ];
+  const LEGS = [
+    ['..oPPooPPPo....', '..oWWo.oWWo....', '..oWWo.oWWo....', '..oWWo.oWWo....', '.oBBBo.oBBBo...', '.ooooo.ooooo...'],
+    ['..oPPo.oPPPo...', '.oPPo...oWWWo..', '.oWWo....oWWo..', 'oWWo.....oWWo..', 'oBBo.....oBBBo.', 'ooo.......oooo.'],
+    ['...oPPoPPo.....', '...oWWoWWo.....', '..oWWo.oWWo....', '..oWWo..oWo....', '.oBBo...oBBo...', '.ooo....ooo....'],
+  ];
+  const hex2 = h => { h = h.replace('#', ''); if (h.length === 3) h = h.split('').map(c => c + c).join(''); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; };
+  const mix = (h, t, f) => { const a = hex2(h), b = hex2(t); return 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * f)).join(',') + ')'; };
+  const lum = h => { const [r, g, b] = hex2(h); return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
+  const spriteCache = {};
+  function spriteCanvas(team, side, frame, flip, ball) {
+    const key = [team.jersey, team.trim, team.helmet, side, frame, flip, ball].join('|');
+    if (spriteCache[key]) return spriteCache[key];
+    const off = side === 'off';
+    const J = off ? team.jersey : '#f1f1f1', T = off ? team.trim : team.jersey;
+    const pal = {
+      o: '#0d0f16', H: team.helmet, h: mix(team.helmet, '#000000', 0.35), L: mix(team.helmet, '#ffffff', 0.55), S: team.stripe,
+      M: '#c9ced6', K: '#e7b088', k: '#b5774f', T, J, j: mix(J, '#000000', 0.28),
+      N: off ? (lum(team.jersey) > 0.6 ? team.trim : '#ffffff') : team.jersey,
+      P: team.pants, p: mix(team.pants, '#000000', 0.25), W: off ? mix(team.trim, '#ffffff', 0.35) : '#ffffff', B: '#1b1b1f',
+    };
+    const rows = BODY.concat(LEGS[frame]);
+    const cv = document.createElement('canvas'); cv.width = 15; cv.height = rows.length;
+    const g = cv.getContext('2d');
+    rows.forEach((r, y) => { for (let x = 0; x < 15; x++) { const c = r[x]; if (!c || c === '.') continue; g.fillStyle = pal[c]; g.fillRect(flip ? 14 - x : x, y, 1, 1); } });
+    if (ball) { const bx = flip ? 1 : 10; g.fillStyle = '#0d0f16'; g.fillRect(bx, 9, 4, 4); g.fillStyle = '#8a4a1c'; g.fillRect(bx + 1, 10, 2, 2); g.fillStyle = '#c47a3a'; g.fillRect(bx + 1, 10, 1, 1); }
+    spriteCache[key] = cv;
+    return cv;
+  }
+  function digit5(g, n, x, y, scale, col) { const s = DIG[n]; g.fillStyle = col; for (let i = 0; i < 15; i++) if (s[i] === '1') g.fillRect(x + (i % 3) * scale, y + Math.floor(i / 3) * scale, scale, scale); }
+  function fieldCanvas(offTeam, defTeam) {
+    const W = 120 * PX, H = Math.round(53.3 * LS) + MARG * 2;
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const g = cv.getContext('2d');
+    let seed = 99; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const fx = u => Math.round((u + 10) * PX), fy = x => Math.round(MARG + x * LS);
+    // Seitenbereich
+    g.fillStyle = '#2b5e28'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#a0522d'; g.fillRect(0, 2, W, 6); g.fillStyle = '#8a4526'; for (let x = 0; x < W; x += 9) g.fillRect(x, 4, 4, 1);
+    // Rasenstreifen
+    for (let u = 0; u < 100; u += 5) { g.fillStyle = Math.floor(u / 5) % 2 ? '#3a8433' : '#469a3e'; g.fillRect(fx(u), fy(0), 5 * PX, fy(53.3) - fy(0)); }
+    // Endzonen mit Diagonalstreifen
+    [[-10, offTeam.end], [100, defTeam.end]].forEach(([u0, col]) => {
+      g.fillStyle = col; g.fillRect(fx(u0), fy(0), 10 * PX, fy(53.3) - fy(0));
+      g.save(); g.beginPath(); g.rect(fx(u0), fy(0), 10 * PX, fy(53.3) - fy(0)); g.clip();
+      g.fillStyle = mix(col, '#000000', 0.25);
+      for (let k = -60; k < 300; k += 12) { g.beginPath(); g.moveTo(fx(u0) + k, fy(0)); g.lineTo(fx(u0) + k + 6, fy(0)); g.lineTo(fx(u0) + k + 6 - 300, fy(0) + 300); g.lineTo(fx(u0) + k - 300, fy(0) + 300); g.fill(); }
+      g.restore();
+    });
+    // Textur
+    for (let i = 0; i < 9000; i++) { const x = Math.floor(rnd() * W), y = fy(0) + Math.floor(rnd() * (fy(53.3) - fy(0))); g.fillStyle = rnd() < 0.5 ? 'rgba(0,0,0,.08)' : 'rgba(255,255,255,.06)'; g.fillRect(x, y, 1, 1); }
+    // Linien
+    g.fillStyle = 'rgba(255,255,255,.85)';
+    for (let u = 0; u <= 100; u += 5) g.fillRect(fx(u) - (u % 50 === 0 ? 1 : 0), fy(0), u === 0 || u === 100 ? 3 : 2, fy(53.3) - fy(0));
+    for (let u = 1; u < 100; u++) { if (u % 5 === 0) continue; [1.2, 23.6, 29.7, 52.1].forEach(lx => g.fillRect(fx(u), fy(lx) - 1, 1, 3)); }
+    g.fillStyle = '#ffffff'; g.fillRect(fx(-10), fy(0) - 2, 120 * PX, 2); g.fillRect(fx(-10), fy(53.3), 120 * PX, 2);
+    // Zahlen
+    for (let u = 10; u < 100; u += 10) {
+      const v = u <= 50 ? u : 100 - u, s = String(v);
+      [12, 39].forEach(lx => { const y = fy(lx), w = s.length * 8 - 2, x0 = fx(u) - w / 2; s.split('').forEach((ch, i) => { digit5(g, +ch, x0 + i * 8 + 1, y + 1, 2, 'rgba(0,0,0,.35)'); digit5(g, +ch, x0 + i * 8, y, 2, 'rgba(255,255,255,.9)'); }); });
+    }
+    // Torstangen (gelb) am Ende der Endzonen
+    [fx(-10) + 1, fx(110) - 3].forEach(x => { g.fillStyle = '#f5d000'; g.fillRect(x, fy(23.6), 2, fy(29.7) - fy(23.6)); });
+    return cv;
+  }
+  function crowdCanvas() {
+    const W = 1024, H = FT;
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const g = cv.getContext('2d');
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const grd = g.createLinearGradient(0, 0, 0, 30); grd.addColorStop(0, '#070a1c'); grd.addColorStop(1, '#151c40'); g.fillStyle = grd; g.fillRect(0, 0, W, 30);
+    // Flutlichtmasten
+    for (let x = 60; x < W; x += 256) { g.fillStyle = '#2a2f45'; g.fillRect(x + 6, 6, 2, 24); g.fillStyle = '#fff6c8'; g.fillRect(x, 2, 14, 5); g.fillStyle = 'rgba(255,246,200,.12)'; g.beginPath(); g.arc(x + 7, 5, 14, 0, Math.PI * 2); g.fill(); }
+    // Tribünenreihen
+    const COLS = ['#d94a38', '#f2d16b', '#e8e8e8', '#5b8dd9', '#e88b3a', '#9b59b6', '#3fb37f', '#f0a3b5'];
+    for (let r = 0; r < 12; r++) {
+      const y = 30 + r * 4;
+      g.fillStyle = r % 2 ? '#262c4a' : '#2d3456'; g.fillRect(0, y, W, 4);
+      for (let x = (r % 2) * 2; x < W; x += 4) { if (rnd() < 0.12) continue; g.fillStyle = COLS[Math.floor(rnd() * COLS.length)]; g.fillRect(x, y, 2, 2); g.fillStyle = '#e7b088'; if (rnd() < 0.5) g.fillRect(x, y - 1, 2, 1); }
+    }
+    // Banden
+    const by = 78; g.fillStyle = '#0d1630'; g.fillRect(0, by, W, 6);
+    for (let x = 0; x < W; x += 64) { g.fillStyle = x % 128 ? '#e84a0c' : '#13294b'; g.fillRect(x + 2, by + 1, 60, 4); g.fillStyle = 'rgba(255,255,255,.55)'; for (let k = 8; k < 56; k += 6) g.fillRect(x + k, by + 2, 3, 2); }
+    return cv;
+  }
   function PixelView(canvas) {
     const g = canvas.getContext('2d');
     canvas.width = PW; canvas.height = PH;
-    let cam = 30, camX = 26.65;
-    const LS = 3.4, HALF = (FB - FT) / 2 / LS;
-    const crowd = [];
-    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    for (let i = 0; i < 520; i++) crowd.push([Math.floor(rnd() * PW), 4 + Math.floor(rnd() * 30), Math.floor(rnd() * 6)]);
-    const CROWD = ['#d94a38', '#f2d16b', '#ffffff', '#5b8dd9', '#e88b3a', '#9b59b6'];
+    g.imageSmoothingEnabled = false;
+    let cam = 30, camX = 26.65, fieldCv = null, fieldKey = '';
+    const crowd = crowdCanvas();
+    const scan = document.createElement('canvas'); scan.width = PW; scan.height = PH;
+    (function () { const s = scan.getContext('2d'); s.fillStyle = 'rgba(0,0,0,.07)'; for (let y = 0; y < PH; y += 2) s.fillRect(0, y, PW, 1); const v = s.createRadialGradient(PW / 2, PH / 2, PH * 0.45, PW / 2, PH / 2, PH * 0.95); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)'); s.fillStyle = v; s.fillRect(0, 0, PW, PH); })();
+    const HALF = (FB - FT) / 2 / LS;
     const sy = x => Math.round(FT + (FB - FT) / 2 + (x - camX) * LS);
     const sx = u => Math.round(PW / 2 + (u - cam) * PX);
-    function px(x, y, w, h, c) { g.fillStyle = c; g.fillRect(Math.round(x), Math.round(y), w, h); }
-    function digit(n, x, y, c) { const s = DIG[n]; for (let i = 0; i < 15; i++) if (s[i] === '1') px(x + (i % 3), y + Math.floor(i / 3), 1, 1, c); }
-    function num(v, x, y, c) { const s = String(v); s.split('').forEach((ch, i) => digit(+ch, x + i * 4, y, c)); }
-
-    function sprite(x, y, team, side, facing, step, hasBall) {
-      // 9×14 Pixel, Füße bei (x, y)
-      const f = facing; // 1 = nach rechts
-      const L = x - 4, T = y - 14;
-      const H = team.helmet, S = team.stripe, J = side === 'off' ? team.jersey : '#f4f4f4', JT = side === 'off' ? team.trim : team.jersey;
-      const P = team.pants, SK = '#e8b48a', SH = '#1d1d1d';
-      px(x - 4, y - 1, 9, 2, 'rgba(0,0,0,.28)');                       // Schatten
-      // Beine (2 Frames)
-      if (step) { px(L + 2, T + 10, 2, 3, P); px(L + 5, T + 10, 2, 2, P); px(L + 1, T + 13, 3, 1, SH); px(L + 5, T + 12, 3, 1, SH); }
-      else { px(L + 3, T + 10, 2, 3, P); px(L + 4, T + 10, 2, 3, P); px(L + 3, T + 13, 2, 1, SH); px(L + 5, T + 13, 2, 1, SH); }
-      px(L + 2, T + 9, 5, 2, P);                                          // Hose
-      px(L + 1, T + 4, 7, 5, J);                                          // Trikot
-      px(L + 1, T + 5, 7, 1, JT);                                         // Schulter-Streifen
-      px(f > 0 ? L + 7 : L + 1, T + 6, 1, 2, SK);                         // Arm
-      px(L + 2, T, 5, 4, H);                                              // Helm
-      px(L + 4, T, 1, 3, S);                                              // Streifen
-      px(f > 0 ? L + 6 : L + 2, T + 2, 1, 2, '#c9ced6');                  // Gitter
-      px(f > 0 ? L + 7 : L + 1, T + 2, 1, 1, '#c9ced6');
-      if (hasBall) { px(f > 0 ? L + 7 : L, T + 6, 2, 2, '#8b4513'); px(f > 0 ? L + 7 : L, T + 6, 1, 1, '#f4f4f4'); }
-    }
 
     function draw(sim, fi, ctx) {
       const fr = sim.frames[Math.min(fi, sim.frames.length - 1)];
-      const yl = ctx.yl;
+      const yl = ctx.yl, key = ctx.offTeam.end + ctx.defTeam.end;
+      if (key !== fieldKey) { fieldCv = fieldCanvas(ctx.offTeam, ctx.defTeam); fieldKey = key; }
       const bu = yl + fr.ball.p[1];
-      cam += (clamp(bu + 4, 18, 82) - cam) * (fi === 0 ? 1 : 0.12);
-      const bx0 = fr.ball.p[0];
-      camX += (clamp(bx0, HALF - 2, 53.3 - HALF + 2) - camX) * (fi === 0 ? 1 : 0.1);
+      cam += (clamp(bu + 5, 14, 86) - cam) * (fi === 0 ? 1 : 0.12);
+      camX += (clamp(fr.ball.p[0], HALF - 4, 53.3 - HALF + 4) - camX) * (fi === 0 ? 1 : 0.1);
+      // Tribüne (Parallaxe)
+      const cx = ((cam * PX * 0.45) % 512 + 512) % 512;
+      g.drawImage(crowd, cx, 0, PW, FT, 0, 0, PW, FT);
+      if (fi % 3 === 0) for (let k = 0; k < 3; k++) { g.fillStyle = 'rgba(255,255,255,.9)'; g.fillRect(Math.floor(Math.random() * PW), 30 + Math.floor(Math.random() * 46), 2, 2); }
+      // Feld
+      const srcX = (cam + 10) * PX - PW / 2, srcY = MARG + camX * LS - (FB - FT) / 2;
+      g.fillStyle = '#2b5e28'; g.fillRect(0, FT, PW, PH - FT);
+      g.drawImage(fieldCv, Math.round(srcX), Math.round(srcY), PW, FB - FT, 0, FT, PW, FB - FT);
+      g.fillStyle = '#2b5e28'; g.fillRect(0, FB, PW, PH - FB);
       const yTop = Math.max(FT, sy(0)), yBot = Math.min(FB, sy(53.3));
-      // Himmel/Tribüne
-      px(0, 0, PW, FT - 6, '#1b1f3a');
-      crowd.forEach(([x, y, c]) => px(x, y, 1, 1, CROWD[c]));
-      px(0, FT - 8, PW, 2, '#2c3566'); px(0, FT - 6, PW, 6, '#3a7a35');
-      // Rasen mit Streifen
-      for (let u = -10; u < 110; u += 5) {
-        const a = sx(u), b = sx(u + 5);
-        if (b < 0 || a > PW) continue;
-        const inEnd = u < 0 || u >= 100;
-        const col = inEnd ? (u < 0 ? ctx.offTeam.end : ctx.defTeam.end) : (Math.floor(u / 5) % 2 ? '#3f8a37' : '#47963e');
-        px(a, FT, b - a, FB - FT, '#357031');
-        px(a, yTop, b - a, yBot - yTop, col);
-      }
-      px(0, FB, PW, PH - FB, '#3a7a35');
-      if (sy(0) > FT) px(0, sy(0) - 1, PW, 1, '#ffffff');
-      if (sy(53.3) < FB) px(0, sy(53.3), PW, 1, '#ffffff');
-      // Linien
-      for (let u = 0; u <= 100; u += 5) {
-        const x = sx(u); if (x < -2 || x > PW + 2) continue;
-        px(x, yTop, 1, yBot - yTop, u === 0 || u === 100 ? '#ffffff' : 'rgba(255,255,255,.75)');
-        if (u % 10 === 0 && u > 0 && u < 100) { const v = u <= 50 ? u : 100 - u; [12, 41.3].forEach(lx => { const ny = sy(lx) - 2; if (ny > FT && ny < FB - 5) num(v, x - (v >= 10 ? 4 : 1), ny, 'rgba(255,255,255,.8)'); }); }
-      }
-      for (let u = 1; u < 100; u++) { if (u % 5 === 0) continue; const x = sx(u); if (x < 0 || x > PW) continue; [23.6, 29.7, 1, 52.3].forEach(lx => { const yy = sy(lx); if (yy > FT && yy < FB) px(x, yy, 1, 2, 'rgba(255,255,255,.7)'); }); }
-      // LOS + First Down
-      px(sx(yl), yTop, 1, yBot - yTop, '#4f8dff');
-      if (ctx.toGo && yl + ctx.toGo < 100) px(sx(yl + ctx.toGo), yTop, 1, yBot - yTop, '#ffe14d');
-      g.save(); g.beginPath(); g.rect(0, FT - 9, PW, PH - FT + 9); g.clip();
-      // Spieler (nach Tiefe sortiert)
-      const list = sim.actors.map(a => ({ a, p: fr.P[a.id] })).sort((m, n) => m.p[0] - n.p[0]);
+      g.fillStyle = 'rgba(80,140,255,.85)'; g.fillRect(sx(yl) - 1, yTop, 2, yBot - yTop);
+      if (ctx.toGo && yl + ctx.toGo < 100) { g.fillStyle = 'rgba(255,225,40,.9)'; g.fillRect(sx(yl + ctx.toGo) - 1, yTop, 2, yBot - yTop); }
+      g.save(); g.beginPath(); g.rect(0, FT - 14, PW, PH - FT + 14); g.clip();
+      // Spieler
       const prev = sim.frames[Math.max(0, fi - 2)];
+      const list = sim.actors.map(a => ({ a, p: fr.P[a.id] })).sort((m, n) => m.p[0] - n.p[0]);
       list.forEach(({ a, p }) => {
-        const q = prev.P[a.id];
-        const moving = dist(p, q) > 0.05;
-        const facing = a.side === 'off' ? (p[1] < q[1] - 0.02 ? -1 : 1) : (p[1] > q[1] + 0.02 ? 1 : -1);
-        const step = moving ? Math.floor(fi / 4) % 2 : 0;
-        sprite(sx(yl + p[1]), sy(p[0]), a.side === 'off' ? ctx.offTeam : ctx.defTeam, a.side, facing, step, fr.ball.held === a.id && fi > 7);
+        const q = prev.P[a.id], moving = Math.hypot(p[0] - q[0], p[1] - q[1]) > 0.04;
+        const facing = a.side === 'off' ? (p[1] < q[1] - 0.03 ? -1 : 1) : (p[1] > q[1] + 0.03 ? 1 : -1);
+        const frame = moving ? 1 + (Math.floor(fi / 4) % 2) : 0;
+        const x = sx(yl + p[1]), y = sy(p[0]);
+        if (x < -12 || x > PW + 12) return;
+        g.fillStyle = 'rgba(0,0,0,.3)'; g.fillRect(x - 6, y - 1, 12, 2); g.fillRect(x - 4, y - 2, 8, 4);
+        const hasBall = fr.ball.held === a.id && fi > 7;
+        g.drawImage(spriteCanvas(a.side === 'off' ? ctx.offTeam : ctx.defTeam, a.side, frame, facing < 0, hasBall), x - 7, y - 22);
       });
-      // Ball
+      // Ball + Flugspur
       if (!fr.ball.held || fi <= 7) {
-        const bx = sx(yl + fr.ball.p[1]), by = sy(fr.ball.p[0]);
-        const h = Math.round(fr.ball.air * 14);
-        px(bx - 1, by - 1, 3, 1, 'rgba(0,0,0,.35)');
-        px(bx - 1, by - 6 - h, 3, 2, '#8b4513'); px(bx, by - 6 - h, 1, 1, '#f4f4f4');
+        for (let k = 5; k >= 1; k--) {
+          const pf = sim.frames[Math.max(0, fi - k)]; if (pf.ball.held || !pf.ball.air) continue;
+          g.fillStyle = `rgba(255,240,200,${0.08 * (6 - k)})`; g.fillRect(sx(yl + pf.ball.p[1]) - 1, sy(pf.ball.p[0]) - 10 - Math.round(pf.ball.air * 22), 3, 2);
+        }
+        const bx = sx(yl + fr.ball.p[1]), by = sy(fr.ball.p[0]), h = Math.round(fr.ball.air * 22);
+        g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(bx - 2, by - 1, 5, 2);
+        const yy = by - 10 - h;
+        g.fillStyle = '#0d0f16'; g.fillRect(bx - 3, yy - 1, 7, 4); g.fillStyle = '#8a4a1c'; g.fillRect(bx - 2, yy, 5, 2); g.fillStyle = '#c47a3a'; g.fillRect(bx - 2, yy, 2, 1); g.fillStyle = '#f4f4f4'; g.fillRect(bx, yy, 1, 1);
+      }
+      // Effekte
+      const t = fr.t;
+      if (sim.label && t >= sim.labelAt) {
+        const age = t - sim.labelAt;
+        const holder = fr.ball.held ? fr.P[fr.ball.held] : fr.ball.p;
+        const hx = sx(yl + holder[1]), hy = sy(holder[0]);
+        if (sim.td) {
+          let s2 = 11;
+          for (let k = 0; k < 70; k++) { s2 = (s2 * 16807) % 2147483647; const r1 = s2 / 2147483647; s2 = (s2 * 16807) % 2147483647; const r2 = s2 / 2147483647; const px0 = r1 * PW, py0 = ((r2 * PH * 1.4 + age * 60 * (0.6 + r1)) % (PH + 20)) - 20; g.fillStyle = ['#ffd84d', '#ff6b5a', '#5bd0ff', '#7dff8a', '#ffffff'][k % 5]; g.fillRect(Math.round(px0 + Math.sin(age * 4 + k) * 4), Math.round(py0), 2, 3); }
+        } else if (age < 0.5 && sim.type !== 'inc') {
+          const r = Math.round(3 + age * 18); g.fillStyle = `rgba(230,220,190,${0.6 - age})`;
+          [[-r, 0], [r, 0], [-r / 2, -2], [r / 2, -2], [0, -3]].forEach(([dx, dy]) => g.fillRect(hx + dx - 2, hy + dy - 2, 4, 3));
+        }
       }
       g.restore();
+      g.drawImage(scan, 0, 0);
     }
-    const project = (p, ctx) => [sx(ctx.yl + p[1]) / PW, (sy(p[0]) - 7) / PH];
+    const project = (p, ctx) => [sx(ctx.yl + p[1]) / PW, (sy(p[0]) - 10) / PH];
     return { draw, project, reset: () => { cam = 30; camX = 26.65; } };
   }
 
