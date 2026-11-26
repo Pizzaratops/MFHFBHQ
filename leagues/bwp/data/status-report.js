@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-26T21:15:10.076Z",
+  "generatedAt": "2026-11-26T22:03:29.835Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -45,8 +45,8 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "CHI",
           "isStarter": true,
-          "status": "O",
-          "flag": true,
+          "status": "Q",
+          "flag": false,
           "lastGamePoints": 11.9,
           "last3AvgPoints": 7.1,
           "projPoints": 10.5
@@ -206,7 +206,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 6.6
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 0
     },
     {
       "id": "beyaz-espn-320102468",
@@ -631,7 +631,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "BAL",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
@@ -664,8 +664,8 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "CHI",
           "isStarter": true,
-          "status": "O",
-          "flag": true,
+          "status": "Q",
+          "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": null
@@ -696,7 +696,7 @@ const STATUS_REPORT_DATA = {
           "name": "Drake London",
           "pos": "WR",
           "nfl": "ATL",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -704,7 +704,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 0
     },
     {
       "id": "beyaz-sleeper-1312794408151687168",
@@ -3350,7 +3350,7 @@ const STATUS_REPORT_DATA = {
           "pos": "TE",
           "nfl": "HOU",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
