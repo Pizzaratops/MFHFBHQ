@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-26T00:15:15.769Z",
+  "generatedAt": "2026-11-26T00:36:56.562Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 19 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -66,14 +66,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Fighting Illini",
       "owner": "Kong Power",
       "values": {
-        "pts": 446.5,
-        "reb": 166.8,
+        "pts": 446.7,
+        "reb": 166.7,
         "ast": 111.2,
         "stl": 30.3,
-        "blk": 19.59,
-        "tpm": 40.9,
+        "blk": 19.56,
+        "tpm": 41,
         "to": 57.1,
-        "fgPct": 48.1,
+        "fgPct": 48.2,
         "ftPct": 78.6
       },
       "rank": {
@@ -97,15 +97,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Seagulls",
       "owner": "Möwe",
       "values": {
-        "pts": 321.7,
-        "reb": 120.4,
-        "ast": 74.9,
-        "stl": 23.19,
-        "blk": 14.85,
-        "tpm": 39.5,
-        "to": 40.8,
+        "pts": 320.4,
+        "reb": 120.1,
+        "ast": 74.7,
+        "stl": 23.12,
+        "blk": 14.83,
+        "tpm": 39.4,
+        "to": 40.6,
         "fgPct": 46.9,
-        "ftPct": 78.5
+        "ftPct": 78.6
       },
       "rank": {
         "pts": 6,
@@ -128,14 +128,14 @@ const FANTASY_POWER_SCORE = {
       "name": "Neukoelln Hustlers",
       "owner": "Timo Xtremo",
       "values": {
-        "pts": 346.6,
-        "reb": 112.5,
-        "ast": 80,
-        "stl": 26.31,
-        "blk": 12.33,
-        "tpm": 45.7,
-        "to": 39.1,
-        "fgPct": 45.5,
+        "pts": 346.2,
+        "reb": 112.2,
+        "ast": 79.8,
+        "stl": 26.28,
+        "blk": 12.37,
+        "tpm": 45.6,
+        "to": 39,
+        "fgPct": 45.4,
         "ftPct": 79.1
       },
       "rank": {
@@ -190,12 +190,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Anadolu Ballers",
       "owner": "Murat Oguz",
       "values": {
-        "pts": 301.8,
-        "reb": 108.2,
+        "pts": 301.5,
+        "reb": 108.1,
         "ast": 66.7,
-        "stl": 19.42,
-        "blk": 11.07,
-        "tpm": 34.2,
+        "stl": 19.37,
+        "blk": 11.03,
+        "tpm": 34.1,
         "to": 35.6,
         "fgPct": 46.5,
         "ftPct": 82
@@ -221,15 +221,15 @@ const FANTASY_POWER_SCORE = {
       "name": "3-POINT MAFIA",
       "owner": "Patrick & Bennet",
       "values": {
-        "pts": 278,
-        "reb": 114.2,
+        "pts": 278.1,
+        "reb": 114.3,
         "ast": 59.7,
-        "stl": 20.1,
+        "stl": 20.02,
         "blk": 15.02,
         "tpm": 35.4,
-        "to": 35.2,
+        "to": 35.1,
         "fgPct": 46.6,
-        "ftPct": 76.4
+        "ftPct": 76.3
       },
       "rank": {
         "pts": 11,
@@ -287,13 +287,13 @@ const FANTASY_POWER_SCORE = {
       "name": "Kawhi So Serious",
       "owner": "Harald Peterson",
       "values": {
-        "pts": 319.7,
-        "reb": 148.7,
-        "ast": 75.8,
-        "stl": 22.73,
-        "blk": 17.08,
-        "tpm": 32.9,
-        "to": 41.7,
+        "pts": 320.3,
+        "reb": 149.1,
+        "ast": 75.9,
+        "stl": 22.77,
+        "blk": 17.09,
+        "tpm": 33,
+        "to": 41.8,
         "fgPct": 48,
         "ftPct": 76.5
       },
@@ -318,12 +318,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Cooking Show",
       "owner": "Stefan Estepham",
       "values": {
-        "pts": 293,
-        "reb": 107.2,
+        "pts": 292.6,
+        "reb": 107.1,
         "ast": 64.1,
-        "stl": 22.16,
-        "blk": 11.85,
-        "tpm": 30.2,
+        "stl": 22.1,
+        "blk": 11.84,
+        "tpm": 30.1,
         "to": 34.4,
         "fgPct": 47.9,
         "ftPct": 78.5
@@ -380,12 +380,12 @@ const FANTASY_POWER_SCORE = {
       "name": "Double Dribble Trouble",
       "owner": "Nils",
       "values": {
-        "pts": 355.4,
-        "reb": 121,
-        "ast": 90.5,
-        "stl": 24.72,
-        "blk": 14.44,
-        "tpm": 39,
+        "pts": 355.2,
+        "reb": 121.3,
+        "ast": 90.7,
+        "stl": 24.73,
+        "blk": 14.45,
+        "tpm": 38.9,
         "to": 45.8,
         "fgPct": 46.7,
         "ftPct": 79
