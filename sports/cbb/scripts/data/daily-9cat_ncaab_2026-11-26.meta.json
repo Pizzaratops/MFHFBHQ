@@ -2,18 +2,18 @@
   "league": "ncaab",
   "date": "2026-11-26",
   "games": [
-    "Georgetown Hoyas @ Texas Longhorns (15:04 - 2nd)",
-    "Miami Hurricanes @ Michigan Wolverines (10:05 - 1st)",
-    "Boston College Eagles @ UCF Knights (0:57 - 2nd)",
-    "Arizona State Sun Devils @ South Carolina Gamecocks (2:28 - 2nd)",
+    "Tennessee Volunteers @ Iowa State Cyclones (13:59 - 2nd)",
+    "Arkansas Razorbacks @ Michigan State Spartans (4:13 - 1st)",
+    "Miami Hurricanes @ Michigan Wolverines (9:02 - 2nd)",
+    "USC Trojans @ Utah State Aggies (7:48 - 1st)",
+    "Georgetown Hoyas 83 @ Texas Longhorns 92 (Final)",
     "Georgia Bulldogs 81 @ Cincinnati Bearcats 83 (Final)",
     "Army Black Knights 79 @ UTSA Roadrunners 61 (Final)",
     "Oklahoma Sooners 70 @ Purdue Boilermakers 63 (Final)",
     "Maryland Terrapins 71 @ San Diego State Aztecs 75 (Final)",
-    "Tennessee Volunteers @ Iowa State Cyclones (17:59 - 1st)",
-    "Arkansas Razorbacks @ Michigan State Spartans (11/26 - 4:30 PM EST)",
-    "Utah State Aggies @ USC Trojans (11/26 - 4:30 PM EST)",
-    "Saint Mary's Gaels @ UCLA Bruins (11/26 - 5:00 PM EST)",
+    "Boston College Eagles 75 @ UCF Knights 73 (Final)",
+    "Arizona State Sun Devils 73 @ South Carolina Gamecocks 80 (Final)",
+    "UCLA Bruins @ Saint Mary's Gaels (11/26 - 5:00 PM EST)",
     "TCU Horned Frogs @ Creighton Bluejays (11/26 - 6:00 PM EST)",
     "SMU Mustangs @ LSU Tigers (11/26 - 7:00 PM EST)",
     "DePaul Blue Demons @ Pittsburgh Panthers (11/26 - 7:00 PM EST)",
@@ -25,7 +25,7 @@
     "Baylor Bears @ Gonzaga Bulldogs (11/26 - 11:30 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 41.9,
-    "ft": 78
+    "fg": 43.1,
+    "ft": 77.5
   }
 }
