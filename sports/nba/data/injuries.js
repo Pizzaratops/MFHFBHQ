@@ -1,11 +1,11 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-26T03:28:44.966Z",
+  "updated": "2026-11-26T04:01:00.896Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","OUT","2026-11-28","Lower Leg",0,"2026-11-24"],
-    "Andre Drummond": ["NY","Day-To-Day","GTD","2026-11-25","Head",0,"2026-11-26"],
+    "Andre Drummond": ["NY","Day-To-Day","GTD","2026-11-27","Head",0,"2026-11-26"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
@@ -58,7 +58,7 @@ const NBA_INJURIES = {
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
-    "LaMelo Ball": ["MIN","Day-To-Day","GTD","2026-11-25","Ankle",0,"2026-11-26"],
+    "LaMelo Ball": ["MIN","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-26"],
     "Larry Nance Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-24"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
@@ -94,7 +94,7 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-24"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-25","Ankle",0,"2026-11-26"],
+    "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-26"],
     "Zach LaVine": ["SAC","Out","OUT","2026-11-29","Knee",0,"2026-11-25"]
   }
 };
