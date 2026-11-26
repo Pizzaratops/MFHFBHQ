@@ -51,6 +51,10 @@
       `Idee nach ${A('https://four-verts.com/', 'Four Verts')} (Football-Play-Calling mit Play Builder), übertragen auf Basketball als Lernwerkzeug.`,
       `Aktionen und Begriffe u. a. nach ${A('https://www.coachesclipboard.net/basketball-ghost-screens.html', 'Coach\'s Clipboard')} (Ghost Screens, Zipper- und Iverson-Cuts) und der ${A('https://basketball-bund.de/wp-content/uploads/sites/2/2022/12/SPIELKONZEPTION-ZUR-ENTWICKLUNG-VON-NATIONALSPIELERN-NATIONALSPIELERIN....pdf', 'DBB-Spielkonzeption')}. Laufwege, Erklärungen und Varianten sind eigene Darstellungen; Feldmaße nach FIBA.`,
     ]],
+    ['🏈 First Down (Football einfach erklärt)', [
+      'Erklärungen, Laufwege und Skizzen sind eigene, vereinfachte Darstellungen.',
+      `Beispiele aus dem MFHFB-Spielbericht Bears @ Lions (26.11.2026), u. a. nach ${A('https://www.foxsports.com/stories/nfl/how-the-detroit-lions-defense-transformed-into-capable-unit-ahead-of-matchup-vs-bears', 'FOX Sports')}, ${A('https://chicago.suntimes.com/bears/2026/10/11/bears-bench-qb-tyson-bagent-after-two-interceptions-vs-packers-then-case-keenum-throws-one-too', 'Chicago Sun-Times')}, ${A('https://atozsports.com/?p=512724', 'A to Z Sports')}, ${A('https://africa.espn.com/nfl/story/_/id/46954766/chicago-bears-caleb-williams-fewer-sacks', 'ESPN')} und der Thanksgiving-Vorschau von Jon Gruden.`,
+    ]],
     ['🛠️ Technik', [
       `${A('https://html2canvas.hertzen.com', 'html2canvas')} (Niklas von Hertzen, MIT-Lizenz): Bilder zum Teilen.`,
       `${A('https://fonts.google.com', 'Google Fonts')}: Barlow Condensed, DM Sans.`,

@@ -394,4 +394,15 @@ const HUB_TOOLS = [
     accent: '#e84a0c',
     accent2: '#13294b',
   },
+  {
+    // Football einfach erklärt: Entscheidungsbaum Offense/Defense bei 1st & 10 (seit 26.11.2026), Ordner first-down/
+    key: 'first-down',
+    name: 'First Down',
+    short: 'Football einfach erklärt',
+    emoji: '🏈',
+    href: 'first-down/',
+    chips: ['Offense & Defense', 'Animierte Skizzen'],
+    accent: '#3b82f6',
+    accent2: '#13294b',
+  },
 ];

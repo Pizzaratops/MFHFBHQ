@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First Down · Football einfach erklärt</title>
+<meta name="description" content="First Down: Was Offense und Defense bei 1st &amp; 10 entscheiden – Run oder Pass, wer blockt, wie tief, Mann- oder Raumdeckung. Mit animierten Skizzen und Beispielen aus Bears @ Lions 2026.">
+<meta name="theme-color" content="#13294b">
+<link rel="icon" type="image/png" href="../icons/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fd.css">
+<script>
+  try { var t = localStorage.getItem('mfhfb:theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body data-side="off">
+<header class="fd-top">
+  <a class="fd-brand" href="#/o-start" aria-label="First Down – Start">
+    <span class="fd-logo" aria-hidden="true">🏈</span>
+    <span class="fd-brand-text"><b>First Down</b><small class="hide-xs">Football einfach erklärt</small></span>
+  </a>
+  <span class="fd-spacer"></span>
+  <div class="fd-side" role="group" aria-label="Sicht">
+    <button type="button" data-side-btn="off" title="Sicht der Offense: Was entscheidet der Angriff?">🏈 Offense</button>
+    <button type="button" data-side-btn="def" title="Sicht der Defense: Was entscheidet die Verteidigung?">🛡️ Defense</button>
+  </div>
+  <button class="fd-icon-btn" type="button" id="copyBtn" title="Link zu dieser Seite kopieren">🔗<span class="hide-sm"> Link</span></button>
+  <button class="fd-icon-btn" type="button" id="themeBtn" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel">🌓</button>
+  <a class="fd-icon-btn hide-sm" href="../" title="Zum MFHFB HQ">MFHFB <b>HQ</b></a>
+</header>
+
+<main class="fd-main">
+  <nav class="fd-crumbs" id="crumbs" aria-label="Bisheriger Weg"></nav>
+  <div class="fd-grid">
+    <section class="fd-board">
+      <div class="fd-board-wrap">
+        <svg id="field" viewBox="0 0 53.3 36" role="img" aria-label="Footballfeld mit Spielern als Kreise"></svg>
+        <div class="fd-caption" id="caption" aria-live="polite"></div>
+        <div class="fd-controls" id="controls">
+          <button class="fd-btn" type="button" id="restartBtn" title="Von vorne abspielen">↺</button>
+          <button class="fd-btn fd-play" type="button" id="playBtn" title="Abspielen / Pause (Leertaste)">▶</button>
+          <input class="fd-scrub" id="scrub" type="range" min="0" max="1000" value="0" aria-label="Zeit">
+          <span class="fd-time" id="time">0,0 s</span>
+          <div class="fd-seg" role="group" aria-label="Tempo">
+            <button type="button" data-speed="0.5" title="Halbe Geschwindigkeit">½×</button>
+            <button type="button" data-speed="1" class="on" title="Normale Geschwindigkeit">1×</button>
+          </div>
+          <button class="fd-btn fd-toggle on" type="button" id="linesBtn" title="Laufwege ein-/ausblenden">Linien</button>
+        </div>
+      </div>
+      <ul class="fd-legend">
+        <li><svg viewBox="-1.2 -1.2 2.4 2.4"><circle r="1" class="lg-off"/></svg> Offense</li>
+        <li><svg viewBox="-1.2 -1.2 2.4 2.4"><circle r="1" class="lg-def"/></svg> Defense</li>
+        <li><svg viewBox="0 -1 4 2"><path d="M0.2 0 H3.2 M2.6 -0.6 L3.3 0 L2.6 0.6" class="lg-route"/></svg> Laufweg</li>
+        <li><svg viewBox="0 -1 4 2"><path d="M0.2 0 H3.2 M3.2 -0.8 V0.8" class="lg-route"/></svg> Block</li>
+        <li><svg viewBox="0 -1 4 2"><path d="M0.2 0 H3.6" class="lg-pass"/></svg> Pass</li>
+        <li><span class="lg-line los"></span> Line of Scrimmage</li>
+        <li><span class="lg-line fdl"></span> First-Down-Linie</li>
+      </ul>
+    </section>
+    <article class="fd-card" id="card"></article>
+  </div>
+
+  <details class="fd-gloss">
+    <summary>📖 Alle Begriffe (Glossar)</summary>
+    <dl id="glossary"></dl>
+  </details>
+</main>
+
+<footer class="fd-foot">
+  <p><b>Ideen: MFHFB · Code: Claude.</b> Die Erklärungen und Skizzen sind eigene, vereinfachte Darstellungen (z. B. stehen die Spieler nicht auf den Zentimeter genau).
+  Zahlen in den Beispielen: Stand vor Bears @ Lions, 26.11.2026, aus dem MFHFB-Spielbericht, u. a. nach
+  <a href="https://www.foxsports.com/stories/nfl/how-the-detroit-lions-defense-transformed-into-capable-unit-ahead-of-matchup-vs-bears" target="_blank" rel="noopener">FOX Sports</a>,
+  <a href="https://chicago.suntimes.com/bears/2026/10/11/bears-bench-qb-tyson-bagent-after-two-interceptions-vs-packers-then-case-keenum-throws-one-too" target="_blank" rel="noopener">Chicago Sun-Times</a>,
+  <a href="https://atozsports.com/?p=512724" target="_blank" rel="noopener">A to Z Sports</a>,
+  <a href="https://africa.espn.com/nfl/story/_/id/46954766/chicago-bears-caleb-williams-fewer-sacks" target="_blank" rel="noopener">ESPN</a>,
+  <a href="https://www.rotoballer.com/?p=1994638" target="_blank" rel="noopener">RotoBaller</a>,
+  <a href="https://chicago.suntimes.com/bears/2026/10/23/bears-lose-te-cole-kmet-for-the-season-with-knee-injury" target="_blank" rel="noopener">Chicago Sun-Times (Kmet)</a>
+  und der Thanksgiving-Vorschau von Jon Gruden (als „laut Jon Gruden" markiert).</p>
+</footer>
+
+<div class="fd-tip" id="tip" role="tooltip" hidden></div>
+<div class="fd-toast" id="toast" hidden></div>
+
+<script src="tree.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
