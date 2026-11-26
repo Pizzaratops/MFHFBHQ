@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-26T20:03:27.684Z",
+  "generatedAt": "2026-11-26T21:15:10.076Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -509,7 +509,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "JAX",
           "isStarter": true,
-          "status": null,
+          "status": "Q",
           "flag": false,
           "lastGamePoints": 18.3,
           "last3AvgPoints": 20.2,
@@ -586,7 +586,7 @@ const STATUS_REPORT_DATA = {
           "name": "George Kittle",
           "pos": "TE",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -746,7 +746,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 13.1,
-          "projPoints": 14.9
+          "projPoints": 14.8
         },
         {
           "name": "Rome Odunze",
@@ -944,7 +944,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 21.6,
-          "projPoints": 23.8
+          "projPoints": 23.7
         },
         {
           "name": "Denver Broncos",
@@ -955,7 +955,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14,
           "last3AvgPoints": 11.5,
-          "projPoints": 8.3
+          "projPoints": 8.4
         }
       ],
       "flaggedCount": 0
@@ -1022,7 +1022,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 13.1,
-          "projPoints": 14.9
+          "projPoints": 14.8
         },
         {
           "name": "Rome Odunze",
@@ -1209,7 +1209,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 21.6,
-          "projPoints": 23.8
+          "projPoints": 23.7
         },
         {
           "name": "Denver Broncos",
@@ -1220,7 +1220,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14,
           "last3AvgPoints": 11.5,
-          "projPoints": 8.3
+          "projPoints": 8.4
         }
       ],
       "flaggedCount": 0
@@ -1695,7 +1695,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10,
           "last3AvgPoints": 5.5,
-          "projPoints": 7.5
+          "projPoints": 7.4
         },
         {
           "name": "Carnell Tate",
@@ -2004,7 +2004,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14,
           "last3AvgPoints": 11.5,
-          "projPoints": 8.3
+          "projPoints": 8.4
         }
       ],
       "flaggedCount": 0
@@ -2137,7 +2137,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.4,
           "last3AvgPoints": 4.9,
-          "projPoints": 6.9
+          "projPoints": 6.8
         },
         {
           "name": "Amon-Ra St. Brown",
@@ -2193,7 +2193,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.5,
           "last3AvgPoints": 14.6,
-          "projPoints": 14.3
+          "projPoints": 14.4
         },
         {
           "name": "Xavier Worthy",
@@ -2303,7 +2303,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 8.1
+          "projPoints": 8
         },
         {
           "name": "David Montgomery",
@@ -3162,7 +3162,7 @@ const STATUS_REPORT_DATA = {
           "pos": "WR",
           "nfl": "WSH",
           "isStarter": true,
-          "status": "Q",
+          "status": null,
           "flag": false,
           "lastGamePoints": 8.5,
           "last3AvgPoints": 12.3,
@@ -4107,7 +4107,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10,
           "last3AvgPoints": 5.5,
-          "projPoints": 7.5
+          "projPoints": 7.4
         },
         {
           "name": "Jalon Daniels",
@@ -4173,7 +4173,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 12.7,
           "last3AvgPoints": 5.9,
-          "projPoints": 8.1
+          "projPoints": 8
         },
         {
           "name": "Dallas Goedert",
