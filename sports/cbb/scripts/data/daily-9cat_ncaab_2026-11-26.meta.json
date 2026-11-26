@@ -1,0 +1,31 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-26",
+  "games": [
+    "Oklahoma Sooners @ Purdue Boilermakers (0:00 - 2nd)",
+    "Maryland Terrapins @ San Diego State Aztecs (Halftime)",
+    "Boston College Eagles @ UCF Knights (13:24 - 1st)",
+    "Georgia Bulldogs 81 @ Cincinnati Bearcats 83 (Final)",
+    "Army Black Knights 79 @ UTSA Roadrunners 61 (Final)",
+    "Arizona State Sun Devils @ South Carolina Gamecocks (11/26 - 2:00 PM EST)",
+    "Georgetown Hoyas @ Texas Longhorns (11/26 - 2:30 PM EST)",
+    "Tennessee Volunteers @ Iowa State Cyclones (11/26 - 3:30 PM EST)",
+    "Miami Hurricanes @ Michigan Wolverines (11/26 - 3:30 PM EST)",
+    "Arkansas Razorbacks @ Michigan State Spartans (11/26 - 4:30 PM EST)",
+    "Utah State Aggies @ USC Trojans (11/26 - 4:30 PM EST)",
+    "Saint Mary's Gaels @ UCLA Bruins (11/26 - 5:00 PM EST)",
+    "TCU Horned Frogs @ Creighton Bluejays (11/26 - 6:00 PM EST)",
+    "SMU Mustangs @ LSU Tigers (11/26 - 7:00 PM EST)",
+    "DePaul Blue Demons @ Pittsburgh Panthers (11/26 - 7:00 PM EST)",
+    "Jacksonville State Gamecocks @ UC Davis Aggies (11/26 - 8:00 PM EST)",
+    "Louisville Cardinals @ St. John's Red Storm (11/26 - 9:00 PM EST)",
+    "Alabama Crimson Tide @ Kansas State Wildcats (11/26 - 9:00 PM EST)",
+    "Pacific Tigers @ Omaha Mavericks (11/26 - 10:30 PM EST)",
+    "Texas Tech Red Raiders @ Oregon Ducks (11/26 - 11:30 PM EST)",
+    "Baylor Bears @ Gonzaga Bulldogs (11/26 - 11:30 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 42,
+    "ft": 72.2
+  }
+}
