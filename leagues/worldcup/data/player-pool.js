@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-26T13:02:58.353Z
+//  Stand: 2026-11-26T14:02:52.449Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -758,7 +758,7 @@ const WC_PLAYER_POOL = [
 ["049kh","Kevin Knox","(N/A)","SF","SF,F,Flx","FA"],
 ["005kd","Kevin Love","(N/A)","PF","PF,C,F,Flx","FA"],
 ["06mm2","Kevin McCullar","TOR","SF","SF,F,Flx","FA"],
-["051pa","Kevin Porter","ORL","SG","PG,SG,G,Flx","WW"],
+["051pa","Kevin Porter","ORL","SG","PG,SG,G,Flx","T"],
 ["05qzd","Kevon Harris","(N/A)","SG","SG,G,Flx","FA"],
 ["03ad7","Kevon Looney","LAL","C","C,Flx","FA"],
 ["06cd7","Keyontae Johnson","(N/A)","SF","SF,F,Flx","FA"],
