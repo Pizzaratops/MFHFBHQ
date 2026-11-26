@@ -3925,9 +3925,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909317",
-      line: "Miami Heat @ Philadelphia 76ers (11:12 - 4th)",
+      line: "Miami Heat @ Philadelphia 76ers (5:36 - 4th)",
       completed: false,
-      statusText: "11:12 - 4th",
+      statusText: "5:36 - 4th",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -3943,9 +3943,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909318",
-      line: "Chicago Bulls @ Charlotte Hornets (11/25 - 7:00 PM EST)",
+      line: "Chicago Bulls @ Charlotte Hornets (8:52 - 1st)",
       completed: false,
-      statusText: "11/25 - 7:00 PM EST",
+      statusText: "8:52 - 1st",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
