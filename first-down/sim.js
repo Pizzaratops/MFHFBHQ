@@ -70,6 +70,7 @@
       if (n) Object.assign(specs, { NB: { path: [[5, 4]] }, LB1: { path: [[-1.5, 4]] }, LB2: { path: [[4, 4]] } });
       else Object.assign(specs, { LB1: { path: [[-3, 4]] }, LB2: { path: [[0, 5]] }, LB3: { path: [[2, 4]] }, FS: { path: [[-7, 6]] }, SS: { path: [[6, 7]] } });
     } else if (dKey === 'man') {
+      starts.CB1 = [4.5, 2]; starts.CB2 = [47.5, 2]; if (n) starts.NB = [13, 2];
       Object.assign(specs, { CB1: fol('X'), CB2: fol('Z'), FS: { path: [[n ? 8.65 : 6.65, 3]] }, LB2: fol('HB', [0, 3.2], 0.2), LB1: { path: [[0, 2.5]] } });
       if (n) Object.assign(specs, { NB: fol('SL', [0, 1.1]), SS: fol('TE', [0.4, 1.1], 0.4) });
       else Object.assign(specs, { LB3: fol('TE', [0.4, 1.1], 0.4), SS: fol('FB', [0, 2.5], 0.3) });

@@ -27,6 +27,7 @@
     <a href="#/spiel" data-tab="spiel" title="Play-Call-Spiel">🎮<span class="hide-xs"> Spiel</span></a>
     <a href="#/quiz" data-tab="quiz" title="Quiz: Was jetzt?">❓<span class="hide-xs"> Quiz</span></a>
   </nav>
+  <button class="fd-icon-btn" type="button" data-sound aria-pressed="true" title="Musik &amp; Sound aus">🔊</button>
   <button class="fd-icon-btn" type="button" id="themeBtn" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel">🌓</button>
   <a class="fd-icon-btn hide-sm" href="../" title="Zum MFHFB HQ">MFHFB <b>HQ</b></a>
 </header>
@@ -82,12 +83,13 @@
 
 <footer class="fd-foot">
   <p><b>Ideen: MFHFB · Code: Claude.</b> Idee nach <a href="https://four-verts.com/" target="_blank" rel="noopener">Four Verts</a> (Football-Play-Calling).
-  Pixel-Spieler und Feld sind selbst gezeichnet; Teamfarben ohne Logos. Schrift „Press Start 2P“ von CodeMan38 (<a href="https://fonts.google.com/specimen/Press+Start+2P" target="_blank" rel="noopener">Google Fonts</a>, OFL).
+  Pixel-Spieler und Feld sind selbst gezeichnet; Teamfarben ohne Logos. Musik und Sounds: eigene Chiptune-Komposition, live im Browser erzeugt. Schrift „Press Start 2P“ von CodeMan38 (<a href="https://fonts.google.com/specimen/Press+Start+2P" target="_blank" rel="noopener">Google Fonts</a>, OFL).
   Teamprofile nach dem MFHFB-Bericht Bears @ Lions (26.11.2026), siehe Quellen im <a href="index.html">Lernbereich</a>.</p>
 </footer>
 
 <script src="tree.js"></script>
 <script src="sim.js"></script>
+<script src="music.js"></script>
 <script src="game.js"></script>
 <script>
   document.getElementById('themeBtn').addEventListener('click', function () {

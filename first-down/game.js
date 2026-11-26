@@ -116,7 +116,8 @@
 
   // ---------- Zustand ----------
   let G = null;
-  const ordinal = n => ['', '1ST', '2ND', '3RD', '4TH'][n];
+  const AU = (n) => window.FDAUDIO && window.FDAUDIO.fx(n);
+    const ordinal = n => ['', '1ST', '2ND', '3RD', '4TH'][n];
   function spot(st) { const y = st.yl; return y === 50 ? 'Mittellinie' : y < 50 ? `eigene ${y}` : `gegnerische ${100 - y}`; }
   function spotShort(st) { const y = st.yl; return y === 50 ? '50' : y < 50 ? `${st.offTeam} ${y}` : `${st.defTeam} ${100 - y}`; }
 
@@ -126,6 +127,7 @@
     if (mode === 'off') order = [user];
     else if (mode === 'def') order = [cpu];
     else { const first = rnd() < 0.5 ? user : cpu; const second = first === user ? cpu : user; order = [first, second, first, second, first, second]; }
+    if (window.FDAUDIO) FDAUDIO.start();
     G = { user, cpu, mode, order, idx: -1, score: { CHI: 0, DET: 0 }, log: [], stats: { CHI: { yds: 0, plays: 0 }, DET: { yds: 0, plays: 0 } } };
     nextDrive();
   }
@@ -134,9 +136,8 @@
     if (G.idx >= G.order.length) return endGame();
     const off = G.order[G.idx];
     G.st = { offTeam: off, defTeam: off === 'CHI' ? 'DET' : 'CHI', yl: 25, down: 1, toGo: 10, plays: 0 };
-    G.phase = 'call';
+    G.phase = 'call'; G.pending = null; G.sub = null; G.showTip = false;
     G.log.unshift({ head: true, text: `Drive ${G.idx + 1}/${G.order.length}: ${TEAMS[off].full} ab der eigenen 25` });
-    showIdle();
     renderAll();
   }
   const userOnOffense = () => G.st.offTeam === G.user;
@@ -146,6 +147,8 @@
     const st = G.st;
     const dec = resolve(o, d, st);
     const sim = buildSim(o, d, dec, st.yl);
+    G.disguised = G.pending && G.pending.look && G.pending.look !== d;
+    G.pending = null; G.sub = null; G.showTip = false;
     G.phase = 'anim';
     G.last = { o, d, sim, ctx: { yl: st.yl, toGo: st.toGo, offTeam: TEAMS[st.offTeam], defTeam: TEAMS[st.defTeam] } };
     renderCalls();
@@ -155,7 +158,7 @@
     const st = G.st, before = Object.assign({}, st);
     st.plays++; G.stats[st.offTeam].plays++;
     let text = `${TEAMS[st.offTeam].name}: <b>${OPLAYS[o].name}</b> gegen <b>${DCALLS[d].name}</b> → `;
-    const why = WHY[d][whyKey(o)];
+    const why = (G.disguised ? 'Achtung, die Defense hat getäuscht: Sie zeigte etwas anderes, als sie gespielt hat. ' : '') + WHY[d][whyKey(o)];
     let end = null;
     if (sim.type === 'int') { text += '<b>Interception!</b>'; end = 'turnover'; }
     else if (sim.type === 'fumble') { text += `<b>Fumble!</b> Ballverlust nach ${sim.yards} Yards`; end = 'turnover'; }
@@ -166,7 +169,7 @@
       G.stats[st.offTeam].yds += y;
       text += sim.type === 'inc' ? 'Incomplete' : sim.type === 'sack' ? `Sack, ${y} Yards` : (y >= 0 ? `+${y} Yards` : `${y} Yards`);
       st.yl += y;
-      if (y >= st.toGo) { st.down = 1; st.toGo = Math.min(10, 100 - st.yl); text += ' · <b>First Down!</b>'; }
+      if (y >= st.toGo) { st.down = 1; st.toGo = Math.min(10, 100 - st.yl); text += ' · <b>First Down!</b>'; setTimeout(() => AU('firstdown'), 250); }
       else { st.down++; st.toGo -= y; if (st.down > 4) { text += ' · Turnover on Downs'; end = 'downs'; } }
     }
     G.log.unshift({ text: `<span class="dd">${ordinal(before.down)} & ${before.toGo}</span> ${text}<br><small>${why}</small>` });
@@ -179,10 +182,11 @@
     const st = G.st, team = TEAMS[st.offTeam];
     if (choice === 'go') { G.phase = 'call'; G.goForIt = true; renderAll(); return; }
     let text;
-    if (choice === 'punt') { text = `${team.name} punten. Drive vorbei.`; G.driveEnd = 'punt'; }
+    if (choice === 'punt') { text = `${team.name} punten. Drive vorbei.`; G.driveEnd = 'punt'; AU('whistle'); }
     else {
       const dist = 100 - st.yl + 17, ok = rnd() < fgProb(dist);
       if (ok) G.score[st.offTeam] += 3;
+      AU(ok ? 'fieldgoal' : 'miss');
       text = `${team.name}: Field Goal aus ${dist} Yards … ${ok ? '<b>drin! +3</b>' : '<b>daneben!</b>'}`;
       G.driveEnd = ok ? 'fg' : 'fgmiss';
     }
@@ -193,6 +197,8 @@
   }
   function endGame() {
     G.phase = 'end';
+    if (G.mode === 'game') AU(G.score[G.user] > G.score[G.cpu] ? 'win' : G.score[G.user] < G.score[G.cpu] ? 'lose' : 'whistle');
+    else AU('whistle');
     renderAll();
   }
 
@@ -204,6 +210,7 @@
     const sim = entry.sim; let fi = 0, last = 0, acc = 0;
     const speed = () => +($('#gSpeed .on') || { dataset: { s: 1 } }).dataset.s;
     $('#gLabel').hidden = true;
+    AU('snap');
     const step = ts => {
       if (!last) last = ts;
       acc += (ts - last) / 1000 * speed(); last = ts;
@@ -221,16 +228,44 @@
     const l = $('#gLabel');
     l.textContent = t; l.hidden = false;
     l.className = 'g-label' + (sim.td ? ' td' : sim.turnover || sim.type === 'sack' || sim.safety ? ' bad' : '');
+    AU(sim.td ? 'touchdown' : sim.turnover || sim.safety ? 'turnover' : sim.type === 'sack' ? 'sack' : sim.type === 'inc' ? 'incomplete' : 'tackle');
   }
   function showIdle() {
-    if (!G || !G.st) return;
-    const st = G.st;
-    const sim = staticSim('iz', 'c2');
+    if (!G || !G.st || !G.pending) return;
+    const st = G.st, pd = G.pending;
+    const sim = pd.look ? staticSim('iz', pd.look) : staticSim(pd.o, 'c2');
     const ctx = { yl: st.yl, toGo: st.toGo, offTeam: TEAMS[st.offTeam], defTeam: TEAMS[st.defTeam] };
     G.idle = { sim, ctx };
     pv.reset(); tv.reset();
-    $('#gLabel').hidden = true;
     drawFrame(sim, 0, ctx);
+  }
+
+
+  // ---------- Was man vor dem Snap sieht ----------
+  const LOOKS = {
+    box: { title: '8 in der Box', desc: 'Ein Safety ist nach vorne gerückt, nur einer steht noch tief.', tip: 'Vorne viele Leute, hinten nur einer. Ein Lauf hat es schwer, hinter der Box ist Platz.' },
+    c2: { title: '2 Safeties tief', desc: 'Beide Safeties stehen weit hinten, vorne nur sechs Mann.', tip: 'Tief ist es dicht, vorne dünn. Laufen oder in die Mitte zwischen die Reihen werfen.' },
+    man: { title: 'Cornerbacks eng am Mann', desc: 'Die Verteidiger stehen direkt vor ihren Receivern, ein Safety tief.', tip: 'Manndeckung: Jeder Receiver muss sein Duell gewinnen. Schnelle Routen oder ein Lauf helfen.' },
+    blitz: { title: 'Linebacker an der Line', desc: 'Linebacker und Nickelback stehen ganz vorne: Ein Blitz droht.', tip: 'Gleich kommen viele auf den QB. Der Ball muss schnell weg, ein Screen lässt sie ins Leere laufen.' },
+  };
+  function formationLook(o, st) {
+    const i21 = FD_NODES[OPLAYS[o].node].diagram.off === 'i21';
+    const s = situation(st);
+    const title = i21 ? 'I-Formation mit Fullback' : 'Shotgun, 3 Wide Receiver';
+    const desc = i21 ? '2 Running Backs, 1 Tight End, QB direkt hinter dem Center.' : '1 Running Back, 1 Tight End, QB 5 Yards hinter dem Center.';
+    const tip = i21 && s === 'short' ? 'Fullback plus kurze Distanz: Fast sicher kommt ein Lauf.'
+      : s === 'long' ? `${ordinal(st.down)} & ${st.toGo}: Die Offense braucht viele Yards, wahrscheinlich ein Pass.`
+      : i21 ? 'Mit Fullback wird meist gelaufen, aber Play-Action ist möglich.' : 'Alles ist möglich, aber aus der Shotgun kommt öfter ein Pass.';
+    return { title, desc, tip };
+  }
+  function prepareCall() {
+    if (G.pending) return;
+    if (userOnOffense()) {
+      const d = cpuDefense(G.st);
+      const keys = Object.keys(DCALLS).filter(k => k !== d);
+      G.pending = { d, look: rnd() < 0.2 ? keys[Math.floor(rnd() * keys.length)] : d };
+    } else G.pending = { o: cpuOffense(G.st) };
+    showIdle();
   }
 
   // ---------- Darstellung ----------
@@ -286,12 +321,31 @@
       }
       return;
     }
+    prepareCall();
+    const pend = G.pending;
+    const tipBtn = G.showTip ? '' : '<button class="g-tipbtn" data-act="tip">💡 Tipp</button>';
     if (userOnOffense()) {
-      p.innerHTML = `${lastLine}<h3>${ordinal(st.down)} & ${st.toGo}: Dein Call, Offense</h3><p class="muted">${TEAMS[st.defTeam].name}-Defense callt gleichzeitig. Ball an der ${esc(spot(st))}.</p>
-        <div class="g-calls">${Object.keys(OPLAYS).map(k => card(k, OPLAYS[k], 'o')).join('')}</div>${replayBtn}`;
+      const L = LOOKS[pend.look];
+      const head = `<div class="g-look"><small>Du siehst</small><b>${L.title}</b><span>${L.desc}</span>${G.showTip ? `<em>💡 ${L.tip}</em>` : tipBtn}</div>`;
+      let body;
+      if (!G.sub) body = `<p class="g-q">Was tust du?</p><div class="g-cats">
+          <button class="g-cat" data-cat="run"><b>🏃 Lauf</b><span>Ball an den HB</span></button>
+          <button class="g-cat" data-cat="pass"><b>🎯 Pass</b><span>Kurz, mittel, tief, Screen</span></button>
+          <button class="g-cat" data-o="pa"><b>🎭 Play-Action</b><span>Lauf antäuschen, werfen</span></button></div>`;
+      else body = `<p class="g-q">${G.sub === 'run' ? 'Welcher Lauf?' : 'Welcher Pass?'} <button class="g-back" data-act="back">← zurück</button></p>
+          <div class="g-calls">${(G.sub === 'run' ? ['iz', 'oz', 'power', 'iso'] : ['quick', 'mid', 'deep', 'screen']).map(k => card(k, OPLAYS[k], 'o')).join('')}</div>`;
+      p.innerHTML = `${lastLine}${head}${body}${replayBtn}`;
     } else {
-      p.innerHTML = `${lastLine}<h3>${ordinal(st.down)} & ${st.toGo}: Dein Call, Defense</h3><p class="muted">${TEAMS[st.offTeam].name}-Offense callt gleichzeitig. Ball an deren ${esc(spot(st))}.</p>
-        <div class="g-calls">${Object.keys(DCALLS).map(k => card(k, DCALLS[k], 'd')).join('')}</div>${replayBtn}`;
+      const F = formationLook(pend.o, st);
+      const head = `<div class="g-look"><small>Du siehst</small><b>${F.title}</b><span>${F.desc}</span>${G.showTip ? `<em>💡 ${F.tip}</em>` : tipBtn}</div>`;
+      let body;
+      if (!G.sub) body = `<p class="g-q">Was tust du?</p><div class="g-cats">
+          <button class="g-cat" data-d="box"><b>🧱 Lauf stoppen</b><span>8 Mann in die Box</span></button>
+          <button class="g-cat" data-cat="cover"><b>🕸️ Pass verteidigen</b><span>Mann- oder Raumdeckung</span></button>
+          <button class="g-cat" data-d="blitz"><b>⚡ Blitz</b><span>6 Mann auf den QB</span></button></div>`;
+      else body = `<p class="g-q">Welche Deckung? <button class="g-back" data-act="back">← zurück</button></p>
+          <div class="g-calls">${['c2', 'man'].map(k => card(k, DCALLS[k], 'd')).join('')}</div>`;
+      p.innerHTML = `${lastLine}${head}${body}${replayBtn}`;
     }
   }
 
@@ -370,6 +424,8 @@
     const q = QUIZ[Q.order[Q.i]];
     const ok = i === q.a;
     if (ok) Q.right++;
+    if (window.FDAUDIO) FDAUDIO.start();
+    AU(ok ? 'right' : 'wrong');
     document.querySelectorAll('.q-opt').forEach((b, k) => { b.disabled = true; b.classList.toggle('right', k === q.a); b.classList.toggle('wrong', k === i && !ok); });
     const canTry = q.play && q.play[i];
     $('#qAfter').innerHTML = `<p class="q-res ${ok ? 'ok' : 'no'}">${ok ? 'Richtig!' : 'Nicht ganz.'}</p><p>${esc(q.why)}</p>
@@ -397,8 +453,11 @@
   document.addEventListener('click', e => {
     const t = e.target.closest('button, a');
     if (!t) return;
-    if (t.dataset.o && G && G.phase === 'call') { const d = cpuDefense(G.st); G.goForIt = false; runPlay(t.dataset.o, d); }
-    else if (t.dataset.d && G && G.phase === 'call') { const o = cpuOffense(G.st); G.goForIt = false; runPlay(o, t.dataset.d); }
+    if (t.dataset.o && G && G.phase === 'call') { G.goForIt = false; runPlay(t.dataset.o, G.pending.d); }
+    else if (t.dataset.d && G && G.phase === 'call') { G.goForIt = false; runPlay(G.pending.o, t.dataset.d); }
+    else if (t.dataset.cat && G) { G.sub = t.dataset.cat; AU('click'); renderPanel(); }
+    else if (t.dataset.act === 'back') { G.sub = null; renderPanel(); }
+    else if (t.dataset.act === 'tip') { G.showTip = true; renderPanel(); }
     else if (t.dataset.fourth) fourth(t.dataset.fourth);
     else if (t.dataset.act === 'nextdrive') nextDrive();
     else if (t.dataset.act === 'replay' && G.last) { const ph = G.phase; play(G.last, () => { G.phase = ph; }); }
