@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-26T06:03:25.459Z",
+  "generatedAt": "2026-11-26T08:03:25.175Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -823,7 +823,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.6
         },
         {
           "name": "Colston Loveland",
@@ -1088,7 +1088,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.6
         },
         {
           "name": "Colston Loveland",
@@ -1640,7 +1640,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 5.2,
-          "projPoints": 11.2
+          "projPoints": 11.3
         },
         {
           "name": "Woody Marks",
@@ -1982,7 +1982,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17,
           "last3AvgPoints": 15.5,
-          "projPoints": 15.2
+          "projPoints": 15.3
         },
         {
           "name": "Tucker Kraft",
@@ -2060,7 +2060,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.7,
           "last3AvgPoints": 3.9,
-          "projPoints": 9.3
+          "projPoints": 9.4
         },
         {
           "name": "Omarion Hampton",
@@ -2492,7 +2492,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 5.2,
-          "projPoints": 11.2
+          "projPoints": 11.3
         },
         {
           "name": "Pat Bryant",
@@ -2591,7 +2591,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.3,
           "last3AvgPoints": 4.6,
-          "projPoints": 8.2
+          "projPoints": 8.3
         },
         {
           "name": "Lamar Jackson",
@@ -3587,7 +3587,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.6
         },
         {
           "name": "Caleb Douglas",
@@ -3919,7 +3919,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.6
         },
         {
           "name": "Tyler Shough",
