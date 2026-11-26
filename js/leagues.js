@@ -405,4 +405,15 @@ const HUB_TOOLS = [
     accent: '#3b82f6',
     accent2: '#13294b',
   },
+  {
+    // Kinder-Version von First Down (8–12 J.) mit Maskottchen Bruno (seit 26.11.2026)
+    key: 'first-down-kids',
+    name: 'First Down Kids',
+    short: 'Football mit Bruno, dem Dachs',
+    emoji: '🦡',
+    href: 'first-down/kids.html',
+    chips: ['Für Kinder', 'Trainingslager', 'Abzeichen'],
+    accent: '#ffb703',
+    accent2: '#fb8500',
+  },
 ];

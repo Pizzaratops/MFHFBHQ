@@ -53,6 +53,7 @@
     ]],
     ['🏈 First Down (Football einfach erklärt)', [
       'Erklärungen, Laufwege und Skizzen sind eigene, vereinfachte Darstellungen.',
+      'First Down Kids: Maskottchen Bruno (Football-Dachs), Kinder-Teams, Texte und Grafik selbst gemacht; Schrift Fredoka (Google Fonts, OFL).',
       `„Spiele der Woche“: Teamprofile aus ${A('https://github.com/nflverse', 'nflverse')} Play-by-Play und Spielplan sowie FTN-Charting (FTN Data via nflverse, CC-BY-SA 4.0); Teamnamen und -farben ohne Logos.`,
       `Karriere-Modus angelehnt an Retro Bowl (Karriere, Kader) und ${A('https://four-verts.com/', 'Four Verts')} (Play-Calling), umgebaut zum Lernspiel; alle Teams und Spieler erfunden.`,
       `Play-Call-Spiel nach der Idee von ${A('https://four-verts.com/', 'Four Verts')}; Pixel-Spieler selbst gezeichnet, Schrift Press Start 2P (CodeMan38, OFL). Ausgang = vereinfachtes Modell, keine Prognose.`,
