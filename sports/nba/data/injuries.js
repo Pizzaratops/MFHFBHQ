@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-26T22:15:11.406Z",
+  "updated": "2026-11-26T22:33:27.462Z",
   "players": {
     "Aaron Nesmith": ["IND","Day-To-Day","GTD","2026-11-27","Foot",0,"2026-11-24"],
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
@@ -16,7 +16,7 @@ const NBA_INJURIES = {
     "Ben Simmons": ["SAC","Out","OFS","2027-10-01","Achilles",0,"2026-10-21"],
     "Bennedict Mathurin": ["NO","Out","GTD","2026-11-27","Foot",0,"2026-11-26"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
-    "Cade Cunningham": ["DET","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-25"],
+    "Cade Cunningham": ["DET","Out","OUT","2026-11-29","Knee",0,"2026-11-26"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Out","OUT","2026-12-21","Ankle",0,"2026-11-23"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -29,7 +29,7 @@ const NBA_INJURIES = {
     "Dennis Schroder": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-24"],
     "Dereck Lively II": ["DAL","Out","GTD","2026-11-27","Foot",0,"2026-11-20"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-01-03","Achilles",0,"2026-11-24"],
-    "Duncan Robinson": ["DET","Out","GTD","2026-11-27","Quadriceps",0,"2026-11-24"],
+    "Duncan Robinson": ["DET","Out","OUT","2026-11-29","Quadriceps",0,"2026-11-24"],
     "Dylan Harper": ["SA","Out","OUT","2026-12-13","Hip",0,"2026-11-19"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-12-13","Oblique",0,"2026-11-24"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
@@ -46,7 +46,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-24"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
-    "Jaylen Brown": ["PHI","Day-To-Day","GTD","2026-11-27","Hamstring",0,"2026-11-26"],
+    "Jaylen Brown": ["PHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-26"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-28","Back",0,"2026-11-24"],
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
@@ -54,7 +54,7 @@ const NBA_INJURIES = {
     "Jock Landale": ["ATL","Out","GTD","2026-11-27","Hip",0,"2026-11-21"],
     "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-27","Illness",0,"2026-11-26"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
-    "Jordan Clarkson": ["NY","Out","GTD","2026-11-27","Foot",0,"2026-11-24"],
+    "Jordan Clarkson": ["NY","Out","GTD","2026-11-27","Foot",0,"2026-11-26"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Reese": ["NO","Day-To-Day","GTD","2026-12-01","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
