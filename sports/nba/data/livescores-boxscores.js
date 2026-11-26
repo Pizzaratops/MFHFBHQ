@@ -3961,9 +3961,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909318",
-      line: "Chicago Bulls @ Charlotte Hornets (6:15 - 4th)",
+      line: "Chicago Bulls @ Charlotte Hornets (4:48 - 4th)",
       completed: false,
-      statusText: "6:15 - 4th",
+      statusText: "4:48 - 4th",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -3979,9 +3979,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909319",
-      line: "Cleveland Cavaliers @ New York Knicks (9:44 - 3rd)",
+      line: "Cleveland Cavaliers @ New York Knicks (7:15 - 3rd)",
       completed: false,
-      statusText: "9:44 - 3rd",
+      statusText: "7:15 - 3rd",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -3997,9 +3997,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909320",
-      line: "Minnesota Timberwolves @ Oklahoma City Thunder (10:53 - 3rd)",
+      line: "Minnesota Timberwolves @ Oklahoma City Thunder (6:54 - 3rd)",
       completed: false,
-      statusText: "10:53 - 3rd",
+      statusText: "6:54 - 3rd",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
@@ -4015,9 +4015,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909321",
-      line: "LA Clippers @ Memphis Grizzlies (3:21 - 2nd)",
+      line: "LA Clippers @ Memphis Grizzlies (Halftime)",
       completed: false,
-      statusText: "3:21 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
@@ -4033,9 +4033,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909322",
-      line: "Brooklyn Nets @ Milwaukee Bucks (2:35 - 2nd)",
+      line: "Brooklyn Nets @ Milwaukee Bucks (Halftime)",
       completed: false,
-      statusText: "2:35 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -4051,9 +4051,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909323",
-      line: "Phoenix Suns @ Houston Rockets (3:55 - 1st)",
+      line: "Phoenix Suns @ Houston Rockets (2:41 - 1st)",
       completed: false,
-      statusText: "3:55 - 1st",
+      statusText: "2:41 - 1st",
       away: {
         abbr: "PHX", name: "Phoenix Suns", score: null,
         players: [
