@@ -7122,9 +7122,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401929281",
-      line: "Georgia Bulldogs @ Cincinnati Bearcats (11/26 - 11:00 AM EST)",
+      line: "Georgia Bulldogs @ Cincinnati Bearcats (0:43 - 1st)",
       completed: false,
-      statusText: "11/26 - 11:00 AM EST",
+      statusText: "0:43 - 1st",
       away: {
         abbr: "UGA", name: "Georgia Bulldogs", score: null,
         players: [
