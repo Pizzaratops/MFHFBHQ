@@ -1,0 +1,19 @@
+{
+  "league": "nba",
+  "date": "2026-11-25",
+  "games": [
+    "Miami Heat 104 @ Philadelphia 76ers 111 (Final)",
+    "Chicago Bulls @ Charlotte Hornets (11:13 - 2nd)",
+    "Cleveland Cavaliers @ New York Knicks (11/25 - 7:30 PM EST)",
+    "Minnesota Timberwolves @ Oklahoma City Thunder (11/25 - 7:30 PM EST)",
+    "LA Clippers @ Memphis Grizzlies (11/25 - 8:00 PM EST)",
+    "Brooklyn Nets @ Milwaukee Bucks (11/25 - 8:00 PM EST)",
+    "Phoenix Suns @ Houston Rockets (11/25 - 8:30 PM EST)",
+    "Sacramento Kings @ Golden State Warriors (11/25 - 10:00 PM EST)",
+    "San Antonio Spurs @ Portland Trail Blazers (11/25 - 10:00 PM EST)"
+  ],
+  "leagueAvg": {
+    "fg": 46.3,
+    "ft": 72.1
+  }
+}
