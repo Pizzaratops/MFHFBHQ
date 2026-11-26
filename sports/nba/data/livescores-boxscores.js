@@ -3961,9 +3961,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909318",
-      line: "Chicago Bulls @ Charlotte Hornets (15.9 - 3rd)",
+      line: "Chicago Bulls @ Charlotte Hornets (7:12 - 4th)",
       completed: false,
-      statusText: "15.9 - 3rd",
+      statusText: "7:12 - 4th",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -4015,9 +4015,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909321",
-      line: "LA Clippers @ Memphis Grizzlies (7:24 - 2nd)",
+      line: "LA Clippers @ Memphis Grizzlies (4:37 - 2nd)",
       completed: false,
-      statusText: "7:24 - 2nd",
+      statusText: "4:37 - 2nd",
       away: {
         abbr: "LAC", name: "LA Clippers", score: null,
         players: [
@@ -4033,9 +4033,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909322",
-      line: "Brooklyn Nets @ Milwaukee Bucks (8:41 - 2nd)",
+      line: "Brooklyn Nets @ Milwaukee Bucks (3:47 - 2nd)",
       completed: false,
-      statusText: "8:41 - 2nd",
+      statusText: "3:47 - 2nd",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -4051,9 +4051,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909323",
-      line: "Phoenix Suns @ Houston Rockets (10:43 - 1st)",
+      line: "Phoenix Suns @ Houston Rockets (5:38 - 1st)",
       completed: false,
-      statusText: "10:43 - 1st",
+      statusText: "5:38 - 1st",
       away: {
         abbr: "PHX", name: "Phoenix Suns", score: null,
         players: [
