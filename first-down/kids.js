@@ -56,8 +56,8 @@
     }
     if (o === 'screen') { const blz = d === 'blitz'; if (rnd() > (blz ? 0.9 : 0.82)) return { type: 'inc' }; return { type: 'comp', yac: Math.max(0, (blz ? 10 : 4) + gauss() * 4) }; }
     const open = pick ? pick.open : 0.6, depth = pick ? pick.depth : 8;
-    const c = 0.42 + 0.5 * open - Math.max(0, depth - 8) * 0.01;
-    const int = 0.004 + 0.045 * (1 - open);
+    const c = 0.38 + 0.56 * open - Math.max(0, depth - 8) * 0.01;
+    const int = 0.004 + 0.06 * (1 - open);
     if (rnd() < int) return { type: 'int' };
     if (rnd() > c) return { type: 'inc' };
     let y = Math.max(0, M.yac[o] * (0.4 + open) + gauss() * 3); if (rnd() < 0.06 + 0.1 * open) y += 8 + rnd() * 20;
@@ -103,22 +103,45 @@
     }
     return v;
   }
-  // Read ohne Zeitdruck, Lesehilfe immer an
+  // Bewertung: Platz UND Tiefe (reicht es für die 10 Yards?)
+  function scoreRead(ro, st) {
+    if (!ro) return ro;
+    if (ro.kind === 'run') ro.opts.forEach(o => { o.ev = o.open; });
+    else ro.opts.forEach(o => { const pc = clamp(0.38 + 0.56 * o.open - Math.max(0, o.depth - 8) * 0.01, 0.05, 0.95); const gain = o.depth + 3 * (0.4 + o.open); o.gain = gain; o.ev = pc * (gain + (gain >= st.toGo ? 4 : 0)) - (0.004 + 0.06 * (1 - o.open)) * 15; });
+    const best = ro.opts.reduce((m, o) => o.ev > m.ev ? o : m), lo = Math.min(...ro.opts.map(o => o.ev));
+    ro.bestEv = best.id; ro.opts.forEach(o => { o.q = best.ev === lo ? 1 : (o.ev - lo) / (best.ev - lo); });
+    return ro;
+  }
+  const goodRead = (ro, pick) => ro.kind === 'run' ? pick.open >= 0.9 : (pick.id === ro.bestEv || pick.q >= 0.85);
+  function kidFeedback(ro, pick, st) {
+    if (goodRead(ro, pick)) return ro.kind === 'run' ? 'Richtig! 🎉 Da war die Lücke!' : `Richtig! 🎉 Der hatte Platz${pick.gain >= st.toGo ? ' und war weit genug für die 10 Yards' : ''}!`;
+    if (ro.kind === 'run') return 'Fast! Eine andere Lücke war freier.';
+    const best = ro.opts.find(o => o.id === ro.bestEv);
+    if (pick.open >= best.open - 0.05 && pick.depth < best.depth) return 'Der war frei, aber ganz kurz. Weiter vorne war auch einer frei, das bringt mehr!';
+    return 'Fast! Dein Fänger hatte einen Verteidiger ganz nah bei sich. Ein anderer hatte mehr Platz.';
+  }
+  // Read ohne Zeitdruck; Bruno zeigt auf Wunsch die beste Wahl
   function askRead(ro, ctx, frame, onPick) {
     V.ovl.innerHTML = ''; V.ovl.hidden = false;
-    ro.opts.forEach(o => {
+    const btns = ro.opts.map(o => {
       const p = ro.kind === 'run' ? [o.x, 1.5] : frame.P[o.id];
       const [fx, fy] = V.cur().project(p, ctx);
-      const lvl = ro.kind === 'run' ? o.open : o.rel;
       const b = document.createElement('button');
-      b.className = 'c-pick' + (lvl >= 0.85 ? ' open' : lvl >= 0.45 ? ' mid' : ' shut') + (ro.kind === 'run' ? ' lane' : '');
+      b.className = 'c-pick' + (ro.kind === 'run' ? ' lane' : ''); b.dataset.oid = o.id;
       b.style.left = clamp(fx * 100, 4, 96) + '%'; b.style.top = clamp(fy * 100, 6, 94) + '%';
-      b.innerHTML = `<span>${ro.kind === 'run' ? o.name : (lvl >= 0.85 ? '😀' : lvl >= 0.45 ? '😐' : '😬')}</span>`;
-      b.addEventListener('click', e => { e.stopPropagation(); V.ovl.hidden = true; AU('click'); onPick(o); });
-      V.ovl.appendChild(b);
+      b.innerHTML = `<span>${ro.kind === 'run' ? o.name : '🏈'}</span>`;
+      b.addEventListener('click', e => { e.stopPropagation(); V.ovl.hidden = true; V.ovl.innerHTML = ''; AU('click'); onPick(o); });
+      V.ovl.appendChild(b); return b;
     });
-    const h = document.createElement('div'); h.className = 'c-ovl-hint'; h.textContent = ro.kind === 'run' ? 'Wo ist die Lücke? Grün = frei!' : 'Wer ist frei? Grün = frei!';
+    const h = document.createElement('div'); h.className = 'c-ovl-hint'; h.textContent = ro.kind === 'run' ? 'Wo ist die Lücke?' : 'Wem wirfst du den Ball zu?';
     V.ovl.appendChild(h);
+    const tb = document.createElement('button'); tb.className = 'c-ovl-tip'; tb.textContent = '💡 Bruno fragen';
+    tb.addEventListener('click', e => { e.stopPropagation(); tb.remove(); const best = ro.kind === 'run' ? ro.opts.reduce((m, o) => o.open > m.open ? o : m).id : ro.bestEv; btns.forEach(b => { if (b.dataset.oid === best) { b.classList.add('best'); b.querySelector('span').textContent = ro.kind === 'run' ? '⭐ ' + b.textContent : '⭐'; } }); });
+    V.ovl.appendChild(tb);
+  }
+  function setPlaying(on) {
+    document.body.classList.toggle('fd-playing', on);
+    if (on) { const sc = document.querySelector('.c-screen'); if (sc && !document.fullscreenElement) sc.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
   }
 
   // ---------- Bildschirme ----------
@@ -191,22 +214,21 @@
     }
     const dr = l.drills[R.di], ctx = { yl: 30, toGo: 10, offTeam: myTeam(), defTeam: KIDS_TEAMS[l.opp] }, seed = Math.floor(rnd() * 1e9);
     app.innerHTML = `<section class="c-play"><div class="c-crumb"><a href="#" data-act="hub">← Zurück</a> · Level ${l.n} · Training ${R.di + 1}/3</div>
-      <div class="g-grid c-grid"><div>${viewerHTML()}</div><div class="k-card" id="kPanel">${bruno(OPLAYS[dr.o].kind === 'run' ? 'Wir laufen! Nach dem Start bleibt das Bild stehen. Tipp auf die grüne Lücke!' : 'Wir werfen! Nach dem Start bleibt das Bild stehen. Tipp auf den Fänger mit dem grünen Kreis!', 'happy')}<button class="k-big" data-act="ksnap">🏈 Start!</button></div></div></section>`;
+      <div class="g-grid c-grid"><div>${viewerHTML()}</div><div class="k-card" id="kPanel">${bruno(OPLAYS[dr.o].kind === 'run' ? 'Wir laufen! Nach dem Start bleibt das Bild stehen. Tipp auf die Lücke, wo am wenigsten Verteidiger stehen!' : 'Wir werfen! Nach dem Start bleibt das Bild stehen. Such den Fänger mit viel Platz, am besten einen, der schon weit vorne ist!', 'happy')}<button class="k-big" data-act="ksnap">🏈 Start!</button></div></div></section>`;
     V = makeViewer();
-    const ro = readOptions(dr.o, dr.d, seed);
+    const ro = scoreRead(readOptions(dr.o, dr.d, seed), { toGo: 10 });
     const pre = buildSim(dr.o, dr.d, OPLAYS[dr.o].kind === 'run' ? { type: 'run', yards: 0 } : { type: 'inc' }, 30, { seed });
     V.draw(pre, 0, ctx);
     R.snap = () => {
       $('#kPanel').innerHTML = bruno('Schau genau hin … 👀', 'wow');
-      AU('snap');
+      AU('snap'); setPlaying(true);
       V.play(pre, ctx, 0, ro.tDec, fi => askRead(ro, ctx, pre.frames[fi], pick => {
-        const ok = ro.kind === 'run' ? pick.open >= 0.9 : pick.rel >= 0.85;
+        const ok = goodRead(ro, pick);
         if (ok) R.ok++;
         AU(ok ? 'right' : 'wrong');
         const dec = resolve(dr.o, dr.d, pick);
-        V.play(buildSim(dr.o, dr.d, dec, 30, Object.assign({ seed }, ro.kind === 'run' ? { lane: pick.x } : { target: pick.id })), ctx, fi, null);
-        const best = ro.opts.find(x => x.id === ro.best);
-        $('#kPanel').innerHTML = bruno(ok ? 'Richtig! 🎉 Genau da war Platz!' : `Fast! ${ro.kind === 'run' ? `Die Lücke ${best.name} war freier.` : 'Der Fänger mit dem grünen Kreis hatte mehr Platz.'}`, ok ? 'wow' : 'happy') + '<button class="k-big" data-act="dnext">Weiter →</button>';
+        V.play(buildSim(dr.o, dr.d, dec, 30, Object.assign({ seed }, ro.kind === 'run' ? { lane: pick.x } : { target: pick.id })), ctx, fi, null, () => setPlaying(false));
+        $('#kPanel').innerHTML = bruno(kidFeedback(ro, pick, { toGo: 10 }), ok ? 'wow' : 'happy') + '<button class="k-big" data-act="dnext">Weiter →</button>';
       }));
     };
   }
@@ -252,10 +274,10 @@
   }
   function play(o) {
     const G = R.G, st = G.st, d = G.pend.d, seed = G.pend.seed, ctx = ctxNow();
-    G.phase = 'anim'; panel(); AU('snap');
+    G.phase = 'anim'; panel(); AU('snap'); setPlaying(true);
     const after = (sim, ro, pick) => apply(o, d, sim, ro, pick);
     if (sackRoll(o, d)) { const s = buildSim(o, d, { type: 'sack' }, st.yl, { seed }); V.play(s, ctx, 0, null, () => after(s)); return; }
-    const ro = readOptions(o, d, seed);
+    const ro = scoreRead(readOptions(o, d, seed), st);
     if (!ro) { const s = buildSim(o, d, resolve(o, d, null), st.yl, { seed }); V.play(s, ctx, 0, null, () => after(s)); return; }
     const pre = buildSim(o, d, OPLAYS[o].kind === 'run' ? { type: 'run', yards: 0 } : { type: 'inc' }, st.yl, { seed });
     V.play(pre, ctx, 0, ro.tDec, fi => askRead(ro, ctx, pre.frames[fi], pick => {
@@ -268,7 +290,8 @@
     const goodCall = { box: ['pass', 'trick'], c2: ['run', 'pass'], man: ['run', 'pass'], blitz: ['pass', 'trick'] }[d].indexOf(callKind(o)) >= 0 && !(d === 'blitz' && (o === 'deep' || o === 'pa')) && !(d === 'c2' && o === 'deep');
     G.tot++; if (goodCall) G.good++;
     let fb = `${goodCall ? '✅' : '🤔'} ${KIDS_WHY[d][callKind(o)]}`;
-    if (ro && pick) { const ok = ro.kind === 'run' ? pick.open >= 0.9 : pick.rel >= 0.85; G.tot++; if (ok) G.good++; fb += `<br>${ok ? '✅ Gut gesehen, da war Platz!' : '🤔 Ein anderer war freier (grüner Kreis).'}`; }
+    if (ro && pick) { const ok = goodRead(ro, pick); G.tot++; if (ok) G.good++; fb += `<br>${ok ? '✅' : '🤔'} ${kidFeedback(ro, pick, st)}`; }
+    setPlaying(false);
     if (sim.turnover) end = 'Oh nein, der Ball ist weg! Nicht schlimm, nächster Angriff!';
     else if (sim.td) { G.pts += 7; end = 'TOUCHDOWN! 🎉 Das sind 7 Punkte für dich!'; }
     else {

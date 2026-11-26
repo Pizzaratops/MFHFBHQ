@@ -98,8 +98,8 @@
     if (!pick) { c = m.c; int = m.int; }
     else {
       const open = pick.open, depth = pick.depth;
-      c = 0.36 + 0.52 * open - Math.max(0, depth - 8) * 0.011;
-      int = 0.006 + 0.06 * (1 - open) + Math.max(0, depth) * 0.0012;
+      c = 0.32 + 0.58 * open - Math.max(0, depth - 8) * 0.011;
+      int = 0.006 + 0.08 * (1 - open) + Math.max(0, depth) * 0.0012;
       yacF = 0.4 + 1.1 * open;
     }
     c += (off.qb - 75) * 0.003 + (off.wr - 75) * 0.002 - (def.cb - 75) * 0.0025;
@@ -110,7 +110,7 @@
   }
   function cpuPick(ro, qb) {
     if (!ro) return null;
-    if (rnd() < 0.5 + (qb - 75) * 0.012) return ro.opts.find(x => x.id === ro.best);
+    if (rnd() < 0.5 + (qb - 75) * 0.012) return ro.opts.find(x => x.id === (ro.bestEv || ro.best));
     return ro.opts[Math.floor(rnd() * ro.opts.length)];
   }
   function situation(st) { return st.toGo <= 2 ? 'short' : (st.toGo >= 7 && st.down >= 2) ? 'long' : 'normal'; }
@@ -176,27 +176,55 @@
   }
 
   // Read-Overlay: Optionen antippen, Zeitlimit
+  // Bewertung eines Reads: nicht nur „wer ist frei“, sondern was bringt der Wurf?
+  // Wert = Fangchance × (Raumgewinn + Bonus, wenn es für den First Down reicht) − INT-Risiko.
+  function scoreRead(ro, st) {
+    if (!ro) return ro;
+    if (ro.kind === 'run') ro.opts.forEach(o => { o.ev = o.open; });
+    else ro.opts.forEach(o => {
+      const pc = clamp(0.32 + 0.58 * o.open - Math.max(0, o.depth - 8) * 0.011, 0.05, 0.95);
+      const gain = o.depth + 3 * (0.4 + 1.1 * o.open), bonus = gain >= st.toGo ? 4 : 0;
+      const int = 0.006 + 0.08 * (1 - o.open) + Math.max(0, o.depth) * 0.0012;
+      o.gain = gain; o.ev = pc * (gain + bonus) - int * 15;
+    });
+    const best = ro.opts.reduce((m, o) => o.ev > m.ev ? o : m), lo = Math.min(...ro.opts.map(o => o.ev));
+    ro.bestEv = best.id;
+    ro.opts.forEach(o => { o.q = best.ev === lo ? 1 : (o.ev - lo) / (best.ev - lo); });
+    return ro;
+  }
+  const goodRead = (ro, pick) => !!pick && (ro.kind === 'run' ? pick.open >= 0.9 : (pick.id === ro.bestEv || pick.q >= 0.85));
   function askRead(V, ro, ctx, frame, help, onPick) {
     V.ovl.innerHTML = ''; V.ovl.hidden = false;
     const btns = ro.opts.map(o => {
       const p = ro.kind === 'run' ? [o.x, 1.5] : frame.P[o.id];
       const [fx, fy] = V.project(p, ctx);
       const b = document.createElement('button');
-      const lvl = (ro.kind === 'run' ? o.open : o.rel);
-      b.className = 'c-pick' + (help ? (lvl >= 0.85 ? ' open' : lvl >= 0.45 ? ' mid' : ' shut') : '') + (ro.kind === 'run' ? ' lane' : '');
+      b.className = 'c-pick' + (ro.kind === 'run' ? ' lane' : '');
+      b.dataset.oid = o.id;
       b.style.left = clamp(fx * 100, 4, 96) + '%'; b.style.top = clamp(fy * 100, 6, 94) + '%';
       b.innerHTML = ro.kind === 'run' ? `<span>${o.name}</span>` : `<span>${o.lab}</span>`;
       b.addEventListener('click', ev => { ev.stopPropagation(); finish(o); });
       V.ovl.appendChild(b); return b;
     });
     const hint = document.createElement('div'); hint.className = 'c-ovl-hint';
-    hint.textContent = ro.kind === 'run' ? 'Welche Lücke? Tippe sie an!' : 'Wer ist frei? Tippe den Receiver an!';
+    hint.textContent = ro.kind === 'run' ? 'Welche Lücke?' : 'Wohin wirfst du?';
     V.ovl.appendChild(hint);
+    if (help) {
+      const tb = document.createElement('button'); tb.className = 'c-ovl-tip'; tb.textContent = '💡 Tipp';
+      tb.addEventListener('click', ev => { ev.stopPropagation(); tb.remove(); const best = ro.kind === 'run' ? ro.opts.reduce((m, o) => o.open > m.open ? o : m).id : ro.bestEv; btns.forEach(b => { if (b.dataset.oid === best) b.classList.add('best'); }); });
+      V.ovl.appendChild(tb);
+    }
     const T = help ? 12 : 7; let left = T, done = false;
     V.timer.hidden = false; const bar = V.timer.querySelector('i');
     const iv = setInterval(() => { left -= 0.1; bar.style.width = clamp(left / T * 100, 0, 100) + '%'; if (left <= 0) finish(null); }, 100);
-    function finish(o) { if (done) return; done = true; clearInterval(iv); V.ovl.hidden = true; V.timer.hidden = true; AU('click'); onPick(o); }
+    function finish(o) { if (done) return; done = true; clearInterval(iv); V.ovl.hidden = true; V.ovl.innerHTML = ''; V.timer.hidden = true; AU('click'); onPick(o); }
     return btns;
+  }
+  // Während des Spielzugs: Feld groß, Panel ausblenden
+  function setPlaying(on) {
+    document.body.classList.toggle('fd-playing', on);
+    if (on) { const sc = document.querySelector('.c-screen'); if (sc && !document.fullscreenElement) sc.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+    setTimeout(() => R.V && R.V.redraw(), 60);
   }
 
   // ---------- App-Zustand ----------
@@ -238,7 +266,7 @@
       <h3 class="c-h3">Dein Kader ${S.points ? `<small>${S.points} Punkt${S.points > 1 ? 'e' : ''} zum Verteilen: +3 pro Klick</small>` : '<small>Sterne bringen Coach-Punkte, damit verbesserst du Spieler.</small>'}</h3>
       <div class="c-roster">${CAREER_SLOTS.map(sl => `<div class="c-player"><span class="c-pos">${sl.pos}</span><div><b>${esc(S.names[sl.key])}</b><small>${sl.what}</small></div><span class="c-rt">${S.ratings[sl.key]}</span>${S.points && S.ratings[sl.key] < 99 ? `<button class="c-up" data-up="${sl.key}" title="+3">＋</button>` : ''}</div>`).join('')}</div>
       <details class="c-settings"><summary>⚙️ Einstellungen</summary>
-        <label><input type="checkbox" id="cHelp" ${S.help === true ? 'checked' : ''}> Lesehilfe immer an (farbige Ringe: grün = frei, rot = gedeckt)</label>
+        <label><input type="checkbox" id="cHelp" ${S.help === true ? 'checked' : ''}> 💡-Tipp beim Read immer anbieten (sonst nur in Woche 1–3)</label>
         <button class="fd-btn" data-act="reset">Karriere neu starten</button>
       </details></section>`;
   }
@@ -316,19 +344,20 @@
       $('#cAsk').innerHTML = `<p class="q-res ${ok ? 'ok' : 'no'}">${ok ? 'Richtig!' : 'Nicht ganz.'}</p><p>${text}</p><button class="fd-btn fd-play" data-act="dnext">Weiter →</button>`;
     };
     if (dr.type === 'read') {
-      const ro = readOptions(dr.o, dr.d, seed);
+      const ro = scoreRead(readOptions(dr.o, dr.d, seed), st);
       const pre = buildSim(dr.o, dr.d, OPLAYS[dr.o].kind === 'run' ? { type: 'run', yards: 0 } : { type: 'inc' }, st.yl, { seed });
       $('#cAsk').innerHTML = '<button class="fd-btn fd-play" data-act="snap">🏈 Snap!</button>';
       R.onSnap = () => {
         $('#cAsk').innerHTML = '<p class="muted">Schau genau hin …</p>';
+        setPlaying(true);
         R.V.play(pre, ctx, 0, ro.tDec, fi => {
           askRead(R.V, ro, ctx, pre.frames[fi], true, pick => {
-            const bestO = ro.opts.find(x => x.id === ro.best);
-            const ok = pick && (ro.kind === 'run' ? pick.open >= 0.9 : pick.rel >= 0.85);
+            const bestO = ro.opts.find(x => x.id === (ro.kind === 'run' ? ro.best : ro.bestEv));
+            const ok = goodRead(ro, pick);
             const dec = resolvePlay(dr.o, dr.d, st, neutral, neutral, ro, pick || bestO);
             const fin = buildSim(dr.o, dr.d, dec, st.yl, Object.assign({ seed }, ro.kind === 'run' ? { lane: (pick || bestO).x } : { target: (pick || bestO).id }));
-            R.V.play(fin, ctx, fi, null);
-            done(ok, readFeedback(ro, pick));
+            R.V.play(fin, ctx, fi, null, () => setPlaying(false));
+            done(ok, readFeedback(ro, pick, st));
           });
         });
       };
@@ -362,12 +391,20 @@
       };
     }
   }
-  function readFeedback(ro, pick) {
-    const best = ro.opts.find(x => x.id === ro.best);
-    const sep = o => o.sep != null ? `${o.sep >= 15 ? '15+' : o.sep.toFixed(0)} Yards Platz` : '';
-    if (!pick) return `Zu lange gezögert! ${ro.kind === 'run' ? `Die beste Lücke war ${best.name}.` : `Frei war ${best.lab} (${sep(best)}).`}`;
-    if (ro.kind === 'run') return pick.open >= 0.9 ? `Gute Lücke: ${pick.name} war am wenigsten zugestellt.` : `Die Lücke ${best.name} war freier, vor ${pick.name} standen mehr Verteidiger.`;
-    return pick.rel >= 0.85 ? `Guter Read: ${pick.lab} hatte ${sep(pick)} zum nächsten Verteidiger.` : `Frei war ${best.lab} mit ${sep(best)}. Dein ${pick.lab} hatte nur ${sep(pick)}.`;
+  function readFeedback(ro, pick, st) {
+    const sep = o => `${o.sep >= 15 ? '15+' : o.sep.toFixed(0)} Yards Platz`;
+    const dep = o => `${Math.max(0, Math.round(o.depth))} Yards tief`;
+    if (ro.kind === 'run') {
+      const best = ro.opts.reduce((m, o) => o.open > m.open ? o : m);
+      if (!pick) return `Zu lange gezögert! Die beste Lücke war ${best.name}.`;
+      return pick.open >= 0.9 ? `Gute Lücke: ${pick.name} war am wenigsten zugestellt.` : `Die Lücke ${best.name} war freier, vor ${pick.name} standen mehr Verteidiger.`;
+    }
+    const best = ro.opts.find(x => x.id === ro.bestEv);
+    if (!pick) return `Zu lange gezögert! Die beste Wahl war ${best.lab} (${sep(best)}, ${dep(best)}).`;
+    if (goodRead(ro, pick)) return `Guter Read: ${pick.lab} hatte ${sep(pick)} und war ${dep(pick)}${pick.gain >= st.toGo ? ', genug für den First Down' : ''}.`;
+    if (pick.open >= best.open - 0.05 && pick.depth < best.depth) return `${pick.lab} war frei, aber nur ${dep(pick)}${st.toGo > pick.gain ? ` – du brauchtest ${st.toGo}` : ''}. Mehr gebracht hätte ${best.lab} (${sep(best)}, ${dep(best)}).`;
+    if (pick.depth > best.depth + 4) return `${pick.lab} war tief, aber zu eng gedeckt (${sep(pick)}). Sicherer und besser: ${best.lab} (${sep(best)}, ${dep(best)}).`;
+    return `${pick.lab} war zu eng gedeckt (${sep(pick)}). Besser: ${best.lab} (${sep(best)}, ${dep(best)}).`;
   }
 
   // ---------- Spiel ----------
@@ -510,8 +547,9 @@
     const my = offRatings(), oR = oppRatings(R.week);
     G.phase = 'anim'; G.animMsg = `${OPLAYS[o].icon} ${OPLAYS[o].name} gegen ${DCALLS[d].icon} ${DCALLS[d].name}${pd.look !== d ? ' (getäuscht!)' : ''}`; G.fb = null; G.goForIt = false; panel();
     AU('snap');
-    if (sackRoll(o, d, my, oR)) { const sim = buildSim(o, d, { type: 'sack' }, st.yl, { seed }); R.V.play(sim, ctx, 0, null, () => applyPlay(o, d, sim, null, null)); return; }
-    const ro = readOptions(o, d, seed);
+    if (sackRoll(o, d, my, oR)) { setPlaying(true); const sim = buildSim(o, d, { type: 'sack' }, st.yl, { seed }); R.V.play(sim, ctx, 0, null, () => applyPlay(o, d, sim, null, null)); return; }
+    const ro = scoreRead(readOptions(o, d, seed), st);
+    setPlaying(true);
     if (!ro) { const dec = resolvePlay(o, d, st, my, oR, null, null); const sim = buildSim(o, d, dec, st.yl, { seed }); R.V.play(sim, ctx, 0, null, () => applyPlay(o, d, sim, null, null)); return; }
     const pre = buildSim(o, d, OPLAYS[o].kind === 'run' ? { type: 'run', yards: 0 } : { type: 'inc' }, st.yl, { seed });
     R.V.play(pre, ctx, 0, ro.tDec, fi => {
@@ -534,6 +572,7 @@
     if (sackRoll(o, d, oR, my)) dec = { type: 'sack' };
     else { const ro = readOptions(o, d, pd.seed); const pick = cpuPick(ro, oR.qb); dec = resolvePlay(o, d, st, oR, my, ro, pick); if (pick) Object.assign(opts, ro.kind === 'run' ? { lane: pick.x } : { target: pick.id }); }
     const sim = buildSim(o, d, dec, st.yl, opts);
+    setPlaying(true);
     R.V.play(sim, ctx, 0, null, () => applyPlay(o, d, sim, null, null, true));
   }
   function applyPlay(o, d, sim, ro, pick, asDef) {
@@ -557,14 +596,15 @@
       const good = EY(o, d) >= best - 1.0; G.total++; if (good) G.good++;
       fb.push(`${good ? '✅' : '❌'} <b>Call:</b> ${whyOf(o, d)}${G.pending && G.pending.look !== d ? ' (Die Defense hatte getäuscht.)' : ''}`);
       if (ro) {
-        const okR = pick && (ro.kind === 'run' ? pick.open >= 0.9 : pick.rel >= 0.85); G.total++; if (okR) G.good++;
-        fb.push(`${okR ? '✅' : '❌'} <b>Read:</b> ${readFeedback(ro, pick)}`);
+        const okR = goodRead(ro, pick); G.total++; if (okR) G.good++;
+        fb.push(`${okR ? '✅' : '❌'} <b>Read:</b> ${readFeedback(ro, pick, before)}`);
       }
     } else {
       const vals = Object.keys(DCALLS).map(x => EY(o, x)), best = Math.min(...vals), good = EY(o, d) <= best + 1.0; G.total++; if (good) G.good++;
       fb.push(`${good ? '✅' : '❌'} <b>Call:</b> Die Offense spielte ${OPLAYS[o].name}. ${whyOf(o, d)}`);
     }
     G.fb = fb.join('<br>');
+    setPlaying(false);
     G.log.unshift({ t: `<span class="dd">${ordinal(before.down)} & ${before.toGo}</span> ${esc(asDef ? DCALLS[d].name + ' vs ' + OPLAYS[o].name : OPLAYS[o].name + ' vs ' + DCALLS[d].name)} → ${res}` });
     G.pending = null; G.sub = null; G.showTip = false;
     if (end) { G.phase = 'over'; G.overMsg = end; } else G.phase = 'call';

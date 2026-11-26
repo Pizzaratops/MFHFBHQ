@@ -53,7 +53,7 @@ const CAREER_WEEKS = [
     lesson: [
       { t: 'Vier Versuche für zehn Yards', x: 'Deine Offense hat vier {Down|Versuche}, um 10 {Yard|Yards} zu schaffen. Klappt es, gibt es wieder einen {1st & 10}. Klappt es nicht, wird im vierten Versuch meist gepuntet. Die blaue Linie ist die {Line of Scrimmage}, die gelbe die {First-Down-Linie}.', demo: { o: 'iz', d: 'c2', dec: { type: 'run', yards: 5 } }, more: 'o-start' },
       { t: 'Der Lauf und deine erste Entscheidung', x: 'Beim Lauf übergibt der {QB} an den {HB}. Kurz danach friert das Bild ein: Du entscheidest, durch welche Lücke er läuft. Nimm die Lücke, vor der am wenigsten Verteidiger stehen.', demo: { o: 'iz', d: 'c2', lane: 'best', dec: { type: 'run', yards: 6 } }, more: 'o-run-iz' },
-      { t: 'Der kurze Pass', x: 'Beim kurzen Pass macht der QB drei Schritte und wirft sofort. Das Bild friert ein, bevor er wirft: Tippe den Receiver an, der den meisten Platz zum nächsten Verteidiger hat. Grüner Ring = frei, roter Ring = gedeckt (die Ringe gibt es nur am Anfang).', demo: { o: 'quick', d: 'c2', target: 'best', dec: { type: 'comp', yac: 3 } }, more: 'o-pass-quick' },
+      { t: 'Der kurze Pass', x: 'Beim kurzen Pass macht der QB drei Schritte und wirft sofort. Das Bild friert ein, bevor er wirft: Tippe den Receiver an, bei dem sich der Wurf am meisten lohnt: viel Platz zum nächsten Verteidiger, und tief genug, um voranzukommen. Ein freier Mann hinter der gelben Linie ist oft besser als ein freier Mann davor. In den ersten Wochen hilft dir der 💡-Tipp.', demo: { o: 'quick', d: 'c2', target: 'best', dec: { type: 'comp', yac: 3 } }, more: 'o-pass-quick' },
     ],
     tip: 'Merksatz: Raum ist alles. Lauf dorthin, wo keiner steht, wirf dorthin, wo keiner deckt.',
     drills: [{ type: 'read', o: 'iz', d: 'box' }, { type: 'read', o: 'quick', d: 'c2' }, { type: 'read', o: 'quick', d: 'blitz' }],
@@ -81,7 +81,7 @@ const CAREER_WEEKS = [
   },
   {
     n: 4, title: 'Blitz!', opp: 'hornissen', unlock: ['screen'], help: false, defense: false,
-    goal: 'Erkenne einen Blitz vor dem Snap und lass ihn ins Leere laufen. Ab jetzt keine farbigen Ringe mehr.',
+    goal: 'Erkenne einen Blitz vor dem Snap und lass ihn ins Leere laufen. Ab jetzt ohne 💡-Tipp.',
     lesson: [
       { t: 'So sieht ein Blitz aus', x: 'Stehen Linebacker oder der {NB|Nickelback} direkt an der Line, droht ein {Blitz}: Sechs Verteidiger kommen auf den QB. Lange Routen haben dann keine Zeit.', demo: { o: 'deep', d: 'blitz', dec: { type: 'sack' } }, more: 'd-blitz' },
       { t: 'Hot Route', x: 'Wo ein Blitzer herkommt, fehlt hinten ein Verteidiger. Ein schneller Pass genau dorthin ({Hot Route}) ist die Antwort. Der Ball muss in einer Sekunde weg sein.', demo: { o: 'quick', d: 'blitz', target: 'best', dec: { type: 'comp', yac: 6 } }, more: 'o-pass-quick' },

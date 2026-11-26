@@ -52,7 +52,7 @@ const KIDS_LEARN = [
 // Brunos Trainingslager: 5 Level
 const KIDS_LEVELS = [
   { n: 1, title: 'Laufen oder Werfen?', badge: '🥉', badgeName: 'Erster Touchdown', opp: 'wuermer', unlock: ['iz', 'quick'],
-    bruno: ['Hallo! Ich bin Bruno, der Football-Dachs 🦡. Ich zeige dir, wie Football geht!', 'Du kannst laufen oder werfen. Nach dem Start bleibt das Bild stehen: Dann tippst du die Lücke oder den freien Fänger an. Grün heißt frei!'],
+    bruno: ['Hallo! Ich bin Bruno, der Football-Dachs 🦡. Ich zeige dir, wie Football geht!', 'Du kannst laufen oder werfen. Nach dem Start bleibt das Bild stehen: Dann tippst du die Lücke oder den Fänger an. Wenn du unsicher bist, frag mich mit dem 💡-Knopf!'],
     drills: [{ o: 'iz', d: 'c2' }, { o: 'quick', d: 'c2' }, { o: 'quick', d: 'blitz' }] },
   { n: 2, title: 'Zähl die Verteidiger!', badge: '🔍', badgeName: 'Adlerauge', opp: 'monster', unlock: ['oz', 'mid', 'deep'],
     bruno: ['Schau vor dem Start, wo die Verteidiger stehen.', 'Vorne ganz viele? Dann werfen! Hinten zwei Aufpasser? Dann laufen!'],

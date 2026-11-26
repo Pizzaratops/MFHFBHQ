@@ -327,7 +327,7 @@
   //  mehreren Schattierungen (Helm mit Glanzlicht, Schulterpolster,
   //  Rückennummer), Feld vorgerendert mit Rasentextur, Tribüne mit
   //  Parallaxe, Flutlicht, Ball mit Flugspur, Konfetti, Staub.
-  const PW = 384, PH = 240, FT = 70, FB = 230, PX = 7, LS = 4.4, MARG = 26;
+  const PW = 384, PH = 240, FT = 58, FB = 232, PX = 7, LS = 4.4, MARG = 26;
   const DIG = { 0: '111101101101111', 1: '010110010010111', 2: '111001111100111', 3: '111001111001111', 4: '101101111001001', 5: '111100111001111', 6: '111100111101111', 7: '111001001001001', 8: '111101111101111', 9: '111101111001111' };
   const BODY = [
     '....ooooo......',

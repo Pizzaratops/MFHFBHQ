@@ -408,3 +408,13 @@ body.pseudo-fs #kApp { position: fixed; inset: 0; z-index: 200; }
   #kApp:fullscreen .c-screen, body.pseudo-fs #kApp .c-screen { width: min(calc((100vh - 150px) * 1.6), calc(100vw - 470px)); }
   #kApp:fullscreen .c-crumb, body.pseudo-fs #kApp .c-crumb { display: none; }
 }
+
+/* Read: neutrale Ringe, Tipp markiert die beste Wahl */
+.c-ovl-tip { position: absolute; right: 8px; bottom: 14px; padding: 6px 10px; border-radius: 8px; border: 2px solid #ffd84d; background: rgba(0, 0, 0, .75); color: #ffd84d; font: 600 13px 'DM Sans', sans-serif; cursor: pointer; }
+body.kids .c-ovl-tip { font: 600 16px 'Fredoka', sans-serif; padding: 8px 12px; border-radius: 12px; }
+.c-pick.best { border-color: #ffd84d; box-shadow: 0 0 0 4px rgba(255, 216, 77, .5), 0 0 18px #ffd84d; }
+/* Während des Spielzugs: Feld groß, Panel weg */
+body.fd-playing .c-grid { grid-template-columns: minmax(0, 1fr) !important; }
+body.fd-playing .c-grid > div:last-child, body.fd-playing .c-grid > aside { display: none; }
+body.fd-playing .c-screen { width: min(100%, calc((100vh - 90px) * 1.6)) !important; margin: 0 auto; }
+body.fd-playing .g-ctrl { justify-content: center; }
