@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-26T00:03:22.785Z",
+  "generatedAt": "2026-11-26T00:06:11.880Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -586,7 +586,7 @@ const STATUS_REPORT_DATA = {
           "name": "George Kittle",
           "pos": "TE",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
