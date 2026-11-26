@@ -3961,9 +3961,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909318",
-      line: "Chicago Bulls @ Charlotte Hornets (1:34 - 2nd)",
+      line: "Chicago Bulls @ Charlotte Hornets (Halftime)",
       completed: false,
-      statusText: "1:34 - 2nd",
+      statusText: "Halftime",
       away: {
         abbr: "CHI", name: "Chicago Bulls", score: null,
         players: [
@@ -3979,9 +3979,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909319",
-      line: "Cleveland Cavaliers @ New York Knicks (3:02 - 1st)",
+      line: "Cleveland Cavaliers @ New York Knicks (51.6 - 1st)",
       completed: false,
-      statusText: "3:02 - 1st",
+      statusText: "51.6 - 1st",
       away: {
         abbr: "CLE", name: "Cleveland Cavaliers", score: null,
         players: [
@@ -3997,9 +3997,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909320",
-      line: "Minnesota Timberwolves @ Oklahoma City Thunder (3:05 - 1st)",
+      line: "Minnesota Timberwolves @ Oklahoma City Thunder (1:34 - 1st)",
       completed: false,
-      statusText: "3:05 - 1st",
+      statusText: "1:34 - 1st",
       away: {
         abbr: "MIN", name: "Minnesota Timberwolves", score: null,
         players: [
