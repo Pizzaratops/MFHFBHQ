@@ -4,16 +4,16 @@
   "games": [
     "Miami Heat 104 @ Philadelphia 76ers 111 (Final)",
     "Chicago Bulls 107 @ Charlotte Hornets 105 (Final)",
-    "Cleveland Cavaliers @ New York Knicks (5:12 - 4th)",
-    "Minnesota Timberwolves @ Oklahoma City Thunder (5:13 - 4th)",
-    "LA Clippers @ Memphis Grizzlies (1:28 - 3rd)",
-    "Brooklyn Nets @ Milwaukee Bucks (1:23 - 3rd)",
-    "Phoenix Suns @ Houston Rockets (2:22 - 2nd)",
+    "Cleveland Cavaliers 102 @ New York Knicks 121 (Final)",
+    "Minnesota Timberwolves @ Oklahoma City Thunder (1:51 - 4th)",
+    "LA Clippers @ Memphis Grizzlies (6:46 - 4th)",
+    "Brooklyn Nets @ Milwaukee Bucks (8:45 - 4th)",
+    "Phoenix Suns @ Houston Rockets (Halftime)",
     "Sacramento Kings @ Golden State Warriors (11/25 - 10:00 PM EST)",
     "San Antonio Spurs @ Portland Trail Blazers (11/25 - 10:00 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 45.9,
-    "ft": 77.5
+    "fg": 46,
+    "ft": 78
   }
 }
