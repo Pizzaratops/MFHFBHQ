@@ -2,9 +2,9 @@
   "league": "ncaab",
   "date": "2026-11-25",
   "games": [
-    "Washington Huskies @ VCU Rams (0:11 - 2nd)",
-    "Grand Canyon Lopes @ Colorado Buffaloes (9:41 - 2nd)",
-    "Pacific Tigers @ Jacksonville State Gamecocks (Halftime)",
+    "Incarnate Word Cardinals @ Hawai'i Rainbow Warriors (Halftime)",
+    "Stanford Cardinal @ Saint Louis Billikens (11/26 - 1:08 AM EST)",
+    "Clemson Tigers @ Colorado State Rams (8:46 - 1st)",
     "Virginia Cavaliers 60 @ Marquette Golden Eagles 54 (Final)",
     "Ole Miss Rebels 73 @ Arizona Wildcats 84 (Final)",
     "Duke Blue Devils 77 @ UConn Huskies 63 (Final)",
@@ -40,12 +40,12 @@
     "Mississippi Valley State Delta Devils 77 @ New Mexico Lobos 100 (Final)",
     "Eastern Washington Eagles 72 @ Loyola Marymount Lions 81 (Final)",
     "Wake Forest Demon Deacons 78 @ Mississippi State Bulldogs 71 (Final)",
-    "Incarnate Word Cardinals @ Hawai'i Rainbow Warriors (11/25 - 11:59 PM EST)",
-    "Stanford Cardinal @ Saint Louis Billikens (11/25 - 11:59 PM EST)",
-    "Clemson Tigers @ Colorado State Rams (11/26 - 12:30 AM EST)"
+    "Washington Huskies 78 @ VCU Rams 80 (Final)",
+    "Grand Canyon Lopes 79 @ Colorado Buffaloes 73 (Final)",
+    "Pacific Tigers 76 @ Jacksonville State Gamecocks 83 (Final)"
   ],
   "leagueAvg": {
-    "fg": 46.5,
-    "ft": 74.3
+    "fg": 46.4,
+    "ft": 74.4
   }
 }
