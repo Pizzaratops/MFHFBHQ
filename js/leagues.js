@@ -401,7 +401,7 @@ const HUB_TOOLS = [
     short: 'Football einfach erklärt',
     emoji: '🏈',
     href: 'first-down/',
-    chips: ['Offense & Defense', 'Play-Call-Spiel', 'Quiz'],
+    chips: ['Lernen', 'Karriere-Spiel', 'Quiz'],
     accent: '#3b82f6',
     accent2: '#13294b',
   },

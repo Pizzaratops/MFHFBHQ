@@ -86,13 +86,30 @@
 
   // ---------- Simulation ----------
   // dec: {type:'run'|'fumble', yards} | {type:'sack'|'int'|'inc'} | {type:'comp', yac}
-  function buildSim(oKey, dKey, dec, yl) {
+  function mulberry(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function setup(oKey, dKey, seed) {
     const O = OPLAYS[oKey];
     const dg = FD_NODES[O.node].diagram;
     const offF = FD_OFF[dg.off];
     const formD = dg.off === 'i21' ? 'base43' : 'nickel';
     const defF = FD_DEF[formD];
     const pk = defPackage(dKey, formD, Object.keys(offF));
+    if (seed != null) {
+      const r = mulberry(seed);
+      const follows = Object.keys(pk.specs).filter(k => pk.specs[k].follow);
+      if (follows.length) {
+        const win = follows[Math.floor(r() * follows.length)];
+        follows.forEach(k => { const sp = pk.specs[k]; pk.specs[k] = Object.assign({}, sp, { lag: sp.lag + (k === win ? 0.5 : r() * 0.15), off: k === win ? [sp.off[0] * 2 + (r() - 0.5) * 2, sp.off[1] + 1.2] : sp.off }); });
+      }
+      Object.keys(pk.specs).forEach(k => {
+        const sp = pk.specs[k];
+        if (sp.follow || !sp.path || !sp.path.length) return;
+        const last = sp.path[sp.path.length - 1];
+        if (last[1] < 0) return; // Rusher
+        const path = sp.path.slice(0, -1).concat([[last[0] + (r() - 0.5) * 3.5, last[1] + (r() - 0.5) * 2.5]]);
+        pk.specs[k] = Object.assign({}, sp, { path });
+      });
+    }
     const A = [], byId = {};
     Object.keys(offF).forEach(id => {
       const [x, d, lab] = offF[id];
@@ -116,9 +133,55 @@
     const ball = dg.ball || [];
     const hand = ball.find(b => b[0] === 'hand');
     const pass = ball.find(b => b[0] === 'pass');
+    return { O, dg, A, byId, sPos, defPre, pk, hand, pass, defF };
+  }
+
+  // ---------- Read: Wer ist frei? Welche Lücke? ----------
+  const LANE_NAMES = { L: 'Links', M: 'Mitte', R: 'Rechts' };
+  const READS = { quick: ['X', 'SL', 'Z', 'TE'], mid: ['X', 'SL', 'Z', 'TE'], deep: ['X', 'SL', 'Z'], pa: ['X', 'SL', 'Z', 'HB'], screen: null };
+  function readOptions(oKey, dKey, seed) {
+    const S = setup(oKey, dKey, seed);
+    const { O, dg, A, byId, sPos, defPre, hand, pass } = S;
+    const defs = A.filter(a => a.side === 'def');
+    const rusher = a => a.spec && a.spec.path && a.spec.path.length && (a.start[1] + a.spec.path[a.spec.path.length - 1][1]) < 0;
+    if (O.kind === 'run') {
+      const th = hand ? hand[2] : 0.7;
+      const P = sPos(byId[hand ? hand[1] : 'HB'], th);
+      const cx = clamp(P[0] + 1, 8, 45);
+      const lanes = [['L', cx - 5], ['M', cx], ['R', cx + 5]].map(([id, x]) => {
+        let crowd = 0;
+        defs.forEach(a => { const q = defPre(a, th + 0.5); crowd += Math.exp(-((q[0] - x) ** 2 + (q[1] - 1.5) ** 2) / 10); });
+        return { id, name: LANE_NAMES[id], x, crowd };
+      });
+      const mx = Math.max(...lanes.map(l => 1 / (0.3 + l.crowd)));
+      lanes.forEach(l => { l.open = (1 / (0.3 + l.crowd)) / mx; });
+      return { kind: 'run', tDec: th, opts: lanes, best: lanes.reduce((b, l) => l.open > b.open ? l : b).id };
+    }
+    const tp = pass[2];
+    const Pq = sPos(byId.QB, tp);
+    if (!READS[oKey]) return null;
+    const recv = READS[oKey].filter(id => byId[id] && dg.paths && dg.paths[id] && !dg.paths[id].block);
+    const opts = recv.map(id => {
+      const a = byId[id];
+      let f = 0.5, C = sPos(a, tp + f);
+      for (let k = 0; k < 2; k++) { f = Math.max(0.35, dist(Pq, C) / 20); C = sPos(a, tp + f); }
+      let sep = 99;
+      defs.forEach(dd => { if (rusher(dd)) return; sep = Math.min(sep, dist(defPre(dd, tp + f), C)); });
+      return { id, lab: a.lab, C, flight: f, sep, depth: C[1] };
+    });
+    opts.forEach(o => { o.open = clamp((o.sep - 0.8) / 5, 0.05, 1); });
+    const mx = Math.max(...opts.map(o => o.open));
+    opts.forEach(o => { o.rel = o.open / mx; });
+    return { kind: 'pass', tDec: tp, opts, best: opts.reduce((b, o) => o.open > b.open ? o : b).id };
+  }
+
+  function buildSim(oKey, dKey, dec, yl, opts) {
+    opts = opts || {};
+    const { O, dg, A, byId, sPos, defPre, pk, hand, pass } = setup(oKey, dKey, opts.seed);
     const toGoal = 100 - yl;
     const R = { yards: 0, label: '', td: false, turnover: false, safety: false, type: dec.type, labelAt: 0 };
 
+    let cM = null, tCM = 0;
     let carrier = null, cS = null, cE = null, tC0 = 0, tC1 = 0, tReact = 1e9, noTackle = false;
     let sacker = null, tSack = 0, Q = null, picker = null, tf = 0, tp = 0, C = null, Pq = null, endT = 0, fumbleRec = null;
 
@@ -131,9 +194,12 @@
       if (yl + y <= 0) { R.safety = true; }
       const endD = R.td ? toGoal + 3 : y;
       const last = carrier.tr.last;
-      const ex = clamp(P[0] + (last[0] - P[0]) * 0.8 + (Math.random() - 0.5) * 3, 3, 50);
+      let ex = clamp(P[0] + (last[0] - P[0]) * 0.8 + (Math.random() - 0.5) * 3, 3, 50);
+      if (opts.lane != null) { ex = clamp(opts.lane + (Math.random() - 0.5) * 2.5, 3, 50); if (endD > 1.2) cM = [opts.lane, 1]; }
       cS = P; cE = [ex, endD]; tC0 = th;
-      tC1 = th + Math.max(0.7, dist(cS, cE) / 6.3);
+      tCM = cM ? th + dist(cS, cM) / 6.3 : 0;
+      tC1 = (cM ? tCM + dist(cM, cE) / 6.3 : th + dist(cS, cE) / 6.3);
+      tC1 = Math.max(tC1, th + 0.7);
       tReact = th + 0.25; noTackle = R.td;
       R.yards = y;
       if (dec.type === 'fumble') { R.turnover = true; R.label = 'FUMBLE!'; }
@@ -141,7 +207,12 @@
       R.labelAt = tC1; endT = tC1 + (dec.type === 'fumble' ? 1.2 : 0.9);
     } else {
       tp = pass[2]; tf = pass[2] + pass[3];
-      const target = byId[pass[1]];
+      const target = byId[opts.target || pass[1]];
+      if (opts.target) {
+        const q0 = sPos(byId.QB, tp); let f = 0.5, c0 = sPos(target, tp + f);
+        for (let k = 0; k < 2; k++) { f = Math.max(0.35, dist(q0, c0) / 20); c0 = sPos(target, tp + f); }
+        tf = tp + f;
+      }
       if (dec.type === 'sack') {
         sacker = byId[pk.sacker] || byId.DT1;
         tSack = tp + 0.15;
@@ -179,7 +250,7 @@
       // Offense
       A.forEach(a => {
         if (a.side !== 'off') return;
-        if (carrier && a === carrier && t >= tC0) P[a.id] = lerp(cS, cE, clamp((t - tC0) / (tC1 - tC0), 0, 1));
+        if (carrier && a === carrier && t >= tC0) P[a.id] = cM ? (t < tCM ? lerp(cS, cM, clamp((t - tC0) / (tCM - tC0), 0, 1)) : lerp(cM, cE, clamp((t - tCM) / (tC1 - tCM), 0, 1))) : lerp(cS, cE, clamp((t - tC0) / (tC1 - tC0), 0, 1));
         else if (Q && a.id === 'QB' && t >= tSack) P[a.id] = Q;
         else if (picker && t > tf + 0.35 && prev) P[a.id] = chase(prev[a.id], prev[picker.id], SPEED[a.lab] * 0.8, 1.0, dt);
         else P[a.id] = sPos(a, t);
@@ -238,6 +309,7 @@
       prev = P;
     }
     const actors = A.map(a => ({ id: a.id, side: a.side, lab: a.lab }));
+    R.tDec = O.kind === 'run' ? (hand ? hand[2] : 0.7) : (pass ? pass[2] : 0);
     return Object.assign(R, { frames, actors, dt, end: frames[frames.length - 1].t, ballHolderEnd: frames[frames.length - 1].ball.held });
   }
   function chase(from, to, sp, stopAt, dt) {
@@ -343,7 +415,8 @@
       }
       g.restore();
     }
-    return { draw, reset: () => { cam = 30; camX = 26.65; } };
+    const project = (p, ctx) => [sx(ctx.yl + p[1]) / PW, (sy(p[0]) - 7) / PH];
+    return { draw, project, reset: () => { cam = 30; camX = 26.65; } };
   }
 
   // ============================================================
@@ -353,13 +426,13 @@
     const g = canvas.getContext('2d');
     const S = 10, W = 53.3 * S, VIEW = 38;
     canvas.width = Math.round(W); canvas.height = VIEW * S;
-    let camD = 8;
+    let camD = 8, lastTop = 0;
     function draw(sim, fi, ctx) {
       const fr = sim.frames[Math.min(fi, sim.frames.length - 1)];
       const yl = ctx.yl, bd = fr.ball.p[1];
       const want = clamp(bd + 6, 12, 120);
       camD += (Math.max(16, want) - camD) * (fi === 0 ? 1 : 0.1);
-      const top = camD + VIEW / 2 - 6;
+      const top = camD + VIEW / 2 - 6; lastTop = top;
       const Y = d => (top - d) * S;
       g.fillStyle = '#3f7d3a'; g.fillRect(0, 0, canvas.width, canvas.height);
       for (let u = -10; u < 110; u += 5) {
@@ -388,7 +461,8 @@
       g.fillStyle = '#8b4513'; g.beginPath(); g.ellipse(bx, by, 5, 3.4, 0, 0, Math.PI * 2); g.fill();
       g.strokeStyle = '#fff'; g.lineWidth = 1; g.stroke();
     }
-    return { draw, reset: () => { camD = 8; } };
+    const project = (p) => [p[0] * S / canvas.width, ((lastTop - p[1]) * S) / canvas.height];
+    return { draw, project, reset: () => { camD = 8; } };
   }
 
   // Statische Szene (für Quiz-Bilder): Aufstellung ohne Bewegung
@@ -397,5 +471,5 @@
     return Object.assign({}, s, { frames: [s.frames[0]] });
   }
 
-  window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, PixelView, TopView };
+  window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView };
 })();

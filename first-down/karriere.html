@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First Down · Karriere: Rookie Coach</title>
+<meta name="description" content="First Down Karriere: Als Rookie Coach lernst du in 8 Wochen Football, mit Lektionen, Drills und Spielen. Nach dem Snap liest du selbst: Wo ist die Lücke, wer ist frei?">
+<meta name="theme-color" content="#13294b">
+<link rel="icon" type="image/png" href="../icons/favicon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fd.css">
+<script>
+  try { var t = localStorage.getItem('mfhfb:theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<header class="fd-top">
+  <a class="fd-brand" href="karriere.html" aria-label="First Down – Karriere">
+    <span class="fd-logo" aria-hidden="true">🏈</span>
+    <span class="fd-brand-text"><b>First Down</b><small class="hide-xs">Karriere</small></span>
+  </a>
+  <span class="fd-spacer"></span>
+  <nav class="fd-side" aria-label="Bereich">
+    <a href="index.html" title="Lernbereich">📖<span class="hide-xs"> Lernen</span></a>
+    <a href="karriere.html" class="on" title="Karriere">🏆<span class="hide-xs"> Karriere</span></a>
+    <a href="spiel.html#/spiel" title="Schnelles Spiel Bears vs Lions">🎮<span class="hide-xs"> Schnell</span></a>
+    <a href="spiel.html#/quiz" title="Quiz">❓<span class="hide-xs"> Quiz</span></a>
+  </nav>
+  <button class="fd-icon-btn" type="button" data-sound aria-pressed="true" title="Musik &amp; Sound aus">🔊</button>
+  <button class="fd-icon-btn hide-sm" type="button" id="themeBtn" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel">🌓</button>
+</header>
+
+<main class="fd-main" id="cApp"></main>
+
+<footer class="fd-foot">
+  <p><b>Ideen: MFHFB · Code: Claude.</b> Idee nach <a href="https://four-verts.com/" target="_blank" rel="noopener">Four Verts</a> (Play-Calling) und Retro Bowl (Karriere, Kader), umgebaut zum Lernspiel. Alle Teams und Spieler sind erfunden. Pixel-Spieler, Musik und Sounds selbst gemacht; Schrift „Press Start 2P“ von CodeMan38 (Google Fonts, OFL). Der Ausgang eines Spielzugs ist ein vereinfachtes Modell aus Call, Read und Zufall.</p>
+</footer>
+
+<script src="tree.js"></script>
+<script src="sim.js"></script>
+<script src="music.js"></script>
+<script src="career-data.js"></script>
+<script src="career.js"></script>
+<script>
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var nx = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', nx);
+    try { localStorage.setItem('mfhfb:theme', nx); } catch (e) {}
+  });
+</script>
+</body>
+</html>
