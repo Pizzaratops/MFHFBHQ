@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-26T14:03:31.734Z",
+  "generatedAt": "2026-11-26T16:03:29.976Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -265,7 +265,7 @@ const STATUS_REPORT_DATA = {
           "name": "Chase Brown",
           "pos": "RB",
           "nfl": "CIN",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 8.6,
@@ -419,7 +419,7 @@ const STATUS_REPORT_DATA = {
           "name": "Antonio Williams",
           "pos": "WR",
           "nfl": "WSH",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -586,7 +586,7 @@ const STATUS_REPORT_DATA = {
           "name": "George Kittle",
           "pos": "TE",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -922,7 +922,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19,
           "last3AvgPoints": 15.2,
-          "projPoints": 12.4
+          "projPoints": 12.3
         },
         {
           "name": "Evan Hull",
@@ -1132,7 +1132,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 1.3,
           "last3AvgPoints": 6.7,
-          "projPoints": 8.1
+          "projPoints": 8.2
         },
         {
           "name": "Derrick Henry",
@@ -1198,7 +1198,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19,
           "last3AvgPoints": 15.2,
-          "projPoints": 12.4
+          "projPoints": 12.3
         },
         {
           "name": "Jaxon Smith-Njigba",
@@ -1243,7 +1243,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.3,
           "last3AvgPoints": 9.8,
-          "projPoints": 14.3
+          "projPoints": 14.5
         },
         {
           "name": "Brevyn Spann-Ford",
@@ -1254,7 +1254,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.5,
           "last3AvgPoints": 4.5,
-          "projPoints": 4.4
+          "projPoints": 4.5
         },
         {
           "name": "George Holani",
@@ -1463,7 +1463,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 13,
-          "projPoints": 5.8
+          "projPoints": 5.7
         },
         {
           "name": "Marquise Brown",
@@ -1861,7 +1861,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5,
           "last3AvgPoints": 7,
-          "projPoints": 9.1
+          "projPoints": 9
         },
         {
           "name": "Brian Thomas Jr.",
@@ -1894,7 +1894,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 10.5,
-          "projPoints": 13.1
+          "projPoints": 13.2
         },
         {
           "name": "Colston Loveland",
@@ -2325,7 +2325,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 30.2,
           "last3AvgPoints": 28,
-          "projPoints": 19.6
+          "projPoints": 20
         },
         {
           "name": "Justin Herbert",
@@ -2624,7 +2624,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 9.1,
           "last3AvgPoints": 9.1,
-          "projPoints": 14
+          "projPoints": 14.1
         },
         {
           "name": "Rhamondre Stevenson",
@@ -3764,7 +3764,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10,
           "last3AvgPoints": 10,
-          "projPoints": 9.1
+          "projPoints": 9.2
         },
         {
           "name": "Cam Little",
@@ -3819,7 +3819,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6,
           "last3AvgPoints": 8,
-          "projPoints": 3.9
+          "projPoints": 4
         }
       ],
       "flaggedCount": 0
@@ -4173,7 +4173,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 4.8,
           "last3AvgPoints": 7.4,
-          "projPoints": 10.7
+          "projPoints": 10.8
         },
         {
           "name": "Daniel Jones",
