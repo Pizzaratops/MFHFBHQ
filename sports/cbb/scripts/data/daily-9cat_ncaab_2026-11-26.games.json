@@ -1,0 +1,384 @@
+{
+  "league": "ncaab",
+  "date": "2026-11-26",
+  "games": [
+    {
+      "id": "401929281",
+      "line": "Georgia Bulldogs @ Cincinnati Bearcats (11/26 - 11:00 AM EST)",
+      "completed": false,
+      "statusText": "11/26 - 11:00 AM EST",
+      "away": {
+        "abbr": "UGA",
+        "name": "Georgia Bulldogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Cin",
+        "name": "Cincinnati Bearcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401912231",
+      "line": "Army Black Knights @ UTSA Roadrunners (11/26 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 12:00 PM EST",
+      "away": {
+        "abbr": "ARMY",
+        "name": "Army Black Knights",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UTSA",
+        "name": "UTSA Roadrunners",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906807",
+      "line": "Oklahoma Sooners @ Purdue Boilermakers (11/26 - 12:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 12:00 PM EST",
+      "away": {
+        "abbr": "Okla",
+        "name": "Oklahoma Sooners",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pur",
+        "name": "Purdue Boilermakers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920528",
+      "line": "San Diego State Aztecs @ Maryland Terrapins (11/26 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 1:00 PM EST",
+      "away": {
+        "abbr": "SDSU",
+        "name": "San Diego State Aztecs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MD",
+        "name": "Maryland Terrapins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401929282",
+      "line": "Boston College Eagles @ UCF Knights (11/26 - 1:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 1:30 PM EST",
+      "away": {
+        "abbr": "BC",
+        "name": "Boston College Eagles",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCF",
+        "name": "UCF Knights",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921674",
+      "line": "South Carolina Gamecocks @ Arizona State Sun Devils (11/26 - 2:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 2:00 PM EST",
+      "away": {
+        "abbr": "SouthCar",
+        "name": "South Carolina Gamecocks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "AzSt",
+        "name": "Arizona State Sun Devils",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401906869",
+      "line": "Georgetown Hoyas @ Texas Longhorns (11/26 - 2:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 2:30 PM EST",
+      "away": {
+        "abbr": "GTown",
+        "name": "Georgetown Hoyas",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Tex",
+        "name": "Texas Longhorns",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920529",
+      "line": "Tennessee Volunteers @ Iowa State Cyclones (11/26 - 3:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 3:30 PM EST",
+      "away": {
+        "abbr": "Tenn",
+        "name": "Tennessee Volunteers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IaSt",
+        "name": "Iowa State Cyclones",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920537",
+      "line": "Miami Hurricanes @ Michigan Wolverines (11/26 - 3:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 3:30 PM EST",
+      "away": {
+        "abbr": "Mia-FL",
+        "name": "Miami Hurricanes",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Mich",
+        "name": "Michigan Wolverines",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401925757",
+      "line": "Arkansas Razorbacks @ Michigan State Spartans (11/26 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 4:30 PM EST",
+      "away": {
+        "abbr": "Ark",
+        "name": "Arkansas Razorbacks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MSU",
+        "name": "Michigan State Spartans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401921673",
+      "line": "Utah State Aggies @ USC Trojans (11/26 - 4:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 4:30 PM EST",
+      "away": {
+        "abbr": "UtSt",
+        "name": "Utah State Aggies",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "USC",
+        "name": "USC Trojans",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917547",
+      "line": "Saint Mary's Gaels @ UCLA Bruins (11/26 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 5:00 PM EST",
+      "away": {
+        "abbr": "StMar",
+        "name": "Saint Mary's Gaels",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCLA",
+        "name": "UCLA Bruins",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920538",
+      "line": "TCU Horned Frogs @ Creighton Bluejays (11/26 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 6:00 PM EST",
+      "away": {
+        "abbr": "TCU",
+        "name": "TCU Horned Frogs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Crei",
+        "name": "Creighton Bluejays",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401918972",
+      "line": "SMU Mustangs @ LSU Tigers (11/26 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 7:00 PM EST",
+      "away": {
+        "abbr": "SMU",
+        "name": "SMU Mustangs",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "LSU",
+        "name": "LSU Tigers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401909506",
+      "line": "DePaul Blue Demons @ Pittsburgh Panthers (11/26 - 7:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 7:00 PM EST",
+      "away": {
+        "abbr": "DeP",
+        "name": "DePaul Blue Demons",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Pitt",
+        "name": "Pittsburgh Panthers",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401911523",
+      "line": "Jacksonville State Gamecocks @ UC Davis Aggies (11/26 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 8:00 PM EST",
+      "away": {
+        "abbr": "JXST",
+        "name": "Jacksonville State Gamecocks",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "UCDav",
+        "name": "UC Davis Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920530",
+      "line": "Louisville Cardinals @ St. John's Red Storm (11/26 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 9:00 PM EST",
+      "away": {
+        "abbr": "Lou",
+        "name": "Louisville Cardinals",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "StJon",
+        "name": "St. John's Red Storm",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920539",
+      "line": "Alabama Crimson Tide @ Kansas State Wildcats (11/26 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 9:00 PM EST",
+      "away": {
+        "abbr": "Bama",
+        "name": "Alabama Crimson Tide",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "KSU",
+        "name": "Kansas State Wildcats",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401917546",
+      "line": "Pacific Tigers @ Omaha Mavericks (11/26 - 10:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 10:30 PM EST",
+      "away": {
+        "abbr": "Pacif",
+        "name": "Pacific Tigers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "OMA",
+        "name": "Omaha Mavericks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920531",
+      "line": "Texas Tech Red Raiders @ Oregon Ducks (11/26 - 11:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 11:30 PM EST",
+      "away": {
+        "abbr": "TxTch",
+        "name": "Texas Tech Red Raiders",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Oreg",
+        "name": "Oregon Ducks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920540",
+      "line": "Baylor Bears @ Gonzaga Bulldogs (11/26 - 11:30 PM EST)",
+      "completed": false,
+      "statusText": "11/26 - 11:30 PM EST",
+      "away": {
+        "abbr": "Baylor",
+        "name": "Baylor Bears",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Gonz",
+        "name": "Gonzaga Bulldogs",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
