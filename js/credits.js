@@ -53,6 +53,7 @@
     ]],
     ['🏈 First Down (Football einfach erklärt)', [
       'Erklärungen, Laufwege und Skizzen sind eigene, vereinfachte Darstellungen.',
+      `„Spiele der Woche“: Teamprofile aus ${A('https://github.com/nflverse', 'nflverse')} Play-by-Play und Spielplan sowie FTN-Charting (FTN Data via nflverse, CC-BY-SA 4.0); Teamnamen und -farben ohne Logos.`,
       `Karriere-Modus angelehnt an Retro Bowl (Karriere, Kader) und ${A('https://four-verts.com/', 'Four Verts')} (Play-Calling), umgebaut zum Lernspiel; alle Teams und Spieler erfunden.`,
       `Play-Call-Spiel nach der Idee von ${A('https://four-verts.com/', 'Four Verts')}; Pixel-Spieler selbst gezeichnet, Schrift Press Start 2P (CodeMan38, OFL). Ausgang = vereinfachtes Modell, keine Prognose.`,
       `Beispiele aus dem MFHFB-Spielbericht Bears @ Lions (26.11.2026), u. a. nach ${A('https://www.foxsports.com/stories/nfl/how-the-detroit-lions-defense-transformed-into-capable-unit-ahead-of-matchup-vs-bears', 'FOX Sports')}, ${A('https://chicago.suntimes.com/bears/2026/10/11/bears-bench-qb-tyson-bagent-after-two-interceptions-vs-packers-then-case-keenum-throws-one-too', 'Chicago Sun-Times')}, ${A('https://atozsports.com/?p=512724', 'A to Z Sports')}, ${A('https://africa.espn.com/nfl/story/_/id/46954766/chicago-bears-caleb-williams-fewer-sacks', 'ESPN')} und der Thanksgiving-Vorschau von Jon Gruden.`,

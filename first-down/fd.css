@@ -341,3 +341,13 @@ body.pseudo-fs { overflow: hidden; }
   #cApp:fullscreen .c-grid, body.pseudo-fs .c-grid { grid-template-columns: auto minmax(220px, 1fr); }
   #cApp:fullscreen .g-ctrl, body.pseudo-fs .g-ctrl { margin: 4px 0; }
 }
+.g-games { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+.g-game { display: flex; flex-direction: column; gap: 1px; padding: 8px 10px; border-radius: 10px; border: 2px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; text-align: left; font: inherit; }
+.g-game b { font: 400 11px 'Press Start 2P', monospace; }
+.g-game span { font-size: 12px; color: var(--muted); }
+.g-game.on { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232, 74, 12, .15); }
+.g-role { display: block; font: 400 8px 'Press Start 2P', monospace; color: var(--muted); margin-bottom: 4px; }
+.g-coach { display: block; font-size: 13px; color: var(--muted); }
+.g-sim { margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
+.g-simbar { display: flex; height: 18px; border-radius: 9px; overflow: hidden; border: 2px solid #111; margin-bottom: 8px; }
+.g-simbar i { display: block; height: 100%; }

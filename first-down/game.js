@@ -40,6 +40,31 @@
     },
   };
 
+  // ---------- Echte NFL-Teams (first-down/data/nfl-week.js) ----------
+  const NFL = typeof FD_NFL !== 'undefined' ? FD_NFL : null;
+  const clampN = (v, a, b) => Math.max(a, Math.min(b, v));
+  const pct = v => v == null ? '–' : Math.round(v * 100) + ' %';
+  const sgn = v => v == null ? '–' : (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(2).replace('.', ',');
+  const rk = (t, k) => t.rank && t.rank[k] ? ` (Platz ${t.rank[k]})` : '';
+  function buildNfl(k) {
+    const t = NFL.teams[k], lg = NFL.league;
+    return {
+      abbr: k, name: t.nick, full: t.name, emoji: '🏈', helmet: t.color, stripe: t.color2, jersey: t.color, trim: t.color2, pants: '#e9e4d6', end: t.color,
+      coach: t.coach, record: t.record, prof: t,
+      off: { run: clampN(3.5 * (t.off.epaRun - lg.epaRun), -0.8, 0.8), comp: clampN(0.2 * (t.off.epaPass - lg.epaPass), -0.04, 0.04), sack: clampN(0.7 * (t.off.sackRate - lg.sackRate), -0.025, 0.03), intAdd: clampN(0.7 * (t.off.intRate - lg.intRate), -0.012, 0.015) },
+      def: { run: clampN(3.5 * (t.def.epaRun - lg.epaRun), -0.8, 0.8), comp: clampN(0.2 * (t.def.epaPass - lg.epaPass), -0.04, 0.04), sack: clampN(0.7 * (t.def.sackRate - lg.sackRate), -0.025, 0.03) },
+      notes: {
+        off: [`Laufquote bei normaler Distanz ${pct(1 - t.off.passRate.normal)} (Liga ${pct(1 - lg.passRate)}), bei kurzer Distanz ${pct(1 - t.off.passRate.short)}`,
+          `Play-Action bei ${pct(t.off.pa)} der Pässe${rk(t, 'pa')}, Screens ${pct(t.off.screen)}`,
+          `EPA pro Lauf ${sgn(t.off.epaRun)}${rk(t, 'oRunEpa')}, pro Dropback ${sgn(t.off.epaPass)}${rk(t, 'oPassEpa')}`],
+        def: [`Blitzt (5+ Rusher) bei ${pct(t.def.blitz)} der Dropbacks${rk(t, 'blitz')}`,
+          `EPA erlaubt pro Lauf ${sgn(t.def.epaRun)}${rk(t, 'dRunEpa')}, pro Dropback ${sgn(t.def.epaPass)}${rk(t, 'dPassEpa')}`,
+          `Sack-Rate ${pct(t.def.sackRate)}${rk(t, 'dSack')}, 8+ in der Box ${pct(t.def.box8)}${rk(t, 'box8')}`],
+      },
+    };
+  }
+  if (NFL) Object.keys(NFL.teams).forEach(k => { TEAMS[k] = buildNfl(k); });
+
   // ---------- Modell ----------
   // Lauf: m = Ø Yards, sd = Streuung, bp = Chance auf Big Play. Pass: c = Completion,
   // yac = Yards nach dem Fang, sack/int = Wahrscheinlichkeit, bp = Big Play nach dem Fang.
@@ -74,7 +99,7 @@
       if (rnd() < m.bp) y += 8 + rnd() * 25;
       return { type: 'run', yards: Math.max(-4, Math.round(y)) };
     }
-    let c = m.c, sack = m.sack, int = m.int + (off.intAdd || 0), yac = m.yac;
+    let c = m.c + (off.comp || 0) + (def.comp || 0), sack = m.sack + (off.sack || 0) + (def.sack || 0), int = m.int + (off.intAdd || 0), yac = m.yac;
     if (o === 'deep' || o === 'pa') c += (off.deep || 0) + (o === 'pa' ? (off.pa || 0) : 0);
     if (o === 'screen') yac += off.screen || 0;
     if (st.down === 3) c += def.third || 0;
@@ -94,12 +119,23 @@
   function cpuDefense(st) {
     const s = situation(st);
     const w = s === 'short' ? { box: 0.55, man: 0.2, blitz: 0.15, c2: 0.1 } : s === 'long' ? { c2: 0.35, man: 0.25, blitz: 0.3, box: 0.1 } : { box: 0.25, c2: 0.3, man: 0.3, blitz: 0.15 };
-    if (st.defTeam === 'DET') { w.man *= 1.3; w.blitz *= 1.2; }
+    const T = TEAMS[st.defTeam];
+    if (T.prof) { const lg = NFL.league, d = T.prof.def; w.box *= clampN((d.box8 || lg.box8) / lg.box8, 0.4, 2.5); w.blitz *= clampN((d.blitz || lg.blitz) / lg.blitz, 0.5, 1.8); }
+    else if (st.defTeam === 'DET') { w.man *= 1.3; w.blitz *= 1.2; }
     else { w.c2 *= 1.15; w.man *= 1.15; w.blitz *= st.down === 3 ? 1.4 : 0.5; }
     return pickW(w);
   }
   function cpuOffense(st) {
-    const s = situation(st);
+    const s = situation(st), T = TEAMS[st.offTeam];
+    if (T.prof) {
+      const o = T.prof.off, lg = NFL.league;
+      const pr = o.passRate[s] != null ? o.passRate[s] : lg.passRate, run = 1 - pr, ins = o.insideRun != null ? o.insideRun : 0.5, uc = o.ucInside != null ? o.ucInside : 0.5;
+      const w = { iz: run * ins * (1 - uc * 0.6), power: run * ins * uc * 0.35, iso: run * ins * uc * 0.25, oz: run * (1 - ins) };
+      if (s === 'short') { w.power *= 1.8; w.iso *= 1.8; }
+      const pa = pr * (o.pa != null ? o.pa : lg.pa) * (s === 'long' ? 0.4 : 1), scr = pr * (o.screen != null ? o.screen : lg.screen), rest = Math.max(0, pr - pa - scr);
+      Object.assign(w, { pa, screen: scr, quick: rest * o.depth.quick, mid: rest * o.depth.mid * (s === 'long' ? 1.3 : 1), deep: rest * o.depth.deep });
+      return pickW(w);
+    }
     const w = s === 'short' ? { power: 0.3, iso: 0.2, iz: 0.2, quick: 0.15, pa: 0.15 } : s === 'long' ? { quick: 0.25, mid: 0.3, deep: 0.15, screen: 0.2, pa: 0.05, iz: 0.05 } : { iz: 0.2, oz: 0.12, power: 0.08, quick: 0.15, mid: 0.15, deep: 0.08, screen: 0.08, pa: 0.14 };
     if (st.offTeam === 'CHI') { ['iz', 'oz', 'power', 'iso'].forEach(k => { if (w[k]) w[k] *= 1.25; }); if (w.deep) w.deep *= 1.3; }
     else { ['iz', 'oz'].forEach(k => { if (w[k]) w[k] *= 1.3; }); if (w.pa) w.pa *= 1.3; if (w.screen) w.screen *= 1.3; }
@@ -121,21 +157,20 @@
   function spot(st) { const y = st.yl; return y === 50 ? 'Mittellinie' : y < 50 ? `eigene ${y}` : `gegnerische ${100 - y}`; }
   function spotShort(st) { const y = st.yl; return y === 50 ? '50' : y < 50 ? `${st.offTeam} ${y}` : `${st.defTeam} ${100 - y}`; }
 
-  function newGame(user, mode) {
-    const cpu = user === 'CHI' ? 'DET' : 'CHI';
+  function newGame(user, cpu, mode, teams) {
     let order;
     if (mode === 'off') order = [user];
     else if (mode === 'def') order = [cpu];
     else { const first = rnd() < 0.5 ? user : cpu; const second = first === user ? cpu : user; order = [first, second, first, second, first, second]; }
     if (window.FDAUDIO) FDAUDIO.start();
-    G = { user, cpu, mode, order, idx: -1, score: { CHI: 0, DET: 0 }, log: [], stats: { CHI: { yds: 0, plays: 0 }, DET: { yds: 0, plays: 0 } } };
+    G = { user, cpu, mode, order, idx: -1, teams: teams || [user, cpu], score: { [user]: 0, [cpu]: 0 }, log: [], stats: { [user]: { yds: 0, plays: 0 }, [cpu]: { yds: 0, plays: 0 } } };
     nextDrive();
   }
   function nextDrive() {
     G.idx++;
     if (G.idx >= G.order.length) return endGame();
     const off = G.order[G.idx];
-    G.st = { offTeam: off, defTeam: off === 'CHI' ? 'DET' : 'CHI', yl: 25, down: 1, toGo: 10, plays: 0 };
+    G.st = { offTeam: off, defTeam: off === G.user ? G.cpu : G.user, yl: 25, down: 1, toGo: 10, plays: 0 };
     G.phase = 'call'; G.pending = null; G.sub = null; G.showTip = false;
     G.log.unshift({ head: true, text: `Drive ${G.idx + 1}/${G.order.length}: ${TEAMS[off].full} ab der eigenen 25` });
     renderAll();
@@ -274,7 +309,7 @@
     if (!G) { el.hidden = true; $('#setup').hidden = false; return; }
     $('#setup').hidden = true; el.hidden = false;
     const st = G.st;
-    $('#gScore').innerHTML = ['CHI', 'DET'].map(k => `<div class="sb-team${st && st.offTeam === k ? ' poss' : ''}${G.user === k ? ' you' : ''}" style="--tc:${TEAMS[k].jersey}"><span>${TEAMS[k].emoji} ${k}</span><b>${G.score[k]}</b>${G.user === k ? '<i>DU</i>' : ''}</div>`).join('') +
+    $('#gScore').innerHTML = G.teams.map(k => `<div class="sb-team${st && st.offTeam === k ? ' poss' : ''}${G.user === k ? ' you' : ''}" style="--tc:${TEAMS[k].jersey}"><span>${TEAMS[k].emoji} ${k}</span><b>${G.score[k]}</b>${G.user === k ? '<i>DU</i>' : ''}</div>`).join('') +
       `<div class="sb-mid">${G.phase === 'end' ? 'FINAL' : `${ordinal(st.down) || '4TH'} &amp; ${st.toGo}<small>BALL ${esc(spotShort(st))} · DRIVE ${G.idx + 1}/${G.order.length}</small>`}</div>`;
     renderPanel();
     $('#gLog').innerHTML = G.log.slice(0, 30).map(l => l.head ? `<li class="head">${l.text}</li>` : `<li>${l.text}</li>`).join('');
@@ -291,7 +326,7 @@
       const u = G.score[G.user], c = G.score[G.cpu];
       const verdict = G.mode === 'game' ? (u > c ? 'Gewonnen! 🎉' : u < c ? 'Verloren.' : 'Unentschieden.') : G.mode === 'off' ? `Dein Drive: ${u} Punkte.` : `Gegner-Drive: ${c} Punkte zugelassen.`;
       p.innerHTML = `<h3>${verdict}</h3>
-        <p>${TEAMS.CHI.name} ${G.stats.CHI.yds} Yards in ${G.stats.CHI.plays} Spielzügen · ${TEAMS.DET.name} ${G.stats.DET.yds} Yards in ${G.stats.DET.plays} Spielzügen.</p>
+        <p>${G.teams.map(k => `${TEAMS[k].name} ${G.stats[k].yds} Yards in ${G.stats[k].plays} Spielzügen`).join(' · ')}.</p>
         <div class="g-row"><button class="fd-btn fd-play" data-act="again">Nochmal</button><button class="fd-btn" data-act="setup">Anderes Team / Modus</button></div>`;
       return;
     }
@@ -350,14 +385,72 @@
   }
 
   // ---------- Setup ----------
+  const SET = { gi: null };
+  function setupGames() { return NFL && NFL.games.length ? NFL.games.filter(g => TEAMS[g.away] && TEAMS[g.home]) : [{ away: 'CHI', home: 'DET' }]; }
+  function berlin(day, time) {
+    if (!day) return '';
+    const m = +day.slice(5, 7), off = (m >= 11 || m <= 2) ? '-05:00' : '-04:00';
+    const d = new Date(`${day}T${time || '13:00'}:00${off}`);
+    return d.toLocaleString('de-DE', { timeZone: 'Europe/Berlin', weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  }
+  function teamCard(k, checked, role) {
+    const t = TEAMS[k];
+    return `<label class="g-team" style="--tc:${t.jersey}"><input type="radio" name="team" value="${k}"${checked ? ' checked' : ''}>
+      <div><small class="g-role">${role}</small><b>${t.emoji} ${esc(t.full)}</b>${t.coach ? `<span class="g-coach">HC ${esc(t.coach)} · ${t.record ? t.record.slice(0, t.record[2] ? 3 : 2).join('-') : ''}</span>` : ''}
+      <h5>Offense</h5><ul>${t.notes.off.map(n => `<li>${n}</li>`).join('')}</ul>
+      <h5>Defense</h5><ul>${t.notes.def.map(n => `<li>${n}</li>`).join('')}</ul></div></label>`;
+  }
   function renderSetup() {
-    $('#setupTeams').innerHTML = ['CHI', 'DET'].map(k => {
-      const t = TEAMS[k];
-      return `<label class="g-team" style="--tc:${t.jersey}"><input type="radio" name="team" value="${k}"${k === 'CHI' ? ' checked' : ''}>
-        <div><b>${t.emoji} ${t.full}</b>
-        <h5>Offense</h5><ul>${t.notes.off.map(n => `<li>${n}</li>`).join('')}</ul>
-        <h5>Defense</h5><ul>${t.notes.def.map(n => `<li>${n}</li>`).join('')}</ul></div></label>`;
-    }).join('');
+    const gs = setupGames();
+    if (SET.gi == null) { const i = gs.findIndex(g => g.away === 'CHI' || g.home === 'CHI'); const j = gs.findIndex(g => g.as == null); SET.gi = i >= 0 ? i : j >= 0 ? j : 0; }
+    const gm = gs[SET.gi];
+    $('#setupGames').innerHTML = NFL ? `<p class="muted">Week ${NFL.week} · Teamprofile aus der Saison ${NFL.season} bis ${NFL.asof.split('-').reverse().join('.')}</p><div class="g-games">${gs.map((g, i) => `<button class="g-game${i === SET.gi ? ' on' : ''}" data-gi="${i}"><b>${g.away} @ ${g.home}</b><span>${g.as != null ? `Endstand ${g.as}:${g.hs}` : berlin(g.day, g.time)}</span></button>`).join('')}</div>` : '';
+    $('#setupTeams').innerHTML = teamCard(gm.away, true, 'Auswärts') + teamCard(gm.home, false, 'Heim');
+    $('#simOut').innerHTML = '';
+  }
+  // ---------- Simulation (CPU gegen CPU) ----------
+  const AIRY = { quick: 7, mid: 12, deep: 22, screen: -2, pa: 15 };
+  function simDrive(off, def) {
+    const st = { offTeam: off, defTeam: def, yl: 25, down: 1, toGo: 10 };
+    for (let k = 0; k < 40; k++) {
+      if (st.down === 4) { const c = cpuFourth(st); if (c === 'punt') return 0; if (c === 'fg') return rnd() < fgProb(100 - st.yl + 17) ? 3 : 0; }
+      const o = cpuOffense(st), d = cpuDefense(st), r = resolve(o, d, st);
+      if (r.type === 'int' || r.type === 'fumble') return 0;
+      const y = r.type === 'run' ? r.yards : r.type === 'comp' ? Math.round(AIRY[o] + r.yac) : r.type === 'sack' ? -7 : 0;
+      if (st.yl + y >= 100) return 7;
+      if (st.yl + y <= 0) return -2;
+      st.yl += y;
+      if (y >= st.toGo) { st.down = 1; st.toGo = Math.min(10, 100 - st.yl); } else { st.down++; st.toGo -= y; if (st.down > 4) return 0; }
+    }
+    return 0;
+  }
+  function simulate(a, h, n) {
+    let wa = 0, wh = 0, ties = 0, pa = 0, ph = 0; const margins = [];
+    for (let i = 0; i < n; i++) {
+      let sa = 0, sh = 0; const first = rnd() < 0.5;
+      for (let p = 0; p < 22; p++) {
+        const awayBall = (p % 2 === 0) === first, r = awayBall ? simDrive(a, h) : simDrive(h, a);
+        if (r === -2) { if (awayBall) sh += 2; else sa += 2; } else if (awayBall) sa += r; else sh += r;
+      }
+      for (let ot = 0; ot < 4 && sa === sh; ot++) { const ra = simDrive(a, h), rh = simDrive(h, a); sa += Math.max(0, ra); sh += Math.max(0, rh); }
+      pa += sa; ph += sh; margins.push(sa - sh);
+      if (sa > sh) wa++; else if (sh > sa) wh++; else ties++;
+    }
+    margins.sort((x, y) => x - y);
+    return { wa: wa / n, wh: wh / n, ties: ties / n, pa: pa / n, ph: ph / n, med: margins[Math.floor(n / 2)] };
+  }
+  function runSimUI() {
+    const gm = setupGames()[SET.gi], out = $('#simOut');
+    out.innerHTML = '<p class="muted">Rechne 1000 Spiele …</p>';
+    setTimeout(() => {
+      const r = simulate(gm.away, gm.home, 1000), A = TEAMS[gm.away], H = TEAMS[gm.home];
+      const w = (x) => Math.round(x * 100);
+      out.innerHTML = `<div class="g-sim">
+        <div class="g-simbar"><i style="width:${w(r.wa)}%;background:${A.jersey}"></i><i style="width:${w(r.ties)}%;background:#888"></i><i style="width:${w(r.wh)}%;background:${H.jersey}"></i></div>
+        <p><b>${esc(A.name)} ${w(r.wa)} %</b> · ${r.ties ? `Unentschieden ${w(r.ties)} % · ` : ''}<b>${esc(H.name)} ${w(r.wh)} %</b></p>
+        <p>Ø Ergebnis ${r.pa.toFixed(1).replace('.', ',')} : ${r.ph.toFixed(1).replace('.', ',')} · mittlerer Abstand ${r.med > 0 ? A.name + ' +' + r.med : r.med < 0 ? H.name + ' +' + (-r.med) : 'Gleichstand'}</p>
+        <p class="g-note">Spielerei: 1000-mal CPU gegen CPU mit den Saison-Tendenzen und EPA-Werten beider Teams im vereinfachten First-Down-Modell. Keine Prognose: ohne Verletzungen, Heimvorteil, Wetter oder Spieluhr; bei Gleichstand bis zu vier Overtime-Runden mit je einem Drive.</p></div>`;
+    }, 30);
   }
 
   // ---------- Quiz ----------
@@ -461,9 +554,11 @@
     else if (t.dataset.fourth) fourth(t.dataset.fourth);
     else if (t.dataset.act === 'nextdrive') nextDrive();
     else if (t.dataset.act === 'replay' && G.last) { const ph = G.phase; play(G.last, () => { G.phase = ph; }); }
-    else if (t.dataset.act === 'again') newGame(G.user, G.mode);
+    else if (t.dataset.act === 'again') newGame(G.user, G.cpu, G.mode, G.teams);
     else if (t.dataset.act === 'setup') { G = null; renderAll(); }
-    else if (t.dataset.act === 'start') { const team = document.querySelector('input[name=team]:checked').value; const mode = document.querySelector('input[name=mode]:checked').value; newGame(team, mode); }
+    else if (t.dataset.act === 'start') { const gm = setupGames()[SET.gi]; const team = document.querySelector('input[name=team]:checked').value; const mode = document.querySelector('input[name=mode]:checked').value; newGame(team, team === gm.away ? gm.home : gm.away, mode, [gm.away, gm.home]); }
+    else if (t.dataset.gi != null) { SET.gi = +t.dataset.gi; renderSetup(); }
+    else if (t.dataset.act === 'sim') { runSimUI(); }
     else if (t.dataset.view) {
       view = t.dataset.view;
       document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('on', b === t));

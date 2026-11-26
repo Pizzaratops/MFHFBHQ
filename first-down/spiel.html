@@ -25,7 +25,7 @@
   <nav class="fd-side" aria-label="Bereich">
     <a href="index.html" title="Lernbereich: Offense und Defense erklärt">📖<span class="hide-xs"> Lernen</span></a>
     <a href="karriere.html" title="Karriere: Rookie Coach">🏆<span class="hide-xs"> Karriere</span></a>
-    <a href="#/spiel" data-tab="spiel" title="Schnelles Spiel Bears vs Lions">🎮<span class="hide-xs"> Schnell</span></a>
+    <a href="#/spiel" data-tab="spiel" title="Echte NFL-Spiele dieser Woche">🎮<span class="hide-xs"> NFL-Woche</span></a>
     <a href="#/quiz" data-tab="quiz" title="Quiz: Was jetzt?">❓<span class="hide-xs"> Quiz</span></a>
   </nav>
   <button class="fd-icon-btn" type="button" data-sound aria-pressed="true" title="Musik &amp; Sound aus">🔊</button>
@@ -36,10 +36,14 @@
 <main class="fd-main">
   <div id="spielArea">
     <section id="setup" class="g-setup">
-      <h1 class="g-h1">Play-Call-Spiel</h1>
-      <p>Du bist der Play Caller. Mit dem Ball callst du die Offense, ohne Ball die Defense. Die CPU antwortet gleichzeitig, mit den Tendenzen des anderen Teams. Dann siehst du, was passiert.</p>
+      <h1 class="g-h1">Spiele der Woche</h1>
+      <p>Du bist der Play Caller. Mit dem Ball callst du die Offense, ohne Ball die Defense. Wähle ein echtes NFL-Spiel dieser Woche. Die CPU callt mit den echten Saison-Tendenzen des Gegners (Laufquote je Situation, Play-Action, Screens, Passtiefe, Blitz- und Box-Rate), und die EPA-Werte beider Teams beeinflussen den Ausgang.</p>
+      <h4>Spiel wählen</h4>
+      <div id="setupGames"></div>
       <h4>Dein Team</h4>
       <div class="g-teams" id="setupTeams"></div>
+      <div class="g-row"><button class="fd-btn" data-act="sim" title="Das Spiel 1000-mal CPU gegen CPU durchrechnen">🎲 Simulieren (1000 Spiele)</button></div>
+      <div id="simOut"></div>
       <h4>Modus</h4>
       <div class="g-modes">
         <label><input type="radio" name="mode" value="game" checked><span><b>Ganzes Spiel</b> Je 3 Drives, abwechselnd Offense und Defense</span></label>
@@ -47,7 +51,7 @@
         <label><input type="radio" name="mode" value="def"><span><b>Ein Drive Defense</b> Kannst du den Gegner stoppen?</span></label>
       </div>
       <button class="fd-btn fd-play g-start" data-act="start">Kickoff ▶</button>
-      <p class="g-note">Jeder Drive startet an der eigenen 25 (keine Spieluhr). Der Ausgang ist ein vereinfachtes Modell mit Zufall: Welche Calls gut zusammenpassen, ist an echte Football-Logik angelehnt, die Teamprofile an die Saisonzahlen aus dem Bericht Bears @ Lions (Stand 26.11.2026). Keine Prognose.</p>
+      <p class="g-note">Jeder Drive startet an der eigenen 25 (keine Spieluhr). Der Ausgang ist ein vereinfachtes Modell mit Zufall: Welche Calls gut zusammenpassen, ist an echte Football-Logik angelehnt, die Teamprofile kommen aus nflverse-Play-by-Play und FTN-Charting (FTN Data via nflverse, CC-BY-SA 4.0). Mann- oder Raumdeckung ist für 2026 nicht öffentlich verfügbar und wird deshalb gleich verteilt. Keine Prognose.</p>
     </section>
 
     <section id="game" class="g-game" hidden>
@@ -85,9 +89,10 @@
 <footer class="fd-foot">
   <p><b>Ideen: MFHFB · Code: Claude.</b> Idee nach <a href="https://four-verts.com/" target="_blank" rel="noopener">Four Verts</a> (Football-Play-Calling).
   Pixel-Spieler und Feld sind selbst gezeichnet; Teamfarben ohne Logos. Musik und Sounds: eigene Chiptune-Komposition, live im Browser erzeugt. Schrift „Press Start 2P“ von CodeMan38 (<a href="https://fonts.google.com/specimen/Press+Start+2P" target="_blank" rel="noopener">Google Fonts</a>, OFL).
-  Teamprofile nach dem MFHFB-Bericht Bears @ Lions (26.11.2026), siehe Quellen im <a href="index.html">Lernbereich</a>.</p>
+  Teamprofile: <a href="https://github.com/nflverse" target="_blank" rel="noopener">nflverse</a> Play-by-Play und Spielplan, FTN Data via nflverse (CC-BY-SA 4.0). Teamnamen und -farben ohne Logos.</p>
 </footer>
 
+<script src="data/nfl-week.js"></script>
 <script src="tree.js"></script>
 <script src="sim.js"></script>
 <script src="music.js"></script>
