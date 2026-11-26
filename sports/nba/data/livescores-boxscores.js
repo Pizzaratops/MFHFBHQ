@@ -4071,9 +4071,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909322",
-      line: "Brooklyn Nets @ Milwaukee Bucks (8:45 - 4th)",
+      line: "Brooklyn Nets @ Milwaukee Bucks (8:27 - 4th)",
       completed: false,
-      statusText: "8:45 - 4th",
+      statusText: "8:27 - 4th",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [

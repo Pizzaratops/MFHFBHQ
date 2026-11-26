@@ -6065,7 +6065,7 @@ const LIVESCORES_DAILY = {
       ]
     },
     "2026-11-25": {
-      games: ["Miami Heat 104 @ Philadelphia 76ers 111 (Final)","Chicago Bulls 107 @ Charlotte Hornets 105 (Final)","Cleveland Cavaliers 102 @ New York Knicks 121 (Final)","Minnesota Timberwolves @ Oklahoma City Thunder (1:51 - 4th)","LA Clippers @ Memphis Grizzlies (6:46 - 4th)","Brooklyn Nets @ Milwaukee Bucks (8:45 - 4th)","Phoenix Suns @ Houston Rockets (Halftime)","Sacramento Kings @ Golden State Warriors (11/25 - 10:00 PM EST)","San Antonio Spurs @ Portland Trail Blazers (11/25 - 10:00 PM EST)"],
+      games: ["Miami Heat 104 @ Philadelphia 76ers 111 (Final)","Chicago Bulls 107 @ Charlotte Hornets 105 (Final)","Cleveland Cavaliers 102 @ New York Knicks 121 (Final)","Minnesota Timberwolves @ Oklahoma City Thunder (1:51 - 4th)","LA Clippers @ Memphis Grizzlies (6:46 - 4th)","Brooklyn Nets @ Milwaukee Bucks (8:27 - 4th)","Phoenix Suns @ Houston Rockets (Halftime)","Sacramento Kings @ Golden State Warriors (11/25 - 10:00 PM EST)","San Antonio Spurs @ Portland Trail Blazers (11/25 - 10:00 PM EST)"],
       leagueAvg: { fg: 46, ft: 78 },
       players: [
         { rank: 1, name: "LeBron James", team: "PHI", min: 35, pts: 25, reb: 10, ast: 12, stl: 1, blk: 0, to: 3, tpm: 4, fgPct: 60, ftPct: 100, composite: 10.26, zScores: { pts: 1.693, reb: 1.78, ast: 3.371, stl: 0.387, blk: -0.578, tpm: 2.355, fgImpact: 1.54, ftImpact: 1.093, to: -1.382 } },
