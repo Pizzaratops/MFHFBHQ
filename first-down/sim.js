@@ -327,7 +327,7 @@
   //  mehreren Schattierungen (Helm mit Glanzlicht, Schulterpolster,
   //  Rückennummer), Feld vorgerendert mit Rasentextur, Tribüne mit
   //  Parallaxe, Flutlicht, Ball mit Flugspur, Konfetti, Staub.
-  const PW = 384, PH = 240, FT = 84, FB = 228, PX = 7, LS = 4.4, MARG = 26;
+  const PW = 384, PH = 240, FT = 70, FB = 230, PX = 7, LS = 4.4, MARG = 26;
   const DIG = { 0: '111101101101111', 1: '010110010010111', 2: '111001111100111', 3: '111001111001111', 4: '101101111001001', 5: '111100111001111', 6: '111100111101111', 7: '111001001001001', 8: '111101111101111', 9: '111101111001111' };
   const BODY = [
     '....ooooo......',
@@ -421,13 +421,14 @@
     for (let x = 60; x < W; x += 256) { g.fillStyle = '#2a2f45'; g.fillRect(x + 6, 6, 2, 24); g.fillStyle = '#fff6c8'; g.fillRect(x, 2, 14, 5); g.fillStyle = 'rgba(255,246,200,.12)'; g.beginPath(); g.arc(x + 7, 5, 14, 0, Math.PI * 2); g.fill(); }
     // Tribünenreihen
     const COLS = ['#d94a38', '#f2d16b', '#e8e8e8', '#5b8dd9', '#e88b3a', '#9b59b6', '#3fb37f', '#f0a3b5'];
-    for (let r = 0; r < 12; r++) {
+    const rowsN = Math.floor((FT - 38) / 4);
+    for (let r = 0; r < rowsN; r++) {
       const y = 30 + r * 4;
       g.fillStyle = r % 2 ? '#262c4a' : '#2d3456'; g.fillRect(0, y, W, 4);
       for (let x = (r % 2) * 2; x < W; x += 4) { if (rnd() < 0.12) continue; g.fillStyle = COLS[Math.floor(rnd() * COLS.length)]; g.fillRect(x, y, 2, 2); g.fillStyle = '#e7b088'; if (rnd() < 0.5) g.fillRect(x, y - 1, 2, 1); }
     }
     // Banden
-    const by = 78; g.fillStyle = '#0d1630'; g.fillRect(0, by, W, 6);
+    const by = FT - 6; g.fillStyle = '#0d1630'; g.fillRect(0, by, W, 6);
     for (let x = 0; x < W; x += 64) { g.fillStyle = x % 128 ? '#e84a0c' : '#13294b'; g.fillRect(x + 2, by + 1, 60, 4); g.fillStyle = 'rgba(255,255,255,.55)'; for (let k = 8; k < 56; k += 6) g.fillRect(x + k, by + 2, 3, 2); }
     return cv;
   }
@@ -435,12 +436,11 @@
     const g = canvas.getContext('2d');
     canvas.width = PW; canvas.height = PH;
     g.imageSmoothingEnabled = false;
-    let cam = 30, camX = 26.65, fieldCv = null, fieldKey = '';
+    let cam = 30, camX = 26.65, lsc = LS, fieldCv = null, fieldKey = '';
     const crowd = crowdCanvas();
     const scan = document.createElement('canvas'); scan.width = PW; scan.height = PH;
     (function () { const s = scan.getContext('2d'); s.fillStyle = 'rgba(0,0,0,.07)'; for (let y = 0; y < PH; y += 2) s.fillRect(0, y, PW, 1); const v = s.createRadialGradient(PW / 2, PH / 2, PH * 0.45, PW / 2, PH / 2, PH * 0.95); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)'); s.fillStyle = v; s.fillRect(0, 0, PW, PH); })();
-    const HALF = (FB - FT) / 2 / LS;
-    const sy = x => Math.round(FT + (FB - FT) / 2 + (x - camX) * LS);
+    const sy = x => Math.round(FT + (FB - FT) / 2 + (x - camX) * lsc);
     const sx = u => Math.round(PW / 2 + (u - cam) * PX);
 
     function draw(sim, fi, ctx) {
@@ -449,15 +449,24 @@
       if (key !== fieldKey) { fieldCv = fieldCanvas(ctx.offTeam, ctx.defTeam); fieldKey = key; }
       const bu = yl + fr.ball.p[1];
       cam += (clamp(bu + 5, 14, 86) - cam) * (fi === 0 ? 1 : 0.12);
-      camX += (clamp(fr.ball.p[0], HALF - 4, 53.3 - HALF + 4) - camX) * (fi === 0 ? 1 : 0.1);
+      // Seitlich so weit herauszoomen, dass alle Spieler ins Bild passen
+      let mn = 99, mx = -99;
+      sim.actors.forEach(a => { const q = fr.P[a.id]; if (Math.abs(q[1] - fr.ball.p[1]) > 30) return; mn = Math.min(mn, q[0]); mx = Math.max(mx, q[0]); });
+      const span = Math.max(14, mx - mn + 7);
+      const lst = clamp((FB - FT - 26) / span, 2.4, LS);
+      lsc += (lst - lsc) * (fi === 0 ? 1 : 0.12);
+      const half = (FB - FT) / 2 / lsc;
+      let cxT = (mn + mx) / 2 + 1.2;
+      cxT = clamp(cxT, fr.ball.p[0] - half + 3, fr.ball.p[0] + half - 3);
+      camX += (cxT - camX) * (fi === 0 ? 1 : 0.12);
       // Tribüne (Parallaxe)
       const cx = ((cam * PX * 0.45) % 512 + 512) % 512;
       g.drawImage(crowd, cx, 0, PW, FT, 0, 0, PW, FT);
-      if (fi % 3 === 0) for (let k = 0; k < 3; k++) { g.fillStyle = 'rgba(255,255,255,.9)'; g.fillRect(Math.floor(Math.random() * PW), 30 + Math.floor(Math.random() * 46), 2, 2); }
+      if (fi % 3 === 0) for (let k = 0; k < 3; k++) { g.fillStyle = 'rgba(255,255,255,.9)'; g.fillRect(Math.floor(Math.random() * PW), 30 + Math.floor(Math.random() * (FT - 40)), 2, 2); }
       // Feld
-      const srcX = (cam + 10) * PX - PW / 2, srcY = MARG + camX * LS - (FB - FT) / 2;
+      const srcH = (FB - FT) * LS / lsc, srcX = (cam + 10) * PX - PW / 2, srcY = MARG + camX * LS - srcH / 2;
       g.fillStyle = '#2b5e28'; g.fillRect(0, FT, PW, PH - FT);
-      g.drawImage(fieldCv, Math.round(srcX), Math.round(srcY), PW, FB - FT, 0, FT, PW, FB - FT);
+      g.drawImage(fieldCv, Math.round(srcX), srcY, PW, srcH, 0, FT, PW, FB - FT);
       g.fillStyle = '#2b5e28'; g.fillRect(0, FB, PW, PH - FB);
       const yTop = Math.max(FT, sy(0)), yBot = Math.min(FB, sy(53.3));
       g.fillStyle = 'rgba(80,140,255,.85)'; g.fillRect(sx(yl) - 1, yTop, 2, yBot - yTop);
@@ -505,7 +514,7 @@
       g.drawImage(scan, 0, 0);
     }
     const project = (p, ctx) => [sx(ctx.yl + p[1]) / PW, (sy(p[0]) - 10) / PH];
-    return { draw, project, reset: () => { cam = 30; camX = 26.65; } };
+    return { draw, project, reset: () => { cam = 30; camX = 26.65; lsc = LS; } };
   }
 
   // ============================================================
