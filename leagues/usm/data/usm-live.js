@@ -1,7 +1,7 @@
 // US-Manager (basketball.de) — tägliche Übersicht, erzeugt von leagues/usm/scripts/sync-usm.js
 // (GitHub Action usm-sync.yml, täglich 12:30 Berlin nach dem FP-Update von basketball.de). Nicht von Hand bearbeiten.
 const USM_LIVE = {
- "updated": "2026-11-27T20:17:39.352Z",
+ "updated": "2026-11-27T21:55:22.231Z",
  "date": "2026-11-27",
  "gameday": "2026-11-26",
  "team": {
@@ -9,7 +9,7 @@ const USM_LIVE = {
   "manager": "MFHFB",
   "trades": 0,
   "budget": 0.88,
-  "value": 102.81
+  "value": 102.06
  },
  "me": {
   "rank": 69,
@@ -143,16 +143,16 @@ const USM_LIVE = {
   },
   {
    "pos": "F",
-   "name": "Boozer, Cameron",
-   "team": "Memphis Grizzlies",
+   "name": "McDaniels, Jaden",
+   "team": "Minnesota Timberwolves",
    "rookie": 0,
-   "sal": 8.48,
-   "gp": 16,
-   "last": 25,
-   "fp": 409.5,
-   "fpg": 25.59,
-   "today": 0,
-   "played": 0
+   "sal": 7.73,
+   "gp": 19,
+   "last": 49.5,
+   "fp": 504,
+   "fpg": 26.53,
+   "today": null,
+   "played": null
   },
   {
    "pos": "F",
@@ -220,7 +220,18 @@ const USM_LIVE = {
    "played": 0
   }
  ],
- "sold": [],
+ "sold": [
+  {
+   "name": "Boozer, Cameron",
+   "team": "Memphis Grizzlies",
+   "rookie": 0,
+   "sal": 8.48,
+   "gp": 16,
+   "last": 25,
+   "fp": 409.5,
+   "fpg": 25.59
+  }
+ ],
  "top": [
   {
    "rank": 1,
@@ -835,5 +846,5 @@ const USM_HISTORY = [
  {"d":"2026-11-24","g":"2026-11-23","rank":47,"pts":4771,"day":201,"dayRank":132,"n":1279,"top":5111.5,"dayBest":283.5,"avgDay":148.3,"roster":{"Acuff Jr., Darius":[426,17,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[294,18,4.5],"Shannon Jr., Terrence":[230,15,4.21],"Demin, Egor":[109,10,2.41],"Mitchell, Davion":[423.5,16,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[397.5,17,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[379,16,7.65],"Flagg, Cooper":[525,16,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[307.5,16,5.89],"Beringer, Joan":[221.5,18,2.94]},"moves":[{"out":"Harper, Dylan","outSal":7.89,"in":"Doncic, Luka","inSal":15.18}],"watch":{"MueckeHGW":[111,4649.5,186.5],"MagicBallers":[61,4746,162.5],"Hoopies":[14,4910.5,193]}},
  {"d":"2026-11-25","g":"2026-11-24","rank":64,"pts":4809.5,"day":38.5,"dayRank":746,"n":1279,"top":5211.5,"dayBest":159,"avgDay":49.4,"roster":{"Acuff Jr., Darius":[426,17,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[294,18,4.5],"Shannon Jr., Terrence":[230,15,4.21],"Demin, Egor":[109,10,2.41],"Mitchell, Davion":[423.5,16,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[397.5,17,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[379,16,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[307.5,16,5.89],"Beringer, Joan":[221.5,18,2.94]},"watch":{"MueckeHGW":[106,4720.5,71],"MagicBallers":[45,4845.5,99.5],"Hoopies":[25,4938,27.5]}},
  {"d":"2026-11-26","g":"2026-11-25","rank":69,"pts":4981,"day":171.5,"dayRank":585,"n":1279,"top":5384.5,"dayBest":338,"avgDay":167.3,"roster":{"Acuff Jr., Darius":[447,18,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[296,19,4.5],"Shannon Jr., Terrence":[234,16,4.21],"Demin, Egor":[125,11,2.41],"Mitchell, Davion":[451.5,17,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[418.5,18,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[408,17,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[346,17,5.89],"Beringer, Joan":[233.5,19,2.94]},"watch":{"MueckeHGW":[132,4867.5,147],"MagicBallers":[50,5038,192.5],"Hoopies":[11,5224,286]}},
- {"d":"2026-11-27","g":"2026-11-26","rank":69,"pts":4981,"day":0,"dayRank":204,"n":1279,"top":5384.5,"dayBest":286,"avgDay":22.4,"roster":{"Acuff Jr., Darius":[447,18,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[296,19,4.5],"Shannon Jr., Terrence":[234,16,4.21],"Demin, Egor":[125,11,2.41],"Mitchell, Davion":[451.5,17,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[418.5,18,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[408,17,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[346,17,5.89],"Beringer, Joan":[233.5,19,2.94]},"watch":{"MueckeHGW":[130,4867.5,147],"MagicBallers":[50,5038,0],"Hoopies":[11,5224,286]}}
+ {"d":"2026-11-27","g":"2026-11-26","rank":69,"pts":4981,"day":0,"dayRank":204,"n":1279,"top":5384.5,"dayBest":286,"avgDay":22.4,"roster":{"Acuff Jr., Darius":[447,18,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[296,19,4.5],"Shannon Jr., Terrence":[234,16,4.21],"Demin, Egor":[125,11,2.41],"Mitchell, Davion":[451.5,17,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[418.5,18,7.91],"Murray-Boyles, Collin":[203,15,3.6],"McDaniels, Jaden":[504,19,7.73],"Randle, Julius":[408,17,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[346,17,5.89],"Beringer, Joan":[233.5,19,2.94]},"moves":[{"out":"Boozer, Cameron","outSal":8.48,"in":"McDaniels, Jaden","inSal":7.73}],"watch":{"MueckeHGW":[130,4867.5,147],"MagicBallers":[50,5038,0],"Hoopies":[11,5224,286]}}
 ];
