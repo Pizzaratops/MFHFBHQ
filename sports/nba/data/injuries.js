@@ -1,12 +1,11 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T17:01:07.551Z",
+  "updated": "2026-11-27T17:25:00.533Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
-    "Andrew Wiggins": ["MIA","Day-To-Day","","","",0,"2026-11-26"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
@@ -70,7 +69,7 @@ const NBA_INJURIES = {
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
     "Miles McBride": ["NY","Day-To-Day","GTD","2026-11-27","Groin",0,"2026-11-26"],
-    "Mitchell Robinson": ["BOS","Out","GTD","2026-11-27","Illness",0,"2026-11-26"],
+    "Mitchell Robinson": ["BOS","Out","OUT","2026-11-29","Illness",0,"2026-11-26"],
     "Mo Bamba": ["UTAH","Day-To-Day","GTD","2026-11-29","Illness",0,"2026-11-27"],
     "Moritz Wagner": ["BKN","Out","OUT","2026-11-28","Knee",0,"2026-11-26"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
