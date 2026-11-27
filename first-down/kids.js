@@ -47,6 +47,12 @@
     yac: { quick: 3, mid: 3, deep: 4, screen: 6, pa: 5 },
     sack: { quick: 0.02, mid: 0.06, deep: 0.08, screen: 0.01, pa: 0.08 },
   };
+  const KID_INC = {
+    pbu: ['ABGEWEHRT!', 'Ein Verteidiger hat den Ball weggeschlagen.'],
+    over: ['ZU WEIT!', 'Der Ball flog zu weit. Weite Würfe sind schwer!'],
+    drop: ['FALLEN GELASSEN!', 'Der Fänger hat ihn fallen lassen. Das passiert sogar den Profis!'],
+    miss: ['DANEBEN!', 'Knapp daneben geworfen.']
+  };
   function resolve(o, d, pick) {
     if (OPLAYS[o].kind === 'run') {
       const open = pick ? pick.open : 0.8;
@@ -56,12 +62,12 @@
     }
     if (o === 'screen') { const blz = d === 'blitz'; if (rnd() > (blz ? 0.9 : 0.82)) return { type: 'inc' }; return { type: 'comp', yac: Math.max(0, (blz ? 10 : 4) + gauss() * 4) }; }
     const open = pick ? pick.open : 0.6, depth = pick ? pick.depth : 8;
-    const c = 0.38 + 0.56 * open - Math.max(0, depth - 8) * 0.01;
+    const c = clamp(0.38 + 0.56 * open - Math.max(0, depth - 8) * 0.01, 0.05, 0.95);
     const int = 0.004 + 0.06 * (1 - open);
-    if (rnd() < int) return { type: 'int' };
-    if (rnd() > c) return { type: 'inc' };
+    if (rnd() < int) return { type: 'int', pc: c };
+    if (rnd() > c) { const why = open < 0.5 ? 'pbu' : depth >= 16 && rnd() < 0.6 ? 'over' : rnd() < 0.35 ? 'drop' : 'miss'; return { type: 'inc', pc: c, why, label: KID_INC[why][0] }; }
     let y = Math.max(0, M.yac[o] * (0.4 + open) + gauss() * 3); if (rnd() < 0.06 + 0.1 * open) y += 8 + rnd() * 20;
-    return { type: 'comp', yac: y };
+    return { type: 'comp', yac: y, pc: c };
   }
   const sackRoll = (o, d) => OPLAYS[o].kind !== 'run' && rnd() < (M.sack[o] || 0.03) * (d === 'blitz' ? 2.2 : 1);
   const callKind = o => OPLAYS[o].kind === 'run' ? 'run' : (o === 'pa' || o === 'screen') ? 'trick' : 'pass';
@@ -120,6 +126,28 @@
     if (pick.open >= best.open - 0.05 && pick.depth < best.depth) return 'Der war frei, aber ganz kurz. Weiter vorne war auch einer frei, das bringt mehr!';
     return 'Fast! Dein Fänger hatte einen Verteidiger ganz nah bei sich. Ein anderer hatte mehr Platz.';
   }
+  // Glück und Pech erklären: Eine gute Wahl klappt nicht immer, eine schlechte manchmal doch
+  function kidExtra(ro, pick, sim) {
+    const out = [];
+    if (sim.type === 'inc' && sim.why) out.push(`🏈 ${KID_INC[sim.why][1]}`);
+    if (ro && pick) {
+      const ok = goodRead(ro, pick), flop = sim.type === 'inc' || sim.type === 'int' || (ro.kind === 'run' && sim.yards <= 0);
+      const top = sim.td || (sim.type !== 'inc' && sim.type !== 'int' && sim.yards >= 10);
+      if (ok && flop) out.push('🎲 <b>Pech gehabt!</b> Deine Wahl war trotzdem richtig. Beim nächsten Mal klappt es öfter!');
+      if (!ok && top) out.push('🍀 <b>Glück gehabt!</b> Das klappt nicht oft. Bruno kann dir zeigen, was besser gewesen wäre.');
+    }
+    return out.map(x => `<p class="c-luck">${x}</p>`).join('');
+  }
+  // Bruno zeigt denselben Spielzug noch mal – mit der besten Wahl
+  function replayBest(ro, ctx, o, d, yl, seed, onEnd) {
+    const best = ro.kind === 'run' ? ro.opts.reduce((m, x) => x.open > m.open ? x : m) : ro.opts.find(x => x.id === ro.bestEv);
+    const dec = ro.kind === 'run' ? { type: 'run', yards: Math.max(2, Math.round((M[o] ? M[o][d] : 3) + 0.8 + 3.4 * (best.open - 0.75))) } : { type: 'comp', yac: M.yac[o] * (0.4 + best.open) };
+    const sim = buildSim(o, d, dec, yl, Object.assign({ seed }, ro.kind === 'run' ? { lane: best.x } : { target: best.id }));
+    V.ovl.innerHTML = `<div class="c-ovl-hint">⭐ Bruno zeigt's: ${ro.kind === 'run' ? 'Lücke ' + esc(best.name) : 'Schau, wohin der Ball fliegt!'}</div>`; V.ovl.hidden = false;
+    setPlaying(true); AU('snap');
+    V.play(sim, ctx, 0, null, () => { V.ovl.hidden = true; V.ovl.innerHTML = ''; setPlaying(false); if (onEnd) onEnd(); });
+  }
+  const replayBtn = '<button class="k-big k-replay" data-act="kreplay">▶ Bruno, zeig mir die beste Wahl!</button>';
   // Read ohne Zeitdruck; Bruno zeigt auf Wunsch die beste Wahl
   function askRead(ro, ctx, frame, onPick) {
     V.ovl.innerHTML = ''; V.ovl.hidden = false;
@@ -227,8 +255,12 @@
         if (ok) R.ok++;
         AU(ok ? 'right' : 'wrong');
         const dec = resolve(dr.o, dr.d, pick);
-        V.play(buildSim(dr.o, dr.d, dec, 30, Object.assign({ seed }, ro.kind === 'run' ? { lane: pick.x } : { target: pick.id })), ctx, fi, null, () => setPlaying(false));
-        $('#kPanel').innerHTML = bruno(kidFeedback(ro, pick, { toGo: 10 }), ok ? 'wow' : 'happy') + '<button class="k-big" data-act="dnext">Weiter →</button>';
+        const fin = buildSim(dr.o, dr.d, dec, 30, Object.assign({ seed }, ro.kind === 'run' ? { lane: pick.x } : { target: pick.id }));
+        R.replay = ok ? null : () => replayBest(ro, ctx, dr.o, dr.d, 30, seed);
+        V.play(fin, ctx, fi, null, () => {
+          setPlaying(false);
+          $('#kPanel').innerHTML = bruno(kidFeedback(ro, pick, { toGo: 10 }), ok ? 'wow' : 'happy') + kidExtra(ro, pick, fin) + (ok ? '' : replayBtn) + '<button class="k-big" data-act="dnext">Weiter →</button>';
+        });
       }));
     };
   }
@@ -290,7 +322,12 @@
     const goodCall = { box: ['pass', 'trick'], c2: ['run', 'pass'], man: ['run', 'pass'], blitz: ['pass', 'trick'] }[d].indexOf(callKind(o)) >= 0 && !(d === 'blitz' && (o === 'deep' || o === 'pa')) && !(d === 'c2' && o === 'deep');
     G.tot++; if (goodCall) G.good++;
     let fb = `${goodCall ? '✅' : '🤔'} ${KIDS_WHY[d][callKind(o)]}`;
-    if (ro && pick) { const ok = goodRead(ro, pick); G.tot++; if (ok) G.good++; fb += `<br>${ok ? '✅' : '🤔'} ${kidFeedback(ro, pick, st)}`; }
+    R.replay = null;
+    if (ro && pick) {
+      const ok = goodRead(ro, pick); G.tot++; if (ok) G.good++; fb += `<br>${ok ? '✅' : '🤔'} ${kidFeedback(ro, pick, st)}`;
+      if (!ok) { const ctx = ctxNow(), yl = st.yl, seed = G.pend.seed; R.replay = () => { const prev = G.phase; G.phase = 'replay'; replayBest(ro, ctx, o, d, yl, seed, () => { G.phase = prev; }); }; }
+    }
+    const extra = kidExtra(ro, pick, sim);
     setPlaying(false);
     if (sim.turnover) end = 'Oh nein, der Ball ist weg! Nicht schlimm, nächster Angriff!';
     else if (sim.td) { G.pts += 7; end = 'TOUCHDOWN! 🎉 Das sind 7 Punkte für dich!'; }
@@ -300,7 +337,7 @@
       if (y >= st.toGo) { st.down = 1; st.toGo = Math.min(10, 100 - st.yl); fb += '<br>🎯 <b>Geschafft! 4 neue Versuche!</b>'; setTimeout(() => AU('firstdown'), 200); }
       else { st.down++; st.toGo -= y; if (st.down > 4) end = 'Die 4 Versuche sind vorbei. Nächster Angriff!'; }
     }
-    G.fb = `<div class="c-fb">${fb}</div>`; G.pend = null; G.sub = null; G.tip = false;
+    G.fb = `<div class="c-fb">${fb}${extra}${R.replay ? replayBtn : ''}</div>`; G.pend = null; G.sub = null; G.tip = false;
     if (end) { G.phase = 'over'; G.overMsg = end; } else G.phase = 'call';
     game();
   }
@@ -364,6 +401,7 @@
     else if (a === 'todrill') go('drill', { n: R.n });
     else if (a === 'ksnap' && R.snap) { t.disabled = true; R.snap(); }
     else if (a === 'dnext') { R.di++; if (V) V.stop(); V = null; drill(); }
+    else if (a === 'kreplay' && R.replay && !(R.G && (R.G.phase === 'anim' || R.G.phase === 'replay'))) { t.disabled = true; R.replay(); setTimeout(() => { t.disabled = false; }, 4000); }
     else if (a === 'togame') { if (V) V.stop(); V = null; R = { s: 'game', n: R.n }; newGame(); game(); scrollTo({ top: 0 }); }
     else if (a === 'knextdrive') nextDrive();
     else if (t.dataset.ksub) { R.G.sub = t.dataset.ksub; AU('click'); panel(); }

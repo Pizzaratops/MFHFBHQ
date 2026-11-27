@@ -179,7 +179,7 @@
     opts = opts || {};
     const { O, dg, A, byId, sPos, defPre, pk, hand, pass } = setup(oKey, dKey, opts.seed);
     const toGoal = 100 - yl;
-    const R = { yards: 0, label: '', td: false, turnover: false, safety: false, type: dec.type, labelAt: 0 };
+    const R = { yards: 0, label: '', td: false, turnover: false, safety: false, type: dec.type, labelAt: 0, pc: dec.pc, why: dec.why };
 
     let cM = null, tCM = 0;
     let carrier = null, cS = null, cE = null, tC0 = 0, tC1 = 0, tReact = 1e9, noTackle = false;
@@ -232,7 +232,7 @@
           tC0 = tf; tC1 = tf + Math.max(0.4, dist(cS, cE) / 6.6); tReact = tf + 0.1; noTackle = R.td;
           R.yards = total; R.label = R.td ? 'TOUCHDOWN!' : yardLabel(total); R.labelAt = tC1; endT = tC1 + 0.9;
         } else if (dec.type === 'inc') {
-          R.label = 'INCOMPLETE'; R.labelAt = tf + 0.2; endT = tf + 1.3;
+          R.label = dec.label || 'INCOMPLETE'; R.labelAt = tf + 0.2; endT = tf + 1.3;
         } else if (dec.type === 'int') {
           let best = null, bd = 1e9;
           A.forEach(a => { if (a.side === 'def') { const d = dist(defPre(a, tf), C); if (d < bd) { bd = d; best = a; } } });

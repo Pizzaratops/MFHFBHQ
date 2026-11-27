@@ -84,6 +84,14 @@
     const p = M[o][d].sack - (off.ol - 75) * 0.002 + (def.edge - 75) * 0.0025;
     return rnd() < Math.max(0.005, p);
   }
+  // Warum war der Pass incomplete? (Damit es sich nicht nach reinem Zufall anfühlt.)
+  const INC_LABEL = { pbu: 'ABGEWEHRT!', over: 'ZU WEIT!', drop: 'DROP!', miss: 'DANEBEN!' };
+  const INC_WHY = {
+    pbu: 'Der Verteidiger war dran und hat den Ball weggeschlagen.',
+    over: 'Der Ball war zu weit – tiefe Würfe sind schwerer zu treffen.',
+    drop: 'Fallen gelassen – das passiert auch Profis.',
+    miss: 'Knapp daneben geworfen.'
+  };
   function resolvePlay(o, d, st, off, def, ro, pick) {
     const m = M[o][d];
     if (OPLAYS[o].kind === 'run') {
@@ -103,10 +111,14 @@
       yacF = 0.4 + 1.1 * open;
     }
     c += (off.qb - 75) * 0.003 + (off.wr - 75) * 0.002 - (def.cb - 75) * 0.0025;
-    if (rnd() < int) return { type: 'int' };
-    if (rnd() > clamp(c, 0.05, 0.95)) return { type: 'inc' };
+    const pc = clamp(c, 0.05, 0.95);
+    if (rnd() < int) return { type: 'int', pc };
+    if (rnd() > pc) {
+      const why = !pick || pick.open < 0.5 ? 'pbu' : pick.depth >= 16 && rnd() < 0.6 ? 'over' : rnd() < 0.35 ? 'drop' : 'miss';
+      return { type: 'inc', pc, why, label: INC_LABEL[why] };
+    }
     let y = Math.max(0, m.yac * yacF + gauss() * m.sd + (off.wr - 75) * 0.03); if (rnd() < m.bp) y += 8 + rnd() * 20;
-    return { type: 'comp', yac: y };
+    return { type: 'comp', yac: y, pc };
   }
   function cpuPick(ro, qb) {
     if (!ro) return null;
@@ -185,14 +197,46 @@
       const pc = clamp(0.32 + 0.58 * o.open - Math.max(0, o.depth - 8) * 0.011, 0.05, 0.95);
       const gain = o.depth + 3 * (0.4 + 1.1 * o.open), bonus = gain >= st.toGo ? 4 : 0;
       const int = 0.006 + 0.08 * (1 - o.open) + Math.max(0, o.depth) * 0.0012;
-      o.gain = gain; o.ev = pc * (gain + bonus) - int * 15;
+      o.pc = pc; o.gain = gain; o.ev = pc * (gain + bonus) - int * 15;
     });
+    // Zwei WRs eindeutig benennen (Seitenansicht: oben/unten, Vogelperspektive: links/rechts)
+    if (ro.kind === 'pass') { const top = S && S.view === 'top'; ro.opts.forEach(o => { if (o.lab === 'WR' && o.C) o.lab = `WR ${o.C[0] < 26.65 ? (top ? 'links' : 'oben') : (top ? 'rechts' : 'unten')}`; });
+      ro.opts.forEach(o => { const twin = ro.opts.find(x => x !== o && x.lab.split(' ')[0] === 'WR' && x.lab.split(' ').slice(0, 2).join(' ') === o.lab.split(' ').slice(0, 2).join(' ')); if (twin && o.lab.split(' ').length === 2) { const out = Math.abs(o.C[0] - 26.65) > Math.abs(twin.C[0] - 26.65); o.lab += out ? ' außen' : ' innen'; twin.lab += out ? ' innen' : ' außen'; } }); }
     const best = ro.opts.reduce((m, o) => o.ev > m.ev ? o : m), lo = Math.min(...ro.opts.map(o => o.ev));
     ro.bestEv = best.id;
     ro.opts.forEach(o => { o.q = best.ev === lo ? 1 : (o.ev - lo) / (best.ev - lo); });
     return ro;
   }
   const goodRead = (ro, pick) => !!pick && (ro.kind === 'run' ? pick.open >= 0.9 : (pick.id === ro.bestEv || pick.q >= 0.85));
+  // Entscheidung ≠ Ergebnis: erklärt Glück und Pech
+  function luckLine(ro, pick, sim, st) {
+    if (!ro) return '';
+    const okR = goodRead(ro, pick), r5 = v => Math.round(v * 20) * 5, pct = pick && pick.pc != null ? r5(pick.pc) : null, best = bestOf(ro), bpct = best && best.pc != null ? r5(best.pc) : null;
+    const gotIt = sim.td || (sim.type !== 'inc' && sim.type !== 'int' && sim.type !== 'sack' && sim.type !== 'fumble' && sim.yards >= st.toGo);
+    const flop = sim.type === 'inc' || sim.type === 'int' || (ro.kind === 'run' && sim.yards <= 0);
+    if (ro.kind === 'pass') {
+      if (okR && flop && pct != null) return `🎲 <b>Pech:</b> Die Fangchance lag bei etwa ${pct} %. Die Entscheidung war trotzdem richtig – auf Dauer zahlt sie sich aus.`;
+      if (!okR && pick && gotIt && pct != null) return pct < bpct ? `🍀 <b>Glück gehabt:</b> Die Fangchance lag bei etwa ${pct} %, beim besten Read bei ${bpct} %. Auf Dauer kostet so ein Wurf Punkte.`
+        : '🍀 <b>Hat geklappt</b> – aber der beste Read bringt im Schnitt mehr Raumgewinn. Auf Dauer zählt die Entscheidung.';
+    } else {
+      if (okR && flop) return '🎲 <b>Pech:</b> Gute Lücke, aber ein Verteidiger hat sich losgerissen. Richtig entschieden war es trotzdem.';
+      if (!okR && pick && sim.yards >= 8) return '🍀 <b>Glück gehabt:</b> Trotz zugestellter Lücke ging es weit. Darauf kann man sich nicht verlassen.';
+    }
+    return '';
+  }
+  const incLine = sim => sim.type === 'inc' && sim.why ? `🏈 <b>Warum incomplete?</b> ${INC_WHY[sim.why]}` : '';
+  const bestOf = ro => ro.kind === 'run' ? ro.opts.reduce((m, o) => o.open > m.open ? o : m) : ro.opts.find(x => x.id === ro.bestEv);
+  // Denselben Snap noch einmal abspielen, diesmal mit dem besten Read (ändert nichts am Spielstand)
+  function replayBest(V, ctx, o, d, ro, yl, seed, onEnd) {
+    const best = bestOf(ro), m = M[o][d];
+    const dec = ro.kind === 'run' ? { type: 'run', yards: Math.max(1, Math.round(m.m + 0.6 + 3.2 * (best.open - 0.75))) }
+      : best.pc >= 0.5 ? { type: 'comp', yac: m.yac * (0.4 + 1.1 * best.open) } : { type: 'inc', label: 'INCOMPLETE' };
+    const sim = buildSim(o, d, dec, yl, Object.assign({ seed }, ro.kind === 'run' ? { lane: best.x } : { target: best.id }));
+    V.ovl.innerHTML = `<div class="c-ovl-hint">▶ Bester Read: ${esc(ro.kind === 'run' ? best.name : best.lab)}${ro.kind === 'pass' ? ` · Fangchance ~${Math.round(best.pc * 20) * 5} %` : ''}</div>`;
+    V.ovl.hidden = false; setPlaying(true); AU('snap');
+    V.play(sim, ctx, 0, null, () => { V.ovl.hidden = true; V.ovl.innerHTML = ''; setPlaying(false); if (onEnd) onEnd(); });
+  }
+  const replayBtn = '<button class="fd-btn c-replay" data-act="replay">▶ Zeig mir den besten Read</button>';
   function askRead(V, ro, ctx, frame, help, onPick) {
     V.ovl.innerHTML = ''; V.ovl.hidden = false;
     const btns = ro.opts.map(o => {
@@ -338,10 +382,10 @@
     const ctx = { yl: st.yl, toGo: st.toGo, offTeam: myTeam(), defTeam: oppTeam(w.n) };
     const seed = Math.floor(rnd() * 1e9);
     const neutral = { qb: 72, rb: 72, wr: 72, ol: 72, edge: 72, cb: 72 };
-    const done = (ok, text) => {
+    const done = (ok, text, extra) => {
       if (ok) R.dok++;
       AU(ok ? 'right' : 'wrong');
-      $('#cAsk').innerHTML = `<p class="q-res ${ok ? 'ok' : 'no'}">${ok ? 'Richtig!' : 'Nicht ganz.'}</p><p>${text}</p><button class="fd-btn fd-play" data-act="dnext">Weiter →</button>`;
+      $('#cAsk').innerHTML = `<p class="q-res ${ok ? 'ok' : 'no'}">${ok ? 'Richtig!' : 'Nicht ganz.'}</p><p>${text}</p>${extra || ''}<button class="fd-btn fd-play" data-act="dnext">Weiter →</button>`;
     };
     if (dr.type === 'read') {
       const ro = scoreRead(readOptions(dr.o, dr.d, seed), st);
@@ -356,8 +400,9 @@
             const ok = goodRead(ro, pick);
             const dec = resolvePlay(dr.o, dr.d, st, neutral, neutral, ro, pick || bestO);
             const fin = buildSim(dr.o, dr.d, dec, st.yl, Object.assign({ seed }, ro.kind === 'run' ? { lane: (pick || bestO).x } : { target: (pick || bestO).id }));
-            R.V.play(fin, ctx, fi, null, () => setPlaying(false));
-            done(ok, readFeedback(ro, pick, st));
+            const extra = [incLine(fin), luckLine(ro, pick, fin, st)].filter(Boolean).map(x => `<p class="c-luck">${x}</p>`).join('') + (ok ? '' : replayBtn);
+            R.onReplay = ok ? null : () => replayBest(R.V, ctx, dr.o, dr.d, ro, st.yl, seed);
+            R.V.play(fin, ctx, fi, null, () => { setPlaying(false); done(ok, readFeedback(ro, pick, st), extra); });
           });
         });
       };
@@ -392,8 +437,8 @@
     }
   }
   function readFeedback(ro, pick, st) {
-    const sep = o => `${o.sep >= 15 ? '15+' : o.sep.toFixed(0)} Yards Platz`;
-    const dep = o => `${Math.max(0, Math.round(o.depth))} Yards tief`;
+    const sep = o => `${o.sep >= 15 ? '15+' : o.sep.toFixed(0)} ${o.sep >= 0.5 && o.sep < 1.5 ? 'Yard' : 'Yards'} Platz`;
+    const dep = o => { const v = Math.max(0, Math.round(o.depth)); return `${v} ${v === 1 ? 'Yard' : 'Yards'} tief`; };
     if (ro.kind === 'run') {
       const best = ro.opts.reduce((m, o) => o.open > m.open ? o : m);
       if (!pick) return `Zu lange gezögert! Die beste Lücke war ${best.name}.`;
@@ -545,7 +590,7 @@
   function offPlay(o) {
     const G = R.G, st = G.st, pd = G.pending, d = pd.d, seed = pd.seed, ctx = ctxOf();
     const my = offRatings(), oR = oppRatings(R.week);
-    G.phase = 'anim'; G.animMsg = `${OPLAYS[o].icon} ${OPLAYS[o].name} gegen ${DCALLS[d].icon} ${DCALLS[d].name}${pd.look !== d ? ' (getäuscht!)' : ''}`; G.fb = null; G.goForIt = false; panel();
+    G.phase = 'anim'; G.animMsg = `${OPLAYS[o].icon} ${OPLAYS[o].name} gegen ${DCALLS[d].icon} ${DCALLS[d].name}${pd.look !== d ? ' (getäuscht!)' : ''}`; G.fb = null; G.replay = null; G.goForIt = false; panel();
     AU('snap');
     if (sackRoll(o, d, my, oR)) { setPlaying(true); const sim = buildSim(o, d, { type: 'sack' }, st.yl, { seed }); R.V.play(sim, ctx, 0, null, () => applyPlay(o, d, sim, null, null)); return; }
     const ro = scoreRead(readOptions(o, d, seed), st);
@@ -566,7 +611,7 @@
   // ----- Spielzug als Defense -----
   function defPlay(d) {
     const G = R.G, st = G.st, pd = G.pending, o = pd.o, ctx = ctxOf(), oR = oppRatings(R.week), my = offRatings();
-    G.phase = 'anim'; G.animMsg = `${DCALLS[d].icon} ${DCALLS[d].name} gegen ${OPLAYS[o].icon} ${OPLAYS[o].name}`; G.fb = null; G.goForIt = false; panel();
+    G.phase = 'anim'; G.animMsg = `${DCALLS[d].icon} ${DCALLS[d].name} gegen ${OPLAYS[o].icon} ${OPLAYS[o].name}`; G.fb = null; G.replay = null; G.goForIt = false; panel();
     AU('snap');
     let dec, opts = { seed: pd.seed };
     if (sackRoll(o, d, oR, my)) dec = { type: 'sack' };
@@ -598,12 +643,15 @@
       if (ro) {
         const okR = goodRead(ro, pick); G.total++; if (okR) G.good++;
         fb.push(`${okR ? '✅' : '❌'} <b>Read:</b> ${readFeedback(ro, pick, before)}`);
+        const ll = luckLine(ro, pick, sim, before); if (ll) fb.push(ll);
+        if (!okR) G.replay = { o, d, ro, yl: before.yl, toGo: before.toGo, seed: G.pending.seed };
       }
+      const il = incLine(sim); if (il) fb.push(il);
     } else {
       const vals = Object.keys(DCALLS).map(x => EY(o, x)), best = Math.min(...vals), good = EY(o, d) <= best + 1.0; G.total++; if (good) G.good++;
       fb.push(`${good ? '✅' : '❌'} <b>Call:</b> Die Offense spielte ${OPLAYS[o].name}. ${whyOf(o, d)}`);
     }
-    G.fb = fb.join('<br>');
+    G.fb = fb.join('<br>') + (G.replay ? replayBtn : '');
     setPlaying(false);
     G.log.unshift({ t: `<span class="dd">${ordinal(before.down)} & ${before.toGo}</span> ${esc(asDef ? DCALLS[d].name + ' vs ' + OPLAYS[o].name : OPLAYS[o].name + ' vs ' + DCALLS[d].name)} → ${res}` });
     G.pending = null; G.sub = null; G.showTip = false;
@@ -672,6 +720,14 @@
     else if (a === 'snap' && R.onSnap) { AU('snap'); R.onSnap(); }
     else if (t.dataset.dpick && R.onDPick) { document.querySelectorAll('[data-dpick]').forEach(b => { b.disabled = true; }); R.onDPick(t.dataset.dpick); R.onDPick = null; }
     else if (a === 'dnext') { R.di++; renderDrill(); }
+    else if (a === 'replay') {
+      t.disabled = true;
+      const G = R.G;
+      if (G && G.replay && G.phase !== 'anim') {
+        const rp = G.replay, prev = G.phase, ctx = { yl: rp.yl, toGo: rp.toGo, offTeam: myTeam(), defTeam: oppTeam(R.week) }; G.phase = 'replay';
+        replayBest(R.V, ctx, rp.o, rp.d, rp.ro, rp.yl, rp.seed, () => { G.phase = prev; t.disabled = false; });
+      } else if (!G && R.onReplay) { R.onReplay(); setTimeout(() => { t.disabled = false; }, 4000); }
+    }
     else if (a === 'redrill') go('drill', { week: R.week });
     else if (a === 'startgame') startGame(R.week);
     else if (a === 'nextdrive') nextDrive();

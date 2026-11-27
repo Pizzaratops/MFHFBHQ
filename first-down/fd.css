@@ -418,3 +418,9 @@ body.fd-playing .c-grid { grid-template-columns: minmax(0, 1fr) !important; }
 body.fd-playing .c-grid > div:last-child, body.fd-playing .c-grid > aside { display: none; }
 body.fd-playing .c-screen { width: min(100%, calc((100vh - 90px) * 1.6)) !important; margin: 0 auto; }
 body.fd-playing .g-ctrl { justify-content: center; }
+
+/* Glück/Pech, Incomplete-Grund, Replay des besten Reads */
+.c-luck { margin: .45rem 0 0; font-size: .92em; line-height: 1.4; }
+.c-replay, .k-replay { display: block; margin-top: .6rem; }
+.c-fb .c-replay { width: 100%; font-size: .9rem; padding: .5rem .8rem; }
+.k-replay { background: #fff3c4 !important; color: #5a3b00 !important; border-color: #f0b400 !important; font-size: 1.05rem !important; }
