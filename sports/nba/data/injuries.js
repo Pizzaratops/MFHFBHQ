@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T19:08:57.477Z",
+  "updated": "2026-11-27T19:24:53.001Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -65,6 +65,7 @@ const NBA_INJURIES = {
     "Kelly Oubre Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Hand",0,"2026-11-27"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
+    "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-30","Knee",0,"2026-11-27"],
     "LaMelo Ball": ["MIN","Out","OUT","2026-11-29","Ankle",0,"2026-11-27"],
     "Larry Nance Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-27"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
@@ -79,6 +80,7 @@ const NBA_INJURIES = {
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-27","Foot",0,"2026-11-22"],
     "Nikola Topic": ["OKC","Out","GTD","2026-11-28","Hip",0,"2026-11-24"],
+    "Noa Essengue": ["CHI","Day-To-Day","GTD","2026-11-28","Thumb",0,"2026-11-27"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
