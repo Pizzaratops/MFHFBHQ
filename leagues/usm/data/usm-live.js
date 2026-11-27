@@ -1,26 +1,26 @@
 // US-Manager (basketball.de) — tägliche Übersicht, erzeugt von leagues/usm/scripts/sync-usm.js
 // (GitHub Action usm-sync.yml, täglich 12:30 Berlin nach dem FP-Update von basketball.de). Nicht von Hand bearbeiten.
 const USM_LIVE = {
- "updated": "2026-11-26T22:15:26.933Z",
- "date": "2026-11-26",
- "gameday": "2026-11-25",
+ "updated": "2026-11-27T19:38:25.044Z",
+ "date": "2026-11-27",
+ "gameday": "2026-11-26",
  "team": {
   "name": "Kenora Hoops",
   "manager": "MFHFB",
-  "trades": 1,
-  "budget": 0.13,
+  "trades": 0,
+  "budget": 0.88,
   "value": 102.81
  },
  "me": {
   "rank": 69,
-  "diff": -5,
+  "diff": 0,
   "team": "Kenora Hoops",
   "mgr": "MFHFB",
   "pts": 4981,
-  "day": 171.5,
+  "day": 0,
   "avg": 20.33,
   "premium": 0,
-  "dayRank": 585
+  "dayRank": 204
  },
  "managers": 1279,
  "players": [
@@ -34,8 +34,8 @@ const USM_LIVE = {
    "last": 21,
    "fp": 447,
    "fpg": 24.83,
-   "today": 21,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "G",
@@ -60,8 +60,8 @@ const USM_LIVE = {
    "last": 2,
    "fp": 296,
    "fpg": 15.58,
-   "today": 2,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "G",
@@ -73,8 +73,8 @@ const USM_LIVE = {
    "last": 4,
    "fp": 234,
    "fpg": 14.63,
-   "today": 4,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "G",
@@ -86,8 +86,8 @@ const USM_LIVE = {
    "last": 16,
    "fp": 125,
    "fpg": 11.36,
-   "today": 16,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "G",
@@ -99,8 +99,8 @@ const USM_LIVE = {
    "last": 28,
    "fp": 451.5,
    "fpg": 26.56,
-   "today": 28,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "G",
@@ -125,8 +125,8 @@ const USM_LIVE = {
    "last": 21,
    "fp": 418.5,
    "fpg": 23.25,
-   "today": 21,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "F",
@@ -164,8 +164,8 @@ const USM_LIVE = {
    "last": 29,
    "fp": 408,
    "fpg": 24,
-   "today": 29,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "F",
@@ -203,8 +203,8 @@ const USM_LIVE = {
    "last": 38.5,
    "fp": 346,
    "fpg": 20.35,
-   "today": 38.5,
-   "played": 1
+   "today": 0,
+   "played": 0
   },
   {
    "pos": "C",
@@ -216,55 +216,55 @@ const USM_LIVE = {
    "last": 12,
    "fp": 233.5,
    "fpg": 12.29,
-   "today": 12,
-   "played": 1
+   "today": 0,
+   "played": 0
   }
  ],
  "sold": [],
  "top": [
   {
    "rank": 1,
-   "diff": 1,
+   "diff": 0,
    "team": "MortyJerks",
    "mgr": "MortyJerks",
    "pts": 5384.5,
-   "day": 229.5,
+   "day": 0,
    "avg": 20.79,
    "premium": 0,
-   "dayRank": 143
+   "dayRank": 204
   },
   {
    "rank": 2,
-   "diff": -1,
+   "diff": 0,
    "team": "Gugiligugiligu",
    "mgr": "ThiloThree",
    "pts": 5354.5,
    "day": 143,
    "avg": 19.98,
    "premium": 0,
-   "dayRank": 882
+   "dayRank": 104
   },
   {
    "rank": 3,
-   "diff": 5,
-   "team": "dwightmare",
-   "mgr": "dwightmare",
-   "pts": 5300.5,
-   "day": 262.5,
-   "avg": 20,
-   "premium": 0,
-   "dayRank": 40
-  },
-  {
-   "rank": 4,
-   "diff": 3,
+   "diff": 1,
    "team": "TheBigSleep",
    "mgr": "Eyalter",
    "pts": 5300.5,
-   "day": 233.5,
+   "day": 0,
    "avg": 20.87,
    "premium": 0,
-   "dayRank": 119
+   "dayRank": 204
+  },
+  {
+   "rank": 4,
+   "diff": -1,
+   "team": "dwightmare",
+   "mgr": "dwightmare",
+   "pts": 5300.5,
+   "day": 0,
+   "avg": 20,
+   "premium": 0,
+   "dayRank": 204
   },
   {
    "rank": 5,
@@ -272,153 +272,153 @@ const USM_LIVE = {
    "team": "Brooklyn Heights",
    "mgr": "Stef_Frischling",
    "pts": 5300,
-   "day": 212.5,
+   "day": 0,
    "avg": 21.03,
    "premium": 0,
-   "dayRank": 247
+   "dayRank": 204
   },
   {
    "rank": 6,
-   "diff": -2,
+   "diff": 0,
    "team": "BW_Allstars",
    "mgr": "bawa2k",
    "pts": 5278.5,
-   "day": 174,
+   "day": 0,
    "avg": 20.22,
    "premium": 0,
-   "dayRank": 562
+   "dayRank": 204
   },
   {
    "rank": 7,
-   "diff": -1,
+   "diff": 0,
    "team": "Isotopes",
    "mgr": "Lennart",
    "pts": 5269,
-   "day": 191,
+   "day": 0,
    "avg": 19.88,
    "premium": 0,
-   "dayRank": 417
+   "dayRank": 204
   },
   {
    "rank": 8,
-   "diff": 6,
+   "diff": 0,
    "team": "Seestadt Sugar Pimps",
    "mgr": "The Big Jak",
    "pts": 5265.5,
-   "day": 277.5,
+   "day": 0,
    "avg": 20.65,
    "premium": 1,
-   "dayRank": 22
+   "dayRank": 204
   },
   {
    "rank": 9,
-   "diff": -6,
+   "diff": 0,
    "team": "el.corruptos",
    "mgr": "el.corrupto",
    "pts": 5239,
-   "day": 89.5,
+   "day": 0,
    "avg": 19.84,
    "premium": 0,
-   "dayRank": 1187
+   "dayRank": 204
   },
   {
    "rank": 10,
-   "diff": 2,
+   "diff": 0,
    "team": "Mazulla Aleikum",
    "mgr": "Dirt Luhpinski",
    "pts": 5232.5,
-   "day": 221.5,
+   "day": 0,
    "avg": 20.05,
    "premium": 0,
-   "dayRank": 183
+   "dayRank": 204
   },
   {
    "rank": 11,
-   "diff": 14,
+   "diff": 0,
    "team": "Hoopies",
    "mgr": "QuintoD",
    "pts": 5224,
    "day": 286,
    "avg": 21.06,
    "premium": 0,
-   "dayRank": 13
+   "dayRank": 1
   },
   {
    "rank": 12,
-   "diff": -3,
+   "diff": 0,
    "team": "Alley-Oops I dit it again",
    "mgr": "Goatdirk86",
    "pts": 5218,
-   "day": 183.5,
+   "day": 0,
    "avg": 20.62,
    "premium": 0,
-   "dayRank": 485
+   "dayRank": 204
   },
   {
    "rank": 13,
-   "diff": 5,
+   "diff": 0,
    "team": "Area51",
    "mgr": "Area51",
    "pts": 5188,
-   "day": 238,
+   "day": 0,
    "avg": 20.75,
    "premium": 0,
-   "dayRank": 97
+   "dayRank": 204
   },
   {
    "rank": 14,
-   "diff": -1,
+   "diff": 0,
    "team": "SuperTrooper",
    "mgr": "Super Trooper",
    "pts": 5186,
-   "day": 187,
+   "day": 0,
    "avg": 20.34,
    "premium": 0,
-   "dayRank": 455
+   "dayRank": 204
   },
   {
    "rank": 15,
-   "diff": -5,
+   "diff": 0,
    "team": "Kohlscheid Miners",
    "mgr": "Elmar11",
    "pts": 5176,
    "day": 153.5,
    "avg": 19.98,
    "premium": 0,
-   "dayRank": 782
+   "dayRank": 81
   },
   {
    "rank": 16,
-   "diff": -5,
+   "diff": 0,
    "team": "FStoffers",
    "mgr": "FStoffers",
    "pts": 5171.5,
-   "day": 157,
+   "day": 0,
    "avg": 19.89,
    "premium": 1,
-   "dayRank": 748
+   "dayRank": 204
   },
   {
    "rank": 17,
-   "diff": 4,
+   "diff": 0,
    "team": "Goon Squad",
    "mgr": "BumpetyBoo",
    "pts": 5170.5,
-   "day": 225.5,
+   "day": 0,
    "avg": 20.2,
    "premium": 1,
-   "dayRank": 162
+   "dayRank": 204
   },
   {
    "rank": 18,
-   "diff": -2,
+   "diff": 0,
    "team": "Klopptrottelz Revengers",
    "mgr": "mouthman",
    "pts": 5167,
-   "day": 201.5,
+   "day": 0,
    "avg": 20.18,
    "premium": 0,
-   "dayRank": 326
+   "dayRank": 204
   },
   {
    "rank": 19,
@@ -426,144 +426,144 @@ const USM_LIVE = {
    "team": "Kellerkinder",
    "mgr": "DerKeller",
    "pts": 5154.5,
-   "day": 205.5,
+   "day": 0,
    "avg": 20.29,
    "premium": 1,
-   "dayRank": 296
+   "dayRank": 204
   },
   {
    "rank": 20,
-   "diff": 23,
+   "diff": 0,
    "team": "Magenta Express",
    "mgr": "piplica",
    "pts": 5149.5,
-   "day": 294.5,
+   "day": 0,
    "avg": 21.1,
    "premium": 0,
-   "dayRank": 7
+   "dayRank": 204
   },
   {
    "rank": 21,
-   "diff": -1,
+   "diff": 0,
    "team": "HE4T B4SKETB4LL",
    "mgr": "HEAT Basketball",
    "pts": 5139.5,
-   "day": 193.5,
+   "day": 0,
    "avg": 20.72,
    "premium": 0,
-   "dayRank": 390
+   "dayRank": 204
   },
   {
    "rank": 22,
-   "diff": 16,
+   "diff": 0,
    "team": "Oklahoma City Mavericks",
    "mgr": "roddybucket",
    "pts": 5128.5,
-   "day": 259.5,
+   "day": 0,
    "avg": 19.8,
    "premium": 1,
-   "dayRank": 44
+   "dayRank": 204
   },
   {
    "rank": 23,
-   "diff": -8,
+   "diff": 0,
    "team": "Powpow",
    "mgr": "PowPow",
    "pts": 5126.5,
-   "day": 161,
+   "day": 0,
    "avg": 19.79,
    "premium": 0,
-   "dayRank": 705
+   "dayRank": 204
   },
   {
    "rank": 24,
-   "diff": 35,
+   "diff": 0,
    "team": "G-League Gigolos",
    "mgr": "Streaky-T",
    "pts": 5119,
-   "day": 298.5,
+   "day": 0,
    "avg": 20,
    "premium": 0,
-   "dayRank": 5
+   "dayRank": 204
   },
   {
    "rank": 25,
-   "diff": 7,
+   "diff": 0,
    "team": "Tragic",
    "mgr": "charlesbarkley",
    "pts": 5118.5,
-   "day": 219.5,
+   "day": 0,
    "avg": 19.76,
    "premium": 0,
-   "dayRank": 197
+   "dayRank": 204
   }
  ],
  "around": [
   {
    "rank": 64,
-   "diff": 12,
+   "diff": 0,
    "team": "Rookies Finest",
    "mgr": "rookie2202",
    "pts": 4990.5,
-   "day": 201.5,
+   "day": 0,
    "avg": 19.34,
    "premium": 0,
-   "dayRank": 326
+   "dayRank": 204
   },
   {
    "rank": 65,
-   "diff": -24,
+   "diff": 0,
    "team": "Apocalypse in four",
    "mgr": "El Duderino",
    "pts": 4989.5,
-   "day": 127,
+   "day": 0,
    "avg": 20.12,
    "premium": 1,
-   "dayRank": 1000
+   "dayRank": 204
   },
   {
    "rank": 66,
-   "diff": -9,
+   "diff": 0,
    "team": "GoldenStahleWarriors",
    "mgr": "Crisbo23",
    "pts": 4989,
-   "day": 165.5,
+   "day": 0,
    "avg": 19.49,
    "premium": 1,
-   "dayRank": 654
+   "dayRank": 204
   },
   {
    "rank": 67,
-   "diff": 4,
+   "diff": 0,
    "team": "MySpaceundFaxgerät",
    "mgr": "Moltke",
    "pts": 4985,
-   "day": 188,
+   "day": 0,
    "avg": 19.7,
    "premium": 0,
-   "dayRank": 448
+   "dayRank": 204
   },
   {
    "rank": 68,
-   "diff": -24,
+   "diff": 0,
    "team": "The Jayson Tatum Show",
    "mgr": "thisislilneumi",
    "pts": 4985,
    "day": 139.5,
    "avg": 19.63,
    "premium": 0,
-   "dayRank": 909
+   "dayRank": 108
   },
   {
    "rank": 69,
-   "diff": -5,
+   "diff": 0,
    "team": "Kenora Hoops",
    "mgr": "MFHFB",
    "pts": 4981,
-   "day": 171.5,
+   "day": 0,
    "avg": 20.33,
    "premium": 0,
-   "dayRank": 585
+   "dayRank": 204
   },
   {
    "rank": 70,
@@ -571,89 +571,89 @@ const USM_LIVE = {
    "team": "Barni Dynasty",
    "mgr": "Barney",
    "pts": 4980,
-   "day": 182.5,
+   "day": 0,
    "avg": 19.61,
    "premium": 0,
-   "dayRank": 496
+   "dayRank": 204
   },
   {
    "rank": 71,
-   "diff": 15,
+   "diff": 0,
    "team": "MAGIC‘S FIVE",
    "mgr": "Lady217",
    "pts": 4979.5,
-   "day": 214.5,
+   "day": 0,
    "avg": 20.41,
    "premium": 0,
-   "dayRank": 227
+   "dayRank": 204
   },
   {
    "rank": 72,
-   "diff": -23,
+   "diff": 0,
    "team": "Die Letzten",
    "mgr": "Letzter",
    "pts": 4974.5,
-   "day": 140.5,
+   "day": 0,
    "avg": 19.66,
    "premium": 0,
-   "dayRank": 901
+   "dayRank": 204
   },
   {
    "rank": 73,
-   "diff": 15,
-   "team": "Meister Shredder",
-   "mgr": "T-Mac",
-   "pts": 4973,
-   "day": 217,
-   "avg": 19.35,
-   "premium": 0,
-   "dayRank": 215
-  },
-  {
-   "rank": 74,
-   "diff": -40,
+   "diff": 1,
    "team": "the trickshots",
    "mgr": "Kimo",
    "pts": 4973,
    "day": 85.5,
    "avg": 18.98,
    "premium": 1,
-   "dayRank": 1195
+   "dayRank": 173
+  },
+  {
+   "rank": 74,
+   "diff": -1,
+   "team": "Meister Shredder",
+   "mgr": "T-Mac",
+   "pts": 4973,
+   "day": 0,
+   "avg": 19.35,
+   "premium": 0,
+   "dayRank": 204
   }
  ],
  "watch": [
   {
-   "rank": 132,
-   "diff": -26,
+   "rank": 130,
+   "diff": 2,
    "team": "MueckeHGW",
    "mgr": "Muecke",
    "pts": 4867.5,
    "day": 147,
    "avg": 19.95,
    "premium": 1,
-   "dayRank": 847
+   "dayRank": 96
   },
   {
    "rank": 50,
-   "diff": -5,
+   "diff": 0,
    "team": "MagicBallers",
    "mgr": "QuattroD",
    "pts": 5038,
-   "day": 192.5,
+   "day": 0,
    "avg": 20.15,
    "premium": 1,
-   "dayRank": 403
+   "dayRank": 204
   },
   {
    "rank": 11,
-   "diff": 14,
+   "diff": 0,
    "team": "Hoopies",
    "mgr": "QuintoD",
    "pts": 5224,
    "day": 286,
    "avg": 21.06,
    "premium": 0,
-   "dayRank": 13
+   "dayRank": 1
   }
  ],
  "labels": {
@@ -663,167 +663,167 @@ const USM_LIVE = {
  },
  "dayTop": [
   {
-   "rank": 268,
-   "diff": 160,
-   "team": "Empire State Hoopers",
-   "mgr": "Stimmoph",
-   "pts": 4710.5,
-   "day": 338,
-   "avg": 20.22,
-   "premium": 0,
-   "dayRank": 1
-  },
-  {
-   "rank": 475,
-   "diff": 126,
-   "team": "AllStarNovi",
-   "mgr": "Dunkingnovi",
-   "pts": 4513.5,
-   "day": 312.5,
-   "avg": 19.04,
-   "premium": 0,
-   "dayRank": 2
-  },
-  {
-   "rank": 83,
-   "diff": 70,
-   "team": "Boomshakalaka",
-   "mgr": "DT85",
-   "pts": 4952,
-   "day": 302.5,
-   "avg": 19.81,
-   "premium": 0,
-   "dayRank": 3
-  },
-  {
-   "rank": 119,
-   "diff": 90,
-   "team": "Ostblocklatinos",
-   "mgr": "Btotheasti",
-   "pts": 4889,
-   "day": 302,
-   "avg": 19.02,
-   "premium": 0,
-   "dayRank": 4
-  },
-  {
-   "rank": 24,
-   "diff": 35,
-   "team": "G-League Gigolos",
-   "mgr": "Streaky-T",
-   "pts": 5119,
-   "day": 298.5,
-   "avg": 20,
-   "premium": 0,
-   "dayRank": 5
-  },
-  {
-   "rank": 396,
-   "diff": 124,
-   "team": "I want to give him a reason to flop",
-   "mgr": "diader",
-   "pts": 4587,
-   "day": 298,
-   "avg": 18.8,
-   "premium": 0,
-   "dayRank": 6
-  },
-  {
-   "rank": 20,
-   "diff": 23,
-   "team": "Magenta Express",
-   "mgr": "piplica",
-   "pts": 5149.5,
-   "day": 294.5,
-   "avg": 21.1,
-   "premium": 0,
-   "dayRank": 7
-  },
-  {
-   "rank": 117,
-   "diff": 78,
-   "team": "Team-Krankgeschrieben",
-   "mgr": "Maerz23",
-   "pts": 4895,
-   "day": 292.5,
-   "avg": 19.05,
-   "premium": 0,
-   "dayRank": 8
-  },
-  {
-   "rank": 133,
-   "diff": 91,
-   "team": "Spike79",
-   "mgr": "Spike79",
-   "pts": 4866.5,
-   "day": 291.5,
-   "avg": 20.45,
-   "premium": 0,
-   "dayRank": 9
-  },
-  {
-   "rank": 419,
-   "diff": 109,
-   "team": "ForeverAnton",
-   "mgr": "mcheath78",
-   "pts": 4570,
-   "day": 288,
-   "avg": 18.88,
-   "premium": 0,
-   "dayRank": 10
-  },
-  {
-   "rank": 194,
-   "diff": 91,
-   "team": "Random Erbears",
-   "mgr": "Rainer Zufall Brown",
-   "pts": 4787,
-   "day": 287,
-   "avg": 18.92,
-   "premium": 0,
-   "dayRank": 11
-  },
-  {
-   "rank": 574,
-   "diff": 98,
-   "team": "FatJokic",
-   "mgr": "Fetty-Jokic",
-   "pts": 4409,
-   "day": 287,
-   "avg": 17.57,
-   "premium": 0,
-   "dayRank": 11
-  },
-  {
    "rank": 11,
-   "diff": 14,
+   "diff": 0,
    "team": "Hoopies",
    "mgr": "QuintoD",
    "pts": 5224,
    "day": 286,
    "avg": 21.06,
    "premium": 0,
-   "dayRank": 13
+   "dayRank": 1
   },
   {
-   "rank": 217,
-   "diff": 80,
-   "team": "Richmond Hornets",
-   "mgr": "East Dillon Hornets",
-   "pts": 4770.5,
-   "day": 286,
-   "avg": 19.31,
+   "rank": 305,
+   "diff": 0,
+   "team": "Die Berber",
+   "mgr": "Berberon1",
+   "pts": 4667.5,
+   "day": 263.5,
+   "avg": 18.52,
+   "premium": 0,
+   "dayRank": 2
+  },
+  {
+   "rank": 859,
+   "diff": 0,
+   "team": "Rockets",
+   "mgr": "Odin",
+   "pts": 4052,
+   "day": 245.5,
+   "avg": 18.85,
+   "premium": 1,
+   "dayRank": 3
+  },
+  {
+   "rank": 52,
+   "diff": 0,
+   "team": "Shit'n Blind",
+   "mgr": "Pheno",
+   "pts": 5032,
+   "day": 240,
+   "avg": 19.89,
+   "premium": 1,
+   "dayRank": 4
+  },
+  {
+   "rank": 44,
+   "diff": 0,
+   "team": "AAA",
+   "mgr": "TechTycoon",
+   "pts": 5049,
+   "day": 239,
+   "avg": 20.61,
+   "premium": 0,
+   "dayRank": 5
+  },
+  {
+   "rank": 679,
+   "diff": 0,
+   "team": "Los Pollos Hermanos",
+   "mgr": "big easy",
+   "pts": 4291,
+   "day": 237.5,
+   "avg": 19.24,
+   "premium": 1,
+   "dayRank": 6
+  },
+  {
+   "rank": 349,
+   "diff": 0,
+   "team": "No Mercy for others (Ilya)",
+   "mgr": "Ak-477",
+   "pts": 4625.5,
+   "day": 236,
+   "avg": 19.52,
+   "premium": 0,
+   "dayRank": 7
+  },
+  {
+   "rank": 128,
+   "diff": 0,
+   "team": "TheStroShow",
+   "mgr": "flowstone",
+   "pts": 4871.5,
+   "day": 233.5,
+   "avg": 19.97,
+   "premium": 0,
+   "dayRank": 8
+  },
+  {
+   "rank": 564,
+   "diff": 0,
+   "team": "Vias01",
+   "mgr": "Sickballers",
+   "pts": 4423,
+   "day": 232,
+   "avg": 18.43,
+   "premium": 1,
+   "dayRank": 9
+  },
+  {
+   "rank": 103,
+   "diff": 0,
+   "team": "Bostons Finest",
+   "mgr": "German Wunderkind",
+   "pts": 4913,
+   "day": 228,
+   "avg": 19.89,
+   "premium": 0,
+   "dayRank": 10
+  },
+  {
+   "rank": 152,
+   "diff": 0,
+   "team": "Turnschuhe",
+   "mgr": "sneaker_pastor",
+   "pts": 4836.5,
+   "day": 227.5,
+   "avg": 19.9,
+   "premium": 0,
+   "dayRank": 11
+  },
+  {
+   "rank": 446,
+   "diff": 0,
+   "team": "Anhalt Hurricanes",
+   "mgr": "AndyStarr",
+   "pts": 4537,
+   "day": 221,
+   "avg": 18.22,
+   "premium": 0,
+   "dayRank": 12
+  },
+  {
+   "rank": 109,
+   "diff": 0,
+   "team": "Livin la Vida Luca",
+   "mgr": "Scotland Mavs",
+   "pts": 4902,
+   "day": 219.5,
+   "avg": 20.26,
    "premium": 0,
    "dayRank": 13
   },
   {
-   "rank": 200,
-   "diff": 88,
-   "team": "ChillDaddys",
-   "mgr": "Dennis_the_menace56",
-   "pts": 4782,
-   "day": 285,
-   "avg": 19.2,
+   "rank": 929,
+   "diff": 0,
+   "team": "zocky",
+   "mgr": "zocky",
+   "pts": 3939.5,
+   "day": 218,
+   "avg": 18.5,
+   "premium": 0,
+   "dayRank": 14
+  },
+  {
+   "rank": 140,
+   "diff": 0,
+   "team": "Ozzyballerz",
+   "mgr": "Ozzy Ozzball",
+   "pts": 4856.5,
+   "day": 215,
+   "avg": 19.9,
    "premium": 0,
    "dayRank": 15
   }
@@ -834,5 +834,6 @@ const USM_HISTORY = [
  {"d":"2026-11-22","g":"2026-11-21","rank":37,"pts":4523,"day":138.5,"dayRank":229,"n":1279,"top":4777.5,"dayBest":281,"avgDay":102,"roster":{"Acuff Jr., Darius":[415,16,8.66],"Harper, Dylan":[376.5,15,7.89],"Burries, Brayden":[267,17,4.5],"Shannon Jr., Terrence":[209.5,14,4.21],"Demin, Egor":[94.5,9,2.41],"Mitchell, Davion":[411.5,15,9.39],"Grimes, Quentin":[235,15,4.76],"Lendeborg, Yaxel":[385.5,16,7.91],"Murray-Boyles, Collin":[191.5,14,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[354,15,7.65],"Flagg, Cooper":[502,15,11.79],"Missi, Yves":[123.5,7,5.44],"Sharpe, Day'Ron":[290.5,15,5.89],"Beringer, Joan":[202,17,2.94]},"watch":{"MueckeHGW":[121,4379,194],"MagicBallers":[56,4487.5,144.5],"Hoopies":[10,4681,258]}},
  {"d":"2026-11-24","g":"2026-11-23","rank":47,"pts":4771,"day":201,"dayRank":132,"n":1279,"top":5111.5,"dayBest":283.5,"avgDay":148.3,"roster":{"Acuff Jr., Darius":[426,17,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[294,18,4.5],"Shannon Jr., Terrence":[230,15,4.21],"Demin, Egor":[109,10,2.41],"Mitchell, Davion":[423.5,16,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[397.5,17,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[379,16,7.65],"Flagg, Cooper":[525,16,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[307.5,16,5.89],"Beringer, Joan":[221.5,18,2.94]},"moves":[{"out":"Harper, Dylan","outSal":7.89,"in":"Doncic, Luka","inSal":15.18}],"watch":{"MueckeHGW":[111,4649.5,186.5],"MagicBallers":[61,4746,162.5],"Hoopies":[14,4910.5,193]}},
  {"d":"2026-11-25","g":"2026-11-24","rank":64,"pts":4809.5,"day":38.5,"dayRank":746,"n":1279,"top":5211.5,"dayBest":159,"avgDay":49.4,"roster":{"Acuff Jr., Darius":[426,17,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[294,18,4.5],"Shannon Jr., Terrence":[230,15,4.21],"Demin, Egor":[109,10,2.41],"Mitchell, Davion":[423.5,16,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[397.5,17,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[379,16,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[307.5,16,5.89],"Beringer, Joan":[221.5,18,2.94]},"watch":{"MueckeHGW":[106,4720.5,71],"MagicBallers":[45,4845.5,99.5],"Hoopies":[25,4938,27.5]}},
- {"d":"2026-11-26","g":"2026-11-25","rank":69,"pts":4981,"day":171.5,"dayRank":585,"n":1279,"top":5384.5,"dayBest":338,"avgDay":167.3,"roster":{"Acuff Jr., Darius":[447,18,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[296,19,4.5],"Shannon Jr., Terrence":[234,16,4.21],"Demin, Egor":[125,11,2.41],"Mitchell, Davion":[451.5,17,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[418.5,18,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[408,17,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[346,17,5.89],"Beringer, Joan":[233.5,19,2.94]},"watch":{"MueckeHGW":[132,4867.5,147],"MagicBallers":[50,5038,192.5],"Hoopies":[11,5224,286]}}
+ {"d":"2026-11-26","g":"2026-11-25","rank":69,"pts":4981,"day":171.5,"dayRank":585,"n":1279,"top":5384.5,"dayBest":338,"avgDay":167.3,"roster":{"Acuff Jr., Darius":[447,18,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[296,19,4.5],"Shannon Jr., Terrence":[234,16,4.21],"Demin, Egor":[125,11,2.41],"Mitchell, Davion":[451.5,17,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[418.5,18,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[408,17,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[346,17,5.89],"Beringer, Joan":[233.5,19,2.94]},"watch":{"MueckeHGW":[132,4867.5,147],"MagicBallers":[50,5038,192.5],"Hoopies":[11,5224,286]}},
+ {"d":"2026-11-27","g":"2026-11-26","rank":69,"pts":4981,"day":0,"dayRank":204,"n":1279,"top":5384.5,"dayBest":286,"avgDay":22.4,"roster":{"Acuff Jr., Darius":[447,18,8.66],"Doncic, Luka":[646.5,16,15.18],"Burries, Brayden":[296,19,4.5],"Shannon Jr., Terrence":[234,16,4.21],"Demin, Egor":[125,11,2.41],"Mitchell, Davion":[451.5,17,9.39],"Grimes, Quentin":[252,16,4.76],"Lendeborg, Yaxel":[418.5,18,7.91],"Murray-Boyles, Collin":[203,15,3.6],"Boozer, Cameron":[409.5,16,8.48],"Randle, Julius":[408,17,7.65],"Flagg, Cooper":[563.5,17,11.79],"Missi, Yves":[134,8,5.44],"Sharpe, Day'Ron":[346,17,5.89],"Beringer, Joan":[233.5,19,2.94]},"watch":{"MueckeHGW":[130,4867.5,147],"MagicBallers":[50,5038,0],"Hoopies":[11,5224,286]}}
 ];
