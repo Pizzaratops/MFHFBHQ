@@ -13,7 +13,7 @@
 const PROSPECT_BOARD = {
  "source": "Stick to the Model — Konsens-Big-Board",
  "url": "https://sticktothemodel.com/draft/prospect-overview/big-board",
- "asof": "2026-11-25",
+ "asof": "2026-11-27",
  "total": 734,
  "players": {
   "4569262": {
@@ -39,7 +39,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -24,
    "start": 3,
-   "comp": null,
+   "comp": "Marcus Murphy",
    "slug": "raleek-brown"
   },
   "4685383": {
@@ -51,7 +51,7 @@ const PROSPECT_BOARD = {
    "model": 64.5,
    "tier": "Undrafted",
    "move": -10,
-   "start": 5,
+   "start": 4,
    "comp": "Savion Williams",
    "slug": "isaiah-horton"
   },
@@ -65,7 +65,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 34,
    "start": 9,
-   "comp": "Garrett Nussmeier",
+   "comp": "Quinn Ewers",
    "slug": "josh-hoover"
   },
   "4685445": {
@@ -90,8 +90,8 @@ const PROSPECT_BOARD = {
    "model": 74.2,
    "tier": "Third round",
    "move": 0,
-   "start": 41,
-   "comp": null,
+   "start": 43,
+   "comp": "Carson Beck",
    "slug": "jayden-maiava"
   },
   "4685560": {
@@ -103,7 +103,7 @@ const PROSPECT_BOARD = {
    "model": 72.7,
    "tier": "Undrafted",
    "move": -3,
-   "start": 4,
+   "start": 5,
    "comp": "Lawrence Cager",
    "slug": "jaleel-skinner"
   },
@@ -116,8 +116,8 @@ const PROSPECT_BOARD = {
    "model": 64.6,
    "tier": "Undrafted",
    "move": 177,
-   "start": 5,
-   "comp": "Calvin Ridley",
+   "start": 3,
+   "comp": null,
    "slug": "evan-stewart"
   },
   "4685574": {
@@ -129,9 +129,9 @@ const PROSPECT_BOARD = {
    "model": 68,
    "tier": "Undrafted",
    "move": 19,
-   "start": 4,
-   "comp": null,
-   "slug": "conner-weigman-houston"
+   "start": 5,
+   "comp": "Cade Klubnik",
+   "slug": "conner-weigman"
   },
   "4685578": {
    "rank": 173,
@@ -143,7 +143,7 @@ const PROSPECT_BOARD = {
    "tier": "Sixth round",
    "move": 68,
    "start": 7,
-   "comp": null,
+   "comp": "Brandon Allen",
    "slug": "gunner-stockton"
   },
   "4689529": {
@@ -181,8 +181,8 @@ const PROSPECT_BOARD = {
    "model": 62.9,
    "tier": "Undrafted",
    "move": -4,
-   "start": 11,
-   "comp": null,
+   "start": 7,
+   "comp": "Cooper Rush",
    "slug": "walker-eget"
   },
   "4717430": {
@@ -194,7 +194,7 @@ const PROSPECT_BOARD = {
    "model": 67.7,
    "tier": "Seventh round",
    "move": 36,
-   "start": 5,
+   "start": 6,
    "comp": "Cody White",
    "slug": "chris-marshall"
   },
@@ -246,8 +246,8 @@ const PROSPECT_BOARD = {
    "model": 68.9,
    "tier": "Undrafted",
    "move": 1,
-   "start": 11,
-   "comp": null,
+   "start": 9,
+   "comp": "Ryan Finley",
    "slug": "tayven-jackson"
   },
   "4801717": {
@@ -259,7 +259,7 @@ const PROSPECT_BOARD = {
    "model": 84.5,
    "tier": "Sixth round",
    "move": 37,
-   "start": 10,
+   "start": 9,
    "comp": null,
    "slug": "noah-fifita"
   },
@@ -272,8 +272,8 @@ const PROSPECT_BOARD = {
    "model": 90.7,
    "tier": "Fourth round",
    "move": 35,
-   "start": 5,
-   "comp": null,
+   "start": 6,
+   "comp": "Jalen McMillan",
    "slug": "cooper-barkate"
   },
   "4804882": {
@@ -286,7 +286,7 @@ const PROSPECT_BOARD = {
    "tier": "Sixth round",
    "move": 11,
    "start": 6,
-   "comp": "Mike Gesicki",
+   "comp": "Jared Wiley",
    "slug": "garrett-oakley"
   },
   "4805256": {
@@ -300,7 +300,7 @@ const PROSPECT_BOARD = {
    "move": -89,
    "start": 6,
    "comp": null,
-   "slug": "sutton-smith-memphis"
+   "slug": "sutton-smith"
   },
   "4816098": {
    "rank": 694,
@@ -313,7 +313,7 @@ const PROSPECT_BOARD = {
    "move": 1,
    "start": 6,
    "comp": null,
-   "slug": "makhi-hughes-oregon"
+   "slug": "makhi-hughes"
   },
   "4816307": {
    "rank": 673,
@@ -363,7 +363,7 @@ const PROSPECT_BOARD = {
    "model": 80.2,
    "tier": "Fourth round",
    "move": -14,
-   "start": 20,
+   "start": 19,
    "comp": null,
    "slug": "terrance-carter-jr"
   },
@@ -376,7 +376,7 @@ const PROSPECT_BOARD = {
    "model": 89.8,
    "tier": "Fourth round",
    "move": -13,
-   "start": 8,
+   "start": 7,
    "comp": "Quentin Johnston",
    "slug": "braden-pegan"
   },
@@ -403,7 +403,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -82,
    "start": 4,
-   "comp": "Jack Stoll",
+   "comp": "Tommy Sweeney",
    "slug": "jeremiah-hasley"
   },
   "4870608": {
@@ -415,7 +415,7 @@ const PROSPECT_BOARD = {
    "model": 96,
    "tier": "Sixth round",
    "move": -21,
-   "start": 5,
+   "start": 6,
    "comp": "Josh Whyle",
    "slug": "benjamin-brahmer"
   },
@@ -429,7 +429,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -1,
    "start": 3,
-   "comp": "Phil Mafah",
+   "comp": "Mike Washington Jr",
    "slug": "cj-baxter"
   },
   "4870642": {
@@ -441,7 +441,7 @@ const PROSPECT_BOARD = {
    "model": 69.2,
    "tier": "Undrafted",
    "move": -3,
-   "start": 4,
+   "start": 3,
    "comp": null,
    "slug": "jeremiah-cobb"
   },
@@ -454,7 +454,7 @@ const PROSPECT_BOARD = {
    "model": 79.3,
    "tier": "Fourth round",
    "move": -3,
-   "start": 15,
+   "start": 16,
    "comp": null,
    "slug": "mark-fletcher-jr"
   },
@@ -480,8 +480,8 @@ const PROSPECT_BOARD = {
    "model": 81.9,
    "tier": "Fourth round",
    "move": 16,
-   "start": 10,
-   "comp": null,
+   "start": 11,
+   "comp": "Jerome Ford",
    "slug": "justice-haynes"
   },
   "4870768": {
@@ -494,7 +494,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 86,
    "start": 4,
-   "comp": null,
+   "comp": "Bub Means",
    "slug": "jaden-greathouse"
   },
   "4870799": {
@@ -507,7 +507,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -6,
    "start": 7,
-   "comp": "Riley Leonard",
+   "comp": "Daniel Jones",
    "slug": "nico-iamaleava"
   },
   "4870835": {
@@ -533,7 +533,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 6,
    "start": 8,
-   "comp": null,
+   "comp": "O.J. Howard",
    "slug": "theo-melin-ohrstrom"
   },
   "4870850": {
@@ -545,7 +545,7 @@ const PROSPECT_BOARD = {
    "model": 81.9,
    "tier": "Third round",
    "move": -25,
-   "start": 19,
+   "start": 20,
    "comp": null,
    "slug": "omarion-miller"
   },
@@ -559,7 +559,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 2,
    "start": 5,
-   "comp": null,
+   "comp": "John Metchie",
    "slug": "cayden-lee"
   },
   "4870860": {
@@ -610,7 +610,7 @@ const PROSPECT_BOARD = {
    "model": 73.1,
    "tier": "First round",
    "move": 4,
-   "start": 75,
+   "start": 72,
    "comp": "Jordan Love",
    "slug": "arch-manning"
   },
@@ -623,7 +623,7 @@ const PROSPECT_BOARD = {
    "model": 81.1,
    "tier": "Second round",
    "move": 0,
-   "start": 53,
+   "start": 48,
    "comp": null,
    "slug": "dante-moore"
   },
@@ -636,7 +636,7 @@ const PROSPECT_BOARD = {
    "model": 89,
    "tier": "Fourth round",
    "move": -19,
-   "start": 8,
+   "start": 9,
    "comp": "Johnny Wilson",
    "slug": "duce-robinson"
   },
@@ -649,8 +649,8 @@ const PROSPECT_BOARD = {
    "model": 76.9,
    "tier": "Undrafted",
    "move": -139,
-   "start": 9,
-   "comp": null,
+   "start": 7,
+   "comp": "Tyler Huntley",
    "slug": "marcel-reed"
   },
   "4871039": {
@@ -662,8 +662,8 @@ const PROSPECT_BOARD = {
    "model": 89.8,
    "tier": "Fifth round",
    "move": -4,
-   "start": 23,
-   "comp": null,
+   "start": 24,
+   "comp": "Cole Turner",
    "slug": "jelani-thurman"
   },
   "4871053": {
@@ -688,7 +688,7 @@ const PROSPECT_BOARD = {
    "model": 85.4,
    "tier": "Second round",
    "move": 0,
-   "start": 40,
+   "start": 37,
    "comp": "Anthony Richardson",
    "slug": "lanorris-sellers"
   },
@@ -701,8 +701,8 @@ const PROSPECT_BOARD = {
    "model": 61.3,
    "tier": "Undrafted",
    "move": -8,
-   "start": 4,
-   "comp": "Jakobi Meyers",
+   "start": 3,
+   "comp": null,
    "slug": "trent-walker"
   },
   "4880272": {
@@ -767,7 +767,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 159,
    "start": 6,
-   "comp": null,
+   "comp": "Ryan Izzo",
    "slug": "jaden-platt"
   },
   "4899368": {
@@ -792,7 +792,7 @@ const PROSPECT_BOARD = {
    "model": 71.1,
    "tier": "Undrafted",
    "move": 9,
-   "start": 3,
+   "start": 4,
    "comp": null,
    "slug": "andrew-rappleyea"
   },
@@ -805,8 +805,8 @@ const PROSPECT_BOARD = {
    "model": 75.1,
    "tier": "Fourth round",
    "move": 55,
-   "start": 6,
-   "comp": "Kayshon Boutte",
+   "start": 7,
+   "comp": null,
    "slug": "anthony-evans-iii"
   },
   "4907786": {
@@ -818,8 +818,8 @@ const PROSPECT_BOARD = {
    "model": 88.3,
    "tier": "Fourth round",
    "move": 2,
-   "start": 19,
-   "comp": "Michael Mayer",
+   "start": 20,
+   "comp": "Gunnar Helm",
    "slug": "rocky-beers"
   },
   "4911529": {
@@ -831,8 +831,8 @@ const PROSPECT_BOARD = {
    "model": 91.7,
    "tier": "Top 10",
    "move": 0,
-   "start": 55,
-   "comp": "Dillon Gabriel",
+   "start": 52,
+   "comp": "Spencer Rattler",
    "slug": "trinidad-chambliss"
   },
   "4912067": {
@@ -846,7 +846,7 @@ const PROSPECT_BOARD = {
    "move": 295,
    "start": 7,
    "comp": null,
-   "slug": "chase-sowell-iowa-state"
+   "slug": "chase-sowell"
   },
   "4912130": {
    "rank": 359,
@@ -870,8 +870,8 @@ const PROSPECT_BOARD = {
    "model": 89.8,
    "tier": "Sixth round",
    "move": 36,
-   "start": 6,
-   "comp": null,
+   "start": 3,
+   "comp": "Clyde Edwards-Helaire",
    "slug": "wayne-knight"
   },
   "4914830": {
@@ -896,7 +896,7 @@ const PROSPECT_BOARD = {
    "model": 73,
    "tier": "Undrafted",
    "move": -4,
-   "start": 11,
+   "start": 10,
    "comp": "Sam Ehlinger",
    "slug": "john-mateer"
   },
@@ -935,8 +935,8 @@ const PROSPECT_BOARD = {
    "model": 77.3,
    "tier": "Undrafted",
    "move": 16,
-   "start": 5,
-   "comp": "Cody Schrader",
+   "start": 6,
+   "comp": null,
    "slug": "cam-cook"
   },
   "4918108": {
@@ -948,7 +948,7 @@ const PROSPECT_BOARD = {
    "model": 67.3,
    "tier": "Undrafted",
    "move": -257,
-   "start": 7,
+   "start": 4,
    "comp": null,
    "slug": "jordan-napier"
   },
@@ -975,7 +975,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 82,
    "start": 4,
-   "comp": null,
+   "comp": "Wayne Gallman",
    "slug": "darius-taylor"
   },
   "4921108": {
@@ -987,8 +987,8 @@ const PROSPECT_BOARD = {
    "model": 86.7,
    "tier": "Third round",
    "move": 7,
-   "start": 15,
-   "comp": null,
+   "start": 10,
+   "comp": "Corey Clement",
    "slug": "desean-bishop"
   },
   "4921110": {
@@ -1039,8 +1039,8 @@ const PROSPECT_BOARD = {
    "model": 87.7,
    "tier": "First round",
    "move": -1,
-   "start": 75,
-   "comp": "Hunter Long",
+   "start": 70,
+   "comp": "Troy Fumagalli",
    "slug": "jamari-johnson"
   },
   "4922996": {
@@ -1065,8 +1065,8 @@ const PROSPECT_BOARD = {
    "model": 73.9,
    "tier": "Undrafted",
    "move": -25,
-   "start": 3,
-   "comp": null,
+   "start": 4,
+   "comp": "Tony Jones",
    "slug": "keyjuan-brown"
   },
   "4923226": {
@@ -1078,8 +1078,8 @@ const PROSPECT_BOARD = {
    "model": 82.2,
    "tier": "Undrafted",
    "move": -13,
-   "start": 9,
-   "comp": null,
+   "start": 11,
+   "comp": "Mike Williams",
    "slug": "collin-dixon"
   },
   "4923252": {
@@ -1091,7 +1091,7 @@ const PROSPECT_BOARD = {
    "model": 61.7,
    "tier": "Undrafted",
    "move": null,
-   "start": 4,
+   "start": 3,
    "comp": "Kalel Mullings",
    "slug": "dante-dowdell"
   },
@@ -1104,7 +1104,7 @@ const PROSPECT_BOARD = {
    "model": 65.5,
    "tier": "Undrafted",
    "move": -63,
-   "start": 4,
+   "start": 5,
    "comp": "Germie Bernard",
    "slug": "kenny-johnson"
   },
@@ -1118,7 +1118,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -58,
    "start": 3,
-   "comp": "Tank Bigsby",
+   "comp": "Ty Chandler",
    "slug": "bryson-washington"
   },
   "5031157": {
@@ -1130,7 +1130,7 @@ const PROSPECT_BOARD = {
    "model": 82.6,
    "tier": "Second round",
    "move": -2,
-   "start": 50,
+   "start": 46,
    "comp": "Michael Pittman Jr.",
    "slug": "reed-harris"
   },
@@ -1156,8 +1156,8 @@ const PROSPECT_BOARD = {
    "model": 69.9,
    "tier": "Undrafted",
    "move": -39,
-   "start": 9,
-   "comp": null,
+   "start": 7,
+   "comp": "Will Levis",
    "slug": "aidan-chiles"
   },
   "5076952": {
@@ -1182,8 +1182,8 @@ const PROSPECT_BOARD = {
    "model": 91.7,
    "tier": "Third round",
    "move": 3,
-   "start": 20,
-   "comp": "Luther Burden",
+   "start": 23,
+   "comp": "Robert Woods",
    "slug": "amare-thomas"
   },
   "5077502": {
@@ -1234,7 +1234,7 @@ const PROSPECT_BOARD = {
    "model": 74,
    "tier": "Fourth round",
    "move": 6,
-   "start": 28,
+   "start": 27,
    "comp": null,
    "slug": "junior-sherrill"
   },
@@ -1273,8 +1273,8 @@ const PROSPECT_BOARD = {
    "model": 88.3,
    "tier": "Fourth round",
    "move": 7,
-   "start": 7,
-   "comp": "Zach Wilson",
+   "start": 6,
+   "comp": "Brady Cook",
    "slug": "sam-leavitt"
   },
   "5078916": {
@@ -1288,7 +1288,7 @@ const PROSPECT_BOARD = {
    "move": 5,
    "start": 6,
    "comp": null,
-   "slug": "joe-jackson-kansas-state"
+   "slug": "joe-jackson"
   },
   "5079301": {
    "rank": 128,
@@ -1299,7 +1299,7 @@ const PROSPECT_BOARD = {
    "model": 82.2,
    "tier": "Third round",
    "move": 29,
-   "start": 19,
+   "start": 16,
    "comp": "Tyler Shough",
    "slug": "cj-bailey"
   },
@@ -1312,8 +1312,8 @@ const PROSPECT_BOARD = {
    "model": 90.7,
    "tier": "First round",
    "move": -3,
-   "start": 90,
-   "comp": "James Conner",
+   "start": 85,
+   "comp": "Qadree Ollison",
    "slug": "jadan-baugh"
   },
   "5079335": {
@@ -1338,7 +1338,7 @@ const PROSPECT_BOARD = {
    "model": 71.4,
    "tier": "Fourth round",
    "move": -1,
-   "start": 24,
+   "start": 22,
    "comp": null,
    "slug": "mario-craver"
   },
@@ -1351,9 +1351,9 @@ const PROSPECT_BOARD = {
    "model": 93,
    "tier": "Second round",
    "move": -6,
-   "start": 17,
+   "start": 18,
    "comp": null,
-   "slug": "isaac-brown-louisville"
+   "slug": "isaac-brown"
   },
   "5079369": {
    "rank": 11,
@@ -1364,7 +1364,7 @@ const PROSPECT_BOARD = {
    "model": 84,
    "tier": "First round",
    "move": 1,
-   "start": 79,
+   "start": 76,
    "comp": "Michael Penix",
    "slug": "cj-carr"
   },
@@ -1377,8 +1377,8 @@ const PROSPECT_BOARD = {
    "model": 73.1,
    "tier": "Undrafted",
    "move": -10,
-   "start": 4,
-   "comp": null,
+   "start": 3,
+   "comp": "Dalton Keene",
    "slug": "decker-degraaf"
   },
   "5079376": {
@@ -1390,8 +1390,8 @@ const PROSPECT_BOARD = {
    "model": 69.7,
    "tier": "First round",
    "move": -1,
-   "start": 61,
-   "comp": null,
+   "start": 58,
+   "comp": "George Pickens",
    "slug": "cam-coleman"
   },
   "5079420": {
@@ -1403,8 +1403,8 @@ const PROSPECT_BOARD = {
    "model": 99,
    "tier": "Generational",
    "move": 0,
-   "start": 72,
-   "comp": null,
+   "start": 69,
+   "comp": "Tanner Koziol",
    "slug": "treydez-green"
   },
   "5079475": {
@@ -1429,8 +1429,8 @@ const PROSPECT_BOARD = {
    "model": 76.2,
    "tier": "Undrafted",
    "move": 20,
-   "start": 4,
-   "comp": "Tommy Tremble",
+   "start": 3,
+   "comp": null,
    "slug": "elija-lofton"
   },
   "5079519": {
@@ -1442,7 +1442,7 @@ const PROSPECT_BOARD = {
    "model": 65.8,
    "tier": "Undrafted",
    "move": -49,
-   "start": 7,
+   "start": 5,
    "comp": null,
    "slug": "jeremiah-mcclellan"
   },
@@ -1468,7 +1468,7 @@ const PROSPECT_BOARD = {
    "model": null,
    "tier": "Undrafted",
    "move": 95,
-   "start": 4,
+   "start": 3,
    "comp": null,
    "slug": "dwight-phillips-jr"
   },
@@ -1481,7 +1481,7 @@ const PROSPECT_BOARD = {
    "model": 73.7,
    "tier": "Undrafted",
    "move": -124,
-   "start": 4,
+   "start": 3,
    "comp": null,
    "slug": "jordan-marshall"
   },
@@ -1494,7 +1494,7 @@ const PROSPECT_BOARD = {
    "model": 69.1,
    "tier": "Fifth round",
    "move": 32,
-   "start": 17,
+   "start": 16,
    "comp": "Demarcus Robinson",
    "slug": "mike-matthews"
   },
@@ -1507,8 +1507,8 @@ const PROSPECT_BOARD = {
    "model": 76.4,
    "tier": "Second round",
    "move": 1,
-   "start": 67,
-   "comp": null,
+   "start": 64,
+   "comp": "Bryan Edwards",
    "slug": "nick-marsh"
   },
   "5079613": {
@@ -1520,8 +1520,8 @@ const PROSPECT_BOARD = {
    "model": 72.2,
    "tier": "Undrafted",
    "move": -108,
-   "start": 4,
-   "comp": null,
+   "start": 5,
+   "comp": "Theo Wease Jr.",
    "slug": "emmett-mosley-v"
   },
   "5079647": {
@@ -1535,7 +1535,7 @@ const PROSPECT_BOARD = {
    "move": 119,
    "start": 6,
    "comp": null,
-   "slug": "caleb-odom-mississippi"
+   "slug": "caleb-odom"
   },
   "5079653": {
    "rank": 342,
@@ -1546,8 +1546,8 @@ const PROSPECT_BOARD = {
    "model": 87.2,
    "tier": "Sixth round",
    "move": 136,
-   "start": 8,
-   "comp": "Stetson Bennett",
+   "start": 6,
+   "comp": null,
    "slug": "demond-williams-jr"
   },
   "5079663": {
@@ -1572,8 +1572,8 @@ const PROSPECT_BOARD = {
    "model": 78.2,
    "tier": "Undrafted",
    "move": -45,
-   "start": 7,
-   "comp": null,
+   "start": 5,
+   "comp": "Jakobi Meyers",
    "slug": "jordan-shipp"
   },
   "5079691": {
@@ -1598,7 +1598,7 @@ const PROSPECT_BOARD = {
    "model": 96,
    "tier": "First round",
    "move": -8,
-   "start": 43,
+   "start": 41,
    "comp": "Mac Jones",
    "slug": "julian-sayin"
   },
@@ -1624,8 +1624,8 @@ const PROSPECT_BOARD = {
    "model": null,
    "tier": "Undrafted",
    "move": -12,
-   "start": 6,
-   "comp": null,
+   "start": 2,
+   "comp": "Jake Funk",
    "slug": "aneyas-williams"
   },
   "5080547": {
@@ -1637,7 +1637,7 @@ const PROSPECT_BOARD = {
    "model": 91.7,
    "tier": "Fifth round",
    "move": -17,
-   "start": 21,
+   "start": 24,
    "comp": "Cole Kmet",
    "slug": "peter-clarke"
   },
@@ -1676,7 +1676,7 @@ const PROSPECT_BOARD = {
    "model": 75,
    "tier": "Undrafted",
    "move": 7,
-   "start": 4,
+   "start": 5,
    "comp": null,
    "slug": "luke-lindenmeyer"
   },
@@ -1715,8 +1715,8 @@ const PROSPECT_BOARD = {
    "model": 67.7,
    "tier": "Undrafted",
    "move": 6,
-   "start": 10,
-   "comp": "Jameis Winston",
+   "start": 7,
+   "comp": null,
    "slug": "jaden-craig"
   },
   "5083747": {
@@ -1730,7 +1730,7 @@ const PROSPECT_BOARD = {
    "move": 0,
    "start": 7,
    "comp": null,
-   "slug": "justin-bowick-illinois"
+   "slug": "justin-bowick"
   },
   "5084047": {
    "rank": 105,
@@ -1741,7 +1741,7 @@ const PROSPECT_BOARD = {
    "model": 75,
    "tier": "Fourth round",
    "move": 1,
-   "start": 11,
+   "start": 10,
    "comp": "Malik Davis",
    "slug": "nate-frazier"
   },
@@ -1754,8 +1754,8 @@ const PROSPECT_BOARD = {
    "model": 75.5,
    "tier": "Undrafted",
    "move": -1,
-   "start": 9,
-   "comp": null,
+   "start": 7,
+   "comp": "Stetson Bennett",
    "slug": "kevin-jennings"
   },
   "5084658": {
@@ -1807,7 +1807,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -94,
    "start": 4,
-   "comp": "Brenden Bates",
+   "comp": "Bauer Sharp",
    "slug": "chris-corbo"
   },
   "5086096": {
@@ -1819,7 +1819,7 @@ const PROSPECT_BOARD = {
    "model": 77.3,
    "tier": "Undrafted",
    "move": -20,
-   "start": 7,
+   "start": 5,
    "comp": null,
    "slug": "lawayne-mccoy"
   },
@@ -1832,8 +1832,8 @@ const PROSPECT_BOARD = {
    "model": 84,
    "tier": "Second round",
    "move": -2,
-   "start": 38,
-   "comp": null,
+   "start": 36,
+   "comp": "Kerryon Johnson",
    "slug": "kewan-lacy"
   },
   "5086393": {
@@ -1845,8 +1845,8 @@ const PROSPECT_BOARD = {
    "model": 86.2,
    "tier": "Sixth round",
    "move": 1,
-   "start": 3,
-   "comp": "Jawhar Jordan",
+   "start": 4,
+   "comp": "Brashard Smith",
    "slug": "jkoby-williams"
   },
   "5088153": {
@@ -1873,7 +1873,7 @@ const PROSPECT_BOARD = {
    "move": -95,
    "start": 6,
    "comp": null,
-   "slug": "lee-beebe-jr-indiana"
+   "slug": "lee-beebe-jr"
   },
   "5092483": {
    "rank": 351,
@@ -1923,8 +1923,8 @@ const PROSPECT_BOARD = {
    "model": 86.2,
    "tier": "Sixth round",
    "move": -36,
-   "start": 11,
-   "comp": null,
+   "start": 9,
+   "comp": "Trace McSorley",
    "slug": "devon-dampier"
   },
   "5107875": {
@@ -1949,8 +1949,8 @@ const PROSPECT_BOARD = {
    "model": 68.1,
    "tier": "Fourth round",
    "move": -2,
-   "start": 31,
-   "comp": null,
+   "start": 24,
+   "comp": "Tre'Quan Smith",
    "slug": "bryant-wesco-jr"
   },
   "5114311": {
@@ -1962,9 +1962,9 @@ const PROSPECT_BOARD = {
    "model": 94.2,
    "tier": "First round",
    "move": 11,
-   "start": 32,
+   "start": 31,
    "comp": "Marvin Harrison Jr.",
-   "slug": "jackson-harris-hawaii"
+   "slug": "jackson-harris"
   },
   "5120299": {
    "rank": 211,
@@ -1975,8 +1975,8 @@ const PROSPECT_BOARD = {
    "model": 76,
    "tier": "Undrafted",
    "move": 36,
-   "start": 20,
-   "comp": null,
+   "start": 21,
+   "comp": "Ricky Seals-Jones",
    "slug": "patrick-overmyer"
   },
   "5121169": {
@@ -1988,8 +1988,8 @@ const PROSPECT_BOARD = {
    "model": 94.2,
    "tier": "Top 10",
    "move": 1,
-   "start": 56,
-   "comp": null,
+   "start": 54,
+   "comp": "C.J. Stroud",
    "slug": "darian-mensah"
   },
   "5121334": {
@@ -2014,7 +2014,7 @@ const PROSPECT_BOARD = {
    "model": 93,
    "tier": "Sixth round",
    "move": 106,
-   "start": 5,
+   "start": 6,
    "comp": null,
    "slug": "eli-finley"
   },
@@ -2040,7 +2040,7 @@ const PROSPECT_BOARD = {
    "model": 76.6,
    "tier": "Undrafted",
    "move": -49,
-   "start": 9,
+   "start": 10,
    "comp": null,
    "slug": "keshaun-singleton"
   },
@@ -2053,8 +2053,8 @@ const PROSPECT_BOARD = {
    "model": 75.1,
    "tier": "Undrafted",
    "move": -151,
-   "start": 6,
-   "comp": null,
+   "start": 4,
+   "comp": "Robert Henry Jr",
    "slug": "jaiden-thomas"
   },
   "5127885": {
@@ -2105,8 +2105,8 @@ const PROSPECT_BOARD = {
    "model": 85,
    "tier": "Fifth round",
    "move": 0,
-   "start": 23,
-   "comp": null,
+   "start": 17,
+   "comp": "Hayden Hurst",
    "slug": "willie-rodriguez"
   },
   "5138451": {
@@ -2118,8 +2118,8 @@ const PROSPECT_BOARD = {
    "model": 82.2,
    "tier": "Second round",
    "move": 0,
-   "start": 56,
-   "comp": null,
+   "start": 54,
+   "comp": "Peyton Hendershot",
    "slug": "luke-reynolds"
   },
   "5141684": {
@@ -2131,7 +2131,7 @@ const PROSPECT_BOARD = {
    "model": 72.4,
    "tier": "Third round",
    "move": -2,
-   "start": 36,
+   "start": 29,
    "comp": null,
    "slug": "austin-simmons"
   },
@@ -2144,9 +2144,9 @@ const PROSPECT_BOARD = {
    "model": 65.6,
    "tier": "Third round",
    "move": 3,
-   "start": 41,
-   "comp": "Mike Wallace",
-   "slug": "ryan-williams-alabama"
+   "start": 34,
+   "comp": "Tyquan Thornton",
+   "slug": "ryan-williams"
   },
   "5143191": {
    "rank": 592,
@@ -2170,8 +2170,8 @@ const PROSPECT_BOARD = {
    "model": 72.8,
    "tier": "Undrafted",
    "move": -36,
-   "start": 5,
-   "comp": "Drew Allar",
+   "start": 3,
+   "comp": null,
    "slug": "drake-lindsey"
   },
   "5146712": {
@@ -2183,7 +2183,7 @@ const PROSPECT_BOARD = {
    "model": 83.5,
    "tier": "Third round",
    "move": 16,
-   "start": 15,
+   "start": 13,
    "comp": null,
    "slug": "dylan-riley"
   },
@@ -2235,7 +2235,7 @@ const PROSPECT_BOARD = {
    "model": 64,
    "tier": "Fifth round",
    "move": -3,
-   "start": 14,
+   "start": 12,
    "comp": null,
    "slug": "jordan-faison"
   },
@@ -2248,7 +2248,7 @@ const PROSPECT_BOARD = {
    "model": 76,
    "tier": "Third round",
    "move": -3,
-   "start": 31,
+   "start": 25,
    "comp": null,
    "slug": "deuce-alexander"
   },
@@ -2275,8 +2275,8 @@ const PROSPECT_BOARD = {
    "tier": "Sixth round",
    "move": 36,
    "start": 9,
-   "comp": null,
-   "slug": "carlos-hernandez-wake-forest"
+   "comp": "Skyler Bell",
+   "slug": "carlos-hernandez"
   },
   "5154734": {
    "rank": 168,
@@ -2287,8 +2287,8 @@ const PROSPECT_BOARD = {
    "model": 87.2,
    "tier": "Fourth round",
    "move": -1,
-   "start": 8,
-   "comp": "Jordyn Tyson",
+   "start": 10,
+   "comp": "Isaiah Ford",
    "slug": "griffin-wilde"
   },
   "5155366": {
@@ -2326,7 +2326,7 @@ const PROSPECT_BOARD = {
    "model": 85,
    "tier": "Third round",
    "move": -2,
-   "start": 20,
+   "start": 15,
    "comp": "TreVeyon Henderson",
    "slug": "wayshawn-parker"
   },
@@ -2339,9 +2339,9 @@ const PROSPECT_BOARD = {
    "model": 81.5,
    "tier": "Undrafted",
    "move": 37,
-   "start": 7,
-   "comp": null,
-   "slug": "joseph-williams-colorado"
+   "start": 6,
+   "comp": "Jordyn Tyson",
+   "slug": "joseph-williams"
   },
   "5197065": {
    "rank": 54,
@@ -2352,7 +2352,7 @@ const PROSPECT_BOARD = {
    "model": 81.5,
    "tier": "Third round",
    "move": -1,
-   "start": 42,
+   "start": 40,
    "comp": null,
    "slug": "ahmad-hardy"
   },
@@ -2392,7 +2392,7 @@ const PROSPECT_BOARD = {
    "tier": "Second round",
    "move": 2,
    "start": 24,
-   "comp": "Marquez Valdes-Scantling",
+   "comp": null,
    "slug": "ryan-wingo"
   },
   "5218753": {
@@ -2405,7 +2405,7 @@ const PROSPECT_BOARD = {
    "tier": "Seventh round",
    "move": -41,
    "start": 6,
-   "comp": null,
+   "comp": "Beaux Collins",
    "slug": "tj-moore"
   },
   "5218787": {
@@ -2417,8 +2417,8 @@ const PROSPECT_BOARD = {
    "model": 71,
    "tier": "Undrafted",
    "move": 70,
-   "start": 4,
-   "comp": null,
+   "start": 3,
+   "comp": "Ryan Switzer",
    "slug": "quesean-brown"
   },
   "5218931": {
@@ -2430,7 +2430,7 @@ const PROSPECT_BOARD = {
    "model": 75.5,
    "tier": "Fourth round",
    "move": 90,
-   "start": 38,
+   "start": 31,
    "comp": null,
    "slug": "dj-vonnahme"
   },
@@ -2456,8 +2456,8 @@ const PROSPECT_BOARD = {
    "model": 83.1,
    "tier": "First round",
    "move": 1,
-   "start": 75,
-   "comp": "C.J. Stroud",
+   "start": 73,
+   "comp": "Kyle McCord",
    "slug": "drew-mestemaker"
   },
   "5220197": {
@@ -2470,7 +2470,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 49,
    "start": 7,
-   "comp": "Eddie Lacy",
+   "comp": "Jase McClellan",
    "slug": "fluff-bothwell"
   },
   "5220352": {
@@ -2521,8 +2521,8 @@ const PROSPECT_BOARD = {
    "model": 69,
    "tier": "Undrafted",
    "move": -254,
-   "start": 6,
-   "comp": null,
+   "start": 4,
+   "comp": "Damien Harris",
    "slug": "marcellous-hawkins"
   },
   "5294063": {
@@ -2548,7 +2548,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": -288,
    "start": 4,
-   "comp": null,
+   "comp": "Kaelon Black",
    "slug": "waymond-jordan"
   },
   "5300856": {
@@ -2577,7 +2577,7 @@ const PROSPECT_BOARD = {
    "comp": null,
    "slug": "luke-dehnicke"
   },
-  "x-gio-lopez-north-carolina": {
+  "x-gio-lopez": {
    "rank": 277,
    "posRank": 18,
    "name": "Gio Lopez",
@@ -2586,9 +2586,9 @@ const PROSPECT_BOARD = {
    "model": 76.2,
    "tier": "Undrafted",
    "move": 68,
-   "start": 11,
+   "start": 9,
    "comp": null,
-   "slug": "gio-lopez-north-carolina"
+   "slug": "gio-lopez"
   },
   "x-cam-edwards": {
    "rank": 427,
@@ -2613,7 +2613,7 @@ const PROSPECT_BOARD = {
    "tier": "Undrafted",
    "move": 69,
    "start": 2,
-   "comp": null,
+   "comp": "Tyrion Davis-Price",
    "slug": "quintrevion-wisner"
   },
   "x-lynn-wyche-el": {
