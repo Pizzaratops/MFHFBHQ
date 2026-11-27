@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T21:34:54.191Z",
+  "updated": "2026-11-27T22:17:48.984Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -90,11 +90,12 @@ const NBA_INJURIES = {
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
     "RJ Barrett": ["TOR","Out","OUT","2026-12-13","Hamstring",0,"2026-11-19"],
-    "Ryan Kalkbrenner": ["CHA","Day-To-Day","GTD","2026-11-28","Hip",0,"2026-11-26"],
+    "Ryan Kalkbrenner": ["CHA","Day-To-Day","GTD","2026-11-28","Hip",0,"2026-11-27"],
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-12-12","Back",0,"2026-11-24"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-12-14","Knee",0,"2026-11-26"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-26"],
+    "Steven Adams": ["HOU","Day-To-Day","GTD","2026-11-28","Knee",0,"2026-11-27"],
     "T.J. McConnell": ["IND","Day-To-Day","GTD","2026-11-27","Hamstring",0,"2026-11-26"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-12-04","Heel",0,"2026-11-26"],
     "Taurean Prince": ["DET","Out","OUT","2026-12-26","Knee",0,"2026-11-24"],
