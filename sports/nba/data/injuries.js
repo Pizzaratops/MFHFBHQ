@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T18:52:46.871Z",
+  "updated": "2026-11-27T19:08:57.477Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -29,7 +29,7 @@ const NBA_INJURIES = {
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-30","Foot",0,"2026-11-26"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-01-03","Achilles",0,"2026-11-24"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-29","Quadriceps",0,"2026-11-26"],
-    "Dylan Harper": ["SA","Out","GTD","2026-11-27","Hip",0,"2026-11-26"],
+    "Dylan Harper": ["SA","Out","GTD","2026-11-27","Hip",0,"2026-11-27"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-12-13","Oblique",0,"2026-11-24"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
