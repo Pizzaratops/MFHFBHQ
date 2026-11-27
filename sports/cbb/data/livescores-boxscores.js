@@ -7117,9 +7117,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920429",
-      line: "Virginia Cavaliers @ Xavier Musketeers (11/27 - 11:00 AM EST)",
+      line: "Virginia Cavaliers @ Xavier Musketeers (5:39 - 1st)",
       completed: false,
-      statusText: "11/27 - 11:00 AM EST",
+      statusText: "5:39 - 1st",
       away: {
         abbr: "UVA", name: "Virginia Cavaliers", score: null,
         players: [
@@ -7819,17 +7819,17 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920535",
-      line: "Texas Tech Red Raiders @ San Diego State Aztecs (11/27 - 11:30 PM EST)",
+      line: "San Diego State Aztecs @ Texas Tech Red Raiders (11/27 - 11:30 PM EST)",
       completed: false,
       statusText: "11/27 - 11:30 PM EST",
       away: {
-        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
+        abbr: "SDSU", name: "San Diego State Aztecs", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "SDSU", name: "San Diego State Aztecs", score: null,
+        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
         players: [
 
         ]
