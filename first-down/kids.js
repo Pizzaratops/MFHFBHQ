@@ -236,7 +236,7 @@
     if (R.di == null) { R.di = 0; R.ok = 0; }
     if (R.di >= l.drills.length) {
       app.innerHTML = `<section class="k-card k-mid">${bruno(`${R.ok} von ${l.drills.length} richtig! ${R.ok >= 2 ? 'Super! 🎉' : 'Gut probiert!'} Jetzt spielst du gegen die ${KIDS_TEAMS[l.opp].emoji} ${esc(KIDS_TEAMS[l.opp].name)}.`, 'wow')}
-        <p class="k-note">Du hast 3 Angriffe. Je mehr Punkte, desto mehr Sterne: 7 Punkte = ★, 14 = ★★, 21 = ★★★.</p>
+        <p class="k-note">Du hast 3 Angriffe. Ein Touchdown gibt 6 Punkte, danach kannst du noch 1 oder 2 Extra-Punkte holen. Je mehr Punkte, desto mehr Sterne: 7 Punkte = ★, 14 = ★★, 21 = ★★★.</p>
         <button class="k-big" data-act="togame">Anpfiff! 📣</button></section>`;
       return;
     }
@@ -289,6 +289,7 @@
   const ctxNow = o => ({ yl: R.G.st.yl, toGo: R.G.st.toGo, offTeam: myTeam(), defTeam: KIDS_TEAMS[KIDS_LEVELS[R.n - 1].opp], kids: true, playName: o ? kidPlay(o) : null });
   function panel() {
     const G = R.G, p = $('#kPanel'), st = G.st, l = KIDS_LEVELS[R.n - 1];
+    if (G.phase === 'pat') { p.innerHTML = `${G.fb}${bruno('TOUCHDOWN! 🎉 Das sind 6 Punkte! Jetzt darfst du noch mal: Willst du kicken oder es von ganz nah noch mal versuchen?', 'wow')}<div class="g-cats k-cats"><button class="g-cat k-cat" data-kpat="kick"><b>🦶 Kicken</b><span>1 Punkt · klappt fast immer</span></button><button class="g-cat k-cat" data-kpat="two"><b>💪 Noch mal von der 2</b><span>2 Punkte · klappt ungefähr jedes zweite Mal</span></button></div>`; return; }
     if (G.phase === 'over') { p.innerHTML = `${G.fb}${bruno(G.overMsg, 'wow')}<button class="k-big" data-act="knextdrive">${G.drive < 3 ? 'Nächster Angriff →' : 'Zum Ergebnis 🏆'}</button>`; return; }
     if (G.phase === 'anim') { p.innerHTML = bruno('Los geht\'s! 🏈', 'wow'); return; }
     if (!G.pend) {
@@ -331,7 +332,7 @@
     const extra = kidExtra(ro, pick, sim);
     setPlaying(false);
     if (sim.turnover) end = 'Oh nein, der Ball ist weg! Nicht schlimm, nächster Angriff!';
-    else if (sim.td) { G.pts += 7; end = 'TOUCHDOWN! 🎉 Das sind 7 Punkte für dich!'; }
+    else if (sim.td) { G.pts += 6; end = 'pat'; }
     else {
       const y = sim.type === 'inc' ? 0 : sim.yards;
       st.yl = Math.max(1, st.yl + y);
@@ -339,7 +340,7 @@
       else { st.down++; st.toGo -= y; if (st.down > 4) end = 'Die 4 Versuche sind vorbei. Nächster Angriff!'; }
     }
     G.fb = `<div class="c-fb">${fb}${extra}${R.replay ? replayBtn : ''}</div>`; G.pend = null; G.sub = null; G.tip = false;
-    if (end) { G.phase = 'over'; G.overMsg = end; } else G.phase = 'call';
+    if (end === 'pat') G.phase = 'pat'; else if (end) { G.phase = 'over'; G.overMsg = end; } else G.phase = 'call';
     game();
   }
   function done() {
@@ -401,6 +402,7 @@
     else if (a === 'bnext') { R.i++; level(); }
     else if (a === 'todrill') go('drill', { n: R.n });
     else if (a === 'ksnap' && R.snap) { t.disabled = true; R.snap(); }
+    else if (t.dataset.kpat && R.G && R.G.phase === 'pat') { const G = R.G, two = t.dataset.kpat === 'two', ok = rnd() < (two ? 0.5 : 0.95); if (ok) G.pts += two ? 2 : 1; AU(ok ? 'right' : 'wrong'); G.phase = 'over'; G.overMsg = two ? (ok ? 'Geschafft! 2 Extra-Punkte! 🎉' : 'Knapp nicht geschafft. Die 6 Punkte vom Touchdown hast du trotzdem!') : (ok ? 'Der Kick ist drin! 1 Extra-Punkt! 🦶' : 'Oh, daneben! Die 6 Punkte vom Touchdown hast du trotzdem.'); game(); }
     else if (a === 'dnext') { R.di++; if (V) V.stop(); V = null; drill(); }
     else if (a === 'kreplay' && R.replay && !(R.G && (R.G.phase === 'anim' || R.G.phase === 'replay'))) { t.disabled = true; R.replay(); setTimeout(() => { t.disabled = false; }, 4000); }
     else if (a === 'togame') { if (V) V.stop(); V = null; R = { s: 'game', n: R.n }; newGame(); game(); scrollTo({ top: 0 }); }

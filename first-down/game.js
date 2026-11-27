@@ -9,7 +9,7 @@
 // ============================================================
 (function () {
   'use strict';
-  const { OPLAYS, DCALLS, buildSim, staticSim, PixelView, TopView } = window.FDSIM;
+  const { OPLAYS, DCALLS, buildSim, staticSim, PixelView, TopView, extendModel, formOf, FORM_TXT, baseOf, PB } = window.FDSIM;
   const $ = s => document.querySelector(s);
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   const rnd = Math.random;
@@ -87,6 +87,9 @@
     blitz: { run: 'Blitzer stehen in den Lücken: Entweder bleibt der Lauf stecken oder er bricht durch.', quick: 'Hot Route: Der Ball ist weg, bevor der Blitz ankommt.', screen: 'Screen gegen Blitz: Die Verteidiger rennen am Ball vorbei, der perfekte Konter.', deep: 'Lange Route gegen Blitz: Der QB hat keine Zeit, aber wenn der Pass ankommt, ist niemand mehr hinten.', mid: 'Fünf Schritte zurück gegen sechs Rusher: kaum Zeit.', pa: 'Die Täuschung kostet Zeit, die der QB gegen einen Blitz nicht hat.' },
   };
   const whyKey = o => OPLAYS[o].kind === 'run' ? 'run' : o;
+  extendModel(MODEL, null);
+  if (PB) Object.keys(PB.why).forEach(d => { WHY[d] = WHY[d] || PB.why[d]; });
+  const whyText = (o, d) => { const w = WHY[d] || {}; return w[whyKey(o)] || w[baseOf(o)] || (baseOf(o) === 'deep' && w.deep) || (OPLAYS[o].kind === 'run' ? w.run : w.pass) || ''; };
 
   function resolve(o, d, st) {
     const off = TEAMS[st.offTeam].off, def = TEAMS[st.defTeam].def;
@@ -193,12 +196,12 @@
     const st = G.st, before = Object.assign({}, st);
     st.plays++; G.stats[st.offTeam].plays++;
     let text = `${TEAMS[st.offTeam].name}: <b>${OPLAYS[o].name}</b> gegen <b>${DCALLS[d].name}</b> → `;
-    const why = (G.disguised ? 'Achtung, die Defense hat getäuscht: Sie zeigte etwas anderes, als sie gespielt hat. ' : '') + WHY[d][whyKey(o)];
+    const why = (G.disguised ? 'Achtung, die Defense hat getäuscht: Sie zeigte etwas anderes, als sie gespielt hat. ' : '') + whyText(o, d);
     let end = null;
     if (sim.type === 'int') { text += '<b>Interception!</b>'; end = 'turnover'; }
     else if (sim.type === 'fumble') { text += `<b>Fumble!</b> Ballverlust nach ${sim.yards} Yards`; end = 'turnover'; }
     else if (sim.safety) { G.score[st.defTeam] += 2; text += '<b>Safety!</b> 2 Punkte für die Defense'; end = 'safety'; }
-    else if (sim.td) { G.score[st.offTeam] += 7; G.stats[st.offTeam].yds += sim.yards; text += `<b>Touchdown!</b> (${sim.yards} Yards, inkl. Extrapunkt 7 Punkte)`; end = 'td'; }
+    else if (sim.td) { G.score[st.offTeam] += 6; G.stats[st.offTeam].yds += sim.yards; text += `<b>Touchdown!</b> (${sim.yards} Yards, +6)`; end = 'td'; if (st.offTeam !== G.user) text += ' · ' + cpuPat(st.offTeam); }
     else {
       const y = sim.type === 'inc' ? 0 : sim.yards;
       G.stats[st.offTeam].yds += y;
@@ -209,7 +212,8 @@
     }
     G.log.unshift({ text: `<span class="dd">${ordinal(before.down)} & ${before.toGo}</span> ${text}<br><small>${why}</small>` });
     G.lastWhy = { text, why, end };
-    if (end) { G.phase = 'driveover'; G.driveEnd = end; }
+    if (end === 'td' && st.offTeam === G.user) { G.phase = 'pat'; G.driveEnd = end; }
+    else if (end) { G.phase = 'driveover'; G.driveEnd = end; }
     else G.phase = 'call';
     renderAll();
   }
@@ -284,10 +288,10 @@
     blitz: { title: 'Linebacker an der Line', desc: 'Linebacker und Nickelback stehen ganz vorne: Ein Blitz droht.', tip: 'Gleich kommen viele auf den QB. Der Ball muss schnell weg, ein Screen lässt sie ins Leere laufen.' },
   };
   function formationLook(o, st) {
-    const i21 = FD_NODES[OPLAYS[o].node].diagram.off === 'i21';
+    const fm = formOf(o), i21 = fm === 'i21' || fm === 'h13';
     const s = situation(st);
-    const title = i21 ? 'I-Formation mit Fullback' : 'Shotgun, 3 Wide Receiver';
-    const desc = i21 ? '2 Running Backs, 1 Tight End, QB direkt hinter dem Center.' : '1 Running Back, 1 Tight End, QB 5 Yards hinter dem Center.';
+    const title = FORM_TXT[fm] || 'Shotgun, 3 Wide Receiver';
+    const desc = { i21: '2 Running Backs, 1 Tight End, QB direkt hinter dem Center.', gun11: '1 Running Back, 1 Tight End, QB 5 Yards hinter dem Center.', h13: 'Drei Tight Ends und nur ein WR: sehr schwer, sehr nah an der Line.', p20: 'Zwei Running Backs neben dem QB, kein Tight End.', trips: 'Drei Receiver stehen zusammen auf einer Seite.', bunch: 'Drei Receiver eng im Dreieck: schwer zu drücken.' }[fm] || '';
     const tip = i21 && s === 'short' ? 'Fullback plus kurze Distanz: Fast sicher kommt ein Lauf.'
       : s === 'long' ? `${ordinal(st.down)} & ${st.toGo}: Die Offense braucht viele Yards, wahrscheinlich ein Pass.`
       : i21 ? 'Mit Fullback wird meist gelaufen, aber Play-Action ist möglich.' : 'Alles ist möglich, aber aus der Shotgun kommt öfter ein Pass.';
@@ -330,6 +334,10 @@
         <div class="g-row"><button class="fd-btn fd-play" data-act="again">Nochmal</button><button class="fd-btn" data-act="setup">Anderes Team / Modus</button></div>`;
       return;
     }
+    if (G.phase === 'pat') {
+      p.innerHTML = `<h3>Touchdown! 🏈 +6</h3><p class="g-q">Und jetzt? Extrapunkt oder 2-Point Conversion?</p><div class="g-cats"><button class="g-cat" data-pat="kick"><b>🦶 Kick</b><span>1 Punkt · klappt ~94 %</span></button><button class="g-cat" data-pat="two"><b>💪 2-Point Conversion</b><span>2 Punkte · von der 2-Yard-Linie · ~48 %</span></button></div>`;
+      return;
+    }
     if (G.phase === 'driveover') {
       const msg = { td: 'Touchdown! 🏈', fg: 'Field Goal!', fgmiss: 'Field Goal daneben.', punt: 'Punt.', turnover: 'Ballverlust!', downs: 'Turnover on Downs.', safety: 'Safety!' }[G.driveEnd] || 'Drive vorbei.';
       p.innerHTML = `<h3>${msg}</h3>${G.lastWhy && G.lastWhy.why ? `<p class="g-why">💡 ${G.lastWhy.why}</p>` : ''}
@@ -366,9 +374,9 @@
       if (!G.sub) body = `<p class="g-q">Was tust du?</p><div class="g-cats">
           <button class="g-cat" data-cat="run"><b>🏃 Lauf</b><span>Ball an den HB</span></button>
           <button class="g-cat" data-cat="pass"><b>🎯 Pass</b><span>Kurz, mittel, tief, Screen</span></button>
-          <button class="g-cat" data-o="pa"><b>🎭 Play-Action</b><span>Lauf antäuschen, werfen</span></button></div>`;
-      else body = `<p class="g-q">${G.sub === 'run' ? 'Welcher Lauf?' : 'Welcher Pass?'} <button class="g-back" data-act="back">← zurück</button></p>
-          <div class="g-calls">${(G.sub === 'run' ? ['iz', 'oz', 'power', 'iso'] : ['quick', 'mid', 'deep', 'screen']).map(k => card(k, OPLAYS[k], 'o')).join('')}</div>`;
+          <button class="g-cat" data-cat="pa"><b>🎭 Play-Action</b><span>Lauf antäuschen, werfen</span></button></div>`;
+      else body = `<p class="g-q">${G.sub === 'run' ? 'Welcher Lauf?' : G.sub === 'pa' ? 'Welche Play-Action?' : 'Welcher Pass?'} <button class="g-back" data-act="back">← zurück</button></p>
+          <div class="g-calls">${({ run: ['iz', 'oz', 'power', 'iso', 'iz13', 'toss20', 'draw'], pass: ['quick', 'stick', 'mesh', 'mid', 'smash', 'flood', 'deep', 'verts', 'screen'], pa: ['pa', 'pa13'] }[G.sub]).filter(k => OPLAYS[k]).map(k => card(k, OPLAYS[k], 'o')).join('')}</div>`;
       p.innerHTML = `${lastLine}${head}${body}${replayBtn}`;
     } else {
       const F = formationLook(pend.o, st);
@@ -377,9 +385,9 @@
       if (!G.sub) body = `<p class="g-q">Was tust du?</p><div class="g-cats">
           <button class="g-cat" data-d="box"><b>🧱 Lauf stoppen</b><span>8 Mann in die Box</span></button>
           <button class="g-cat" data-cat="cover"><b>🕸️ Pass verteidigen</b><span>Mann- oder Raumdeckung</span></button>
-          <button class="g-cat" data-d="blitz"><b>⚡ Blitz</b><span>6 Mann auf den QB</span></button></div>`;
-      else body = `<p class="g-q">Welche Deckung? <button class="g-back" data-act="back">← zurück</button></p>
-          <div class="g-calls">${['c2', 'man'].map(k => card(k, DCALLS[k], 'd')).join('')}</div>`;
+          <button class="g-cat" data-cat="blitzes"><b>⚡ Blitz</b><span>Mehr Leute auf den QB</span></button></div>`;
+      else body = `<p class="g-q">${G.sub === 'blitzes' ? 'Welcher Blitz?' : 'Welche Deckung?'} <button class="g-back" data-act="back">← zurück</button></p>
+          <div class="g-calls">${(G.sub === 'blitzes' ? ['blitz', 'c0', 'fire'] : ['c2', 'c3', 'c4', 'man', 'press']).filter(k => DCALLS[k]).map(k => card(k, DCALLS[k], 'd')).join('')}</div>`;
       p.innerHTML = `${lastLine}${head}${body}${replayBtn}`;
     }
   }
@@ -410,6 +418,7 @@
   }
   // ---------- Simulation (CPU gegen CPU) ----------
   const AIRY = { quick: 7, mid: 12, deep: 22, screen: -2, pa: 15 };
+  Object.keys(OPLAYS).forEach(o => { if (AIRY[o] == null) AIRY[o] = OPLAYS[o].air != null ? OPLAYS[o].air : 8; });
   function simDrive(off, def) {
     const st = { offTeam: off, defTeam: def, yl: 25, down: 1, toGo: 10 };
     for (let k = 0; k < 40; k++) {
@@ -417,13 +426,15 @@
       const o = cpuOffense(st), d = cpuDefense(st), r = resolve(o, d, st);
       if (r.type === 'int' || r.type === 'fumble') return 0;
       const y = r.type === 'run' ? r.yards : r.type === 'comp' ? Math.round(AIRY[o] + r.yac) : r.type === 'sack' ? -7 : 0;
-      if (st.yl + y >= 100) return 7;
+      if (st.yl + y >= 100) return 6 + (rnd() < 0.94 ? 1 : 0);
       if (st.yl + y <= 0) return -2;
       st.yl += y;
       if (y >= st.toGo) { st.down = 1; st.toGo = Math.min(10, 100 - st.yl); } else { st.down++; st.toGo -= y; if (st.down > 4) return 0; }
     }
     return 0;
   }
+  // CPU nach dem Touchdown: fast immer Kick
+  function cpuPat(team) { const two = rnd() < 0.08, ok = rnd() < (two ? 0.48 : 0.94); if (ok) G.score[team] += two ? 2 : 1; return two ? (ok ? '2-Point Conversion (+2)' : '2-Point Conversion gescheitert') : (ok ? 'Extrapunkt (+1)' : 'Extrapunkt daneben'); }
   function simulate(a, h, n) {
     let wa = 0, wh = 0, ties = 0, pa = 0, ph = 0; const margins = [];
     for (let i = 0; i < n; i++) {
@@ -553,6 +564,14 @@
     else if (t.dataset.act === 'tip') { G.showTip = true; renderPanel(); }
     else if (t.dataset.fourth) fourth(t.dataset.fourth);
     else if (t.dataset.act === 'nextdrive') nextDrive();
+    else if (t.dataset.pat && G && G.phase === 'pat') {
+      const two = t.dataset.pat === 'two', ok = rnd() < (two ? 0.48 : 0.94);
+      if (ok) G.score[G.user] += two ? 2 : 1;
+      AU(ok ? (two ? 'firstdown' : 'fieldgoal') : 'miss');
+      const txt = two ? (ok ? '2-Point Conversion geschafft (+2)' : '2-Point Conversion gescheitert') : (ok ? 'Extrapunkt drin (+1)' : 'Extrapunkt daneben');
+      G.log.unshift({ text: `🏈 ${txt}` }); if (G.lastWhy) G.lastWhy.text += ' · ' + txt;
+      G.phase = 'driveover'; renderAll();
+    }
     else if (t.dataset.act === 'replay' && G.last) { const ph = G.phase; play(G.last, () => { G.phase = ph; }); }
     else if (t.dataset.act === 'again') newGame(G.user, G.cpu, G.mode, G.teams);
     else if (t.dataset.act === 'setup') { G = null; renderAll(); }

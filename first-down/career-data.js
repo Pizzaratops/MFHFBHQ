@@ -70,7 +70,7 @@ const CAREER_WEEKS = [
     drills: [{ type: 'call', look: 'box' }, { type: 'call', look: 'c2' }, { type: 'read', o: 'deep', d: 'box' }],
   },
   {
-    n: 3, title: 'Mann oder Raum?', opp: 'kraken', unlock: [], help: true, defense: false,
+    n: 3, title: 'Mann oder Raum?', opp: 'kraken', unlock: ['mesh', 'smash'], help: true, defense: false,
     goal: 'Erkenne Manndeckung und Raumdeckung und finde den freien Mann.',
     lesson: [
       { t: 'Manndeckung', x: 'Bei {Man Coverage} folgt jeder Verteidiger seinem Receiver. Du erkennst sie vor dem Snap oft daran, dass die {CB|Cornerbacks} ganz eng vor den Receivern stehen. Wer sein Duell gewinnt, ist frei, und das ist jedes Mal ein anderer.', demo: { o: 'quick', d: 'man', target: 'best', dec: { type: 'comp', yac: 4 } }, more: 'd-man' },
@@ -80,7 +80,7 @@ const CAREER_WEEKS = [
     drills: [{ type: 'read', o: 'quick', d: 'man' }, { type: 'read', o: 'mid', d: 'c2' }, { type: 'read', o: 'mid', d: 'man' }],
   },
   {
-    n: 4, title: 'Blitz!', opp: 'hornissen', unlock: ['screen'], help: false, defense: false,
+    n: 4, title: 'Blitz!', opp: 'hornissen', unlock: ['screen', 'verts', 'draw'], help: false, defense: false,
     goal: 'Erkenne einen Blitz vor dem Snap und lass ihn ins Leere laufen. Ab jetzt ohne 💡-Tipp.',
     lesson: [
       { t: 'So sieht ein Blitz aus', x: 'Stehen Linebacker oder der {NB|Nickelback} direkt an der Line, droht ein {Blitz}: Sechs Verteidiger kommen auf den QB. Lange Routen haben dann keine Zeit.', demo: { o: 'deep', d: 'blitz', dec: { type: 'sack' } }, more: 'd-blitz' },
@@ -91,7 +91,7 @@ const CAREER_WEEKS = [
     drills: [{ type: 'call', look: 'blitz' }, { type: 'read', o: 'quick', d: 'blitz' }, { type: 'call', look: 'man' }],
   },
   {
-    n: 5, title: 'Täuschen und Wucht', opp: 'yetis', unlock: ['pa', 'power', 'iso'], help: false, defense: false,
+    n: 5, title: 'Täuschen und Wucht', opp: 'yetis', unlock: ['pa', 'power', 'iso', 'iz13', 'pa13', 'toss20'], help: false, defense: false,
     goal: 'Play-Action gegen eine Box, die auf den Lauf wartet, und Power-Läufe bei kurzer Distanz.',
     lesson: [
       { t: 'Play-Action', x: 'Der QB täuscht einen Handoff an. Die Linebacker machen einen Schritt nach vorne, und hinter ihnen wird es frei. Das klappt am besten, wenn die Defense den Lauf fürchtet, also gegen 8 in der Box.', demo: { o: 'pa', d: 'box', target: 'best', dec: { type: 'comp', yac: 5 } }, more: 'o-pass-pa' },
@@ -112,7 +112,7 @@ const CAREER_WEEKS = [
     drills: [{ type: 'dcall', o: 'iso', st: { down: 3, toGo: 1 } }, { type: 'dcall', o: 'mid', st: { down: 3, toGo: 9 } }, { type: 'dcall', o: 'iz', st: { down: 1, toGo: 10 } }],
   },
   {
-    n: 7, title: 'Third Down und 4th Down', opp: 'moewen', unlock: ['4th'], help: false, defense: true,
+    n: 7, title: 'Third Down und 4th Down', opp: 'moewen', unlock: ['4th', 'flood', 'stick'], help: false, defense: true,
     goal: 'Schwere Situationen: 3rd & long und die Entscheidung auf 4th Down triffst ab jetzt du.',
     lesson: [
       { t: '3rd & long', x: 'Bei {Third-and-long} weiß die Defense, dass ein Pass kommt. Als Offense brauchst du einen Pass, der über die gelbe Linie geht, zum Beispiel einen {Dig}. Als Defense reicht ein Tackle vor der Linie.', demo: { o: 'mid', d: 'c2', target: 'best', dec: { type: 'comp', yac: 2 } }, more: 'o-pass-mid' },

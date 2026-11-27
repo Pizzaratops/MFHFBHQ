@@ -66,6 +66,104 @@
     man: { name: 'Man Cover 1', short: 'Manndeckung, 1 Safety tief, 4 Rusher', icon: '🔒', node: 'd-man' },
     blitz: { name: 'Blitz', short: '6 Rusher, Manndeckung dahinter', icon: '⚡', node: 'd-blitz' },
   };
+  // Erweitertes Playbook (playbook.js) übernehmen
+  const PB = typeof FD_PLAYBOOK !== 'undefined' ? FD_PLAYBOOK : null;
+  if (PB) { Object.assign(OPLAYS, PB.plays); Object.assign(DCALLS, PB.defs); }
+  const BASE_D = ['box', 'c2', 'man', 'blitz'];
+  const baseOf = o => (OPLAYS[o] && OPLAYS[o].base) || o;
+  const diagOf = o => OPLAYS[o].diagram || FD_NODES[OPLAYS[o].node].diagram;
+  const FORM_TXT = { gun11: 'Shotgun mit 3 WR (11 Personnel)', i21: 'I-Formation mit Fullback (21 Personnel)', trips: 'Trips rechts: 3 WR auf einer Seite', bunch: 'Bunch rechts: 3 WR eng zusammen', h13: '13 Personnel: 3 Tight Ends', p20: '20 Personnel: 2 Running Backs' };
+  const formOf = o => diagOf(o).off;
+  // Ergebnis-Modell für neue Plays/Calls aus den bestehenden ableiten
+  function extendModel(M, AIR) {
+    if (!PB) return M;
+    const kindKey = o => OPLAYS[o].kind === 'run' ? 'run' : baseOf(o);
+    const mixRow = (row, mix) => { const out = {}; Object.keys(mix).forEach(b => { const r = row[b]; Object.keys(r).forEach(f => { out[f] = (out[f] || 0) + r[f] * mix[b]; }); }); return out; };
+    Object.keys(PB.defs).forEach(d => Object.keys(M).forEach(o => {
+      if (!OPLAYS[o] || M[o][d]) return;
+      const row = mixRow(M[o], PB.defs[d].mix), mods = (PB.defMods[d] || {})[OPLAYS[o].kind === 'run' ? 'run' : o] || {};
+      Object.keys(mods).forEach(f => { row[f] = (row[f] || 0) + mods[f]; });
+      M[o][d] = row;
+    }));
+    Object.keys(PB.plays).forEach(o => {
+      const P = PB.plays[o], b = M[P.base]; if (!b || M[o]) return;
+      M[o] = {}; if (AIR) AIR[o] = P.air != null ? P.air : AIR[P.base];
+      Object.keys(b).forEach(d => {
+        const r = Object.assign({}, b[d]), v = (P.vs || {})[d] || 0;
+        if (P.kind === 'run') r.m += v; else { r.c = Math.min(0.92, Math.max(0.08, r.c + v)); r.int = Math.max(0.005, r.int - v * 0.12); if (v > 0) r.bp += v * 0.2; }
+        M[o][d] = r;
+      });
+    });
+    return M;
+  }
+
+  // ---------- Formationsunabhängige Defense (für neue Formationen und Calls) ----------
+  function genericDefense(dKey, offF) {
+    const C0 = 26.65, ids = Object.keys(offF);
+    const recv = ids.filter(id => ['WR', 'TE'].indexOf(offF[id][2]) >= 0).map(id => ({ id, x: offF[id][0], d: offF[id][1], lab: offF[id][2] }));
+    const backs = ids.filter(id => ['HB', 'FB'].indexOf(offF[id][2]) >= 0).map(id => ({ id, x: offF[id][0], d: offF[id][1], lab: offF[id][2] }));
+    const nWR = recv.filter(r => r.lab === 'WR').length, nickel = nWR >= 3;
+    const left = recv.filter(r => r.x < C0), right = recv.filter(r => r.x >= C0);
+    const strongR = right.length >= left.length, sx = strongR ? 1 : -1;
+    const outerL = left.length ? left.reduce((m, r) => r.x < m.x ? r : m) : null, outerR = right.length ? right.reduce((m, r) => r.x > m.x ? r : m) : null;
+    const tes = recv.filter(r => r.lab === 'TE' && Math.abs(r.x - C0) < 10);
+    const F = {
+      LE: [Math.min(20.9, ...tes.filter(t => t.x < C0).map(t => t.x - 1.3)), 1.3, 'DE'], DT1: [25.65, 1.3, 'DT'], DT2: [29.65, 1.3, 'DT'],
+      RE: [Math.max(34.6, ...tes.filter(t => t.x >= C0).map(t => t.x + 1.3)), 1.3, 'DE'],
+    };
+    const cush = { press: 1.0, c0: 1.2, man: 2.0, blitz: 2.0, box: 3.5, c2: 4.5, c3: 7, c4: 7, fire: 6.5 }[dKey] || 5;
+    const cbX = r => r ? (r.lab === 'TE' ? r.x + Math.sign(r.x - C0) * 3 : r.x) : null;
+    F.CB1 = [outerL ? cbX(outerL) : 8, cush, 'CB']; F.CB2 = [outerR ? cbX(outerR) : 45.3, cush, 'CB'];
+    const slots = recv.filter(r => r !== outerL && r !== outerR && r.lab === 'WR');
+    const slotS = slots.filter(r => (r.x >= C0) === strongR).sort((a, b) => Math.abs(b.x - C0) - Math.abs(a.x - C0))[0] || slots[0];
+    if (nickel) { F.NB = [slotS ? slotS.x : C0 + sx * 12, ['press', 'c0', 'man', 'blitz'].indexOf(dKey) >= 0 ? 1.8 : 4.5, 'NB']; F.LB1 = [24.0, 5, 'LB']; F.LB2 = [29.6, 5, 'LB']; }
+    else { F.LB1 = [23.6, 5, 'LB']; F.LB2 = [27.6, 5.5, 'LB']; F.LB3 = [32.8, 4.6, 'LB']; }
+    const oneHigh = ['man', 'press', 'box', 'c3', 'blitz', 'fire'].indexOf(dKey) >= 0;
+    if (dKey === 'c0') { F.FS = [C0 - sx * 3, 7, 'S']; F.SS = [C0 + sx * 7, 6, 'S']; }
+    else if (oneHigh) { F.FS = [C0, 13.5, 'S']; F.SS = [C0 + sx * 8, dKey === 'box' ? 5.5 : 7.5, 'S']; }
+    else { F.FS = [18, 13, 'S']; F.SS = [35.3, 13, 'S']; }
+    const specs = { LE: { path: [[0.36, -1.2], [1.2, -2.2]] }, DT1: { path: [[0.09, -1.2], [0.3, -2.2]] }, DT2: { path: [[-0.09, -1.2], [-0.3, -2.2]] }, RE: { path: [[-0.36, -1.2], [-1.2, -2.2]] } };
+    const to = (id, x, d) => ({ path: [[x - F[id][0], d - F[id][1]]] });
+    const zone = (x, d) => { const deep = d >= 12; return { zone: [x, d, deep ? (dKey === 'c2' ? 13 : dKey === 'c4' ? 7.5 : 9.5) : 7, deep, deep ? (dKey === 'c2' ? 15.5 : dKey === 'c4' ? 9 : 11) : 0] }; };
+    const rush = (id, delay) => ({ delay: delay || 0.05, path: [[(C0 - F[id][0]) * 0.5, -F[id][1] - 1.5], [(C0 - F[id][0]) * 0.8, -F[id][1] - 3.5]] });
+    const fol = (rid, tight) => tight ? { follow: rid, off: [0, 0.5], lag: 0.15, press: true } : { follow: rid, off: [0, 0.8], lag: 0.28 };
+    let sacker = 'DT1';
+    const man = ['man', 'press', 'blitz', 'c0', 'box'].indexOf(dKey) >= 0;
+    if (man) {
+      const tight = dKey === 'press' || dKey === 'c0';
+      const rushers = dKey === 'blitz' ? [nickel ? 'NB' : 'LB3', 'LB1'] : dKey === 'c0' ? ['LB1', 'LB2'] : [];
+      rushers.forEach((id, k) => { specs[id] = rush(id, 0.05 + k * 0.05); }); if (rushers.length) sacker = rushers[rushers.length - 1];
+      if (outerL) specs.CB1 = fol(outerL.id, tight); else specs.CB1 = to('CB1', 10, 14);
+      if (outerR) specs.CB2 = fol(outerR.id, tight); else specs.CB2 = to('CB2', 43, 14);
+      const deep = dKey === 'c0' ? [] : ['FS'];
+      deep.forEach(id => { specs[id] = zone(C0, 16); specs[id].zone[2] = 18; });
+      if (dKey === 'box') { specs.SS = { path: [[0, -1.2]] }; }
+      // Box: Lauf stoppen – nur die DBs decken, Linebacker attackieren die Lücken (TE/HB bleiben eher frei)
+      const covers = (dKey === 'box' ? ['NB'] : ['NB', 'SS', 'LB3', 'LB2', 'LB1', 'FS']).filter(id => F[id] && !specs[id]);
+      const todo = recv.filter(r => r !== outerL && r !== outerR).concat(backs.filter(b => dKey !== 'box'));
+      todo.forEach(r => {
+        if (!covers.length) return;
+        let bi = 0, bd = 1e9; covers.forEach((id, k) => { const dd = Math.hypot(F[id][0] - r.x, F[id][1] - r.d); if (dd < bd) { bd = dd; bi = k; } });
+        const id = covers.splice(bi, 1)[0];
+        specs[id] = r.lab === 'HB' || r.lab === 'FB' ? { follow: r.id, off: [0, 3], lag: 0.2 } : fol(r.id, tight && id === 'NB');
+      });
+      covers.forEach(id => { specs[id] = id === 'FS' ? zone(C0, 15) : dKey === 'box' ? { path: [[0, -1.2]] } : zone(F[id][0], 6); });
+      ['LB1', 'LB2', 'LB3', 'SS'].forEach(id => { if (F[id] && !specs[id]) specs[id] = { path: [[0, -1.2]] }; });
+    } else {
+      // Raumdeckung: Zonen sind feste Punkte auf dem Feld
+      const Z = {
+        c2: { CB1: [9, 4], CB2: [44.3, 4], FS: [14, 17], SS: [39.3, 17], NB: [C0 + sx * 12, 6], LB1: [21, 7], LB2: [32, 7], LB3: [C0, 8] },
+        c3: { CB1: [7, 17], CB2: [46.3, 17], FS: [C0, 19], SS: [C0 + sx * 13, 6], NB: [C0 - sx * 13, 6], LB1: [22, 7], LB2: [31, 7], LB3: [C0 - sx * 12, 6] },
+        c4: { CB1: [8, 15], CB2: [45.3, 15], FS: [20, 15], SS: [33.3, 15], NB: [C0 + sx * 15, 5], LB1: [22.5, 6.5], LB2: [30.8, 6.5], LB3: [C0 - sx * 14, 5] },
+        fire: { CB1: [7, 17], CB2: [46.3, 17], FS: [C0, 19], SS: [C0 + sx * 11, 6.5], LB2: [C0 - sx * 11, 6.5], LB3: [C0 - sx * 4, 7], RE: [C0 + sx * 3, 6] },
+      }[dKey] || {};
+      if (dKey === 'fire') { const r1 = nickel ? 'NB' : 'LB1'; specs[r1] = rush(r1, 0.05); specs.LB1 = rush('LB1', 0.1); sacker = 'LB1'; }
+      Object.keys(Z).forEach(id => { if (F[id] && !specs[id] || id === 'RE') specs[id] = zone(Z[id][0], Z[id][1]); });
+      ['NB', 'LB1', 'LB2', 'LB3', 'SS', 'FS'].forEach(id => { if (F[id] && !specs[id]) specs[id] = { path: [[0, 3]] }; });
+    }
+    return { defF: F, specs, starts: {}, sacker };
+  }
+
 
   // ---------- Defense-Pakete ----------
   function defPackage(dKey, form, offIds) {
@@ -103,11 +201,13 @@
   function mulberry(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   function setup(oKey, dKey, seed) {
     const O = OPLAYS[oKey];
-    const dg = FD_NODES[O.node].diagram;
+    const dg = diagOf(oKey);
     const offF = FD_OFF[dg.off];
     const formD = dg.off === 'i21' ? 'base43' : 'nickel';
-    const defF = FD_DEF[formD];
-    const pk = defPackage(dKey, formD, Object.keys(offF));
+    const generic = true; // eine Defense-Logik für alle Formationen (alte defPackage nur noch als Referenz)
+    const GD = generic ? genericDefense(dKey, offF) : null;
+    const defF = generic ? GD.defF : FD_DEF[formD];
+    const pk = generic ? GD : defPackage(dKey, formD, Object.keys(offF));
     if (seed != null) {
       const r = mulberry(seed);
       const follows = Object.keys(pk.specs).filter(k => pk.specs[k].follow);
@@ -134,15 +234,33 @@
       const [x, d, lab] = defF[id];
       const start = pk.starts[id] || [x, d];
       const spec = pk.specs[id] || null;
-      const a = { id, side: 'def', lab, start, spec, tr: spec && spec.follow ? null : track(start, spec, lab) };
+      const a = { id, side: 'def', lab, start, spec, tr: spec && (spec.follow || spec.zone) ? null : track(start, spec, lab) };
       A.push(a); byId[id] = a;
     });
     const sPos = (a, t) => a.tr ? tpos(a.tr, t) : a.start;
+    const recvA = A.filter(a => a.side === 'off' && a.tr && ['WR', 'TE', 'HB', 'FB'].indexOf(a.lab) >= 0);
     const defPre = (a, t) => {
       if (a.tr) return tpos(a.tr, t);
+      if (a.spec.zone) {
+        // Raumdeckung mit Übergabe: zum Zonenpunkt fallen, Receiver in der Zone aufnehmen
+        const [zx, zd, rx, deep, minD] = a.spec.zone, Z = [zx, zd];
+        const base = lerp(a.start, Z, clamp(t / Math.max(0.6, dist(a.start, Z) / 6.5), 0, 1));
+        const tr = Math.max(0, t - 0.35); let best = null, bd = 1e9;
+        recvA.forEach(r => {
+          const q = tpos(r.tr, tr);
+          const inZ = Math.abs(q[0] - zx) < rx && (deep ? q[1] > (minD != null ? minD : zd - 9) : q[1] > -1 && q[1] < zd + 7);
+          if (!inZ) return; const dd = Math.abs(q[0] - zx) + Math.abs(q[1] - zd) * 0.5; if (dd < bd) { bd = dd; best = q; }
+        });
+        if (!best) return base;
+        const tgt = deep ? [best[0], Math.max(best[1] + 2.2, zd * 0.7)] : [best[0], best[1] + 0.9];
+        const w = clamp(1.15 - bd / (rx * 1.6), 0, 0.88) * clamp((t - 0.35) / 0.7, 0, 1);
+        return lerp(base, tgt, w);
+      }
       const tg = byId[a.spec.follow];
       const tp = sPos(tg, Math.max(0, t - a.spec.lag));
-      return lerp(a.start, [tp[0] + a.spec.off[0], tp[1] + a.spec.off[1]], clamp(t / 0.6, 0, 1));
+      // Press: eng dran, aber bei tiefen Routen fällt der CB zurück
+      const trail = a.spec.press ? Math.max(0, t - 1.0) * 1.6 : 0;
+      return lerp(a.start, [tp[0] + a.spec.off[0], tp[1] + a.spec.off[1] - trail], clamp(t / (a.spec.press ? 0.3 : 0.6), 0, 1));
     };
     const ball = dg.ball || [];
     const hand = ball.find(b => b[0] === 'hand');
@@ -173,17 +291,19 @@
     }
     const tp = pass[2];
     const Pq = sPos(byId.QB, tp);
-    if (!READS[oKey]) return null;
-    const recv = READS[oKey].filter(id => byId[id] && dg.paths && dg.paths[id] && !dg.paths[id].block);
+    const list = READS[oKey] !== undefined ? READS[oKey] : (O.kind === 'pass' ? Object.keys(dg.paths || {}).filter(id => byId[id] && ['WR', 'TE', 'HB', 'FB'].indexOf(byId[id].lab) >= 0) : null);
+    if (!list) return null;
+    const recv = list.filter(id => byId[id] && dg.paths && dg.paths[id] && !dg.paths[id].block);
     const opts = recv.map(id => {
       const a = byId[id];
       let f = 0.5, C = sPos(a, tp + f);
       for (let k = 0; k < 2; k++) { f = Math.max(0.35, dist(Pq, C) / 20); C = sPos(a, tp + f); }
       let sep = 99;
-      defs.forEach(dd => { if (rusher(dd)) return; sep = Math.min(sep, dist(defPre(dd, tp + f), C)); });
+      // Während der Ball fliegt, laufen Verteidiger zum Fangpunkt: Raumdecker sehen den QB und brechen schneller auf den Ball
+      defs.forEach(dd => { if (rusher(dd)) return; const brk = dd.spec && dd.spec.zone ? (dd.spec.zone[3] ? 2.4 : 1.5) * f : dd.spec && dd.spec.follow ? 0.2 * f : 0.8 * f; sep = Math.min(sep, Math.max(0, dist(defPre(dd, tp + f), C) - brk)); });
       return { id, lab: a.lab, C, flight: f, sep, depth: C[1] };
     });
-    opts.forEach(o => { o.open = clamp((o.sep - 0.8) / 5, 0.05, 1); });
+    opts.forEach(o => { o.open = clamp((o.sep - 0.5) / 4.2, 0.05, 1); });
     const mx = Math.max(...opts.map(o => o.open));
     opts.forEach(o => { o.rel = o.open / mx; });
     return { kind: 'pass', tDec: tp, opts, best: opts.reduce((b, o) => o.open > b.open ? o : b).id };
@@ -661,5 +781,5 @@
     return Object.assign({}, s, { frames: [s.frames[0]], routes: null, play: null });
   }
 
-  window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView };
+  window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView, extendModel, formOf, FORM_TXT, baseOf, PB };
 })();

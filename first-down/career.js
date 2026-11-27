@@ -9,7 +9,7 @@
 // ============================================================
 (function () {
   'use strict';
-  const { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView } = window.FDSIM;
+  const { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView, extendModel, formOf, FORM_TXT, baseOf, PB } = window.FDSIM;
   const $ = s => document.querySelector(s);
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   const rnd = Math.random;
@@ -32,6 +32,7 @@
     pa: { box: { c: 0.62, yac: 4, sd: 4, sack: 0.08, int: 0.025, bp: 0.12 }, c2: { c: 0.46, yac: 2.5, sd: 3.5, sack: 0.08, int: 0.04, bp: 0.04 }, man: { c: 0.46, yac: 3, sd: 4, sack: 0.09, int: 0.04, bp: 0.06 }, blitz: { c: 0.34, yac: 3.5, sd: 4.5, sack: 0.22, int: 0.04, bp: 0.08 } },
   };
   const AIR = { quick: 7, mid: 12, deep: 22, screen: -2, pa: 15 };
+  extendModel(M, AIR);
   const EY = (o, d) => { const m = M[o][d]; if (OPLAYS[o].kind === 'run') return m.m + m.bp * 15; return (1 - m.sack) * (m.c * (AIR[o] + m.yac + m.bp * 15)) - m.sack * 7 - m.int * 15; };
   const WHY = {
     box: { run: 'Gegen 8 in der Box hat der Lauf kaum Platz.', pass: 'Nur ein Safety tief: Hinter der Box ist Platz für Pässe.', pa: 'Die Box beißt auf die Lauf-Täuschung an.', screen: 'Der Screen bringt den Ball schnell an der vollen Box vorbei.' },
@@ -39,13 +40,19 @@
     man: { run: 'Die Verteidiger schauen auf ihre Männer: Platz für den Lauf.', pass: 'Manndeckung: Wer sein Duell gewinnt, ist frei.', pa: 'Die Manndecker kleben an ihren Receivern, nicht am Lauf.', screen: 'Die Verteidiger laufen ihren Receivern hinterher.' },
     blitz: { run: 'Blitzer stehen in den Lücken: hopp oder top.', pass: 'Gegen den Blitz muss der Ball schnell weg, lange Routen haben keine Zeit.', pa: 'Die Täuschung kostet Zeit, die du gegen einen Blitz nicht hast.', screen: 'Screen gegen Blitz: Die Verteidiger rennen am Ball vorbei.' },
   };
-  const whyOf = (o, d) => { const k = OPLAYS[o].kind === 'run' ? 'run' : o === 'pa' ? 'pa' : o === 'screen' ? 'screen' : 'pass'; return WHY[d][k]; };
+  if (PB) Object.keys(PB.why).forEach(d => { WHY[d] = WHY[d] || PB.why[d]; });
+  const whyOf = (o, d) => { const b = baseOf(o), k = OPLAYS[o].kind === 'run' ? 'run' : b === 'pa' ? 'pa' : b === 'screen' ? 'screen' : (b === 'deep' && WHY[d].deep) ? 'deep' : 'pass'; return WHY[d][k]; };
   const LOOKS = {
     box: { title: '8 in der Box', desc: 'Ein Safety ist nach vorne gerückt, nur einer steht tief.', tip: 'Vorne viele, hinten einer: werfen, Play-Action oder tief.' },
     c2: { title: '2 Safeties tief', desc: 'Beide Safeties stehen weit hinten, vorne nur sechs Mann.', tip: 'Tief ist zu, vorne ist dünn: laufen oder in die Mitte werfen.' },
     man: { title: 'Cornerbacks eng am Mann', desc: 'Die Verteidiger stehen direkt vor ihren Receivern.', tip: 'Manndeckung: kurze Pässe mit schnellem Richtungswechsel oder laufen.' },
     blitz: { title: 'Linebacker an der Line', desc: 'Linebacker und Nickelback stehen ganz vorne: Ein Blitz droht.', tip: 'Ball schnell weg: kurzer Pass oder Screen.' },
   };
+  if (PB) Object.assign(LOOKS, PB.looks);
+  // Welche zusätzlichen Defense-Calls die Gegner ab welcher Woche spielen
+  const DEF_FROM = { c3: 2, press: 3, c4: 3, fire: 4, c0: 4 };
+  const defsFor = w => Object.keys(DCALLS).filter(d => !DEF_FROM[d] || w >= DEF_FROM[d]);
+  const formTxt = o => FORM_TXT[formOf(o)] || 'Shotgun mit 3 WR';
 
   // ---------- Glossar-Tooltips ----------
   const GL = FD_GLOSSARY;
@@ -127,8 +134,9 @@
   }
   function situation(st) { return st.toGo <= 2 ? 'short' : (st.toGo >= 7 && st.down >= 2) ? 'long' : 'normal'; }
   function cpuD(team, st) {
-    const w = Object.assign({ box: 0.1, c2: 0.1, man: 0.1, blitz: 0.1 }, team.def), s = situation(st);
-    if (s === 'short') { w.box *= 2.5; w.c2 *= 0.4; } else if (s === 'long') { w.box *= 0.3; w.c2 *= 1.5; w.blitz *= 1.4; }
+    const w = Object.assign({ box: 0.1, c2: 0.1, man: 0.1, blitz: 0.1, c3: 0.22, c4: 0.12, press: 0.14, fire: 0.1, c0: 0.06 }, team.def), s = situation(st);
+    Object.keys(w).forEach(d => { if (!DCALLS[d] || defsFor(R.week || 8).indexOf(d) < 0) w[d] = 0; });
+    if (s === 'short') { w.box *= 2.5; w.c2 *= 0.4; w.c4 *= 0.3; w.c0 *= 2; w.press *= 1.5; } else if (s === 'long') { w.box *= 0.3; w.c2 *= 1.5; w.c4 *= 1.6; w.blitz *= 1.4; w.fire *= 1.5; w.c0 *= 0.6; }
     return pickW(w);
   }
   function cpuO(team, st) {
@@ -373,7 +381,7 @@
     const st = Object.assign({ down: 1, toGo: 10, yl: 30 }, dr.st || {});
     const q = dr.type === 'read' ? `Read-Training: ${OPLAYS[dr.o].name} gegen ${DCALLS[dr.d].name}. Nach dem Snap friert das Bild ein: ${OPLAYS[dr.o].kind === 'run' ? 'Welche Lücke?' : 'Wer ist frei?'}`
       : dr.type === 'call' ? `${ordinal(st.down)} & ${st.toGo}. Du siehst: ${LOOKS[dr.look].title}. Was callst du?`
-      : `Du bist die Defense. ${ordinal(st.down)} & ${st.toGo}. Die Offense kommt in ${FD_NODES[OPLAYS[dr.o].node].diagram.off === 'i21' ? 'der I-Formation mit Fullback' : 'der Shotgun mit 3 Wide Receivern'}. Was callst du?`;
+      : `Du bist die Defense. ${ordinal(st.down)} & ${st.toGo}. Die Offense kommt so: ${formTxt(dr.o)}. Was callst du?`;
     app.innerHTML = `<section class="c-play">
       <div class="c-crumb"><a href="#" data-act="hub">← Büro</a> · Woche ${w.n}: Lektion → <b>Drill ${R.di + 1}/${w.drills.length}</b> → Spiel</div>
       <div class="g-grid c-grid"><div>${viewerHTML('cV')}</div>
@@ -510,7 +518,7 @@
       else { const ro = readOptions(o, d, Math.floor(rnd() * 1e9)); const pick = cpuPick(ro, oR.qb); dec = resolvePlay(o, d, st, oR, my, ro, pick); if (dec.type === 'comp') dec.yards = Math.round((pick ? pick.depth : AIR[o]) + dec.yac); }
       const y = dec.type === 'run' || dec.type === 'comp' ? dec.yards : dec.type === 'sack' ? -7 : 0;
       if (dec.type === 'int' || dec.type === 'fumble') { text = dec.type === 'int' ? 'verlieren den Ball per Interception' : 'verlieren den Ball per Fumble'; break; }
-      if (st.yl + y >= 100) { G.them += 7; text = 'erzielen einen Touchdown (+7)'; break; }
+      if (st.yl + y >= 100) { const k = rnd() < 0.94; G.them += 6 + (k ? 1 : 0); text = `erzielen einen Touchdown (+6, Extrapunkt ${k ? 'drin' : 'daneben'})`; break; }
       st.yl = Math.max(1, st.yl + y);
       if (y >= st.toGo) { st.down = 1; st.toGo = Math.min(10, 100 - st.yl); } else { st.down++; st.toGo -= y; if (st.down > 4) { text = 'scheitern auf 4th Down'; break; } }
     }
@@ -521,7 +529,7 @@
   function prepare() {
     const G = R.G; if (G.pending) return;
     const st = G.st, opp = oppTeam(R.week), seed = Math.floor(rnd() * 1e9);
-    if (st.off === 'me') { const d = cpuD(opp, st); const others = Object.keys(DCALLS).filter(k => k !== d); G.pending = { d, look: rnd() < 0.15 ? others[Math.floor(rnd() * others.length)] : d, seed }; }
+    if (st.off === 'me') { const d = cpuD(opp, st); const others = defsFor(R.week).filter(k => k !== d); G.pending = { d, look: rnd() < 0.15 ? others[Math.floor(rnd() * others.length)] : d, seed }; }
     else G.pending = { o: cpuO(opp, st), seed };
     const ctx = ctxOf();
     R.V.pv.reset(); R.V.tv.reset();
@@ -535,6 +543,7 @@
       return;
     }
     if (G.phase === 'auto') { p.innerHTML = `${last}<h3>Gegner am Ball</h3><p>${G.autoText}</p><button class="fd-btn fd-play" data-act="nextdrive">Weiter →</button>`; return; }
+    if (G.phase === 'pat') { p.innerHTML = `${last}<h3>Touchdown! 🏈 +6</h3><p class="g-q">Extrapunkt oder 2-Point Conversion?</p><div class="g-cats"><button class="g-cat" data-pat="kick"><b>🦶 Kick</b><span>1 Punkt · klappt ~94 %</span></button><button class="g-cat" data-pat="two"><b>💪 2-Point Conversion</b><span>2 Punkte · von der 2 · ~48 %</span></button></div>`; return; }
     if (G.phase === 'over') { p.innerHTML = `${last}<h3>${G.overMsg}</h3><button class="fd-btn fd-play" data-act="nextdrive">${G.idx + 1 < 6 ? 'Nächster Drive →' : 'Zum Ergebnis →'}</button>`; return; }
     if (G.phase === 'anim') { p.innerHTML = `${last}<p class="muted">${G.animMsg || 'Snap …'}</p>`; return; }
     // 4th Down
@@ -556,24 +565,24 @@
     const tipBtn = G.showTip ? '' : '<button class="g-tipbtn" data-act="tip">💡 Tipp</button>';
     if (st.off === 'me') {
       const L = LOOKS[pd.look], plays = offPlays(R.week);
-      const runs = plays.filter(k => OPLAYS[k].kind === 'run'), passes = plays.filter(k => OPLAYS[k].kind === 'pass' && k !== 'pa');
+      const runs = plays.filter(k => OPLAYS[k].kind === 'run'), passes = plays.filter(k => OPLAYS[k].kind === 'pass' && baseOf(k) !== 'pa'), pas = plays.filter(k => baseOf(k) === 'pa');
       const head = `<div class="g-look"><small>Du siehst</small><b>${L.title}</b><span>${L.desc}</span>${G.showTip ? `<em>💡 ${L.tip}</em>` : tipBtn}</div>`;
       let body;
       if (!G.sub) body = `<p class="g-q">Was tust du?</p><div class="g-cats">
         <button class="g-cat" ${runs.length === 1 ? `data-o="${runs[0]}"` : 'data-cat="run"'}><b>🏃 Lauf</b><span>${runs.length === 1 ? OPLAYS[runs[0]].name : 'Ball an den HB'}</span></button>
         <button class="g-cat" ${passes.length === 1 ? `data-o="${passes[0]}"` : 'data-cat="pass"'}><b>🎯 Pass</b><span>${passes.length === 1 ? OPLAYS[passes[0]].name : 'Kurz bis tief'}</span></button>
-        ${plays.indexOf('pa') >= 0 ? '<button class="g-cat" data-o="pa"><b>🎭 Play-Action</b><span>Täuschen, werfen</span></button>' : ''}</div>`;
-      else body = `<p class="g-q">${G.sub === 'run' ? 'Welcher Lauf?' : 'Welcher Pass?'} <button class="g-back" data-act="back">← zurück</button></p><div class="g-calls">${(G.sub === 'run' ? runs : passes).map(k => `<button class="g-call" data-o="${k}"><b>${OPLAYS[k].icon} ${OPLAYS[k].name}</b><span>${OPLAYS[k].short}</span></button>`).join('')}</div>`;
+        ${pas.length ? `<button class="g-cat" ${pas.length === 1 ? `data-o="${pas[0]}"` : 'data-cat="pa"'}><b>🎭 Play-Action</b><span>Täuschen, werfen</span></button>` : ''}</div>`;
+      else body = `<p class="g-q">${G.sub === 'run' ? 'Welcher Lauf?' : G.sub === 'pa' ? 'Welche Play-Action?' : 'Welcher Pass?'} <button class="g-back" data-act="back">← zurück</button></p><div class="g-calls">${(G.sub === 'run' ? runs : G.sub === 'pa' ? pas : passes).map(k => `<button class="g-call" data-o="${k}"><b>${OPLAYS[k].icon} ${OPLAYS[k].name}</b><span>${OPLAYS[k].short}</span></button>`).join('')}</div>`;
       p.innerHTML = `${last}${head}${body}`;
     } else {
-      const i21 = FD_NODES[OPLAYS[pd.o].node].diagram.off === 'i21', s = situation(st);
+      const fm = formOf(pd.o), i21 = fm === 'i21' || fm === 'h13' || fm === 'p20', s = situation(st);
       const tip = i21 && s === 'short' ? 'Fullback plus kurze Distanz: fast sicher ein Lauf.' : s === 'long' ? 'Viele Yards nötig: wahrscheinlich ein Pass.' : i21 ? 'Mit Fullback wird meist gelaufen.' : 'Aus der Shotgun kommt öfter ein Pass.';
-      const head = `<div class="g-look"><small>Du siehst</small><b>${i21 ? 'I-Formation mit Fullback' : 'Shotgun, 3 Wide Receiver'}</b><span>${ordinal(st.down)} &amp; ${st.toGo} für ${esc(oppTeam(R.week).name)}.</span>${G.showTip ? `<em>💡 ${tip}</em>` : tipBtn}</div>`;
+      const head = `<div class="g-look"><small>Du siehst</small><b>${formTxt(pd.o)}</b><span>${ordinal(st.down)} &amp; ${st.toGo} für ${esc(oppTeam(R.week).name)}.</span>${G.showTip ? `<em>💡 ${tip}</em>` : tipBtn}</div>`;
       const body = !G.sub ? `<p class="g-q">Was tust du?</p><div class="g-cats">
         <button class="g-cat" data-d="box"><b>🧱 Lauf stoppen</b><span>8 in die Box</span></button>
         <button class="g-cat" data-cat="cover"><b>🕸️ Pass verteidigen</b><span>Mann oder Raum</span></button>
-        <button class="g-cat" data-d="blitz"><b>⚡ Blitz</b><span>6 auf den QB</span></button></div>`
-        : `<p class="g-q">Welche Deckung? <button class="g-back" data-act="back">← zurück</button></p><div class="g-calls">${['c2', 'man'].map(k => `<button class="g-call" data-d="${k}"><b>${DCALLS[k].icon} ${DCALLS[k].name}</b><span>${DCALLS[k].short}</span></button>`).join('')}</div>`;
+        <button class="g-cat" data-cat="blitzes"><b>⚡ Blitz</b><span>Mehr Leute auf den QB</span></button></div>`
+        : `<p class="g-q">${G.sub === 'blitzes' ? 'Welcher Blitz?' : 'Welche Deckung?'} <button class="g-back" data-act="back">← zurück</button></p><div class="g-calls">${(G.sub === 'blitzes' ? ['blitz', 'c0', 'fire'] : ['c2', 'c3', 'c4', 'man', 'press']).filter(k => DCALLS[k]).map(k => `<button class="g-call" data-d="${k}"><b>${DCALLS[k].icon} ${DCALLS[k].name}</b><span>${DCALLS[k].short}</span></button>`).join('')}</div>`;
       p.innerHTML = `${last}${head}${body}`;
     }
   }
@@ -627,7 +636,7 @@
     let res, end = null;
     if (sim.type === 'int' || sim.type === 'fumble') { res = sim.type === 'int' ? 'Interception!' : 'Fumble!'; end = 'Ballverlust!'; }
     else if (sim.safety) { if (meOff) G.them += 2; else G.us += 2; res = 'Safety!'; end = 'Safety!'; }
-    else if (sim.td) { if (meOff) G.us += 7; else G.them += 7; res = `Touchdown! (${sim.yards} Yards)`; end = meOff ? 'Touchdown! 🏈' : 'Touchdown für den Gegner.'; }
+    else if (sim.td) { if (meOff) G.us += 6; else { const k = rnd() < 0.94; G.them += 6 + (k ? 1 : 0); res = `Touchdown! (${sim.yards} Yards) · Extrapunkt ${k ? 'drin' : 'daneben'}`; } if (meOff) res = `Touchdown! (${sim.yards} Yards, +6)`; end = meOff ? 'pat' : 'Touchdown für den Gegner.'; }
     else {
       const y = sim.type === 'inc' ? 0 : sim.yards;
       res = sim.type === 'inc' ? 'Incomplete' : sim.type === 'sack' ? `Sack, ${y} Yards` : (y >= 0 ? `+${y} Yards` : `${y} Yards`);
@@ -656,8 +665,16 @@
     setPlaying(false);
     G.log.unshift({ t: `<span class="dd">${ordinal(before.down)} & ${before.toGo}</span> ${esc(asDef ? DCALLS[d].name + ' vs ' + OPLAYS[o].name : OPLAYS[o].name + ' vs ' + DCALLS[d].name)} → ${res}` });
     G.pending = null; G.sub = null; G.showTip = false;
-    if (end) { G.phase = 'over'; G.overMsg = end; } else G.phase = 'call';
+    if (end === 'pat') { G.phase = 'pat'; } else if (end) { G.phase = 'over'; G.overMsg = end; } else G.phase = 'call';
     paint();
+  }
+  function pat(kind) {
+    const G = R.G, two = kind === 'two', ok = rnd() < (two ? 0.48 : 0.94);
+    if (ok) G.us += two ? 2 : 1;
+    AU(ok ? (two ? 'firstdown' : 'fieldgoal') : 'miss');
+    const txt = two ? (ok ? '2-Point Conversion geschafft! +2' : '2-Point Conversion gescheitert.') : (ok ? 'Extrapunkt drin! +1' : 'Extrapunkt daneben.');
+    G.log.unshift({ t: `🏈 ${txt}` });
+    G.phase = 'over'; G.overMsg = `Touchdown! 🏈 ${txt}`; paint();
   }
   function endGame() {
     const G = R.G; G.phase = 'end';
@@ -739,6 +756,7 @@
     else if (a === 'back' && R.G) { R.G.sub = null; panel(); }
     else if (a === 'tip' && R.G) { R.G.showTip = true; panel(); }
     else if (t.dataset.fourth) fourth(t.dataset.fourth);
+    else if (t.dataset.pat && R.G && R.G.phase === 'pat') pat(t.dataset.pat);
     else if (t.dataset.up && S.points > 0) { S.ratings[t.dataset.up] = Math.min(99, S.ratings[t.dataset.up] + 3); S.points--; save(); AU('right'); renderHub(); }
     else if (t.id === 'cHelp') { S.help = t.checked ? true : null; save(); }
     else if (a === 'reset') { if (confirmReset()) { S = null; try { localStorage.removeItem(KEY); } catch (er) {} go('start'); } }
