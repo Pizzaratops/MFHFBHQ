@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-27T10:03:25.828Z",
+  "generatedAt": "2026-11-27T12:03:30.255Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -823,7 +823,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Colston Loveland",
@@ -1088,7 +1088,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Colston Loveland",
@@ -1640,7 +1640,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 5.2,
-          "projPoints": 11.1
+          "projPoints": 11.2
         },
         {
           "name": "Woody Marks",
@@ -2104,7 +2104,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 9.4,
-          "projPoints": 6.8
+          "projPoints": 6.9
         },
         {
           "name": "Patrick Mahomes",
@@ -2492,7 +2492,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 5.2,
-          "projPoints": 11.1
+          "projPoints": 11.2
         },
         {
           "name": "Pat Bryant",
@@ -3587,7 +3587,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Caleb Douglas",
@@ -3919,7 +3919,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Tyler Shough",
@@ -4261,7 +4261,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.6,
           "last3AvgPoints": 7,
-          "projPoints": 12.5
+          "projPoints": 12.4
         },
         {
           "name": "Malik Willis",
