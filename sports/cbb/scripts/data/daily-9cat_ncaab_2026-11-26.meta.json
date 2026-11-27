@@ -2,12 +2,13 @@
   "league": "ncaab",
   "date": "2026-11-26",
   "games": [
-    "Louisville Cardinals @ St. John's Red Storm (12:45 - 2nd)",
-    "Alabama Crimson Tide @ Kansas State Wildcats (12:58 - 2nd)",
+    "Pacific Tigers @ Omaha Mavericks (4:35 - 2nd)",
     "UCLA Bruins 70 @ Saint Mary's Gaels 85 (Final)",
     "Georgetown Hoyas 83 @ Texas Longhorns 92 (Final)",
     "Tennessee Volunteers 75 @ Iowa State Cyclones 64 (Final)",
     "Arkansas Razorbacks 67 @ Michigan State Spartans 70 (Final)",
+    "Louisville Cardinals 93 @ St. John's Red Storm 90 (Final)",
+    "Alabama Crimson Tide 104 @ Kansas State Wildcats 91 (Final)",
     "Miami Hurricanes 97 @ Michigan Wolverines 70 (Final)",
     "USC Trojans 74 @ Utah State Aggies 78 (Final)",
     "LSU Tigers 95 @ SMU Mustangs 86 (Final/OT)",
@@ -20,12 +21,11 @@
     "TCU Horned Frogs 87 @ Creighton Bluejays 95 (Final)",
     "DePaul Blue Demons 64 @ Pittsburgh Panthers 71 (Final)",
     "UC Davis Aggies 68 @ Jacksonville State Gamecocks 63 (Final)",
-    "Pacific Tigers @ Omaha Mavericks (15:37 - 1st)",
-    "Texas Tech Red Raiders @ Oregon Ducks (11/26 - 11:30 PM EST)",
-    "Baylor Bears @ Gonzaga Bulldogs (11/26 - 11:30 PM EST)"
+    "Baylor Bears @ Gonzaga Bulldogs (14:48 - 1st)",
+    "Texas Tech Red Raiders @ Oregon Ducks (17:19 - 1st)"
   ],
   "leagueAvg": {
-    "fg": 44.8,
-    "ft": 74.7
+    "fg": 44.6,
+    "ft": 75.6
   }
 }
