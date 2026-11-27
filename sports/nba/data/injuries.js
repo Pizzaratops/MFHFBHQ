@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T19:37:11.301Z",
+  "updated": "2026-11-27T20:15:32.997Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -64,7 +64,7 @@ const NBA_INJURIES = {
     "Kelly Oubre Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Hand",0,"2026-11-27"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
-    "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-30","Knee",0,"2026-11-27"],
+    "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-27"],
     "LaMelo Ball": ["MIN","Out","OUT","2026-11-29","Ankle",0,"2026-11-27"],
     "Larry Nance Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-27"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
@@ -72,7 +72,7 @@ const NBA_INJURIES = {
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
     "Miles McBride": ["NY","Out","OUT","2026-11-29","Groin",0,"2026-11-27"],
     "Mitchell Robinson": ["BOS","Out","OUT","2026-11-29","Illness",0,"2026-11-27"],
-    "Mo Bamba": ["UTAH","Day-To-Day","GTD","2026-11-29","Illness",0,"2026-11-27"],
+    "Mo Bamba": ["UTAH","Day-To-Day","GTD","2026-11-27","Illness",0,"2026-11-27"],
     "Moritz Wagner": ["BKN","Out","OUT","2026-11-28","Knee",0,"2026-11-26"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
