@@ -1,10 +1,9 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T23:01:00.877Z",
+  "updated": "2026-11-27T23:23:17.091Z",
   "players": {
-    "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
-    "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
+    "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-24"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
     "Anthony Black": ["ORL","Day-To-Day","GTD","2026-11-28","Back",0,"2026-11-27"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
@@ -45,7 +44,7 @@ const NBA_INJURIES = {
     "Jaren Jackson Jr.": ["UTAH","Out","OUT","2026-12-14","Knee",0,"2026-10-27"],
     "Jaxson Hayes": ["UTAH","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-27"],
     "Jayden Quaintance": ["SA","Out","OUT","2026-12-03","Knee",0,"2026-10-05"],
-    "Jaylen Brown": ["PHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-26"],
+    "Jaylen Brown": ["PHI","Out","OUT","2026-12-01","Hamstring",0,"2026-11-26"],
     "Jaylen Clark": ["MIN","Out","OUT","2026-11-29","Hamstring",0,"2026-11-15"],
     "Jaylin Williams": ["OKC","Out","OUT","2026-11-28","Back",0,"2026-11-24"],
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
@@ -61,7 +60,6 @@ const NBA_INJURIES = {
     "Karl-Anthony Towns": ["NY","Day-To-Day","GTD","2026-11-27","Abdomen",0,"2026-11-27"],
     "Kasparas Jakucionis": ["MIL","Out","OUT","2026-11-28","Ankle",0,"2026-11-27"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
-    "Kelly Oubre Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Hand",0,"2026-11-27"],
     "Kevin Porter Jr.": ["ORL","Out","OUT","2026-11-29","Not Injury Related",0,"2026-11-27"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
@@ -79,7 +77,7 @@ const NBA_INJURIES = {
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
     "Nate Bittle": ["TOR","Out","OUT","2026-11-27","Foot",0,"2026-11-22"],
-    "Nikola Topic": ["OKC","Out","GTD","2026-11-28","Hip",0,"2026-11-24"],
+    "Nikola Topic": ["OKC","Out","OUT","2026-12-13","Hip",0,"2026-11-24"],
     "Noa Essengue": ["CHI","Day-To-Day","GTD","2026-11-28","Thumb",0,"2026-11-27"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
