@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T16:01:08.079Z",
+  "updated": "2026-11-27T16:55:42.487Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -52,7 +52,7 @@ const NBA_INJURIES = {
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-29","Hip",0,"2026-11-26"],
-    "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-27","Illness",0,"2026-11-26"],
+    "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-27","Illness",0,"2026-11-27"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","GTD","2026-11-27","Foot",0,"2026-11-26"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
@@ -70,6 +70,7 @@ const NBA_INJURIES = {
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
     "Miles McBride": ["NY","Day-To-Day","GTD","2026-11-27","Groin",0,"2026-11-26"],
     "Mitchell Robinson": ["BOS","Out","GTD","2026-11-27","Illness",0,"2026-11-26"],
+    "Mo Bamba": ["UTAH","Day-To-Day","GTD","2026-11-29","Illness",0,"2026-11-27"],
     "Moritz Wagner": ["BKN","Out","OUT","2026-11-28","Knee",0,"2026-11-26"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
@@ -97,7 +98,7 @@ const NBA_INJURIES = {
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Trendon Watford": ["NO","Out","GTD","2026-11-27","Ankle",0,"2026-11-26"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
-    "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-24"],
+    "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-27"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-26"],
     "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-29","Knee",0,"2026-11-26"]
