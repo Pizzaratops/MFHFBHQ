@@ -7261,7 +7261,7 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920542",
-      line: "TCU Horned Frogs @ TBD (11/27 - 3:00 PM EST)",
+      line: "TCU Horned Frogs @ Baylor Bears (11/27 - 3:00 PM EST)",
       completed: false,
       statusText: "11/27 - 3:00 PM EST",
       away: {
@@ -7271,7 +7271,7 @@ const LIVESCORES_BOXSCORES = {
         ]
       },
       home: {
-        abbr: "TBD", name: "TBD", score: null,
+        abbr: "Baylor", name: "Baylor Bears", score: null,
         players: [
 
         ]
@@ -7333,11 +7333,11 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920532",
-      line: "TBD @ Maryland Terrapins (11/27 - 3:30 PM EST)",
+      line: "Oregon Ducks @ Maryland Terrapins (11/27 - 3:30 PM EST)",
       completed: false,
       statusText: "11/27 - 3:30 PM EST",
       away: {
-        abbr: "TBD", name: "TBD", score: null,
+        abbr: "Oreg", name: "Oregon Ducks", score: null,
         players: [
 
         ]
@@ -7801,7 +7801,7 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920544",
-      line: "Creighton Bluejays @ TBD (11/27 - 11:00 PM EST)",
+      line: "Creighton Bluejays @ Gonzaga Bulldogs (11/27 - 11:00 PM EST)",
       completed: false,
       statusText: "11/27 - 11:00 PM EST",
       away: {
@@ -7811,7 +7811,7 @@ const LIVESCORES_BOXSCORES = {
         ]
       },
       home: {
-        abbr: "TBD", name: "TBD", score: null,
+        abbr: "Gonz", name: "Gonzaga Bulldogs", score: null,
         players: [
 
         ]
@@ -7819,11 +7819,11 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920535",
-      line: "TBD @ San Diego State Aztecs (11/27 - 11:30 PM EST)",
+      line: "Texas Tech Red Raiders @ San Diego State Aztecs (11/27 - 11:30 PM EST)",
       completed: false,
       statusText: "11/27 - 11:30 PM EST",
       away: {
-        abbr: "TBD", name: "TBD", score: null,
+        abbr: "TxTch", name: "Texas Tech Red Raiders", score: null,
         players: [
 
         ]
