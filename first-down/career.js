@@ -166,7 +166,7 @@
     V.stop = () => { cancelAnimationFrame(V.raf); V.raf = 0; };
     V.play = (sim, ctx, from, stopT, done) => {
       V.stop(); if (!from) { V.pv.reset(); V.tv.reset(); V.label.hidden = true; }
-      let fi = from || 0, last = 0, acc = 0, labeled = !!from && sim.frames[fi].t >= sim.labelAt;
+      let fi = from || 0, last = 0, acc = (!from && sim.routes && ctx.routes !== false) ? -1.1 : 0, labeled = !!from && sim.frames[fi].t >= sim.labelAt;
       const step = ts => {
         if (!last) last = ts; acc += (ts - last) / 1000 * speed; last = ts;
         while (acc >= sim.dt && fi < sim.frames.length - 1) { if (stopT != null && sim.frames[fi + 1].t > stopT) break; fi++; acc -= sim.dt; }
@@ -246,7 +246,7 @@
       b.className = 'c-pick' + (ro.kind === 'run' ? ' lane' : '');
       b.dataset.oid = o.id;
       b.style.left = clamp(fx * 100, 4, 96) + '%'; b.style.top = clamp(fy * 100, 6, 94) + '%';
-      b.innerHTML = ro.kind === 'run' ? `<span>${o.name}</span>` : `<span>${o.lab}</span>`;
+      b.innerHTML = ro.kind === 'run' ? `<span>${o.name}</span>` : `<span>${o.lab.split(' ')[0]}</span>`;
       b.addEventListener('click', ev => { ev.stopPropagation(); finish(o); });
       V.ovl.appendChild(b); return b;
     });
@@ -391,6 +391,7 @@
       const ro = scoreRead(readOptions(dr.o, dr.d, seed), st);
       const pre = buildSim(dr.o, dr.d, OPLAYS[dr.o].kind === 'run' ? { type: 'run', yards: 0 } : { type: 'inc' }, st.yl, { seed });
       $('#cAsk').innerHTML = '<button class="fd-btn fd-play" data-act="snap">🏈 Snap!</button>';
+      R.V.draw(pre, 0, ctx);
       R.onSnap = () => {
         $('#cAsk').innerHTML = '<p class="muted">Schau genau hin …</p>';
         setPlaying(true);

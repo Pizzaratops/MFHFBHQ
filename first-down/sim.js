@@ -28,6 +28,20 @@
     });
     return { start, segs, end: t, last: cur };
   }
+  // Routen-Namen aus der Form des Wegs (für die Anzeige im Feld)
+  const ROUTE_KIDS = { SLANT: 'SCHRAEG', OUT: 'RAUS', IN: 'REIN', DIG: 'REIN', DRAG: 'QUER', POST: 'TIEF', CORNER: 'ECKE', GO: 'GANZ WEIT', SEAM: 'GANZ WEIT', HITCH: 'STOPP', COMEBACK: 'STOPP', FLAT: 'ZUR SEITE', WHEEL: 'BOGEN', LAUF: 'LAUF', 'LEAD-BLOCK': 'BLOCK' };
+  function routeName(start, path, lab) {
+    if (!path || !path.length) return null;
+    const pts = [[0, 0]].concat(path.map(w => [w[0], w[1]]));
+    const end = pts[pts.length - 1], D = Math.max(...pts.map(q => q[1]));
+    const a = pts[pts.length - 2], dx = end[0] - a[0], dd = end[1] - a[1];
+    const inward = Math.sign(26.65 - start[0]) * dx > 0;
+    if (D <= 2 && Math.abs(end[0]) > 2) return 'FLAT';
+    if (dd < -0.3) return D > 10 ? 'COMEBACK' : 'HITCH';
+    if (Math.abs(dd) < 0.6 * Math.abs(dx)) return inward ? (D < 4 ? 'DRAG' : D < 9 ? 'IN' : 'DIG') : 'OUT';
+    if (Math.abs(dx) > 0.35 * Math.abs(dd)) return inward ? (D < 10 ? 'SLANT' : 'POST') : (D > 8 ? 'CORNER' : 'OUT');
+    return D > 10 ? (lab === 'TE' || Math.abs(start[0] - 26.65) < 16 ? 'SEAM' : 'GO') : 'HITCH';
+  }
   function tpos(tr, t) {
     if (!tr || !tr.segs.length || t <= tr.segs[0].t0) return tr ? tr.start : [0, 0];
     for (const s of tr.segs) if (t <= s.t1) return lerp(s.a, s.b, (t - s.t0) / (s.t1 - s.t0 || 1));
@@ -178,8 +192,23 @@
   function buildSim(oKey, dKey, dec, yl, opts) {
     opts = opts || {};
     const { O, dg, A, byId, sPos, defPre, pk, hand, pass } = setup(oKey, dKey, opts.seed);
+    // Geplante Wege der Angreifer (ohne Line und QB) für die Routen-Anzeige
+    const routes = [];
+    A.forEach(a => {
+      if (a.side !== 'off' || !a.tr || !a.tr.segs.length) return;
+      const spec = dg.paths && dg.paths[a.id];
+      if (['T', 'G', 'C', 'QB'].indexOf(a.lab) >= 0) return;
+      const isRun = O.kind === 'run';
+      let name = spec && spec.block ? (a.lab === 'FB' ? 'LEAD-BLOCK' : null) : (isRun && (a.lab === 'HB')) ? 'LAUF' : routeName(a.start, spec && spec.path, a.lab);
+      if (isRun && a.lab !== 'HB' && a.lab !== 'FB') return;
+      if (!name && spec && spec.block) return;
+      const tEnd = Math.min(a.tr.end, 4.5), pts = [];
+      for (let t = 0; t <= tEnd + 1e-6; t += 0.08) pts.push(tpos(a.tr, t));
+      pts.push(tpos(a.tr, tEnd));
+      routes.push({ id: a.id, name, pts });
+    });
     const toGoal = 100 - yl;
-    const R = { yards: 0, label: '', td: false, turnover: false, safety: false, type: dec.type, labelAt: 0, pc: dec.pc, why: dec.why };
+    const R = { yards: 0, label: '', td: false, turnover: false, safety: false, type: dec.type, labelAt: 0, pc: dec.pc, why: dec.why, routes, play: O.name, tRoutes: pass ? pass[2] + 0.6 : hand ? hand[2] + 1.2 : 2 };
 
     let cM = null, tCM = 0;
     let carrier = null, cS = null, cE = null, tC0 = 0, tC1 = 0, tReact = 1e9, noTackle = false;
@@ -432,11 +461,29 @@
     for (let x = 0; x < W; x += 64) { g.fillStyle = x % 128 ? '#e84a0c' : '#13294b'; g.fillRect(x + 2, by + 1, 60, 4); g.fillStyle = 'rgba(255,255,255,.55)'; for (let k = 8; k < 56; k += 6) g.fillRect(x + k, by + 2, 3, 2); }
     return cv;
   }
+  function routeAlpha(sim, t) {
+    if (!sim.routes || sim.tRoutes == null) return 0;
+    return t <= sim.tRoutes ? 0.9 : Math.max(0, 0.9 - (t - sim.tRoutes) * 1.8);
+  }
   function PixelView(canvas) {
     const g = canvas.getContext('2d');
     canvas.width = PW; canvas.height = PH;
     g.imageSmoothingEnabled = false;
     let cam = 30, camX = 26.65, lsc = LS, fieldCv = null, fieldKey = '';
+    // Scharfe Schrift-Ebene über dem Pixelbild (Routen-Namen, Play-Name, Laufrichtung)
+    const HK = 4, hud = document.createElement('canvas'); hud.className = 'fd-hud'; hud.width = PW * HK; hud.height = PH * HK;
+    if (canvas.parentNode) canvas.parentNode.insertBefore(hud, canvas.nextSibling);
+    const h = hud.getContext('2d');
+    const tag = (txt, x, y, opt) => {
+      opt = opt || {}; const fs = (opt.size || 5) * HK;
+      h.font = `${fs}px "Press Start 2P", monospace`; h.textBaseline = 'middle';
+      const tw = h.measureText(txt).width, pad = fs * 0.45, bw = tw + pad * 2, bh = fs + pad * 1.6;
+      let bx = opt.align === 'left' ? x * HK : x * HK - bw / 2; bx = clamp(bx, 4, hud.width - bw - 4);
+      const by = clamp(y * HK - bh / 2, 4, hud.height - bh - 4);
+      h.fillStyle = opt.bg || 'rgba(10,14,30,.82)'; h.fillRect(bx, by, bw, bh);
+      if (opt.bar) { h.fillStyle = opt.bar; h.fillRect(bx, by, fs * 0.3, bh); }
+      h.fillStyle = opt.color || '#fff'; h.textAlign = 'left'; h.fillText(txt, bx + pad + (opt.bar ? fs * 0.2 : 0), by + bh / 2 + fs * 0.06);
+    };
     const crowd = crowdCanvas();
     const scan = document.createElement('canvas'); scan.width = PW; scan.height = PH;
     (function () { const s = scan.getContext('2d'); s.fillStyle = 'rgba(0,0,0,.07)'; for (let y = 0; y < PH; y += 2) s.fillRect(0, y, PW, 1); const v = s.createRadialGradient(PW / 2, PH / 2, PH * 0.45, PW / 2, PH / 2, PH * 0.95); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)'); s.fillStyle = v; s.fillRect(0, 0, PW, PH); })();
@@ -472,6 +519,23 @@
       g.fillStyle = 'rgba(80,140,255,.85)'; g.fillRect(sx(yl) - 1, yTop, 2, yBot - yTop);
       if (ctx.toGo && yl + ctx.toGo < 100) { g.fillStyle = 'rgba(255,225,40,.9)'; g.fillRect(sx(yl + ctx.toGo) - 1, yTop, 2, yBot - yTop); }
       g.save(); g.beginPath(); g.rect(0, FT - 14, PW, PH - FT + 14); g.clip();
+      // Routen (gestrichelt, mit Pfeilspitze und Namen), blenden nach dem Wurf/Handoff aus
+      const ra = routeAlpha(sim, fr.t), hudTags = [];
+      if (ra > 0 && sim.routes && ctx.routes !== false) {
+        g.globalAlpha = ra;
+        sim.routes.forEach(rt => {
+          const P = rt.pts.map(q => [sx(yl + q[1]), sy(q[0]) - 4]);
+          g.fillStyle = 'rgba(255,255,255,.85)';
+          g.fillStyle = 'rgba(0,0,0,.35)';
+          for (let k = 0; k < P.length; k += 2) g.fillRect(P[k][0] - 1, P[k][1], 3, 3);
+          g.fillStyle = 'rgba(255,255,255,.95)';
+          for (let k = 0; k < P.length; k += 2) g.fillRect(P[k][0] - 1, P[k][1] - 1, 2, 2);
+          const e = P[P.length - 1], b = P[Math.max(0, P.length - 4)], ang = Math.atan2(e[1] - b[1], e[0] - b[0]);
+          g.beginPath(); g.moveTo(e[0] + Math.cos(ang) * 4, e[1] + Math.sin(ang) * 4); g.lineTo(e[0] + Math.cos(ang + 2.4) * 4, e[1] + Math.sin(ang + 2.4) * 4); g.lineTo(e[0] + Math.cos(ang - 2.4) * 4, e[1] + Math.sin(ang - 2.4) * 4); g.closePath(); g.fill();
+          if (rt.name && fr.t < sim.tRoutes - 0.75) hudTags.push([ctx.kids ? (ROUTE_KIDS[rt.name] || rt.name) : rt.name, e[0], clamp(e[1] - 7, FT + 5, FB - 4)]);
+        });
+        g.globalAlpha = 1;
+      }
       // Spieler
       const prev = sim.frames[Math.max(0, fi - 2)];
       const list = sim.actors.map(a => ({ a, p: fr.P[a.id] })).sort((m, n) => m.p[0] - n.p[0]);
@@ -512,6 +576,17 @@
       }
       g.restore();
       g.drawImage(scan, 0, 0);
+      // HUD: Laufrichtung immer, Play-Name und Routen-Namen bis kurz nach dem Wurf
+      h.clearRect(0, 0, hud.width, hud.height);
+      h.globalAlpha = 1;
+      tag(ctx.kids ? 'HIER LANG ANGREIFEN ►►' : 'ANGRIFFSRICHTUNG ►►', PW - 4, FT - 9, { size: 5, align: 'left', bg: 'rgba(10,14,30,.75)', color: '#fff', bar: ctx.offTeam.jersey });
+      if (ra > 0 && ctx.routes !== false) {
+        h.globalAlpha = ra;
+        const pn = ctx.playName || sim.play;
+        if (pn) tag(pn.toUpperCase(), 4, FT + 9, { size: 6, align: 'left', bar: '#ffd84d' });
+        hudTags.forEach(([txt, x, y]) => tag(txt, x, y, { size: 4.5, color: '#ffe680' }));
+        h.globalAlpha = 1;
+      }
     }
     const project = (p, ctx) => [sx(ctx.yl + p[1]) / PW, (sy(p[0]) - 10) / PH];
     return { draw, project, reset: () => { cam = 30; camX = 26.65; lsc = LS; } };
@@ -546,6 +621,23 @@
       g.lineWidth = 3;
       g.strokeStyle = '#3b82f6'; g.beginPath(); g.moveTo(0, Y(0)); g.lineTo(canvas.width, Y(0)); g.stroke();
       if (ctx.toGo && yl + ctx.toGo < 100) { g.strokeStyle = '#facc15'; g.beginPath(); g.moveTo(0, Y(ctx.toGo)); g.lineTo(canvas.width, Y(ctx.toGo)); g.stroke(); }
+      const ra = routeAlpha(sim, fr.t);
+      if (ra > 0 && sim.routes && ctx.routes !== false) {
+        g.globalAlpha = ra; g.strokeStyle = '#ffffff'; g.fillStyle = '#ffffff'; g.lineWidth = 2; g.setLineDash([6, 5]);
+        sim.routes.forEach(rt => {
+          const P = rt.pts.map(q => [q[0] * S, Y(q[1])]);
+          g.beginPath(); P.forEach(([x, y], k) => k ? g.lineTo(x, y) : g.moveTo(x, y)); g.stroke();
+          const e = P[P.length - 1], b = P[Math.max(0, P.length - 4)], ang = Math.atan2(e[1] - b[1], e[0] - b[0]);
+          g.setLineDash([]); g.beginPath(); g.moveTo(e[0] + Math.cos(ang) * 8, e[1] + Math.sin(ang) * 8); g.lineTo(e[0] + Math.cos(ang + 2.5) * 7, e[1] + Math.sin(ang + 2.5) * 7); g.lineTo(e[0] + Math.cos(ang - 2.5) * 7, e[1] + Math.sin(ang - 2.5) * 7); g.closePath(); g.fill(); g.setLineDash([6, 5]);
+          if (rt.name) { const txt = ctx.kids ? (ROUTE_KIDS[rt.name] || rt.name) : rt.name; g.font = '800 12px "Barlow Condensed", sans-serif'; g.textAlign = 'center'; const tw = g.measureText(txt).width; const lx = clamp(e[0], tw / 2 + 4, canvas.width - tw / 2 - 4), ly = e[1] - 12; g.fillStyle = 'rgba(10,14,30,.75)'; g.fillRect(lx - tw / 2 - 3, ly - 11, tw + 6, 15); g.fillStyle = '#ffe680'; g.fillText(txt, lx, ly); g.fillStyle = '#ffffff'; }
+        });
+        g.setLineDash([]); g.globalAlpha = 1;
+      }
+      // Laufrichtung: Offense spielt nach oben
+      g.font = '800 13px "Barlow Condensed", sans-serif'; g.textAlign = 'left';
+      { const txt = ctx.kids ? '▲ IN DIESE RICHTUNG ANGREIFEN' : '▲ ANGRIFFSRICHTUNG'; const tw = g.measureText(txt).width; g.fillStyle = 'rgba(10,14,30,.65)'; g.fillRect(6, 6, tw + 12, 20); g.fillStyle = '#fff'; g.fillText(txt, 12, 21); }
+      { const pn = ctx.playName || sim.play; if (pn && ra > 0 && ctx.routes !== false) { g.globalAlpha = ra; g.textAlign = 'right'; const tw = g.measureText(pn.toUpperCase()).width; g.fillStyle = 'rgba(10,14,30,.8)'; g.fillRect(canvas.width - tw - 18, 6, tw + 12, 20); g.fillStyle = '#ffd84d'; g.fillText(pn.toUpperCase(), canvas.width - 12, 21); g.globalAlpha = 1; } }
+      g.textAlign = 'center';
       sim.actors.forEach(a => {
         const p = fr.P[a.id];
         const x = p[0] * S, y = Y(p[1]);
@@ -566,7 +658,7 @@
   // Statische Szene (für Quiz-Bilder): Aufstellung ohne Bewegung
   function staticSim(oKey, dKey) {
     const s = buildSim(oKey, dKey, OPLAYS[oKey].kind === 'run' ? { type: 'run', yards: 3 } : { type: 'inc' }, 25);
-    return Object.assign({}, s, { frames: [s.frames[0]] });
+    return Object.assign({}, s, { frames: [s.frames[0]], routes: null, play: null });
   }
 
   window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView };

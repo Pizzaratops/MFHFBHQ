@@ -89,7 +89,7 @@
     v.stop = () => { cancelAnimationFrame(v.raf); };
     v.play = (sim, ctx, from, stopT, done) => {
       v.stop(); if (!from) { v.pv.reset(); v.tv.reset(); v.label.hidden = true; }
-      let fi = from || 0, last = 0, acc = 0, labeled = !!from && sim.frames[fi].t >= sim.labelAt;
+      let fi = from || 0, last = 0, acc = (!from && sim.routes && ctx.routes !== false) ? -1.6 : 0, labeled = !!from && sim.frames[fi].t >= sim.labelAt;
       const step = ts => {
         if (!last) last = ts; acc += (ts - last) / 1000 * 0.85; last = ts;
         while (acc >= sim.dt && fi < sim.frames.length - 1) { if (stopT != null && sim.frames[fi + 1].t > stopT) break; fi++; acc -= sim.dt; }
@@ -214,7 +214,7 @@
   }
   function playDemo(c) {
     const cv = $('#kDemo'); if (!cv) return;
-    const tv = TopView(cv), ctx = { yl: (c.demo && c.demo.yl) || 30, toGo: 10, offTeam: myTeam(), defTeam: KIDS_TEAMS.wuermer };
+    const tv = TopView(cv), ctx = { yl: (c.demo && c.demo.yl) || 30, toGo: 10, offTeam: myTeam(), defTeam: KIDS_TEAMS.wuermer, kids: true };
     if (!c.demo) { tv.draw(staticSim('iz', 'c2'), 0, ctx); return; }
     const dm = c.demo, ro = readOptions(dm.o, dm.d, 7), opts = { seed: 7 };
     if (dm.target && ro) opts.target = ro.best;
@@ -240,7 +240,7 @@
         <button class="k-big" data-act="togame">Anpfiff! 📣</button></section>`;
       return;
     }
-    const dr = l.drills[R.di], ctx = { yl: 30, toGo: 10, offTeam: myTeam(), defTeam: KIDS_TEAMS[l.opp] }, seed = Math.floor(rnd() * 1e9);
+    const dr = l.drills[R.di], ctx = { yl: 30, toGo: 10, offTeam: myTeam(), defTeam: KIDS_TEAMS[l.opp], kids: true, playName: kidPlay(dr.o) }, seed = Math.floor(rnd() * 1e9);
     app.innerHTML = `<section class="c-play"><div class="c-crumb"><a href="#" data-act="hub">← Zurück</a> · Level ${l.n} · Training ${R.di + 1}/3</div>
       <div class="g-grid c-grid"><div>${viewerHTML()}</div><div class="k-card" id="kPanel">${bruno(OPLAYS[dr.o].kind === 'run' ? 'Wir laufen! Nach dem Start bleibt das Bild stehen. Tipp auf die Lücke, wo am wenigsten Verteidiger stehen!' : 'Wir werfen! Nach dem Start bleibt das Bild stehen. Such den Fänger mit viel Platz, am besten einen, der schon weit vorne ist!', 'happy')}<button class="k-big" data-act="ksnap">🏈 Start!</button></div></div></section>`;
     V = makeViewer();
@@ -285,7 +285,8 @@
       <div class="sb-mid">${G.phase === 'end' ? 'ENDE' : `${st.down}. VERSUCH · NOCH ${st.toGo}<small>ANGRIFF ${G.drive}/3 · ZIEL ${100 - st.yl} YARDS</small>`}</div>`;
     panel();
   }
-  const ctxNow = () => ({ yl: R.G.st.yl, toGo: R.G.st.toGo, offTeam: myTeam(), defTeam: KIDS_TEAMS[KIDS_LEVELS[R.n - 1].opp] });
+  const kidPlay = o => { for (const k in KIDS_CALLS) if (KIDS_CALLS[k].sub[o]) return KIDS_CALLS[k].label.replace(/^\S+\s/, '') + ': ' + KIDS_CALLS[k].sub[o]; return OPLAYS[o].name; };
+  const ctxNow = o => ({ yl: R.G.st.yl, toGo: R.G.st.toGo, offTeam: myTeam(), defTeam: KIDS_TEAMS[KIDS_LEVELS[R.n - 1].opp], kids: true, playName: o ? kidPlay(o) : null });
   function panel() {
     const G = R.G, p = $('#kPanel'), st = G.st, l = KIDS_LEVELS[R.n - 1];
     if (G.phase === 'over') { p.innerHTML = `${G.fb}${bruno(G.overMsg, 'wow')}<button class="k-big" data-act="knextdrive">${G.drive < 3 ? 'Nächster Angriff →' : 'Zum Ergebnis 🏆'}</button>`; return; }
@@ -305,7 +306,7 @@
     p.innerHTML = head + body;
   }
   function play(o) {
-    const G = R.G, st = G.st, d = G.pend.d, seed = G.pend.seed, ctx = ctxNow();
+    const G = R.G, st = G.st, d = G.pend.d, seed = G.pend.seed, ctx = ctxNow(o);
     G.phase = 'anim'; panel(); AU('snap'); setPlaying(true);
     const after = (sim, ro, pick) => apply(o, d, sim, ro, pick);
     if (sackRoll(o, d)) { const s = buildSim(o, d, { type: 'sack' }, st.yl, { seed }); V.play(s, ctx, 0, null, () => after(s)); return; }
@@ -325,7 +326,7 @@
     R.replay = null;
     if (ro && pick) {
       const ok = goodRead(ro, pick); G.tot++; if (ok) G.good++; fb += `<br>${ok ? '✅' : '🤔'} ${kidFeedback(ro, pick, st)}`;
-      if (!ok) { const ctx = ctxNow(), yl = st.yl, seed = G.pend.seed; R.replay = () => { const prev = G.phase; G.phase = 'replay'; replayBest(ro, ctx, o, d, yl, seed, () => { G.phase = prev; }); }; }
+      if (!ok) { const ctx = ctxNow(o), yl = st.yl, seed = G.pend.seed; R.replay = () => { const prev = G.phase; G.phase = 'replay'; replayBest(ro, ctx, o, d, yl, seed, () => { G.phase = prev; }); }; }
     }
     const extra = kidExtra(ro, pick, sim);
     setPlaying(false);
