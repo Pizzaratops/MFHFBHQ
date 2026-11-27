@@ -372,6 +372,13 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .lg-explain { display: flex; flex-direction: column; gap: 10px; }
 .lg-det summary { cursor: pointer; padding: 12px 16px; font-weight: 800; font-size: 15px; }
 .lg-det[open] summary { border-bottom: 1px solid var(--border); }
+.lg-rules { margin-bottom: 18px; }
+.lg-rule h3 { font-size: 13px; font-weight: 800; margin: 12px 0 6px; }
+.lg-rule ul + p, .lg-rule p + ul, .lg-rule table + p, .lg-rule p + table, .lg-rule ul + table { margin-top: 8px; }
+.lg-rule table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 6px 0 10px; }
+.lg-rule th, .lg-rule td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.lg-rule th { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.lg-rule blockquote { margin: 10px 0; padding: 8px 12px; border-left: 4px solid var(--league-accent); background: var(--surface2); border-radius: 6px; }
 .dues-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 12px 0; }
 .dues-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px 12px; position: relative; overflow: hidden; }
 .dues-tile.cur { border-color: var(--league-accent); }

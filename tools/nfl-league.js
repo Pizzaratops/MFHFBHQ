@@ -105,16 +105,22 @@
       nfl.playerStyleExplainHtml && ['🎯 Spielstil (Player DNA)', nfl.playerStyleExplainHtml()],
     ].filter(Boolean);
     const settings = settingsHtml(ctx);
+    const rb = ctx.data.RULEBOOK;
+    const rulebook = rb && rb.sections && rb.sections.length ? `
+      <h2 class="group-title">📕 ${e(rb.title || 'Regelwerk')}${rb.updated ? ` <small class="muted">· Stand ${new Date(rb.updated).toLocaleDateString('de-DE')}</small>` : ''}</h2>
+      <div class="lg-explain lg-rules">${rb.sections.map((s, i) => `<details class="card lg-det"${i === 0 ? ' open' : ''}><summary>${e(s.title)}</summary><div class="lg-body lg-rule">${s.html}</div></details>`).join('')}</div>` : '';
     return `
       <div class="page-head">
         <h1 class="page-title display">📜 Regeln & Erklärung</h1>
-        <div class="page-sub">${ann.length ? 'Aushänge der Liga · ' : ''}${settings ? 'Liga-Settings · ' : ''}<span class="explain">So funktionieren die Tools</span></div>
+        <div class="page-sub">${rulebook ? 'Regelwerk · ' : ''}${ann.length ? 'Aushänge der Liga · ' : ''}${settings ? 'Liga-Settings · ' : ''}<span class="explain">So funktionieren die Tools</span></div>
       </div>
+      ${rulebook}
+      ${ann.length && rulebook ? '<h2 class="group-title">📌 Aushänge</h2>' : ''}
       ${ann.map(a => card(a.title, a.html, a.highlight ? 'lg-highlight' : '')).join('')}
       ${settings}
       ${tools.length ? `<h2 class="group-title">Die Tools erklärt</h2>
         <div class="lg-explain">${tools.map(([t, h], i) => `<details class="card lg-det"${i === 0 && !ann.length && !settings ? ' open' : ''}><summary>${t}</summary><div class="lg-body">${h}</div></details>`).join('')}</div>` : ''}
-      ${!ann.length && !settings && !tools.length ? ui.empty('Noch nichts hinterlegt', 'Ankündigungen kommen aus der Liga-Config, Settings aus dem Plattform-Sync.', '📜') : ''}`;
+      ${!rulebook && !ann.length && !settings && !tools.length ? ui.empty('Noch nichts hinterlegt', 'Ankündigungen kommen aus der Liga-Config, Settings aus dem Plattform-Sync.', '📜') : ''}`;
   }
 
   // ---------- Liga-Beiträge ----------
@@ -250,7 +256,7 @@
 
   MFHFB.pages.register({
     id: 'erklaerung', section: 'league', label: 'Regeln & Erklärung', icon: '📜', applies: { sport: ['nfl'] },
-    data: ['teams', '?league-info', '?draft'], render: erklaerung,
+    data: ['teams', '?league-info', '?draft', '?rulebook'], render: erklaerung,
   });
   MFHFB.pages.register({
     id: 'dues', section: 'league', label: 'Liga-Beiträge', icon: '💰', applies: { sport: ['nfl'] },
