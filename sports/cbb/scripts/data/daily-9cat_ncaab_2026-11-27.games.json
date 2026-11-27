@@ -21,6 +21,24 @@
       }
     },
     {
+      "id": "401920533",
+      "line": "St. John's Red Storm @ Iowa State Cyclones (11/27 - 1:00 PM EST)",
+      "completed": false,
+      "statusText": "11/27 - 1:00 PM EST",
+      "away": {
+        "abbr": "StJon",
+        "name": "St. John's Red Storm",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "IaSt",
+        "name": "Iowa State Cyclones",
+        "score": null,
+        "players": []
+      }
+    },
+    {
       "id": "401929288",
       "line": "Wake Forest Demon Deacons @ Memphis Tigers (11/27 - 1:30 PM EST)",
       "completed": false,
@@ -610,6 +628,42 @@
       "home": {
         "abbr": "UCDav",
         "name": "UC Davis Aggies",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920543",
+      "line": "Miami Hurricanes @ Alabama Crimson Tide (11/27 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/27 - 8:30 PM EST",
+      "away": {
+        "abbr": "Mia-FL",
+        "name": "Miami Hurricanes",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Bama",
+        "name": "Alabama Crimson Tide",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401920534",
+      "line": "Tennessee Volunteers @ Louisville Cardinals (11/27 - 9:00 PM EST)",
+      "completed": false,
+      "statusText": "11/27 - 9:00 PM EST",
+      "away": {
+        "abbr": "Tenn",
+        "name": "Tennessee Volunteers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "Lou",
+        "name": "Louisville Cardinals",
         "score": null,
         "players": []
       }
