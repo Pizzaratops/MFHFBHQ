@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-27T08:03:30.233Z",
+  "generatedAt": "2026-11-27T10:03:25.828Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1529,7 +1529,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.2,
           "last3AvgPoints": 26.7,
-          "projPoints": 16.1
+          "projPoints": 16
         },
         {
           "name": "Rashid Shaheed",
@@ -1783,7 +1783,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.2,
           "last3AvgPoints": 26.7,
-          "projPoints": 16.1
+          "projPoints": 16
         },
         {
           "name": "Jordan Mason",
@@ -2270,7 +2270,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.8,
           "last3AvgPoints": 8.2,
-          "projPoints": 6.4
+          "projPoints": 6.3
         },
         {
           "name": "Mike Evans",
@@ -2281,7 +2281,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.9,
           "last3AvgPoints": 22.9,
-          "projPoints": 13.4
+          "projPoints": 13.3
         },
         {
           "name": "DJ Moore",
@@ -3631,7 +3631,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.5,
           "last3AvgPoints": 8,
-          "projPoints": 4.3
+          "projPoints": 4.4
         },
         {
           "name": "Chris Boswell",
