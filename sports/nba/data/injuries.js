@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T00:59:22.674Z",
+  "updated": "2026-11-27T01:08:09.938Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -20,7 +20,7 @@ const NBA_INJURIES = {
     "Cameron Boozer": ["MEM","Out","OUT","2026-12-21","Ankle",0,"2026-11-23"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
-    "Chris Youngblood": ["POR","Out","OUT","2026-11-27","Heel",0,"2026-11-20"],
+    "Chris Youngblood": ["POR","Out","OUT","2026-11-29","Heel",0,"2026-11-20"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Colin Castleton": ["ORL","Day-To-Day","GTD","2026-11-27","Calf",0,"2026-11-26"],
     "De'Aaron Fox": ["SA","Day-To-Day","GTD","2026-11-27","Lower Leg",0,"2026-11-26"],
