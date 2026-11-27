@@ -2,21 +2,21 @@
   "league": "ncaab",
   "date": "2026-11-27",
   "games": [
-    "Iowa State Cyclones @ St. John's Red Storm (Halftime)",
-    "Memphis Tigers @ Wake Forest Demon Deacons (13:28 - 1st)",
+    "Georgetown Hoyas @ UCLA Bruins (13:18 - 2nd)",
+    "Southern Jaguars @ Vanderbilt Commodores (3:04 - 2nd)",
+    "Memphis Tigers @ Wake Forest Demon Deacons (0:18 - 2nd)",
+    "Texas State Bobcats @ Louisiana Tech Bulldogs (Halftime)",
+    "Princeton Tigers @ UNC Wilmington Seahawks (Halftime)",
+    "TCU Horned Frogs @ Baylor Bears (0:25 - 1st)",
+    "Auburn Montgomery Senators @ UAB Blazers (Halftime)",
+    "Bellarmine Knights @ Butler Bulldogs (19:16 - 2nd)",
+    "La Salle Explorers @ Bucknell Bison (9:02 - 1st)",
+    "Maryland Terrapins @ Oregon Ducks (14:26 - 1st)",
     "Virginia Cavaliers 83 @ Xavier Musketeers 71 (Final)",
-    "Southern Jaguars @ Vanderbilt Commodores (11/27 - 2:00 PM EST)",
-    "South Alabama Jaguars @ Fresno State Bulldogs (11/27 - 2:00 PM EST)",
-    "Georgetown Hoyas @ UCLA Bruins (11/27 - 2:30 PM EST)",
-    "Texas State Bobcats @ Louisiana Tech Bulldogs (11/27 - 3:00 PM EST)",
-    "Princeton Tigers @ UNC Wilmington Seahawks (11/27 - 3:00 PM EST)",
-    "TCU Horned Frogs @ Baylor Bears (11/27 - 3:00 PM EST)",
-    "Auburn Montgomery Senators @ UAB Blazers (11/27 - 3:00 PM EST)",
-    "Bellarmine Knights @ Butler Bulldogs (11/27 - 3:00 PM EST)",
-    "La Salle Explorers @ Bucknell Bison (11/27 - 3:30 PM EST)",
-    "Maryland Terrapins @ Oregon Ducks (11/27 - 3:30 PM EST)",
+    "Iowa State Cyclones 75 @ St. John's Red Storm 80 (Final)",
+    "Fresno State Bulldogs 81 @ South Alabama Jaguars 61 (Final)",
     "Arkansas-Pine Bluff Golden Lions @ Missouri Tigers (11/27 - 4:00 PM EST)",
-    "UMBC Retrievers @ George Washington Revolutionaries (11/27 - 4:00 PM EST)",
+    "UMBC Retrievers @ George Washington Revolutionaries (19:58 - 1st)",
     "Cincinnati Bearcats @ Boston College Eagles (11/27 - 4:30 PM EST)",
     "Texas Longhorns @ Saint Mary's Gaels (11/27 - 5:00 PM EST)",
     "Villanova Wildcats @ Kansas Jayhawks (11/27 - 5:00 PM EST)",
@@ -44,7 +44,7 @@
     "San Diego State Aztecs @ Texas Tech Red Raiders (11/27 - 11:30 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 44.7,
-    "ft": 68.6
+    "fg": 48,
+    "ft": 72.6
   }
 }
