@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T18:04:14.999Z",
+  "updated": "2026-11-27T18:24:27.938Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
@@ -53,7 +53,7 @@ const NBA_INJURIES = {
     "Jock Landale": ["ATL","Out","OUT","2026-11-29","Hip",0,"2026-11-26"],
     "Joel Embiid": ["PHI","Day-To-Day","GTD","2026-11-27","Illness",0,"2026-11-27"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
-    "Jordan Clarkson": ["NY","Out","GTD","2026-11-27","Foot",0,"2026-11-26"],
+    "Jordan Clarkson": ["NY","Out","OUT","2026-11-29","Foot",0,"2026-11-26"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Reese": ["NO","Day-To-Day","GTD","2026-12-01","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
@@ -65,7 +65,7 @@ const NBA_INJURIES = {
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "LaMelo Ball": ["MIN","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-27"],
-    "Larry Nance Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-26"],
+    "Larry Nance Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-27"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
@@ -81,7 +81,7 @@ const NBA_INJURIES = {
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
     "Nolan Traore": ["BKN","Out","OUT","2027-01-27","Hamstring",0,"2026-11-23"],
     "Norman Powell": ["CHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-22"],
-    "OG Anunoby": ["NY","Out","GTD","2026-11-27","Calf",0,"2026-11-26"],
+    "OG Anunoby": ["NY","Out","OUT","2026-11-29","Calf",0,"2026-11-26"],
     "Paolo Banchero": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-10-24"],
     "Reece Beekman": ["WSH","Out","OUT","2026-12-03","Shoulder",0,"2026-11-02"],
     "Richie Saunders": ["MEM","Out","OUT","2026-12-01","Knee",0,"2026-11-07"],
