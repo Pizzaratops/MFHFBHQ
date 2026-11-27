@@ -2,8 +2,7 @@
   "league": "ncaab",
   "date": "2026-11-26",
   "games": [
-    "Texas Tech Red Raiders @ Oregon Ducks (Halftime)",
-    "Baylor Bears @ Gonzaga Bulldogs (16:31 - 2nd)",
+    "Texas Tech Red Raiders 62 @ Oregon Ducks 59 (Final)",
     "UCLA Bruins 70 @ Saint Mary's Gaels 85 (Final)",
     "Georgetown Hoyas 83 @ Texas Longhorns 92 (Final)",
     "Tennessee Volunteers 75 @ Iowa State Cyclones 64 (Final)",
@@ -13,6 +12,7 @@
     "Miami Hurricanes 97 @ Michigan Wolverines 70 (Final)",
     "USC Trojans 74 @ Utah State Aggies 78 (Final)",
     "LSU Tigers 95 @ SMU Mustangs 86 (Final/OT)",
+    "Baylor Bears 64 @ Gonzaga Bulldogs 72 (Final)",
     "Georgia Bulldogs 81 @ Cincinnati Bearcats 83 (Final)",
     "Army Black Knights 79 @ UTSA Roadrunners 61 (Final)",
     "Oklahoma Sooners 70 @ Purdue Boilermakers 63 (Final)",
@@ -25,7 +25,7 @@
     "Pacific Tigers 71 @ Omaha Mavericks 62 (Final)"
   ],
   "leagueAvg": {
-    "fg": 44.3,
-    "ft": 75.7
+    "fg": 44.1,
+    "ft": 74.8
   }
 }
