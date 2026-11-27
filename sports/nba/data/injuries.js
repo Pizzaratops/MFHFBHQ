@@ -1,11 +1,12 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-27T20:15:32.997Z",
+  "updated": "2026-11-27T21:34:54.191Z",
   "players": {
     "Aday Mara": ["OKC","Out","GTD","2026-11-28","Lower Leg",0,"2026-11-24"],
     "Alijah Martin": ["TOR","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-26"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
+    "Anthony Black": ["ORL","Day-To-Day","GTD","2026-11-28","Back",0,"2026-11-27"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
@@ -62,6 +63,7 @@ const NBA_INJURIES = {
     "Kasparas Jakucionis": ["MIL","Out","OUT","2026-11-28","Ankle",0,"2026-11-27"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
     "Kelly Oubre Jr.": ["IND","Day-To-Day","GTD","2026-11-27","Hand",0,"2026-11-27"],
+    "Kevin Porter Jr.": ["ORL","Out","OUT","2026-11-29","Not Injury Related",0,"2026-11-27"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-27"],
