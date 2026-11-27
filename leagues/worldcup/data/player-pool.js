@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-27T13:02:50.967Z
+//  Stand: 2026-11-27T14:02:50.437Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -341,7 +341,7 @@ const WC_PLAYER_POOL = [
 ["06cp1","DMoi Hodge","(N/A)","SG","SG,G,Flx","FA"],
 ["06iei","Dmytro Skapintsev","(N/A)","C","C,Flx","FA"],
 ["042n7","Domantas Sabonis","SAC","C","PF,C,F,Flx","T"],
-["0626t","Dominick Barlow","PHI","SF","SF,PF,C,F,Flx","FA"],
+["0626t","Dominick Barlow","PHI","SF","SF,PF,C,F,Flx","T"],
 ["06mjz","Donovan Clingan","POR","C","C,Flx","T"],
 ["04ewe","Donovan Mitchell","CLE","SG","PG,SG,G,Flx","T"],
 ["06668","Donovan Williams","(N/A)","SG","SG,G,Flx","FA"],
@@ -469,7 +469,7 @@ const WC_PLAYER_POOL = [
 ["04xlp","Isaac Humphries","(N/A)","PF","PF,F,Flx","FA"],
 ["06mmh","Isaac Jones","DET","PF","PF,F,Flx","FA"],
 ["07apr","Isaac McKneely","(N/A)","G","PG,SG,G,Flx","FA"],
-["05qsk","Isaac Okoro","CHI","SG","SG,G,SF,F,Flx","T"],
+["05qsk","Isaac Okoro","CHI","SG","SG,G,SF,F,Flx","FA"],
 ["06mkl","Isaiah Collier","UTA","PG","PG,SG,G,Flx","T"],
 ["06mmg","Isaiah Crawford","HOU","SF","SF,F,Flx","FA"],
 ["076ud","Isaiah Evans","MIN","SG","SG,G,Flx","FA"],
@@ -864,7 +864,7 @@ const WC_PLAYER_POOL = [
 ["05wah","Marcus Garrett","(N/A)","SG","SG,G,Flx","FA"],
 ["06ccg","Marcus Sasser","DAL","PG","PG,G,Flx","FA"],
 ["03al1","Marcus Smart","HOU","PG","PG,SG,G,Flx","FA"],
-["03r7d","Mario Hezonja","CLE","PF","SG,G,SF,PF,F,Flx","T"],
+["03r7d","Mario Hezonja","CLE","PF","SG,G,SF,PF,F,Flx","FA"],
 ["0621n","MarJon Beauchamp","(N/A)","SF","SG,G,SF,F,Flx","FA"],
 ["06vxt","Mark Sears","(N/A)","PG","PG,G,Flx","FA"],
 ["0621e","Mark Williams","PHO","C","C,Flx","FA"],
@@ -980,7 +980,7 @@ const WC_PLAYER_POOL = [
 ["07ao8","Nimari Burnett","(N/A)","SG","SG,G,Flx","FA"],
 ["06v5w","Nique Clifford","OKC","SG","SG,G,SF,F,Flx","FA"],
 ["06v5u","Noa Essengue","CHI","PF","PF,F,Flx","FA"],
-["06ccd","Noah Clowney","BKN","PF","PF,C,F,Flx","FA"],
+["06ccd","Noah Clowney","BKN","PF","PF,C,F,Flx","T"],
 ["0663u","Noah Kirkwood","(N/A)","G","PG,SG,G,Flx","FA"],
 ["06v7y","Noah Penda","ORL","SF","SF,F,Flx","FA"],
 ["07are","Noam Yaacov","(N/A)","PG","PG,G,Flx","FA"],
