@@ -7116,36 +7116,18 @@ const LIVESCORES_BOXSCORES = {
     "2026-11-27": {
     games: [
       {
-      id: "401920429",
-      line: "Virginia Cavaliers @ Xavier Musketeers (5:39 - 1st)",
-      completed: false,
-      statusText: "5:39 - 1st",
-      away: {
-        abbr: "UVA", name: "Virginia Cavaliers", score: null,
-        players: [
-
-        ]
-      },
-      home: {
-        abbr: "Xav", name: "Xavier Musketeers", score: null,
-        players: [
-
-        ]
-      }
-    },
-      {
       id: "401920533",
-      line: "St. John's Red Storm @ Iowa State Cyclones (11/27 - 1:00 PM EST)",
+      line: "Iowa State Cyclones @ St. John's Red Storm (Halftime)",
       completed: false,
-      statusText: "11/27 - 1:00 PM EST",
+      statusText: "Halftime",
       away: {
-        abbr: "StJon", name: "St. John's Red Storm", score: null,
+        abbr: "IaSt", name: "Iowa State Cyclones", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "IaSt", name: "Iowa State Cyclones", score: null,
+        abbr: "StJon", name: "St. John's Red Storm", score: null,
         players: [
 
         ]
@@ -7153,19 +7135,55 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401929288",
-      line: "Wake Forest Demon Deacons @ Memphis Tigers (11/27 - 1:30 PM EST)",
+      line: "Memphis Tigers @ Wake Forest Demon Deacons (13:28 - 1st)",
       completed: false,
-      statusText: "11/27 - 1:30 PM EST",
+      statusText: "13:28 - 1st",
       away: {
-        abbr: "Wake", name: "Wake Forest Demon Deacons", score: null,
+        abbr: "Mem", name: "Memphis Tigers", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "Mem", name: "Memphis Tigers", score: null,
+        abbr: "Wake", name: "Wake Forest Demon Deacons", score: null,
         players: [
 
+        ]
+      }
+    },
+      {
+      id: "401920429",
+      line: "Virginia Cavaliers 83 @ Xavier Musketeers 71 (Final)",
+      completed: true,
+      statusText: "Final",
+      away: {
+        abbr: "UVA", name: "Virginia Cavaliers", score: 83,
+        players: [
+          { name: "Nolan Adekunle", min: 10, pts: 3, reb: 2, ast: 0, stl: 0, blk: 0, to: 3, tpm: 1, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -4.52, zScores: { pts: -0.788, reb: -0.367, ast: -0.764, stl: -0.976, blk: -0.612, tpm: 0.13, fgImpact: 0.109, ftImpact: 0, to: -1.254 } },
+          { name: "Thijs De Ridder", min: 35, pts: 14, reb: 10, ast: 1, stl: 0, blk: 0, to: 4, tpm: 2, fgm: 5, fga: 12, ftm: 2, fta: 3, composite: 0.11, zScores: { pts: 1.056, reb: 2.301, ast: -0.255, stl: -0.976, blk: -0.612, tpm: 0.998, fgImpact: -0.382, ftImpact: -0.071, to: -1.951 } },
+          { name: "Johann Grunloh", min: 20, pts: 2, reb: 3, ast: 1, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -2.04, zScores: { pts: -0.955, reb: -0.033, ast: -0.255, stl: -0.976, blk: 1.136, tpm: -0.738, fgImpact: -0.355, ftImpact: 0, to: 0.139 } },
+          { name: "Sam Lewis", min: 34, pts: 21, reb: 8, ast: 4, stl: 2, blk: 2, to: 2, tpm: 3, fgm: 7, fga: 15, ftm: 4, fta: 5, composite: 11.4, zScores: { pts: 2.229, reb: 1.634, ast: 1.274, stl: 1.079, blk: 2.883, tpm: 1.866, fgImpact: 0.3, ftImpact: 0.69, to: -0.557 } },
+          { name: "Chance Mallory", min: 34, pts: 10, reb: 8, ast: 9, stl: 0, blk: 1, to: 5, tpm: 2, fgm: 2, fga: 4, ftm: 4, fta: 4, composite: 6.09, zScores: { pts: 0.385, reb: 1.634, ast: 3.822, stl: -0.976, blk: 1.136, tpm: 0.998, fgImpact: 0.219, ftImpact: 1.523, to: -2.648 } },
+          { name: "Kalu Anya", min: 20, pts: 4, reb: 5, ast: 1, stl: 1, blk: 0, to: 2, tpm: 0, fgm: 1, fga: 1, ftm: 2, fta: 4, composite: -2.43, zScores: { pts: -0.62, reb: 0.634, ast: -0.255, stl: 0.051, blk: -0.612, tpm: -0.738, fgImpact: 0.574, ftImpact: -0.904, to: -0.557 } },
+          { name: "Martin Carrere", min: 1, pts: 0, reb: 0, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -4.07, zScores: { pts: -1.29, reb: -1.034, ast: -0.255, stl: -0.976, blk: -0.612, tpm: -0.738, fgImpact: 0, ftImpact: 0, to: 0.836 } },
+          { name: "Jan Vide", min: 18, pts: 12, reb: 2, ast: 1, stl: 1, blk: 1, to: 1, tpm: 0, fgm: 4, fga: 4, ftm: 4, fta: 4, composite: 4.51, zScores: { pts: 0.721, reb: -0.367, ast: -0.255, stl: 0.051, blk: 1.136, tpm: -0.738, fgImpact: 2.295, ftImpact: 1.523, to: 0.139 } },
+          { name: "Elijah Gertrude", min: 23, pts: 17, reb: 1, ast: 1, stl: 0, blk: 1, to: 0, tpm: 4, fgm: 6, fga: 11, ftm: 1, fta: 2, composite: 5, zScores: { pts: 1.558, reb: -0.7, ast: -0.255, stl: -0.976, blk: 1.136, tpm: 2.734, fgImpact: 1.12, ftImpact: -0.452, to: 0.836 } },
+          { name: "Jurian Dixon", min: 4, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -5.04, zScores: { pts: -1.29, reb: -1.034, ast: -0.764, stl: -0.976, blk: -0.612, tpm: -0.738, fgImpact: -0.464, ftImpact: 0, to: 0.836 } }
+        ]
+      },
+      home: {
+        abbr: "Xav", name: "Xavier Musketeers", score: 71,
+        players: [
+          { name: "Filip Borovicanin", min: 25, pts: 8, reb: 8, ast: 3, stl: 3, blk: 0, to: 0, tpm: 0, fgm: 3, fga: 9, ftm: 2, fta: 6, composite: 0.41, zScores: { pts: 0.05, reb: 1.634, ast: 0.764, stl: 2.106, blk: -0.612, tpm: -0.738, fgImpact: -1.065, ftImpact: -2.571, to: 0.836 } },
+          { name: "Jovan Milicevic", min: 23, pts: 2, reb: 1, ast: 0, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 6, ftm: 0, fta: 0, composite: -4.63, zScores: { pts: -0.955, reb: -0.7, ast: -0.764, stl: 0.051, blk: -0.612, tpm: -0.738, fgImpact: -1.748, ftImpact: 0, to: 0.836 } },
+          { name: "Mike Nwoko", min: 20, pts: 15, reb: 4, ast: 1, stl: 2, blk: 0, to: 0, tpm: 0, fgm: 4, fga: 7, ftm: 7, fta: 10, composite: 2.9, zScores: { pts: 1.223, reb: 0.3, ast: -0.255, stl: 1.079, blk: -0.612, tpm: -0.738, fgImpact: 0.901, ftImpact: 0.167, to: 0.836 } },
+          { name: "Kalek House", min: 27, pts: 8, reb: 1, ast: 2, stl: 1, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 5, ftm: 4, fta: 4, composite: -0.28, zScores: { pts: 0.05, reb: -0.7, ast: 0.255, stl: 0.051, blk: -0.612, tpm: -0.738, fgImpact: -0.246, ftImpact: 1.523, to: 0.139 } },
+          { name: "Tru Washington", min: 31, pts: 5, reb: 1, ast: 1, stl: 1, blk: 1, to: 2, tpm: 1, fgm: 2, fga: 8, ftm: 0, fta: 0, composite: -2.29, zScores: { pts: -0.452, reb: -0.7, ast: -0.255, stl: 0.051, blk: 1.136, tpm: 0.13, fgImpact: -1.639, ftImpact: 0, to: -0.557 } },
+          { name: "Rolyns Aligbe", min: 16, pts: 3, reb: 3, ast: 0, stl: 3, blk: 0, to: 2, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 2, composite: -2.54, zScores: { pts: -0.788, reb: -0.033, ast: -0.764, stl: 2.106, blk: -0.612, tpm: 0.13, fgImpact: -0.355, ftImpact: -1.666, to: -0.557 } },
+          { name: "Gabriel Pozzato", min: 19, pts: 12, reb: 2, ast: 1, stl: 1, blk: 0, to: 0, tpm: 1, fgm: 4, fga: 6, ftm: 3, fta: 3, composite: 3.01, zScores: { pts: 0.721, reb: -0.367, ast: -0.255, stl: 0.051, blk: -0.612, tpm: 0.13, fgImpact: 1.366, ftImpact: 1.142, to: 0.836 } },
+          { name: "Nikos Chitikoudis", min: 17, pts: 8, reb: 1, ast: 1, stl: 2, blk: 0, to: 1, tpm: 0, fgm: 4, fga: 7, ftm: 0, fta: 0, composite: -0.13, zScores: { pts: 0.05, reb: -0.7, ast: -0.255, stl: 1.079, blk: -0.612, tpm: -0.738, fgImpact: 0.901, ftImpact: 0, to: 0.139 } },
+          { name: "Ruben Dominguez", min: 9, pts: 0, reb: 0, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 3, ftm: 0, fta: 0, composite: -5.46, zScores: { pts: -1.29, reb: -1.034, ast: -0.255, stl: -0.976, blk: -0.612, tpm: -0.738, fgImpact: -1.393, ftImpact: 0, to: 0.836 } },
+          { name: "Chance Westry", min: 14, pts: 10, reb: 2, ast: 1, stl: 1, blk: 0, to: 0, tpm: 2, fgm: 3, fga: 7, ftm: 2, fta: 4, composite: 0, zScores: { pts: 0.385, reb: -0.367, ast: -0.255, stl: 0.051, blk: -0.612, tpm: 0.998, fgImpact: -0.137, ftImpact: -0.904, to: 0.836 } }
         ]
       }
     },
@@ -7333,17 +7351,17 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920532",
-      line: "Oregon Ducks @ Maryland Terrapins (11/27 - 3:30 PM EST)",
+      line: "Maryland Terrapins @ Oregon Ducks (11/27 - 3:30 PM EST)",
       completed: false,
       statusText: "11/27 - 3:30 PM EST",
       away: {
-        abbr: "Oreg", name: "Oregon Ducks", score: null,
+        abbr: "MD", name: "Maryland Terrapins", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "MD", name: "Maryland Terrapins", score: null,
+        abbr: "Oreg", name: "Oregon Ducks", score: null,
         players: [
 
         ]
