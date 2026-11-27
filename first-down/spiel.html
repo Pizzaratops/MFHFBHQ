@@ -62,11 +62,13 @@
           <div class="g-screen">
             <canvas id="gPix" class="pix" aria-label="8-bit-Ansicht des Spielzugs"></canvas>
             <canvas id="gTop" hidden aria-label="Taktik-Ansicht von oben"></canvas>
+            <canvas id="gEgo" class="pix" hidden aria-label="Ego-Perspektive aus Sicht des QB"></canvas>
             <div class="g-label" id="gLabel" hidden></div>
           </div>
           <div class="g-ctrl">
             <div class="fd-seg" role="group" aria-label="Ansicht">
               <button type="button" data-view="pixel" class="on" title="8-bit-Retro-Ansicht von der Seite">👾 8-bit</button>
+              <button type="button" data-view="ego" title="Ego-Perspektive aus Sicht des QB">🎮 Ego</button>
               <button type="button" data-view="top" title="Taktik-Ansicht von oben">Taktik</button>
             </div>
             <div class="fd-seg" id="gSpeed" role="group" aria-label="Tempo">

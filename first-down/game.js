@@ -9,7 +9,7 @@
 // ============================================================
 (function () {
   'use strict';
-  const { OPLAYS, DCALLS, buildSim, staticSim, PixelView, TopView, extendModel, formOf, FORM_TXT, baseOf, PB } = window.FDSIM;
+  const { OPLAYS, DCALLS, buildSim, staticSim, PixelView, TopView, EgoView, extendModel, formOf, FORM_TXT, baseOf, PB } = window.FDSIM;
   const $ = s => document.querySelector(s);
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   const rnd = Math.random;
@@ -242,10 +242,10 @@
   }
 
   // ---------- Animation ----------
-  let view = 'pixel', pv = null, tv = null, anim = null;
+  let view = 'pixel', pv = null, tv = null, ev = null, anim = null;
   function play(entry, done) {
     stopAnim();
-    pv.reset(); tv.reset();
+    pv.reset(); tv.reset(); ev.reset();
     const sim = entry.sim; let fi = 0, last = 0, acc = 0;
     const speed = () => +($('#gSpeed .on') || { dataset: { s: 1 } }).dataset.s;
     $('#gLabel').hidden = true;
@@ -262,7 +262,7 @@
     anim = requestAnimationFrame(step);
   }
   function stopAnim() { if (anim) cancelAnimationFrame(anim); anim = null; }
-  function drawFrame(sim, fi, ctx) { if (view === 'pixel') pv.draw(sim, fi, ctx); else tv.draw(sim, fi, ctx); }
+  function drawFrame(sim, fi, ctx) { (view === 'pixel' ? pv : view === 'ego' ? ev : tv).draw(sim, fi, ctx); }
   function showLabel(t, sim) {
     const l = $('#gLabel');
     l.textContent = t; l.hidden = false;
@@ -275,7 +275,7 @@
     const sim = pd.look ? staticSim('iz', pd.look) : staticSim(pd.o, 'c2');
     const ctx = { yl: st.yl, toGo: st.toGo, offTeam: TEAMS[st.offTeam], defTeam: TEAMS[st.defTeam] };
     G.idle = { sim, ctx };
-    pv.reset(); tv.reset();
+    pv.reset(); tv.reset(); ev.reset();
     drawFrame(sim, 0, ctx);
   }
 
@@ -545,8 +545,8 @@
     const sim = buildSim(o, d, dec, 25);
     // Spielansicht kurz im Quiz-Canvas zeigen
     const cv = $('#qCanvas');
-    const r = view === 'pixel' ? PixelView(cv) : TopView(cv);
-    cv.classList.toggle('pix', view === 'pixel');
+    const r = view === 'top' ? TopView(cv) : PixelView(cv);
+    cv.classList.toggle('pix', view !== 'top');
     const ctx = { yl: 25, toGo: 10, offTeam: TEAMS.CHI, defTeam: TEAMS.DET };
     let fi = 0, last = 0, acc = 0;
     const step = ts => { if (!last) last = ts; acc += (ts - last) / 1000; last = ts; while (acc >= sim.dt && fi < sim.frames.length - 1) { fi++; acc -= sim.dt; } r.draw(sim, fi, ctx); if (fi < sim.frames.length - 1) requestAnimationFrame(step); else { const p = document.createElement('p'); p.className = 'q-res'; p.textContent = `Ergebnis diesmal: ${sim.label}${sim.label === 'INCOMPLETE' || sim.turnover ? '' : ''} (es ist Zufall dabei)`; $('#qAfter').prepend(p); } };
@@ -581,7 +581,7 @@
     else if (t.dataset.view) {
       view = t.dataset.view;
       document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('on', b === t));
-      $('#gPix').hidden = view !== 'pixel'; $('#gTop').hidden = view === 'pixel';
+      $('#gPix').hidden = view !== 'pixel'; $('#gTop').hidden = view !== 'top'; $('#gEgo').hidden = view !== 'ego';
       if (G && G.last && G.phase !== 'call') { const f = G.last.sim.frames.length - 1; drawFrame(G.last.sim, f, G.last.ctx); }
       else if (G && G.idle) drawFrame(G.idle.sim, 0, G.idle.ctx);
     }
@@ -602,6 +602,7 @@
 
   pv = PixelView($('#gPix'));
   tv = TopView($('#gTop'));
+  ev = EgoView($('#gEgo'));
   renderSetup();
   window.addEventListener('hashchange', route);
   route();

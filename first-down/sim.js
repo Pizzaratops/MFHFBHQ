@@ -775,11 +775,114 @@
     return { draw, project, reset: () => { camD = 8; } };
   }
 
+  // ============================================================
+  //  Renderer 3: Ego-Perspektive aus Sicht des QB (Pseudo-3D)
+  // ============================================================
+  function EgoView(canvas) {
+    const W = 384, H = 240, HOR = 62;
+    canvas.width = W; canvas.height = H;
+    const g = canvas.getContext('2d'); g.imageSmoothingEnabled = false;
+    const crowd = crowdCanvas();
+    const HK = 3, hud = document.createElement('canvas'); hud.className = 'fd-hud'; hud.width = W * HK; hud.height = H * HK;
+    if (canvas.parentNode) canvas.parentNode.insertBefore(hud, canvas.nextSibling);
+    const h = hud.getContext('2d');
+    let cx = 26.65, cd = -6, ch = 2.1, F = 190, init = true;
+    const P = (x, d, z) => { const dz = d - cd; if (dz < 0.35) return null; return [W / 2 + (x - cx) * F / dz, HOR + (ch - (z || 0)) * F / dz, F / dz]; };
+    function quad(pts, color) {
+      // Viereck auf dem Boden, an der Nahebene abgeschnitten
+      const near = cd + 0.6, poly = [];
+      for (let i = 0; i < pts.length; i++) {
+        const a = pts[i], b = pts[(i + 1) % pts.length];
+        if (a[1] >= near) poly.push(a);
+        if ((a[1] >= near) !== (b[1] >= near)) { const t = (near - a[1]) / (b[1] - a[1]); poly.push([a[0] + (b[0] - a[0]) * t, near]); }
+      }
+      if (poly.length < 3) return;
+      g.fillStyle = color; g.beginPath(); poly.forEach((q, i) => { const s = P(q[0], q[1], 0); i ? g.lineTo(s[0], s[1]) : g.moveTo(s[0], s[1]); }); g.closePath(); g.fill();
+    }
+    function line(x1, d1, x2, d2, color, wpx) {
+      const near = cd + 0.6;
+      if (d1 < near && d2 < near) return;
+      if (d1 < near) { const t = (near - d1) / (d2 - d1); x1 += (x2 - x1) * t; d1 = near; }
+      if (d2 < near) { const t = (near - d2) / (d1 - d2); x2 += (x1 - x2) * t; d2 = near; }
+      const a = P(x1, d1, 0), b = P(x2, d2, 0);
+      g.strokeStyle = color; g.lineWidth = wpx || 1; g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke();
+    }
+    function draw(sim, fi, ctx) {
+      const fr = sim.frames[Math.min(fi, sim.frames.length - 1)], yl = ctx.yl, t = fr.t;
+      // Kamera: beim QB bis zum Wurf/Handoff, danach hinter dem Ball
+      const qb = fr.P.QB || [26.65, -5];
+      const holder = fr.ball.held ? fr.P[fr.ball.held] : null;
+      let tx, td, th, look = null;
+      if (fr.ball.held === 'QB' || (!fr.ball.held && !fr.ball.air && t < 0.4) || fi <= 7) { tx = qb[0]; td = qb[1] - 3.4; th = 3.9; }
+      else if (holder) { tx = holder[0]; td = holder[1] - 7; th = 4.4; }
+      else { tx = fr.ball.p[0]; td = fr.ball.p[1] - 7.5; th = 4.6; }
+      const k = init || fi === 0 ? 1 : 0.14; init = false;
+      cx += (tx - cx) * k; cd += (td - cd) * k; ch += (th - ch) * k;
+      // Brennweite so, dass die Receiver (vor dem Wurf) ins Bild passen
+      let need = 0.7;
+      if (th === 3.9) sim.actors.forEach(a => { if (a.side !== 'off' || ['T', 'G', 'C', 'QB'].indexOf(a.lab) >= 0) return; const q = fr.P[a.id], dz = Math.max(4, q[1] - cd); need = Math.max(need, Math.abs(q[0] - cx) / dz); });
+      const fT = clamp((W / 2 - 18) / need, 105, 230); F += (fT - F) * k;
+      // Himmel + Tribüne
+      g.fillStyle = '#0c1024'; g.fillRect(0, 0, W, HOR);
+      const sc = ((cx * 6) % 512 + 512) % 512;
+      g.drawImage(crowd, sc, 0, W, 58, 0, HOR - 46, W, 46);
+      g.fillStyle = '#1b1f3a'; g.fillRect(0, HOR - 4, W, 4);
+      // Rasen (Streifen alle 5 Yards)
+      g.fillStyle = '#2f6a2b'; g.fillRect(0, HOR, W, H - HOR);
+      for (let u = -10; u < 110; u += 5) {
+        const d0 = u - yl, d1 = d0 + 5; if (d1 < cd + 0.6 || d0 > cd + 120) continue;
+        const end = u < 0 || u >= 100;
+        quad([[0, d0], [53.3, d0], [53.3, d1], [0, d1]], end ? (u < 0 ? ctx.offTeam.end : ctx.defTeam.end) : (Math.floor(u / 5) % 2 ? '#357532' : '#2f6a2b'));
+      }
+      for (let u = 0; u <= 100; u += 5) line(0, u - yl, 53.3, u - yl, 'rgba(255,255,255,.75)', u % 10 === 0 ? 1.5 : 1);
+      line(0, -10 - yl, 0, 110 - yl, '#fff', 1.5); line(53.3, -10 - yl, 53.3, 110 - yl, '#fff', 1.5);
+      for (let u = 1; u < 100; u++) { if (u % 5 === 0) continue; line(22.6, u - yl, 23.4, u - yl, 'rgba(255,255,255,.55)'); line(29.9, u - yl, 30.7, u - yl, 'rgba(255,255,255,.55)'); }
+      line(0, 0, 53.3, 0, '#4f8cff', 2);
+      if (ctx.toGo && yl + ctx.toGo < 100) line(0, ctx.toGo, 53.3, ctx.toGo, '#facc15', 2);
+      // Routen am Boden
+      const ra = routeAlpha(sim, t);
+      if (ra > 0 && sim.routes && ctx.routes !== false) {
+        g.globalAlpha = ra; g.fillStyle = '#fff';
+        sim.routes.forEach(rt => rt.pts.forEach((q, i) => { if (i % 2) return; const s = P(q[0], q[1], 0); if (s && s[0] > -5 && s[0] < W + 5) g.fillRect(Math.round(s[0]) - 1, Math.round(s[1]) - 1, Math.max(1, Math.round(s[2] * 0.25)), Math.max(1, Math.round(s[2] * 0.12))); }));
+        g.globalAlpha = 1;
+      }
+      // Spieler (hinten zuerst)
+      const prev = sim.frames[Math.max(0, fi - 2)];
+      const list = sim.actors.map(a => ({ a, p: fr.P[a.id] })).sort((m, n) => n.p[1] - m.p[1]);
+      list.forEach(({ a, p }) => {
+        const s = P(p[0], p[1], 0); if (!s || s[2] < 1.2) return;
+        const sh = 2.2 * s[2], sw = sh * 14 / 22; if (s[0] < -sw || s[0] > W + sw) return;
+        const q = prev.P[a.id], moving = Math.hypot(p[0] - q[0], p[1] - q[1]) > 0.04, frame = moving ? 1 + (Math.floor(fi / 4) % 2) : 0;
+        const sp = spriteCanvas(a.side === 'off' ? ctx.offTeam : ctx.defTeam, a.side, frame, p[0] < q[0] - 0.03, fr.ball.held === a.id && fi > 7);
+        g.fillStyle = 'rgba(0,0,0,.3)'; g.beginPath(); g.ellipse(s[0], s[1], sw * 0.45, sw * 0.12, 0, 0, Math.PI * 2); g.fill();
+        g.drawImage(sp, Math.round(s[0] - sw / 2), Math.round(s[1] - sh), Math.round(sw), Math.round(sh));
+      });
+      // Ball
+      if (!fr.ball.held && fi > 7) {
+        const z = 1.4 + (fr.ball.air || 0) * 7, s = P(fr.ball.p[0], fr.ball.p[1], z);
+        if (s) { const r = Math.max(1.5, s[2] * 0.25); g.fillStyle = '#8a4a1c'; g.beginPath(); g.ellipse(s[0], s[1], r * 1.4, r, 0, 0, Math.PI * 2); g.fill(); g.fillStyle = '#f4f4f4'; g.fillRect(Math.round(s[0]) - 1, Math.round(s[1]), 2, 1); }
+      }
+      // HUD
+      h.clearRect(0, 0, hud.width, hud.height);
+      h.font = `${14}px "Press Start 2P", monospace`; h.textBaseline = 'middle';
+      const lab = (txt, x, y, bg, col) => { const tw = h.measureText(txt).width; h.fillStyle = bg; h.fillRect(x, y - 13, tw + 16, 26); h.fillStyle = col; h.fillText(txt, x + 8, y + 1); };
+      lab(ctx.kids ? 'HIER LANG ANGREIFEN ▲' : 'ANGRIFFSRICHTUNG ▲ (NACH VORNE)', 10, 22, 'rgba(10,14,30,.8)', '#fff');
+      const pn = ctx.playName || sim.play;
+      if (pn && ra > 0 && ctx.routes !== false) { h.globalAlpha = ra; lab(pn.toUpperCase(), 10, 56, 'rgba(10,14,30,.85)', '#ffd84d'); h.globalAlpha = 1; }
+      if (ra > 0 && sim.routes && ctx.routes !== false && fr.t < sim.tRoutes - 0.75) {
+        h.font = `${11}px "Press Start 2P", monospace`;
+        sim.routes.forEach(rt => { if (!rt.name) return; const e = rt.pts[rt.pts.length - 1], s = P(e[0], e[1], 0); if (!s || s[0] < 0 || s[0] > W) return; const txt = ctx.kids ? (ROUTE_KIDS[rt.name] || rt.name) : rt.name; const tw = h.measureText(txt).width; const x = clamp(s[0] * HK - tw / 2 - 6, 4, hud.width - tw - 16), y = clamp(s[1] * HK - 14, 70, hud.height - 20); h.globalAlpha = ra; h.fillStyle = 'rgba(10,14,30,.8)'; h.fillRect(x, y - 11, tw + 12, 22); h.fillStyle = '#ffe680'; h.fillText(txt, x + 6, y + 1); h.globalAlpha = 1; });
+      }
+    }
+    const project = p => { const s = P(p[0], p[1], 1.0) || [W / 2, H - 10]; return [s[0] / W, s[1] / H]; };
+    return { draw, project, reset: () => { init = true; } };
+  }
+
   // Statische Szene (für Quiz-Bilder): Aufstellung ohne Bewegung
   function staticSim(oKey, dKey) {
     const s = buildSim(oKey, dKey, OPLAYS[oKey].kind === 'run' ? { type: 'run', yards: 3 } : { type: 'inc' }, 25);
     return Object.assign({}, s, { frames: [s.frames[0]], routes: null, play: null });
   }
 
-  window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView, extendModel, formOf, FORM_TXT, baseOf, PB };
+  window.FDSIM = { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView, EgoView, extendModel, formOf, FORM_TXT, baseOf, PB };
 })();

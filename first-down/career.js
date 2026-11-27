@@ -9,7 +9,7 @@
 // ============================================================
 (function () {
   'use strict';
-  const { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView, extendModel, formOf, FORM_TXT, baseOf, PB } = window.FDSIM;
+  const { OPLAYS, DCALLS, buildSim, staticSim, readOptions, PixelView, TopView, EgoView, extendModel, formOf, FORM_TXT, baseOf, PB } = window.FDSIM;
   const $ = s => document.querySelector(s);
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   const rnd = Math.random;
@@ -151,29 +151,29 @@
   function viewerHTML(id) {
     return `<div class="c-viewer" id="${id}">
       <div class="g-screen c-screen">
-        <canvas class="pix c-pix"></canvas><canvas class="c-top" hidden></canvas>
+        <canvas class="pix c-pix"></canvas><canvas class="c-top" hidden></canvas><canvas class="pix c-ego" hidden></canvas>
         <div class="c-ovl" hidden></div>
         <div class="c-timer" hidden><i></i></div>
         <div class="g-label" hidden></div>
       </div>
       <div class="g-ctrl">
-        <div class="fd-seg" role="group" aria-label="Ansicht"><button type="button" data-cview="pixel">👾 8-bit</button><button type="button" data-cview="top">Taktik</button></div>
+        <div class="fd-seg" role="group" aria-label="Ansicht"><button type="button" data-cview="pixel">👾 8-bit</button><button type="button" data-cview="ego">🎮 Ego</button><button type="button" data-cview="top">Taktik</button></div>
         <div class="fd-seg" role="group" aria-label="Tempo"><button type="button" data-cspeed="0.5">½×</button><button type="button" data-cspeed="1" class="on">1×</button></div>
         <button class="fd-btn" type="button" data-act="fs" title="Vollbild">⛶ Vollbild</button>
       </div></div>`;
   }
   let speed = 1;
   function makeViewer(root) {
-    const pixC = root.querySelector('.c-pix'), topC = root.querySelector('.c-top');
-    const V = { root, pv: PixelView(pixC), tv: TopView(topC), ovl: root.querySelector('.c-ovl'), label: root.querySelector('.g-label'), timer: root.querySelector('.c-timer'), raf: 0 };
-    V.cur = () => S.view === 'top' ? V.tv : V.pv;
-    V.sync = () => { pixC.hidden = S.view === 'top'; topC.hidden = S.view !== 'top'; root.querySelectorAll('[data-cview]').forEach(b => b.classList.toggle('on', b.dataset.cview === S.view)); };
+    const pixC = root.querySelector('.c-pix'), topC = root.querySelector('.c-top'), egoC = root.querySelector('.c-ego');
+    const V = { root, pv: PixelView(pixC), tv: TopView(topC), ev: EgoView(egoC), ovl: root.querySelector('.c-ovl'), label: root.querySelector('.g-label'), timer: root.querySelector('.c-timer'), raf: 0 };
+    V.cur = () => S.view === 'top' ? V.tv : S.view === 'ego' ? V.ev : V.pv;
+    V.sync = () => { pixC.hidden = S.view === 'top' || S.view === 'ego'; topC.hidden = S.view !== 'top'; egoC.hidden = S.view !== 'ego'; root.querySelectorAll('[data-cview]').forEach(b => b.classList.toggle('on', b.dataset.cview === S.view)); };
     V.sync();
     V.draw = (sim, fi, ctx) => { V.cur().draw(sim, fi, ctx); V.last = { sim, fi, ctx }; };
     V.redraw = () => { if (V.last) V.draw(V.last.sim, V.last.fi, V.last.ctx); };
     V.stop = () => { cancelAnimationFrame(V.raf); V.raf = 0; };
     V.play = (sim, ctx, from, stopT, done) => {
-      V.stop(); if (!from) { V.pv.reset(); V.tv.reset(); V.label.hidden = true; }
+      V.stop(); if (!from) { V.pv.reset(); V.tv.reset(); V.ev.reset(); V.label.hidden = true; }
       let fi = from || 0, last = 0, acc = (!from && sim.routes && ctx.routes !== false) ? -1.1 : 0, labeled = !!from && sim.frames[fi].t >= sim.labelAt;
       const step = ts => {
         if (!last) last = ts; acc += (ts - last) / 1000 * speed; last = ts;
