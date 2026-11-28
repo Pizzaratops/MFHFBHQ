@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T08:03:24.138Z",
+  "generatedAt": "2026-11-28T10:03:24.161Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -955,7 +955,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 21.6,
-          "projPoints": 24.4
+          "projPoints": 24.5
         },
         {
           "name": "Denver Broncos",
@@ -1198,7 +1198,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.2,
           "last3AvgPoints": 14,
-          "projPoints": 15.7
+          "projPoints": 15.8
         },
         {
           "name": "Breece Hall",
@@ -1220,7 +1220,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 21.6,
-          "projPoints": 24.4
+          "projPoints": 24.5
         },
         {
           "name": "Denver Broncos",
@@ -1463,7 +1463,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.9,
           "last3AvgPoints": 11.7,
-          "projPoints": 8.6
+          "projPoints": 8.7
         },
         {
           "name": "Courtland Sutton",
@@ -1651,7 +1651,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 5.2,
-          "projPoints": 11.1
+          "projPoints": 11.2
         },
         {
           "name": "Woody Marks",
@@ -2292,7 +2292,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.8,
           "last3AvgPoints": 8.2,
-          "projPoints": 5.5
+          "projPoints": 5.6
         },
         {
           "name": "Mike Evans",
@@ -2303,7 +2303,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.9,
           "last3AvgPoints": 22.9,
-          "projPoints": 12.2
+          "projPoints": 12.3
         },
         {
           "name": "DJ Moore",
@@ -2514,7 +2514,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 8.7,
           "last3AvgPoints": 5.2,
-          "projPoints": 11.1
+          "projPoints": 11.2
         },
         {
           "name": "Pat Bryant",
@@ -3653,7 +3653,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.5,
           "last3AvgPoints": 8,
-          "projPoints": 4.2
+          "projPoints": 4.1
         },
         {
           "name": "Chris Boswell",
@@ -3730,7 +3730,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.2,
           "last3AvgPoints": 14,
-          "projPoints": 15.7
+          "projPoints": 15.8
         },
         {
           "name": "Jahmyr Gibbs",
@@ -4040,7 +4040,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.2,
           "last3AvgPoints": 14,
-          "projPoints": 15.7
+          "projPoints": 15.8
         },
         {
           "name": "Jameson Williams",
@@ -4217,7 +4217,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.7,
           "last3AvgPoints": 16.8,
-          "projPoints": 7.4
+          "projPoints": 7.5
         },
         {
           "name": "Ty Johnson",
