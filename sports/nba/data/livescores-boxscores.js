@@ -3718,9 +3718,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909326",
-      line: "Miami Heat @ New York Knicks (11/27 - 7:00 PM EST)",
+      line: "Miami Heat @ New York Knicks (5:22 - 1st)",
       completed: false,
-      statusText: "11/27 - 7:00 PM EST",
+      statusText: "5:22 - 1st",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [

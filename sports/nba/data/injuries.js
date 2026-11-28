@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T00:10:52.530Z",
+  "updated": "2026-11-28T00:29:00.311Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -35,7 +35,7 @@ const NBA_INJURIES = {
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
     "Grayson Allen": ["CHA","Out","GTD","2026-11-28","Concussion",0,"2026-11-27"],
     "Henri Veesaar": ["ATL","Out","OFS","2027-07-01","Knee",0,"2026-09-21"],
-    "Isaiah Stewart": ["MEM","Day-To-Day","GTD","2026-11-27","Hip",0,"2026-11-26"],
+    "Isaiah Stewart": ["MEM","Out","OUT","2026-11-29","Hip",0,"2026-11-28"],
     "Izaiyah Nelson": ["ORL","Out","OUT","2026-11-29","Ankle",0,"2026-11-18"],
     "Ja Morant": ["POR","Out","OUT","2026-12-01","Hamstring",0,"2026-11-08"],
     "Jalen Duren": ["DET","Out","OUT","2026-11-30","Hamstring",0,"2026-11-26"],
@@ -51,7 +51,6 @@ const NBA_INJURIES = {
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-29","Hip",0,"2026-11-26"],
-    "Joel Embiid": ["PHI","Day-To-Day","","","",0,"2026-11-27"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","OUT","2026-11-29","Foot",0,"2026-11-27"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
