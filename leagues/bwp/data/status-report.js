@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T14:03:22.153Z",
+  "generatedAt": "2026-11-28T16:03:28.251Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -597,7 +597,7 @@ const STATUS_REPORT_DATA = {
           "name": "George Kittle",
           "pos": "TE",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -619,7 +619,7 @@ const STATUS_REPORT_DATA = {
           "name": "Brock Bowers",
           "pos": "TE",
           "nfl": "LV",
-          "isStarter": false,
+          "isStarter": true,
           "status": "Q",
           "flag": false,
           "lastGamePoints": null,
@@ -1684,7 +1684,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 10.3,
           "last3AvgPoints": 11.3,
-          "projPoints": 11.1
+          "projPoints": 11.6
         },
         {
           "name": "TreVeyon Henderson",
@@ -1789,9 +1789,9 @@ const STATUS_REPORT_DATA = {
           "name": "Brock Purdy",
           "pos": "QB",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": "O",
-          "flag": true,
+          "flag": false,
           "lastGamePoints": 22.2,
           "last3AvgPoints": 26.7,
           "projPoints": null
@@ -1811,7 +1811,7 @@ const STATUS_REPORT_DATA = {
           "name": "Anthony Richardson Sr.",
           "pos": "QB",
           "nfl": "IND",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 0.2,
@@ -1841,7 +1841,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": 6.2
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 0
     },
     {
       "id": "beyaz-sleeper-1427770891743268864",
@@ -2082,7 +2082,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 9.8,
           "last3AvgPoints": 10.9,
-          "projPoints": 10.2
+          "projPoints": 10.5
         },
         {
           "name": "Colston Loveland",
@@ -2115,7 +2115,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.9,
           "last3AvgPoints": 7.1,
-          "projPoints": 8.2
+          "projPoints": 8.3
         },
         {
           "name": "Darren Waller",
@@ -3897,7 +3897,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.4,
           "last3AvgPoints": 5.1,
-          "projPoints": 7.7
+          "projPoints": 8.2
         },
         {
           "name": "Tyrone Tracy Jr.",
@@ -4007,7 +4007,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.2,
           "last3AvgPoints": 27.7,
-          "projPoints": 17.5
+          "projPoints": 18
         },
         {
           "name": "Isaiah Likely",
@@ -4184,7 +4184,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 10.5,
-          "projPoints": 5.3
+          "projPoints": 5.4
         },
         {
           "name": "Mike Gesicki",
@@ -4217,7 +4217,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.7,
           "last3AvgPoints": 16.8,
-          "projPoints": 7.5
+          "projPoints": 7.4
         },
         {
           "name": "Ty Johnson",
