@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T04:03:19.649Z",
+  "generatedAt": "2026-11-28T06:03:25.549Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -22,7 +22,7 @@ const STATUS_REPORT_DATA = {
           "name": "Nico Collins",
           "pos": "WR",
           "nfl": "HOU",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 14.8,
@@ -33,7 +33,7 @@ const STATUS_REPORT_DATA = {
           "name": "Garrett Wilson",
           "pos": "WR",
           "nfl": "NYJ",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 6.9,
@@ -88,7 +88,7 @@ const STATUS_REPORT_DATA = {
           "name": "Antonio Williams",
           "pos": "WR",
           "nfl": "WSH",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 21.2,
@@ -110,7 +110,7 @@ const STATUS_REPORT_DATA = {
           "name": "Malachi Fields",
           "pos": "WR",
           "nfl": "NYG",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 4.5,
@@ -165,7 +165,7 @@ const STATUS_REPORT_DATA = {
           "name": "Brian Thomas Jr.",
           "pos": "WR",
           "nfl": "JAX",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 8.8,
@@ -198,7 +198,7 @@ const STATUS_REPORT_DATA = {
           "name": "Josh Cameron",
           "pos": "WR",
           "nfl": "JAX",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -955,7 +955,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 21.6,
-          "projPoints": 24.2
+          "projPoints": 24.4
         },
         {
           "name": "Denver Broncos",
@@ -1220,7 +1220,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 21.6,
-          "projPoints": 24.2
+          "projPoints": 24.4
         },
         {
           "name": "Denver Broncos",
@@ -1452,7 +1452,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 7.3,
-          "projPoints": 5.1
+          "projPoints": 5.2
         },
         {
           "name": "George Kittle",
@@ -1463,7 +1463,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.9,
           "last3AvgPoints": 11.7,
-          "projPoints": 8.5
+          "projPoints": 8.6
         },
         {
           "name": "Courtland Sutton",
@@ -1551,7 +1551,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 1.3,
-          "projPoints": 4.7
+          "projPoints": 4.8
         },
         {
           "name": "Parker Washington",
@@ -2303,7 +2303,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.9,
           "last3AvgPoints": 22.9,
-          "projPoints": 12.1
+          "projPoints": 12.2
         },
         {
           "name": "DJ Moore",
@@ -4007,7 +4007,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.2,
           "last3AvgPoints": 27.7,
-          "projPoints": 17.6
+          "projPoints": 17.5
         },
         {
           "name": "Isaiah Likely",
@@ -4184,7 +4184,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 7.2,
           "last3AvgPoints": 10.5,
-          "projPoints": 5.4
+          "projPoints": 5.3
         },
         {
           "name": "Mike Gesicki",
