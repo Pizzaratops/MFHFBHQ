@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T00:00:01.433Z",
+  "updated": "2026-11-28T00:01:04.724Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -65,7 +65,6 @@ const NBA_INJURIES = {
     "Kristaps Porzingis": ["GS","Out","OUT","2027-01-02","Illness",0,"2026-11-06"],
     "Kyrie Irving": ["DAL","Day-To-Day","GTD","2026-11-27","Knee",0,"2026-11-27"],
     "LaMelo Ball": ["MIN","Out","OUT","2026-11-29","Ankle",0,"2026-11-27"],
-    "Larry Nance Jr.": ["IND","Day-To-Day","","","",0,"2026-11-27"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
