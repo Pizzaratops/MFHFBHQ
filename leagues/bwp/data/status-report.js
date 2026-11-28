@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T06:03:25.549Z",
+  "generatedAt": "2026-11-28T07:15:34.131Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -834,7 +834,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Colston Loveland",
@@ -1099,7 +1099,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Colston Loveland",
@@ -1993,7 +1993,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 17,
           "last3AvgPoints": 15.5,
-          "projPoints": 15.1
+          "projPoints": 15.2
         },
         {
           "name": "Tucker Kraft",
@@ -3609,7 +3609,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Caleb Douglas",
@@ -3941,7 +3941,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 3.8,
           "last3AvgPoints": 5.4,
-          "projPoints": 9.4
+          "projPoints": 9.5
         },
         {
           "name": "Tyler Shough",
