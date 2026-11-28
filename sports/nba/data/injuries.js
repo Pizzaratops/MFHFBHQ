@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T14:29:01.369Z",
+  "updated": "2026-11-28T15:46:16.793Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -99,7 +99,7 @@ const NBA_INJURIES = {
     "Tobi Lawal": ["DAL","Out","OUT","2026-11-30","Groin",0,"2026-11-27"],
     "Tobias Harris": ["SA","Out","OUT","2026-12-03","Calf",0,"2026-11-16"],
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
-    "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-27"],
+    "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-28"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
     "Yanic Konan Niederhauser": ["LAC","Day-To-Day","GTD","2026-11-29","Toe",0,"2026-11-28"],
     "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-29","Knee",0,"2026-11-26"]
