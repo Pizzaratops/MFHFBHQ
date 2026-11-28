@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T02:03:23.761Z",
+  "generatedAt": "2026-11-28T04:03:19.649Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -442,9 +442,9 @@ const STATUS_REPORT_DATA = {
           "name": "Brock Purdy",
           "pos": "QB",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": "O",
-          "flag": true,
+          "flag": false,
           "lastGamePoints": 22.2,
           "last3AvgPoints": 26.4,
           "projPoints": 0
@@ -527,17 +527,6 @@ const STATUS_REPORT_DATA = {
           "projPoints": 10.3
         },
         {
-          "name": "Bengals D/ST",
-          "pos": "DST",
-          "nfl": "CIN",
-          "isStarter": true,
-          "status": null,
-          "flag": false,
-          "lastGamePoints": 0,
-          "last3AvgPoints": 2.7,
-          "projPoints": 6.4
-        },
-        {
           "name": "Emmett Johnson",
           "pos": "RB",
           "nfl": "KC",
@@ -569,9 +558,20 @@ const STATUS_REPORT_DATA = {
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": 11.7
+        },
+        {
+          "name": "Fernando Mendoza",
+          "pos": "QB",
+          "nfl": "LV",
+          "isStarter": true,
+          "status": null,
+          "flag": false,
+          "lastGamePoints": null,
+          "last3AvgPoints": null,
+          "projPoints": 16.1
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 0
     },
     {
       "id": "beyaz-espn-1340233816",
@@ -597,7 +597,7 @@ const STATUS_REPORT_DATA = {
           "name": "George Kittle",
           "pos": "TE",
           "nfl": "SF",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -608,9 +608,9 @@ const STATUS_REPORT_DATA = {
           "name": "Brock Purdy",
           "pos": "QB",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": "O",
-          "flag": true,
+          "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": null,
           "projPoints": null
@@ -704,9 +704,9 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         },
         {
-          "name": "Drake London",
-          "pos": "WR",
-          "nfl": "ATL",
+          "name": "Fernando Mendoza",
+          "pos": "QB",
+          "nfl": "LV",
           "isStarter": true,
           "status": null,
           "flag": false,
@@ -715,7 +715,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         }
       ],
-      "flaggedCount": 2
+      "flaggedCount": 1
     },
     {
       "id": "beyaz-sleeper-1312794408151687168",
@@ -1315,7 +1315,7 @@ const STATUS_REPORT_DATA = {
           "name": "Shedeur Sanders",
           "pos": "QB",
           "nfl": "CLE",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": null,
@@ -1535,9 +1535,9 @@ const STATUS_REPORT_DATA = {
           "name": "Brock Purdy",
           "pos": "QB",
           "nfl": "SF",
-          "isStarter": true,
+          "isStarter": false,
           "status": "O",
-          "flag": true,
+          "flag": false,
           "lastGamePoints": 22.2,
           "last3AvgPoints": 26.7,
           "projPoints": null
@@ -1576,7 +1576,7 @@ const STATUS_REPORT_DATA = {
           "projPoints": null
         }
       ],
-      "flaggedCount": 1
+      "flaggedCount": 0
     },
     {
       "id": "beyaz-sleeper-1312748395584036864",
