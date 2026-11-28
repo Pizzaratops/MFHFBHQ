@@ -11,7 +11,7 @@
 //  den Radar-Plot-Wert per (N+1)-Rang-Trick.
 // ============================================================
 const FANTASY_POWER_SCORE = {
-  "generatedAt": "2026-11-28T07:01:24.967Z",
+  "generatedAt": "2026-11-28T08:01:30.628Z",
   "sourceSeason": "Live Projections 2026/27 (Projection + bisherige Saison, bis zu 20 Spiele) je aktuellem Kader, pro Spiel; fehlende Spieler mit Vorjahreswerten 2025/26",
   "categories": [
     {
@@ -146,7 +146,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 9,
         "tpm": 2,
         "fgPct": 12,
-        "ftPct": 4,
+        "ftPct": 3,
         "to": 6
       },
       "includedCount": 28,
@@ -176,7 +176,7 @@ const FANTASY_POWER_SCORE = {
         "stl": 4,
         "blk": 8,
         "tpm": 1,
-        "fgPct": 10,
+        "fgPct": 11,
         "ftPct": 2,
         "to": 10
       },
@@ -334,10 +334,10 @@ const FANTASY_POWER_SCORE = {
         "ast": 10,
         "stl": 8,
         "blk": 10,
-        "tpm": 11,
+        "tpm": 12,
         "fgPct": 3,
         "ftPct": 8,
-        "to": 2
+        "to": 1
       },
       "includedCount": 28,
       "projCount": 28,
@@ -398,7 +398,7 @@ const FANTASY_POWER_SCORE = {
         "blk": 7,
         "tpm": 5,
         "fgPct": 7,
-        "ftPct": 5,
+        "ftPct": 4,
         "to": 11
       },
       "includedCount": 28,
@@ -411,15 +411,15 @@ const FANTASY_POWER_SCORE = {
       "name": "Vancouver Curry-Wurst",
       "owner": "German Bratwurst",
       "values": {
-        "pts": 257,
-        "reb": 81.4,
-        "ast": 58.5,
-        "stl": 17.94,
-        "blk": 8.91,
-        "tpm": 30,
-        "to": 34.4,
-        "fgPct": 46,
-        "ftPct": 79.2
+        "pts": 264.5,
+        "reb": 85.8,
+        "ast": 59.3,
+        "stl": 18.68,
+        "blk": 9.6,
+        "tpm": 30.3,
+        "to": 34.9,
+        "fgPct": 46.3,
+        "ftPct": 79
       },
       "rank": {
         "pts": 12,
@@ -427,17 +427,16 @@ const FANTASY_POWER_SCORE = {
         "ast": 12,
         "stl": 12,
         "blk": 12,
-        "tpm": 12,
-        "fgPct": 11,
-        "ftPct": 3,
-        "to": 1
+        "tpm": 11,
+        "fgPct": 10,
+        "ftPct": 5,
+        "to": 2
       },
-      "includedCount": 26,
-      "projCount": 26,
-      "skippedCount": 2,
+      "includedCount": 27,
+      "projCount": 27,
+      "skippedCount": 1,
       "skippedPlayers": [
-        "Ben Simmons",
-        "Adam Flagler"
+        "Ben Simmons"
       ]
     }
   ]
