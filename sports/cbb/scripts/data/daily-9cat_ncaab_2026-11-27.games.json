@@ -4,9 +4,9 @@
   "games": [
     {
       "id": "401920535",
-      "line": "San Diego State Aztecs @ Texas Tech Red Raiders (14:14 - 1st)",
+      "line": "San Diego State Aztecs @ Texas Tech Red Raiders (17:37 - 2nd)",
       "completed": false,
-      "statusText": "14:14 - 1st",
+      "statusText": "17:37 - 2nd",
       "away": {
         "abbr": "SDSU",
         "name": "San Diego State Aztecs",
@@ -22,9 +22,9 @@
     },
     {
       "id": "401920544",
-      "line": "Creighton Bluejays @ Gonzaga Bulldogs (1:46 - 1st)",
+      "line": "Creighton Bluejays @ Gonzaga Bulldogs (7:52 - 2nd)",
       "completed": false,
-      "statusText": "1:46 - 1st",
+      "statusText": "7:52 - 2nd",
       "away": {
         "abbr": "Crei",
         "name": "Creighton Bluejays",
@@ -13393,7 +13393,7 @@
           },
           {
             "name": "John Simcoe",
-            "min": 1,
+            "min": 2,
             "pts": 0,
             "reb": 0,
             "ast": 0,
@@ -13474,7 +13474,7 @@
           },
           {
             "name": "Bryce Bedgood",
-            "min": 1,
+            "min": 2,
             "pts": 2,
             "reb": 1,
             "ast": 0,
@@ -15171,7 +15171,7 @@
           },
           {
             "name": "Casey Jones",
-            "min": 13,
+            "min": 14,
             "pts": 0,
             "reb": 1,
             "ast": 0,

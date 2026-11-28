@@ -5930,9 +5930,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920535",
-      line: "San Diego State Aztecs @ Texas Tech Red Raiders (14:14 - 1st)",
+      line: "San Diego State Aztecs @ Texas Tech Red Raiders (17:37 - 2nd)",
       completed: false,
-      statusText: "14:14 - 1st",
+      statusText: "17:37 - 2nd",
       away: {
         abbr: "SDSU", name: "San Diego State Aztecs", score: null,
         players: [
@@ -5948,9 +5948,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920544",
-      line: "Creighton Bluejays @ Gonzaga Bulldogs (1:46 - 1st)",
+      line: "Creighton Bluejays @ Gonzaga Bulldogs (7:52 - 2nd)",
       completed: false,
-      statusText: "1:46 - 1st",
+      statusText: "7:52 - 2nd",
       away: {
         abbr: "Crei", name: "Creighton Bluejays", score: null,
         players: [
@@ -6929,10 +6929,10 @@ const LIVESCORES_BOXSCORES = {
           { name: "CJ Shaw", min: 28, pts: 10, reb: 7, ast: 2, stl: 6, blk: 0, to: 4, tpm: 1, fgm: 3, fga: 10, ftm: 3, fta: 3, composite: 4.3, zScores: { pts: 0.395, reb: 1.452, ast: 0.238, stl: 5.122, blk: -0.478, tpm: 0.103, fgImpact: -1.346, ftImpact: 1.037, to: -2.22 } },
           { name: "RJ Smith", min: 27, pts: 9, reb: 5, ast: 2, stl: 0, blk: 2, to: 0, tpm: 2, fgm: 3, fga: 5, ftm: 1, fta: 2, composite: 4.18, zScores: { pts: 0.249, reb: 0.729, ast: 0.238, stl: -0.671, blk: 1.968, tpm: 0.872, fgImpact: 0.571, ftImpact: -0.623, to: 0.853 } },
           { name: "Miro Little", min: 25, pts: 10, reb: 2, ast: 3, stl: 0, blk: 0, to: 5, tpm: 1, fgm: 3, fga: 5, ftm: 3, fta: 3, composite: -1.63, zScores: { pts: 0.395, reb: -0.356, ast: 0.758, stl: -0.671, blk: -0.478, tpm: 0.103, fgImpact: 0.571, ftImpact: 1.037, to: -2.988 } },
-          { name: "John Simcoe", min: 1, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -4.29, zScores: { pts: -1.066, reb: -1.079, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: -0.383, ftImpact: 0, to: 0.853 } },
+          { name: "John Simcoe", min: 2, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -4.29, zScores: { pts: -1.066, reb: -1.079, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: -0.383, ftImpact: 0, to: 0.853 } },
           { name: "Declan Duru Jr.", min: 12, pts: 8, reb: 3, ast: 0, stl: 0, blk: 0, to: 2, tpm: 0, fgm: 3, fga: 4, ftm: 2, fta: 3, composite: -2.52, zScores: { pts: 0.103, reb: 0.006, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0.954, ftImpact: -0.278, to: -0.683 } },
           { name: "Michael Simcoe", min: 11, pts: 2, reb: 2, ast: 1, stl: 1, blk: 2, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 2, fta: 2, composite: 1.35, zScores: { pts: -0.774, reb: -0.356, ast: -0.282, stl: 0.294, blk: 1.968, tpm: -0.665, fgImpact: -0.383, ftImpact: 0.691, to: 0.853 } },
-          { name: "Bryce Bedgood", min: 1, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 2, fta: 2, composite: -2.56, zScores: { pts: -0.774, reb: -0.718, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0, ftImpact: 0.691, to: 0.853 } },
+          { name: "Bryce Bedgood", min: 2, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 2, fta: 2, composite: -2.56, zScores: { pts: -0.774, reb: -0.718, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0, ftImpact: 0.691, to: 0.853 } },
           { name: "Antonio Chol", min: 15, pts: 6, reb: 5, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 3, ftm: 3, fta: 4, composite: -0.71, zScores: { pts: -0.19, reb: 0.729, ast: -0.802, stl: -0.671, blk: -0.478, tpm: 0.103, fgImpact: -0.321, ftImpact: 0.068, to: 0.853 } },
           { name: "Koat Keat Tong", min: 6, pts: 0, reb: 2, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -2.67, zScores: { pts: -1.066, reb: -0.356, ast: -0.282, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0, ftImpact: 0, to: 0.853 } },
           { name: "Marco John Wuol", min: 3, pts: 0, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -3.55, zScores: { pts: -1.066, reb: -0.718, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0, ftImpact: 0, to: 0.853 } },
@@ -7059,7 +7059,7 @@ const LIVESCORES_BOXSCORES = {
           { name: "Dominik Robinson", min: 13, pts: 2, reb: 5, ast: 0, stl: 1, blk: 0, to: 2, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -1.93, zScores: { pts: -0.774, reb: 0.729, ast: -0.802, stl: 0.294, blk: -0.478, tpm: -0.665, fgImpact: 0.446, ftImpact: 0, to: -0.683 } },
           { name: "Tyler Kropp", min: 18, pts: 6, reb: 3, ast: 0, stl: 1, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 5, ftm: 2, fta: 2, composite: -1.32, zScores: { pts: -0.19, reb: 0.006, ast: -0.802, stl: 0.294, blk: -0.478, tpm: -0.665, fgImpact: -0.258, ftImpact: 0.691, to: 0.085 } },
           { name: "RJ Jones", min: 11, pts: 3, reb: 2, ast: 0, stl: 1, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 2, ftm: 0, fta: 0, composite: -0.95, zScores: { pts: -0.628, reb: -0.356, ast: -0.802, stl: 0.294, blk: -0.478, tpm: 0.103, fgImpact: 0.062, ftImpact: 0, to: 0.853 } },
-          { name: "Casey Jones", min: 13, pts: 0, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -4.32, zScores: { pts: -1.066, reb: -0.718, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0, ftImpact: 0, to: 0.085 } },
+          { name: "Casey Jones", min: 14, pts: 0, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -4.32, zScores: { pts: -1.066, reb: -0.718, ast: -0.802, stl: -0.671, blk: -0.478, tpm: -0.665, fgImpact: 0, ftImpact: 0, to: 0.085 } },
           { name: "Jamari Phillips", min: 20, pts: 6, reb: 3, ast: 0, stl: 2, blk: 0, to: 0, tpm: 0, fgm: 3, fga: 6, ftm: 0, fta: 0, composite: 0.17, zScores: { pts: -0.19, reb: 0.006, ast: -0.802, stl: 1.26, blk: -0.478, tpm: -0.665, fgImpact: 0.187, ftImpact: 0, to: 0.853 } }
         ]
       }

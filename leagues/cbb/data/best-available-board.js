@@ -1,6 +1,6 @@
 // ============================================================
 //  BEST_AVAILABLE_BOARD — Dizzle CBB, AUTO-GENERIERT von
-//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-28T05:02:47.464Z
+//  leagues/cbb/scripts/build-best-available-board.js. Stand: 2026-11-28T06:02:46.988Z
 // ============================================================
 
 const BEST_AVAILABLE_BOARD = [
@@ -1195,7 +1195,7 @@ const BEST_AVAILABLE_BOARD = [
   {"name":"Ryder Frost","nbaTeam":"GrgWas","pos":"F","cls":"–","experience":"veteran","nilValue":1,"minutesAvg":15.9,"z7":-1.45,"z30":-2.47,"zSeason":-2.59,"gamesSeason":8,"bestCat7":"3PM","bestCat30":"TO","worstCat30":"FG%","projZ":-3.83,"projMin":9.7,"role":"Bank","statsWindow":"season","compositeScore":-1.14,"signalsUsed":2,"rosZ":-2.31,"rosG":22,"zAct":-0.78,"gLive":8,"rank":1189},
   {"name":"Egor Amosov","nbaTeam":"UConn","pos":"F","cls":"Fr","experience":"rookie","nilValue":1,"minutesAvg":15.5,"projZ":-1.8,"projMin":15.5,"role":"Rotation","compositeScore":-1,"signalsUsed":1,"rosZ":-2.32,"rosG":24,"zAct":-3.36,"gLive":4,"rank":1190},
   {"name":"Michael Madueme","nbaTeam":"Colum","pos":"G","cls":"Fr","experience":"rookie","minutesAvg":22.3,"z7":-2.61,"z30":-2.59,"zSeason":-2.7,"gamesSeason":7,"bestCat7":"BLK","bestCat30":"TO","worstCat30":"PTS","projZ":-3.73,"projMin":10.7,"role":"Bank","statsWindow":"season","compositeScore":-1.18,"signalsUsed":2,"rosZ":-2.33,"rosG":20,"zAct":-0.72,"gLive":7,"rank":1191},
-  {"name":"Casey Jones","nbaTeam":"WaSt","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":14.3,"z30":-4.96,"zSeason":-5.07,"gamesSeason":8,"bestCat30":"FT%","worstCat30":"PTS","projZ":-0.15,"projMin":16.6,"role":"Rotation","statsWindow":"season","compositeScore":-1.17,"signalsUsed":2,"rosZ":-2.34,"rosG":23,"zAct":-4.52,"gLive":8,"rank":1192},
+  {"name":"Casey Jones","nbaTeam":"WaSt","pos":"G","cls":"Sr","experience":"veteran","minutesAvg":14.4,"z30":-4.96,"zSeason":-5.07,"gamesSeason":8,"bestCat30":"FT%","worstCat30":"PTS","projZ":-0.15,"projMin":16.6,"role":"Rotation","statsWindow":"season","compositeScore":-1.17,"signalsUsed":2,"rosZ":-2.34,"rosG":23,"zAct":-4.52,"gLive":8,"rank":1192},
   {"name":"Tarence Guinyard","nbaTeam":"Duques","pos":"G","cls":"Grad","experience":"veteran","nilValue":3,"minutesAvg":30.5,"z30":4.1,"bestCat30":"AST","worstCat30":"TO","lastSeasonRank":407,"projZ":7.66,"projMin":30.5,"role":"Starter","statsWindow":"last-season","compositeScore":1.23,"signalsUsed":1,"rosZ":7.66,"rosG":22,"rosSit":true,"rank":1193},
   {"name":"DaKari Spear","nbaTeam":"TxTch","pos":"G","cls":"Fr","experience":"rookie","nilValue":1,"minutesAvg":12.9,"z30":-3.11,"zSeason":-3.22,"gamesSeason":7,"bestCat30":"TO","worstCat30":"AST","projZ":-3.43,"projMin":13.9,"role":"Bank","statsWindow":"season","compositeScore":-1.23,"signalsUsed":2,"rosZ":-2.35,"rosG":21,"zAct":-1.12,"gLive":7,"rank":1194},
   {"name":"Brad Longcor","nbaTeam":"SCla","pos":"G","cls":"So","experience":"sophomore","minutesAvg":23.9,"z7":-5.31,"z30":-2.63,"zSeason":-2.76,"gamesSeason":8,"bestCat7":"STL","bestCat30":"STL","worstCat30":"FG%","projZ":-3.58,"projMin":11.2,"role":"Bank","statsWindow":"season","compositeScore":-1.15,"signalsUsed":2,"rosZ":-2.37,"rosG":23,"zAct":-1.16,"gLive":8,"rank":1195},
