@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T02:01:02.445Z",
+  "updated": "2026-11-28T02:08:45.106Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -20,16 +20,14 @@ const NBA_INJURIES = {
     "Chet Holmgren": ["OKC","Out","OUT","2027-01-02","Knee",0,"2026-10-31"],
     "Chris Youngblood": ["POR","Out","OUT","2026-11-29","Heel",0,"2026-11-27"],
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
-    "Colin Castleton": ["ORL","Day-To-Day","OUT","2026-11-29","Calf",0,"2026-11-26"],
+    "Colin Castleton": ["ORL","Out","OUT","2026-11-29","Calf",0,"2026-11-28"],
     "Damian Lillard": ["POR","Out","OUT","2026-11-29","Calf",0,"2026-11-27"],
-    "De'Aaron Fox": ["SA","Day-To-Day","","","",0,"2026-11-26"],
     "Dean Wade": ["PHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-27"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-29","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-24"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-30","Foot",0,"2026-11-26"],
     "Donte DiVincenzo": ["MIN","Out","OUT","2027-01-03","Achilles",0,"2026-11-24"],
     "Duncan Robinson": ["DET","Out","OUT","2026-11-29","Quadriceps",0,"2026-11-26"],
-    "Dylan Harper": ["SA","Out","","","",0,"2026-11-27"],
     "Ebuka Okorie": ["DET","Out","OUT","2026-12-13","Oblique",0,"2026-11-24"],
     "Evan Mobley": ["CLE","Out","OUT","2026-11-29","Toe",0,"2026-11-16"],
     "GG Jackson": ["MEM","Out","OUT","2027-01-18","Foot",0,"2026-11-17"],
@@ -72,7 +70,7 @@ const NBA_INJURIES = {
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
-    "Nate Bittle": ["TOR","Out","OUT","2026-11-27","Foot",0,"2026-11-22"],
+    "Nate Bittle": ["TOR","Out","GTD","2026-11-27","Foot",0,"2026-11-22"],
     "Nikola Topic": ["OKC","Out","OUT","2026-12-13","Hip",0,"2026-11-27"],
     "Noa Essengue": ["CHI","Day-To-Day","GTD","2026-11-28","Thumb",0,"2026-11-27"],
     "Noah Penda": ["ORL","Out","OUT","2026-11-29","Hamstring",0,"2026-11-14"],
