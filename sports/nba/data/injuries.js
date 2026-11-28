@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T14:05:44.081Z",
+  "updated": "2026-11-28T14:29:01.369Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -71,7 +71,7 @@ const NBA_INJURIES = {
     "Miles McBride": ["NY","Out","OUT","2026-11-29","Groin",0,"2026-11-27"],
     "Mitchell Robinson": ["BOS","Out","OUT","2026-11-29","Illness",0,"2026-11-27"],
     "Mo Bamba": ["UTAH","Out","OUT","2026-11-29","Illness",0,"2026-11-28"],
-    "Moritz Wagner": ["BKN","Out","OUT","2026-11-28","Knee",0,"2026-11-26"],
+    "Moritz Wagner": ["BKN","Day-To-Day","GTD","2026-11-28","Knee",0,"2026-11-28"],
     "Moses Moody": ["GS","Out","OUT","2026-12-01","Knee",0,"2026-10-16"],
     "Mouhamed Gueye": ["ATL","Out","OUT","2026-12-12","Foot",0,"2026-11-13"],
     "Nae'Qwan Tomlin": ["CLE","Out","OUT","2026-11-29","Back",0,"2026-11-17"],
@@ -92,7 +92,7 @@ const NBA_INJURIES = {
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-28"],
     "Steven Adams": ["HOU","Day-To-Day","GTD","2026-11-28","Knee",0,"2026-11-27"],
-    "T.J. McConnell": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-27"],
+    "T.J. McConnell": ["IND","Out","GTD","2026-11-28","Hamstring",0,"2026-11-27"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-12-04","Heel",0,"2026-11-26"],
     "Taurean Prince": ["DET","Out","OUT","2026-12-26","Knee",0,"2026-11-24"],
     "Thomas Sorber": ["OKC","Out","OUT","2027-01-31","Knee",0,"2026-11-18"],
@@ -101,7 +101,7 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-27"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Yanic Konan Niederhauser": ["LAC","Out","OUT","2026-11-29","Toe",0,"2026-11-28"],
+    "Yanic Konan Niederhauser": ["LAC","Day-To-Day","GTD","2026-11-29","Toe",0,"2026-11-28"],
     "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-29","Knee",0,"2026-11-26"]
   }
 };
