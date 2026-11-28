@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T16:45:00.267Z",
+  "generatedAt": "2026-11-28T18:03:28.060Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1463,7 +1463,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.9,
           "last3AvgPoints": 11.7,
-          "projPoints": 9
+          "projPoints": 9.1
         },
         {
           "name": "Courtland Sutton",
@@ -1518,6 +1518,17 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": null,
           "last3AvgPoints": 3.1,
+          "projPoints": 4.2
+        },
+        {
+          "name": "Tommy Tremble",
+          "pos": "TE",
+          "nfl": "CAR",
+          "isStarter": false,
+          "status": "Q",
+          "flag": false,
+          "lastGamePoints": 2.3,
+          "last3AvgPoints": 6.5,
           "projPoints": 4.2
         },
         {
@@ -2303,7 +2314,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 22.9,
           "last3AvgPoints": 22.9,
-          "projPoints": 12.7
+          "projPoints": 12.8
         },
         {
           "name": "DJ Moore",
@@ -3653,7 +3664,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 2.5,
           "last3AvgPoints": 8,
-          "projPoints": 4.1
+          "projPoints": 4.2
         },
         {
           "name": "Chris Boswell",
@@ -4007,7 +4018,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 14.2,
           "last3AvgPoints": 27.7,
-          "projPoints": 17.4
+          "projPoints": 17.1
         },
         {
           "name": "Isaiah Likely",
