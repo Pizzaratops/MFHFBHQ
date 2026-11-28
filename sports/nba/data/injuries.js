@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T14:01:07.615Z",
+  "updated": "2026-11-28T14:05:44.081Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -23,7 +23,7 @@ const NBA_INJURIES = {
     "CJ McCollum": ["ATL","Out","OUT","2026-12-19","Calf",0,"2026-11-17"],
     "Colin Castleton": ["ORL","Out","OUT","2026-11-29","Calf",0,"2026-11-28"],
     "Damian Lillard": ["POR","Out","OUT","2026-11-29","Calf",0,"2026-11-27"],
-    "Dean Wade": ["PHI","Out","OUT","2026-11-28","Hamstring",0,"2026-11-27"],
+    "Dean Wade": ["PHI","Day-To-Day","GTD","2026-11-28","Hamstring",0,"2026-11-28"],
     "Dejounte Murray": ["NO","Out","OUT","2026-11-29","Ankle",0,"2026-11-13"],
     "Dennis Schroder": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-24"],
     "Dereck Lively II": ["DAL","Out","OUT","2026-11-30","Foot",0,"2026-11-26"],
@@ -57,7 +57,7 @@ const NBA_INJURIES = {
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
     "Julian Reese": ["NO","Day-To-Day","GTD","2026-12-01","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
-    "Kasparas Jakucionis": ["MIL","Out","OUT","2026-11-28","Ankle",0,"2026-11-27"],
+    "Kasparas Jakucionis": ["MIL","Day-To-Day","GTD","2026-11-28","Ankle",0,"2026-11-28"],
     "Kawhi Leonard": ["TOR","Out","OUT","2026-12-03","Knee",0,"2026-11-24"],
     "Kevin Porter Jr.": ["ORL","Out","OUT","2026-11-29","Not Injury Related",0,"2026-11-27"],
     "Kon Knueppel": ["CHA","Out","OUT","2026-12-12","Hamstring",0,"2026-11-08"],
