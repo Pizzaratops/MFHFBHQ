@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T12:03:24.655Z",
+  "generatedAt": "2026-11-28T14:03:22.153Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -22,7 +22,7 @@ const STATUS_REPORT_DATA = {
           "name": "Nico Collins",
           "pos": "WR",
           "nfl": "HOU",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 14.8,
@@ -88,7 +88,7 @@ const STATUS_REPORT_DATA = {
           "name": "Antonio Williams",
           "pos": "WR",
           "nfl": "WSH",
-          "isStarter": false,
+          "isStarter": true,
           "status": null,
           "flag": false,
           "lastGamePoints": 21.2,
@@ -110,7 +110,7 @@ const STATUS_REPORT_DATA = {
           "name": "Malachi Fields",
           "pos": "WR",
           "nfl": "NYG",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 4.5,
@@ -165,7 +165,7 @@ const STATUS_REPORT_DATA = {
           "name": "Brian Thomas Jr.",
           "pos": "WR",
           "nfl": "JAX",
-          "isStarter": true,
+          "isStarter": false,
           "status": null,
           "flag": false,
           "lastGamePoints": 8.8,
