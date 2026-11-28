@@ -3718,9 +3718,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909326",
-      line: "Miami Heat @ New York Knicks (End of 1st)",
+      line: "Miami Heat @ New York Knicks (3:21 - 2nd)",
       completed: false,
-      statusText: "End of 1st",
+      statusText: "3:21 - 2nd",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -3736,9 +3736,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909327",
-      line: "Milwaukee Bucks @ Detroit Pistons (11/27 - 7:30 PM EST)",
+      line: "Milwaukee Bucks @ Detroit Pistons (3:24 - 1st)",
       completed: false,
-      statusText: "11/27 - 7:30 PM EST",
+      statusText: "3:24 - 1st",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -3754,9 +3754,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909328",
-      line: "Philadelphia 76ers @ Indiana Pacers (11/27 - 7:30 PM EST)",
+      line: "Philadelphia 76ers @ Indiana Pacers (2:26 - 1st)",
       completed: false,
-      statusText: "11/27 - 7:30 PM EST",
+      statusText: "2:26 - 1st",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -3772,9 +3772,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909329",
-      line: "Brooklyn Nets @ Toronto Raptors (11/27 - 7:30 PM EST)",
+      line: "Brooklyn Nets @ Toronto Raptors (5:00 - 1st)",
       completed: false,
-      statusText: "11/27 - 7:30 PM EST",
+      statusText: "5:00 - 1st",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
