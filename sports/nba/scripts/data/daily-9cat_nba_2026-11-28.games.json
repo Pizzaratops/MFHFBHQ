@@ -1,0 +1,96 @@
+{
+  "league": "nba",
+  "date": "2026-11-28",
+  "games": [
+    {
+      "id": "401910046",
+      "line": "Orlando Magic @ Washington Wizards (11/28 - 5:00 PM EST)",
+      "completed": false,
+      "statusText": "11/28 - 5:00 PM EST",
+      "away": {
+        "abbr": "ORL",
+        "name": "Orlando Magic",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "WSH",
+        "name": "Washington Wizards",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910047",
+      "line": "Brooklyn Nets @ Charlotte Hornets (11/28 - 6:00 PM EST)",
+      "completed": false,
+      "statusText": "11/28 - 6:00 PM EST",
+      "away": {
+        "abbr": "BKN",
+        "name": "Brooklyn Nets",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHA",
+        "name": "Charlotte Hornets",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910048",
+      "line": "Indiana Pacers @ Chicago Bulls (11/28 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/28 - 8:00 PM EST",
+      "away": {
+        "abbr": "IND",
+        "name": "Indiana Pacers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "CHI",
+        "name": "Chicago Bulls",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910049",
+      "line": "Oklahoma City Thunder @ Milwaukee Bucks (11/28 - 8:00 PM EST)",
+      "completed": false,
+      "statusText": "11/28 - 8:00 PM EST",
+      "away": {
+        "abbr": "OKC",
+        "name": "Oklahoma City Thunder",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "MIL",
+        "name": "Milwaukee Bucks",
+        "score": null,
+        "players": []
+      }
+    },
+    {
+      "id": "401910050",
+      "line": "Philadelphia 76ers @ Houston Rockets (11/28 - 8:30 PM EST)",
+      "completed": false,
+      "statusText": "11/28 - 8:30 PM EST",
+      "away": {
+        "abbr": "PHI",
+        "name": "Philadelphia 76ers",
+        "score": null,
+        "players": []
+      },
+      "home": {
+        "abbr": "HOU",
+        "name": "Houston Rockets",
+        "score": null,
+        "players": []
+      }
+    }
+  ]
+}
