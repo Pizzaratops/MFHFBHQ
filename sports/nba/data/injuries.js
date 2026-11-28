@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T18:23:45.396Z",
+  "updated": "2026-11-28T18:50:39.296Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -54,6 +54,7 @@ const NBA_INJURIES = {
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","GTD","2026-11-29","Foot",0,"2026-11-27"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
+    "Josh Giddey": ["CHI","Day-To-Day","GTD","2026-11-28","Ankle",0,"2026-11-28"],
     "Julian Reese": ["NO","Day-To-Day","GTD","2026-12-01","Knee",0,"2026-11-25"],
     "Justin Champagnie": ["WSH","Out","OUT","2027-02-25","Foot",0,"2026-10-28"],
     "Kasparas Jakucionis": ["MIL","Day-To-Day","GTD","2026-11-28","Ankle",0,"2026-11-28"],
