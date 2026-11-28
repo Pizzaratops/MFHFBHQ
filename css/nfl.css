@@ -652,3 +652,36 @@ td.rank small.up, td.rank small.down { font-size: 10px; font-weight: 800; margin
 .cs-match .dna-nm small { white-space: normal; }
 .cs-match .cs-cpout { display: block; margin-top: 2px; font-size: 11.5px; }
 .cs-rcell .cs-ci { display: block; font-size: 11px; color: var(--muted); margin: 1px 0 2px; cursor: help; text-transform: none; letter-spacing: 0; }
+
+/* 🎯 Pick'em-Helfer (tools/nfl-pickem.js) */
+.pk-summary { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 4px 0 10px; font-size: 13.5px; color: var(--muted); }
+.pk-summary b { color: var(--text); }
+.pk-table td { vertical-align: top; }
+.pk-conf { font-size: 16px; }
+.pk-pick { white-space: nowrap; }
+.pk-p { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: 4px; }
+.pk-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 5px; min-width: 70px; overflow: hidden; }
+.pk-bar span { display: block; height: 100%; background: var(--league-accent, var(--accent, #2f9e44)); }
+.pk-notes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.pk-flag { font-size: 11.5px; padding: 1px 7px; border-radius: 999px; background: color-mix(in srgb, var(--muted) 12%, transparent); color: var(--text); }
+.pk-edge { background: color-mix(in srgb, #f59f00 18%, transparent); }
+.pk-qb { background: color-mix(in srgb, #e03131 14%, transparent); }
+.pk-played { opacity: .62; }
+.pk-res { font-weight: 700; white-space: nowrap; }
+.pk-src { margin-top: 12px; }
+.pk-table .small { font-size: 11.5px; }
+@media (max-width: 640px) {
+  .pk-table thead { display: none; }
+  .pk-table, .pk-table tbody { display: block; width: 100%; }
+  .pk-table tr { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 4px 10px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  .pk-table td { display: block; padding: 0; border: 0; text-align: left; }
+  .pk-table .pk-conf { grid-row: 1 / span 3; align-self: center; font-size: 18px; text-align: center; }
+  .pk-table .pk-c-pick { grid-column: 2; grid-row: 1; }
+  .pk-table .pk-c-ko { grid-column: 3; grid-row: 1; text-align: right; font-size: 12.5px; }
+  .pk-table .pk-c-game { grid-column: 2 / span 2; grid-row: 2; font-size: 13.5px; }
+  .pk-table td.num.pk-c-score { grid-column: 2; grid-row: 3; font-size: 13px; text-align: left; }
+  .pk-table td.num.pk-c-score::before { content: "Erw. "; color: var(--muted); }
+  .pk-table .pk-c-score .small { display: none; }
+  .pk-table .pk-c-line { grid-column: 3; grid-row: 3; text-align: right; font-size: 13px; color: var(--muted); }
+  .pk-bar { min-width: 0; }
+}
