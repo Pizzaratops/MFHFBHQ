@@ -3,7 +3,7 @@
 // ============================================================
 //  AUTO-GENERIERT von scripts/sync-espn-weekly-scores.js über die
 //  GitHub Action ".github/workflows/sync-espn-weekly-scores.yml".
-//  Zuletzt synchronisiert: 2026-11-28T08:04:08.096Z
+//  Zuletzt synchronisiert: 2026-11-28T15:57:54.640Z
 //
 //  teamId hier ist bereits unsere eigene Team-ID aus data/teams.js
 //  (uebersetzt beim Sync per Namensabgleich, wie in
