@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T05:01:05.724Z",
+  "updated": "2026-11-28T06:01:04.507Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -14,6 +14,7 @@ const NBA_INJURIES = {
     "Bennedict Mathurin": ["NO","Out","OUT","2026-11-29","Foot",0,"2026-11-28"],
     "Bradley Beal": ["LAC","Out","OUT","2026-11-29","Knee",0,"2026-10-15"],
     "Cade Cunningham": ["DET","Out","OUT","2026-11-29","Knee",0,"2026-11-26"],
+    "Caleb Martin": ["DAL","Day-To-Day","GTD","2026-11-30","Ankle",0,"2026-11-28"],
     "Caleb Wilson": ["CHI","Out","OUT","2026-12-13","Hand",0,"2026-11-12"],
     "Cameron Boozer": ["MEM","Out","OUT","2026-12-21","Ankle",0,"2026-11-23"],
     "Cason Wallace": ["OKC","Out","OUT","2027-03-02","Shoulder",0,"2026-10-31"],
@@ -50,6 +51,7 @@ const NBA_INJURIES = {
     "Jerami Grant": ["MEM","Out","OUT","2026-12-12","Calf",0,"2026-11-23"],
     "Jimmy Butler III": ["GS","Out","OUT","2027-01-02","Knee",0,"2026-10-16"],
     "Jock Landale": ["ATL","Out","OUT","2026-11-29","Hip",0,"2026-11-26"],
+    "Joel Embiid": ["PHI","Out","OUT","2026-12-01","Foot",0,"2026-11-28"],
     "Jonathan Isaac": ["ORL","Out","OUT","2026-11-29","Knee",0,"2026-11-21"],
     "Jordan Clarkson": ["NY","Out","OUT","2026-11-29","Foot",0,"2026-11-27"],
     "Jordan Miller": ["LAC","Out","OUT","2027-03-02","Shoulder",0,"2026-08-26"],
@@ -63,6 +65,7 @@ const NBA_INJURIES = {
     "Kyrie Irving": ["DAL","Out","OUT","2026-11-30","Knee",0,"2026-11-28"],
     "LaMelo Ball": ["MIN","Out","OUT","2026-11-29","Ankle",0,"2026-11-27"],
     "Lauri Markkanen": ["UTAH","Out","OUT","2027-01-04","Hand",0,"2026-11-11"],
+    "LeBron James": ["PHI","Out","OUT","2026-12-01","Back",0,"2026-11-28"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
     "Miles McBride": ["NY","Out","OUT","2026-11-29","Groin",0,"2026-11-27"],
