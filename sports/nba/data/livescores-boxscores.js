@@ -3724,32 +3724,32 @@ const LIVESCORES_BOXSCORES = {
       away: {
         abbr: "MIA", name: "Miami Heat", score: 108,
         players: [
-          { name: "Giannis Antetokounmpo", min: 32, pts: 22, reb: 23, ast: 3, stl: 0, blk: 0, to: 2, tpm: 0, fgm: 10, fga: 19, ftm: 2, fta: 6, composite: 1.94, zScores: { pts: 1.838, reb: 4.565, ast: 0.302, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: 1.249, ftImpact: -3.331, to: -0.507 } },
-          { name: "Bam Adebayo", min: 37, pts: 25, reb: 7, ast: 0, stl: 1, blk: 2, to: 0, tpm: 1, fgm: 10, fga: 16, ftm: 4, fta: 7, composite: 6.73, zScores: { pts: 2.277, reb: 0.671, ast: -0.997, stl: 0.117, blk: 2.998, tpm: -0.014, fgImpact: 2.18, ftImpact: -1.548, to: 1.049 } },
-          { name: "Klay Thompson", min: 21, pts: 6, reb: 2, ast: 7, stl: 3, blk: 0, to: 0, tpm: 2, fgm: 2, fga: 9, ftm: 0, fta: 0, composite: 2.9, zScores: { pts: -0.501, reb: -0.546, ast: 2.034, stl: 1.832, blk: -0.504, tpm: 0.9, fgImpact: -1.365, ftImpact: 0, to: 1.049 } },
-          { name: "Davion Mitchell", min: 36, pts: 12, reb: 1, ast: 9, stl: 2, blk: 0, to: 3, tpm: 1, fgm: 4, fga: 10, ftm: 3, fta: 4, composite: 1.53, zScores: { pts: 0.377, reb: -0.789, ast: 2.9, stl: 0.974, blk: -0.504, tpm: -0.014, fgImpact: -0.246, ftImpact: 0.117, to: -1.285 } },
-          { name: "Pelle Larsson", min: 30, pts: 11, reb: 1, ast: 3, stl: 1, blk: 0, to: 3, tpm: 1, fgm: 4, fga: 8, ftm: 2, fta: 2, composite: -0.81, zScores: { pts: 0.23, reb: -0.789, ast: 0.302, stl: 0.117, blk: -0.504, tpm: -0.014, fgImpact: 0.375, ftImpact: 0.76, to: -1.285 } },
-          { name: "Andrew Wiggins", min: 24, pts: 7, reb: 4, ast: 2, stl: 3, blk: 1, to: 0, tpm: 1, fgm: 2, fga: 7, ftm: 2, fta: 2, composite: 3.59, zScores: { pts: -0.354, reb: -0.059, ast: -0.131, stl: 1.832, blk: 1.247, tpm: -0.014, fgImpact: -0.744, ftImpact: 0.76, to: 1.049 } },
-          { name: "Bobby Portis", min: 15, pts: 9, reb: 2, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 3, fga: 7, ftm: 2, fta: 2, composite: -1.08, zScores: { pts: -0.062, reb: -0.546, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -0.029, ftImpact: 0.76, to: 1.049 } },
-          { name: "Myron Gardner", min: 11, pts: 5, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 1, ftm: 2, fta: 2, composite: -1.48, zScores: { pts: -0.647, reb: -0.789, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: 0.404, ftImpact: 0.76, to: 1.049 } },
-          { name: "Tim Hardaway Jr.", min: 9, pts: 3, reb: 0, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -3.27, zScores: { pts: -0.939, reb: -1.033, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -0.527, ftImpact: 0, to: 1.049 } },
-          { name: "Ryan Conwell", min: 25, pts: 8, reb: 2, ast: 1, stl: 3, blk: 0, to: 1, tpm: 2, fgm: 2, fga: 9, ftm: 2, fta: 2, composite: 0.58, zScores: { pts: -0.208, reb: -0.546, ast: -0.564, stl: 1.832, blk: -0.504, tpm: 0.9, fgImpact: -1.365, ftImpact: 0.76, to: 0.271 } }
+          { name: "Giannis Antetokounmpo", min: 32, pts: 22, reb: 23, ast: 3, stl: 0, blk: 0, to: 2, tpm: 0, fgm: 10, fga: 19, ftm: 2, fta: 6, composite: 1.97, zScores: { pts: 1.672, reb: 4.853, ast: 0.304, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 1.116, ftImpact: -3.329, to: -0.35 } },
+          { name: "Bam Adebayo", min: 37, pts: 25, reb: 7, ast: 0, stl: 1, blk: 2, to: 0, tpm: 1, fgm: 10, fga: 16, ftm: 4, fta: 7, composite: 5.72, zScores: { pts: 2.083, reb: 0.742, ast: -0.955, stl: 0.074, blk: 2.347, tpm: -0.069, fgImpact: 2.112, ftImpact: -1.65, to: 1.038 } },
+          { name: "Klay Thompson", min: 21, pts: 6, reb: 2, ast: 7, stl: 3, blk: 0, to: 0, tpm: 2, fgm: 2, fga: 9, ftm: 0, fta: 0, composite: 2.5, zScores: { pts: -0.517, reb: -0.542, ast: 1.982, stl: 1.793, blk: -0.561, tpm: 0.813, fgImpact: -1.503, ftImpact: 0, to: 1.038 } },
+          { name: "Davion Mitchell", min: 36, pts: 12, reb: 1, ast: 9, stl: 2, blk: 0, to: 3, tpm: 1, fgm: 4, fga: 10, ftm: 3, fta: 4, composite: 1.25, zScores: { pts: 0.304, reb: -0.799, ast: 2.822, stl: 0.934, blk: -0.561, tpm: -0.069, fgImpact: -0.351, ftImpact: 0.015, to: -1.044 } },
+          { name: "Pelle Larsson", min: 30, pts: 11, reb: 1, ast: 3, stl: 1, blk: 0, to: 3, tpm: 1, fgm: 4, fga: 8, ftm: 2, fta: 2, composite: -0.94, zScores: { pts: 0.167, reb: -0.799, ast: 0.304, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: 0.314, ftImpact: 0.677, to: -1.044 } },
+          { name: "Andrew Wiggins", min: 24, pts: 7, reb: 4, ast: 2, stl: 3, blk: 1, to: 0, tpm: 1, fgm: 2, fga: 7, ftm: 2, fta: 2, composite: 2.97, zScores: { pts: -0.38, reb: -0.028, ast: -0.116, stl: 1.793, blk: 0.893, tpm: -0.069, fgImpact: -0.839, ftImpact: 0.677, to: 1.038 } },
+          { name: "Bobby Portis", min: 15, pts: 9, reb: 2, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 3, fga: 7, ftm: 2, fta: 2, composite: -1.4, zScores: { pts: -0.107, reb: -0.542, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.097, ftImpact: 0.677, to: 1.038 } },
+          { name: "Myron Gardner", min: 11, pts: 5, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 1, ftm: 2, fta: 2, composite: -1.7, zScores: { pts: -0.654, reb: -0.799, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: 0.41, ftImpact: 0.677, to: 1.038 } },
+          { name: "Tim Hardaway Jr.", min: 9, pts: 3, reb: 0, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -3.48, zScores: { pts: -0.928, reb: -1.056, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.586, ftImpact: 0, to: 1.038 } },
+          { name: "Ryan Conwell", min: 25, pts: 8, reb: 2, ast: 1, stl: 3, blk: 0, to: 1, tpm: 2, fgm: 2, fga: 9, ftm: 2, fta: 2, composite: 0.24, zScores: { pts: -0.244, reb: -0.542, ast: -0.535, stl: 1.793, blk: -0.561, tpm: 0.813, fgImpact: -1.503, ftImpact: 0.677, to: 0.344 } }
         ]
       },
       home: {
         abbr: "NY", name: "New York Knicks", score: 105,
         players: [
-          { name: "Karl-Anthony Towns", min: 34, pts: 19, reb: 10, ast: 4, stl: 0, blk: 1, to: 3, tpm: 1, fgm: 7, fga: 12, ftm: 4, fta: 6, composite: 3.5, zScores: { pts: 1.4, reb: 1.401, ast: 0.735, stl: -0.741, blk: 1.247, tpm: -0.014, fgImpact: 1.278, ftImpact: -0.526, to: -1.285 } },
-          { name: "Josh Hart", min: 32, pts: 6, reb: 9, ast: 8, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 2, fga: 8, ftm: 1, fta: 2, composite: 0.44, zScores: { pts: -0.501, reb: 1.158, ast: 2.467, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -1.054, ftImpact: -0.643, to: 0.271 } },
-          { name: "Mikal Bridges", min: 34, pts: 16, reb: 6, ast: 2, stl: 0, blk: 0, to: 2, tpm: 2, fgm: 7, fga: 11, ftm: 0, fta: 0, composite: 1.99, zScores: { pts: 0.961, reb: 0.428, ast: -0.131, stl: -0.741, blk: -0.504, tpm: 0.9, fgImpact: 1.588, ftImpact: 0, to: -0.507 } },
-          { name: "Landry Shamet", min: 38, pts: 13, reb: 7, ast: 3, stl: 2, blk: 0, to: 1, tpm: 1, fgm: 5, fga: 11, ftm: 2, fta: 2, composite: 3.14, zScores: { pts: 0.523, reb: 0.671, ast: 0.302, stl: 0.974, blk: -0.504, tpm: -0.014, fgImpact: 0.159, ftImpact: 0.76, to: 0.271 } },
-          { name: "Jalen Brunson", min: 40, pts: 27, reb: 3, ast: 8, stl: 3, blk: 0, to: 5, tpm: 2, fgm: 8, fga: 19, ftm: 9, fta: 10, composite: 6.34, zScores: { pts: 2.569, reb: -0.302, ast: 2.467, stl: 1.832, blk: -0.504, tpm: 0.9, fgImpact: -0.181, ftImpact: 2.396, to: -2.842 } },
-          { name: "Tyler Nickel", min: 1, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -5.62, zScores: { pts: -1.378, reb: -1.033, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.31, ftImpact: 0, to: 0.271 } },
-          { name: "Pacome Dadiet", min: 21, pts: 4, reb: 3, ast: 1, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 2, fga: 5, ftm: 0, fta: 0, composite: -2.05, zScores: { pts: -0.793, reb: -0.302, ast: -0.564, stl: 0.117, blk: -0.504, tpm: -0.928, fgImpact: -0.123, ftImpact: 0, to: 1.049 } },
-          { name: "Mohamed Diawara", min: 3, pts: 0, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -4.48, zScores: { pts: -1.378, reb: -0.789, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.621, ftImpact: 0, to: 1.049 } },
-          { name: "James Wiseman", min: 14, pts: 11, reb: 1, ast: 0, stl: 1, blk: 0, to: 2, tpm: 0, fgm: 4, fga: 4, ftm: 3, fta: 5, composite: -2.67, zScores: { pts: 0.23, reb: -0.789, ast: -0.997, stl: 0.117, blk: -0.504, tpm: -0.928, fgImpact: 1.617, ftImpact: -0.906, to: -0.507 } },
-          { name: "Jose Alvarado", min: 15, pts: 7, reb: 2, ast: 2, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 2, ftm: 4, fta: 5, composite: -1.43, zScores: { pts: -0.354, reb: -0.546, ast: -0.131, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: 0.094, ftImpact: 0.497, to: 0.271 } },
-          { name: "Tyler Kolek", min: 8, pts: 2, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -4.77, zScores: { pts: -1.085, reb: -1.033, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.527, ftImpact: 0, to: 1.049 } }
+          { name: "Karl-Anthony Towns", min: 34, pts: 19, reb: 10, ast: 4, stl: 0, blk: 1, to: 3, tpm: 1, fgm: 7, fga: 12, ftm: 4, fta: 6, composite: 3.06, zScores: { pts: 1.262, reb: 1.513, ast: 0.724, stl: -0.785, blk: 0.893, tpm: -0.069, fgImpact: 1.213, ftImpact: -0.648, to: -1.044 } },
+          { name: "Josh Hart", min: 32, pts: 6, reb: 9, ast: 8, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 2, fga: 8, ftm: 1, fta: 2, composite: 0.24, zScores: { pts: -0.517, reb: 1.256, ast: 2.402, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -1.171, ftImpact: -0.663, to: 0.344 } },
+          { name: "Mikal Bridges", min: 34, pts: 16, reb: 6, ast: 2, stl: 0, blk: 0, to: 2, tpm: 2, fgm: 7, fga: 11, ftm: 0, fta: 0, composite: 1.88, zScores: { pts: 0.851, reb: 0.485, ast: -0.116, stl: -0.785, blk: -0.561, tpm: 0.813, fgImpact: 1.545, ftImpact: 0, to: -0.35 } },
+          { name: "Landry Shamet", min: 38, pts: 13, reb: 7, ast: 3, stl: 2, blk: 0, to: 1, tpm: 1, fgm: 5, fga: 11, ftm: 2, fta: 2, composite: 2.87, zScores: { pts: 0.441, reb: 0.742, ast: 0.304, stl: 0.934, blk: -0.561, tpm: -0.069, fgImpact: 0.06, ftImpact: 0.677, to: 0.344 } },
+          { name: "Jalen Brunson", min: 40, pts: 27, reb: 3, ast: 8, stl: 3, blk: 0, to: 5, tpm: 2, fgm: 8, fga: 19, ftm: 9, fta: 10, composite: 5.76, zScores: { pts: 2.357, reb: -0.285, ast: 2.402, stl: 1.793, blk: -0.561, tpm: 0.813, fgImpact: -0.369, ftImpact: 2.047, to: -2.431 } },
+          { name: "Tyler Nickel", min: 1, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -5.63, zScores: { pts: -1.338, reb: -1.056, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.332, ftImpact: 0, to: 0.344 } },
+          { name: "Pacome Dadiet", min: 21, pts: 4, reb: 3, ast: 1, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 2, fga: 5, ftm: 0, fta: 0, composite: -2.19, zScores: { pts: -0.791, reb: -0.285, ast: -0.535, stl: 0.074, blk: -0.561, tpm: -0.952, fgImpact: -0.175, ftImpact: 0, to: 1.038 } },
+          { name: "Mohamed Diawara", min: 3, pts: 0, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -4.6, zScores: { pts: -1.338, reb: -0.799, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.664, ftImpact: 0, to: 1.038 } },
+          { name: "James Wiseman", min: 14, pts: 11, reb: 1, ast: 0, stl: 1, blk: 0, to: 2, tpm: 0, fgm: 4, fga: 4, ftm: 3, fta: 5, composite: -2.72, zScores: { pts: 0.167, reb: -0.799, ast: -0.955, stl: 0.074, blk: -0.561, tpm: -0.952, fgImpact: 1.642, ftImpact: -0.987, to: -0.35 } },
+          { name: "Jose Alvarado", min: 15, pts: 7, reb: 2, ast: 2, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 2, ftm: 4, fta: 5, composite: -1.68, zScores: { pts: -0.38, reb: -0.542, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: 0.078, ftImpact: 0.353, to: 0.344 } },
+          { name: "Tyler Kolek", min: 8, pts: 2, reb: 0, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -4.92, zScores: { pts: -1.065, reb: -1.056, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.586, ftImpact: 0, to: 1.038 } }
         ]
       }
     },
@@ -3761,32 +3761,32 @@ const LIVESCORES_BOXSCORES = {
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: 98,
         players: [
-          { name: "Kyle Kuzma", min: 30, pts: 8, reb: 3, ast: 3, stl: 0, blk: 1, to: 0, tpm: 2, fgm: 3, fga: 12, ftm: 0, fta: 2, composite: -1.38, zScores: { pts: -0.208, reb: -0.302, ast: 0.302, stl: -0.741, blk: 1.247, tpm: 0.9, fgImpact: -1.581, ftImpact: -2.045, to: 1.049 } },
-          { name: "Jaime Jaquez Jr.", min: 35, pts: 19, reb: 9, ast: 3, stl: 2, blk: 1, to: 2, tpm: 2, fgm: 8, fga: 14, ftm: 1, fta: 2, composite: 6.2, zScores: { pts: 1.4, reb: 1.158, ast: 0.302, stl: 0.974, blk: 1.247, tpm: 0.9, fgImpact: 1.372, ftImpact: -0.643, to: -0.507 } },
-          { name: "Myles Turner", min: 29, pts: 7, reb: 12, ast: 1, stl: 0, blk: 1, to: 2, tpm: 1, fgm: 2, fga: 5, ftm: 2, fta: 2, composite: 1.59, zScores: { pts: -0.354, reb: 1.888, ast: -0.564, stl: -0.741, blk: 1.247, tpm: -0.014, fgImpact: -0.123, ftImpact: 0.76, to: -0.507 } },
-          { name: "Tyler Herro", min: 35, pts: 20, reb: 3, ast: 4, stl: 0, blk: 0, to: 3, tpm: 2, fgm: 7, fga: 15, ftm: 4, fta: 4, composite: 2.21, zScores: { pts: 1.546, reb: -0.302, ast: 0.735, stl: -0.741, blk: -0.504, tpm: 0.9, fgImpact: 0.346, ftImpact: 1.519, to: -1.285 } },
-          { name: "Ryan Rollins", min: 30, pts: 12, reb: 5, ast: 6, stl: 5, blk: 0, to: 4, tpm: 2, fgm: 5, fga: 14, ftm: 0, fta: 0, composite: 3.27, zScores: { pts: 0.377, reb: 0.184, ast: 1.601, stl: 3.547, blk: -0.504, tpm: 0.9, fgImpact: -0.773, ftImpact: 0, to: -2.063 } },
-          { name: "Pete Nance", min: 9, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -5.31, zScores: { pts: -1.378, reb: -1.033, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: 0, ftImpact: 0, to: 0.271 } },
-          { name: "Nate Ament", min: 13, pts: 0, reb: 4, ast: 1, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -4.52, zScores: { pts: -1.378, reb: -0.059, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.621, ftImpact: 0, to: 0.271 } },
-          { name: "Kel'el Ware", min: 20, pts: 7, reb: 7, ast: 2, stl: 0, blk: 2, to: 1, tpm: 1, fgm: 3, fga: 7, ftm: 0, fta: 0, composite: 2.67, zScores: { pts: -0.354, reb: 0.671, ast: -0.131, stl: -0.741, blk: 2.998, tpm: -0.014, fgImpact: -0.029, ftImpact: 0, to: 0.271 } },
-          { name: "Caris LeVert", min: 6, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -3.59, zScores: { pts: -1.085, reb: -0.789, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: 0.404, ftImpact: 0, to: 1.049 } },
-          { name: "AJ Green", min: 5, pts: 0, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -4.6, zScores: { pts: -1.378, reb: -0.789, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.31, ftImpact: 0, to: 1.049 } },
-          { name: "Brayden Burries", min: 28, pts: 23, reb: 7, ast: 1, stl: 1, blk: 0, to: 4, tpm: 2, fgm: 9, fga: 17, ftm: 3, fta: 3, composite: 2.84, zScores: { pts: 1.985, reb: 0.671, ast: -0.564, stl: 0.117, blk: -0.504, tpm: 0.9, fgImpact: 1.155, ftImpact: 1.139, to: -2.063 } }
+          { name: "Kyle Kuzma", min: 30, pts: 8, reb: 3, ast: 3, stl: 0, blk: 1, to: 0, tpm: 2, fgm: 3, fga: 12, ftm: 0, fta: 2, composite: -2.03, zScores: { pts: -0.244, reb: -0.285, ast: 0.304, stl: -0.785, blk: 0.893, tpm: 0.813, fgImpact: -1.757, ftImpact: -2.003, to: 1.038 } },
+          { name: "Jaime Jaquez Jr.", min: 35, pts: 19, reb: 11, ast: 3, stl: 1, blk: 1, to: 2, tpm: 2, fgm: 8, fga: 14, ftm: 1, fta: 2, composite: 5.39, zScores: { pts: 1.262, reb: 1.77, ast: 0.304, stl: 0.074, blk: 0.893, tpm: 0.813, fgImpact: 1.291, ftImpact: -0.663, to: -0.35 } },
+          { name: "Myles Turner", min: 29, pts: 7, reb: 12, ast: 1, stl: 0, blk: 2, to: 2, tpm: 1, fgm: 2, fga: 5, ftm: 2, fta: 2, composite: 2.76, zScores: { pts: -0.38, reb: 2.027, ast: -0.535, stl: -0.785, blk: 2.347, tpm: -0.069, fgImpact: -0.175, ftImpact: 0.677, to: -0.35 } },
+          { name: "Tyler Herro", min: 35, pts: 20, reb: 3, ast: 4, stl: 0, blk: 0, to: 3, tpm: 2, fgm: 7, fga: 15, ftm: 4, fta: 4, composite: 1.83, zScores: { pts: 1.399, reb: -0.285, ast: 0.724, stl: -0.785, blk: -0.561, tpm: 0.813, fgImpact: 0.217, ftImpact: 1.355, to: -1.044 } },
+          { name: "Ryan Rollins", min: 30, pts: 12, reb: 4, ast: 6, stl: 6, blk: 0, to: 4, tpm: 2, fgm: 5, fga: 13, ftm: 0, fta: 0, composite: 4.12, zScores: { pts: 0.304, reb: -0.028, ast: 1.563, stl: 4.37, blk: -0.561, tpm: 0.813, fgImpact: -0.604, ftImpact: 0, to: -1.738 } },
+          { name: "Pete Nance", min: 9, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -5.3, zScores: { pts: -1.338, reb: -1.056, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 0, ftImpact: 0, to: 0.344 } },
+          { name: "Nate Ament", min: 13, pts: 0, reb: 4, ast: 1, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -4.52, zScores: { pts: -1.338, reb: -0.028, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.664, ftImpact: 0, to: 0.344 } },
+          { name: "Kel'el Ware", min: 20, pts: 7, reb: 7, ast: 2, stl: 0, blk: 2, to: 2, tpm: 1, fgm: 3, fga: 7, ftm: 0, fta: 0, composite: 1.29, zScores: { pts: -0.38, reb: 0.742, ast: -0.116, stl: -0.785, blk: 2.347, tpm: -0.069, fgImpact: -0.097, ftImpact: 0, to: -0.35 } },
+          { name: "Caris LeVert", min: 6, pts: 2, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -3.67, zScores: { pts: -1.065, reb: -0.799, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 0.41, ftImpact: 0, to: 1.038 } },
+          { name: "AJ Green", min: 5, pts: 0, reb: 1, ast: 0, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -4.68, zScores: { pts: -1.338, reb: -0.799, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.332, ftImpact: 0, to: 1.038 } },
+          { name: "Brayden Burries", min: 28, pts: 23, reb: 6, ast: 1, stl: 1, blk: 0, to: 4, tpm: 2, fgm: 9, fga: 17, ftm: 3, fta: 3, composite: 2.4, zScores: { pts: 1.809, reb: 0.485, ast: -0.535, stl: 0.074, blk: -0.561, tpm: 0.813, fgImpact: 1.038, ftImpact: 1.016, to: -1.738 } }
         ]
       },
       home: {
         abbr: "DET", name: "Detroit Pistons", score: 113,
         players: [
-          { name: "John Collins", min: 25, pts: 12, reb: 7, ast: 1, stl: 3, blk: 2, to: 4, tpm: 1, fgm: 5, fga: 8, ftm: 1, fta: 3, composite: 2.66, zScores: { pts: 0.377, reb: 0.671, ast: -0.564, stl: 1.832, blk: 2.998, tpm: -0.014, fgImpact: 1.09, ftImpact: -1.665, to: -2.063 } },
-          { name: "Javonte Green", min: 28, pts: 10, reb: 11, ast: 1, stl: 3, blk: 0, to: 0, tpm: 1, fgm: 4, fga: 10, ftm: 1, fta: 2, composite: 2.64, zScores: { pts: 0.084, reb: 1.645, ast: -0.564, stl: 1.832, blk: -0.504, tpm: -0.014, fgImpact: -0.246, ftImpact: -0.643, to: 1.049 } },
-          { name: "Kevin Huerter", min: 24, pts: 6, reb: 2, ast: 5, stl: 0, blk: 1, to: 4, tpm: 0, fgm: 2, fga: 8, ftm: 2, fta: 3, composite: -3.68, zScores: { pts: -0.501, reb: -0.546, ast: 1.168, stl: -0.741, blk: 1.247, tpm: -0.928, fgImpact: -1.054, ftImpact: -0.263, to: -2.063 } },
-          { name: "Ausar Thompson", min: 26, pts: 12, reb: 6, ast: 4, stl: 1, blk: 1, to: 1, tpm: 0, fgm: 6, fga: 12, ftm: 0, fta: 1, composite: 1.79, zScores: { pts: 0.377, reb: 0.428, ast: 0.735, stl: 0.117, blk: 1.247, tpm: -0.928, fgImpact: 0.563, ftImpact: -1.023, to: 0.271 } },
-          { name: "Daniss Jenkins", min: 28, pts: 13, reb: 3, ast: 3, stl: 1, blk: 0, to: 2, tpm: 3, fgm: 5, fga: 12, ftm: 0, fta: 0, composite: 1.29, zScores: { pts: 0.523, reb: -0.302, ast: 0.302, stl: 0.117, blk: -0.504, tpm: 1.814, fgImpact: -0.152, ftImpact: 0, to: -0.507 } },
-          { name: "Paul Reed", min: 23, pts: 14, reb: 7, ast: 1, stl: 2, blk: 0, to: 1, tpm: 2, fgm: 5, fga: 8, ftm: 2, fta: 2, composite: 4.27, zScores: { pts: 0.669, reb: 0.671, ast: -0.564, stl: 0.974, blk: -0.504, tpm: 0.9, fgImpact: 1.09, ftImpact: 0.76, to: 0.271 } },
-          { name: "Ronald Holland II", min: 20, pts: 7, reb: 7, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 8, ftm: 4, fta: 6, composite: -2.75, zScores: { pts: -0.354, reb: 0.671, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -1.769, ftImpact: -0.526, to: 1.049 } },
-          { name: "Isaiah Joe", min: 27, pts: 22, reb: 1, ast: 3, stl: 1, blk: 0, to: 1, tpm: 5, fgm: 7, fga: 14, ftm: 3, fta: 3, composite: 6.67, zScores: { pts: 1.838, reb: -0.789, ast: 0.302, stl: 0.117, blk: -0.504, tpm: 3.643, fgImpact: 0.657, ftImpact: 1.139, to: 0.271 } },
-          { name: "Elijah Harkless", min: 27, pts: 14, reb: 4, ast: 7, stl: 1, blk: 0, to: 0, tpm: 2, fgm: 4, fga: 9, ftm: 4, fta: 5, composite: 4.77, zScores: { pts: 0.669, reb: -0.059, ast: 2.034, stl: 0.117, blk: -0.504, tpm: 0.9, fgImpact: 0.065, ftImpact: 0.497, to: 1.049 } },
-          { name: "Chaz Lanier", min: 13, pts: 3, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -2.72, zScores: { pts: -0.939, reb: -0.789, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -0.217, ftImpact: 0, to: 1.049 } }
+          { name: "John Collins", min: 25, pts: 12, reb: 8, ast: 1, stl: 3, blk: 1, to: 4, tpm: 1, fgm: 5, fga: 8, ftm: 1, fta: 3, composite: 1.04, zScores: { pts: 0.304, reb: 0.999, ast: -0.535, stl: 1.793, blk: 0.893, tpm: -0.069, fgImpact: 1.056, ftImpact: -1.665, to: -1.738 } },
+          { name: "Javonte Green", min: 28, pts: 10, reb: 11, ast: 0, stl: 2, blk: 0, to: 0, tpm: 1, fgm: 4, fga: 10, ftm: 1, fta: 2, composite: 1.17, zScores: { pts: 0.03, reb: 1.77, ast: -0.955, stl: 0.934, blk: -0.561, tpm: -0.069, fgImpact: -0.351, ftImpact: -0.663, to: 1.038 } },
+          { name: "Kevin Huerter", min: 24, pts: 6, reb: 2, ast: 5, stl: 0, blk: 2, to: 4, tpm: 0, fgm: 2, fga: 8, ftm: 2, fta: 3, composite: -2.54, zScores: { pts: -0.517, reb: -0.542, ast: 1.143, stl: -0.785, blk: 2.347, tpm: -0.952, fgImpact: -1.171, ftImpact: -0.324, to: -1.738 } },
+          { name: "Ausar Thompson", min: 26, pts: 12, reb: 6, ast: 4, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 6, fga: 12, ftm: 0, fta: 1, composite: 0.48, zScores: { pts: 0.304, reb: 0.485, ast: 0.724, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: 0.47, ftImpact: -1.002, to: 0.344 } },
+          { name: "Daniss Jenkins", min: 28, pts: 13, reb: 2, ast: 3, stl: 2, blk: 0, to: 3, tpm: 3, fgm: 5, fga: 12, ftm: 0, fta: 0, composite: 0.95, zScores: { pts: 0.441, reb: -0.542, ast: 0.304, stl: 0.934, blk: -0.561, tpm: 1.695, fgImpact: -0.272, ftImpact: 0, to: -1.044 } },
+          { name: "Paul Reed", min: 23, pts: 14, reb: 7, ast: 1, stl: 2, blk: 1, to: 1, tpm: 2, fgm: 5, fga: 8, ftm: 2, fta: 2, composite: 5.5, zScores: { pts: 0.578, reb: 0.742, ast: -0.535, stl: 0.934, blk: 0.893, tpm: 0.813, fgImpact: 1.056, ftImpact: 0.677, to: 0.344 } },
+          { name: "Ronald Holland II", min: 20, pts: 7, reb: 7, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 8, ftm: 4, fta: 6, composite: -3.11, zScores: { pts: -0.38, reb: 0.742, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -1.914, ftImpact: -0.648, to: 1.038 } },
+          { name: "Isaiah Joe", min: 27, pts: 22, reb: 1, ast: 3, stl: 1, blk: 0, to: 0, tpm: 5, fgm: 7, fga: 15, ftm: 3, fta: 3, composite: 6.42, zScores: { pts: 1.672, reb: -0.799, ast: 0.304, stl: 0.074, blk: -0.561, tpm: 3.459, fgImpact: 0.217, ftImpact: 1.016, to: 1.038 } },
+          { name: "Elijah Harkless", min: 27, pts: 14, reb: 4, ast: 8, stl: 2, blk: 0, to: 0, tpm: 2, fgm: 4, fga: 9, ftm: 4, fta: 5, composite: 5.51, zScores: { pts: 0.578, reb: -0.028, ast: 2.402, stl: 0.934, blk: -0.561, tpm: 0.813, fgImpact: -0.018, ftImpact: 0.353, to: 1.038 } },
+          { name: "Chaz Lanier", min: 13, pts: 3, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -2.89, zScores: { pts: -0.928, reb: -0.799, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0, to: 1.038 } }
         ]
       }
     },
@@ -3798,97 +3798,152 @@ const LIVESCORES_BOXSCORES = {
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: 111,
         players: [
-          { name: "LeBron James", min: 27, pts: 21, reb: 7, ast: 6, stl: 0, blk: 1, to: 2, tpm: 3, fgm: 8, fga: 13, ftm: 2, fta: 3, composite: 7.2, zScores: { pts: 1.692, reb: 0.671, ast: 1.601, stl: -0.741, blk: 1.247, tpm: 1.814, fgImpact: 1.682, ftImpact: -0.263, to: -0.507 } },
-          { name: "Dominick Barlow", min: 18, pts: 12, reb: 8, ast: 1, stl: 2, blk: 2, to: 0, tpm: 0, fgm: 6, fga: 7, ftm: 0, fta: 0, composite: 6.94, zScores: { pts: 0.377, reb: 0.915, ast: -0.564, stl: 0.974, blk: 2.998, tpm: -0.928, fgImpact: 2.115, ftImpact: 0, to: 1.049 } },
-          { name: "Joel Embiid", min: 28, pts: 14, reb: 11, ast: 3, stl: 3, blk: 0, to: 1, tpm: 1, fgm: 5, fga: 14, ftm: 3, fta: 4, composite: 3.54, zScores: { pts: 0.669, reb: 1.645, ast: 0.302, stl: 1.832, blk: -0.504, tpm: -0.014, fgImpact: -0.773, ftImpact: 0.117, to: 0.271 } },
-          { name: "Tyrese Maxey", min: 29, pts: 14, reb: 1, ast: 6, stl: 0, blk: 0, to: 3, tpm: 0, fgm: 3, fga: 13, ftm: 8, fta: 8, composite: -0.83, zScores: { pts: 0.669, reb: -0.789, ast: 1.601, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -1.892, ftImpact: 3.039, to: -1.285 } },
-          { name: "VJ Edgecombe", min: 32, pts: 9, reb: 5, ast: 7, stl: 1, blk: 1, to: 2, tpm: 1, fgm: 4, fga: 6, ftm: 0, fta: 0, composite: 4, zScores: { pts: -0.062, reb: 0.184, ast: 2.034, stl: 0.117, blk: 1.247, tpm: -0.014, fgImpact: 0.996, ftImpact: 0, to: -0.507 } },
-          { name: "Jabari Walker", min: 23, pts: 4, reb: 4, ast: 1, stl: 1, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 3, ftm: 1, fta: 2, composite: -2.41, zScores: { pts: -0.793, reb: -0.059, ast: -0.564, stl: 0.117, blk: -0.504, tpm: -0.014, fgImpact: -0.217, ftImpact: -0.643, to: 0.271 } },
-          { name: "Justin Edwards", min: 7, pts: 3, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -3.93, zScores: { pts: -0.939, reb: -0.789, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -0.217, ftImpact: 0, to: 0.271 } },
-          { name: "Tacko Fall", min: 4, pts: 4, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 2, ftm: 0, fta: 0, composite: -3.67, zScores: { pts: -0.793, reb: -0.789, ast: -0.997, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: 0.809, ftImpact: 0, to: 0.271 } },
-          { name: "Adem Bona", min: 14, pts: 0, reb: 3, ast: 0, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -2.67, zScores: { pts: -1.378, reb: -0.302, ast: -0.997, stl: -0.741, blk: 1.247, tpm: -0.928, fgImpact: -0.621, ftImpact: 0, to: 1.049 } },
-          { name: "Kentavious Caldwell-Pope", min: 21, pts: 8, reb: 0, ast: 1, stl: 0, blk: 0, to: 1, tpm: 2, fgm: 3, fga: 3, ftm: 0, fta: 0, composite: -0.67, zScores: { pts: -0.208, reb: -1.033, ast: -0.564, stl: -0.741, blk: -0.504, tpm: 0.9, fgImpact: 1.213, ftImpact: 0, to: 0.271 } },
-          { name: "Anfernee Simons", min: 25, pts: 19, reb: 2, ast: 3, stl: 1, blk: 0, to: 1, tpm: 5, fgm: 7, fga: 14, ftm: 0, fta: 0, composite: 5.34, zScores: { pts: 1.4, reb: -0.546, ast: 0.302, stl: 0.117, blk: -0.504, tpm: 3.643, fgImpact: 0.657, ftImpact: 0, to: 0.271 } },
-          { name: "Labaron Philon Jr.", min: 11, pts: 3, reb: 0, ast: 2, stl: 0, blk: 0, to: 2, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -4.09, zScores: { pts: -0.939, reb: -1.033, ast: -0.131, stl: -0.741, blk: -0.504, tpm: -0.014, fgImpact: -0.217, ftImpact: 0, to: -0.507 } }
+          { name: "LeBron James", min: 27, pts: 21, reb: 7, ast: 6, stl: 0, blk: 1, to: 2, tpm: 3, fgm: 8, fga: 13, ftm: 2, fta: 3, composite: 6.59, zScores: { pts: 1.535, reb: 0.742, ast: 1.563, stl: -0.785, blk: 0.893, tpm: 1.695, fgImpact: 1.623, ftImpact: -0.324, to: -0.35 } },
+          { name: "Dominick Barlow", min: 18, pts: 12, reb: 8, ast: 1, stl: 2, blk: 2, to: 0, tpm: 0, fgm: 6, fga: 7, ftm: 0, fta: 0, composite: 6.27, zScores: { pts: 0.304, reb: 0.999, ast: -0.535, stl: 0.934, blk: 2.347, tpm: -0.952, fgImpact: 2.131, ftImpact: 0, to: 1.038 } },
+          { name: "Joel Embiid", min: 28, pts: 14, reb: 11, ast: 3, stl: 3, blk: 0, to: 1, tpm: 1, fgm: 5, fga: 14, ftm: 3, fta: 4, composite: 3.24, zScores: { pts: 0.578, reb: 1.77, ast: 0.304, stl: 1.793, blk: -0.561, tpm: -0.069, fgImpact: -0.936, ftImpact: 0.015, to: 0.344 } },
+          { name: "Tyrese Maxey", min: 29, pts: 14, reb: 1, ast: 6, stl: 0, blk: 0, to: 3, tpm: 0, fgm: 3, fga: 13, ftm: 8, fta: 8, composite: -1.38, zScores: { pts: 0.578, reb: -0.799, ast: 1.563, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -2.089, ftImpact: 2.71, to: -1.044 } },
+          { name: "VJ Edgecombe", min: 32, pts: 9, reb: 5, ast: 7, stl: 1, blk: 1, to: 2, tpm: 1, fgm: 4, fga: 6, ftm: 0, fta: 0, composite: 3.63, zScores: { pts: -0.107, reb: 0.229, ast: 1.982, stl: 0.074, blk: 0.893, tpm: -0.069, fgImpact: 0.978, ftImpact: 0, to: -0.35 } },
+          { name: "Jabari Walker", min: 23, pts: 4, reb: 4, ast: 1, stl: 1, blk: 0, to: 2, tpm: 1, fgm: 1, fga: 3, ftm: 1, fta: 2, composite: -3.18, zScores: { pts: -0.791, reb: -0.028, ast: -0.535, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: -0.663, to: -0.35 } },
+          { name: "Justin Edwards", min: 7, pts: 3, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -4.01, zScores: { pts: -0.928, reb: -0.799, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0, to: 0.344 } },
+          { name: "Tacko Fall", min: 4, pts: 4, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 2, ftm: 0, fta: 0, composite: -3.68, zScores: { pts: -0.791, reb: -0.799, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 0.821, ftImpact: 0, to: 0.344 } },
+          { name: "Adem Bona", min: 14, pts: 0, reb: 3, ast: 0, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 0, fga: 2, ftm: 0, fta: 0, composite: -3.05, zScores: { pts: -1.338, reb: -0.285, ast: -0.955, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: -0.664, ftImpact: 0, to: 1.038 } },
+          { name: "Kentavious Caldwell-Pope", min: 21, pts: 8, reb: 0, ast: 1, stl: 0, blk: 0, to: 1, tpm: 2, fgm: 3, fga: 3, ftm: 0, fta: 0, composite: -0.79, zScores: { pts: -0.244, reb: -1.056, ast: -0.535, stl: -0.785, blk: -0.561, tpm: 0.813, fgImpact: 1.231, ftImpact: 0, to: 0.344 } },
+          { name: "Anfernee Simons", min: 25, pts: 19, reb: 2, ast: 3, stl: 1, blk: 0, to: 1, tpm: 5, fgm: 7, fga: 14, ftm: 0, fta: 0, composite: 4.89, zScores: { pts: 1.262, reb: -0.542, ast: 0.304, stl: 0.074, blk: -0.561, tpm: 3.459, fgImpact: 0.549, ftImpact: 0, to: 0.344 } },
+          { name: "Labaron Philon Jr.", min: 11, pts: 3, reb: 0, ast: 2, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -3.42, zScores: { pts: -0.928, reb: -1.056, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0, to: 0.344 } }
         ]
       },
       home: {
         abbr: "IND", name: "Indiana Pacers", score: 87,
         players: [
-          { name: "Pascal Siakam", min: 25, pts: 11, reb: 2, ast: 2, stl: 1, blk: 0, to: 1, tpm: 0, fgm: 3, fga: 14, ftm: 5, fta: 6, composite: -2.82, zScores: { pts: 0.23, reb: -0.546, ast: -0.131, stl: 0.117, blk: -0.504, tpm: -0.928, fgImpact: -2.202, ftImpact: 0.876, to: 0.271 } },
-          { name: "Ivica Zubac", min: 24, pts: 5, reb: 16, ast: 2, stl: 0, blk: 0, to: 4, tpm: 0, fgm: 2, fga: 7, ftm: 1, fta: 4, composite: -5.58, zScores: { pts: -0.647, reb: 2.862, ast: -0.131, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.744, ftImpact: -2.688, to: -2.063 } },
-          { name: "Kelly Oubre Jr.", min: 17, pts: 8, reb: 3, ast: 0, stl: 2, blk: 1, to: 0, tpm: 0, fgm: 1, fga: 6, ftm: 6, fta: 9, composite: -1.1, zScores: { pts: -0.208, reb: -0.302, ast: -0.997, stl: 0.974, blk: 1.247, tpm: -0.928, fgImpact: -1.148, ftImpact: -0.789, to: 1.049 } },
-          { name: "Andrew Nembhard", min: 26, pts: 14, reb: 4, ast: 3, stl: 1, blk: 0, to: 2, tpm: 2, fgm: 5, fga: 10, ftm: 2, fta: 2, composite: 2.15, zScores: { pts: 0.669, reb: -0.059, ast: 0.302, stl: 0.117, blk: -0.504, tpm: 0.9, fgImpact: 0.469, ftImpact: 0.76, to: -0.507 } },
-          { name: "Aaron Nesmith", min: 24, pts: 6, reb: 4, ast: 0, stl: 2, blk: 0, to: 2, tpm: 0, fgm: 1, fga: 8, ftm: 4, fta: 4, composite: -2.77, zScores: { pts: -0.501, reb: -0.059, ast: -0.997, stl: 0.974, blk: -0.504, tpm: -0.928, fgImpact: -1.769, ftImpact: 1.519, to: -0.507 } },
-          { name: "Larry Nance Jr.", min: 8, pts: 2, reb: 2, ast: 2, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -3.88, zScores: { pts: -1.085, reb: -0.546, ast: -0.131, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.217, ftImpact: 0, to: 0.271 } },
-          { name: "Obi Toppin", min: 15, pts: 2, reb: 3, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -3.6, zScores: { pts: -1.085, reb: -0.302, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.527, ftImpact: 0, to: 1.049 } },
-          { name: "Jalen Slawson", min: 21, pts: 4, reb: 6, ast: 4, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 1, fga: 3, ftm: 2, fta: 3, composite: -2.01, zScores: { pts: -0.793, reb: 0.428, ast: 0.735, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.217, ftImpact: -0.263, to: 0.271 } },
-          { name: "Jarace Walker", min: 15, pts: 6, reb: 5, ast: 3, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 5, ftm: 2, fta: 2, composite: -1.28, zScores: { pts: -0.501, reb: 0.184, ast: 0.302, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -0.123, ftImpact: 0.76, to: 0.271 } },
-          { name: "Jay Huff", min: 22, pts: 18, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 2, fgm: 8, fga: 12, ftm: 0, fta: 2, composite: -0.66, zScores: { pts: 1.254, reb: -0.789, ast: -0.997, stl: -0.741, blk: -0.504, tpm: 0.9, fgImpact: 1.993, ftImpact: -2.045, to: 0.271 } },
-          { name: "Quenton Jackson", min: 23, pts: 9, reb: 4, ast: 1, stl: 3, blk: 0, to: 2, tpm: 1, fgm: 4, fga: 8, ftm: 0, fta: 0, composite: 0.5, zScores: { pts: -0.062, reb: -0.059, ast: -0.564, stl: 1.832, blk: -0.504, tpm: -0.014, fgImpact: 0.375, ftImpact: 0, to: -0.507 } },
-          { name: "Braden Smith", min: 21, pts: 2, reb: 1, ast: 1, stl: 0, blk: 0, to: 3, tpm: 0, fgm: 1, fga: 6, ftm: 0, fta: 0, composite: -7.04, zScores: { pts: -1.085, reb: -0.789, ast: -0.564, stl: -0.741, blk: -0.504, tpm: -0.928, fgImpact: -1.148, ftImpact: 0, to: -1.285 } }
+          { name: "Pascal Siakam", min: 25, pts: 11, reb: 2, ast: 2, stl: 1, blk: 0, to: 1, tpm: 0, fgm: 3, fga: 14, ftm: 5, fta: 6, composite: -3.31, zScores: { pts: 0.167, reb: -0.542, ast: -0.116, stl: 0.074, blk: -0.561, tpm: -0.952, fgImpact: -2.421, ftImpact: 0.692, to: 0.344 } },
+          { name: "Ivica Zubac", min: 24, pts: 5, reb: 16, ast: 2, stl: 0, blk: 0, to: 4, tpm: 0, fgm: 2, fga: 7, ftm: 1, fta: 4, composite: -5.26, zScores: { pts: -0.654, reb: 3.054, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.839, ftImpact: -2.666, to: -1.738 } },
+          { name: "Kelly Oubre Jr.", min: 17, pts: 8, reb: 3, ast: 0, stl: 2, blk: 1, to: 0, tpm: 0, fgm: 1, fga: 6, ftm: 6, fta: 9, composite: -1.79, zScores: { pts: -0.244, reb: -0.285, ast: -0.955, stl: 0.934, blk: 0.893, tpm: -0.952, fgImpact: -1.25, ftImpact: -0.973, to: 1.038 } },
+          { name: "Andrew Nembhard", min: 26, pts: 14, reb: 4, ast: 3, stl: 1, blk: 0, to: 2, tpm: 2, fgm: 5, fga: 10, ftm: 2, fta: 2, composite: 1.9, zScores: { pts: 0.578, reb: -0.028, ast: 0.304, stl: 0.074, blk: -0.561, tpm: 0.813, fgImpact: 0.392, ftImpact: 0.677, to: -0.35 } },
+          { name: "Aaron Nesmith", min: 24, pts: 6, reb: 4, ast: 0, stl: 2, blk: 0, to: 2, tpm: 0, fgm: 1, fga: 8, ftm: 4, fta: 4, composite: -2.99, zScores: { pts: -0.517, reb: -0.028, ast: -0.955, stl: 0.934, blk: -0.561, tpm: -0.952, fgImpact: -1.914, ftImpact: 1.355, to: -0.35 } },
+          { name: "Larry Nance Jr.", min: 8, pts: 2, reb: 2, ast: 2, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -3.93, zScores: { pts: -1.065, reb: -0.542, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.254, ftImpact: 0, to: 0.344 } },
+          { name: "Obi Toppin", min: 15, pts: 2, reb: 3, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 4, ftm: 0, fta: 0, composite: -3.73, zScores: { pts: -1.065, reb: -0.285, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.586, ftImpact: 0, to: 1.038 } },
+          { name: "Jalen Slawson", min: 21, pts: 4, reb: 6, ast: 4, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 1, fga: 3, ftm: 2, fta: 3, composite: -2.11, zScores: { pts: -0.791, reb: 0.485, ast: 0.724, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.254, ftImpact: -0.324, to: 0.344 } },
+          { name: "Jarace Walker", min: 15, pts: 6, reb: 5, ast: 3, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 5, ftm: 2, fta: 2, composite: -1.44, zScores: { pts: -0.517, reb: 0.229, ast: 0.304, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.175, ftImpact: 0.677, to: 0.344 } },
+          { name: "Jay Huff", min: 22, pts: 18, reb: 1, ast: 0, stl: 0, blk: 0, to: 1, tpm: 2, fgm: 8, fga: 12, ftm: 0, fta: 2, composite: -0.87, zScores: { pts: 1.125, reb: -0.799, ast: -0.955, stl: -0.785, blk: -0.561, tpm: 0.813, fgImpact: 1.955, ftImpact: -2.003, to: 0.344 } },
+          { name: "Quenton Jackson", min: 23, pts: 9, reb: 4, ast: 1, stl: 3, blk: 0, to: 2, tpm: 1, fgm: 4, fga: 8, ftm: 0, fta: 0, composite: 0.46, zScores: { pts: -0.107, reb: -0.028, ast: -0.535, stl: 1.793, blk: -0.561, tpm: -0.069, fgImpact: 0.314, ftImpact: 0, to: -0.35 } },
+          { name: "Braden Smith", min: 21, pts: 2, reb: 1, ast: 1, stl: 0, blk: 0, to: 3, tpm: 0, fgm: 1, fga: 6, ftm: 0, fta: 0, composite: -6.99, zScores: { pts: -1.065, reb: -0.799, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -1.25, ftImpact: 0, to: -1.044 } }
         ]
       }
     },
       {
       id: "401909329",
-      line: "Brooklyn Nets @ Toronto Raptors (21.1 - 4th)",
-      completed: false,
-      statusText: "21.1 - 4th",
+      line: "Brooklyn Nets 100 @ Toronto Raptors 124 (Final)",
+      completed: true,
+      statusText: "Final",
       away: {
-        abbr: "BKN", name: "Brooklyn Nets", score: null,
+        abbr: "BKN", name: "Brooklyn Nets", score: 100,
         players: [
-
+          { name: "Julius Randle", min: 31, pts: 21, reb: 5, ast: 5, stl: 0, blk: 0, to: 2, tpm: 0, fgm: 8, fga: 18, ftm: 5, fta: 5, composite: 1.92, zScores: { pts: 1.535, reb: 0.229, ast: 1.143, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.037, ftImpact: 1.694, to: -0.35 } },
+          { name: "Michael Porter Jr.", min: 31, pts: 17, reb: 2, ast: 0, stl: 2, blk: 0, to: 4, tpm: 3, fgm: 6, fga: 10, ftm: 2, fta: 4, composite: -0.37, zScores: { pts: 0.988, reb: -0.542, ast: -0.955, stl: 0.934, blk: -0.561, tpm: 1.695, fgImpact: 1.134, ftImpact: -1.326, to: -1.738 } },
+          { name: "Danny Wolf", min: 22, pts: 5, reb: 2, ast: 3, stl: 0, blk: 0, to: 3, tpm: 1, fgm: 1, fga: 5, ftm: 2, fta: 2, composite: -3.59, zScores: { pts: -0.654, reb: -0.542, ast: 0.304, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.918, ftImpact: 0.677, to: -1.044 } },
+          { name: "Day'Ron Sharpe", min: 20, pts: 7, reb: 4, ast: 2, stl: 1, blk: 2, to: 2, tpm: 0, fgm: 2, fga: 3, ftm: 3, fta: 3, composite: 2.1, zScores: { pts: -0.38, reb: -0.028, ast: -0.116, stl: 0.074, blk: 2.347, tpm: -0.952, fgImpact: 0.489, ftImpact: 1.016, to: -0.35 } },
+          { name: "Mikel Brown Jr.", min: 25, pts: 21, reb: 2, ast: 2, stl: 1, blk: 0, to: 0, tpm: 4, fgm: 7, fga: 10, ftm: 3, fta: 4, composite: 5.9, zScores: { pts: 1.535, reb: -0.542, ast: -0.116, stl: 0.074, blk: -0.561, tpm: 2.577, fgImpact: 1.877, ftImpact: 0.015, to: 1.038 } },
+          { name: "Josh Minott", min: 9, pts: 3, reb: 1, ast: 0, stl: 1, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -2.45, zScores: { pts: -0.928, reb: -0.799, ast: -0.955, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0, to: 1.038 } },
+          { name: "Grant Nelson", min: 21, pts: 0, reb: 5, ast: 4, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 1, ftm: 0, fta: 0, composite: -1.98, zScores: { pts: -1.338, reb: 0.229, ast: 0.724, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.332, ftImpact: 0, to: 1.038 } },
+          { name: "Noah Clowney", min: 21, pts: 6, reb: 3, ast: 3, stl: 1, blk: 1, to: 2, tpm: 1, fgm: 2, fga: 4, ftm: 1, fta: 2, composite: -0.46, zScores: { pts: -0.517, reb: -0.285, ast: 0.304, stl: 0.074, blk: 0.893, tpm: -0.069, fgImpact: 0.157, ftImpact: -0.663, to: -0.35 } },
+          { name: "Chaney Johnson", min: 12, pts: 7, reb: 2, ast: 0, stl: 1, blk: 0, to: 0, tpm: 1, fgm: 3, fga: 4, ftm: 0, fta: 2, composite: -2.5, zScores: { pts: -0.38, reb: -0.542, ast: -0.955, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: 0.899, ftImpact: -2.003, to: 1.038 } },
+          { name: "Terance Mann", min: 7, pts: 2, reb: 0, ast: 0, stl: 1, blk: 0, to: 0, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -3.06, zScores: { pts: -1.065, reb: -1.056, ast: -0.955, stl: 0.074, blk: -0.561, tpm: -0.952, fgImpact: 0.41, ftImpact: 0, to: 1.038 } },
+          { name: "Keon Ellis", min: 17, pts: 0, reb: 1, ast: 1, stl: 0, blk: 0, to: 0, tpm: 0, fgm: 0, fga: 4, ftm: 0, fta: 0, composite: -5.26, zScores: { pts: -1.338, reb: -0.799, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -1.328, ftImpact: 0, to: 1.038 } },
+          { name: "Egor Demin", min: 17, pts: 7, reb: 1, ast: 1, stl: 0, blk: 0, to: 2, tpm: 1, fgm: 2, fga: 8, ftm: 2, fta: 2, composite: -3.97, zScores: { pts: -0.38, reb: -0.799, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -1.171, ftImpact: 0.677, to: -0.35 } },
+          { name: "Ben Saraf", min: 9, pts: 4, reb: 2, ast: 2, stl: 0, blk: 1, to: 1, tpm: 0, fgm: 2, fga: 4, ftm: 0, fta: 0, composite: -1.79, zScores: { pts: -0.791, reb: -0.542, ast: -0.116, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: 0.157, ftImpact: 0, to: 0.344 } }
         ]
       },
       home: {
-        abbr: "TOR", name: "Toronto Raptors", score: null,
+        abbr: "TOR", name: "Toronto Raptors", score: 124,
         players: [
-
+          { name: "Scottie Barnes", min: 36, pts: 34, reb: 1, ast: 5, stl: 0, blk: 3, to: 3, tpm: 2, fgm: 11, fga: 20, ftm: 10, fta: 10, composite: 11.36, zScores: { pts: 3.314, reb: -0.799, ast: 1.143, stl: -0.785, blk: 3.8, tpm: 0.813, fgImpact: 1.526, ftImpact: 3.387, to: -1.044 } },
+          { name: "Allen Graves", min: 33, pts: 9, reb: 9, ast: 1, stl: 2, blk: 0, to: 1, tpm: 3, fgm: 3, fga: 6, ftm: 0, fta: 0, composite: 3.26, zScores: { pts: -0.107, reb: 1.256, ast: -0.535, stl: 0.934, blk: -0.561, tpm: 1.695, fgImpact: 0.235, ftImpact: 0, to: 0.344 } },
+          { name: "Jakob Poeltl", min: 35, pts: 17, reb: 9, ast: 2, stl: 3, blk: 0, to: 0, tpm: 0, fgm: 7, fga: 12, ftm: 3, fta: 4, composite: 4.67, zScores: { pts: 0.988, reb: 1.256, ast: -0.116, stl: 1.793, blk: -0.561, tpm: -0.952, fgImpact: 1.213, ftImpact: 0.015, to: 1.038 } },
+          { name: "Immanuel Quickley", min: 38, pts: 24, reb: 10, ast: 14, stl: 1, blk: 0, to: 1, tpm: 4, fgm: 8, fga: 15, ftm: 4, fta: 4, composite: 13.13, zScores: { pts: 1.946, reb: 1.513, ast: 4.919, stl: 0.074, blk: -0.561, tpm: 2.577, fgImpact: 0.959, ftImpact: 1.355, to: 0.344 } },
+          { name: "Ja'Kobe Walter", min: 24, pts: 3, reb: 3, ast: 3, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 6, ftm: 3, fta: 4, composite: -4.84, zScores: { pts: -0.928, reb: -0.285, ast: 0.304, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -1.992, ftImpact: 0.015, to: 0.344 } },
+          { name: "Jamison Battle", min: 23, pts: 9, reb: 3, ast: 0, stl: 1, blk: 0, to: 1, tpm: 1, fgm: 4, fga: 9, ftm: 0, fta: 0, composite: -1.58, zScores: { pts: -0.107, reb: -0.285, ast: -0.955, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: -0.018, ftImpact: 0, to: 0.344 } },
+          { name: "Collin Murray-Boyles", min: 25, pts: 19, reb: 7, ast: 1, stl: 2, blk: 0, to: 2, tpm: 1, fgm: 4, fga: 9, ftm: 10, fta: 11, composite: 3.79, zScores: { pts: 1.262, reb: 0.742, ast: -0.535, stl: 0.934, blk: -0.561, tpm: -0.069, fgImpact: -0.018, ftImpact: 2.385, to: -0.35 } },
+          { name: "Jamal Shead", min: 18, pts: 4, reb: 2, ast: 7, stl: 0, blk: 1, to: 3, tpm: 0, fgm: 2, fga: 5, ftm: 0, fta: 0, composite: -1.41, zScores: { pts: -0.791, reb: -0.542, ast: 1.982, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: -0.175, ftImpact: 0, to: -1.044 } },
+          { name: "Alijah Martin", min: 7, pts: 5, reb: 0, ast: 0, stl: 0, blk: 0, to: 2, tpm: 1, fgm: 2, fga: 2, ftm: 0, fta: 0, composite: -3.61, zScores: { pts: -0.654, reb: -1.056, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: 0.821, ftImpact: 0, to: -0.35 } }
         ]
       }
     },
       {
       id: "401909330",
-      line: "Atlanta Hawks @ Boston Celtics (7:42 - 4th)",
-      completed: false,
-      statusText: "7:42 - 4th",
+      line: "Atlanta Hawks 87 @ Boston Celtics 86 (Final)",
+      completed: true,
+      statusText: "Final",
       away: {
-        abbr: "ATL", name: "Atlanta Hawks", score: null,
+        abbr: "ATL", name: "Atlanta Hawks", score: 87,
         players: [
-
+          { name: "Onyeka Okongwu", min: 33, pts: 4, reb: 9, ast: 2, stl: 0, blk: 1, to: 3, tpm: 0, fgm: 2, fga: 10, ftm: 0, fta: 0, composite: -3.37, zScores: { pts: -0.791, reb: 1.256, ast: -0.116, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: -1.835, ftImpact: 0, to: -1.044 } },
+          { name: "Jalen Johnson", min: 36, pts: 24, reb: 12, ast: 3, stl: 1, blk: 2, to: 1, tpm: 2, fgm: 8, fga: 19, ftm: 6, fta: 6, composite: 9.52, zScores: { pts: 1.946, reb: 2.027, ast: 0.304, stl: 0.074, blk: 2.347, tpm: 0.813, fgImpact: -0.369, ftImpact: 2.032, to: 0.344 } },
+          { name: "Nickeil Alexander-Walker", min: 32, pts: 20, reb: 4, ast: 3, stl: 2, blk: 0, to: 2, tpm: 2, fgm: 6, fga: 19, ftm: 6, fta: 6, composite: 2.69, zScores: { pts: 1.399, reb: -0.028, ast: 0.304, stl: 0.934, blk: -0.561, tpm: 0.813, fgImpact: -1.854, ftImpact: 2.032, to: -0.35 } },
+          { name: "Dyson Daniels", min: 37, pts: 5, reb: 6, ast: 5, stl: 4, blk: 0, to: 0, tpm: 1, fgm: 2, fga: 5, ftm: 0, fta: 2, composite: 1.86, zScores: { pts: -0.654, reb: 0.485, ast: 1.143, stl: 2.652, blk: -0.561, tpm: -0.069, fgImpact: -0.175, ftImpact: -2.003, to: 1.038 } },
+          { name: "Kingston Flemings", min: 25, pts: 2, reb: 3, ast: 2, stl: 1, blk: 0, to: 3, tpm: 0, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -4.2, zScores: { pts: -1.065, reb: -0.285, ast: -0.116, stl: 0.074, blk: -0.561, tpm: -0.952, fgImpact: -0.254, ftImpact: 0, to: -1.044 } },
+          { name: "Corey Kispert", min: 12, pts: 4, reb: 0, ast: 1, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 5, ftm: 0, fta: 0, composite: -4.51, zScores: { pts: -0.791, reb: -1.056, ast: -0.535, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: -0.175, ftImpact: 0, to: 0.344 } },
+          { name: "Zuby Ejiofor", min: 15, pts: 3, reb: 1, ast: 2, stl: 0, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -3.17, zScores: { pts: -0.928, reb: -0.799, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0, to: 0.344 } },
+          { name: "Luguentz Dort", min: 29, pts: 14, reb: 2, ast: 1, stl: 1, blk: 0, to: 3, tpm: 2, fgm: 4, fga: 9, ftm: 4, fta: 6, composite: -1.88, zScores: { pts: 0.578, reb: -0.542, ast: -0.535, stl: 0.074, blk: -0.561, tpm: 0.813, fgImpact: -0.018, ftImpact: -0.648, to: -1.044 } },
+          { name: "Aaron Wiggins", min: 21, pts: 11, reb: 0, ast: 2, stl: 3, blk: 0, to: 0, tpm: 3, fgm: 4, fga: 8, ftm: 0, fta: 0, composite: 3.27, zScores: { pts: 0.167, reb: -1.056, ast: -0.116, stl: 1.793, blk: -0.561, tpm: 1.695, fgImpact: 0.314, ftImpact: 0, to: 1.038 } }
         ]
       },
       home: {
-        abbr: "BOS", name: "Boston Celtics", score: null,
+        abbr: "BOS", name: "Boston Celtics", score: 86,
         players: [
-
+          { name: "Paul George", min: 29, pts: 8, reb: 3, ast: 1, stl: 2, blk: 0, to: 6, tpm: 2, fgm: 3, fga: 8, ftm: 0, fta: 0, composite: -3.43, zScores: { pts: -0.244, reb: -0.285, ast: -0.535, stl: 0.934, blk: -0.561, tpm: 0.813, fgImpact: -0.429, ftImpact: 0, to: -3.125 } },
+          { name: "Jayson Tatum", min: 38, pts: 20, reb: 9, ast: 5, stl: 4, blk: 0, to: 4, tpm: 1, fgm: 8, fga: 22, ftm: 3, fta: 4, composite: 2.73, zScores: { pts: 1.399, reb: 1.256, ast: 1.143, stl: 2.652, blk: -0.561, tpm: -0.069, fgImpact: -1.365, ftImpact: 0.015, to: -1.738 } },
+          { name: "Neemias Queta", min: 33, pts: 11, reb: 22, ast: 3, stl: 1, blk: 2, to: 7, tpm: 0, fgm: 4, fga: 8, ftm: 3, fta: 6, composite: 1.04, zScores: { pts: 0.167, reb: 4.596, ast: 0.304, stl: 0.074, blk: 2.347, tpm: -0.952, fgImpact: 0.314, ftImpact: -1.989, to: -3.819 } },
+          { name: "Derrick White", min: 31, pts: 13, reb: 3, ast: 0, stl: 2, blk: 1, to: 2, tpm: 2, fgm: 4, fga: 8, ftm: 3, fta: 4, composite: 1.82, zScores: { pts: 0.441, reb: -0.285, ast: -0.955, stl: 0.934, blk: 0.893, tpm: 0.813, fgImpact: 0.314, ftImpact: 0.015, to: -0.35 } },
+          { name: "Hugo Gonzalez", min: 16, pts: 9, reb: 3, ast: 1, stl: 0, blk: 1, to: 0, tpm: 1, fgm: 4, fga: 6, ftm: 0, fta: 0, composite: 1.13, zScores: { pts: -0.107, reb: -0.285, ast: -0.535, stl: -0.785, blk: 0.893, tpm: -0.069, fgImpact: 0.978, ftImpact: 0, to: 1.038 } },
+          { name: "Sam Hauser", min: 25, pts: 8, reb: 2, ast: 0, stl: 1, blk: 0, to: 0, tpm: 2, fgm: 3, fga: 7, ftm: 0, fta: 0, composite: -0.47, zScores: { pts: -0.244, reb: -0.542, ast: -0.955, stl: 0.074, blk: -0.561, tpm: 0.813, fgImpact: -0.097, ftImpact: 0, to: 1.038 } },
+          { name: "Luka Garza", min: 15, pts: 4, reb: 2, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 4, ftm: 0, fta: 0, composite: -4.08, zScores: { pts: -0.791, reb: -0.542, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 0.157, ftImpact: 0, to: 0.344 } },
+          { name: "Payton Pritchard", min: 35, pts: 10, reb: 3, ast: 4, stl: 0, blk: 0, to: 0, tpm: 2, fgm: 3, fga: 12, ftm: 2, fta: 2, composite: -0.11, zScores: { pts: 0.03, reb: -0.285, ast: 0.724, stl: -0.785, blk: -0.561, tpm: 0.813, fgImpact: -1.757, ftImpact: 0.677, to: 1.038 } },
+          { name: "Ron Harper Jr.", min: 6, pts: 0, reb: 1, ast: 0, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -2.9, zScores: { pts: -1.338, reb: -0.799, ast: -0.955, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: 0, ftImpact: 0, to: 1.038 } },
+          { name: "Baylor Scheierman", min: 12, pts: 3, reb: 3, ast: 0, stl: 0, blk: 0, to: 3, tpm: 1, fgm: 1, fga: 3, ftm: 0, fta: 0, composite: -4.88, zScores: { pts: -0.928, reb: -0.285, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0, to: -1.044 } }
         ]
       }
     },
       {
       id: "401909331",
-      line: "Memphis Grizzlies @ Minnesota Timberwolves (5:38 - 3rd)",
-      completed: false,
-      statusText: "5:38 - 3rd",
+      line: "Memphis Grizzlies 114 @ Minnesota Timberwolves 109 (Final)",
+      completed: true,
+      statusText: "Final",
       away: {
-        abbr: "MEM", name: "Memphis Grizzlies", score: null,
+        abbr: "MEM", name: "Memphis Grizzlies", score: 114,
         players: [
-
+          { name: "Kris Murray", min: 29, pts: 6, reb: 6, ast: 2, stl: 3, blk: 2, to: 2, tpm: 0, fgm: 3, fga: 5, ftm: 0, fta: 0, composite: 3.26, zScores: { pts: -0.517, reb: 0.485, ast: -0.116, stl: 1.793, blk: 2.347, tpm: -0.952, fgImpact: 0.567, ftImpact: 0, to: -0.35 } },
+          { name: "Cedric Coward", min: 28, pts: 22, reb: 3, ast: 3, stl: 2, blk: 2, to: 2, tpm: 2, fgm: 9, fga: 16, ftm: 2, fta: 2, composite: 7.48, zScores: { pts: 1.672, reb: -0.285, ast: 0.304, stl: 0.934, blk: 2.347, tpm: 0.813, fgImpact: 1.37, ftImpact: 0.677, to: -0.35 } },
+          { name: "Jaylen Wells", min: 25, pts: 10, reb: 3, ast: 2, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 2, fga: 7, ftm: 5, fta: 6, composite: -0.9, zScores: { pts: 0.03, reb: -0.285, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -0.839, ftImpact: 0.692, to: 1.038 } },
+          { name: "Zach Edey", min: 12, pts: 5, reb: 6, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 2, fga: 3, ftm: 1, fta: 1, composite: -2.25, zScores: { pts: -0.654, reb: 0.485, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 0.489, ftImpact: 0.339, to: 0.344 } },
+          { name: "Ty Jerome", min: 27, pts: 18, reb: 1, ast: 3, stl: 0, blk: 0, to: 3, tpm: 2, fgm: 7, fga: 18, ftm: 2, fta: 2, composite: -1.05, zScores: { pts: 1.125, reb: -0.799, ast: 0.304, stl: -0.785, blk: -0.561, tpm: 0.813, fgImpact: -0.779, ftImpact: 0.677, to: -1.044 } },
+          { name: "Olivier-Maxence Prosper", min: 18, pts: 5, reb: 3, ast: 0, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 2, fga: 3, ftm: 0, fta: 0, composite: -1.78, zScores: { pts: -0.654, reb: -0.285, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: 0.489, ftImpact: 0, to: 1.038 } },
+          { name: "Taylor Hendricks", min: 20, pts: 7, reb: 3, ast: 0, stl: 1, blk: 0, to: 1, tpm: 1, fgm: 3, fga: 6, ftm: 0, fta: 2, composite: -3.6, zScores: { pts: -0.38, reb: -0.285, ast: -0.955, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: 0.235, ftImpact: -2.003, to: 0.344 } },
+          { name: "Quinten Post", min: 14, pts: 4, reb: 5, ast: 2, stl: 0, blk: 0, to: 0, tpm: 1, fgm: 1, fga: 10, ftm: 1, fta: 2, composite: -4.3, zScores: { pts: -0.791, reb: 0.229, ast: -0.116, stl: -0.785, blk: -0.561, tpm: -0.069, fgImpact: -2.578, ftImpact: -0.663, to: 1.038 } },
+          { name: "Lawson Lovering", min: 20, pts: 2, reb: 3, ast: 1, stl: 1, blk: 1, to: 2, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -1.81, zScores: { pts: -1.065, reb: -0.285, ast: -0.535, stl: 0.074, blk: 0.893, tpm: -0.952, fgImpact: 0.41, ftImpact: 0, to: -0.35 } },
+          { name: "Cam Spencer", min: 28, pts: 16, reb: 6, ast: 4, stl: 3, blk: 2, to: 2, tpm: 2, fgm: 7, fga: 14, ftm: 0, fta: 0, composite: 7.21, zScores: { pts: 0.851, reb: 0.485, ast: 0.724, stl: 1.793, blk: 2.347, tpm: 0.813, fgImpact: 0.549, ftImpact: 0, to: -0.35 } },
+          { name: "Javon Small", min: 17, pts: 19, reb: 1, ast: 2, stl: 2, blk: 0, to: 1, tpm: 3, fgm: 7, fga: 10, ftm: 2, fta: 2, composite: 5.31, zScores: { pts: 1.262, reb: -0.799, ast: -0.116, stl: 0.934, blk: -0.561, tpm: 1.695, fgImpact: 1.877, ftImpact: 0.677, to: 0.344 } }
         ]
       },
       home: {
-        abbr: "MIN", name: "Minnesota Timberwolves", score: null,
+        abbr: "MIN", name: "Minnesota Timberwolves", score: 109,
         players: [
-
+          { name: "Jaden McDaniels", min: 29, pts: 13, reb: 8, ast: 2, stl: 2, blk: 2, to: 4, tpm: 1, fgm: 5, fga: 12, ftm: 2, fta: 3, composite: 2.2, zScores: { pts: 0.441, reb: 0.999, ast: -0.116, stl: 0.934, blk: 2.347, tpm: -0.069, fgImpact: -0.272, ftImpact: -0.324, to: -1.738 } },
+          { name: "Jonathan Kuminga", min: 40, pts: 19, reb: 6, ast: 1, stl: 1, blk: 0, to: 4, tpm: 1, fgm: 8, fga: 14, ftm: 2, fta: 4, composite: -1.12, zScores: { pts: 1.262, reb: 0.485, ast: -0.535, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: 1.291, ftImpact: -1.326, to: -1.738 } },
+          { name: "Rudy Gobert", min: 35, pts: 13, reb: 5, ast: 6, stl: 1, blk: 1, to: 0, tpm: 0, fgm: 4, fga: 6, ftm: 5, fta: 10, composite: 0.95, zScores: { pts: 0.441, reb: 0.229, ast: 1.563, stl: 0.074, blk: 0.893, tpm: -0.952, fgImpact: 0.978, ftImpact: -3.315, to: 1.038 } },
+          { name: "Ayo Dosunmu", min: 37, pts: 27, reb: 4, ast: 8, stl: 3, blk: 1, to: 3, tpm: 4, fgm: 10, fga: 17, ftm: 3, fta: 4, composite: 10.74, zScores: { pts: 2.357, reb: -0.028, ast: 2.402, stl: 1.793, blk: 0.893, tpm: 2.577, fgImpact: 1.78, ftImpact: 0.015, to: -1.044 } },
+          { name: "Terrence Shannon Jr.", min: 30, pts: 14, reb: 6, ast: 4, stl: 0, blk: 0, to: 2, tpm: 0, fgm: 7, fga: 11, ftm: 0, fta: 0, composite: 0.68, zScores: { pts: 0.578, reb: 0.485, ast: 0.724, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 1.545, ftImpact: 0, to: -0.35 } },
+          { name: "Trey Lyles", min: 23, pts: 5, reb: 3, ast: 2, stl: 1, blk: 0, to: 1, tpm: 1, fgm: 1, fga: 3, ftm: 2, fta: 2, composite: -0.84, zScores: { pts: -0.654, reb: -0.285, ast: -0.116, stl: 0.074, blk: -0.561, tpm: -0.069, fgImpact: -0.254, ftImpact: 0.677, to: 0.344 } },
+          { name: "Joan Beringer", min: 13, pts: 2, reb: 4, ast: 0, stl: 0, blk: 1, to: 0, tpm: 0, fgm: 1, fga: 1, ftm: 0, fta: 0, composite: -1.44, zScores: { pts: -1.065, reb: -0.028, ast: -0.955, stl: -0.785, blk: 0.893, tpm: -0.952, fgImpact: 0.41, ftImpact: 0, to: 1.038 } },
+          { name: "Bones Hyland", min: 28, pts: 16, reb: 4, ast: 4, stl: 0, blk: 0, to: 4, tpm: 4, fgm: 6, fga: 11, ftm: 0, fta: 0, composite: 1.84, zScores: { pts: 0.851, reb: -0.028, ast: 0.724, stl: -0.785, blk: -0.561, tpm: 2.577, fgImpact: 0.802, ftImpact: 0, to: -1.738 } },
+          { name: "Zyon Pullin", min: 5, pts: 0, reb: 0, ast: 0, stl: 0, blk: 0, to: 1, tpm: 0, fgm: 0, fga: 0, ftm: 0, fta: 0, composite: -5.3, zScores: { pts: -1.338, reb: -1.056, ast: -0.955, stl: -0.785, blk: -0.561, tpm: -0.952, fgImpact: 0, ftImpact: 0, to: 0.344 } }
         ]
       }
     },
       {
       id: "401909332",
-      line: "Dallas Mavericks @ Phoenix Suns (3:20 - 2nd)",
+      line: "Dallas Mavericks @ Phoenix Suns (9:37 - 4th)",
       completed: false,
-      statusText: "3:20 - 2nd",
+      statusText: "9:37 - 4th",
       away: {
         abbr: "DAL", name: "Dallas Mavericks", score: null,
         players: [
@@ -3904,9 +3959,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909333",
-      line: "Los Angeles Lakers @ San Antonio Spurs (3:00 - 1st)",
+      line: "Los Angeles Lakers @ San Antonio Spurs (9:13 - 3rd)",
       completed: false,
-      statusText: "3:00 - 1st",
+      statusText: "9:13 - 3rd",
       away: {
         abbr: "LAL", name: "Los Angeles Lakers", score: null,
         players: [
@@ -3922,9 +3977,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909334",
-      line: "Denver Nuggets @ Utah Jazz (2:18 - 1st)",
+      line: "Denver Nuggets @ Utah Jazz (5:38 - 3rd)",
       completed: false,
-      statusText: "2:18 - 1st",
+      statusText: "5:38 - 3rd",
       away: {
         abbr: "DEN", name: "Denver Nuggets", score: null,
         players: [
@@ -3940,9 +3995,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909335",
-      line: "New Orleans Pelicans @ LA Clippers (1:55 - 1st)",
+      line: "New Orleans Pelicans @ LA Clippers (8:10 - 3rd)",
       completed: false,
-      statusText: "1:55 - 1st",
+      statusText: "8:10 - 3rd",
       away: {
         abbr: "NO", name: "New Orleans Pelicans", score: null,
         players: [
@@ -3958,9 +4013,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909336",
-      line: "Golden State Warriors @ Portland Trail Blazers (3:27 - 1st)",
+      line: "Golden State Warriors @ Portland Trail Blazers (10:29 - 3rd)",
       completed: false,
-      statusText: "3:27 - 1st",
+      statusText: "10:29 - 3rd",
       away: {
         abbr: "GS", name: "Golden State Warriors", score: null,
         players: [
