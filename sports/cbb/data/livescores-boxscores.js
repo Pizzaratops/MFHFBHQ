@@ -7176,9 +7176,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401920890",
-      line: "Siena Saints @ Seton Hall Pirates (11/28 - 12:00 PM EST)",
+      line: "Siena Saints @ Seton Hall Pirates (3:26 - 1st)",
       completed: false,
-      statusText: "11/28 - 12:00 PM EST",
+      statusText: "3:26 - 1st",
       away: {
         abbr: "SIE", name: "Siena Saints", score: null,
         players: [
@@ -7194,17 +7194,17 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920849",
-      line: "Princeton Tigers @ St. Thomas Tommies (11/28 - 12:00 PM EST)",
+      line: "St. Thomas Tommies @ Princeton Tigers (5:38 - 1st)",
       completed: false,
-      statusText: "11/28 - 12:00 PM EST",
+      statusText: "5:38 - 1st",
       away: {
-        abbr: "Princ", name: "Princeton Tigers", score: null,
+        abbr: "STMN", name: "St. Thomas Tommies", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "STMN", name: "St. Thomas Tommies", score: null,
+        abbr: "Princ", name: "Princeton Tigers", score: null,
         players: [
 
         ]
@@ -7212,9 +7212,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401918961",
-      line: "Elon Phoenix @ NC State Wolfpack (11/28 - 12:00 PM EST)",
+      line: "Elon Phoenix @ NC State Wolfpack (5:43 - 1st)",
       completed: false,
-      statusText: "11/28 - 12:00 PM EST",
+      statusText: "5:43 - 1st",
       away: {
         abbr: "ELON", name: "Elon Phoenix", score: null,
         players: [
