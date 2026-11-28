@@ -3718,9 +3718,9 @@ const LIVESCORES_BOXSCORES = {
     games: [
       {
       id: "401909326",
-      line: "Miami Heat @ New York Knicks (2:26 - 3rd)",
+      line: "Miami Heat @ New York Knicks (11:57 - 4th)",
       completed: false,
-      statusText: "2:26 - 3rd",
+      statusText: "11:57 - 4th",
       away: {
         abbr: "MIA", name: "Miami Heat", score: null,
         players: [
@@ -3736,9 +3736,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909327",
-      line: "Milwaukee Bucks @ Detroit Pistons (Halftime)",
+      line: "Milwaukee Bucks @ Detroit Pistons (7:55 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "7:55 - 3rd",
       away: {
         abbr: "MIL", name: "Milwaukee Bucks", score: null,
         players: [
@@ -3754,9 +3754,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909328",
-      line: "Philadelphia 76ers @ Indiana Pacers (Halftime)",
+      line: "Philadelphia 76ers @ Indiana Pacers (10:10 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "10:10 - 3rd",
       away: {
         abbr: "PHI", name: "Philadelphia 76ers", score: null,
         players: [
@@ -3772,9 +3772,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909329",
-      line: "Brooklyn Nets @ Toronto Raptors (Halftime)",
+      line: "Brooklyn Nets @ Toronto Raptors (10:08 - 3rd)",
       completed: false,
-      statusText: "Halftime",
+      statusText: "10:08 - 3rd",
       away: {
         abbr: "BKN", name: "Brooklyn Nets", score: null,
         players: [
@@ -3790,9 +3790,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909330",
-      line: "Atlanta Hawks @ Boston Celtics (6:25 - 2nd)",
+      line: "Atlanta Hawks @ Boston Celtics (3:02 - 2nd)",
       completed: false,
-      statusText: "6:25 - 2nd",
+      statusText: "3:02 - 2nd",
       away: {
         abbr: "ATL", name: "Atlanta Hawks", score: null,
         players: [
@@ -3808,9 +3808,9 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401909331",
-      line: "Memphis Grizzlies @ Minnesota Timberwolves (6:36 - 1st)",
+      line: "Memphis Grizzlies @ Minnesota Timberwolves (2:41 - 1st)",
       completed: false,
-      statusText: "6:36 - 1st",
+      statusText: "2:41 - 1st",
       away: {
         abbr: "MEM", name: "Memphis Grizzlies", score: null,
         players: [
