@@ -2,16 +2,15 @@
   "league": "ncaab",
   "date": "2026-11-28",
   "games": [
-    "North Florida Ospreys @ Columbia Lions (0:33 - 2nd)",
-    "Prairie View A&M Panthers 47 @ Iowa Hawkeyes 88 (Final)",
-    "Marist Red Foxes @ George Mason Patriots (2:22 - 2nd)",
-    "Chicago State Cougars @ Bradley Braves (2:24 - 2nd)",
-    "Fordham Rams @ Harvard Crimson (0:07 - 2nd)",
+    "North Florida Ospreys @ Columbia Lions (End of 2nd)",
+    "Marist Red Foxes 42 @ George Mason Patriots 75 (Final)",
+    "Chicago State Cougars @ Bradley Braves (1:01 - 2nd)",
+    "Fordham Rams 63 @ Harvard Crimson 60 (Final)",
     "Toledo Rockets @ Valparaiso Beacons (Halftime)",
     "Denver Pioneers @ New Mexico State Aggies (Halftime)",
     "UT Rio Grande Valley Vaqueros @ UNLV Rebels (Halftime)",
-    "Brown Bears @ Air Force Falcons (1:19 - 1st)",
-    "North Texas Mean Green @ Boise State Broncos (14:56 - 1st)",
+    "Brown Bears @ Air Force Falcons (Halftime)",
+    "North Texas Mean Green @ Boise State Broncos (12:20 - 1st)",
     "Siena Saints 89 @ Seton Hall Pirates 92 (Final)",
     "St. Thomas Tommies 76 @ Princeton Tigers 77 (Final)",
     "Elon Phoenix 72 @ NC State Wolfpack 96 (Final)",
@@ -19,6 +18,7 @@
     "IU Columbus Crimson Pride 41 @ Indiana State Sycamores 91 (Final)",
     "Alcorn State Braves 77 @ Georgia Tech Yellow Jackets 97 (Final)",
     "Lehigh Mountain Hawks 82 @ Pepperdine Waves 88 (Final)",
+    "Prairie View A&M Panthers 47 @ Iowa Hawkeyes 88 (Final)",
     "San José State Spartans @ Utah Valley Wolverines (11/28 - 4:00 PM EST)",
     "Northern Colorado Bears @ San Diego Toreros (11/28 - 4:00 PM EST)",
     "UC Irvine Anteaters @ Seattle U Redhawks (11/28 - 5:00 PM EST)",
@@ -38,7 +38,7 @@
     "Louisville Cardinals @ Creighton Bluejays (11/28 - 10:30 PM EST)"
   ],
   "leagueAvg": {
-    "fg": 51.6,
-    "ft": 70.6
+    "fg": 49.8,
+    "ft": 69.5
   }
 }
