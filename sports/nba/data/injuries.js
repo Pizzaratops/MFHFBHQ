@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T15:46:16.793Z",
+  "updated": "2026-11-28T16:01:07.106Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -68,6 +68,7 @@ const NBA_INJURIES = {
     "LeBron James": ["PHI","Out","OUT","2026-12-01","Back",0,"2026-11-28"],
     "Mark Williams": ["PHX","Out","OUT","2027-02-03","Shoulder",0,"2026-09-11"],
     "Maxime Raynaud": ["SAC","Out","OUT","2026-12-02","Knee",0,"2026-11-25"],
+    "Michael Ajayi": ["CHA","Day-To-Day","GTD","2026-11-28","Lower Leg",0,"2026-11-28"],
     "Miles McBride": ["NY","Out","OUT","2026-11-29","Groin",0,"2026-11-27"],
     "Mitchell Robinson": ["BOS","Out","OUT","2026-11-29","Illness",0,"2026-11-27"],
     "Mo Bamba": ["UTAH","Out","OUT","2026-11-29","Illness",0,"2026-11-28"],
