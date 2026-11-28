@@ -7770,17 +7770,17 @@ const LIVESCORES_BOXSCORES = {
     },
       {
       id: "401920536",
-      line: "Creighton Bluejays @ Louisville Cardinals (11/28 - 10:30 PM EST)",
+      line: "Louisville Cardinals @ Creighton Bluejays (11/28 - 10:30 PM EST)",
       completed: false,
       statusText: "11/28 - 10:30 PM EST",
       away: {
-        abbr: "Crei", name: "Creighton Bluejays", score: null,
+        abbr: "Lou", name: "Louisville Cardinals", score: null,
         players: [
 
         ]
       },
       home: {
-        abbr: "Lou", name: "Louisville Cardinals", score: null,
+        abbr: "Crei", name: "Creighton Bluejays", score: null,
         players: [
 
         ]
