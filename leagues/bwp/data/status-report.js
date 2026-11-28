@@ -7,7 +7,7 @@
 // ============================================================
 
 const STATUS_REPORT_DATA = {
-  "generatedAt": "2026-11-28T10:03:24.161Z",
+  "generatedAt": "2026-11-28T12:03:24.655Z",
   "leagues": [
     {
       "id": "beyaz-espn-91260355",
@@ -1198,7 +1198,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.2,
           "last3AvgPoints": 14,
-          "projPoints": 15.8
+          "projPoints": 15.7
         },
         {
           "name": "Breece Hall",
@@ -1463,7 +1463,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 16.9,
           "last3AvgPoints": 11.7,
-          "projPoints": 8.7
+          "projPoints": 8.6
         },
         {
           "name": "Courtland Sutton",
@@ -2126,7 +2126,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 5.7,
           "last3AvgPoints": 9.4,
-          "projPoints": 6.8
+          "projPoints": 6.9
         },
         {
           "name": "Patrick Mahomes",
@@ -2292,7 +2292,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 6.8,
           "last3AvgPoints": 8.2,
-          "projPoints": 5.6
+          "projPoints": 5.5
         },
         {
           "name": "Mike Evans",
@@ -3730,7 +3730,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.2,
           "last3AvgPoints": 14,
-          "projPoints": 15.8
+          "projPoints": 15.7
         },
         {
           "name": "Jahmyr Gibbs",
@@ -4040,7 +4040,7 @@ const STATUS_REPORT_DATA = {
           "flag": false,
           "lastGamePoints": 19.2,
           "last3AvgPoints": 14,
-          "projPoints": 15.8
+          "projPoints": 15.7
         },
         {
           "name": "Jameson Williams",
