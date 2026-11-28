@@ -1,12 +1,12 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T20:51:38.111Z",
+  "updated": "2026-11-28T21:16:06.446Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
     "Anthony Black": ["ORL","Out","OUT","2026-11-29","Back",0,"2026-11-28"],
-    "Anthony Davis": ["WSH","Day-To-Day","GTD","2026-11-28","Illness",0,"2026-11-28"],
+    "Anthony Davis": ["WSH","Day-To-Day","OUT","2026-11-30","Illness",0,"2026-11-28"],
     "Anthony Edwards": ["MIN","Out","OUT","2026-12-21","Knee",0,"2026-10-29"],
     "Ariel Hukporti": ["PHI","Out","OFS","2027-10-01","Achilles",1,"2026-10-06"],
     "Asa Newell": ["ATL","Out","OUT","2027-03-17","Toe",0,"2026-11-17"],
