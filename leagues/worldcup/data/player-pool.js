@@ -1,7 +1,7 @@
 // ============================================================
 //  WC_PLAYER_POOL — Spielerpool der Division (Fantrax), AUTO-GENERIERT (sync-fantrax.js).
 //  Zeile: [fantraxId, Name, NBA-Team, Position, eligiblePos, Status (T = vergeben, FA = frei, W = Waiver)]
-//  Stand: 2026-11-28T13:02:49.651Z
+//  Stand: 2026-11-28T14:02:49.179Z
 // ============================================================
 
 const WC_PLAYER_POOL = [
@@ -67,7 +67,7 @@ const WC_PLAYER_POOL = [
 ["07ape","Andrew Holifield","(N/A)","SF","SF,F,Flx","FA"],
 ["0621u","Andrew Nembhard","IND","SG","PG,SG,G,Flx","T"],
 ["02ym0","Andrew Wiggins","MIA","SF","SG,G,SF,F,Flx","T"],
-["04qs1","Anfernee Simons","PHI","SG","PG,SG,G,Flx","FA"],
+["04qs1","Anfernee Simons","PHI","SG","PG,SG,G,Flx","T"],
 ["07atl","Aniwaniwa Tait-Jones","(N/A)","G","PG,SG,G,Flx","FA"],
 ["042ni","Ante Zizic","(N/A)","C","C,Flx","FA"],
 ["06cc5","Anthony Black","ORL","PG","PG,SG,G,Flx","T"],
@@ -108,7 +108,7 @@ const WC_PLAYER_POOL = [
 ["06caa","Ben Sheppard","IND","SG","SG,G,SF,F,Flx","FA"],
 ["03lg1","Ben Simmons","SAC","PG","PG,SG,G,Flx","FA"],
 ["06215","Bennedict Mathurin","NOR","SF","SG,G,SF,F,Flx","FA"],
-["076sv","Bennett Stirtz","OKC","PG","PG,G,Flx","FA"],
+["076sv","Bennett Stirtz","OKC","PG","PG,G,Flx","T"],
 ["07401","Bez Mbeng","(N/A)","SG","SG,G,Flx","FA"],
 ["06cc1","Bilal Coulibaly","WAS","SF","SG,G,SF,PF,F,Flx","T"],
 ["04rvz","Billy Preston","(N/A)","PF","SF,PF,F,Flx","FA"],
@@ -541,7 +541,7 @@ const WC_PLAYER_POOL = [
 ["0524h","Jalen Lecque","(N/A)","SG","PG,SG,G,Flx","FA"],
 ["051pw","Jalen McDaniels","(N/A)","SF","SF,F,Flx","FA"],
 ["06ccy","Jalen Pickett","LAC","SG","PG,SG,G,Flx","FA"],
-["06cdk","Jalen Slawson","IND","SF","SF,F,Flx","FA"],
+["06cdk","Jalen Slawson","IND","SF","SF,F,Flx","T"],
 ["05qty","Jalen Smith","CHI","C","PF,C,F,Flx","T"],
 ["05uif","Jalen Suggs","ORL","PG","PG,G,Flx","T"],
 ["0621b","Jalen Williams","OKC","SG","SG,G,SF,PF,F,Flx","FA"],
@@ -1289,7 +1289,7 @@ const WC_PLAYER_POOL = [
 ["05qtz","Zavier Simpson","(N/A)","PG","PG,G,Flx","FA"],
 ["05quh","Zeke Nnaji","DEN","PF","PF,C,F,Flx","FA"],
 ["04qrt","Zhaire Smith","(N/A)","SG","SG,G,Flx","FA"],
-["05uik","Ziaire Williams","LAL","SF","SG,G,SF,F,Flx","T"],
+["05uik","Ziaire Williams","LAL","SF","SG,G,SF,F,Flx","FA"],
 ["051oh","Zion Williamson","NOR","PF","SF,PF,F,Flx","T"],
 ["076td","Zuby Ejiofor","ATL","PF","PF,F,Flx","FA"],
 ["06mmr","Zyon Pullin","MIN","SG","SG,G,Flx","FA"]
