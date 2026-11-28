@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T17:44:42.332Z",
+  "updated": "2026-11-28T18:01:08.239Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -90,7 +90,7 @@ const NBA_INJURIES = {
     "Sergio de Larrea": ["DAL","Out","OUT","2026-12-14","Knee",0,"2026-11-26"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
     "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-28"],
-    "Steven Adams": ["HOU","Day-To-Day","OUT","2026-11-30","Knee",0,"2026-11-27"],
+    "Steven Adams": ["HOU","Out","OUT","2026-11-30","Knee",0,"2026-11-28"],
     "T.J. McConnell": ["IND","Out","GTD","2026-11-28","Hamstring",0,"2026-11-27"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-12-04","Heel",0,"2026-11-26"],
     "Taurean Prince": ["DET","Out","OUT","2026-12-26","Knee",0,"2026-11-24"],
