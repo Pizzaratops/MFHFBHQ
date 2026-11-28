@@ -125,7 +125,9 @@ async function sleeper(teams) {
   const res = lg === 'bwp' ? await espn(teams) : await sleeper(teams);
   // ältere Wochen behalten, falls die Quelle sie nicht mehr liefert
   const old = loadConst(path.join(dir, 'max-pf.js'), 'MAX_PF');
-  const weeks = Object.assign({}, old && old.season === SEASON ? old.weeks : {}, res.weeks);
+  // eingefrorene Wochen (z. B. Foodball W1/W2 nach ESPN-Draft-Reset) aus frozen-weeks-<season>.js
+  const frozen = fs.existsSync(path.join(dir, `frozen-weeks-${SEASON}.js`)) ? loadConst(path.join(dir, `frozen-weeks-${SEASON}.js`), `FROZEN_WEEKS_${SEASON}`) : null;
+  const weeks = Object.assign({}, old && old.season === SEASON ? old.weeks : {}, res.weeks, (frozen && frozen.maxPf) || {});
   const out = { season: SEASON, updated: new Date().toISOString(), source: res.source, weeks };
   fs.writeFileSync(path.join(dir, 'max-pf.js'), `// ============================================================
 //  MAX_PF — Max PF (optimale Aufstellung) je Team und Woche

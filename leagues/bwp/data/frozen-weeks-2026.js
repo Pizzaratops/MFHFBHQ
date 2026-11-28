@@ -1999,5 +1999,132 @@ const FROZEN_WEEKS_2026 = {
     "2": 0
    }
   }
- }
+ },
+ "maxPf": {
+  "1": {
+   "bear-witch-project": {
+    "act": 129.68,
+    "max": 133.3,
+    "est": true
+   },
+   "burrowhead-dancers": {
+    "act": 68.56,
+    "max": 109.4,
+    "est": true
+   },
+   "fred-bulls": {
+    "act": 93.66,
+    "max": 104.9,
+    "est": true
+   },
+   "lion-cereals": {
+    "act": 57.8,
+    "max": 57.8,
+    "est": true
+   },
+   "vice-city-crackheads": {
+    "act": 149,
+    "max": 184.4,
+    "est": true
+   },
+   "beastmode": {
+    "act": 155.56,
+    "max": 167.6,
+    "est": true
+   },
+   "angry-ducks": {
+    "act": 107.6,
+    "max": 125.5,
+    "est": true
+   },
+   "team-beermode": {
+    "act": 137.84,
+    "max": 176.7,
+    "est": true
+   },
+   "running-bisons": {
+    "act": 104.36,
+    "max": 143.1,
+    "est": true
+   },
+   "the-lamartrix": {
+    "act": 143.46,
+    "max": 171.5,
+    "est": true
+   },
+   "charged-up": {
+    "act": 92.82,
+    "max": 119.5,
+    "est": true
+   },
+   "london-nopunts": {
+    "act": 105.12,
+    "max": 133,
+    "est": true
+   }
+  },
+  "2": {
+   "bear-witch-project": {
+    "act": 94.4,
+    "max": 97.7,
+    "est": true
+   },
+   "burrowhead-dancers": {
+    "act": 103.88,
+    "max": 133.9,
+    "est": true
+   },
+   "fred-bulls": {
+    "act": 128.74,
+    "max": 160,
+    "est": true
+   },
+   "lion-cereals": {
+    "act": 117.98,
+    "max": 120,
+    "est": true
+   },
+   "vice-city-crackheads": {
+    "act": 150.08,
+    "max": 169.7,
+    "est": true
+   },
+   "beastmode": {
+    "act": 142.22,
+    "max": 143.4,
+    "est": true
+   },
+   "angry-ducks": {
+    "act": 124.18,
+    "max": 139.4,
+    "est": true
+   },
+   "team-beermode": {
+    "act": 104.22,
+    "max": 124.5,
+    "est": true
+   },
+   "running-bisons": {
+    "act": 140.56,
+    "max": 163.8,
+    "est": true
+   },
+   "the-lamartrix": {
+    "act": 100.6,
+    "max": 118.7,
+    "est": true
+   },
+   "charged-up": {
+    "act": 85.12,
+    "max": 88.9,
+    "est": true
+   },
+   "london-nopunts": {
+    "act": 91.66,
+    "max": 101.6,
+    "est": true
+   }
+  }
+ },
+ "maxPfNote": "Max PF W1/W2 rekonstruiert (28.11.2026): Kader aus DRAFT_RESULTS_2026 plus Starter aus MATCHUP_SNAPSHOTS, Punkte aus playerWeeklyPoints. Waiver-Adds ohne Snapshot fehlen, Max PF eher zu niedrig; mindestens die echten Punkte."
 };

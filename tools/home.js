@@ -119,7 +119,8 @@ function nqRumble(ctx, team, weekly, season, weeks, st) {
 function nqRanking(ctx, team, weekly, season, weeks, st) {
   const { ui, data } = ctx, e = ui.esc;
   const last = weeks[weeks.length - 1];
-  const tabs = `<div class="seg" role="group">${[['table', 'Tabelle'], ['allplay', 'All-Play'], ['totals', 'Totals']].map(([k, l]) => `<button type="button" class="seg-btn${st.rank === k ? ' active' : ''}" data-nqrank="${k}">${l}</button>`).join('')}</div>`;
+  const MX = data.MAX_PF && data.MAX_PF.season == season ? data.MAX_PF : null;
+  const tabs = `<div class="seg" role="group">${[['table', 'Tabelle'], ['allplay', 'All-Play'], ['totals', 'Totals']].concat(MX ? [['maxpf', 'Max PF']] : []).map(([k, l]) => `<button type="button" class="seg-btn${st.rank === k ? ' active' : ''}" data-nqrank="${k}">${l}</button>`).join('')}</div>`;
   const stand = ui.standings(weekly, season, last, (ctx.league.playoffs || {}).tiebreak);
   const T = {};
   stand.forEach(r => { T[r.teamId] = { id: r.teamId, rec: ui.record(r), pf: r.pf, pa: r.pa, wins: r.wins, aw: 0, al: 0, hw: 0, g: 0, max: -Infinity, min: Infinity }; });
@@ -130,6 +131,16 @@ function nqRanking(ctx, team, weekly, season, weeks, st) {
   const cell = (t, k) => `<td><span class="team-emoji">${e(team(t.id).emoji || '')}</span> ${e(team(t.id).name)}</td>`;
   if (st.rank === 'table') return `<section class="qk-sec"><div class="qk-head"><h2>📈 Ranking</h2>${tabs}</div><div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Bilanz</th><th class="num">PF</th><th class="num">PA</th></tr></thead><tbody>
     ${stand.map((r, i) => `<tr><td class="num rank">${i + 1}</td>${cell({ id: r.teamId })}<td class="num strong">${ui.record(r)}</td><td class="num">${ui.num(r.pf)}</td><td class="num muted">${ui.num(r.pa)}</td></tr>`).join('')}</tbody></table></div></section>`;
+  if (st.rank === 'maxpf' && MX) {
+    const M = {}; let est = false;
+    weeks.forEach(w => { const o = MX.weeks[w]; if (!o) return; Object.entries(o).forEach(([id, v]) => { const m = M[id] = M[id] || { id, max: 0, act: 0, g: 0 }; m.max += v.max || 0; m.act += v.act || 0; m.g++; if (v.est) est = true; }); });
+    const realRank = {}; stand.forEach((r, i) => { realRank[r.teamId] = i + 1; });
+    const L = Object.values(M).filter(m => T[m.id]).sort((a, b) => b.max - a.max);
+    const used = weeks.filter(w => MX.weeks[w]);
+    return `<section class="qk-sec"><div class="qk-head"><h2>📈 Ranking</h2>${tabs}</div><div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th>Team</th><th class="num">Max PF</th><th class="num">Ø/W</th><th class="num" title="Erzielte Punkte in Prozent von Max PF">Eff.</th><th class="num">Bilanz</th><th class="num" title="Platz in der echten Tabelle">Tab.</th></tr></thead><tbody>
+    ${L.map((m, i) => { const d = realRank[m.id] - (i + 1); return `<tr><td class="num rank">${i + 1}</td>${cell(m)}<td class="num strong">${ui.num(m.max)}</td><td class="num">${ui.num(m.g ? m.max / m.g : 0)}</td><td class="num">${m.max ? (m.act / m.max * 100).toFixed(1).replace('.', ',') + ' %' : '—'}</td><td class="num">${T[m.id].rec}</td><td class="num ${d > 0 ? 'down' : d < 0 ? 'up' : ''}" title="${d > 0 ? 'Bilanz schlechter als der Kader' : d < 0 ? 'Bilanz besser als der Kader' : ''}">${realRank[m.id]}</td></tr>`; }).join('')}</tbody></table></div>
+    <p class="small muted">Max PF = Punkte der bestmöglichen Aufstellung jeder Woche (Wochen ${used[0]}–${used[used.length - 1]}). Misst die Stärke des Kaders, unabhängig von Aufstellung, Spielplan und Glück.${est ? ' W1/W2 rekonstruiert (ESPN-Draft-Reset), dort eher etwas zu niedrig.' : ''}</p></section>`;
+  }
   if (st.rank === 'allplay') { const L = list.slice().sort((a, b) => b.apPct - a.apPct); return `<section class="qk-sec"><div class="qk-head"><h2>📈 Ranking</h2>${tabs}</div><div class="table-wrap"><table class="table compact"><thead><tr><th class="num">#</th><th>Team</th><th class="num">All-Play</th><th class="num">Pct</th><th class="num">Bilanz</th><th class="num" title="Echte H2H-Siege minus All-Play-Erwartung">Glück</th></tr></thead><tbody>
     ${L.map((t, i) => `<tr><td class="num rank">${i + 1}</td>${cell(t)}<td class="num strong">${t.aw}-${t.al}</td><td class="num">${t.apPct.toFixed(3).replace(/^0/, '')}</td><td class="num">${t.rec}</td><td class="num ${t.luck > 0.5 ? 'up' : t.luck < -0.5 ? 'down' : ''}">${t.luck >= 0 ? '+' : '−'}${Math.abs(t.luck).toFixed(1).replace('.', ',')}</td></tr>`).join('')}</tbody></table></div>
     <p class="small muted">All-Play: jede Woche gegen alle Teams gerechnet – wie stark ein Team wirklich punktet, unabhängig vom Spielplan.</p></section>`; }
@@ -166,7 +177,7 @@ MFHFB.pages.register({
   label: 'Übersicht',
   icon: '🏠',
   applies: { scoring: ['points'] },
-  data: ['teams', 'weekly-scores', '?draft', '?sport:matchup-advantage', '?rosters-live', '?player-stats', '?position-points', '?schedule'],
+  data: ['teams', 'weekly-scores', '?draft', '?sport:matchup-advantage', '?rosters-live', '?player-stats', '?position-points', '?schedule', '?max-pf'],
   mount(root, ctx) {
     const els = [...root.querySelectorAll('[data-cd]')];
     if (els.length) {
