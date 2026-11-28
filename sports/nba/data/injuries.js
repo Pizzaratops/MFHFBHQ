@@ -1,7 +1,7 @@
 // AUTO-GENERIERT von scripts/sync-injuries.js (ESPN-Verletzungsliste). Nicht von Hand editieren.
 // [Team, Status, Fantasy, Rückkehr, Art, saisonAus, Meldung]
 const NBA_INJURIES = {
-  "updated": "2026-11-28T01:01:01.536Z",
+  "updated": "2026-11-28T01:24:34.353Z",
   "players": {
     "Aday Mara": ["OKC","Out","OUT","2026-11-30","Lower Leg",0,"2026-11-27"],
     "Andre Drummond": ["NY","Out","OUT","2026-11-29","Concussion",0,"2026-11-27"],
@@ -89,7 +89,7 @@ const NBA_INJURIES = {
     "Scotty Pippen Jr.": ["MEM","Out","OUT","2026-12-12","Back",0,"2026-11-24"],
     "Sergio de Larrea": ["DAL","Out","OUT","2026-12-14","Knee",0,"2026-11-26"],
     "Shaedon Sharpe": ["POR","Out","OUT","2027-03-02","Knee",0,"2026-08-24"],
-    "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-26"],
+    "Stephen Curry": ["GS","Out","OUT","2026-12-12","Abdomen",0,"2026-11-28"],
     "Steven Adams": ["HOU","Day-To-Day","GTD","2026-11-28","Knee",0,"2026-11-27"],
     "T.J. McConnell": ["IND","Out","OUT","2026-11-28","Hamstring",0,"2026-11-27"],
     "Tarik Biberovic": ["DAL","Out","OUT","2026-12-04","Heel",0,"2026-11-26"],
@@ -101,7 +101,6 @@ const NBA_INJURIES = {
     "Tristan Vukcevic": ["WSH","Out","OUT","2026-11-30","Hip",0,"2026-11-23"],
     "Tyrese Haliburton": ["IND","Out","OUT","2026-12-13","Hamstring",0,"2026-11-27"],
     "Vit Krejci": ["POR","Out","OUT","2027-01-12","Ankle",0,"2026-11-11"],
-    "Zach Edey": ["MEM","Day-To-Day","GTD","2026-11-27","Ankle",0,"2026-11-28"],
     "Zach LaVine": ["SAC","Day-To-Day","GTD","2026-11-29","Knee",0,"2026-11-26"]
   }
 };
