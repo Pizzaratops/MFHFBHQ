@@ -2,11 +2,10 @@
   "league": "ncaab",
   "date": "2026-11-27",
   "games": [
-    "San Diego State Aztecs @ Texas Tech Red Raiders (17:37 - 2nd)",
-    "Creighton Bluejays @ Gonzaga Bulldogs (7:52 - 2nd)",
     "Oakland Golden Grizzlies 46 @ Houston Cougars 77 (Final)",
     "Virginia Cavaliers 83 @ Xavier Musketeers 71 (Final)",
     "Western Kentucky Hilltoppers 76 @ Illinois Fighting Illini 116 (Final)",
+    "San Diego State Aztecs 75 @ Texas Tech Red Raiders 78 (Final)",
     "Georgetown Hoyas 63 @ UCLA Bruins 75 (Final)",
     "Texas Longhorns 76 @ Saint Mary's Gaels 73 (Final)",
     "Tennessee Volunteers 64 @ Louisville Cardinals 84 (Final)",
@@ -14,6 +13,7 @@
     "Iowa State Cyclones 75 @ St. John's Red Storm 80 (Final)",
     "Southern Jaguars 56 @ Vanderbilt Commodores 111 (Final)",
     "Miami Hurricanes 87 @ Alabama Crimson Tide 81 (Final)",
+    "Creighton Bluejays 97 @ Gonzaga Bulldogs 89 (Final/OT)",
     "Bowling Green Falcons 57 @ Indiana Hoosiers 93 (Final)",
     "Memphis Tigers 88 @ Wake Forest Demon Deacons 85 (Final)",
     "Fresno State Bulldogs 81 @ South Alabama Jaguars 61 (Final)",
@@ -44,7 +44,7 @@
     "Wichita State Shockers 73 @ Kentucky Wildcats 71 (Final/OT)"
   ],
   "leagueAvg": {
-    "fg": 46.2,
-    "ft": 73.7
+    "fg": 46,
+    "ft": 73.9
   }
 }
